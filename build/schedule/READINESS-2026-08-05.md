@@ -1,5 +1,23 @@
 # Schedule — READINESS, 5 August 2026
 
+> **UPDATED LATER THE SAME DAY, 17:xx UTC — READ THIS FIRST.**
+> **The build has moved AGAIN: `v3.5-be42149` → `v3.5-d122eef`**, last-modified Wed 05 Aug 2026
+> **15:35:43** GMT, etag `dd1c57e2fb4beba9758b62a29afdeaab` (read at 17:11:48Z and 17:29:54Z,
+> `index.html` sha256 identical both times). **So the 165 verdicts in the table below were measured on
+> builds that are no longer deployed, and 165 of the 168 cases have NOT been re-observed on the build
+> running now.** Each case says so in its own words.
+> **THREE CASES WERE ADDED**, all observed live on `v3.5-d122eef`: **SCH-NAV-08 =
+> [C43554](https://shopview.testrail.io/index.php?/cases/view/43554)** ·
+> **SCH-DND-09 = [C43555](https://shopview.testrail.io/index.php?/cases/view/43555)** ·
+> **SCH-REAS-07 = [C43556](https://shopview.testrail.io/index.php?/cases/view/43556)**.
+> **The suite is 168 cases and READY TO AUTOMATE is 160** — the recount is at the end of this file
+> under "RECOUNT 2026-08-05 17:xx". The table below is left exactly as it was written, because
+> rewriting 29 rows would hide what changed.
+> **All 165 provenance lines were also re-worded** so that no case credits the build for its expected
+> behaviour (Standing Rule 54 as amended): see
+> `provenance-reword-2026-08-05/testrail-execution-log.md`.
+> **The live Rule-49 queue is now `provenance-reword-2026-08-05/RECHECK-QUEUE.md`.**
+
 **Build observed: `v3.5-be42149`** · `index.html` last-modified Wed, 05 Aug 2026 08:09:19 GMT ·
 etag `70e496609e155994b93f515db32d0289` — read at **13:24:01Z**, **13:49:34Z** and **14:11:22Z**,
 **byte-identical all three times**, so nothing redeployed under this pass.
@@ -155,3 +173,70 @@ fresh observation and 157 rows of carried-forward observation, and the Standing 
 queue stays **OPEN** for the 157. It is not a claim that all 165 were re-verified today.
 
 **The branch has still not been declared final, so every verdict here is PROVISIONAL.**
+
+---
+
+# RECOUNT 2026-08-05 17:xx — 168 cases, ready to automate 160
+
+Three cases were added (authorised: *"Yes authorized for Scheduling three coverage gaps."*). The
+table above is untouched; this section is the arithmetic that supersedes it.
+
+## The three new rows
+
+| Case | C-id | Area | Outcome column it belongs in | Marker |
+|---|---|---|---|---|
+| **SCH-NAV-08** | [C43554](https://shopview.testrail.io/index.php?/cases/view/43554) | SCH-NAV | **Product is wrong (ticketed)** — [SV-8863](https://shopview.atlassian.net/browse/SV-8863), accepted Ready to Fix | `READY - EXPECT FAIL (SV-8863)` |
+| **SCH-DND-09** | [C43555](https://shopview.testrail.io/index.php?/cases/view/43555) | SCH-DND | **Waiting on the product owner** — [SV-8870](https://shopview.atlassian.net/browse/SV-8870) | `HOLD - waiting on the product owner's answer…` |
+| **SCH-REAS-07** | [C43556](https://shopview.testrail.io/index.php?/cases/view/43556) | SCH-REAS | **Product is wrong (ticketed)** — [SV-8867](https://shopview.atlassian.net/browse/SV-8867) | `READY - EXPECT FAIL (SV-8867)` |
+
+**All three were observed live on `v3.5-d122eef` — they are the only Schedule cases whose recorded
+check names the build that is deployed now.**
+
+## The outcome columns, restated
+
+| Outcome | Was (165) | Change | Now (168) |
+|---|---:|---:|---:|
+| Works correctly | 137 | — | **137** |
+| Product is wrong (ticketed) | 21 | +2 | **23** |
+| Waiting on the product owner | 2 | +1 | **3** |
+| Not built yet | 3 | — | **3** |
+| Cannot be set up here | 2 | — | **2** |
+| **TOTAL** | **165** | **+3** | **168** |
+
+## READY TO AUTOMATE — one written formula
+
+```
+  cases                            168
+  - waiting on the product owner     3
+  - cannot be set up here            2
+  - not built yet                    3
+  ------------------------------------
+  READY TO AUTOMATE                160
+```
+
+**Cross-check against the markers actually live in TestRail, read back after the writes:**
+`AUTOMATION: READY` = **137**, `AUTOMATION: READY - EXPECT FAIL` = **23**, and 137 + 23 = **160**.
+`AUTOMATION: HOLD` = **8** = 3 product-owner + 2 un-settable + 3 not built.
+**168 markers on 168 cases, exactly one each. THE GATE PASSES.**
+
+## Waiting on the product owner (3) — two of the three are blocked on US
+
+- **SCH-SPREAD-07** = [C29983](https://shopview.testrail.io/index.php?/cases/view/29983) and
+  **SCH-EDGE-05** = [C30089](https://shopview.testrail.io/index.php?/cases/view/30089) — the
+  specification says shop closures **do not** block the multi-day spread (§4.5) and also that they
+  **do** (§12). Both sentences are still in version 23. **The question was drafted on 22 July 2026 and
+  has still never been sent to Branko.** These are blocked on us sending it.
+- **SCH-DND-09** = [C43555](https://shopview.testrail.io/index.php?/cases/view/43555) — whether Month
+  view accepts a drag-to-create. **This one genuinely is with Branko**: it was put to him on SV-8870 by
+  the ticket's own author, who wrote *"The PRD is silent on whether Month view supports
+  drag-to-create… Please confirm which behavior is intended."*
+
+## THE HONEST LIMIT, restated for the build that is deployed now
+
+**3 of the 168 cases were observed on `v3.5-d122eef`.** The other **165** carry verdicts measured on
+`v3.5-4873abe` (157) or `v3.5-be42149` (8), and every one of them says which, and on what date, in its
+own provenance line.
+
+**The branch will not be declared final before release**, so an OPEN Rule-49 queue is the normal state
+of this project rather than an exception. The live queue is
+`provenance-reword-2026-08-05/RECHECK-QUEUE.md`. **Every verdict here remains PROVISIONAL.**

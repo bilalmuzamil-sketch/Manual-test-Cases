@@ -1,5 +1,136 @@
 # Schedule — PROJECT STATE
 
+## §0-PROVENANCE-REWORD-2026-08-05 — CANONICAL RESUME (read this first)
+
+**Paper: `build/schedule/provenance-reword-2026-08-05/`.** Resume order:
+`SOURCE-CURRENCY.md` → `testrail-execution-log.md` → `NEW-CASES.md` → `RECHECK-QUEUE.md` (the LIVE
+Rule-49 queue) → `READINESS-2026-08-05.md` (banner + the RECOUNT section at its end).
+
+### THE BUILD MOVED AGAIN — a third marker in two days
+
+**`v3.5-be42149` → `v3.5-d122eef`**, last-modified Wed 05 Aug 2026 **15:35:43** GMT, etag
+`dd1c57e2fb4beba9758b62a29afdeaab`. Read at **17:11:48Z** and **17:29:54Z**, `index.html` **sha256
+identical both times**, so nothing redeployed under this pass. Engineering will **not** declare the
+branch final before release, so an OPEN Rule-49 queue is now this project's **normal steady state**
+(Standing Rule 60), and the queue re-checks only three layers: labels/navigation, the verdict, and the
+markers that assert a build fact.
+
+### 1. All 165 provenance lines re-worded — the build is no longer named as a source
+
+Standing Rule 54 as amended today: **sentence 1 names only documents; sentence 2 records, in neutral
+language, the build the case was last checked against.** The two must never merge.
+
+**165 distinct cases · 241 `update_case` ops · every one HTTP 200 and byte-verified MATCH, 28 fields
+compared each · 0 collateral changes on any other field.** All three text fields were sent on every
+payload, so TestRail's omit-field re-render **never fired**: 0 of 168 carry raw markup or CRLF.
+
+**Two defects in our own text were removed, and both are findings:**
+- **8 cases said the expectation was *"verified against the build"*** — the build as the agent of
+  verification, which Rule 54 bars, **and two of the eight are EXPECT-FAIL cases that fail on that very
+  build**, so the line contradicted the case's own body.
+- **157 cases named `v3.5-be42149` as the build the branch "has since been rebuilt to"** — true when
+  written, **false within hours**.
+
+**The honest per-case split, because only 8 were ever re-observed on the newer build:**
+| Sentence 2 written | Cases |
+|---|---:|
+| `Last checked against build v3.5-be42149 on 8/5/2026.` | **8** (genuinely observed) |
+| `Last checked against build v3.5-4873abe on 8/4/2026.` | **157** (carried forward) |
+
+**Note for the record: it is 8, not 7.** `READINESS-2026-08-05.md` already said 8; the eighth is
+**C29963**, the scope-picker contents enumerated in the previous pass's FINDINGS item 4.
+
+**Judgement call, recorded as one:** sentence 2 deliberately does **not** name the currently-deployed
+build. Embedding "the current build is X" in 165 cases makes all 165 stale on every redeploy — and
+there have been three markers in two days. The current-build comparison lives in the readiness report
+and the queue instead, which are one file each.
+
+**OWNED BLEMISH: 241 ops for 165 cases.** A foreground timeout killed the *wait*, not the *process*,
+which ran on to completion; a resume then re-wrote 76 cases with a byte-identical payload. Content is
+correct and all 241 verified MATCH, but 76 cases carry a pointless extra `updated_on` bump. **Next long
+batch: check whether a timed-out job is still alive before resuming it.**
+
+### 2. Three coverage gaps authored — the suite is now 168
+
+| Internal ID | C-id | Driver | Marker |
+|---|---|---|---|
+| **SCH-NAV-08** | **[C43554](https://shopview.testrail.io/index.php?/cases/view/43554)** | [SV-8863](https://shopview.atlassian.net/browse/SV-8863) — which view the module opens on | `READY - EXPECT FAIL (SV-8863)` |
+| **SCH-DND-09** | **[C43555](https://shopview.testrail.io/index.php?/cases/view/43555)** | [SV-8870](https://shopview.atlassian.net/browse/SV-8870) — Month-view drag-create | `HOLD - waiting on the product owner` |
+| **SCH-REAS-07** | **[C43556](https://shopview.testrail.io/index.php?/cases/view/43556)** | [SV-8867](https://shopview.atlassian.net/browse/SV-8867) — reassigning a series member | `READY - EXPECT FAIL (SV-8867)` |
+
+**All three reproduce live on `v3.5-d122eef`, each with a CONTROL that rules out a harness artefact:**
+- **SV-8863** — `Week` carries `aria-pressed="true"` on arrival, `Day` false, grid renders
+  `fc-resourceTimelineWeek-view`. **The requirement is story SV-8686's acceptance criterion, not the
+  specification, which is SILENT on the default view** — the case says so rather than inventing an
+  anchor.
+- **SV-8870** — the card lifts, no day box highlights, release does nothing, **zero requests sent**;
+  the **identical drag in Week view opens the scope picker** (*"dropped on Brittany Anderson · Wed,
+  Aug 5"*). **HELD under Rule 58**: §4.1 does not name a view and story SV-8688 names only Week, so the
+  Month-view question was **not** resolved from the build — it is Branko's to answer on SV-8870.
+- **SV-8867** — the series block lifts and moves but **snaps back with no confirmation**, while an
+  ordinary shift dragged between the **same two technician lanes** raises *"Move this shift to MQ Test
+  Tech Qamar?"*. Scoped to **Week view on purpose**: §7 describes dragging between technician **rows**
+  and **Month view has none** (confirmed live — 0 resource labels, a weekday-column calendar).
+
+**The internal IDs were checked three ways** (not in the 195 bodies · not on the 27-case retired list ·
+not in the id-map) because another project reused a retired ID today and its resync **overwrote the
+retired record**.
+
+**No API case among them** — the QA lead ruled *"No test cases for API only findings please"*, and none
+names an endpoint, verb or status code.
+
+### 3. Run 357 synced — union only, and Ayesha's 429 results proven intact
+
+`include_all` is **false**, so adding cases froze the run out of date. **`update_run` HTTP 200 with the
+FULL union of 168.** Verified: **165 → 168 tests**, `case_id` sets **equal in both directions**, all
+165 prior tests present **by id** (0 lost, 0 rebound), **all 429 prior result records present BY ID
+with 0 graded-field changes and 0 echo movement**, 0 new results, and only `untested_count` /
+`updated_on` moved on the run record. Executor: `tools/run_sync_357_only.py` — the proven
+2026-08-05 executor with `SCOPE` **cut to run 357 alone**, so runs 359 and 352 (other workers live)
+could not be touched. The unsafe 2026-07-31 script was not used.
+
+### 4. The gate, and the new figure
+
+```
+  cases 168 - 3 waiting on the PO - 2 un-settable - 3 not built = READY TO AUTOMATE 160
+  markers live: READY 137 + READY-EXPECT-FAIL 23 = 160          THE GATE PASSES
+  HOLD 8 = 3 PO + 2 un-settable + 3 not built
+```
+168 markers on 168 cases, exactly one each. The figure moved **158 → 160**.
+
+### 5. Deliverables and the four counts
+
+Local source **re-synced from live before** regenerating. **Shredding guard RAN and PASSED — 0 of 168
+rows** carry the newline-between-every-character signature, independently re-checked. id-map **168 rows,
+0 blanks, refs 168/168**, C-ids re-merged after the generator blanked them and then **proven equal to
+live both directions with 0 title and 0 refs mismatches**. Import header sha256 **`f2d76051d8a42e62`,
+identical to all five peers**. **Four counts: live 168 · local active 168 (195 bodies − 27 retired) ·
+id-map 168 · import 168, set-equal in every direction.**
+
+### 6. Environment, honestly
+
+Nothing seeded. **One all-day event was reassigned by an imprecisely-targeted early drag and was
+restored through the interface and proven byte-identical** — 366 shifts / 33 events / 7 series, 0
+added, 0 removed, 0 changed, id sets equal both ways. Recorded in full in `NEW-CASES.md` rather than
+glossed. No role changed, so none needed resetting to template. **0 Jira issues created — every Jira
+call was a read.**
+
+### 7. What is still owed
+
+- **A re-runnable label-and-verdict checker for Schedule (Rule 60(e))** — does not exist, which is why
+  165 rows carry forward instead of being re-checked in minutes. The stable DOM hooks are listed in
+  `RECHECK-QUEUE.md`. This is the highest-leverage item here.
+- **The shop-closure question has still never been sent to Branko** (drafted 22 July). Two cases are
+  frozen and **the blocker is us**.
+- **`PATCH /api/schedule/events/{id}` needs the full shape** `{startsAt, endsAt, reassign: true,
+  staffId, departmentId, changeNote}` — a lone `staffId` answers `400 "The request changes nothing."`
+  This belongs in `build/APP-ACTIONS-PLAYBOOK.md`, **which this worker does not own**, so it is
+  reported rather than written.
+- **An asymmetry no case covers:** an **event** block reassigns immediately with **no** confirmation,
+  while a **shift** block raises the *"Reassign shift"* confirmation.
+
+---
+
 ## §0-RUN-SYNC-2026-08-05 — run 357 checked and ALREADY COMPLETE; nothing was written
 
 **Paper: `build/testrail-run-sync-2026-08-05/`.**

@@ -1,3 +1,9 @@
+> **⚠️ SUPERSEDED 2026-08-05 17:xx UTC — this file is now the RECORD of that pass, not the live queue.**
+> **The LIVE queue is `../provenance-reword-2026-08-05/RECHECK-QUEUE.md`.** The build has moved again
+> (`v3.5-be42149` → **`v3.5-d122eef`**, last-modified Wed 05 Aug 15:35:43 GMT), the suite is now **168
+> cases**, and every reference below to "the current build" means `v3.5-be42149`, which is no longer
+> deployed. Nothing here is deleted.
+
 # Schedule — Standing Rule 49 RE-CHECK QUEUE (re-armed 5 August 2026, 14:1x UTC)
 
 ## STATUS: **OPEN** — 7 of 165 rows re-checked on `v3.5-be42149`

@@ -1,166 +1,169 @@
 internal_id,testrail_case_id,title,section,refs
-SCH-NAV-01,C29925,Schedule opens from the top-level navigation into a sidebar + grid layout,Navigation and Layout,"SV-8686 (§3,§3.1,§3.2)"
-SCH-NAV-03,C29927,Day / Week / Month segmented control switches the grid between the three views,Navigation and Layout,"SV-8686 (§3.2,§6)"
-SCH-NAV-04,C29928,Grid rows are grouped by department under group headers,Navigation and Layout,"SV-8686 (§3.2,§14.4)"
-SCH-NAV-05,C29929,Collapsing a department header hides its technician rows,Navigation and Layout,SV-8686 (§3.2)
-SCH-NAV-06,C29930,No Tech/Dept toggle - department grouping is the only grid grouping,Navigation and Layout,SV-8686 (§3.2)
-SCH-NAV-07,C29931,"An Unassigned row sits inside the grid, not in a separate tray",Navigation and Layout,"SV-8686 (§3.2,§4.2)"
-SCH-MCAL-01,C29932,Clicking a date in the mini calendar navigates the main grid to that date,Sidebar - Mini Calendar,"SV-8687 (§3.1,§5.2)"
-SCH-MCAL-02,C29933,Mini calendar month/year picker has month buttons and year arrows,Sidebar - Mini Calendar,SV-8687 (§5.2)
-SCH-MCAL-03,C29934,A chevron toggle collapses and expands the mini calendar grid,Sidebar - Mini Calendar,"SV-8687 (§3.1,§5.2)"
-SCH-MCAL-04,C29935,"Mini calendar highlights the selected date, today, and the hovered week",Sidebar - Mini Calendar,SV-8687 (§5.2)
-SCH-WOL-01,C29936,The sidebar is a flat list of work order cards with no tabs,Sidebar - Work Order List and Search,"SV-8687 (§3.1,§5.1)"
-SCH-WOL-02,C29937,"Work order card anatomy, incl. the status-colored left border",Sidebar - Work Order List and Search,SV-8687 (§3.1 (Work order card anatomy))
-SCH-WOL-04,C29939,"'Search work orders' matches work order number, customer, unit, and technician",Sidebar - Work Order List and Search,"SV-8687 (§3.1 (Sidebar search,Work order card anatomy))"
-SCH-WOL-05,C29940,Sidebar search filters the card list in real time as you type,Sidebar - Work Order List and Search,SV-8687 (§3.1 (Sidebar search))
-SCH-WOL-06,C29941,Sidebar search with no matching work orders shows an empty list,Sidebar - Work Order List and Search,SV-8687 (§3.1 (derived - search behavior with no matches))
-SCH-FILT-01,C29942,The 'Filters' button opens Assignment / Status / Priority filter groups,Sidebar - Work Order Filters,SV-8687 (§5.1)
-SCH-FILT-02,C29943,Assignment filter narrows the list to Assigned or Unassigned work orders,Sidebar - Work Order Filters,"SV-8687 (§5.1,§3.1)"
-SCH-FILT-03,C29944,Status filter narrows the list to work orders in the chosen status(es),Sidebar - Work Order Filters,SV-8687 (§5.1)
-SCH-FILT-04,C29945,"Priority filter offers High, Medium, Low and narrows the list accordingly",Sidebar - Work Order Filters,SV-8687 (§5.1)
-SCH-FILT-05,C29946,'Clear all' resets every applied sidebar filter in one click,Sidebar - Work Order Filters,SV-8687 (§5.1)
-SCH-FILT-06,C29947,Search and filter work together - both can be active at the same time,Sidebar - Work Order Filters,SV-8687 (§5.1)
-SCH-LINE-01,C29948,"Work order card opens the line drill-down in place, with header and back control",Sidebar - Line Drill-Down,SV-8687 (§3.1 (Line drill-down))
-SCH-LINE-03,C29950,Only approved work order lines appear in the drill-down,Sidebar - Line Drill-Down,SV-8687 (§3.1 (Line drill-down - approved-only))
-SCH-LINE-04,C29951,"Line row shows title, hours, the technician roster and a drag handle",Sidebar - Line Drill-Down,"SV-8687 (§3.1 (Line drill-down),§8.1 (Line labor roster - no cap))"
-SCH-LINE-05,C29952,Lines with no technician assigned show a 'Needs techs' badge,Sidebar - Line Drill-Down,SV-8687 (§3.1 (Line drill-down - Needs techs badge))
-SCH-LINE-06,C29953,'Search lines' matches the line title/name only,Sidebar - Line Drill-Down,SV-8687 (§3.1 (Line search))
-SCH-LINE-07,C29954,'All / Unscheduled' filter chips show counts and filter the line list,Sidebar - Line Drill-Down,"SV-8687 (§3.1,§5.1 (drill-down filters))"
-SCH-DND-01,C29955,Dropping a single-line work order creates a shift with no scope picker,Drag-and-Drop Scheduling,"SV-8688 (§4.1 (Single-line work order),§1.2 (roster sync),§7 (toast))"
-SCH-DND-02,C29956,Dropping a multi-line work order on a technician cell opens the scope picker,Drag-and-Drop Scheduling,"SV-8688 (§4.1 (Multi-line work order),§4.3)"
-SCH-DND-03,C29957,Dragging a line from the drill-down creates a single-line shift,Drag-and-Drop Scheduling,SV-8688 (§4.1 (Specific line drag))
-SCH-DND-04,C29958,A job over the technician's daily hours opens the spread step,Drag-and-Drop Scheduling,"SV-8688 (§4.1 (Large job),§4.5)"
-SCH-DND-05,C29959,A scope that fits one working day skips the spread step,Drag-and-Drop Scheduling,SV-8688 (§4.1 (spread step is conditional))
-SCH-DND-06,C29960,"While dragging, target cells highlight and a ghost block follows",Drag-and-Drop Scheduling,SV-8688 (§7 (Drag feedback))
-SCH-DND-07,C29961,Scheduling a technician onto a line adds them to its labor roster,Drag-and-Drop Scheduling,SV-8688 (§1.2 Goals - roster sync · §4.3 roster add + no swap flow · §7; spec v23 2026-07-30)
-SCH-DND-08,C29962,A click-to-arm alternative exists for scheduling without dragging,Drag-and-Drop Scheduling,"SV-8688 (§7 (Keyboard support - click-to-arm),§11 (Accessibility))"
-SCH-SCOPE-01,C29963,Scope picker contents: the pinned whole-order row and the line rows,Scope Picker,SV-8689 (§4.3)
-SCH-SCOPE-02,C29964,'Schedule whole work order' assigns all lines and creates one shift,Scope Picker,"SV-8689 (§4.3,§4.4)"
-SCH-SCOPE-03,C29965,Tapping a line row creates a single-line shift with no confirm step,Scope Picker,SV-8689 (§4.3 (Individual line rows - fast path))
-SCH-SCOPE-05,C29967,"'Select multiple' checkbox mode: running tally, Select all, and Cancel",Scope Picker,"SV-8689 (§4.3 (Select multiple,Select all shortcut,Cancel))"
-SCH-START-01,C29969,A shift's start time uses the technician's own working hours when set,Shift Start Times and Unassigned Shifts,SV-8688 (§4.2)
-SCH-START-02,C29970,"With no technician hours set, start time falls back to business hours",Shift Start Times and Unassigned Shifts,SV-8688 (§4.2)
-SCH-START-03,C29971,"With neither technician hours nor business hours set, a 7:00 AM default applies",Shift Start Times and Unassigned Shifts,SV-8688 (§4.2)
-SCH-START-04,C29972,In day view the start time comes from the drop position,Shift Start Times and Unassigned Shifts,SV-8688 (§4.2 (day view drop position))
-SCH-START-05,C29973,Dropping onto the Unassigned row creates a shift with no technician,Shift Start Times and Unassigned Shifts,"SV-8688 (§4.2 (Unassigned shifts),§3.2)"
-SCH-START-06,C29974,Unassigned shift start time uses business hours or the default,Shift Start Times and Unassigned Shifts,SV-8688 (§4.2)
-SCH-START-07,C29975,Dragging an unassigned shift onto a technician row assigns it,Shift Start Times and Unassigned Shifts,"SV-8688 (§3.2 (Unassigned placeholder),§4.2)"
-SCH-SPREAD-02,C29978,Spread step header shows the scope; 'Change scope' returns to the picker,Multi-Day Spread Scheduling,SV-8691 (§4.5)
-SCH-SPREAD-03,C29979,How-much selector defaults to Full estimate; preset amounts apply at once,Multi-Day Spread Scheduling,SV-8691 (§4.5 (How much to schedule))
-SCH-SPREAD-04,C29980,'Until a date…' reveals a single finish-by date field,Multi-Day Spread Scheduling,SV-8691 (§4.5 (progressive disclosure))
-SCH-SPREAD-05,C29981,'Specific hours…' reveals an hours stepper,Multi-Day Spread Scheduling,SV-8691 (§4.5 (progressive disclosure))
-SCH-SPREAD-06,C29982,Start date defaults to the earliest working day and can be changed,Multi-Day Spread Scheduling,SV-8691 (§4.5 (Start date))
-SCH-SPREAD-07,C29983,Spread uses the tech's working hours; skips weekends only when hours not set,Multi-Day Spread Scheduling,"SV-8691 (§4.5,§12 (shop closures))"
-SCH-SPREAD-08,C29984,"Spread preview: one-line summary, expandable to a week-by-week breakdown",Multi-Day Spread Scheduling,SV-8691 (§4.5 (Preview))
-SCH-SPREAD-09,C29985,Confirming the spread creates a linked series of daily shifts,Multi-Day Spread Scheduling,"SV-8691 (§4.5 (Confirming),§4.6,§8.2)"
-SCH-SPREAD-10,C29986,The same work order on a second technician spreads the full estimate again,Multi-Day Spread Scheduling,"SV-8691 (§4.5 (independent per-tech spread),§12)"
-SCH-SPREAD-11,C38863,Spread past 8 weeks asks to confirm; a series can never exceed 120 shifts,Multi-Day Spread Scheduling,SV-8691 (§4.5 + tech-plan D8 series caps)
-SCH-SER-01,C29987,"Month view: series banner wraps across weeks, labeled once, then 'continues'",Linked Series and Banners,SV-8692 (§4.6 (Month view))
-SCH-SER-02,C29988,"Week view: series banner spans the week, with chevrons and 'week N of M'",Linked Series and Banners,SV-8692 (§4.6 (Week view))
-SCH-SER-03,C29989,Day view shows the series day as one block with a multi-week cue,Linked Series and Banners,SV-8692 (§4.6 (Day view))
-SCH-SER-04,C29990,A series is just a grouping - capacity and conflicts use the daily shifts,Linked Series and Banners,"SV-8692 (§4.6,§8.2)"
-SCH-BLOCK-01,C29991,"A single-line shift block shows customer, unit number and line name",Shift Block Anatomy,SV-8690 (§4.4)
-SCH-BLOCK-02,C29992,Whole-order and multi-line shifts both read 'N Lines' on the block,Shift Block Anatomy,"SV-8690 (§4.4,§12)"
-SCH-BLOCK-05,C29995,The conflict icon is the only icon on a shift block,Shift Block Anatomy,SV-8690 (§4.4)
-SCH-LANE-01,C29996,"Non-overlapping same-day shifts share one lane, even from different orders",Overlap and Lane Stacking,"SV-8693 (§4.7,§12 (edge case))"
-SCH-LANE-02,C29997,Shifts whose times intersect split into stacked lanes and the row grows to fit,Overlap and Lane Stacking,"SV-8693 (§4.7,§4.11)"
-SCH-LANE-03,C29998,Visible lanes cap at 3; extra overlapping shifts collapse into '+N more',Overlap and Lane Stacking,SV-8693 (§4.7)
-SCH-LANE-04,C29999,"Lane stacking and the '+N more' overflow apply in day, week, and month views",Overlap and Lane Stacking,SV-8693 (§4.7)
-SCH-DAY-01,C30001,Day view auto-scrolls to the working-day start; manual scrolling stands,Day View Timeline,SV-8694 (§4.8 (Auto-scroll to business hours))
-SCH-DAY-03,C30003,Date and time headers stick to the top during vertical scroll,Day View Timeline,SV-8694 (§4.8 (Sticky header bar))
-SCH-DAY-04,C30004,Dragging a shift sideways moves its start time in 15-minute steps,Day View Timeline,"SV-8694 (§4.8 (Horizontal drag),§7 (toast))"
-SCH-DAY-05,C30005,Dragging a shift's left or right edge resizes its duration,Day View Timeline,SV-8694 (§4.8 (Edge resize))
-SCH-DAY-06,C30006,"A now line marks the current time on today's day view, with a label on hover",Day View Timeline,SV-8694 (§4.8 (Now line))
-SCH-MODAL-01,C30008,"Clicking a shift opens its detail modal, with VIN always visible",Shift Detail Modal,"SV-8695 (§4.9,§9 (VIN always in modal))"
-SCH-MODAL-02,C30009,Scheduled date and start/end time pickers work in 15-minute increments,Shift Detail Modal,SV-8695 (§4.9)
-SCH-MODAL-03,C30010,The modal shows the technician and time logged vs estimate progress,Shift Detail Modal,SV-8695 (§4.9)
-SCH-MODAL-04,C30011,The modal lists the scheduled line(s) with no money fields,Shift Detail Modal,"SV-8695 (§4.9,§4.4)"
-SCH-MODAL-05,C30012,Estimated hours can be edited inline in the modal,Shift Detail Modal,SV-8695 (§4.9 (Estimated hours with inline edit))
-SCH-MODAL-06,C30013,"Notes can be added, edited, and deleted per work order from the modal",Shift Detail Modal,"SV-8695 (§4.9 (Notes: add,edit,and delete per work order))"
-SCH-MODAL-07,C30014,A conflicted shift's modal shows a conflict banner with an 'Adjust' action,Shift Detail Modal,SV-8695 (§4.9 (conflict banner + Adjust))
-SCH-MODAL-08,C30015,Shift modal offers Delete only - there is no Reassign action,Shift Detail Modal,"SV-8695 (§4.9 (Actions - Delete only; Reassign removed in Confluence v23),§7)"
-SCH-EVT-01,C30016,Create an event via left-click 'Create Event' on empty grid space,Events,"SV-8696 (§4.10 (left-click menu on empty grid space),§7)"
-SCH-EVT-02,C30017,Day view event creation shows a live preview block you can drag to resize,Events,"SV-8696 (§4.10 (left-click menu entry; day-view live preview,drag-to-resize))"
-SCH-EVT-03,C30018,Event modal fields all save; the all-day toggle creates an all-day event,Events,"SV-8696 (§4.10 (Event modal),§8.1 (Event allDay field))"
-SCH-EVT-05,C30020,Events can be dragged to another technician or another day,Events,"SV-8696 (§4.10 (Drag-and-drop to reassign/move),§7 (toast))"
-SCH-EVT-06,C30021,Event cards look structurally distinct from shift cards,Events,SV-8696 (§4.10 (Event card anatomy))
-SCH-EVT-07,C30022,Events default to grey; choosing a color tints the card and chip,Events,"SV-8696 (§4.10 (Event color),§10)"
-SCH-EVT-08,C30615,An event's hours count toward the capacity bar but raise no conflict,Events,"SV-8696 (§4.10 (Events),§4.11 (events not conflict-checked),§4.12 (event time included in the utilization total))"
-SCH-CONF-01,C30023,Double-booked: two overlapping work orders on one technician are flagged,Conflict Detection,SV-8697 (§4.11 (Double-booked))
-SCH-CONF-02,C30024,Working-day conflict: a shift outside the tech's working days is flagged,Conflict Detection,SV-8697 (§4.11 (Weekend shift))
-SCH-CONF-03,C30025,Before-hours and after-hours shifts are flagged against the tech's hours,Conflict Detection,"SV-8697 (§4.11 (Before hours,After hours),§4.2 (working-hours hierarchy; 7:00 AM to 7:00 PM default))"
-SCH-CONF-05,C30027,The toolbar conflict pill shows the count and opens a list,Conflict Detection,"SV-8697 (§4.11,§6 (Conflict pill))"
-SCH-CONF-06,C30028,Clicking a conflict in the dropdown navigates to the relevant technician and day,Conflict Detection,SV-8697 (§4.11 (Clicking a conflict navigates))
-SCH-CONF-07,C30029,"Red styling is only for conflicts and errors, never for overtime",Conflict Detection,"SV-8697 (§4.11 (styling rule),§4.12)"
-SCH-CAP-01,C30030,"Capacity bar fill = booked (shifts + events) vs available, clamped, equal tracks",Capacity Bars,SV-8698 (§4.12 (Blue fill - aggregate booked = shifts plus events))
-SCH-CAP-02,C30031,"Over capacity, an amber spill extends past the track's right edge",Capacity Bars,SV-8698 (§4.12 (Amber spill))
-SCH-CAP-03,C30032,'OT' text tag appears when one technician exceeds their own daily hours,Capacity Bars,"SV-8698 (§4.12 (OT tag),§11 (not color-only))"
-SCH-CAP-04,C30033,Hovering a capacity bar shows a per-technician breakdown,Capacity Bars,SV-8698 (§4.12 (Hover tooltip))
-SCH-TIP-01,C30034,Shift hover tooltip shows the full shift summary incl. up to 3 line names,Hover Tooltips,SV-8695 (§4.13 (Shift tooltip))
-SCH-TIP-02,C30035,A conflicted shift's tooltip shows the icon and reason in amber,Hover Tooltips,SV-8695 (§4.13 (Shift tooltip - conflict))
-SCH-TIP-03,C30036,"Event hover tooltip shows name, grey category dot, time range and tech",Hover Tooltips,SV-8695 (§4.13 (Event tooltip))
-SCH-TIP-04,C30037,"Tooltips open after a hover delay, dismiss on mouse-leave, are read-only",Hover Tooltips,SV-8695 (§4.13 (Behavior))
-SCH-TIP-05,C30038,The tooltip flips or shifts to stay within the viewport - never clipped,Hover Tooltips,SV-8695 (§4.13 (flip/shift to stay in viewport))
-SCH-TOOL-01,C30039,'Today' button jumps the grid to the current date,Grid Toolbar,SV-8686 (§6 (Today button))
-SCH-TOOL-02,C30040,"Left/right arrows step by day, week, or month to match the active range",Grid Toolbar,"SV-8686 (§6 (Left/right arrows,Date label))"
-SCH-TOOL-03,C30041,Toolbar search highlights matching blocks and fades non-matching ones,Grid Toolbar,SV-8686 (§6 (Search))
-SCH-VIEW-01,C30042,"'Filter & Display' dropdown combines department toggles, My Shifts, and VIN",Filter and Display and View Options,"SV-8700 (§6,§9 (Filter and Display dropdown))"
-SCH-VIEW-02,C30043,Department toggles show or hide individual department groups in the grid,Filter and Display and View Options,SV-8700 (§9 (Department toggles))
-SCH-VIEW-03,C30044,'My Shifts' filters the grid to only the current user's shifts,Filter and Display and View Options,"SV-8700 (§9 (My Shifts),§14.3)"
-SCH-VIEW-04,C30045,'VIN Number' toggle gates the block VIN only - tooltip and modal always show it,Filter and Display and View Options,"SV-8700 (§9 (VIN),§4.4); SV-8690 (§4.4,§9 (VIN option)); SV-8694 (§4.8 (Lane height with VIN))"
-SCH-VIEW-05,C30046,'View Options': six toggles with defaults; Capacity Bars and Events flip,Filter and Display and View Options,"SV-8700 (§6,§9 (View Options popover,Capacity Bars,Events),§4.12)"
-SCH-VIEW-06,C30047,Business Hours toggle shades non-working hours in day view,Filter and Display and View Options,"SV-8700 (§9 (Business Hours),§4.8 (Business-hours shading))"
-SCH-VIEW-09,C30050,Tech Hours toggle displays each technician's working hours next to their name,Filter and Display and View Options,SV-8700 (§9 (Tech Hours))
-SCH-VIEW-10,C30051,Saturday and Sunday toggles include or exclude the weekend columns,Filter and Display and View Options,"SV-8700 (§9 (Saturday,Sunday),§3.2 (Week view))"
-SCH-REAS-01,C30052,"Dragging a shift to another technician row reassigns it, with a confirm modal",Reassignment and Context Menu,"SV-8695 (§7 (Shift reassignment),§12)"
-SCH-REAS-03,C30054,Left-click empty grid space opens a menu: Create Event and New Work Order,Reassignment and Context Menu,"SV-8700 (§7 (left-click menu on empty grid space; View Day and New Shift removed),§14.1 (creation via the cell menu))"
-SCH-REAS-06,C38855,'New Work Order' in the cell menu points the user to the Work Orders tab,Reassignment and Context Menu,SV-8700 (§7 / §4.10 New Work Order cell-menu shortcut)
-SCH-DEL-01,C30057,Deleting a middle shift of a series offers all three scope options,"Deletion, Series Scopes and Undo",SV-8692 (§7 (Series-aware deletion))
-SCH-DEL-02,C30058,'This shift only' removes that day and the series keeps the gap,"Deletion, Series Scopes and Undo",SV-8692 (§7 (This shift only))
-SCH-DEL-03,C30059,'This and everything after' removes from the clicked shift onward,"Deletion, Series Scopes and Undo",SV-8692 (§7 (This and everything after))
-SCH-DEL-04,C30060,'The whole series' removes all of the series' shifts for that technician,"Deletion, Series Scopes and Undo",SV-8692 (§7 (The whole series - 'for that technician'))
-SCH-DEL-05,C30061,Scope options adapt: the first and last shift each show only two,"Deletion, Series Scopes and Undo",SV-8692 (§7 (options adapt to position))
-SCH-DEL-06,C30062,Deleting a standalone (non-series) shift does not ask for a series scope,"Deletion, Series Scopes and Undo",SV-8692 (§7 (derived - scope prompt is for series shifts))
-SCH-DEL-08,C30064,"Toast lasts ~7s with Undo (about 4s without); stays on hover, goes on leave","Deletion, Series Scopes and Undo","SV-8688 (§7 (Toast notifications),§11 (Undo))"
-SCH-DEL-09,C30065,"Every create/delete/move/reassign toasts with Undo, and Undo restores","Deletion, Series Scopes and Undo","SV-8688 (§7 (Toast notifications),§11 (Undo))"
-SCH-DEL-10,C38864,"Schedule actions save immediately - Undo reverses them, closing does not cancel","Deletion, Series Scopes and Undo",SV-8688 (§7 toast/undo + tech-plan D10)
-SCH-KEY-01,C30066,"Escape closes the topmost open modal or popover, following the stacking order",Keyboard Interactions,"SV-8700 (§7 (Keyboard support - Escape,including within the shift modal))"
-SCH-KEY-03,C30068,"Enter confirms the active dialog, but not inside a note textarea",Keyboard Interactions,SV-8700 (§7 (Keyboard support - Enter; Enter does not fire inside textareas))
-SCH-KEY-05,C30070,Modals trap focus and all interactive elements are keyboard-reachable,Keyboard Interactions,SV-8700 (§11 (Accessibility))
-SCH-COLOR-01,C30071,"Blue is the default color for all shifts, including long and multi-week jobs",Color System,SV-8700 (§10)
-SCH-COLOR-02,C30072,"Shift modal color picker recolors that shift only, in matching tones",Color System,"SV-8700 (§10,§4.9 (Color picker)); SV-8690 (§4.4,§10)"
-SCH-COLOR-03,C30073,Color labels are editable per shop,Color System,"SV-8700 (§10 (Color labels are editable per shop),§4.10 (shared picker))"
-SCH-HRS-02,C38847,Business-hours toggle reveals a per-day (Mon-Sun) From-To editor,Working Hours Settings,"SV-8699 (§4.2 Working Hours - business hours toggle,per-day From/To editor)"
-SCH-HRS-03,C38848,"Edit Staff has a 'Set custom hours for this technician' toggle, off by default",Working Hours Settings,SV-8699 (§4.2 Working Hours - technician custom-hours toggle)
-SCH-HRS-04,C38849,A technician with no custom hours inherits the shop business hours,Working Hours Settings,SV-8699 (§4.2 Working Hours - inherit shop hours when no custom hours)
-SCH-HRS-05,C38850,"'Add hours' appends a removable second range for split shifts, starting empty",Working Hours Settings,SV-8699 (§4.2 Working Hours - Add hours split shifts)
-SCH-HRS-06,C38851,Overlapping hour ranges block Save; incomplete rows are ignored,Working Hours Settings,SV-8699 (§4.2 Working Hours - overlap validation; incomplete rows ignored by overlap check)
-SCH-PERM-01,C30074,Schedule: View grants the full read-only experience across the whole page,Permissions,"SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: View),§14.3)"
-SCH-PERM-02,C30075,View-only: every editing affordance is hidden or disabled,Permissions,"SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: View - editing affordances hidden or disabled))"
-SCH-PERM-03,C30076,"With Schedule: View OFF, the Schedule top-level nav item is hidden entirely",Permissions,"SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (When Schedule: View is OFF))"
-SCH-PERM-04,C30077,Schedule: Edit unlocks all creation and modification interactions,Permissions,"SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: Edit))"
-SCH-PERM-05,C30078,Edit without Delete: the user can create and modify but not remove,Permissions,"SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: Delete - without it))"
-SCH-PERM-06,C30079,Schedule: Delete unlocks deleting shifts and events,Permissions,"SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: Delete))"
-SCH-PERM-07,C30080,"Permission tiers nest: Delete requires Edit, Edit requires View",Permissions,"SV-8685 [epic - cross-cutting,no single-story owner] (§14 (Delete requires Edit and Edit requires View))"
-SCH-PERM-08,C30081,Schedule without Work Orders: View - the sidebar hides the work order list,Permissions,SV-8687 (§14.2)
-SCH-PERM-09,C30082,No own-only restriction: a View user sees ALL technicians' shifts,Permissions,"SV-8685 [epic - cross-cutting,no single-story owner] (§14.3)"
-SCH-PERM-10,C30083,"Grid rows are department-based, not role-based",Permissions,SV-8686 (§14.4)
-SCH-PERM-11,C30084,Clocking into line tasks is gated by the staff 'Time Clock' setting,Permissions,SV-8686 (§14.4 (Time Clock setting))
-SCH-PERM-12,C30614,"With Work Orders: View OFF, work order details on shifts are hidden",Permissions,SV-8687 (§14.2 (Work Orders: View dependency))
-SCH-PERM-13,C38926,Default roles start at the Schedule level the spec names (view-only vs edit),Permissions,SV-8685 [epic - cross-cutting - no single-story owner] (§14.1 default role tiers - view-only role list + edit role list; spec v23 2026-07-30)
-SCH-EDGE-02,C30086,Below 960px the grid scrolls sideways and the sidebar collapses,Edge Cases and Responsiveness,"SV-8686,SV-8687 (§11 (Responsiveness - grid scrolls horizontally below 960px; sidebar collapses))"
-SCH-EDGE-03,C30087,The sidebar work order list and line drill-down stay smooth with 50+ items,Edge Cases and Responsiveness,SV-8687 (§11 (Performance - sidebar list and line drill-down virtualize at 50+ items))
-SCH-EDGE-04,C30088,The grid renders smoothly at full load - 15 technicians over 7 days,Edge Cases and Responsiveness,SV-8686 (§11 (Performance))
-SCH-EDGE-05,C30089,Shop closures do NOT block spread in V1 - shifts can land on closure days,Edge Cases and Responsiveness,"SV-8691 (§12 (Shop closures),§4.5)"
-SCH-EDGE-06,C30090,"Scheduled, estimated and actual clocked hours are three separate numbers",Edge Cases and Responsiveness,"SV-8691 (§4.5 (three separate quantities),§12)"
-SCH-EDGE-07,C38865,A multi-week series keeps the same local start time across the clock change,Edge Cases and Responsiveness,SV-8691 (§4.5 + tech-plan D2 NFR-005 DST)
-SCH-EDGE-08,C38866,Schedule and all its dialogs display correctly in dark mode,Edge Cases and Responsiveness,"SV-8685 (§11 (Dark theme - user-selectable Light / Dark,persisted per user))"
-SCH-REG-01,C38867,Shifts and events created before the Schedule rewrite still appear after it,Cross-Module and Rewrite Regression,"SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan §3 FR-015 data migration)"
-SCH-REG-02,C38868,Dashboard shows one schedule row per work order even with many shifts,Cross-Module and Rewrite Regression,"SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan §4 Dashboard FR-016)"
-SCH-REG-03,C38869,A work order created with an appointment shows up on the Schedule board,Cross-Module and Rewrite Regression,"SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan §4 WO-create AppointmentScheduler)"
-SCH-REG-04,C38870,A multi-location technician's shift appears only on the work order's location,Cross-Module and Rewrite Regression,"SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan §3 WO-primary location resolution)"
-SCH-REG-05,C38871,Work order form offers a Priority (High/Medium/Low) that drives the sidebar,Cross-Module and Rewrite Regression,SV-8687 (§5.1 + tech-plan FR-P4 WO priority)
-SCH-API-01,C38872,API - Schedule reads need View; writes need Edit; deletes need Delete (403),API — Schedule,"SV-8685 [epic - cross-cutting,no single-story owner] (§14 + tech-plan §4 NFR-003 permissions)"
-SCH-API-02,C38873,API - Series past 8 weeks returns 409 until acknowledged; over 120 shifts 422,API — Schedule,SV-8691 (§4.5 + tech-plan D8 error cases)
-SCH-API-03,C38874,API - No pricing fields in Schedule responses; WO details need Work Orders View,API — Schedule,"SV-8685 [epic - cross-cutting,no single-story owner] (§14 + tech-plan D6/NFR-002 no pricing)"
-SCH-API-04,C38875,"API - A shift from another location returns 404, not another shop's data",API — Schedule,"SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan NFR-001 location scoping)"
+SCH-NAV-01,29925,Schedule opens from the top-level navigation into a sidebar + grid layout,Navigation and Layout,"SV-8686 (§3,§3.1,§3.2)"
+SCH-NAV-03,29927,Day / Week / Month segmented control switches the grid between the three views,Navigation and Layout,"SV-8686 (§3.2,§6)"
+SCH-NAV-04,29928,Grid rows are grouped by department under group headers,Navigation and Layout,"SV-8686 (§3.2,§14.4)"
+SCH-NAV-05,29929,Collapsing a department header hides its technician rows,Navigation and Layout,SV-8686 (§3.2)
+SCH-NAV-06,29930,No Tech/Dept toggle - department grouping is the only grid grouping,Navigation and Layout,SV-8686 (§3.2)
+SCH-NAV-07,29931,"An Unassigned row sits inside the grid, not in a separate tray",Navigation and Layout,"SV-8686 (§3.2,§4.2)"
+SCH-NAV-08,43554,Schedule opens on Day view the first time you open it from the navigation,Navigation and Layout,SV-8863 (SV-8686 acceptance criterion - grid displays with day view as default)
+SCH-MCAL-01,29932,Clicking a date in the mini calendar navigates the main grid to that date,Sidebar - Mini Calendar,"SV-8687 (§3.1,§5.2)"
+SCH-MCAL-02,29933,Mini calendar month/year picker has month buttons and year arrows,Sidebar - Mini Calendar,SV-8687 (§5.2)
+SCH-MCAL-03,29934,A chevron toggle collapses and expands the mini calendar grid,Sidebar - Mini Calendar,"SV-8687 (§3.1,§5.2)"
+SCH-MCAL-04,29935,"Mini calendar highlights the selected date, today, and the hovered week",Sidebar - Mini Calendar,SV-8687 (§5.2)
+SCH-WOL-01,29936,The sidebar is a flat list of work order cards with no tabs,Sidebar - Work Order List and Search,"SV-8687 (§3.1,§5.1)"
+SCH-WOL-02,29937,"Work order card anatomy, incl. the status-colored left border",Sidebar - Work Order List and Search,SV-8687 (§3.1 (Work order card anatomy))
+SCH-WOL-04,29939,"'Search work orders' matches work order number, customer, unit, and technician",Sidebar - Work Order List and Search,"SV-8687 (§3.1 (Sidebar search,Work order card anatomy))"
+SCH-WOL-05,29940,Sidebar search filters the card list in real time as you type,Sidebar - Work Order List and Search,SV-8687 (§3.1 (Sidebar search))
+SCH-WOL-06,29941,Sidebar search with no matching work orders shows an empty list,Sidebar - Work Order List and Search,SV-8687 (§3.1 (derived - search behavior with no matches))
+SCH-FILT-01,29942,The 'Filters' button opens Assignment / Status / Priority filter groups,Sidebar - Work Order Filters,SV-8687 (§5.1)
+SCH-FILT-02,29943,Assignment filter narrows the list to Assigned or Unassigned work orders,Sidebar - Work Order Filters,"SV-8687 (§5.1,§3.1)"
+SCH-FILT-03,29944,Status filter narrows the list to work orders in the chosen status(es),Sidebar - Work Order Filters,SV-8687 (§5.1)
+SCH-FILT-04,29945,"Priority filter offers High, Medium, Low and narrows the list accordingly",Sidebar - Work Order Filters,SV-8687 (§5.1)
+SCH-FILT-05,29946,'Clear all' resets every applied sidebar filter in one click,Sidebar - Work Order Filters,SV-8687 (§5.1)
+SCH-FILT-06,29947,Search and filter work together - both can be active at the same time,Sidebar - Work Order Filters,SV-8687 (§5.1)
+SCH-LINE-01,29948,"Work order card opens the line drill-down in place, with header and back control",Sidebar - Line Drill-Down,SV-8687 (§3.1 (Line drill-down))
+SCH-LINE-03,29950,Only approved work order lines appear in the drill-down,Sidebar - Line Drill-Down,SV-8687 (§3.1 (Line drill-down - approved-only))
+SCH-LINE-04,29951,"Line row shows title, hours, the technician roster and a drag handle",Sidebar - Line Drill-Down,"SV-8687 (§3.1 (Line drill-down),§8.1 (Line labor roster - no cap))"
+SCH-LINE-05,29952,Lines with no technician assigned show a 'Needs techs' badge,Sidebar - Line Drill-Down,SV-8687 (§3.1 (Line drill-down - Needs techs badge))
+SCH-LINE-06,29953,'Search lines' matches the line title/name only,Sidebar - Line Drill-Down,SV-8687 (§3.1 (Line search))
+SCH-LINE-07,29954,'All / Unscheduled' filter chips show counts and filter the line list,Sidebar - Line Drill-Down,"SV-8687 (§3.1,§5.1 (drill-down filters))"
+SCH-DND-01,29955,Dropping a single-line work order creates a shift with no scope picker,Drag-and-Drop Scheduling,"SV-8688 (§4.1 (Single-line work order),§1.2 (roster sync),§7 (toast))"
+SCH-DND-02,29956,Dropping a multi-line work order on a technician cell opens the scope picker,Drag-and-Drop Scheduling,"SV-8688 (§4.1 (Multi-line work order),§4.3)"
+SCH-DND-03,29957,Dragging a line from the drill-down creates a single-line shift,Drag-and-Drop Scheduling,SV-8688 (§4.1 (Specific line drag))
+SCH-DND-04,29958,A job over the technician's daily hours opens the spread step,Drag-and-Drop Scheduling,"SV-8688 (§4.1 (Large job),§4.5)"
+SCH-DND-05,29959,A scope that fits one working day skips the spread step,Drag-and-Drop Scheduling,SV-8688 (§4.1 (spread step is conditional))
+SCH-DND-06,29960,"While dragging, target cells highlight and a ghost block follows",Drag-and-Drop Scheduling,SV-8688 (§7 (Drag feedback))
+SCH-DND-07,29961,Scheduling a technician onto a line adds them to its labor roster,Drag-and-Drop Scheduling,SV-8688 (§1.2 Goals - roster sync · §4.3 roster add + no swap flow · §7; spec v23 2026-07-30)
+SCH-DND-08,29962,A click-to-arm alternative exists for scheduling without dragging,Drag-and-Drop Scheduling,"SV-8688 (§7 (Keyboard support - click-to-arm),§11 (Accessibility))"
+SCH-DND-09,43555,Month view: dragging a work order onto a day creates a shift for that day,Drag-and-Drop Scheduling,SV-8870 (§4.1 drag-and-drop scheduling + §4.2 start-time hierarchy)
+SCH-SCOPE-01,29963,Scope picker contents: the pinned whole-order row and the line rows,Scope Picker,SV-8689 (§4.3)
+SCH-SCOPE-02,29964,'Schedule whole work order' assigns all lines and creates one shift,Scope Picker,"SV-8689 (§4.3,§4.4)"
+SCH-SCOPE-03,29965,Tapping a line row creates a single-line shift with no confirm step,Scope Picker,SV-8689 (§4.3 (Individual line rows - fast path))
+SCH-SCOPE-05,29967,"'Select multiple' checkbox mode: running tally, Select all, and Cancel",Scope Picker,"SV-8689 (§4.3 (Select multiple,Select all shortcut,Cancel))"
+SCH-START-01,29969,A shift's start time uses the technician's own working hours when set,Shift Start Times and Unassigned Shifts,SV-8688 (§4.2)
+SCH-START-02,29970,"With no technician hours set, start time falls back to business hours",Shift Start Times and Unassigned Shifts,SV-8688 (§4.2)
+SCH-START-03,29971,"With neither technician hours nor business hours set, a 7:00 AM default applies",Shift Start Times and Unassigned Shifts,SV-8688 (§4.2)
+SCH-START-04,29972,In day view the start time comes from the drop position,Shift Start Times and Unassigned Shifts,SV-8688 (§4.2 (day view drop position))
+SCH-START-05,29973,Dropping onto the Unassigned row creates a shift with no technician,Shift Start Times and Unassigned Shifts,"SV-8688 (§4.2 (Unassigned shifts),§3.2)"
+SCH-START-06,29974,Unassigned shift start time uses business hours or the default,Shift Start Times and Unassigned Shifts,SV-8688 (§4.2)
+SCH-START-07,29975,Dragging an unassigned shift onto a technician row assigns it,Shift Start Times and Unassigned Shifts,"SV-8688 (§3.2 (Unassigned placeholder),§4.2)"
+SCH-SPREAD-02,29978,Spread step header shows the scope; 'Change scope' returns to the picker,Multi-Day Spread Scheduling,SV-8691 (§4.5)
+SCH-SPREAD-03,29979,How-much selector defaults to Full estimate; preset amounts apply at once,Multi-Day Spread Scheduling,SV-8691 (§4.5 (How much to schedule))
+SCH-SPREAD-04,29980,'Until a date…' reveals a single finish-by date field,Multi-Day Spread Scheduling,SV-8691 (§4.5 (progressive disclosure))
+SCH-SPREAD-05,29981,'Specific hours…' reveals an hours stepper,Multi-Day Spread Scheduling,SV-8691 (§4.5 (progressive disclosure))
+SCH-SPREAD-06,29982,Start date defaults to the earliest working day and can be changed,Multi-Day Spread Scheduling,SV-8691 (§4.5 (Start date))
+SCH-SPREAD-07,29983,Spread uses the tech's working hours; skips weekends only when hours not set,Multi-Day Spread Scheduling,"SV-8691 (§4.5,§12 (shop closures))"
+SCH-SPREAD-08,29984,"Spread preview: one-line summary, expandable to a week-by-week breakdown",Multi-Day Spread Scheduling,SV-8691 (§4.5 (Preview))
+SCH-SPREAD-09,29985,Confirming the spread creates a linked series of daily shifts,Multi-Day Spread Scheduling,"SV-8691 (§4.5 (Confirming),§4.6,§8.2)"
+SCH-SPREAD-10,29986,The same work order on a second technician spreads the full estimate again,Multi-Day Spread Scheduling,"SV-8691 (§4.5 (independent per-tech spread),§12)"
+SCH-SPREAD-11,38863,Spread past 8 weeks asks to confirm; a series can never exceed 120 shifts,Multi-Day Spread Scheduling,SV-8691 (§4.5 + tech-plan D8 series caps)
+SCH-SER-01,29987,"Month view: series banner wraps across weeks, labeled once, then 'continues'",Linked Series and Banners,SV-8692 (§4.6 (Month view))
+SCH-SER-02,29988,"Week view: series banner spans the week, with chevrons and 'week N of M'",Linked Series and Banners,SV-8692 (§4.6 (Week view))
+SCH-SER-03,29989,Day view shows the series day as one block with a multi-week cue,Linked Series and Banners,SV-8692 (§4.6 (Day view))
+SCH-SER-04,29990,A series is just a grouping - capacity and conflicts use the daily shifts,Linked Series and Banners,"SV-8692 (§4.6,§8.2)"
+SCH-BLOCK-01,29991,"A single-line shift block shows customer, unit number and line name",Shift Block Anatomy,SV-8690 (§4.4)
+SCH-BLOCK-02,29992,Whole-order and multi-line shifts both read 'N Lines' on the block,Shift Block Anatomy,"SV-8690 (§4.4,§12)"
+SCH-BLOCK-05,29995,The conflict icon is the only icon on a shift block,Shift Block Anatomy,SV-8690 (§4.4)
+SCH-LANE-01,29996,"Non-overlapping same-day shifts share one lane, even from different orders",Overlap and Lane Stacking,"SV-8693 (§4.7,§12 (edge case))"
+SCH-LANE-02,29997,Shifts whose times intersect split into stacked lanes and the row grows to fit,Overlap and Lane Stacking,"SV-8693 (§4.7,§4.11)"
+SCH-LANE-03,29998,Visible lanes cap at 3; extra overlapping shifts collapse into '+N more',Overlap and Lane Stacking,SV-8693 (§4.7)
+SCH-LANE-04,29999,"Lane stacking and the '+N more' overflow apply in day, week, and month views",Overlap and Lane Stacking,SV-8693 (§4.7)
+SCH-DAY-01,30001,Day view auto-scrolls to the working-day start; manual scrolling stands,Day View Timeline,SV-8694 (§4.8 (Auto-scroll to business hours))
+SCH-DAY-03,30003,Date and time headers stick to the top during vertical scroll,Day View Timeline,SV-8694 (§4.8 (Sticky header bar))
+SCH-DAY-04,30004,Dragging a shift sideways moves its start time in 15-minute steps,Day View Timeline,"SV-8694 (§4.8 (Horizontal drag),§7 (toast))"
+SCH-DAY-05,30005,Dragging a shift's left or right edge resizes its duration,Day View Timeline,SV-8694 (§4.8 (Edge resize))
+SCH-DAY-06,30006,"A now line marks the current time on today's day view, with a label on hover",Day View Timeline,SV-8694 (§4.8 (Now line))
+SCH-MODAL-01,30008,"Clicking a shift opens its detail modal, with VIN always visible",Shift Detail Modal,"SV-8695 (§4.9,§9 (VIN always in modal))"
+SCH-MODAL-02,30009,Scheduled date and start/end time pickers work in 15-minute increments,Shift Detail Modal,SV-8695 (§4.9)
+SCH-MODAL-03,30010,The modal shows the technician and time logged vs estimate progress,Shift Detail Modal,SV-8695 (§4.9)
+SCH-MODAL-04,30011,The modal lists the scheduled line(s) with no money fields,Shift Detail Modal,"SV-8695 (§4.9,§4.4)"
+SCH-MODAL-05,30012,Estimated hours can be edited inline in the modal,Shift Detail Modal,SV-8695 (§4.9 (Estimated hours with inline edit))
+SCH-MODAL-06,30013,"Notes can be added, edited, and deleted per work order from the modal",Shift Detail Modal,"SV-8695 (§4.9 (Notes: add,edit,and delete per work order))"
+SCH-MODAL-07,30014,A conflicted shift's modal shows a conflict banner with an 'Adjust' action,Shift Detail Modal,SV-8695 (§4.9 (conflict banner + Adjust))
+SCH-MODAL-08,30015,Shift modal offers Delete only - there is no Reassign action,Shift Detail Modal,"SV-8695 (§4.9 (Actions - Delete only; Reassign removed in Confluence v23),§7)"
+SCH-EVT-01,30016,Create an event via left-click 'Create Event' on empty grid space,Events,"SV-8696 (§4.10 (left-click menu on empty grid space),§7)"
+SCH-EVT-02,30017,Day view event creation shows a live preview block you can drag to resize,Events,"SV-8696 (§4.10 (left-click menu entry; day-view live preview,drag-to-resize))"
+SCH-EVT-03,30018,Event modal fields all save; the all-day toggle creates an all-day event,Events,"SV-8696 (§4.10 (Event modal),§8.1 (Event allDay field))"
+SCH-EVT-05,30020,Events can be dragged to another technician or another day,Events,"SV-8696 (§4.10 (Drag-and-drop to reassign/move),§7 (toast))"
+SCH-EVT-06,30021,Event cards look structurally distinct from shift cards,Events,SV-8696 (§4.10 (Event card anatomy))
+SCH-EVT-07,30022,Events default to grey; choosing a color tints the card and chip,Events,"SV-8696 (§4.10 (Event color),§10)"
+SCH-EVT-08,30615,An event's hours count toward the capacity bar but raise no conflict,Events,"SV-8696 (§4.10 (Events),§4.11 (events not conflict-checked),§4.12 (event time included in the utilization total))"
+SCH-CONF-01,30023,Double-booked: two overlapping work orders on one technician are flagged,Conflict Detection,SV-8697 (§4.11 (Double-booked))
+SCH-CONF-02,30024,Working-day conflict: a shift outside the tech's working days is flagged,Conflict Detection,SV-8697 (§4.11 (Weekend shift))
+SCH-CONF-03,30025,Before-hours and after-hours shifts are flagged against the tech's hours,Conflict Detection,"SV-8697 (§4.11 (Before hours,After hours),§4.2 (working-hours hierarchy; 7:00 AM to 7:00 PM default))"
+SCH-CONF-05,30027,The toolbar conflict pill shows the count and opens a list,Conflict Detection,"SV-8697 (§4.11,§6 (Conflict pill))"
+SCH-CONF-06,30028,Clicking a conflict in the dropdown navigates to the relevant technician and day,Conflict Detection,SV-8697 (§4.11 (Clicking a conflict navigates))
+SCH-CONF-07,30029,"Red styling is only for conflicts and errors, never for overtime",Conflict Detection,"SV-8697 (§4.11 (styling rule),§4.12)"
+SCH-CAP-01,30030,"Capacity bar fill = booked (shifts + events) vs available, clamped, equal tracks",Capacity Bars,SV-8698 (§4.12 (Blue fill - aggregate booked = shifts plus events))
+SCH-CAP-02,30031,"Over capacity, an amber spill extends past the track's right edge",Capacity Bars,SV-8698 (§4.12 (Amber spill))
+SCH-CAP-03,30032,'OT' text tag appears when one technician exceeds their own daily hours,Capacity Bars,"SV-8698 (§4.12 (OT tag),§11 (not color-only))"
+SCH-CAP-04,30033,Hovering a capacity bar shows a per-technician breakdown,Capacity Bars,SV-8698 (§4.12 (Hover tooltip))
+SCH-TIP-01,30034,Shift hover tooltip shows the full shift summary incl. up to 3 line names,Hover Tooltips,SV-8695 (§4.13 (Shift tooltip))
+SCH-TIP-02,30035,A conflicted shift's tooltip shows the icon and reason in amber,Hover Tooltips,SV-8695 (§4.13 (Shift tooltip - conflict))
+SCH-TIP-03,30036,"Event hover tooltip shows name, grey category dot, time range and tech",Hover Tooltips,SV-8695 (§4.13 (Event tooltip))
+SCH-TIP-04,30037,"Tooltips open after a hover delay, dismiss on mouse-leave, are read-only",Hover Tooltips,SV-8695 (§4.13 (Behavior))
+SCH-TIP-05,30038,The tooltip flips or shifts to stay within the viewport - never clipped,Hover Tooltips,SV-8695 (§4.13 (flip/shift to stay in viewport))
+SCH-TOOL-01,30039,'Today' button jumps the grid to the current date,Grid Toolbar,SV-8686 (§6 (Today button))
+SCH-TOOL-02,30040,"Left/right arrows step by day, week, or month to match the active range",Grid Toolbar,"SV-8686 (§6 (Left/right arrows,Date label))"
+SCH-TOOL-03,30041,Toolbar search highlights matching blocks and fades non-matching ones,Grid Toolbar,SV-8686 (§6 (Search))
+SCH-VIEW-01,30042,"'Filter & Display' dropdown combines department toggles, My Shifts, and VIN",Filter and Display and View Options,"SV-8700 (§6,§9 (Filter and Display dropdown))"
+SCH-VIEW-02,30043,Department toggles show or hide individual department groups in the grid,Filter and Display and View Options,SV-8700 (§9 (Department toggles))
+SCH-VIEW-03,30044,'My Shifts' filters the grid to only the current user's shifts,Filter and Display and View Options,"SV-8700 (§9 (My Shifts),§14.3)"
+SCH-VIEW-04,30045,'VIN Number' toggle gates the block VIN only - tooltip and modal always show it,Filter and Display and View Options,"SV-8700 (§9 (VIN),§4.4); SV-8690 (§4.4,§9 (VIN option)); SV-8694 (§4.8 (Lane height with VIN))"
+SCH-VIEW-05,30046,'View Options': six toggles with defaults; Capacity Bars and Events flip,Filter and Display and View Options,"SV-8700 (§6,§9 (View Options popover,Capacity Bars,Events),§4.12)"
+SCH-VIEW-06,30047,Business Hours toggle shades non-working hours in day view,Filter and Display and View Options,"SV-8700 (§9 (Business Hours),§4.8 (Business-hours shading))"
+SCH-VIEW-09,30050,Tech Hours toggle displays each technician's working hours next to their name,Filter and Display and View Options,SV-8700 (§9 (Tech Hours))
+SCH-VIEW-10,30051,Saturday and Sunday toggles include or exclude the weekend columns,Filter and Display and View Options,"SV-8700 (§9 (Saturday,Sunday),§3.2 (Week view))"
+SCH-REAS-01,30052,"Dragging a shift to another technician row reassigns it, with a confirm modal",Reassignment and Context Menu,"SV-8695 (§7 (Shift reassignment),§12)"
+SCH-REAS-03,30054,Left-click empty grid space opens a menu: Create Event and New Work Order,Reassignment and Context Menu,"SV-8700 (§7 (left-click menu on empty grid space; View Day and New Shift removed),§14.1 (creation via the cell menu))"
+SCH-REAS-06,38855,'New Work Order' in the cell menu points the user to the Work Orders tab,Reassignment and Context Menu,SV-8700 (§7 / §4.10 New Work Order cell-menu shortcut)
+SCH-REAS-07,43556,Week view: a shift that is part of a repeating series can be reassigned,Reassignment and Context Menu,SV-8867 (§7 shift reassignment + §12 series is a grouping over ordinary shifts)
+SCH-DEL-01,30057,Deleting a middle shift of a series offers all three scope options,"Deletion, Series Scopes and Undo",SV-8692 (§7 (Series-aware deletion))
+SCH-DEL-02,30058,'This shift only' removes that day and the series keeps the gap,"Deletion, Series Scopes and Undo",SV-8692 (§7 (This shift only))
+SCH-DEL-03,30059,'This and everything after' removes from the clicked shift onward,"Deletion, Series Scopes and Undo",SV-8692 (§7 (This and everything after))
+SCH-DEL-04,30060,'The whole series' removes all of the series' shifts for that technician,"Deletion, Series Scopes and Undo",SV-8692 (§7 (The whole series - 'for that technician'))
+SCH-DEL-05,30061,Scope options adapt: the first and last shift each show only two,"Deletion, Series Scopes and Undo",SV-8692 (§7 (options adapt to position))
+SCH-DEL-06,30062,Deleting a standalone (non-series) shift does not ask for a series scope,"Deletion, Series Scopes and Undo",SV-8692 (§7 (derived - scope prompt is for series shifts))
+SCH-DEL-08,30064,"Toast lasts ~7s with Undo (about 4s without); stays on hover, goes on leave","Deletion, Series Scopes and Undo","SV-8688 (§7 (Toast notifications),§11 (Undo))"
+SCH-DEL-09,30065,"Every create/delete/move/reassign toasts with Undo, and Undo restores","Deletion, Series Scopes and Undo","SV-8688 (§7 (Toast notifications),§11 (Undo))"
+SCH-DEL-10,38864,"Schedule actions save immediately - Undo reverses them, closing does not cancel","Deletion, Series Scopes and Undo",SV-8688 (§7 toast/undo + tech-plan D10)
+SCH-KEY-01,30066,"Escape closes the topmost open modal or popover, following the stacking order",Keyboard Interactions,"SV-8700 (§7 (Keyboard support - Escape,including within the shift modal))"
+SCH-KEY-03,30068,"Enter confirms the active dialog, but not inside a note textarea",Keyboard Interactions,SV-8700 (§7 (Keyboard support - Enter; Enter does not fire inside textareas))
+SCH-KEY-05,30070,Modals trap focus and all interactive elements are keyboard-reachable,Keyboard Interactions,SV-8700 (§11 (Accessibility))
+SCH-COLOR-01,30071,"Blue is the default color for all shifts, including long and multi-week jobs",Color System,SV-8700 (§10)
+SCH-COLOR-02,30072,"Shift modal color picker recolors that shift only, in matching tones",Color System,"SV-8700 (§10,§4.9 (Color picker)); SV-8690 (§4.4,§10)"
+SCH-COLOR-03,30073,Color labels are editable per shop,Color System,"SV-8700 (§10 (Color labels are editable per shop),§4.10 (shared picker))"
+SCH-HRS-02,38847,Business-hours toggle reveals a per-day (Mon-Sun) From-To editor,Working Hours Settings,"SV-8699 (§4.2 Working Hours - business hours toggle,per-day From/To editor)"
+SCH-HRS-03,38848,"Edit Staff has a 'Set custom hours for this technician' toggle, off by default",Working Hours Settings,SV-8699 (§4.2 Working Hours - technician custom-hours toggle)
+SCH-HRS-04,38849,A technician with no custom hours inherits the shop business hours,Working Hours Settings,SV-8699 (§4.2 Working Hours - inherit shop hours when no custom hours)
+SCH-HRS-05,38850,"'Add hours' appends a removable second range for split shifts, starting empty",Working Hours Settings,SV-8699 (§4.2 Working Hours - Add hours split shifts)
+SCH-HRS-06,38851,Overlapping hour ranges block Save; incomplete rows are ignored,Working Hours Settings,SV-8699 (§4.2 Working Hours - overlap validation; incomplete rows ignored by overlap check)
+SCH-PERM-01,30074,Schedule: View grants the full read-only experience across the whole page,Permissions,"SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: View),§14.3)"
+SCH-PERM-02,30075,View-only: every editing affordance is hidden or disabled,Permissions,"SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: View - editing affordances hidden or disabled))"
+SCH-PERM-03,30076,"With Schedule: View OFF, the Schedule top-level nav item is hidden entirely",Permissions,"SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (When Schedule: View is OFF))"
+SCH-PERM-04,30077,Schedule: Edit unlocks all creation and modification interactions,Permissions,"SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: Edit))"
+SCH-PERM-05,30078,Edit without Delete: the user can create and modify but not remove,Permissions,"SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: Delete - without it))"
+SCH-PERM-06,30079,Schedule: Delete unlocks deleting shifts and events,Permissions,"SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: Delete))"
+SCH-PERM-07,30080,"Permission tiers nest: Delete requires Edit, Edit requires View",Permissions,"SV-8685 [epic - cross-cutting,no single-story owner] (§14 (Delete requires Edit and Edit requires View))"
+SCH-PERM-08,30081,Schedule without Work Orders: View - the sidebar hides the work order list,Permissions,SV-8687 (§14.2)
+SCH-PERM-09,30082,No own-only restriction: a View user sees ALL technicians' shifts,Permissions,"SV-8685 [epic - cross-cutting,no single-story owner] (§14.3)"
+SCH-PERM-10,30083,"Grid rows are department-based, not role-based",Permissions,SV-8686 (§14.4)
+SCH-PERM-11,30084,Clocking into line tasks is gated by the staff 'Time Clock' setting,Permissions,SV-8686 (§14.4 (Time Clock setting))
+SCH-PERM-12,30614,"With Work Orders: View OFF, work order details on shifts are hidden",Permissions,SV-8687 (§14.2 (Work Orders: View dependency))
+SCH-PERM-13,38926,Default roles start at the Schedule level the spec names (view-only vs edit),Permissions,SV-8685 [epic - cross-cutting - no single-story owner] (§14.1 default role tiers - view-only role list + edit role list; spec v23 2026-07-30)
+SCH-EDGE-02,30086,Below 960px the grid scrolls sideways and the sidebar collapses,Edge Cases and Responsiveness,"SV-8686,SV-8687 (§11 (Responsiveness - grid scrolls horizontally below 960px; sidebar collapses))"
+SCH-EDGE-03,30087,The sidebar work order list and line drill-down stay smooth with 50+ items,Edge Cases and Responsiveness,SV-8687 (§11 (Performance - sidebar list and line drill-down virtualize at 50+ items))
+SCH-EDGE-04,30088,The grid renders smoothly at full load - 15 technicians over 7 days,Edge Cases and Responsiveness,SV-8686 (§11 (Performance))
+SCH-EDGE-05,30089,Shop closures do NOT block spread in V1 - shifts can land on closure days,Edge Cases and Responsiveness,"SV-8691 (§12 (Shop closures),§4.5)"
+SCH-EDGE-06,30090,"Scheduled, estimated and actual clocked hours are three separate numbers",Edge Cases and Responsiveness,"SV-8691 (§4.5 (three separate quantities),§12)"
+SCH-EDGE-07,38865,A multi-week series keeps the same local start time across the clock change,Edge Cases and Responsiveness,SV-8691 (§4.5 + tech-plan D2 NFR-005 DST)
+SCH-EDGE-08,38866,Schedule and all its dialogs display correctly in dark mode,Edge Cases and Responsiveness,"SV-8685 (§11 (Dark theme - user-selectable Light / Dark,persisted per user))"
+SCH-REG-01,38867,Shifts and events created before the Schedule rewrite still appear after it,Cross-Module and Rewrite Regression,"SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan §3 FR-015 data migration)"
+SCH-REG-02,38868,Dashboard shows one schedule row per work order even with many shifts,Cross-Module and Rewrite Regression,"SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan §4 Dashboard FR-016)"
+SCH-REG-03,38869,A work order created with an appointment shows up on the Schedule board,Cross-Module and Rewrite Regression,"SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan §4 WO-create AppointmentScheduler)"
+SCH-REG-04,38870,A multi-location technician's shift appears only on the work order's location,Cross-Module and Rewrite Regression,"SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan §3 WO-primary location resolution)"
+SCH-REG-05,38871,Work order form offers a Priority (High/Medium/Low) that drives the sidebar,Cross-Module and Rewrite Regression,SV-8687 (§5.1 + tech-plan FR-P4 WO priority)
+SCH-API-01,38872,API - Schedule reads need View; writes need Edit; deletes need Delete (403),API — Schedule,"SV-8685 [epic - cross-cutting,no single-story owner] (§14 + tech-plan §4 NFR-003 permissions)"
+SCH-API-02,38873,API - Series past 8 weeks returns 409 until acknowledged; over 120 shifts 422,API — Schedule,SV-8691 (§4.5 + tech-plan D8 error cases)
+SCH-API-03,38874,API - No pricing fields in Schedule responses; WO details need Work Orders View,API — Schedule,"SV-8685 [epic - cross-cutting,no single-story owner] (§14 + tech-plan D6/NFR-002 no pricing)"
+SCH-API-04,38875,"API - A shift from another location returns 404, not another shop's data",API — Schedule,"SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan NFR-001 location scoping)"
