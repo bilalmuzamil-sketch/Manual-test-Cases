@@ -3126,18 +3126,51 @@ deliver the 7-tab management report.
     permanent rule whenever you create the test cases, when there is only the Epic and Specs mention
     the epic and specs reference and when you also are done with VIU mention the Test on Buil with the
     date. Then update them whenever you recheck against the spec/epic/Build."*
+    **⚠️ THE WORDING WAS AMENDED 2026-08-05 — THE BUILD MAY NEVER BE NAMED AS THE SOURCE OF AN
+    EXPECTATION.** USER DIRECTIVE (2026-08-05, verbatim): *"at present it says something like this '
+    and as per the build tested on ' it should never say that it is an expected behavior as per the
+    build testing because it can confuse the tester as well as it can raise a serious concern of the
+    higher ups that how can something be considered as the expected behavior if it is happening on
+    the build because the build can be wrong too. Yes you can use the builds name if you want to say
+    that the test passed on this date through automation testing."*
+    **HONESTY — THE BAD TEMPLATE WAS THIS RULE'S OWN.** The sentence *"This is the expected behaviour
+    as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version
+    13 (S4-R13)."* was **written into Rule 54 on 2026-08-04 as the QA lead's own example wording, and
+    we stamped it onto hundreds of cases in good faith.** **His 2026-08-05 correction SUPERSEDES it
+    (Rules 32/33)**, and the old template is now **WRONG and must be replaced wherever it survives** —
+    it credits the **build FIRST** for the expectation, which is exactly what Rule 57 forbids.
     **THE RULE:** **every** test case carries, as the **LAST thing in its Expected Results** — after a
-    separator line — **a single plain-English sentence naming the sources its expectation rests on.**
+    separator line — **a plain-English provenance statement of what its expectation rests on.**
     A case that does not say what it is based on is not self-describing, and its staleness is
     invisible.
+    **THE REQUIRED FORM — TWO SEPARATE SENTENCES THAT MUST NEVER BE MERGED. Merging them is precisely
+    what caused the problem, so keep them as two sentences even when both are present.**
+    **SENTENCE 1 — THE SOURCE OF THE EXPECTATION. MANDATORY. NAMES ONLY DOCUMENTS.** The
+    **specification with its VERSION and the requirement anchor**, and/or the **epic and/or the owning
+    story**, and/or the **PO's verified answer with its file link and date**. **THE BUILD IS NEVER
+    NAMED HERE — not as a source, not as corroboration, not in passing.** Shapes:
+    *"This is the expected behaviour as per the Schedule specification version 23 (§4.3) and epic
+    SV-8685."* · *"This is the expected behaviour as per Branko's answer in this file: <link>
+    (5 August 2026), and epic SV-8785."*
+    **SENTENCE 2 — THE RECORD OF CHECKING. OPTIONAL. NAMES THE BUILD ONLY AS WHAT THE CASE WAS CHECKED
+    AGAINST.** Shape: *"Last checked against build v3.5-be42149 on 8/5/2026."*
+    **USE NEUTRAL CHECKING LANGUAGE — "last checked against" — NEVER language implying the build
+    DEFINES, CONFIRMS or RATIFIES correctness** ("as per the build", "verified by the build", "as the
+    build behaves" are all barred). **A CASE THAT FAILS ON THE BUILD MUST NOT SAY "passed" OR
+    "verified"**: sentence 2 records only that the check happened, and the **deviation note carries the
+    failure** (Rule 57). **WHERE THE CASE HAS NOT BEEN CHECKED AGAINST ANY BUILD, SENTENCE 2 IS
+    OMITTED, or states plainly that it has not yet been checked** — never a date we cannot stand behind
+    (Rule 12).
     **THE TWO STATES (a case is always in exactly one of them):**
-    **(1) BEFORE ANY LIVE VERIFICATION (spec + epic only)** — name the **epic**, the
-    **specification with its VERSION**, and the **governing requirement reference**. Shape:
+    **(1) BEFORE ANY LIVE VERIFICATION (documents only)** — **sentence 1 alone**, naming the **epic**,
+    the **specification with its VERSION**, and the **governing requirement reference**. Shape:
     *"This is the expected behaviour as per epic SV-8582 and the Sales By Customer report
     specification version 13 (S4-R13)."*
-    **(2) AFTER LIVE VERIFICATION** — **ALSO** name the **build and the date it was tested**. Shape
-    (**the QA lead's own wording — use it**): *"This is the expected behaviour as per the build tested
-    on 8/4/2026, and as per the Sales By Customer report specification version 13 (S4-R13)."*
+    **(2) AFTER LIVE VERIFICATION** — **sentence 1 UNCHANGED, plus sentence 2** recording the build and
+    the date it was checked against. Shape: *"This is the expected behaviour as per epic SV-8582 and
+    the Sales By Customer report specification version 13 (S4-R13). Last checked against build
+    v3.5-16cf83f on 8/5/2026."* **Note what did NOT change between the two states: the SOURCE sentence
+    is identical, because a live check does not alter where an expectation comes from.**
     **KEEP IT CURRENT — THIS IS THE OPERATIVE HALF.** The line is **RE-STAMPED whenever we re-check
     against the spec, the epic or the build**, and re-stamping is a **REQUIRED step** of every
     verification, reconciliation and spec-delta pass — **not an optional tidy**. **A stale date, a
@@ -3192,7 +3225,23 @@ deliver the 7-tab management report.
     **Report Suite is receiving it now across 478 cases**; and note that **this TestRail project has NO
     Notes field** (verified read-only via `get_case_fields`), which is **why the provenance belongs in
     Expected Results — where a tester actually sees it** — rather than in a metadata field that does
-    not exist. Ties to Standing Rules 7 (plain layman wording — with the authorised anchor exception
+    not exist.
+    **RATIONALE FOR THE 2026-08-05 AMENDMENT — the old template was actively misleading, and the
+    evidence is our own Schedule suite.** The expected-behaviour audit found **ALL 165 Schedule
+    provenance lines** reading *"This is the expected behaviour **as per the build tested on** 8/4/2026
+    (v3.5-4873abe), and as per epic … and the specification …"* — crediting the **build FIRST** for the
+    expectation. On the **27 DEVIATION cases that was FLATLY FALSE and CONTRADICTED THE CASE'S OWN
+    BODY**: the body said *"expect X, the build does Y, mark it FAILED"* while **the line directly
+    below it credited the build for the expectation** — so the case simultaneously told the tester that
+    the build defines correctness and that the build is wrong. **THE QA LEAD'S ESCALATION CONCERN,
+    RECORDED BECAUSE IT IS THE POINT OF THE CHANGE:** the wording *"can confuse the tester as well as
+    it can raise a serious concern of the higher ups that how can something be considered as the
+    expected behavior if it is happening on the build because the build can be wrong too."* **He is
+    right, and it is the kind of question that is asked once, in public, about a whole suite** — a
+    provenance line that credits the build invites leadership to conclude that our expectations are
+    reverse-engineered from whatever shipped. Splitting the line into **SOURCE** and **RECORD OF
+    CHECKING** makes that reading impossible while keeping everything the build legitimately gives us.
+    Ties to Standing Rules 7 (plain layman wording — with the authorised anchor exception
     above), 8 (a case is always named with its C-id), 9 (build-accurate wording), 10 (the VIU push step
     stamps/refreshes the line), 12 (never assert a source you did not read), 19 (full readable names),
     20 (traceability — this is its **tester-visible** twin; `refs` remains the metadata layer), 25
@@ -3200,8 +3249,10 @@ deliver the 7-tab management report.
     (latest product decision wins, and the line must say so), 41 (touch a case → re-verify it whole,
     and re-stamp), 42 (the version in the stamp is what connects a closed list to the requirement that
     invalidates it), 43 (a spec-version bump re-stamps every affected case), 46 (a documented basis is
-    what stops a deliberate decision looking like a miss) and 49 (the build marker + the re-check
-    queue).
+    what stops a deliberate decision looking like a miss), 49 (the build marker + the re-check
+    queue) and 57 (the source of expected behaviour is the DOCUMENT, never the build — this line is
+    where that principle becomes visible to the tester, which is exactly why it may not name the build
+    as a source).
 55. **A PO QUESTIONNAIRE NAMES THE PROJECT AND THE FEATURE ON EVERY ROW, IS ANSWERABLE BY A
     NON-TECHNICAL READER, AND GOES BACK OUT WHENEVER AN ANSWER IS UNCLEAR (all projects).**
     USER DIRECTIVE (2026-08-05, verbatim): *"Anything which is not clear we need to ask him again.
@@ -3378,6 +3429,163 @@ deliver the 7-tab management report.
     PROVISIONAL findings — all the more reason it cannot rewrite an expectation), 54 (the provenance
     line must name a real supporting source), 55 (an unclear answer goes back to the PO) and 56 (a
     later DECISION can move an expectation; a build cannot).
+58. **AN AMBIGUOUS SOURCE IS NEVER RESOLVED BY LOOKING AT THE BUILD — an ingest pass holds and asks
+    (all projects).**
+    **ORIGIN (2026-08-05):** added by the QA lead's instruction after the Report Suite forensic
+    reconstruction identified **ANSWER-INGEST, not VIU, as the mechanism** by which build behaviour
+    became expected behaviour. **No existing rule guarded this path** — Rules 10/57 guard the VIU pass,
+    which is where we would naturally have put the guard, and it is not where the damage came from.
+    **THE RULE:** when ingesting a **PO answer, a spec delta, a walkthrough video, a tech plan or any
+    other source**, if that source is **AMBIGUOUS about what the behaviour should be, the ambiguity is
+    NEVER settled by observing what the build does.** An ambiguous answer goes **BACK to the PO
+    (Rule 55)** and the affected cases are **HELD with the open question cited on them**.
+    **WHY THIS IS THE DANGEROUS PATH, PLAINLY: reaching for the build to break a tie is how build
+    behaviour becomes expected behaviour WITHOUT ANYONE DECIDING TO DO IT.** Nobody sets out to
+    substitute the build; they set out to resolve an ambiguity, the build is the only concrete thing in
+    the room, and the observation wins by default. **The edit then looks sourced** — it was made during
+    a pass that legitimately cites a PO answer — **so it survives every later review.**
+    **MECHANICS (checkable, so a pass can PROVE it complied):**
+    **(a) PER-ANSWER CLASSIFICATION.** An ingest pass **records, for every answer/delta it ingests, one
+    verdict: UNAMBIGUOUS (act on it) or AMBIGUOUS (hold + ask)** — with the ambiguity named. **A pass
+    whose log classifies nothing is non-compliant**, because "we understood it" is not a record.
+    **(b) THE QUOTE-BACK TEST — the hard gate.** **An ingest pass may NOT produce a case edit whose new
+    expected result cannot be QUOTED BACK to the source text.** Every case edited during an ingest must
+    be able to show **its new expectation quoted from the document** (Rule 45(e)'s both-texts-side-by-
+    side standard). **If it cannot be quoted, THE EDIT IS INVALID** — not "weakly sourced", invalid —
+    and it is reverted or held, never shipped with a hopeful provenance line (Rule 54).
+    **(c) THE HELD CASES CARRY THE QUESTION**, and the question goes into the **OUTSTANDING-ITEMS
+    REGISTER** (Rule 36) until answered — so the gap stays visible instead of being quietly filled.
+    **HONESTY CLAUSE:** this rule will sometimes leave a case **less specific than the build would
+    allow us to make it, and that is the correct outcome.** A vague-but-sourced expectation with an open
+    PO question is **honest**; a precise expectation invented from the build is **confidently wrong and
+    hides the fact that nothing was ever decided** (Rule 57's deeper harm).
+    **RATIONALE, 2026-08-05 — the forensics, because the mechanism is the lesson.** The Report Suite
+    audit replayed **ALL 41 commits that ever touched the case source** and established two things that
+    together point at exactly one door: **the two pure VIU passes changed ZERO expectations**, and **NO
+    pass ever changed a case's steps and its expectation body together** (the failure mode Rule 57's
+    diagnostic warns about **did not occur here**). **The contamination entered via an ANSWER-INGEST
+    pass, where an ambiguous PO answer met an observed build and the observation won.** The result was
+    **ONE Location-column boilerplate paragraph pasted into 14 cases across ALL SIX reports**,
+    contradicting **PV S3-R10, TU S10-R4, WIP S4-R3, IV S7-R6 and SBR S20-R1** — and on
+    **[C30352](https://shopview.testrail.io/index.php?/cases/view/30352)** it **OVERWROTE wording that
+    was near-verbatim from that report's own spec**, i.e. it replaced a correct sourced expectation with
+    an observation, and a manifest later recorded the correct line as *"wrong under both readings"*.
+    **The guard we would naturally have placed on the VIU pass would have missed every bit of this.**
+    Ties to Standing Rules 7 (plain layman wording for the ask), 11 (ask which process on new inputs),
+    12 (observed, never inferred — and an observation is not a decision), 20 (an unsourced expectation
+    is not authentic), 25 (quote the source verbatim), 31 (source currency), 32 (latest authoritative
+    source wins — a build is not one), 33 (authority precedence), 43 (an unanswered question leaves a
+    requirement row un-verdicted and that must be VISIBLE), 45 (both texts quoted side by side; one row
+    per assertion), 54 (the provenance line must name a source that genuinely supports the
+    expectation), 55 (an unclear answer goes straight back to the PO), 56 (disclose a divergence rather
+    than absorb it) and 57 (the source of expected behaviour is the document, never the build — this
+    rule closes the door 57 did not know about).
+59. **RE-READ THE SOURCES IMMEDIATELY BEFORE THE WRITES BEGIN — a second currency check, not only the
+    one at pass start (all projects).**
+    **ORIGIN (2026-08-05):** added by the QA lead's instruction after two same-day incidents in which a
+    source moved **between pass start and write start**. It is recorded in the Report Suite state as the
+    lesson *"re-read the sources immediately BEFORE the writes begin, not only at pass start."*
+    **THE RULE:** **Standing Rule 31's currency pre-flight happens at PASS START. This rule adds a
+    SECOND check immediately BEFORE THE WRITE PHASE BEGINS.** Re-fetch the **governing spec version(s)**
+    and re-read **any blocking ticket** at the **moment you rely on them**. **If a source moved between
+    pass start and write start: STOP, RE-DIFF, and RE-DERIVE the affected edits before writing.** **A
+    pass may NOT write conclusions drawn from a source that has since changed** — those conclusions
+    were correct when reached and are wrong when written, which is the worst combination, because the
+    execution log will show them as carefully verified.
+    **MECHANICS (checkable):** the execution log records **BOTH timestamps — "sources read at pass
+    start: <UTC>" and "sources re-read at write start: <UTC>"** — and **states the VERDICT of the second
+    read** (unchanged, or what moved and what was re-derived). **A pass whose log shows only ONE
+    source-read timestamp is NON-COMPLIANT**, exactly as an audit log showing only *"200 OK"* is
+    (Rule 50).
+    **SCOPE NOTE:** this is a **cheap** check — a version number and a ticket status — deliberately so,
+    because it must be affordable enough to run on **every** pass without anyone reasoning their way out
+    of it. It is **not** a second full pre-flight; the full Rule-31 sweep stays at pass start.
+    **RATIONALE, 2026-08-05 — two incidents, the same day.**
+    **(a) THE PO EDITED ALL SIX SPECS MID-PASS.** Chris Ward edited **every one of the six Report Suite
+    specifications while a repair pass was running**: **SBC v13→14 at 13:07Z**, **PV v4→5 at 13:21Z —
+    ONE MINUTE before that spec was fetched** — then **SBR v15→16, TU v5→6, WIP v6→7 and IV v3→4 between
+    13:55Z and 14:23Z**, all messaged *"Applied QA review workbook decisions"*. **The four late ones
+    RATIFIED the toggleable Location model and FLIPPED THE EXACT ANCHORS THE PASS HAD CITED (TU S10-R4,
+    WIP S4-R3)** — so wording the pass correctly removed became, for those reports, **what the spec now
+    says**. The audit **was right against the sources as they stood at 13:20–13:55Z** and was
+    **partly overtaken within the hour**. **The sources had been read only ~35 minutes earlier and that
+    was already enough.**
+    **(b) THE PO ANSWERED AND CLOSED A BLOCKING TICKET HOURS AFTER A REPORT RELIED ON IT.** Branko
+    answered and closed **[SV-8825](https://shopview.atlassian.net/browse/SV-8825)** — *"This is updated
+    in the filters prd, I'm closing it."* — **after** `READINESS-2026-08-05.md` had been finished stating
+    it was still Open with **zero comments**, which froze 8 phone cases on a question that was already
+    settled.
+    **HONESTY NOTE, RECORDED DELIBERATELY: our own first write-up of (b) said the gap was "28 minutes",
+    and that was WRONG — a `-0500` timestamp was read as UTC. The real gap was FIVE AND A HALF HOURS.**
+    It is recorded here because **a misread timezone inside an evidence claim is itself a defect**: it
+    made a near-miss look like an impossible-to-avoid coincidence, when in truth a re-read at write time
+    would have caught it comfortably. **Timestamps carry offsets; convert them, do not eyeball them.**
+    Ties to Standing Rules 12 (observed, never inferred — including WHEN it was observed), 25 (cite the
+    source and its version verbatim), 31 (**this rule is its second half — the pre-flight is not a
+    one-shot**), 32 (latest authoritative source wins, which is meaningless if we read it once), 36 (a
+    moved source becomes an outstanding re-diff and belongs in the register), 37 (the cheap Tier-1
+    currency check is exactly what this re-read reuses), 43 (a moved spec re-opens per-requirement
+    verdicts), 49 (the build is a source too — re-read its marker before writing), 50 (an execution log
+    that omits its verification timestamps is non-compliant) and 55 (a PO answering mid-pass is a new
+    input, not noise).
+60. **THE BUILD WILL NEVER BE DECLARED FINAL — SEPARATE WHAT DEPENDS ON THE BUILD FROM WHAT DOES NOT
+    (all projects).**
+    USER DIRECTIVE (2026-08-05, verbatim): *"They are not declaring it as final - it is what it is now
+    we have to work and strategize in a waqy that we do not fail and out test cases still stay current/
+    runnable by the lay man and manual qa tester and they are all VIU's and all of those test cases are
+    100% authentic and nothing is invented ever."*
+    **THIS RULE IS THE STRATEGY, and its core insight follows directly from Rule 57: BECAUSE EXPECTED
+    BEHAVIOUR COMES FROM DOCUMENTS, A REDEPLOY CANNOT INVALIDATE AN EXPECTATION.** Only **THREE** things
+    go stale when the build moves, and they are a **far smaller surface than a whole suite**:
+    **(1) THE ON-SCREEN LABELS AND THE NAVIGATION PATH** — the Rule-9 layer (button text, field names,
+    screen names, step order, where you click).
+    **(2) THE PASS / FAIL / DEVIATION VERDICT.**
+    **(3) THE MARKERS THAT ASSERT A BUILD FACT** — `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` and
+    `AUTOMATION: HOLD - <not built>`. **NOTE, because this is routinely got wrong: plain
+    `AUTOMATION: READY` asserts that a case is AUTOMATABLE, NOT that it currently passes — so it is
+    BUILD-INDEPENDENT and SURVIVES A REDEPLOY untouched.**
+    **EVERYTHING ELSE — the expectation, the requirement anchor, the spec version, the epic/story
+    reference, the traceability, the Rule-54 SOURCE sentence — is BUILD-INDEPENDENT and survives a
+    redeploy unchanged.**
+    **WHAT THIS REQUIRES IN PRACTICE:**
+    **(a) STATE THE LAYER.** Per case, and in **every readiness report**, say **which layer a claim
+    belongs to** — a documented expectation, a label observation, a verdict, or a build-fact marker.
+    **(b) ON A REDEPLOY, RE-CHECK ONLY LAYERS 1–3.** Do **NOT** re-derive the suite, re-read the spec
+    per case, or re-audit expectations — a redeploy is not a spec change, and treating it as one is how
+    a cheap re-check turns into an unaffordable one that then does not happen at all.
+    **(c) KEEP THE RULE-49 QUEUE PERMANENTLY OPEN AS THE STANDING MECHANISM, NOT AN EXCEPTION.** The
+    branches will not be declared final, so an OPEN queue is now the **normal steady state** of an
+    active project — it is a **living work list**, not an embarrassment to be closed.
+    **(d) NEVER LET "THE BRANCH IS NOT FINAL" BECOME A BLANKET CAVEAT.** A caveat applied to everything
+    tells the reader nothing and **makes the whole report meaningless**. A report must say **exactly
+    which cases were observed, on WHICH BUILD MARKER, and HOW MANY WERE NOT** — numbers, not a banner.
+    **(e) BUILD A RE-RUNNABLE LABEL-AND-VERDICT CHECKER PER PROJECT**, so a redeploy costs a **cheap
+    automated re-check** rather than a full manual pass. This is the practical difference between a
+    suite that stays current under continuous deployment and one that quietly rots.
+    **(f) STATE PER CASE WHEN IT WAS LAST CHECKED** — that is **Rule 54's sentence 2**, and it is what
+    makes the honest split in (d) derivable from the cases themselves rather than from memory.
+    **HONESTY CLAUSE — READ THIS BEFORE QUOTING THE RULE AS COMFORT.** **A suite may still NEVER be
+    called fully verified while rows are unobserved.** This rule makes the re-check **AFFORDABLE**; it
+    does **NOT** licence claiming coverage we do not have, and it does not convert an unobserved row
+    into a verified one (Rules 12/17/50). The correct sentence remains *"N of M observed on build
+    <marker>; the remaining M−N carry their last recorded check"* — never *"the suite is current"*.
+    **RATIONALE, 2026-08-05:** **all three QA branches redeployed on the same day.** Schedule's marker
+    moved mid-morning (`v3.5-4873abe` → `v3.5-be42149`, 08:09 UTC) and **invalidated 165 provisional
+    verdicts**; Report Suite moved to **`v3.5-16cf83f`**; Filters sat on `v3.4.2-d00239b` having moved
+    the day before. **Engineering has now confirmed the branches will NOT be declared final before
+    release**, so the Rule-49 "wait until the build settles" assumption **has no end date and needed
+    replacing with a strategy.** Today's passes achieved a **complete correctness audit of all 748
+    cases** but only **PARTIAL live observation — 7 of 165 on Schedule, 29 of 110 on Filters, and Report
+    Suite not per-case at all** — which is precisely the shortfall this rule exists to make manageable
+    rather than permanent. Ties to Standing Rules 9 (the label layer is the part a redeploy really does
+    invalidate), 10 (VIU's live-observation step), 12 (observed, never inferred — an unobserved row
+    stays unobserved), 13 (live feature-by-feature), 17 (complete data in/out — the honest N-of-M), 22
+    (ask for the live check + access up front), 31 (the build is a source and its currency is checked),
+    36 (an OPEN queue and a missing sign-in are outstanding items), 49 (**this rule is how a
+    never-final build is worked with rather than waited on**), 50 (exhaustive and exact — the re-check
+    covers every row of layers 1–3, no sampling), 54 (sentence 2 is the per-case record of when it was
+    last checked) and 57 (because expectations come from documents, a redeploy cannot invalidate them —
+    that is the whole reason this strategy is possible).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
@@ -3550,14 +3758,22 @@ regression / bug-fix re-testing.
   PO's verified answers. The build supplies ONLY the labels and the pass/fail verdict (Standing
   Rule 57).** Never write an expected result to describe how the build behaves; if the build
   differs, the case keeps the documented expectation and becomes a deviation with a ticket.
-- **A PROVENANCE LINE ends every case's Expected Results (Standing Rule 54):** after a separator
-  line, one plain sentence saying what the expectation is based on — the **epic + specification
-  version + requirement reference** before live verification, and **also the build + the date it was
-  tested** after it (the QA lead's wording: *"This is the expected behaviour as per the build tested
-  on 8/4/2026, and as per the Sales By Customer report specification version 13 (S4-R13)."*).
+- **A PROVENANCE LINE ends every case's Expected Results (Standing Rule 54) — TWO SENTENCES THAT ARE
+  NEVER MERGED:** after a separator line, **sentence 1 names ONLY DOCUMENTS** as the source of the
+  expectation (the **epic and/or owning story + the specification with its version + the requirement
+  reference**, and/or the **PO's answer file with its link and date**), and **sentence 2, optional,
+  records the check**: *"This is the expected behaviour as per epic SV-8582 and the Sales By Customer
+  report specification version 13 (S4-R13). Last checked against build v3.5-16cf83f on 8/5/2026."*
   **Re-stamped on every spec/epic/build re-check** — a stale stamp is a finding. Never the word
   "VIU", never a flag name; the requirement reference in parentheses is an authorised exception to
   the no-anchors-in-tester-text guidance.
+- **THE BUILD IS NAMED ONLY AS WHAT A CASE WAS LAST CHECKED AGAINST — never as the source of an
+  expectation (Standing Rules 54 + 57, amended 2026-08-05).** Use neutral checking language (*"last
+  checked against build … on …"*); **"as per the build tested on …" is BARRED** — it credits the build
+  for the expectation, confuses the tester, and invites leadership to ask how something can be
+  expected behaviour merely because it happens on a build that can itself be wrong. A case that
+  **FAILS** on the build says only that it was checked; the deviation note carries the failure. Not
+  yet checked against any build ⇒ **omit** sentence 2 or say plainly that it has not been checked.
 - **A DIVERGENCE SENTENCE follows the provenance line where — and ONLY where — the case follows a
   later decision that differs from an earlier source (Standing Rule 56):** after a line break, one
   plain sentence saying **where the PO asked for this behaviour** (file/message + link + date),

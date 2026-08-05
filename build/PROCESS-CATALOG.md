@@ -66,11 +66,15 @@
 > **Provenance-line qualifier (Standing Rule 54) — applies to EVERY process row below that AUTHORS or
 > UPDATES test cases (rows 1, 2, 3, 4, 5, 6, 7, 8, 11 and any future authoring / VIU / spec-delta /
 > recheck / retrofit process).** Every case's **Expected Results ENDS** with a separator line and one
-> plain sentence saying what its expectation is based on: **before live verification** the **epic + the
-> specification with its VERSION + the requirement reference**; **after live verification** also **the
-> build and the DATE it was tested** (the QA lead's wording: *"This is the expected behaviour as per the
-> build tested on 8/4/2026, and as per the Sales By Customer report specification version 13
-> (S4-R13)."*). **Any process that re-checks a case against the spec, the epic or the build MUST
+> plain provenance statement of what its expectation is based on, **in TWO SENTENCES THAT ARE NEVER
+> MERGED (amended 2026-08-05)**: **SENTENCE 1 — the SOURCE — names ONLY DOCUMENTS** (the epic and/or
+> owning story + the specification with its VERSION + the requirement reference, and/or the PO's answer
+> file with its link and date) and **NEVER THE BUILD**; **SENTENCE 2 — optional — records the CHECK** in
+> neutral language: *"This is the expected behaviour as per epic SV-8582 and the Sales By Customer report
+> specification version 13 (S4-R13). Last checked against build v3.5-16cf83f on 8/5/2026."* **The old
+> template *"as per the build tested on …" IS BARRED** — it credited the build for the expectation
+> (Rule 57); a case that FAILS on the build says only that it was checked, and a case never checked
+> against a build **omits** sentence 2. **Any process that re-checks a case against the spec, the epic or the build MUST
 > RE-STAMP that line — a stale spec version, stale build date or stale epic reference is ITSELF A
 > FINDING**, and a pass is not complete while one survives. Date = **one generator variable**, spec
 > versions = a **per-project/per-report map**, stamper **IDEMPOTENT** (replace, never append a second).
@@ -135,6 +139,59 @@
 > while its EXPECTED RESULT was quietly changed in the same edit looks freshly maintained and its
 > provenance line looks current — diff the expected result against its CITED SOURCE, never against how
 > recently the case was touched.**
+>
+> **Ambiguity-never-settled-by-the-build qualifier (Standing Rule 58, added 2026-08-05) — applies to
+> EVERY process row below that INGESTS a source: a PO answer, a spec delta, a walkthrough video, a tech
+> plan or a design (rows 1, 2, 3, 4, 11, 12 and any future answer-ingest / spec-delta / reconciliation
+> pass).** When an ingested source is **AMBIGUOUS about what the behaviour should be, the ambiguity is
+> NEVER settled by observing the build.** The ambiguous answer goes **BACK to the PO (Rule 55)** and the
+> affected cases are **HELD with the open question cited on them** and logged in the Outstanding register
+> (Rule 36). **Reaching for the build to break a tie is how build behaviour becomes expected behaviour
+> WITHOUT ANYONE DECIDING TO DO IT** — and the edit then looks sourced, because the pass legitimately
+> cites a PO answer, so it survives every later review. **MECHANICS:** an ingest pass **records per
+> answer one verdict — UNAMBIGUOUS (act) or AMBIGUOUS (hold + ask)**, naming the ambiguity; and it **may
+> NOT produce a case edit whose new expected result cannot be QUOTED BACK to the source text** (Rule
+> 45(e) side-by-side standard) — **if it cannot be quoted, the edit is INVALID**, reverted or held, never
+> shipped with a hopeful provenance line. **A pass that classifies nothing is non-compliant.** Accept
+> that this sometimes leaves a case **less specific than the build would allow, and that is correct** —
+> vague-but-sourced with an open question is honest; precise-but-invented hides the fact that nothing was
+> ever decided. **This is the door Rule 57 did not know about: the Report Suite forensics over all 41
+> commits proved the VIU passes changed ZERO expectations and the contamination came in through an
+> ANSWER-INGEST pass.**
+>
+> **Re-read-the-sources-before-writing qualifier (Standing Rule 59, added 2026-08-05) — applies to EVERY
+> process row below that ENDS IN A WRITE (rows 1, 2, 3, 4, 5, 10, 11 and any future push / retrofit /
+> recheck pass; also any Jira filing).** **Rule 31's currency pre-flight runs at PASS START; this adds a
+> SECOND, CHEAP check immediately BEFORE THE WRITE PHASE BEGINS** — re-fetch the **governing spec
+> version(s)** and re-read **any blocking ticket** at the moment you rely on them. **If a source moved
+> between pass start and write start: STOP, RE-DIFF, RE-DERIVE the affected edits before writing** — a
+> pass may not write conclusions drawn from a source that has since changed, because they were right when
+> reached and are wrong when written, while the log shows them as carefully verified. **MECHANICS:** the
+> execution log records **BOTH timestamps — "sources read at pass start" and "sources re-read at write
+> start"** — and **states the verdict of the second read**; **a log with only ONE source-read timestamp
+> is NON-COMPLIANT**, exactly as one saying only *"200 OK"* is (Rule 50). It is deliberately a version
+> number and a ticket status, **not** a second full pre-flight, so it stays affordable on every pass.
+> **Earned 2026-08-05: the PO edited ALL SIX Report Suite specs mid-pass — one of them ONE MINUTE before
+> it was fetched — flipping the exact anchors the pass had cited; the sources had been read ~35 minutes
+> earlier and that was already too long.**
+>
+> **Never-final-build qualifier (Standing Rule 60, added 2026-08-05) — applies to EVERY process row below
+> that OBSERVES A BUILD or reports readiness (rows 1, 3, 6, 8, 10, 11, 12 and any future VIU / recheck /
+> readiness pass).** **The QA branches will NOT be declared final before release, so this is the steady
+> state, not an exception.** Because expected behaviour comes from documents (Rule 57), **A REDEPLOY
+> CANNOT INVALIDATE AN EXPECTATION** — only **three layers** go stale: **(1)** the on-screen **LABELS +
+> navigation path** (Rule 9), **(2)** the **PASS/FAIL/deviation VERDICT**, **(3)** the markers asserting
+> a build fact (`READY - EXPECT FAIL`, `HOLD - not built`). **Plain `AUTOMATION: READY` asserts
+> AUTOMATABLE, not currently-passing, so it is BUILD-INDEPENDENT and survives a redeploy.** Therefore:
+> **state which layer every claim belongs to**, per case and in every readiness report; **on a redeploy
+> re-check ONLY layers 1–3** rather than re-deriving the suite; **keep the Rule-49 queue permanently OPEN
+> as a living work list**; build a **re-runnable label-and-verdict checker per project** so a redeploy
+> costs a cheap automated re-check; and record **per case when it was last checked** (Rule 54 sentence 2).
+> **NEVER let *"the branch is not final"* become a blanket caveat — a caveat on everything tells the
+> reader nothing.** A report states **exactly which cases were observed, on WHICH BUILD MARKER, and HOW
+> MANY WERE NOT.** **HONESTY HALF: this makes the re-check AFFORDABLE, it does NOT licence claiming
+> coverage we do not have** — an unobserved row stays unobserved (Rules 12/17/50), and the correct
+> sentence is *"N of M observed on build <marker>; the remaining M−N carry their last recorded check"*.
 >
 > **Two-session note:** this workspace is worked by more than one Claude session in parallel.
 > This catalog + `CLAUDE.md` + the `build/*-PROCESS.md`/`*-METHOD.md`/`*-RECIPE.md` docs are the
