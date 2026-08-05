@@ -50,6 +50,7 @@ SBC-CALC-06,C30154,Subtotal is the rightmost column; pinned on scroll and bold e
 SBC-CALC-07,C30155,The totals row covers the whole filtered set; not just the current page,SBC — Totals & Calculations
 SBC-COL-01,C30156,Column selector is its own toolbar button with nine toggles all on,SBC — Column Selector
 SBC-COL-02,C30157,"Column toggles hide header+cells; Customer, Subtotal and chevron never in list",SBC — Column Selector
+SBC-COL-03,C43550,A one-location user never sees Location in the column-selection list,SBC — Column Selector
 SBC-EXP-01,C30159,The overflow menu holds exactly the four download items - no Print,SBC — Exports
 SBC-EXP-02,C30160,Download file names carry the version and the active date range,SBC — Exports
 SBC-EXP-03,C30161,"Expanded View CSV: column order, blank-cell rules, and the Locations line",SBC — Exports
@@ -63,6 +64,7 @@ SBC-EXP-11,C30169,Expanded View PDF body matches the CSV's columns and on-screen
 SBC-EXP-14,C30172,"An export over 10,000 data rows is refused with the too-large toast",SBC — Exports
 SBC-EXP-15,C30173,A no-match export still downloads headers and a zero totals row,SBC — Exports
 SBC-EXP-16,C38856,Summary and Expanded View downloads exist for both PDF and CSV,SBC — Exports
+SBC-EXP-17,C43553,A logo that is set but will not load falls back to the ShopView logo,SBC — Exports
 SBC-PERS-01,C30174,Filters; sort and visible columns are restored on the next visit,SBC — Saved View & Persistence
 SBC-PERS-02,C30175,"Type-ahead search text, expansion state and scroll position are not saved",SBC — Saved View & Persistence
 SBC-PERS-03,C30176,A saved value that is no longer valid is dropped and falls back to default,SBC — Saved View & Persistence
@@ -314,6 +316,7 @@ TU-EXP-06,C30439,"PDF logo: the uploaded logo, else the bundled ShopView logo; C
 TU-EXP-07,C30440,Choosing a download with no technician selected is a silent no-op,TU — Exports
 TU-EXP-08,C30441,A starting download notifies; a failed one shows the failure message,TU — Exports
 TU-EXP-09,C38887,An over-cap Technician Utilization export is refused with the too-large message,TU — Exports
+TU-EXP-10,C43552,Both spreadsheet downloads hold the summary rows and no per-day rows,TU — Exports
 TU-LOC-01,C30442,The Location filter is the rightmost multi-select; All Locations = select-all,TU — Location Filter
 TU-LOC-02,C30443,Location changes reload with hours pooled into one row per technician,TU — Location Filter
 TU-LOC-03,C30444,The saved location selection restores defensively; bad ones are dropped,TU — Location Filter
@@ -377,6 +380,7 @@ WIP-PERS-01,C30506,Column Selection toggles columns; Total is not offered at all
 WIP-PERS-02,C30507,Toggling columns never reorders them (Total always last),WIP — Column Selection & Persistence
 WIP-PERS-03,C30508,"Remembers the date range, filter selections, location, columns",WIP — Column Selection & Persistence
 WIP-PERS-04,C30509,A saved setting that is no longer valid falls back to its default,WIP — Column Selection & Persistence
+WIP-PERS-05,C43551,A hand-made Location column choice is remembered like any other column,WIP — Column Selection & Persistence
 WIP-EXP-01,C30510,Work In Progress: a three-dot menu holds Download (PDF) and Download (CSV),WIP — Exports
 WIP-EXP-02,C30511,"Downloads keep shown columns, honor filters, include the tab's Totals row",WIP — Exports
 WIP-EXP-03,C30512,Downloaded money and Inv. Hrs values keep the on-screen formats,WIP — Exports
