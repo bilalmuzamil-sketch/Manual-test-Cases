@@ -1,4 +1,4 @@
-# Schedule — is it ready for automation? (4 August 2026, table restructured and the ready-figure rule fixed 5 August)
+# Schedule — is it ready for automation? (4 August 2026, table restructured and the ready-figure rule finished 5 August)
 
 **What this is.** We ran every one of the **165 Schedule test cases against the real, running app**
 for the first time — the Schedule QA branch at `sv8685.qa.shopview.com`. Before then not one of them
@@ -27,13 +27,22 @@ testing changed and no case changed its outcome — every outcome figure below w
 record of the run (`viu-2026-08-04/RECHECK-QUEUE.md`, one row per case, all 165 re-counted) and comes
 out identical. What changed is the **rule** for working out how many cases can be automated.
 
+**The second half of that rule is now settled too, and Schedule's figure does not move again: it stays
+157.** The open question was whether a case marked *"needs a tool"* should be taken out of the ready
+figure. **It should not** — unless the tool is something the automation harness genuinely cannot
+provide, such as a real physical phone or tablet. **No Schedule case needs anything like that**, so
+nothing is subtracted for tools. The Filters report used to subtract its flagged cases and has now
+been corrected to match, which moved **its** figure from 89 to 93. **Both reports now use one rule,
+written out in the same words in both.**
+
 | | |
 |---|---|
 | **The ready-to-automate rule is now the same in every report** | The four cases on **features that are not built yet are no longer counted as ready to automate**, so the figure drops from **161 to 157**. This was decided because the Filters report already left its not-built cases out, and an engineer reading both side by side would have written four automated tests for features that are not in the product — they would fail, he would investigate, and the time would be wasted before anyone worked out why. **The four cases are named in full below.** They are still counted as test cases; they are just not counted as automatable. |
+| **"Needs a tool" no longer takes anything out of the figure, in either report** | A tool flag is now only allowed to reduce the ready figure if the tool is something an automated test **cannot** provide — a real physical device. **Reading a colour, a size or a network request is the opposite of a problem for automation**: a script reads those values directly, while a person has to open the browser's inspector by hand. So these cases are **easier** to automate than to run by hand, and taking them out was under-counting. **Schedule stays 157.** One of Schedule's three flags was also simply wrong and has been removed — SCH-EDGE-08 uses the app's own dark-mode switch and needs no tool at all. |
 | **The table now has one kind of column** | It used to mix "what happened when we tested it" with "this case also needs a tool". Those are different things, and mixing them meant one row appeared to hold 8 cases when it holds 7. **The tool column has been taken out of the table and is now shown separately, below, as a flag.** Adding across a row can no longer overshoot. |
 | **Two columns were renamed** (4 August) | *"Broken on the build"* is now **"Product is wrong — the case correctly fails"**: it never meant our case was broken. *"Needs a free tool"* now says plainly that **a manual tester can run those cases today.** |
 | **Correction 1** | The 4 August note said all three tool cases sat in the "work correctly" column. **They do not.** One of them, SCH-EDGE-02, is one of the 19 where the product is wrong. The count of three was right; the explanation was wrong. |
-| **Correction 2** | The 4 August wording said all three cases "ask for a measuring tool". Only **one** of them really needs the browser's own developer tools. One uses the app's own dark-mode switch, and one needs a busy schedule set up first. Each one now says which. |
+| **Correction 2** | The 4 August wording said all three cases "ask for a measuring tool". Only **one** of them really needs the browser's own developer tools. One uses the app's own dark-mode switch, and one needs a busy schedule set up first. Each one now says which. *(Later on 5 August the dark-mode case had its flag removed altogether — the app's own theme switch is not a tool — so the flag list is now **2 cases**, not 3. Its outcome did not change.)* |
 
 ## The one table
 
@@ -104,11 +113,18 @@ columns sum to the Test cases figure in every one of them, and down the total co
 **138 + 19 + 2 + 4 + 2 = 165.** Every one of the 165 cases is in exactly one of those five columns,
 and no case is in two.
 
-**How the "Ready to automate" figure is worked out — one formula, and it is now the same formula in
-every readiness report:**
+**How the "Ready to automate" figure is worked out — one formula, written out below in the same words
+in every readiness report:**
 
-> **Ready to automate = cases − waiting on the product owner − could not be set up on this test
+> **Ready to automate = test cases − waiting on the product owner − could not be set up on this test
 > system − not built yet.**
+>
+> **A case flagged as "needs a tool" is NOT subtracted.** The only tool that is allowed to take a case
+> out of this figure is one an automated test genuinely cannot provide — a real physical device such as
+> an actual phone or tablet. Needing the browser's own inspector, a forced window size, a theme switch
+> or a set-up data state does **not** count, because an automated test does all of those for itself.
+> **No case in the Schedule suite and no case in the Filters suite needs a real physical device, so
+> nothing at all is subtracted for tools in either report.**
 
 Recompute it two ways and it comes out the same both times:
 
@@ -137,12 +153,12 @@ automatable. **Pick them up when the features land.**
 
 - **The 19 "product is wrong" cases are NOT subtracted.** They should be automated and are expected
   to come out red until the tickets are fixed.
-- **The flag below is NOT subtracted**, because forcing a narrow window or a dark theme is something
-  an automated test does for itself. **The Filters report DOES subtract its 4 flagged cases**, for a
-  different reason — theirs measure exact colours and pixel widths that are likely to move. **That is
-  a remaining difference between the two reports and it has not been quietly aligned:** if the two
-  should treat flagged cases the same way as well, that is your call, and Schedule's figure would then
-  become 157 − 3 = 154.
+- **The flag below is NOT subtracted**, because forcing a narrow window or setting up a busy week is
+  something an automated test does for itself — and does more reliably than a person. **The Filters
+  report no longer subtracts its flagged cases either.** It used to take out 4, which is why its figure
+  read 89; those 4 were checked one by one, none of them needs anything an automated test cannot
+  provide, and its figure is now **93**. **The two reports now apply the same rule in the same words,
+  so the two figures mean the same thing.**
 
 ## Flags — an extra note on some cases, NOT an outcome
 
@@ -150,15 +166,22 @@ automatable. **Pick them up when the features land.**
 in exactly one outcome column above, and flag counts must never be added into the table.** Flags can
 overlap each other and they can apply to a case in any outcome column.
 
-**Flag: the case needs the screen or the data put into a special state first — 3 cases.**
+**Flag: the case needs the screen or the data put into a special state first — 2 cases.** *(It was 3.
+The third flag was wrong and has been removed — see immediately below the table. No case changed its
+outcome column, and the table above is untouched.)*
 
-| Case | C-id | Link | Which outcome column it is in | What it needs |
-|---|---|---|---|---|
-| SCH-EDGE-02 | C30086 | https://shopview.testrail.io/index.php?/cases/view/30086 | **Product is wrong** (one of the 19) | The browser window forced to just under 960px wide. Dragging the window edge works; the browser's own developer tools make the width exact. |
-| SCH-EDGE-04 | C30088 | https://shopview.testrail.io/index.php?/cases/view/30088 | Work correctly | A busy week set up first — around 15 technicians across 7 days with several shifts each — then a judgement that the grid still draws smoothly. |
-| SCH-EDGE-08 | C38866 | https://shopview.testrail.io/index.php?/cases/view/38866 | Work correctly | Dark mode turned on. **This is the app's own theme switch in the user menu** — no tool at all. |
+| Case | C-id | Link | Which outcome column it is in | What it needs | Does it stop automation? |
+|---|---|---|---|---|---|
+| SCH-EDGE-02 | C30086 | https://shopview.testrail.io/index.php?/cases/view/30086 | **Product is wrong** (one of the 19) | The browser window forced to just under 960px wide. Dragging the window edge works; the browser's own developer tools make the width exact. | **No — it makes it easier.** Setting an exact window size is one line of instruction to an automated test, and it gets the exact number every time; a person has to drag an edge or open the inspector. |
+| SCH-EDGE-04 | C30088 | https://shopview.testrail.io/index.php?/cases/view/30088 | Work correctly | A busy week set up first — around 15 technicians across 7 days with several shifts each — then a judgement that the grid still draws smoothly. | **No.** The busy week is data, and a script can create it far faster than a person. Honest caveat: the *judgement* at the end is "does it feel smooth", which a person judges better than a machine — so automate the set-up and keep a human eye on the result. |
 
-**A manual tester can run all three of these today, on the machine they already have, with nothing to
+**The flag that has been REMOVED:** SCH-EDGE-08 =
+[C38866](https://shopview.testrail.io/index.php?/cases/view/38866) (dark mode). It was flagged as
+needing a tool; **it does not need one.** The case's own steps say *"Switch the app to dark mode"*, and
+that switch is **the app's own theme control in the user menu**. **Its outcome is unchanged — it is
+still in the "Work correctly" column and still one of the 165.** Only the flag has gone.
+
+**A manual tester can run both of these today, on the machine they already have, with nothing to
 install.** The only tool that comes into it is the developer tools already built into every browser
 (F12), and only for the first one. They are flagged so nobody hands them to a brand-new
 non-technical tester without walking them through it once.
@@ -178,10 +201,12 @@ flag.
   there is the expected result** until the ticket is fixed. Nothing in that column means our test
   case is faulty — those are the cases that *caught* the faults. Do not raise a new ticket for them,
   and do not treat the case as broken.
-- **A flagged "needs a tool" case CAN be run by a manual tester today, with nothing to install.**
-  The tool is the browser's own developer tools, which are already on every machine, and only one of
-  the three cases even needs that. It is a note for whoever automates or runs them; it is **not**
-  something that stops a person testing them.
+- **A flagged "needs a tool" case CAN be run by a manual tester today, with nothing to install, and it
+  does NOT reduce the ready figure.** The tool is the browser's own developer tools, which are already
+  on every machine, and only one of the two flagged cases even needs that. It is a note for whoever
+  runs them by hand; it is **not** something that stops a person testing them, and it is **not** a
+  reason to leave them out of automation — **a script reads a size or a colour more easily than a
+  person can.**
 
 **A manual tester CAN run all 165 of these cases today, with nothing but a browser** — including the
 19 where the product is wrong (they are *supposed* to fail, so a red result is information rather
@@ -301,7 +326,18 @@ ticket and does not have one** — see the outstanding list.
    and it matches the rule Filters was already using. **One thing is still different between the two
    reports and you may want to rule on it:** Filters also takes out its 4 cases that need the browser's
    measuring tool; Schedule does not take out its 3 flagged cases. If they should match on that too,
-   Schedule's figure becomes 154.
+   Schedule's figure becomes 154. **UPDATE, 5 August — this second half is now settled as well, and it
+   went the other way: flagged cases are NOT taken out, in either report.** The only tool allowed to
+   take a case out of the ready figure is one an automated test genuinely cannot provide — a real
+   physical device — and **no Schedule case and no Filters case needs one**. The reasoning, plainly:
+   needing the browser's inspector, a forced window size or a set-up data state makes a case **easier**
+   to automate than to run by hand, because a script does all three for itself and gets the exact number
+   every time, while a person has to open the inspector and drag a window edge. **So Schedule stays
+   157** and **Filters rises from 89 to 93**, because Filters was taking out 4 cases it should not have
+   been. One Schedule flag was also removed as simply wrong — SCH-EDGE-08 =
+   [C38866](https://shopview.testrail.io/index.php?/cases/view/38866) uses the app's own dark-mode
+   switch, not a tool. No case changed its outcome and the total is still 165. **Nothing is needed from
+   you here unless you disagree with that call.**
 4. **Say whether you want a ticket for the one API-only finding.** It is written up and waiting in
    `build/schedule/viu-2026-08-04/API-ASK.md` and has NOT been filed, because an API-only defect is
    never raised without your explicit say-so — even inside a batch you have already approved.
