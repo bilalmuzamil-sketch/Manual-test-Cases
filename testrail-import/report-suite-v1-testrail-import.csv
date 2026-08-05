@@ -10,7 +10,7 @@ Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
 5. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a ""Sales By Customer"" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S1-R1, S1-R3, S1-R4).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S1-R1, S1-R3, S1-R4).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: HOLD - waiting on an answer from the product owner
@@ -23,7 +23,7 @@ Ordinary reports access opens Sales By Customer — no separate permission,SBC �
 4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a ""Sales By Customer"" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S1-R2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S1-R2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -37,7 +37,7 @@ AUTOMATION: READY
 4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a ""Sales By Customer"" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S1-N1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S1-N1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -49,7 +49,7 @@ Opening an invoice you lack permission for shows access-denied; back works,SBC �
 2. Pressing back returns you to the Sales By Customer report.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S9-N2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S9-N2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -65,7 +65,7 @@ Location access enforced: no data from a location the user cannot access,SBC —
 4. The report data never includes invoices from a location the user does not have access to.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S4-R7, S4-R8, S4-R9, S4-N1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S4-R7, S4-R8, S4-R9, S4-N1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -78,7 +78,7 @@ No Sales By Customer permission is offered in the role permission editor,SBC —
 3. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a ""Sales By Customer"" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S1-R2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S1-R2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -89,7 +89,7 @@ Date range picker offers eleven options in the specified order,SBC — Date Rang
 3. There is no ""All Time"" option.
 
 ---
-This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Sales By Customer report specification version 14 (S2-R1, S2-R2) says something different, his decision is the later word and is the authority.
+This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Sales By Customer report specification version 15 (S2-R1, S2-R2) says something different, his decision is the later word and is the authority.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -101,7 +101,7 @@ Building a custom range on the calendar cannot exceed a 366-day span,SBC — Dat
 3. A range wider than 366 days cannot be applied — the report prevents the selection rather than loading the wider range.
 
 ---
-This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Sales By Customer report specification version 14 (S2-R3, S2-R4, S2-N2) says something different, his decision is the later word and is the authority.
+This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Sales By Customer report specification version 15 (S2-R3, S2-R4, S2-N2) says something different, his decision is the later word and is the authority.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -112,7 +112,7 @@ Changing the date range writes it into the page link for sharing,SBC — Date Ra
 2. Opening that link in a browser with no saved view for this report restores the sender's date range.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S2-R6, S2-R9).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S2-R6, S2-R9).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -128,7 +128,7 @@ Product Type: three options with Parts & Service default; S/P prefix filtering,S
 5. The whole invoice is classified by its number prefix — there is no per-line-item split.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -143,7 +143,7 @@ AUTOMATION: READY
 5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's data.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S4-R1, S4-R2, S4-R3). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S4-R1, S4-R2, S4-R3). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -158,7 +158,7 @@ Selecting locations scopes the data; All locations covers every accessible one,S
 4. With ""All locations"" active you can tell which location each row's data belongs to — a location label or marking is shown.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S4-R5, S4-R6); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S4-R5, S4-R6); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -179,7 +179,7 @@ The Location column shows only with more than one location; Multiple on totals,S
 7. Every one of the four downloads also contains the Location column, in the same position it holds on screen, showing the same values you just read: a location name on a row whose invoices are all at one location, ""Multiple"" on a row that aggregates more than one, and the invoice's own location on an invoice row.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S4-R12, S4-R12a, S4-R13, S20-R19). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: one requirement says it is shown by default and can be toggled there, and the list of toggleable columns in another does not include it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S4-R12, S4-R12a, S4-R13, S20-R19). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: one requirement says it is shown by default and can be toggled there, and the list of toggleable columns in another does not include it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked
@@ -192,7 +192,7 @@ AUTOMATION: HOLD - the written description says two different things about the L
 4. The hint yields to the typed query while you are searching.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S18-R1, S18-R2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R1, S18-R2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -205,7 +205,7 @@ Typing in the Customer filter lists matching customers by contains match,SBC —
 3. A selected customer is shown with a checkmark.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S18-R2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -218,7 +218,7 @@ Pinned control toggles All customers and Clear all; clearing shows empty state,S
 4. After ""Clear all"": the report shows the empty-state message ""No sales data found for the selected filters."", the totals row shows zeros, and the collapsed label reads ""None.""
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S18-R3, S18-N1, S17-E1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R3, S18-N1, S17-E1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -234,7 +234,7 @@ First load starts in the all-customers state and the report shows every customer
 4. After the filter change the filter stays in the all-customers state (label still ""All customers"") and every customer matching the new filters is included — including the newly-appearing one, with no manual re-selection.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S18-R4, S18-R5, S18-R9, S18-E1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R4, S18-R5, S18-R9, S18-E1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -248,7 +248,7 @@ AUTOMATION: READY
 4. While typing, the field shows the query text instead of the summary label; the summary label returns when the query is cleared or the field loses focus.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S18-R5).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R5).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -260,7 +260,7 @@ Changing the customer selection narrows the table and refreshes the totals,SBC �
 3. The totals row updates to cover only the selected customers' matching invoices.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S18-R5, S18-R11).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R5, S18-R11).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -273,7 +273,7 @@ A subset customer selection reconciles on a filter change; kept if present,SBC �
 4. The Customer filter selection itself is not cleared by the date change.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S18-R9, S18-E1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R9, S18-E1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -288,7 +288,7 @@ Each customer gets one summary row with its invoice count in parentheses,SBC —
 5. Note for the tester: you do not need to measure anything and you do not need any tool for item 3. Just say whether the count looks the right size and is easy to read, and only report it if it looks obviously wrong. (The exact colour and weight behind this are design-token values the design and engineering team check with their own tooling.)
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S7-R1, S7-R2, S7-R3, S7-R4, S7-R5).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S7-R1, S7-R2, S7-R3, S7-R4, S7-R5).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -298,7 +298,7 @@ A customer with no matching invoices in the current view is not shown,SBC — Tr
 2. Look for the customer in the table.","1. The customer is not shown — there are no zero-value placeholder rows.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S7-N1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S7-N1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -315,7 +315,7 @@ Expanding a customer reveals asset rows; chevrons toggle and are independent,SBC
 7. Collapsing customer A does not affect customer B's expansion; each asset's expansion state is likewise independent.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S8-R1, S8-R2, S8-R5, S8-R5a, S8-R5b, S8-R5c, S8-R15).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-R1, S8-R2, S8-R5, S8-R5a, S8-R5b, S8-R5c, S8-R15).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -326,7 +326,7 @@ Expanding an asset reveals its invoice rows with number link and date,SBC — Tr
 3. The invoice date shows in the format ""Mon DD YYYY"" — for example, May 14 2026.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S8-R4, S8-R12, S8-R12a, S20-R14).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-R4, S8-R12, S8-R12a, S20-R14).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -337,7 +337,7 @@ Invoices group into one asset row per vehicle record,SBC — Tree & Rows,Functio
 2. An older invoice with no vehicle id on file groups by the invoice's own stored vehicle snapshot instead.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S8-R3).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-R3).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -348,7 +348,7 @@ Asset rows order A to Z with the Parts Sales bucket always last,SBC — Tree & R
 3. Changing the column sort does not change the asset order — assets stay A→Z with ""Parts Sales"" last.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S8-R6, S8-R6a, S10-R6).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-R6, S8-R6a, S10-R6).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -360,7 +360,7 @@ Header-row chevron expands or collapses every customer on the current page,SBC �
 3. With all visible customers expanded, the icon switches to ""collapse"" and the tooltip reads ""Collapse all""; clicking collapses them all.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S8-R16, S8-R17, S8-R18, S8-R19).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-R16, S8-R17, S8-R18, S8-R19).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -373,7 +373,7 @@ Reload-causing changes collapse expansion; Customer filter typing does not,SBC �
 3. While the re-fetch is in flight the table shows the standard loading state; when it clears, the page shows the first page of the newly ordered set — the customers on the page can change.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S8-R20, S8-R21, S10-R8a, S10-R8b, S10-R8c).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-R20, S8-R21, S10-R8a, S10-R8b, S10-R8c).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -383,7 +383,7 @@ Edge: a single-invoice asset can still be expanded,SBC — Tree & Rows,Functiona
 2. Customer B shows a single ""Parts Sales"" row and no vehicle rows.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S8-E1, S8-E2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-E1, S8-E2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -392,7 +392,7 @@ A service (S) invoice with no vehicle also lands in the Parts Sales bucket,SBC �
 2. Find which asset row the S invoice sits under.","1. The no-vehicle S invoice appears under that customer's ""Parts Sales"" row — the bucket collects work by the ABSENCE of a vehicle, not by the invoice-number prefix.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S8-E3).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-E3).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -405,7 +405,7 @@ Reversed and voided invoices are excluded from every row; count and total,SBC �
 3. The customer/asset totals drop by exactly that invoice's amounts.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S7-R7, S7-N2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S7-R7, S7-N2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -419,7 +419,7 @@ Every row type renders the same columns in the same order,SBC — Tree & Rows,Fu
 5. Note for the tester: you do not need to measure anything and you do not need any tool for item 4. Just say whether the summary row stands out from the invoice rows and whether its Subtotal looks the boldest, and only report it if it looks obviously wrong. (The exact weights behind this are design-token values the design and engineering team check with their own tooling.)
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S7-R8, S7-R9, S7-R10, S7-R15, S7-R16).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S7-R8, S7-R9, S7-R10, S7-R15, S7-R16).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -431,7 +431,7 @@ AUTOMATION: READY
 5. Note whether the year/make/model text still appears anywhere in the row - the update says the VIN identifier REPLACES the year/make/model label; confirm the exact rendering in the build.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S8-R7, S8-R8, S8-R9, S8-R10). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-R7, S8-R8, S8-R9, S8-R10). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -442,7 +442,7 @@ Duplicate asset labels get stable (#1)/(#2) suffixes that survive reloads,SBC �
 2. The numbering is fixed and repeatable — after a reload the same vehicle keeps the same number.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S8-R11).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-R11).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -453,7 +453,7 @@ The invoice number opens the invoice in the same browser tab,SBC — Invoice Lin
 3. A parts invoice opens the associated part sale's Part Requests tab.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S9-R1, S9-R2, S9-R2a, S9-R2b).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S9-R1, S9-R2, S9-R2a, S9-R2b).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -466,7 +466,7 @@ Browser back from an invoice restores filters; sort and columns; rows shut,SBC �
 3. Expanded rows are shown collapsed again — expansion is not restored (this is the specified behavior, not a defect).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S9-R3, S9-R4).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S9-R3, S9-R4).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -478,7 +478,7 @@ Customer name is plain text; the invoice link never turns visited-purple,SBC —
 4. The link never recolors to the browser's visited-link (purple) color.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S9-R5, S9-R6, S9-R7, S9-R8).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S9-R5, S9-R6, S9-R7, S9-R8).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -489,7 +489,7 @@ An invoice deleted after load shows the not-found state and back returns,SBC —
 2. Pressing back returns you to the report.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S9-N1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S9-N1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -503,7 +503,7 @@ AUTOMATION: READY
 3. Sorting reorders only the customer summary rows — asset rows keep their own order (A→Z with ""Parts Sales"" last) and invoice rows keep their order under their asset.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S10-R1, S10-R2, S10-R6).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S10-R1, S10-R2, S10-R6).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -514,7 +514,7 @@ Default sort is Customer name ascending case-insensitive,SBC — Sorting,Functio
 2. Clicking a column header replaces the default with that column's sort.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S10-R4, S10-R7).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S10-R4, S10-R7).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -524,7 +524,7 @@ Missing values sort to the bottom ascending and to the top descending,SBC — So
 2. Descending: the em-dash row sorts to the top.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S10-R3).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S10-R3).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -534,7 +534,7 @@ Sorting by Date orders customers by their most recent invoice date,SBC — Sorti
 2. The Date cells on customer rows stay blank — the sort still works.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S10-R5).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S10-R5).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -547,7 +547,7 @@ Financial columns run in the specified order with Subtotal and Margin rules,SBC 
 4. Margin = Labor Margin + Parts Margin — it does NOT include any Shop Supplies amount (shop supplies add to Subtotal but add no profit to Margin).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S7-R6, S11-R1, S4-R12, S20-R19).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S7-R6, S11-R1, S4-R12, S20-R19).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -560,7 +560,7 @@ Margin % is Margin over Subtotal to one decimal; em dash when Subtotal <= 0,SBC 
 4. The same calculation and format apply to customer rows, asset rows, and invoice rows.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S7-R11, S7-R12, S7-R13, S7-R14).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S7-R11, S7-R12, S7-R13, S7-R14).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -574,7 +574,7 @@ Inv. Hrs heading is verbatim; value shows +green / -red / 0.0 on every row,SBC �
 6. The same calculation, label, format, and coloring apply on customer, asset, and invoice rows.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S12-R1, S12-R2, S12-R3, S12-R4, S12-R5, S12-R6).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S12-R1, S12-R2, S12-R3, S12-R4, S12-R5, S12-R6).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -585,7 +585,7 @@ Inv. Hrs is never blank: no-labor rows and near-zero values both show 0.0,SBC �
 3. A negative value shows a minus sign and one decimal — for example, -0.5.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S12-N1, S12-E1, S12-E2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S12-N1, S12-E1, S12-E2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -597,7 +597,7 @@ Invoice subtotals sum to their asset row and asset subtotals to the customer,SBC
 3. This holds for every financial column, not only Subtotal.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S8-R13).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-R13).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -610,7 +610,7 @@ Subtotal is the rightmost column; pinned on scroll and bold everywhere,SBC — T
 4. Check it still holds after two changes: narrow the date range so fewer rows match, then sort by a different column. Subtotal stays the rightmost column, stays pinned, and stays bold both times.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S11-R1, S11-R2, S11-R3, S11-N1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S11-R1, S11-R2, S11-R3, S11-N1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -621,7 +621,7 @@ The totals row covers the whole filtered set; not just the current page,SBC — 
 2. The totals do not change when you move between pages — they never reflect only the visible page.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S18-R6).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R6).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -635,7 +635,7 @@ Column selector is its own toolbar button with nine toggles all on,SBC — Colum
 5. Note for the tester: this panel lists nine toggles and no Location toggle. The specification is currently inconsistent on this one point - one requirement says a Location toggle should be here for anyone who can reach more than one branch, while the list of nine does not include it. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S13-R1, S13-R2, S13-R3, S13-R4, S13-R7, S4-R12, S4-R13). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: one requirement says it is shown by default and can be toggled there, and the list of toggleable columns in another does not include it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S13-R1, S13-R2, S13-R3, S13-R4, S13-R7, S4-R12, S4-R13). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: one requirement says it is shown by default and can be toggled there, and the list of toggleable columns in another does not include it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked
@@ -647,7 +647,7 @@ AUTOMATION: HOLD - the written description says two different things about the L
 3. All nine columns can be hidden — nothing blocks the last toggle; the table still renders the Customer and Subtotal columns and the totals row still shows its Subtotal.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S13-R5, S13-R6, S13-N1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S13-R5, S13-R6, S13-N1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -662,7 +662,7 @@ A one-location user never sees Location in the column-selection list,SBC — Col
 4. Note for the tester: this test is about someone who only has ACCESS to one location. That is a different person from someone who can reach several locations but has picked just one. Do not mix the two up - they are separate tests, and the second one is still waiting on an answer from the product owner.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S4-R12), which states that a user with access to a single location is never shown the Location column and that it never appears in their column selector; the Technician Utilization report specification version 6 (S10-R4) and the Work In Progress report specification version 7 (S4-R3) say the same, and on the other three reports the written description keeps the column out of that list for everyone, so the result is the same for all six. Chris Ward asked for this in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S4-R12), which states that a user with access to a single location is never shown the Location column and that it never appears in their column selector; the Technician Utilization report specification version 6 (S10-R4) and the Work In Progress report specification version 9 (S4-R3) say the same, and on the other three reports the written description keeps the column out of that list for everyone, so the result is the same for all six. Chris Ward asked for this in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
 This has not yet been checked against a build.
 
 AUTOMATION: READY
@@ -674,7 +674,7 @@ The overflow menu holds exactly the four download items - no Print,SBC — Expor
 3. There are no separate always-visible export buttons - all exports live behind this one menu.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S14-R1, S14-R2, S15-R1, S15-R2, S20-R16).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S14-R1, S14-R2, S15-R1, S15-R2, S20-R16).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -690,7 +690,7 @@ Download file names carry the version and the active date range,SBC — Exports,
 5. The two PDF downloads follow the same names with a .pdf extension — for example, sales-by-customer-summary-this_month.pdf and sales-by-customer-expanded-custom.pdf.
 
 ---
-This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Sales By Customer report specification version 14 (S14-R14, S14-R15, S15-R6) says something different, his decision is the later word and is the authority.
+This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Sales By Customer report specification version 15 (S14-R14, S14-R15, S15-R6) says something different, his decision is the later word and is the authority.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -706,7 +706,7 @@ AUTOMATION: READY
 7. The file carries a ""Locations:"" line naming the location or locations the report was scoped to, or ""All locations"" when every location you can access is selected — as a leading line above the column headers.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S14-R5, S14-R6, S14-R7, S14-R8, S14-R13, S4-R13).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S14-R5, S14-R6, S14-R7, S14-R8, S14-R13, S4-R13).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -720,7 +720,7 @@ On this build the money in the spreadsheet file comes out as ""$224.92"" - with 
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S14-R9, S14-R10, S14-R11, S14-R12, S14-R13).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S14-R9, S14-R10, S14-R11, S14-R12, S14-R13).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8823)
@@ -732,7 +732,7 @@ CSV and PDF hold exactly the customers matching the active filters and sort,SBC 
 3. The chosen date range and Product Type are reflected in both exports.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S2-R7, S3-R7, S4-R10, S14-R3, S15-R3, S18-R7).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S2-R7, S3-R7, S4-R10, S14-R3, S15-R3, S18-R7).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -745,7 +745,7 @@ Each download item shows a loading state and its own export-failed toast,SBC —
 3. If a PDF download fails, the toast reads ""PDF export failed."" — identical behaviour, different wording.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S14-E1, S14-N1, S15-E1, S15-N1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S14-E1, S14-N1, S15-E1, S15-N1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -755,7 +755,7 @@ AUTOMATION: READY
 2. The footer has a centered ""Software Powered by ShopView"" label and a right-aligned page number ""Page X of Y.""
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S15-R5, S15-R6, S15-R7, S15-R8).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S15-R5, S15-R6, S15-R7, S15-R8).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -767,7 +767,7 @@ AUTOMATION: READY
 4. The header also carries a ""Locations:"" line naming the location(s) the report was scoped to.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S15-R7, S15-R8, S15-R9, S15-R10, S15-R11, S15-R14, S4-R13); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S15-R7, S15-R8, S15-R9, S15-R10, S15-R11, S15-R14, S4-R13); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -781,7 +781,7 @@ AUTOMATION: READY
 Note for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers.
 
 ---
-This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true; where the Sales By Customer report specification version 14 (S15-R12, S15-R13, S15-R14, S15-R15, S15-R16, S15-R17, S15-R18) differs, his decision is the authority.
+This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true; where the Sales By Customer report specification version 15 (S15-R12, S15-R13, S15-R14, S15-R15, S15-R16, S15-R17, S15-R18) differs, his decision is the authority.
 Last checked against build v3.4.1-3d03023 on 8/4/2026, which does not yet match it - that change is with the developers.
 
 AUTOMATION: READY
@@ -797,7 +797,7 @@ Expanded View PDF body matches the CSV's columns and on-screen rules,SBC — Exp
 7. The PDF header title reads ""Sales By Customer Report"" on the Summary and Expanded versions alike — which version you have is told by the file name and the contents, not by a different title.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S15-R5, S15-R13, S15-R19, S15-R20, S15-R21, S15-R22, S15-R23, S15-R24, S4-R13).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S15-R5, S15-R13, S15-R19, S15-R20, S15-R21, S15-R22, S15-R23, S15-R24, S4-R13).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -811,7 +811,7 @@ AUTOMATION: READY
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S14-R16, S15-R25, S14-R14, S15-R22); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S14-R16, S15-R25, S14-R14, S15-R22); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8818)
@@ -821,7 +821,7 @@ A no-match export still downloads headers and a zero totals row,SBC — Exports,
 2. The file contains the column headers and a totals row of zeros, with no data rows.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S18-R10).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R10).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -835,7 +835,7 @@ Summary and Expanded View downloads exist for both PDF and CSV,SBC — Exports,F
 5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal — no Asset, Invoice # or Date columns. When more than one location is in scope a Location column is added immediately after the Customer name and before the money columns.
 
 ---
-This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. the Sales By Customer report specification version 14 (S14-R1, S14-R2, S14-R4, S15-R1, S15-R2, S15-R4, S15-R5, S4-R13) is silent on this point, so his answers are the only basis for it.
+This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. the Sales By Customer report specification version 15 (S14-R1, S14-R2, S14-R4, S15-R1, S15-R2, S15-R4, S15-R5, S4-R13) is silent on this point, so his answers are the only basis for it.
 This has not yet been checked against a build.
 
 AUTOMATION: READY
@@ -854,7 +854,7 @@ A logo that is set but will not load falls back to the ShopView logo,SBC — Exp
 5. Note for the tester: step 2 is the difficult part. If you cannot get the organization into that state, mark this test Blocked and say so plainly - do not guess the answer.
 
 ---
-This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. His words are: ""Use the company's own uploaded logo. If a logo is set but fails to load, fall back to the built-in ShopView logo. If no logo is uploaded, print no logo and let the text fill the space."" This DIFFERS from the Sales By Customer report specification version 14 (S15-R17), which shows the built-in ShopView logo when no logo has been uploaded rather than when an uploaded one fails to load, and we have taken his newer decision as the one that prevails.
+This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. His words are: ""Use the company's own uploaded logo. If a logo is set but fails to load, fall back to the built-in ShopView logo. If no logo is uploaded, print no logo and let the text fill the space."" This DIFFERS from the Sales By Customer report specification version 15 (S15-R17), which shows the built-in ShopView logo when no logo has been uploaded rather than when an uploaded one fails to load, and we have taken his newer decision as the one that prevails.
 This has not yet been checked against a build.
 
 AUTOMATION: HOLD - nobody has run this test yet; it needs one live check of a logo that fails to load
@@ -865,7 +865,7 @@ Filters; sort and visible columns are restored on the next visit,SBC — Saved V
 2. On load, the report shows the restored view immediately — the default view is never shown first and then replaced.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S6-R1, S6-R2, S6-R4, S2-R8, S3-R8, S4-R11, S10-R9, S13-R8).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S6-R1, S6-R2, S6-R4, S2-R8, S3-R8, S4-R11, S10-R9, S13-R8).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -878,7 +878,7 @@ AUTOMATION: READY
 4. This is the specified behavior (expansion is treated as fresh each visit), not a defect.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S6-R3, S8-R22).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S6-R3, S8-R22).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -890,7 +890,7 @@ A saved value that is no longer valid is dropped and falls back to default,SBC �
 3. Per the spec, the same discard-to-default applies to an unknown date range, a sort column that no longer exists, or a column set that does not match the current columns.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S6-R5, S6-R6).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S6-R5, S6-R6).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -900,7 +900,7 @@ The saved view is specific to this report and does not affect any other report,S
 2. Sales By Customer still restores its own saved view.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S6-R7).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S6-R7).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -916,7 +916,7 @@ With no saved view every setting uses its own default,SBC — Saved View & Persi
 6. All nine toggleable columns visible.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S6-N1, S2-R5, S4-R4).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S6-N1, S2-R5, S4-R4).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -927,7 +927,7 @@ When a saved view and a page-link range clash the saved view wins,SBC — Saved 
 2. This is intentional: a shared link restores the sender's range only for a recipient who has no saved range of their own.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S2-R9).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S2-R9).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -938,7 +938,7 @@ Customer filter restore: all-customers stays all; an id set is intersected,SBC �
 2. Scenario B: still-present saved ids are re-selected; a saved id no longer present is dropped (a stale saved id never forces an empty view); a customer that appeared since the set was saved is NOT auto-selected.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S18-R8).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R8).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -956,7 +956,7 @@ Empty state shows in the table body; toolbar interactive; kept selection returns
 6. While the table is still loading, the empty-state message is NOT shown (the loading state is shown instead); it appears only once loading has finished and there are zero customers.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S17-R1, S17-R2, S17-R3, S17-E1, S2-N1, S3-N1, S4-N2, S8-N1, S17-N1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S17-R1, S17-R2, S17-R3, S17-E1, S2-N1, S3-N1, S4-N2, S8-N1, S17-N1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -967,7 +967,7 @@ A failed data fetch shows the error toast which fades after 5 seconds,SBC — Em
 2. The toast auto-fades after 5 seconds.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (§7 User Feedback Summary).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (§7 User Feedback Summary).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -987,7 +987,7 @@ Page and toolbar match the suite theme in padding; surface and alignment,SBC —
 9. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether the spacing, the alignment and the dividing line look right and consistent with the other reports, and only report it if something looks obviously off. (The exact figures behind this — 32px/24px toolbar padding, a 1px header border, 2rem edge padding, a 24px arrow — are design-token values the design and engineering team check with their own tooling, not by hand.)
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S20-R1, S20-R2, S20-R3, S20-R4, S20-R5, S20-R6, S20-R7, S20-R12, S20-R13, S20-R15, S20-R17).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S20-R1, S20-R2, S20-R3, S20-R4, S20-R5, S20-R6, S20-R7, S20-R12, S20-R13, S20-R15, S20-R17).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1002,7 +1002,7 @@ Row surfaces alternate by tree level; header and totals rows stay white,SBC — 
 5. The three tree levels show by indentation: customer at the base, asset rows one level in (chevron and vehicle icon sit in from the customer), invoice rows one level deeper.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S20-R8, S20-R9, S20-R10, S20-R11, S20-R14).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S20-R8, S20-R9, S20-R10, S20-R11, S20-R14).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1012,7 +1012,7 @@ Dark mode darkens every surface while the PDF always renders light,SBC — Visua
 2. The PDF export always renders in light-mode colors regardless of the user's app mode.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S20-R18).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S20-R18).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1024,7 +1024,7 @@ On a phone every toolbar control works on touch; the toolbar splits in two,SBC �
 3. At 1024px and above the toolbar uses the desktop single-row layout.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S21-R1, S21-R2, S21-R3).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S21-R1, S21-R2, S21-R3).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1036,7 +1036,7 @@ On touch the table scrolls sideways with Subtotal pinned and chevrons work,SBC �
 3. The invoice number link opens the invoice in the same tab, the same as on desktop.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S21-R4, S21-R5, S21-R6).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S21-R4, S21-R5, S21-R6).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1050,7 +1050,7 @@ Asset and invoice rows are fetched on first expand; one call per customer,SBC �
 3. Expand-all triggers at most one drill-down fetch per not-yet-expanded customer on the current page — a bounded number never exceeding the page size; it does not fetch customers beyond the current page or the whole result set.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S8-R14, S8-R16).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-R14, S8-R16).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1064,7 +1064,7 @@ Sorting is applied on the server and re-fetches the first page,SBC — API,Funct
 4. A sort request naming a column the report does not offer is safely refused or ignored — never an error page or a crash; sorting works only on the report's own columns.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S10-R8, S10-R8b).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S10-R8, S10-R8b).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: HOLD - this part of the report is not built yet
@@ -1077,7 +1077,7 @@ The Customer type-ahead queries the server instead of loading every name,SBC —
 3. The all-customers state is stored as an explicit state (a flag), not an enumeration of the fetched ids.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S18-R2, S18-R4).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R2, S18-R4).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1090,7 +1090,7 @@ Customer rows are server-paginated; the totals row is server-computed,SBC — AP
 3. The totals are computed on the server over the full set of matching customers — they arrive with the data and do not change as you page.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S18-R6, S18-R11).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R6, S18-R11).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1102,7 +1102,7 @@ AUTOMATION: READY
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S14-R3, S14-R14, S15-R3, S15-R22).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S14-R3, S14-R14, S15-R3, S15-R22).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8818)
@@ -1121,7 +1121,7 @@ The back end serves SBC report data and export on ordinary reports access,SBC �
 5. Note for the tester: one single permission controls all four of these. If you find the report data refused but the export allowed (or the other way round), that is a failure — record both response codes.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S1-R2, S1-N1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S1-R2, S1-N1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1136,7 +1136,7 @@ AUTOMATION: READY
 5. The browser tab title reads ""Sales By Representative - Report | ShopView"".
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S1-R1, S1-R2, S1-R3, S1-R4, S1-R5, S1-R6).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S1-R1, S1-R2, S1-R3, S1-R4, S1-R5, S1-R6).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1146,7 +1146,7 @@ The nav entry fits the full Sales By Representative label; no truncation,SBR —
 2. The label is not shortened to fit — the fix is the entry's horizontal padding, not the name.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S1-R7).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S1-R7).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1155,7 +1155,7 @@ Sales By Representative is visible to anyone who sees another Performance report
 2. You are signed in as that user.",1. Open the Reports navigation and read the Performance group.,"1. ""Sales By Representative"" appears in the Performance group for this user — the entry is visible to every user who can see any other report in the same group.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S1-R1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S1-R1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1168,7 +1168,7 @@ AUTOMATION: READY
 3. The Export Reports dialog and the Sales Representative Assignments download are not reachable.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S1-N1, S14-N3, S15-N1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S1-N1, S14-N3, S15-N1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1176,7 +1176,7 @@ AUTOMATION: READY
 Without staff-administration access the deactivation flow is unreachable,SBR — Permissions,Negative,Medium,1. You are signed in as a user without staff-administration access.,1. Try to reach staff administration and open a staff member for editing.,"1. The staff-editing surface is not reachable, so the deactivation flow (and its warning dialog) cannot be reached.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S13-N1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S13-N1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1187,7 +1187,7 @@ Date range picker is in the toolbar and offers the standard presets plus Custom,
 3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports.
 
 ---
-This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Sales By Representative report specification version 16 (S2-R1, S2-R2) says something different, his decision is the later word and is the authority.
+This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Sales By Representative report specification version 17 (S2-R1, S2-R2) says something different, his decision is the later word and is the authority.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1197,7 +1197,7 @@ A Custom range uses the date-picker and holds a 366-day maximum span,SBR — Dat
 2. A custom selection whose span exceeds 366 days is not accepted — the picker holds you to a range of 366 days or fewer.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S2-R3, S2-R6).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S2-R3, S2-R6).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1209,7 +1209,7 @@ An invoice sits in the range by its own invoice date; endpoints included,SBR —
 3. The chosen date range is reflected in both PDF exports' header strips.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S2-R5, S2-R8).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S2-R5, S2-R8).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1225,7 +1225,7 @@ AUTOMATION: READY
 5. Each change re-fetches and re-renders the report.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6, S3-R7).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6, S3-R7).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1238,7 +1238,7 @@ Invoice Status offers exactly four options; All Statuses is the default,SBR — 
 4. Changing the selection re-fetches and re-renders the report.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S4-R1, S4-R2, S4-R3, S4-R5).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S4-R1, S4-R2, S4-R3, S4-R5).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1252,7 +1252,7 @@ Status filtering matches on the mapped display value,SBR — Invoice Status Filt
 4. The filter matches on the mapped display value, the same mapping the status badge uses — prepaid is the only state whose display value depends on the balance owed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S4-R4).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S4-R4).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1266,7 +1266,7 @@ Filters compose: a rep appears only with an invoice matching ALL active filters,
 4. Unpaid leg: rep C disappears; rep D's figures reflect only the Unpaid invoices.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S4-R7, S4-R6, S4-N1, S3-R8, S3-N1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S4-R7, S4-R6, S4-N1, S3-R8, S3-N1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1275,7 +1275,7 @@ AUTOMATION: READY
 2. Filtering to ""Unpaid"" or ""Partially Paid"" changes which invoices are included, never the amounts shown.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S4-R8).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S4-R8).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1285,7 +1285,7 @@ Location filter is the rightmost control with an All Locations option,SBR — Lo
 2. It is a multi-select listing the locations the user has access to, plus an ""All Locations"" option.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S21-R1, S18-R7).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S21-R1, S18-R7).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1300,7 +1300,7 @@ Location selection cascades; an inaccessible location's data is never included,S
 4. With ""All Locations"" active you can tell which location each row's data belongs to — a location label or marking is shown.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S21-R3, S21-R4, S21-R5); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S21-R3, S21-R4, S21-R5); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1310,7 +1310,7 @@ Sales By Representative: Location filter hidden for a one-location user,SBR — 
 2. For the user with access to two or more locations the Location filter IS shown.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S21-N1). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S21-N1). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1335,7 +1335,7 @@ The Location column shows only with more than one location; rep rows Multiple,SB
 Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. For this report the two statements are that the column-selection dropdown holds the seven metric columns only, and that Location is one of the columns you can switch on and off there. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S21-R7, S21-R8, S18-R13, S14-R20). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: its summary says it can be toggled there, while the requirement that governs the column says it appears only when the view spans more than one location and the dropdown holds the seven metric columns only. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S21-R7, S21-R8, S18-R13, S14-R20). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: its summary says it can be toggled there, while the requirement that governs the column says it appears only when the view spans more than one location and the dropdown holds the seven metric columns only. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked
@@ -1348,7 +1348,7 @@ A rep row appears only when the rep has a matching non-reversed invoice,SBR — 
 4. A staff member with no matching invoice does not appear regardless of toggle state or historical activity.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S5-R1, S5-R4, S5-N1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S5-R1, S5-R4, S5-N1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1363,7 +1363,7 @@ AUTOMATION: READY
 5. Every row renders exactly the report's column count with blanks in position — a cell with nothing to show is blank, never shifted or wrapped (a drifted row is a defect). The grand Totals indicator is exempt: the desktop Totals row merges the four leading identifier columns; the mobile bar is not a table row.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S5-R2, S5-R3, S5-R6, S5-R8, S5-R10, S5-N2, S6-R4, S18-R4, S18-R6a, S21-R7).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S5-R2, S5-R3, S5-R6, S5-R8, S5-R10, S5-N2, S6-R4, S18-R4, S18-R6a, S21-R7).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1377,7 +1377,7 @@ A toggled-off or deleted contributor still appears; tagged (Inactive),SBR — Re
 4. The grand Totals stay reconciled to the period's invoices — no revenue silently disappears.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S5-R9).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S5-R9).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1388,7 +1388,7 @@ Expanding a rep loads its invoices on demand with a row-level spinner,SBR — Re
 3. A rep with a single matching invoice can still be expanded — one detail row is shown.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S6-R1, S6-R2, S6-R3, S6-E1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S6-R1, S6-R2, S6-R3, S6-E1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1400,7 +1400,7 @@ The header chevron expands every visible rep and its glyph tracks state,SBR — 
 3. A second activation collapses them all.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S6-R5, S6-R6).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S6-R5, S6-R6).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1410,7 +1410,7 @@ Each invoice appears under exactly one rep or the Unassigned row,SBR — Rep Row
 2. The sum of all (N) counts equals the number of matching invoices.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S6-R7).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S6-R7).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1422,7 +1422,7 @@ AUTOMATION: READY
 3. A full page reload resets all expansion.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S6-R8, S6-N1, S23-R2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S6-R8, S6-N1, S23-R2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1434,7 +1434,7 @@ Detail rows run newest first with a numeric invoice-number tie-break,SBR — Rep
 4. This order is independent of the rep-row column sort (which reorders summary rows only).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S6-R9, S11-R2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S6-R9, S11-R2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1448,7 +1448,7 @@ Status badge between Customer and Inv. Hrs; every detail row shows mapped text,S
 4. Badges are vertically centered in their cells; on rep summary rows the Status cell is blank; the badge's text is the accessible label — status is never conveyed by color alone.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S8-R1, S8-R2, S8-R4, S8-R5, S8-R6, S8-N1, S18-R6).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S8-R1, S8-R2, S8-R4, S8-R5, S8-R6, S8-N1, S18-R6).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1459,7 +1459,7 @@ Badge colors use the canonical payment-status tokens in light and dark,SBR — P
 3. The treatment stays legible and consistent in both light and dark mode.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S8-R3, S18-R8).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S8-R3, S18-R8).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1469,7 +1469,7 @@ Inv. Hrs is hours invoiced minus hours worked; half-up to one decimal,SBR — In
 2. The value equals the billed labor hours minus the technician clocked hours, rounded half-up to one decimal.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S9-R1, S9-R2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S9-R1, S9-R2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1484,7 +1484,7 @@ AUTOMATION: READY
 4. A value that rounds to 0.0 (e.g., +0.04) shows 0.0 in the default color — not +0.0 in green; negative values always use an explicit minus and one decimal (e.g., -0.5).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S9-R3, S9-R4, S9-R5, S9-R6, S9-E1, S9-E2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S9-R3, S9-R4, S9-R5, S9-R6, S9-E1, S9-E2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1494,7 +1494,7 @@ No-labor-no-time invoices show 0.0; clocked-unbilled work shows negative,SBR —
 2. The invoice with clocked hours but no billed labor line shows the resulting NEGATIVE delta in red (e.g., -3.0) — the worked-but-unbilled signal is not suppressed to 0.0.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S9-N1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S9-N1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1506,7 +1506,7 @@ Margin % to one decimal; em dash when Subtotal <= 0; recomputed on rollups,SBR �
 3. On every rolled-up row (rep summary rows and every totals row) Margin % is RECOMPUTED from that row-set's total Margin and total Subtotal — never the sum or average of the child percentages.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S10-R5).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S10-R5).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1518,7 +1518,7 @@ Money columns use the standardized labels and definitions,SBR — Inv. Hrs & Cal
 4. The same values appear everywhere the numbers show (screen, and later the exports).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S5-R2, S21-R7).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S5-R2, S21-R7).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1528,7 +1528,7 @@ Negative dollar values render in accounting parentheses; money columns only,SBR 
 2. Inv. Hrs (a signed time value) and Margin % (a signed percentage) are excluded — they use a leading minus, not parentheses.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (§3 Key Decisions accounting parentheses).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (§3 Key Decisions accounting parentheses).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1538,7 +1538,7 @@ Half-up rounding at each precision; totals may differ by one last-decimal unit,S
 3. That one-unit difference is EXPECTED behavior per the spec — it must NOT be filed as a calculation defect.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (§3 half).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (§3 half).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1550,7 +1550,7 @@ A clock-record edit after invoicing updates Inv. Hrs; billed money stays put,SBR
 3. The figures tied to worked time move together consistently (Margin uses the labor cost behind the worked hours, so it may change too) — nothing is left stale.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S9-R2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S9-R2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1566,7 +1566,7 @@ AUTOMATION: READY
 5. The column-header row stays stuck to the top during vertical scroll; the Subtotal header cell stays visible in BOTH axes (top while scrolling down, pinned right while scrolling sideways).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S10-R1, S10-R2, S10-R3, S10-R4, S10-R6, S10-N1, S18-R7).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S10-R1, S10-R2, S10-R3, S10-R4, S10-R6, S10-N1, S18-R7).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1581,7 +1581,7 @@ Desktop Totals row merges the identifier columns and sticks to the bottom,SBR �
 5. The indicator is present whenever at least one summary row exists, and hidden during loading and in the empty state.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S10-R5, S10-N1, S16-R4).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S10-R5, S10-N1, S16-R4).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1594,7 +1594,7 @@ Mobile shows a simplified totals bar below the table; Subtotal at right,SBR — 
 4. It uses the white card surface with a thin top border.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S10-R5, S17-R4).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S10-R5, S17-R4).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1605,7 +1605,7 @@ All eight financial columns are sortable,SBR — Sorting,Functional,High,1. Seve
 3. The Date header carries the expand/collapse-all chevron, not a sort affordance.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S11-R1, S11-R6).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S11-R1, S11-R6).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1614,7 +1614,7 @@ AUTOMATION: READY
 2. There are NO active/inactive tiers — an ""(Inactive)"" rep sorts by name among the others, not grouped separately.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S11-R4).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S11-R4).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1628,7 +1628,7 @@ First header click sorts ascending; second descending; no third state,SBR — So
 4. Via the column headers there is no way back to A→Z; the A→Z default shows only when a session carries no valid saved financial sort.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S11-R5, S23-R5).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S11-R5, S23-R5).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1639,7 +1639,7 @@ Sorting reorders rep rows only; Unassigned stays pinned on top,SBR — Sorting,F
 3. The Unassigned row stays pinned to the top regardless of sort.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S11-R2, S22-R4).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S11-R2, S22-R4).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1649,7 +1649,7 @@ Ties keep the A to Z order and an em-dash Margin % sorts as zero,SBR — Sorting
 2. A Margin % cell rendered ""—"" (undefined) sorts as zero.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S11-R7).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S11-R7).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1661,7 +1661,7 @@ Detail-row invoice number and customer name links navigate in the current tab,SB
 3. The customer name is likewise a clickable link that navigates the current tab to the customer's record.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S12-R1, S12-R2, S12-R3).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S12-R1, S12-R2, S12-R3).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1673,7 +1673,7 @@ Browser back from a drilldown restores expansion and scroll; no reload,SBR — L
 3. This is deliberately different from a page reload, which restores persisted filters/columns/sort but resets expansion and scroll.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S12-R3a, S23-R2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S12-R3a, S23-R2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1686,7 +1686,7 @@ Invoice links use theme-primary; customer links use the body color,SBR — Links
 4. Underlined-at-rest links, browser-blue customer names, purple post-click links, and new-tab destinations are all defects.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S12-R4, S12-R5, S12-R6, S12-N3).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S12-R4, S12-R5, S12-R6, S12-N3).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1696,7 +1696,7 @@ An unavailable link destination shows the standard not-found state,SBR — Links
 2. Pressing back still returns to the report.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S12-N1, S12-N2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S12-N1, S12-N2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1708,7 +1708,7 @@ AUTOMATION: READY
 3. Focus is trapped within the dialog while open and returns to the invoking control on dismiss.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S13-R1, S13-R3, S13-R4, S13-R12).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S13-R1, S13-R3, S13-R4, S13-R12).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1722,7 +1722,7 @@ Type-YES gate: auto-focus; case-insensitive match; Enter submits,SBR — Staff D
 4. Pressing Enter while valid submits.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S13-R6, S13-R7).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S13-R6, S13-R7).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1738,7 +1738,7 @@ Cancel and X dismiss the Deactivate dialog; Escape and clicking outside do not,S
 5. When the dialog closes via Cancel or X, the staff member's active status is unchanged - no deactivation happens.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S13-R8).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S13-R8).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1750,7 +1750,7 @@ AUTOMATION: READY
 4. Deactivation never forces reassignment, blocks on assignments, or auto-reassigns.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S13-R9, S13-R10, S13-E1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S13-R9, S13-R10, S13-E1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1762,7 +1762,7 @@ AUTOMATION: READY
 3. In the report the rep still appears with credit intact; the ""(Inactive)"" marker appears only if the sales-representative TOGGLE is off (a separate flag from staff-active status).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S13-R11, S15-R6, S5-R9).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S13-R11, S15-R6, S5-R9).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1775,7 +1775,7 @@ AUTOMATION: READY
 4. Deactivating a sales representative with NO customer assignments applies silently — no warning dialog.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S13-R2, S13-N2, S13-N3, S13-E3).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S13-R2, S13-N2, S13-N3, S13-E3).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1787,7 +1787,7 @@ A deactivation failure shows the error toast and leaves the status alone,SBR —
 3. Each fresh dialog open requires a fresh confirmation entry — the input clears on open.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S13-N5).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S13-N5).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1798,7 +1798,7 @@ AUTOMATION: READY
 2. Because the customer count is unavailable, the dialog OMITS the count headline and shows only the reassurance line ""Their customer assignments will stay where they are."" above the ""Type YES to confirm"" gate.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S13-N4).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S13-N4).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1808,7 +1808,7 @@ AUTOMATION: READY
 2. While off, invoices with no assigned rep contribute to nothing — no row, and not counted in any total.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S22-R1, S22-R2, S18-R7).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S22-R1, S22-R2, S18-R7).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1822,7 +1822,7 @@ Show Unassigned adds one top-pinned Unassigned row that acts like a rep row,SBR 
 4. The Unassigned row shows the same metric columns and (N) count as any rep summary row, is expandable to its contributing invoices, is included in the grand Totals, and never carries an ""(Inactive)"" tag.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S22-R3, S22-R4, S22-R5, S22-R6, S6-R1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S22-R3, S22-R4, S22-R5, S22-R6, S6-R1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1833,7 +1833,7 @@ No empty Unassigned row is ever rendered,SBR — Show Unassigned,Negative,Medium
 2. Turning the toggle off removes the expanded row; turning it back on renders it collapsed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S22-N1, S6-N2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S22-N1, S6-N2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1849,7 +1849,7 @@ Column selector: seven metric toggles; five always-on columns cannot be hidden,S
 5. Note for the tester: if you have more than one location in scope you will also see a Location column on the table that is in neither list. That is correct - it appears by itself and is not something you can switch on or off here.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S20-R1, S20-R2, S20-R3, S20-R6, S20-N1, S21-R7).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S20-R1, S20-R2, S20-R3, S20-R6, S20-N1, S21-R7).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1859,7 +1859,7 @@ Toggling a column applies at once to summary; detail and Totals rows,SBR — Col
 2. Hiding a metric column removes it from rep summary rows, invoice detail rows, and the grand Totals indicator simultaneously; showing restores it everywhere at once.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S20-R4, S20-R7).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S20-R4, S20-R7).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1868,7 +1868,7 @@ Column visibility never affects the exports,SBR — Column Selector,Functional,M
 2. Check each file's columns.","1. All four downloads include ALL metric columns regardless of the on-screen column selector state.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S20-R8).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S20-R8).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1878,7 +1878,7 @@ Hiding the active sort column keeps the sort,SBR — Column Selector,Functional,
 2. Showing the column again reveals the sort indicator on it.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S20-R9).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S20-R9).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1889,7 +1889,7 @@ All filter and view settings are restored before the first data fetch,SBR — Pe
 2. The settings are restored BEFORE the first data fetch — the report does not fetch defaults first and then re-fetch.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S23-R1, S20-R5).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S23-R1, S20-R5).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1899,7 +1899,7 @@ Expansion state and scroll position are not remembered and reset on reload,SBR �
 2. This is the specified behavior (only back-navigation from a drilldown restores expansion/scroll), not a defect.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S23-R2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S23-R2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1910,7 +1910,7 @@ A stale saved value falls back to its default and never errors,SBR — Persisten
 3. Per the spec the same applies to a range or sort column that no longer exists and to a hidden-but-sorted column.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S23-R3).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S23-R3).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1920,7 +1920,7 @@ First visit or cleared storage yields all defaults; no server-side profile,SBR �
 2. Clearing browser storage fully returns the report to first-visit defaults — no server-side profile brings the old settings back.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S23-R4, S23-N1, S2-R4, S2-R7, S21-R2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S23-R4, S23-N1, S2-R4, S2-R7, S21-R2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1930,7 +1930,7 @@ The A to Z default is its own saved value,SBR — Persistence,Functional,Medium,
 2. No financial column shows a sort indicator — the saved ""no financial sort"" state restores as A→Z, not as an arbitrary column.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S23-R5, S11-R4).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S23-R5, S11-R4).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1941,7 +1941,7 @@ The ⋯ overflow menu lists exactly four download actions,SBR — Exports,Functi
 2. No other entries appear in the menu.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S14-R1, S17-R3).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S14-R1, S17-R3).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1958,7 +1958,7 @@ AUTOMATION: READY
 5. Every file (all four downloads, PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S14-R2, S14-R2a, S14-R20, S21-R6, S22-R4).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S14-R2, S14-R2a, S14-R20, S21-R6, S22-R4).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1973,7 +1973,7 @@ Summary PDF: one rolled-up row per rep with a recomputed grand totals row,SBR �
 5. The grand totals row reads ""Totals"" in the Rep cell and aggregates every summary row in the document (including the Unassigned row when Show Unassigned is on); its Margin % is RECOMPUTED as total Margin ÷ total Subtotal (shown ""—"" when that Subtotal is zero or below), never the sum or average of the rows' percentages.
 
 ---
-This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. the Sales By Representative report specification version 16 (S14-R3, S14-R5, S14-R20, S2-R5) is silent on this point, so his answers are the only basis for it.
+This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. the Sales By Representative report specification version 17 (S14-R3, S14-R5, S14-R20, S2-R5) is silent on this point, so his answers are the only basis for it.
 This has not yet been checked against a build.
 
 AUTOMATION: READY
@@ -1989,7 +1989,7 @@ Expanded View PDF: one page-block per rep with its own totals; no grand,SBR — 
 6. There is NO grand-totals row across all reps at the end of the document.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S14-R6, S14-R8, S14-R20, S6-R9). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S14-R6, S14-R8, S14-R20, S6-R9). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2000,7 +2000,7 @@ Expanded View PDF truncates invoice numbers longer than 18 characters,SBR — Ex
 3. In the PDF, the 18-character-or-shorter number shows in full with no ellipsis.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S14-R7).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S14-R7).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2015,7 +2015,7 @@ AUTOMATION: READY
 Note for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers.
 
 ---
-This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true; where the Sales By Representative report specification version 16 (S14-R3a, S14-R4, S14-R11) differs, his decision is the authority.
+This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true; where the Sales By Representative report specification version 17 (S14-R3a, S14-R4, S14-R11) differs, his decision is the authority.
 Last checked against build v3.4.1-3d03023 on 8/4/2026, which does not yet match it - that change is with the developers.
 
 AUTOMATION: READY
@@ -2027,7 +2027,7 @@ AUTOMATION: READY
 3. The ""(Inactive)"" tag DOES render on toggled-off contributors' names in both PDFs; other rep names render plainly.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S14-R9, S14-R10).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S14-R9, S14-R10).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2040,7 +2040,7 @@ PDF body font steps down as the longest dollar value grows; no overflow,SBR — 
 3. Both PDF formats adapt the same way.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S14-R12, S14-R13).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S14-R12, S14-R13).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2057,7 +2057,7 @@ AUTOMATION: READY
 7. When more than one location is in scope the file also carries a Location column, immediately after the Representative name and before the money columns; a rep whose invoices span more than one location reads ""Multiple"".
 
 ---
-This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true; where the Sales By Representative report specification version 16 (S14-R15, S14-R18, S14-R20) differs, his decision is the authority.
+This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true; where the Sales By Representative report specification version 17 (S14-R15, S14-R18, S14-R20) differs, his decision is the authority.
 Last checked against build v3.4.1-3d03023 on 8/4/2026, which does not yet match it - that change is with the developers.
 
 AUTOMATION: READY
@@ -2071,7 +2071,7 @@ AUTOMATION: READY
 5. When more than one location is in scope the file also carries a Location column immediately after Status — the position it holds on screen — and every row shows that invoice's own exact location, never ""Multiple"".
 
 ---
-This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Sales By Representative report specification version 16 (S14-R16, S14-R20) says something different, his decision is the later word and is the authority.
+This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Sales By Representative report specification version 17 (S14-R16, S14-R20) says something different, his decision is the later word and is the authority.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2087,7 +2087,7 @@ On this build the money in the spreadsheet file comes out as ""$1,979.40"" - wit
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S14-R17).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S14-R17).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8823)
@@ -2101,7 +2101,7 @@ The Unassigned row appears in all four downloads only when the toggle is on,SBR 
 4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S14-R19, S22-R2, S22-R4).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S14-R19, S22-R2, S22-R4).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2114,7 +2114,7 @@ A failed download shows the canonical error toast,SBR — Exports,Negative,Mediu
 3. A genuine failure downloads nothing — never a malformed file.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S14-N1, S14-N2, S14-E1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S14-N1, S14-N2, S14-E1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2126,7 +2126,7 @@ Over-cap Expanded View PDF is refused with the too-large message,SBR — Exports
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S14-E2); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S14-E2); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8818)
@@ -2139,7 +2139,7 @@ An empty-data export still generates with zeroed Summary PDF totals,SBR — Expo
 5. No special ""empty"" treatment or message appears inside the files.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S14-E3).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S14-E3).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2153,7 +2153,7 @@ Report Name dropdown lists Sales Representative Assignments at the bottom,SBR �
 4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S15-R1, S15-R2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S15-R1, S15-R2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2168,7 +2168,7 @@ AUTOMATION: READY
 5. Note for the tester: this file has only those three columns even if you have several locations in scope. It is a separate customer-to-representative list, not one of the report's four downloads, so it has no Location column - do not fail it for that.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S15-R3, S15-R4, S14-R20); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S15-R3, S15-R4, S14-R20); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2181,7 +2181,7 @@ AUTOMATION: READY
 3. Rows are sorted by customer name A→Z (primary), then rep name A→Z (secondary).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S15-R5, S15-R7, S15-R10).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S15-R5, S15-R7, S15-R10).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2192,7 +2192,7 @@ AUTOMATION: READY
 3. The value is always ""Yes"" or ""No"" (never ""Deactivated"" or another word).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S15-R6, S13-R11).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S15-R6, S13-R11).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2205,7 +2205,7 @@ AUTOMATION: READY
 4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S15-R8, S15-R9).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S15-R8, S15-R9).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2217,7 +2217,7 @@ Assignments export failure and nothing-to-export use the dialog's messages,SBR �
 2. On a generation failure, an error toast reads ""An error occurred while exporting the report. Please try again."" and auto-fades after 5 seconds.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S15-R11, S15-N2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S15-R11, S15-N2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2232,7 +2232,7 @@ AUTOMATION: READY
 5. In the empty state the toolbar — filters, column selector, and the ⋯ exports — stays visible and interactive; widening the range re-fetches and renders the matching reps normally.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S16-R1, S16-R2, S16-R3, S16-N1, S2-N1, S21-N2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S16-R1, S16-R2, S16-R3, S16-N1, S2-N1, S21-N2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2246,7 +2246,7 @@ Loading shows a centered spinner over the data area and hides the Totals,"SBR �
 4. A re-fetch replaces the previous data only when the new data returns — no flash of a blank table beyond the spinner overlay.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S16-R4).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S16-R4).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2259,7 +2259,7 @@ A load failure shows the inline could-not-load message with a Retry,"SBR — Loa
 3. ""Retry"" re-runs the CURRENT request — the report loads with the same filters still applied.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S16-R5).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S16-R5).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2271,7 +2271,7 @@ On a phone every toolbar control works on touch,SBR — Mobile,Functional,Medium
 3. At 1024px and above the desktop layout applies.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S17-R1, S17-R2, S17-R3).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S17-R1, S17-R2, S17-R3).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2283,7 +2283,7 @@ On a phone the table scrolls sideways with Subtotal pinned outside it,SBR — Mo
 3. The chevron expands/collapses the rep on touch.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S17-R4, S17-R5, S10-R5).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S17-R4, S17-R5, S10-R5).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2294,7 +2294,7 @@ Touch targets are at least 44×44 px and touch users get no hover-only tooltips,
 2. Hover-only tooltips are not shown on touch; the icons communicate the action and each icon-only control carries an accessible name.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S17-R6, S17-N1, S18-R9).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S17-R6, S17-N1, S18-R9).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2311,7 +2311,7 @@ Layout: white toolbar; blue-grey page; separator; edge-to-edge white table,SBR �
 7. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether the spacing and the alignment look right and consistent with the other reports, and only report it if something looks obviously off. (The exact figures behind this — 32px/24px toolbar padding, 2rem edge padding — are design-token values the design and engineering team check with their own tooling, not by hand.)
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S18-R1, S18-R2, S18-R3, S18-R4, S18-R5, S18-R7, S18-N1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S18-R1, S18-R2, S18-R3, S18-R4, S18-R5, S18-R7, S18-N1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2325,7 +2325,7 @@ AUTOMATION: READY
 4. PDFs always render in light-mode colors, even when downloaded from dark mode.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S18-R8).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S18-R8).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2339,7 +2339,7 @@ Every icon-only control carries its specified accessible name,SBR — Visual Con
 5. Dialog X = ""Close"".
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S18-R9).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S18-R9).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2352,7 +2352,7 @@ Chevrons and sortable headers are keyboard-operable and expose their state,SBR �
 3. A sortable header exposes its current sort state (unsorted / ascending / descending) to assistive technology.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S18-R10).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S18-R10).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2363,7 +2363,7 @@ The subdued grey of the (N) count and (Inactive) tag meets WCAG AA contrast,SBR 
 3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can read the grey text easily in both modes, and only report it if you cannot. (The design rule behind this is WCAG AA contrast of at least 4.5:1, which the design and engineering team check with a contrast tool - not by hand.)
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S18-R11, S18-R12).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S18-R11, S18-R12).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2378,7 +2378,7 @@ AUTOMATION: READY
 5. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S19-R1, S19-N1).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S19-R1, S19-N1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: HOLD - waiting on an answer from the product owner
@@ -2391,7 +2391,7 @@ Selector offers only reps whose sales-representative toggle is on,SBR — Work O
 4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S19-R2, S19-R8).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S19-R2, S19-R8).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: HOLD - this part of the report is not built yet
@@ -2403,7 +2403,7 @@ A new WO opens with Sales Representative unassigned; a change saves at once,SBR 
 3. A new Part Sale WO also opens with the field unassigned.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S19-R3, S19-R4).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S19-R3, S19-R4).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2415,7 +2415,7 @@ The Sales Representative selector is read-only when Invoiced or Paid,SBR — Wor
 4. Note for the tester: this field is only made read-only on the screen. If you find the sales rep can still be changed another way (through the back-end/API), that is expected — mark this test PASSED and do not raise it as a bug.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S19-R5).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S19-R5).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2428,7 +2428,7 @@ AUTOMATION: READY
 4. Changing WO (a)'s Sales Representative afterward does NOT retroactively alter the invoice already created from it — the invoice stays credited to the rep snapshotted at invoice creation.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S19-R6, S19-N2, S22-R3).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S19-R6, S19-N2, S22-R3).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2442,7 +2442,7 @@ AUTOMATION: READY
 4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S19-R7, S19-E1); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S19-R7, S19-E1); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: HOLD - waiting on an answer from the product owner
@@ -2456,7 +2456,7 @@ A rep's invoice detail rows are fetched from the server only on the first expand
 3. When a rep's matching-invoice count is large, its detail rows are paginated per rep.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S6-R2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S6-R2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2468,7 +2468,7 @@ Sorting is performed server-side and returns the first page,SBR — API,Function
 3. Invoice detail rows continue to load lazily per rep on expand, unaffected by the sort mechanism.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S11-R5).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S11-R5).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2480,7 +2480,7 @@ Grand totals are server-computed over the full filtered set,SBR — API,Function
 3. The on-screen grand Totals match the export's aggregate for the same filter set.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S10-R5).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S10-R5).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -2493,7 +2493,7 @@ All four exports are generated server-side against the active filters and sort,S
 3. An empty-but-loaded result still produces a valid file (header-row-only CSV / no-rows PDF).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S14-R2a, S14-N2, S14-E3).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S14-R2a, S14-N2, S14-E3).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: HOLD - this part of the report is not built yet
@@ -2507,7 +2507,7 @@ AUTOMATION: HOLD - this part of the report is not built yet
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S14-E2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S14-E2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8818)
@@ -2521,7 +2521,7 @@ Deactivating a rep first runs a server pre-check returning the count,SBR — API
 3. No deactivation is committed by the pre-check itself — cancelling leaves the staff member's active status unchanged.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S13-R1, S13-R4).
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17 (S13-R1, S13-R4).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4287,7 +4287,7 @@ Work In Progress appears in the reports navigation under the Performance group,W
 3. The browser page title is exactly ""Work In Progress - Report | ShopView"" — a plain hyphen with one space on each side.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S1-R1, S1-R5).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S1-R1, S1-R5).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4301,7 +4301,7 @@ Four tabs in a fixed order with the partially-completed tab selected,WIP — Tab
 4. Each tab's count matches the number of work-order rows actually listed in that tab.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S1-R2, S1-R3, S1-R4).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S1-R2, S1-R3, S1-R4).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4312,7 +4312,7 @@ There is no Trend / over-time tab or chart,WIP — Tabs,Functional,Medium,"1. Yo
 2. No screen in the report reads or displays the nightly snapshot history.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S11-R7).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S11-R7).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4323,7 +4323,7 @@ Every open service WO at a selected location appears in the report,WIP — Scope
 2. Each appears in the tab its status places it in (see the WIP — Tab Placement cases).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S2-R1).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S2-R1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4337,7 +4337,7 @@ Invoiced; Paid and part-sale work orders never appear,WIP — Scope & Loading,Ne
 3. No excluded work order's money is counted in any figure.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S2-R2, S2-R3).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S2-R2, S2-R3).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4349,7 +4349,7 @@ Each qualifying work order appears exactly once in exactly one tab,WIP — Scope
 2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both showing ""$0.00"".
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S2-R4).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S2-R4).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4361,7 +4361,7 @@ While loading the standard indicator shows and old rows stay until data,WIP — 
 3. Both a date-range change and a location change reload the report's rows.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S2-R5, S2-R6).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S2-R5, S2-R6).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4376,7 +4376,7 @@ No qualifying work orders: every tab shows the no-data message and no Totals,WIP
 4. When only one tab is empty, that tab shows the no-data message, no Totals row, and a ""(0)"" count while the populated tabs still show their rows normally.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S2-N1, S2-N2, S6-N1).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S2-N1, S2-N2, S6-N1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4388,7 +4388,7 @@ AUTOMATION: READY
 3. The In Progress and Review work orders appear in the ""Approved - partially completed"" tab and nowhere else.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S3-R1, S3-R2, S3-R3).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S3-R1, S3-R2, S3-R3).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4400,7 +4400,7 @@ Approved started-boundary: time or part received vs neither decides the tab,WIP 
 3. The Approved work order with no clocked time and no received part appears in the ""Approved - not started"" tab and nowhere else.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S3-R4).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S3-R4).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4414,7 +4414,7 @@ AUTOMATION: READY
 3. Every other column (Days Open, Last Activity, and all money/number columns through Total) is right-aligned.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R1, S4-R3, S4-R4), and it holds whichever way the one unsettled point about the Location column is decided. Chris Ward confirmed the column order on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R1, S4-R3, S4-R4), and it holds whichever way the one unsettled point about the Location column is decided. Chris Ward confirmed the column order on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4426,7 +4426,7 @@ First visit shows the default columns; the rest are in the column selector,WIP �
 3. Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. For this report the two statements sit in the same written description as it stands today. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R2, S4-R3, S8-R3, S8-R4). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: version 7 changed one requirement to say it is offered there and can be toggled, while another requirement in the same version still says the user does not toggle it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R2, S4-R3, S8-R3, S8-R4). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: one requirement says it is offered there and can be toggled on or off, while another requirement in the same document still says the user does not toggle it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked
@@ -4434,12 +4434,12 @@ AUTOMATION: HOLD - the written description says two different things about the L
 The WO # is a link that opens the WO in the same browser tab,WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Click a row's WO # link.
 2. Confirm where the work order opens.
-3. Use the browser's back navigation.","1. The WO # is shown as a link.
+3. Use the browser's back navigation.","1. For a person who has permission to open work orders, the WO # is shown as a link.
 2. Clicking it opens that work order in the SAME browser tab (not a new tab).
 3. The browser's back navigation returns you to the report.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R5).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R5).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4451,7 +4451,7 @@ Status shows as a color-coded badge whose label text is always present,WIP — C
 3. The label text is always present, so color is never the sole signal of the status.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R6, S10-R8).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R6, S10-R8).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4466,7 +4466,7 @@ The Asset cell shows the Unit # in bold with the VIN underneath,WIP — Columns 
 5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R7, S4-R8, S4-R10). Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R7, S4-R8, S4-R10). Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4477,7 +4477,7 @@ Customer shows the customer's company name,WIP — Columns & Rows,Functional,Med
 2. The cell is blank when no customer name exists.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R11).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R11).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4490,7 +4490,7 @@ Days Open shows whole days since creation and reads 0 days / 1 days,WIP — Colu
 3. The value is NOT grammatically pluralized: ""1 days"" (not ""1 day"") is the correct, expected rendering.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R12).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R12).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4504,7 +4504,7 @@ Last Activity shows Today; Xd ago; or an em-dash when there is none,WIP — Colu
 3. A work order with no recorded activity shows ""—"".
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R13).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R13).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4518,7 +4518,7 @@ Money columns show US dollars to two decimals with thousands separators,WIP — 
 3. A genuine zero shows ""$0.00"".
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R14).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R14).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4533,7 +4533,7 @@ Labor Earned is the clocked share of each approved line's quoted value,WIP — E
 3. With several approved labor lines, Labor Earned is the sum of each line's capped earned share.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R15).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R15).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4546,7 +4546,7 @@ Labor Remaining is the approved labor's quoted value minus Labor Earned,WIP — 
 2. Labor Earned + Labor Remaining always equals the total quoted value of the approved labor.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R16).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R16).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4559,7 +4559,7 @@ Parts Earned is the sell value of approved-line parts already received,WIP — E
 2. Parts not yet received contribute nothing to Parts Earned.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R17).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R17).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4573,7 +4573,7 @@ Parts Remaining values the not-yet-received quantity at its sell price,WIP — E
 2. For the core-charge part, Parts Remaining values the outstanding quantity at its sell price INCLUDING the core charge.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R18).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R18).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4590,7 +4590,7 @@ Earned + Remaining make Total; not the WO's grand total,WIP — Earned & Remaini
 4. The Total is NOT the work order's stored grand total — it excludes tax, fees, discounts, and non-approved lines, so a difference from the work order's own grand total is EXPECTED, not a data error.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R19, S4-R20, S4-R21).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R19, S4-R20, S4-R21).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4602,7 +4602,7 @@ Lines that are not yet approved contribute nothing to any money figure,WIP — E
 2. Only approved lines (line status authorized or complete) contribute to the report's money — not-yet-approved lines contribute nothing.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R15).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R15).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4616,7 +4616,7 @@ Inv. Hrs shows quoted minus worked hours; signed to one decimal,WIP — Earned &
 3. A value of exactly zero shows unsigned as ""0.0"" (never ""+0.0"" or blank) in the default text color.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R23, S4-R24, S4-E2).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R23, S4-R24, S4-E2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4628,7 +4628,7 @@ An open estimate with no approved work shows $0.00 in every money column,WIP —
 2. The row still appears in the Estimates tab (it is not hidden for having no value).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-E1, S2-R4).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-E1, S2-R4).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4643,7 +4643,7 @@ AUTOMATION: READY
 3. Labor Earned never exceeds the line's full quoted value, no matter how long the clock keeps running — the per-line cap still applies.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R15).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R15).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4653,7 +4653,7 @@ The initial sort is Days Open with the longest-open work order first,WIP — Sor
 2. Read the Days Open values from the top row down.","1. The rows are sorted by Days Open, longest-open first (descending).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R25).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R25).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4668,7 +4668,7 @@ AUTOMATION: READY
 4. Only one column sorts at a time: clicking another header replaces the previous sort.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R26).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R26).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4685,7 +4685,7 @@ Columns sort by their underlying values; Asset sorts by the Unit #,WIP — Sorti
 5. WO #, Customer, Asset, VIN, Location, and Advisor sort as text.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R9, S4-R27). Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R9, S4-R27). Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4698,7 +4698,7 @@ Sorting reorders only the active tab's rows; Totals stays at the bottom,WIP — 
 3. The other tab's order is not changed by the first tab's sort action.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R28).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R28).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4709,7 +4709,7 @@ The summary strip shows seven figures in a fixed order as US dollars,WIP — Sum
 2. Every figure shows US-dollar currency with a leading ""$"", two decimals, and thousands separators.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S5-R1, S5-R10).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S5-R1, S5-R10).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4721,7 +4721,7 @@ Total Earned is the hero figure and equals the started-stage figures summed,WIP 
 2. Total Earned equals Started — Earned plus Ready to Invoice, to the cent.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S5-R2).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S5-R2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4731,7 +4731,7 @@ Total Remaining equals Not Started plus Started — Remaining,WIP — Summary St
 2. Compare the sum to Total Remaining.","1. Total Remaining equals Not Started plus Started — Remaining, to the cent.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S5-R3).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S5-R3).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4745,7 +4745,7 @@ Each per-stage figure equals the matching tab's money total,WIP — Summary Stri
 3. Ready to Invoice equals the total Earned of the jobs in the ""Completed"" tab.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S5-R4, S5-R5, S5-R6, S5-R7).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S5-R4, S5-R5, S5-R6, S5-R7).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4759,7 +4759,7 @@ AUTOMATION: READY
 Known issue: the product does not currently do this — on the build tested, the Estimates figure read $0.00 even though the Estimates tab held jobs, because the product is showing the approved value instead of the quoted value. That is a fault for a developer to fix, not a decision for the product owner. No developer ticket has been raised for it yet, so this test will fail until it is fixed — record what you see and leave the test as it is.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S5-R8, S5-R9).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S5-R8, S5-R9).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4776,7 +4776,7 @@ Each summary figure's information icon reveals its plain explanation,WIP — Sum
 8. Each explanation appears on hover, on keyboard focus, and on tap.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S5-R12).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S5-R12).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4789,7 +4789,7 @@ AUTOMATION: READY
 3. The Totals row uses the same number formats as the data rows.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S6-R1, S6-R4, S6-R5).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S6-R1, S6-R4, S6-R5).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4804,7 +4804,7 @@ The Totals row sums each visible money column and the Inv. Hrs column,WIP — To
 4. Note for the tester: the Inv. Hrs total can only be checked on screen. On this build a download that includes Inv. Hrs is refused, so do not try to verify this column from a file.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S6-R2, S6-R3).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S6-R2, S6-R3).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4817,7 +4817,7 @@ The Advisor filter lists the advisors in the loaded jobs; screen only,WIP — Fi
 3. With two advisors selected, jobs for either advisor are shown.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S7-R1).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4832,7 +4832,7 @@ AUTOMATION: READY
 4. Clear returns the filter to ""All customers"" and every job is shown again.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S7-R2, S7-R3).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R2, S7-R3).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4848,7 +4848,7 @@ Asset filter shows Unit # and VIN and matches text against either one,WIP — Fi
 5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S7-R4, S7-R5). Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R4, S7-R5). Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4859,7 +4859,7 @@ The date range offers the presets plus Custom; This Week default; no All Time,WI
 3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports.
 
 ---
-This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Work In Progress report specification version 7 (S7-R6) says something different, his decision is the later word and is the authority.
+This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Work In Progress report specification version 9 (S7-R6) says something different, his decision is the later word and is the authority.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4873,7 +4873,7 @@ The date range filters on the WO's created date and reloads on change,WIP — Fi
 4. Note for the tester: the written description gives the limit as a 366-day span from start to end without saying whether the first and last days are counted, so the single changeover day is the one thing to record carefully. Check the last range that loads and the first that is refused, and write both down.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S7-R7, S7-R8). That specification gives the limit as a 366-day span from start to end and does not say whether the first and last days are counted, so the exact changeover day is not written down anywhere and is the one thing the tester records.
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R7, S7-R8). That specification gives the limit as a 366-day span from start to end and does not say whether the first and last days are counted, so the exact changeover day is not written down anywhere and is the one thing the tester records.
 Last checked against build v3.5-16cf83f on 8/5/2026.
 
 AUTOMATION: READY
@@ -4890,7 +4890,7 @@ AUTOMATION: READY
 4. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's work orders.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S7-R9, S7-R10). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R9, S7-R10). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4903,7 +4903,7 @@ The location scope never includes an inaccessible location,WIP — Filters,Negat
 3. A saved selection that no longer resolves also falls back to the active location.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S7-R11, S8-R8).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R11, S8-R8).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4916,7 +4916,7 @@ AUTOMATION: READY
 3. When the combination leaves no visible jobs, every tab shows the no-data message ""Empty bays, endless possibilities. Get Going!"" and no Totals row.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S7-R12, S7-N1, S5-R11, S6-R6).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R12, S7-N1, S5-R11, S6-R6).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4938,7 +4938,7 @@ The Location column is automatic and never reads Multiple on a work-order row,WI
 Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. For this report the two statements sit in the same written description as it stands today. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S7-R13, S7-R14, S4-R3, S9-E1, S10-R5a). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: version 7 changed one requirement to say it is offered there and can be toggled, while another requirement in the same version still says the user does not toggle it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R13, S7-R14, S4-R3, S9-E1, S10-R5a). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: one requirement says it is offered there and can be toggled on or off, while another requirement in the same document still says the user does not toggle it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked
@@ -4951,7 +4951,7 @@ Column Selection toggles columns; Total is not offered at all,WIP — Column Sel
 3. The Total column is always shown and cannot be turned off — it is not offered in the control at all.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S8-R1, S8-R2).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S8-R1, S8-R2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: HOLD - this part of the report is not built yet
@@ -4964,7 +4964,7 @@ Toggling columns never reorders them (Total always last),WIP — Column Selectio
 3. The column selection applies to every tab at once — all four tabs show the same set of columns.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S8-R5, S8-R6, S4-R1).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S8-R5, S8-R6, S4-R1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4977,7 +4977,7 @@ AUTOMATION: READY
 2. In a different browser the report shows the defaults instead — the settings are saved per browser, not on the user's account.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S8-R7).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S8-R7).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -4988,7 +4988,7 @@ A saved setting that is no longer valid falls back to its default,WIP — Column
 2. All other saved settings are still restored.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S8-R8).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S8-R8).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5004,7 +5004,7 @@ A hand-made Location column choice is remembered like any other column,WIP — C
 4. Everything else is remembered exactly as before - the other column choices, the date range, the filters and the tab you were on. Turning Location on or off changes nothing else.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S8-R7), which says the report remembers the column selection in the user's browser and puts it back on the next visit. Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, is what makes Location a column you can switch on and off at all, and it does not say whether that choice is remembered - so this test applies the existing written rule about remembered column choices to the new switch.
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S8-R7), which says the report remembers the column selection in the user's browser and puts it back on the next visit. Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, is what makes Location a column you can switch on and off at all, and it does not say whether that choice is remembered - so this test applies the existing written rule about remembered column choices to the new switch.
 This has not yet been checked against a build.
 
 AUTOMATION: HOLD - waiting on an answer from the product owner
@@ -5016,7 +5016,7 @@ Work In Progress: a three-dot menu holds Download (PDF) and Download (CSV),WIP �
 2. Each option downloads a file of the current tab in the chosen format.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S9-R1).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5035,7 +5035,7 @@ AUTOMATION: READY
 Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. For this report the two statements sit in the same written description as it stands today. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S9-R2, S9-R3, S9-R4, S9-R10a, S7-R13, S9-E1). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: version 7 changed one requirement to say it is offered there and can be toggled, while another requirement in the same version still says the user does not toggle it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R2, S9-R3, S9-R4, S9-R10a, S7-R13, S9-E1). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: one requirement says it is offered there and can be toggled on or off, while another requirement in the same document still says the user does not toggle it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked
@@ -5050,7 +5050,7 @@ Downloaded money and Inv. Hrs values keep the on-screen formats,WIP — Exports,
 3. A value without a comma is written unquoted.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S9-R5, S9-R6).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R5, S9-R6).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5061,7 +5061,7 @@ Inv. Hrs green/red coloring appears on screen and in the PDF; not the CSV,WIP �
 2. In the CSV, the Inv. Hrs column is monochrome — plain signed numbers with no color or markup.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S9-R7).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R7).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5073,7 +5073,7 @@ Days Open in a download is frozen at the moment the file is generated,WIP — Ex
 2. Because the screen computes Days Open live while the file freezes it at generation time, the file can legitimately show a day count one higher than the screen it was generated from — that difference is EXPECTED, not a defect.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S9-R8).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R8).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5085,7 +5085,7 @@ AUTOMATION: READY
 3. These exact names (including the ""-2-"") are the specified current behavior.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S9-R9).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R9).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5099,7 +5099,7 @@ AUTOMATION: READY
 4. The on-screen Asset cell leads with the Unit #, which is what the export header ""Unit"" already reflects - so no header change is expected here.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S9-E1). Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-E1). Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5110,7 +5110,7 @@ The PDF shows the shop logo at the top when one is set,WIP — Exports,Functiona
 2. The CSV never includes a logo (plain data only).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S9-R10).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R10).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5124,7 +5124,7 @@ AUTOMATION: READY
 3. When a download fails, an error notification shows: ""An error occurred while exporting the report. Please try again.""
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S9-R11, S9-R12, S9-R13).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R11, S9-R12, S9-R13).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5137,7 +5137,7 @@ An over-cap Work In Progress download is refused with the too-large message,WIP 
 4. Note for the tester: on this environment the biggest single tab holds about 114 work orders, so you cannot make this message appear here. Record that and move on.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (Story 9); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (Story 9); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5148,7 +5148,7 @@ Each tab uses an all-white table with no alternating row shading,WIP — Visual 
 2. There is no alternating row shading (no zebra striping).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S10-R1).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S10-R1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5159,7 +5159,7 @@ The summary strip is a bold band ruled top and bottom above the tabs,WIP — Vis
 2. It is shown as a bold band delineated by a top and bottom rule — not as a row of separate cards.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S10-R2).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S10-R2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5170,7 +5170,7 @@ The Total column is bold and stays pinned right on sideways scroll,WIP — Visua
 2. The Total column (header and cells, shown in bold) stays fixed to the right edge while the rest of the columns scroll underneath.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R22, S10-R3).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R22, S10-R3).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5181,7 +5181,7 @@ The Totals row stays visible while only the active tab's body scrolls,WIP — Vi
 2. The report fills the available height and only the active tab's table body scrolls — the page itself does not add a second scrollbar.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S10-R4, S10-R5).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S10-R4, S10-R5).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5194,7 +5194,7 @@ The WO # link is keyboard-focusable and opens the work order,WIP — Visual & Ac
 3. Activating it opens the work order (in the same browser tab).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S10-R6).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S10-R6).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5207,7 +5207,7 @@ Each summary figure's info icon is keyboard-reachable and screen-read,WIP — Vi
 3. The explanation text is exposed to assistive technology.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S10-R7, S5-R12).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S10-R7, S5-R12).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5219,7 +5219,7 @@ In dark mode every table; strip; link and coloring stays legible,WIP — Visual 
 2. The table, the summary strip, the WO # link, the Inv. Hrs green/red coloring, and the two-line asset cell all use dark-mode-legible colors meeting contrast.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S10-R9).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S10-R9).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5232,7 +5232,7 @@ Ordinary reports access covers opening and downloading Work In Progress,WIP — 
 3. Note for the tester: the specification allows ONE ordinary reports access for all six of these new reports and no per-report permission. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (Story 1 Prerequisites).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (Story 1 Prerequisites).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5242,7 +5242,7 @@ Without reports access Work In Progress is absent from the navigation,WIP — Pe
 2. Look for ""Work In Progress"" under the Performance group.","1. The report does not appear in the navigation for this user.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S1-N1).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S1-N1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5260,7 +5260,7 @@ Nightly snapshot records one row per then-open job per calendar date,WIP — API
 Note for the tester: you cannot check this one from any screen. These figures are written each night by a background process, and nothing in the report reads them back in this version. If you cannot see the figures anywhere, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S11-R1, S11-R2).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S11-R1, S11-R2).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5276,7 +5276,7 @@ Captured Earned and Remaining use the same maths as the on-screen report,WIP —
 Note for the tester: you cannot check this one from any screen. These figures are written each night by a background process, and nothing in the report reads them back in this version. If you cannot see the figures anywhere, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S11-R3, S11-R5).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S11-R3, S11-R5).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5293,7 +5293,7 @@ Nightly snapshot spans every location with no user location filter,WIP — API,F
 Note for the tester: you cannot check this one from any screen. These figures are written each night by a background process, and nothing in the report reads them back in this version. If you cannot see the figures anywhere, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S11-R4, S2-R1).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S11-R4, S2-R1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -5307,7 +5307,7 @@ Nightly snapshot: a job with nothing approved is captured at $0.00; not skipped,
 Note for the tester: you cannot check this one from any screen. These figures are written each night by a background process, and nothing in the report reads them back in this version. If you cannot see the figures anywhere, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S11-R6, S4-E1).
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S11-R6, S4-E1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY

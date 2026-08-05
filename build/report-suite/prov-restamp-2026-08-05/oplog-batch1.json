@@ -1999,7 +1999,7 @@
    "custom_preconds",
    "custom_steps"
   ],
-  "note": "update_case C30298: 30 fields compared, 3 intended, 0 mismatch",
+  "note": "update_case C30298: write applied; the POST-WRITE verification GET returned HTTP 502 \"policy unavailable\" (a transient gateway error on the READ, not the write). Re-GET at HTTP 200 and byte-compared: all 3 intended fields equal the intended payload, 30 fields compared, 0 collateral changes, custom_preconds and custom_steps byte-identical to the pre-write snapshot.",
   "reverified_whole_against": "live Confluence specs read this pass: SBC v14, SBR v16, PV v5, TU v6, WIP v7, IV v4",
   "verified": true
  },

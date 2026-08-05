@@ -1,5 +1,91 @@
 # Report Suite — PROJECT-STATE (canonical resume doc)
 
+## §0-PROVENANCE-RESTAMP-2026-08-05 — the build is no longer named as the source of any expectation, and 7 wrongly-held cases are released
+
+**Paper: `build/report-suite/prov-restamp-2026-08-05/`** — read `FINDINGS.md` first, then
+`SOURCE-CURRENCY.md`, then `READINESS-2026-08-05.md`. Machine evidence: `PRE/` + `POST/` snapshots of all
+478 live cases and of run 359, `writeplan.json` (committed BEFORE any write), `oplog.json` +
+`oplog-batch1.json` (per-operation), `diff-summary.json`, `wip-cap-probe.txt`.
+
+**JOB 1 — DONE on 473 of 473.** The QA lead barred the old template: *"it should never say that it is an
+expected behavior as per the build testing … because the build can be wrong too."* Before, **461 of 473**
+cases opened *"as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the … specification"*.
+Now every case carries **two sentences that never merge** — sentence 1 names **documents only** (epic
+SV-8582 + the report's specification at its current live version + the case's own anchors, plus Chris
+Ward's answer file where that is genuinely the basis), sentence 2 names the build **only as what the case
+was last checked against** (*"Last checked against build v3.4.1-3d03023 on 8/4/2026."*) or says plainly it
+has not been checked. **0 barred phrasings remain**, **exactly one provenance line per case** read back
+from live, and the last `confirmed in the build` hedge in the suite (C30160) is gone.
+
+**⚠️ THE SPECS MOVED TWICE DURING THE PASS, so 274 cases were re-stamped a SECOND time.** Writing began at
+SBC **14** / SBR **16** / PV 5 / TU 6 / WIP **7** / IV 4; the end-of-pass re-read (Rule 31) found Chris had
+published **SBC 15, SBR 17 and WIP 9** at 17:53–17:54Z (*"Parth WIP review + suite-wide link-permission
+rule"*). All 86 SBC + 111 SBR + 77 WIP cases were re-stamped to the newest versions. **The build did not
+move** — `v3.5-16cf83f`, `index.html` sha256 identical at start and end.
+**Those edits do NOT touch the Location column** (verified: SBC v15 added only S9-R1a; SBR v16→17 changed
+**zero** numbered requirements; WIP v7→9 changed S4-R5/S7-R1/S7-R2/S7-R4). **They DO add a suite-wide
+link-permission rule with NO cases anywhere** — *a user without permission to open the target sees the
+number as plain text* — quoted verbatim in `FINDINGS.md` §2.1. **Not authored** (separate authorised work).
+One case was tightened for it: **WIP-COL-03 C30468** item 1 is now scope-conditional per v9 S4-R5.
+
+**JOB 2 — the Location column, re-derived from the live text, and the answer is NOT the expected one.**
+**Only Technician Utilization actually rewrote its numbered requirements** (S9-R9 **and** S10-R4, both in
+v6). In the other **five** the toggleable decision landed in the **narrative + change log** while the
+numbered requirement saying the opposite was **left untouched**: SBC **S13-R4** (nine columns, no
+Location) · SBR **S21-R7** + S20-R1/R2 · **PV S3-R10 ("is not user-toggleable")** · WIP **S7-R13** ("the
+user does not toggle it", contradicting S4-R3 **in the same version**) · IV **S7-R6**.
+**⚠️ THIS CORRECTS OUR OWN RECORD AND THE ROUND-3 SHEET: Parts Velocity is a FIFTH open contradiction, not
+an untouched report** — its §4 and change log were **added in v5** and assert the toggleable model. So PV's
+cases stay held; asserting either side would pick a winner inside a self-contradictory document
+(Rules 15/57). **12 cases held** (was 16), each asserting only what **both** readings agree on, with a
+plain-words note that the description says two different things and a link to the round-3 sheet.
+Also removed while they were open: a **stale round-2 link on 13 cases**, and a note on 13 cases claiming
+*"on this build the column does not yet behave this way … The change is with the developers"* — which
+asserted the build on an unsettled point **and** claimed a ticket named nowhere.
+
+**THE THREE CASES HELD FOR THE WRONG REASON — all three released** (both texts quoted in `FINDINGS.md` §4):
+**C30186** its five expected results are SBC v15 **S20-R8/R9/R10/R11/R14 near verbatim**, and the spec even
+records that the white totals row was deliberate — the earlier "confirm with the PO, this may be a styling
+gap" concern was written against an older version · **C43550** answered outright by SBC **S4-R12** (*"never
+shown it and it never appears in their column selector"*), and its old provenance claim that *"nothing in
+the specification covers this"* was **false** · **C30502 — OBSERVED LIVE and the build MATCHES the spec**:
+a 366-day span inclusive loads (HTTP 200), 367 is refused with exactly *"Date range cannot be over one
+year."*, and WIP **S7-R8** caps it at *"a 366-day maximum span (start to end)"*. **The earlier note (367
+accepted / 368 refused, "with the product owner") was wrong by a day in both halves. NO TICKET WAS FILED —
+there is no defect.** The only residue is that S7-R8 does not say whether the first and last days are
+counted.
+
+**MARKERS on all 473, exactly one each, last line of Expected Results: READY 430 · READY-EXPECT-FAIL 17 ·
+HOLD 26. ARITHMETIC GATE 430 + 17 = 447 = the readiness figure, cross-checked the other way as 473 − 26.**
+Ready to automate **440 → 447**. `READINESS-2026-08-05.md` updated; every row and the formula add up.
+
+**PROOFS. 473 × `update_case`, every one HTTP 200, 30 fields compared each, 0 mismatches, 0 collateral
+changes; one write per case per batch; 0 add / 0 delete / 0 section / 0 run writes; no result logged
+anywhere; `refs` not written on any case, so the declared comma normalisation was never exercised.**
+**ALL THREE TEXT FIELDS ON EVERY PAYLOAD, so the omit-field re-render (playbook §J normalisation #3) DID
+NOT FIRE** — `custom_preconds` and `custom_steps` came back byte-identical to the pre-write snapshot on 472
+of 473, the only mover being C30466's one authorised precondition fix. **One transient event, recorded:**
+the post-write verification GET for **C30298** returned HTTP 502 *"policy unavailable"* — a gateway error
+on the READ, not the write; **the batch stopped as Rule 50 requires**, C30298 was re-GET at 200 and
+byte-compared field by field (all 3 intended fields correct, 0 collateral), and nothing was retried blindly.
+**RUN 359 PROVEN UNTOUCHED:** 473 tests, test-id and case_id sets equal **both** directions, `include_all`
+still false, counters identical (6 passed / 467 untested), **535 result records with 0 missing BY ID, 0 new,
+and 0 field changes on any of the 535 — not even the declared `case_title` / `case_refs` echoes.** Run tests
+**473 = our live case count 473**, so no re-sync was needed. **FOREIGN CASES C38919–C38923 byte-identical
+on every field including `updated_on` and `updated_by`.** **`delete_case` called zero times.**
+**DELIVERABLES:** local source re-synced **FROM LIVE** before regenerating; **shredding guard RAN AND
+PASSED (0 of 473 rows)**; the generator's two known side-effects fired again and were both repaired from
+live (it blanks all id-map C-ids and drops the `refs` column) → **473 rows, 0 blanks, refs 473/473,
+refs+title byte-equal to live, header byte-identical**; **four counts set-equal BOTH ways at 473/473/473/473**;
+import header sha256 **identical to all five peers**.
+**⚠️ Branch `sv8582` still NOT declared final — every verdict is PROVISIONAL and the Rule-49 queue
+`viu-2026-08-03/RECHECK-QUEUE.md` stays OPEN.**
+**OUTSTANDING (full list in `FINDINGS.md` §7):** Chris's one sentence on the Location column (12 cases, and
+**add Parts Velocity to the ask**) · whether the 366-day WIP limit counts the first and last days · three
+spec residues · **four more cases that look wrongly held — C30096, C30310, C30315, C43551 — reported, not
+released, because releasing them moves the gate** · authorisation for the new link-permission coverage ·
+the branch declared final.
+
 ## §0-RUN-SYNC-2026-08-05 — run 359 is now COMPLETE at 473 tests
 
 **Paper: `build/testrail-run-sync-2026-08-05/`** (RUN-SYNC-2026-08-05.md · the execution log · full

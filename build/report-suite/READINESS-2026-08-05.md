@@ -4,6 +4,20 @@
 **Our cases: 473** (live total 478 — 5 belong to Vladimir Tomovic and are excluded from every figure here) ·
 **Build observed:** `v3.5-16cf83f` · **branch NOT declared final, so every verdict is PROVISIONAL.**
 
+> **UPDATED 2026-08-05 late** by the provenance re-stamp + Location re-repair pass
+> (`prov-restamp-2026-08-05/FINDINGS.md`). **Ready to automate moved 440 → 447**: seven cases that were
+> held for a reason that did not survive checking have been released — three Technician Utilization
+> Location cases (its v6 settles the point in both S9-R9 and S10-R4), C30466 (true under both readings;
+> only its precondition depended on the disputed point), and the three that were held against Chris Ward
+> although he owed nothing on any of them: **C30186** (its expected result is SBC v15 S20-R8/R9/R10/R11/R14
+> near verbatim), **C43550** (answered outright by SBC S4-R12) and **C30502** (observed live to MATCH
+> WIP S7-R8 — the earlier "one day later than the specification" note was wrong by a day, and no ticket
+> was filed because there is no defect).
+> **The Location hold now covers 12 cases, not 16**, and **Parts Velocity is one of them** — contrary to
+> what the round-3 sheet says, PV v5 states the point both ways too.
+> **Denominator warning:** Chris published SBC v15, SBR v17 and WIP v9 at 17:53–17:54Z adding a suite-wide
+> link-permission rule. **Those new requirements have NO cases at all** and are counted nowhere below.
+
 > **The 2026-08-04 file `READINESS-2026-08-04-POST-DEPLOY.md` is SUPERSEDED by this one.** It is kept, not
 > deleted. Its ready figure of 401 is out of date on two counts: 4 cases have been added since, and 35 that
 > it held have been released.
@@ -13,21 +27,22 @@
 ## 1 · THE ONE FORMULA
 
 > **ready to automate = all our cases − waiting on the product owner − could not be set up here − not built yet**
-> **= 473 − 23 − 8 − 2 = 440**
+> **= 473 − 17 − 8 − 1 = 447**
 
 Written out in full:
 
 | Term | Count |
 |---|---|
 | All our cases | 473 |
-| − waiting on the product owner | 23 |
+| − waiting on the product owner | 17 |
 | − not built yet | 8 |
-| − needs a live check we could not run (the logo that fails to load; the second spreadsheet download) | 2 |
-| **= ready to automate** | **440** |
+| − needs a live check we could not run (a logo that is uploaded but fails to load) | 1 |
+| **= ready to automate** | **447** |
 
 **Cross-check against the markers actually written on the cases:**
-`AUTOMATION: READY` **423** + `AUTOMATION: READY - EXPECT FAIL` **17** = **440**. ✅ **The arithmetic gate
-passes.**
+`AUTOMATION: READY` **430** + `AUTOMATION: READY - EXPECT FAIL` **17** = **447**. ✅ **The arithmetic gate
+passes**, and it was re-read from the live case text after the writes, not computed from the plan.
+Cross-check the other way: 473 − 26 cases carrying `AUTOMATION: HOLD` = **447**. ✅
 
 ---
 
@@ -37,28 +52,35 @@ Each case appears in exactly ONE outcome column.
 
 | Report | Cases | Ready, works as documented | Ready, product wrong (ticketed) | Waiting on the PO | Not built yet | Needs a live check we could not run |
 |---|---|---|---|---|---|---|
-| Sales By Customer | 86 | 76 | 3 | 5 | 1 | 1 |
+| Sales By Customer | 86 | 78 | 3 | 3 | 1 | 1 |
 | Sales By Representative | 111 | 103 | 3 | 3 | 2 | 0 |
 | Parts Velocity | 71 | 66 | 2 | 2 | 1 | 0 |
-| Technician Utilization | 60 | 53 | 1 | 3 | 2 | 1 |
-| Work In Progress | 77 | 70 | 0 | 6 | 1 | 0 |
+| Technician Utilization | 60 | 56 | 1 | 1 | 2 | 0 |
+| Work In Progress | 77 | 72 | 0 | 4 | 1 | 0 |
 | Inventory Value | 68 | 55 | 8 | 4 | 1 | 0 |
-| **TOTAL** | **473** | **423** | **17** | **23** | **8** | **2** |
+| **TOTAL** | **473** | **430** | **17** | **17** | **8** | **1** |
 
-**Every row sums to its own Cases figure** — 76+3+5+1+1=86 · 103+3+3+2+0=111 · 66+2+2+1+0=71 ·
-53+1+3+2+1=60 · 70+0+6+1+0=77 · 55+8+4+1+0=68. Counts are derived from the markers actually written on the
-cases, grouped by the report prefix in `testrail-id-map.csv` — not estimated.
+**Every row sums to its own Cases figure** — 78+3+3+1+1=86 · 103+3+3+2+0=111 · 66+2+2+1+0=71 ·
+56+1+1+2+0=60 · 72+0+4+1+0=77 · 55+8+4+1+0=68. Counts are **derived from the markers actually written on
+the cases and read back from live after the writes**, grouped by the report prefix in
+`testrail-id-map.csv` — not estimated.
 
-**TOTAL row check:** 423 + 17 + 23 + 8 + 2 = **473** ✅
-**Ready to automate = 423 + 17 = 440** ✅
+**TOTAL row check:** 430 + 17 + 17 + 8 + 1 = **473** ✅
+**Ready to automate = 430 + 17 = 447** ✅
+
+*The "waiting on the PO" column now holds 17: the **12** Location cases, **4** other product-owner
+questions (C30096, C30310, C30315, C43551) and **C43552**, whose two spreadsheet downloads do not exist
+and are unconfirmed. The single remaining "needs a live check" case is **C43553** (a logo that fails to
+load). **Four of those 17 look wrongly held** — see `prov-restamp-2026-08-05/FINDINGS.md` §5; they were
+reported rather than released, because releasing them moves this figure and that is the QA lead's call.*
 
 ---
 
 ## 3 · LEGEND — read this before quoting any number
 
-- **"Ready, works as documented" (423)** — the case is **automatable**. **It does NOT mean the case passes
+- **"Ready, works as documented" (430)** — the case is **automatable**. **It does NOT mean the case passes
   on today's build.** The pass/fail verdicts on this suite were taken on 2026-08-04 against
-  `v3.4.1-3d03023`, and the live build is now `v3.5-16cf83f`. **Anyone reading 440 as "440 cases pass" is
+  `v3.4.1-3d03023`, and the live build is now `v3.5-16cf83f`. **Anyone reading 447 as "447 cases pass" is
   misreading it.**
 - **"Ready, product wrong (ticketed)" (17) — THESE ARE GOOD CASES.** Each states what the written
   description requires, the product does something else, and a developer ticket is open. **The automated run
@@ -77,18 +99,17 @@ cases, grouped by the report prefix in `testrail-id-map.csv` — not estimated.
 
 ## 4 · FLAGS — enumerated, with internal ID, C-id and link
 
-### 4.1 · Waiting on the product owner (23)
+### 4.1 · Waiting on the product owner (17)
 
-**The Location column — 16 cases, Q1/Q2 of the round-2 question sheet**
+**The Location column — 12 cases, Tab 1 of the ROUND-3 question sheet**
+(`rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx`). Four cases that were
+on this list have been **released** — TU-HRS-02 C30401, TU-EXP-04 C30437, TU-LOC-06 C38915 and WIP-COL-01
+C30466 — and **Parts Velocity is still on it**, because PV v5 states the point both ways.
 
 | Internal ID | C-id | Link |
 |---|---|---|
 | PV-COL-02 | C30352 | https://shopview.testrail.io/index.php?/cases/view/30352 |
 | PV-FILT-14 | C38914 | https://shopview.testrail.io/index.php?/cases/view/38914 |
-| TU-HRS-02 | C30401 | https://shopview.testrail.io/index.php?/cases/view/30401 |
-| TU-EXP-04 | C30437 | https://shopview.testrail.io/index.php?/cases/view/30437 |
-| TU-LOC-06 | C38915 | https://shopview.testrail.io/index.php?/cases/view/38915 |
-| WIP-COL-01 | C30466 | https://shopview.testrail.io/index.php?/cases/view/30466 |
 | WIP-COL-02 | C30467 | https://shopview.testrail.io/index.php?/cases/view/30467 |
 | WIP-EXP-02 | C30511 | https://shopview.testrail.io/index.php?/cases/view/30511 |
 | WIP-FLT-09 | C38916 | https://shopview.testrail.io/index.php?/cases/view/38916 |
@@ -100,8 +121,11 @@ cases, grouped by the report prefix in `testrail-id-map.csv` — not estimated.
 | SBC-COL-01 | C30156 | https://shopview.testrail.io/index.php?/cases/view/30156 |
 | SBC-LOC-04 | C38912 | https://shopview.testrail.io/index.php?/cases/view/38912 |
 
-**Other product-owner questions — 7 cases:** C30096, C30186, C30310, C30315, C30376, C30502, C38859
-(`https://shopview.testrail.io/index.php?/cases/view/<id>`).
+**Other product-owner questions — 5 cases:** C30096, C30310, C30315, C43551 and C43552
+(`https://shopview.testrail.io/index.php?/cases/view/<id>`). **C30186, C30502 and C43550 are no longer
+here** — each was held against Chris Ward although he owed nothing on it, and all three are released.
+**C30376 and C38859 are no longer held either** — they carry `AUTOMATION: READY` and their open point is
+recorded in their text, not in a hold.
 
 ### 4.2 · Ready, product wrong — the 17, by ticket
 
@@ -118,23 +142,28 @@ cases, grouped by the report prefix in `testrail-id-map.csv` — not estimated.
 C30191, C30311, C30319, C30368, C30442, C30506, C30592 and one further case
 (`https://shopview.testrail.io/index.php?/cases/view/<id>`).
 
-### 4.4 · Needs a live check we could not run (2)
+### 4.4 · Needs a live check we could not run (1)
 
 | Internal ID | C-id | What is needed |
 |---|---|---|
 | SBC-EXP-17 | C43553 | a logo that is uploaded but **fails to load**. Not seeded: the organisation is shared with two other live testers today. |
-| TU-EXP-10 | C43552 | a second spreadsheet download that does not exist and is not in the description. **Q7 to Chris — and a deletion candidate.** |
+
+*TU-EXP-10 C43552 has moved into the product-owner column above — its blocker is Chris's answer, not a
+live check.*
 
 ---
 
 ## 5 · WHAT WOULD MOVE THE FIGURE
 
-| If this happens | 440 becomes |
+| If this happens | 447 becomes |
 |---|---|
 | Chris answers Q1/Q2 on the Location column | **456** (+16) |
 | Chris answers the other 7 questions | **463** (+7) |
 | A window on the organisation with no other worker, for the logo check | **+1** |
-| Chris answers Q7 (one spreadsheet) → C43552 deleted | 472 cases, ready 440 |
+| Chris answers the round-3 Tab-1 question on the Location column | ready **459** (the 12 held cases release) |
+| The four possibly-wrongly-held cases are reviewed and released | ready up to **451** |
+| Chris answers Q7 (one spreadsheet) → C43552 deleted | 472 cases, ready 447 |
+| The new link-permission requirements (SBC v15 / SBR v17 / WIP v9) are authored | the case count rises; **ready does not, until they are written** |
 | **Everything answered** | **465 of 465 answerable cases** — with 8 not built |
 
 ---
