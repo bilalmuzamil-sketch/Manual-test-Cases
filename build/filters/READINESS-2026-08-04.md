@@ -30,8 +30,9 @@ end of the day — the same build all three times, so nothing changed under us.
 
 ## The one table
 
-**How to read each column** — every column below counts TEST CASES, and the first six columns add
-up to the "Test cases" figure:
+**How to read each column** — every column below counts TEST CASES. The five outcome columns plus the
+browser-tool column are *meant* to add up to the "Test cases" figure; **13 of the 16 rows do, and the
+3 that do not are explained in full immediately after the table** — nothing is hidden.
 
 - **Work correctly** — the product does what the case says. The case passes. Nothing to do.
 - **Product is wrong (ticket open) — the case correctly fails** — **the case is right and the
