@@ -54,7 +54,13 @@
 >   (401 `sso_required`). NOT ONE ROW has been re-verified against `v3.5-16cf83f`; all 473 verdicts are
 >   PROVISIONAL and a fresh sign-in is the one thing needed**) · `build/filters/recheck-2026-08-05/RECHECK-QUEUE.md` (Filters QA branch `sv8785`, build
 >   **`v3.4.2-d00239b`** — **RE-RUN IN FULL 2026-08-05: 110/110 rows, 91 CONFIRMED / 19 CHANGED**;
->   still OPEN only because the branch is not declared final) · **`build/schedule/recheck-2026-08-05/RECHECK-QUEUE.md`** (Schedule QA branch
+>   still OPEN only because the branch is not declared final) · **A FOURTH QUEUE OPENED 2026-08-05
+>   12:30 UTC: `build/filters/cleanup-2026-08-05/RECHECK-QUEUE.md` — the 8 Filters PHONE cases.
+>   Their expected behaviour is now DOCUMENT-SOURCED (spec v18 S12-R6 + Branko's SV-8825 closure)
+>   and NOT ONE of them was observed on the app, because every `.qa.shopview.com` cookie set is
+>   dead (401 `sso_required`). All 8 carry `AUTOMATION: HOLD - needs one live check…` and
+>   Rule-54 STATE-1 provenance with NO build date. What to observe is written out ready to run in
+>   that folder's `PENDING-LIVE-CHECK.md`) · **`build/schedule/recheck-2026-08-05/RECHECK-QUEUE.md`** (Schedule QA branch
 >   `sv8685` — **THE LIVE QUEUE, re-armed 2026-08-05; the 2026-08-04 file is now the RECORD only and is
 >   banner-marked as such.** The build MOVED 2026-08-05: `v3.5-4873abe` → **`v3.5-be42149`**, redeployed
 >   08:09 UTC. **A FULL 165-row re-check was ATTEMPTED 2026-08-05 and COULD NOT START: 0 of 165 rows
@@ -830,7 +836,65 @@ deliver the 7-tab management report.
    Branko PRD/answers → SPEC-RELEVANCE-RECONCILIATION + build-accurate wording + live
    VIU on the 43 new cases → authorized add_case push. Canonical resume doc:
    build/filters/PROJECT-STATE.md (2026-07-27 header).
-   **STATUS 2026-08-05 (LATEST — AUTOMATION MARKERS WRITTEN, 102 of 110; resume
+   **STATUS 2026-08-05 12:30 UTC (LATEST — CLEANUP PASS: 25 CASES REPAIRED, ALL BYTE-VERIFIED; resume
+   `build/filters/cleanup-2026-08-05/` then `build/filters/READINESS-2026-08-05.md`):** build confirmed
+   by us at **both ends** — `v3.4.2-d00239b`, last-mod Tue 04 Aug 22:51:02 GMT, etag `b9ab1d41…`,
+   **identical at 11:59:30Z and 12:20:02Z down to the sha256 of `index.html`**, so no redeploy under us.
+   **33 `update_case` over 25 distinct cases in two passes, every one HTTP 200 + byte-verified MATCH,
+   28 fields compared each, 0 mismatches; the 85 untouched cases proven byte-identical INCLUDING
+   `updated_on`/`updated_by`; 0 add / 0 delete / 0 section / 0 run writes.** **(1) THE 8 PHONE CASES —
+   `SV-8825 IS ANSWERED AND CLOSED`:** Branko commented **2026-08-05T05:18:22-0500** *"This is updated in
+   the filters prd, I'm closing it."* and closed it Done — read live by us, not taken on trust. Spec
+   **Confluence v18** rules it (**§4 Key Decisions** + **S12-R6**, both quoted verbatim in
+   `SOURCE-CURRENCY.md`): a phone applies **only on tapping "Apply filters"**. The false
+   *"DO NOT AUTOMATE YET … the question is open as SV-8825"* line is **GONE from all 8**, and
+   **FLT-MOB-04 = C29624 was REVERSED** (it asserted the opposite of the ratified spec) with a **Rule-56
+   divergence sentence**; the other 7 got a **confirmation** citation only, per Rule 56's honesty half
+   (**no divergence sentence where nothing diverged**). **S12-R6 covers a SINGLE filter's sheet, not just
+   the combined one** — the chain is S12-R2's *"one exception (see S12-R5)"*, a **stale cross-reference**
+   left by his own **v17** renumbering (*"deferred-apply requirement renumbered to S12-R6"*), so
+   **S12-R2's "see S12-R5" is a spec defect Branko still owes**. **(2) NO DEFECT FILED — it already
+   exists:** **[SV-8875](https://shopview.atlassian.net/browse/SV-8875)** (Story Defect, Open, parent
+   SV-8797, **Ahtasham Amjad 05:50:12-0500 — 32 min after Branko's closure**) reports exactly it, reaches
+   the **same** S12-R6 reading we reached independently, and **names our own C29622/C29623/C29624**. Not
+   touched (Rule 38). **(3) ALL 8 CARRY `AUTOMATION: HOLD - needs one live check…` AND STATE-1 PROVENANCE
+   WITH NO BUILD DATE** — because **every `.qa.shopview.com` cookie set is DEAD** (401 `sso_required`; all
+   four share the same expired `sv_sso_session`; `quick-login` is itself session-gated and 401s too), so
+   **nothing was observed on the app** and READY/EXPECT-FAIL would both assert a build fact we have not
+   seen (Rule 12). **⇒ READY-TO-AUTOMATE STAYS AT 93 of 110 — it does NOT reach 101 this pass**; it
+   becomes 101 in ~10 minutes once cookies land (`PENDING-LIVE-CHECK.md` names the exact steps + test
+   data; a **4th Rule-49 queue** holds a row per case). **(4) THE DEAD GITHUB LINK — the owner-only fix
+   would have produced a DIFFERENT dead link:** `bmuzamil-shopview/…` = 403, and
+   `bilalmuzamil-sketch/…/blob/main/…` = **404 because THERE IS NO `main` BRANCH on this repo** (only four
+   `claude/*` session branches; default HEAD = `claude/slack-session-0sxnd9`). **`blob/HEAD/` was used,
+   verified HTTP 200 before and after.** Fixed on **10** cases; **REMOVED from 7** more where that file is
+   **not** what the expectation rests on (Rule 54 bars citing a non-load-bearing source). **(5) RAW
+   MARKUP:** all **10** listed cases verified broken from live text, each broken in **all three** fields,
+   **no 11th found in a sweep of 110**, converted to plain numbered text — **formatting only**; and
+   **C29613 had TWO provenance lines**, the stale `<hr /><p>` copy removed, so **110/110 now carry it
+   exactly once**. **RUN 352 PROVEN UNTOUCHED** — include_all still false, 110 tests, test-id and case_id
+   sets equal both ways, **all 429 prior result records present BY ID, 0 with any graded field changed**;
+   the only field that moved on 5 of them is **`case_title`** (TestRail's read-time display copy —
+   **independently corroborates playbook DECLARED NORMALISATION #2**), and **9 NEW results are Ahtasham's
+   own grading during our window** (user 7, 12:02–12:25Z; counters 27P/5F → 36P/2F). **DELIVERABLES:**
+   local source re-synced **from live before** regenerating (47 fields, then 8 more); **shredding guard
+   RAN and PASSED (0 shredded), import independently re-checked = 0 rows with the signature**; id-map
+   **re-merged FROM LIVE twice** (the generator blanks C-ids **and** drops `refs` every rerun) → **110
+   rows, 0 blanks, refs 110/110, header byte-identical to the committed one, refs+titles byte-equal to
+   live 110/110**; **four counts set-equal BOTH ways (live 110 / local 110 / id-map 110 / import 110)**;
+   import header sha256 **identical to all 4 peers**. **ALSO FOUND, REPORTED NOT FIXED:**
+   **[SV-8845](https://shopview.atlassian.net/browse/SV-8845) is now OBSOLETE/Done** (Ahtasham
+   04:41:58-0500) yet **2 of our cases still call it open**; **all 110 provenance lines say "spec version
+   1.6" while live Confluence is 18** (the Rule-31(a) trap — wants ONE authorised pass over all 110);
+   the button may really read **"Apply Filters"** with a capital F (another run's capture; **spec-sourced
+   lowercase kept, NOT live-confirmed**); **`get_sections` NEEDS PAGING — 625 sections exist and an
+   unpaged call returns 250 and silently finds ZERO Filters sections** (added to playbook §J); and the
+   earlier note that SV-8825 was answered *"28 minutes"* after the readiness report is **wrong — the gap
+   was five and a half hours**, a −0500 timestamp read as UTC. **New epic state: SV-8785 has 20 children**
+   (+SV-8876, a clarification on ground the QA lead already closed as accepted in SV-8843) plus **3 new
+   Story Defects today — SV-8872, SV-8875, SV-8878** (all Ahtasham); **SV-8787 + SV-8788 are now QA
+   Complete**. **⚠️ Branch still NOT declared final — every verdict remains PROVISIONAL.**
+   **PRIOR STATUS 2026-08-05 (AUTOMATION MARKERS WRITTEN, 102 of 110; resume
    `build/automation-markers-2026-08-05/` then `build/filters/PROJECT-STATE.md` §0-MARKERS-2026-08-05):**
    the QA lead's machine-findable automation marker is now on **102 of the 110** cases, at the **very end
    of Expected Results after the Rule-54 provenance line**, blank line before, line break after (his exact

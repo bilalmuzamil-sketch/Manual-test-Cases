@@ -350,6 +350,21 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
 - **`add_case` REQUIRES `custom_atmstatus:3` + `custom_automation_type:0`** (non-API cases). Place any
   case with API content in a section whose title includes "API" (Rule 4).
 - **Result statuses:** 1 Passed · 2 Blocked · 3 Untested · 4 Retest · 5 Failed.
+- **⚠️ `get_sections` NEEDS PAGING, AND IT FAILS SILENTLY IF YOU FORGET (proven live 2026-08-05,
+  Filters).** This project now has **625 sections**. An unpaged `get_sections/1&suite_id=1` returns
+  only the **first 250**, with no error and no warning — and because the Filters group is section
+  **4110**, well past 250, an unpaged call finds **ZERO Filters sections and therefore zero cases**,
+  which reads exactly like "the group is empty" rather than "you truncated the list". **Always page:**
+  loop `&limit=250&offset=N` until a chunk comes back shorter than 250, then walk the `parent_id` tree
+  down from the group id to collect the subtree. **Also note the URL form:** the query separator must
+  be `&`, not `?` — `get_sections/1?suite_id=1` returns
+  `HTTP 400 {"error":"Invalid characters in URI: [/api/v2/get_sections/1?suite_id]"}`. The same paging
+  rule applies to `get_cases`, `get_tests` and `get_results_for_run`.
+- **Corroboration of DECLARED NORMALISATION #2 below, from a second project (Filters, 2026-08-05):**
+  retitling **C29624** made **5 of run 352's 429 historical result records** read back with a different
+  `case_title`, and `case_title` was **the only field that differed across all 429** — status, comment,
+  who, when, elapsed, defects and version were byte-identical. Two independent projects, same
+  behaviour, so it is safe to rely on.
 - **⚠️ DECLARED NORMALISATION #2 — `get_results_for_run` ECHOES THE CASE'S *CURRENT* TITLE (proven live
   2026-08-05, Report Suite).** Historical result records carry a **`case_title`** field that TestRail
   fills in **at read time from the case as it stands now**, not from the title the case had when the

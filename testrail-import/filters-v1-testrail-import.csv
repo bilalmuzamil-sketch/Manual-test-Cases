@@ -1,16 +1,8 @@
 Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
-Filter bar is shown below the tab row on the Work Orders page,Filter Bar Layout and Visibility,Functional,High,"<ol>
-<li>You are signed in to the ShopView App on a desktop browser.</li>
-<li>At least a few work orders exist in the shop.</li>
-</ol>
-","<ol>
-<li>Open the Work Orders page.</li>
-<li>Look at the area directly under the tab row (All, Estimates, Completed, My Work Orders).</li>
-</ol>
-","<ol>
-<li>A filter bar is visible directly below the tab row and above the work order table.</li>
-<li>The filter bar is shown by default (expanded) without having to turn anything on.</li>
-</ol>
+Filter bar is shown below the tab row on the Work Orders page,Filter Bar Layout and Visibility,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. At least a few work orders exist in the shop.","1. Open the Work Orders page.
+2. Look at the area directly under the tab row (All, Estimates, Completed, My Work Orders).","1. A filter bar is visible directly below the tab row and above the work order table.
+2. The filter bar is shown by default (expanded) without having to turn anything on.
 
 Known and accepted: on the build tested the filter buttons sit on the same row as the tabs instead of on their own row below them. The product behaves this way on purpose for now. Do not raise this as a new problem.
 
@@ -42,22 +34,14 @@ This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.
 
 AUTOMATION: READY
 ","SV-8785 [epic] (S1-N1; S9-R2; §4 Key Decisions - PRD text says ""hidden""; behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled) [spec v1.6 2026-07-28]",,
-Status chip opens a checkbox list of all nine statuses plus Clear Selection,Status Filter,Functional,High,"<ol>
-<li>You are signed in to the ShopView App on a desktop browser.</li>
-<li>You are on the Work Orders page on the All or My Work Orders tab.</li>
-<li>No filters are currently selected.</li>
-</ol>
-","<ol>
-<li>Click the Status filter chip.</li>
-<li>Read the list of options from top to bottom.</li>
-<li>Look at the bottom of the dropdown panel.</li>
-</ol>
-","<ol>
-<li>A dropdown panel opens under the Status chip.</li>
-<li>It lists all nine statuses as checkboxes, in this order: Estimate, Approved, In progress, Review, Complete, Invoiced, Paid, Declined, Imported.</li>
-<li>All checkboxes are unticked (nothing selected yet).</li>
-<li>A 'Clear Selection' action is shown at the bottom of the dropdown.</li>
-</ol>
+Status chip opens a checkbox list of all nine statuses plus Clear Selection,Status Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are on the Work Orders page on the All or My Work Orders tab.
+3. No filters are currently selected.","1. Click the Status filter chip.
+2. Read the list of options from top to bottom.
+3. Look at the bottom of the dropdown panel.","1. A dropdown panel opens under the Status chip.
+2. It lists all nine statuses as checkboxes, in this order: Estimate, Approved, In progress, Review, Complete, Invoiced, Paid, Declined, Imported.
+3. All checkboxes are unticked (nothing selected yet).
+4. A 'Clear Selection' action is shown at the bottom of the dropdown.
 
 ---
 This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S2-R1, S2-R4).
@@ -144,22 +128,14 @@ This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.
 
 AUTOMATION: READY
 ",SV-8787 (S2-R7 (Imported cannot be combined with anything else; other filter chips disabled while it is active); S2-N4 (the combination is prevented rather than returning an empty result)) [spec v1.6 2026-07-28],,
-Customer chip opens a dropdown with a search field and a customer list,Customer Filter,Functional,High,"<ol>
-<li>You are signed in to the ShopView App on a desktop browser.</li>
-<li>You are on the Work Orders page.</li>
-<li>Several customers exist in the shop.</li>
-</ol>
-","<ol>
-<li>Click the Customer filter chip.</li>
-<li>Look at the top of the dropdown panel and the list below it.</li>
-<li>Look at the bottom of the panel.</li>
-</ol>
-","<ol>
-<li>A dropdown panel opens under the Customer chip.</li>
-<li>A search box with the placeholder 'Search' is at the top of the panel. Click it before you type - it is not focused for you automatically.</li>
-<li>Below it is a scrollable list of customer names.</li>
-<li>A 'Clear Selection' action is shown at the bottom of the panel.</li>
-</ol>
+Customer chip opens a dropdown with a search field and a customer list,Customer Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are on the Work Orders page.
+3. Several customers exist in the shop.","1. Click the Customer filter chip.
+2. Look at the top of the dropdown panel and the list below it.
+3. Look at the bottom of the panel.","1. A dropdown panel opens under the Customer chip.
+2. A search box with the placeholder 'Search' is at the top of the panel. Click it before you type - it is not focused for you automatically.
+3. Below it is a scrollable list of customer names.
+4. A 'Clear Selection' action is shown at the bottom of the panel.
 
 ---
 This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S3-R1).
@@ -178,22 +154,14 @@ This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.
 
 AUTOMATION: READY
 ",SV-8788 (S3-R2) [spec v1.6 2026-07-28],,
-Selected customers show as removable tags and as ticks in the list,Customer Filter,Functional,Critical,"<ol>
-<li>You are signed in to the ShopView App on a desktop browser.</li>
-<li>You are on the Work Orders page with the Customer dropdown open.</li>
-<li>At least three customers exist.</li>
-</ol>
-","<ol>
-<li>Click one customer in the list.</li>
-<li>Click a second and a third customer.</li>
-<li>Look at the input area at the top of the dropdown and at the list rows.</li>
-</ol>
-","<ol>
-<li>Each selected customer appears as a tag (small chip) with an x in the input area at the top of the dropdown.</li>
-<li>Each selected customer's row in the list shows a checkmark on the right.</li>
-<li>Long customer names on tags are shortened with an ellipsis (for example 'Texas Truck And Aut...').</li>
-<li>You can keep selecting as many customers as needed - there is no selection limit.</li>
-</ol>
+Selected customers show as removable tags and as ticks in the list,Customer Filter,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are on the Work Orders page with the Customer dropdown open.
+3. At least three customers exist.","1. Click one customer in the list.
+2. Click a second and a third customer.
+3. Look at the input area at the top of the dropdown and at the list rows.","1. Each selected customer appears as a tag (small chip) with an x in the input area at the top of the dropdown.
+2. Each selected customer's row in the list shows a checkmark on the right.
+3. Long customer names on tags are shortened with an ellipsis (for example 'Texas Truck And Aut...').
+4. You can keep selecting as many customers as needed - there is no selection limit.
 
 ---
 This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S3-R3, S3-R4).
@@ -251,19 +219,11 @@ This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.
 
 AUTOMATION: READY
 ",SV-8788 (S3-R8) [spec v1.6 2026-07-28],,
-Customer search with no matching name shows a no-results message in the list,Customer Filter,Negative,Medium,"<ol>
-<li>You are signed in to the ShopView App on a desktop browser.</li>
-<li>You are on the Work Orders page with the Customer dropdown open.</li>
-</ol>
-","<ol>
-<li>Type a string that matches no customer name (for example 'zzzqqq').</li>
-<li>Look at the list area of the dropdown.</li>
-</ol>
-","<ol>
-<li>The list shows a message saying there are no results (instead of an empty gap).</li>
-<li>The app does not show an error.</li>
-<li>Clearing the search text brings the customer list back.</li>
-</ol>
+Customer search with no matching name shows a no-results message in the list,Customer Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are on the Work Orders page with the Customer dropdown open.","1. Type a string that matches no customer name (for example 'zzzqqq').
+2. Look at the list area of the dropdown.","1. The list shows a message saying there are no results (instead of an empty gap).
+2. The app does not show an error.
+3. Clearing the search text brings the customer list back.
 
 ---
 This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S3-N1).
@@ -283,21 +243,13 @@ This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.
 
 AUTOMATION: READY
 ",SV-8785 [epic] (S3-E1; S3-N2; S8-R3) [spec v1.6 2026-07-28],,
-Lead Technician chip opens a dropdown with a search field and a list,Lead Technician Filter,Functional,High,"<ol>
-<li>You are signed in to the ShopView App on a desktop browser.</li>
-<li>You are on the Work Orders page.</li>
-<li>Several technicians exist in the shop.</li>
-</ol>
-","<ol>
-<li>Click the Lead Technician filter chip.</li>
-<li>Look at the top of the dropdown, the list below and the bottom of the panel.</li>
-</ol>
-","<ol>
-<li>A dropdown panel opens under the Lead Technician chip.</li>
-<li>A search input with the placeholder 'Search' is at the top.</li>
-<li>Below it is a scrollable list of technician names.</li>
-<li>A 'Clear Selection' action is shown at the bottom.</li>
-</ol>
+Lead Technician chip opens a dropdown with a search field and a list,Lead Technician Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are on the Work Orders page.
+3. Several technicians exist in the shop.","1. Click the Lead Technician filter chip.
+2. Look at the top of the dropdown, the list below and the bottom of the panel.","1. A dropdown panel opens under the Lead Technician chip.
+2. A search input with the placeholder 'Search' is at the top.
+3. Below it is a scrollable list of technician names.
+4. A 'Clear Selection' action is shown at the bottom.
 
 ---
 This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S4-R1).
@@ -372,21 +324,13 @@ This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.
 
 AUTOMATION: READY
 ",SV-8789 (S4-E1) [spec v1.6 2026-07-28],,
-Service Advisor chip opens a dropdown with a search field and a list,Service Advisor Filter,Functional,High,"<ol>
-<li>You are signed in to the ShopView App on a desktop browser.</li>
-<li>You are on the Work Orders page.</li>
-<li>Several service advisors exist in the shop.</li>
-</ol>
-","<ol>
-<li>Click the Service Advisor filter chip.</li>
-<li>Look at the top of the dropdown, the list below and the bottom of the panel.</li>
-</ol>
-","<ol>
-<li>A dropdown panel opens under the Service Advisor chip.</li>
-<li>A search input with the placeholder 'Search' is at the top.</li>
-<li>Below it is a scrollable list of advisor names.</li>
-<li>A 'Clear Selection' action is shown at the bottom.</li>
-</ol>
+Service Advisor chip opens a dropdown with a search field and a list,Service Advisor Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are on the Work Orders page.
+3. Several service advisors exist in the shop.","1. Click the Service Advisor filter chip.
+2. Look at the top of the dropdown, the list below and the bottom of the panel.","1. A dropdown panel opens under the Service Advisor chip.
+2. A search input with the placeholder 'Search' is at the top.
+3. Below it is a scrollable list of advisor names.
+4. A 'Clear Selection' action is shown at the bottom.
 
 ---
 This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S5-R1).
@@ -789,29 +733,17 @@ First visit opens the Estimates tab; your last-used tab is remembered,Tab Behavi
 2. After switching to All and returning, the All tab is selected - the app remembers your last-used tab per account.
 
 ---
-This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-08-04/answers-ingested.md)
 
 AUTOMATION: READY
 ","SV-8785 [epic] (no requirement in spec v1.6 - default/last-used tab is not in the spec; RULED by Branko answers 2026-08-04 Q2 ""A - it's fine""); tech plan 2026-07-29 D10 (default tab = Estimates; last-used tab persists) [spec v1.6 2026-07-28]",,
-Leaving the page and coming back restores the filters and the bar state,Persistence,Functional,Critical,"<ol>
-<li>You are signed in to the ShopView App on a desktop browser.</li>
-<li>You are on the Work Orders page with a Status and a Customer selection active and the filter bar expanded.</li>
-</ol>
-","<ol>
-<li>Open one work order from the list (go to its detail page).</li>
-<li>Go back to the Work Orders page.</li>
-<li>Look at the chips, the table and the filter bar state.</li>
-<li>Repeat the round-trip once more with the filter bar collapsed before leaving.</li>
-</ol>
-","<ol>
-<li>After step 2 the same Status and Customer selections are still applied - chips active with the same values, table filtered the same way.</li>
-<li>The filter bar is still expanded (as you left it).</li>
-<li>After step 4 the filter bar comes back collapsed - the collapsed/expanded state is restored too.</li>
-</ol>
-
-<hr />
-
-<p>This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S10-R1, S1-R7).</p>
+Leaving the page and coming back restores the filters and the bar state,Persistence,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are on the Work Orders page with a Status and a Customer selection active and the filter bar expanded.","1. Open one work order from the list (go to its detail page).
+2. Go back to the Work Orders page.
+3. Look at the chips, the table and the filter bar state.
+4. Repeat the round-trip once more with the filter bar collapsed before leaving.","1. After step 2 the same Status and Customer selections are still applied - chips active with the same values, table filtered the same way.
+2. The filter bar is still expanded (as you left it).
+3. After step 4 the filter bar comes back collapsed - the collapsed/expanded state is restored too.
 
 Known issue: on the build tested the Customer, Lead Technician and Service Advisor buttons come back switched on but WITHOUT the name of the value you picked - the button reads just ""Customer"" instead of ""Customer: Iibay Landscaping"". The list is still filtered correctly. The Status and Asset on Site buttons keep their value. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8871
 
@@ -976,20 +908,22 @@ AUTOMATION: READY - EXPECT FAIL (SV-8828)
 2. The row scrolls horizontally - chips that do not fit are reachable by swiping.
 3. An arrow at the right-hand edge shows that the row can be scrolled. (This is what the design shows - if your screen looks different, write down what you actually see and carry on.)
 
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The question is open as SV-8825 (https://shopview.atlassian.net/browse/SV-8825). Branko answered our sheet on 2026-08-04 saying a single filter window on a phone applies straight away with no Apply button, which is what the build does; hours later he added a new rule to the specification saying a phone should only apply when you tap an ""Apply filters"" button. Both come from him on the same day, so we are not choosing between them. His answers are in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
-
 ---
-This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R1). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8797 (S12-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
+This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R1). Branko settled how filters apply on a phone on 5 August 2026: he said it is written in the specification and closed the question (https://shopview.atlassian.net/browse/SV-8825). This has not been checked against the running app in this pass, so no build or test date is claimed for it.
+
+AUTOMATION: HOLD - needs one live check on the current build to confirm whether the 'Apply filters' button is present on a phone
+",SV-8797 (S12-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
 Mobile: All Filters opens a sheet of expandable rows with Apply filters,Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page.","1. Tap the 'All Filters' chip.
 2. Read the sheet from top to bottom.","1. A bottom sheet slides up with a drag handle at the top, the centered title 'All Filters' and a close (x) button.
 2. It lists the five filters as expandable accordion rows, each with its icon, name and a down arrow: Status, Customer, Lead Technician, Service Advisor, Asset on Site.
 3. A sticky blue 'Apply filters' button sits at the bottom of the sheet.
 
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The question is open as SV-8825 (https://shopview.atlassian.net/browse/SV-8825). Branko answered our sheet on 2026-08-04 saying a single filter window on a phone applies straight away with no Apply button, which is what the build does; hours later he added a new rule to the specification saying a phone should only apply when you tap an ""Apply filters"" button. Both come from him on the same day, so we are not choosing between them. His answers are in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
-
 ---
-This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R3). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8797 (S12-R3) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
+This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R3, S12-R6). Branko settled how filters apply on a phone on 5 August 2026: he said it is written in the specification and closed the question (https://shopview.atlassian.net/browse/SV-8825). This has not been checked against the running app in this pass, so no build or test date is claimed for it.
+
+AUTOMATION: HOLD - needs one live check on the current build to confirm whether the 'Apply filters' button is present on a phone
+",SV-8797 (S12-R3) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
 Mobile: tapping Apply filters applies the statuses and updates the count,Mobile Filters,Functional,Critical,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page on the All tab; work orders exist in several statuses.
 3. The 'All Filters' bottom sheet is open.","1. Tap the Status accordion row to expand it.
@@ -999,45 +933,45 @@ Mobile: tapping Apply filters applies the statuses and updates the count,Mobile 
 2. After 'Apply filters' the sheet closes and the work order list shows only the ticked statuses.
 3. The reopened sheet's title shows the applied-filter count, for example 'All Filters (1)', and the Status accordion header is highlighted with the selected values ticked.
 
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The question is open as SV-8825 (https://shopview.atlassian.net/browse/SV-8825). Branko answered our sheet on 2026-08-04 saying a single filter window on a phone applies straight away with no Apply button, which is what the build does; hours later he added a new rule to the specification saying a phone should only apply when you tap an ""Apply filters"" button. Both come from him on the same day, so we are not choosing between them. His answers are in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
-
 ---
-This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S12-R3, S2-R1). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8785 [epic] (S12-R2; S12-R3; S2-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
-Mobile: tapping one chip opens its own sheet and applies in real time,Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device.
+This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S12-R3, S12-R6, S2-R1). Branko settled how filters apply on a phone on 5 August 2026: he said it is written in the specification and closed the question (https://shopview.atlassian.net/browse/SV-8825). This has not been checked against the running app in this pass, so no build or test date is claimed for it.
+
+AUTOMATION: HOLD - needs one live check on the current build to confirm whether the 'Apply filters' button is present on a phone
+",SV-8785 [epic] (S12-R2; S12-R3; S2-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
+Mobile: one chip opens its own sheet and applies only on Apply filters,Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page.","1. Tap the Status chip (not the 'All Filters' chip).
 2. Read the sheet that opens.
-3. Tick one status and watch the work order list.
-4. Untick it, then tick a different status, and watch the list again.","1. A bottom sheet opens for that single filter: its title row shows the filter's icon and name (for example 'Status') with a close (x) button, and no accordion list of the other filters.
+3. Tick one status, then tick a second one, and watch the work order list while you do it.
+4. Tap the 'Apply filters' button inside the sheet and look at the list again.","1. A bottom sheet opens for that single filter: its title row shows the filter's icon and name (for example 'Status') with a close (x) button, and no accordion list of the other filters.
 2. The sheet shows only that filter's options (the nine status checkboxes plus 'Clear Selection').
-3. There is no 'Apply filter' button. Ticking or unticking a status filters the work order list immediately, the same as on desktop, with no submit step.
-4. The chip's active state and value update live as the selection changes; closing the sheet with the x just dismisses it and keeps the applied filter.
+3. You can tick more than one option, and the work order list does NOT change while you tick - your choices are only being held, not applied yet.
+4. An 'Apply filters' button is shown inside the sheet. Tapping it applies your choices: the sheet closes and the list shows only the ticked statuses.
+5. The chip then shows its active state with the value(s) you picked. 'Clear Selection' and 'Clear Filters' work the same way as on desktop.
 
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The question is open as SV-8825 (https://shopview.atlassian.net/browse/SV-8825). Branko answered our sheet on 2026-08-04 saying a single filter window on a phone applies straight away with no Apply button, which is what the build does; hours later he added a new rule to the specification saying a phone should only apply when you tap an ""Apply filters"" button. Both come from him on the same day, so we are not choosing between them. His answers are in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
-
----
-This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S12-R3, S2-R6). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8797 (S12-R2; S12-R3; S2-R6) [spec v1.6 2026-07-28] ; individual-chip real-time per S12-R2 + S2-R6 + tech-plan 2026-07-29; only the combined All Filters sheet is batch; CONFIRMED by Branko answers 2026-08-04 Q1,,
-"Mobile Customer filter has search, multi-select and removable tags",Mobile Filters,Functional,High,"<ol>
-<li>You are signed in to the ShopView App on a mobile device.</li>
-<li>You are on the Work Orders page; several customers exist.</li>
-<li>The All Filters sheet is open with the Customer accordion expanded.</li>
-</ol>
-","<ol>
-<li>Type part of a customer name in the 'Search' field and watch the list.</li>
-<li>Select two or three customers.</li>
-<li>Look at the input area and the list rows.</li>
-<li>Remove one customer with the x on its tag, then tap 'Apply filters'.</li>
-</ol>
-","<ol>
-<li>The list narrows to matching names as you type.</li>
-<li>Each selected customer appears as a tag with an x in the input area, and its list row shows a checkmark.</li>
-<li>Removing a tag deselects just that customer.</li>
-<li>After 'Apply filters' the list shows only work orders of the remaining selected customers, and the sheet title counts the applied filters (for example 'All Filters (2)').</li>
-</ol>
-
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The question is open as SV-8825 (https://shopview.atlassian.net/browse/SV-8825). Branko answered our sheet on 2026-08-04 saying a single filter window on a phone applies straight away with no Apply button, which is what the build does; hours later he added a new rule to the specification saying a phone should only apply when you tap an ""Apply filters"" button. Both come from him on the same day, so we are not choosing between them. His answers are in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
+Known issue reported by the test team: a single filter's own sheet is reported to allow only one value and to have no 'Apply filters' button, filtering the list the moment you tap a value, while only the combined 'All Filters' sheet holds your choices until you press a button. That is reported as https://shopview.atlassian.net/browse/SV-8875 and it is still open. We have not re-checked it on the current build, so if you can run this test, write down what you actually see.
 
 ---
-This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S3-R2). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8785 [epic] (S12-R2; S3-R2/R3/R5) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
+This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S12-R6, S2-R2). Branko settled how filters apply on a phone on 5 August 2026: he said it is written in the specification and closed the question (https://shopview.atlassian.net/browse/SV-8825). This has not been checked against the running app in this pass, so no build or test date is claimed for it.
+
+Please note this is a change from what this test used to say. It used to expect a single filter's sheet to filter the list straight away with no 'Apply filters' button. Branko asked for the new behaviour in the specification and confirmed it on 5 August 2026 when he closed our question (https://shopview.atlassian.net/browse/SV-8825), saying it is written in the specification. The earlier position came from his own written answers of 4 August 2026, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-08-04/answers-ingested.md), where he said a single filter window applies straight away with no button. We have taken his latest word as the one that counts, so if you remember the old behaviour, do not raise it as a new problem.
+
+AUTOMATION: HOLD - needs one live check on the current build to confirm whether the 'Apply filters' button is present on a phone
+",SV-8797 (S12-R2; S12-R3; S2-R6) [spec v1.6 2026-07-28] ; individual-chip real-time per S12-R2 + S2-R6 + tech-plan 2026-07-29; only the combined All Filters sheet is batch; CONFIRMED by Branko answers 2026-08-04 Q1,,
+"Mobile Customer filter has search, multi-select and removable tags",Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device.
+2. You are on the Work Orders page; several customers exist.
+3. The All Filters sheet is open with the Customer accordion expanded.","1. Type part of a customer name in the 'Search' field and watch the list.
+2. Select two or three customers.
+3. Look at the input area and the list rows.
+4. Remove one customer with the x on its tag, then tap 'Apply filters'.","1. The list narrows to matching names as you type.
+2. Each selected customer appears as a tag with an x in the input area, and its list row shows a checkmark.
+3. Removing a tag deselects just that customer.
+4. After 'Apply filters' the list shows only work orders of the remaining selected customers, and the sheet title counts the applied filters (for example 'All Filters (2)').
+
+---
+This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S12-R6, S3-R2, S3-R3). Branko settled how filters apply on a phone on 5 August 2026: he said it is written in the specification and closed the question (https://shopview.atlassian.net/browse/SV-8825). This has not been checked against the running app in this pass, so no build or test date is claimed for it.
+
+AUTOMATION: HOLD - needs one live check on the current build to confirm whether the 'Apply filters' button is present on a phone
+",SV-8785 [epic] (S12-R2; S3-R2/R3/R5) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
 Mobile Lead Technician and Service Advisor filters offer their search lists,Mobile Filters,Functional,Medium,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page; technicians and advisors exist.
 3. The All Filters sheet is open.","1. Expand the Lead Technician accordion row and look at its content.
@@ -1046,10 +980,11 @@ Mobile Lead Technician and Service Advisor filters offer their search lists,Mobi
 2. The Service Advisor row opens with a 'Search' field and the advisor list.
 3. Applying a selection filters the work order list just like on desktop.
 
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The question is open as SV-8825 (https://shopview.atlassian.net/browse/SV-8825). Branko answered our sheet on 2026-08-04 saying a single filter window on a phone applies straight away with no Apply button, which is what the build does; hours later he added a new rule to the specification saying a phone should only apply when you tap an ""Apply filters"" button. Both come from him on the same day, so we are not choosing between them. His answers are in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
-
 ---
-This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S4-R1, S5-R1). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8785 [epic] (S12-R2; S4-R1; S5-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
+This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S12-R6, S4-R1, S5-R1). Branko settled how filters apply on a phone on 5 August 2026: he said it is written in the specification and closed the question (https://shopview.atlassian.net/browse/SV-8825). This has not been checked against the running app in this pass, so no build or test date is claimed for it.
+
+AUTOMATION: HOLD - needs one live check on the current build to confirm whether the 'Apply filters' button is present on a phone
+",SV-8785 [epic] (S12-R2; S4-R1; S5-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
 The mobile Asset on Site filter offers Yes/No with Clear Selection in the sheet,Mobile Filters,Functional,Medium,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page; work orders exist in both on-site states.
 3. The All Filters sheet is open.","1. Expand the Asset on Site accordion row.
@@ -1058,10 +993,11 @@ The mobile Asset on Site filter offers Yes/No with Clear Selection in the sheet,
 2. Only one option can be selected at a time.
 3. After applying, the list shows only work orders matching the chosen on-site state.
 
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The question is open as SV-8825 (https://shopview.atlassian.net/browse/SV-8825). Branko answered our sheet on 2026-08-04 saying a single filter window on a phone applies straight away with no Apply button, which is what the build does; hours later he added a new rule to the specification saying a phone should only apply when you tap an ""Apply filters"" button. Both come from him on the same day, so we are not choosing between them. His answers are in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
-
 ---
-This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S6-R1). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8785 [epic] (S12-R2; S6-R1/R2/R3) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
+This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S12-R6, S6-R1). Branko settled how filters apply on a phone on 5 August 2026: he said it is written in the specification and closed the question (https://shopview.atlassian.net/browse/SV-8825). This has not been checked against the running app in this pass, so no build or test date is claimed for it.
+
+AUTOMATION: HOLD - needs one live check on the current build to confirm whether the 'Apply filters' button is present on a phone
+",SV-8785 [epic] (S12-R2; S6-R1/R2/R3) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
 Active chips and Clear Filters behave on mobile the same way as on desktop,Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page with at least one filter applied via the sheet.","1. Look at the chip row after applying the filter.
 2. Look for a 'Clear Filters' control while a filter is active.
@@ -1094,10 +1030,11 @@ Filters matching no work orders on mobile show the same empty state as desktop,M
 
 Known issue: on a phone a link carrying filters shows the buttons as on but lists the wrong work orders. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8845
 
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The question is open as SV-8825 (https://shopview.atlassian.net/browse/SV-8825). Branko answered our sheet on 2026-08-04 saying a single filter window on a phone applies straight away with no Apply button, which is what the build does; hours later he added a new rule to the specification saying a phone should only apply when you tap an ""Apply filters"" button. Both come from him on the same day, so we are not choosing between them. His answers are in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
-
 ---
-This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-N1, S8-R3). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8785 [epic] (S12-N1; S8-R3/R4) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-N1, S8-R3). Branko settled how filters apply on a phone on 5 August 2026: he said it is written in the specification and closed the question (https://shopview.atlassian.net/browse/SV-8825). This has not been checked against the running app in this pass, so no build or test date is claimed for it.
+
+AUTOMATION: HOLD - needs one live check on the current build to confirm whether the 'Apply filters' button is present on a phone
+",SV-8785 [epic] (S12-N1; S8-R3/R4) [spec v1.6 2026-07-28],,
 Every Parts list page shows its designed filter buttons,Parts Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Parts area of the app with some sample data present.","1. Open the Parts area and go to the Inventory page, and look at the filter buttons shown above the table.
 2. Go to the Part Sales page and look at the filter buttons.
@@ -1125,7 +1062,7 @@ Every Parts list page shows its designed filter buttons,Parts Page Filters,Funct
 Not built yet on the build tested: a filter bar exists on Inventory, Part Sales, Catalog and Returns, but Purchase Orders, Vendor Invoices and Vendors have no filter bar at all. If the filter bar is missing on the view you are testing, mark this test BLOCKED - do not mark it failed.
 
 ---
-This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-08-04/answers-ingested.md)
 
 AUTOMATION: HOLD - the feature is not in the product yet
 ",SV-8785 [epic] (spec v1.6 §2 Parts Filters; §4 context-specific filter sets + multi-select); Branko answers 2026-07-31 Q2/Q3/Q5/Q7 + 2026-08-04 Q3 (Vendors design exists Figma 11903-10461) + Q8 (Part Sales chips); Figma 11884-16885,,
@@ -1141,7 +1078,7 @@ Part Type filter opens a Core / Non Core list with Clear Selection,Parts Page Fi
 Not built yet on the build tested: a filter bar exists on Inventory, Part Sales, Catalog and Returns, but Purchase Orders, Vendor Invoices and Vendors have no filter bar at all. If the filter bar is missing on the view you are testing, mark this test BLOCKED - do not mark it failed.
 
 ---
-This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-08-04/answers-ingested.md)
 
 AUTOMATION: HOLD - the feature is not in the product yet
 ","SV-8785 [epic] (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
@@ -1155,7 +1092,7 @@ Choosing a Parts filter narrows the list on that page,Parts Page Filters,Functio
 Not built yet on the build tested: a filter bar exists on Inventory, Part Sales, Catalog and Returns, but Purchase Orders, Vendor Invoices and Vendors have no filter bar at all. If the filter bar is missing on the view you are testing, mark this test BLOCKED - do not mark it failed.
 
 ---
-This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-08-04/answers-ingested.md)
 
 AUTOMATION: HOLD - the feature is not in the product yet
 ","SV-8785 [epic] (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
@@ -1169,7 +1106,7 @@ Parts filters support multiple choices and can be cleared,Parts Page Filters,Fun
 Not built yet on the build tested: a filter bar exists on Inventory, Part Sales, Catalog and Returns, but Purchase Orders, Vendor Invoices and Vendors have no filter bar at all. If the filter bar is missing on the view you are testing, mark this test BLOCKED - do not mark it failed.
 
 ---
-This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-08-04/answers-ingested.md)
 
 AUTOMATION: HOLD - the feature is not in the product yet
 ","SV-8785 [epic] (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
@@ -1186,7 +1123,7 @@ Every filter a page had before is still available in the new filter bar,Parts Pa
 Not built yet on the build tested: a filter bar exists on Inventory, Part Sales, Catalog and Returns, but Purchase Orders, Vendor Invoices and Vendors have no filter bar at all. If the filter bar is missing on the view you are testing, mark this test BLOCKED - do not mark it failed.
 
 ---
-This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-08-04/answers-ingested.md)
 
 AUTOMATION: HOLD - the feature is not in the product yet
 ","SV-8785 [epic] (spec v1.6 §2 Parts Filters + Reports Filters); Branko answers 2026-07-31 Q3 + 2026-08-04 Q8 (""we should have all filters we support now per each page plus we should add new ones""); tech plan 2026-07-29 rollout rule",,
@@ -1234,7 +1171,7 @@ Every report page shows its designed filter buttons,Reports Page Filters,Functio
 Not built yet on the build tested: only the first report tab (Timesheet Activities) has a filter bar, with a Date Range and a Filter by Staff button, and no report tab has a page search box. If the controls this test needs are missing, mark this test BLOCKED - do not mark it failed.
 
 ---
-This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-08-04/answers-ingested.md)
 
 AUTOMATION: HOLD - the feature is not in the product yet
 ","SV-8785 [epic] (spec v1.6 §2 Reports Filters; §4 Key Decisions ""New date-range filter type"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11903-10573",,
@@ -1247,29 +1184,21 @@ Choosing a Reports filter narrows the report results,Reports Page Filters,Functi
 Not built yet on the build tested: only the first report tab (Timesheet Activities) has a filter bar, with a Date Range and a Filter by Staff button, and no report tab has a page search box. If the controls this test needs are missing, mark this test BLOCKED - do not mark it failed.
 
 ---
-This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-08-04/answers-ingested.md)
 
 AUTOMATION: HOLD - the feature is not in the product yet
 ","SV-8785 [epic] (spec v1.6 §2 Reports Filters; §4 Key Decisions ""New date-range filter type"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11903-10573",,
-"New Reports filter types behave correctly (Location, Transaction Type, etc.)",Reports Page Filters,Functional,Medium,"<ol>
-<li>You are signed in to the ShopView App on a desktop browser.</li>
-<li>You are on the Reports area of the app with some sample data present.</li>
-</ol>
-","<ol>
-<li>Open the Reports area and go to a report that uses them - for example A/R Aging Detail (Location, Transaction Type) or Notes (Mention).</li>
-<li>Look at the filter buttons shown above the report table.</li>
-<li>Open each of those filter buttons in turn, tick two choices where possible, and watch the report.</li>
-</ol>
-","<ol>
-<li>Each of these filter buttons - Location, Transaction Type, Invoice Status, Type, User and Mention - opens a list of choices, lets you tick more than one, and narrows the report straight away with no Apply button.</li>
-<li>The choices inside each filter come from your own shop's data (for example your real vendors or categories), so there is no fixed list to compare against - check that the choices you see match the data in your shop.</li>
-<li>Write down the choices you actually see behind each of these six buttons. They have not been written down anywhere yet, so your list becomes the record.</li>
-</ol>
+"New Reports filter types behave correctly (Location, Transaction Type, etc.)",Reports Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are on the Reports area of the app with some sample data present.","1. Open the Reports area and go to a report that uses them - for example A/R Aging Detail (Location, Transaction Type) or Notes (Mention).
+2. Look at the filter buttons shown above the report table.
+3. Open each of those filter buttons in turn, tick two choices where possible, and watch the report.","1. Each of these filter buttons - Location, Transaction Type, Invoice Status, Type, User and Mention - opens a list of choices, lets you tick more than one, and narrows the report straight away with no Apply button.
+2. The choices inside each filter come from your own shop's data (for example your real vendors or categories), so there is no fixed list to compare against - check that the choices you see match the data in your shop.
+3. Write down the choices you actually see behind each of these six buttons. They have not been written down anywhere yet, so your list becomes the record.
 
 Not built yet on the build tested: only the first report tab (Timesheet Activities) has a filter bar, with a Date Range and a Filter by Staff button, and no report tab has a page search box. If the controls this test needs are missing, mark this test BLOCKED - do not mark it failed.
 
 ---
-This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-08-04/answers-ingested.md)
 
 AUTOMATION: HOLD - the feature is not in the product yet
 ","SV-8785 [epic] (spec v1.6 §2 Reports Filters; §4 ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q3/Q5 + 2026-08-04 Q8 (""We do not have list of all filter items"" - confirms no option list exists); Figma 11903-10573",,

@@ -28,6 +28,23 @@
 > against spec v18 **S12-R6**. See `automation-markers-2026-08-05/SV-8825-ANSWERED.md`.
 > **The queue stays OPEN — the branch is still not declared final.**
 
+> **UPDATE 2026-08-05, 12:30 UTC (cleanup pass, `build/filters/cleanup-2026-08-05/`).** The build marker
+> was read again at **11:59:30Z and 12:20:02Z** and was **identical both times, down to the sha256 of
+> `index.html`** (`v3.4.2-d00239b`, last-modified Tue 04 Aug 2026 22:51:02 GMT, etag
+> `b9ab1d41718b5e871432064ed914e2e7`) — so these verdicts still describe the build serving now.
+> **25 cases were repaired**: the 8 phone cases lost their false *"the question is open as SV-8825"*
+> line, a dead GitHub link was fixed in 10 and removed from 7 more where it was not the real source, and
+> raw `<ol>` / `<li>` markup was converted to plain numbered text in 10. **C29613 also had TWO
+> provenance lines; the stale copy was removed** — so all 110 now carry it exactly once.
+> **The 8 phone rows are still NOT resolved, and they now have their own queue.** Branko's answer settles
+> what the cases should SAY, but **no working sign-in exists on the QA branch** — every cookie set on the
+> machine returns HTTP 401 `sso_required` — so nothing was observed on the app. All 8 carry
+> **`AUTOMATION: HOLD - needs one live check…`** and a row each in
+> `../cleanup-2026-08-05/RECHECK-QUEUE.md`. **Ready-to-automate therefore stays at 93 of 110**, not 101.
+> **The defect for the phone Apply button was NOT filed — [SV-8875](https://shopview.atlassian.net/browse/SV-8875)
+> already reports it** (Ahtasham, 05:50 −0500, Open).
+> **The queue stays OPEN — the branch is still not declared final.**
+
 ## What CHANGED, and why it matters
 
 | # | Case | C-id | 4 Aug | 5 Aug | What changed |

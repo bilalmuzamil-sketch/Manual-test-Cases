@@ -1,5 +1,49 @@
 # Filters — is it ready for automation? (5 August 2026)
 
+> ## ⚠️ UPDATED LATER THE SAME DAY — 5 August, 12:30 UTC
+>
+> **Two numbers in this report were already out of date when it was written, and the phone question
+> below has been ANSWERED.**
+>
+> **1. The product owner answered the phone question.** Item 1 under *"What is blocked on Branko"*
+> says [SV-8825](https://shopview.atlassian.net/browse/SV-8825) is *"still Open, still no comment on
+> it"*. **It is closed.** Branko commented at **2026-08-05T05:18:22 −0500** — *"This is updated in the
+> filters prd, I'm closing it."* — and closed it Done fifteen seconds later. On a phone, filters apply
+> **only when you tap "Apply filters"** (specification §4 Key Decisions and S12-R6, Confluence
+> version 18).
+>
+> **This report was about five and a half hours out of date on that point, not 28 minutes.** It was
+> finished around **04:50 UTC**; his comment was **10:18 UTC**. An earlier note put the gap at 28
+> minutes by reading a **−0500** timestamp as if it were UTC. Corrected here.
+>
+> **2. The eight phone cases have been rewritten, but the ready figure has NOT moved.** Their false
+> *"waiting on an answer from the product owner"* line is gone, and
+> [C29624](https://shopview.testrail.io/index.php?/cases/view/29624) — which asserted the exact opposite
+> of the ratified specification — has been reversed. **But no working sign-in exists on the QA branch,
+> so nothing was observed on the running app**, and under Standing Rule 12 no case may be marked as
+> passing or failing on something nobody has looked at. All eight therefore carry
+> **`AUTOMATION: HOLD - needs one live check…`**.
+>
+> **So the ready-to-automate figure stays at 93 of 110.** It becomes **101** in one short pass as soon
+> as fresh QA cookies arrive. What to observe is written out in
+> `cleanup-2026-08-05/PENDING-LIVE-CHECK.md`, and each of the eight has a row in
+> `cleanup-2026-08-05/RECHECK-QUEUE.md`.
+>
+> **3. The defect was already raised by someone else.** [SV-8875](https://shopview.atlassian.net/browse/SV-8875)
+> (Ahtasham Amjad, 05:50 −0500, Open) reports exactly the phone Apply-button gap. **We filed nothing.**
+>
+> **4. [SV-8845](https://shopview.atlassian.net/browse/SV-8845) is no longer Open** — the table under
+> *"What is blocked on the developers"* says it is. Ahtasham closed it **OBSOLETE / Done** at
+> **04:41:58 −0500**, after this report was written. Two of our cases still describe it as an open
+> reported problem; that needs a decision.
+>
+> **5. Three further defects and one clarification were raised today** and are not in this report:
+> **SV-8872**, **SV-8875**, **SV-8878** (Story Defects, all Ahtasham) and **SV-8876**, a clarification
+> about the filter bar sharing the tab row — which is ground the QA lead has already closed as accepted
+> in SV-8843.
+>
+> Everything else below still stands. Detail: `cleanup-2026-08-05/`.
+
 **What this is.** We have now checked every one of the **110 Filters test cases against the real,
 running app** twice: first on 4 August, and again today after the branch was rebuilt overnight.
 Every case has a definite answer, and every number below was measured on the build that is
@@ -82,6 +126,8 @@ needs adding up in your head.
 | Remembering your filters | 6 | 4 | 2 | 0 | 0 | 0 | **6** | 0 |
 | Sharing a link with filters in it | 6 | 1 | 5 | 0 | 0 | 0 | **6** | 0 |
 | Phone screens | 10 | 0 | 2 | 8 | 0 | 0 | **2** | 0 |
+
+*(Phone-screen row, corrected 12:30 UTC: the 8 are no longer "waiting on the product owner" — he has answered. They are now waiting on **one live look at the app**, which is a different reason for the same answer: they are still **not** counted as ready. The row, and the total of 93, are unchanged.)*
 | The search box on the page | 13 | 9 | 4 | 0 | 0 | 0 | **13** | 1 |
 | Behind the scenes (the data request) | 6 | 3 | 2 | 0 | 0 | 1 | **5** | 0 |
 | Parts pages | 5 | 0 | 0 | 0 | 5 | 0 | **0** | 0 |

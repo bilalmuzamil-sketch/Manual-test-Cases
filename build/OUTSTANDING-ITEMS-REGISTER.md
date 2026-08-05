@@ -57,23 +57,62 @@ else owes).
 
 ---
 
-## ⚠️ NEWEST — 2026-08-05, the automation-marker pass. TWO NEW ASKS, BOTH SMALL.
+## ⚠️ NEWEST — 2026-08-05, 12:30 UTC, the Filters cleanup pass. **TWO OF THE THREE ASKS BELOW ARE NOW CLEARED. ONE NEW ASK, AND IT IS THE SAME COOKIE ASK AS A2.**
+
+Source: `build/filters/cleanup-2026-08-05/`. **25 Filters cases were repaired, all byte-verified, run
+352 proven untouched.**
+
+**✅ CLEARED — defect 1 below, the dead GitHub links.** Fixed on the 10 cases where that file genuinely
+is the source, and **removed** from 7 more where it was not what the expectation rested on. Fixing the
+owner alone was **not enough**: `bilalmuzamil-sketch/…/blob/main/…` gives **404**, because **there is no
+`main` branch on this repository** — only four `claude/*` session branches. `blob/HEAD/` was used and
+**verified HTTP 200** before and after the writes.
+
+**✅ CLEARED — defect 2 below, the raw markup.** All 10 converted to plain numbered text. Each was
+verified broken from its live text first, and a sweep of all 110 found no eleventh. **Formatting only.**
+It also turned up an extra fault: **C29613 carried TWO provenance lines**, an older one left inside
+`<hr /><p>…</p>`. The stale copy was removed, so all 110 now carry it **exactly once**.
+
+**◐ PARTLY CLEARED — A1, the 8 phone cases.** The false line is **gone from all 8**, and
+[C29624](https://shopview.testrail.io/index.php?/cases/view/29624) — which asserted the exact opposite of
+the ratified specification — has been **reversed**, with a plain divergence sentence so a tester who
+remembers the old behaviour does not raise a false bug. **What could NOT be done, and why it matters:**
+
+- **No defect was filed, and none should be.** **[SV-8875](https://shopview.atlassian.net/browse/SV-8875)
+  already reports it** — a Story Defect under SV-8797, **Open**, raised by **Ahtasham Amjad at
+  2026-08-05T05:50:12 −0500**, 32 minutes after Branko's closure, quoting the same reading of S12-R6 we
+  reached independently and naming our own case numbers. **A1's "raise one Low defect" instruction is
+  therefore superseded — filing would be a duplicate.** His ticket was not touched.
+- **Nothing was observed on the app**, so all 8 carry **`AUTOMATION: HOLD - needs one live check…`** and
+  **Rule-54 state-1 provenance with no build date**. Marking them READY would assert the build passes and
+  EXPECT FAIL would assert it fails; we have seen neither. **So the Filters ready figure stays at 93 of
+  110 — it does NOT reach 101 this pass.**
+- **A1's "28 minutes" figure was wrong and is corrected below.**
+
+| # | What I need | Who owes it | What it blocks | Since |
+|---|---|---|---|---|
+| **F1** | **Fresh QA-branch cookies — the same ask as A2 in the section below, and it blocks Filters too, not just Schedule.** Every cookie set on the machine returns `HTTP 401 {"error":"sso_required"}` against `sv8785api.qa.shopview.com`, and they all share the **same expired `sv_sso_session`**, so there is no fallback; `quick-login` is itself gated by a valid session and also 401s. **What I need: `sv_sso_session`, `PHPSESSID` and `cf_clearance` for `.qa.shopview.com`.** | **the QA lead** | **The 8 Filters phone cases cannot be given a pass-or-fail verdict, so the ready figure is stuck at 93 instead of 101**, and we cannot confirm whether the button on screen reads *"Apply filters"* or *"Apply Filters"*. Exactly what to observe, with named test data, is written out ready to run in `build/filters/cleanup-2026-08-05/PENDING-LIVE-CHECK.md`, and each case has a row in that folder's `RECHECK-QUEUE.md`. It is about ten minutes' work once the cookies land. | 2026-08-05 |
+| **F2** | **Your word on three Filters tidy-ups we deliberately did NOT make**, each a decision rather than a repair. **(a)** [SV-8845](https://shopview.atlassian.net/browse/SV-8845) is now **OBSOLETE / Done** — Ahtasham closed it at 2026-08-05T04:41:58 −0500 — yet **two of our cases still describe it as an open reported problem** (C29630 and the shared-link case). Should they now say *"known and accepted"*? **(b)** Every provenance line in the suite says *"specification version 1.6"* while the live Confluence version is **18** — the exact staleness trap Standing Rule 31 warns about. Changing it on a few cases while the rest keep the old wording would make the suite inconsistent, so it wants **one authorised pass over all 110**. **(c)** The **"Apply Filters"** capital-F label correction, once someone has looked. | **the QA lead** | Nothing is broken today, but (a) points a tester at a closed ticket and (b) means no reader can tell from a case which version of the specification it was written against. | 2026-08-05 |
+| **F3** | **Something to tell Ahtasham, not a task for us.** He raised **three new Story Defects today** — **SV-8872**, **SV-8875**, **SV-8878** — plus **SV-8876**, a clarification asking why the filter bar shares the tab row. **That last one is ground you already closed as accepted in [SV-8843](https://shopview.atlassian.net/browse/SV-8843)**, so it is heading for a reopen by the back door unless someone tells him. He is also **actively grading run 352 right now** — it moved from 27 Passed / 5 Failed to 36 Passed / 2 Failed during our 30-minute window. | **the QA lead** | Nothing of ours. Raised so a closed decision is not quietly reversed (Standing Rule 33). | 2026-08-05 |
+| **F4** | **Branko still owes one small specification fix.** **S12-R2 says *"see S12-R5"* where it means **S12-R6*** — a leftover from his own version-17 renumbering (his note: *"deferred-apply requirement renumbered to S12-R6"*). It matters more than it looks: that cross-reference is what tells a reader the deferred-apply rule covers a **single** filter's sheet and not just the combined one, which is the whole basis of SV-8875 and of our reversed C29624. | **Branko (PO)** | No test case is blocked — we read it with the renumbering in hand — but the sentence as written points at the wrong rule. | 2026-08-05 |
+
+## 2026-08-05, the automation-marker pass (superseded in part by the section above)
 
 **Filters and Schedule were both authorised for the automation marker. Filters is DONE on 102 of 110
 cases; Schedule is at 0 of 165 by design.** Sources: `build/automation-markers-2026-08-05/`.
 
 | # | What I need | Who owes it | What it blocks | Since |
 |---|---|---|---|---|
-| **A1** | **One word on the 8 Filters phone cases.** **Branko ANSWERED and CLOSED [SV-8825](https://shopview.atlassian.net/browse/SV-8825) at 2026-08-05 05:18 UTC** — *"This is updated in the filters prd, I'm closing it."* — **28 minutes after our readiness report was finished saying it was still open with no comments.** Spec **v18 S12-R6** now rules it: a phone applies **only when you tap "Apply filters"**. The build applies **as you tap**. So those 8 cases are **no longer waiting on him**, the line inside each of them saying they are is **now false**, and their real verdict is *"the product is wrong"* — with **no defect ticket**. **Say go and one pass fixes all of it:** correct the 8, raise **one Low defect** on epic SV-8785 with story SV-8797 linked, and mark them `AUTOMATION: READY - EXPECT FAIL`. | **the QA lead** | **8 cases carry a statement that is untrue, and 8 cases the automation engineer is being told to skip that he could be automating.** Fixing it takes the Filters ready figure **from 93 to 101 of 110**. | 2026-08-05 |
+| **A1** | **◐ PARTLY CLEARED 2026-08-05 12:30 — see the section above. The false line is gone from all 8 and C29624 is reversed; the defect must NOT be raised because [SV-8875](https://shopview.atlassian.net/browse/SV-8875) already reports it; and the markers are HOLD, not `READY - EXPECT FAIL`, because nothing was observed on the app — so the ready figure stays at 93, not 101. ALSO: the "28 minutes" below is WRONG — the report was finished about 04:50 UTC and his comment was at 05:18 −0500, which is 10:18 UTC, so the gap was FIVE AND A HALF HOURS. A −0500 timestamp was read as if it were UTC.** ~~One word on the 8 Filters phone cases.~~ **Branko ANSWERED and CLOSED [SV-8825](https://shopview.atlassian.net/browse/SV-8825) at 2026-08-05 05:18 UTC** — *"This is updated in the filters prd, I'm closing it."* — **28 minutes after our readiness report was finished saying it was still open with no comments.** Spec **v18 S12-R6** now rules it: a phone applies **only when you tap "Apply filters"**. The build applies **as you tap**. So those 8 cases are **no longer waiting on him**, the line inside each of them saying they are is **now false**, and their real verdict is *"the product is wrong"* — with **no defect ticket**. **Say go and one pass fixes all of it:** correct the 8, raise **one Low defect** on epic SV-8785 with story SV-8797 linked, and mark them `AUTOMATION: READY - EXPECT FAIL`. | **the QA lead** | **8 cases carry a statement that is untrue, and 8 cases the automation engineer is being told to skip that he could be automating.** Fixing it takes the Filters ready figure **from 93 to 101 of 110**. | 2026-08-05 |
 | **A2** | **~~A choice on Schedule's markers.~~ NOW A SINGLE, SIMPLER ASK: fresh QA-branch cookies.** A full Rule-49 re-check of all 165 rows was attempted on 5 August and **could not start — 0 of 165 rows were re-observed.** The Schedule cookies (dated 2026-08-04 11:31 UTC, ~24.5 h old) return `HTTP 401 {"error":"sso_required"}`; the Filters and Report Suite sets are dead too, so it is the ordinary ~24-hour expiry across the whole `.qa.shopview.com` estate plus this morning's deploy, and it **cannot be worked around from here**. **What I need: fresh `sv_sso_session`, `PHPSESSID` and `cf_clearance` for `.qa.shopview.com`.** Everything else is ready and staged as a **single** write per case — `build/schedule/recheck-2026-08-05/WRITE-PLAN.md`. **Option (ii) — writing the 142 build-independent markers now — is no longer worth taking:** two of the 19 "expect fail" cases have changed since (they now have tickets), which is exactly the kind of drift that makes a half-pass need re-writing. | **the QA lead** | **All 165 Schedule cases still carry NO automation marker, and all 165 provenance lines still name the dead build `v3.5-4873abe`.** Vlad cannot tell which to start on. | 2026-08-05 |
 
 **Two defects in our OWN data, found by this pass, reported and NOT silently fixed:**
 
-1. **The GitHub links inside the Filters case provenance lines do not work.** They point at
+1. **✅ FIXED 2026-08-05 12:30 (and the owner-only fix would NOT have worked — there is no `main` branch on the repository, so `blob/HEAD/` was used, verified HTTP 200).** ~~The GitHub links inside the Filters case provenance lines do not work.~~ They point at
    **`bmuzamil-shopview/Manual-test-Cases`** (HTTP **403**); the repository is
    **`bilalmuzamil-sketch/Manual-test-Cases`** (HTTP 200). A tester following the link in a case gets
    nothing. Fixing it means editing the provenance line on the affected cases — **needs your go-ahead**.
-2. **10 Filters cases show raw `<ol>` / `<li>` markup to the tester** — C29557, C29560, C29566, C29568,
+2. **✅ FIXED 2026-08-05 12:30 — all 10 converted, formatting only; a sweep of all 110 found no eleventh; and C29613 also had a doubled provenance line, now single.** ~~10 Filters cases show raw `<ol>` / `<li>` markup to the tester~~ — C29557, C29560, C29566, C29568,
    C29573, C29575, C29582, C29613, C29625, C38911. **This predates this pass** (the same 10 are in the
    pre-write snapshot), and it is the same defect already recorded for 16 Schedule cases. A repair is
    10 writes and **needs your go-ahead**.

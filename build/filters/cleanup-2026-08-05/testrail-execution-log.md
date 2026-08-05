@@ -1,10 +1,22 @@
 # Filters cleanup, 5 August 2026 — the per-operation TestRail log
 
-**25 cases written · 25 `update_case` calls · every one HTTP 200 · every one byte-verified ·
-28 fields compared each · 0 mismatches · 0 add · 0 delete · 0 section · 0 run writes.**
+**Two passes. 33 `update_case` calls over 25 distinct cases · every one HTTP 200 · every one
+byte-verified · 28 fields compared each · 0 mismatches · 0 add · 0 delete · 0 section · 0 run writes.**
 
-Where a case was touched by more than one job, all the intents were folded into **one final text
-and written once** — so 25 cases means 25 writes, not 34.
+- **Pass 1 — 25 cases, 25 writes.** Where a case was touched by more than one job, all the intents were
+  folded into **one final text and written once** — so 25 cases meant 25 writes, not 34.
+- **Pass 2 — the 8 phone cases, 8 writes**, on a mid-task ruling from the coordinator. Pass 1 had given
+  them build-tested provenance and READY / EXPECT FAIL markers. **We have no live session, so neither
+  was defensible**: READY asserts the build passes, EXPECT FAIL asserts it fails, and a build-tested date
+  asserts we looked. Pass 2 put all eight onto **Rule-54 state 1** (epic + specification version +
+  requirement reference + Branko's answer with its link and date, and an explicit sentence that it was
+  not checked against the running app) and onto **`AUTOMATION: HOLD - needs one live check on the
+  current build to confirm whether the 'Apply filters' button is present on a phone`**. The numbered
+  body, the steps, the title and the divergence sentence were **left exactly as pass 1 wrote them** —
+  guarded, not assumed. Log: `tools/exec-log-pass2.jsonl`, `tools/done2.json`.
+
+**Consequence for the headline figure: ready-to-automate stays at 93 of 110, not 101.** It only becomes
+101 once someone looks at a phone-size screen — see `PENDING-LIVE-CHECK.md`.
 
 ## The build the writes rest on
 
@@ -104,6 +116,35 @@ The `get_tests` records also mirror the case text, so 25 of them show the new wo
 changed on any test**, and the only `status_id` changes being his three.
 
 **Note for whoever reads the brief that set this work up: it said the run held 427 records with
-25 Passed and 7 Failed. Live at our start it was 429 records and 27 Passed / 5 Failed, and by our
-finish 432 records and 30 Passed / 2 Failed. Those numbers move because the tester is working the
-run right now.**
+25 Passed and 7 Failed. Live at our start it was 429 records and 27 Passed / 5 Failed. Those numbers
+move because the tester is working the run right now.**
+
+## Run 352, re-proven after pass 2 as well
+
+| Check | At our start | After pass 2 |
+|---|---|---|
+| `include_all` | false | false |
+| Tests | 110 | 110 — **test-id sets equal both directions** |
+| `case_id` set | 110 | **equal both directions** |
+| Result records | **429** | **438** |
+| Earlier records present **by id** | — | **429 of 429** |
+| Earlier records with any **graded** field changed | — | **0 of 429** |
+| Earlier records with any field changed at all | — | **5, and the only field is `case_title`** (the display copy of C29624's title) |
+
+**Nine new result records appeared, all of them Ahtasham Amjad's** (`created_by` 7), at 12:02:11Z,
+12:07:23Z, 12:07:57Z, 12:20:18Z, 12:20:58Z, 12:21:41Z, 12:22:35Z, 12:22:54Z and 12:25:41Z — on
+C29564, C29568, C29570, C29589, C29590, C29591, C29592, C29593 and C29594, every one a Pass. The run
+counters moved **27 P / 5 F / 78 U → 36 P / 2 F / 72 U** entirely because of him. **We issued zero run
+or result API calls.**
+
+## Deliverables regenerated afterwards
+
+| Check | Result |
+|---|---|
+| Local case source re-synced **from live before** regenerating | yes — 47 fields in pass 1, then 8 more after pass 2 |
+| Character-shredding guard | **ran and PASSED — 0 shredded fields**, and the import re-checked independently: **0 rows** carry the newline-between-every-character signature |
+| `testrail-id-map.csv` | **110 rows · 0 blank case-ids · refs 110 of 110 · header byte-identical to the committed version** — re-merged **from live** twice, because `gen_import.py` blanks the case-ids and drops the `refs` column on every rerun |
+| id-map `refs` and `title` byte-equal to live | **110 of 110 each** |
+| Four counts, set-equal in **both** directions | live **110** · local source **110** · id-map **110** · import **110** |
+| Import header sha256 vs the four peer projects | **identical to all four** (`a82ca60c…`) |
+| Duplicate titles · duplicate internal ids · rows missing a field · "VIU" or flag words | **none · none · none · 0** |
