@@ -7,7 +7,8 @@ Parts Velocity appears under a new Parts section in the Reports navigation,PV �
 3. Clicking it opens the Parts Velocity report.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S1-R1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S1-R1); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ","SV-8641 (PV spec S1-R1 — the ""only report"" sentence is superseded: Parts Velocity and Inventory Value BOTH live under Parts per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03)",,
@@ -18,7 +19,8 @@ First visit: date range defaults to This Year and data is fetched automatically,
 3. Rows appear ranked by Demand, highest first (the default order).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S1-R2, S4-R6).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S1-R2, S4-R6).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8641 (PV spec v4 2026-07-29 S1-R2; S4-R6),,
@@ -30,7 +32,8 @@ A loading indicator shows and old rows are replaced only when data returns,PV �
 3. The rows already on screen are replaced only when the new data comes back - the table does not blank out and rebuild mid-request.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S1-R3).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S1-R3).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8641 (PV spec v4 2026-07-29 S1-R3),,
@@ -43,7 +46,8 @@ A user with ordinary reports access can load the report and export it,PV — Per
 3. Note for the tester: the specification allows ONE ordinary reports access for all six of these new reports and no per-report permission. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S1-R4); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S1-R4).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ","SV-8641 (PV spec S1-R4 — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW""; PV S1-R4 still names Inventory Reports > View — his spec edit owed)",,
@@ -52,7 +56,8 @@ Without the Manager or Office User role the report entry is not shown,PV — Per
 2. The Parts Velocity navigation entry is not shown (this is the Reports section's own access control, not a report-specific rule).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S1-N1).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S1-N1).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8641 (PV spec v4 2026-07-29 S1-N1),,
@@ -65,7 +70,8 @@ Ordinary reports access alone opens Parts Velocity and its export,PV — Permiss
 4. Note for the tester: the specification allows ONE ordinary reports access for all six of these new reports and no per-report permission. If an extra Parts or Inventory reports permission does exist and switching it OFF blocks this report or its export, that is wrong - mark this Failed and report it. If a separate per-report permission is ever added on purpose in a later release, this test will be updated first, so treat that as a planned change and not as a bug.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S1-N2, S1-R4); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S1-N2, S1-R4).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ","SV-8641 (PV spec S1-N2; S1-R4 - RESCOPED 2026-08-03: the old ""Reports access without Inventory Reports View"" state cannot exist under one permission; Chris Ward Q2=A + ""they can exist and not do anything""; QA lead ""ONE permission FOR NOW"")",,
@@ -81,7 +87,8 @@ AUTOMATION: READY
 5. Each selection immediately reloads the report limited to that type (no separate Apply step) - under Inventory every row's Type column reads Inventory; under Special Order every row's Type column reads Special Order; under Both, rows of both kinds appear.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R1, S3-R5); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S2-R1, S3-R5).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8642 (PV spec v4 2026-07-29 S2-R1; S3-R5 — S2-R1 CLOSES the three Type options and the Both default; 'Catalogue'→'Special Order' per Chris Ward 2026-07-29 [newest-wins]),,
@@ -92,7 +99,8 @@ Date range selector offers exactly the eleven bounded options and no All Time,PV
 4. The named ranges use the application's standard shared calendar boundaries (the same boundaries every report's date picker uses).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Parts Velocity report specification version 5 (S2-R2) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Parts Velocity report specification version 5 (S2-R2) says something different, his decision is the later word and is the authority.
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ","SV-8642 (PV spec v4 2026-07-29 S2-R2; §2 Out of Scope — S2-R2 CLOSES it in the spec's own words (""offering exactly these options"") and rules out ""All Time""; so the closed list IS the requirement)",,
@@ -105,7 +113,8 @@ A Custom date range needs valid dates and rejects a span over 366 days,PV — Fi
 4. A span wider than 366 days (counting both the start and end dates) is rejected - the selection is not applied.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R3).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S2-R3).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8642 (PV spec v4 2026-07-29 S2-R3),,
@@ -118,7 +127,8 @@ Category and Vendor multi-select filters limit the table to matching parts,PV �
 4. Each change reloads the data from the server.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R4, S2-R5, S2-R10).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S2-R4, S2-R5, S2-R10).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8642 (PV spec v4 2026-07-29 S2-R4; S2-R5; S2-R10),,
@@ -132,7 +142,8 @@ AUTOMATION: READY
 4. Category and vendor names are NOT searched - use their dedicated filters instead (deliberate, to avoid false matches on common words).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R6).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S2-R6).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8642 (PV spec v4 2026-07-29 S2-R6; §3 Key Decisions),,
@@ -145,7 +156,8 @@ All active filters combine with AND logic,PV — Filters,Functional,Medium,"1. Y
 3. After step 4 the part is listed again.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R7).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S2-R7).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8642 (PV spec v4 2026-07-29 S2-R7),,
@@ -156,7 +168,8 @@ The Bin multi-select limits the table to parts stocked in those bins,PV — Filt
 3. The filter allows more than one bin (multi-select).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R8).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S2-R8).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8642 (PV spec v4 2026-07-29 S2-R8),,
@@ -167,7 +180,8 @@ Bin filter excludes special-order rows; Bin plus that Type is empty by design,PV
 2. Special Order combined with any Bin filter yields an empty result showing the empty state - this is by design, not a defect.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R8); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S2-R8); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8642 (PV spec S2-R8 - 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31]),,
@@ -184,7 +198,8 @@ AUTOMATION: READY
 6. With 'All Locations' active you can tell which location each row's data belongs to — a location label or marking is shown.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R9); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S2-R9); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8642 (PV spec S2-R9 — per-row location identifier in All-Locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins],,
@@ -193,7 +208,8 @@ Empty state shows the standard no-data message when no parts match the filters,P
 2. The empty-state label reads exactly: ""Empty bays, endless possibilities. Get Going!"" (the application's standard reports no-data label).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R11, S2-N1).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S2-R11, S2-N1).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ","SV-8642 (PV spec v4 2026-07-29 S2-R11; S2-N1; §7 — §7 CLOSES the empty-state string verbatim (""Empty bays"" ... ""Get Going!"") as the standard reports no-data label; so the exact string IS the requirement)",,
@@ -206,7 +222,8 @@ Parts with no category; vendor or bin are excluded when that filter is on,PV —
 3. The inventory part with no bin location does not appear when any Bin filter is active.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-E1, S2-E2, S2-E3).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S2-E1, S2-E2, S2-E3).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8642 (PV spec v4 2026-07-29 S2-E1; S2-E2; S2-E3),,
@@ -216,7 +233,8 @@ Parts Velocity: the Location filter is hidden for a one-location user,PV — Fil
 2. For the user with access to two or more locations the Location filter IS shown.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-E4). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S2-E4). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ","SV-8642 (PV spec S2-E4 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S2-E4 ""still sees the filter"" note is stale; spec edit pending)",,
@@ -229,19 +247,16 @@ AUTOMATION: READY
 6. With more than one location still selected, download the CSV and the PDF and read their columns from the left.","1. With more than one location in scope a Location column is shown as the LEFTMOST column, before Type.
 2. Each inventory row shows its own location's name (an inventory row is one part at one location).
 3. The merged Special Order row shows ""Multiple"", because it is summed across the selected locations.
-4. With a single location in scope the Location column is hidden.
+4. With only one location involved the Location column is not shown.
 5. Both downloads include the Location column in the same position it holds on screen (leftmost, before Type), with the same values — each inventory row's own location, and ""Multiple"" on the merged Special Order row.
 ---
-Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.
-The Location column is not one of the columns in the column-selection control and you cannot switch it on or off: it appears by itself whenever more than one location is in scope, and is hidden whenever a single location is in scope.
-Note for the tester: the product owner has been asked to confirm this one point and has not answered yet, so do not raise a bug either way — record what you see. The question is in Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx
+Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. Parts Velocity is one of the reports where this has not been settled. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
 
 ---
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S2-R12, S3-R10, S7-R8, S6-R11). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: version 5 added a summary and a change note saying it can be toggled there, while the requirement that governs the column still says it is not user-toggleable. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
----
-This is the expected behaviour as per the Parts Velocity report specification version 5 (S2-R12, S3-R10, S7-R8, S6-R11), and as per the build tested on 8/4/2026 (build v3.4.1-3d03023). The product owner's answer of 8/5/2026 in this file reads both ways on the one point about the Location column, so it has NOT been treated as overriding the specification and he has been asked again: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
-
-AUTOMATION: HOLD - waiting on one answer from the product owner about the Location column
+AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked
 ","SV-8642; SV-8646 (PV spec v4 2026-07-29 S2-R12; S3-R10; S7-R8; S6-R11 — per-row Location column; leftmost before Type; ""Multiple"" on the merged special-order row; not in the picker; S6-R11 = the same column in both exports)",,
 A part stocked at two selected locations shows as two per-location rows,PV — Row Model,Functional,Critical,"1. The same part number is stocked as an inventory part at two locations the user can access, with different On Hand / Min / Max values at each.
 2. You are on the Parts Velocity report with both locations selected in the Location filter.","1. Search for the part number in the toolbar search.
@@ -250,7 +265,8 @@ A part stocked at two selected locations shows as two per-location rows,PV — R
 3. On Hand / Min / Max are NEVER summed across locations.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S3-R1a).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S3-R1a).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8643 (PV spec v4 2026-07-29 S3-R1a; §3 Key Decisions),,
@@ -262,7 +278,8 @@ A Special Order part is one merged row summed across selected locations,PV — R
 3. Its inventory-only columns (On Hand, Turns / Yr, Min, Max) show — (em-dash), because special-order parts are not stocked.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S3-R1a).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S3-R1a).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8643 (PV spec v4 2026-07-29 S3-R1a; §3 Key Decisions),,
@@ -276,7 +293,8 @@ AUTOMATION: READY
 4. The Demand header shows the descending sort indicator - this initial order IS the active sort (it is what the remembered view saves until you click another header).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S3-R2).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S3-R2).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8643 (PV spec v4 2026-07-29 S3-R2),,
@@ -290,7 +308,8 @@ AUTOMATION: READY
 4. Every column is sortable; each header click re-fetches the data (server-resolved) and shows the first page of the re-sorted result; ties keep a stable order.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S3-R3).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S3-R3).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8643 (PV spec v4 2026-07-29 S3-R3),,
@@ -301,7 +320,8 @@ AUTOMATION: READY
 3. ALL columns - header and cell data, including numbers and money - are left-aligned on screen. (The exports right-align numerics instead: a deliberate export-only difference.)
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S3-R4, S3-R5, S3-R8); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S3-R4, S3-R5, S3-R8); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8643 (PV spec S3-R4; S3-R5; S3-R8 - Type value 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31]),,
@@ -317,7 +337,8 @@ AUTOMATION: READY
 6. No other column header carries an info icon.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S3-R6).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S3-R6).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8643 (PV spec v4 2026-07-29 S3-R6 — S3-R6 CLOSES the set (exactly three columns: Units Sold; Demand; Turns / Yr) and quotes each description verbatim; so the closed set and the exact strings ARE the requirement),,
@@ -330,7 +351,8 @@ Description; Category and Vendor truncate on hover; Part # never does,PV — Row
 3. Part # is NEVER truncated - on screen (and in the exports).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S3-R7).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S3-R7).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8643 (PV spec v4 2026-07-29 S3-R7),,
@@ -340,7 +362,8 @@ Em-dash only in nullable fields; counts and Revenue/Margin are never null,PV —
 2. The count metrics and money totals are NEVER null: Units Sold / Units Returned / Sold (WO) / Sold (Parts Sale) show 0.00, Demand shows 0, Revenue and Margin show $0.00.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S3-R9, S5-R5).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S3-R9, S5-R5).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8643 (PV spec v4 2026-07-29 S3-R9; S5-R5),,
@@ -351,7 +374,8 @@ AUTOMATION: READY
 3. (Special Order parts have no such rule: a never-requested special-order part simply produces no row.)
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S3-N1).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S3-N1).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8643 (PV spec v4 2026-07-29 S3-N1),,
@@ -361,21 +385,20 @@ Column picker lists all 20 columns and never offers the internal cost,PV — Col
 2. No on-hand cost column is offered - the report computes one internally but it is never selectable and never displayed.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S4-R1, S4-R4, S5-R6).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S4-R1, S4-R4, S5-R6).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8644 (PV spec v4 2026-07-29 S4-R1; S4-R4; S5-R6),,
 First visit shows exactly the 14 default columns in the specified order,PV — Columns & Remembered View,Functional,Critical,1. You are on the Parts Velocity report on a first visit (no saved column selection).,1. Read the visible column headers left to right without touching the picker.,"1. With a single location in scope exactly these 14 columns show, in this left-to-right order: Type, Part #, Description, Category, Vendor, Units Sold, Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand.
 2. The other 6 columns start hidden: Units Returned, Sold (WO), Sold (Parts Sale), Turns / Yr, Min, Max.
-3. When more than one location is in scope the Location column shows as well, leftmost before Type — 15 columns. It is not one of the columns in the column-selection control and you cannot switch it on or off: it appears by itself whenever more than one location is in scope, and is hidden whenever a single location is in scope. It is not part of the 14-column default set, so its presence is expected and is not a failure of this test.
-Note for the tester: the product owner has been asked to confirm this one point and has not answered yet, so do not raise a bug either way — record what you see. The question is in Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx
+3. When more than one location is in scope the Location column shows as well, leftmost before Type — 15 columns. Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. Parts Velocity is one of the reports where this has not been settled. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx It is not part of the 14-column default set, so its presence is expected and is not a failure of this test.
 
 ---
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S3-R10). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: version 5 added a summary and a change note saying it can be toggled there, while the requirement that governs the column still says it is not user-toggleable. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
----
-This is the expected behaviour as per the Parts Velocity report specification version 5 (S3-R10), and as per the build tested on 8/4/2026 (build v3.4.1-3d03023). The product owner's answer of 8/5/2026 in this file reads both ways on the one point about the Location column, so it has NOT been treated as overriding the specification and he has been asked again: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
-
-AUTOMATION: HOLD - waiting on one answer from the product owner about the Location column
+AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked
 ",SV-8644; SV-8643 (PV spec v4 2026-07-29 S4-R2; S4-R3 + Story 3 S3-R10 — the 14 default-visible columns and the 6 hidden ones; plus the automatic Location column leftmost when more than one location is in scope),,
 "A re-enabled column returns to its canonical slot, with no reload",PV — Columns & Remembered View,Functional,Medium,1. You are on the Parts Velocity report with data loaded.,"1. In the column picker, enable Min, then Units Returned, then Turns/Yr - in that (non-canonical) order.
 2. Watch the table as each toggle is flipped.
@@ -384,7 +407,8 @@ AUTOMATION: HOLD - waiting on one answer from the product owner about the Locati
 3. So Units Returned slots in right after Units Sold, Turns/Yr after On Hand, and Min before Max - not appended at the end.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S4-R4, S4-R5, S3-R10).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S4-R4, S4-R5, S3-R10).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8644; SV-8643 (PV spec v4 2026-07-29 S4-R4; S4-R5 + Story 3 S3-R10 — canonical column order and immediate re-render; plus the automatic Location column leftmost when shown),,
@@ -396,7 +420,8 @@ Filters; columns and sort are remembered per browser before the first fetch,PV �
 4. The same holds after a full page reload.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S4-R6, S1-R2).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S4-R6, S1-R2).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8644 (PV spec v4 2026-07-29 S4-R6; S1-R2),,
@@ -406,7 +431,8 @@ A saved value that is no longer valid falls back to that setting's default,PV �
 3. The report loads without an error.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S4-R6).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S4-R6).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8644 (PV spec v4 2026-07-29 S4-R6),,
@@ -416,7 +442,8 @@ A different user signing in on the same browser inherits the saved view,PV — C
 2. This is by design: storage is per browser, not tied to the account - there is no per-account separation.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S4-R6).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S4-R6).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8644 (PV spec v4 2026-07-29 S4-R6),,
@@ -427,7 +454,8 @@ All 20 columns can be hidden; the empty selection is never restored,PV — Colum
 3. On the next visit the all-hidden selection is NOT restored - the report falls back to the default 14-column set (the saved column selection returns to the last NON-EMPTY selection; all-hidden is the exception).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S4-E1, S4-R6).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S4-E1, S4-R6).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8644 (PV spec v4 2026-07-29 S4-E1; S4-R6),,
@@ -440,7 +468,8 @@ Units Sold for an inventory part is net stock movement,PV — Columns & Calculat
 4. Units Sold can be 0.00 or negative when reversals exceed sales.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R1, S5-R4).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S5-R1, S5-R4).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8645 (PV spec v4 2026-07-29 S5-R1; S5-R4 (Units Sold; inventory); §4),,
@@ -451,7 +480,8 @@ AUTOMATION: READY
 3. Only requests on work orders at status Invoiced or Paid count; the window is anchored to the work-order date.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R2, S5-R4, S5-R4b).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S5-R2, S5-R4, S5-R4b).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8645 (PV spec v4 2026-07-29 S5-R2; S5-R4 (Units Sold; catalogue); S5-R4b),,
@@ -465,7 +495,8 @@ Units Returned counts initiated part returns and parts-sale credits,PV — Colum
 4. After step 4, Units Returned is UNCHANGED - invoice reversals are not returns (they affect Units Sold instead).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R3, S5-R4).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S5-R3, S5-R4).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8645 (PV spec v4 2026-07-29 S5-R3; S5-R4 (Units Returned); §3 Key Decisions),,
@@ -480,7 +511,8 @@ AUTOMATION: READY
 5. A part whose ONLY in-window event is a return (no sale, no stock, no revenue) produces no row at all - the rows of this report are built from sales and stock activity, so a return on its own does not create one.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R3).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S5-R3).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8645 (PV spec v4 2026-07-29 S5-R3),,
@@ -493,7 +525,8 @@ AUTOMATION: READY
 4. Both workflows feed the report - a parts sale is a separate workflow from a service work order but counts fully.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R4).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S5-R4).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8645 (PV spec v4 2026-07-29 S5-R4 (Sold via WO / Sold via Parts Sale); §5 Assumptions),,
@@ -508,7 +541,8 @@ Demand counts each transaction once; a reversal neither adds nor subtracts,PV �
 5. A part whose single in-window sale is invoiced and then fully reversed shows Demand 1 with Units Sold 0.00 — the Demand count is not decremented, while the movement nets to zero.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R4, S3-E1).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S5-R4, S3-E1).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8645 (PV spec v4 2026-07-29 S5-R4 (Demand); §4; §3 Key Decisions; S3-E1),,
@@ -524,7 +558,8 @@ Last Sale is whole days since the most recent sale over all-time history,PV — 
 5. When the most recent sale is reversed, Last Sale re-anchors to the previous remaining sale (the day count grows accordingly); if no other sale remains it shows —.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R4, S5-R5).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S5-R4, S5-R5).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8645 (PV spec v4 2026-07-29 S5-R4 (Last Sale); §4; S5-R5; tech-plan-2026-07-29 B3.1 (last-sale re-anchor on reversal — spec-silent)),,
@@ -535,7 +570,8 @@ On Hand shows the row's own location stock,PV — Columns & Calculations,Functio
 3. Min and Max are READ-ONLY display columns - no edit control or slide-over opens; editing part attributes from this report is out of scope in this version.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R4, S5-R5).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S5-R4, S5-R5).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8645 (PV spec v4 2026-07-29 S5-R4 (On Hand / Min / Max); §2 Out of Scope; S5-R5),,
@@ -550,7 +586,8 @@ AUTOMATION: READY
 4. Special Order rows always show — (not applicable).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R4).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S5-R4).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8645 (PV spec v4 2026-07-29 S5-R4 (Turns / Yr); S5 Definitions (Window)),,
@@ -564,7 +601,8 @@ AUTOMATION: READY
 6. The same formulas apply to inventory and special-order rows (for special-order, from the vendor part requests).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R4a).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S5-R4a).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: HOLD - this part of the report is not built yet
 ",SV-8645 (PV spec v4 2026-07-29 S5-R4a; §4),,
@@ -576,7 +614,8 @@ A reversed or voided sale is excluded from every billed-line column,PV — Colum
 3. A voided sale therefore inflates NO column.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R4b, S5-R4a).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S5-R4b, S5-R4a).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8645 (PV spec v4 2026-07-29 S5-R4b; S5-R4a; §3 Key Decisions),,
@@ -590,7 +629,8 @@ Unit Cost / Sell Price and Margin % use independent null triggers,PV — Columns
 4. The three triggers are independent: Unit Cost/Sell Price null on billed units ≤ 0; Margin % null on Revenue ≤ 0.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R4a, S3-R9).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S5-R4a, S3-R9).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8645 (PV spec v4 2026-07-29 S5-R4a (null rules + mixed-row paragraph); S3-R9),,
@@ -602,7 +642,8 @@ Number formats match the spec per column; rounding is half away from zero,PV —
 5. Rounding is half AWAY from zero: 8.45% displays 8.5% and -8.45% displays -8.5% (a tie rounds up in magnitude); this applies to all money and one-decimal values.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R5, S5-R7).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S5-R5, S5-R7).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8645 (PV spec v4 2026-07-29 S5-R5; S5-R7 (rounding)),,
@@ -613,7 +654,8 @@ Core parts are excluded from both the inventory and special-order result sets,PV
 3. Parts flagged as a core are excluded from both result sets by design.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R1, S5-R2).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S5-R1, S5-R2).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8645 (PV spec v4 2026-07-29 S5-R1; S5-R2; §3 Key Decisions),,
@@ -626,7 +668,8 @@ Movement and billed bases may differ; Sold (WO) + Sold (Parts Sale) = billed,PV 
 3. On the special-order row, everything reconciles: Units Sold = Sold (WO) + Sold (Parts Sale) = billed units (they share the vendor-request quantity as one source).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R7).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S5-R7).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8645 (PV spec v4 2026-07-29 S5-R7; §3 Key Decisions),,
@@ -639,7 +682,8 @@ AUTOMATION: READY
 4. Last Sale is not windowed at all (all-time).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R7).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S5-R7).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8645 (PV spec v4 2026-07-29 S5 Definitions (Window / Work-order date); S5-R7),,
@@ -655,7 +699,8 @@ Units Sold keeps an exact part-of-a-unit quantity and is never rounded off,PV �
 4. No value anywhere on the row has been quietly rounded to a whole number.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R1, S5-R5).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S5-R1, S5-R5).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8589 (PV spec S5-R1 Units Sold net stock movement + S5-R5 two-decimal movement format; tech-plan-2026-07-29 Phase 0 / PR-1 D2; SV-8589 verbatim Tests: 'fractional-quantity round-trip regression'),,
@@ -664,7 +709,8 @@ The overflow button opens Download (PDF) then Download (CSV) in that order,PV �
 2. The menu holds exactly two items, in this order: Download (PDF), then Download (CSV).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S6-R1).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S6-R1).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ","SV-8646 (PV spec v4 2026-07-29 S6-R1 — S6-R1 CLOSES it in the spec's own words (""an export menu with two items ... Download (PDF) and Download (CSV)""); so the closed list IS the requirement)",,
@@ -675,7 +721,8 @@ Both exports reflect the filters and search active at the time of export,PV — 
 3. Each file (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S6-R2, S6-R11); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S6-R2, S6-R11); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ","SV-8646 (PV spec v4 2026-07-29 S6-R2; S6-R11; §3 Key Decisions — both exports reflect the filters and search active at export time; S6-R11 = the ""Locations:"" line in both exports [Chris Ward 2026-07-29; newest-wins])",,
@@ -686,7 +733,8 @@ AUTOMATION: READY
 3. The export mirrors the visible grid.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S6-R3, S4-R4).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S6-R3, S4-R4).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8646 (PV spec v4 2026-07-29 S6-R3; S4-R4),,
@@ -698,7 +746,8 @@ AUTOMATION: READY
 3. The export renders the EXACT server order, including null placement (nulls first on ascending, last on descending) - the export and the on-screen grid match; there is no on-screen-vs-export null-sorting difference.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S6-R4, S3-R3).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S6-R4, S3-R3).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8646 (PV spec v4 2026-07-29 S6-R4; S3-R3),,
@@ -712,7 +761,8 @@ AUTOMATION: READY
 Note for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers.
 
 ---
-This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Parts Velocity report specification version 5 (S6-R5, S6-R6) differs, his decision is the authority.
+This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true; where the Parts Velocity report specification version 5 (S6-R5, S6-R6) differs, his decision is the authority.
+Last checked against build v3.4.1-3d03023 on 8/4/2026, which does not yet match it - that change is with the developers.
 
 AUTOMATION: READY
 ",SV-8646 (PV spec v4 2026-07-29 S6-R5; S6-R6 + same-logo-treatment for every report per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)),,
@@ -723,7 +773,8 @@ CSV is named velocity-report.csv and holds full untruncated text values,PV — E
 3. Last Sale is a raw integer in the CSV (e.g. 42) - the 'N days' wording is PDF/on-screen only.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S6-R5, S6-R6, S6-R8).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S6-R5, S6-R6, S6-R8).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8646 (PV spec v4 2026-07-29 S6-R5; S6-R6; S6-R8),,
@@ -733,7 +784,8 @@ AUTOMATION: READY
 2. Revenue, Margin, and the count metrics are never null in the exports either ($0.00 / 0.00 / 0).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S6-R7, S6-R8, S3-R9).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S6-R7, S6-R8, S3-R9).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8646 (PV spec v4 2026-07-29 S6-R7; S6-R8; S3-R9),,
@@ -745,7 +797,8 @@ AUTOMATION: READY
 5. The CSV is plain data — the alignment assertions apply to the PDF only; how a spreadsheet displays the CSV is not part of this test.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S6-R10, S3-R8).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S6-R10, S3-R8).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8646 (PV spec v4 2026-07-29 S6-R10; S3-R8),,
@@ -757,7 +810,8 @@ Export toasts: exact success texts; server or fallback error text on failure,PV 
 3. Otherwise the failure toast reads exactly: ""Failed to export velocity report (csv)"" or ""Failed to export velocity report (pdf)"" — lowercase (csv)/(pdf); the success/failure casing mix is the specified wording (not a bug).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S6-R9, S6-N1).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S6-R9, S6-N1).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8646 (PV spec v4 2026-07-29 S6-R9; S6-N1; §7 (casing note) — S6-R9/S6-N1 CLOSE the toast strings verbatim including the shipped UPPERCASE-success / lowercase-failure casing mix; so the exact strings ARE the requirement),,
@@ -771,7 +825,8 @@ An over-cap Parts Velocity export is refused with the too-large message,PV — E
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (Story 6 exports).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (Story 6 exports).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8818)
 ",SV-8646 (PV spec v4 2026-07-29 Story 6 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10; 000-row export cap; locked by Chris 2026-07-21),,
@@ -786,7 +841,8 @@ A large PDF download fails outright while the CSV of the same view works,PV — 
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (Story 6 exports).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (Story 6 exports).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8818)
 ",SV-8646 (PV spec v4 2026-07-29 Story 6 exports — the spec is silent on a renderer size limit; tech-plan-2026-07-29 A3/FR-F4 covers only the ten-thousand-row export cap),,
@@ -796,7 +852,8 @@ The report uses the standard two-tone layout,PV — Visual Conformance,Functiona
 3. The layout matches the application's other reports.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S7-R1).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S7-R1).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8647 (PV spec v4 2026-07-29 S7-R1; §2),,
@@ -810,7 +867,8 @@ Toolbar and table detail styling matches the suite paddings and borders,PV — V
 5. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether the spacing and the dividing line look right and consistent with the other reports, and only report it if something looks obviously off. (The exact figures behind this - 32px/24px toolbar padding, a 1px header border, 2rem edge padding - are design-token values the design and engineering team check with their own tooling, not by hand.)
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S7-R2, S7-R3, S7-R4, S7-R5).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S7-R2, S7-R3, S7-R4, S7-R5).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8647 (PV spec v4 2026-07-29 S7-R2; S7-R3; S7-R4; S7-R5),,
@@ -821,7 +879,8 @@ Dark mode is supported and the grey info icon keeps 3:1 contrast in both,PV — 
 3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can see the icon easily in both modes. Only report it if the icon is hard to see. (The design rule behind this is a minimum 3:1 contrast ratio, which the design and engineering team check with a contrast tool - not by hand.)
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S7-R6).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S7-R6).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8647 (PV spec v4 2026-07-29 S7-R6 — dark-mode support + the grey info icon's colour token at ≥ 3:1 against the cell background in both modes; the ratio is a design-token property so the manual check is by-eye legibility),,
@@ -833,7 +892,8 @@ The report is server-paginated - the backend returns one page of rows at a time,
 3. This keeps the report responsive at scale (organizations can carry 50-60k parts, multiplied across locations).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R10).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S2-R10).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8642 (PV spec v4 2026-07-29 §2 (server-paginated); S2-R10),,
@@ -844,7 +904,8 @@ Each filter or search change re-queries the server and returns page one,PV — A
 3. Each change returns the FIRST page of the new result set.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R10).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S2-R10).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8642 (PV spec v4 2026-07-29 S2-R10),,
@@ -856,7 +917,8 @@ Header-click sorting re-queries the server; nulls first asc and last desc,PV —
 3. Ties keep a stable order (no explicit secondary key).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S3-R3).
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S3-R3).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8643 (PV spec v4 2026-07-29 S3-R3),,
@@ -869,7 +931,8 @@ The back end serves report data and export on ordinary reports access,PV — API
 4. Note for the tester: if the back end refuses either request for a user who has the ordinary reports access, mark this Failed and report it. If an extra Parts or Inventory reports permission exists in the system it must not change these results - the specification allows no per-report permission at all. A per-report permission added on purpose in a later release is a planned change, not a bug, and this test will be updated first.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S1-R4, S1-N2); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 5 (S1-R4, S1-N2).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ","SV-8641 (PV spec S1-R4; S1-N2 - RESCOPED 2026-08-03; same driver as C30327: Chris Ward Q2=A ""single Reports permission"" + ""they can exist and not do anything""; QA lead ""ONE permission FOR NOW"")",,
@@ -886,7 +949,8 @@ QuickBooks amount for a part-of-a-unit sale is exact and never inflated,PV — A
 4. No second or correcting journal entry is created to patch up a wrong amount.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and this point is not covered by any of the six report specifications — it comes from the engineering technical plan.
+This is the expected behaviour as per epic SV-8582 and the engineering technical plan; this point is not covered by any of the six report specifications.
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8589 (verbatim Tests: 'QB journal amount exact from fractional movement'; Goal: 'QB journal-entry sync multiplies these into dollar amounts'; tech-plan-2026-07-29 Phase 0 / PR-1 D2 - no report spec covers QuickBooks),,

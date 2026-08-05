@@ -10,8 +10,23 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Inventory Value report is open with rows loaded."
   ],
-  "steps": "1. Hover the column-selection icon button in the toolbar and read its tooltip.\n2. Open the control and toggle a column off, then on again, watching the table.\n3. Look for a way to turn the Total Cost column off.",
-  "expected": "1. The icon button's tooltip reads \"Column Selection\".\n2. Toggling a column off hides it from the table; toggling it on shows it again.\n3. The Total Cost column is always shown and cannot be turned off.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S8-R1, S8-R2).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Hover the column-selection icon button in the toolbar and read its tooltip.",
+   "2. Open the control and toggle a column off, then on again, watching the table.",
+   "3. Look for a way to turn the Total Cost column off."
+  ],
+  "expected": [
+   "1. The icon button's tooltip reads \"Column Selection\".",
+   "2. Toggling a column off hides it from the table; toggling it on shows it again.",
+   "3. The Total Cost column is always shown and cannot be turned off.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S8-R1, S8-R2).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R1; S8-R2)",
   "viu_status": "VIU-Pending",
@@ -30,8 +45,21 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Inventory Value report is open with rows loaded."
   ],
-  "steps": "1. Turn several columns on and off in different orders (for example, turn on Total Sell, then Margin).\n2. Read the resulting column order after each change.",
-  "expected": "1. Whatever columns are shown, they appear in the fixed left-to-right order - with Location, when it is turned on in the column-selection control, between Vendor and Qty (Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) - toggling visibility never reorders columns.\n2. Total Cost is always the last column.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S8-R4, S3-R1, S7-R6). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Turn several columns on and off in different orders (for example, turn on Total Sell, then Margin).",
+   "2. Read the resulting column order after each change."
+  ],
+  "expected": [
+   "1. Whatever columns are shown, they appear in the fixed left-to-right order - with Location, when it is turned on in the column-selection control, between Vendor and Qty (Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) - toggling visibility never reorders columns.",
+   "2. Total Cost is always the last column.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S8-R4, S3-R1, S7-R6). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8675; SV-8674 (IV spec v3 2026-07-29 Story 8 S8-R4; Story 3 S3-R1 + Story 7 S7-R6 — toggling never reorders; plus the automatic Location column between Vendor and Qty on Hand)",
   "viu_status": "VIU-Pending",
@@ -50,8 +78,23 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Inventory Value report is open."
   ],
-  "steps": "1. Change the date range, select a category and a vendor, type a part search, change the location selection, change the column selection, and sort by a non-default column.\n2. Navigate away to another screen, then return to the report.\n3. Reload the browser page and check again.\n4. If practical, open the report in a different browser (or private window) and read its settings.",
-  "expected": "1. On return and after a reload, the report restores the saved date range, category selection, vendor selection, part search text, location selection, column selection, and sort.\n2. In a different browser the report shows the defaults instead — persistence is per browser, not tied to the user's account.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S8-R5, S9-R5).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Change the date range, select a category and a vendor, type a part search, change the location selection, change the column selection, and sort by a non-default column.",
+   "2. Navigate away to another screen, then return to the report.",
+   "3. Reload the browser page and check again.",
+   "4. If practical, open the report in a different browser (or private window) and read its settings."
+  ],
+  "expected": [
+   "1. On return and after a reload, the report restores the saved date range, category selection, vendor selection, part search text, location selection, column selection, and sort.",
+   "2. In a different browser the report shows the defaults instead — persistence is per browser, not tied to the user's account.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S8-R5, S9-R5).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R5 (+ context note); Story 9 S9-R5)",
   "viu_status": "VIU-Pending",
@@ -70,8 +113,21 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The report has saved settings in this browser, including a category or vendor selection that can be made stale (for example, the last in-stock part of a saved category is consumed so the category disappears from the data)."
   ],
-  "steps": "1. Make the saved category or vendor no longer present in the data.\n2. Open the Inventory Value report.",
-  "expected": "1. The report loads normally — the saved category or vendor that is no longer present in the data is dropped from the selection instead of breaking the view (the defensive-restore rule applied to the path these steps drive).\n2. All other saved settings are still restored.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S8-R6).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Make the saved category or vendor no longer present in the data.",
+   "2. Open the Inventory Value report."
+  ],
+  "expected": [
+   "1. The report loads normally — the saved category or vendor that is no longer present in the data is dropped from the selection instead of breaking the view (the defensive-restore rule applied to the path these steps drive).",
+   "2. All other saved settings are still restored.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S8-R6).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R6)",
   "viu_status": "VIU-Pending",
@@ -90,8 +146,21 @@
    "1. You are signed in to the ShopView App on a desktop browser that has no saved sort for this report (fresh visit).",
    "2. In-stock parts with a spread of Total Cost values exist, spanning more than one page."
   ],
-  "steps": "1. Open the Inventory Value report without clicking any header.\n2. Read the Total Cost values from the top row down, across page 1 and page 2.",
-  "expected": "1. The rows are sorted by Total Cost, highest first (descending).\n2. The order holds across pages (page 2 continues below page 1's lowest value) — the server applies the default order over the full set.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S9-R1).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Inventory Value report without clicking any header.",
+   "2. Read the Total Cost values from the top row down, across page 1 and page 2."
+  ],
+  "expected": [
+   "1. The rows are sorted by Total Cost, highest first (descending).",
+   "2. The order holds across pages (page 2 continues below page 1's lowest value) — the server applies the default order over the full set.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S9-R1).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R1; §3 Key Decisions (Total Cost default sort))",
   "viu_status": "VIU-Pending",
@@ -110,8 +179,24 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The result set spans more than one page."
   ],
-  "steps": "1. From page 2, click the Part # column header and note the order and the page shown.\n2. Click the same header again and note the order.\n3. Click it a third time.\n4. Click a different column header and check whether the previous sort still applies.",
-  "expected": "1. Clicking a column that is not the active sort sorts it ascending; clicking the active sort column again toggles it to descending; there is no third \"cleared\" state.\n2. Each header click re-fetches the data from the server ordered by the chosen column and direction, returning the FIRST page of the re-sorted result set.\n3. Only one column sorts at a time.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S9-R2).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. From page 2, click the Part # column header and note the order and the page shown.",
+   "2. Click the same header again and note the order.",
+   "3. Click it a third time.",
+   "4. Click a different column header and check whether the previous sort still applies."
+  ],
+  "expected": [
+   "1. Clicking a column that is not the active sort sorts it ascending; clicking the active sort column again toggles it to descending; there is no third \"cleared\" state.",
+   "2. Each header click re-fetches the data from the server ordered by the chosen column and direction, returning the FIRST page of the re-sorted result set.",
+   "3. Only one column sorts at a time.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S9-R2).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R2)",
   "viu_status": "VIU-Pending",
@@ -130,8 +215,22 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. In-stock parts exist with money values over and under $1,000 and with text values in mixed letter cases."
   ],
-  "steps": "1. Sort by Total Cost and check the order of values like $900.00 vs $1,100.00.\n2. Sort by Qty and check the numeric order.\n3. Sort by Description (or Vendor) and check how differently-cased values order.",
-  "expected": "1. Money and numeric columns sort by their underlying value (so $1,100.00 is treated as more than $900.00, not compared as text).\n2. Text columns (Part #, Description, Category, Vendor) sort as text, case-insensitively (\"apple\" and \"Apple\" sort together).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S9-R3).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Sort by Total Cost and check the order of values like $900.00 vs $1,100.00.",
+   "2. Sort by Qty and check the numeric order.",
+   "3. Sort by Description (or Vendor) and check how differently-cased values order."
+  ],
+  "expected": [
+   "1. Money and numeric columns sort by their underlying value (so $1,100.00 is treated as more than $900.00, not compared as text).",
+   "2. Text columns (Part #, Description, Category, Vendor) sort as text, case-insensitively (\"apple\" and \"Apple\" sort together).",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S9-R3).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R3)",
   "viu_status": "VIU-Pending",
@@ -177,8 +276,22 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Inventory Value report is open with rows loaded."
   ],
-  "steps": "1. Find and open the three-dot button in the toolbar.\n2. Read the menu options.\n3. Choose \"Download (PDF)\", then repeat with \"Download (CSV)\".",
-  "expected": "1. The menu holds an option labeled \"Download (PDF)\" and an option labeled \"Download (CSV)\".\n2. Each option downloads a file of the current view in the chosen format.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R1, S10-R2).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Find and open the three-dot button in the toolbar.",
+   "2. Read the menu options.",
+   "3. Choose \"Download (PDF)\", then repeat with \"Download (CSV)\"."
+  ],
+  "expected": [
+   "1. The menu holds an option labeled \"Download (PDF)\" and an option labeled \"Download (CSV)\".",
+   "2. Each option downloads a file of the current view in the chosen format.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R1, S10-R2).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R1; S10-R2)",
   "viu_status": "VIU-Pending",
@@ -197,8 +310,30 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The report is open with a non-default column selection, a Category or Vendor filter, a part search, and a non-default sort applied."
   ],
-  "steps": "1. Download the current view as a CSV and open it.\n2. Compare its columns and their order to the screen.\n3. Compare its rows to the current filters, search, and sort.\n4. Compare its totals row to the on-screen totals row.\n5. Repeat the checks in the PDF.",
-  "expected": "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last.\n2. Both downloads honor the current date, category, vendor, location, and part-search filters, and apply the current sort.\n3. Both downloads include a totals row labeled \"Totals\" matching the on-screen totals (the full-filtered-set totals).\n4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to.\n5. Note for the tester: the files carry the Location column whenever it is showing on screen (it sits between Vendor and Qty).\nOn this build the spreadsheet file ignores the columns you picked and puts them in a different order from the screen, so point 1 above will not match - record what you see and carry on.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823\nNote for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.\nThe Location column is not one of the columns offered in the column-selection control and you cannot switch it on or off: it follows the location scope by itself — shown when more than one location is in scope, hidden when a single location is in scope.\nNote for the tester: the product owner has been asked to confirm this one point and has not answered yet, so do not raise a bug either way — record what you see. The question is in Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx\n\n---\n\n---\nThis is the expected behaviour as per the Inventory Value report specification version 3 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15), and as per the build tested on 8/4/2026 (build v3.4.1-3d03023). The product owner's answer of 8/5/2026 in this file reads both ways on the one point about the Location column, so it has NOT been treated as overriding the specification and he has been asked again: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: HOLD - waiting on one answer from the product owner about the Location column\n",
+  "steps": [
+   "1. Download the current view as a CSV and open it.",
+   "2. Compare its columns and their order to the screen.",
+   "3. Compare its rows to the current filters, search, and sort.",
+   "4. Compare its totals row to the on-screen totals row.",
+   "5. Repeat the checks in the PDF."
+  ],
+  "expected": [
+   "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last.",
+   "2. Both downloads honor the current date, category, vendor, location, and part-search filters, and apply the current sort.",
+   "3. Both downloads include a totals row labeled \"Totals\" matching the on-screen totals (the full-filtered-set totals).",
+   "4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to.",
+   "5. Note for the tester: the files carry the Location column whenever it is showing on screen (it sits between Vendor and Qty).",
+   "On this build the spreadsheet file ignores the columns you picked and puts them in a different order from the screen, so point 1 above will not match - record what you see and carry on.",
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823",
+   "Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: version 4 added a summary saying it is toggleable, while the requirement that governs the column still says it is not one of the columns offered there. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the \"Locations:\" line and the automatic Location column)",
   "viu_status": "VIU-Pending",
@@ -217,8 +352,24 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The current view includes money values over $1,000 and, if producible, a part whose Margin % is undefined (\"—\")."
   ],
-  "steps": "1. Download the CSV and open it in a plain-text editor; read the money and Margin % values.\n2. Download the PDF and read the same values.",
-  "expected": "1. Money uses two decimals and Margin % one decimal in both files; an undefined Margin % shows \"—\".\n2. In the CSV, money values are written as plain numbers with two decimals and NO thousands separators (so they parse cleanly in a spreadsheet).\n3. The PDF uses the same on-screen currency formatting with the \"$\" and thousands separators.\nOn this build the money in the spreadsheet file comes out as \"$11,176.88\" - with a dollar sign and a comma - instead of the plain number described in point 2 above.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R7).\n\nAUTOMATION: READY - EXPECT FAIL (SV-8823)\n",
+  "steps": [
+   "1. Download the CSV and open it in a plain-text editor; read the money and Margin % values.",
+   "2. Download the PDF and read the same values."
+  ],
+  "expected": [
+   "1. Money uses two decimals and Margin % one decimal in both files; an undefined Margin % shows \"—\".",
+   "2. In the CSV, money values are written as plain numbers with two decimals and NO thousands separators (so they parse cleanly in a spreadsheet).",
+   "3. The PDF uses the same on-screen currency formatting with the \"$\" and thousands separators.",
+   "On this build the money in the spreadsheet file comes out as \"$11,176.88\" - with a dollar sign and a comma - instead of the plain number described in point 2 above.",
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R7).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY - EXPECT FAIL (SV-8823)",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R7 (+ context note))",
   "viu_status": "VIU-Pending",
@@ -238,8 +389,25 @@
    "2. The shop has a logo set in its settings.",
    "3. The report is open on a view whose displayed day is known (live today, or a recorded past day)."
   ],
-  "steps": "1. Download the PDF and read its header.\n2. Look at the top of the PDF for the shop logo.\n3. Download the CSV and inspect it for a logo.\n4. If reachable, repeat the PDF download on a period with no available snapshot and read the header's as-of line.",
-  "expected": "1. The PDF header shows the report name \"Inventory Value\", the organization name, the selected period, and an \"as of\" line naming the day the values represent (or a message that no snapshot is available for the period).\n2. The PDF shows the shop logo at the top when one is set.\n3. The CSV never includes a logo.\n4. Note for the tester: the two files phrase the as-of line differently - the PDF reads \"As of 2026-08-04\", and in the spreadsheet it is one of the short summary lines that sit above the column headings, reading \"As of: 2026-08-04\" (with a colon). Both are correct; do not raise the difference, and do not count the summary lines - more of them may be added.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Inventory Value report specification version 3 (S10-R8, S10-R9) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Download the PDF and read its header.",
+   "2. Look at the top of the PDF for the shop logo.",
+   "3. Download the CSV and inspect it for a logo.",
+   "4. If reachable, repeat the PDF download on a period with no available snapshot and read the header's as-of line."
+  ],
+  "expected": [
+   "1. The PDF header shows the report name \"Inventory Value\", the organization name, the selected period, and an \"as of\" line naming the day the values represent (or a message that no snapshot is available for the period).",
+   "2. The PDF shows the shop logo at the top when one is set.",
+   "3. The CSV never includes a logo.",
+   "4. Note for the tester: the two files phrase the as-of line differently - the PDF reads \"As of 2026-08-04\", and in the spreadsheet it is one of the short summary lines that sit above the column headings, reading \"As of: 2026-08-04\" (with a colon). Both are correct; do not raise the difference, and do not count the summary lines - more of them may be added.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Inventory Value report specification version 4 (S10-R8, S10-R9) says something different, his decision is the later word and is the authority.",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R8; S10-R9)",
   "viu_status": "VIU-Pending",
@@ -258,8 +426,21 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Inventory Value report is open with rows loaded."
   ],
-  "steps": "1. Download the current view as a PDF and read the saved file's name.\n2. Download the current view as a CSV and read the saved file's name.",
-  "expected": "1. The PDF is named \"inventory-value-report.pdf\".\n2. The CSV is named \"inventory-value-report.csv\".\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R10).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Download the current view as a PDF and read the saved file's name.",
+   "2. Download the current view as a CSV and read the saved file's name."
+  ],
+  "expected": [
+   "1. The PDF is named \"inventory-value-report.pdf\".",
+   "2. The CSV is named \"inventory-value-report.csv\".",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R10).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R10 — S10-R10 CLOSES both file names verbatim; so the exact strings ARE the requirement)",
   "viu_status": "VIU-Pending",
@@ -278,8 +459,23 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The current filtered set spans more than one page (but stays under the export row cap)."
   ],
-  "steps": "1. From page 1, without visiting the later pages, download the CSV.\n2. Count the file's data rows and look for parts you know sit on the later pages.\n3. Compare the file's totals row to the on-screen totals.",
-  "expected": "1. The export contains the FULL filtered set — every qualifying row across all pages, not only the rows loaded in the browser.\n2. Parts from the later pages are present.\n3. The export is generated server-side against the current filters, part search, and sort — it is not built from the rows currently in the browser.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R11).\n\nAUTOMATION: HOLD - this part of the report is not built yet\n",
+  "steps": [
+   "1. From page 1, without visiting the later pages, download the CSV.",
+   "2. Count the file's data rows and look for parts you know sit on the later pages.",
+   "3. Compare the file's totals row to the on-screen totals."
+  ],
+  "expected": [
+   "1. The export contains the FULL filtered set — every qualifying row across all pages, not only the rows loaded in the browser.",
+   "2. Parts from the later pages are present.",
+   "3. The export is generated server-side against the current filters, part search, and sort — it is not built from the rows currently in the browser.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R11).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: HOLD - this part of the report is not built yet",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R11)",
   "viu_status": "VIU-Pending",
@@ -298,8 +494,25 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. A filter/location combination exists whose filtered set EXCEEDS the export row cap (seed ZZAUTOTEST parts in bulk if needed, or use the largest available data set)."
   ],
-  "steps": "1. Set the filters so the filtered set exceeds the export row cap.\n2. Request \"Download (PDF)\" and read what happens.\n3. Request \"Download (CSV)\" and read what happens.",
-  "expected": "1. Neither the PDF nor the CSV is produced.\n2. The user sees the message: \"This report is too large to export. Narrow the date range or filters, then try again.\" (a blocking notification; no file).\n3. After narrowing the filters below the cap, the download works again.\n4. Note for the tester: on this environment the biggest view you can build is about 9,275 rows, which is under the cap, so you cannot make this message appear here. If the PDF fails with a plain error instead, that is the separate timeout problem - see the Inventory Value export-notification case.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R12).\n\nAUTOMATION: READY - EXPECT FAIL (SV-8818)\n",
+  "steps": [
+   "1. Set the filters so the filtered set exceeds the export row cap.",
+   "2. Request \"Download (PDF)\" and read what happens.",
+   "3. Request \"Download (CSV)\" and read what happens."
+  ],
+  "expected": [
+   "1. Neither the PDF nor the CSV is produced.",
+   "2. The user sees the message: \"This report is too large to export. Narrow the date range or filters, then try again.\" (a blocking notification; no file).",
+   "3. After narrowing the filters below the cap, the download works again.",
+   "4. Note for the tester: on this environment the biggest view you can build is about 9,275 rows, which is under the cap, so you cannot make this message appear here. If the PDF fails with a plain error instead, that is the separate timeout problem - see the Inventory Value export-notification case.",
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R12).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY - EXPECT FAIL (SV-8818)",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R12; §7 User Feedback Summary)",
   "viu_status": "VIU-Pending",
@@ -344,8 +557,25 @@
    "2. The Inventory Value report is open with rows loaded (under the export cap).",
    "3. A download failure can be simulated (for example, disconnect the network just before requesting the download)."
   ],
-  "steps": "1. Download the PDF and the CSV normally and read each notification.\n2. Simulate a failure and request the PDF download; read the notification.\n3. Repeat the failure for the CSV download.",
-  "expected": "1. Success notifications read verbatim: \"Inventory Value report exported (PDF)\" and \"Inventory Value report exported (CSV)\".\n2. Failure notifications read verbatim: \"Failed to export inventory value report (pdf)\" and \"Failed to export inventory value report (csv)\".\n3. The lower-case \"(pdf)\"/\"(csv)\" on failure vs the upper-case success ones is the documented spec wording — expected, not a bug.\n4. Note for the tester: on this build a PDF download of a large view fails with a plain error - \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\" - after roughly half a minute. It is a timeout, not the too-large-to-export message. Narrow the view with the part search or a single location and the PDF works. The CSV of the same view always works and is quick. Record the failure; it is a known problem, not a mistake you made.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R13, S10-R14).\n\nAUTOMATION: READY - EXPECT FAIL (SV-8818)\n",
+  "steps": [
+   "1. Download the PDF and the CSV normally and read each notification.",
+   "2. Simulate a failure and request the PDF download; read the notification.",
+   "3. Repeat the failure for the CSV download."
+  ],
+  "expected": [
+   "1. Success notifications read verbatim: \"Inventory Value report exported (PDF)\" and \"Inventory Value report exported (CSV)\".",
+   "2. Failure notifications read verbatim: \"Failed to export inventory value report (pdf)\" and \"Failed to export inventory value report (csv)\".",
+   "3. The lower-case \"(pdf)\"/\"(csv)\" on failure vs the upper-case success ones is the documented spec wording — expected, not a bug.",
+   "4. Note for the tester: on this build a PDF download of a large view fails with a plain error - \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\" - after roughly half a minute. It is a timeout, not the too-large-to-export message. Narrow the view with the part search or a single location and the PDF works. The CSV of the same view always works and is quick. Record the failure; it is a known problem, not a mistake you made.",
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R13, S10-R14).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY - EXPECT FAIL (SV-8818)",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R13; S10-R14; §7 User Feedback Summary)",
   "viu_status": "VIU-Pending",
@@ -364,8 +594,28 @@
    "1. You are signed in with ordinary reports access, on a desktop browser.",
    "2. The Inventory Value report is open and the whole list runs to several thousand rows."
   ],
-  "steps": "1. Use the part search to narrow the list to a few hundred rows. Open the three-dot menu and choose the PDF download. Note how long it takes.\n2. Clear the search so the whole list is shown again. Choose the PDF download and wait up to a minute.\n3. With the whole list still shown, choose the CSV download and note how long that takes.\n4. Narrow the list again with the part search, or pick a single location, and ask for the PDF once more.",
-  "expected": "1. The narrowed PDF downloads successfully.\n2. On the whole list the PDF either downloads successfully too, or is refused politely with the message \"This report is too large to export. Narrow the date range or filters, then try again.\" Either of those is a pass.\n3. The CSV of that same whole list downloads successfully and quickly.\n4. Once the view is narrowed the PDF works again.\n5. KNOWN PROBLEM at the time of writing: on the whole list the PDF did not download at all. After roughly half a minute a plain error appeared reading \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\" If you still see that, mark this test Failed, note roughly how many rows were in the view, and refer to the reported problem — do not change the test.\n6. Note for the tester: the polite refusal message in item 2 is the correct behaviour. The plain error in item 5 is the problem being tracked. Tell the two apart by the wording.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R11, S10-R12, S10-R14).\n\nAUTOMATION: READY - EXPECT FAIL (SV-8818)\n",
+  "steps": [
+   "1. Use the part search to narrow the list to a few hundred rows. Open the three-dot menu and choose the PDF download. Note how long it takes.",
+   "2. Clear the search so the whole list is shown again. Choose the PDF download and wait up to a minute.",
+   "3. With the whole list still shown, choose the CSV download and note how long that takes.",
+   "4. Narrow the list again with the part search, or pick a single location, and ask for the PDF once more."
+  ],
+  "expected": [
+   "1. The narrowed PDF downloads successfully.",
+   "2. On the whole list the PDF either downloads successfully too, or is refused politely with the message \"This report is too large to export. Narrow the date range or filters, then try again.\" Either of those is a pass.",
+   "3. The CSV of that same whole list downloads successfully and quickly.",
+   "4. Once the view is narrowed the PDF works again.",
+   "5. KNOWN PROBLEM at the time of writing: on the whole list the PDF did not download at all. After roughly half a minute a plain error appeared reading \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\" If you still see that, mark this test Failed, note roughly how many rows were in the view, and refer to the reported problem — do not change the test.",
+   "6. Note for the tester: the polite refusal message in item 2 is the correct behaviour. The plain error in item 5 is the problem being tracked. Tell the two apart by the wording.",
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R11, S10-R12, S10-R14).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY - EXPECT FAIL (SV-8818)",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 S10-R11; S10-R12; S10-R14 — the observed failure path is a roughly 30-second server-side timeout and not the S10-R12 row cap; observed on build v3.4.1-0ed4433)",
   "viu_status": "VIU-Pending",

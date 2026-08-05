@@ -10,10 +10,24 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Work In Progress report is open with rows loaded.",
    "3. Every toggleable column is turned on in the column-selection control.",
-   "4. More than one location is selected, so the Location column is showing. If it is switched off, turn it back on in the column-selection control."
+   "4. More than one location is selected, so the Location column is showing."
   ],
-  "steps": "1. Read the column headers from left to right.\n2. Look at how the values in each column are aligned.",
-  "expected": "1. The columns appear in this order: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total.\n2. WO #, Status, Customer, Asset, VIN, Location, and Advisor are left-aligned.\n3. Every other column (Days Open, Last Activity, and all money/number columns through Total) is right-aligned.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R1, S4-R3, S4-R4). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: HOLD - waiting on one answer from the product owner about the Location column\n",
+  "steps": [
+   "1. Read the column headers from left to right.",
+   "2. Look at how the values in each column are aligned."
+  ],
+  "expected": [
+   "1. The columns appear in this order: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total.",
+   "2. WO #, Status, Customer, Asset, VIN, Location, and Advisor are left-aligned.",
+   "3. Every other column (Days Open, Last Activity, and all money/number columns through Total) is right-aligned.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R1, S4-R3, S4-R4), and it holds whichever way the one unsettled point about the Location column is decided. Chris Ward confirmed the column order on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R1; S4-R3; S4-R4 — the Location column is no longer in the column selector; it shows automatically when more than one location is in scope)",
   "viu_status": "VIU-Pending",
@@ -31,8 +45,23 @@
   "preconditions": [
    "1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (use a fresh browser profile or clear the site's saved data)."
   ],
-  "steps": "1. Open the Work In Progress report.\n2. Read the visible column headers.\n3. Open the column-selection control and read which columns are offered and which are on.",
-  "expected": "1. The visible columns on first visit are: WO #, Status, Customer, Asset, Advisor, Days Open, Earned, Remaining, and Total.\n2. Every other column (VIN, Location, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Inv. Hrs) is available in the column-selection control and off by default. When it is on, the Location column sits between VIN and Advisor and names each job's location.\n3. Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.\nThe Location column is not offered in the column-selection control and you do not switch it on or off: it appears by itself whenever more than one location is in scope, and is hidden whenever a single location is in scope.\nNote for the tester: the product owner has been asked to confirm this one point and has not answered yet, so do not raise a bug either way — record what you see. The question is in Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx\n\n---\n\n---\nThis is the expected behaviour as per the Work In Progress report specification version 6 (S4-R2, S4-R3, S8-R3, S8-R4), and as per the build tested on 8/4/2026 (build v3.4.1-3d03023). The product owner's answer of 8/5/2026 in this file reads both ways on the one point about the Location column, so it has NOT been treated as overriding the specification and he has been asked again: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: HOLD - waiting on one answer from the product owner about the Location column\n",
+  "steps": [
+   "1. Open the Work In Progress report.",
+   "2. Read the visible column headers.",
+   "3. Open the column-selection control and read which columns are offered and which are on."
+  ],
+  "expected": [
+   "1. The visible columns on first visit are: WO #, Status, Customer, Asset, Advisor, Days Open, Earned, Remaining, and Total.",
+   "2. Every other column (VIN, Location, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Inv. Hrs) is available in the column-selection control and off by default. When it is on, the Location column sits between VIN and Advisor and names each job's location.",
+   "3. Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. For this report the two statements sit in the same written description as it stands today. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R2, S4-R3, S8-R3, S8-R4). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: version 7 changed one requirement to say it is offered there and can be toggled, while another requirement in the same version still says the user does not toggle it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660; SV-8664 (WIP spec v6 2026-07-29 Story 4 S4-R2; S4-R3 + Story 8 S8-R3; S8-R4 — S4-R3 verbatim: \"The Location column is not offered in the column selector; its visibility is automatic\")",
   "viu_status": "VIU-Pending",
@@ -51,8 +80,23 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Work In Progress report is open with rows loaded."
   ],
-  "steps": "1. Click a row's WO # link.\n2. Confirm where the work order opens.\n3. Use the browser's back navigation.",
-  "expected": "1. The WO # is shown as a link.\n2. Clicking it opens that work order in the SAME browser tab (not a new tab).\n3. The browser's back navigation returns you to the report.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R5).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Click a row's WO # link.",
+   "2. Confirm where the work order opens.",
+   "3. Use the browser's back navigation."
+  ],
+  "expected": [
+   "1. The WO # is shown as a link.",
+   "2. Clicking it opens that work order in the SAME browser tab (not a new tab).",
+   "3. The browser's back navigation returns you to the report.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R5).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R5 (+ context note))",
   "viu_status": "VIU-Pending",
@@ -71,8 +115,22 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The report shows work orders in several statuses (Estimate, Approved, In progress, Review, Complete)."
   ],
-  "steps": "1. Read the Status column across rows in each tab.\n2. Compare each badge's color against the application's standard status colors used elsewhere.",
-  "expected": "1. Status is shown as a badge using the status's label: \"Estimate\", \"Approved\", \"In progress\", \"Review\", or \"Complete\".\n2. The badge is color-coded per the application's standard status colors.\n3. The label text is always present, so color is never the sole signal of the status.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R6, S10-R8).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Read the Status column across rows in each tab.",
+   "2. Compare each badge's color against the application's standard status colors used elsewhere."
+  ],
+  "expected": [
+   "1. Status is shown as a badge using the status's label: \"Estimate\", \"Approved\", \"In progress\", \"Review\", or \"Complete\".",
+   "2. The badge is color-coded per the application's standard status colors.",
+   "3. The label text is always present, so color is never the sole signal of the status.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R6, S10-R8).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R6 + Story 10 S10-R8 — S4-R6 CLOSES the five status labels verbatim (\"Estimate\" ... \"Complete\") and the label-not-colour rule; so the closed list IS the requirement)",
   "viu_status": "VIU-Pending",
@@ -91,8 +149,25 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The report shows work orders including: one whose asset has a VIN recorded, one with no VIN but a Unit # recorded, and one with no VIN or Unit # but a plate recorded."
   ],
-  "steps": "1. Read the Asset cell of the row whose asset has a VIN.\n2. Read the Asset cell of the row with no VIN, then the one with no VIN or Unit #.\n3. Open the column-selection control, turn on the VIN column, and read it.",
-  "expected": "1. The Asset cell is a two-line cell: the Unit # on the first line in bold, with the VIN underneath in a smaller, muted style.\n2. When the work order has no Unit #, the first line reads \"(no unit #)\"; when it has no VIN, the second line reads \"— no VIN —\". Nothing else stands in for a missing value - there is no further fallback.\n3. The specification requires this two-line layout for this report, with the unit number leading, and the product owner confirmed it - do not raise it.\n4. The VIN column (off by default) shows the VIN on its own line as a separate, sortable column.\n5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R7, S4-R8, S4-R10) - the build and that specification agree. Chris Ward confirmed it again on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the specification.\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Read the Asset cell of the row whose asset has a VIN.",
+   "2. Read the Asset cell of the row with no VIN, then the one with no VIN or Unit #.",
+   "3. Open the column-selection control, turn on the VIN column, and read it."
+  ],
+  "expected": [
+   "1. The Asset cell is a two-line cell: the Unit # on the first line in bold, with the VIN underneath in a smaller, muted style.",
+   "2. When the work order has no Unit #, the first line reads \"(no unit #)\"; when it has no VIN, the second line reads \"— no VIN —\". Nothing else stands in for a missing value - there is no further fallback.",
+   "3. The specification requires this two-line layout for this report, with the unit number leading, and the product owner confirmed it - do not raise it.",
+   "4. The VIN column (off by default) shows the VIN on its own line as a separate, sortable column.",
+   "5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R7, S4-R8, S4-R10). Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660 (WIP spec Story 4 S4-R7; S4-R8; S4-R10 - identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate); by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's unit-number rule)",
   "viu_status": "VIU-Pending",
@@ -111,8 +186,21 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The report shows a work order with a customer that has a company name, and one with no customer name."
   ],
-  "steps": "1. Read the Customer cell of the row whose customer has a company name.\n2. Read the Customer cell of the row with no customer name.",
-  "expected": "1. The Customer column shows the customer's company name.\n2. The cell is blank when no customer name exists.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R11).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Read the Customer cell of the row whose customer has a company name.",
+   "2. Read the Customer cell of the row with no customer name."
+  ],
+  "expected": [
+   "1. The Customer column shows the customer's company name.",
+   "2. The cell is blank when no customer name exists.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R11).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R11)",
   "viu_status": "VIU-Pending",
@@ -131,8 +219,23 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The report shows a work order created today, one created exactly one day ago, and one created several days ago."
   ],
-  "steps": "1. Read the Days Open cell of the work order created today.\n2. Read the Days Open cell of the one-day-old work order.\n3. Read the Days Open cell of the older work order and compare against its creation date.",
-  "expected": "1. Days Open is the whole number of days since the work order was created — elapsed time divided by 24 hours, floored, never negative — rendered as \"X days\".\n2. A same-day work order shows \"0 days\" and a one-day-old work order shows \"1 days\".\n3. The value is NOT grammatically pluralized: \"1 days\" (not \"1 day\") is the correct, expected rendering.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R12).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Read the Days Open cell of the work order created today.",
+   "2. Read the Days Open cell of the one-day-old work order.",
+   "3. Read the Days Open cell of the older work order and compare against its creation date."
+  ],
+  "expected": [
+   "1. Days Open is the whole number of days since the work order was created — elapsed time divided by 24 hours, floored, never negative — rendered as \"X days\".",
+   "2. A same-day work order shows \"0 days\" and a one-day-old work order shows \"1 days\".",
+   "3. The value is NOT grammatically pluralized: \"1 days\" (not \"1 day\") is the correct, expected rendering.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R12).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R12; §2 Known Limitations (v1))",
   "viu_status": "VIU-Pending",
@@ -152,8 +255,23 @@
    "2. The Last Activity column is turned on in the column-selection control.",
    "3. The report shows a work order touched today, one last touched some days ago, and one with no recorded activity."
   ],
-  "steps": "1. Read the Last Activity cell of the work order touched today.\n2. Read the Last Activity cell of the work order last touched days ago.\n3. Read the Last Activity cell of the work order with no recorded activity.",
-  "expected": "1. A work order whose most recent activity was today shows \"Today\".\n2. Otherwise it shows \"Xd ago\" (for example \"3d ago\").\n3. A work order with no recorded activity shows \"—\".\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R13).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Read the Last Activity cell of the work order touched today.",
+   "2. Read the Last Activity cell of the work order last touched days ago.",
+   "3. Read the Last Activity cell of the work order with no recorded activity."
+  ],
+  "expected": [
+   "1. A work order whose most recent activity was today shows \"Today\".",
+   "2. Otherwise it shows \"Xd ago\" (for example \"3d ago\").",
+   "3. A work order with no recorded activity shows \"—\".",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R13).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R13)",
   "viu_status": "VIU-Pending",
@@ -173,8 +291,23 @@
    "2. All money columns (Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Total) are turned on.",
    "3. The report shows rows with values over $1,000, a genuine zero value, and (if producible) a negative value."
   ],
-  "steps": "1. Read a money value over one thousand dollars.\n2. Read a genuine zero money value.\n3. Read a negative money value if one exists.",
-  "expected": "1. Money values show a leading \"$\", two decimal places, and thousands separators — for example \"$1,234.56\".\n2. A negative value shows a leading minus before the \"$\" — for example \"-$1,234.56\".\n3. A genuine zero shows \"$0.00\".\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R14).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Read a money value over one thousand dollars.",
+   "2. Read a genuine zero money value.",
+   "3. Read a negative money value if one exists."
+  ],
+  "expected": [
+   "1. Money values show a leading \"$\", two decimal places, and thousands separators — for example \"$1,234.56\".",
+   "2. A negative value shows a leading minus before the \"$\" — for example \"-$1,234.56\".",
+   "3. A genuine zero shows \"$0.00\".",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R14).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R14)",
   "viu_status": "VIU-Pending",
@@ -195,8 +328,23 @@
    "3. A ZZAUTOTEST open work order exists with one approved labor line quoted at a known time and rate (for example 4.0 hours at $100/hour = $400 quoted), with exactly 1.0 hour clocked to it.",
    "4. A second ZZAUTOTEST open work order exists with an approved labor line where MORE time has been clocked than was quoted (for example 5.0 hours clocked against a 4.0-hour quote)."
   ],
-  "steps": "1. Open the Work In Progress report and find the first work order's row.\n2. Read its Labor Earned value and compare to the clocked share of the quoted labor value (1.0 of 4.0 hours = $100.00 in the example).\n3. Find the second (over-clocked) work order's row and read its Labor Earned.",
-  "expected": "1. Labor Earned equals the share of the approved line's quoted labor value covered by the time clocked to it (in the example, $100.00).\n2. For the over-clocked line, Labor Earned never exceeds the full quoted value of that line ($400.00 in the example) — the earned share is capped at the quote per line.\n3. With several approved labor lines, Labor Earned is the sum of each line's capped earned share.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R15).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Work In Progress report and find the first work order's row.",
+   "2. Read its Labor Earned value and compare to the clocked share of the quoted labor value (1.0 of 4.0 hours = $100.00 in the example).",
+   "3. Find the second (over-clocked) work order's row and read its Labor Earned."
+  ],
+  "expected": [
+   "1. Labor Earned equals the share of the approved line's quoted labor value covered by the time clocked to it (in the example, $100.00).",
+   "2. For the over-clocked line, Labor Earned never exceeds the full quoted value of that line ($400.00 in the example) — the earned share is capped at the quote per line.",
+   "3. With several approved labor lines, Labor Earned is the sum of each line's capped earned share.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R15).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R15; §4 Terminology (Earned))",
   "viu_status": "VIU-Pending",
@@ -216,8 +364,22 @@
    "2. The Labor Earned and Labor Remaining columns are turned on.",
    "3. A ZZAUTOTEST open work order exists with approved labor of a known total quoted value and a known amount of time clocked (for example $400 quoted, $100 earned)."
   ],
-  "steps": "1. Open the Work In Progress report and find the seeded work order's row.\n2. Read Labor Earned and Labor Remaining.\n3. Add the two together and compare to the total quoted value of the approved labor.",
-  "expected": "1. Labor Remaining equals the total quoted value of the approved labor minus Labor Earned (in the example, $400.00 − $100.00 = $300.00).\n2. Labor Earned + Labor Remaining always equals the total quoted value of the approved labor.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R16).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Work In Progress report and find the seeded work order's row.",
+   "2. Read Labor Earned and Labor Remaining.",
+   "3. Add the two together and compare to the total quoted value of the approved labor."
+  ],
+  "expected": [
+   "1. Labor Remaining equals the total quoted value of the approved labor minus Labor Earned (in the example, $400.00 − $100.00 = $300.00).",
+   "2. Labor Earned + Labor Remaining always equals the total quoted value of the approved labor.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R16).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R16)",
   "viu_status": "VIU-Pending",
@@ -237,8 +399,22 @@
    "2. The Parts Earned column is turned on.",
    "3. A ZZAUTOTEST open work order exists with an approved parts line of a known quantity and sell price, where part of the quantity has been received (for example 2 of 4 units at $50 sell each)."
   ],
-  "steps": "1. Open the Work In Progress report and find the seeded work order's row.\n2. Read its Parts Earned value.\n3. Compare it to the received quantity valued at the line's sell price (2 × $50 = $100.00 in the example).",
-  "expected": "1. Parts Earned equals the sell value of the approved-line parts already received (in the example, $100.00).\n2. Parts not yet received contribute nothing to Parts Earned.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R17).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Work In Progress report and find the seeded work order's row.",
+   "2. Read its Parts Earned value.",
+   "3. Compare it to the received quantity valued at the line's sell price (2 × $50 = $100.00 in the example)."
+  ],
+  "expected": [
+   "1. Parts Earned equals the sell value of the approved-line parts already received (in the example, $100.00).",
+   "2. Parts not yet received contribute nothing to Parts Earned.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R17).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R17)",
   "viu_status": "VIU-Pending",
@@ -259,8 +435,22 @@
    "3. A ZZAUTOTEST open work order exists with an approved parts line partly received (for example 2 of 4 units received, $50 sell each).",
    "4. A second ZZAUTOTEST open work order exists with an approved, not-yet-received parts line for a part that carries a core charge."
   ],
-  "steps": "1. Open the Work In Progress report and find the first work order's row; read Parts Remaining.\n2. Compare it to the outstanding quantity valued at the sell price (2 outstanding × $50 = $100.00 in the example).\n3. Find the core-charge work order's row and read its Parts Remaining.",
-  "expected": "1. Parts Remaining equals the sell value of approved-line parts ordered but not yet received (in the example, $100.00).\n2. For the core-charge part, Parts Remaining values the outstanding quantity at its sell price INCLUDING the core charge.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R18).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Work In Progress report and find the first work order's row; read Parts Remaining.",
+   "2. Compare it to the outstanding quantity valued at the sell price (2 outstanding × $50 = $100.00 in the example).",
+   "3. Find the core-charge work order's row and read its Parts Remaining."
+  ],
+  "expected": [
+   "1. Parts Remaining equals the sell value of approved-line parts ordered but not yet received (in the example, $100.00).",
+   "2. For the core-charge part, Parts Remaining values the outstanding quantity at its sell price INCLUDING the core charge.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R18).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R18)",
   "viu_status": "VIU-Pending",
@@ -280,8 +470,26 @@
    "2. All money columns are turned on.",
    "3. A ZZAUTOTEST open work order exists with known approved labor (partly clocked) and approved parts (partly received), plus tax and/or a fee or discount on the work order so its stored grand total differs from the approved labor+parts sum."
   ],
-  "steps": "1. Open the Work In Progress report and find the seeded work order's row.\n2. Check Earned against Labor Earned + Parts Earned.\n3. Check Remaining against Labor Remaining + Parts Remaining.\n4. Check Total against Earned + Remaining.\n5. Open the work order itself and compare the report's Total to the work order's stored grand total.",
-  "expected": "1. Earned equals Labor Earned plus Parts Earned.\n2. Remaining equals Labor Remaining plus Parts Remaining.\n3. Total equals Earned plus Remaining.\n4. The Total is NOT the work order's stored grand total — it excludes tax, fees, discounts, and non-approved lines, so a difference from the work order's own grand total is EXPECTED, not a data error.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R19, S4-R20, S4-R21).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Work In Progress report and find the seeded work order's row.",
+   "2. Check Earned against Labor Earned + Parts Earned.",
+   "3. Check Remaining against Labor Remaining + Parts Remaining.",
+   "4. Check Total against Earned + Remaining.",
+   "5. Open the work order itself and compare the report's Total to the work order's stored grand total."
+  ],
+  "expected": [
+   "1. Earned equals Labor Earned plus Parts Earned.",
+   "2. Remaining equals Labor Remaining plus Parts Remaining.",
+   "3. Total equals Earned plus Remaining.",
+   "4. The Total is NOT the work order's stored grand total — it excludes tax, fees, discounts, and non-approved lines, so a difference from the work order's own grand total is EXPECTED, not a data error.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R19, S4-R20, S4-R21).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R19; S4-R20; S4-R21; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
@@ -300,8 +508,22 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. A ZZAUTOTEST open work order exists with known approved lines and known report money values."
   ],
-  "steps": "1. Note the work order's Earned, Remaining, and Total in the report.\n2. Add a new labor line and a new parts line to the work order WITHOUT approving them (leave them not authorized).\n3. Reload the Work In Progress report and read the same row's money columns.",
-  "expected": "1. The work order's Labor/Parts Earned, Labor/Parts Remaining, Earned, Remaining, and Total are unchanged.\n2. Only approved lines (line status authorized or complete) contribute to the report's money — not-yet-approved lines contribute nothing.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R15).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Note the work order's Earned, Remaining, and Total in the report.",
+   "2. Add a new labor line and a new parts line to the work order WITHOUT approving them (leave them not authorized).",
+   "3. Reload the Work In Progress report and read the same row's money columns."
+  ],
+  "expected": [
+   "1. The work order's Labor/Parts Earned, Labor/Parts Remaining, Earned, Remaining, and Total are unchanged.",
+   "2. Only approved lines (line status authorized or complete) contribute to the report's money — not-yet-approved lines contribute nothing.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R15).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660 (WIP spec Story 4 S4-R15 verbatim 'summed across the work order's approved lines' + §2 Relationship to the work order; §4 Terminology Approved line)",
   "viu_status": "VIU-Pending",
@@ -321,8 +543,23 @@
    "2. The Inv. Hrs column is turned on.",
    "3. The report shows: a job under its labor estimate (fewer hours clocked than quoted), a job that has overrun its estimate (more hours clocked than quoted), and a job at exactly its quote."
   ],
-  "steps": "1. Read the Inv. Hrs value of the under-estimate job.\n2. Read the Inv. Hrs value of the overrun job.\n3. Read the Inv. Hrs value of the exactly-on-quote job.",
-  "expected": "1. Inv. Hrs shows the quoted labor hours minus the worked (clocked) labor hours across the approved lines, as a signed number with one decimal place — for example \"+2.0\" or \"-14.0\".\n2. On screen it is colored green when positive and red when negative; the overrun job shows a negative red value, the under-estimate job a positive green value.\n3. A value of exactly zero shows unsigned as \"0.0\" (never \"+0.0\" or blank) in the default text color.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R23, S4-R24, S4-E2).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Read the Inv. Hrs value of the under-estimate job.",
+   "2. Read the Inv. Hrs value of the overrun job.",
+   "3. Read the Inv. Hrs value of the exactly-on-quote job."
+  ],
+  "expected": [
+   "1. Inv. Hrs shows the quoted labor hours minus the worked (clocked) labor hours across the approved lines, as a signed number with one decimal place — for example \"+2.0\" or \"-14.0\".",
+   "2. On screen it is colored green when positive and red when negative; the overrun job shows a negative red value, the under-estimate job a positive green value.",
+   "3. A value of exactly zero shows unsigned as \"0.0\" (never \"+0.0\" or blank) in the default text color.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R23, S4-R24, S4-E2).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R23; S4-R24; S4-E2)",
   "viu_status": "VIU-Pending",
@@ -342,8 +579,21 @@
    "2. All money columns are turned on.",
    "3. A ZZAUTOTEST open estimate exists with no approved line items."
   ],
-  "steps": "1. Open the Work In Progress report and open the Estimates tab.\n2. Find the seeded estimate's row and read every money column.",
-  "expected": "1. Every money column — Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, and Total — shows \"$0.00\".\n2. The row still appears in the Estimates tab (it is not hidden for having no value).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-E1, S2-R4).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Work In Progress report and open the Estimates tab.",
+   "2. Find the seeded estimate's row and read every money column."
+  ],
+  "expected": [
+   "1. Every money column — Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, and Total — shows \"$0.00\".",
+   "2. The row still appears in the Estimates tab (it is not hidden for having no value).",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-E1, S2-R4).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-E1; Story 2 S2-R4)",
   "viu_status": "VIU-Pending",
@@ -362,8 +612,20 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. A tab shows several work orders created on different dates."
   ],
-  "steps": "1. Open the Work In Progress report without clicking any column header.\n2. Read the Days Open values from the top row down.",
-  "expected": "1. The rows are sorted by Days Open, longest-open first (descending).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R25).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Work In Progress report without clicking any column header.",
+   "2. Read the Days Open values from the top row down."
+  ],
+  "expected": [
+   "1. The rows are sorted by Days Open, longest-open first (descending).",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R25).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R25)",
   "viu_status": "VIU-Pending",
@@ -382,8 +644,25 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. A tab shows several work orders with differing values."
   ],
-  "steps": "1. Click the Customer column header and note the order.\n2. Click the Customer header again and note the order.\n3. Click the Customer header a third time and note the order.\n4. Click a different column header (for example Earned) and check whether the Customer sort still applies.",
-  "expected": "1. The first click sorts the column ascending.\n2. The second click toggles it to descending.\n3. The third click returns to ascending — there is no third \"cleared\" state.\n4. Only one column sorts at a time: clicking another header replaces the previous sort.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R26).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Click the Customer column header and note the order.",
+   "2. Click the Customer header again and note the order.",
+   "3. Click the Customer header a third time and note the order.",
+   "4. Click a different column header (for example Earned) and check whether the Customer sort still applies."
+  ],
+  "expected": [
+   "1. The first click sorts the column ascending.",
+   "2. The second click toggles it to descending.",
+   "3. The third click returns to ascending — there is no third \"cleared\" state.",
+   "4. Only one column sorts at a time: clicking another header replaces the previous sort.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R26).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R26)",
   "viu_status": "VIU-Pending",
@@ -402,8 +681,27 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. A tab shows several work orders with a spread of money values (including values over $1,000), differing statuses, and differing asset identifiers (VIN, or Unit # / plate where the VIN is missing)."
   ],
-  "steps": "1. Sort by a money column (for example Total) and check the order of values like $900.00 vs $1,100.00.\n2. Sort by Days Open and check the order of the day counts.\n3. Sort by Status and check the order against the displayed labels.\n4. Sort by Asset and check the order against the identifiers shown in the Asset cells.\n5. Sort by WO #, Customer, and Advisor and check they order as text.",
-  "expected": "1. Money and numeric columns sort by their underlying numeric value (so $1,100.00 is treated as more than $900.00, not compared as text).\n2. Days Open sorts by its day count.\n3. Status sorts by its displayed label.\n4. The Asset column sorts by the Unit #.\n5. WO #, Customer, Asset, VIN, Location, and Advisor sort as text.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R9, S4-R27) - the build and that specification agree. Chris Ward confirmed it again on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the specification.\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Sort by a money column (for example Total) and check the order of values like $900.00 vs $1,100.00.",
+   "2. Sort by Days Open and check the order of the day counts.",
+   "3. Sort by Status and check the order against the displayed labels.",
+   "4. Sort by Asset and check the order against the identifiers shown in the Asset cells.",
+   "5. Sort by WO #, Customer, and Advisor and check they order as text."
+  ],
+  "expected": [
+   "1. Money and numeric columns sort by their underlying numeric value (so $1,100.00 is treated as more than $900.00, not compared as text).",
+   "2. Days Open sorts by its day count.",
+   "3. Status sorts by its displayed label.",
+   "4. The Asset column sorts by the Unit #.",
+   "5. WO #, Customer, Asset, VIN, Location, and Advisor sort as text.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R9, S4-R27). Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660 (WIP spec Story 4 S4-R27; S4-R9 - Asset sort key RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's 'sorts by unit number' rule)",
   "viu_status": "VIU-Pending",
@@ -422,8 +720,23 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. At least two tabs have several rows each."
   ],
-  "steps": "1. In the active tab, sort by a column and note the new order.\n2. Check the position of the Totals row.\n3. Switch to another tab and check its row order.",
-  "expected": "1. Sorting reorders the rows within the active tab only.\n2. The Totals row stays pinned at the bottom, out of the sort.\n3. The other tab's order is not changed by the first tab's sort action.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R28).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. In the active tab, sort by a column and note the new order.",
+   "2. Check the position of the Totals row.",
+   "3. Switch to another tab and check its row order."
+  ],
+  "expected": [
+   "1. Sorting reorders the rows within the active tab only.",
+   "2. The Totals row stays pinned at the bottom, out of the sort.",
+   "3. The other tab's order is not changed by the first tab's sort action.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R28).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R28)",
   "viu_status": "VIU-Pending",
@@ -444,8 +757,23 @@
    "3. A ZZAUTOTEST open work order exists with one approved labor line quoted at a known time and rate (for example 2.0 hours at $100/hour = $200 quoted).",
    "4. A technician is CURRENTLY CLOCKED IN on that line and has not clocked out."
   ],
-  "steps": "1. Read the work order's Labor Earned value while the technician is still clocked in.\n2. Wait a while (let more time accrue on the running clock), refresh the report, and re-read Labor Earned.\n3. Leave the clock running well past the line's quoted time (or simulate it), refresh, and re-read.",
-  "expected": "1. The running (not-yet-clocked-out) time counts toward Labor Earned — the line's earned share reflects the time clocked up to now, not only closed clock records.\n2. After more time accrues, a refresh shows a larger earned share for that line.\n3. Labor Earned never exceeds the line's full quoted value, no matter how long the clock keeps running — the per-line cap still applies.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R15).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Read the work order's Labor Earned value while the technician is still clocked in.",
+   "2. Wait a while (let more time accrue on the running clock), refresh the report, and re-read Labor Earned.",
+   "3. Leave the clock running well past the line's quoted time (or simulate it), refresh, and re-read."
+  ],
+  "expected": [
+   "1. The running (not-yet-clocked-out) time counts toward Labor Earned — the line's earned share reflects the time clocked up to now, not only closed clock records.",
+   "2. After more time accrues, a refresh shows a larger earned share for that line.",
+   "3. Labor Earned never exceeds the line's full quoted value, no matter how long the clock keeps running — the per-line cap still applies.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 7 (S4-R15).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R15; §4 Terminology (Earned) — spec silent on running clocks; tech-plan-2026-07-29 B1.2 open-clock policy)",
   "viu_status": "VIU-Pending",

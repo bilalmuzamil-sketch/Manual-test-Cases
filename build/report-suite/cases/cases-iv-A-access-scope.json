@@ -10,8 +10,22 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. Your role has the ordinary reports access."
   ],
-  "steps": "1. Open the reports navigation.\n2. Look inside the Parts group of reports.\n3. Click the \"Inventory Value\" entry.",
-  "expected": "1. The reports navigation lists a report labeled \"Inventory Value\" under the Parts group.\n2. Clicking it opens the Inventory Value report.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S1-R1).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the reports navigation.",
+   "2. Look inside the Parts group of reports.",
+   "3. Click the \"Inventory Value\" entry."
+  ],
+  "expected": [
+   "1. The reports navigation lists a report labeled \"Inventory Value\" under the Parts group.",
+   "2. Clicking it opens the Inventory Value report.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S1-R1).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8668 (IV spec Story 1 S1-R1 — access = the one ordinary reports permission per Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\")",
   "viu_status": "VIU-Pending",
@@ -30,8 +44,22 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. Several ZZAUTOTEST parts with positive on-hand quantity exist at your active location."
   ],
-  "steps": "1. Open the Inventory Value report.\n2. Compare the rows shown to the in-stock parts at the selected location(s).\n3. Note the date range in the toolbar and which date the values represent.",
-  "expected": "1. The report shows one row for each in-stock part at the selected location(s).\n2. The values are valued as of the resolved date (the current stock for a range reaching today, or the closest recorded nightly snapshot for an earlier date — see the IV — As-of Date & Snapshots cases).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S1-R2, S1-R6).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Inventory Value report.",
+   "2. Compare the rows shown to the in-stock parts at the selected location(s).",
+   "3. Note the date range in the toolbar and which date the values represent."
+  ],
+  "expected": [
+   "1. The report shows one row for each in-stock part at the selected location(s).",
+   "2. The values are valued as of the resolved date (the current stock for a range reaching today, or the closest recorded nightly snapshot for an earlier date — see the IV — As-of Date & Snapshots cases).",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S1-R2, S1-R6).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8668 (IV spec v3 2026-07-29 Story 1 S1-R2; S1-R6)",
   "viu_status": "VIU-Pending",
@@ -49,8 +77,22 @@
   "preconditions": [
    "1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh browser profile or cleared site data)."
   ],
-  "steps": "1. Open the Inventory Value report.\n2. Read the date-range control's value.\n3. Read the Location filter's selection.",
-  "expected": "1. The date range defaults to the current calendar month.\n2. The location defaults to the user's currently active location.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S1-R3, S7-R2).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Inventory Value report.",
+   "2. Read the date-range control's value.",
+   "3. Read the Location filter's selection."
+  ],
+  "expected": [
+   "1. The date range defaults to the current calendar month.",
+   "2. The location defaults to the user's currently active location.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S1-R3, S7-R2).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8668 (IV spec v3 2026-07-29 Story 1 S1-R3; Story 7 S7-R2)",
   "viu_status": "VIU-Pending",
@@ -96,8 +138,24 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The selected location(s) hold more in-stock parts than fit on one page (seed ZZAUTOTEST parts if needed)."
   ],
-  "steps": "1. Open the Inventory Value report and scroll to the bottom of the rows, then keep scrolling so further rows load.\n2. Watch that new rows keep arriving as you scroll rather than all of them being present at once.\n3. After scrolling well down the list, change a server-side filter (for example select a Category), then look at where the list starts.\n4. Repeat with a part search and with a sort change.",
-  "expected": "1. The server returns one page of rows at a time rather than the whole list at once; further rows keep arriving as you scroll to the bottom.\n2. Changing any server-side filter (Date, Location, Category, Vendor), the part search, or the sort returns the FIRST page of the new result set - the list jumps back to the top.\n3. Note for the tester: on the build tested there were no numbered page controls on the screen - the rows loaded as you scrolled. That is a difference from the specification, which asks for the reports suite's standard page controls. Record what you see and carry on.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S1-R8).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Inventory Value report and scroll to the bottom of the rows, then keep scrolling so further rows load.",
+   "2. Watch that new rows keep arriving as you scroll rather than all of them being present at once.",
+   "3. After scrolling well down the list, change a server-side filter (for example select a Category), then look at where the list starts.",
+   "4. Repeat with a part search and with a sort change."
+  ],
+  "expected": [
+   "1. The server returns one page of rows at a time rather than the whole list at once; further rows keep arriving as you scroll to the bottom.",
+   "2. Changing any server-side filter (Date, Location, Category, Vendor), the part search, or the sort returns the FIRST page of the new result set - the list jumps back to the top.",
+   "3. Note for the tester: on the build tested there were no numbered page controls on the screen - the rows loaded as you scrolled. That is a difference from the specification, which asks for the reports suite's standard page controls. Record what you see and carry on.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S1-R8).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8668 (IV spec v3 2026-07-29 Story 1 S1-R8; §2 Scale and data model)",
   "viu_status": "VIU-Pending",
@@ -116,8 +174,22 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. Three causes can be produced: (a) a location you can access holds no in-stock parts, (b) a past range ends entirely before nightly recording began (or its covered dates were pruned by retention), (c) the filters can be set so nothing qualifies."
   ],
-  "steps": "1. Scope the report to the empty location and read the data area.\n2. Select a Custom range ending before nightly recording began and read the data area and the bottom of the report.\n3. Set the filters so nothing qualifies and re-read.",
-  "expected": "1. In every case the report shows the standard reports no-data message \"Empty bays, endless possibilities. Get Going!\" instead of rows.\n2. No totals row is shown in any of the cases.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S1-N2, S4-N1, S5-N1, S7-N2).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Scope the report to the empty location and read the data area.",
+   "2. Select a Custom range ending before nightly recording began and read the data area and the bottom of the report.",
+   "3. Set the filters so nothing qualifies and re-read."
+  ],
+  "expected": [
+   "1. In every case the report shows the standard reports no-data message \"Empty bays, endless possibilities. Get Going!\" instead of rows.",
+   "2. No totals row is shown in any of the cases.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S1-N2, S4-N1, S5-N1, S7-N2).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8668 (IV spec v3 2026-07-29 Story 1 S1-N2; Story 4 S4-N1; Story 5 S5-N1; Story 7 S7-N2; Story 12; §7 User Feedback Summary)",
   "viu_status": "VIU-Pending",
@@ -136,8 +208,25 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. ZZAUTOTEST parts exist at your active location: a normal part with positive on-hand quantity, a core-charge part with a positive quantity, a part with exactly zero on-hand quantity, and (if producible) one with a negative on-hand quantity."
   ],
-  "steps": "1. Open the Inventory Value report scoped to the location.\n2. Look for the normal in-stock part.\n3. Search for the core-charge part, the zero-quantity part, and the negative-quantity part by part number; check the totals row.",
-  "expected": "1. The normal, positive-quantity, non-core part appears as one row.\n2. The core-charge part is never listed — even with a positive quantity — and its value is not counted in the totals row.\n3. The zero-quantity and negative-quantity parts are not listed — only quantities greater than zero are valued.\n4. Only parts meeting BOTH conditions — not a core charge, and on-hand quantity greater than zero — are listed.\n5. A part that has sat without movement for a long time still appears and is still counted — there is no dead-stock exclusion; how long stock has sat makes no difference.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S2-R1, S2-R2, S2-N1, S2-N2).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Inventory Value report scoped to the location.",
+   "2. Look for the normal in-stock part.",
+   "3. Search for the core-charge part, the zero-quantity part, and the negative-quantity part by part number; check the totals row."
+  ],
+  "expected": [
+   "1. The normal, positive-quantity, non-core part appears as one row.",
+   "2. The core-charge part is never listed — even with a positive quantity — and its value is not counted in the totals row.",
+   "3. The zero-quantity and negative-quantity parts are not listed — only quantities greater than zero are valued.",
+   "4. Only parts meeting BOTH conditions — not a core charge, and on-hand quantity greater than zero — are listed.",
+   "5. A part that has sat without movement for a long time still appears and is still counted — there is no dead-stock exclusion; how long stock has sat makes no difference.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S2-R1, S2-R2, S2-N1, S2-N2).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8669 (IV spec v3 2026-07-29 Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions; Story 2 context note (no dead-stock exclusion))",
   "viu_status": "VIU-Pending",
@@ -156,8 +245,21 @@
    "1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.",
    "2. The same ZZAUTOTEST part is in stock (positive quantity) at two of those locations."
   ],
-  "steps": "1. Open the Inventory Value report and select both locations in the Location filter.\n2. Search for the part and count its rows.",
-  "expected": "1. The part appears twice — one row per location, each with that location's own quantity and values.\n2. The rows are NOT merged into one combined row; this is the documented v1 behavior.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S2-R3).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Inventory Value report and select both locations in the Location filter.",
+   "2. Search for the part and count its rows."
+  ],
+  "expected": [
+   "1. The part appears twice — one row per location, each with that location's own quantity and values.",
+   "2. The rows are NOT merged into one combined row; this is the documented v1 behavior.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S2-R3).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8669 (IV spec v3 2026-07-29 Story 2 S2-R3; §2 Known Limitations (v1))",
   "viu_status": "VIU-Pending",

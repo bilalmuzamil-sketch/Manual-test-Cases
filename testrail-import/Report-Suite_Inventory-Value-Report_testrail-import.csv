@@ -6,7 +6,8 @@ Inventory Value appears in the reports navigation under the Parts group,IV — A
 2. Clicking it opens the Inventory Value report.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S1-R1).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S1-R1).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ","SV-8668 (IV spec Story 1 S1-R1 — access = the one ordinary reports permission per Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW"")",,
@@ -17,7 +18,8 @@ One row per in-stock part at the selected locations valued at the resolved date,
 2. The values are valued as of the resolved date (the current stock for a range reaching today, or the closest recorded nightly snapshot for an earlier date — see the IV — As-of Date & Snapshots cases).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S1-R2, S1-R6).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S1-R2, S1-R6).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8668 (IV spec v3 2026-07-29 Story 1 S1-R2; S1-R6),,
@@ -27,7 +29,8 @@ First visit defaults to the current calendar month and the active location,IV �
 2. The location defaults to the user's currently active location.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S1-R3, S7-R2).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S1-R3, S7-R2).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8668 (IV spec v3 2026-07-29 Story 1 S1-R3; Story 7 S7-R2),,
@@ -40,7 +43,8 @@ The report is server-paginated: one page of rows at a time,IV — Access & Displ
 3. Note for the tester: on the build tested there were no numbered page controls on the screen - the rows loaded as you scrolled. That is a difference from the specification, which asks for the reports suite's standard page controls. Record what you see and carry on.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S1-R8).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S1-R8).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8668 (IV spec v3 2026-07-29 Story 1 S1-R8; §2 Scale and data model),,
@@ -51,7 +55,8 @@ AUTOMATION: READY
 2. No totals row is shown in any of the cases.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S1-N2, S4-N1, S5-N1, S7-N2).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S1-N2, S4-N1, S5-N1, S7-N2).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8668 (IV spec v3 2026-07-29 Story 1 S1-N2; Story 4 S4-N1; Story 5 S5-N1; Story 7 S7-N2; Story 12; §7 User Feedback Summary),,
@@ -65,7 +70,8 @@ A part appears only if not a core charge and on-hand quantity is above zero,IV �
 5. A part that has sat without movement for a long time still appears and is still counted — there is no dead-stock exclusion; how long stock has sat makes no difference.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S2-R1, S2-R2, S2-N1, S2-N2).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S2-R1, S2-R2, S2-N1, S2-N2).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8669 (IV spec v3 2026-07-29 Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions; Story 2 context note (no dead-stock exclusion)),,
@@ -75,7 +81,8 @@ A part stocked at two selected locations shows as two rows; never merged,IV — 
 2. The rows are NOT merged into one combined row; this is the documented v1 behavior.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S2-R3).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S2-R3).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8669 (IV spec v3 2026-07-29 Story 2 S2-R3; §2 Known Limitations (v1)),,
@@ -86,7 +93,8 @@ Unit Sell uses the part's fixed sell price when one is set,IV — Valuation & Co
 2. The pricing-matrix markup is NOT applied when a fixed sell price is set — the fixed price wins.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R5).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R5).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R5 (fixed-price branch); §3 Key Decisions (unit sell resolved like the parts list)),,
@@ -96,7 +104,8 @@ With no fixed sell price Unit Sell is the category's pricing-matrix markup,IV �
 3. Compare it to the pricing-matrix markup applied to the part's cost for its category.","1. Unit Sell equals the shop's pricing-matrix markup on cost for that part's category (the same way the parts list resolves it).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R5).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R5).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R5 (matrix branch); §5 Assumptions),,
@@ -110,7 +119,8 @@ AUTOMATION: READY
 3. Note for the tester: if no part without a category can be created or found, mark this test Blocked rather than Passed or Failed.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R5).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R5).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R5 (no-category fallback) + context note; §5 Assumptions),,
@@ -122,7 +132,8 @@ Total Sell is quantity × Unit Sell and Total Cost is quantity × Unit Cost,IV �
 2. Total Cost equals the part's on-hand quantity × Unit Cost, shown as US-dollar currency.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R6, S3-R7).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R6, S3-R7).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R6; S3-R7; §4 Terminology),,
@@ -134,7 +145,8 @@ Margin is Total Sell minus Total Cost for the whole on-hand quantity,IV — Valu
 2. Margin is the extended (total) margin, not the per-unit difference.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R8).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R8).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R8; §3 Key Decisions (extended margin); §4 Terminology),,
@@ -146,7 +158,8 @@ Margin % is Margin over Total Sell to one decimal; em-dash when Sell <= 0,IV —
 3. Margin % shows ""—"" when Total Sell is zero or negative (the percentage is undefined).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R9, S3-E3).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R9, S3-E3).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R9; S3-E3),,
@@ -156,16 +169,13 @@ With every column on they appear in the fixed order with the set alignment,IV �
 2. Look at how the values in each column are aligned.","1. With a single location in scope the columns appear in this order: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost.
 2. Part #, Description, Category, and Vendor are left-aligned.
 3. Every other column is right-aligned. When it is on, the Location column appears between Vendor and Qty, left-aligned.
-Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.
-The Location column is not one of the columns offered in the column-selection control and you cannot switch it on or off: it follows the location scope by itself — shown when more than one location is in scope, hidden when a single location is in scope.
-Note for the tester: the product owner has been asked to confirm this one point and has not answered yet, so do not raise a bug either way — record what you see. The question is in Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx
+Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
 
 ---
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R1, S3-R2, S7-R6). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: version 4 added a summary saying it is toggleable, while the requirement that governs the column still says it is not one of the columns offered there. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
----
-This is the expected behaviour as per the Inventory Value report specification version 3 (S3-R1, S3-R2, S7-R6), and as per the build tested on 8/4/2026 (build v3.4.1-3d03023). The product owner's answer of 8/5/2026 in this file reads both ways on the one point about the Location column, so it has NOT been treated as overriding the specification and he has been asked again: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
-
-AUTOMATION: HOLD - waiting on one answer from the product owner about the Location column
+AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked
 ",SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R1; S3-R2 + Story 7 S7-R6 — fixed column order and alignment; plus the automatic Location column between Vendor and Qty on Hand),,
 Value formats: Qty to two decimals; money as US-dollar currency,IV — Valuation & Columns,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows a part with a fractional quantity (for example 2.50), one with values over $1,000, and (if producible) one with a negative money value.","1. Read the Qty cell of the fractional-quantity part.
@@ -175,7 +185,8 @@ Value formats: Qty to two decimals; money as US-dollar currency,IV — Valuation
 3. Money values show a leading ""$"", two decimal places, and thousands separators (for example ""$1,234.56""); a negative value shows a leading minus before the ""$"" (""-$1,234.56""); a genuine zero shows ""$0.00"".
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R3, S3-R4, S3-R5, S3-R10).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R3, S3-R4, S3-R5, S3-R10).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R3; S3-R4; S3-R5 (display); S3-R10; §4 Terminology (On-hand quantity)),,
@@ -186,7 +197,8 @@ Total Cost is bold and pinned far right; it stays put on sideways scroll,IV — 
 3. It stays fixed to the right edge while the other columns scroll underneath.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R11, S12-R4).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R11, S12-R4).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R11; Story 12 S12-R4; §3 Key Decisions),,
@@ -195,16 +207,13 @@ On a first visit the default columns show and the rest stay available,IV — Val
 3. Turn Margin and Total Sell on and check they appear.","1. On first visit with a single location in scope the visible columns are: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin %, and Total Cost.
 2. The Margin and Total Sell columns are hidden by default.
 3. Both can be turned on from the column-selection control and then appear in their fixed positions. When it is on, the Location column shows between Vendor and Qty.
-Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.
-The Location column is not one of the columns offered in the column-selection control and you cannot switch it on or off: it follows the location scope by itself — shown when more than one location is in scope, hidden when a single location is in scope.
-Note for the tester: the product owner has been asked to confirm this one point and has not answered yet, so do not raise a bug either way — record what you see. The question is in Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx
+Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
 
 ---
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R12, S3-R13, S8-R3, S7-R6). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: version 4 added a summary saying it is toggleable, while the requirement that governs the column still says it is not one of the columns offered there. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
----
-This is the expected behaviour as per the Inventory Value report specification version 3 (S3-R12, S3-R13, S8-R3, S7-R6), and as per the build tested on 8/4/2026 (build v3.4.1-3d03023). The product owner's answer of 8/5/2026 in this file reads both ways on the one point about the Location column, so it has NOT been treated as overriding the specification and he has been asked again: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
-
-AUTOMATION: HOLD - waiting on one answer from the product owner about the Location column
+AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked
 ",SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R12; S3-R13; Story 8 S8-R3 + Story 7 S7-R6 — first-visit default columns; plus the automatic Location column when more than one location is in scope),,
 "Category and Vendor show their names; an em dash (""—"") when the part has none",IV — Valuation & Columns,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows a part with a category and a vendor, a part with no category, and a part with no vendor.","1. Read the Category and Vendor cells of the fully-populated part.
@@ -215,7 +224,8 @@ AUTOMATION: HOLD - waiting on one answer from the product owner about the Locati
 4. Note for the tester: on this build a part cannot be saved without a category, so you will not find a part whose Category cell shows ""—"". Check the Vendor half only.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R14, S3-E1, S3-E2).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R14, S3-E1, S3-E2).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R14; S3-E1; S3-E2),,
@@ -232,7 +242,8 @@ AUTOMATION: READY
 6. Sorting by any column reorders the data rows only — the totals row stays at the bottom.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S4-R1, S4-R4, S4-R5, S4-R6, S4-R7, S12-R5, S9-R4).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S4-R1, S4-R4, S4-R5, S4-R6, S4-R7, S12-R5, S9-R4).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5; Story 9 S9-R4),,
@@ -248,7 +259,8 @@ AUTOMATION: READY
 4. After each filter change the totals row recomputes on the server over the full filtered set, independent of which page is shown.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S4-R2, S4-R8, S6-R6).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S4-R2, S4-R8, S6-R6).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R2; S4-R8; Story 6 S6-R6; §2 Scale and data model; §4 Terminology (Filtered set)),,
@@ -261,7 +273,8 @@ Totals-row Margin % is recomputed from the totals; not an average of rows,IV —
 3. It shows ""—"" when the total Total Sell is zero or negative.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S4-R3).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S4-R3).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R3),,
@@ -271,7 +284,8 @@ Date range offers the standard presets plus Custom; no All Time option,IV — As
 2. Because the report is valued as of a single date, an All-Time period would be meaningless; its absence is the documented behaviour.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Inventory Value report specification version 3 (S5-R1) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Inventory Value report specification version 4 (S5-R1) says something different, his decision is the later word and is the authority.
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R1; §2 Known Limitations (v1)),,
@@ -284,7 +298,8 @@ The report values inventory as of the END of the selected range,IV — As-of Dat
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S5-R2).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S5-R2).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8820)
 ",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R2 (+ context note)),,
@@ -295,7 +310,8 @@ A window reaching today with today not yet recorded values live stock,IV — As-
 2. The part's row reflects today's changed quantity (not yesterday's snapshot), proving the live fallback is in use.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S5-R3).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S5-R3).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R3; §3 Key Decisions (live fallback for today)),,
@@ -307,7 +323,8 @@ For a past date the report replays the closest recorded day on or before it,IV �
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S5-R4).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S5-R4).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8820)
 ",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R4; §2 Relationship to nightly history),,
@@ -319,7 +336,8 @@ AUTOMATION: READY - EXPECT FAIL (SV-8820)
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S5-R5, S5-R6).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S5-R5, S5-R6).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8820)
 ",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R5; S5-R6),,
@@ -333,7 +351,8 @@ A Custom range values stock as of the picked end date; capped at today,IV — As
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S5-R7, S5-R8).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S5-R7, S5-R8).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8820)
 ",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R7; S5-R8),,
@@ -343,7 +362,8 @@ History accrues forward only; a pre-first-recording date is not shown,IV — As-
 2. This forward-capture-only behavior is the documented v1 boundary, not a defect.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S5-E1).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S5-E1).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-E1; §2 Known Limitations (v1); §2 Out of scope),,
@@ -356,7 +376,8 @@ A recorded day keeps its category and vendor names after a rename or delete,IV �
 3. The live view (window reaching today) shows the NEW name for the renamed category.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S11-R2, S5-R4).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S11-R2, S5-R4).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R2; Story 5 S5-R4; tech-plan-2026-07-29 B4.1 — names stored with the recorded rows on purpose),,
@@ -368,7 +389,8 @@ Category and Vendor multi-selects reload the report to matching parts only,IV �
 3. Selecting one or more vendors reloads the report to show only parts supplied by the selected vendors.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S6-R1, S6-R2, S6-R3, S6-R4).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S6-R1, S6-R2, S6-R3, S6-R4).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R1; S6-R2; S6-R3; S6-R4),,
@@ -381,7 +403,8 @@ AUTOMATION: READY
 3. Every change — date range, location, Category, Vendor, part search, sort — reloads the rows from the server; while loading the standard reports loading indicator shows, and existing rows are replaced only when the new data returns.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S6-R5, S1-R4, S1-R5, S1-R7, S1-R8).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S6-R5, S1-R4, S1-R5, S1-R7, S1-R8).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R5; Story 1 S1-R4; S1-R5; S1-R7; S1-R8),,
@@ -393,7 +416,8 @@ With no category or vendor selected all parts show,IV — Filters & Part Search,
 3. With the part search empty, no search narrowing is applied.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S6-R7).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S6-R7).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R7),,
@@ -407,7 +431,8 @@ Part search matches part number or description on the server; case-insensitive,I
 4. The search applies server-side (whole data set, first page returned); a no-match search shows the no-data message.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S6-R8, S6-R5).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S6-R8, S6-R5).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R8; S6-R5),,
@@ -418,7 +443,8 @@ AUTOMATION: READY
 2. The totals row matches the combined filtered set after each step.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S6-R9).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S6-R9).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R9),,
@@ -431,7 +457,8 @@ The Location filter is a rightmost multi-select with an All locations toggle,IV 
 3. With ""All locations"" active you can tell which location each row's stock belongs to — a location label or marking is shown.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S7-R1, S7-R2, S12-R3); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S7-R1, S7-R2, S12-R3); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins)),,
@@ -442,7 +469,8 @@ AUTOMATION: READY
 2. With both locations selected, parts from both appear (one row per part per location) and the totals cover both.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S7-R3).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S7-R3).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R3 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)),,
@@ -452,7 +480,8 @@ Scoping never includes an inaccessible location,IV — Location Filter,Negative,
 2. If the requested location set resolves to none the user can access, the report falls back to the user's currently active location.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S7-R4, S7-R5).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S7-R4, S7-R5).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R4; S7-R5),,
@@ -462,7 +491,8 @@ Inventory Value: the Location filter is hidden for a one-location user,IV — Lo
 2. For the user with access to two or more locations the Location filter IS shown.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S7-N1). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S7-N1). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ","SV-8674 (IV spec Story 7 S7-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S7-N1 ""still sees the filter"" note is stale; spec edit pending)",,
@@ -474,22 +504,19 @@ The Location column sits after Vendor and never reads Multiple,IV — Location F
 4. Open the column-selection control and look for Location in the list.
 5. Narrow to a single location and read the headers again.
 6. Change the selection between one location, several, and ""All locations"", watching the filter control's width.
-7. With more than one location still selected, download the CSV and the PDF and read their columns.","1. With Location turned on in the column-selection control, a Location column is shown, inserted between Vendor and Qty.
+7. With more than one location still selected, download the CSV and the PDF and read their columns.","1. With more than one location involved, a Location column is shown, inserted between Vendor and Qty.
 2. Each row names the location that row's stock is held at.
 3. NO row ever shows ""Multiple"" — each row is one part at one location.
-4. With the Location toggle off the column is not shown and the surrounding columns close up.
+4. When the column is not shown, the surrounding columns close up with no gap.
 5. The Location filter control keeps the same width whichever label it shows — one location, several, or ""All locations"" — so the toolbar does not shift as you change the selection.
 6. Both downloads include the Location column in the same position it holds on screen (between Vendor and Qty), naming each row's own location.
-Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.
-The Location column is not one of the columns offered in the column-selection control and you cannot switch it on or off: it follows the location scope by itself — shown when more than one location is in scope, hidden when a single location is in scope.
-Note for the tester: the product owner has been asked to confirm this one point and has not answered yet, so do not raise a bug either way — record what you see. The question is in Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx
+Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
 
 ---
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S7-R6, S7-R7, S3-R1, S12-R10, S10-R15). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: version 4 added a summary saying it is toggleable, while the requirement that governs the column still says it is not one of the columns offered there. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
----
-This is the expected behaviour as per the Inventory Value report specification version 3 (S7-R6, S7-R7, S3-R1, S12-R10, S10-R15), and as per the build tested on 8/4/2026 (build v3.4.1-3d03023). The product owner's answer of 8/5/2026 in this file reads both ways on the one point about the Location column, so it has NOT been treated as overriding the specification and he has been asked again: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
-
-AUTOMATION: HOLD - waiting on one answer from the product owner about the Location column
+AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked
 ","SV-8674; SV-8677 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10; S10-R15 — Location column inserted between Vendor and Qty on Hand; automatic visibility; never ""Multiple""; S10-R15 = the same column in every export)",,
 Column Selection toggles columns; Total Cost cannot be turned off,IV — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.","1. Hover the column-selection icon button in the toolbar and read its tooltip.
@@ -499,7 +526,8 @@ Column Selection toggles columns; Total Cost cannot be turned off,IV — Column 
 3. The Total Cost column is always shown and cannot be turned off.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S8-R1, S8-R2).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S8-R1, S8-R2).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R1; S8-R2),,
@@ -509,7 +537,8 @@ Toggling columns never reorders them,IV — Column Selection & Persistence,Funct
 2. Total Cost is always the last column.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S8-R4, S3-R1, S7-R6). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S8-R4, S3-R1, S7-R6). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8675; SV-8674 (IV spec v3 2026-07-29 Story 8 S8-R4; Story 3 S3-R1 + Story 7 S7-R6 — toggling never reorders; plus the automatic Location column between Vendor and Qty on Hand),,
@@ -521,7 +550,8 @@ The report remembers all filters; columns and sort per browser,IV — Column Sel
 2. In a different browser the report shows the defaults instead — persistence is per browser, not tied to the user's account.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S8-R5, S9-R5).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S8-R5, S9-R5).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R5 (+ context note); Story 9 S9-R5),,
@@ -531,7 +561,8 @@ Defensive restore: a stale saved category or vendor is dropped on load,IV — Co
 2. All other saved settings are still restored.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S8-R6).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S8-R6).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R6),,
@@ -541,7 +572,8 @@ Rows are sorted by Total Cost highest first on load and after any reload,IV — 
 2. The order holds across pages (page 2 continues below page 1's lowest value) — the server applies the default order over the full set.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S9-R1).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S9-R1).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R1; §3 Key Decisions (Total Cost default sort)),,
@@ -554,7 +586,8 @@ Header clicks sort ascending then descending; no third state; page 1 returns,IV 
 3. Only one column sorts at a time.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S9-R2).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S9-R2).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R2),,
@@ -565,7 +598,8 @@ Money and numeric columns sort by value; text columns sort as text,IV — Sortin
 2. Text columns (Part #, Description, Category, Vendor) sort as text, case-insensitively (""apple"" and ""Apple"" sort together).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S9-R3).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S9-R3).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R3),,
@@ -576,7 +610,8 @@ Inventory Value: a three-dot menu holds Download (PDF) and Download (CSV),IV —
 2. Each option downloads a file of the current view in the chosen format.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R1, S10-R2).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R1, S10-R2).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R1; S10-R2),,
@@ -592,16 +627,13 @@ AUTOMATION: READY
 5. Note for the tester: the files carry the Location column whenever it is showing on screen (it sits between Vendor and Qty).
 On this build the spreadsheet file ignores the columns you picked and puts them in a different order from the screen, so point 1 above will not match - record what you see and carry on.
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823
-Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.
-The Location column is not one of the columns offered in the column-selection control and you cannot switch it on or off: it follows the location scope by itself — shown when more than one location is in scope, hidden when a single location is in scope.
-Note for the tester: the product owner has been asked to confirm this one point and has not answered yet, so do not raise a bug either way — record what you see. The question is in Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx
+Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
 
 ---
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: version 4 added a summary saying it is toggleable, while the requirement that governs the column still says it is not one of the columns offered there. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
----
-This is the expected behaviour as per the Inventory Value report specification version 3 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15), and as per the build tested on 8/4/2026 (build v3.4.1-3d03023). The product owner's answer of 8/5/2026 in this file reads both ways on the one point about the Location column, so it has NOT been treated as overriding the specification and he has been asked again: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
-
-AUTOMATION: HOLD - waiting on one answer from the product owner about the Location column
+AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked
 ","SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the ""Locations:"" line and the automatic Location column)",,
 Export number formats: money to 2 decimals; Margin % to 1 with em-dash,IV — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current view includes money values over $1,000 and, if producible, a part whose Margin % is undefined (""—"").","1. Download the CSV and open it in a plain-text editor; read the money and Margin % values.
@@ -612,7 +644,8 @@ On this build the money in the spreadsheet file comes out as ""$11,176.88"" - wi
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R7).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R7).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8823)
 ",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R7 (+ context note)),,
@@ -627,7 +660,8 @@ PDF header shows report name; org; period and an as-of line; logo if set,IV — 
 4. Note for the tester: the two files phrase the as-of line differently - the PDF reads ""As of 2026-08-04"", and in the spreadsheet it is one of the short summary lines that sit above the column headings, reading ""As of: 2026-08-04"" (with a colon). Both are correct; do not raise the difference, and do not count the summary lines - more of them may be added.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Inventory Value report specification version 3 (S10-R8, S10-R9) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Inventory Value report specification version 4 (S10-R8, S10-R9) says something different, his decision is the later word and is the authority.
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R8; S10-R9),,
@@ -637,7 +671,8 @@ Downloaded files are named inventory-value-report.pdf and .csv,IV — Exports,Fu
 2. The CSV is named ""inventory-value-report.csv"".
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R10).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R10).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R10 — S10-R10 CLOSES both file names verbatim; so the exact strings ARE the requirement),,
@@ -649,7 +684,8 @@ Exports are generated server-side over the full filtered set,IV — Exports,Func
 3. The export is generated server-side against the current filters, part search, and sort — it is not built from the rows currently in the browser.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R11).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R11).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: HOLD - this part of the report is not built yet
 ",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R11),,
@@ -663,7 +699,8 @@ An over-cap set produces no file and shows the too-large-to-export message,IV �
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R12).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R12).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8818)
 ",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R12; §7 User Feedback Summary),,
@@ -678,7 +715,8 @@ Download notifications: verbatim success and failure texts per format,IV — Exp
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R13, S10-R14).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R13, S10-R14).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8818)
 ",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R13; S10-R14; §7 User Feedback Summary),,
@@ -695,7 +733,8 @@ A large Inventory Value PDF fails instead of being refused politely,IV — Expor
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R11, S10-R12, S10-R14).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R11, S10-R12, S10-R14).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8818)
 ",SV-8677 (IV spec v3 2026-07-29 S10-R11; S10-R12; S10-R14 — the observed failure path is a roughly 30-second server-side timeout and not the S10-R12 row cap; observed on build v3.4.1-0ed4433),,
@@ -706,7 +745,8 @@ All-white table with no row shading on the standard report backdrop,IV — Visua
 2. The table sits on the standard soft blue-grey report backdrop.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S12-R1).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S12-R1).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R1),,
@@ -716,7 +756,8 @@ Toolbar layout: menu leftmost then Column Selection; then the 5 filters,IV — V
 2. The toolbar filters run, left to right: the date-range control, the part search, the Category filter, the Vendor filter, and the Location filter (rightmost).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S12-R2, S12-R3).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S12-R2, S12-R3).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R2; S12-R3),,
@@ -728,7 +769,8 @@ Long Description; Category and Vendor truncate on hover; Part # never does,IV �
 3. The Part # is never truncated.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S12-R6).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S12-R6).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R6),,
@@ -740,7 +782,8 @@ AUTOMATION: READY
 3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether everything is easy to read in dark mode, and only report it if something is hard to see. (The exact colour values behind this are design-token values the design and engineering team check with their own tooling, not by hand.)
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S12-R7).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S12-R7).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R7),,
@@ -753,7 +796,8 @@ Each sortable header exposes its sort state and shows the direction,IV — Visua
 3. The exposed state updates when the direction toggles.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S12-R8).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S12-R8).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R8),,
@@ -763,7 +807,8 @@ The icon-only download and Column Selection buttons carry accessible names,IV �
 2. Inspect the Column Selection button's accessible name.","1. Each icon-only control carries an accessible name exposed to assistive technology (it is not announced as an unnamed button).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S12-R9).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S12-R9).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R9),,
@@ -775,7 +820,8 @@ A user with ordinary reports access can open Inventory Value,IV — Permissions,
 3. Note for the tester: the specification allows ONE ordinary reports access for all six of these new reports and no per-report permission. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (Story 1 Prerequisites); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (Story 1 Prerequisites).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ","SV-8668 (IV spec Story 1 Prerequisites — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW""; the IV prerequisite still names the inventory-reports permission — his spec edit owed)",,
@@ -784,7 +830,8 @@ Without reports access Inventory Value is absent from the navigation,IV — Perm
 2. Look for ""Inventory Value"" under the Parts group.","1. The report does not appear in the navigation for this user.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S1-N1).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S1-N1).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ","SV-8668 (IV spec Story 1 S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW"")",,
@@ -798,7 +845,8 @@ Nightly snapshot records one row per in-stock non-core part per location,IV — 
 3. A location with no in-stock parts on the date simply has no rows for that date — this is valid, not an error.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S11-R1, S11-R4).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S11-R1, S11-R4).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R1; S11-R4),,
@@ -813,7 +861,8 @@ A recorded snapshot day equals what the live report showed that day,IV — API,F
 3. A recorded day equals what the live report would have shown that day — the as-of view of the captured date matches the noted live values.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S11-R2).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S11-R2).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R2; §2 Relationship to nightly history),,
@@ -829,7 +878,8 @@ Nightly snapshot: re-running the capture for a date replaces that date's rows,IV
 6. A past date's stored rows are unchanged by a current re-run.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S11-R3, S11-R5, S5-E1).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S11-R3, S11-R5, S5-E1).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R3; Story 11 S11-R5; Story 5 S5-E1),,
@@ -844,7 +894,8 @@ Snapshot retention: daily captures are kept for 0–13 months,IV — API,Functio
 Note for the tester: this one needs records going back more than a year, and this test system only holds a few days of records so far. If there is nothing old enough to look at, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S11-R6).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S11-R6).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R6),,
@@ -859,7 +910,8 @@ Thinned history still served by the closest-recorded-day rule,IV — API,Functio
 Note for the tester: this one needs records going back more than a year, and this test system only holds a few days of records so far. If there is nothing old enough to look at, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S11-E1, S11-R6, S5-R4, S5-R5, S5-N1).
+This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S11-E1, S11-R6, S5-R4, S5-R5, S5-N1).
+Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-E1; S11-R6; Story 5 S5-R4; S5-R5; S5-N1),,

@@ -9,8 +9,24 @@
   "preconditions": [
    "1. Rep A has invoices in the current filtered view; rep B (sales-rep toggle on) has NONE; rep C has only a reversed invoice (seed ZZAUTOTEST data)."
   ],
-  "steps": "1. Open the report and read the summary rows.\n2. Look for reps B and C.\n3. Read the count in parentheses after rep A's name.",
-  "expected": "1. Rep A occupies exactly one summary row.\n2. Reps B and C do not appear — there are no blank placeholder rows, and a reversed invoice never satisfies the contributor gate.\n3. The number of contributing invoices shows in parentheses after the rep's name, in a smaller, subdued grey font — e.g., Mary Smith (12) — and is always at least 1.\n4. A staff member with no matching invoice does not appear regardless of toggle state or historical activity.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S5-R1, S5-R4, S5-N1).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the report and read the summary rows.",
+   "2. Look for reps B and C.",
+   "3. Read the count in parentheses after rep A's name."
+  ],
+  "expected": [
+   "1. Rep A occupies exactly one summary row.",
+   "2. Reps B and C do not appear — there are no blank placeholder rows, and a reversed invoice never satisfies the contributor gate.",
+   "3. The number of contributing invoices shows in parentheses after the rep's name, in a smaller, subdued grey font — e.g., Mary Smith (12) — and is always at least 1.",
+   "4. A staff member with no matching invoice does not appear regardless of toggle state or historical activity.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S5-R1, S5-R4, S5-N1).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8623 (SBR spec v15 2026-07-29 Story 5 S5-R1; S5-R4; S5-N1; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
@@ -28,8 +44,26 @@
   "preconditions": [
    "1. You are on the report with at least one rep expanded."
   ],
-  "steps": "1. Read the column headers left to right.\n2. Read a rep summary row cell by cell.\n3. Compare the font weight of a summary row and a detail row.\n4. Look for any cell whose content has shifted into a neighbouring column or wrapped; check the desktop Totals row's leading cells.",
-  "expected": "1. With a single location in scope the columns appear left to right: Date, Invoice, Customer, Status, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal (12 columns). When more than one location is in scope the automatic Location column is added immediately after Status, making 13.\n2. On a rep summary row the Date cell holds the chevron control followed by the rep's display name (\"First Last\"); the date value is intentionally blank.\n3. The Invoice, Customer, and Status cells are blank on summary rows; the metric cells carry the rep's totals across all matching invoices.\n4. Rep summary rows are bold (700) so they read as parent rows; detail rows use the default weight (400) — row type is distinguished by font weight, not background color.\n5. Every row renders exactly the report's column count with blanks in position — a cell with nothing to show is blank, never shifted or wrapped (a drifted row is a defect). The grand Totals indicator is exempt: the desktop Totals row merges the four leading identifier columns; the mobile bar is not a table row.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S5-R2, S5-R3, S5-R6, S5-R8, S5-R10, S5-N2, S6-R4, S18-R4, S18-R6a, S21-R7).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Read the column headers left to right.",
+   "2. Read a rep summary row cell by cell.",
+   "3. Compare the font weight of a summary row and a detail row.",
+   "4. Look for any cell whose content has shifted into a neighbouring column or wrapped; check the desktop Totals row's leading cells."
+  ],
+  "expected": [
+   "1. With a single location in scope the columns appear left to right: Date, Invoice, Customer, Status, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal (12 columns). When more than one location is in scope the automatic Location column is added immediately after Status, making 13.",
+   "2. On a rep summary row the Date cell holds the chevron control followed by the rep's display name (\"First Last\"); the date value is intentionally blank.",
+   "3. The Invoice, Customer, and Status cells are blank on summary rows; the metric cells carry the rep's totals across all matching invoices.",
+   "4. Rep summary rows are bold (700) so they read as parent rows; detail rows use the default weight (400) — row type is distinguished by font weight, not background color.",
+   "5. Every row renders exactly the report's column count with blanks in position — a cell with nothing to show is blank, never shifted or wrapped (a drifted row is a defect). The grand Totals indicator is exempt: the desktop Totals row merges the four leading identifier columns; the mobile bar is not a table row.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S5-R2, S5-R3, S5-R6, S5-R8, S5-R10, S5-N2, S6-R4, S18-R4, S18-R6a, S21-R7).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8623; SV-8638 (SBR spec v15 2026-07-29 Story 5 S5-R2; S5-R3; S5-R6; S5-R8; S5-R10; S5-N2; Story 6 S6-R4; Story 18 S18-R4; S18-R6a + Story 21 S21-R7 — plus the Location column after Status)",
   "viu_status": "VIU-Pending",
@@ -48,8 +82,24 @@
    "1. Rep A has matching invoices; you then turn rep A's sales-rep toggle OFF (restore afterwards).",
    "2. If a rep whose staff record was DELETED but who has invoices in range exists (or can be produced), note it for step 3."
   ],
-  "steps": "1. Refresh the report and find rep A's row.\n2. Read the name, tag, metrics, and position in the A→Z order; try expanding the row.\n3. If a deleted-rep contributor exists, read that row's name and sort position.",
-  "expected": "1. Rep A still appears with credit intact; the name is followed by a subdued \"(Inactive)\" tag — e.g., Mary Smith (Inactive) (12) — in the same muted grey as the count.\n2. The tag is display-only: metrics, A→Z position, and expandability are unchanged; a rep whose toggle is on shows no tag.\n3. For a deleted staff record, the display name and sort position come from the denormalized rep-name snapshot on the rep's most recent matching invoice (by invoice date, ties by invoice number), so the row still shows a historical name and sorts correctly.\n4. The grand Totals stay reconciled to the period's invoices — no revenue silently disappears.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S5-R9).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Refresh the report and find rep A's row.",
+   "2. Read the name, tag, metrics, and position in the A→Z order; try expanding the row.",
+   "3. If a deleted-rep contributor exists, read that row's name and sort position."
+  ],
+  "expected": [
+   "1. Rep A still appears with credit intact; the name is followed by a subdued \"(Inactive)\" tag — e.g., Mary Smith (Inactive) (12) — in the same muted grey as the count.",
+   "2. The tag is display-only: metrics, A→Z position, and expandability are unchanged; a rep whose toggle is on shows no tag.",
+   "3. For a deleted staff record, the display name and sort position come from the denormalized rep-name snapshot on the rep's most recent matching invoice (by invoice date, ties by invoice number), so the row still shows a historical name and sorts correctly.",
+   "4. The grand Totals stay reconciled to the period's invoices — no revenue silently disappears.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S5-R9).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8623 (SBR spec v15 2026-07-29 Story 5 S5-R9; §3 Key Decisions; §4 Snapshot)",
   "viu_status": "VIU-Pending",
@@ -93,8 +143,22 @@
   "preconditions": [
    "1. A rep with several matching invoices is on the report."
   ],
-  "steps": "1. Click the chevron in the rep's Date cell and watch the row.\n2. Read a detail row left to right.",
-  "expected": "1. The rep's matching invoices appear as detail rows beneath the summary row; a brief row-level loading indicator shows while they load on the first expand.\n2. Each detail row shows, left to right: the invoice's date, the invoice number, the customer name, the payment status badge, and the per-invoice values for Inv. Hrs and the money columns.\n3. A rep with a single matching invoice can still be expanded — one detail row is shown.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S6-R1, S6-R2, S6-R3, S6-E1).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Click the chevron in the rep's Date cell and watch the row.",
+   "2. Read a detail row left to right."
+  ],
+  "expected": [
+   "1. The rep's matching invoices appear as detail rows beneath the summary row; a brief row-level loading indicator shows while they load on the first expand.",
+   "2. Each detail row shows, left to right: the invoice's date, the invoice number, the customer name, the payment status badge, and the per-invoice values for Inv. Hrs and the money columns.",
+   "3. A rep with a single matching invoice can still be expanded — one detail row is shown.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S6-R1, S6-R2, S6-R3, S6-E1).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R1; S6-R2; S6-R3; S6-E1)",
   "viu_status": "VIU-Pending",
@@ -112,8 +176,23 @@
   "preconditions": [
    "1. Several reps are on the report, all collapsed."
   ],
-  "steps": "1. Look at the header-row chevron's glyph.\n2. Click it; watch the rep rows and the glyph.\n3. Click it again.",
-  "expected": "1. With at least one rep collapsed the header chevron shows the \"expand\" glyph.\n2. Clicking expands every visible rep in one action; with every rep expanded the glyph switches to \"collapse.\"\n3. A second activation collapses them all.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S6-R5, S6-R6).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Look at the header-row chevron's glyph.",
+   "2. Click it; watch the rep rows and the glyph.",
+   "3. Click it again."
+  ],
+  "expected": [
+   "1. With at least one rep collapsed the header chevron shows the \"expand\" glyph.",
+   "2. Clicking expands every visible rep in one action; with every rep expanded the glyph switches to \"collapse.\"",
+   "3. A second activation collapses them all.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S6-R5, S6-R6).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R5; S6-R6)",
   "viu_status": "VIU-Pending",
@@ -131,8 +210,21 @@
   "preconditions": [
    "1. A known ZZAUTOTEST invoice set exists across two reps plus at least one unassigned invoice; Show Unassigned is on."
   ],
-  "steps": "1. Expand every rep and the Unassigned row.\n2. Search the expanded rows for each seeded invoice number.",
-  "expected": "1. Every invoice appears under exactly one rep (the rep credited at invoicing time) or under the Unassigned row — never under two rows.\n2. The sum of all (N) counts equals the number of matching invoices.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S6-R7).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Expand every rep and the Unassigned row.",
+   "2. Search the expanded rows for each seeded invoice number."
+  ],
+  "expected": [
+   "1. Every invoice appears under exactly one rep (the rep credited at invoicing time) or under the Unassigned row — never under two rows.",
+   "2. The sum of all (N) counts equals the number of matching invoices.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S6-R7).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R7; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
@@ -150,8 +242,23 @@
   "preconditions": [
    "1. Two reps are on the report; one of them stops matching under a stricter filter you can apply and re-remove."
   ],
-  "steps": "1. Expand both reps, then change the sort and a filter that keeps both matching; check the expansion.\n2. Apply the stricter filter that removes rep B, then remove it again; check rep B.\n3. Reload the page and check all rows.",
-  "expected": "1. Expanded state is preserved across filter and sort changes within the same session.\n2. When a filter change removes a rep, the rep and its expansion state are gone; when a later change brings the rep back, the row renders collapsed (it does not auto-re-expand).\n3. A full page reload resets all expansion.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S6-R8, S6-N1, S23-R2).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Expand both reps, then change the sort and a filter that keeps both matching; check the expansion.",
+   "2. Apply the stricter filter that removes rep B, then remove it again; check rep B.",
+   "3. Reload the page and check all rows."
+  ],
+  "expected": [
+   "1. Expanded state is preserved across filter and sort changes within the same session.",
+   "2. When a filter change removes a rep, the rep and its expansion state are gone; when a later change brings the rep back, the row renders collapsed (it does not auto-re-expand).",
+   "3. A full page reload resets all expansion.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S6-R8, S6-N1, S23-R2).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R8; S6-N1; Story 23 S23-R2)",
   "viu_status": "VIU-Pending",
@@ -169,8 +276,23 @@
   "preconditions": [
    "1. One rep has invoices allowing the tie-breaks: two invoices on different dates; two on the same date with numeric parts like 999 and 1000; and if producible a P and an S invoice with the same numeric part on the same day (seed ZZAUTOTEST data)."
   ],
-  "steps": "1. Expand the rep and read the detail rows top to bottom.\n2. Change the rep-row column sort and re-read the detail order.",
-  "expected": "1. Detail rows order by invoice date descending (newest first).\n2. Date ties break by invoice number ascending by the numeric portion after the P/S prefix — numeric, not alphabetical, so S999 precedes S1000.\n3. If both the date and the numeric portion tie (e.g., P100 and S100 same day), P (Parts) sorts before S (Service).\n4. This order is independent of the rep-row column sort (which reorders summary rows only).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S6-R9, S11-R2).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Expand the rep and read the detail rows top to bottom.",
+   "2. Change the rep-row column sort and re-read the detail order."
+  ],
+  "expected": [
+   "1. Detail rows order by invoice date descending (newest first).",
+   "2. Date ties break by invoice number ascending by the numeric portion after the P/S prefix — numeric, not alphabetical, so S999 precedes S1000.",
+   "3. If both the date and the numeric portion tie (e.g., P100 and S100 same day), P (Parts) sorts before S (Service).",
+   "4. This order is independent of the rep-row column sort (which reorders summary rows only).",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S6-R9, S11-R2).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R9; Story 11 S11-R2)",
   "viu_status": "VIU-Pending",
@@ -189,8 +311,24 @@
    "1. Invoices exist covering paid, overpaid, prepaid (zero balance), prepaid (balance owed), partially paid, and unpaid.",
    "2. The owning rep is expanded."
   ],
-  "steps": "1. Locate the Status column relative to its neighbours.\n2. Read the badge on each seeded invoice's detail row.\n3. Look at a badge's vertical position in its cell, read the Status cell on a rep summary row, and check the status is readable from the badge text alone.",
-  "expected": "1. The Status column sits immediately after the Customer column. With a single location in scope the next column to its right is Inv. Hrs; when more than one location is in scope the automatic Location column is inserted immediately after Status, so Inv. Hrs then follows Location.\n2. Every detail row renders a small colored badge reading \"Paid,\" \"Partially Paid,\" or \"Unpaid\" — badge rendering is unconditional on detail rows.\n3. The mapping is: paid → Paid; overpaid → Paid; prepaid with zero balance → Paid; prepaid with a balance owed → Partially Paid; partially_paid → Partially Paid; unpaid → Unpaid.\n4. Badges are vertically centered in their cells; on rep summary rows the Status cell is blank; the badge's text is the accessible label — status is never conveyed by color alone.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S8-R1, S8-R2, S8-R4, S8-R5, S8-R6, S8-N1, S18-R6).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Locate the Status column relative to its neighbours.",
+   "2. Read the badge on each seeded invoice's detail row.",
+   "3. Look at a badge's vertical position in its cell, read the Status cell on a rep summary row, and check the status is readable from the badge text alone."
+  ],
+  "expected": [
+   "1. The Status column sits immediately after the Customer column. With a single location in scope the next column to its right is Inv. Hrs; when more than one location is in scope the automatic Location column is inserted immediately after Status, so Inv. Hrs then follows Location.",
+   "2. Every detail row renders a small colored badge reading \"Paid,\" \"Partially Paid,\" or \"Unpaid\" — badge rendering is unconditional on detail rows.",
+   "3. The mapping is: paid → Paid; overpaid → Paid; prepaid with zero balance → Paid; prepaid with a balance owed → Partially Paid; partially_paid → Partially Paid; unpaid → Unpaid.",
+   "4. Badges are vertically centered in their cells; on rep summary rows the Status cell is blank; the badge's text is the accessible label — status is never conveyed by color alone.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S8-R1, S8-R2, S8-R4, S8-R5, S8-R6, S8-N1, S18-R6).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8625 (SBR spec v15 2026-07-29 Story 8 S8-R1; S8-R2; S8-R4; S8-R5; S8-R6; S8-N1; §3 payment-status mapping; Story 18 S18-R6)",
   "viu_status": "VIU-Pending",
@@ -208,8 +346,22 @@
   "preconditions": [
    "1. Detail rows with all three badge values are visible; you can switch to dark mode."
   ],
-  "steps": "1. Read the color treatment of each badge in light mode and compare with the badges on the application's invoice list.\n2. Switch to dark mode and compare again.",
-  "expected": "1. Paid = dark teal text on light teal; Partially Paid = dark orange on light orange; Unpaid = dark red on light red.\n2. The badges use the same canonical payment-status color tokens as the invoice list, consistent app-wide.\n3. The treatment stays legible and consistent in both light and dark mode.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S8-R3, S18-R8).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Read the color treatment of each badge in light mode and compare with the badges on the application's invoice list.",
+   "2. Switch to dark mode and compare again."
+  ],
+  "expected": [
+   "1. Paid = dark teal text on light teal; Partially Paid = dark orange on light orange; Unpaid = dark red on light red.",
+   "2. The badges use the same canonical payment-status color tokens as the invoice list, consistent app-wide.",
+   "3. The treatment stays legible and consistent in both light and dark mode.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S8-R3, S18-R8).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8625 (SBR spec v15 2026-07-29 Story 8 S8-R3; Story 18 S18-R8)",
   "viu_status": "VIU-Pending",
@@ -253,8 +405,21 @@
   "preconditions": [
    "1. A ZZAUTOTEST work order exists with known billed labor-line hours and known technician clocked (timesheet) hours, invoiced under a rep."
   ],
-  "steps": "1. Read the column heading.\n2. Expand the rep and read the invoice's Inv. Hrs value; recalculate by hand.",
-  "expected": "1. The column heading reads \"Inv. Hrs\" (verbatim, including the period after \"Inv\").\n2. The value equals the billed labor hours minus the technician clocked hours, rounded half-up to one decimal.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S9-R1, S9-R2).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Read the column heading.",
+   "2. Expand the rep and read the invoice's Inv. Hrs value; recalculate by hand."
+  ],
+  "expected": [
+   "1. The column heading reads \"Inv. Hrs\" (verbatim, including the period after \"Inv\").",
+   "2. The value equals the billed labor hours minus the technician clocked hours, rounded half-up to one decimal.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S9-R1, S9-R2).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8626 (SBR spec v15 2026-07-29 Story 9 S9-R1; S9-R2; §3)",
   "viu_status": "VIU-Pending",
@@ -273,8 +438,25 @@
    "1. Invoices exist under one rep with a positive, a negative, and a break-even labor delta (seed ZZAUTOTEST data).",
    "2. If producible, an invoice whose delta is tiny (e.g., +0.04) and one with a small negative delta (e.g., -0.5) also exist."
   ],
-  "steps": "1. Read the three detail rows' Inv. Hrs values and colors.\n2. Read the rep summary row's and the Totals row's Inv. Hrs.\n3. Recalculate the rollup as the rounded sum of the unrounded per-invoice deltas.\n4. Read the tiny-delta and small-negative invoices' Inv. Hrs.",
-  "expected": "1. Positive values show a leading + in green (e.g., +1.5); negative values a leading - in red (e.g., -1.5); zero/break-even shows 0.0 in the default text color.\n2. The same calculation, label, format, and coloring apply to rep summary rows, invoice detail rows, and the totals row.\n3. The rep-summary/totals value equals round(sum of unrounded per-invoice deltas).\n4. A value that rounds to 0.0 (e.g., +0.04) shows 0.0 in the default color — not +0.0 in green; negative values always use an explicit minus and one decimal (e.g., -0.5).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S9-R3, S9-R4, S9-R5, S9-R6, S9-E1, S9-E2).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Read the three detail rows' Inv. Hrs values and colors.",
+   "2. Read the rep summary row's and the Totals row's Inv. Hrs.",
+   "3. Recalculate the rollup as the rounded sum of the unrounded per-invoice deltas.",
+   "4. Read the tiny-delta and small-negative invoices' Inv. Hrs."
+  ],
+  "expected": [
+   "1. Positive values show a leading + in green (e.g., +1.5); negative values a leading - in red (e.g., -1.5); zero/break-even shows 0.0 in the default text color.",
+   "2. The same calculation, label, format, and coloring apply to rep summary rows, invoice detail rows, and the totals row.",
+   "3. The rep-summary/totals value equals round(sum of unrounded per-invoice deltas).",
+   "4. A value that rounds to 0.0 (e.g., +0.04) shows 0.0 in the default color — not +0.0 in green; negative values always use an explicit minus and one decimal (e.g., -0.5).",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S9-R3, S9-R4, S9-R5, S9-R6, S9-E1, S9-E2).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8626 (SBR spec v15 2026-07-29 Story 9 S9-R3; S9-R4; S9-R5; S9-R6; S9-E1; S9-E2)",
   "viu_status": "VIU-Pending",
@@ -292,8 +474,21 @@
   "preconditions": [
    "1. A parts-only invoice with no labor and no clocked time exists, AND an invoice whose work order has clocked technician hours but no billed labor line (seed ZZAUTOTEST data)."
   ],
-  "steps": "1. Read the parts-only invoice's Inv. Hrs cell.\n2. Read the clocked-but-unbilled invoice's Inv. Hrs cell.",
-  "expected": "1. The invoice with neither billed labor hours nor clocked hours shows Inv. Hrs 0.0 in the default color — never blank, \"N/A,\" or \"—\".\n2. The invoice with clocked hours but no billed labor line shows the resulting NEGATIVE delta in red (e.g., -3.0) — the worked-but-unbilled signal is not suppressed to 0.0.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S9-N1).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Read the parts-only invoice's Inv. Hrs cell.",
+   "2. Read the clocked-but-unbilled invoice's Inv. Hrs cell."
+  ],
+  "expected": [
+   "1. The invoice with neither billed labor hours nor clocked hours shows Inv. Hrs 0.0 in the default color — never blank, \"N/A,\" or \"—\".",
+   "2. The invoice with clocked hours but no billed labor line shows the resulting NEGATIVE delta in red (e.g., -3.0) — the worked-but-unbilled signal is not suppressed to 0.0.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S9-N1).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8626 (SBR spec v15 2026-07-29 Story 9 S9-N1)",
   "viu_status": "VIU-Pending",
@@ -335,8 +530,23 @@
   "preconditions": [
    "1. A rep has two invoices with clearly different Margin % values; if producible, a row with Subtotal ≤ 0 also exists."
   ],
-  "steps": "1. Read Margin % on both detail rows and on the rep's summary row; recompute the summary value as (total Margin ÷ total Subtotal) × 100.\n2. Read the Subtotal ≤ 0 row's Margin % cell.\n3. If a negative-margin row exists, read its format.",
-  "expected": "1. Margin % = Margin ÷ Subtotal × 100, to one decimal with a trailing % — e.g., 45.2%; a negative renders -8.4% (leading minus, no parentheses, no + on positives).\n2. It renders \"—\" when Subtotal ≤ 0 — never \"0.0%\" or a divide-by-zero result.\n3. On every rolled-up row (rep summary rows and every totals row) Margin % is RECOMPUTED from that row-set's total Margin and total Subtotal — never the sum or average of the child percentages.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S10-R5).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Read Margin % on both detail rows and on the rep's summary row; recompute the summary value as (total Margin ÷ total Subtotal) × 100.",
+   "2. Read the Subtotal ≤ 0 row's Margin % cell.",
+   "3. If a negative-margin row exists, read its format."
+  ],
+  "expected": [
+   "1. Margin % = Margin ÷ Subtotal × 100, to one decimal with a trailing % — e.g., 45.2%; a negative renders -8.4% (leading minus, no parentheses, no + on positives).",
+   "2. It renders \"—\" when Subtotal ≤ 0 — never \"0.0%\" or a divide-by-zero result.",
+   "3. On every rolled-up row (rep summary rows and every totals row) Margin % is RECOMPUTED from that row-set's total Margin and total Subtotal — never the sum or average of the child percentages.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S10-R5).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8627 (SBR spec v15 2026-07-29 §3 Margin % definition; Story 10 S10-R5)",
   "viu_status": "VIU-Pending",
@@ -354,8 +564,23 @@
   "preconditions": [
    "1. A ZZAUTOTEST invoice exists with known billed labor, billed parts, labor cost, parts cost, and tax."
   ],
-  "steps": "1. Read the money column headers.\n2. Read that invoice's row values and recalculate each by hand.",
-  "expected": "1. The labels read exactly: Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.\n2. Subtotal = Labor Invoiced + Parts Invoiced, BEFORE tax.\n3. Labor Margin = Labor Invoiced − labor cost; Parts Margin = Parts Invoiced − parts cost; Margin = Labor Margin + Parts Margin.\n4. The same values appear everywhere the numbers show (screen, and later the exports).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S5-R2, S21-R7).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Read the money column headers.",
+   "2. Read that invoice's row values and recalculate each by hand."
+  ],
+  "expected": [
+   "1. The labels read exactly: Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.",
+   "2. Subtotal = Labor Invoiced + Parts Invoiced, BEFORE tax.",
+   "3. Labor Margin = Labor Invoiced − labor cost; Parts Margin = Parts Invoiced − parts cost; Margin = Labor Margin + Parts Margin.",
+   "4. The same values appear everywhere the numbers show (screen, and later the exports).",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S5-R2, S21-R7).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8623; SV-8582 (SBR spec v15 2026-07-29 S5-R2 = the authoritative 12-column left-to-right order; §3 definitions; §4 Terminology — S5-R2 CLOSES the money-label list; Location sits after Status [S21-R7] and is not a money column)",
   "viu_status": "VIU-Pending",
@@ -373,8 +598,21 @@
   "preconditions": [
    "1. A row with a negative money value exists (e.g., a net credit/return invoice, or a negative Labor Margin from cost exceeding billed labor — seed ZZAUTOTEST data)."
   ],
-  "steps": "1. Read the negative money cell.\n2. Read a negative Inv. Hrs cell and a negative Margin % cell for comparison.",
-  "expected": "1. Negative dollar values render in accounting-convention parentheses — ($1,234.56) — on screen, across every money column (Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Subtotal).\n2. Inv. Hrs (a signed time value) and Margin % (a signed percentage) are excluded — they use a leading minus, not parentheses.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (§3 Key Decisions accounting parentheses).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Read the negative money cell.",
+   "2. Read a negative Inv. Hrs cell and a negative Margin % cell for comparison."
+  ],
+  "expected": [
+   "1. Negative dollar values render in accounting-convention parentheses — ($1,234.56) — on screen, across every money column (Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Subtotal).",
+   "2. Inv. Hrs (a signed time value) and Margin % (a signed percentage) are excluded — they use a leading minus, not parentheses.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (§3 Key Decisions accounting parentheses).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8593 (SBR spec §3 Key Decisions accounting parentheses — owned by the shared A5 report-shell formatter module: verbatim 'accounting-parens negatives')",
   "viu_status": "VIU-Pending",
@@ -392,8 +630,21 @@
   "preconditions": [
    "1. Several invoices whose money values come from calculations that produce fractions of a cent sit under one rep — seed ZZAUTOTEST invoices whose amounts come from hours × rate or percentage-based lines that do not land on a whole cent (money fields themselves only take two decimals, so the sub-cent amounts must come from the math, not be typed in)."
   ],
-  "steps": "1. Read the displayed per-invoice values, sum them by hand, and compare with the rep summary and Totals cells.",
-  "expected": "1. All displayed values round half-up (away from zero) at their stated precision — money to cents; Inv. Hrs and Margin % to one decimal.\n2. Rolled-up values are computed from UNROUNDED components and then rounded, so a totals cell may differ from the eye-summed displayed rows by one unit in the last decimal.\n3. That one-unit difference is EXPECTED behavior per the spec — it must NOT be filed as a calculation defect.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (§3 half).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Read the displayed per-invoice values, sum them by hand, and compare with the rep summary and Totals cells."
+  ],
+  "expected": [
+   "1. All displayed values round half-up (away from zero) at their stated precision — money to cents; Inv. Hrs and Margin % to one decimal.",
+   "2. Rolled-up values are computed from UNROUNDED components and then rounded, so a totals cell may differ from the eye-summed displayed rows by one unit in the last decimal.",
+   "3. That one-unit difference is EXPECTED behavior per the spec — it must NOT be filed as a calculation defect.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (§3 half).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8582 (SBR spec §3 half-up rounding rule + round of unrounded rollups; CROSS-CUTTING display rule with no single owning story)",
   "viu_status": "VIU-Pending",
@@ -412,8 +663,26 @@
    "1. You are on the report with data, narrow enough to force horizontal scrolling.",
    "2. Enough rows exist to also force vertical scrolling."
   ],
-  "steps": "1. Confirm nothing renders to the right of Subtotal on any row type.\n2. Scroll horizontally and watch the Subtotal column on summary and detail rows.\n3. Inspect the Subtotal weight on the header, a summary row, a detail row, and the Totals indicator; check the pinned cell's background.\n4. Scroll down through the rows and watch the header row; scroll right and watch the Subtotal header cell.",
-  "expected": "1. Subtotal is the rightmost column on every row type.\n2. On screen it is pinned to the right edge and stays visible during horizontal scroll on every rep summary and invoice detail row.\n3. Subtotal values are bold across the header, every summary row, every detail row, and the grand Totals indicator.\n4. The pinned column matches the row's background color (white on body rows) — not a contrasting strip.\n5. The column-header row stays stuck to the top during vertical scroll; the Subtotal header cell stays visible in BOTH axes (top while scrolling down, pinned right while scrolling sideways).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S10-R1, S10-R2, S10-R3, S10-R4, S10-R6, S10-N1, S18-R7).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Confirm nothing renders to the right of Subtotal on any row type.",
+   "2. Scroll horizontally and watch the Subtotal column on summary and detail rows.",
+   "3. Inspect the Subtotal weight on the header, a summary row, a detail row, and the Totals indicator; check the pinned cell's background.",
+   "4. Scroll down through the rows and watch the header row; scroll right and watch the Subtotal header cell."
+  ],
+  "expected": [
+   "1. Subtotal is the rightmost column on every row type.",
+   "2. On screen it is pinned to the right edge and stays visible during horizontal scroll on every rep summary and invoice detail row.",
+   "3. Subtotal values are bold across the header, every summary row, every detail row, and the grand Totals indicator.",
+   "4. The pinned column matches the row's background color (white on body rows) — not a contrasting strip.",
+   "5. The column-header row stays stuck to the top during vertical scroll; the Subtotal header cell stays visible in BOTH axes (top while scrolling down, pinned right while scrolling sideways).",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S10-R1, S10-R2, S10-R3, S10-R4, S10-R6, S10-N1, S18-R7).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R6; S10-N1; Story 18 S18-R7.5)",
   "viu_status": "VIU-Pending",
@@ -431,8 +700,26 @@
   "preconditions": [
    "1. Desktop viewport (1024px or wider); several reps with known amounts are on the report; at least one rep is left collapsed."
   ],
-  "steps": "1. Scroll the table and find the Totals row.\n2. Read its first cell and the per-metric cells.\n3. Compare its values against the sum over ALL matching invoices (including collapsed/unloaded reps).\n4. Empty the results with a no-data filter and look for the indicator; also watch during a re-fetch.",
-  "expected": "1. A Totals row is the last row inside the table, sticky at the bottom of the scroll area, on the white card surface with a thin top border.\n2. Its first cell is a single merged cell spanning the four leading identifier columns (Date, Invoice, Customer, Status) labeled \"Totals,\" followed by a cell per metric column and its own pinned Subtotal cell.\n3. The grand totals cover the FULL filtered result set — every matching non-reversed invoice across every rep, independent of which reps are expanded or loaded.\n4. Money uses accounting parentheses for negatives; Margin % is recomputed; values are round(sum of unrounded).\n5. The indicator is present whenever at least one summary row exists, and hidden during loading and in the empty state.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S10-R5, S10-N1, S16-R4).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Scroll the table and find the Totals row.",
+   "2. Read its first cell and the per-metric cells.",
+   "3. Compare its values against the sum over ALL matching invoices (including collapsed/unloaded reps).",
+   "4. Empty the results with a no-data filter and look for the indicator; also watch during a re-fetch."
+  ],
+  "expected": [
+   "1. A Totals row is the last row inside the table, sticky at the bottom of the scroll area, on the white card surface with a thin top border.",
+   "2. Its first cell is a single merged cell spanning the four leading identifier columns (Date, Invoice, Customer, Status) labeled \"Totals,\" followed by a cell per metric column and its own pinned Subtotal cell.",
+   "3. The grand totals cover the FULL filtered result set — every matching non-reversed invoice across every rep, independent of which reps are expanded or loaded.",
+   "4. Money uses accounting parentheses for negatives; Margin % is recomputed; values are round(sum of unrounded).",
+   "5. The indicator is present whenever at least one summary row exists, and hidden during loading and in the empty state.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S10-R5, S10-N1, S16-R4).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R5; S10-N1; Story 16 S16-R4)",
   "viu_status": "VIU-Pending",
@@ -450,8 +737,24 @@
   "preconditions": [
    "1. You are on the report with data in a viewport below 1024px."
   ],
-  "steps": "1. Find the totals bar and read it.\n2. Swipe the table horizontally and watch the bar.\n3. Scroll the page vertically and watch the bar.",
-  "expected": "1. A simplified external totals bar sits directly below the table, outside its horizontal scroll container, showing \"Totals\" on the left and the grand Subtotal on the right (no other metrics).\n2. It does not scroll horizontally — it is always fully visible across.\n3. During vertical page scroll it sits after the table in normal flow (not pinned to the viewport bottom).\n4. It uses the white card surface with a thin top border.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S10-R5, S17-R4).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Find the totals bar and read it.",
+   "2. Swipe the table horizontally and watch the bar.",
+   "3. Scroll the page vertically and watch the bar."
+  ],
+  "expected": [
+   "1. A simplified external totals bar sits directly below the table, outside its horizontal scroll container, showing \"Totals\" on the left and the grand Subtotal on the right (no other metrics).",
+   "2. It does not scroll horizontally — it is always fully visible across.",
+   "3. During vertical page scroll it sits after the table in normal flow (not pinned to the viewport bottom).",
+   "4. It uses the white card surface with a thin top border.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S10-R5, S17-R4).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R5 (mobile branch) + Story 17 S17-R4 — S10-R5 CLOSES it in the spec's own words: \"Totals\" left and the grand Subtotal right \"(no other metrics)\")",
   "viu_status": "VIU-Pending",
@@ -493,8 +796,22 @@
   "preconditions": [
    "1. Several reps with differing values are on the report."
   ],
-  "steps": "1. Click each financial column header in turn: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.\n2. Click the Date, Invoice, Customer, and Status headers.",
-  "expected": "1. Each financial column responds to a header click and reorders the rep rows.\n2. The identifier columns (Date, Invoice, Customer, Status) do not respond to header clicks.\n3. The Date header carries the expand/collapse-all chevron, not a sort affordance.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S11-R1, S11-R6).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Click each financial column header in turn: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.",
+   "2. Click the Date, Invoice, Customer, and Status headers."
+  ],
+  "expected": [
+   "1. Each financial column responds to a header click and reorders the rep rows.",
+   "2. The identifier columns (Date, Invoice, Customer, Status) do not respond to header clicks.",
+   "3. The Date header carries the expand/collapse-all chevron, not a sort affordance.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S11-R1, S11-R6).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R1; S11-R6)",
   "viu_status": "VIU-Pending",
@@ -512,8 +829,20 @@
   "preconditions": [
    "1. No remembered sort exists (first visit or cleared storage); contributing reps include an \"(Inactive)\"-tagged rep and mixed-case names."
   ],
-  "steps": "1. Open the report and read the rep order top to bottom.",
-  "expected": "1. Rows render in A→Z order by display name, case-insensitive.\n2. There are NO active/inactive tiers — an \"(Inactive)\" rep sorts by name among the others, not grouped separately.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S11-R4).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the report and read the rep order top to bottom."
+  ],
+  "expected": [
+   "1. Rows render in A→Z order by display name, case-insensitive.",
+   "2. There are NO active/inactive tiers — an \"(Inactive)\" rep sorts by name among the others, not grouped separately.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S11-R4).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R4; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
@@ -531,8 +860,25 @@
   "preconditions": [
    "1. Several reps are on the report in the A→Z default."
   ],
-  "steps": "1. Click the Subtotal header once and read the order and the direction indicator.\n2. Click it again.\n3. Click it a third time.\n4. Try to get back to the A→Z order using only the column headers.",
-  "expected": "1. The first click sorts Subtotal ASCENDING and shows an ascending direction indicator on the header.\n2. The second click toggles to DESCENDING.\n3. There is no third \"cleared\" state — the third click returns to ascending.\n4. Via the column headers there is no way back to A→Z; the A→Z default shows only when a session carries no valid saved financial sort.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S11-R5, S23-R5).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Click the Subtotal header once and read the order and the direction indicator.",
+   "2. Click it again.",
+   "3. Click it a third time.",
+   "4. Try to get back to the A→Z order using only the column headers."
+  ],
+  "expected": [
+   "1. The first click sorts Subtotal ASCENDING and shows an ascending direction indicator on the header.",
+   "2. The second click toggles to DESCENDING.",
+   "3. There is no third \"cleared\" state — the third click returns to ascending.",
+   "4. Via the column headers there is no way back to A→Z; the A→Z default shows only when a session carries no valid saved financial sort.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S11-R5, S23-R5).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R5; Story 23 S23-R5)",
   "viu_status": "VIU-Pending",
@@ -550,8 +896,22 @@
   "preconditions": [
    "1. Show Unassigned is on with a populated Unassigned row; at least one rep is expanded."
   ],
-  "steps": "1. Sort by a financial column.\n2. Read the Unassigned row's position, the expanded rep's detail rows, and their order.",
-  "expected": "1. Only the rep summary rows reorder.\n2. Invoice detail rows stay grouped under their parent rep, keeping their own newest-first order.\n3. The Unassigned row stays pinned to the top regardless of sort.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S11-R2, S22-R4).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Sort by a financial column.",
+   "2. Read the Unassigned row's position, the expanded rep's detail rows, and their order."
+  ],
+  "expected": [
+   "1. Only the rep summary rows reorder.",
+   "2. Invoice detail rows stay grouped under their parent rep, keeping their own newest-first order.",
+   "3. The Unassigned row stays pinned to the top regardless of sort.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S11-R2, S22-R4).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R2; Story 22 S22-R4)",
   "viu_status": "VIU-Pending",
@@ -569,8 +929,21 @@
   "preconditions": [
    "1. Two reps have equal values in a sortable column; if producible, one rep shows \"—\" in Margin % (seed ZZAUTOTEST data)."
   ],
-  "steps": "1. Sort by the column where the two reps tie and read their relative order.\n2. Sort by Margin % ascending and locate the \"—\" rep.",
-  "expected": "1. Reps with equal values in the sorted column retain the default A→Z order between them.\n2. A Margin % cell rendered \"—\" (undefined) sorts as zero.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S11-R7).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Sort by the column where the two reps tie and read their relative order.",
+   "2. Sort by Margin % ascending and locate the \"—\" rep."
+  ],
+  "expected": [
+   "1. Reps with equal values in the sorted column retain the default A→Z order between them.",
+   "2. A Margin % cell rendered \"—\" (undefined) sorts as zero.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S11-R7).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R7)",
   "viu_status": "VIU-Pending",
@@ -610,8 +983,23 @@
   "preconditions": [
    "1. A ZZAUTOTEST invoiced (not reversed, not void) work order exists with billed labor and clocked technician hours, and its invoice row is visible under its rep in the report."
   ],
-  "steps": "1. Note the invoice row's Inv. Hrs value and its money columns.\n2. Edit a technician clock record on that work order (change its length), or delete one.\n3. Reload the report and re-read the same invoice row.",
-  "expected": "1. The worked-hours side updates — Inv. Hrs (hours invoiced minus hours worked) reflects the edited clock time after the reload.\n2. The billed SELL values (Labor, Parts, Subtotal) stay unchanged — a clock edit never rewrites what was billed.\n3. The figures tied to worked time move together consistently (Margin uses the labor cost behind the worked hours, so it may change too) — nothing is left stale.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S9-R2).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Note the invoice row's Inv. Hrs value and its money columns.",
+   "2. Edit a technician clock record on that work order (change its length), or delete one.",
+   "3. Reload the report and re-read the same invoice row."
+  ],
+  "expected": [
+   "1. The worked-hours side updates — Inv. Hrs (hours invoiced minus hours worked) reflects the edited clock time after the reload.",
+   "2. The billed SELL values (Labor, Parts, Subtotal) stay unchanged — a clock edit never rewrites what was billed.",
+   "3. The figures tied to worked time move together consistently (Margin uses the labor cost behind the worked hours, so it may change too) — nothing is left stale.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S9-R2).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8626 (SBR spec v15 2026-07-29 §3 (hours worked = technician clocked hours recorded against that work order); Story 9 S9-R2; tech-plan-2026-07-29 Phase 4 FR-F7 clock-change rebuild)",
   "viu_status": "VIU-Pending",

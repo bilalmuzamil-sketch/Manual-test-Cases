@@ -9,8 +9,24 @@
   "preconditions": [
    "1. You are signed in as a user whose role has the ordinary reports access."
   ],
-  "steps": "1. Open the reports navigation.\n2. Look under the Performance group.\n3. Click the entry labeled Technician Utilization.\n4. Note where the entry sits relative to the report links that existed before this release.",
-  "expected": "1. The report is listed under the Performance group, labeled \"Technician Utilization\".\n2. Clicking it opens the report.\n3. The entry sits BELOW the pre-existing report links — Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency — the new reports are added below those items without moving or disturbing them.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S1-R1).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the reports navigation.",
+   "2. Look under the Performance group.",
+   "3. Click the entry labeled Technician Utilization.",
+   "4. Note where the entry sits relative to the report links that existed before this release."
+  ],
+  "expected": [
+   "1. The report is listed under the Performance group, labeled \"Technician Utilization\".",
+   "2. Clicking it opens the report.",
+   "3. The entry sits BELOW the pre-existing report links — Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency — the new reports are added below those items without moving or disturbing them.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Technician Utilization report specification version 6 (S1-R1).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8648 (TU spec S1-R1 — below the named anchor items [Sales; Technician Efficiency; Advisor Analysis; Shop Efficiency] per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03)",
   "viu_status": "VIU-Pending",
@@ -29,8 +45,21 @@
    "1. Technician A clocked time (work-order and/or internal) in the selected date range at the selected location.",
    "2. Technician B clocked NO time in that range."
   ],
-  "steps": "1. Open the Technician Utilization report for that range and location.\n2. Look for rows for technicians A and B.",
-  "expected": "1. Technician A has exactly ONE row.\n2. Technician B has NO row - only technicians with clocked time in the selected range at the selected location(s) appear.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S1-R2).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Technician Utilization report for that range and location.",
+   "2. Look for rows for technicians A and B."
+  ],
+  "expected": [
+   "1. Technician A has exactly ONE row.",
+   "2. Technician B has NO row - only technicians with clocked time in the selected range at the selected location(s) appear.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Technician Utilization report specification version 6 (S1-R2).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8648 (TU spec v5 2026-07-29 S1-R2)",
   "viu_status": "VIU-Pending",
@@ -48,8 +77,22 @@
   "preconditions": [
    "1. You are using a browser with NO saved settings for this report (fresh profile or cleared site storage)."
   ],
-  "steps": "1. Open the Technician Utilization report.\n2. Read the date-range picker value and the location filter value.",
-  "expected": "1. The date range defaults to the current calendar month (the date picker's \"This Month\" preset).\n2. Because a range never extends past now, the current-month default effectively shows the month to date.\n3. The location filter defaults to the user's currently active location (the one in the application's global location switcher).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S1-R3, S1-R6, S9-R2).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Technician Utilization report.",
+   "2. Read the date-range picker value and the location filter value."
+  ],
+  "expected": [
+   "1. The date range defaults to the current calendar month (the date picker's \"This Month\" preset).",
+   "2. Because a range never extends past now, the current-month default effectively shows the month to date.",
+   "3. The location filter defaults to the user's currently active location (the one in the application's global location switcher).",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Technician Utilization report specification version 6 (S1-R3, S1-R6, S9-R2).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8648 (TU spec v5 2026-07-29 S1-R3; S1-R6; S9-R2)",
   "viu_status": "VIU-Pending",
@@ -67,8 +110,23 @@
   "preconditions": [
    "1. You are on the Technician Utilization report with rows loaded."
   ],
-  "steps": "1. Change the date range with the report's date-range picker (e.g. to Last Month).\n2. Choose a Custom range within 366 days (start to end).\n3. Try a Custom range wider than 366 days.",
-  "expected": "1. Each range change reloads the report's rows for the new range.\n2. A valid Custom range applies normally.\n3. A Custom span wider than 366 days (matching the largest preset) is rejected - it cannot be applied.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S1-R4, S1-R5).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Change the date range with the report's date-range picker (e.g. to Last Month).",
+   "2. Choose a Custom range within 366 days (start to end).",
+   "3. Try a Custom range wider than 366 days."
+  ],
+  "expected": [
+   "1. Each range change reloads the report's rows for the new range.",
+   "2. A valid Custom range applies normally.",
+   "3. A Custom span wider than 366 days (matching the largest preset) is rejected - it cannot be applied.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Technician Utilization report specification version 6 (S1-R4, S1-R5).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8648 (TU spec v5 2026-07-29 S1-R4; S1-R5)",
   "viu_status": "VIU-Pending",
@@ -86,8 +144,23 @@
   "preconditions": [
    "1. You are on the Technician Utilization report with rows loaded."
   ],
-  "steps": "1. Watch the data area during the initial load.\n2. Change the date range and watch the data area during the reload.\n3. While it loads, try interacting with a toolbar control.",
-  "expected": "1. On the initial load and on every reload (date-range or location change), the data area shows the standard reports loading indicator.\n2. The existing rows are replaced only when the new data returns.\n3. The toolbar remains interactive during the load.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S1-R10).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Watch the data area during the initial load.",
+   "2. Change the date range and watch the data area during the reload.",
+   "3. While it loads, try interacting with a toolbar control."
+  ],
+  "expected": [
+   "1. On the initial load and on every reload (date-range or location change), the data area shows the standard reports loading indicator.",
+   "2. The existing rows are replaced only when the new data returns.",
+   "3. The toolbar remains interactive during the load.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Technician Utilization report specification version 6 (S1-R10).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8648 (TU spec v5 2026-07-29 S1-R10)",
   "viu_status": "VIU-Pending",
@@ -107,8 +180,24 @@
    "2. A technician has a clock record that crosses midnight.",
    "3. For the multi-zone check: locations in two different time zones are selected, with clock records at each."
   ],
-  "steps": "1. Open the report and expand the technician with the cross-midnight record; read the two day rows.\n2. Check the technician whose record straddles the range boundary.\n3. With two differently-zoned locations selected, check which day each record lands on.",
-  "expected": "1. A record that crosses midnight is split by day - each day counts only its own hours; the midnight split is evaluated in the active workplace's time zone.\n2. A record that starts before the range (or ends after it) counts only the part inside the range.\n3. EVERY record is day-grouped and windowed in a SINGLE report-level time zone - the active workplace's - regardless of the location where it was clocked (a record's day, the current-month boundary, and the midnight split all use that one zone).\n4. This matches the Timesheet Activities report's single-time-zone grouping.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S1-R7).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the report and expand the technician with the cross-midnight record; read the two day rows.",
+   "2. Check the technician whose record straddles the range boundary.",
+   "3. With two differently-zoned locations selected, check which day each record lands on."
+  ],
+  "expected": [
+   "1. A record that crosses midnight is split by day - each day counts only its own hours; the midnight split is evaluated in the active workplace's time zone.",
+   "2. A record that starts before the range (or ends after it) counts only the part inside the range.",
+   "3. EVERY record is day-grouped and windowed in a SINGLE report-level time zone - the active workplace's - regardless of the location where it was clocked (a record's day, the current-month boundary, and the midnight split all use that one zone).",
+   "4. This matches the Timesheet Activities report's single-time-zone grouping.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Technician Utilization report specification version 6 (S1-R7).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8648 (TU spec v5 2026-07-29 S1-R7; S1 context notes)",
   "viu_status": "VIU-Pending",
@@ -126,8 +215,20 @@
   "preconditions": [
    "1. You are signed in as a user whose role does NOT have reports access."
   ],
-  "steps": "1. Open the reports navigation.\n2. Look for Technician Utilization under Performance.",
-  "expected": "1. The Technician Utilization report does NOT appear in the navigation.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S1-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the reports navigation.",
+   "2. Look for Technician Utilization under Performance."
+  ],
+  "expected": [
+   "1. The Technician Utilization report does NOT appear in the navigation.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Technician Utilization report specification version 6 (S1-N1).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8648 (TU spec S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\"; the TU prerequisite still names the timesheet-reports permission — his spec edit owed)",
   "viu_status": "VIU-Pending",
@@ -146,8 +247,23 @@
    "1. A date range exists in which no technician clocked any time at the selected location(s), or a selectable location has no clocked time for the range.",
    "2. For the cleared-filter check: the report can also be loaded with rows showing."
   ],
-  "steps": "1. Select that empty date range (or the empty location) and let the report load.\n2. Read the message in the data area and look for the Summary row.\n3. Separately, with rows loaded, use \"Clear all\" in the Filter by Technician filter and re-read the data area and the Summary row.",
-  "expected": "1. Instead of rows, the data area shows exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard reports no-data label).\n2. The Summary row is hidden.\n3. Clearing every technician shows the SAME message and hides the Summary row — this version does not use distinct copy for genuinely-no-data vs a cleared filter.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S1-N2, S3-N1, S5-N1, S9-N2).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Select that empty date range (or the empty location) and let the report load.",
+   "2. Read the message in the data area and look for the Summary row.",
+   "3. Separately, with rows loaded, use \"Clear all\" in the Filter by Technician filter and re-read the data area and the Summary row."
+  ],
+  "expected": [
+   "1. Instead of rows, the data area shows exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard reports no-data label).",
+   "2. The Summary row is hidden.",
+   "3. Clearing every technician shows the SAME message and hides the Summary row — this version does not use distinct copy for genuinely-no-data vs a cleared filter.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Technician Utilization report specification version 6 (S1-N2, S3-N1, S5-N1, S9-N2).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8648 (TU spec v5 2026-07-29 S1-N2; S3-N1; S5-N1; S9-N2; §7 — §7 CLOSES the no-data string verbatim (\"Empty bays\" ... \"Get Going!\") as the standard reports no-data label; so the exact string IS the requirement)",
   "viu_status": "VIU-Pending",
@@ -188,8 +304,30 @@
    "1. A technician with known clocked time in the range: some clocked to work orders and some to an internal, non-billable activity (e.g. shop cleanup or a staff meeting).",
    "2. Part of the internal time was clocked at a location with NO default labor rate configured (for the completeness check)."
   ],
-  "steps": "1. Read the column headers left to right.\n2. Read the technician's Total Hours, WO Hours, and Internal Hours.\n3. Compare against the known clock records.\n4. Check the number format on a value over 100 hours.",
-  "expected": "1. With a single location in scope the headers appear in exactly this order: Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor.\n2. Total Hours = all time the technician was clocked in for the range.\n3. WO Hours = time clocked directly to work orders; Internal Hours = time clocked to internal, non-billable activities.\n4. Internal Hours includes ALL internal time - including hours at a location with no configured labor rate.\n5. Hours show two decimal places with NO thousands separator (e.g. \"107.70\"), rounded from the unrounded hours using round-half-up (a tie rounds away from zero - 0.005 → 0.01).\n6. When more than one location is in scope the Location column also appears, leftmost before Technician.\n---\nNote for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.\nThe Location column is never listed in the column-selection control and you cannot switch it on or off: it appears by itself whenever more than one location is in scope, and is hidden whenever a single location is in scope.\nNote for the tester: the product owner has been asked to confirm this one point and has not answered yet, so do not raise a bug either way — record what you see. The question is in Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx\n\n---\n\n---\nThis is the expected behaviour as per the Technician Utilization report specification version 5 (S2-R1, S2-R2, S2-R3, S2-R4, S2-R5, S9-R9), and as per the build tested on 8/4/2026 (build v3.4.1-3d03023). The product owner's answer of 8/5/2026 in this file reads both ways on the one point about the Location column, so it has NOT been treated as overriding the specification and he has been asked again: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: HOLD - waiting on one answer from the product owner about the Location column\n",
+  "steps": [
+   "1. Read the column headers left to right.",
+   "2. Read the technician's Total Hours, WO Hours, and Internal Hours.",
+   "3. Compare against the known clock records.",
+   "4. Check the number format on a value over 100 hours."
+  ],
+  "expected": [
+   "1. With a single location in scope the headers appear in exactly this order: Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor.",
+   "2. Total Hours = all time the technician was clocked in for the range.",
+   "3. WO Hours = time clocked directly to work orders; Internal Hours = time clocked to internal, non-billable activities.",
+   "4. Internal Hours includes ALL internal time - including hours at a location with no configured labor rate.",
+   "5. Hours show two decimal places with NO thousands separator (e.g. \"107.70\"), rounded from the unrounded hours using round-half-up (a tie rounds away from zero - 0.005 → 0.01).",
+   "6. If your own account can reach more than one location, a Location column also appears, leftmost before Technician, and it is already switched on when you arrive.",
+   "---",
+   "Note for the tester: if the Location column does not behave this way on the build, mark this test Failed and report it - do not change the test.",
+   "Location is one of the columns you can switch on and off in the column-selection control, but only if your own account can reach more than one location: for you it is already switched on when you arrive, and you can switch it off. Someone whose account can reach only one location never sees the column and it is not offered to them in that list.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Technician Utilization report specification version 6 (S2-R1, S2-R2, S2-R3, S2-R4, S2-R5, S9-R9). Version 6 of that specification, published on 5 August 2026, is what settles the one point about the Location column: it now states in both of its own requirements that the column belongs to anyone whose account can reach more than one location and can be switched on and off in the column-selection control. Chris Ward asked for that change in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8649; SV-8656 (TU spec v5 2026-07-29 S2-R1; S2-R2; S2-R3; S2-R4; S2-R5; §3 + Story 9 S9-R9 — header order and the hours columns; plus the automatic Location column leftmost when shown)",
   "viu_status": "VIU-Pending",
@@ -207,8 +345,21 @@
   "preconditions": [
    "1. A technician whose unrounded WO and total hours produce a checkable percentage - ideally one landing on a rounding tie (e.g. computing to 66.65%)."
   ],
-  "steps": "1. Compute the expected value by hand: work-order hours ÷ total clocked hours × 100, from the UNROUNDED hours.\n2. Read the technician's Utilization % and compare.",
-  "expected": "1. Utilization % = work-order hours as a percentage of total clocked hours, computed from the unrounded hours (not from the already-rounded displays).\n2. It shows one decimal place followed by a percent sign, rounded round-half-up (66.65% → 66.7%).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S2-R6, S2-R7).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Compute the expected value by hand: work-order hours ÷ total clocked hours × 100, from the UNROUNDED hours.",
+   "2. Read the technician's Utilization % and compare."
+  ],
+  "expected": [
+   "1. Utilization % = work-order hours as a percentage of total clocked hours, computed from the unrounded hours (not from the already-rounded displays).",
+   "2. It shows one decimal place followed by a percent sign, rounded round-half-up (66.65% → 66.7%).",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Technician Utilization report specification version 6 (S2-R6, S2-R7).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-R6; S2-R7; §3)",
   "viu_status": "VIU-Pending",
@@ -227,8 +378,22 @@
    "1. A technician with internal hours but ZERO work-order hours in the range.",
    "2. Other technicians with mixed hours for the upper-bound check."
   ],
-  "steps": "1. Read the internal-only technician's Utilization %.\n2. Scan every row's Utilization %.",
-  "expected": "1. The internal-only technician shows \"0.0%\".\n2. No row shows more than 100% - work-order hours are always part of total clocked hours.\n3. The \"—\" (undefined, total = 0) state is unreachable on a rendered technician or day row, because only technicians with clocked time get rows.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S2-E1, S2-R7).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Read the internal-only technician's Utilization %.",
+   "2. Scan every row's Utilization %."
+  ],
+  "expected": [
+   "1. The internal-only technician shows \"0.0%\".",
+   "2. No row shows more than 100% - work-order hours are always part of total clocked hours.",
+   "3. The \"—\" (undefined, total = 0) state is unreachable on a rendered technician or day row, because only technicians with clocked time get rows.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Technician Utilization report specification version 6 (S2-E1, S2-R7).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-E1; S2-R7; S2 context note)",
   "viu_status": "VIU-Pending",
@@ -248,8 +413,23 @@
    "2. A technician clocked known internal hours at A and known internal hours at B in the range.",
    "3. Both locations are selected in the location filter."
   ],
-  "steps": "1. Compute by hand: (R1 × internal hours at A) + (R2 × internal hours at B), keeping full precision, rounding only the final total (round-half-up).\n2. Read the technician's Est. Lost Labor and compare.\n3. Repeat with only one location selected.",
-  "expected": "1. Est. Lost Labor = the sum, per contributing location, of that location's default labor rate × the technician's internal hours clocked there - summed at full precision, with the technician's total rounded ONCE (round-half-up).\n2. In a single-location view it is simply that one location's rate × the technician's internal hours.\n3. The value shows as dollars with two decimals and commas between thousands (e.g. \"$1,234.50\").\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S2-R8, S2-R9).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Compute by hand: (R1 × internal hours at A) + (R2 × internal hours at B), keeping full precision, rounding only the final total (round-half-up).",
+   "2. Read the technician's Est. Lost Labor and compare.",
+   "3. Repeat with only one location selected."
+  ],
+  "expected": [
+   "1. Est. Lost Labor = the sum, per contributing location, of that location's default labor rate × the technician's internal hours clocked there - summed at full precision, with the technician's total rounded ONCE (round-half-up).",
+   "2. In a single-location view it is simply that one location's rate × the technician's internal hours.",
+   "3. The value shows as dollars with two decimals and commas between thousands (e.g. \"$1,234.50\").",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Technician Utilization report specification version 6 (S2-R8, S2-R9).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-R8; S2-R9; §3)",
   "viu_status": "VIU-Pending",
@@ -268,8 +448,25 @@
    "1. You are on the Technician Utilization report with rows loaded.",
    "2. Est. Lost Labor is turned ON in the Column Selection control (it is on by default)."
   ],
-  "steps": "1. Look at the position and weight of the Est. Lost Labor column (header and cells).\n2. Hover the information icon on the Est. Lost Labor header and read the text; also reach it by keyboard focus and by tap on a touch device.\n3. Check every other column header for an information icon.\n4. Turn Est. Lost Labor off in the Column Selection control and look at the table again.",
-  "expected": "1. While Est. Lost Labor is shown, the column is pinned to the far right; its cells are bold and its header is bold, matching.\n2. The information icon shows exactly: \"Internal hours valued at each location's default labor rate\" — on hover, on keyboard focus, and on tap; it is dismissible.\n3. NO column header other than Est. Lost Labor shows the information icon.\n4. Est. Lost Labor can be turned OFF in the Column Selection control; when it is off the column, its bold styling and its information icon are all absent, and the report still works normally.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S2-R10, S2-R11, S8-R4, S8-R6, S8-R7, S8-N1, S10-R3).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Look at the position and weight of the Est. Lost Labor column (header and cells).",
+   "2. Hover the information icon on the Est. Lost Labor header and read the text; also reach it by keyboard focus and by tap on a touch device.",
+   "3. Check every other column header for an information icon.",
+   "4. Turn Est. Lost Labor off in the Column Selection control and look at the table again."
+  ],
+  "expected": [
+   "1. While Est. Lost Labor is shown, the column is pinned to the far right; its cells are bold and its header is bold, matching.",
+   "2. The information icon shows exactly: \"Internal hours valued at each location's default labor rate\" — on hover, on keyboard focus, and on tap; it is dismissible.",
+   "3. NO column header other than Est. Lost Labor shows the information icon.",
+   "4. Est. Lost Labor can be turned OFF in the Column Selection control; when it is off the column, its bold styling and its information icon are all absent, and the report still works normally.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Technician Utilization report specification version 6 (S2-R10, S2-R11, S8-R4, S8-R6, S8-R7, S8-N1, S10-R3).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-R10; S2-R11; S8-R4; S8-R6; S8-R7; S8-N1 — each re-worded \"When shown\" now that Est. Lost Labor is a hideable column; new Story 10 S10-R3)",
   "viu_status": "VIU-Pending",
@@ -288,8 +485,22 @@
    "1. Technician A has zero internal hours in the range (all time on work orders).",
    "2. Technician B has internal hours at a location whose default labor rate is configured as exactly $0.00."
   ],
-  "steps": "1. Read technician A's Est. Lost Labor.\n2. Read technician B's Est. Lost Labor.",
-  "expected": "1. Technician A shows \"$0.00\" - there is nothing to value, regardless of whether the location has a rate configured.\n2. Technician B also shows \"$0.00\" - a configured rate of exactly $0.00 is a KNOWN rate that values the hours at $0.00, not \"—\".\n3. \"$0.00\" means 'the rate is known and there is nothing (or $0) to value' - a different state from \"—\" ('the rate is unknown').\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S2-E2).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Read technician A's Est. Lost Labor.",
+   "2. Read technician B's Est. Lost Labor."
+  ],
+  "expected": [
+   "1. Technician A shows \"$0.00\" - there is nothing to value, regardless of whether the location has a rate configured.",
+   "2. Technician B also shows \"$0.00\" - a configured rate of exactly $0.00 is a KNOWN rate that values the hours at $0.00, not \"—\".",
+   "3. \"$0.00\" means 'the rate is known and there is nothing (or $0) to value' - a different state from \"—\" ('the rate is unknown').",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Technician Utilization report specification version 6 (S2-E2).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-E2; §5 Assumptions; S2 context note)",
   "viu_status": "VIU-Pending",
@@ -308,8 +519,22 @@
    "1. A technician's in-range internal hours were all clocked at location(s) with NO default labor rate configured (rate absent, not $0.00).",
    "2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
   ],
-  "steps": "1. Read that technician's Est. Lost Labor.\n2. Inspect the cell with a screen reader or the accessibility tree.",
-  "expected": "1. Est. Lost Labor shows \"—\" (an em-dash), NOT \"$0.00\" - the rate is unknown, so the value cannot be computed.\n2. The \"—\" cell carries the assistive-technology label \"No default labor rate configured\" (distinguishing it from \"$0.00\", which reads as its dollar value).\n3. The technician's Internal Hours column still shows all the internal hours (they are counted even though they cannot be valued).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S2-E3, S8-R11, S2-R4).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Read that technician's Est. Lost Labor.",
+   "2. Inspect the cell with a screen reader or the accessibility tree."
+  ],
+  "expected": [
+   "1. Est. Lost Labor shows \"—\" (an em-dash), NOT \"$0.00\" - the rate is unknown, so the value cannot be computed.",
+   "2. The \"—\" cell carries the assistive-technology label \"No default labor rate configured\" (distinguishing it from \"$0.00\", which reads as its dollar value).",
+   "3. The technician's Internal Hours column still shows all the internal hours (they are counted even though they cannot be valued).",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Technician Utilization report specification version 6 (S2-E3, S8-R11, S2-R4).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-E3; S8-R11; S2-R4)",
   "viu_status": "VIU-Pending",
@@ -328,8 +553,22 @@
    "1. A technician clocked internal hours at BOTH a location with a configured default labor rate and a location with NO rate, in the range.",
    "2. Both locations are selected."
   ],
-  "steps": "1. Read the technician's Internal Hours and Est. Lost Labor.\n2. Compare the dollar value against rate × (internal hours at the RATED location only).",
-  "expected": "1. Est. Lost Labor is the sum of the valued (rated-location) portions only - the unrated-location hours are excluded from the dollar amount.\n2. The amount shows as a normal \"$X.XX\" with NO partial-value indicator in this version - so the row's Est. Lost Labor values fewer hours than its Internal Hours column shows.\n3. This is a documented known limitation (a partial-value indicator is a possible follow-up) - expected behavior, not a defect.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S2-E4).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Read the technician's Internal Hours and Est. Lost Labor.",
+   "2. Compare the dollar value against rate × (internal hours at the RATED location only)."
+  ],
+  "expected": [
+   "1. Est. Lost Labor is the sum of the valued (rated-location) portions only - the unrated-location hours are excluded from the dollar amount.",
+   "2. The amount shows as a normal \"$X.XX\" with NO partial-value indicator in this version - so the row's Est. Lost Labor values fewer hours than its Internal Hours column shows.",
+   "3. This is a documented known limitation (a partial-value indicator is a possible follow-up) - expected behavior, not a defect.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Technician Utilization report specification version 6 (S2-E4).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-E4)",
   "viu_status": "VIU-Pending",

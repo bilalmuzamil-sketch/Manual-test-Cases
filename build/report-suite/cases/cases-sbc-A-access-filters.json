@@ -10,8 +10,26 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. Your role has the ordinary reports access (the standard \"can this person see reports\" setting)."
   ],
-  "steps": "1. Open the Reports area from the main navigation.\n2. Find the Performance group and read its entries from top to bottom.\n3. Click the \"Sales By Customer\" entry.\n4. Read the page title at the top of the report and the browser tab's title.",
-  "expected": "1. \"Sales By Customer\" is listed in the Performance group of the Reports left-side navigation, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency) — the new reports are added below those items without moving them.\n2. Clicking it opens the Sales By Customer report in the main content area.\n3. The page title reads \"Sales By Customer.\"\n4. The browser tab title reads \"Sales By Customer - Report | ShopView\".\n5. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 14 (S1-R1, S1-R3, S1-R4).\n\nAUTOMATION: HOLD - waiting on an answer from the product owner\n",
+  "steps": [
+   "1. Open the Reports area from the main navigation.",
+   "2. Find the Performance group and read its entries from top to bottom.",
+   "3. Click the \"Sales By Customer\" entry.",
+   "4. Read the page title at the top of the report and the browser tab's title."
+  ],
+  "expected": [
+   "1. \"Sales By Customer\" is listed in the Performance group of the Reports left-side navigation, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency) — the new reports are added below those items without moving them.",
+   "2. Clicking it opens the Sales By Customer report in the main content area.",
+   "3. The page title reads \"Sales By Customer.\"",
+   "4. The browser tab title reads \"Sales By Customer - Report | ShopView\".",
+   "5. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S1-R1, S1-R3, S1-R4).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: HOLD - waiting on an answer from the product owner",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8600 (SBC spec S1-R1; S1-R3; S1-R4 — Confluence 577634305 v-2026-07-31; Performance-group placement per the PRD video 2026-07-30; access = ordinary reports permission per Chris Ward 2026-07-31 Q4=A + SV-8598 sheet Q1=A)",
   "viu_status": "VIU-Pending",
@@ -55,8 +73,23 @@
    "1. A test user exists whose role has the ordinary reports access (the standard \"can this person see reports\" setting) and NO report-specific permission (create a ZZAUTOTEST custom role if needed; restore afterwards).",
    "2. You are signed in as that user."
   ],
-  "steps": "1. Open the Reports area.\n2. Click \"Sales By Customer\" in the left-side navigation.",
-  "expected": "1. The \"Sales By Customer\" entry is visible in the Reports navigation.\n2. The report opens and shows its data.\n3. Ordinary reports access alone is enough — this report does NOT need a permission of its own.\n4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 14 (S1-R2).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Reports area.",
+   "2. Click \"Sales By Customer\" in the left-side navigation."
+  ],
+  "expected": [
+   "1. The \"Sales By Customer\" entry is visible in the Reports navigation.",
+   "2. The report opens and shows its data.",
+   "3. Ordinary reports access alone is enough — this report does NOT need a permission of its own.",
+   "4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S1-R2).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8600 (SBC spec S1-R2 — Confluence 577634305 v-2026-07-31 — now reads \"gated by ordinary reports access; not by a report-specific permission\"; Chris Ward Q1=A; built atom hidden-and-inert per his ruling; SV-8780 Ready to Fix)",
   "viu_status": "VIU-Pending",
@@ -76,8 +109,23 @@
    "2. You know the report's direct page address (copy it from a permitted session first).",
    "3. You are signed in as the unpermitted user."
   ],
-  "steps": "1. Open the Reports area and look through the left-side navigation.\n2. Paste the report's direct page address into the browser and try to open it.",
-  "expected": "1. \"Sales By Customer\" does not appear in the Reports navigation.\n2. Opening the report by direct link does not show the report (the application blocks it with its standard access-denied handling).\n3. The gate is the ordinary reports access — there is no separate Sales By Customer permission to remove.\n4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 14 (S1-N1).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Reports area and look through the left-side navigation.",
+   "2. Paste the report's direct page address into the browser and try to open it."
+  ],
+  "expected": [
+   "1. \"Sales By Customer\" does not appear in the Reports navigation.",
+   "2. Opening the report by direct link does not show the report (the application blocks it with its standard access-denied handling).",
+   "3. The gate is the ordinary reports access — there is no separate Sales By Customer permission to remove.",
+   "4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S1-N1).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8600 (SBC spec S1-N1 — Confluence 577634305 v-2026-07-31 — now reads \"A user without reports access does not see the report in navigation and cannot open it by direct link\"; Chris Ward Q1=A; SV-8780 Ready to Fix)",
   "viu_status": "VIU-Pending",
@@ -96,8 +144,22 @@
    "1. You are signed in as a user who can view the report but lacks permission to open the underlying invoice destination.",
    "2. The report shows at least one customer; you have expanded down to an invoice detail row."
   ],
-  "steps": "1. Click the invoice number link on a detail row.\n2. Look at the destination page.\n3. Press the browser back button.",
-  "expected": "1. The destination page shows the application's standard access-denied state.\n2. Pressing back returns you to the Sales By Customer report.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 14 (S9-N2).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Click the invoice number link on a detail row.",
+   "2. Look at the destination page.",
+   "3. Press the browser back button."
+  ],
+  "expected": [
+   "1. The destination page shows the application's standard access-denied state.",
+   "2. Pressing back returns you to the Sales By Customer report.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S9-N2).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8607 (SBC spec v13 2026-07-31 Story 9 S9-N2)",
   "viu_status": "VIU-Pending",
@@ -117,8 +179,25 @@
    "2. A non-administrator test user is assigned to only ONE of the locations.",
    "3. An administrator account is also available."
   ],
-  "steps": "1. Sign in as the administrator, open the report, and open the location filter — note the locations listed.\n2. Sign in as the non-administrator, open the report, and open the location filter — note the locations listed.\n3. As the non-administrator, attempt to request a location you are not assigned to by these routes: (a) edit the page link (URL) if the location selection is carried there, and open the edited link; (b) restore a saved view stored while an extra location was assigned (set that saved view up first if practical).\n4. Check the report data.",
-  "expected": "1. The administrator's filter lists every location in the organization.\n2. The non-administrator's filter lists only the locations assigned to them.\n3. A requested location the user does not have access to is ignored — the report does NOT widen to the whole organization.\n4. The report data never includes invoices from a location the user does not have access to.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 14 (S4-R7, S4-R8, S4-R9, S4-N1).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Sign in as the administrator, open the report, and open the location filter — note the locations listed.",
+   "2. Sign in as the non-administrator, open the report, and open the location filter — note the locations listed.",
+   "3. As the non-administrator, attempt to request a location you are not assigned to by these routes: (a) edit the page link (URL) if the location selection is carried there, and open the edited link; (b) restore a saved view stored while an extra location was assigned (set that saved view up first if practical).",
+   "4. Check the report data."
+  ],
+  "expected": [
+   "1. The administrator's filter lists every location in the organization.",
+   "2. The non-administrator's filter lists only the locations assigned to them.",
+   "3. A requested location the user does not have access to is ignored — the report does NOT widen to the whole organization.",
+   "4. The report data never includes invoices from a location the user does not have access to.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S4-R7, S4-R8, S4-R9, S4-N1).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8603 (SBC spec v13 2026-07-31 Story 4 S4-R7; S4-R8; S4-R9; S4-N1)",
   "viu_status": "VIU-Pending",
@@ -137,8 +216,23 @@
    "1. You are signed in as an administrator who can edit roles and their permissions.",
    "2. Create a throwaway custom role named starting with ZZAUTOTEST to work in, and delete it when you have finished."
   ],
-  "steps": "1. Open the area where a role's permissions are switched on and off.\n2. Read through the reports-related permissions from top to bottom.\n3. Search the permission list for \"Sales By Customer\".",
-  "expected": "1. There is NO \"Sales By Customer\" permission anywhere in the list for an administrator to switch on or off.\n2. The only reports permission offered is the ordinary reports access, and that one covers all six of the new reports.\n3. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 14 (S1-R2).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the area where a role's permissions are switched on and off.",
+   "2. Read through the reports-related permissions from top to bottom.",
+   "3. Search the permission list for \"Sales By Customer\"."
+  ],
+  "expected": [
+   "1. There is NO \"Sales By Customer\" permission anywhere in the list for an administrator to switch on or off.",
+   "2. The only reports permission offered is the ordinary reports access, and that one covers all six of the new reports.",
+   "3. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S1-R2).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8598 (SBC spec S1-R2 — Confluence 577634305 v-2026-07-31 — \"there is no dedicated Sales By Customer View permission\"; Chris Ward Q1=A + his ruling to hide an already-built permission from the front end; SV-8780)",
   "viu_status": "VIU-Pending",
@@ -155,8 +249,22 @@
   "preconditions": [
    "1. You are on the Sales By Customer report."
   ],
-  "steps": "1. Find the date range picker in the report toolbar.\n2. Open it and read the options from top to bottom.",
-  "expected": "1. A date range picker is visible in the report toolbar.\n3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports.\n3. There is no \"All Time\" option.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Sales By Customer report specification version 14 (S2-R1, S2-R2) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Find the date range picker in the report toolbar.",
+   "2. Open it and read the options from top to bottom."
+  ],
+  "expected": [
+   "1. A date range picker is visible in the report toolbar.",
+   "3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports.",
+   "3. There is no \"All Time\" option.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Sales By Customer report specification version 14 (S2-R1, S2-R2) says something different, his decision is the later word and is the authority.",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R1; S2-R2 — S2-R2 CLOSES the eleven-option list and its order itself; so the closed list IS the requirement; re-check this case whenever S2-R2 changes)",
   "viu_status": "VIU-Pending",
@@ -198,8 +306,23 @@
   "preconditions": [
    "1. You are on the Sales By Customer report."
   ],
-  "steps": "1. Open the date range picker. A month calendar is shown inside it, which is how a custom start and end date are picked on this build.\n2. Pick a start and end date less than 366 days apart on that calendar and apply.\n3. Open the picker again and try to pick a start and end date MORE than 366 days apart.",
-  "expected": "1. The date range picker shows a month calendar inside it — that is how a custom start and end date are chosen. There is no separate \"Custom\" item to choose.\n2. A range of 366 days or fewer applies normally.\n3. A range wider than 366 days cannot be applied — the report prevents the selection rather than loading the wider range.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Sales By Customer report specification version 14 (S2-R3, S2-R4, S2-N2) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the date range picker. A month calendar is shown inside it, which is how a custom start and end date are picked on this build.",
+   "2. Pick a start and end date less than 366 days apart on that calendar and apply.",
+   "3. Open the picker again and try to pick a start and end date MORE than 366 days apart."
+  ],
+  "expected": [
+   "1. The date range picker shows a month calendar inside it — that is how a custom start and end date are chosen. There is no separate \"Custom\" item to choose.",
+   "2. A range of 366 days or fewer applies normally.",
+   "3. A range wider than 366 days cannot be applied — the report prevents the selection rather than loading the wider range.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Sales By Customer report specification version 14 (S2-R3, S2-R4, S2-N2) says something different, his decision is the later word and is the authority.",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R3; S2-R4; S2-N2)",
   "viu_status": "VIU-Pending",
@@ -217,8 +340,22 @@
   "preconditions": [
    "1. You are on the Sales By Customer report."
   ],
-  "steps": "1. Change the date range (for example to \"Last Month\").\n2. Look at the browser's address bar.\n3. Copy the page link, open it in a fresh browser profile with no saved view for this report, and check the date range.",
-  "expected": "1. The chosen date range value is written into the page link.\n2. Opening that link in a browser with no saved view for this report restores the sender's date range.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 14 (S2-R6, S2-R9).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Change the date range (for example to \"Last Month\").",
+   "2. Look at the browser's address bar.",
+   "3. Copy the page link, open it in a fresh browser profile with no saved view for this report, and check the date range."
+  ],
+  "expected": [
+   "1. The chosen date range value is written into the page link.",
+   "2. Opening that link in a browser with no saved view for this report restores the sender's date range.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S2-R6, S2-R9).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R6; S2-R9 (context))",
   "viu_status": "VIU-Pending",
@@ -263,8 +400,26 @@
    "1. You are on the Sales By Customer report with no saved view (first visit or cleared browser storage), so the first-load default can be read.",
    "2. The date range contains at least one service invoice (number starting with S) and one parts invoice (number starting with P) — seed ZZAUTOTEST data if needed."
   ],
-  "steps": "1. Find the \"Product Type\" dropdown in the report toolbar; read its value before touching it, then open it and read the options in order.\n2. Set Product Type to \"Service only,\" expand a customer down to invoice rows, and read the invoice numbers.\n3. Set Product Type to \"Parts only\" and read the invoice numbers again.\n4. Set Product Type back to \"Parts & Service.\"",
-  "expected": "1. The dropdown offers exactly three options, in this order: \"Parts & Service,\" \"Parts only,\" \"Service only\" — with \"Parts & Service\" selected by default on first load.\n2. Under \"Service only,\" every invoice shown has a number starting with S; parts invoices are gone and all counts/totals reflect only S invoices.\n3. Under \"Parts only,\" every invoice shown has a number starting with P; service invoices are gone and all counts/totals reflect only P invoices.\n4. With \"Parts & Service\" selected, no product-type filter is applied — both S and P invoices are included and counts/totals cover both.\n5. The whole invoice is classified by its number prefix — there is no per-line-item split.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 14 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Find the \"Product Type\" dropdown in the report toolbar; read its value before touching it, then open it and read the options in order.",
+   "2. Set Product Type to \"Service only,\" expand a customer down to invoice rows, and read the invoice numbers.",
+   "3. Set Product Type to \"Parts only\" and read the invoice numbers again.",
+   "4. Set Product Type back to \"Parts & Service.\""
+  ],
+  "expected": [
+   "1. The dropdown offers exactly three options, in this order: \"Parts & Service,\" \"Parts only,\" \"Service only\" — with \"Parts & Service\" selected by default on first load.",
+   "2. Under \"Service only,\" every invoice shown has a number starting with S; parts invoices are gone and all counts/totals reflect only S invoices.",
+   "3. Under \"Parts only,\" every invoice shown has a number starting with P; service invoices are gone and all counts/totals reflect only P invoices.",
+   "4. With \"Parts & Service\" selected, no product-type filter is applied — both S and P invoices are included and counts/totals cover both.",
+   "5. The whole invoice is classified by its number prefix — there is no per-line-item split.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8602 (SBC spec v13 2026-07-31 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6 — S3-R2 CLOSES the list itself (\"exactly three options ... in this order\"); so the closed list IS the requirement)",
   "viu_status": "VIU-Pending",
@@ -305,8 +460,26 @@
   "preconditions": [
    "1. You are on the Sales By Customer report as a user with access to two or more locations."
   ],
-  "steps": "1. Look at the report toolbar's filters from left to right.\n2. Open the location filter and read its options.\n3. Click the \"All locations\" option, then click it again.\n4. Then sign in as a user with access to only ONE location, open the report and look for the Location filter again.",
-  "expected": "1. The location filter is the rightmost filter in the toolbar.\n2. It lists the locations the signed-in user has access to.\n3. An \"All locations\" option is pinned to the top.\n4. Activating \"All locations\" selects every listed location at once; activating it again clears them all at once.\n5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's data.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 14 (S4-R1, S4-R2, S4-R3). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Look at the report toolbar's filters from left to right.",
+   "2. Open the location filter and read its options.",
+   "3. Click the \"All locations\" option, then click it again.",
+   "4. Then sign in as a user with access to only ONE location, open the report and look for the Location filter again."
+  ],
+  "expected": [
+   "1. The location filter is the rightmost filter in the toolbar.",
+   "2. It lists the locations the signed-in user has access to.",
+   "3. An \"All locations\" option is pinned to the top.",
+   "4. Activating \"All locations\" selects every listed location at once; activating it again clears them all at once.",
+   "5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's data.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S4-R1, S4-R2, S4-R3). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8603 (SBC spec Story 4 S4-R1; S4-R2; S4-R3 + single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A; applied suite-wide)",
   "viu_status": "VIU-Pending",
@@ -349,8 +522,25 @@
    "1. At least two accessible locations each have invoices in the chosen date range (seed ZZAUTOTEST data if needed).",
    "2. You are on the Sales By Customer report."
   ],
-  "steps": "1. Select only location A in the location filter and note the customers/totals.\n2. Select locations A and B together and note the change.\n3. Select \"All locations.\"\n4. With \"All locations\" active, look at how the rows tell you which location they belong to.",
-  "expected": "1. With one or more locations selected, the report includes only data from those locations.\n2. Adding a second location adds that location's invoices to the rows and totals.\n3. With \"All locations,\" the report includes data from every location the user has access to.\n4. With \"All locations\" active you can tell which location each row's data belongs to — a location label or marking is shown.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 14 (S4-R5, S4-R6); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Select only location A in the location filter and note the customers/totals.",
+   "2. Select locations A and B together and note the change.",
+   "3. Select \"All locations.\"",
+   "4. With \"All locations\" active, look at how the rows tell you which location they belong to."
+  ],
+  "expected": [
+   "1. With one or more locations selected, the report includes only data from those locations.",
+   "2. Adding a second location adds that location's invoices to the rows and totals.",
+   "3. With \"All locations,\" the report includes data from every location the user has access to.",
+   "4. With \"All locations\" active you can tell which location each row's data belongs to — a location label or marking is shown.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S4-R5, S4-R6); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8603 (SBC spec Story 4 S4-R5; S4-R6 — per-row location identifier in All-locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins]",
   "viu_status": "VIU-Pending",
@@ -368,8 +558,24 @@
   "preconditions": [
    "1. You are on the Sales By Customer report with at least one customer in the current results."
   ],
-  "steps": "1. Look at the toolbar filters from left to right.\n2. Open the Customer filter without typing anything.\n3. Read what the dropdown shows before any query is typed.",
-  "expected": "1. A Customer filter labeled \"Customer\" sits between the Product Type filter and the Location filter.\n2. The control carries a search (magnifier) icon marking it as searchable.\n3. Before typing, the dropdown shows the pinned all/clear control at the top and a \"Search customers…\" hint; individual customers are revealed by typing.\n4. The hint yields to the typed query while you are searching.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 14 (S18-R1, S18-R2).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Look at the toolbar filters from left to right.",
+   "2. Open the Customer filter without typing anything.",
+   "3. Read what the dropdown shows before any query is typed."
+  ],
+  "expected": [
+   "1. A Customer filter labeled \"Customer\" sits between the Product Type filter and the Location filter.",
+   "2. The control carries a search (magnifier) icon marking it as searchable.",
+   "3. Before typing, the dropdown shows the pinned all/clear control at the top and a \"Search customers…\" hint; individual customers are revealed by typing.",
+   "4. The hint yields to the typed query while you are searching.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S18-R1, S18-R2).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R1; S18-R2)",
   "viu_status": "VIU-Pending",
@@ -388,8 +594,23 @@
    "1. You are on the Sales By Customer report.",
    "2. At least two customers with distinct names have invoices in the current date range/Product Type/location (seed ZZAUTOTEST customers if needed)."
   ],
-  "steps": "1. Open the Customer filter and type a fragment from the MIDDLE of a customer's name, in different letter case (for example type \"corp\" for \"Acme Corp\").\n2. Read the list of customers shown.\n3. Click one listed customer to select it and look at its row in the dropdown.",
-  "expected": "1. As you type, customers whose names contain the typed text appear in the list — matching is case-insensitive and matches anywhere in the name (a \"contains\" match, not starts-with).\n2. The list is scoped to the active date range, Product Type, and location.\n3. A selected customer is shown with a checkmark.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 14 (S18-R2).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Customer filter and type a fragment from the MIDDLE of a customer's name, in different letter case (for example type \"corp\" for \"Acme Corp\").",
+   "2. Read the list of customers shown.",
+   "3. Click one listed customer to select it and look at its row in the dropdown."
+  ],
+  "expected": [
+   "1. As you type, customers whose names contain the typed text appear in the list — matching is case-insensitive and matches anywhere in the name (a \"contains\" match, not starts-with).",
+   "2. The list is scoped to the active date range, Product Type, and location.",
+   "3. A selected customer is shown with a checkmark.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S18-R2).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R2)",
   "viu_status": "VIU-Pending",
@@ -407,8 +628,24 @@
   "preconditions": [
    "1. You are on the Sales By Customer report with several customers in the current results."
   ],
-  "steps": "1. Open the Customer filter while it is in the all-customers state and read the pinned control at the top of the dropdown.\n2. Activate it (\"Clear all\") and read the table body, the totals row, and the filter's collapsed label.\n3. Read the pinned control again and activate it once more.",
-  "expected": "1. In the all-customers state the pinned control reads \"Clear all\"; activating it clears the selection to an empty set.\n2. When the filter is NOT in the all-customers state the pinned control reads \"All customers\"; activating it puts the filter back in the all-customers state.\n3. The control is pinned to the top of the dropdown in both states.\n4. After \"Clear all\": the report shows the empty-state message \"No sales data found for the selected filters.\", the totals row shows zeros, and the collapsed label reads \"None.\"\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 14 (S18-R3, S18-N1, S17-E1).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Customer filter while it is in the all-customers state and read the pinned control at the top of the dropdown.",
+   "2. Activate it (\"Clear all\") and read the table body, the totals row, and the filter's collapsed label.",
+   "3. Read the pinned control again and activate it once more."
+  ],
+  "expected": [
+   "1. In the all-customers state the pinned control reads \"Clear all\"; activating it clears the selection to an empty set.",
+   "2. When the filter is NOT in the all-customers state the pinned control reads \"All customers\"; activating it puts the filter back in the all-customers state.",
+   "3. The control is pinned to the top of the dropdown in both states.",
+   "4. After \"Clear all\": the report shows the empty-state message \"No sales data found for the selected filters.\", the totals row shows zeros, and the collapsed label reads \"None.\"",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S18-R3, S18-N1, S17-E1).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R3; S18-N1; S17-E1)",
   "viu_status": "VIU-Pending",
@@ -428,8 +665,25 @@
    "2. Several customers have invoices in the default date range.",
    "3. A customer exists that has invoices ONLY in a wider date range than the current one (seed a ZZAUTOTEST invoice dated last month if needed)."
   ],
-  "steps": "1. Open the Sales By Customer report.\n2. Read the Customer filter's collapsed label.\n3. Check the customer rows shown.\n4. Widen the date range so the customer with no matching invoices now has one; re-check the label and the rows.",
-  "expected": "1. The Customer filter's collapsed label reads \"All customers.\"\n2. The report shows every customer matching the other active filters.\n3. The all-customers state is an explicit state — while it is active, any customer that appears later (new data) is included automatically.\n4. After the filter change the filter stays in the all-customers state (label still \"All customers\") and every customer matching the new filters is included — including the newly-appearing one, with no manual re-selection.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 14 (S18-R4, S18-R5, S18-R9, S18-E1).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Sales By Customer report.",
+   "2. Read the Customer filter's collapsed label.",
+   "3. Check the customer rows shown.",
+   "4. Widen the date range so the customer with no matching invoices now has one; re-check the label and the rows."
+  ],
+  "expected": [
+   "1. The Customer filter's collapsed label reads \"All customers.\"",
+   "2. The report shows every customer matching the other active filters.",
+   "3. The all-customers state is an explicit state — while it is active, any customer that appears later (new data) is included automatically.",
+   "4. After the filter change the filter stays in the all-customers state (label still \"All customers\") and every customer matching the new filters is included — including the newly-appearing one, with no manual re-selection.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S18-R4, S18-R5, S18-R9, S18-E1).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R4; S18-R5; S18-R9; S18-E1)",
   "viu_status": "VIU-Pending",
@@ -447,8 +701,25 @@
   "preconditions": [
    "1. You are on the Sales By Customer report with at least three customers in the current results."
   ],
-  "steps": "1. Open the Customer filter and use \"Clear all\" to empty the selection; read the collapsed label.\n2. Select exactly one customer; read the collapsed label.\n3. Select a second and third customer; read the collapsed label.\n4. Start typing a search query in the filter field and watch the field text, then clear the query or click away.",
-  "expected": "1. With an empty selection the collapsed label reads \"None.\"\n2. With exactly one customer selected the label shows that customer's name.\n3. With more than one selected the label reads \"N selected\" where N is the number of selected customers (for example \"3 selected\").\n4. While typing, the field shows the query text instead of the summary label; the summary label returns when the query is cleared or the field loses focus.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 14 (S18-R5).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Customer filter and use \"Clear all\" to empty the selection; read the collapsed label.",
+   "2. Select exactly one customer; read the collapsed label.",
+   "3. Select a second and third customer; read the collapsed label.",
+   "4. Start typing a search query in the filter field and watch the field text, then clear the query or click away."
+  ],
+  "expected": [
+   "1. With an empty selection the collapsed label reads \"None.\"",
+   "2. With exactly one customer selected the label shows that customer's name.",
+   "3. With more than one selected the label reads \"N selected\" where N is the number of selected customers (for example \"3 selected\").",
+   "4. While typing, the field shows the query text instead of the summary label; the summary label returns when the query is cleared or the field loses focus.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S18-R5).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R5)",
   "viu_status": "VIU-Pending",
@@ -466,8 +737,23 @@
   "preconditions": [
    "1. You are on the Sales By Customer report with at least three customers in the current results."
   ],
-  "steps": "1. Note the customers and the totals row values.\n2. Open the Customer filter, clear all, and select exactly two customers.\n3. Read the table rows and the totals row.",
-  "expected": "1. The report shows only the two selected customers.\n2. The table refreshes as a fresh first page of results.\n3. The totals row updates to cover only the selected customers' matching invoices.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 14 (S18-R5, S18-R11).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Note the customers and the totals row values.",
+   "2. Open the Customer filter, clear all, and select exactly two customers.",
+   "3. Read the table rows and the totals row."
+  ],
+  "expected": [
+   "1. The report shows only the two selected customers.",
+   "2. The table refreshes as a fresh first page of results.",
+   "3. The totals row updates to cover only the selected customers' matching invoices.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S18-R5, S18-R11).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R5; S18-R11)",
   "viu_status": "VIU-Pending",
@@ -537,8 +823,23 @@
    "1. You are on the report with three customers A, B, C where: A has invoices in both this month and last month; B has invoices only in this month; C has invoices only in last month (seed ZZAUTOTEST data as needed).",
    "2. Date range is This Month; you have selected exactly customers A and B in the Customer filter."
   ],
-  "steps": "1. Change the date range to Last Month.\n2. Read the table rows and the Customer filter selection.",
-  "expected": "1. Customer A (still present in the new results) stays selected and is shown.\n2. Customer B (no longer present) is dropped from the selection and not shown; it must be re-selected to appear if it later returns.\n3. Customer C (newly present) is NOT auto-selected and is not shown.\n4. The Customer filter selection itself is not cleared by the date change.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 14 (S18-R9, S18-E1).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Change the date range to Last Month.",
+   "2. Read the table rows and the Customer filter selection."
+  ],
+  "expected": [
+   "1. Customer A (still present in the new results) stays selected and is shown.",
+   "2. Customer B (no longer present) is dropped from the selection and not shown; it must be re-selected to appear if it later returns.",
+   "3. Customer C (newly present) is NOT auto-selected and is not shown.",
+   "4. The Customer filter selection itself is not cleared by the date change.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S18-R9, S18-E1).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R9; S18-E1)",
   "viu_status": "VIU-Pending",
@@ -557,8 +858,31 @@
    "1. You are on the Sales By Customer report as a user with access to two or more locations.",
    "2. At least one customer has invoices at two different locations, and at least one asset has invoices at two different locations."
   ],
-  "steps": "1. Select two or more locations in the Location filter and read the column headers.\n2. Read the Location cell on a customer row whose invoices are all at one location.\n3. Read the Location cell on a customer row and an asset row whose invoices span two locations.\n4. Expand to an invoice row and read its Location cell.\n5. Open the column selector and look for Location in the list.\n6. Narrow the Location filter to a single location and read the headers again.\n7. With more than one location still selected, download all four files from the download menu (Summary and Expanded View, PDF and CSV) and read the columns in each one.",
-  "expected": "1. With more than one location in scope a Location column is shown, positioned immediately after the Date column.\n2. A customer or asset row whose invoices are all at one location shows that location's name.\n3. A customer or asset row whose invoices come from more than one location shows \"Multiple\".\n4. An invoice row always shows its own exact location — never \"Multiple\".\n5. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all.\n6. With a single location in scope the Location column is hidden and the surrounding columns close up with no gap.\n7. Every one of the four downloads also contains the Location column, in the same position it holds on screen, showing the same values you just read: a location name on a row whose invoices are all at one location, \"Multiple\" on a row that aggregates more than one, and the invoice's own location on an invoice row.\nNote for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.\n\n---\n\n---\nThis is the expected behaviour as per the Sales By Customer report specification version 14 (S4-R12, S4-R12a, S4-R13, S20-R19), and as per the build tested on 8/4/2026 (build v3.4.1-3d03023). The product owner's answer of 8/5/2026 in this file reads both ways on the one point about the Location column, so it has NOT been treated as overriding the specification and he has been asked again: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: HOLD - waiting on one answer from the product owner about the Location column\n",
+  "steps": [
+   "1. Select two or more locations in the Location filter and read the column headers.",
+   "2. Read the Location cell on a customer row whose invoices are all at one location.",
+   "3. Read the Location cell on a customer row and an asset row whose invoices span two locations.",
+   "4. Expand to an invoice row and read its Location cell.",
+   "5. Open the column selector and look for Location in the list.",
+   "6. Narrow the Location filter to a single location and read the headers again.",
+   "7. With more than one location still selected, download all four files from the download menu (Summary and Expanded View, PDF and CSV) and read the columns in each one."
+  ],
+  "expected": [
+   "1. With more than one location in scope a Location column is shown, positioned immediately after the Date column.",
+   "2. A customer or asset row whose invoices are all at one location shows that location's name.",
+   "3. A customer or asset row whose invoices come from more than one location shows \"Multiple\".",
+   "4. An invoice row always shows its own exact location — never \"Multiple\".",
+   "5. If the signed-in person only has access to ONE location, no Location column is shown to them at all and Location is not offered in their column-selection list.",
+   "6. When the Location column is not shown, the surrounding columns close up with no gap.",
+   "7. Every one of the four downloads also contains the Location column, in the same position it holds on screen, showing the same values you just read: a location name on a row whose invoices are all at one location, \"Multiple\" on a row that aggregates more than one, and the invoice's own location on an invoice row.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 14 (S4-R12, S4-R12a, S4-R13, S20-R19). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: one requirement says it is shown by default and can be toggled there, and the list of toggleable columns in another does not include it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8603; SV-8612; SV-8613 (SBC spec v13 2026-07-31 S4-R12; S4-R12a; S4-R13; S20-R19 — per-row Location column with automatic visibility; \"Multiple\" on aggregating rows; S4-R13 = the same column in every export)",
   "viu_status": "VIU-Pending",

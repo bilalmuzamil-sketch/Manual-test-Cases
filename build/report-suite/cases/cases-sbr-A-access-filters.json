@@ -10,8 +10,25 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. You can see the other reports in the Performance group."
   ],
-  "steps": "1. Open the Reports area and read the Performance group of the left-side navigation top to bottom.\n2. Click the \"Sales By Representative\" entry.\n3. Read the page title at the top of the report and the browser tab's title.",
-  "expected": "1. \"Sales By Representative\" appears in the Performance group, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency) — the label is the full word \"Representative,\" not a \"Rep\" shorthand. It need not be the very last entry: the other new reports (Technician Utilization, Work In Progress, Sales By Customer) are added in the same below-the-anchors block, in no set order.\n2. The rest of the navigation matches the previous release: no existing entry is moved, replaced, or reordered — if you can compare against production or an earlier build, the only difference is the added entry.\n3. Selecting the entry opens the report in the main content area.\n4. The page title reads \"Sales By Representative\".\n5. The browser tab title reads \"Sales By Representative - Report | ShopView\".\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S1-R1, S1-R2, S1-R3, S1-R4, S1-R5, S1-R6).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Reports area and read the Performance group of the left-side navigation top to bottom.",
+   "2. Click the \"Sales By Representative\" entry.",
+   "3. Read the page title at the top of the report and the browser tab's title."
+  ],
+  "expected": [
+   "1. \"Sales By Representative\" appears in the Performance group, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency) — the label is the full word \"Representative,\" not a \"Rep\" shorthand. It need not be the very last entry: the other new reports (Technician Utilization, Work In Progress, Sales By Customer) are added in the same below-the-anchors block, in no set order.",
+   "2. The rest of the navigation matches the previous release: no existing entry is moved, replaced, or reordered — if you can compare against production or an earlier build, the only difference is the added entry.",
+   "3. Selecting the entry opens the report in the main content area.",
+   "4. The page title reads \"Sales By Representative\".",
+   "5. The browser tab title reads \"Sales By Representative - Report | ShopView\".",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S1-R1, S1-R2, S1-R3, S1-R4, S1-R5, S1-R6).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8619 (SBR spec Story 1 S1-R1; S1-R2; S1-R3; S1-R4; S1-R5; S1-R6 — 'at the bottom' = below the four named anchor reports per PRD video 2026-07-30 01:18-02:05; order among the four new reports not important)",
   "viu_status": "VIU-Pending",
@@ -53,8 +70,21 @@
   "preconditions": [
    "1. You are on the Reports navigation with the entry visible."
   ],
-  "steps": "1. Look closely at the \"Sales By Representative\" entry's label against the entry's left and right edges.\n2. Compare its padding with the neighbouring entries.",
-  "expected": "1. The full \"Sales By Representative\" label renders without crowding against the entry's edges and without truncation.\n2. The label is not shortened to fit — the fix is the entry's horizontal padding, not the name.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S1-R7).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Look closely at the \"Sales By Representative\" entry's label against the entry's left and right edges.",
+   "2. Compare its padding with the neighbouring entries."
+  ],
+  "expected": [
+   "1. The full \"Sales By Representative\" label renders without crowding against the entry's edges and without truncation.",
+   "2. The label is not shortened to fit — the fix is the entry's horizontal padding, not the name.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S1-R7).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8619 (SBR spec v15 2026-07-29 Story 1 S1-R7; §1 naming note)",
   "viu_status": "VIU-Pending",
@@ -73,8 +103,19 @@
    "1. A test user exists whose role can see another Performance-group report (create/assign a ZZAUTOTEST role if needed; restore afterwards).",
    "2. You are signed in as that user."
   ],
-  "steps": "1. Open the Reports navigation and read the Performance group.",
-  "expected": "1. \"Sales By Representative\" appears in the Performance group for this user — the entry is visible to every user who can see any other report in the same group.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S1-R1).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the Reports navigation and read the Performance group."
+  ],
+  "expected": [
+   "1. \"Sales By Representative\" appears in the Performance group for this user — the entry is visible to every user who can see any other report in the same group.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S1-R1).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8619 (SBR spec v15 2026-07-29 Story 1 S1-R1)",
   "viu_status": "VIU-Pending",
@@ -93,8 +134,23 @@
    "1. A test user exists whose role has no Reports access (use/create a ZZAUTOTEST role; restore afterwards).",
    "2. You are signed in as that user."
   ],
-  "steps": "1. Look for the Reports navigation.\n2. Try to open the report by direct link (address copied from a permitted session).\n3. Try to reach the Export Reports dialog.",
-  "expected": "1. The entire Reports navigation — including the \"Sales By Representative\" entry — is not shown.\n2. The report (and its ⋯ export menu) is not reachable.\n3. The Export Reports dialog and the Sales Representative Assignments download are not reachable.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S1-N1, S14-N3, S15-N1).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Look for the Reports navigation.",
+   "2. Try to open the report by direct link (address copied from a permitted session).",
+   "3. Try to reach the Export Reports dialog."
+  ],
+  "expected": [
+   "1. The entire Reports navigation — including the \"Sales By Representative\" entry — is not shown.",
+   "2. The report (and its ⋯ export menu) is not reachable.",
+   "3. The Export Reports dialog and the Sales Representative Assignments download are not reachable.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S1-N1, S14-N3, S15-N1).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8619 (SBR spec v15 2026-07-29 Story 1 S1-N1; Story 14 S14-N3; Story 15 S15-N1)",
   "viu_status": "VIU-Pending",
@@ -112,8 +168,19 @@
   "preconditions": [
    "1. You are signed in as a user without staff-administration access."
   ],
-  "steps": "1. Try to reach staff administration and open a staff member for editing.",
-  "expected": "1. The staff-editing surface is not reachable, so the deactivation flow (and its warning dialog) cannot be reached.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S13-N1).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Try to reach staff administration and open a staff member for editing."
+  ],
+  "expected": [
+   "1. The staff-editing surface is not reachable, so the deactivation flow (and its warning dialog) cannot be reached.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S13-N1).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-N1)",
   "viu_status": "VIU-Pending",
@@ -131,8 +198,22 @@
   "preconditions": [
    "1. You are on the Sales By Representative report."
   ],
-  "steps": "1. Find the date range picker in the report toolbar.\n2. Open it and read the options.",
-  "expected": "1. A date range picker is visible in the report toolbar.\n2. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no \"Today\", no \"Yesterday\" and no item called \"Custom\" - you build your own range on the calendar instead. There is no \"All Time\" option.\n3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Sales By Representative report specification version 15 (S2-R1, S2-R2) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Find the date range picker in the report toolbar.",
+   "2. Open it and read the options."
+  ],
+  "expected": [
+   "1. A date range picker is visible in the report toolbar.",
+   "2. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no \"Today\", no \"Yesterday\" and no item called \"Custom\" - you build your own range on the calendar instead. There is no \"All Time\" option.",
+   "3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Sales By Representative report specification version 16 (S2-R1, S2-R2) says something different, his decision is the later word and is the authority.",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8620 (SBR spec v15 2026-07-29 Story 2 S2-R1; S2-R2)",
   "viu_status": "VIU-Pending",
@@ -150,8 +231,21 @@
   "preconditions": [
    "1. You are on the Sales By Representative report."
   ],
-  "steps": "1. Open the date range picker and select a start and end date within 366 days on the calendar shown inside it; apply.\n2. Open it again and try to select a start-to-end span of more than 366 days (start and end dates inclusive).",
-  "expected": "1. A custom range within the cap applies normally via the date-picker dialog.\n2. A custom selection whose span exceeds 366 days is not accepted — the picker holds you to a range of 366 days or fewer.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S2-R3, S2-R6).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the date range picker and select a start and end date within 366 days on the calendar shown inside it; apply.",
+   "2. Open it again and try to select a start-to-end span of more than 366 days (start and end dates inclusive)."
+  ],
+  "expected": [
+   "1. A custom range within the cap applies normally via the date-picker dialog.",
+   "2. A custom selection whose span exceeds 366 days is not accepted — the picker holds you to a range of 366 days or fewer.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S2-R3, S2-R6).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8620 (SBR spec v15 2026-07-29 Story 2 S2-R3; S2-R6)",
   "viu_status": "VIU-Pending",
@@ -193,8 +287,23 @@
   "preconditions": [
    "1. ZZAUTOTEST invoices exist dated exactly ON the start date and exactly ON the end date of a custom range, plus one dated just outside it."
   ],
-  "steps": "1. Set a custom range whose start and end dates equal those two invoice dates.\n2. Check which invoices appear (expand the owning rep).\n3. Download both PDFs (Summary and Expanded View) and read their header strips.",
-  "expected": "1. The invoices dated on the start and end dates are INCLUDED (inclusive endpoints); the invoice outside the range is excluded.\n2. The date used is the invoice's own date — the value shown in the Date column.\n3. The chosen date range is reflected in both PDF exports' header strips.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S2-R5, S2-R8).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Set a custom range whose start and end dates equal those two invoice dates.",
+   "2. Check which invoices appear (expand the owning rep).",
+   "3. Download both PDFs (Summary and Expanded View) and read their header strips."
+  ],
+  "expected": [
+   "1. The invoices dated on the start and end dates are INCLUDED (inclusive endpoints); the invoice outside the range is excluded.",
+   "2. The date used is the invoice's own date — the value shown in the Date column.",
+   "3. The chosen date range is reflected in both PDF exports' header strips.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S2-R5, S2-R8).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8620 (SBR spec v15 2026-07-29 Story 2 S2-R5; S2-R8; §3)",
   "viu_status": "VIU-Pending",
@@ -238,8 +347,26 @@
    "1. A rep has both a P (parts) and an S (service) invoice in the range (seed ZZAUTOTEST data via the WO Sales Representative field).",
    "2. No remembered settings for this report (first visit or cleared storage), so the default can be read."
   ],
-  "steps": "1. Find the \"Product Type\" dropdown in the toolbar; read its default value, then open it and read the options.\n2. Select \"Parts only,\" expand the rep, and read the invoice numbers.\n3. Select \"Service only\" and read them again.\n4. Select \"Parts & Service.\"",
-  "expected": "1. The dropdown offers exactly three options: \"Parts & Service,\" \"Parts only,\" \"Service only\" — with \"Parts & Service\" as the default on first load.\n2. \"Parts only\" includes only invoices whose number starts with P.\n3. \"Service only\" includes only invoices whose number starts with S.\n4. \"Parts & Service\" applies no product-type filter — both appear again.\n5. Each change re-fetches and re-renders the report.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6, S3-R7).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Find the \"Product Type\" dropdown in the toolbar; read its default value, then open it and read the options.",
+   "2. Select \"Parts only,\" expand the rep, and read the invoice numbers.",
+   "3. Select \"Service only\" and read them again.",
+   "4. Select \"Parts & Service.\""
+  ],
+  "expected": [
+   "1. The dropdown offers exactly three options: \"Parts & Service,\" \"Parts only,\" \"Service only\" — with \"Parts & Service\" as the default on first load.",
+   "2. \"Parts only\" includes only invoices whose number starts with P.",
+   "3. \"Service only\" includes only invoices whose number starts with S.",
+   "4. \"Parts & Service\" applies no product-type filter — both appear again.",
+   "5. Each change re-fetches and re-renders the report.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6, S3-R7).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8621 (SBR spec v15 2026-07-29 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6; S3-R7 — S3-R2 CLOSES the list itself (\"exactly three options\"); so the closed list IS the requirement)",
   "viu_status": "VIU-Pending",
@@ -282,8 +409,24 @@
   "preconditions": [
    "1. You are on the report with no remembered settings."
   ],
-  "steps": "1. Find the \"Invoice Status\" dropdown in the toolbar and read its default value.\n2. Open it and read the options.\n3. Change the selection and watch the table.",
-  "expected": "1. An \"Invoice Status\" dropdown is visible in the toolbar.\n2. It offers exactly four options: \"All Statuses,\" \"Unpaid,\" \"Partially Paid,\" \"Paid.\"\n3. \"All Statuses\" is the default on first load.\n4. Changing the selection re-fetches and re-renders the report.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S4-R1, S4-R2, S4-R3, S4-R5).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Find the \"Invoice Status\" dropdown in the toolbar and read its default value.",
+   "2. Open it and read the options.",
+   "3. Change the selection and watch the table."
+  ],
+  "expected": [
+   "1. An \"Invoice Status\" dropdown is visible in the toolbar.",
+   "2. It offers exactly four options: \"All Statuses,\" \"Unpaid,\" \"Partially Paid,\" \"Paid.\"",
+   "3. \"All Statuses\" is the default on first load.",
+   "4. Changing the selection re-fetches and re-renders the report.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S4-R1, S4-R2, S4-R3, S4-R5).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8622 (SBR spec v15 2026-07-29 Story 4 S4-R1; S4-R2; S4-R3; S4-R5 — S4-R2 CLOSES the list itself (\"exactly four options\"); so the closed list IS the requirement)",
   "viu_status": "VIU-Pending",
@@ -302,8 +445,24 @@
    "1. ZZAUTOTEST invoices exist under one rep covering the payment situations: fully paid; overpaid; prepaid with zero balance owed; prepaid with a balance still owed; partially paid; unpaid.",
    "2. Seed the prepaid-with-zero-balance situation the realistic way: the customer pays a DEPOSIT up front that fully covers the work, so the invoice is created with nothing left to pay."
   ],
-  "steps": "1. Filter to \"Paid\" and read which invoices appear.\n2. Filter to \"Partially Paid\" and read again.\n3. Filter to \"Unpaid\" and read again.",
-  "expected": "1. \"Paid\" includes the paid, the overpaid, AND the prepaid-with-zero-balance invoices.\n2. \"Partially Paid\" includes the partially-paid AND the prepaid-with-a-balance-owed invoices.\n3. \"Unpaid\" includes only the unpaid invoice.\n4. The filter matches on the mapped display value, the same mapping the status badge uses — prepaid is the only state whose display value depends on the balance owed.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S4-R4).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Filter to \"Paid\" and read which invoices appear.",
+   "2. Filter to \"Partially Paid\" and read again.",
+   "3. Filter to \"Unpaid\" and read again."
+  ],
+  "expected": [
+   "1. \"Paid\" includes the paid, the overpaid, AND the prepaid-with-zero-balance invoices.",
+   "2. \"Partially Paid\" includes the partially-paid AND the prepaid-with-a-balance-owed invoices.",
+   "3. \"Unpaid\" includes only the unpaid invoice.",
+   "4. The filter matches on the mapped display value, the same mapping the status badge uses — prepaid is the only state whose display value depends on the balance owed.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S4-R4).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8622 (SBR spec v15 2026-07-29 Story 4 S4-R4; §3 payment-status mapping)",
   "viu_status": "VIU-Pending",
@@ -346,8 +505,24 @@
    "1. ZZAUTOTEST invoices exist that each fail exactly one of: date range, product type, invoice status, location — plus one invoice matching all four.",
    "2. For the per-filter legs: rep A has only service invoices and rep B both types; rep C has only Paid invoices and rep D a mix (seed ZZAUTOTEST data)."
   ],
-  "steps": "1. Set all four filters (a range, \"Parts only,\" \"Paid,\" one location) and read the rep rows, counts, detail rows, and the grand Totals indicator.\n2. Product Type leg: select \"Parts only\"; look for rep A and read rep B's (N) count, summary totals, detail rows, and the grand Totals indicator.\n3. Invoice Status leg: filter to \"Unpaid\"; look for rep C and read rep D's figures.",
-  "expected": "1. Only invoices matching ALL active filters contribute — every metric reflects the intersection; an invoice failing any single filter contributes nothing anywhere.\n2. A rep appears only if at least one invoice matches all active filters.\n3. Parts-only leg: rep A disappears; rep B's summary totals, detail rows, grand Totals, and (N) count reflect only the matching (P) invoices.\n4. Unpaid leg: rep C disappears; rep D's figures reflect only the Unpaid invoices.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S4-R7, S4-R6, S4-N1, S3-R8, S3-N1).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Set all four filters (a range, \"Parts only,\" \"Paid,\" one location) and read the rep rows, counts, detail rows, and the grand Totals indicator.",
+   "2. Product Type leg: select \"Parts only\"; look for rep A and read rep B's (N) count, summary totals, detail rows, and the grand Totals indicator.",
+   "3. Invoice Status leg: filter to \"Unpaid\"; look for rep C and read rep D's figures."
+  ],
+  "expected": [
+   "1. Only invoices matching ALL active filters contribute — every metric reflects the intersection; an invoice failing any single filter contributes nothing anywhere.",
+   "2. A rep appears only if at least one invoice matches all active filters.",
+   "3. Parts-only leg: rep A disappears; rep B's summary totals, detail rows, grand Totals, and (N) count reflect only the matching (P) invoices.",
+   "4. Unpaid leg: rep C disappears; rep D's figures reflect only the Unpaid invoices.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S4-R7, S4-R6, S4-N1, S3-R8, S3-N1).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8622 (SBR spec v15 2026-07-29 Story 4 S4-R7; S4-R6; S4-N1; Story 3 S3-R8; S3-N1)",
   "viu_status": "VIU-Pending",
@@ -365,8 +540,20 @@
   "preconditions": [
    "1. A partially-paid ZZAUTOTEST invoice exists with a known full Subtotal and a known partial payment."
   ],
-  "steps": "1. Filter to \"Partially Paid,\" expand the owning rep, and read that invoice's money columns.",
-  "expected": "1. The invoice shows its FULL invoiced amounts (its full Subtotal) — payments are not netted out.\n2. Filtering to \"Unpaid\" or \"Partially Paid\" changes which invoices are included, never the amounts shown.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S4-R8).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Filter to \"Partially Paid,\" expand the owning rep, and read that invoice's money columns."
+  ],
+  "expected": [
+   "1. The invoice shows its FULL invoiced amounts (its full Subtotal) — payments are not netted out.",
+   "2. Filtering to \"Unpaid\" or \"Partially Paid\" changes which invoices are included, never the amounts shown.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S4-R8).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8622 (SBR spec v15 2026-07-29 Story 4 S4-R8)",
   "viu_status": "VIU-Pending",
@@ -384,8 +571,21 @@
   "preconditions": [
    "1. You are on the report as a user with access to two or more locations."
   ],
-  "steps": "1. Look at the toolbar controls left to right.\n2. Open the location filter and read its options.",
-  "expected": "1. The location filter is the rightmost control in the toolbar.\n2. It is a multi-select listing the locations the user has access to, plus an \"All Locations\" option.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S21-R1, S18-R7).\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Look at the toolbar controls left to right.",
+   "2. Open the location filter and read its options."
+  ],
+  "expected": [
+   "1. The location filter is the rightmost control in the toolbar.",
+   "2. It is a multi-select listing the locations the user has access to, plus an \"All Locations\" option.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S21-R1, S18-R7).",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8638 (SBR spec v15 2026-07-29 Story 21 S21-R1; Story 18 S18-R7.2)",
   "viu_status": "VIU-Pending",
@@ -427,8 +627,25 @@
    "1. Rep A has invoices only at location X; rep B at locations X and Y (seed ZZAUTOTEST data).",
    "2. The signed-in user has access to X and Y but not to a third location Z which also has data."
   ],
-  "steps": "1. Select only location Y.\n2. Look for rep A; read rep B's count, totals, and detail rows.\n3. Select \"All Locations\" and check whether any location-Z data appears.\n4. With \"All Locations\" active, look at how the rows tell you which location they belong to.",
-  "expected": "1. With only Y selected, rep A disappears (no matching invoice at Y); rep B's metrics reflect only Y invoices — an invoice's location is that of its originating work order / parts sale.\n2. Changing the selection re-fetches and re-renders scoped to the chosen set.\n3. \"All Locations\" means all locations the user can access — location Z's data is never included.\n4. With \"All Locations\" active you can tell which location each row's data belongs to — a location label or marking is shown.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S21-R3, S21-R4, S21-R5); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Select only location Y.",
+   "2. Look for rep A; read rep B's count, totals, and detail rows.",
+   "3. Select \"All Locations\" and check whether any location-Z data appears.",
+   "4. With \"All Locations\" active, look at how the rows tell you which location they belong to."
+  ],
+  "expected": [
+   "1. With only Y selected, rep A disappears (no matching invoice at Y); rep B's metrics reflect only Y invoices — an invoice's location is that of its originating work order / parts sale.",
+   "2. Changing the selection re-fetches and re-renders scoped to the chosen set.",
+   "3. \"All Locations\" means all locations the user can access — location Z's data is never included.",
+   "4. With \"All Locations\" active you can tell which location each row's data belongs to — a location label or marking is shown.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S21-R3, S21-R4, S21-R5); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8638 (SBR spec Story 21 S21-R3; S21-R4; S21-R5; §3 — per-row location identifier in All-Locations view ADDED per kickoff video P10 [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward 2026-07-29",
   "viu_status": "VIU-Pending",
@@ -446,8 +663,21 @@
   "preconditions": [
    "1. You are signed in as a user assigned to exactly one location."
   ],
-  "steps": "1. Open the report and look for the Location filter in the toolbar.\n2. Then sign in as a user with access to two or more locations and look again.",
-  "expected": "1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.\n2. For the user with access to two or more locations the Location filter IS shown.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S21-N1). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: READY\n",
+  "steps": [
+   "1. Open the report and look for the Location filter in the toolbar.",
+   "2. Then sign in as a user with access to two or more locations and look again."
+  ],
+  "expected": [
+   "1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.",
+   "2. For the user with access to two or more locations the Location filter IS shown.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S21-N1). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: READY",
+   ""
+  ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8638 (SBR spec S21-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S21-N1 \"still sees the filter\" note is stale; spec edit pending)",
   "viu_status": "VIU-Pending",
@@ -467,8 +697,34 @@
    "2. One rep has invoices at a single location and another rep has invoices at two different locations.",
    "3. Show Unassigned is turned on and at least one unassigned invoice exists."
   ],
-  "steps": "1. Select two or more locations and read the column headers.\n2. Read the Location cell on the single-location rep's summary row.\n3. Read the Location cell on the rep whose invoices span two locations.\n4. Expand that rep and read an invoice detail row's Location cell.\n5. Read the Location cell on the Unassigned summary row.\n6. Check that the pinned Subtotal column is still the rightmost column.\n7. Narrow to a single location and read the headers again.\n8. With more than one location still selected, download all four files from the ⋯ menu (Summary and Expanded View, PDF and CSV) and read the Location column in each one.",
-  "expected": "1. With more than one location in scope a Location column is shown, positioned immediately after the Status column and before Inv. Hrs.\n2. A rep summary row whose invoices are all at one location shows that location's name.\n3. A rep summary row whose invoices span more than one location shows \"Multiple\".\n4. An invoice detail row shows that invoice's own exact location — never \"Multiple\".\n5. The Unassigned summary row follows the same rule as any rep summary row.\n6. The pinned Subtotal column is still rightmost — the Location column never displaces it.\n7. With a single location in scope the Location column is hidden.\n8. All four downloads include the Location column in the same position it occupies on screen. In the Summary files a rep's row carries that rep's location and reads \"Multiple\" when the rep spans more than one location; in the Expanded View files each invoice row carries that invoice's own exact location.\nNote for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.\nThe Location column is not in the column-selection dropdown — that dropdown holds the seven metric columns only — and you cannot switch it on or off: it appears by itself whenever more than one location is in scope, and is hidden whenever a single location is in scope.\nNote for the tester: the product owner has been asked to confirm this one point and has not answered yet, so do not raise a bug either way — record what you see. The question is in Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx\n\n---\n\n---\nThis is the expected behaviour as per the Sales By Representative report specification version 15 (S21-R7, S21-R8, S18-R13, S14-R20), and as per the build tested on 8/4/2026 (build v3.4.1-3d03023). The product owner's answer of 8/5/2026 in this file reads both ways on the one point about the Location column, so it has NOT been treated as overriding the specification and he has been asked again: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: HOLD - waiting on one answer from the product owner about the Location column\n",
+  "steps": [
+   "1. Select two or more locations and read the column headers.",
+   "2. Read the Location cell on the single-location rep's summary row.",
+   "3. Read the Location cell on the rep whose invoices span two locations.",
+   "4. Expand that rep and read an invoice detail row's Location cell.",
+   "5. Read the Location cell on the Unassigned summary row.",
+   "6. Check that the pinned Subtotal column is still the rightmost column.",
+   "7. Narrow to a single location and read the headers again.",
+   "8. With more than one location still selected, download all four files from the ⋯ menu (Summary and Expanded View, PDF and CSV) and read the Location column in each one."
+  ],
+  "expected": [
+   "1. With more than one location in scope a Location column is shown, positioned immediately after the Status column and before Inv. Hrs.",
+   "2. A rep summary row whose invoices are all at one location shows that location's name.",
+   "3. A rep summary row whose invoices span more than one location shows \"Multiple\".",
+   "4. An invoice detail row shows that invoice's own exact location — never \"Multiple\".",
+   "5. The Unassigned summary row follows the same rule as any rep summary row.",
+   "6. The pinned Subtotal column is still rightmost — the Location column never displaces it.",
+   "7. With only one location involved the Location column is not shown.",
+   "8. All four downloads include the Location column in the same position it occupies on screen. In the Summary files a rep's row carries that rep's location and reads \"Multiple\" when the rep spans more than one location; in the Expanded View files each invoice row carries that invoice's own exact location.",
+   "Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. For this report the two statements are that the column-selection dropdown holds the seven metric columns only, and that Location is one of the columns you can switch on and off there. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 16 (S21-R7, S21-R8, S18-R13, S14-R20). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: its summary says it can be toggled there, while the requirement that governs the column says it appears only when the view spans more than one location and the dropdown holds the seven metric columns only. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx",
+   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
+   "",
+   "AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked",
+   ""
+  ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8638; SV-8631 (SBR spec v15 2026-07-29 S21-R7; S21-R8; S18-R13; S14-R20 — per-row Location column; \"Multiple\" on a rep row spanning locations; position after Status; constant-width filter; S14-R20 = the same column in all four exports)",
   "viu_status": "VIU-Pending",
