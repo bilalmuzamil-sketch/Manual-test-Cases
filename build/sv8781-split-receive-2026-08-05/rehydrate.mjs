@@ -1,0 +1,25 @@
+import pw from '/opt/node22/lib/node_modules/playwright/index.js';
+import fs from 'node:fs';
+const { chromium } = pw;
+const APP = 'https://sv8781.qa.shopview.com';
+const ORG = 'd55bc308-e61a-438d-b5f1-c7a73c89d49f';
+const PORT = fs.readFileSync('/tmp/sv8781/bridge.log', 'utf8').match(/BRIDGE_LISTENING 127\.0\.0\.1:(\d+)/)[1];
+const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', headless: true, proxy: { server: 'http://127.0.0.1:' + PORT }, args: ['--no-sandbox', '--ignore-certificate-errors', '--ssl-version-max=tls1.2'] });
+const ctx = await browser.newContext({ storageState: '/tmp/sv8781/state.json', viewport: { width: 1600, height: 1000 }, ignoreHTTPSErrors: true });
+const p = await ctx.newPage();
+await p.goto(APP + '/workorders', { waitUntil: 'domcontentloaded', timeout: 60000 });
+await p.waitForTimeout(3000);
+const before = await p.evaluate(() => { const u = JSON.parse(localStorage.getItem('user') || 'null'); return u?.data?.details?.intercom_data?.company?.id ?? 'MISSING'; });
+console.log('org id in user payload BEFORE:', before);
+await p.evaluate((ORG) => {
+  const u = JSON.parse(localStorage.getItem('user'));
+  u.data.details = u.data.details || {};
+  u.data.details.intercom_data = { company: { id: ORG } };
+  u.data.details.organization_id = ORG;
+  localStorage.setItem('user', JSON.stringify(u));
+}, ORG);
+const after = await p.evaluate(() => JSON.parse(localStorage.getItem('user')).data.details.intercom_data.company.id);
+console.log('org id in user payload AFTER :', after);
+await ctx.storageState({ path: '/tmp/sv8781/state.json' });
+console.log('state.json updated');
+await browser.close();
