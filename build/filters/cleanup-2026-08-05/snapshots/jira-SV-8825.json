@@ -1,0 +1,867 @@
+{
+ "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+ "id": "54944",
+ "self": "https://shopview.atlassian.net/rest/api/3/issue/54944",
+ "key": "SV-8825",
+ "renderedFields": {
+  "statuscategorychangedate": "Today 3:18 PM",
+  "issuetype": null,
+  "timespent": null,
+  "project": null,
+  "customfield_10153": null,
+  "customfield_10351": "",
+  "fixVersions": null,
+  "customfield_10352": null,
+  "aggregatetimespent": null,
+  "statusCategory": null,
+  "resolution": null,
+  "resolutiondate": "Today 3:18 PM",
+  "workratio": null,
+  "watches": null,
+  "issuerestriction": null,
+  "lastViewed": "Today 12:45 PM",
+  "created": "Yesterday 3:58 PM",
+  "customfield_10021": null,
+  "customfield_10385": null,
+  "priority": null,
+  "labels": null,
+  "customfield_10016": null,
+  "customfield_10019": null,
+  "timeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "versions": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "issuelinks": null,
+  "assignee": null,
+  "updated": "Today 4:49 PM",
+  "status": null,
+  "components": null,
+  "timeoriginalestimate": null,
+  "description": "<p><b>Type of Issue</b><br/>\nClarification / spec question \u2014 not a defect against the build.</p>\n\n<p><b>Context</b><br/>\nThe mobile \"All Filters\" bottom sheet has an <b>Apply Filters</b> button (batch apply). Desktop has no Apply button \u2014 each chip applies in real time. Need confirmation of the intended model and PRD documentation.</p>\n\n<p><b>Observed</b></p>\n\n<ul>\n\t<li><b>Mobile:</b> combined \"All Filters\" sheet with a sticky <b>Apply Filters</b> button; selections apply on tap (batch). See screenshot.</li>\n\t<li><b>Desktop:</b> each filter is its own dropdown; selections apply live, no Apply button.</li>\n</ul>\n\n\n<p><b>What the PRD Says</b></p>\n\n<ul>\n\t<li><b>S2-R6:</b> desktop filters in real time, no confirm/apply button.</li>\n\t<li><b>S12-R2:</b> mobile chips \"behave identically to desktop.\"</li>\n\t<li>\"Apply Filters\" / batch-apply appears <b>nowhere</b> in the PRD. The batch model exists only in the engineering implementation-decisions comment and the mobile test cases (C29622 / C29623 / C29624), not the ratified spec.</li>\n</ul>\n\n\n<p><b>Questions</b></p>\n\n<ol>\n\t<li>Is the intended model: mobile combined \"All Filters\" sheet = batch Apply, individual chips = real-time, desktop = real-time (S2-R6)?</li>\n\t<li>If yes, Story 12 should be updated to document the \"All Filters\" sheet and Apply button \u2014 S12-R2 currently says \"identical to desktop,\" which contradicts it.</li>\n\t<li>Confirm desktop is <b>not</b> getting an Apply button (stays real-time).</li>\n</ol>\n\n\n<p><b>Reference</b></p>\n\n<ul>\n\t<li>PRD: Filters v1.6 (<a href=\"https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/572030978/Filters\" class=\"external-link\" rel=\"nofollow noreferrer\">https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/572030978/Filters</a>) \u2014 S2-R6, S12-R2, \u00a74 Key Decisions; engineering implementation-decisions comment</li>\n\t<li>Test cases: C29622, C29623, C29624</li>\n</ul>\n",
+  "customfield_10252": "",
+  "customfield_10015": null,
+  "timetracking": {},
+  "security": null,
+  "aggregatetimeestimate": null,
+  "attachment": [],
+  "summary": null,
+  "creator": null,
+  "subtasks": null,
+  "customfield_10285": "",
+  "reporter": null,
+  "customfield_10044": null,
+  "aggregateprogress": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "environment": "",
+  "customfield_10318": null,
+  "duedate": null,
+  "progress": null,
+  "votes": null,
+  "comment": {
+   "comments": [
+    {
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54944/comment/74535",
+     "id": "74535",
+     "author": {
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+      "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+      "avatarUrls": {
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+      },
+      "displayName": "Branko Cicovic",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "body": "<p>This is updated in the filters prd, I\u2019m closing it.</p>",
+     "updateAuthor": {
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+      "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+      "avatarUrls": {
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+      },
+      "displayName": "Branko Cicovic",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "created": "Today 3:18 PM",
+     "updated": "Today 3:18 PM",
+     "jsdPublic": true
+    }
+   ],
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54944/comment",
+   "maxResults": 1,
+   "total": 1,
+   "startAt": 0
+  },
+  "worklog": {
+   "startAt": 0,
+   "maxResults": 20,
+   "total": 0,
+   "worklogs": []
+  }
+ },
+ "changelog": {
+  "startAt": 0,
+  "maxResults": 4,
+  "total": 4,
+  "histories": [
+   {
+    "id": "139929",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3Ab2d16ade-9013-4875-8a9d-e255e63e8217",
+     "accountId": "712020:b2d16ade-9013-4875-8a9d-e255e63e8217",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b2d16ade-9013-4875-8a9d-e255e63e8217/5922ffb6-6440-41da-bb29-8c59cd869a66/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b2d16ade-9013-4875-8a9d-e255e63e8217/5922ffb6-6440-41da-bb29-8c59cd869a66/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b2d16ade-9013-4875-8a9d-e255e63e8217/5922ffb6-6440-41da-bb29-8c59cd869a66/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b2d16ade-9013-4875-8a9d-e255e63e8217/5922ffb6-6440-41da-bb29-8c59cd869a66/32"
+     },
+     "displayName": "Ahtasham Amjad",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-05T06:49:34.494-0500",
+    "items": [
+     {
+      "field": "Product Area",
+      "fieldtype": "custom",
+      "fieldId": "customfield_10153",
+      "from": null,
+      "fromString": null,
+      "to": "10120",
+      "toString": "Work Orders"
+     },
+     {
+      "field": "issuetype",
+      "fieldtype": "jira",
+      "fieldId": "issuetype",
+      "from": "10245",
+      "fromString": "Story",
+      "to": "10005",
+      "toString": "Task"
+     }
+    ]
+   },
+   {
+    "id": "139894",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+     "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+     },
+     "displayName": "Branko Cicovic",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-05T05:18:37.694-0500",
+    "items": [
+     {
+      "field": "resolution",
+      "fieldtype": "jira",
+      "fieldId": "resolution",
+      "from": null,
+      "fromString": null,
+      "to": "10000",
+      "toString": "Done"
+     },
+     {
+      "field": "status",
+      "fieldtype": "jira",
+      "fieldId": "status",
+      "from": "10349",
+      "fromString": "Open",
+      "to": "10005",
+      "toString": "Done"
+     }
+    ]
+   },
+   {
+    "id": "139769",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "avatarUrls": {
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "active": true,
+     "timeZone": "Asia/Karachi",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-05T02:46:02.193-0500",
+    "items": [
+     {
+      "field": "labels",
+      "fieldtype": "jira",
+      "fieldId": "labels",
+      "from": null,
+      "fromString": "clarification-required",
+      "to": null,
+      "toString": "Clarification_needed"
+     }
+    ]
+   },
+   {
+    "id": "139424",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3Ab2d16ade-9013-4875-8a9d-e255e63e8217",
+     "accountId": "712020:b2d16ade-9013-4875-8a9d-e255e63e8217",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b2d16ade-9013-4875-8a9d-e255e63e8217/5922ffb6-6440-41da-bb29-8c59cd869a66/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b2d16ade-9013-4875-8a9d-e255e63e8217/5922ffb6-6440-41da-bb29-8c59cd869a66/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b2d16ade-9013-4875-8a9d-e255e63e8217/5922ffb6-6440-41da-bb29-8c59cd869a66/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b2d16ade-9013-4875-8a9d-e255e63e8217/5922ffb6-6440-41da-bb29-8c59cd869a66/32"
+     },
+     "displayName": "Ahtasham Amjad",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-04T05:58:37.696-0500",
+    "items": [
+     {
+      "field": "IssueParentAssociation",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "54901",
+      "toString": "SV-8785"
+     }
+    ]
+   }
+  ]
+ },
+ "fields": {
+  "statuscategorychangedate": "2026-08-05T05:18:37.694-0500",
+  "issuetype": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10005",
+   "id": "10005",
+   "description": "Tasks track small, distinct pieces of work. (Migrated on 31 Dec 2023 09:01 UTC)",
+   "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10321?size=medium",
+   "name": "Task",
+   "subtask": false,
+   "avatarId": 10321,
+   "entityId": "bbce579c-61d9-4635-aa13-ce7ec404c25a",
+   "hierarchyLevel": 0
+  },
+  "parent": {
+   "id": "54901",
+   "key": "SV-8785",
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54901",
+   "fields": {
+    "summary": "Filters",
+    "status": {
+     "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+     "description": "",
+     "iconUrl": "https://shopview.atlassian.net/",
+     "name": "Open",
+     "id": "10349",
+     "statusCategory": {
+      "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+      "id": 2,
+      "key": "new",
+      "colorName": "blue-gray",
+      "name": "To Do"
+     }
+    },
+    "priority": {
+     "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+     "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+     "name": "Medium",
+     "id": "3"
+    },
+    "issuetype": {
+     "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10006",
+     "id": "10006",
+     "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+     "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+     "name": "Epic",
+     "subtask": false,
+     "avatarId": 10306,
+     "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+     "hierarchyLevel": 1
+    }
+   }
+  },
+  "timespent": null,
+  "project": {
+   "self": "https://shopview.atlassian.net/rest/api/3/project/10001",
+   "id": "10001",
+   "key": "SV",
+   "name": "ShopView",
+   "projectTypeKey": "software",
+   "simplified": true,
+   "avatarUrls": {
+    "48x48": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551",
+    "24x24": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=small",
+    "16x16": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=xsmall",
+    "32x32": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=medium"
+   }
+  },
+  "customfield_10153": {
+   "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10120",
+   "value": "Work Orders",
+   "id": "10120",
+   "color": "RED"
+  },
+  "customfield_10351": null,
+  "fixVersions": [],
+  "customfield_10352": null,
+  "aggregatetimespent": null,
+  "statusCategory": {
+   "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/3",
+   "id": 3,
+   "key": "done",
+   "colorName": "green",
+   "name": "Done"
+  },
+  "resolution": {
+   "self": "https://shopview.atlassian.net/rest/api/3/resolution/10000",
+   "id": "10000",
+   "description": "Work has been completed on this work item.",
+   "name": "Done"
+  },
+  "resolutiondate": "2026-08-05T05:18:37.671-0500",
+  "workratio": -1,
+  "watches": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8825/watchers",
+   "watchCount": 2,
+   "isWatching": false
+  },
+  "issuerestriction": {
+   "issuerestrictions": {},
+   "shouldDisplay": true
+  },
+  "lastViewed": "2026-08-05T02:45:43.924-0500",
+  "created": "2026-08-04T05:58:37.664-0500",
+  "customfield_10021": null,
+  "customfield_10385": null,
+  "priority": {
+   "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+   "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+   "name": "Medium",
+   "id": "3"
+  },
+  "labels": [
+   "Clarification_needed"
+  ],
+  "customfield_10016": null,
+  "customfield_10019": "0|i01v3d:",
+  "timeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "versions": [],
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "issuelinks": [],
+  "assignee": null,
+  "updated": "2026-08-05T06:49:34.496-0500",
+  "status": {
+   "self": "https://shopview.atlassian.net/rest/api/3/status/10005",
+   "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+   "iconUrl": "https://shopview.atlassian.net/",
+   "name": "Done",
+   "id": "10005",
+   "statusCategory": {
+    "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/3",
+    "id": 3,
+    "key": "done",
+    "colorName": "green",
+    "name": "Done"
+   }
+  },
+  "components": [],
+  "timeoriginalestimate": null,
+  "description": {
+   "type": "doc",
+   "version": 1,
+   "content": [
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Type of Issue",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": "\nClarification / spec question \u2014 not a defect against the build."
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Context",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": "\nThe mobile \"All Filters\" bottom sheet has an "
+      },
+      {
+       "type": "text",
+       "text": "Apply Filters",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": " button (batch apply). Desktop has no Apply button \u2014 each chip applies in real time. Need confirmation of the intended model and PRD documentation."
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Observed",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "bulletList",
+     "content": [
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Mobile:",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " combined \"All Filters\" sheet with a sticky "
+          },
+          {
+           "type": "text",
+           "text": "Apply Filters",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " button; selections apply on tap (batch). See screenshot."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Desktop:",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " each filter is its own dropdown; selections apply live, no Apply button."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "What the PRD Says",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "bulletList",
+     "content": [
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "S2-R6:",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " desktop filters in real time, no confirm/apply button."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "S12-R2:",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " mobile chips \"behave identically to desktop.\""
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "\"Apply Filters\" / batch-apply appears "
+          },
+          {
+           "type": "text",
+           "text": "nowhere",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " in the PRD. The batch model exists only in the engineering implementation-decisions comment and the mobile test cases (C29622 / C29623 / C29624), not the ratified spec."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Questions",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "orderedList",
+     "attrs": {
+      "order": 1
+     },
+     "content": [
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Is the intended model: mobile combined \"All Filters\" sheet = batch Apply, individual chips = real-time, desktop = real-time (S2-R6)?"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "If yes, Story 12 should be updated to document the \"All Filters\" sheet and Apply button \u2014 S12-R2 currently says \"identical to desktop,\" which contradicts it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Confirm desktop is "
+          },
+          {
+           "type": "text",
+           "text": "not",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " getting an Apply button (stays real-time)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Reference",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "bulletList",
+     "content": [
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "PRD: Filters v1.6 (https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/572030978/Filters) \u2014 S2-R6, S12-R2, \u00a74 Key Decisions; engineering implementation-decisions comment"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Test cases: C29622, C29623, C29624"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "customfield_10252": null,
+  "customfield_10015": null,
+  "timetracking": {},
+  "security": null,
+  "aggregatetimeestimate": null,
+  "attachment": [],
+  "summary": "Clarification Required: Mobile \"Apply Filters\" sheet not in spec \u2014 Story 12 says mobile behaves identically to desktop (real-time)",
+  "creator": {
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3Ab2d16ade-9013-4875-8a9d-e255e63e8217",
+   "accountId": "712020:b2d16ade-9013-4875-8a9d-e255e63e8217",
+   "avatarUrls": {
+    "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b2d16ade-9013-4875-8a9d-e255e63e8217/5922ffb6-6440-41da-bb29-8c59cd869a66/48",
+    "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b2d16ade-9013-4875-8a9d-e255e63e8217/5922ffb6-6440-41da-bb29-8c59cd869a66/24",
+    "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b2d16ade-9013-4875-8a9d-e255e63e8217/5922ffb6-6440-41da-bb29-8c59cd869a66/16",
+    "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b2d16ade-9013-4875-8a9d-e255e63e8217/5922ffb6-6440-41da-bb29-8c59cd869a66/32"
+   },
+   "displayName": "Ahtasham Amjad",
+   "active": true,
+   "timeZone": "America/Bogota",
+   "accountType": "atlassian"
+  },
+  "subtasks": [],
+  "customfield_10285": null,
+  "reporter": {
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3Ab2d16ade-9013-4875-8a9d-e255e63e8217",
+   "accountId": "712020:b2d16ade-9013-4875-8a9d-e255e63e8217",
+   "avatarUrls": {
+    "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b2d16ade-9013-4875-8a9d-e255e63e8217/5922ffb6-6440-41da-bb29-8c59cd869a66/48",
+    "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b2d16ade-9013-4875-8a9d-e255e63e8217/5922ffb6-6440-41da-bb29-8c59cd869a66/24",
+    "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b2d16ade-9013-4875-8a9d-e255e63e8217/5922ffb6-6440-41da-bb29-8c59cd869a66/16",
+    "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b2d16ade-9013-4875-8a9d-e255e63e8217/5922ffb6-6440-41da-bb29-8c59cd869a66/32"
+   },
+   "displayName": "Ahtasham Amjad",
+   "active": true,
+   "timeZone": "America/Bogota",
+   "accountType": "atlassian"
+  },
+  "customfield_10044": null,
+  "aggregateprogress": {
+   "progress": 0,
+   "total": 0
+  },
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "environment": null,
+  "customfield_10318": null,
+  "duedate": null,
+  "progress": {
+   "progress": 0,
+   "total": 0
+  },
+  "votes": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8825/votes",
+   "votes": 0,
+   "hasVoted": false
+  },
+  "comment": {
+   "comments": [
+    {
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54944/comment/74535",
+     "id": "74535",
+     "author": {
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+      "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+      "avatarUrls": {
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+      },
+      "displayName": "Branko Cicovic",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "body": {
+      "type": "doc",
+      "version": 1,
+      "content": [
+       {
+        "type": "paragraph",
+        "content": [
+         {
+          "type": "text",
+          "text": "This is updated in the filters prd, I\u2019m closing it."
+         }
+        ],
+        "attrs": {
+         "localId": "cac83088301a"
+        }
+       }
+      ]
+     },
+     "updateAuthor": {
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+      "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+      "avatarUrls": {
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+      },
+      "displayName": "Branko Cicovic",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "created": "2026-08-05T05:18:22.212-0500",
+     "updated": "2026-08-05T05:18:22.212-0500",
+     "jsdPublic": true
+    }
+   ],
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54944/comment",
+   "maxResults": 1,
+   "total": 1,
+   "startAt": 0
+  },
+  "worklog": {
+   "startAt": 0,
+   "maxResults": 20,
+   "total": 0,
+   "worklogs": []
+  }
+ }
+}
