@@ -19,15 +19,17 @@ the Rule-31(a) trap.
 | Work In Progress | 703660034 | **9** | **9** | 2026-08-05T17:54:07Z | "WIP asset filter scope wording (Parth review)" | **CURRENT** |
 | Inventory Value | 720142338 | **4** | **4** | 2026-08-05T13:33:13Z | same | **CURRENT** |
 
-**Nothing moved during this pass.** All six versions equal the last known reads of 17:54Z, and the
-second read (recorded in `specs-prewrite/_summary.json`, taken at **19:06:53Z**) is byte-identical to the first by
-`body_sha256` on all six pages.
+**Nothing moved during this pass — read THREE times.** All six versions equal the last known reads of
+17:54Z. The second read (recorded in `specs-prewrite/_summary.json`, taken at **19:06:53Z**) is
+byte-identical to the first by `body_sha256` on all six pages, and a **third read at the end of the pass,
+19:27:40Z**, returned the same six version numbers again. **This is the first Report Suite pass today
+during which Chris did not publish.**
 
 ## The build
 
 | Marker | Value | Read at |
 |---|---|---|
-| `app-version` | **`v3.5-16cf83f`** | 18:41Z · and again before writing |
+| `app-version` | **`v3.5-16cf83f`** | 18:41Z · again before writing · again at 19:27Z — `index.html` sha256 identical all three times |
 | `last-modified` on `index.html` | Wed, 05 Aug 2026 06:40:32 GMT | both reads |
 | `etag` | `"177c59546701e7810b894492dabc1423"` | both reads |
 
