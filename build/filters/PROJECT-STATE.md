@@ -3,6 +3,78 @@
 
 ---
 
+## 0-RECHECK-2026-08-05. **THE FULL RULE-49 RE-CHECK AGAINST THE REBUILT BRANCH — DONE. 110/110.**
+
+**Read this first — it is the newest state.** Sources:
+`build/filters/recheck-2026-08-05/{FINDINGS,RECHECK-QUEUE,testrail-execution-log,FILED,SOURCE-CURRENCY,BUILD-MARKER}.md`
+and `build/filters/READINESS-2026-08-05.md`.
+
+| | |
+|---|---|
+| Build re-checked against | **`v3.4.2-d00239b`** · `index.html` last-modified **Tue, 04 Aug 2026 22:51:02 GMT** · etag `b9ab1d41718b5e871432064ed914e2e7` · read at **03:38 / 04:30 / 04:42 UTC — identical all three times, so no redeploy under us** |
+| Previous build | `v3.4.2-4f8211c` — **gone** |
+| Rows re-checked | **110 of 110, no sampling.** **91 CONFIRMED · 19 CHANGED** |
+| Operations | **110 × `update_case`** · **0** add · **0** delete · **0** section · **0 run writes** |
+| Verification | **every one HTTP 200 + byte-verified MATCH, 28 fields compared each**; every field not intended to change proven byte-identical to its pre-write snapshot (Rule 50) |
+| Provenance | **110/110 now name `v3.4.2-d00239b` and the 5 August date, exactly once each.** 0 cases name the old build; 0 doubled lines |
+| Run 352 | **PROVEN UNTOUCHED, before and after** — 110 tests, **425 result records**, `case_id` sets equal both ways, **every prior result present BY ID**, and every record byte-identical field by field. **Ahtasham Amjad's 30 results (23 Passed / 7 Failed) exactly as he left them.** No `update_run` needed |
+| Foreign cases | **0** in group 4110 — all 110 `created_by: 3` (Rule 38) |
+| New verdict tally | **PASS 74 · DEVIATION 19 · HELD 8 · NOT BUILT 8 · held for a second sign-in 1 = 110** (was 60/32/8/9/1) |
+| Ready to automate | **89 of 110** (was 88) |
+| Rule-49 queue | **STILL OPEN** — engineering has not declared the branch final, so all 110 verdicts remain **PROVISIONAL** |
+
+### The 19 that changed
+
+| Change | Cases | Why |
+|---|---|---|
+| **DEVIATION → PASS, 12 cases** | FLT-STAT-03/04/05, FLT-CUST-03/05/07, FLT-TECH-03/05, FLT-ADV-03/05, FLT-ASSET-05, FLT-CHIP-01 | **SV-8824 is FIXED** — the dropdown now stays open, proven on all five buttons (second and third values tickable without reopening). Jira agrees: the ticket is **Ready for QA**. The now-false known-issue line was removed from all twelve. **This was our judgement call, applying the QA lead's own rule; flagged for his confirmation.** |
+| **DEVIATION → PASS, 3 cases** | FLT-PSRCH-10/11/12 | **SV-8844 is FIXED** — no `search` key in the saved preference, no save request sent, a fresh browser returns the full 30-row list. Line **deleted outright** per the QA lead's decision 1. |
+| **NOT BUILT → PASS, 1 case** | FLT-RPTS-23 [C38882] | The Reports date filter **is built** and matches the newer spec exactly. Case rewritten (title, preconditions, steps, expected, refs) scope-conditionally per Rule 42. |
+| **PASS → DEVIATION, 1 case** | FLT-PERS-01 [C29613] | **New defect SV-8871** — a restored Customer/Lead Technician/Service Advisor button comes back without its value name. |
+| **PASS → DEVIATION, 1 case** | FLT-PERS-04 [C29616] | **Our 4 August PASS was WRONG.** Seeded properly, the deleted customer is still applied to the table — Ahtasham's Failed result is right (SV-8832). |
+| **DEVIATION, second reason added** | FLT-URL-02 [C29618] | Same label loss on the desktop shared-link route (SV-8871) on top of the phone problem (SV-8845). |
+
+### The five tickets on the new build
+
+**SV-8843 still reproduces** (closed OBSOLETE with the note *"Not Reproducible Anymore"* — **the
+build contradicts that reason**, recorded in `provenance-2026-08-04/PO-RULING-DEFENCE.md`) ·
+**SV-8844 FIXED** · **SV-8845 still reproduces** (Open) · **SV-8846 still reproduces** (Open) ·
+**SV-8847 still reproduces** (closed OBSOLETE, no reason recorded). The 5 cases on SV-8843/8847
+carry the QA lead's accepted-behaviour wording; the 3 on SV-8844 lost their line entirely.
+
+### New ticket filed: [SV-8871](https://shopview.atlassian.net/browse/SV-8871)
+
+Bug · priority **Low** · parent **SV-8785** · Product Area **Work Orders** · linked to SV-8792 and
+SV-8795 · **Open**. Duplicate search run first, none found; every field read back from Jira.
+**Not API-related** (fully visible on screen), so Rule 51 does not bite. **Honest limit: not
+callable a regression** — the previous pass tested persistence only with the two unaffected filters.
+
+### Other answers this pass produced
+
+- **SV-8825 (mobile Apply button) is STILL UNANSWERED** — Open, **0 comments**, last touched
+  2026-08-04 05:58. The 8 mobile cases keep their "do not automate yet" line.
+- **Nothing new shipped on Parts or Reports filter bars** — observations byte-identical, so the 8
+  remaining not-built cases stay not-built.
+- **Spec is Confluence version 18** (2026-08-04T18:19:21Z). The page body still says
+  **"Version: 1.6"** — the Rule-31(a) trap; we went by the Confluence number.
+- **SV-8828 still not reproducible** on this build either. Question for Ahtasham, not a verdict.
+
+### Deliverables regenerated
+
+Local case source **re-synced FROM live before regenerating** (114 fields updated). Import
+regenerated, **character-shredding guard PASSED**. The generator's known gotcha fired again — it
+blanks the id-map C-ids **and drops the `refs` column** on every rerun — so both were re-merged from
+live: **110 rows, 0 blanks, refs on all 110**. **All four counts are 110 and set-equal in both
+directions** (live TestRail · local source · id-map · import rows), and the import header hashes
+**identically to all four peer project imports**.
+
+### Environment left clean
+
+Throwaway customer *ZZAUTOTEST Filters Recheck* deleted and **proven absent two ways**. All filters
+cleared; the Reports date range put back to **This month**. One sign-in, reused throughout.
+
+---
+
 ## 0-BRANKO-EXEC. **BRANKO'S 2026-08-04 ANSWERS ARE NOW LIVE IN TESTRAIL — 12 `update_case`, EXECUTED**
 
 **Read this first — it is the newest state.** Audit:
