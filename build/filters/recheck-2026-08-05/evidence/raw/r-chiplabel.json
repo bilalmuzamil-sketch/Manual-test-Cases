@@ -1,0 +1,96 @@
+{
+ "build": "v3.4.2-d00239b",
+ "when": "2026-08-05T04:16:52.288Z",
+ "perChip": {
+  "Status": {
+   "optionId": "filter_option_status_estimate",
+   "optionLabel": "Estimate",
+   "afterSelect": [
+    {
+     "t": "Status: Estimate",
+     "active": true
+    }
+   ],
+   "afterReload": [
+    {
+     "t": "Status: Estimate",
+     "active": true
+    }
+   ],
+   "url": "https://sv8785.qa.shopview.com/workorders?status=estimate&tab=all",
+   "labelSurvivesReload": true
+  },
+  "Customer": {
+   "optionId": "filter_option_company_id_00122246-ab6d-47ee-a885-3425c7bda754",
+   "optionLabel": "Iibay Landscaping",
+   "afterSelect": [
+    {
+     "t": "Customer: Iibay Landscaping",
+     "active": true
+    }
+   ],
+   "afterReload": [
+    {
+     "t": "Customer",
+     "active": true
+    }
+   ],
+   "url": "https://sv8785.qa.shopview.com/workorders?company_id=00122246-ab6d-47ee-a885-3425c7bda754&tab=all",
+   "labelSurvivesReload": false
+  },
+  "Lead Technician": {
+   "optionId": "filter_option_tech_assigned_id_ccbacb31-53f3-488e-9a7e-28f781761e62",
+   "optionLabel": "Admin ShopView",
+   "afterSelect": [
+    {
+     "t": "Lead Technician: Admin ShopView",
+     "active": true
+    }
+   ],
+   "afterReload": [
+    {
+     "t": "Lead Technician",
+     "active": true
+    }
+   ],
+   "url": "https://sv8785.qa.shopview.com/workorders?tech_assigned_id=ccbacb31-53f3-488e-9a7e-28f781761e62&tab=all",
+   "labelSurvivesReload": false
+  },
+  "Service Advisor": {
+   "optionId": "filter_option_service_advisor_id_ccbacb31-53f3-488e-9a7e-28f781761e62",
+   "optionLabel": "Admin ShopView",
+   "afterSelect": [
+    {
+     "t": "Service Advisor: Admin ShopView",
+     "active": true
+    }
+   ],
+   "afterReload": [
+    {
+     "t": "Service Advisor",
+     "active": true
+    }
+   ],
+   "url": "https://sv8785.qa.shopview.com/workorders?service_advisor_id=ccbacb31-53f3-488e-9a7e-28f781761e62&tab=all",
+   "labelSurvivesReload": false
+  },
+  "Asset on Site": {
+   "optionId": "filter_option_vehicleHere_1",
+   "optionLabel": "Yes",
+   "afterSelect": [
+    {
+     "t": "Asset on Site: Yes",
+     "active": true
+    }
+   ],
+   "afterReload": [
+    {
+     "t": "Asset on Site: Yes",
+     "active": true
+    }
+   ],
+   "url": "https://sv8785.qa.shopview.com/workorders?vehicleHere=1&tab=all",
+   "labelSurvivesReload": true
+  }
+ }
+}

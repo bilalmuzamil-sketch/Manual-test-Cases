@@ -1,0 +1,1115 @@
+{
+ "build": "v3.4.2-d00239b",
+ "when": "2026-08-05T04:04:27.450Z",
+ "startChips": [
+  {
+   "text": "Status|keyboard_arrow_down",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+   "disabled": false,
+   "bg": "rgba(0, 0, 0, 0)",
+   "fg": "rgb(97, 97, 97)",
+   "x": 452,
+   "y": 90,
+   "w": 94,
+   "h": 30,
+   "testid": "filter_chip_status"
+  },
+  {
+   "text": "Customer|keyboard_arrow_down",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+   "disabled": false,
+   "bg": "rgba(0, 0, 0, 0)",
+   "fg": "rgb(97, 97, 97)",
+   "x": 564,
+   "y": 90,
+   "w": 113,
+   "h": 30,
+   "testid": "filter_chip_company_id"
+  },
+  {
+   "text": "Lead Technician|keyboard_arrow_down",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+   "disabled": false,
+   "bg": "rgba(0, 0, 0, 0)",
+   "fg": "rgb(97, 97, 97)",
+   "x": 696,
+   "y": 90,
+   "w": 150,
+   "h": 30,
+   "testid": "filter_chip_tech_assigned_id"
+  },
+  {
+   "text": "Service Advisor|keyboard_arrow_down",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+   "disabled": false,
+   "bg": "rgba(0, 0, 0, 0)",
+   "fg": "rgb(97, 97, 97)",
+   "x": 864,
+   "y": 90,
+   "w": 148,
+   "h": 30,
+   "testid": "filter_chip_service_advisor_id"
+  },
+  {
+   "text": "Asset on Site|keyboard_arrow_down",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+   "disabled": false,
+   "bg": "rgba(0, 0, 0, 0)",
+   "fg": "rgb(97, 97, 97)",
+   "x": 1030,
+   "y": 90,
+   "w": 134,
+   "h": 30,
+   "testid": "filter_chip_vehicleHere"
+  }
+ ],
+ "startUrl": "https://sv8785.qa.shopview.com/workorders?tab=all",
+ "Status": {
+  "open": {
+   "ok": true,
+   "attempt": 1
+  },
+  "panelBeforeTick": {
+   "cls": "q-menu q-position-engine scroll",
+   "text": "Estimate\nApproved\nIn progress\nReview\nComplete\nInvoiced\nPaid\nDeclined\nImported\nClear Selection",
+   "y": 126,
+   "h": 449,
+   "w": 200,
+   "options": [
+    {
+     "label": "Estimate",
+     "checked": "false",
+     "testid": "filter_option_status_estimate",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Approved",
+     "checked": "false",
+     "testid": "filter_option_status_approved",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "In progress",
+     "checked": "false",
+     "testid": "filter_option_status_in_progress",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Review",
+     "checked": "false",
+     "testid": "filter_option_status_ready_for_review",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Complete",
+     "checked": "false",
+     "testid": "filter_option_status_complete",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Invoiced",
+     "checked": "false",
+     "testid": "filter_option_status_invoiced",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Paid",
+     "checked": "false",
+     "testid": "filter_option_status_paid",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Declined",
+     "checked": "false",
+     "testid": "filter_option_status_declined",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Imported",
+     "checked": "false",
+     "testid": "filter_option_status_imported",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    }
+   ],
+   "tags": [],
+   "inputs": [],
+   "buttons": [
+    {
+     "t": "Clear Selection",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangl",
+     "testid": "filter_clear_selection_status"
+    }
+   ],
+   "footerText": "Clear Selection",
+   "allTestIds": [
+    "filter_option_status_estimate",
+    "filter_option_status_approved",
+    "filter_option_status_in_progress",
+    "filter_option_status_ready_for_review",
+    "filter_option_status_complete",
+    "filter_option_status_invoiced",
+    "filter_option_status_paid",
+    "filter_option_status_declined",
+    "filter_option_status_imported",
+    "filter_clear_selection_status"
+   ]
+  },
+  "panelAt700ms": {
+   "cls": "q-menu q-position-engine scroll",
+   "text": "Estimate\nApproved\nIn progress\nReview\nComplete\nInvoiced\nPaid\nDeclined\nImported\nClear Selection",
+   "y": 126,
+   "h": 449,
+   "w": 200,
+   "options": [
+    {
+     "label": "Estimate",
+     "checked": "true",
+     "testid": "filter_option_status_estimate",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Approved",
+     "checked": "false",
+     "testid": "filter_option_status_approved",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "In progress",
+     "checked": "false",
+     "testid": "filter_option_status_in_progress",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Review",
+     "checked": "false",
+     "testid": "filter_option_status_ready_for_review",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Complete",
+     "checked": "false",
+     "testid": "filter_option_status_complete",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Invoiced",
+     "checked": "false",
+     "testid": "filter_option_status_invoiced",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Paid",
+     "checked": "false",
+     "testid": "filter_option_status_paid",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Declined",
+     "checked": "false",
+     "testid": "filter_option_status_declined",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Imported",
+     "checked": "false",
+     "testid": "filter_option_status_imported",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    }
+   ],
+   "tags": [],
+   "inputs": [],
+   "buttons": [
+    {
+     "t": "Clear Selection",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangl",
+     "testid": "filter_clear_selection_status"
+    }
+   ],
+   "footerText": "Clear Selection",
+   "allTestIds": [
+    "filter_option_status_estimate",
+    "filter_option_status_approved",
+    "filter_option_status_in_progress",
+    "filter_option_status_ready_for_review",
+    "filter_option_status_complete",
+    "filter_option_status_invoiced",
+    "filter_option_status_paid",
+    "filter_option_status_declined",
+    "filter_option_status_imported",
+    "filter_clear_selection_status"
+   ]
+  },
+  "panelAt4s": {
+   "cls": "q-menu q-position-engine scroll",
+   "text": "Estimate\nApproved\nIn progress\nReview\nComplete\nInvoiced\nPaid\nDeclined\nImported\nClear Selection",
+   "y": 126,
+   "h": 449,
+   "w": 200,
+   "options": [
+    {
+     "label": "Estimate",
+     "checked": "true",
+     "testid": "filter_option_status_estimate",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Approved",
+     "checked": "false",
+     "testid": "filter_option_status_approved",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "In progress",
+     "checked": "false",
+     "testid": "filter_option_status_in_progress",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Review",
+     "checked": "false",
+     "testid": "filter_option_status_ready_for_review",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Complete",
+     "checked": "false",
+     "testid": "filter_option_status_complete",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Invoiced",
+     "checked": "false",
+     "testid": "filter_option_status_invoiced",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Paid",
+     "checked": "false",
+     "testid": "filter_option_status_paid",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Declined",
+     "checked": "false",
+     "testid": "filter_option_status_declined",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Imported",
+     "checked": "false",
+     "testid": "filter_option_status_imported",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    }
+   ],
+   "tags": [],
+   "inputs": [],
+   "buttons": [
+    {
+     "t": "Clear Selection",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangl",
+     "testid": "filter_clear_selection_status"
+    }
+   ],
+   "footerText": "Clear Selection",
+   "allTestIds": [
+    "filter_option_status_estimate",
+    "filter_option_status_approved",
+    "filter_option_status_in_progress",
+    "filter_option_status_ready_for_review",
+    "filter_option_status_complete",
+    "filter_option_status_invoiced",
+    "filter_option_status_paid",
+    "filter_option_status_declined",
+    "filter_option_status_imported",
+    "filter_clear_selection_status"
+   ]
+  },
+  "panelStillOpen": true,
+  "secondTickWithoutReopen": {
+   "ok": true,
+   "panel": {
+    "cls": "q-menu q-position-engine scroll",
+    "text": "Estimate\nApproved\nIn progress\nReview\nComplete\nInvoiced\nPaid\nDeclined\nImported\nClear Selection",
+    "y": 126,
+    "h": 449,
+    "w": 200,
+    "options": [
+     {
+      "label": "Estimate",
+      "checked": "true",
+      "testid": "filter_option_status_estimate",
+      "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+      "icons": []
+     },
+     {
+      "label": "Approved",
+      "checked": "true",
+      "testid": "filter_option_status_approved",
+      "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+      "icons": []
+     },
+     {
+      "label": "In progress",
+      "checked": "false",
+      "testid": "filter_option_status_in_progress",
+      "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+      "icons": []
+     },
+     {
+      "label": "Review",
+      "checked": "false",
+      "testid": "filter_option_status_ready_for_review",
+      "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+      "icons": []
+     },
+     {
+      "label": "Complete",
+      "checked": "false",
+      "testid": "filter_option_status_complete",
+      "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+      "icons": []
+     },
+     {
+      "label": "Invoiced",
+      "checked": "false",
+      "testid": "filter_option_status_invoiced",
+      "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+      "icons": []
+     },
+     {
+      "label": "Paid",
+      "checked": "false",
+      "testid": "filter_option_status_paid",
+      "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+      "icons": []
+     },
+     {
+      "label": "Declined",
+      "checked": "false",
+      "testid": "filter_option_status_declined",
+      "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+      "icons": []
+     },
+     {
+      "label": "Imported",
+      "checked": "false",
+      "testid": "filter_option_status_imported",
+      "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+      "icons": []
+     }
+    ],
+    "tags": [],
+    "inputs": [],
+    "buttons": [
+     {
+      "t": "Clear Selection",
+      "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangl",
+      "testid": "filter_clear_selection_status"
+     }
+    ],
+    "footerText": "Clear Selection",
+    "allTestIds": [
+     "filter_option_status_estimate",
+     "filter_option_status_approved",
+     "filter_option_status_in_progress",
+     "filter_option_status_ready_for_review",
+     "filter_option_status_complete",
+     "filter_option_status_invoiced",
+     "filter_option_status_paid",
+     "filter_option_status_declined",
+     "filter_option_status_imported",
+     "filter_clear_selection_status"
+    ]
+   },
+   "chips": [
+    {
+     "text": "Status: Estimate, Approved|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+     "disabled": false,
+     "bg": "rgb(227, 242, 253)",
+     "fg": "rgb(56, 116, 255)",
+     "x": 452,
+     "y": 86,
+     "w": 217,
+     "h": 30,
+     "testid": "filter_chip_status"
+    },
+    {
+     "text": "Customer|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 687,
+     "y": 86,
+     "w": 113,
+     "h": 30,
+     "testid": "filter_chip_company_id"
+    },
+    {
+     "text": "Lead Technician|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 819,
+     "y": 86,
+     "w": 150,
+     "h": 30,
+     "testid": "filter_chip_tech_assigned_id"
+    },
+    {
+     "text": "Service Advisor|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 987,
+     "y": 86,
+     "w": 148,
+     "h": 30,
+     "testid": "filter_chip_service_advisor_id"
+    },
+    {
+     "text": "Asset on Site|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 1153,
+     "y": 86,
+     "w": 134,
+     "h": 30,
+     "testid": "filter_chip_vehicleHere"
+    }
+   ],
+   "url": "https://sv8785.qa.shopview.com/workorders?status=estimate&status=approved&tab=all",
+   "rows": 30
+  },
+  "thirdTickWithoutReopen": {
+   "ok": true,
+   "chips": [
+    {
+     "text": "Status: Estimate, Approved, Paid|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+     "disabled": false,
+     "bg": "rgb(227, 242, 253)",
+     "fg": "rgb(56, 116, 255)",
+     "x": 452,
+     "y": 86,
+     "w": 249,
+     "h": 30,
+     "testid": "filter_chip_status"
+    },
+    {
+     "text": "Customer|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 719,
+     "y": 86,
+     "w": 113,
+     "h": 30,
+     "testid": "filter_chip_company_id"
+    },
+    {
+     "text": "Lead Technician|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 851,
+     "y": 86,
+     "w": 150,
+     "h": 30,
+     "testid": "filter_chip_tech_assigned_id"
+    },
+    {
+     "text": "Service Advisor|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 1019,
+     "y": 86,
+     "w": 148,
+     "h": 30,
+     "testid": "filter_chip_service_advisor_id"
+    },
+    {
+     "text": "Asset on Site|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 1185,
+     "y": 86,
+     "w": 134,
+     "h": 30,
+     "testid": "filter_chip_vehicleHere"
+    }
+   ],
+   "url": "https://sv8785.qa.shopview.com/workorders?status=estimate&status=approved&status=paid&tab=all",
+   "rows": 30
+  }
+ },
+ "Customer": {
+  "open": {
+   "ok": true,
+   "attempt": 1
+  },
+  "panelBeforeTick": {
+   "h": 345,
+   "options": [
+    "Iibay Landscaping",
+    "Zecrest Technology",
+    "Teton Apparel"
+   ]
+  },
+  "optionIds": [
+   "filter_option_company_id_00122246-ab6d-47ee-a885-3425c7bda754",
+   "filter_option_company_id_0016e2c6-6ad6-4b44-ad2a-f55cf138dff9",
+   "filter_option_company_id_0029b928-05ed-42f2-9916-26f0f1dff2ff",
+   "filter_option_company_id_003a361e-f1a5-47cc-84d5-243d31b0b7aa"
+  ],
+  "panelAt700ms": {
+   "open": true,
+   "h": 378
+  },
+  "panelAt4s": {
+   "open": true,
+   "h": 378,
+   "tags": [
+    {
+     "t": "Iibay Landscaping\ncancel",
+     "removable": true,
+     "cls": "q-chip row inline no-wrap items-center q-chip--dense"
+    }
+   ]
+  },
+  "panelStillOpen": true,
+  "secondTickWithoutReopen": {
+   "ok": true,
+   "tags": [
+    {
+     "t": "Iibay Landscaping\ncancel",
+     "removable": true,
+     "cls": "q-chip row inline no-wrap items-center q-chip--dense"
+    },
+    {
+     "t": "Zecrest Technology\ncancel",
+     "removable": true,
+     "cls": "q-chip row inline no-wrap items-center q-chip--dense"
+    }
+   ],
+   "chips": [
+    {
+     "text": "Status|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 452,
+     "y": 86,
+     "w": 94,
+     "h": 30,
+     "testid": "filter_chip_status"
+    },
+    {
+     "text": "Customer: Iibay Landscaping, Zecrest Techn...|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+     "disabled": false,
+     "bg": "rgb(227, 242, 253)",
+     "fg": "rgb(56, 116, 255)",
+     "x": 564,
+     "y": 86,
+     "w": 324,
+     "h": 30,
+     "testid": "filter_chip_company_id"
+    },
+    {
+     "text": "Lead Technician|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 906,
+     "y": 86,
+     "w": 150,
+     "h": 30,
+     "testid": "filter_chip_tech_assigned_id"
+    },
+    {
+     "text": "Service Advisor|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 1074,
+     "y": 86,
+     "w": 148,
+     "h": 30,
+     "testid": "filter_chip_service_advisor_id"
+    },
+    {
+     "text": "Asset on Site|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 1240,
+     "y": 86,
+     "w": 134,
+     "h": 30,
+     "testid": "filter_chip_vehicleHere"
+    }
+   ],
+   "url": "https://sv8785.qa.shopview.com/workorders?company_id=00122246-ab6d-47ee-a885-3425c7bda754&company_id=0016e2c6-6ad6-4b44-ad2a-f55cf138dff9&tab=all",
+   "rows": 0
+  }
+ },
+ "Lead Technician": {
+  "open": {
+   "ok": true,
+   "attempt": 1
+  },
+  "panelBeforeTick": {
+   "h": 345,
+   "options": [
+    "Admin ShopView",
+    "Alexander Cohen",
+    "Alyssa Randall"
+   ]
+  },
+  "optionIds": [
+   "filter_option_tech_assigned_id_ccbacb31-53f3-488e-9a7e-28f781761e62",
+   "filter_option_tech_assigned_id_02b06910-a3ff-4057-81d2-3956d10f1236",
+   "filter_option_tech_assigned_id_740249f3-6e80-4e64-a8af-f24bb1838f7e",
+   "filter_option_tech_assigned_id_4d18c4ef-6dd4-450a-a797-496c81601a59"
+  ],
+  "panelAt700ms": {
+   "open": true,
+   "h": 378
+  },
+  "panelAt4s": {
+   "open": true,
+   "h": 378,
+   "tags": [
+    {
+     "t": "Admin ShopView\ncancel",
+     "removable": true,
+     "cls": "q-chip row inline no-wrap items-center q-chip--dense"
+    }
+   ]
+  },
+  "panelStillOpen": true,
+  "secondTickWithoutReopen": {
+   "ok": true,
+   "tags": [
+    {
+     "t": "Admin ShopView\ncancel",
+     "removable": true,
+     "cls": "q-chip row inline no-wrap items-center q-chip--dense"
+    },
+    {
+     "t": "Alexander Cohen\ncancel",
+     "removable": true,
+     "cls": "q-chip row inline no-wrap items-center q-chip--dense"
+    }
+   ],
+   "chips": [
+    {
+     "text": "Status|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 452,
+     "y": 86,
+     "w": 94,
+     "h": 30,
+     "testid": "filter_chip_status"
+    },
+    {
+     "text": "Customer|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 564,
+     "y": 86,
+     "w": 113,
+     "h": 30,
+     "testid": "filter_chip_company_id"
+    },
+    {
+     "text": "Lead Technician: Admin ShopView, Alexander Cohen|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+     "disabled": false,
+     "bg": "rgb(227, 242, 253)",
+     "fg": "rgb(56, 116, 255)",
+     "x": 696,
+     "y": 86,
+     "w": 368,
+     "h": 30,
+     "testid": "filter_chip_tech_assigned_id"
+    },
+    {
+     "text": "Service Advisor|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 1082,
+     "y": 86,
+     "w": 148,
+     "h": 30,
+     "testid": "filter_chip_service_advisor_id"
+    },
+    {
+     "text": "Asset on Site|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 1248,
+     "y": 86,
+     "w": 134,
+     "h": 30,
+     "testid": "filter_chip_vehicleHere"
+    }
+   ],
+   "url": "https://sv8785.qa.shopview.com/workorders?tech_assigned_id=ccbacb31-53f3-488e-9a7e-28f781761e62&tech_assigned_id=02b06910-a3ff-4057-81d2-3956d10f1236&tab=all",
+   "rows": 0
+  }
+ },
+ "Service Advisor": {
+  "open": {
+   "ok": true,
+   "attempt": 1
+  },
+  "panelBeforeTick": {
+   "h": 345,
+   "options": [
+    "Admin ShopView",
+    "Alexander Cohen",
+    "Ayesha Khan"
+   ]
+  },
+  "optionIds": [
+   "filter_option_service_advisor_id_ccbacb31-53f3-488e-9a7e-28f781761e62",
+   "filter_option_service_advisor_id_02b06910-a3ff-4057-81d2-3956d10f1236",
+   "filter_option_service_advisor_id_1e81b8a0-9a45-4f16-89e3-209bf240990a",
+   "filter_option_service_advisor_id_80110931-d9bb-4296-9fe4-8ec9d3799eff"
+  ],
+  "panelAt700ms": {
+   "open": true,
+   "h": 378
+  },
+  "panelAt4s": {
+   "open": true,
+   "h": 378,
+   "tags": [
+    {
+     "t": "Admin ShopView\ncancel",
+     "removable": true,
+     "cls": "q-chip row inline no-wrap items-center q-chip--dense"
+    }
+   ]
+  },
+  "panelStillOpen": true,
+  "secondTickWithoutReopen": {
+   "ok": true,
+   "tags": [
+    {
+     "t": "Admin ShopView\ncancel",
+     "removable": true,
+     "cls": "q-chip row inline no-wrap items-center q-chip--dense"
+    },
+    {
+     "t": "Alexander Cohen\ncancel",
+     "removable": true,
+     "cls": "q-chip row inline no-wrap items-center q-chip--dense"
+    }
+   ],
+   "chips": [
+    {
+     "text": "Status|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 452,
+     "y": 86,
+     "w": 94,
+     "h": 30,
+     "testid": "filter_chip_status"
+    },
+    {
+     "text": "Customer|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 564,
+     "y": 86,
+     "w": 113,
+     "h": 30,
+     "testid": "filter_chip_company_id"
+    },
+    {
+     "text": "Lead Technician|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 696,
+     "y": 86,
+     "w": 150,
+     "h": 30,
+     "testid": "filter_chip_tech_assigned_id"
+    },
+    {
+     "text": "Service Advisor: Admin ShopView, Alexander Cohen|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+     "disabled": false,
+     "bg": "rgb(227, 242, 253)",
+     "fg": "rgb(56, 116, 255)",
+     "x": 864,
+     "y": 86,
+     "w": 366,
+     "h": 30,
+     "testid": "filter_chip_service_advisor_id"
+    },
+    {
+     "text": "Asset on Site|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 1248,
+     "y": 86,
+     "w": 134,
+     "h": 30,
+     "testid": "filter_chip_vehicleHere"
+    }
+   ],
+   "url": "https://sv8785.qa.shopview.com/workorders?service_advisor_id=ccbacb31-53f3-488e-9a7e-28f781761e62&service_advisor_id=02b06910-a3ff-4057-81d2-3956d10f1236&tab=all",
+   "rows": 4
+  }
+ },
+ "Asset on Site": {
+  "open": {
+   "ok": true,
+   "attempt": 1
+  },
+  "optionIds": [
+   "filter_option_vehicleHere_1",
+   "filter_option_vehicleHere_0"
+  ],
+  "panelAt4s": {
+   "open": false,
+   "h": null
+  },
+  "panelStillOpen": false,
+  "chips": [
+   {
+    "text": "Status|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 452,
+    "y": 86,
+    "w": 94,
+    "h": 30,
+    "testid": "filter_chip_status"
+   },
+   {
+    "text": "Customer|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 564,
+    "y": 86,
+    "w": 113,
+    "h": 30,
+    "testid": "filter_chip_company_id"
+   },
+   {
+    "text": "Lead Technician|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 696,
+    "y": 86,
+    "w": 150,
+    "h": 30,
+    "testid": "filter_chip_tech_assigned_id"
+   },
+   {
+    "text": "Service Advisor|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 864,
+    "y": 86,
+    "w": 148,
+    "h": 30,
+    "testid": "filter_chip_service_advisor_id"
+   },
+   {
+    "text": "Asset on Site: Yes|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+    "disabled": false,
+    "bg": "rgb(227, 242, 253)",
+    "fg": "rgb(56, 116, 255)",
+    "x": 1030,
+    "y": 86,
+    "w": 161,
+    "h": 30,
+    "testid": "filter_chip_vehicleHere"
+   }
+  ],
+  "url": "https://sv8785.qa.shopview.com/workorders?vehicleHere=1&tab=all"
+ },
+ "prefs": [
+  {
+   "status": 200,
+   "method": "GET",
+   "url": "/api/users/me/preferences/work-orders-list"
+  },
+  {
+   "status": 200,
+   "method": "PUT",
+   "url": "/api/users/me/preferences/work-orders-list"
+  },
+  {
+   "status": 200,
+   "method": "PUT",
+   "url": "/api/users/me/preferences/work-orders-list"
+  },
+  {
+   "status": 200,
+   "method": "PUT",
+   "url": "/api/users/me/preferences/work-orders-list"
+  },
+  {
+   "status": 200,
+   "method": "PUT",
+   "url": "/api/users/me/preferences/work-orders-list"
+  },
+  {
+   "status": 200,
+   "method": "PUT",
+   "url": "/api/users/me/preferences/work-orders-list"
+  },
+  {
+   "status": 200,
+   "method": "PUT",
+   "url": "/api/users/me/preferences/work-orders-list"
+  },
+  {
+   "status": 200,
+   "method": "PUT",
+   "url": "/api/users/me/preferences/work-orders-list"
+  },
+  {
+   "status": 200,
+   "method": "PUT",
+   "url": "/api/users/me/preferences/work-orders-list"
+  },
+  {
+   "status": 200,
+   "method": "PUT",
+   "url": "/api/users/me/preferences/work-orders-list"
+  },
+  {
+   "status": 200,
+   "method": "PUT",
+   "url": "/api/users/me/preferences/work-orders-list"
+  },
+  {
+   "status": 200,
+   "method": "PUT",
+   "url": "/api/users/me/preferences/work-orders-list"
+  },
+  {
+   "status": 200,
+   "method": "PUT",
+   "url": "/api/users/me/preferences/work-orders-list"
+  },
+  {
+   "status": 200,
+   "method": "PUT",
+   "url": "/api/users/me/preferences/work-orders-list"
+  },
+  {
+   "status": 200,
+   "method": "PUT",
+   "url": "/api/users/me/preferences/work-orders-list"
+  },
+  {
+   "status": 200,
+   "method": "PUT",
+   "url": "/api/users/me/preferences/work-orders-list"
+  }
+ ],
+ "listCalls": [
+  {
+   "status": 200,
+   "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vehicle&pagination[descending]=false&filters[0][field]=tech_assigned_id&filters[0][value]=ccbacb31-53f3-488e-9a7e-28f781761e62&filters[1][field]=tech_assigned_id&filters[1][value]=02b06910-a3ff-4057-81d2-3956d10f1236&search=&showMyWorkOrders=0"
+  },
+  {
+   "status": 200,
+   "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vehicle&pagination[descending]=false&search=&showMyWorkOrders=0"
+  },
+  {
+   "status": 200,
+   "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vehicle&pagination[descending]=false&filters[0][field]=service_advisor_id&filters[0][value]=ccbacb31-53f3-488e-9a7e-28f781761e62&search=&showMyWorkOrders=0"
+  },
+  {
+   "status": 200,
+   "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vehicle&pagination[descending]=false&filters[0][field]=service_advisor_id&filters[0][value]=ccbacb31-53f3-488e-9a7e-28f781761e62&filters[1][field]=service_advisor_id&filters[1][value]=02b06910-a3ff-4057-81d2-3956d10f1236&search=&showMyWorkOrders=0"
+  },
+  {
+   "status": 200,
+   "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vehicle&pagination[descending]=false&search=&showMyWorkOrders=0"
+  },
+  {
+   "status": 200,
+   "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vehicle&pagination[descending]=false&filters[0][field]=vehicleHere&filters[0][value]=1&search=&showMyWorkOrders=0"
+  }
+ ]
+}

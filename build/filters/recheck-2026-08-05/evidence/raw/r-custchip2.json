@@ -1,0 +1,111 @@
+{
+ "build": "v3.4.2-d00239b",
+ "when": "2026-08-05T04:10:58.313Z",
+ "beforeLeaving": {
+  "picked": "Iibay Landscaping",
+  "url": "https://sv8785.qa.shopview.com/workorders?company_id=00122246-ab6d-47ee-a885-3425c7bda754&tab=all",
+  "chips": [
+   {
+    "t": "Status|keyboard_arrow_down",
+    "active": false
+   },
+   {
+    "t": "Customer: Iibay Landscaping|keyboard_arrow_down",
+    "active": true
+   },
+   {
+    "t": "Lead Technician|keyboard_arrow_down",
+    "active": false
+   },
+   {
+    "t": "Service Advisor|keyboard_arrow_down",
+    "active": false
+   },
+   {
+    "t": "Asset on Site|keyboard_arrow_down",
+    "active": false
+   }
+  ]
+ },
+ "freshContext": {
+  "url": "https://sv8785.qa.shopview.com/workorders?company_id=00122246-ab6d-47ee-a885-3425c7bda754&tab=all",
+  "rows": 0,
+  "chips": [
+   {
+    "t": "Status|keyboard_arrow_down",
+    "active": false
+   },
+   {
+    "t": "Customer|keyboard_arrow_down",
+    "active": true
+   },
+   {
+    "t": "Lead Technician|keyboard_arrow_down",
+    "active": false
+   },
+   {
+    "t": "Service Advisor|keyboard_arrow_down",
+    "active": false
+   },
+   {
+    "t": "Asset on Site|keyboard_arrow_down",
+    "active": false
+   }
+  ]
+ },
+ "openCustomer": {
+  "ok": true,
+  "attempt": 1
+ },
+ "panelTags": [
+  {
+   "t": "Iibay Landscaping\ncancel",
+   "removable": true,
+   "cls": "q-chip row inline no-wrap items-center q-chip--dense"
+  }
+ ],
+ "panelInput": [
+  {
+   "ph": "Search",
+   "val": "",
+   "testid": "filter_search_company_id"
+  }
+ ],
+ "panelTickedLabels": [
+  "Iibay Landscaping\ncheck"
+ ],
+ "chipsWithPanelOpen": [
+  {
+   "t": "Status|keyboard_arrow_down",
+   "active": false
+  },
+  {
+   "t": "Customer: Iibay Landscaping|keyboard_arrow_down",
+   "active": true
+  },
+  {
+   "t": "Lead Technician|keyboard_arrow_down",
+   "active": false
+  },
+  {
+   "t": "Service Advisor|keyboard_arrow_down",
+   "active": false
+  },
+  {
+   "t": "Asset on Site|keyboard_arrow_down",
+   "active": false
+  }
+ ],
+ "custListCalls": [
+  {
+   "s": 200,
+   "u": "/api/customers/list-options?search="
+  }
+ ],
+ "woCalls": [
+  {
+   "status": 200,
+   "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vehicle&pagination[descending]=false&filters[0][field]=company_id&filters[0][value]=00122246-ab6d-47ee-a885-3425c7bda754&search=&showMyWorkOrders=0"
+  }
+ ]
+}
