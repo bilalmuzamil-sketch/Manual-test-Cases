@@ -12,7 +12,7 @@ started with `NODE_USE_ENV_PROXY=1 node /tmp/schedule-viu/bridge.mjs`, port in
 | Batch | Areas | Cases | Status |
 |---|---|---|---|
 | 1 | Navigation, Mini Calendar, WO List/Search, WO Filters | 22 | **OBSERVED 22/22** |
-| 2 | Line Drill-Down, Drag-and-Drop, Scope Picker, Shift Block Anatomy | 22 | not started |
+| 2 | Line Drill-Down, Drag-and-Drop, Scope Picker, Shift Block Anatomy | 22 | **OBSERVED 22/22** |
 | 3 | Multi-Day Spread, Linked Series, Overlap/Lane Stacking | 18 | not started |
 | 4 | Day View Timeline, Shift Detail Modal, Hover Tooltips | 18 | not started |
 | 5 | Events, Conflict Detection, Capacity Bars | 17 | not started |
@@ -21,13 +21,23 @@ started with `NODE_USE_ENV_PROXY=1 node /tmp/schedule-viu/bridge.mjs`, port in
 | 8 | Permissions, Edge Cases | 20 | not started |
 | 9 | Cross-Module Regression, API | 9 | not started |
 
-**Observed so far: 22 of 168.** Next case: batch 2, SCH-LINE-01.
+**Observed so far: 44 of 168.** Next case: batch 3, SCH-SPREAD-01.
 
-**Verdicts so far:** PASS 18 · DEVIATION 4 (see `evidence/batch1/VERDICTS.json`).
+**Verdicts so far:** PASS 37 · DEVIATION 6 · HELD 1 (see `evidence/batch*/VERDICTS.json`).
 
 **NO TestRail write has been made yet.** Pre-write snapshot committed at
 `snapshots/PRE-cases-168.json` (SHA 5bf6100).
 
+**Shift create contract (learned live, belongs in the playbook):**
+`POST /api/schedule/shifts {workOrderId, lineIds[], staffId, departmentId, startDate,
+startTime, spreadMode:'single'|..., totalMinutes, perDayMinutes, color, note, isAllDay,
+acknowledgeLongSeries}`; `DELETE /api/schedule/shifts/{id}` -> 204; `PATCH` for edits;
+board read is `GET /api/schedule/board?from=…&to=…`. Default start time is **07:00 local**.
+
 **Board baseline:** `snapshots/BOARD-PRE.json.gz` + `BOARD-PRE-digest.json` —
 3318 shifts, 204 events, 7 series ids, whole of 2026 swept. Nothing seeded yet,
 nothing touched yet.
+
+**Batch 2 wrote to the board and cleaned up. One pre-existing shift was deleted by an
+over-wide clean-up and has been RESTORED - see `BOARD-RESTORE-PROOF.md`. All 91 work
+orders proven byte-identical afterwards.**
