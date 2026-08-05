@@ -3757,6 +3757,20 @@ regression / bug-fix re-testing.
 - Currently **ignore** Digital Inspections, Regression Suite (Minja's API file),
   and Backend API & Security in the Custom Roles execution scope (unless told
   otherwise).
+- **ALWAYS UNBLOCK YOURSELF — never stop at "a human must do this" or "this needs data seeding"
+  (QA-lead ruling 2026-08-05, verbatim: *"you must always unblock yourself and never give up saying
+  you need a real human being or you need data seeding"*).** Treat every apparent blocker as a puzzle
+  with a solution you have not found yet. Proven in one session: a UI control that "did nothing" was a
+  **two-step confirm** (the menu stays open and the entry turns red — click the SAME entry twice, do
+  NOT reopen the menu); a receive button that stayed disabled had a **tooltip stating exactly what was
+  missing**; a "no attachment API" dead end was solved by noticing the repo is **public**, so committed
+  screenshots embed as **ADF external media** (`{"type":"media","attrs":{"type":"external","url":...}}`);
+  a rejected request was **my own invoice number exceeding a 21-char limit**, not a defect; a missing
+  pre-condition (0 of 600 work orders had one) was **seeded from scratch** via the API. **The order of
+  attack:** read the on-screen/tooltip/validation message → read the DEPLOYED bundle for the real
+  guard, selector and payload → probe the endpoint with a partial body and read the validation error →
+  switch UI↔API whichever works → seed the state yourself. Only after all of that, and with the
+  evidence written down, may something be called blocked — and even then keep looking for the way in.
 - **NEVER commit secrets** (cookies/tokens/keys/passwords) — `/tmp` only.
 - Git identity: `noreply@anthropic.com` / `Claude`.
 - The **"Unverified" commit stop-hook is a known false alarm** (signing key not
