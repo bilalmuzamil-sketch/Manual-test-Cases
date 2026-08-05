@@ -1,4 +1,4 @@
-# Schedule — is it ready for automation? (4 August 2026, table restructured 5 August)
+# Schedule — is it ready for automation? (4 August 2026, table restructured and the ready-figure rule fixed 5 August)
 
 **What this is.** We ran every one of the **165 Schedule test cases against the real, running app**
 for the first time — the Schedule QA branch at `sv8685.qa.shopview.com`. Before then not one of them
@@ -22,11 +22,14 @@ the day, and once more afterwards — the same build every time, so nothing chan
 
 ## What changed on 5 August
 
-**The numbers did not change. The table did.** Every figure below was re-measured from the record of
-the run (`viu-2026-08-04/RECHECK-QUEUE.md`, one row per case) and comes out identical.
+**One number changed: the "ready to automate" figure is now 157, not 161.** Nothing about the
+testing changed and no case changed its outcome — every outcome figure below was re-measured from the
+record of the run (`viu-2026-08-04/RECHECK-QUEUE.md`, one row per case, all 165 re-counted) and comes
+out identical. What changed is the **rule** for working out how many cases can be automated.
 
 | | |
 |---|---|
+| **The ready-to-automate rule is now the same in every report** | The four cases on **features that are not built yet are no longer counted as ready to automate**, so the figure drops from **161 to 157**. This was decided because the Filters report already left its not-built cases out, and an engineer reading both side by side would have written four automated tests for features that are not in the product — they would fail, he would investigate, and the time would be wasted before anyone worked out why. **The four cases are named in full below.** They are still counted as test cases; they are just not counted as automatable. |
 | **The table now has one kind of column** | It used to mix "what happened when we tested it" with "this case also needs a tool". Those are different things, and mixing them meant one row appeared to hold 8 cases when it holds 7. **The tool column has been taken out of the table and is now shown separately, below, as a flag.** Adding across a row can no longer overshoot. |
 | **Two columns were renamed** (4 August) | *"Broken on the build"* is now **"Product is wrong — the case correctly fails"**: it never meant our case was broken. *"Needs a free tool"* now says plainly that **a manual tester can run those cases today.** |
 | **Correction 1** | The 4 August note said all three tool cases sat in the "work correctly" column. **They do not.** One of them, SCH-EDGE-02, is one of the 19 where the product is wrong. The count of three was right; the explanation was wrong. |
@@ -52,7 +55,9 @@ to work out in your head and nothing hidden.
   could still change. Automating now risks locking in the wrong behaviour. Both of these say
   **"DO NOT AUTOMATE YET"** on the case itself.
 - **Not built yet** — the feature does not exist in the product yet, so there is nothing to test. Each
-  of these cases tells the tester to mark it **blocked**, not failed.
+  of these cases tells the tester to mark it **blocked**, not failed. **These are NOT counted as ready
+  to automate**, because the feature is not in the product yet, so an automated test for it could only
+  fail. They are named individually further down.
 - **Could not be set up on this test system** — nothing to do with tools. The starting conditions
   cannot be created here: a clock change that has not happened yet, and a shared setting nobody has
   authorised changing. These cases tell the tester to mark them blocked.
@@ -62,13 +67,13 @@ to work out in your head and nothing hidden.
 | Part of the feature | Test cases | Work correctly | Product is wrong — the case correctly fails | Waiting on the product owner | Not built yet | Could not be set up on this test system | **Ready to automate** (derived, not part of the sum) |
 |---|---|---|---|---|---|---|---|
 | Who is allowed to do what | 13 | 12 | 1 | 0 | 0 | 0 | **13** |
-| Spreading a big job over several days | 10 | 7 | 1 | 1 | 1 | 0 | **9** |
+| Spreading a big job over several days | 10 | 7 | 1 | 1 | 1 | 0 | **8** |
 | Deleting and undoing | 9 | 9 | 0 | 0 | 0 | 0 | **9** |
-| Dragging a job onto a technician | 8 | 6 | 1 | 0 | 1 | 0 | **8** |
+| Dragging a job onto a technician | 8 | 6 | 1 | 0 | 1 | 0 | **7** |
 | The two toolbar menus | 8 | 6 | 2 | 0 | 0 | 0 | **8** |
 | The shift window | 8 | 4 | 4 | 0 | 0 | 0 | **8** |
 | Odd situations and small screens | 7 | 4 | 1 | 1 | 0 | 1 | **5** |
-| Events (meetings, time off) | 7 | 6 | 0 | 0 | 1 | 0 | **7** |
+| Events (meetings, time off) | 7 | 6 | 0 | 0 | 1 | 0 | **6** |
 | Start times and the Unassigned row | 7 | 6 | 0 | 0 | 0 | 1 | **6** |
 | Clash warnings | 6 | 6 | 0 | 0 | 0 | 0 | **6** |
 | The Schedule page, its three views and the department rows | 6 | 6 | 0 | 0 | 0 | 0 | **6** |
@@ -79,7 +84,7 @@ to work out in your head and nothing hidden.
 | The hover summary | 5 | 4 | 1 | 0 | 0 | 0 | **5** |
 | The work order list and its search box | 5 | 5 | 0 | 0 | 0 | 0 | **5** |
 | Setting working hours | 5 | 5 | 0 | 0 | 0 | 0 | **5** |
-| Behind the scenes (the data requests) | 4 | 3 | 0 | 0 | 1 | 0 | **4** |
+| Behind the scenes (the data requests) | 4 | 3 | 0 | 0 | 1 | 0 | **3** |
 | The capacity bars | 4 | 4 | 0 | 0 | 0 | 0 | **4** |
 | A spread job shown as one run of days | 4 | 3 | 1 | 0 | 0 | 0 | **4** |
 | Several jobs at the same time | 4 | 3 | 1 | 0 | 0 | 0 | **4** |
@@ -90,7 +95,7 @@ to work out in your head and nothing hidden.
 | Keyboard | 3 | 1 | 2 | 0 | 0 | 0 | **3** |
 | Moving a job to another technician | 3 | 3 | 0 | 0 | 0 | 0 | **3** |
 | What a block on the board says | 3 | 3 | 0 | 0 | 0 | 0 | **3** |
-| **TOTAL** | **165** | **138** | **19** | **2** | **4** | **2** | **161** |
+| **TOTAL** | **165** | **138** | **19** | **2** | **4** | **2** | **157** |
 
 ### The arithmetic, checked and stated plainly
 
@@ -99,32 +104,45 @@ columns sum to the Test cases figure in every one of them, and down the total co
 **138 + 19 + 2 + 4 + 2 = 165.** Every one of the 165 cases is in exactly one of those five columns,
 and no case is in two.
 
-**How the "Ready to automate" figure is worked out — one formula, no exceptions:**
+**How the "Ready to automate" figure is worked out — one formula, and it is now the same formula in
+every readiness report:**
 
-> **Ready to automate = Test cases − Waiting on the product owner − Could not be set up on this test
-> system.** Nothing else is subtracted.
+> **Ready to automate = cases − waiting on the product owner − could not be set up on this test
+> system − not built yet.**
 
 Recompute it two ways and it comes out the same both times:
 
-- **Whole suite:** 165 − 2 − 2 = **161**.
-- **Adding the 29 row figures:** 13+9+9+8+8+8+5+7+6+6+6+6+6+5+5+5+5+5+4+4+4+4+4+4+3+3+3+3+3 = **161**.
+- **Whole suite:** 165 − 2 − 2 − 4 = **157**.
+- **Adding the 29 row figures:** 13+8+9+7+8+8+5+6+6+6+6+6+6+5+5+5+5+5+3+4+4+4+4+4+3+3+3+3+3 = **157**.
 
-**Before this restructure the figure was 161. After it, it is still 161** — it was arithmetically
-correct under the formula above, so nothing has been changed.
+**The figure used to be 161, because the four not-built cases were counted as ready. They no longer
+are.** Not one test result changed — only the rule did.
 
-**What is deliberately NOT subtracted, and why — read this before you rely on 161:**
+**Why not-built cases are left out.** **The feature is not in the product yet, so an automated test for
+it could only fail.** An engineer who wrote these four would find nothing to test, get four red
+results, and spend time investigating a fault that does not exist. They stay counted as test cases —
+they are still in the 165 and still in the "Not built yet" column — they are simply not counted as
+automatable. **Pick them up when the features land.**
+
+**The four cases left out of 157, named in full so they can be picked up later:**
+
+| Case | C-id | Link | What is missing from the product |
+|---|---|---|---|
+| SCH-API-02 | C38873 | https://shopview.testrail.io/index.php?/cases/view/38873 | No cap and no confirmation on a very long spread — a 76-hour spread over 26 lines produced 7 shifts with no prompt at all |
+| SCH-DND-08 | C29962 | https://shopview.testrail.io/index.php?/cases/view/29962 | There is no click-to-arm alternative to dragging. Clicking a sidebar card opens the line list; clicking a line row does nothing schedulable |
+| SCH-EVT-02 | C30017 | https://shopview.testrail.io/index.php?/cases/view/30017 | No live preview and no drag-to-resize while creating an event in Day view |
+| SCH-SPREAD-11 | C38863 | https://shopview.testrail.io/index.php?/cases/view/38863 | No cap and no confirmation exist on a long spread. Also unsettled: whether the 8-week / 120-shift limit is a product requirement at all |
+
+**What is deliberately NOT subtracted, and why — read this before you rely on 157:**
 
 - **The 19 "product is wrong" cases are NOT subtracted.** They should be automated and are expected
   to come out red until the tickets are fixed.
-- **The 4 "not built yet" cases ARE counted as ready.** That is a judgement, and it is worth your
-  eye, because **the Filters readiness report does the opposite and leaves its not-built cases out
-  of its ready figure.** An engineer who writes these four will find nothing to test and will have
-  to mark them blocked. **If you would rather they were set aside too, the figure is 165 − 2 − 2 − 4
-  = 157**, and the four are named in the skip list below. Say which figure you want and both reports
-  will use the same rule.
 - **The flag below is NOT subtracted**, because forcing a narrow window or a dark theme is something
-  an automated test does for itself. (The Filters report does subtract its flagged cases, for a
-  different reason — theirs measure exact colours and pixel widths that are likely to move.)
+  an automated test does for itself. **The Filters report DOES subtract its 4 flagged cases**, for a
+  different reason — theirs measure exact colours and pixel widths that are likely to move. **That is
+  a remaining difference between the two reports and it has not been quietly aligned:** if the two
+  should treat flagged cases the same way as well, that is your call, and Schedule's figure would then
+  become 157 − 3 = 154.
 
 ## Flags — an extra note on some cases, NOT an outcome
 
@@ -177,12 +195,13 @@ than noise) and the 4 on features that are not built yet (each one tells the tes
    lock in the wrong behaviour. Both cases say, in the case itself: *"DO NOT AUTOMATE YET."*
 2. **The 2 cases that cannot be set up here — SCH-EDGE-07 = [C38865](https://shopview.testrail.io/index.php?/cases/view/38865) and SCH-START-02 = [C29970](https://shopview.testrail.io/index.php?/cases/view/29970).** One waits for a clock
    change in November, the other for a shared setting nobody has authorised changing.
-3. **Probably also the 4 not-built cases, if you agree with the note above** — SCH-API-02 =
+3. **The 4 not-built cases** — SCH-API-02 =
    [C38873](https://shopview.testrail.io/index.php?/cases/view/38873), SCH-DND-08 =
    [C29962](https://shopview.testrail.io/index.php?/cases/view/29962), SCH-EVT-02 =
    [C30017](https://shopview.testrail.io/index.php?/cases/view/30017) and SCH-SPREAD-11 =
    [C38863](https://shopview.testrail.io/index.php?/cases/view/38863). The features behind them do not
-   exist in this build. **They are inside the 161 today**; taking them out gives 157.
+   exist in this build, so an automated test for them could only fail. **They are OUTSIDE the 157** —
+   pick them up when the features land.
 4. **Leave the 8 drag-and-drop cases until last, and budget more time for them.** There is no
    click-to-arm alternative to dragging on this build (SCH-DND-08 = [C29962](https://shopview.testrail.io/index.php?/cases/view/29962) — that is itself a gap we reported),
    so every one of those cases needs real mouse-press-move-release emulation, not a simple click.
@@ -195,7 +214,7 @@ hard way: a drag test restored a shift's start time and left it on the wrong tec
 seven and a half hours short, and nobody noticed until the whole week was compared field by field.
 That shift has been put back.
 
-**Everything else — 161 cases — is ready to automate today.** The 19 that currently fail should still
+**Everything else — 157 cases — is ready to automate today.** The 19 that currently fail should still
 be automated: **the cases are correct — it is the product that is wrong** — they describe what the app
 is supposed to do, and 15 of them already carry their ticket number. **A red result on those 19 is the
 expected result, not a faulty test.**
@@ -277,9 +296,12 @@ ticket and does not have one** — see the outstanding list.
    answers, and this has been waiting since 22 July.
 2. **Rule on the two tickets that clash with his earlier answers** ([SV-8835](https://shopview.atlassian.net/browse/SV-8835) and [SV-8829](https://shopview.atlassian.net/browse/SV-8829)). Our cases
    follow his rulings; another QA's tickets say the opposite. Nothing was changed on either side.
-3. **Say whether "not built yet" cases count as ready to automate.** Today Schedule says yes (161)
-   and Filters says no. Pick one rule and both reports will follow it — Schedule's figure becomes
-   **157** if you take them out.
+3. **Nothing needed — this one is settled.** The question used to be whether "not built yet" cases
+   count as ready to automate. **They do not, in every report**, so Schedule's figure is now **157**
+   and it matches the rule Filters was already using. **One thing is still different between the two
+   reports and you may want to rule on it:** Filters also takes out its 4 cases that need the browser's
+   measuring tool; Schedule does not take out its 3 flagged cases. If they should match on that too,
+   Schedule's figure becomes 154.
 4. **Say whether you want a ticket for the one API-only finding.** It is written up and waiting in
    `build/schedule/viu-2026-08-04/API-ASK.md` and has NOT been filed, because an API-only defect is
    never raised without your explicit say-so — even inside a batch you have already approved.
@@ -301,8 +323,7 @@ ticket and does not have one** — see the outstanding list.
 
 ## Can the automation engineer start on Schedule?
 
-**Yes — he can start on 161 of the 165 cases** (157 if you rule that the four not-built ones are set
-aside), **beginning with the shift window, the toolbar, the sidebar and permissions; leave the 8 drag
-cases for last and skip the ones named above.** The one thing to keep in mind is that these are
+**Yes — he can start on 157 of the 165 cases**, **beginning with the shift window, the toolbar, the
+sidebar and permissions; leave the 8 drag cases for last and skip the ones named above.** The one thing to keep in mind is that these are
 today's answers: the branch is not finished, so expect some of the 19 product-is-wrong cases to start
 passing as tickets are fixed, and re-check rather than assume.
