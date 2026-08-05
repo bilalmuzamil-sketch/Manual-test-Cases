@@ -13,6 +13,53 @@ product source wins; Rule 33 the PO outranks spec prose), and every one of them 
 **572030978**, body version **1.6**, Confluence version **14**, updated 2026-07-28.
 Epic = **SV-8785** (discovered 2026-07-31, verified live 2026-08-04).
 
+> # ⬆️ UPDATED 2026-08-05 — the re-check against the new build, and one ruling we must be honest about
+>
+> The Filters QA branch was rebuilt to **`v3.4.2-d00239b`** and all 110 cases were re-checked
+> (`../recheck-2026-08-05/`). **All four of Branko's rulings still hold on the new build** — the
+> mobile Apply-filters model, the Estimates-first-visit default, the permanent persistence and the
+> hidden Status chip on Estimates/Completed were all re-observed live and none changed. **HIGH ×0
+> still stands.**
+>
+> ## ⚠️ A NEW ENTRY, AND IT IS ABOUT A RULING OF THE QA LEAD'S OWN
+>
+> **What we assert:** five cases — FLT-BAR-01 [C29557], FLT-COLL-02 [C29602], FLT-EMPTY-01
+> [C29606], FLT-EMPTY-02 [C29607], FLT-PSRCH-09 [C38899] — now carry the line *"Known and accepted:
+> the product behaves this way on purpose for now. Do not raise this as a new problem."*
+>
+> **Our authority for that line is the QA LEAD'S RULING, and nothing else.** His words, verbatim,
+> 2026-08-04: **"Note for filters the following tickets are valid others can be ignored by you"**,
+> followed by links to **SV-8845 and SV-8846 only** — which dismisses SV-8843, SV-8844 and SV-8847.
+> He then confirmed on 2026-08-05 that the wording for these five should be the accepted-behaviour
+> note.
+>
+> **The honest part, recorded before anyone asks.** **SV-8843 was closed as OBSOLETE with the
+> comment *"Not Reproducible Anymore:"*, and that stated reason is contradicted by the build.** We
+> re-tested it on `v3.4.2-d00239b` on 5 August: the filter buttons still sit on the tab row
+> (buttons y=90 height 30 against tabs y=85 height 40) and collapsing the bar still moves the table
+> header by **0 pixels** — measurements byte-identical to 4 August. Evidence:
+> `../recheck-2026-08-05/evidence/raw/p1.json` and `o-tabs.json`, screenshots in
+> `evidence/shots/`. **SV-8847 was closed with no reason recorded at all**, and it also still
+> happens.
+>
+> **So if we are challenged on those five cases, the defence is:** the difference is real and still
+> present, we have the measurements; the cases were changed because the QA lead ruled the tickets
+> dismissed, **not** because we accepted that the problem had gone. We are not pretending the
+> closing reason matches the build, and we did not edit anyone else's ticket.
+>
+> **RISK: LOW-MEDIUM.** The concession available if pressed is that the *stated reason* for closing
+> SV-8843 was wrong; the *decision* to stop chasing it is the QA lead's to make, and we followed it.
+>
+> ## One more entry — a case where WE were wrong, recorded as a defect and not dressed up
+>
+> **FLT-PERS-04 [C29616]** was marked PASS by us on 4 August. It **fails**, and the tester who
+> marked it Failed was right. We had not created the deleted-customer state the case requires. With
+> it seeded (throwaway customer *ZZAUTOTEST Filters Recheck*, deleted while off the page) the
+> deleted value is still sent to the server and still filters the table — Ahtasham's own open ticket
+> **SV-8832**. **This goes in as a defect of ours, dated, with the cost stated: for one day we told
+> the QA lead a case passed when it did not.** It is not re-labelled as a deliberate decision.
+
+
 > # ⬆️ UPDATED 2026-08-04 (later the same day) — **BOTH HIGH-RISK ENTRIES ARE RETIRED**
 >
 > **Branko answered the tech-plan sheet — 9 of 9 questions.** Two of his answers settle the two

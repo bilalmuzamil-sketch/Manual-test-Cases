@@ -1,5 +1,32 @@
 # Filters — DELIBERATE-DECISIONS / anticipated-challenge register (Standing Rule 46)
 
+> # ⬆️ UPDATED 2026-08-05 — the re-check closed the three HIGH entries, and added two of its own
+>
+> All 110 cases were re-checked against the rebuilt branch **`v3.4.2-d00239b`**
+> (`../recheck-2026-08-05/`). What that does to this register:
+>
+> | Entry | Was | Now |
+> |---|---|---|
+> | **#17** — the whole pass measured on a build that has been replaced | **HIGH** | **CLOSED.** All 110 rows re-checked on the new build, 91 confirmed and 19 changed. Every case's provenance line now names the build it was actually tested on. |
+> | **#18** — FLT-RPTS-23 contradicts the specification and we have not changed it | **HIGH** | **CLOSED.** The case was rewritten to the newer specification wording, and the build was driven live to prove the new wording is what actually happens. It now **passes**. *(This register called it FLT-RPTS-13; C38882 is FLT-RPTS-23 in our id map — the C-id was right, the internal number was a slip.)* |
+> | **#1** — the mobile "Apply filters" rule, 8 cases frozen | **HIGH** | **STILL HIGH, and still open.** SV-8825 remains Open with zero comments, so nothing has moved. |
+> | **#5** — we did not file the dropdown-closes-on-tick defect | LOW | **CLOSED.** SV-8824 is fixed and now Ready for QA; the known-issue line was removed from all 12 cases. |
+> | **#16** — not pursuing the page-search finding | MEDIUM | **CLOSED.** Fixed, and the line was deleted from the 3 cases as the QA lead directed. |
+> | **#14 / #15** — the two accepted differences | MEDIUM | **UNCHANGED, both still present on the new build.** The cases now carry the QA lead's accepted-behaviour wording. See `../provenance-2026-08-04/PO-RULING-DEFENCE.md` for the honest note that SV-8843's closing reason is contradicted by the build. |
+> | **#6** — we did not file the deleted-value-still-applied defect | LOW | **STILL LOW, but wider than we thought.** It also breaks FLT-PERS-04, which we had passed. See the new entry #20. |
+> | **#12** — every verdict is provisional | MEDIUM | **UNCHANGED.** The branch is still not declared final, so the queue stays OPEN. |
+>
+> ## Two NEW entries from the re-check
+>
+> | # | The decision, in plain words | The one-sentence answer you can paste | Evidence | Cases affected | Who can close it | Risk |
+> |---|---|---|---|---|---|---|
+> | 19 | We **removed the known-issue line from 12 cases** on our own initiative, because the defect it warned about has been fixed. | "You told us to delete that kind of line once a defect is fixed; the dropdown defect is fixed too, so we applied the same rule to the twelve cases that carried it — and we are telling you we did." | Panel stays open on all five filter buttons at 0.7 s and 4 s, second and third values tickable without reopening — `../recheck-2026-08-05/evidence/raw/r-8824.json`. [SV-8824](https://shopview.atlassian.net/browse/SV-8824) is **Ready for QA**. | FLT-STAT-03/04/05, FLT-CUST-03/05/07, FLT-TECH-03/05, FLT-ADV-03/05, FLT-ASSET-05, FLT-CHIP-01 | the QA lead — say the word and the line goes back | **MEDIUM** |
+> | 20 | **We got FLT-PERS-04 wrong on 4 August** and are recording it as our defect, not re-labelling it. | "We passed that case without ever creating the deleted-customer state it needs; when we seeded it properly the case fails, and the tester who marked it Failed was right." | Throwaway customer *ZZAUTOTEST Filters Recheck* selected with *Lastone Construction* then deleted: the dropdown hides it but the address bar and the request both still carry it — `../recheck-2026-08-05/evidence/raw/r-pers04.json`. Ticket [SV-8832](https://shopview.atlassian.net/browse/SV-8832), still Open. | FLT-PERS-04 ([C29616](https://shopview.testrail.io/index.php?/cases/view/29616)) | closed when SV-8832 is fixed | **MEDIUM** |
+> | 21 | We are recording the **new chip-label defect as a finding, not a regression.** | "We cannot say whether it is new, because the previous pass only tested persistence with the two filters that are unaffected — and that build no longer exists to check." | Reproduced twice on four routes back to the page, on three of five buttons — `../recheck-2026-08-05/evidence/raw/r-chiplabel.json`, `r-custchip3.json`. Breaches S7-R1 and S10-R1 verbatim. Filed as [SV-8871](https://shopview.atlassian.net/browse/SV-8871). | FLT-PERS-01 ([C29613](https://shopview.testrail.io/index.php?/cases/view/29613)), FLT-URL-02 ([C29618](https://shopview.testrail.io/index.php?/cases/view/29618)) | dev, once SV-8871 is fixed | **LOW** |
+>
+> **Revised risk profile: HIGH 1 (entry #1, the mobile question) · MEDIUM 8 · LOW 8.**
+
+
 Everything we decided **on purpose** in the 2026-08-04 live VIU pass, written down before anyone
 asks. An undocumented deliberate omission is indistinguishable from a miss.
 
