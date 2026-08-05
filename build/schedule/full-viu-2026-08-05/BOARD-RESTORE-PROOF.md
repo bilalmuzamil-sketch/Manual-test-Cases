@@ -1,3 +1,10 @@
+> **STATUS — superseded as an OBLIGATION, kept as a RECORD.** The QA lead ruled on
+> 2026-08-05 that these QA branches are temporary and throwaway data need not be removed,
+> so proving the board byte-identical is no longer required. This file is kept because it
+> documents **one genuine mistake of mine and its repair** — the deletion and re-creation
+> of a pre-existing shift — which is exactly the kind of before/after a later reader
+> cannot reconstruct. The live record of everything changed is `CHANGES-MADE.md`.
+
 # Board restore proof — field by field, including the mistake I made
 
 ## The mistake, stated plainly
