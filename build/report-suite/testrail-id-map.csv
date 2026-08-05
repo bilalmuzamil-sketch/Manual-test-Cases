@@ -6,7 +6,7 @@ SBC-PERM-03,C30100,Opening an invoice you lack permission for shows access-denie
 SBC-PERM-04,C30101,Location access enforced: no data from a location the user cannot access,SBC — Permissions
 SBC-PERM-05,C39447,No Sales By Customer permission is offered in the role permission editor,SBC — Permissions
 SBC-DATE-01,C30102,Date range picker offers eleven options in the specified order,SBC — Date Range Filter
-SBC-DATE-03,C30104,Custom range opens a start/end date dialog and cannot exceed a 366-day span,SBC — Date Range Filter
+SBC-DATE-03,C30104,Building a custom range on the calendar cannot exceed a 366-day span,SBC — Date Range Filter
 SBC-DATE-04,C30105,Changing the date range writes it into the page link for sharing,SBC — Date Range Filter
 SBC-TYPE-02,C30107,Product Type: three options with Parts & Service default; S/P prefix filtering,SBC — Product Type Filter
 SBC-LOC-01,C30109,"Location filter: rightmost, lists accessible locations, All locations on top",SBC — Location Filter
@@ -50,7 +50,7 @@ SBC-CALC-06,C30154,Subtotal is the rightmost column; pinned on scroll and bold e
 SBC-CALC-07,C30155,The totals row covers the whole filtered set; not just the current page,SBC — Totals & Calculations
 SBC-COL-01,C30156,Column selector is its own toolbar button with nine toggles all on,SBC — Column Selector
 SBC-COL-02,C30157,"Column toggles hide header+cells; Customer, Subtotal and chevron never in list",SBC — Column Selector
-SBC-COL-03,C43550,A one-location user never sees Location in the column-selection list,SBC — Column Selector
+SBC-COL-04,C43550,A one-location user never sees Location in the column-selection list,SBC — Column Selector
 SBC-EXP-01,C30159,The overflow menu holds exactly the four download items - no Print,SBC — Exports
 SBC-EXP-02,C30160,Download file names carry the version and the active date range,SBC — Exports
 SBC-EXP-03,C30161,"Expanded View CSV: column order, blank-cell rules, and the Locations line",SBC — Exports
@@ -312,7 +312,7 @@ TU-EXP-02,C30435,The Summary PDF holds the technician rows plus the Summary,TU �
 TU-EXP-03,C30436,"The CSV is always summary-level, quotes comma-containing values",TU — Exports
 TU-EXP-04,C30437,"Downloads cover only selected technicians, locations, and date range",TU — Exports
 TU-EXP-05,C30438,Downloads always order rows Technician A to Z; the on-screen sort is ignored,TU — Exports
-TU-EXP-06,C30439,"PDF logo: the uploaded logo, else the bundled ShopView logo; CSV never",TU — Exports
+TU-EXP-06,C30439,PDF logo follows the uploaded logo; the spreadsheet never carries one,TU — Exports
 TU-EXP-07,C30440,Choosing a download with no technician selected is a silent no-op,TU — Exports
 TU-EXP-08,C30441,A starting download notifies; a failed one shows the failure message,TU — Exports
 TU-EXP-09,C38887,An over-cap Technician Utilization export is refused with the too-large message,TU — Exports
@@ -341,7 +341,7 @@ WIP-COL-01,C30466,"With all toggleable columns on, the fixed column order and al
 WIP-COL-02,C30467,First visit shows the default columns; the rest are in the column selector,WIP — Columns & Rows
 WIP-COL-03,C30468,The WO # is a link that opens the WO in the same browser tab,WIP — Columns & Rows
 WIP-COL-04,C30469,Status shows as a color-coded badge whose label text is always present,WIP — Columns & Rows
-WIP-COL-05,C30470,"Asset cell identifies the asset by VIN, falling back to Unit #, then plate",WIP — Columns & Rows
+WIP-COL-05,C30470,The Asset cell shows the Unit # in bold with the VIN underneath,WIP — Columns & Rows
 WIP-COL-06,C30471,Customer shows the customer's company name,WIP — Columns & Rows
 WIP-COL-07,C30472,Days Open shows whole days since creation and reads 0 days / 1 days,WIP — Columns & Rows
 WIP-COL-08,C30473,Last Activity shows Today; Xd ago; or an em-dash when there is none,WIP — Columns & Rows
@@ -357,7 +357,7 @@ WIP-CALC-09,C30482,An open estimate with no approved work shows $0.00 in every m
 WIP-CALC-10,C38890,"A technician still clocked in counts toward Labor Earned, capped at the quote",WIP — Earned & Remaining
 WIP-SORT-01,C30483,The initial sort is Days Open with the longest-open work order first,WIP — Sorting
 WIP-SORT-02,C30484,"Clicking a header sorts ascending, clicking again toggles descending",WIP — Sorting
-WIP-SORT-03,C30485,Columns sort by underlying values; Asset sorts by the identifier shown,WIP — Sorting
+WIP-SORT-03,C30485,Columns sort by their underlying values; Asset sorts by the Unit #,WIP — Sorting
 WIP-SORT-04,C30486,Sorting reorders only the active tab's rows; Totals stays at the bottom,WIP — Sorting
 WIP-SUM-01,C30487,The summary strip shows seven figures in a fixed order as US dollars,WIP — Summary Strip
 WIP-SUM-02,C30488,Total Earned is the hero figure and equals the started-stage figures summed,WIP — Summary Strip
@@ -369,7 +369,7 @@ WIP-TOT-01,C30494,"Each tab has a Totals row pinned to the bottom, labeled ""Tot
 WIP-TOT-02,C30495,The Totals row sums each visible money column and the Inv. Hrs column,WIP — Totals Row
 WIP-FLT-01,C30498,The Advisor filter lists the advisors in the loaded jobs; screen only,WIP — Filters
 WIP-FLT-02,C30499,"Customer filter is a type-ahead multi-select reading ""All customers""",WIP — Filters
-WIP-FLT-03,C30500,"Asset filter matches VIN, Unit #, or plate; ""All assets"" when empty",WIP — Filters
+WIP-FLT-03,C30500,Asset filter shows Unit # and VIN and matches text against either one,WIP — Filters
 WIP-FLT-04,C30501,The date range offers the presets plus Custom; This Week default; no All Time,WIP — Filters
 WIP-FLT-05,C30502,The date range filters on the WO's created date and reloads on change,WIP — Filters
 WIP-FLT-06,C30503,"Location filter: rightmost multi-select with All locations, reloads on change",WIP — Filters

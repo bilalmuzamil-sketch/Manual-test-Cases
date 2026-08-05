@@ -26,7 +26,8 @@
   "spec_ref": "SV-8623 (SBR spec v15 2026-07-29 Story 5 S5-R1; S5-R4; S5-N1; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
   "notes": "BUILD-DELTA (spec ahead of code by design): the change log notes the current handler seeds ALL toggle reps with tiered sort — contributors-only + plain A→Z is the committed target; expect a deviation until the build catches up. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8623 (SBR spec v15 2026-07-29 Story 5 S5-R1; S5-R4; S5-N1; §3 Key Decisions)"
  },
  {
   "id": "SBR-ROW-02",
@@ -57,7 +58,8 @@
   "spec_ref": "SV-8623; SV-8638 (SBR spec v15 2026-07-29 Story 5 S5-R2; S5-R3; S5-R6; S5-R8; S5-R10; S5-N2; Story 6 S6-R4; Story 18 S18-R4; S18-R6a + Story 21 S21-R7 — plus the Location column after Status)",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-ROWLAYOUT): absorbed SBR-ROW-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8623; SV-8638 (SBR spec v15 2026-07-29 Story 5 S5-R2; S5-R3; S5-R6; S5-R8; S5-R10; S5-N2; Story 6 S6-R4; Story 18 S18-R4; S18-R6a + Story 21 S21-R7 — plus the Location column after Status)"
  },
  {
   "id": "SBR-ROW-03",
@@ -87,7 +89,8 @@
   "spec_ref": "SV-8623 (SBR spec v15 2026-07-29 Story 5 S5-R9; §3 Key Decisions; §4 Snapshot)",
   "viu_status": "VIU-Pending",
   "notes": "Deleting a staff record may not be self-serviceable — attempt seeding first (Standing Rule 14); if truly not producible, verify the toggle-off path fully and mark the deleted-record leg Blocked-Env with reason. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8623 (SBR spec v15 2026-07-29 Story 5 S5-R9; §3 Key Decisions; §4 Snapshot)"
  },
  {
   "id": "SBR-ROW-04",
@@ -140,7 +143,8 @@
   "spec_ref": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R1; S6-R2; S6-R3; S6-E1)",
   "viu_status": "VIU-Pending",
   "notes": "The lazy server-fetch itself is covered by SBR-API-01. Per-rep detail page size is a tech-plan tuning value, not fixed by the spec — record what is observed. BUILD-DELTA: lazy drill-down is the 2026-07-16 committed target. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R1; S6-R2; S6-R3; S6-E1)"
  },
  {
   "id": "SBR-TREE-06",
@@ -168,7 +172,8 @@
   "spec_ref": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R5; S6-R6)",
   "viu_status": "VIU-Pending",
   "notes": "The bound on how many reps expand-all opens at once is a tech-plan tuning value (S6-R2 context note) — record the observed behavior. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R5; S6-R6)"
  },
  {
   "id": "SBR-TREE-07",
@@ -194,7 +199,8 @@
   "spec_ref": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R7; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
   "notes": "BUILD-DELTA: the shipped schema stores separate parts-side and service-side reps; the single-rep model is the committed target — a double-credited invoice at VIU is the known schema delta, record it as a deviation against spec. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R7; §3 Key Decisions)"
  },
  {
   "id": "SBR-TREE-08",
@@ -222,7 +228,8 @@
   "spec_ref": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R8; S6-N1; Story 23 S23-R2)",
   "viu_status": "VIU-Pending",
   "notes": "Contrast with SBC, which collapses on every re-fetch — SBR preserves expansion within the session per its own spec. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R8; S6-N1; Story 23 S23-R2)"
  },
  {
   "id": "SBR-TREE-09",
@@ -250,7 +257,8 @@
   "spec_ref": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R9; Story 11 S11-R2)",
   "viu_status": "VIU-Pending",
   "notes": "The same order applies in the Expanded View PDF per-rep tables and the Expanded CSV (S14-R6/S14-R16) — cross-check during SBR-EXP-04/09. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R9; Story 11 S11-R2)"
  },
  {
   "id": "SBR-BADGE-01",
@@ -280,7 +288,8 @@
   "spec_ref": "SV-8625 (SBR spec v15 2026-07-29 Story 8 S8-R1; S8-R2; S8-R4; S8-R5; S8-R6; S8-N1; §3 payment-status mapping; Story 18 S18-R6)",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-BADGE): absorbed SBR-BADGE-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. TECH-PLAN NOTE 2026-07-30: include the deposit-covered prepaid invoice from SBR-STAT-02's seeding — that badge reading \"Partially Paid\" instead of \"Paid\" is the known bug-prone failure (engineering plan B6.2). AUDIT 2026-07-31 (Rule 20 / Dimension 3): a spec anchor was removed from the tester-facing expected - the assertion is unchanged; the anchor stays in this case's References field where it belongs. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8625 (SBR spec v15 2026-07-29 Story 8 S8-R1; S8-R2; S8-R4; S8-R5; S8-R6; S8-N1; §3 payment-status mapping; Story 18 S18-R6)"
  },
  {
   "id": "SBR-BADGE-02",
@@ -307,7 +316,8 @@
   "spec_ref": "SV-8625 (SBR spec v15 2026-07-29 Story 8 S8-R3; Story 18 S18-R8)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8625 (SBR spec v15 2026-07-29 Story 8 S8-R3; Story 18 S18-R8)"
  },
  {
   "id": "SBR-BADGE-03",
@@ -359,7 +369,8 @@
   "spec_ref": "SV-8626 (SBR spec v15 2026-07-29 Story 9 S9-R1; S9-R2; §3)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8626 (SBR spec v15 2026-07-29 Story 9 S9-R1; S9-R2; §3)"
  },
  {
   "id": "SBR-CALC-02",
@@ -390,7 +401,8 @@
   "spec_ref": "SV-8626 (SBR spec v15 2026-07-29 Story 9 S9-R3; S9-R4; S9-R5; S9-R6; S9-E1; S9-E2)",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-CALCZERO): absorbed SBR-CALC-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8626 (SBR spec v15 2026-07-29 Story 9 S9-R3; S9-R4; S9-R5; S9-R6; S9-E1; S9-E2)"
  },
  {
   "id": "SBR-CALC-03",
@@ -416,7 +428,8 @@
   "spec_ref": "SV-8626 (SBR spec v15 2026-07-29 Story 9 S9-N1)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8626 (SBR spec v15 2026-07-29 Story 9 S9-N1)"
  },
  {
   "id": "SBR-CALC-04",
@@ -468,7 +481,8 @@
   "spec_ref": "SV-8627 (SBR spec v15 2026-07-29 §3 Margin % definition; Story 10 S10-R5)",
   "viu_status": "VIU-Pending",
   "notes": "In the CSVs Margin % is a plain number with no % (covered by SBR-EXP-10). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8627 (SBR spec v15 2026-07-29 §3 Margin % definition; Story 10 S10-R5)"
  },
  {
   "id": "SBR-CALC-06",
@@ -496,7 +510,8 @@
   "spec_ref": "SV-8623; SV-8582 (SBR spec v15 2026-07-29 S5-R2 = the authoritative 12-column left-to-right order; §3 definitions; §4 Terminology — S5-R2 CLOSES the money-label list; Location sits after Status [S21-R7] and is not a money column)",
   "viu_status": "VIU-Pending",
   "notes": "Note the SBR Subtotal has NO Shop Supplies component (unlike SBC) — the two reports' Subtotal definitions differ by spec. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed money-label list to SBR S5-R2 (the authoritative left-to-right column order) + spec version, and upgrades the ticket from the epic to the owning story SV-8623 for S5-R2 (Rule 20 per-story precision). RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, precondition 1, steps 1-2, expected 1-4, refs. SECOND FINDING: the refs cited only \"§3 definitions; §4 Terminology\" and the epic SV-8582, calling the case \"CROSS-CUTTING ... with no single owning story\" - but S5-R2 L259 IS the owning requirement and states verbatim: \"The columns appear left-to-right: Date, Invoice, Customer, Status, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. (12 columns ...)\" (§4 L37 repeats the money set). Both now cited. Location sits after Status (S21-R7) and is not a money column, so the label list is unaffected. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8623; SV-8582 (SBR spec v15 2026-07-29 S5-R2 = the authoritative 12-column left-to-right order; §3 definitions; §4 Terminology — S5-R2 CLOSES the money-label list; Location sits after Status [S21-R7] and is not a money column)"
  },
  {
   "id": "SBR-CALC-07",
@@ -522,7 +537,8 @@
   "spec_ref": "SV-8593 (SBR spec §3 Key Decisions accounting parentheses — owned by the shared A5 report-shell formatter module: verbatim 'accounting-parens negatives')",
   "viu_status": "VIU-Pending",
   "notes": "The CSVs use plain signed numbers instead (SBR-EXP-10); the PDFs use parentheses (SBR-EXP-06). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8593 (SBR spec §3 Key Decisions accounting parentheses — owned by the shared A5 report-shell formatter module: verbatim 'accounting-parens negatives')"
  },
  {
   "id": "SBR-CALC-08",
@@ -548,7 +564,8 @@
   "spec_ref": "SV-8582 (SBR spec §3 half-up rounding rule + round of unrounded rollups; CROSS-CUTTING display rule with no single owning story)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN-LIMITATION ENCODING: the last-decimal totals discrepancy is by design. FIX-WORDING repair 2026-07-28 (sense-check): the old seeding hint ('values like $10.005') was untypeable — money fields take two decimals; sub-cent intermediates must come from hours × rate / percentage math. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8582 (SBR spec §3 half-up rounding rule + round of unrounded rollups; CROSS-CUTTING display rule with no single owning story)"
  },
  {
   "id": "SBR-TOT-01",
@@ -580,7 +597,8 @@
   "spec_ref": "SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R6; S10-N1; Story 18 S18-R7.5)",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-STICKY): absorbed SBR-TOT-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R6; S10-N1; Story 18 S18-R7.5)"
  },
  {
   "id": "SBR-TOT-02",
@@ -611,7 +629,8 @@
   "spec_ref": "SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R5; S10-N1; Story 16 S16-R4)",
   "viu_status": "VIU-Pending",
   "notes": "Server-side computation is covered by SBR-API-03. BUILD-DELTA: server-computed grand totals are the 2026-07-16 committed target. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R5; S10-N1; Story 16 S16-R4)"
  },
  {
   "id": "SBR-TOT-03",
@@ -640,7 +659,8 @@
   "spec_ref": "SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R5 (mobile branch) + Story 17 S17-R4 — S10-R5 CLOSES it in the spec's own words: \"Totals\" left and the grand Subtotal right \"(no other metrics)\")",
   "viu_status": "VIU-Pending",
   "notes": "2026-08-03 verifier-fix [C/V-10]: Pins the \"(no other metrics)\" closure to SBR S10-R5 (mobile) + spec version. The phrase is the spec's own, so the closed assertion stays (Rule 42(b)). RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, precondition 1, steps 1-3, expected 1-4, refs. S10-R5 mobile branch verbatim L392: \"a simplified external totals bar directly below the table and outside its horizontal scroll container, showing \\\"Totals\\\" left and the grand Subtotal right (no other metrics) ... White card surface, thin top border. During vertical page scroll the bar sits after the table in normal flow (it is not pinned to the viewport bottom).\" Expected 1-4 match line for line. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R5 (mobile branch) + Story 17 S17-R4 — S10-R5 CLOSES it in the spec's own words: \"Totals\" left and the grand Subtotal right \"(no other metrics)\")"
  },
  {
   "id": "SBR-TOT-04",
@@ -691,7 +711,8 @@
   "spec_ref": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R1; S11-R6)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R1; S11-R6)"
  },
  {
   "id": "SBR-SORT-02",
@@ -716,7 +737,8 @@
   "spec_ref": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R4; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
   "notes": "BUILD-DELTA: the change log notes the current handler uses a tiered sort — plain A→Z is the committed target. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R4; §3 Key Decisions)"
  },
  {
   "id": "SBR-SORT-03",
@@ -746,7 +768,8 @@
   "spec_ref": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R5; Story 23 S23-R5)",
   "viu_status": "VIU-Pending",
   "notes": "Server-side sorting is covered by SBR-API-02. KNOWN-LIMITATION ENCODING: no header path back to A→Z is by design. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R5; Story 23 S23-R5)"
  },
  {
   "id": "SBR-SORT-04",
@@ -773,7 +796,8 @@
   "spec_ref": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R2; Story 22 S22-R4)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R2; Story 22 S22-R4)"
  },
  {
   "id": "SBR-SORT-05",
@@ -799,7 +823,8 @@
   "spec_ref": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R7)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R7)"
  },
  {
   "id": "SBR-SORT-06",
@@ -849,6 +874,7 @@
   "spec_ref": "SV-8626 (SBR spec v15 2026-07-29 §3 (hours worked = technician clocked hours recorded against that work order); Story 9 S9-R2; tech-plan-2026-07-29 Phase 4 FR-F7 clock-change rebuild)",
   "viu_status": "VIU-Pending",
   "notes": "The spec defines hours worked as the WO's clocked hours but does not say what happens when a clock record changes AFTER invoicing; the engineering plan (Phase 4 FR-F7 + drift correction #3) rebuilds the worked-hours/labor-cost side on any NON-VOID invoice while leaving the billed sell values untouched. Confirm live. The same stored values feed Sales By Customer, so a failure would show there too — one case guards both (kept single on purpose, Rule 28). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8626 (SBR spec v15 2026-07-29 §3 (hours worked = technician clocked hours recorded against that work order); Story 9 S9-R2; tech-plan-2026-07-29 Phase 4 FR-F7 clock-change rebuild)"
  }
 ]

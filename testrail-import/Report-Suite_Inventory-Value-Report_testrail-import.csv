@@ -104,12 +104,13 @@ With every column on they appear in the fixed order with the set alignment,IV �
 2. Look at how the values in each column are aligned.","1. With a single location in scope the columns appear in this order: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost.
 2. Part #, Description, Category, and Vendor are left-aligned.
 3. Every other column is right-aligned.
-4. Location is one of the columns in the column-selection control; when it is turned on the Location column appears between Vendor and Qty, left-aligned.
+4. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all. When it is on, the Location column appears between Vendor and Qty, left-aligned.
+Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+DO NOT AUTOMATE YET: part of this behaviour is still waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx
 
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R1, S3-R2, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R1; S3-R2 + Story 7 S7-R6 — fixed column order and alignment; plus the automatic Location column between Vendor and Qty on Hand),,
+This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Inventory Value report specification version 3 (S3-R1, S3-R2, S7-R6) differs, his decision is the authority.",SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R1; S3-R2 + Story 7 S7-R6 — fixed column order and alignment; plus the automatic Location column between Vendor and Qty on Hand),,
 Value formats: Qty to two decimals; money as US-dollar currency,IV — Valuation & Columns,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows a part with a fractional quantity (for example 2.50), one with values over $1,000, and (if producible) one with a negative money value.","1. Read the Qty cell of the fractional-quantity part.
 2. Read a money value over one thousand dollars (Unit Cost, Unit Sell, Total Sell, or Total Cost).
@@ -130,12 +131,13 @@ On a first visit the default columns show and the rest stay available,IV — Val
 3. Turn Margin and Total Sell on and check they appear.","1. On first visit with a single location in scope the visible columns are: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin %, and Total Cost.
 2. The Margin and Total Sell columns are hidden by default.
 3. Both can be turned on from the column-selection control and then appear in their fixed positions.
-4. Location is one of the columns in the column-selection control; when it is turned on the Location column shows between Vendor and Qty.
+4. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all. When it is on, the Location column shows between Vendor and Qty.
+Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+DO NOT AUTOMATE YET: part of this behaviour is still waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx
 
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R12, S3-R13, S8-R3, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R12; S3-R13; Story 8 S8-R3 + Story 7 S7-R6 — first-visit default columns; plus the automatic Location column when more than one location is in scope),,
+This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Inventory Value report specification version 3 (S3-R12, S3-R13, S8-R3, S7-R6) differs, his decision is the authority.",SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R12; S3-R13; Story 8 S8-R3 + Story 7 S7-R6 — first-visit default columns; plus the automatic Location column when more than one location is in scope),,
 "Category and Vendor show their names; an em dash (""—"") when the part has none",IV — Valuation & Columns,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows a part with a category and a vendor, a part with no category, and a part with no vendor.","1. Read the Category and Vendor cells of the fully-populated part.
 2. Read the Category cell of the part with no category.
@@ -181,13 +183,10 @@ Totals-row Margin % is recomputed from the totals; not an average of rows,IV —
 This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S4-R3).",SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R3),,
 Date range offers the standard presets plus Custom; no All Time option,IV — As-of Date & Snapshots,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open.","1. Open the date-range control in the toolbar.
-2. Read every option offered.","1. The control offers the standard presets: ""Today"", ""Yesterday"", ""This Week"", ""Last Week"", ""This Month"", ""Last Month"", ""This Year"", ""Last Year"", ""This Quarter"", ""Last Quarter"", and ""Custom"".
-2. ""All Time"" is NOT offered — because the report is valued as of a single date, an All-Time option would be meaningless; its absence is the documented v1 behavior.
+2. Read every option offered.","1. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no ""Today"", no ""Yesterday"" and no item called ""Custom"" - you build your own range on the calendar instead. There is no ""All Time"" option.
+2. Because the report is valued as of a single date, an All-Time period would be meaningless; its absence is the documented behaviour.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S5-R1).",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R1; §2 Known Limitations (v1)),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Inventory Value report specification version 3 (S5-R1) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R1; §2 Known Limitations (v1)),,
 The report values inventory as of the END of the selected range,IV — As-of Date & Snapshots,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. Nightly snapshots exist for past dates at the selected location (recording has been running).
 3. A part exists that was ALREADY in stock before the selected range started.","1. Select a past range (for example ""Last Month"").
@@ -211,9 +210,6 @@ For a past date the report replays the closest recorded day on or before it,IV �
 2. The part's row shows the quantity and values recorded for that day, not today's live stock.
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
 This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S5-R4).",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R4; §2 Relationship to nightly history),,
 """As of"" indicator names the day shown; hidden when it matches the ask",IV — As-of Date & Snapshots,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A past date exists that has NO snapshot of its own but has an earlier recorded day before it (for example, a gap day, or a date in the thinned monthly-retention band).","1. Select a Custom range ending on the gap date (a date with no snapshot of its own).
@@ -318,10 +314,7 @@ Inventory Value: the Location filter is hidden for a one-location user,IV — Lo
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's stock.
 2. For the user with access to two or more locations the Location filter IS shown.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S7-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.","SV-8674 (IV spec Story 7 S7-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S7-N1 ""still sees the filter"" note is stale; spec edit pending)",,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S7-N1). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true","SV-8674 (IV spec Story 7 S7-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S7-N1 ""still sees the filter"" note is stale; spec edit pending)",,
 The Location column sits after Vendor and never reads Multiple,IV — Location Filter,Functional,High,"1. You are signed in on a desktop browser as a user with access to at least two locations.
 2. The same part is in stock at two of those locations.
 3. The Inventory Value report is open with rows loaded.","1. Turn Location on in the column-selection control, select two or more locations, and read the column headers from the left.
@@ -333,15 +326,16 @@ The Location column sits after Vendor and never reads Multiple,IV — Location F
 7. With more than one location still selected, download the CSV and the PDF and read their columns.","1. With Location turned on in the column-selection control, a Location column is shown, inserted between Vendor and Qty.
 2. Each row names the location that row's stock is held at.
 3. NO row ever shows ""Multiple"" — each row is one part at one location.
-4. Location IS one of the columns offered in the column-selection control - its visibility follows that toggle, not the location selection.
+4. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all.
 5. With the Location toggle off the column is not shown and the surrounding columns close up.
 6. The Location filter control keeps the same width whichever label it shows — one location, several, or ""All locations"" — so the toolbar does not shift as you change the selection.
 7. Both downloads include the Location column in the same position it holds on screen (between Vendor and Qty), naming each row's own location.
+Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+DO NOT AUTOMATE YET: part of this behaviour is still waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx
 
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S7-R6, S7-R7, S3-R1, S12-R10, S10-R15); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.","SV-8674; SV-8677 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10; S10-R15 — Location column inserted between Vendor and Qty on Hand; automatic visibility; never ""Multiple""; S10-R15 = the same column in every export)",,
+This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Inventory Value report specification version 3 (S7-R6, S7-R7, S3-R1, S12-R10, S10-R15) differs, his decision is the authority.","SV-8674; SV-8677 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10; S10-R15 — Location column inserted between Vendor and Qty on Hand; automatic visibility; never ""Multiple""; S10-R15 = the same column in every export)",,
 Column Selection toggles columns; Total Cost cannot be turned off,IV — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.","1. Hover the column-selection icon button in the toolbar and read its tooltip.
 2. Open the control and toggle a column off, then on again, watching the table.
@@ -355,10 +349,7 @@ Toggling columns never reorders them,IV — Column Selection & Persistence,Funct
 2. Read the resulting column order after each change.","1. Whatever columns are shown, they appear in the fixed left-to-right order - with Location, when it is turned on in the column-selection control, between Vendor and Qty (Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) - toggling visibility never reorders columns.
 2. Total Cost is always the last column.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S8-R4, S3-R1, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",SV-8675; SV-8674 (IV spec v3 2026-07-29 Story 8 S8-R4; Story 3 S3-R1 + Story 7 S7-R6 — toggling never reorders; plus the automatic Location column between Vendor and Qty on Hand),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S8-R4, S3-R1, S7-R6). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true",SV-8675; SV-8674 (IV spec v3 2026-07-29 Story 8 S8-R4; Story 3 S3-R1 + Story 7 S7-R6 — toggling never reorders; plus the automatic Location column between Vendor and Qty on Hand),,
 The report remembers all filters; columns and sort per browser,IV — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open.","1. Change the date range, select a category and a vendor, type a part search, change the location selection, change the column selection, and sort by a non-default column.
 2. Navigate away to another screen, then return to the report.
@@ -411,14 +402,12 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 2. Both downloads honor the current date, category, vendor, location, and part-search filters, and apply the current sort.
 3. Both downloads include a totals row labeled ""Totals"" matching the on-screen totals (the full-filtered-set totals).
 4. Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).
-5. Note for the tester: the files carry the Location column when Location is turned ON in the column-selection control (it sits between Vendor and Qty). It does not appear just because you have more than one location selected.
+5. Note for the tester: the files carry the Location column whenever it is showing on screen (it sits between Vendor and Qty). Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all.
 On this build the spreadsheet file ignores the columns you picked and puts them in a different order from the screen, so point 1 above will not match - record what you see and carry on.
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823
+Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15).","SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the ""Locations:"" line and the automatic Location column)",,
+This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Inventory Value report specification version 3 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15) differs, his decision is the authority.","SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the ""Locations:"" line and the automatic Location column)",,
 Export number formats: money to 2 decimals; Margin % to 1 with em-dash,IV — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current view includes money values over $1,000 and, if producible, a part whose Margin % is undefined (""—"").","1. Download the CSV and open it in a plain-text editor; read the money and Margin % values.
 2. Download the PDF and read the same values.","1. Money uses two decimals and Margin % one decimal in both files; an undefined Margin % shows ""—"".
@@ -438,10 +427,7 @@ PDF header shows report name; org; period and an as-of line; logo if set,IV — 
 3. The CSV never includes a logo.
 4. Note for the tester: the two files phrase the as-of line differently - the PDF reads ""As of 2026-08-04"", and in the spreadsheet it is one of the short summary lines that sit above the column headings, reading ""As of: 2026-08-04"" (with a colon). Both are correct; do not raise the difference, and do not count the summary lines - more of them may be added.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R8, S10-R9).",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R8; S10-R9),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Inventory Value report specification version 3 (S10-R8, S10-R9) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R8; S10-R9),,
 Downloaded files are named inventory-value-report.pdf and .csv,IV — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.","1. Download the current view as a PDF and read the saved file's name.
 2. Download the current view as a CSV and read the saved file's name.","1. The PDF is named ""inventory-value-report.pdf"".

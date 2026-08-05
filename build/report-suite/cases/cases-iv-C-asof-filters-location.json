@@ -15,19 +15,17 @@
    "2. Read every option offered."
   ],
   "expected": [
-   "1. The control offers the standard presets: \"Today\", \"Yesterday\", \"This Week\", \"Last Week\", \"This Month\", \"Last Month\", \"This Year\", \"Last Year\", \"This Quarter\", \"Last Quarter\", and \"Custom\".",
-   "2. \"All Time\" is NOT offered — because the report is valued as of a single date, an All-Time option would be meaningless; its absence is the documented v1 behavior.",
+   "1. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no \"Today\", no \"Yesterday\" and no item called \"Custom\" - you build your own range on the calendar instead. There is no \"All Time\" option.",
+   "2. Because the report is valued as of a single date, an All-Time period would be meaningless; its absence is the documented behaviour.",
    "---",
-   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
-   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
-   "",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S5-R1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Inventory Value report specification version 3 (S5-R1) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R1; §2 Known Limitations (v1))",
   "viu_status": "VIU-Pending",
   "notes": "DOCUMENTED LIMITATION — DO NOT FILE. The missing \"All Time\" option is a deliberate v1 boundary. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R1; §2 Known Limitations (v1))"
  },
  {
   "id": "IV-DATE-02",
@@ -57,7 +55,8 @@
   "spec_ref": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R2 (+ context note))",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R2 (+ context note))"
  },
  {
   "id": "IV-DATE-03",
@@ -85,7 +84,8 @@
   "spec_ref": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R3; §3 Key Decisions (live fallback for today))",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R3; §3 Key Decisions (live fallback for today))"
  },
  {
   "id": "IV-DATE-04",
@@ -108,16 +108,14 @@
    "2. The part's row shows the quantity and values recorded for that day, not today's live stock.",
    "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820",
    "---",
-   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
-   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
-   "",
    "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S5-R4)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R4; §2 Relationship to nightly history)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R4; §2 Relationship to nightly history)"
  },
  {
   "id": "IV-DATE-05",
@@ -146,7 +144,8 @@
   "spec_ref": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R5; S5-R6)",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm the indicator's exact on-screen wording — the spec pins \"As of \" plus the day but not the full label format. COMPANION-VIDEO 2026-07-30 (C20, 12:01-13:10) soft-worded CONFIRMATION: 'if snapshot data is taken, we don't need to see this ... only ... important if you've been offline ... Or, no snapshot' — matches S5-R5/S5-R6 (indicator hidden when the shown day matches, shown on fallback). Spec silent on an offline/stale-data state — VIU-watch only, not authored (Rule 15 spec-silent stated). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R5; S5-R6)"
  },
  {
   "id": "IV-DATE-06",
@@ -177,7 +176,8 @@
   "spec_ref": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R7; S5-R8)",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm how the today-cap is enforced (disabled future dates vs an error). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R7; S5-R8)"
  },
  {
   "id": "IV-DATE-07",
@@ -229,7 +229,8 @@
   "spec_ref": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-E1; §2 Known Limitations (v1); §2 Out of scope)",
   "viu_status": "VIU-Pending",
   "notes": "DOCUMENTED LIMITATION — DO NOT FILE. Forward-capture history only; no backfill exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-E1; §2 Known Limitations (v1); §2 Out of scope)"
  },
  {
   "id": "IV-FLT-01",
@@ -258,7 +259,8 @@
   "spec_ref": "SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R1; S6-R2; S6-R3; S6-R4)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN-DELTA WATCH: the 2026-07-21 spec change moved these filters server-side (they were \"on-screen only\" in the earlier draft). If the build still narrows only the current page client-side, record it as a build deviation from the current spec. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R1; S6-R2; S6-R3; S6-R4)"
  },
  {
   "id": "IV-FLT-02",
@@ -288,7 +290,8 @@
   "spec_ref": "SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R5; Story 1 S1-R4; S1-R5; S1-R7; S1-R8)",
   "viu_status": "VIU-Pending",
   "notes": "Every filter on this report is server-side (Story 6 context note) — only the column selection is client-side. VIU-confirm the loading indicator's appearance. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-RELOAD): absorbed IV-NAV-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R5; Story 1 S1-R4; S1-R5; S1-R7; S1-R8)"
  },
  {
   "id": "IV-FLT-03",
@@ -317,7 +320,8 @@
   "spec_ref": "SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R7)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R7)"
  },
  {
   "id": "IV-FLT-04",
@@ -348,7 +352,8 @@
   "spec_ref": "SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R8; S6-R5)",
   "viu_status": "VIU-Pending",
   "notes": "Parts Velocity is the spec's named sibling for this same search pattern. VIU-confirm the search field's placeholder/label text (unpinned). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R8; S6-R5)"
  },
  {
   "id": "IV-FLT-05",
@@ -376,7 +381,8 @@
   "spec_ref": "SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R9)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R9)"
  },
  {
   "id": "IV-LOC-01",
@@ -406,7 +412,8 @@
   "spec_ref": "SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins))",
   "viu_status": "VIU-Pending",
   "notes": "VIDEO-AUTHORITATIVE ADD (P10, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 41:09-41:20: 'how do I know which is for shop A and which is for shop B? ... we should probably add that in there.' The current spec has NO Location identifier column (one row per part per location, S2-R3, but no Location column in S3-R1). Exact control/label unpinned — VIU-confirm, do not invent (Rule 9). Title shortened to fit. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins))"
  },
  {
   "id": "IV-LOC-02",
@@ -435,7 +442,8 @@
   "spec_ref": "SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R3 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
   "viu_status": "VIU-Pending",
   "notes": "SCOPE-INDICATOR added 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) ('Each report now shows which location(s) it's scoped to... on screen') - distinct from the per-row location label (video P10), which stays. Spec anchor pending the updated spec changelog. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R3 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))"
  },
  {
   "id": "IV-LOC-03",
@@ -462,7 +470,8 @@
   "spec_ref": "SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R4; S7-R5)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R4; S7-R5)"
  },
  {
   "id": "IV-LOC-04",
@@ -483,16 +492,14 @@
    "1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's stock.",
    "2. For the user with access to two or more locations the Location filter IS shown.",
    "---",
-   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
-   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
-   "",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S7-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S7-N1). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8674 (IV spec Story 7 S7-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S7-N1 \"still sees the filter\" note is stale; spec edit pending)",
   "viu_status": "VIU-Pending",
   "notes": "VIDEO-AUTHORITATIVE FLIP (P33, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 46:10-46:28: 'if you, say you only had QA testing, you would not see this at all. This- the filter's just gone. If you had... QA testing and QB location, then of course you'd see the filter.' OVERRIDDEN spec wording (S7-N1): 'A user with access to only one location still sees the filter with a single selectable location.' Q1 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A \"classic spec drift\"): the Location filter is HIDDEN for a user with access to only one location. This CONFIRMS the video-based flip and closes the \"pending his answer\" caveat; the tester-facing wording did not change. The four spec notes that still say the opposite need Chris's edit. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8674 (IV spec Story 7 S7-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S7-N1 \"still sees the filter\" note is stale; spec edit pending)"
  },
  {
   "id": "IV-LOC-05",
@@ -546,7 +553,8 @@
   "spec_ref": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R2; Story 5 S5-R4; tech-plan-2026-07-29 B4.1 — names stored with the recorded rows on purpose)",
   "viu_status": "VIU-Pending",
   "notes": "The recorded rows carry their own copies of the category/vendor names (engineering plan B4.1: denormalized on purpose — survive category/vendor rename/delete on as-of replay), so later renames/deletes cannot corrupt history. Derived from S11-R2 (a recorded day equals what the live report showed that day); confirm live. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R2; Story 5 S5-R4; tech-plan-2026-07-29 B4.1 — names stored with the recorded rows on purpose)"
  },
  {
   "id": "IV-LOC-06",
@@ -573,20 +581,22 @@
    "1. With Location turned on in the column-selection control, a Location column is shown, inserted between Vendor and Qty.",
    "2. Each row names the location that row's stock is held at.",
    "3. NO row ever shows \"Multiple\" — each row is one part at one location.",
-   "4. Location IS one of the columns offered in the column-selection control - its visibility follows that toggle, not the location selection.",
+   "4. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all.",
    "5. With the Location toggle off the column is not shown and the surrounding columns close up.",
    "6. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection.",
    "7. Both downloads include the Location column in the same position it holds on screen (between Vendor and Qty), naming each row's own location.",
+   "Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.",
    "---",
-   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
-   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
+   "DO NOT AUTOMATE YET: part of this behaviour is still waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
+   "The open question is in: Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S7-R6, S7-R7, S3-R1, S12-R10, S10-R15); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today."
+   "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Inventory Value report specification version 3 (S7-R6, S7-R7, S3-R1, S12-R10, S10-R15) differs, his decision is the authority."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8674; SV-8677 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10; S10-R15 — Location column inserted between Vendor and Qty on Hand; automatic visibility; never \"Multiple\"; S10-R15 = the same column in every export)",
   "viu_status": "VIU-Pending",
   "notes": "NEW 2026-07-31. Added by Chris Ward's 2026-07-29 spec changelog (IV v3 change-log row: \"Added a per-row Location column (shown only when more than one location is in scope)\"). §4 Terminology verbatim: \"every row maps to exactly one location name — this report never shows an aggregated 'Multiple' value in the column.\" Pairs with IV-SCOPE-02 (a part at two locations = two rows). The \"Locations:\" export line is already covered by IV-EXP-02. Not live-verified (Rule 12). COVERAGE RE-DERIVATION 2026-07-31: extended to close S10-R15 — \"Every export (each CSV and each PDF) includes the Location column whenever it is shown on screen (S7-R6).\" IV-EXP-02 (C30588) covered only the \"Locations:\" line. Owning story for S10-R15 = SV-8677 (IV Story 10 Export to PDF and CSV) — added alongside SV-8674 (Story 7). Extended rather than duplicated (Rule 28). Not live-verified. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8674; SV-8677 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10; S10-R15 — Location column inserted between Vendor and Qty on Hand; automatic visibility; never \"Multiple\"; S10-R15 = the same column in every export)"
  }
 ]

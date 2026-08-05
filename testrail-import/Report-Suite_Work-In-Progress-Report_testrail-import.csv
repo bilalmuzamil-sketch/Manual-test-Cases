@@ -79,26 +79,23 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 "With all toggleable columns on, the fixed column order and alignment hold",WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.
 3. Every toggleable column is turned on in the column-selection control.
-4. Location is turned ON in the column-selection control (it is off by default).","1. Read the column headers from left to right.
+4. More than one location is selected, so the Location column is showing. If it is switched off, turn it back on in the column-selection control.","1. Read the column headers from left to right.
 2. Look at how the values in each column are aligned.","1. The columns appear in this order: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total.
 2. WO #, Status, Customer, Asset, VIN, Location, and Advisor are left-aligned.
 3. Every other column (Days Open, Last Activity, and all money/number columns through Total) is right-aligned.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R1, S4-R3, S4-R4); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R1; S4-R3; S4-R4 — the Location column is no longer in the column selector; it shows automatically when more than one location is in scope),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R1, S4-R3, S4-R4). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R1; S4-R3; S4-R4 — the Location column is no longer in the column selector; it shows automatically when more than one location is in scope),,
 First visit shows the default columns; the rest are in the column selector,WIP — Columns & Rows,Functional,High,1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (use a fresh browser profile or clear the site's saved data).,"1. Open the Work In Progress report.
 2. Read the visible column headers.
 3. Open the column-selection control and read which columns are offered and which are on.","1. The visible columns on first visit are: WO #, Status, Customer, Asset, Advisor, Days Open, Earned, Remaining, and Total.
 2. Every other column (VIN, Location, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Inv. Hrs) is available in the column-selection control and off by default.
-3. Location IS offered in the column-selection control, between VIN and Advisor, and is off by default. Turning it on adds a Location column that names each job's location; turning it off removes it again.
-4. Note for the tester: the Location column does NOT appear on its own when you have more than one location selected - you have to switch it on yourself. That is what the build does today.
+3. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all. When it is on, the Location column sits between VIN and Advisor and names each job's location.
+4. Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+DO NOT AUTOMATE YET: part of this behaviour is still waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx
 
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R2, S4-R3, S8-R3, S8-R4); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.","SV-8660; SV-8664 (WIP spec v6 2026-07-29 Story 4 S4-R2; S4-R3 + Story 8 S8-R3; S8-R4 — S4-R3 verbatim: ""The Location column is not offered in the column selector; its visibility is automatic"")",,
+This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Work In Progress report specification version 6 (S4-R2, S4-R3, S8-R3, S8-R4) differs, his decision is the authority.","SV-8660; SV-8664 (WIP spec v6 2026-07-29 Story 4 S4-R2; S4-R3 + Story 8 S8-R3; S8-R4 — S4-R3 verbatim: ""The Location column is not offered in the column selector; its visibility is automatic"")",,
 The WO # is a link that opens the WO in the same browser tab,WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Click a row's WO # link.
 2. Confirm where the work order opens.
@@ -114,19 +111,16 @@ Status shows as a color-coded badge whose label text is always present,WIP — C
 3. The label text is always present, so color is never the sole signal of the status.
 ---
 This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R6, S10-R8).","SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R6 + Story 10 S10-R8 — S4-R6 CLOSES the five status labels verbatim (""Estimate"" ... ""Complete"") and the label-not-colour rule; so the closed list IS the requirement)",,
-"Asset cell identifies the asset by VIN, falling back to Unit #, then plate",WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+The Asset cell shows the Unit # in bold with the VIN underneath,WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows work orders including: one whose asset has a VIN recorded, one with no VIN but a Unit # recorded, and one with no VIN or Unit # but a plate recorded.","1. Read the Asset cell of the row whose asset has a VIN.
 2. Read the Asset cell of the row with no VIN, then the one with no VIN or Unit #.
-3. Open the column-selection control, turn on the VIN column, and read it.","1. The Asset cell identifies the asset by its VIN.
-2. When the asset has no VIN, the cell shows its Unit # instead; when it has no VIN or Unit #, it shows its plate instead.
-3. Note what the cell's second line shows now that the VIN is the main identifier (the older layout put the VIN on a muted second line) - the exact rendering is confirmed in the build; record what you see.
+3. Open the column-selection control, turn on the VIN column, and read it.","1. The Asset cell is a two-line cell: the Unit # on the first line in bold, with the VIN underneath in a smaller, muted style.
+2. When the work order has no Unit #, the first line reads ""(no unit #)""; when it has no VIN, the second line reads ""— no VIN —"". Nothing else stands in for a missing value - there is no further fallback.
+3. The product owner has confirmed this two-line layout is correct for this report and is already built, so the unit number leading is the expected result - do not raise it.
 4. The VIN column (off by default) shows the VIN on its own line as a separate, sortable column.
 5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R7, S4-R8, S4-R10); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8660 (WIP spec Story 4 S4-R7; S4-R8; S4-R10 - identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate); by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's unit-number rule),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R7, S4-R8, S4-R10) - the build and that specification agree. Chris Ward confirmed it again on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the specification.",SV-8660 (WIP spec Story 4 S4-R7; S4-R8; S4-R10 - identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate); by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's unit-number rule),,
 Customer shows the customer's company name,WIP — Columns & Rows,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows a work order with a customer that has a company name, and one with no customer name.","1. Read the Customer cell of the row whose customer has a company name.
 2. Read the Customer cell of the row with no customer name.","1. The Customer column shows the customer's company name.
@@ -254,7 +248,7 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 4. Only one column sorts at a time: clicking another header replaces the previous sort.
 ---
 This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R26).",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R26),,
-Columns sort by underlying values; Asset sorts by the identifier shown,WIP — Sorting,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+Columns sort by their underlying values; Asset sorts by the Unit #,WIP — Sorting,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A tab shows several work orders with a spread of money values (including values over $1,000), differing statuses, and differing asset identifiers (VIN, or Unit # / plate where the VIN is missing).","1. Sort by a money column (for example Total) and check the order of values like $900.00 vs $1,100.00.
 2. Sort by Days Open and check the order of the day counts.
 3. Sort by Status and check the order against the displayed labels.
@@ -262,13 +256,10 @@ Columns sort by underlying values; Asset sorts by the identifier shown,WIP — S
 5. Sort by WO #, Customer, and Advisor and check they order as text.","1. Money and numeric columns sort by their underlying numeric value (so $1,100.00 is treated as more than $900.00, not compared as text).
 2. Days Open sorts by its day count.
 3. Status sorts by its displayed label.
-4. The Asset column sorts by the identifier it shows - the VIN, falling back to Unit #, then plate.
+4. The Asset column sorts by the Unit #.
 5. WO #, Customer, Asset, VIN, Location, and Advisor sort as text.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R27, S4-R9); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8660 (WIP spec Story 4 S4-R27; S4-R9 - Asset sort key RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's 'sorts by unit number' rule),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R9, S4-R27) - the build and that specification agree. Chris Ward confirmed it again on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the specification.",SV-8660 (WIP spec Story 4 S4-R27; S4-R9 - Asset sort key RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's 'sorts by unit number' rule),,
 Sorting reorders only the active tab's rows; Totals stays at the bottom,WIP — Sorting,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. At least two tabs have several rows each.","1. In the active tab, sort by a column and note the new order.
 2. Check the position of the Totals row.
@@ -310,10 +301,8 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 3. Check whether the Estimates amount is included in Total Earned or Total Remaining (their component sums should not contain it).","1. The Estimates figure equals the total quoted value of the jobs in the Estimates tab.
 2. It is shown in a muted style.
 3. The Estimates figure is excluded from Total Earned and from Total Remaining.
+Known issue: the product does not currently do this — on the build tested, the Estimates figure read $0.00 even though the Estimates tab held jobs, because the product is showing the approved value instead of the quoted value. That is a fault for a developer to fix, not a decision for the product owner. No developer ticket has been raised for it yet, so this test will fail until it is fixed — record what you see and leave the test as it is.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
 This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S5-R8, S5-R9).",SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R8; S5-R9),,
 Each summary figure's information icon reveals its plain explanation,WIP — Summary Strip,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with the summary strip visible.","1. Hover (or focus, or tap) the small information icon next to each of the seven summary figures, one at a time.
@@ -363,29 +352,23 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 4. Clear returns the filter to ""All customers"" and every job is shown again.
 ---
 This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R2, S7-R3).",SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R2; S7-R3),,
-"Asset filter matches VIN, Unit #, or plate; ""All assets"" when empty",WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+Asset filter shows Unit # and VIN and matches text against either one,WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows jobs for at least two assets whose VINs (and Unit #s or plates) you know.","1. Read the Asset filter's label before selecting anything.
 2. Open the filter and read how each option is presented.
 3. Type part of a VIN and check the matching options; clear and type part of a Unit # instead.
 4. Select one or more assets and watch the rows; then use the ""Clear"" action.","1. With no asset selected, the filter reads ""All assets"" and every job is shown.
-2. Each option identifies the asset by its VIN, falling back to Unit #, then plate (the exact option text is confirmed in the build).
-3. The typed text matches against the asset's identifier - the VIN, and the Unit # where the asset has one (the exact fields matched are confirmed in the build).
+2. Each option shows both the asset's Unit # and its VIN.
+3. Text you type matches against either the Unit # or the VIN - a match on either one brings the asset up.
 4. Selecting assets narrows the visible jobs on screen only (no reload); a single ""Clear"" action appears once at least one asset is selected and returns the filter to ""All assets"".
 5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R4, S7-R5); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8663 (WIP spec Story 7 S7-R4; S7-R5 - option text + match fields RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [supersedes video P24]),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R4, S7-R5) - the build and that specification agree. Chris Ward confirmed it again on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the specification.",SV-8663 (WIP spec Story 7 S7-R4; S7-R5 - option text + match fields RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [supersedes video P24]),,
 The date range offers the presets plus Custom; This Week default; no All Time,WIP — Filters,Functional,Critical,1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh visit).,"1. Open the Work In Progress report and read the date-range control's current value.
 2. Open the date-range control and read every option offered.","1. On a fresh visit the date range defaults to ""This Week"".
-2. The options offered are: ""Today"", ""Yesterday"", ""This Week"", ""Last Week"", ""This Month"", ""Last Month"", ""This Year"", ""Last Year"", ""This Quarter"", ""Last Quarter"", and ""Custom"".
-3. ""All Time"" is NOT offered.
+2. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no ""Today"", no ""Yesterday"" and no item called ""Custom"" - you build your own range on the calendar instead. There is no ""All Time"" option.
+3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R6).",SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R6; §3 Key Decisions (date range defaults to This Week)),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Work In Progress report specification version 6 (S7-R6) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true",SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R6; §3 Key Decisions (date range defaults to This Week)),,
 The date range filters on the WO's created date and reloads on change,WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Open work orders exist with created dates both inside and outside the current week.","1. With ""This Week"" selected, check which work orders are listed.
 2. Change the preset to ""This Month"" and watch the data area.
@@ -410,10 +393,7 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 4. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).
 5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's work orders.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R9, S7-R10); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8663 (WIP spec Story 7 S7-R9; S7-R10 + on-screen location-scope indicator; spec v6 2026-07-29; single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R9, S7-R10). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true",SV-8663 (WIP spec Story 7 S7-R9; S7-R10 + on-screen location-scope indicator; spec v6 2026-07-29; single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A),,
 The location scope never includes an inaccessible location,WIP — Filters,Negative,High,"1. You are signed in to the ShopView App on a desktop browser as a user who can access some, but not all, of the organization's locations.
 2. The Work In Progress report is open.","1. Open the Location filter and read the locations offered.
 2. Use ""Clear all"" so the selection resolves to no location, and watch what the report loads.
@@ -438,18 +418,18 @@ The Location column is automatic and never reads Multiple on a work-order row,WI
 4. Open the column-selection control and look for Location in the list.
 5. Narrow to a single location and read the headers again.
 6. Download the tab as a CSV and a PDF and read the Location column's header in the files.
-7. Change the selection between one location, several, and ""All locations"", watching the filter control's width.","1. Location is offered in the column-selection control, between VIN and Advisor, and is off by default. Turning it on adds the Location column in that fixed position, left-aligned.
+7. Change the selection between one location, several, and ""All locations"", watching the filter control's width.","1. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all. When it is on, the Location column sits between VIN and Advisor, left-aligned.
 2. Each row names its own work order's location.
 3. NO row ever shows ""Multiple"" — a work order belongs to exactly one location, and this report has no grouped or drill-down rows.
-4. The column does not appear or disappear on its own when you change the location selection - it follows the column-selection toggle only.
+4. Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.
 5. With the toggle off the Location column is not shown, whatever the location selection is.
 6. In both downloads the column is headed ""Branch"" (a known naming difference from the screen — do not raise it as a bug).
 7. The Location filter control keeps the same width whichever label it shows — one location, several, or ""All locations"" — so the toolbar does not shift as you change the selection.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+DO NOT AUTOMATE YET: part of this behaviour is still waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx
 
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R13, S7-R14, S4-R3, S9-E1, S10-R5a); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.","SV-8663 (WIP spec v6 2026-07-29 S7-R13; S7-R14; S4-R3; S9-E1; S10-R5a; §4 Location (column) — automatic visibility; never ""Multiple""; export header ""Branch"")",,
+This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Work In Progress report specification version 6 (S7-R13, S7-R14, S4-R3, S9-E1, S10-R5a) differs, his decision is the authority.","SV-8663 (WIP spec v6 2026-07-29 S7-R13; S7-R14; S4-R3; S9-E1; S10-R5a; §4 Location (column) — automatic visibility; never ""Multiple""; export header ""Branch"")",,
 Column Selection toggles columns; Total is not offered at all,WIP — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Hover the column-selection icon button in the toolbar and read its tooltip.
 2. Open the control and toggle a column off, then on again, watching the table.
@@ -480,6 +460,20 @@ A saved setting that is no longer valid falls back to its default,WIP — Column
 2. All other saved settings are still restored.
 ---
 This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S8-R8).",SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R8),,
+A hand-made Location column choice is remembered like any other column,WIP — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are signed in as a person who has access to more than one location.
+3. The Work In Progress report is open with more than one location selected, so the Location column is showing.","1. Open the column-selection control and switch the Location column OFF by hand.
+2. Go to another screen, then come back to the report.
+3. Reload the browser page and look again.
+4. Switch Location back ON by hand, then reload the page once more.","1. After going away and coming back, Location is still switched OFF - your choice was remembered.
+2. After reloading the browser page, Location is still switched OFF.
+3. After switching it back ON and reloading, Location is switched ON.
+4. Everything else is remembered exactly as before - the other column choices, the date range, the filters and the tab you were on. Turning Location on or off changes nothing else.
+---
+This is the expected behaviour as per the Work In Progress report specification version 6 (S8-R7), which says the report remembers the column selection in the user's browser and puts it back on the next visit. Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, is what makes Location a column you can switch on and off at all, and it does not say whether that choice is remembered - so this test applies the existing written rule about remembered column choices to the new switch. It has not been checked on a build yet.
+
+AUTOMATION: HOLD - nobody has run this test yet, and the product owner has not confirmed that a hand-made Location choice is remembered.
+",,,
 Work In Progress: a three-dot menu holds Download (PDF) and Download (CSV),WIP — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Find and open the three-dot button in the toolbar.
 2. Read the menu options.
@@ -496,9 +490,11 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 2. Both downloads honor the current date range and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.
 3. Both downloads include a Totals row matching the on-screen Totals row for the tab.
 4. Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).
-5. Note for the tester: the file carries the location column only when you have switched Location ON in the column-selection control - it does not appear just because you have more than one location selected. In the file it is headed ""Branch"", not ""Location"", and the asset column is headed ""Unit"". Both of those names are correct.
+5. Note for the tester: the file carries the Location column whenever it is showing on screen. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all. In the file it is headed ""Branch"", not ""Location"".
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R2, S9-R3, S9-R4, S9-R10a, S7-R13, S9-E1).","SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; the filters and the Totals row; S9-R10a = the ""Locations:"" line; S7-R13/S9-E1 = the automatic ""Branch"" column)",,
+Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.
+
+This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Work In Progress report specification version 6 (S9-R2, S9-R3, S9-R4, S9-R10a, S7-R13, S9-E1) differs, his decision is the authority.","SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; the filters and the Totals row; S9-R10a = the ""Locations:"" line; S7-R13/S9-E1 = the automatic ""Branch"" column)",,
 Downloaded money and Inv. Hrs values keep the on-screen formats,WIP — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current tab includes money values over $1,000 and, if producible, a negative value; the Inv. Hrs column is on.","1. Download the current tab as a CSV and open it in a plain-text editor.
 2. Read a money value over one thousand dollars and check its quoting.
@@ -535,12 +531,9 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 3. Download the PDF and read them there too.","1. On screen the headers read ""Asset"" and ""Location"".
 2. In BOTH the PDF and the CSV, the same two columns are headed ""Unit"" and ""Branch"".
 3. This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior.
-4. Note: the on-screen Asset cell now identifies the asset by its VIN (falling back to Unit #, then plate); whether the export header text changes from ""Unit"" is confirmed in the build - record what it shows, do not file a bug either way.
+4. The on-screen Asset cell leads with the Unit #, which is what the export header ""Unit"" already reflects - so no header change is expected here.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-E1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8665 (WIP spec Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling; export header text unpinned),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-E1) - the build and that specification agree. Chris Ward confirmed it again on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the specification.",SV-8665 (WIP spec Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling; export header text unpinned),,
 The PDF shows the shop logo at the top when one is set,WIP — Exports,Functional,Low,"1. You are signed in to the ShopView App on a desktop browser.
 2. The shop has a logo set in its settings.","1. Download the current tab as a PDF and look at the top of the document.
 2. Download the current tab as a CSV and inspect the file.","1. The PDF shows the shop logo at the top.

@@ -26,7 +26,8 @@
   "spec_ref": "SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R1; S8-R2)",
   "viu_status": "VIU-Pending",
   "notes": "Tooltip text \"Column Selection\" is verbatim from the spec. Column selection is the report's ONLY purely client-side view choice (§3). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R1; S8-R2)"
  },
  {
   "id": "IV-PERS-02",
@@ -47,16 +48,14 @@
    "1. Whatever columns are shown, they appear in the fixed left-to-right order - with Location, when it is turned on in the column-selection control, between Vendor and Qty (Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) - toggling visibility never reorders columns.",
    "2. Total Cost is always the last column.",
    "---",
-   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
-   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
-   "",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S8-R4, S3-R1, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S8-R4, S3-R1, S7-R6). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8675; SV-8674 (IV spec v3 2026-07-29 Story 8 S8-R4; Story 3 S3-R1 + Story 7 S7-R6 — toggling never reorders; plus the automatic Location column between Vendor and Qty on Hand)",
   "viu_status": "VIU-Pending",
   "notes": "The default on/off split (Margin and Total Sell off, the rest on — S8-R3) is covered by IV-COL-04. STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8675; SV-8674 (IV spec v3 2026-07-29 Story 8 S8-R4; Story 3 S3-R1 + Story 7 S7-R6 — toggling never reorders; plus the automatic Location column between Vendor and Qty on Hand)"
  },
  {
   "id": "IV-PERS-03",
@@ -85,7 +84,8 @@
   "spec_ref": "SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R5 (+ context note); Story 9 S9-R5)",
   "viu_status": "VIU-Pending",
   "notes": "Unlike the reports whose sort resets each visit, this report remembers the user's sort along with the rest of its setup (Story 9 context note). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R5 (+ context note); Story 9 S9-R5)"
  },
  {
   "id": "IV-PERS-04",
@@ -112,7 +112,8 @@
   "spec_ref": "SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R6)",
   "viu_status": "VIU-Pending",
   "notes": "FIX-WORDING repair 2026-07-28 (sense-check): the Expected is scoped to the stale-category/vendor path the steps actually drive; the general invalid-value fallback across other value classes is covered the SBC-PERS way only where a case drives it. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R6)"
  },
  {
   "id": "IV-SORT-01",
@@ -139,7 +140,8 @@
   "spec_ref": "SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R1; §3 Key Decisions (Total Cost default sort))",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R1; §3 Key Decisions (Total Cost default sort))"
  },
  {
   "id": "IV-SORT-02",
@@ -169,7 +171,8 @@
   "spec_ref": "SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R2)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN-DELTA WATCH: server-side sorting is the 2026-07-21 spec change (per Milan's review). If the build sorts only the loaded page client-side, record it as a build deviation from the current spec. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R2)"
  },
  {
   "id": "IV-SORT-03",
@@ -197,7 +200,8 @@
   "spec_ref": "SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R3)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R3)"
  },
  {
   "id": "IV-SORT-04",
@@ -252,7 +256,8 @@
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R1; S10-R2)",
   "viu_status": "VIU-Pending",
   "notes": "Menu option labels are verbatim from the spec. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R1; S10-R2)"
  },
  {
   "id": "IV-EXP-02",
@@ -277,20 +282,19 @@
    "2. Both downloads honor the current date, category, vendor, location, and part-search filters, and apply the current sort.",
    "3. Both downloads include a totals row labeled \"Totals\" matching the on-screen totals (the full-filtered-set totals).",
    "4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",
-   "5. Note for the tester: the files carry the Location column when Location is turned ON in the column-selection control (it sits between Vendor and Qty). It does not appear just because you have more than one location selected.",
+   "5. Note for the tester: the files carry the Location column whenever it is showing on screen (it sits between Vendor and Qty). Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all.",
    "On this build the spreadsheet file ignores the columns you picked and puts them in a different order from the screen, so point 1 above will not match - record what you see and carry on.",
    "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823",
+   "Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.",
    "---",
-   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
-   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
-   "",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15)."
+   "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Inventory Value report specification version 3 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15) differs, his decision is the authority."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the \"Locations:\" line and the automatic Location column)",
   "viu_status": "VIU-Pending",
   "notes": "Note the on-screen totals row is labeled \"Total\" (S4-R1) while the export totals row is labeled \"Totals\" (S10-R6) — both verbatim in the spec; VIU-confirm. LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 158 chars; meaning unchanged; awaiting push authorization. | 2026-08-03 verifier-fix [A/V-3]: Adds IV S10-R15 (the export Location column + \"Locations:\" line) and replaces the un-versioned \"specs/inventory-value.md\" path with the version-pinned spec token. Plain tester line added for the automatic Location column vs expected 1. RULE 41: Re-verified whole against IV spec v3 2026-07-29: title, preconditions 1-2, steps 1-5, expected 1-4, refs, notes. S10-R3 (only the columns currently shown, Total Cost last), S10-R4, S10-R5, S10-R6 (Totals row) and S10-R15 all resolve. SECOND FINDING: expected 1 closed the column set while S7-R6/S10-R15 insert Location automatically between Vendor and Qty on Hand — plain conditional line added. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the \"Locations:\" line and the automatic Location column)"
  },
  {
   "id": "IV-EXP-03",
@@ -320,7 +324,8 @@
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R7 (+ context note))",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R7 (+ context note))"
  },
  {
   "id": "IV-EXP-04",
@@ -346,16 +351,14 @@
    "3. The CSV never includes a logo.",
    "4. Note for the tester: the two files phrase the as-of line differently - the PDF reads \"As of 2026-08-04\", and in the spreadsheet it is one of the short summary lines that sit above the column headings, reading \"As of: 2026-08-04\" (with a colon). Both are correct; do not raise the difference, and do not count the summary lines - more of them may be added.",
    "---",
-   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
-   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
-   "",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R8, S10-R9)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Inventory Value report specification version 3 (S10-R8, S10-R9) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R8; S10-R9)",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm the exact wording of the header's as-of line and the no-snapshot message (unpinned). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R8; S10-R9)"
  },
  {
   "id": "IV-EXP-05",
@@ -382,7 +385,8 @@
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R10 — S10-R10 CLOSES both file names verbatim; so the exact strings ARE the requirement)",
   "viu_status": "VIU-Pending",
   "notes": "2026-08-03 verifier-fix [C/V-10]: Pins the two verbatim file names to IV S10-R10 + spec version (Rule 42(b)). RULE 41: Re-verified whole against IV spec v3 2026-07-29: title, preconditions 1-2, steps 1-2, expected 1-2, refs. S10-R10 verbatim L439: \"The downloaded files are named \\\"inventory-value-report.pdf\\\" and \\\"inventory-value-report.csv\\\".\" No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R10 — S10-R10 CLOSES both file names verbatim; so the exact strings ARE the requirement)"
  },
  {
   "id": "IV-EXP-06",
@@ -411,7 +415,8 @@
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R11)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R11)"
  },
  {
   "id": "IV-EXP-07",
@@ -442,7 +447,8 @@
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R12; §7 User Feedback Summary)",
   "viu_status": "VIU-Pending",
   "notes": "CAP VALUE: the spec's 10,000-row cap was written as a proposed default; the engineering plan (2026-07-21, A3/FR-F4) records 10,000 as the single suite-wide export cap \"locked by Chris 07-21\". Verify the capped BEHAVIOR and the verbatim message live, and record the actual cap value observed. TECH-PLAN EDIT 2026-07-30 (title trimmed — the pending-confirmation clause is resolved by the plan; still VIU-confirm). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R12; §7 User Feedback Summary)"
  },
  {
   "id": "IV-EXP-08",
@@ -499,7 +505,8 @@
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R13; S10-R14; §7 User Feedback Summary)",
   "viu_status": "VIU-Pending",
   "notes": "Notification texts are verbatim from the spec (note the lower-case \"(pdf)\"/\"(csv)\" in the failure messages vs the upper-case success ones). MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-EXPTOAST): absorbed IV-EXP-08. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R13; S10-R14; §7 User Feedback Summary)"
  },
  {
   "id": "IV-EXP-10",
@@ -533,6 +540,7 @@
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 S10-R11; S10-R12; S10-R14 — the observed failure path is a roughly 30-second server-side timeout and not the S10-R12 row cap; observed on build v3.4.1-0ed4433)",
   "viu_status": "VIU-Pending",
   "notes": "NEW 2026-08-04. Reproduced repeatedly on QA branch sv8582 build v3.4.1-0ed4433 and characterised as a roughly 30-second server-side timeout rather than a row cap. PDF returned 200 in 18-29 s at 1 / 11 / 149 / 269 / 276 / 320 / 396 / 408 / 411 / 532 filtered rows; non-deterministic at 538 rows (200 at 25 s then 500 at 31 s) and at 578 rows (200 at 25.4 s then 500 at 32.2 s); ALWAYS 500 at 648 / 725 / 793 / 896 / 1339 / 3872 / 4416 / 4811 / 5154 / 5657 / 9275 rows, every failure landing at 31-33 s. The CSV of the identical scope returns in 0.8-2.2 s and always 200. The whole list is 5,657 rows (one location) / 9,275 rows (two) — both UNDER the spec cap, so the friendly guard is never reached. RequestIds captured per probe in build/report-suite/viu-2026-08-03/batch-wip-iv/evidence/api/iv-pdf-boundary.json and pdfprobe.json (e.g. dde055bf-3d20-4be9-83d1-9ddd2f024e9c, dfaec4f6-2dd0-4127-bb28-794b3f860946). Nothing else covers this: IV-EXP-07 (C30593) covers the cap message and IV-EXP-09 (C30595) the notification strings. Build declared NOT FINAL — PROVISIONAL (Rule 49), queued in RECHECK-QUEUE.md. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8677 (IV spec v3 2026-07-29 S10-R11; S10-R12; S10-R14 — the observed failure path is a roughly 30-second server-side timeout and not the S10-R12 row cap; observed on build v3.4.1-0ed4433)"
  }
 ]

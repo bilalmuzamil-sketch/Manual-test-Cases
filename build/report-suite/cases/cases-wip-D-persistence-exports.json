@@ -26,7 +26,8 @@
   "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R1; S8-R2)",
   "viu_status": "VIU-Pending",
   "notes": "Tooltip text \"Column Selection\" is verbatim from the spec. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R1; S8-R2)"
  },
  {
   "id": "WIP-PERS-02",
@@ -55,7 +56,8 @@
   "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R5; S8-R6; Story 4 S4-R1)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R5; S8-R6; Story 4 S4-R1)"
  },
  {
   "id": "WIP-PERS-03",
@@ -84,7 +86,8 @@
   "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R7; §3 Key Decisions (context note: per-browser persistence))",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R7; §3 Key Decisions (context note: per-browser persistence))"
  },
  {
   "id": "WIP-PERS-04",
@@ -111,7 +114,38 @@
   "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R8)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R8)"
+ },
+ {
+  "id": "WIP-PERS-05",
+  "area": "WIP — Column Selection & Persistence",
+  "title": "A hand-made Location column choice is remembered like any other column",
+  "priority": "High",
+  "type": "Functional",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are signed in as a person who has access to more than one location.",
+   "3. The Work In Progress report is open with more than one location selected, so the Location column is showing."
+  ],
+  "steps": [
+   "1. Open the column-selection control and switch the Location column OFF by hand.",
+   "2. Go to another screen, then come back to the report.",
+   "3. Reload the browser page and look again.",
+   "4. Switch Location back ON by hand, then reload the page once more."
+  ],
+  "expected": [
+   "1. After going away and coming back, Location is still switched OFF - your choice was remembered.",
+   "2. After reloading the browser page, Location is still switched OFF.",
+   "3. After switching it back ON and reloading, Location is switched ON.",
+   "4. Everything else is remembered exactly as before - the other column choices, the date range, the filters and the tab you were on. Turning Location on or off changes nothing else.",
+   "---",
+   "This is the expected behaviour as per the Work In Progress report specification version 6 (S8-R7), which says the report remembers the column selection in the user's browser and puts it back on the next visit. Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, is what makes Location a column you can switch on and off at all, and it does not say whether that choice is remembered - so this test applies the existing written rule about remembered column choices to the new switch. It has not been checked on a build yet.",
+   "",
+   "AUTOMATION: HOLD - nobody has run this test yet, and the product owner has not confirmed that a hand-made Location choice is remembered.",
+   ""
+  ],
+  "refs": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R7 - the report remembers the column selection in the browser; Location only became a switchable column in Chris Ward's answer T1-1 option C of 2026-08-05)"
  },
  {
   "id": "WIP-EXP-01",
@@ -139,7 +173,8 @@
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R1)",
   "viu_status": "VIU-Pending",
   "notes": "Menu option labels are verbatim from the spec. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R1)"
  },
  {
   "id": "WIP-EXP-02",
@@ -164,15 +199,18 @@
    "2. Both downloads honor the current date range and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.",
    "3. Both downloads include a Totals row matching the on-screen Totals row for the tab.",
    "4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",
-   "5. Note for the tester: the file carries the location column only when you have switched Location ON in the column-selection control - it does not appear just because you have more than one location selected. In the file it is headed \"Branch\", not \"Location\", and the asset column is headed \"Unit\". Both of those names are correct.",
+   "5. Note for the tester: the file carries the Location column whenever it is showing on screen. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all. In the file it is headed \"Branch\", not \"Location\".",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R2, S9-R3, S9-R4, S9-R10a, S7-R13, S9-E1)."
+   "Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.",
+   "",
+   "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Work In Progress report specification version 6 (S9-R2, S9-R3, S9-R4, S9-R10a, S7-R13, S9-E1) differs, his decision is the authority."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; the filters and the Totals row; S9-R10a = the \"Locations:\" line; S7-R13/S9-E1 = the automatic \"Branch\" column)",
   "viu_status": "VIU-Pending",
   "notes": "LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 109 chars; meaning unchanged; awaiting push authorization. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S9-R10a (the \"Locations:\" line in both downloads) added — asserted in expected 4. | 2026-08-03 verifier-fix [A/V-3]: The verifier asked for WIP S7-R13. Re-derived: the anchor that governs the export \"Locations:\" line is S9-R10a, which this case ALREADY cited - so the V-3 row was already half-satisfied. S7-R13 + S9-E1 are added because they govern the automatic Location column and its \"Branch\" export heading, which expected 1 needed a conditional for. Plain tester line added. RULE 41: Re-verified whole against WIP spec v6 2026-07-29: title, preconditions 1-2, steps 1-5, expected 1-4, refs, notes. S9-R2/R3/R4 and S9-R10a all resolve and match expected 1-4. SECOND FINDING (and a correction to the verifier): S7-R13 (L348) is the ON-SCREEN auto-visibility rule; the EXPORT rule is S9-R10a (L414) plus the \"Branch\" heading S9-E1 (L420). Expected 1's \"only the columns currently shown\" collided with the automatic Branch column — plain conditional line added. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; the filters and the Totals row; S9-R10a = the \"Locations:\" line; S7-R13/S9-E1 = the automatic \"Branch\" column)"
  },
  {
   "id": "WIP-EXP-03",
@@ -203,7 +241,8 @@
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R5; S9-R6)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R5; S9-R6)"
  },
  {
   "id": "WIP-EXP-04",
@@ -230,7 +269,8 @@
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R7)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R7)"
  },
  {
   "id": "WIP-EXP-05",
@@ -258,7 +298,8 @@
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R8; Story 4 context note (Days Open live vs frozen))",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R8; Story 4 context note (Days Open live vs frozen))"
  },
  {
   "id": "WIP-EXP-06",
@@ -286,7 +327,8 @@
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R9 — S9-R9 CLOSES both file names verbatim including the \"-2-\" segment; so the exact strings ARE the requirement)",
   "viu_status": "VIU-Pending",
   "notes": "DOCUMENTED BEHAVIOR — DO NOT FILE. The \"wip-2-report.*\" filenames are the spec's stated names; do not file the unusual \"-2-\" as a defect. | 2026-08-03 verifier-fix [C/V-10]: Pins the two verbatim file names to WIP S9-R9 + spec version (Rule 42(b)). RULE 41: Re-verified whole against WIP spec v6 2026-07-29: title, preconditions 1-2, steps 1-2, expected 1-3, refs. S9-R9 verbatim L412: \"The downloaded files are named \\\"wip-2-report.pdf\\\" and \\\"wip-2-report.csv\\\".\" Expected 3 records that the \"-2-\" segment is the specified current behaviour. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R9 — S9-R9 CLOSES both file names verbatim including the \"-2-\" segment; so the exact strings ARE the requirement)"
  },
  {
   "id": "WIP-EXP-07",
@@ -308,18 +350,16 @@
    "1. On screen the headers read \"Asset\" and \"Location\".",
    "2. In BOTH the PDF and the CSV, the same two columns are headed \"Unit\" and \"Branch\".",
    "3. This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior.",
-   "4. Note: the on-screen Asset cell now identifies the asset by its VIN (falling back to Unit #, then plate); whether the export header text changes from \"Unit\" is confirmed in the build - record what it shows, do not file a bug either way.",
+   "4. The on-screen Asset cell leads with the Unit #, which is what the export header \"Unit\" already reflects - so no header change is expected here.",
    "---",
-   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
-   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
-   "",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-E1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-E1) - the build and that specification agree. Chris Ward confirmed it again on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the specification."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling; export header text unpinned)",
   "viu_status": "VIU-Pending",
   "notes": "DOCUMENTED LIMITATION - DO NOT FILE. The Unit/Branch export headers are a known v1 limitation, not a defect. Asset DATA re-ruled 2026-07-29 to the VIN chain per Chris Ward's answer A ('A is the correct answer'; chain = standard for all reports going forward), superseding the video P24 serial ruling (pre-edit body in chris-update-2026-07-29/backup/WIP-EXP-07.json); the spec's export header text (S9-E1 'Unit') predates both rulings - header text at export is unpinned, VIU-confirm. Title shortened to fit. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8665 (WIP spec Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling; export header text unpinned)"
  },
  {
   "id": "WIP-EXP-08",
@@ -346,7 +386,8 @@
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R10)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R10)"
  },
  {
   "id": "WIP-EXP-09",
@@ -376,7 +417,8 @@
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R11; S9-R12; S9-R13; §7 User Feedback Summary)",
   "viu_status": "VIU-Pending",
   "notes": "All three notification texts are verbatim from the spec/§7. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R11; S9-R12; S9-R13; §7 User Feedback Summary)"
  },
  {
   "id": "WIP-EXP-10",
@@ -405,6 +447,7 @@
   "spec_ref": "SV-8665 (WIP spec Story 9 — the 10; 000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line; his spec edit is pending)",
   "viu_status": "VIU-Pending",
   "notes": "NEW 2026-07-31. Q3 RULED 2026-07-31 (Chris Ward answer, option A, verbatim: \"this was not well thought out by me (the specs were written at different times)\"): the 10,000-row export cap applies to all six reports, including the three whose spec pages never mentioned it. Parts Velocity (PV-EXP-11 = C38885) and Technician Utilization (TU-EXP-09 = C38887) already had a cap case from the tech-plan pass; Work In Progress had none. The message is the one ruled suite-wide by his Q2 answer. The exact cap counting basis for a per-tab WIP download is not spelled out in the spec — confirm it live at VIU. Not live-verified (Rule 12). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8665 (WIP spec Story 9 — the 10; 000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line; his spec edit is pending)"
  }
 ]

@@ -64,9 +64,11 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 3. WO Hours = time clocked directly to work orders; Internal Hours = time clocked to internal, non-billable activities.
 4. Internal Hours includes ALL internal time - including hours at a location with no configured labor rate.
 5. Hours show two decimal places with NO thousands separator (e.g. ""107.70""), rounded from the unrounded hours using round-half-up (a tie rounds away from zero - 0.005 → 0.01).
-6. When more than one location is in scope the automatic Location column also appears, leftmost before Technician — it is not in the Column Selection control and its presence is expected.
+6. When more than one location is in scope the Location column also appears, leftmost before Technician. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S2-R1, S2-R2, S2-R3, S2-R4, S2-R5, S9-R9).",SV-8649; SV-8656 (TU spec v5 2026-07-29 S2-R1; S2-R2; S2-R3; S2-R4; S2-R5; §3 + Story 9 S9-R9 — header order and the hours columns; plus the automatic Location column leftmost when shown),,
+Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.
+
+This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Technician Utilization report specification version 5 (S2-R1, S2-R2, S2-R3, S2-R4, S2-R5, S9-R9) differs, his decision is the authority.",SV-8649; SV-8656 (TU spec v5 2026-07-29 S2-R1; S2-R2; S2-R3; S2-R4; S2-R5; §3 + Story 9 S9-R9 — header order and the hours columns; plus the automatic Location column leftmost when shown),,
 Utilization % is WO hours over total hours from unrounded values,TU — Hours & Utilization,Functional,Critical,1. A technician whose unrounded WO and total hours produce a checkable percentage - ideally one landing on a rounding tie (e.g. computing to 66.65%).,"1. Compute the expected value by hand: work-order hours ÷ total clocked hours × 100, from the UNROUNDED hours.
 2. Read the technician's Utilization % and compare.","1. Utilization % = work-order hours as a percentage of total clocked hours, computed from the unrounded hours (not from the already-rounded displays).
 2. It shows one decimal place followed by a percent sign, rounded round-half-up (66.65% → 66.7%).
@@ -305,21 +307,15 @@ A day row's Total Hours links to that technician's single-day timesheet,TU — D
 This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S6-R5).",SV-8653 (TU spec v5 2026-07-29 S6-R5),,
 "Three-dot menu is leftmost, then Column Selection; three download options",TU — Exports,Functional,High,1. You are on the Technician Utilization report with rows loaded.,"1. Find the three-dot button in the toolbar and note its position in the action cluster.
 2. Open it and read the options.","1. The three-dot download menu sits LEFTMOST in the toolbar's action cluster, with the Column Selection control immediately after it.
-2. The menu holds: ""Download Summary (PDF)"", ""Download Expanded View (PDF)"", and ""Download (CSV)"".
-3. The labels match exactly - only the expanded option carries the word ""View"" (the shipped strings, documented as-is).
+2. The menu holds four items, worded exactly as they are on Sales By Customer and Sales By Representative: ""Download Summary (PDF)"", ""Download Expanded View (PDF)"", ""Download Summary (CSV)"" and ""Download Expanded View (CSV)"".
+3. Note for the tester: on this build the four items are worded more briefly - ""Summary (PDF)"", ""Summary (CSV)"", ""Expanded (PDF)"" and ""Expanded (CSV)"" - without the word ""Download"". The product owner has decided they must match the other two reports, so record what you see; the change is with the developers.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-R1, S7-R2, S7-R3, S7-R4, S8-R2).","SV-8654 (TU spec v5 2026-07-29 S7-R1; S7-R2; S7-R3; S7-R4; S8-R2 — S8-R2 now adds ""followed by the Column Selection control"")",,
+This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Technician Utilization report specification version 5 (S7-R1, S7-R2, S7-R3, S7-R4, S8-R2) differs, his decision is the authority.","SV-8654 (TU spec v5 2026-07-29 S7-R1; S7-R2; S7-R3; S7-R4; S8-R2 — S8-R2 now adds ""followed by the Column Selection control"")",,
 The Summary PDF holds the technician rows plus the Summary,TU — Exports,Functional,High,1. You are on the Technician Utilization report with several technicians who have multi-day clock records.,"1. Choose ""Download Summary (PDF)"" and open the file; check its filename.
 2. Choose ""Download Expanded View (PDF)"" and open the file; check its filename.","1. The Summary PDF shows the technician rows and the Summary row (no day rows); it downloads as ""Technician-Utilization-Summary.pdf"".
 2. The Expanded PDF shows the technician rows, EACH technician's per-day breakdown, and the Summary row; it downloads as ""Technician-Utilization-Expanded.pdf"".
 3. The PDF filenames are Title-Case as shipped.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
 This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-R5, S7-R6, S7-R12).",SV-8654 (TU spec v5 2026-07-29 S7-R5; S7-R6; S7-R12),,
 "The CSV is always summary-level, quotes comma-containing values",TU — Exports,Functional,High,"1. At least one technician's Est. Lost Labor exceeds $1,000 (so a value contains a comma).","1. Choose ""Download (CSV)"" and check the filename.
 2. Open the file in a plain-text editor and find the over-$1,000 value.
@@ -337,9 +333,14 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 3. With every technician selected, the download covers all technicians for the range at the selected location(s).
 4. Every download (each PDF and the CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).
 5. Every download also mirrors the columns currently shown on screen — a column hidden in the Column Selection control is absent from the files, and a re-shown column comes back.
-6. Note for the tester: when you have more than one location in scope, the files also carry a Location column even though it is not in the Column Selection control. That is correct - it appears by itself. With a single location in scope there is no Location column, and that is also correct.
+6. Note for the tester: when more than one location is in scope the files also carry a Location column. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all. With a single location in scope there is no Location column in the files.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-R8, S7-R9, S7-R10, S7-R13, S7-E1, S9-R8).","SV-8654 (TU spec v5 2026-07-29 S7-R8; S7-R9; S7-R10; S7-R13; S7-E1; S9-R8 — downloads mirror the shown columns and the technician/location/date scope; S7-R13 = the ""Locations:"" line and the automatic Location column)",,
+Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.
+
+DO NOT AUTOMATE YET: part of this behaviour is still waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx
+
+This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Technician Utilization report specification version 5 (S7-R8, S7-R9, S7-R10, S7-R13, S7-E1, S9-R8) differs, his decision is the authority.","SV-8654 (TU spec v5 2026-07-29 S7-R8; S7-R9; S7-R10; S7-R13; S7-E1; S9-R8 — downloads mirror the shown columns and the technician/location/date scope; S7-R13 = the ""Locations:"" line and the automatic Location column)",,
 Downloads always order rows Technician A to Z; the on-screen sort is ignored,TU — Exports,Functional,Medium,"1. Rows exist including a ""—"" Est. Lost Labor value.
 2. The on-screen rows are sorted by something OTHER than Technician A to Z (e.g. Est. Lost Labor descending).","1. With the non-default sort applied, download the CSV and a PDF.
 2. Read each file's column order, number formats, and the ""—"" cell.
@@ -347,24 +348,20 @@ Downloads always order rows Technician A to Z; the on-screen sort is ignored,TU 
 2. Rows in EVERY download are ordered by Technician name A to Z (the default order) - the on-screen column sort is client-side only and is NOT carried into the export.
 ---
 This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-R10, S7-R10a).",SV-8654 (TU spec v5 2026-07-29 S7-R10; S7-R10a),,
-"PDF logo: the uploaded logo, else the bundled ShopView logo; CSV never",TU — Exports,Functional,Low,1. You can toggle the shop's logo in the shop settings (restore the original state afterwards - shared env).,"1. With a shop logo set, download the Summary PDF and the Expanded PDF and look at the top of each.
+PDF logo follows the uploaded logo; the spreadsheet never carries one,TU — Exports,Functional,Low,1. You can toggle the shop's logo in the shop settings (restore the original state afterwards - shared env).,"1. With a shop logo set, download the Summary PDF and the Expanded PDF and look at the top of each.
 2. Download the CSV and inspect it.
 3. Remove the shop logo and download both PDFs again.","1. With an uploaded logo, BOTH PDF views show that logo at the top of the report.
 2. The CSV never includes the logo.
-3. With NO uploaded logo, the PDF views show the bundled ShopView logo instead — not a blank space and not an error.
+3. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space.
+Note for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-R11, S7-N2, S7-N3).",SV-8654 (TU spec v5 2026-07-29 S7-R11; S7-N2; S7-N3 — logo now resolved by the shared resolver: the organization's uploaded logo; else the bundled ShopView default),,
+This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Technician Utilization report specification version 5 (S7-R11, S7-N2, S7-N3) differs, his decision is the authority.",SV-8654 (TU spec v5 2026-07-29 S7-R11; S7-N2; S7-N3 — logo now resolved by the shared resolver: the organization's uploaded logo; else the bundled ShopView default),,
 Choosing a download with no technician selected is a silent no-op,TU — Exports,Negative,Medium,1. You are on the Technician Utilization report with rows loaded.,"1. Use ""Clear all"" in the Filter by Technician filter so no technician is selected.
 2. Choose each download option in turn (Summary PDF, Expanded PDF, CSV).
 3. Watch for any file download and any notification.","1. Nothing happens: NO file downloads and NO message appears (not even an error).
 2. This silent no-op is the specified behavior for every download option when no technician is selected.
+Known issue: the product does not currently do this — on the build tested, choosing a download with no technician selected still started the download and showed a success message. That is a fault for a developer to fix, not a decision for the product owner. No developer ticket has been raised for it yet, so this test will fail until it is fixed — record what you see and leave the test as it is.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
 This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-N1).",SV-8654 (TU spec v5 2026-07-29 S7-N1; §7 context note),,
 A starting download notifies; a failed one shows the failure message,TU — Exports,Functional,Medium,"1. You are on the Technician Utilization report with rows loaded.
 2. You can force a download failure (e.g. drop the network connection just before triggering the download).","1. Trigger a normal download and read the notification.
@@ -382,6 +379,20 @@ An over-cap Technician Utilization export is refused with the too-large message,
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818
 ---
 This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (Story 7 exports).",SV-8654 (TU spec v5 2026-07-29 Story 7 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10; 000-row export cap; locked by Chris 2026-07-21),,
+Both spreadsheet downloads hold the summary rows and no per-day rows,TU — Exports,Functional,High,"1. You are on the Technician Utilization report with rows loaded, and several technicians who have clock records across more than one day.
+2. The three-dot download menu offers a spreadsheet option for the Summary view and a separate one for the Expanded view.","1. Open the three-dot download menu (it sits leftmost in the toolbar's group of buttons) and read the options.
+2. Choose the Summary spreadsheet option, open the file that downloads, and write down its exact file name.
+3. Choose the Expanded spreadsheet option, open the file that downloads, and write down its exact file name.
+4. In both files, look for the technician rows, the Summary row, and any per-day rows.","1. Both spreadsheet options download a file.
+2. Both files hold the technician rows and the Summary row.
+3. Neither file holds any per-day rows - the spreadsheet holds the same thing whichever of the two you pick.
+4. In both files any value with a comma in it (for example ""$1,234.50"") is wrapped in double quotes, so the columns still line up when you open it.
+5. Note for the tester: write down the exact file name each option gives you. Names for two separate spreadsheet files have never been written down anywhere, so we are collecting them, not checking them - do not fail this test over a file name.
+---
+This is the expected behaviour as per the Technician Utilization report specification version 5 (S7-R7), which says the spreadsheet always holds the technician rows and the Summary row and does not change with the Summary or Expanded choice. The test exists at all because of Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true - he asked this report's download menu to match Sales By Customer and Sales By Representative, which each offer a spreadsheet for both views, whereas that specification describes only one spreadsheet download. That his answer leaves the menu with four options is our reading of his words and he has not confirmed it. It has not been checked on a build yet.
+
+AUTOMATION: HOLD - the build does not offer two spreadsheet options yet, and the product owner has not confirmed that it should.
+",,,
 The Location filter is the rightmost multi-select; All Locations = select-all,TU — Location Filter,Functional,High,"1. You are signed in as a user with access to at least two locations.
 2. You are on the Technician Utilization report.","1. Look at the rightmost control in the toolbar and read its label.
 2. Open it and read the listed options.
@@ -415,10 +426,7 @@ Technician Utilization: Location filter hidden for a one-location user,TU — Lo
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.
 2. For the user with access to two or more locations the Location filter IS shown.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S9-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.","SV-8656 (TU spec S9-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S9-N1 ""still sees the filter"" note is stale; spec edit pending)",,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S9-N1). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true","SV-8656 (TU spec S9-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S9-N1 ""still sees the filter"" note is stale; spec edit pending)",,
 The Location column shows only with more than one location; Summary row blank,TU — Location Filter,Functional,High,"1. You are on the Technician Utilization report as a user with access to two or more locations.
 2. One technician clocked time at a single location in the range and another clocked time at two different locations.
 3. One of those days has hours at two locations (for the per-day check).","1. Select two or more locations and read the column headers from the left.
@@ -433,11 +441,16 @@ The Location column shows only with more than one location; Summary row blank,TU
 3. A technician whose hours span more than one selected location shows ""Multiple"".
 4. An expanded day row shows the exact location when that day's hours were all at one location, and ""Multiple"" when the day spans more than one.
 5. The Summary row leaves the Location cell blank.
-6. Location is never listed in the Column Selection control — it follows the location scope on its own.
+6. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all.
 7. With a single location in scope the Location column is hidden.
 8. Every download — both PDF views and the CSV — includes the Location column in its on-screen leftmost position, carrying the same values you just read on screen.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S9-R9, S9-R10, S8-R15, S10-R4, S7-R13).","SV-8656; SV-8654 (TU spec v5 2026-07-29 S9-R9; S9-R10; S8-R15; S10-R4; S7-R13 — per-row Location column; leftmost before Technician; ""Multiple"" on a spanning row; Summary row blank; not in the selector; S7-R13 = same column in every download)",,
+Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.
+
+DO NOT AUTOMATE YET: part of this behaviour is still waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx
+
+This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Technician Utilization report specification version 5 (S9-R9, S9-R10, S8-R15, S10-R4, S7-R13) differs, his decision is the authority.","SV-8656; SV-8654 (TU spec v5 2026-07-29 S9-R9; S9-R10; S8-R15; S10-R4; S7-R13 — per-row Location column; leftmost before Technician; ""Multiple"" on a spanning row; Summary row blank; not in the selector; S7-R13 = same column in every download)",,
 "Column Selection: Technician always on, the other five toggleable, remembered",TU — Visual & Accessibility,Functional,Medium,"1. You are on the Technician Utilization report with rows loaded.
 2. This browser has never saved settings for this report (fresh visit), so every column is at its default.
 3. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an ""Accessibility"" panel that shows the same names without you having to listen to anything.","1. Find the column-selection button in the toolbar and hover it to read its tooltip.

@@ -58,15 +58,12 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 ---
 This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R1, S3-R5); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8642 (PV spec v4 2026-07-29 S2-R1; S3-R5 — S2-R1 CLOSES the three Type options and the Both default; 'Catalogue'→'Special Order' per Chris Ward 2026-07-29 [newest-wins]),,
 Date range selector offers exactly the eleven bounded options and no All Time,PV — Filters,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Open the date range selector and read every option.
-2. Select a non-custom option (for example Last Month).","1. The options are exactly: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.
-2. There is NO 'All Time' option - the report always operates over a bounded date window (deliberate, per the spec's Out of Scope).
+2. Select a non-custom option (for example Last Month).","1. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no ""Today"", no ""Yesterday"" and no item called ""Custom"" - you build your own range on the calendar instead. There is no ""All Time"" option.
+2. The report always operates over a bounded date window, which is why no All-Time period is offered.
 3. Selecting a non-custom option immediately reloads the report data.
 4. The named ranges use the application's standard shared calendar boundaries (the same boundaries every report's date picker uses).
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R2).","SV-8642 (PV spec v4 2026-07-29 S2-R2; §2 Out of Scope — S2-R2 CLOSES it in the spec's own words (""offering exactly these options"") and rules out ""All Time""; so the closed list IS the requirement)",,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Parts Velocity report specification version 4 (S2-R2) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true","SV-8642 (PV spec v4 2026-07-29 S2-R2; §2 Out of Scope — S2-R2 CLOSES it in the spec's own words (""offering exactly these options"") and rules out ""All Time""; so the closed list IS the requirement)",,
 A Custom date range needs valid dates and rejects a span over 366 days,PV — Filters,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Open the date range selector and choose Custom.
 2. Pick only a start date and observe - then pick an end date earlier than the start and observe.
 3. Pick a valid start and end date (start on or before end, within 366 days).
@@ -151,10 +148,7 @@ Parts Velocity: the Location filter is hidden for a one-location user,PV — Fil
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.
 2. For the user with access to two or more locations the Location filter IS shown.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-E4); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.","SV-8642 (PV spec S2-E4 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S2-E4 ""still sees the filter"" note is stale; spec edit pending)",,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-E4). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true","SV-8642 (PV spec S2-E4 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S2-E4 ""still sees the filter"" note is stale; spec edit pending)",,
 "The Location column shows only with more than one location, leftmost before Type",PV — Filters,Functional,High,"1. You are on the Parts Velocity report as a user with access to two or more locations, with data loaded.
 2. The same inventory part is stocked at two of those locations, and at least one Special Order part has vendor requests at two of them.","1. Select two or more locations and read the column headers from the left.
 2. Read the Location cell on each of the two inventory rows for the part stocked at both locations.
@@ -164,11 +158,16 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 6. With more than one location still selected, download the CSV and the PDF and read their columns from the left.","1. With more than one location in scope a Location column is shown as the LEFTMOST column, before Type.
 2. Each inventory row shows its own location's name (an inventory row is one part at one location).
 3. The merged Special Order row shows ""Multiple"", because it is summed across the selected locations.
-4. Location is NOT one of the 20 columns in the picker — it is managed by the location scope, not by you.
+4. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all.
 5. With a single location in scope the Location column is hidden.
 6. Both downloads include the Location column in the same position it holds on screen (leftmost, before Type), with the same values — each inventory row's own location, and ""Multiple"" on the merged Special Order row.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R12, S3-R10, S7-R8, S6-R11).","SV-8642; SV-8646 (PV spec v4 2026-07-29 S2-R12; S3-R10; S7-R8; S6-R11 — per-row Location column; leftmost before Type; ""Multiple"" on the merged special-order row; not in the picker; S6-R11 = the same column in both exports)",,
+Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.
+
+DO NOT AUTOMATE YET: part of this behaviour is still waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx
+
+This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Parts Velocity report specification version 4 (S2-R12, S3-R10, S7-R8, S6-R11) differs, his decision is the authority.","SV-8642; SV-8646 (PV spec v4 2026-07-29 S2-R12; S3-R10; S7-R8; S6-R11 — per-row Location column; leftmost before Type; ""Multiple"" on the merged special-order row; not in the picker; S6-R11 = the same column in both exports)",,
 A part stocked at two selected locations shows as two per-location rows,PV — Row Model,Functional,Critical,"1. The same part number is stocked as an inventory part at two locations the user can access, with different On Hand / Min / Max values at each.
 2. You are on the Parts Velocity report with both locations selected in the Location filter.","1. Search for the part number in the toolbar search.
 2. Count the rows returned for it and read each row's On Hand, Min, and Max.","1. The part appears as TWO inventory rows - one per selected location (an inventory part is a per-location stock record).
@@ -253,9 +252,12 @@ Column picker lists all 20 columns and never offers the internal cost,PV — Col
 This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S4-R1, S4-R4, S5-R6).",SV-8644 (PV spec v4 2026-07-29 S4-R1; S4-R4; S5-R6),,
 First visit shows exactly the 14 default columns in the specified order,PV — Columns & Remembered View,Functional,Critical,1. You are on the Parts Velocity report on a first visit (no saved column selection).,1. Read the visible column headers left to right without touching the picker.,"1. With a single location in scope exactly these 14 columns show, in this left-to-right order: Type, Part #, Description, Category, Vendor, Units Sold, Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand.
 2. The other 6 columns start hidden: Units Returned, Sold (WO), Sold (Parts Sale), Turns / Yr, Min, Max.
-3. When more than one location is in scope the automatic Location column shows as well, leftmost before Type — 15 columns. It is not part of the 14-column default set and is not in the column picker, so its presence is expected and is not a failure of this test.
+3. When more than one location is selected the Location column shows as well, leftmost before Type — 15 columns. It is already switched on for you; you do not have to turn it on, and you can switch it off again. It is not part of the 14-column default set, so its presence is expected and is not a failure of this test.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S4-R2, S4-R3, S3-R10).",SV-8644; SV-8643 (PV spec v4 2026-07-29 S4-R2; S4-R3 + Story 3 S3-R10 — the 14 default-visible columns and the 6 hidden ones; plus the automatic Location column leftmost when more than one location is in scope),,
+DO NOT AUTOMATE YET: part of this behaviour is still waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx
+
+This is the expected behaviour as per the Parts Velocity report specification version 4 (S4-R2, S4-R3, S3-R10) for the 14 default columns and the 6 hidden ones. The part about the Location column follows Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true; his decision differs from what this case said before, which stated the Location column is not in the column picker, and we have taken his later decision as the one that prevails.",SV-8644; SV-8643 (PV spec v4 2026-07-29 S4-R2; S4-R3 + Story 3 S3-R10 — the 14 default-visible columns and the 6 hidden ones; plus the automatic Location column leftmost when more than one location is in scope),,
 "A re-enabled column returns to its canonical slot, with no reload",PV — Columns & Remembered View,Functional,Medium,1. You are on the Parts Velocity report with data loaded.,"1. In the column picker, enable Min, then Units Returned, then Turns/Yr - in that (non-canonical) order.
 2. Watch the table as each toggle is flipped.
 3. Read the resulting header order.","1. Each toggle takes effect immediately - the table re-renders without a page reload.
@@ -483,21 +485,16 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 2. The PDF is formatted for A3 landscape and titled Parts Velocity.
 3. Description, Category, and Vendor are truncated to 18 characters in the PDF.
 4. Part # is NOT truncated.
-5. The shop logo shows at the top of the PDF when one is set. With no uploaded logo the PDF shows the bundled ShopView default logo instead of a blank space, the same as the other reports in this suite. The CSV never includes a logo.
+5. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space. The CSV never includes a logo.
+Note for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R5, S6-R6).",SV-8646 (PV spec v4 2026-07-29 S6-R5; S6-R6 + same-logo-treatment for every report per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)),,
+This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Parts Velocity report specification version 4 (S6-R5, S6-R6) differs, his decision is the authority.",SV-8646 (PV spec v4 2026-07-29 S6-R5; S6-R6 + same-logo-treatment for every report per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)),,
 CSV is named velocity-report.csv and holds full untruncated text values,PV — Exports,Functional,Medium,"1. You are on the Parts Velocity report with data loaded, including a part with a Description longer than 18 characters and a part with a Last Sale value.","1. Download the CSV and check the saved filename.
 2. Open it and read the long part's Description, Category, and Vendor.
 3. Read the Last Sale column value.","1. The file downloads as velocity-report.csv.
 2. The CSV carries the FULL, untruncated Description / Category / Vendor values (unlike the PDF's 18-character cut).
 3. Last Sale is a raw integer in the CSV (e.g. 42) - the 'N days' wording is PDF/on-screen only.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
 This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R5, S6-R6, S6-R8).",SV-8646 (PV spec v4 2026-07-29 S6-R5; S6-R6; S6-R8),,
 "Em-dash in both exports; Last Sale reads ""N days"" in the PDF",PV — Exports,Functional,Medium,"1. Rows with null values exist (a special-order row for On Hand / Turns / Yr / Min / Max; a row with billed units 0 for Unit Cost / Sell Price; a never-sold row for Last Sale).
 2. All nullable columns are enabled.","1. Download the CSV and locate the null cells.
