@@ -9,18 +9,8 @@
   "preconditions": [
    "1. A rep row is expanded with at least one S and one P invoice visible."
   ],
-  "steps": [
-   "1. Click a service invoice's number link and note the destination and tab.",
-   "2. Go back, then click a parts invoice's number link.",
-   "3. Click the customer name on a detail row."
-  ],
-  "expected": [
-   "1. Each invoice number is a clickable link.",
-   "2. Activating it navigates the CURRENT tab to the underlying invoice (work order or parts sale) — never a new tab.",
-   "3. The customer name is likewise a clickable link that navigates the current tab to the customer's record.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S12-R1, S12-R2, S12-R3)."
-  ],
+  "steps": "1. Click a service invoice's number link and note the destination and tab.\n2. Go back, then click a parts invoice's number link.\n3. Click the customer name on a detail row.",
+  "expected": "1. Each invoice number is a clickable link.\n2. Activating it navigates the CURRENT tab to the underlying invoice (work order or parts sale) — never a new tab.\n3. The customer name is likewise a clickable link that navigates the current tab to the customer's record.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S12-R1, S12-R2, S12-R3).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8629 (SBR spec v15 2026-07-29 Story 12 S12-R1; S12-R2; S12-R3)",
   "viu_status": "VIU-Pending",
@@ -60,18 +50,8 @@
   "preconditions": [
    "1. Non-default filters are set (date range, product type, invoice status, location, Show Unassigned on), two reps are expanded, and the table is scrolled partway down."
   ],
-  "steps": [
-   "1. Click an invoice link, then press the browser back button; check every piece of state.",
-   "2. Repeat via a customer-name link.",
-   "3. Watch whether the report performs a full reload on back."
-  ],
-  "expected": [
-   "1. Back returns to the report with ALL state intact — date range, product type, invoice status, location, Show Unassigned, every rep's expansion state, and scroll position — exactly as they were.",
-   "2. Back-navigation does not trigger a full report reload.",
-   "3. This is deliberately different from a page reload, which restores persisted filters/columns/sort but resets expansion and scroll.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S12-R3a, S23-R2)."
-  ],
+  "steps": "1. Click an invoice link, then press the browser back button; check every piece of state.\n2. Repeat via a customer-name link.\n3. Watch whether the report performs a full reload on back.",
+  "expected": "1. Back returns to the report with ALL state intact — date range, product type, invoice status, location, Show Unassigned, every rep's expansion state, and scroll position — exactly as they were.\n2. Back-navigation does not trigger a full report reload.\n3. This is deliberately different from a page reload, which restores persisted filters/columns/sort but resets expansion and scroll.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S12-R3a, S23-R2).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8629 (SBR spec v15 2026-07-29 Story 12 S12-R3a; Story 23 S23-R2)",
   "viu_status": "VIU-Pending",
@@ -89,19 +69,8 @@
   "preconditions": [
    "1. Detail rows are visible; at least one invoice and one customer link have been clicked earlier; you can switch to dark mode."
   ],
-  "steps": [
-   "1. Inspect an invoice-number link at rest, on hover, on keyboard focus, and after a click.",
-   "2. Inspect a customer-name link the same way.",
-   "3. Switch to dark mode and repeat."
-  ],
-  "expected": [
-   "1. Invoice-number link: theme-primary color, no underline at rest; an underline appears on hover and on keyboard focus (visible focus indicator); it never recolors to browser-purple after a click.",
-   "2. Customer-name link: inherits the cell's body text color (never theme-blue), no underline at rest; underline on hover and keyboard focus; never browser-purple.",
-   "3. Both hold in light and dark mode and across return visits.",
-   "4. Underlined-at-rest links, browser-blue customer names, purple post-click links, and new-tab destinations are all defects.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S12-R4, S12-R5, S12-R6, S12-N3)."
-  ],
+  "steps": "1. Inspect an invoice-number link at rest, on hover, on keyboard focus, and after a click.\n2. Inspect a customer-name link the same way.\n3. Switch to dark mode and repeat.",
+  "expected": "1. Invoice-number link: theme-primary color, no underline at rest; an underline appears on hover and on keyboard focus (visible focus indicator); it never recolors to browser-purple after a click.\n2. Customer-name link: inherits the cell's body text color (never theme-blue), no underline at rest; underline on hover and keyboard focus; never browser-purple.\n3. Both hold in light and dark mode and across return visits.\n4. Underlined-at-rest links, browser-blue customer names, purple post-click links, and new-tab destinations are all defects.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S12-R4, S12-R5, S12-R6, S12-N3).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8629 (SBR spec v15 2026-07-29 Story 12 S12-R4; S12-R5; S12-R6; S12-N3)",
   "viu_status": "VIU-Pending",
@@ -119,16 +88,8 @@
   "preconditions": [
    "1. The report is open with detail rows visible; in another session the target invoice is reversed/deleted (and, for the customer leg, a customer record is made unavailable if the app allows)."
   ],
-  "steps": [
-   "1. Without refreshing, click the now-unavailable invoice's link; read the destination, then press back.",
-   "2. If producible, repeat for an unavailable customer record."
-  ],
-  "expected": [
-   "1. The tab navigates to the application's standard not-found/access-denied state.",
-   "2. Pressing back still returns to the report.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S12-N1, S12-N2)."
-  ],
+  "steps": "1. Without refreshing, click the now-unavailable invoice's link; read the destination, then press back.\n2. If producible, repeat for an unavailable customer record.",
+  "expected": "1. The tab navigates to the application's standard not-found/access-denied state.\n2. Pressing back still returns to the report.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S12-N1, S12-N2).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8629 (SBR spec v15 2026-07-29 Story 12 S12-N1; S12-N2)",
   "viu_status": "VIU-Pending",
@@ -168,18 +129,8 @@
   "preconditions": [
    "1. ZZAUTOTEST rep \"A\" is active, toggle on, and assigned as sales representative to exactly 1 customer; ZZAUTOTEST rep \"B\" likewise to 3 customers."
   ],
-  "steps": [
-   "1. Toggle rep B's active status off and read the dialog before confirming anything.",
-   "2. Press Tab repeatedly and watch where focus goes; dismiss and watch where focus returns.",
-   "3. Repeat step 1 for rep A (1 customer) and read the headline's noun."
-  ],
-  "expected": [
-   "1. A warning dialog titled \"Deactivate {Staff Name}?\" opens BEFORE any change is applied; the deactivation does not commit until confirmed.",
-   "2. The body shows \"{Staff Name} is the sales representative on {N} customer{s}.\" — singular for N=1 (\"1 customer\"), plural otherwise (\"3 customers\") — followed by the reassurance line \"Their customer assignments will stay where they are.\"",
-   "3. Focus is trapped within the dialog while open and returns to the invoking control on dismiss.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S13-R1, S13-R3, S13-R4, S13-R12)."
-  ],
+  "steps": "1. Toggle rep B's active status off and read the dialog before confirming anything.\n2. Press Tab repeatedly and watch where focus goes; dismiss and watch where focus returns.\n3. Repeat step 1 for rep A (1 customer) and read the headline's noun.",
+  "expected": "1. A warning dialog titled \"Deactivate {Staff Name}?\" opens BEFORE any change is applied; the deactivation does not commit until confirmed.\n2. The body shows \"{Staff Name} is the sales representative on {N} customer{s}.\" — singular for N=1 (\"1 customer\"), plural otherwise (\"3 customers\") — followed by the reassurance line \"Their customer assignments will stay where they are.\"\n3. Focus is trapped within the dialog while open and returns to the invoking control on dismiss.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S13-R1, S13-R3, S13-R4, S13-R12).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-R1; S13-R3; S13-R4; S13-R12)",
   "viu_status": "VIU-Pending",
@@ -197,20 +148,8 @@
   "preconditions": [
    "1. The Deactivate dialog is open for a rep with assignments."
   ],
-  "steps": [
-   "1. Read the instruction text and check which element holds focus.",
-   "2. Hover the disabled \"Deactivate\" button and read the tooltip.",
-   "3. Type \"no\" — check the button; clear and type \"  yes  \" (with spaces), then \"Yes\", then \"YES\" — check the button each time.",
-   "4. With a valid entry, press Enter."
-  ],
-  "expected": [
-   "1. Below the reassurance copy, instruction text reads \"Type YES to confirm\" (with \"YES\" emphasized) above a single auto-focused text input.",
-   "2. The primary \"Deactivate\" button is disabled until the input matches the confirmation word case-insensitively, ignoring leading/trailing whitespace — yes, YES, Yes (and padded variants) all enable it; \"no\" does not.",
-   "3. While disabled, hovering it shows the tooltip \"Type YES above to enable.\"",
-   "4. Pressing Enter while valid submits.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S13-R6, S13-R7)."
-  ],
+  "steps": "1. Read the instruction text and check which element holds focus.\n2. Hover the disabled \"Deactivate\" button and read the tooltip.\n3. Type \"no\" — check the button; clear and type \"  yes  \" (with spaces), then \"Yes\", then \"YES\" — check the button each time.\n4. With a valid entry, press Enter.",
+  "expected": "1. Below the reassurance copy, instruction text reads \"Type YES to confirm\" (with \"YES\" emphasized) above a single auto-focused text input.\n2. The primary \"Deactivate\" button is disabled until the input matches the confirmation word case-insensitively, ignoring leading/trailing whitespace — yes, YES, Yes (and padded variants) all enable it; \"no\" does not.\n3. While disabled, hovering it shows the tooltip \"Type YES above to enable.\"\n4. Pressing Enter while valid submits.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S13-R6, S13-R7).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-R6; S13-R7)",
   "viu_status": "VIU-Pending",
@@ -228,22 +167,8 @@
   "preconditions": [
    "1. The Deactivate dialog is open for a rep with assignments."
   ],
-  "steps": [
-   "1. Click the \"Cancel\" button and watch the dialog; then re-open it.",
-   "2. Click the \"X\" close icon and watch the dialog; then re-open it.",
-   "3. Press the \"Esc\" key on the keyboard and watch the dialog.",
-   "4. Re-open the dialog and click outside it (on the greyed-out background).",
-   "5. After each action, check the staff member's active status."
-  ],
-  "expected": [
-   "1. The dialog has a \"Cancel\" button (grey) and an \"X\" close icon; the \"Deactivate\" button is the red one.",
-   "2. Clicking \"Cancel\" closes the dialog; clicking the \"X\" icon closes the dialog.",
-   "3. Pressing the \"Esc\" key does NOT close the dialog - it stays open (the app's general rule is that pop-ups do not close with the Esc key).",
-   "4. Clicking outside the dialog does NOT close it.",
-   "5. When the dialog closes via Cancel or X, the staff member's active status is unchanged - no deactivation happens.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S13-R8)."
-  ],
+  "steps": "1. Click the \"Cancel\" button and watch the dialog; then re-open it.\n2. Click the \"X\" close icon and watch the dialog; then re-open it.\n3. Press the \"Esc\" key on the keyboard and watch the dialog.\n4. Re-open the dialog and click outside it (on the greyed-out background).\n5. After each action, check the staff member's active status.",
+  "expected": "1. The dialog has a \"Cancel\" button (grey) and an \"X\" close icon; the \"Deactivate\" button is the red one.\n2. Clicking \"Cancel\" closes the dialog; clicking the \"X\" icon closes the dialog.\n3. Pressing the \"Esc\" key does NOT close the dialog - it stays open (the app's general rule is that pop-ups do not close with the Esc key).\n4. Clicking outside the dialog does NOT close it.\n5. When the dialog closes via Cancel or X, the staff member's active status is unchanged - no deactivation happens.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S13-R8).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-R8)",
   "viu_status": "VIU-Pending",
@@ -261,18 +186,8 @@
   "preconditions": [
    "1. The Deactivate dialog is open for a ZZAUTOTEST rep with known customer assignments."
   ],
-  "steps": [
-   "1. Type YES and submit; during the request try Cancel, X, and Escape.",
-   "2. After success, check the staff member's status and each previously assigned customer's Sales Representative."
-  ],
-  "expected": [
-   "1. The \"Deactivate\" button enters the standard in-flight loading state (non-interactive, in-progress indicator); the dialog stays open and the Cancel and X controls are non-interactive during the request (pressing the \"Esc\" key never closes the dialog at any time).",
-   "2. On success the dialog closes and the change applies.",
-   "3. Customer assignments are NOT modified — every customer stays assigned to this rep; denormalized rep names and past invoice snapshots are preserved.",
-   "4. Deactivation never forces reassignment, blocks on assignments, or auto-reassigns.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S13-R9, S13-R10, S13-E1)."
-  ],
+  "steps": "1. Type YES and submit; during the request try Cancel, X, and Escape.\n2. After success, check the staff member's status and each previously assigned customer's Sales Representative.",
+  "expected": "1. The \"Deactivate\" button enters the standard in-flight loading state (non-interactive, in-progress indicator); the dialog stays open and the Cancel and X controls are non-interactive during the request (pressing the \"Esc\" key never closes the dialog at any time).\n2. On success the dialog closes and the change applies.\n3. Customer assignments are NOT modified — every customer stays assigned to this rep; denormalized rep names and past invoice snapshots are preserved.\n4. Deactivation never forces reassignment, blocks on assignments, or auto-reassigns.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S13-R9, S13-R10, S13-E1).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-R9; S13-R10; S13-E1)",
   "viu_status": "VIU-Pending",
@@ -290,18 +205,8 @@
   "preconditions": [
    "1. A ZZAUTOTEST rep with assignments AND matching invoices was just deactivated via the dialog flow."
   ],
-  "steps": [
-   "1. Re-open the staff member and read the sales-representative toggle.",
-   "2. Download the Sales Representative Assignments CSV and read the rep's rows.",
-   "3. Open the report and find the rep's row."
-  ],
-  "expected": [
-   "1. The sales-representative toggle state is unchanged by the deactivation flow.",
-   "2. In the Sales Representative Assignments CSV the rep's customers show \"Rep is active?\" = \"No\" — that column is driven by staff-active status, not the toggle.",
-   "3. In the report the rep still appears with credit intact; the \"(Inactive)\" marker appears only if the sales-representative TOGGLE is off (a separate flag from staff-active status).",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S13-R11, S15-R6, S5-R9)."
-  ],
+  "steps": "1. Re-open the staff member and read the sales-representative toggle.\n2. Download the Sales Representative Assignments CSV and read the rep's rows.\n3. Open the report and find the rep's row.",
+  "expected": "1. The sales-representative toggle state is unchanged by the deactivation flow.\n2. In the Sales Representative Assignments CSV the rep's customers show \"Rep is active?\" = \"No\" — that column is driven by staff-active status, not the toggle.\n3. In the report the rep still appears with credit intact; the \"(Inactive)\" marker appears only if the sales-representative TOGGLE is off (a separate flag from staff-active status).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S13-R11, S15-R6, S5-R9).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-R11; Story 15 S15-R6; Story 5 S5-R9)",
   "viu_status": "VIU-Pending",
@@ -319,19 +224,8 @@
   "preconditions": [
    "1. ZZAUTOTEST staff member X is active WITHOUT the sales-representative toggle; ZZAUTOTEST rep Y (with assignments) is currently inactive; ZZAUTOTEST rep Z is active with the sales-representative toggle ON and NO customers assigned."
   ],
-  "steps": [
-   "1. Deactivate X and watch for a dialog.",
-   "2. Reactivate rep Y via the standard toggle and watch for a dialog; check Y's customer assignments afterwards.",
-   "3. Deactivate rep Z (sales-representative toggle on, no assignments) and watch for a dialog."
-  ],
-  "expected": [
-   "1. For a staff member without the sales-representative toggle, the precondition check is skipped and no warning is shown.",
-   "2. Reactivation never shows the warning dialog (the flow does not apply to an already-inactive member).",
-   "3. After reactivation the assignments re-surface immediately with no extra action.",
-   "4. Deactivating a sales representative with NO customer assignments applies silently — no warning dialog.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S13-R2, S13-N2, S13-N3, S13-E3)."
-  ],
+  "steps": "1. Deactivate X and watch for a dialog.\n2. Reactivate rep Y via the standard toggle and watch for a dialog; check Y's customer assignments afterwards.\n3. Deactivate rep Z (sales-representative toggle on, no assignments) and watch for a dialog.",
+  "expected": "1. For a staff member without the sales-representative toggle, the precondition check is skipped and no warning is shown.\n2. Reactivation never shows the warning dialog (the flow does not apply to an already-inactive member).\n3. After reactivation the assignments re-surface immediately with no extra action.\n4. Deactivating a sales representative with NO customer assignments applies silently — no warning dialog.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S13-R2, S13-N2, S13-N3, S13-E3).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-R2; S13-N2; S13-N3; S13-E3)",
   "viu_status": "VIU-Pending",
@@ -349,18 +243,8 @@
   "preconditions": [
    "1. The Deactivate dialog is open for a rep with assignments; you can force the request to fail (go offline just before submitting)."
   ],
-  "steps": [
-   "1. Type YES, force the failure condition, and submit.",
-   "2. Read the toast; check the staff member's active status.",
-   "3. Dismiss, re-open the dialog, and look at the confirmation input."
-  ],
-  "expected": [
-   "1. An error toast is shown: \"Ooooops! An error occurred\" with the caption \"For more information, please contact support. Include your request ID: [{request-id}] when reaching out for faster assistance.\" — it persists 120 seconds or until dismissed.",
-   "2. The active status is unchanged.",
-   "3. Each fresh dialog open requires a fresh confirmation entry — the input clears on open.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S13-N5)."
-  ],
+  "steps": "1. Type YES, force the failure condition, and submit.\n2. Read the toast; check the staff member's active status.\n3. Dismiss, re-open the dialog, and look at the confirmation input.",
+  "expected": "1. An error toast is shown: \"Ooooops! An error occurred\" with the caption \"For more information, please contact support. Include your request ID: [{request-id}] when reaching out for faster assistance.\" — it persists 120 seconds or until dismissed.\n2. The active status is unchanged.\n3. Each fresh dialog open requires a fresh confirmation entry — the input clears on open.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S13-N5).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-N5; §7)",
   "viu_status": "VIU-Pending",
@@ -378,16 +262,8 @@
   "preconditions": [
    "1. No remembered settings; at least one matching invoice with NO assigned rep exists (seed via a WO with no Sales Representative whose customer also has no rep)."
   ],
-  "steps": [
-   "1. Find the \"Show Unassigned\" toggle in the toolbar and note its position and default state.",
-   "2. With it off, look for an Unassigned row and check the grand Totals against the rep rows only."
-  ],
-  "expected": [
-   "1. A \"Show Unassigned\" toggle sits between the column selector and the date range picker; it is OFF by default.",
-   "2. While off, invoices with no assigned rep contribute to nothing — no row, and not counted in any total.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S22-R1, S22-R2, S18-R7)."
-  ],
+  "steps": "1. Find the \"Show Unassigned\" toggle in the toolbar and note its position and default state.\n2. With it off, look for an Unassigned row and check the grand Totals against the rep rows only.",
+  "expected": "1. A \"Show Unassigned\" toggle sits between the column selector and the date range picker; it is OFF by default.\n2. While off, invoices with no assigned rep contribute to nothing — no row, and not counted in any total.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S22-R1, S22-R2, S18-R7).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8639 (SBR spec v15 2026-07-29 Story 22 S22-R1; S22-R2; Story 18 S18-R7.2)",
   "viu_status": "VIU-Pending",
@@ -405,20 +281,8 @@
   "preconditions": [
    "1. Matching unassigned invoices exist; the grand Totals with the toggle off are noted."
   ],
-  "steps": [
-   "1. Turn \"Show Unassigned\" on and read the new row and its position.",
-   "2. Read the grand Totals indicator.",
-   "3. Read the Unassigned row's columns and (N) count, click its chevron, and look for any \"(Inactive)\" tag.",
-   "4. Turn the toggle off again."
-  ],
-  "expected": [
-   "1. A single summary row labeled \"Unassigned\" (verbatim) rolls up every matching invoice that has no assigned rep, respecting all other active filters.",
-   "2. The row is pinned to the TOP of the table, above the A→Z reps, and stays pinned regardless of sort.",
-   "3. Toggling re-renders the report and recomputes the grand Totals to include or exclude the Unassigned row accordingly.",
-   "4. The Unassigned row shows the same metric columns and (N) count as any rep summary row, is expandable to its contributing invoices, is included in the grand Totals, and never carries an \"(Inactive)\" tag.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S22-R3, S22-R4, S22-R5, S22-R6, S6-R1)."
-  ],
+  "steps": "1. Turn \"Show Unassigned\" on and read the new row and its position.\n2. Read the grand Totals indicator.\n3. Read the Unassigned row's columns and (N) count, click its chevron, and look for any \"(Inactive)\" tag.\n4. Turn the toggle off again.",
+  "expected": "1. A single summary row labeled \"Unassigned\" (verbatim) rolls up every matching invoice that has no assigned rep, respecting all other active filters.\n2. The row is pinned to the TOP of the table, above the A→Z reps, and stays pinned regardless of sort.\n3. Toggling re-renders the report and recomputes the grand Totals to include or exclude the Unassigned row accordingly.\n4. The Unassigned row shows the same metric columns and (N) count as any rep summary row, is expandable to its contributing invoices, is included in the grand Totals, and never carries an \"(Inactive)\" tag.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S22-R3, S22-R4, S22-R5, S22-R6, S6-R1).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8639 (SBR spec v15 2026-07-29 Story 22 S22-R3; S22-R4; S22-R5; S22-R6; Story 6 S6-R1)",
   "viu_status": "VIU-Pending",
@@ -464,16 +328,8 @@
    "1. Scenario A: a filter set with NO matching unassigned invoices (but some rep rows).",
    "2. Scenario B: the Unassigned row is populated and expanded."
   ],
-  "steps": [
-   "1. Scenario A: turn Show Unassigned on and look for the row; then narrow so no reps match either and read the table.",
-   "2. Scenario B: with the Unassigned row expanded, turn the toggle off, then back on."
-  ],
-  "expected": [
-   "1. With the toggle on but no matching unassigned invoices, no Unassigned row is shown — an empty Unassigned row is never rendered; with no rep rows either, the empty state applies.",
-   "2. Turning the toggle off removes the expanded row; turning it back on renders it collapsed.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S22-N1, S6-N2)."
-  ],
+  "steps": "1. Scenario A: turn Show Unassigned on and look for the row; then narrow so no reps match either and read the table.\n2. Scenario B: with the Unassigned row expanded, turn the toggle off, then back on.",
+  "expected": "1. With the toggle on but no matching unassigned invoices, no Unassigned row is shown — an empty Unassigned row is never rendered; with no rep rows either, the empty state applies.\n2. Turning the toggle off removes the expanded row; turning it back on renders it collapsed.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S22-N1, S6-N2).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8639 (SBR spec v15 2026-07-29 Story 22 S22-N1; Story 6 S6-N2)",
   "viu_status": "VIU-Pending",
@@ -491,22 +347,8 @@
   "preconditions": [
    "1. No remembered column preference exists (first visit or cleared storage)."
   ],
-  "steps": [
-   "1. Click the column selector button in the toolbar.",
-   "2. Read the toggle list.",
-   "3. Check the table's visible columns.",
-   "4. Look for Date, Invoice, Customer, Status, or Subtotal in the toggle list.",
-   "5. Hide all seven metric columns and read the table and the grand Totals indicator."
-  ],
-  "expected": [
-   "1. The dropdown lists the seven toggleable metric columns, each with a toggle switch: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %.",
-   "2. On first visit all seven metric columns are visible.",
-   "3. The five always-visible columns (Date, Invoice, Customer, Status, Subtotal) do not appear in the dropdown and cannot be hidden.",
-   "4. With all seven metric columns hidden the table still renders the five always-on columns and the grand Totals indicator — no empty or error state.",
-   "5. Note for the tester: if you have more than one location in scope you will also see a Location column on the table that is in neither list. That is correct - it appears by itself and is not something you can switch on or off here.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S20-R1, S20-R2, S20-R3, S20-R6, S20-N1, S21-R7)."
-  ],
+  "steps": "1. Click the column selector button in the toolbar.\n2. Read the toggle list.\n3. Check the table's visible columns.\n4. Look for Date, Invoice, Customer, Status, or Subtotal in the toggle list.\n5. Hide all seven metric columns and read the table and the grand Totals indicator.",
+  "expected": "1. The dropdown lists the seven toggleable metric columns, each with a toggle switch: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %.\n2. On first visit all seven metric columns are visible.\n3. The five always-visible columns (Date, Invoice, Customer, Status, Subtotal) do not appear in the dropdown and cannot be hidden.\n4. With all seven metric columns hidden the table still renders the five always-on columns and the grand Totals indicator — no empty or error state.\n5. Note for the tester: if you have more than one location in scope you will also see a Location column on the table that is in neither list. That is correct - it appears by itself and is not something you can switch on or off here.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S20-R1, S20-R2, S20-R3, S20-R6, S20-N1, S21-R7).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8637 (SBR spec v15 2026-07-29 Story 20 S20-R1; S20-R2; S20-R3; S20-R6; S20-N1 — S20-R2/S20-R3 CLOSE the seven toggles and the five always-on columns; Location is automatic and in neither list [S21-R7])",
   "viu_status": "VIU-Pending",
@@ -546,16 +388,8 @@
   "preconditions": [
    "1. A rep is expanded and the Totals indicator is visible."
   ],
-  "steps": [
-   "1. Toggle \"Parts Margin\" off and immediately check the summary rows, detail rows, and the Totals row.",
-   "2. Toggle it back on."
-  ],
-  "expected": [
-   "1. The toggle takes effect immediately — no confirm step.",
-   "2. Hiding a metric column removes it from rep summary rows, invoice detail rows, and the grand Totals indicator simultaneously; showing restores it everywhere at once.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S20-R4, S20-R7)."
-  ],
+  "steps": "1. Toggle \"Parts Margin\" off and immediately check the summary rows, detail rows, and the Totals row.\n2. Toggle it back on.",
+  "expected": "1. The toggle takes effect immediately — no confirm step.\n2. Hiding a metric column removes it from rep summary rows, invoice detail rows, and the grand Totals indicator simultaneously; showing restores it everywhere at once.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S20-R4, S20-R7).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8637 (SBR spec v15 2026-07-29 Story 20 S20-R4; S20-R7)",
   "viu_status": "VIU-Pending",
@@ -573,15 +407,8 @@
   "preconditions": [
    "1. Several metric columns are hidden via the column selector."
   ],
-  "steps": [
-   "1. Download all four exports (Summary PDF, Expanded View PDF, Summary CSV, Expanded View CSV).",
-   "2. Check each file's columns."
-  ],
-  "expected": [
-   "1. All four downloads include ALL metric columns regardless of the on-screen column selector state.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S20-R8)."
-  ],
+  "steps": "1. Download all four exports (Summary PDF, Expanded View PDF, Summary CSV, Expanded View CSV).\n2. Check each file's columns.",
+  "expected": "1. All four downloads include ALL metric columns regardless of the on-screen column selector state.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S20-R8).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8637 (SBR spec v15 2026-07-29 Story 20 S20-R8)",
   "viu_status": "VIU-Pending",
@@ -599,16 +426,8 @@
   "preconditions": [
    "1. The report is sorted by a metric column (e.g., Margin descending)."
   ],
-  "steps": [
-   "1. Hide that column via the column selector and read the row order.",
-   "2. Show the column again and look at its header."
-  ],
-  "expected": [
-   "1. Hiding the active sort column does not clear the sort — rows stay ordered by the now-hidden metric until another sort is chosen or the A→Z default is restored.",
-   "2. Showing the column again reveals the sort indicator on it.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S20-R9)."
-  ],
+  "steps": "1. Hide that column via the column selector and read the row order.\n2. Show the column again and look at its header.",
+  "expected": "1. Hiding the active sort column does not clear the sort — rows stay ordered by the now-hidden metric until another sort is chosen or the A→Z default is restored.\n2. Showing the column again reveals the sort indicator on it.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S20-R9).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8637 (SBR spec v15 2026-07-29 Story 20 S20-R9)",
   "viu_status": "VIU-Pending",
@@ -650,17 +469,8 @@
   "preconditions": [
    "1. You are on the report in a browser you can revisit."
   ],
-  "steps": [
-   "1. Set a custom date range, \"Parts only,\" \"Paid,\" a specific location set, Show Unassigned on, hide two metric columns, and sort by Margin descending.",
-   "2. Leave the report and return; also try a full page reload.",
-   "3. Watch what data loads first."
-  ],
-  "expected": [
-   "1. Every setting is restored: date range (including the custom start/end), product type, invoice status, location, Show Unassigned, column visibility, and the active column sort (column + direction).",
-   "2. The settings are restored BEFORE the first data fetch — the report does not fetch defaults first and then re-fetch.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S23-R1, S20-R5)."
-  ],
+  "steps": "1. Set a custom date range, \"Parts only,\" \"Paid,\" a specific location set, Show Unassigned on, hide two metric columns, and sort by Margin descending.\n2. Leave the report and return; also try a full page reload.\n3. Watch what data loads first.",
+  "expected": "1. Every setting is restored: date range (including the custom start/end), product type, invoice status, location, Show Unassigned, column visibility, and the active column sort (column + direction).\n2. The settings are restored BEFORE the first data fetch — the report does not fetch defaults first and then re-fetch.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S23-R1, S20-R5).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8640 (SBR spec v15 2026-07-29 Story 23 S23-R1; Story 20 S20-R5)",
   "viu_status": "VIU-Pending",
@@ -678,16 +488,8 @@
   "preconditions": [
    "1. Two reps are expanded and the table is scrolled partway."
   ],
-  "steps": [
-   "1. Reload the page.",
-   "2. Check the rows and the scroll position."
-  ],
-  "expected": [
-   "1. All rows render collapsed and the scroll position resets.",
-   "2. This is the specified behavior (only back-navigation from a drilldown restores expansion/scroll), not a defect.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S23-R2)."
-  ],
+  "steps": "1. Reload the page.\n2. Check the rows and the scroll position.",
+  "expected": "1. All rows render collapsed and the scroll position resets.\n2. This is the specified behavior (only back-navigation from a drilldown restores expansion/scroll), not a defect.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S23-R2).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8640 (SBR spec v15 2026-07-29 Story 23 S23-R2; §2 Out of Scope)",
   "viu_status": "VIU-Pending",
@@ -705,17 +507,8 @@
   "preconditions": [
    "1. Your saved settings include a location you are then un-assigned from (restore access afterwards)."
   ],
-  "steps": [
-   "1. Return to the report after the access change.",
-   "2. Read the location filter, the data, and watch for any error."
-  ],
-  "expected": [
-   "1. The no-longer-valid location falls back to the default (your active location) rather than being sent to the server.",
-   "2. No error occurs — a stale saved setting can never cause an error or an invalid request.",
-   "3. Per the spec the same applies to a range or sort column that no longer exists and to a hidden-but-sorted column.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S23-R3)."
-  ],
+  "steps": "1. Return to the report after the access change.\n2. Read the location filter, the data, and watch for any error.",
+  "expected": "1. The no-longer-valid location falls back to the default (your active location) rather than being sent to the server.\n2. No error occurs — a stale saved setting can never cause an error or an invalid request.\n3. Per the spec the same applies to a range or sort column that no longer exists and to a hidden-but-sorted column.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S23-R3).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8640 (SBR spec v15 2026-07-29 Story 23 S23-R3)",
   "viu_status": "VIU-Pending",
@@ -734,15 +527,8 @@
    "1. You have distinctive saved settings, then clear the browser's site data (or use a fresh profile).",
    "2. You are working in a known active location (the application's location switcher)."
   ],
-  "steps": [
-   "1. Open the report and read every setting."
-  ],
-  "expected": [
-   "1. Date range = This Month; Product Type = \"Parts & Service\"; Invoice Status = \"All Statuses\"; Location = your currently active location only (the one location you are working in); Show Unassigned = off; all seven metric columns visible; sort = the A→Z default.",
-   "2. Clearing browser storage fully returns the report to first-visit defaults — no server-side profile brings the old settings back.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S23-R4, S23-N1, S2-R4, S2-R7, S21-R2)."
-  ],
+  "steps": "1. Open the report and read every setting.",
+  "expected": "1. Date range = This Month; Product Type = \"Parts & Service\"; Invoice Status = \"All Statuses\"; Location = your currently active location only (the one location you are working in); Show Unassigned = off; all seven metric columns visible; sort = the A→Z default.\n2. Clearing browser storage fully returns the report to first-visit defaults — no server-side profile brings the old settings back.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S23-R4, S23-N1, S2-R4, S2-R7, S21-R2).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8640 (SBR spec v15 2026-07-29 Story 23 S23-R4; S23-N1; Story 2 S2-R4; S2-R7; Story 21 S21-R2)",
   "viu_status": "VIU-Pending",
@@ -760,16 +546,8 @@
   "preconditions": [
    "1. You have never clicked a financial column header in this browser session/profile (the report is in the A→Z default)."
   ],
-  "steps": [
-   "1. Change a few filters (no sort click), leave the report, and return.",
-   "2. Read the row order and the headers."
-  ],
-  "expected": [
-   "1. The report restores to the A→Z default order by rep display name.",
-   "2. No financial column shows a sort indicator — the saved \"no financial sort\" state restores as A→Z, not as an arbitrary column.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S23-R5, S11-R4)."
-  ],
+  "steps": "1. Change a few filters (no sort click), leave the report, and return.\n2. Read the row order and the headers.",
+  "expected": "1. The report restores to the A→Z default order by rep display name.\n2. No financial column shows a sort indicator — the saved \"no financial sort\" state restores as A→Z, not as an arbitrary column.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S23-R5, S11-R4).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8640 (SBR spec v15 2026-07-29 Story 23 S23-R5; Story 11 S11-R4)",
   "viu_status": "VIU-Pending",

@@ -10,18 +10,8 @@
    "1. You are signed in to the ShopView App as a user with the Manager or Office User role.",
    "2. Your role has the ordinary reports access."
   ],
-  "steps": [
-   "1. Open the Reports section from the main navigation.",
-   "2. Look through the report groupings for a section heading named Parts.",
-   "3. Click the entry labeled Parts Velocity."
-  ],
-  "expected": [
-   "1. A Parts section heading exists in the Reports navigation (this feature creates it - the application had no Parts reports before).",
-   "2. Under Parts there is an entry labeled Parts Velocity; Inventory Value also lives under Parts. The order of the two inside the Parts section is not fixed — do not fail the test on which of them comes first.",
-   "3. Clicking it opens the Parts Velocity report.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S1-R1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
-  ],
+  "steps": "1. Open the Reports section from the main navigation.\n2. Look through the report groupings for a section heading named Parts.\n3. Click the entry labeled Parts Velocity.",
+  "expected": "1. A Parts section heading exists in the Reports navigation (this feature creates it - the application had no Parts reports before).\n2. Under Parts there is an entry labeled Parts Velocity; Inventory Value also lives under Parts. The order of the two inside the Parts section is not fixed — do not fail the test on which of them comes first.\n3. Clicking it opens the Parts Velocity report.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S1-R1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8641 (PV spec S1-R1 — the \"only report\" sentence is superseded: Parts Velocity and Inventory Value BOTH live under Parts per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03)",
   "viu_status": "VIU-Pending",
@@ -40,17 +30,8 @@
    "1. You are signed in as a user allowed to open the report.",
    "2. You are using a browser with NO saved view for this report (e.g. a fresh browser profile or after clearing the site's browser storage), so first-visit defaults apply."
   ],
-  "steps": [
-   "1. Open Reports → Parts → Parts Velocity.",
-   "2. Look at the date range selector and the table without touching anything."
-  ],
-  "expected": [
-   "1. The date range selector shows This Year.",
-   "2. Report data loads automatically - you do not have to press anything to fetch it.",
-   "3. Rows appear ranked by Demand, highest first (the default order).",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S1-R2, S4-R6)."
-  ],
+  "steps": "1. Open Reports → Parts → Parts Velocity.\n2. Look at the date range selector and the table without touching anything.",
+  "expected": "1. The date range selector shows This Year.\n2. Report data loads automatically - you do not have to press anything to fetch it.\n3. Rows appear ranked by Demand, highest first (the default order).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S1-R2, S4-R6).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8641 (PV spec v4 2026-07-29 S1-R2; S4-R6)",
   "viu_status": "VIU-Pending",
@@ -69,18 +50,8 @@
    "1. You are signed in as a user allowed to open the report.",
    "2. Enough parts data exists that the report visibly takes a moment to load."
   ],
-  "steps": [
-   "1. Open the Parts Velocity report and watch the table area during the initial load.",
-   "2. After it loads, change any filter that reloads the data from the server (for example the Type filter).",
-   "3. Watch the table while the new data is being fetched."
-  ],
-  "expected": [
-   "1. During the initial load, the table shows a loading indicator.",
-   "2. During a filter change, the loading indicator shows again.",
-   "3. The rows already on screen are replaced only when the new data comes back - the table does not blank out and rebuild mid-request.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S1-R3)."
-  ],
+  "steps": "1. Open the Parts Velocity report and watch the table area during the initial load.\n2. After it loads, change any filter that reloads the data from the server (for example the Type filter).\n3. Watch the table while the new data is being fetched.",
+  "expected": "1. During the initial load, the table shows a loading indicator.\n2. During a filter change, the loading indicator shows again.\n3. The rows already on screen are replaced only when the new data comes back - the table does not blank out and rebuild mid-request.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S1-R3).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8641 (PV spec v4 2026-07-29 S1-R3)",
   "viu_status": "VIU-Pending",
@@ -100,18 +71,8 @@
    "2. That user's role has the ordinary reports access (the standard \"can this person see reports\" setting).",
    "3. Some parts have sales activity in the selected date range."
   ],
-  "steps": [
-   "1. Open Reports → Parts → Parts Velocity.",
-   "2. Wait for the data to load.",
-   "3. Open the export menu and download the CSV."
-  ],
-  "expected": [
-   "1. The report data loads and rows are shown.",
-   "2. The export downloads successfully — both opening the report and exporting it are allowed by the same ordinary reports access.",
-   "3. Note for the tester: for now ONE ordinary reports access opens all six of these new reports; none of them has a permission of its own. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S1-R4); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
-  ],
+  "steps": "1. Open Reports → Parts → Parts Velocity.\n2. Wait for the data to load.\n3. Open the export menu and download the CSV.",
+  "expected": "1. The report data loads and rows are shown.\n2. The export downloads successfully — both opening the report and exporting it are allowed by the same ordinary reports access.\n3. Note for the tester: the specification allows ONE ordinary reports access for all six of these new reports and no per-report permission. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S1-R4); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8641 (PV spec S1-R4 — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\"; PV S1-R4 still names Inventory Reports > View — his spec edit owed)",
   "viu_status": "VIU-Pending",
@@ -129,16 +90,8 @@
   "preconditions": [
    "1. You are signed in as a user whose role is neither Manager nor Office User (a role without access to the Reports section)."
   ],
-  "steps": [
-   "1. Look at the application's main navigation.",
-   "2. Try to find the Reports section and the Parts Velocity entry."
-  ],
-  "expected": [
-   "1. The user cannot reach the Reports section.",
-   "2. The Parts Velocity navigation entry is not shown (this is the Reports section's own access control, not a report-specific rule).",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S1-N1)."
-  ],
+  "steps": "1. Look at the application's main navigation.\n2. Try to find the Reports section and the Parts Velocity entry.",
+  "expected": "1. The user cannot reach the Reports section.\n2. The Parts Velocity navigation entry is not shown (this is the Reports section's own access control, not a report-specific rule).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S1-N1).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8641 (PV spec v4 2026-07-29 S1-N1)",
   "viu_status": "VIU-Pending",
@@ -157,19 +110,8 @@
    "1. You are signed in as a user with the Manager or Office User role.",
    "2. That user's role has the ordinary reports access turned on (the standard \"can this person see reports\" setting) and no other reports-related permission turned on."
   ],
-  "steps": [
-   "1. Open the Reports section and look for the Parts Velocity entry under Parts.",
-   "2. Click the Parts Velocity entry.",
-   "3. Use the export control on the report and download a file."
-  ],
-  "expected": [
-   "1. The Parts Velocity entry is visible in the Reports navigation under Parts.",
-   "2. Opening it shows the report data - not an access-denied screen.",
-   "3. The export downloads.",
-   "4. Note for the tester: for now ONE ordinary reports access opens all six of these new reports, and no report has a permission of its own. If an extra Parts or Inventory reports permission does exist and switching it OFF blocks this report or its export, that is wrong - mark this Failed and report it. If a separate per-report permission is ever added on purpose in a later release, this test will be updated first, so treat that as a planned change and not as a bug.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S1-N2, S1-R4); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
-  ],
+  "steps": "1. Open the Reports section and look for the Parts Velocity entry under Parts.\n2. Click the Parts Velocity entry.\n3. Use the export control on the report and download a file.",
+  "expected": "1. The Parts Velocity entry is visible in the Reports navigation under Parts.\n2. Opening it shows the report data - not an access-denied screen.\n3. The export downloads.\n4. Note for the tester: the specification allows ONE ordinary reports access for all six of these new reports and no per-report permission. If an extra Parts or Inventory reports permission does exist and switching it OFF blocks this report or its export, that is wrong - mark this Failed and report it. If a separate per-report permission is ever added on purpose in a later release, this test will be updated first, so treat that as a planned change and not as a bug.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S1-N2, S1-R4); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8641 (PV spec S1-N2; S1-R4 - RESCOPED 2026-08-03: the old \"Reports access without Inventory Reports View\" state cannot exist under one permission; Chris Ward Q2=A + \"they can exist and not do anything\"; QA lead \"ONE permission FOR NOW\")",
   "viu_status": "VIU-Pending",
@@ -189,21 +131,8 @@
    "2. This is a first visit (no saved view), so the first-visit defaults apply.",
    "3. Both inventory parts and special-order parts (the \"Special Order\" type) have sales activity in the selected date range."
   ],
-  "steps": [
-   "1. Look at the first control in the filter row of the toolbar.",
-   "2. Open the Type filter and read its options.",
-   "3. Note which option is selected by default.",
-   "4. Select each Type option in turn and watch the table."
-  ],
-  "expected": [
-   "1. The Type filter is the first control in the filter row.",
-   "2. It is single-select and offers exactly three choices: Both, Inventory, and Special Order (special-order catalog parts that were never put into stock).",
-   "3. On a first visit the default is Both.",
-   "4. Both is an explicit selection returning inventory and Special Order rows together - a deliberate filter value, not the absence of a filter.",
-   "5. Each selection immediately reloads the report limited to that type (no separate Apply step) - under Inventory every row's Type column reads Inventory; under Special Order every row's Type column reads Special Order; under Both, rows of both kinds appear.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R1, S3-R5); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
-  ],
+  "steps": "1. Look at the first control in the filter row of the toolbar.\n2. Open the Type filter and read its options.\n3. Note which option is selected by default.\n4. Select each Type option in turn and watch the table.",
+  "expected": "1. The Type filter is the first control in the filter row.\n2. It is single-select and offers exactly three choices: Both, Inventory, and Special Order (special-order catalog parts that were never put into stock).\n3. On a first visit the default is Both.\n4. Both is an explicit selection returning inventory and Special Order rows together - a deliberate filter value, not the absence of a filter.\n5. Each selection immediately reloads the report limited to that type (no separate Apply step) - under Inventory every row's Type column reads Inventory; under Special Order every row's Type column reads Special Order; under Both, rows of both kinds appear.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R1, S3-R5); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R1; S3-R5 — S2-R1 CLOSES the three Type options and the Both default; 'Catalogue'→'Special Order' per Chris Ward 2026-07-29 [newest-wins])",
   "viu_status": "VIU-Pending",
@@ -248,18 +177,8 @@
   "preconditions": [
    "1. You are on the Parts Velocity report with data loaded."
   ],
-  "steps": [
-   "1. Open the date range selector and read every option.",
-   "2. Select a non-custom option (for example Last Month)."
-  ],
-  "expected": [
-   "1. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no \"Today\", no \"Yesterday\" and no item called \"Custom\" - you build your own range on the calendar instead. There is no \"All Time\" option.",
-   "2. The report always operates over a bounded date window, which is why no All-Time period is offered.",
-   "3. Selecting a non-custom option immediately reloads the report data.",
-   "4. The named ranges use the application's standard shared calendar boundaries (the same boundaries every report's date picker uses).",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Parts Velocity report specification version 4 (S2-R2) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
-  ],
+  "steps": "1. Open the date range selector and read every option.\n2. Select a non-custom option (for example Last Month).",
+  "expected": "1. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no \"Today\", no \"Yesterday\" and no item called \"Custom\" - you build your own range on the calendar instead. There is no \"All Time\" option.\n2. The report always operates over a bounded date window, which is why no All-Time period is offered.\n3. Selecting a non-custom option immediately reloads the report data.\n4. The named ranges use the application's standard shared calendar boundaries (the same boundaries every report's date picker uses).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Parts Velocity report specification version 5 (S2-R2) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R2; §2 Out of Scope — S2-R2 CLOSES it in the spec's own words (\"offering exactly these options\") and rules out \"All Time\"; so the closed list IS the requirement)",
   "viu_status": "VIU-Pending",
@@ -277,20 +196,8 @@
   "preconditions": [
    "1. You are on the Parts Velocity report with data loaded."
   ],
-  "steps": [
-   "1. Open the date range selector and choose Custom.",
-   "2. Pick only a start date and observe - then pick an end date earlier than the start and observe.",
-   "3. Pick a valid start and end date (start on or before end, within 366 days).",
-   "4. Now try a custom span wider than 366 days (for example 400 days)."
-  ],
-  "expected": [
-   "1. A date picker opens requiring both a start and an end date.",
-   "2. The report does not reload until both dates are valid; a start after the end is not accepted.",
-   "3. With both valid dates selected, the data reloads for that range.",
-   "4. A span wider than 366 days (counting both the start and end dates) is rejected - the selection is not applied.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R3)."
-  ],
+  "steps": "1. Open the date range selector and choose Custom.\n2. Pick only a start date and observe - then pick an end date earlier than the start and observe.\n3. Pick a valid start and end date (start on or before end, within 366 days).\n4. Now try a custom span wider than 366 days (for example 400 days).",
+  "expected": "1. A date picker opens requiring both a start and an end date.\n2. The report does not reload until both dates are valid; a start after the end is not accepted.\n3. With both valid dates selected, the data reloads for that range.\n4. A span wider than 366 days (counting both the start and end dates) is rejected - the selection is not applied.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R3).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R3)",
   "viu_status": "VIU-Pending",
@@ -309,19 +216,8 @@
    "1. You are on the Parts Velocity report with data loaded.",
    "2. Parts with different categories and different vendors have activity in the range."
   ],
-  "steps": [
-   "1. Open the Category filter and select one category; then add a second category.",
-   "2. Clear the Category filter.",
-   "3. Open the Vendor filter and select one vendor; then add a second vendor."
-  ],
-  "expected": [
-   "1. Both filters allow selecting more than one value (multi-select).",
-   "2. With categories selected, only parts in any of the selected categories are shown.",
-   "3. With vendors selected, only parts supplied by any of the selected vendors are shown.",
-   "4. Each change reloads the data from the server.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R4, S2-R5, S2-R10)."
-  ],
+  "steps": "1. Open the Category filter and select one category; then add a second category.\n2. Clear the Category filter.\n3. Open the Vendor filter and select one vendor; then add a second vendor.",
+  "expected": "1. Both filters allow selecting more than one value (multi-select).\n2. With categories selected, only parts in any of the selected categories are shown.\n3. With vendors selected, only parts supplied by any of the selected vendors are shown.\n4. Each change reloads the data from the server.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R4, S2-R5, S2-R10).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R4; S2-R5; S2-R10)",
   "viu_status": "VIU-Pending",
@@ -340,20 +236,8 @@
    "1. You are on the Parts Velocity report with data loaded.",
    "2. A part exists whose part number you know, and another whose description contains a distinctive word."
   ],
-  "steps": [
-   "1. Find the search input in the report's own toolbar (not the application's global search bar).",
-   "2. Type part of a known part number, in the wrong letter case (for example lower case for an upper-case part number).",
-   "3. Clear it and type a distinctive word from a part's description.",
-   "4. Clear it and type a category or vendor name that matches no part number or description."
-  ],
-  "expected": [
-   "1. The search input is part of the report's toolbar (page-specific), separate from the global search bar.",
-   "2. The part-number search matches despite the different letter case (case-insensitive 'contains' match).",
-   "3. The description search returns rows whose description contains the word.",
-   "4. Category and vendor names are NOT searched - use their dedicated filters instead (deliberate, to avoid false matches on common words).",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R6)."
-  ],
+  "steps": "1. Find the search input in the report's own toolbar (not the application's global search bar).\n2. Type part of a known part number, in the wrong letter case (for example lower case for an upper-case part number).\n3. Clear it and type a distinctive word from a part's description.\n4. Clear it and type a category or vendor name that matches no part number or description.",
+  "expected": "1. The search input is part of the report's toolbar (page-specific), separate from the global search bar.\n2. The part-number search matches despite the different letter case (case-insensitive 'contains' match).\n3. The description search returns rows whose description contains the word.\n4. Category and vendor names are NOT searched - use their dedicated filters instead (deliberate, to avoid false matches on common words).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R6).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R6; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
@@ -372,19 +256,8 @@
    "1. You are on the Parts Velocity report with data loaded.",
    "2. You know one part's type, category, and vendor."
   ],
-  "steps": [
-   "1. Set the Type filter to that part's type.",
-   "2. Add the part's category in the Category filter.",
-   "3. Add a vendor that is NOT the part's vendor in the Vendor filter.",
-   "4. Change the Vendor filter to the part's actual vendor."
-  ],
-  "expected": [
-   "1. After steps 1-2 the part is still listed (it satisfies both filters).",
-   "2. After step 3 the part disappears - a part must satisfy EVERY active filter to appear (AND logic, not OR).",
-   "3. After step 4 the part is listed again.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R7)."
-  ],
+  "steps": "1. Set the Type filter to that part's type.\n2. Add the part's category in the Category filter.\n3. Add a vendor that is NOT the part's vendor in the Vendor filter.\n4. Change the Vendor filter to the part's actual vendor.",
+  "expected": "1. After steps 1-2 the part is still listed (it satisfies both filters).\n2. After step 3 the part disappears - a part must satisfy EVERY active filter to appear (AND logic, not OR).\n3. After step 4 the part is listed again.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R7).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R7)",
   "viu_status": "VIU-Pending",
@@ -403,17 +276,8 @@
    "1. You are on the Parts Velocity report with data loaded.",
    "2. Inventory parts are stocked in at least two different bin locations."
   ],
-  "steps": [
-   "1. Open the Bin filter and select one bin location.",
-   "2. Add a second bin location."
-  ],
-  "expected": [
-   "1. Each selection reloads the data from the server.",
-   "2. Only inventory parts stocked in ANY of the selected bins are shown.",
-   "3. The filter allows more than one bin (multi-select).",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R8)."
-  ],
+  "steps": "1. Open the Bin filter and select one bin location.\n2. Add a second bin location.",
+  "expected": "1. Each selection reloads the data from the server.\n2. Only inventory parts stocked in ANY of the selected bins are shown.\n3. The filter allows more than one bin (multi-select).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R8).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R8)",
   "viu_status": "VIU-Pending",
@@ -432,17 +296,8 @@
    "1. You are on the Parts Velocity report with data loaded.",
    "2. Special Order rows are present under Type = Both (a Special Order part has in-window activity)."
   ],
-  "steps": [
-   "1. With Type = Both, select any bin in the Bin filter.",
-   "2. Look for Special Order rows in the result.",
-   "3. Set the Type filter to Special Order while the Bin filter is still active."
-  ],
-  "expected": [
-   "1. With any Bin filter active, ALL Special Order rows are excluded (they have no bin location).",
-   "2. Special Order combined with any Bin filter yields an empty result showing the empty state - this is by design, not a defect.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R8); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
-  ],
+  "steps": "1. With Type = Both, select any bin in the Bin filter.\n2. Look for Special Order rows in the result.\n3. Set the Type filter to Special Order while the Bin filter is still active.",
+  "expected": "1. With any Bin filter active, ALL Special Order rows are excluded (they have no bin location).\n2. Special Order combined with any Bin filter yields an empty result showing the empty state - this is by design, not a defect.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R8); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec S2-R8 - 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31])",
   "viu_status": "VIU-Pending",
@@ -461,24 +316,8 @@
    "1. You are signed in as a user with access to at least two locations.",
    "2. You are on the Parts Velocity report on a first visit (no saved view)."
   ],
-  "steps": [
-   "1. Look at the rightmost control in the filter row.",
-   "2. Note which location is selected by default and compare it to the location selected in the application's global location switcher.",
-   "3. Open the filter and read the list of locations.",
-   "4. Select a second location, then select the 'All Locations' option.",
-   "5. With 'All Locations' active, look at how the rows tell you which location they belong to."
-  ],
-  "expected": [
-   "1. The Location filter is the rightmost control in the filter row and is multi-select.",
-   "2. On a first visit it defaults to the user's currently active location (the one in the global location switcher).",
-   "3. The list holds the locations the signed-in user has access to, plus an 'All Locations' option.",
-   "4. Each selection reloads the data scoped to the chosen set; 'All Locations' means all locations the user can ACCESS, never beyond - a location the user cannot access is never included.",
-   "5. The location scope cascades through every metric like the other filters.",
-   "6. With 'All Locations' active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)",
-   "7. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R9); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
-  ],
+  "steps": "1. Look at the rightmost control in the filter row.\n2. Note which location is selected by default and compare it to the location selected in the application's global location switcher.\n3. Open the filter and read the list of locations.\n4. Select a second location, then select the 'All Locations' option.\n5. With 'All Locations' active, look at how the rows tell you which location they belong to.",
+  "expected": "1. The Location filter is the rightmost control in the filter row and is multi-select.\n2. On a first visit it defaults to the user's currently active location (the one in the global location switcher).\n3. The list holds the locations the signed-in user has access to, plus an 'All Locations' option.\n4. Each selection reloads the data scoped to the chosen set; 'All Locations' means all locations the user can ACCESS, never beyond - a location the user cannot access is never included.\n5. The location scope cascades through every metric like the other filters.\n6. With 'All Locations' active you can tell which location each row's data belongs to — a location label or marking is shown.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R9); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec S2-R9 — per-row location identifier in All-Locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins]",
   "viu_status": "VIU-Pending",
@@ -496,16 +335,8 @@
   "preconditions": [
    "1. You are on the Parts Velocity report with data loaded."
   ],
-  "steps": [
-   "1. Type a nonsense string (for example 'zzqx-no-such-part') into the toolbar search so no part matches.",
-   "2. Read the message shown in the data area."
-  ],
-  "expected": [
-   "1. The server returns zero rows and the table shows the empty state.",
-   "2. The empty-state label reads exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard reports no-data label).",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R11, S2-N1)."
-  ],
+  "steps": "1. Type a nonsense string (for example 'zzqx-no-such-part') into the toolbar search so no part matches.\n2. Read the message shown in the data area.",
+  "expected": "1. The server returns zero rows and the table shows the empty state.\n2. The empty-state label reads exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard reports no-data label).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R11, S2-N1).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R11; S2-N1; §7 — §7 CLOSES the empty-state string verbatim (\"Empty bays\" ... \"Get Going!\") as the standard reports no-data label; so the exact string IS the requirement)",
   "viu_status": "VIU-Pending",
@@ -524,19 +355,8 @@
    "1. You are on the Parts Velocity report with data loaded.",
    "2. A part with in-window activity exists that has NO category assigned; another with NO vendor; an inventory part with NO bin location."
   ],
-  "steps": [
-   "1. Confirm the three parts appear with no filters active.",
-   "2. Activate any Category filter and look for the category-less part.",
-   "3. Clear it, activate any Vendor filter, and look for the vendor-less part.",
-   "4. Clear it, activate any Bin filter, and look for the bin-less inventory part."
-  ],
-  "expected": [
-   "1. The part with no category does not appear when any Category filter is active.",
-   "2. The part with no vendor does not appear when any Vendor filter is active.",
-   "3. The inventory part with no bin location does not appear when any Bin filter is active.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-E1, S2-E2, S2-E3)."
-  ],
+  "steps": "1. Confirm the three parts appear with no filters active.\n2. Activate any Category filter and look for the category-less part.\n3. Clear it, activate any Vendor filter, and look for the vendor-less part.\n4. Clear it, activate any Bin filter, and look for the bin-less inventory part.",
+  "expected": "1. The part with no category does not appear when any Category filter is active.\n2. The part with no vendor does not appear when any Vendor filter is active.\n3. The inventory part with no bin location does not appear when any Bin filter is active.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-E1, S2-E2, S2-E3).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-E1; S2-E2; S2-E3)",
   "viu_status": "VIU-Pending",
@@ -555,16 +375,8 @@
    "1. You are signed in as a user with access to exactly one location.",
    "2. You are on the Parts Velocity report with data loaded."
   ],
-  "steps": [
-   "1. Look for the Location filter in the toolbar.",
-   "2. Then sign in as a user with access to two or more locations and look again."
-  ],
-  "expected": [
-   "1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.",
-   "2. For the user with access to two or more locations the Location filter IS shown.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-E4). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
-  ],
+  "steps": "1. Look for the Location filter in the toolbar.\n2. Then sign in as a user with access to two or more locations and look again.",
+  "expected": "1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.\n2. For the user with access to two or more locations the Location filter IS shown.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-E4). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec S2-E4 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S2-E4 \"still sees the filter\" note is stale; spec edit pending)",
   "viu_status": "VIU-Pending",
@@ -583,29 +395,8 @@
    "1. You are on the Parts Velocity report as a user with access to two or more locations, with data loaded.",
    "2. The same inventory part is stocked at two of those locations, and at least one Special Order part has vendor requests at two of them."
   ],
-  "steps": [
-   "1. Select two or more locations and read the column headers from the left.",
-   "2. Read the Location cell on each of the two inventory rows for the part stocked at both locations.",
-   "3. Read the Location cell on the merged Special Order row.",
-   "4. Open the column picker and look for Location in the list.",
-   "5. Narrow to a single location and read the headers again.",
-   "6. With more than one location still selected, download the CSV and the PDF and read their columns from the left."
-  ],
-  "expected": [
-   "1. With more than one location in scope a Location column is shown as the LEFTMOST column, before Type.",
-   "2. Each inventory row shows its own location's name (an inventory row is one part at one location).",
-   "3. The merged Special Order row shows \"Multiple\", because it is summed across the selected locations.",
-   "4. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all.",
-   "5. With a single location in scope the Location column is hidden.",
-   "6. Both downloads include the Location column in the same position it holds on screen (leftmost, before Type), with the same values — each inventory row's own location, and \"Multiple\" on the merged Special Order row.",
-   "---",
-   "Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.",
-   "",
-   "DO NOT AUTOMATE YET: part of this behaviour is still waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
-   "The open question is in: Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx",
-   "",
-   "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Parts Velocity report specification version 4 (S2-R12, S3-R10, S7-R8, S6-R11) differs, his decision is the authority."
-  ],
+  "steps": "1. Select two or more locations and read the column headers from the left.\n2. Read the Location cell on each of the two inventory rows for the part stocked at both locations.\n3. Read the Location cell on the merged Special Order row.\n4. Open the column picker and look for Location in the list.\n5. Narrow to a single location and read the headers again.\n6. With more than one location still selected, download the CSV and the PDF and read their columns from the left.",
+  "expected": "1. With more than one location in scope a Location column is shown as the LEFTMOST column, before Type.\n2. Each inventory row shows its own location's name (an inventory row is one part at one location).\n3. The merged Special Order row shows \"Multiple\", because it is summed across the selected locations.\n4. With a single location in scope the Location column is hidden.\n5. Both downloads include the Location column in the same position it holds on screen (leftmost, before Type), with the same values — each inventory row's own location, and \"Multiple\" on the merged Special Order row.\n---\nNote for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.\nThe Location column is not one of the columns in the column-selection control and you cannot switch it on or off: it appears by itself whenever more than one location is in scope, and is hidden whenever a single location is in scope.\nNote for the tester: the product owner has been asked to confirm this one point and has not answered yet, so do not raise a bug either way — record what you see. The question is in Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx\n\n---\n\n---\nThis is the expected behaviour as per the Parts Velocity report specification version 5 (S2-R12, S3-R10, S7-R8, S6-R11), and as per the build tested on 8/4/2026 (build v3.4.1-3d03023). The product owner's answer of 8/5/2026 in this file reads both ways on the one point about the Location column, so it has NOT been treated as overriding the specification and he has been asked again: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: HOLD - waiting on one answer from the product owner about the Location column\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8642; SV-8646 (PV spec v4 2026-07-29 S2-R12; S3-R10; S7-R8; S6-R11 — per-row Location column; leftmost before Type; \"Multiple\" on the merged special-order row; not in the picker; S6-R11 = the same column in both exports)",
   "viu_status": "VIU-Pending",

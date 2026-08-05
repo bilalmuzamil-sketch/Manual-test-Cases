@@ -144,7 +144,21 @@ def clean(s):
 
 
 def joinlines(lst):
-    return "\n".join(clean(x.rstrip()) for x in (lst or []))
+    """Join a case field into import text.
+
+    ⚠️ THE SHREDDING LANDMINE (fired again 2026-08-05, all 473 rows). A live re-sync
+    writes these fields as a single STRING, not a list of lines. Iterating a string
+    yields one CHARACTER at a time, so the old `"\\n".join(x for x in lst)` put a
+    newline between EVERY CHARACTER of preconditions / steps / expected — silently,
+    with no error and no change in row count. Split a string into lines first.
+    The Schedule generator was fixed the same way on 2026-08-04; this is the same bug
+    in the Report Suite copy.
+    """
+    if lst is None:
+        return ""
+    if isinstance(lst, str):
+        lst = lst.split("\n")
+    return "\n".join(clean(str(x).rstrip()) for x in lst)
 
 
 def load_cases():

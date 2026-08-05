@@ -5,46 +5,70 @@ Parts Velocity appears under a new Parts section in the Reports navigation,PV �
 3. Click the entry labeled Parts Velocity.","1. A Parts section heading exists in the Reports navigation (this feature creates it - the application had no Parts reports before).
 2. Under Parts there is an entry labeled Parts Velocity; Inventory Value also lives under Parts. The order of the two inside the Parts section is not fixed — do not fail the test on which of them comes first.
 3. Clicking it opens the Parts Velocity report.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S1-R1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.","SV-8641 (PV spec S1-R1 — the ""only report"" sentence is superseded: Parts Velocity and Inventory Value BOTH live under Parts per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03)",,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S1-R1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.
+
+AUTOMATION: READY
+","SV-8641 (PV spec S1-R1 — the ""only report"" sentence is superseded: Parts Velocity and Inventory Value BOTH live under Parts per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03)",,
 First visit: date range defaults to This Year and data is fetched automatically,PV — Access & Defaults,Functional,High,"1. You are signed in as a user allowed to open the report.
 2. You are using a browser with NO saved view for this report (e.g. a fresh browser profile or after clearing the site's browser storage), so first-visit defaults apply.","1. Open Reports → Parts → Parts Velocity.
 2. Look at the date range selector and the table without touching anything.","1. The date range selector shows This Year.
 2. Report data loads automatically - you do not have to press anything to fetch it.
 3. Rows appear ranked by Demand, highest first (the default order).
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S1-R2, S4-R6).",SV-8641 (PV spec v4 2026-07-29 S1-R2; S4-R6),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S1-R2, S4-R6).
+
+AUTOMATION: READY
+",SV-8641 (PV spec v4 2026-07-29 S1-R2; S4-R6),,
 A loading indicator shows and old rows are replaced only when data returns,PV — Access & Defaults,Functional,Medium,"1. You are signed in as a user allowed to open the report.
 2. Enough parts data exists that the report visibly takes a moment to load.","1. Open the Parts Velocity report and watch the table area during the initial load.
 2. After it loads, change any filter that reloads the data from the server (for example the Type filter).
 3. Watch the table while the new data is being fetched.","1. During the initial load, the table shows a loading indicator.
 2. During a filter change, the loading indicator shows again.
 3. The rows already on screen are replaced only when the new data comes back - the table does not blank out and rebuild mid-request.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S1-R3).",SV-8641 (PV spec v4 2026-07-29 S1-R3),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S1-R3).
+
+AUTOMATION: READY
+",SV-8641 (PV spec v4 2026-07-29 S1-R3),,
 A user with ordinary reports access can load the report and export it,PV — Permissions,Functional,Critical,"1. You are signed in as a user with the Manager or Office User role.
 2. That user's role has the ordinary reports access (the standard ""can this person see reports"" setting).
 3. Some parts have sales activity in the selected date range.","1. Open Reports → Parts → Parts Velocity.
 2. Wait for the data to load.
 3. Open the export menu and download the CSV.","1. The report data loads and rows are shown.
 2. The export downloads successfully — both opening the report and exporting it are allowed by the same ordinary reports access.
-3. Note for the tester: for now ONE ordinary reports access opens all six of these new reports; none of them has a permission of its own. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.
+3. Note for the tester: the specification allows ONE ordinary reports access for all six of these new reports and no per-report permission. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S1-R4); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.","SV-8641 (PV spec S1-R4 — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW""; PV S1-R4 still names Inventory Reports > View — his spec edit owed)",,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S1-R4); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.
+
+AUTOMATION: READY
+","SV-8641 (PV spec S1-R4 — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW""; PV S1-R4 still names Inventory Reports > View — his spec edit owed)",,
 Without the Manager or Office User role the report entry is not shown,PV — Permissions,Negative,High,1. You are signed in as a user whose role is neither Manager nor Office User (a role without access to the Reports section).,"1. Look at the application's main navigation.
 2. Try to find the Reports section and the Parts Velocity entry.","1. The user cannot reach the Reports section.
 2. The Parts Velocity navigation entry is not shown (this is the Reports section's own access control, not a report-specific rule).
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S1-N1).",SV-8641 (PV spec v4 2026-07-29 S1-N1),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S1-N1).
+
+AUTOMATION: READY
+",SV-8641 (PV spec v4 2026-07-29 S1-N1),,
 Ordinary reports access alone opens Parts Velocity and its export,PV — Permissions,Negative,High,"1. You are signed in as a user with the Manager or Office User role.
 2. That user's role has the ordinary reports access turned on (the standard ""can this person see reports"" setting) and no other reports-related permission turned on.","1. Open the Reports section and look for the Parts Velocity entry under Parts.
 2. Click the Parts Velocity entry.
 3. Use the export control on the report and download a file.","1. The Parts Velocity entry is visible in the Reports navigation under Parts.
 2. Opening it shows the report data - not an access-denied screen.
 3. The export downloads.
-4. Note for the tester: for now ONE ordinary reports access opens all six of these new reports, and no report has a permission of its own. If an extra Parts or Inventory reports permission does exist and switching it OFF blocks this report or its export, that is wrong - mark this Failed and report it. If a separate per-report permission is ever added on purpose in a later release, this test will be updated first, so treat that as a planned change and not as a bug.
+4. Note for the tester: the specification allows ONE ordinary reports access for all six of these new reports and no per-report permission. If an extra Parts or Inventory reports permission does exist and switching it OFF blocks this report or its export, that is wrong - mark this Failed and report it. If a separate per-report permission is ever added on purpose in a later release, this test will be updated first, so treat that as a planned change and not as a bug.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S1-N2, S1-R4); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.","SV-8641 (PV spec S1-N2; S1-R4 - RESCOPED 2026-08-03: the old ""Reports access without Inventory Reports View"" state cannot exist under one permission; Chris Ward Q2=A + ""they can exist and not do anything""; QA lead ""ONE permission FOR NOW"")",,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S1-N2, S1-R4); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.
+
+AUTOMATION: READY
+","SV-8641 (PV spec S1-N2; S1-R4 - RESCOPED 2026-08-03: the old ""Reports access without Inventory Reports View"" state cannot exist under one permission; Chris Ward Q2=A + ""they can exist and not do anything""; QA lead ""ONE permission FOR NOW"")",,
 "Type filter: single-select, first in row, three options, default Both; reloads",PV — Filters,Functional,High,"1. You are on the Parts Velocity report with data loaded.
 2. This is a first visit (no saved view), so the first-visit defaults apply.
 3. Both inventory parts and special-order parts (the ""Special Order"" type) have sales activity in the selected date range.","1. Look at the first control in the filter row of the toolbar.
@@ -55,15 +79,23 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 3. On a first visit the default is Both.
 4. Both is an explicit selection returning inventory and Special Order rows together - a deliberate filter value, not the absence of a filter.
 5. Each selection immediately reloads the report limited to that type (no separate Apply step) - under Inventory every row's Type column reads Inventory; under Special Order every row's Type column reads Special Order; under Both, rows of both kinds appear.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R1, S3-R5); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8642 (PV spec v4 2026-07-29 S2-R1; S3-R5 — S2-R1 CLOSES the three Type options and the Both default; 'Catalogue'→'Special Order' per Chris Ward 2026-07-29 [newest-wins]),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R1, S3-R5); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.
+
+AUTOMATION: READY
+",SV-8642 (PV spec v4 2026-07-29 S2-R1; S3-R5 — S2-R1 CLOSES the three Type options and the Both default; 'Catalogue'→'Special Order' per Chris Ward 2026-07-29 [newest-wins]),,
 Date range selector offers exactly the eleven bounded options and no All Time,PV — Filters,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Open the date range selector and read every option.
 2. Select a non-custom option (for example Last Month).","1. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no ""Today"", no ""Yesterday"" and no item called ""Custom"" - you build your own range on the calendar instead. There is no ""All Time"" option.
 2. The report always operates over a bounded date window, which is why no All-Time period is offered.
 3. Selecting a non-custom option immediately reloads the report data.
 4. The named ranges use the application's standard shared calendar boundaries (the same boundaries every report's date picker uses).
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Parts Velocity report specification version 4 (S2-R2) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true","SV-8642 (PV spec v4 2026-07-29 S2-R2; §2 Out of Scope — S2-R2 CLOSES it in the spec's own words (""offering exactly these options"") and rules out ""All Time""; so the closed list IS the requirement)",,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Parts Velocity report specification version 5 (S2-R2) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+
+AUTOMATION: READY
+","SV-8642 (PV spec v4 2026-07-29 S2-R2; §2 Out of Scope — S2-R2 CLOSES it in the spec's own words (""offering exactly these options"") and rules out ""All Time""; so the closed list IS the requirement)",,
 A Custom date range needs valid dates and rejects a span over 366 days,PV — Filters,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Open the date range selector and choose Custom.
 2. Pick only a start date and observe - then pick an end date earlier than the start and observe.
 3. Pick a valid start and end date (start on or before end, within 366 days).
@@ -71,8 +103,12 @@ A Custom date range needs valid dates and rejects a span over 366 days,PV — Fi
 2. The report does not reload until both dates are valid; a start after the end is not accepted.
 3. With both valid dates selected, the data reloads for that range.
 4. A span wider than 366 days (counting both the start and end dates) is rejected - the selection is not applied.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R3).",SV-8642 (PV spec v4 2026-07-29 S2-R3),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R3).
+
+AUTOMATION: READY
+",SV-8642 (PV spec v4 2026-07-29 S2-R3),,
 Category and Vendor multi-select filters limit the table to matching parts,PV — Filters,Functional,Medium,"1. You are on the Parts Velocity report with data loaded.
 2. Parts with different categories and different vendors have activity in the range.","1. Open the Category filter and select one category; then add a second category.
 2. Clear the Category filter.
@@ -80,8 +116,12 @@ Category and Vendor multi-select filters limit the table to matching parts,PV �
 2. With categories selected, only parts in any of the selected categories are shown.
 3. With vendors selected, only parts supplied by any of the selected vendors are shown.
 4. Each change reloads the data from the server.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R4, S2-R5, S2-R10).",SV-8642 (PV spec v4 2026-07-29 S2-R4; S2-R5; S2-R10),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R4, S2-R5, S2-R10).
+
+AUTOMATION: READY
+",SV-8642 (PV spec v4 2026-07-29 S2-R4; S2-R5; S2-R10),,
 "Toolbar search matches part number or description, case-insensitively",PV — Filters,Functional,High,"1. You are on the Parts Velocity report with data loaded.
 2. A part exists whose part number you know, and another whose description contains a distinctive word.","1. Find the search input in the report's own toolbar (not the application's global search bar).
 2. Type part of a known part number, in the wrong letter case (for example lower case for an upper-case part number).
@@ -90,8 +130,12 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 2. The part-number search matches despite the different letter case (case-insensitive 'contains' match).
 3. The description search returns rows whose description contains the word.
 4. Category and vendor names are NOT searched - use their dedicated filters instead (deliberate, to avoid false matches on common words).
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R6).",SV-8642 (PV spec v4 2026-07-29 S2-R6; §3 Key Decisions),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R6).
+
+AUTOMATION: READY
+",SV-8642 (PV spec v4 2026-07-29 S2-R6; §3 Key Decisions),,
 All active filters combine with AND logic,PV — Filters,Functional,Medium,"1. You are on the Parts Velocity report with data loaded.
 2. You know one part's type, category, and vendor.","1. Set the Type filter to that part's type.
 2. Add the part's category in the Category filter.
@@ -99,22 +143,34 @@ All active filters combine with AND logic,PV — Filters,Functional,Medium,"1. Y
 4. Change the Vendor filter to the part's actual vendor.","1. After steps 1-2 the part is still listed (it satisfies both filters).
 2. After step 3 the part disappears - a part must satisfy EVERY active filter to appear (AND logic, not OR).
 3. After step 4 the part is listed again.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R7).",SV-8642 (PV spec v4 2026-07-29 S2-R7),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R7).
+
+AUTOMATION: READY
+",SV-8642 (PV spec v4 2026-07-29 S2-R7),,
 The Bin multi-select limits the table to parts stocked in those bins,PV — Filters,Functional,Medium,"1. You are on the Parts Velocity report with data loaded.
 2. Inventory parts are stocked in at least two different bin locations.","1. Open the Bin filter and select one bin location.
 2. Add a second bin location.","1. Each selection reloads the data from the server.
 2. Only inventory parts stocked in ANY of the selected bins are shown.
 3. The filter allows more than one bin (multi-select).
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R8).",SV-8642 (PV spec v4 2026-07-29 S2-R8),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R8).
+
+AUTOMATION: READY
+",SV-8642 (PV spec v4 2026-07-29 S2-R8),,
 Bin filter excludes special-order rows; Bin plus that Type is empty by design,PV — Filters,Negative,Medium,"1. You are on the Parts Velocity report with data loaded.
 2. Special Order rows are present under Type = Both (a Special Order part has in-window activity).","1. With Type = Both, select any bin in the Bin filter.
 2. Look for Special Order rows in the result.
 3. Set the Type filter to Special Order while the Bin filter is still active.","1. With any Bin filter active, ALL Special Order rows are excluded (they have no bin location).
 2. Special Order combined with any Bin filter yields an empty result showing the empty state - this is by design, not a defect.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R8); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8642 (PV spec S2-R8 - 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31]),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R8); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.
+
+AUTOMATION: READY
+",SV-8642 (PV spec S2-R8 - 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31]),,
 "Location filter is rightmost, defaults to the active location, accessible-only",PV — Filters,Functional,High,"1. You are signed in as a user with access to at least two locations.
 2. You are on the Parts Velocity report on a first visit (no saved view).","1. Look at the rightmost control in the filter row.
 2. Note which location is selected by default and compare it to the location selected in the application's global location switcher.
@@ -125,15 +181,22 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 3. The list holds the locations the signed-in user has access to, plus an 'All Locations' option.
 4. Each selection reloads the data scoped to the chosen set; 'All Locations' means all locations the user can ACCESS, never beyond - a location the user cannot access is never included.
 5. The location scope cascades through every metric like the other filters.
-6. With 'All Locations' active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)
-7. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).
+6. With 'All Locations' active you can tell which location each row's data belongs to — a location label or marking is shown.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R9); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8642 (PV spec S2-R9 — per-row location identifier in All-Locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins],,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R9); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.
+
+AUTOMATION: READY
+",SV-8642 (PV spec S2-R9 — per-row location identifier in All-Locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins],,
 Empty state shows the standard no-data message when no parts match the filters,PV — Filters,Negative,Medium,1. You are on the Parts Velocity report with data loaded.,"1. Type a nonsense string (for example 'zzqx-no-such-part') into the toolbar search so no part matches.
 2. Read the message shown in the data area.","1. The server returns zero rows and the table shows the empty state.
 2. The empty-state label reads exactly: ""Empty bays, endless possibilities. Get Going!"" (the application's standard reports no-data label).
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R11, S2-N1).","SV-8642 (PV spec v4 2026-07-29 S2-R11; S2-N1; §7 — §7 CLOSES the empty-state string verbatim (""Empty bays"" ... ""Get Going!"") as the standard reports no-data label; so the exact string IS the requirement)",,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R11, S2-N1).
+
+AUTOMATION: READY
+","SV-8642 (PV spec v4 2026-07-29 S2-R11; S2-N1; §7 — §7 CLOSES the empty-state string verbatim (""Empty bays"" ... ""Get Going!"") as the standard reports no-data label; so the exact string IS the requirement)",,
 Parts with no category; vendor or bin are excluded when that filter is on,PV — Filters,Negative,Medium,"1. You are on the Parts Velocity report with data loaded.
 2. A part with in-window activity exists that has NO category assigned; another with NO vendor; an inventory part with NO bin location.","1. Confirm the three parts appear with no filters active.
 2. Activate any Category filter and look for the category-less part.
@@ -141,14 +204,22 @@ Parts with no category; vendor or bin are excluded when that filter is on,PV —
 4. Clear it, activate any Bin filter, and look for the bin-less inventory part.","1. The part with no category does not appear when any Category filter is active.
 2. The part with no vendor does not appear when any Vendor filter is active.
 3. The inventory part with no bin location does not appear when any Bin filter is active.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-E1, S2-E2, S2-E3).",SV-8642 (PV spec v4 2026-07-29 S2-E1; S2-E2; S2-E3),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-E1, S2-E2, S2-E3).
+
+AUTOMATION: READY
+",SV-8642 (PV spec v4 2026-07-29 S2-E1; S2-E2; S2-E3),,
 Parts Velocity: the Location filter is hidden for a one-location user,PV — Filters,Functional,Low,"1. You are signed in as a user with access to exactly one location.
 2. You are on the Parts Velocity report with data loaded.","1. Look for the Location filter in the toolbar.
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.
 2. For the user with access to two or more locations the Location filter IS shown.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-E4). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true","SV-8642 (PV spec S2-E4 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S2-E4 ""still sees the filter"" note is stale; spec edit pending)",,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-E4). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+
+AUTOMATION: READY
+","SV-8642 (PV spec S2-E4 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S2-E4 ""still sees the filter"" note is stale; spec edit pending)",,
 "The Location column shows only with more than one location, leftmost before Type",PV — Filters,Functional,High,"1. You are on the Parts Velocity report as a user with access to two or more locations, with data loaded.
 2. The same inventory part is stocked at two of those locations, and at least one Special Order part has vendor requests at two of them.","1. Select two or more locations and read the column headers from the left.
 2. Read the Location cell on each of the two inventory rows for the part stocked at both locations.
@@ -158,31 +229,43 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 6. With more than one location still selected, download the CSV and the PDF and read their columns from the left.","1. With more than one location in scope a Location column is shown as the LEFTMOST column, before Type.
 2. Each inventory row shows its own location's name (an inventory row is one part at one location).
 3. The merged Special Order row shows ""Multiple"", because it is summed across the selected locations.
-4. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all.
-5. With a single location in scope the Location column is hidden.
-6. Both downloads include the Location column in the same position it holds on screen (leftmost, before Type), with the same values — each inventory row's own location, and ""Multiple"" on the merged Special Order row.
+4. With a single location in scope the Location column is hidden.
+5. Both downloads include the Location column in the same position it holds on screen (leftmost, before Type), with the same values — each inventory row's own location, and ""Multiple"" on the merged Special Order row.
 ---
 Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.
+The Location column is not one of the columns in the column-selection control and you cannot switch it on or off: it appears by itself whenever more than one location is in scope, and is hidden whenever a single location is in scope.
+Note for the tester: the product owner has been asked to confirm this one point and has not answered yet, so do not raise a bug either way — record what you see. The question is in Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx
 
-DO NOT AUTOMATE YET: part of this behaviour is still waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx
+---
 
-This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Parts Velocity report specification version 4 (S2-R12, S3-R10, S7-R8, S6-R11) differs, his decision is the authority.","SV-8642; SV-8646 (PV spec v4 2026-07-29 S2-R12; S3-R10; S7-R8; S6-R11 — per-row Location column; leftmost before Type; ""Multiple"" on the merged special-order row; not in the picker; S6-R11 = the same column in both exports)",,
+---
+This is the expected behaviour as per the Parts Velocity report specification version 5 (S2-R12, S3-R10, S7-R8, S6-R11), and as per the build tested on 8/4/2026 (build v3.4.1-3d03023). The product owner's answer of 8/5/2026 in this file reads both ways on the one point about the Location column, so it has NOT been treated as overriding the specification and he has been asked again: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+
+AUTOMATION: HOLD - waiting on one answer from the product owner about the Location column
+","SV-8642; SV-8646 (PV spec v4 2026-07-29 S2-R12; S3-R10; S7-R8; S6-R11 — per-row Location column; leftmost before Type; ""Multiple"" on the merged special-order row; not in the picker; S6-R11 = the same column in both exports)",,
 A part stocked at two selected locations shows as two per-location rows,PV — Row Model,Functional,Critical,"1. The same part number is stocked as an inventory part at two locations the user can access, with different On Hand / Min / Max values at each.
 2. You are on the Parts Velocity report with both locations selected in the Location filter.","1. Search for the part number in the toolbar search.
 2. Count the rows returned for it and read each row's On Hand, Min, and Max.","1. The part appears as TWO inventory rows - one per selected location (an inventory part is a per-location stock record).
 2. Each row carries only that one location's On Hand, Min, and Max.
 3. On Hand / Min / Max are NEVER summed across locations.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S3-R1a).",SV-8643 (PV spec v4 2026-07-29 S3-R1a; §3 Key Decisions),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S3-R1a).
+
+AUTOMATION: READY
+",SV-8643 (PV spec v4 2026-07-29 S3-R1a; §3 Key Decisions),,
 A Special Order part is one merged row summed across selected locations,PV — Row Model,Functional,High,"1. The same special-order (vendor-sourced) part was requested on invoiced/paid work orders at two locations the user can access, inside the window.
 2. You are on the Parts Velocity report with both locations selected.","1. Search for the special-order part.
 2. Count its rows and read its movement and money values.
 3. Compare against the per-location values with only one location selected at a time.","1. The special-order part appears as a SINGLE row (one row per special-order part, merged across the selected locations).
 2. Its movement and profitability values are the SUM of the per-location values.
 3. Its inventory-only columns (On Hand, Turns / Yr, Min, Max) show — (em-dash), because special-order parts are not stocked.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S3-R1a).",SV-8643 (PV spec v4 2026-07-29 S3-R1a; §3 Key Decisions),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S3-R1a).
+
+AUTOMATION: READY
+",SV-8643 (PV spec v4 2026-07-29 S3-R1a; §3 Key Decisions),,
 "Rows load ranked by Demand descending, indicator on the Demand header",PV — Row Model,Functional,High,"1. You are on the Parts Velocity report on a first visit (no saved sort).
 2. Several parts have different Demand counts in the window; at least one inventory and one special-order part share the same Demand count.","1. Let the report load without clicking any header.
 2. Read the Demand column top to bottom.
@@ -191,8 +274,12 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 2. Inventory and special-order rows are ranked together in one list.
 3. Rows with equal Demand keep inventory-before-special-order order.
 4. The Demand header shows the descending sort indicator - this initial order IS the active sort (it is what the remembered view saves until you click another header).
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S3-R2).",SV-8643 (PV spec v4 2026-07-29 S3-R2),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S3-R2).
+
+AUTOMATION: READY
+",SV-8643 (PV spec v4 2026-07-29 S3-R2),,
 "A header click sorts ascending first, toggles, and places nulls by direction",PV — Row Model,Functional,High,"1. You are on the Parts Velocity report with data loaded.
 2. Both inventory and special-order rows are present (so a nullable column such as On Hand has both values and — cells).","1. Click the header of a column that is not currently sorted (for example On Hand).
 2. Click the same header again.
@@ -201,15 +288,23 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 2. Clicking the active sort column again reverses the direction; the arrow flips.
 3. Null / — values are placed FIRST on ascending and LAST on descending.
 4. Every column is sortable; each header click re-fetches the data (server-resolved) and shows the first page of the re-sorted result; ties keep a stable order.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S3-R3).",SV-8643 (PV spec v4 2026-07-29 S3-R3),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S3-R3).
+
+AUTOMATION: READY
+",SV-8643 (PV spec v4 2026-07-29 S3-R3),,
 "Sticky header, all-left alignment on screen, and plain-text Type values",PV — Row Model,Functional,Medium,1. You are on the Parts Velocity report with enough rows to scroll the table body vertically.,"1. Scroll the table body down and watch the header row.
 2. Read the Type column values.
 3. Look at the alignment of every header label and cell, including numeric and money columns.","1. The header row is sticky - it stays visible while the body scrolls.
 2. The Type column shows each row's kind as plain text (no badge or chip styling): ""Inventory"" or ""Special Order"".
 3. ALL columns - header and cell data, including numbers and money - are left-aligned on screen. (The exports right-align numerics instead: a deliberate export-only difference.)
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S3-R4, S3-R5, S3-R8); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8643 (PV spec S3-R4; S3-R5; S3-R8 - Type value 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31]),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S3-R4, S3-R5, S3-R8); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.
+
+AUTOMATION: READY
+",SV-8643 (PV spec S3-R4; S3-R5; S3-R8 - Type value 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31]),,
 "Info icons sit on Units Sold, Demand and Turns/Yr with descriptions",PV — Row Model,Functional,Medium,"1. You are on the Parts Velocity report with data loaded.
 2. The Turns/Yr column has been enabled via the column picker (it is hidden by default).","1. Look immediately to the right of the Units Sold, Demand, and Turns/Yr header labels.
 2. Hover each grey info icon and read the description.
@@ -220,8 +315,12 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 4. Turns/Yr shows exactly: ""How many times you sell through this part in a year. Higher is better.""
 5. The icon is focusable and exposes the same text to assistive technology; activating it does NOT trigger a column sort.
 6. No other column header carries an info icon.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S3-R6).",SV-8643 (PV spec v4 2026-07-29 S3-R6 — S3-R6 CLOSES the set (exactly three columns: Units Sold; Demand; Turns / Yr) and quotes each description verbatim; so the closed set and the exact strings ARE the requirement),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S3-R6).
+
+AUTOMATION: READY
+",SV-8643 (PV spec v4 2026-07-29 S3-R6 — S3-R6 CLOSES the set (exactly three columns: Units Sold; Demand; Turns / Yr) and quotes each description verbatim; so the closed set and the exact strings ARE the requirement),,
 Description; Category and Vendor truncate on hover; Part # never does,PV — Row Model,Functional,Medium,"1. A part with a very long description (and a long category and vendor name) has in-window activity.
 2. A part with a long part number exists.
 3. You are on the Parts Velocity report with those parts visible.","1. Look at the long Description, Category, and Vendor cells.
@@ -229,69 +328,109 @@ Description; Category and Vendor truncate on hover; Part # never does,PV — Row
 3. Look at the long Part # cell.","1. Long Description, Category, and Vendor text is truncated with an ellipsis on screen.
 2. The full value shows on native hover (browser tooltip).
 3. Part # is NEVER truncated - on screen (and in the exports).
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S3-R7).",SV-8643 (PV spec v4 2026-07-29 S3-R7),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S3-R7).
+
+AUTOMATION: READY
+",SV-8643 (PV spec v4 2026-07-29 S3-R7),,
 Em-dash only in nullable fields; counts and Revenue/Margin are never null,PV — Row Model,Functional,High,"1. You are on the Parts Velocity report with all 20 columns enabled.
 2. A special-order row is visible, plus an inventory row with no in-window activity that stays in the report via on-hand stock.","1. On the special-order row, read On Hand, Turns / Yr, Min, and Max.
 2. On the no-activity inventory row, read Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Demand, Revenue, and Margin.","1. On Hand, Turns / Yr, Min, and Max show — (em-dash) on special-order rows - always.
 2. The count metrics and money totals are NEVER null: Units Sold / Units Returned / Sold (WO) / Sold (Parts Sale) show 0.00, Demand shows 0, Revenue and Margin show $0.00.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S3-R9, S5-R5).",SV-8643 (PV spec v4 2026-07-29 S3-R9; S5-R5),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S3-R9, S5-R5).
+
+AUTOMATION: READY
+",SV-8643 (PV spec v4 2026-07-29 S3-R9; S5-R5),,
 "An inventory part drops out only with no movement, no stock and no revenue",PV — Row Model,Negative,High,"1. Inventory part A: zero stock movement in the window, less than one unit on hand, zero billed revenue in the window.
 2. Inventory part B: zero stock movement and zero on hand, but billed revenue in the window (e.g. a drop-ship sale billed without a stock decrement).","1. Search for part A in the report.
 2. Search for part B in the report.","1. Part A does NOT appear - it fails all three keep-criteria (no movement, under one on hand, no revenue) so it carries nothing to act on.
 2. Part B DOES appear - a part with billed Revenue > 0 is always kept even with no stock movement and no on-hand stock.
 3. (Special Order parts have no such rule: a never-requested special-order part simply produces no row.)
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S3-N1).",SV-8643 (PV spec v4 2026-07-29 S3-N1),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S3-N1).
+
+AUTOMATION: READY
+",SV-8643 (PV spec v4 2026-07-29 S3-N1),,
 Column picker lists all 20 columns and never offers the internal cost,PV — Columns & Remembered View,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Open the column picker from its toolbar button.
 2. Count the columns listed and check each has a toggle.
 3. Look for any on-hand cost / inventory-value entry.","1. The picker lists all 20 available columns, each with a toggle: Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns/Yr, Min, Max.
 2. No on-hand cost column is offered - the report computes one internally but it is never selectable and never displayed.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S4-R1, S4-R4, S5-R6).",SV-8644 (PV spec v4 2026-07-29 S4-R1; S4-R4; S5-R6),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S4-R1, S4-R4, S5-R6).
+
+AUTOMATION: READY
+",SV-8644 (PV spec v4 2026-07-29 S4-R1; S4-R4; S5-R6),,
 First visit shows exactly the 14 default columns in the specified order,PV — Columns & Remembered View,Functional,Critical,1. You are on the Parts Velocity report on a first visit (no saved column selection).,1. Read the visible column headers left to right without touching the picker.,"1. With a single location in scope exactly these 14 columns show, in this left-to-right order: Type, Part #, Description, Category, Vendor, Units Sold, Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand.
 2. The other 6 columns start hidden: Units Returned, Sold (WO), Sold (Parts Sale), Turns / Yr, Min, Max.
-3. When more than one location is selected the Location column shows as well, leftmost before Type — 15 columns. It is already switched on for you; you do not have to turn it on, and you can switch it off again. It is not part of the 14-column default set, so its presence is expected and is not a failure of this test.
----
-DO NOT AUTOMATE YET: part of this behaviour is still waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx
+3. When more than one location is in scope the Location column shows as well, leftmost before Type — 15 columns. It is not one of the columns in the column-selection control and you cannot switch it on or off: it appears by itself whenever more than one location is in scope, and is hidden whenever a single location is in scope. It is not part of the 14-column default set, so its presence is expected and is not a failure of this test.
+Note for the tester: the product owner has been asked to confirm this one point and has not answered yet, so do not raise a bug either way — record what you see. The question is in Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx
 
-This is the expected behaviour as per the Parts Velocity report specification version 4 (S4-R2, S4-R3, S3-R10) for the 14 default columns and the 6 hidden ones. The part about the Location column follows Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true; his decision differs from what this case said before, which stated the Location column is not in the column picker, and we have taken his later decision as the one that prevails.",SV-8644; SV-8643 (PV spec v4 2026-07-29 S4-R2; S4-R3 + Story 3 S3-R10 — the 14 default-visible columns and the 6 hidden ones; plus the automatic Location column leftmost when more than one location is in scope),,
+---
+
+---
+This is the expected behaviour as per the Parts Velocity report specification version 5 (S3-R10), and as per the build tested on 8/4/2026 (build v3.4.1-3d03023). The product owner's answer of 8/5/2026 in this file reads both ways on the one point about the Location column, so it has NOT been treated as overriding the specification and he has been asked again: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+
+AUTOMATION: HOLD - waiting on one answer from the product owner about the Location column
+",SV-8644; SV-8643 (PV spec v4 2026-07-29 S4-R2; S4-R3 + Story 3 S3-R10 — the 14 default-visible columns and the 6 hidden ones; plus the automatic Location column leftmost when more than one location is in scope),,
 "A re-enabled column returns to its canonical slot, with no reload",PV — Columns & Remembered View,Functional,Medium,1. You are on the Parts Velocity report with data loaded.,"1. In the column picker, enable Min, then Units Returned, then Turns/Yr - in that (non-canonical) order.
 2. Watch the table as each toggle is flipped.
 3. Read the resulting header order.","1. Each toggle takes effect immediately - the table re-renders without a page reload.
 2. Columns always render in the fixed canonical left-to-right order regardless of the order they were toggled on (with the automatic Location column, when shown, sitting leftmost before Type): Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns/Yr, Min, Max.
 3. So Units Returned slots in right after Units Sold, Turns/Yr after On Hand, and Min before Max - not appended at the end.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S4-R4, S4-R5, S3-R10).",SV-8644; SV-8643 (PV spec v4 2026-07-29 S4-R4; S4-R5 + Story 3 S3-R10 — canonical column order and immediate re-render; plus the automatic Location column leftmost when shown),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S4-R4, S4-R5, S3-R10).
+
+AUTOMATION: READY
+",SV-8644; SV-8643 (PV spec v4 2026-07-29 S4-R4; S4-R5 + Story 3 S3-R10 — canonical column order and immediate re-render; plus the automatic Location column leftmost when shown),,
 Filters; columns and sort are remembered per browser before the first fetch,PV — Columns & Remembered View,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Set a non-default view: Type = Inventory, date range = Last Month, pick a category, enable Turns / Yr, and sort by Revenue descending.
 2. Leave the report (navigate elsewhere), then return to it.
 3. Reload the page (browser refresh) and observe again.","1. On return, every saved setting is restored: Type = Inventory, Last Month, the chosen category, the column set including Turns / Yr, and the Revenue-descending sort.
 2. The saved values are applied BEFORE the first data fetch - the report does not flash the defaults and then re-query.
 3. The saved values take precedence over the first-visit defaults (This Year / Both / active location / 14 columns / Demand-descending).
 4. The same holds after a full page reload.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S4-R6, S1-R2).",SV-8644 (PV spec v4 2026-07-29 S4-R6; S1-R2),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S4-R6, S1-R2).
+
+AUTOMATION: READY
+",SV-8644 (PV spec v4 2026-07-29 S4-R6; S1-R2),,
 A saved value that is no longer valid falls back to that setting's default,PV — Columns & Remembered View,Negative,Medium,"1. A saved view exists in this browser that includes a location the user can no longer access (e.g. access was removed after the view was saved), or a custom date range that is now malformed.","1. Return to the Parts Velocity report with that stale saved view in place.
 2. Observe which location / date range the report loads with.","1. The invalid saved value is NOT sent to the server.
 2. That one setting falls back to its default (e.g. the location falls back to the active location); the other saved settings still restore normally.
 3. The report loads without an error.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S4-R6).",SV-8644 (PV spec v4 2026-07-29 S4-R6),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S4-R6).
+
+AUTOMATION: READY
+",SV-8644 (PV spec v4 2026-07-29 S4-R6),,
 A different user signing in on the same browser inherits the saved view,PV — Columns & Remembered View,Functional,Low,"1. User 1 has saved a clearly non-default view on this browser (e.g. Type = Special Order, Last Quarter).
 2. User 2 can open the report.","1. Sign out user 1 and sign in user 2 on the SAME browser.
 2. Open the Parts Velocity report.","1. User 2 sees user 1's saved view (Type = Special Order, Last Quarter, the saved columns and sort).
 2. This is by design: storage is per browser, not tied to the account - there is no per-account separation.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S4-R6).",SV-8644 (PV spec v4 2026-07-29 S4-R6),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S4-R6).
+
+AUTOMATION: READY
+",SV-8644 (PV spec v4 2026-07-29 S4-R6),,
 All 20 columns can be hidden; the empty selection is never restored,PV — Columns & Remembered View,Functional,Low,1. You are on the Parts Velocity report with data loaded.,"1. In the column picker, switch OFF all 20 columns.
 2. Trigger a CSV export while zero columns are enabled.
 3. Leave the report and return to it.","1. The picker enforces no minimum - all 20 columns can be switched off, leaving a grid with no data columns for the rest of the session.
 2. The export produces a file containing only the header/metadata rows and no data columns.
 3. On the next visit the all-hidden selection is NOT restored - the report falls back to the default 14-column set (the saved column selection returns to the last NON-EMPTY selection; all-hidden is the exception).
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S4-E1, S4-R6).",SV-8644 (PV spec v4 2026-07-29 S4-E1; S4-R6),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S4-E1, S4-R6).
+
+AUTOMATION: READY
+",SV-8644 (PV spec v4 2026-07-29 S4-E1; S4-R6),,
 Units Sold for an inventory part is net stock movement,PV — Columns & Calculations,Functional,Critical,"1. An inventory part with known starting stock.
 2. You can invoice work orders, reverse/void an invoice, and initiate a part return for that part inside the report window.","1. Invoice a work order selling 5 units of the part; reload the report and read Units Sold.
 2. Reverse/void an invoice that sold 2 units in the window; reload and read Units Sold.
@@ -299,15 +438,23 @@ Units Sold for an inventory part is net stock movement,PV — Columns & Calculat
 2. After step 2, Units Sold decreases by 2.00 (reversing/voiding an invoice adds stock back and is subtracted - Units Sold is net of invoice reversals).
 3. After step 3, Units Sold is UNCHANGED - part returns do not affect Units Sold (they feed Units Returned instead).
 4. Units Sold can be 0.00 or negative when reversals exceed sales.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R1, S5-R4).",SV-8645 (PV spec v4 2026-07-29 S5-R1; S5-R4 (Units Sold; inventory); §4),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R1, S5-R4).
+
+AUTOMATION: READY
+",SV-8645 (PV spec v4 2026-07-29 S5-R1; S5-R4 (Units Sold; inventory); §4),,
 "Special Order Units Sold = in-window request quantity, net of reversals",PV — Columns & Calculations,Functional,High,"1. A special-order (vendor-sourced) part is requested on invoiced or paid work orders in the window - e.g. 3 units on one work order and 2 on another.
 2. One further in-window sale of the same special-order part has been reversed/voided.","1. Find the special-order part's row and read Units Sold.
 2. Compare against the sum of the in-window vendor-request quantities, leaving out the reversed sale.","1. Units Sold equals the total quantity across the part's in-window vendor requests (3 + 2 = 5.00 in the example), summed across the selected locations.
 2. The reversed/voided sale is EXCLUDED from the total (net of reversals).
 3. Only requests on work orders at status Invoiced or Paid count; the window is anchored to the work-order date.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R2, S5-R4, S5-R4b).",SV-8645 (PV spec v4 2026-07-29 S5-R2; S5-R4 (Units Sold; catalogue); S5-R4b),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R2, S5-R4, S5-R4b).
+
+AUTOMATION: READY
+",SV-8645 (PV spec v4 2026-07-29 S5-R2; S5-R4 (Units Sold; catalogue); S5-R4b),,
 Units Returned counts initiated part returns and parts-sale credits,PV — Columns & Calculations,Functional,High,"1. A part with in-window sales (so its row exists) and the Units Returned column enabled via the column picker.
 2. You can initiate a work-order part return, a parts-sale credit, and cancel a return.","1. Initiate a work-order part return for 2 units of the part; reload and read Units Returned.
 2. Create a parts-sale credit returning 1 more unit; reload and read Units Returned.
@@ -316,8 +463,12 @@ Units Returned counts initiated part returns and parts-sale credits,PV — Colum
 2. After step 2, it increases by 1.00 more (a parts-sale credit also creates a part-return record).
 3. After step 3, it decreases by 2.00 - the column reflects the CURRENT state of return records (cancelled returns are excluded), not a snapshot.
 4. After step 4, Units Returned is UNCHANGED - invoice reversals are not returns (they affect Units Sold instead).
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R3, S5-R4).",SV-8645 (PV spec v4 2026-07-29 S5-R3; S5-R4 (Units Returned); §3 Key Decisions),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R3, S5-R4).
+
+AUTOMATION: READY
+",SV-8645 (PV spec v4 2026-07-29 S5-R3; S5-R4 (Units Returned); §3 Key Decisions),,
 "Units Returned is windowed by initiation date, ignores invoice status",PV — Columns & Calculations,Functional,Medium,"1. A part sold in a PREVIOUS window whose return is initiated inside the CURRENT window (and the part has current-window activity or stock so its row exists).
 2. A core-charge return exists for a part in the window.
 3. The Units Returned column is enabled.","1. Select the current window and read the part's Units Returned.
@@ -326,9 +477,13 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 2. In the previous window the return does not count (only the sale's own metrics do).
 3. Core-charge returns are EXCLUDED from Units Returned.
 4. Units Returned is independent of the work order's current invoice status.
-5. A part whose ONLY in-window event is a return (no sale, no stock, no revenue) produces no row at all - accepted behavior, the row axis is sales/stock activity.
+5. A part whose ONLY in-window event is a return (no sale, no stock, no revenue) produces no row at all - the rows of this report are built from sales and stock activity, so a return on its own does not create one.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R3).",SV-8645 (PV spec v4 2026-07-29 S5-R3),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R3).
+
+AUTOMATION: READY
+",SV-8645 (PV spec v4 2026-07-29 S5-R3),,
 "Sold (WO) counts Service work orders, Sold (Parts Sale) counts Parts",PV — Columns & Calculations,Functional,High,"1. A part sold in the window on an invoiced SERVICE work order (e.g. 4 units) and on an invoiced PARTS SALE / Parts-type work order created in Parts → Parts Sale (e.g. 3 units).
 2. The Sold (WO) and Sold (Parts Sale) columns are enabled.","1. Read the part's Sold (WO) value.
 2. Read the part's Sold (Parts Sale) value.
@@ -336,8 +491,12 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 2. Sold (Parts Sale) shows the total on Parts-type invoiced/paid work orders (counter sales) in the window (3.00), net of reversed/voided sales.
 3. Both are windowed by the WORK-ORDER date (its end date) - with the range moved off those dates, both drop out.
 4. Both workflows feed the report - a parts sale is a separate workflow from a service work order but counts fully.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R4).",SV-8645 (PV spec v4 2026-07-29 S5-R4 (Sold via WO / Sold via Parts Sale); §5 Assumptions),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R4).
+
+AUTOMATION: READY
+",SV-8645 (PV spec v4 2026-07-29 S5-R4 (Sold via WO / Sold via Parts Sale); §5 Assumptions),,
 Demand counts each transaction once; a reversal neither adds nor subtracts,PV — Columns & Calculations,Functional,Critical,"1. An inventory part sold in the window on two invoiced work orders - one for 1 unit, one for 10 units.
 2. A special-order part with two in-window vendor requests.
 3. One of the inventory part's in-window sales is then reversed/voided.","1. Read the inventory part's Demand before the reversal.
@@ -347,8 +506,12 @@ Demand counts each transaction once; a reversal neither adds nor subtracts,PV �
 3. The special-order part's Demand is 2 - the count of its in-window vendor part requests.
 4. Demand is the report's default ranking signal (a whole number, never null - 0 when none).
 5. A part whose single in-window sale is invoiced and then fully reversed shows Demand 1 with Units Sold 0.00 — the Demand count is not decremented, while the movement nets to zero.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R4, S3-E1).",SV-8645 (PV spec v4 2026-07-29 S5-R4 (Demand); §4; §3 Key Decisions; S3-E1),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R4, S3-E1).
+
+AUTOMATION: READY
+",SV-8645 (PV spec v4 2026-07-29 S5-R4 (Demand); §4; §3 Key Decisions; S3-E1),,
 Last Sale is whole days since the most recent sale over all-time history,PV — Columns & Calculations,Functional,Medium,"1. A part whose most recent sale was N days ago, OUTSIDE the currently selected date range (e.g. range = This Month, last sale 42 days ago).
 2. The part still appears in the report (it has on-hand stock).
 3. For the location check: the part's most recent sale at location A is more recent than at location B.
@@ -359,15 +522,23 @@ Last Sale is whole days since the most recent sale over all-time history,PV — 
 3. Format is 'N days' (e.g. 42 days); a part with no recorded sale ever shows —.
 4. For a special-order part, the anchor is its most recent vendor-sourced invoiced/paid request.
 5. When the most recent sale is reversed, Last Sale re-anchors to the previous remaining sale (the day count grows accordingly); if no other sale remains it shows —.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R4, S5-R5).",SV-8645 (PV spec v4 2026-07-29 S5-R4 (Last Sale); §4; S5-R5; tech-plan-2026-07-29 B3.1 (last-sale re-anchor on reversal — spec-silent)),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R4, S5-R5).
+
+AUTOMATION: READY
+",SV-8645 (PV spec v4 2026-07-29 S5-R4 (Last Sale); §4; S5-R5; tech-plan-2026-07-29 B3.1 (last-sale re-anchor on reversal — spec-silent)),,
 On Hand shows the row's own location stock,PV — Columns & Calculations,Functional,Medium,"1. An inventory part with a known on-hand quantity and stored Min / Max reorder thresholds at one location.
 2. The Min and Max columns are enabled via the column picker.","1. Read the part's On Hand, Min, and Max in the report and compare with the inventory record.
 2. Try clicking / double-clicking the Min and Max cells and look for any edit control or slide-over.","1. On Hand equals the part's CURRENT on-hand quantity at that row's location (never summed across locations).
 2. Min and Max show the stored minimum / maximum reorder thresholds for that location, as whole numbers (— when not set).
 3. Min and Max are READ-ONLY display columns - no edit control or slide-over opens; editing part attributes from this report is out of scope in this version.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R4, S5-R5).",SV-8645 (PV spec v4 2026-07-29 S5-R4 (On Hand / Min / Max); §2 Out of Scope; S5-R5),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R4, S5-R5).
+
+AUTOMATION: READY
+",SV-8645 (PV spec v4 2026-07-29 S5-R4 (On Hand / Min / Max); §2 Out of Scope; S5-R5),,
 "Turns / Yr annualizes the sales rate, is 0.00 at zero stock, can be negative",PV — Columns & Calculations,Functional,Medium,"1. The Turns / Yr column is enabled.
 2. Part A: known Units Sold over a known window with On Hand > 0 (e.g. Units Sold 10.00 over a 30-day window with 5 on hand).
 3. Part B: in-window sales but On Hand now 0.
@@ -377,8 +548,12 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 2. Part B shows 0.00 (renders 0.00 when On Hand is 0 - not an error, not —).
 3. Part C shows a NEGATIVE Turns / Yr with a leading minus (because Units Sold can be negative).
 4. Special Order rows always show — (not applicable).
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R4).",SV-8645 (PV spec v4 2026-07-29 S5-R4 (Turns / Yr); S5 Definitions (Window)),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R4).
+
+AUTOMATION: READY
+",SV-8645 (PV spec v4 2026-07-29 S5-R4 (Turns / Yr); S5 Definitions (Window)),,
 "Revenue, Margin, Unit Cost, Sell Price and Margin % use the billed formulas",PV — Columns & Calculations,Functional,Critical,"1. A part with known billed lines in the window - e.g. two invoiced work-order part lines: 2 units at $50.00 sell / $30.00 cost, and 1 unit at $40.00 sell / $30.00 cost.
 2. All five profitability columns are visible.","1. Compute the expected values: Revenue = (2×50)+(1×40) = $140.00; COGS = (2×30)+(1×30) = $90.00; billed units = 3; Margin = 140−90 = $50.00; Unit Cost = 90÷3 = $30.00; Sell Price = 140÷3 = $46.67; Margin % = 50÷140×100 = 35.7%.
 2. Compare each against the part's displayed row.","1. Revenue = the summed billed sell amount (each line's stored sell price × quantity) in the window.
@@ -387,16 +562,24 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 4. Margin % = (Revenue − COGS) ÷ Revenue × 100, shown to one decimal.
 5. All five are computed from the RAW (unrounded) Revenue / COGS / billed-units totals and rounded ONCE at the end - not built from already-rounded intermediates.
 6. The same formulas apply to inventory and special-order rows (for special-order, from the vendor part requests).
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R4a).",SV-8645 (PV spec v4 2026-07-29 S5-R4a; §4),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R4a).
+
+AUTOMATION: HOLD - this part of the report is not built yet
+",SV-8645 (PV spec v4 2026-07-29 S5-R4a; §4),,
 A reversed or voided sale is excluded from every billed-line column,PV — Columns & Calculations,Functional,High,"1. A part with two in-window billed sales of known amounts, one of which you then reverse/void.
 2. All movement and profitability columns are visible.","1. Record the part's Revenue, Margin, Unit Cost, Sell Price, Margin %, Sold (WO) / Sold (Parts Sale) (and Units Sold for a special-order part).
 2. Reverse/void one of the two sales.
 3. Reload the report and re-read every column.","1. After the reversal, ALL the billed-line columns drop to reflect only the remaining sale - the reversed/voided sale is excluded from Revenue, Margin, Unit Cost, Sell Price, Margin %, Sold (WO), Sold (Parts Sale), and (for special-order) Units Sold.
 2. This netting is consistent with inventory Units Sold, which already nets reversals via the stock add-back.
 3. A voided sale therefore inflates NO column.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R4b, S5-R4a).",SV-8645 (PV spec v4 2026-07-29 S5-R4b; S5-R4a; §3 Key Decisions),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R4b, S5-R4a).
+
+AUTOMATION: READY
+",SV-8645 (PV spec v4 2026-07-29 S5-R4b; S5-R4a; §3 Key Decisions),,
 Unit Cost / Sell Price and Margin % use independent null triggers,PV — Columns & Calculations,Functional,High,"1. Row 1: a part with booked revenue but ZERO billed units in the window (e.g. a credit/adjustment line carrying revenue with no billed quantity).
 2. Row 2: a part with billed units > 0 but Revenue $0.00 (e.g. billed at a $0 sell price).
 3. Row 3: a part with both billed units ≤ 0 and Revenue ≤ 0.","1. Read Unit Cost, Sell Price, Margin %, Revenue, and Margin on row 1.
@@ -405,23 +588,35 @@ Unit Cost / Sell Price and Margin % use independent null triggers,PV — Columns
 2. Row 2: Sell Price shows $0.00 (a number) while Margin % shows — (Revenue ≤ 0) - also valid.
 3. Row 3: Unit Cost, Sell Price, and Margin % all show — together - which happens ONLY when both billed units ≤ 0 AND Revenue ≤ 0.
 4. The three triggers are independent: Unit Cost/Sell Price null on billed units ≤ 0; Margin % null on Revenue ≤ 0.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R4a, S3-R9).",SV-8645 (PV spec v4 2026-07-29 S5-R4a (null rules + mixed-row paragraph); S3-R9),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R4a, S3-R9).
+
+AUTOMATION: READY
+",SV-8645 (PV spec v4 2026-07-29 S5-R4a (null rules + mixed-row paragraph); S3-R9),,
 Number formats match the spec per column; rounding is half away from zero,PV — Columns & Calculations,Functional,Medium,"1. All 20 columns are enabled and rows exist with large (1,000+), negative, and null values across the column types.","1. Read a large count value (Units Sold etc.), a negative count, a large money value, a negative money value, a Margin % value, a Demand value, Min/Max values, and a Last Sale value.
 2. Seed a Margin % that lands exactly on a rounding tie (e.g. computes to 8.45% / -8.45%) and read the display.","1. Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), On Hand, Turns / Yr: two decimals with thousands separators (1,250.00); negatives with a leading minus (-3.00).
 2. Unit Cost, Sell Price, Revenue, Margin: currency with $, two decimals, thousands separators ($1,250.00); negatives with a leading minus and NO parentheses (-$45.00).
 3. Margin %: one decimal with a trailing % (33.8%); negatives with a leading minus, no + on positives (-8.4%).
 4. Demand: whole number. Min, Max: whole numbers (— when null). Last Sale: 'N days' (42 days), — when null.
 5. Rounding is half AWAY from zero: 8.45% displays 8.5% and -8.45% displays -8.5% (a tie rounds up in magnitude); this applies to all money and one-decimal values.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R5, S5-R7).",SV-8645 (PV spec v4 2026-07-29 S5-R5; S5-R7 (rounding)),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R5, S5-R7).
+
+AUTOMATION: READY
+",SV-8645 (PV spec v4 2026-07-29 S5-R5; S5-R7 (rounding)),,
 Core parts are excluded from both the inventory and special-order result sets,PV — Columns & Calculations,Negative,High,"1. An inventory part flagged as a core has in-window sales activity and on-hand stock.
 2. A vendor-sourced core part was requested on an invoiced/paid work order in the window.","1. Search the report for the inventory core part (Type = Both).
 2. Search for the special-order core part.","1. The inventory core part does NOT appear in the report despite its activity and stock.
 2. The special-order core part does NOT appear either.
 3. Parts flagged as a core are excluded from both result sets by design.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R1, S5-R2).",SV-8645 (PV spec v4 2026-07-29 S5-R1; S5-R2; §3 Key Decisions),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R1, S5-R2).
+
+AUTOMATION: READY
+",SV-8645 (PV spec v4 2026-07-29 S5-R1; S5-R2; §3 Key Decisions),,
 Movement and billed bases may differ; Sold (WO) + Sold (Parts Sale) = billed,PV — Columns & Calculations,Functional,Medium,"1. An inventory part with a billed sale that produced NO matching stock decrement (e.g. a drop-ship or negative-stock sale) plus normal stocked sales in the window.
 2. A special-order part with in-window vendor requests.
 3. Units Sold, Sold (WO), Sold (Parts Sale), and the profitability columns are visible.","1. On the inventory row, compare Units Sold against Revenue ÷ Sell Price (the billed units).
@@ -429,8 +624,12 @@ Movement and billed bases may differ; Sold (WO) + Sold (Parts Sale) = billed,PV 
 3. On the special-order row, compare Units Sold, Sold (WO) + Sold (Parts Sale), and the billed units.","1. On the inventory row, Units Sold (stock movement) DIFFERS from the billed units behind Revenue/Sell Price - this is CORRECT behavior, not a defect (the Units Sold tooltip calls it out).
 2. Sold (WO) + Sold (Parts Sale) together DO equal the billed-units basis (work orders are only Service- or Parts-type) - but neither equals the movement-based Units Sold.
 3. On the special-order row, everything reconciles: Units Sold = Sold (WO) + Sold (Parts Sale) = billed units (they share the vendor-request quantity as one source).
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R7).",SV-8645 (PV spec v4 2026-07-29 S5-R7; §3 Key Decisions),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R7).
+
+AUTOMATION: READY
+",SV-8645 (PV spec v4 2026-07-29 S5-R7; §3 Key Decisions),,
 "Window anchors: movement uses the event date, billed uses the WO date",PV — Columns & Calculations,Functional,Medium,"1. A work order whose END date falls in window W1 but whose invoicing (stock-movement event) happened in window W2 for an inventory part.
 2. Both W1 and W2 are selectable ranges.","1. Select window W1 and read the part's Units Sold / Demand vs its Revenue / Sold (WO).
 2. Select window W2 and read the same columns.
@@ -438,8 +637,12 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 2. In W2 (movement date in window): Units Sold / Demand count it, the billed columns do not - the two anchors CAN differ for an inventory part and that is intended.
 3. The window is the whole-day span inclusive of BOTH the start and end dates, with a floor of 1 day - a single-day range (Today) computes normally (Window = 1 for the Turns / Yr divisor).
 4. Last Sale is not windowed at all (all-time).
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R7).",SV-8645 (PV spec v4 2026-07-29 S5 Definitions (Window / Work-order date); S5-R7),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R7).
+
+AUTOMATION: READY
+",SV-8645 (PV spec v4 2026-07-29 S5 Definitions (Window / Work-order date); S5-R7),,
 Units Sold keeps an exact part-of-a-unit quantity and is never rounded off,PV — Columns & Calculations,Functional,Critical,"1. You can sign in with a role that opens the Parts Velocity report.
 2. A ZZAUTOTEST inventory part is in stock with a known unit cost, and there is enough on the shelf to sell a part-of-a-unit quantity such as 2.5.
 3. Today's date falls inside the date range you will use on the report.","1. Open a ZZAUTOTEST work order and add that part to it with the quantity 2.5.
@@ -450,35 +653,55 @@ Units Sold keeps an exact part-of-a-unit quantity and is never rounded off,PV �
 2. It still reads exactly 2.50 after the sign-out and sign-back-in, which proves the part-of-a-unit quantity was really stored and not just shown once.
 3. On Hand has gone down by exactly 2.50 from what it was before the sale.
 4. No value anywhere on the row has been quietly rounded to a whole number.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R1, S5-R5).",SV-8589 (PV spec S5-R1 Units Sold net stock movement + S5-R5 two-decimal movement format; tech-plan-2026-07-29 Phase 0 / PR-1 D2; SV-8589 verbatim Tests: 'fractional-quantity round-trip regression'),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S5-R1, S5-R5).
+
+AUTOMATION: READY
+",SV-8589 (PV spec S5-R1 Units Sold net stock movement + S5-R5 two-decimal movement format; tech-plan-2026-07-29 Phase 0 / PR-1 D2; SV-8589 verbatim Tests: 'fractional-quantity round-trip regression'),,
 The overflow button opens Download (PDF) then Download (CSV) in that order,PV — Exports,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Find the ⋯ overflow button - the leftmost control in the toolbar's action cluster.
 2. Click it and read the menu items top to bottom.","1. The ⋯ overflow button sits leftmost in the toolbar's action cluster.
 2. The menu holds exactly two items, in this order: Download (PDF), then Download (CSV).
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R1).","SV-8646 (PV spec v4 2026-07-29 S6-R1 — S6-R1 CLOSES it in the spec's own words (""an export menu with two items ... Download (PDF) and Download (CSV)""); so the closed list IS the requirement)",,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S6-R1).
+
+AUTOMATION: READY
+","SV-8646 (PV spec v4 2026-07-29 S6-R1 — S6-R1 CLOSES it in the spec's own words (""an export menu with two items ... Download (PDF) and Download (CSV)""); so the closed list IS the requirement)",,
 Both exports reflect the filters and search active at the time of export,PV — Exports,Functional,High,"1. You are on the Parts Velocity report with data loaded across types, categories, and locations.","1. Set a distinctive filter mix: Type = Inventory, a single category, a short date range, and a search string.
 2. Download the CSV and open it.
 3. Download the PDF and open it.","1. Both files contain only the rows matching the date range, type, category, vendor, bin, location, and search active at export time - not a full unfiltered dump.
 2. The exported rows match what the on-screen grid was showing.
-3. Each file (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).
+3. Each file (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R2, S6-R11); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.","SV-8646 (PV spec v4 2026-07-29 S6-R2; S6-R11; §3 Key Decisions — both exports reflect the filters and search active at export time; S6-R11 = the ""Locations:"" line in both exports [Chris Ward 2026-07-29; newest-wins])",,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S6-R2, S6-R11); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.
+
+AUTOMATION: READY
+","SV-8646 (PV spec v4 2026-07-29 S6-R2; S6-R11; §3 Key Decisions — both exports reflect the filters and search active at export time; S6-R11 = the ""Locations:"" line in both exports [Chris Ward 2026-07-29; newest-wins])",,
 "Exports include only the enabled columns, in the canonical on-screen order",PV — Exports,Functional,Medium,1. You are on the Parts Velocity report with data loaded.,"1. Hide two default columns (e.g. Category, Margin %) and enable a hidden one (e.g. Units Returned).
 2. Download the CSV and read its column headers in order.
 3. Download the PDF and read its columns in order.","1. Both exports contain ONLY the currently enabled columns - the hidden ones are absent.
 2. Columns appear in the CANONICAL order (the fixed on-screen order) - the re-enabled Units Returned sits right after Units Sold, NOT appended at the end.
 3. The export mirrors the visible grid.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R3, S4-R4).",SV-8646 (PV spec v4 2026-07-29 S6-R3; S4-R4),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S6-R3, S4-R4).
+
+AUTOMATION: READY
+",SV-8646 (PV spec v4 2026-07-29 S6-R3; S4-R4),,
 "Exports reflect the active sort, including Min/Max and null placement",PV — Exports,Functional,Medium,"1. You are on the Parts Velocity report with data loaded, including rows with — values in a sortable column (e.g. On Hand on special-order rows).
 2. Min and Max are enabled.","1. Without clicking any header (default Demand descending), download the CSV and check the row order.
 2. Sort by Min ascending, export, and check the order including where the — rows land.
 3. Sort by On Hand descending, export, and check the null placement.","1. The default Demand-descending order is exported when the user has not chosen another column.
 2. Every column's sort is honored in the export - including Min and Max.
 3. The export renders the EXACT server order, including null placement (nulls first on ascending, last on descending) - the export and the on-screen grid match; there is no on-screen-vs-export null-sorting difference.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R4, S3-R3).",SV-8646 (PV spec v4 2026-07-29 S6-R4; S3-R3),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S6-R4, S3-R3).
+
+AUTOMATION: READY
+",SV-8646 (PV spec v4 2026-07-29 S6-R4; S3-R3),,
 "PDF: filename, A3 landscape, title, text truncation, and the shop logo",PV — Exports,Functional,Medium,"1. You are on the Parts Velocity report with data loaded, including a part with a Description, Category, and Vendor each longer than 18 characters and a long Part #.","1. Download the PDF and check the saved filename.
 2. Open it and check the page format and title.
 3. Find the long-text part's row and read Description, Category, Vendor, and Part #.","1. The file downloads as velocity-report.pdf.
@@ -487,37 +710,57 @@ This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1
 4. Part # is NOT truncated.
 5. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space. The CSV never includes a logo.
 Note for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers.
+
 ---
-This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Parts Velocity report specification version 4 (S6-R5, S6-R6) differs, his decision is the authority.",SV-8646 (PV spec v4 2026-07-29 S6-R5; S6-R6 + same-logo-treatment for every report per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)),,
+This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Parts Velocity report specification version 5 (S6-R5, S6-R6) differs, his decision is the authority.
+
+AUTOMATION: READY
+",SV-8646 (PV spec v4 2026-07-29 S6-R5; S6-R6 + same-logo-treatment for every report per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)),,
 CSV is named velocity-report.csv and holds full untruncated text values,PV — Exports,Functional,Medium,"1. You are on the Parts Velocity report with data loaded, including a part with a Description longer than 18 characters and a part with a Last Sale value.","1. Download the CSV and check the saved filename.
 2. Open it and read the long part's Description, Category, and Vendor.
 3. Read the Last Sale column value.","1. The file downloads as velocity-report.csv.
 2. The CSV carries the FULL, untruncated Description / Category / Vendor values (unlike the PDF's 18-character cut).
 3. Last Sale is a raw integer in the CSV (e.g. 42) - the 'N days' wording is PDF/on-screen only.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R5, S6-R6, S6-R8).",SV-8646 (PV spec v4 2026-07-29 S6-R5; S6-R6; S6-R8),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S6-R5, S6-R6, S6-R8).
+
+AUTOMATION: READY
+",SV-8646 (PV spec v4 2026-07-29 S6-R5; S6-R6; S6-R8),,
 "Em-dash in both exports; Last Sale reads ""N days"" in the PDF",PV — Exports,Functional,Medium,"1. Rows with null values exist (a special-order row for On Hand / Turns / Yr / Min / Max; a row with billed units 0 for Unit Cost / Sell Price; a never-sold row for Last Sale).
 2. All nullable columns are enabled.","1. Download the CSV and locate the null cells.
 2. Download the PDF and locate the same cells.","1. A null value renders as — (em-dash) in BOTH the CSV and the PDF, in every nullable field: Unit Cost, Sell Price, Margin %, On Hand, Turns / Yr, Last Sale, Min, Max.
 2. Revenue, Margin, and the count metrics are never null in the exports either ($0.00 / 0.00 / 0).
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R7, S6-R8, S3-R9).",SV-8646 (PV spec v4 2026-07-29 S6-R7; S6-R8; S3-R9),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S6-R7, S6-R8, S3-R9).
+
+AUTOMATION: READY
+",SV-8646 (PV spec v4 2026-07-29 S6-R7; S6-R8; S3-R9),,
 "PDF export alignment: Type centered, text left, numeric and money right",PV — Exports,Functional,Low,1. You are on the Parts Velocity report with data loaded and several columns of each kind visible.,"1. Download the PDF and look at the alignment of each column.
 2. Download the CSV and open it in a plain text editor to confirm it is plain comma-separated values (a CSV file carries no alignment of its own).","1. In the PDF, the Type column is CENTERED.
 2. In the PDF, the text columns (Part #, Description, Category, Vendor) are left-aligned.
 3. In the PDF, EVERY numeric and money column is right-aligned.
 4. This is a deliberate export-only treatment - the on-screen table is all-left-aligned; the difference is documented, not a defect.
 5. The CSV is plain data — the alignment assertions apply to the PDF only; how a spreadsheet displays the CSV is not part of this test.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R10, S3-R8).",SV-8646 (PV spec v4 2026-07-29 S6-R10; S3-R8),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S6-R10, S3-R8).
+
+AUTOMATION: READY
+",SV-8646 (PV spec v4 2026-07-29 S6-R10; S3-R8),,
 Export toasts: exact success texts; server or fallback error text on failure,PV — Exports,Negative,Medium,"1. You are on the Parts Velocity report with data loaded.
 2. You can force an export failure (e.g. drop the network connection just before triggering the download, or induce a server error).","1. Download the CSV and the PDF normally and read each toast.
 2. Trigger a CSV export under the failure condition and read the toast.
 3. Trigger a PDF export under the failure condition and read the toast.","1. On success the toasts read exactly ""Velocity report exported (CSV)"" / ""Velocity report exported (PDF)"" and auto-fade — UPPERCASE (CSV)/(PDF).
 2. An error toast is shown on failure; when the server provides a message, that server message is shown.
-3. Otherwise the failure toast reads exactly: ""Failed to export velocity report (csv)"" or ""Failed to export velocity report (pdf)"" — lowercase (csv)/(pdf); the success/failure casing mix is the shipped wording, documented as-is (not a bug).
+3. Otherwise the failure toast reads exactly: ""Failed to export velocity report (csv)"" or ""Failed to export velocity report (pdf)"" — lowercase (csv)/(pdf); the success/failure casing mix is the specified wording (not a bug).
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R9, S6-N1).",SV-8646 (PV spec v4 2026-07-29 S6-R9; S6-N1; §7 (casing note) — S6-R9/S6-N1 CLOSE the toast strings verbatim including the shipped UPPERCASE-success / lowercase-failure casing mix; so the exact strings ARE the requirement),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S6-R9, S6-N1).
+
+AUTOMATION: READY
+",SV-8646 (PV spec v4 2026-07-29 S6-R9; S6-N1; §7 (casing note) — S6-R9/S6-N1 CLOSE the toast strings verbatim including the shipped UPPERCASE-success / lowercase-failure casing mix; so the exact strings ARE the requirement),,
 An over-cap Parts Velocity export is refused with the too-large message,PV — Exports,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A filter/location combination exists whose filtered set EXCEEDS the export row cap (widest date range + all locations; seed ZZAUTOTEST parts in bulk if needed, or use the largest available data set).","1. Set the filters so the filtered set exceeds the export row cap.
 2. Request the CSV download and read what happens.
@@ -526,8 +769,12 @@ An over-cap Parts Velocity export is refused with the too-large message,PV — E
 2. A clear too-large message appears telling the user to narrow the date range or filters, then try again — the standard wording is ""This report is too large to export. Narrow the date range or filters, then try again.""
 3. After narrowing below the cap, the downloads work again.
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (Story 6 exports).",SV-8646 (PV spec v4 2026-07-29 Story 6 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10; 000-row export cap; locked by Chris 2026-07-21),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (Story 6 exports).
+
+AUTOMATION: READY - EXPECT FAIL (SV-8818)
+",SV-8646 (PV spec v4 2026-07-29 Story 6 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10; 000-row export cap; locked by Chris 2026-07-21),,
 A large PDF download fails outright while the CSV of the same view works,PV — Exports,Functional,High,"1. You are signed in with ordinary reports access, on a desktop browser.
 2. Parts Velocity is open with a date range that returns a few hundred rows — narrow with the toolbar search until the list is roughly 300 to 500 rows.","1. Narrow the report with the toolbar search so it shows a few hundred rows.
 2. Open the three-dot menu and choose ""Download (CSV)"". Wait for the file.
@@ -537,14 +784,22 @@ A large PDF download fails outright while the CSV of the same view works,PV — 
 3. The small PDF downloads successfully, which shows the failure depends on size.
 4. Note for the tester: a very large view is refused politely with ""This report is too large to export. Narrow the date range or filters, then try again."" — that message is expected and is NOT this failure. This test is about a medium-sized view where the CSV works but the PDF errors.
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (Story 6 exports).",SV-8646 (PV spec v4 2026-07-29 Story 6 exports — the spec is silent on a renderer size limit; tech-plan-2026-07-29 A3/FR-F4 covers only the ten-thousand-row export cap),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (Story 6 exports).
+
+AUTOMATION: READY - EXPECT FAIL (SV-8818)
+",SV-8646 (PV spec v4 2026-07-29 Story 6 exports — the spec is silent on a renderer size limit; tech-plan-2026-07-29 A3/FR-F4 covers only the ten-thousand-row export cap),,
 The report uses the standard two-tone layout,PV — Visual Conformance,Functional,Low,"1. You are on the Parts Velocity report with data loaded, in light mode.","1. Look at the page background, the toolbar, and the table surfaces.
 2. Look at the card corners and the table's horizontal extent.","1. White card surfaces (toolbar + table cells) sit on the standard soft blue-grey page background (the application's two-tone report theme).
 2. There is NO card border-radius - the table runs edge to edge.
 3. The layout matches the application's other reports.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S7-R1).",SV-8647 (PV spec v4 2026-07-29 S7-R1; §2),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S7-R1).
+
+AUTOMATION: READY
+",SV-8647 (PV spec v4 2026-07-29 S7-R1; §2),,
 Toolbar and table detail styling matches the suite paddings and borders,PV — Visual Conformance,Functional,Low,1. You are on the Parts Velocity report with data loaded.,"1. Look at the toolbar strip above the table and at the space between its controls and the edges of the strip.
 2. Look at the column-header band and at the line between it and the toolbar above it.
 3. Look at the data cells, and at the space between the first and last columns and the left and right edges of the table.
@@ -553,47 +808,71 @@ Toolbar and table detail styling matches the suite paddings and borders,PV — V
 3. The first and last columns sit clear of the left and right edges of the table - the text is not touching the edge.
 4. It all looks the same as the other reports in the suite: put another report side by side and nothing should look out of place.
 5. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether the spacing and the dividing line look right and consistent with the other reports, and only report it if something looks obviously off. (The exact figures behind this - 32px/24px toolbar padding, a 1px header border, 2rem edge padding - are design-token values the design and engineering team check with their own tooling, not by hand.)
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S7-R2, S7-R3, S7-R4, S7-R5).",SV-8647 (PV spec v4 2026-07-29 S7-R2; S7-R3; S7-R4; S7-R5),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S7-R2, S7-R3, S7-R4, S7-R5).
+
+AUTOMATION: READY
+",SV-8647 (PV spec v4 2026-07-29 S7-R2; S7-R3; S7-R4; S7-R5),,
 Dark mode is supported and the grey info icon keeps 3:1 contrast in both,PV — Visual Conformance,Functional,Low,1. You are on the Parts Velocity report with data loaded and dark mode available in the application.,"1. Switch the application to dark mode.
 2. Look at the page background, toolbar, and cells.
 3. Look at the grey ⓘ info icon next to a column heading in dark mode, then switch back to light mode and look at it again.","1. The report supports dark mode: page background, toolbar, and cells use their dark-mode equivalents.
 2. In BOTH light mode and dark mode the grey ⓘ info icon is clearly visible against the cell behind it - you can see it at a glance without leaning in, and it does not disappear into the background.
 3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can see the icon easily in both modes. Only report it if the icon is hard to see. (The design rule behind this is a minimum 3:1 contrast ratio, which the design and engineering team check with a contrast tool - not by hand.)
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S7-R6).",SV-8647 (PV spec v4 2026-07-29 S7-R6 — dark-mode support + the grey info icon's colour token at ≥ 3:1 against the cell background in both modes; the ratio is a design-token property so the manual check is by-eye legibility),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S7-R6).
+
+AUTOMATION: READY
+",SV-8647 (PV spec v4 2026-07-29 S7-R6 — dark-mode support + the grey info icon's colour token at ≥ 3:1 against the cell background in both modes; the ratio is a design-token property so the manual check is by-eye legibility),,
 The report is server-paginated - the backend returns one page of rows at a time,PV — API,Functional,Medium,"1. You are on the Parts Velocity report with more rows in the result set than one page holds.
 2. Browser devtools (network tab) are open to observe the backend requests.
 3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Load the report and observe the backend data request and its response size.
 2. Move to the next page of rows and observe the traffic.","1. The backend returns ONE page of rows at a time - the full result set is not shipped to the browser.
 2. Paging is resolved on the server: moving to another page issues a fresh backend request for that page.
 3. This keeps the report responsive at scale (organizations can carry 50-60k parts, multiplied across locations).
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R10).",SV-8642 (PV spec v4 2026-07-29 §2 (server-paginated); S2-R10),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R10).
+
+AUTOMATION: READY
+",SV-8642 (PV spec v4 2026-07-29 §2 (server-paginated); S2-R10),,
 Each filter or search change re-queries the server and returns page one,PV — API,Functional,Medium,"1. You are on the Parts Velocity report with data loaded and the browser devtools network tab open.
 2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Change each of these in turn and watch the network traffic: Type, date range, Bin, Location, Category, Vendor, and the toolbar search.
 2. After a filter change while on a later page, note which page of results is shown.","1. EACH change (Type, date range, Bin, Location, Category, Vendor, search) triggers a fresh server-side data load.
 2. There is no client-side-only narrowing - every filter or search change re-queries the server.
 3. Each change returns the FIRST page of the new result set.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R10).",SV-8642 (PV spec v4 2026-07-29 S2-R10),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S2-R10).
+
+AUTOMATION: READY
+",SV-8642 (PV spec v4 2026-07-29 S2-R10),,
 Header-click sorting re-queries the server; nulls first asc and last desc,PV — API,Functional,Medium,"1. You are on the Parts Velocity report with data loaded (including rows with null values in a sortable column) and the network tab open.
 2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Click a column header and watch the network traffic and the returned order.
 2. Click it again (reverse direction) and observe.
 3. Note where the null rows land in the server-returned order for each direction.","1. Each header click re-fetches the data from the server, ordered by the chosen column and direction, returning the first page of the re-sorted result set.
 2. Null values are placed FIRST on ascending and LAST on descending - as a server sort semantic, so the same order appears on screen and in the exports.
 3. Ties keep a stable order (no explicit secondary key).
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S3-R3).",SV-8643 (PV spec v4 2026-07-29 S3-R3),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S3-R3).
+
+AUTOMATION: READY
+",SV-8643 (PV spec v4 2026-07-29 S3-R3),,
 The back end serves report data and export on ordinary reports access,PV — API,Negative,High,"1. You are signed in as a user whose role has the ordinary reports access turned on and no other reports-related permission turned on.
 2. Browser devtools (network tab) are open.
 3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Open the Parts Velocity report and observe the backend data request's outcome.
 2. Attempt the export and observe the backend export request's outcome.","1. The back end returns the report data - the request is not refused.
 2. The back end returns the export file - the request is not refused.
 3. Both requests succeed with only the ordinary reports access turned on - nothing else had to be enabled.
-4. Note for the tester: if the back end refuses either request for a user who has the ordinary reports access, mark this Failed and report it. If an extra Parts or Inventory reports permission exists in the system it must not change these results - for now it is hidden from the screen and enforces nothing. A per-report permission added on purpose in a later release is a planned change, not a bug, and this test will be updated first.
+4. Note for the tester: if the back end refuses either request for a user who has the ordinary reports access, mark this Failed and report it. If an extra Parts or Inventory reports permission exists in the system it must not change these results - the specification allows no per-report permission at all. A per-report permission added on purpose in a later release is a planned change, not a bug, and this test will be updated first.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S1-R4, S1-N2); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.","SV-8641 (PV spec S1-R4; S1-N2 - RESCOPED 2026-08-03; same driver as C30327: Chris Ward Q2=A ""single Reports permission"" + ""they can exist and not do anything""; QA lead ""ONE permission FOR NOW"")",,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 5 (S1-R4, S1-N2); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.
+
+AUTOMATION: READY
+","SV-8641 (PV spec S1-R4; S1-N2 - RESCOPED 2026-08-03; same driver as C30327: Chris Ward Q2=A ""single Reports permission"" + ""they can exist and not do anything""; QA lead ""ONE permission FOR NOW"")",,
 QuickBooks amount for a part-of-a-unit sale is exact and never inflated,PV — API,Functional,Critical,"1. The test company is connected to QuickBooks.
 2. The part-of-a-unit sale has been made and invoiced — a ZZAUTOTEST part sold in a quantity such as 2.5, at a known unit cost such as $10.00.
 3. You can sign in to that QuickBooks company and look at its journal entries.
@@ -605,5 +884,9 @@ QuickBooks amount for a part-of-a-unit sale is exact and never inflated,PV — A
 2. It is NOT a whole-unit amount such as $20.00 or $30.00, and it is NOT a bigger, multiplied figure.
 3. The quantity behind the QuickBooks amount matches the Units Sold value on the report (2.50) — the two systems agree.
 4. No second or correcting journal entry is created to patch up a wrong amount.
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and this point is not covered by any of the six report specifications — it comes from the engineering technical plan.",SV-8589 (verbatim Tests: 'QB journal amount exact from fractional movement'; Goal: 'QB journal-entry sync multiplies these into dollar amounts'; tech-plan-2026-07-29 Phase 0 / PR-1 D2 - no report spec covers QuickBooks),,
+This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and this point is not covered by any of the six report specifications — it comes from the engineering technical plan.
+
+AUTOMATION: READY
+",SV-8589 (verbatim Tests: 'QB journal amount exact from fractional movement'; Goal: 'QB journal-entry sync multiplies these into dollar amounts'; tech-plan-2026-07-29 Phase 0 / PR-1 D2 - no report spec covers QuickBooks),,

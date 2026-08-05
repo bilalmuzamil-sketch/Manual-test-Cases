@@ -10,19 +10,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. Your role has the ordinary reports access."
   ],
-  "steps": [
-   "1. Open the reports navigation.",
-   "2. Look inside the Performance group of reports.",
-   "3. Click the \"Work In Progress\" entry.",
-   "4. Read the browser tab's page title."
-  ],
-  "expected": [
-   "1. The reports navigation lists a report labeled \"Work In Progress\" under the Performance group, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency).",
-   "2. Clicking it opens the Work In Progress report.",
-   "3. The browser page title is exactly \"Work In Progress - Report | ShopView\" — a plain hyphen with one space on each side.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S1-R1, S1-R5)."
-  ],
+  "steps": "1. Open the reports navigation.\n2. Look inside the Performance group of reports.\n3. Click the \"Work In Progress\" entry.\n4. Read the browser tab's page title.",
+  "expected": "1. The reports navigation lists a report labeled \"Work In Progress\" under the Performance group, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency).\n2. Clicking it opens the Work In Progress report.\n3. The browser page title is exactly \"Work In Progress - Report | ShopView\" — a plain hyphen with one space on each side.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S1-R1, S1-R5).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R1; S1-R5 — S1-R5 CLOSES the page title verbatim; Performance group below the named anchor items per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03)",
   "viu_status": "VIU-Pending",
@@ -41,19 +30,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. You have not visited the report before in this browser (no saved active-tab setting)."
   ],
-  "steps": [
-   "1. Open the Work In Progress report.",
-   "2. Read the tab labels from left to right.",
-   "3. Look at which tab is selected when the report loads."
-  ],
-  "expected": [
-   "1. Four tabs are shown, labeled in this order: \"Approved - Partially Completed\", \"Approved - Not Started\", \"Completed\", and \"Estimates\" - each followed by its count in brackets, for example \"Completed (30)\".",
-   "2. The \"Approved - Partially Completed\" tab is selected by default on load.",
-   "3. There is NO on-screen status filter — the four tabs take the place of a status filter (the tab a job lands in is derived from its status and whether any work has started).",
-   "4. Each tab's count matches the number of work-order rows actually listed in that tab.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S1-R2, S1-R3, S1-R4)."
-  ],
+  "steps": "1. Open the Work In Progress report.\n2. Read the tab labels from left to right.\n3. Look at which tab is selected when the report loads.",
+  "expected": "1. Four tabs are shown, labeled in this order: \"Approved - Partially Completed\", \"Approved - Not Started\", \"Completed\", and \"Estimates\" - each followed by its count in brackets, for example \"Completed (30)\".\n2. The \"Approved - Partially Completed\" tab is selected by default on load.\n3. There is NO on-screen status filter — the four tabs take the place of a status filter (the tab a job lands in is derived from its status and whether any work has started).\n4. Each tab's count matches the number of work-order rows actually listed in that tab.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S1-R2, S1-R3, S1-R4).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter) — S1-R2 CLOSES the four tab labels and their order verbatim; so the closed list IS the requirement; Story 1 S1-R4)",
   "viu_status": "VIU-Pending",
@@ -126,16 +104,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Work In Progress report is open."
   ],
-  "steps": [
-   "1. Look through the report's tabs, toolbar, and menus for any trend, history, or over-time view.",
-   "2. Confirm the report only shows the floor as it stands right now."
-  ],
-  "expected": [
-   "1. Only the four progress tabs exist — there is no Trend tab and no chart of work-in-progress dollars over time.",
-   "2. No screen in the report reads or displays the nightly snapshot history.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S11-R7)."
-  ],
+  "steps": "1. Look through the report's tabs, toolbar, and menus for any trend, history, or over-time view.\n2. Confirm the report only shows the floor as it stands right now.",
+  "expected": "1. Only the four progress tabs exist — there is no Trend tab and no chart of work-in-progress dollars over time.\n2. No screen in the report reads or displays the nightly snapshot history.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S11-R7).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8667 (WIP spec v6 2026-07-29 §2 Out of scope; §2 Known Limitations (v1); Story 11 S11-R7)",
   "viu_status": "VIU-Pending",
@@ -154,16 +124,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. Five ZZAUTOTEST service work orders exist at your active location, created within the current date range — one in each status: Estimate, Approved, In Progress, Review, and Complete."
   ],
-  "steps": [
-   "1. Open the Work In Progress report with the seeded work orders' creation dates inside the selected date range.",
-   "2. Look through all four tabs for each of the five seeded work orders."
-  ],
-  "expected": [
-   "1. All five seeded work orders appear in the report — each one qualifies because it is a service work order, its status is one of Estimate, Approved, In Progress, Review, or Complete, and it belongs to a selected location.",
-   "2. Each appears in the tab its status places it in (see the WIP — Tab Placement cases).",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S2-R1)."
-  ],
+  "steps": "1. Open the Work In Progress report with the seeded work orders' creation dates inside the selected date range.\n2. Look through all four tabs for each of the five seeded work orders.",
+  "expected": "1. All five seeded work orders appear in the report — each one qualifies because it is a service work order, its status is one of Estimate, Approved, In Progress, Review, or Complete, and it belongs to a selected location.\n2. Each appears in the tab its status places it in (see the WIP — Tab Placement cases).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S2-R1).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-R1)",
   "viu_status": "VIU-Pending",
@@ -182,19 +144,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. ZZAUTOTEST work orders exist at your active location within the current date range: one Invoiced, one Paid, and one part-sale work order."
   ],
-  "steps": [
-   "1. Open the Work In Progress report.",
-   "2. Look for the Invoiced and Paid work orders and the part-sale work order in every tab.",
-   "3. Check the summary strip and each tab's Totals row for their money.",
-   "4. Download the current tab as a CSV and search the file for them."
-  ],
-  "expected": [
-   "1. The Invoiced and Paid work orders do not appear in any tab, any Totals row, the summary strip, or the download.",
-   "2. The part-sale work order does not appear anywhere either.",
-   "3. No excluded work order's money is counted in any figure.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S2-R2, S2-R3)."
-  ],
+  "steps": "1. Open the Work In Progress report.\n2. Look for the Invoiced and Paid work orders and the part-sale work order in every tab.\n3. Check the summary strip and each tab's Totals row for their money.\n4. Download the current tab as a CSV and search the file for them.",
+  "expected": "1. The Invoiced and Paid work orders do not appear in any tab, any Totals row, the summary strip, or the download.\n2. The part-sale work order does not appear anywhere either.\n3. No excluded work order's money is counted in any figure.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S2-R2, S2-R3).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-R2; S2-R3)",
   "viu_status": "VIU-Pending",
@@ -213,17 +164,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. Several open ZZAUTOTEST service work orders exist within the current date range, including one open estimate with no approved line items at all."
   ],
-  "steps": [
-   "1. Open the Work In Progress report.",
-   "2. For each seeded work order, count how many times its work order number appears across all four tabs.",
-   "3. Find the estimate with nothing approved and read its money columns."
-  ],
-  "expected": [
-   "1. Each qualifying work order appears exactly once, in exactly one tab.",
-   "2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both showing \"$0.00\".",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S2-R4)."
-  ],
+  "steps": "1. Open the Work In Progress report.\n2. For each seeded work order, count how many times its work order number appears across all four tabs.\n3. Find the estimate with nothing approved and read its money columns.",
+  "expected": "1. Each qualifying work order appears exactly once, in exactly one tab.\n2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both showing \"$0.00\".\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S2-R4).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-R4; §3 Key Decisions (every open job is listed))",
   "viu_status": "VIU-Pending",
@@ -242,17 +184,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Work In Progress report is open with rows loaded."
   ],
-  "steps": [
-   "1. Change the date range to a different preset and watch the data area while the report reloads.",
-   "2. Change the location selection and watch the data area again."
-  ],
-  "expected": [
-   "1. While the report is loading, the data area shows the standard reports loading indicator.",
-   "2. The existing rows are replaced only when the new data returns (the table does not go blank and stay blank mid-load).",
-   "3. Both a date-range change and a location change reload the report's rows.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S2-R5, S2-R6)."
-  ],
+  "steps": "1. Change the date range to a different preset and watch the data area while the report reloads.\n2. Change the location selection and watch the data area again.",
+  "expected": "1. While the report is loading, the data area shows the standard reports loading indicator.\n2. The existing rows are replaced only when the new data returns (the table does not go blank and stay blank mid-load).\n3. Both a date-range change and a location change reload the report's rows.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S2-R5, S2-R6).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-R5; S2-R6)",
   "viu_status": "VIU-Pending",
@@ -272,19 +205,8 @@
    "2. The Work In Progress report is open.",
    "3. Separately, a state can be produced where some tabs have work orders but at least one tab (for example, Completed) has none."
   ],
-  "steps": [
-   "1. Set the date range and location so that no open work order qualifies (for example, a Custom range over dates with no work orders created).",
-   "2. Open each of the four tabs and read the data area.",
-   "3. Then, with work orders in some tabs only, open the empty tab and a populated tab."
-  ],
-  "expected": [
-   "1. Each tab shows the standard reports no-data message \"Empty bays, endless possibilities. Get Going!\" in place of rows.",
-   "2. No tab shows a Totals row.",
-   "3. Every tab label count reads \"(0)\".",
-   "4. When only one tab is empty, that tab shows the no-data message, no Totals row, and a \"(0)\" count while the populated tabs still show their rows normally.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S2-N1, S2-N2, S6-N1)."
-  ],
+  "steps": "1. Set the date range and location so that no open work order qualifies (for example, a Custom range over dates with no work orders created).\n2. Open each of the four tabs and read the data area.\n3. Then, with work orders in some tabs only, open the empty tab and a populated tab.",
+  "expected": "1. Each tab shows the standard reports no-data message \"Empty bays, endless possibilities. Get Going!\" in place of rows.\n2. No tab shows a Totals row.\n3. Every tab label count reads \"(0)\".\n4. When only one tab is empty, that tab shows the no-data message, no Totals row, and a \"(0)\" count while the populated tabs still show their rows normally.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S2-N1, S2-N2, S6-N1).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-N1; S2-N2; Story 6 S6-N1; §7 User Feedback Summary)",
   "viu_status": "VIU-Pending",
@@ -330,17 +252,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. Four ZZAUTOTEST service work orders exist within the current date range and location: one in Estimate status, one in Complete status, one in In Progress status, and one in Review status."
   ],
-  "steps": [
-   "1. Open the Work In Progress report.",
-   "2. Look for each seeded work order in each tab."
-  ],
-  "expected": [
-   "1. The Estimate work order appears in the \"Estimates\" tab and nowhere else.",
-   "2. The Complete work order appears in the \"Completed\" tab and nowhere else.",
-   "3. The In Progress and Review work orders appear in the \"Approved - partially completed\" tab and nowhere else.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S3-R1, S3-R2, S3-R3)."
-  ],
+  "steps": "1. Open the Work In Progress report.\n2. Look for each seeded work order in each tab.",
+  "expected": "1. The Estimate work order appears in the \"Estimates\" tab and nowhere else.\n2. The Complete work order appears in the \"Completed\" tab and nowhere else.\n3. The In Progress and Review work orders appear in the \"Approved - partially completed\" tab and nowhere else.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S3-R1, S3-R2, S3-R3).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8659 (WIP spec v6 2026-07-29 Story 3 S3-R1; S3-R2; S3-R3)",
   "viu_status": "VIU-Pending",
@@ -384,17 +297,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. Three ZZAUTOTEST service work orders in Approved status exist within the current date range and location: one where a technician has clocked time, one where a part has been received (and no time clocked), and one with neither."
   ],
-  "steps": [
-   "1. Open the Work In Progress report.",
-   "2. Look for each of the three Approved work orders in each tab."
-  ],
-  "expected": [
-   "1. The Approved work order with clocked labor time appears in the \"Approved - partially completed\" tab.",
-   "2. The Approved work order with a received part (and no clocked time) also appears in the \"Approved - partially completed\" tab — either kind of started work counts.",
-   "3. The Approved work order with no clocked time and no received part appears in the \"Approved - not started\" tab and nowhere else.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S3-R4)."
-  ],
+  "steps": "1. Open the Work In Progress report.\n2. Look for each of the three Approved work orders in each tab.",
+  "expected": "1. The Approved work order with clocked labor time appears in the \"Approved - partially completed\" tab.\n2. The Approved work order with a received part (and no clocked time) also appears in the \"Approved - partially completed\" tab — either kind of started work counts.\n3. The Approved work order with no clocked time and no received part appears in the \"Approved - not started\" tab and nowhere else.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S3-R4).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8659 (WIP spec v6 2026-07-29 Story 3 S3-R4 (started + not-started branches + context note))",
   "viu_status": "VIU-Pending",

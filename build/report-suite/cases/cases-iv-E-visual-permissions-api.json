@@ -10,17 +10,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Inventory Value report is open with several rows."
   ],
-  "steps": [
-   "1. Look at the column headers and the data cells.",
-   "2. Compare the background of consecutive rows.",
-   "3. Look at the page background around the table."
-  ],
-  "expected": [
-   "1. The table has white column headers and white data cells, with no alternating row shading.",
-   "2. The table sits on the standard soft blue-grey report backdrop.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S12-R1)."
-  ],
+  "steps": "1. Look at the column headers and the data cells.\n2. Compare the background of consecutive rows.\n3. Look at the page background around the table.",
+  "expected": "1. The table has white column headers and white data cells, with no alternating row shading.\n2. The table sits on the standard soft blue-grey report backdrop.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S12-R1).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R1)",
   "viu_status": "VIU-Pending",
@@ -39,16 +30,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Inventory Value report is open."
   ],
-  "steps": [
-   "1. Look at the toolbar's action cluster and read the order of its controls.",
-   "2. Read the toolbar filters from left to right."
-  ],
-  "expected": [
-   "1. In the toolbar, the three-dot download menu sits leftmost in the action cluster, followed by the Column Selection control.",
-   "2. The toolbar filters run, left to right: the date-range control, the part search, the Category filter, the Vendor filter, and the Location filter (rightmost).",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S12-R2, S12-R3)."
-  ],
+  "steps": "1. Look at the toolbar's action cluster and read the order of its controls.\n2. Read the toolbar filters from left to right.",
+  "expected": "1. In the toolbar, the three-dot download menu sits leftmost in the action cluster, followed by the Column Selection control.\n2. The toolbar filters run, left to right: the date-range control, the part search, the Category filter, the Vendor filter, and the Location filter (rightmost).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S12-R2, S12-R3).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R2; S12-R3)",
   "viu_status": "VIU-Pending",
@@ -91,18 +74,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. A ZZAUTOTEST part exists with a very long description (and, if possible, long category/vendor names) and a long part number."
   ],
-  "steps": [
-   "1. Narrow the browser window (or turn on more columns) so the text columns overflow.",
-   "2. Read the long Description, Category, and Vendor cells and hover each.",
-   "3. Read the long Part # cell."
-  ],
-  "expected": [
-   "1. Long text values (Description, Category, Vendor) are truncated with an ellipsis when they overflow their column.",
-   "2. The full value is available on hover.",
-   "3. The Part # is never truncated.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S12-R6)."
-  ],
+  "steps": "1. Narrow the browser window (or turn on more columns) so the text columns overflow.\n2. Read the long Description, Category, and Vendor cells and hover each.\n3. Read the long Part # cell.",
+  "expected": "1. Long text values (Description, Category, Vendor) are truncated with an ellipsis when they overflow their column.\n2. The full value is available on hover.\n3. The Part # is never truncated.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S12-R6).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R6)",
   "viu_status": "VIU-Pending",
@@ -122,17 +95,8 @@
    "2. The application is switched to dark mode.",
    "3. The report shows rows including a part with an em-dash (\"—\") Category or Vendor cell."
   ],
-  "steps": [
-   "1. Read the page background, toolbar, and table cells in dark mode.",
-   "2. Find a \"—\" cell and check its legibility."
-  ],
-  "expected": [
-   "1. The report supports dark mode: the page background, the toolbar, and the table cells all switch to their dark equivalents rather than staying light.",
-   "2. In dark mode you can read the toolbar text and the cell text at a glance, and the \"—\" glyph in an empty Category or Vendor cell is clearly visible against the dark cell behind it — it does not disappear into the background.",
-   "3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether everything is easy to read in dark mode, and only report it if something is hard to see. (The exact colour values behind this are design-token values the design and engineering team check with their own tooling, not by hand.)",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S12-R7)."
-  ],
+  "steps": "1. Read the page background, toolbar, and table cells in dark mode.\n2. Find a \"—\" cell and check its legibility.",
+  "expected": "1. The report supports dark mode: the page background, the toolbar, and the table cells all switch to their dark equivalents rather than staying light.\n2. In dark mode you can read the toolbar text and the cell text at a glance, and the \"—\" glyph in an empty Category or Vendor cell is clearly visible against the dark cell behind it — it does not disappear into the background.\n3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether everything is easy to read in dark mode, and only report it if something is hard to see. (The exact colour values behind this are design-token values the design and engineering team check with their own tooling, not by hand.)\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S12-R7).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R7)",
   "viu_status": "VIU-Pending",
@@ -152,18 +116,8 @@
    "2. The Inventory Value report is open with rows loaded.",
    "3. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
   ],
-  "steps": [
-   "1. Sort by a column and look at its header for a visual direction indicator.",
-   "2. With the accessibility inspector or screen reader, check what sort state the header exposes.",
-   "3. Toggle the direction and check both again."
-  ],
-  "expected": [
-   "1. The active sort direction is indicated visually on the header.",
-   "2. Each sortable column header exposes its sort state to assistive technology (for example, ascending/descending/none).",
-   "3. The exposed state updates when the direction toggles.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S12-R8)."
-  ],
+  "steps": "1. Sort by a column and look at its header for a visual direction indicator.\n2. With the accessibility inspector or screen reader, check what sort state the header exposes.\n3. Toggle the direction and check both again.",
+  "expected": "1. The active sort direction is indicated visually on the header.\n2. Each sortable column header exposes its sort state to assistive technology (for example, ascending/descending/none).\n3. The exposed state updates when the direction toggles.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S12-R8).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R8)",
   "viu_status": "VIU-Pending",
@@ -183,15 +137,8 @@
    "2. The Inventory Value report is open.",
    "3. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
   ],
-  "steps": [
-   "1. Inspect the three-dot download button's accessible name.",
-   "2. Inspect the Column Selection button's accessible name."
-  ],
-  "expected": [
-   "1. Each icon-only control carries an accessible name exposed to assistive technology (it is not announced as an unnamed button).",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S12-R9)."
-  ],
+  "steps": "1. Inspect the three-dot download button's accessible name.\n2. Inspect the Column Selection button's accessible name.",
+  "expected": "1. Each icon-only control carries an accessible name exposed to assistive technology (it is not announced as an unnamed button).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S12-R9).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R9)",
   "viu_status": "VIU-Pending",
@@ -210,18 +157,8 @@
    "1. A test user exists whose role has the ordinary reports access (assign the Tech user a suitable role if needed; restore the original role afterward).",
    "2. You are signed in as that user on a desktop browser."
   ],
-  "steps": [
-   "1. Open the reports navigation and find \"Inventory Value\" under the Parts group.",
-   "2. Open the report and confirm it loads rows.",
-   "3. Download the current view as a CSV."
-  ],
-  "expected": [
-   "1. The report is listed and opens normally for a user holding the ordinary reports access.",
-   "2. No additional report-specific permission is required — for now the one ordinary reports access covers all six of the new reports.",
-   "3. Note for the tester: for now ONE ordinary reports access opens all six of these new reports; none of them has a permission of its own. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (Story 1 Prerequisites); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
-  ],
+  "steps": "1. Open the reports navigation and find \"Inventory Value\" under the Parts group.\n2. Open the report and confirm it loads rows.\n3. Download the current view as a CSV.",
+  "expected": "1. The report is listed and opens normally for a user holding the ordinary reports access.\n2. No additional report-specific permission is required — the specification allows the one ordinary reports access to cover all six of the new reports.\n3. Note for the tester: the specification allows ONE ordinary reports access for all six of these new reports and no per-report permission. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (Story 1 Prerequisites); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8668 (IV spec Story 1 Prerequisites — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\"; the IV prerequisite still names the inventory-reports permission — his spec edit owed)",
   "viu_status": "VIU-Pending",
@@ -240,15 +177,8 @@
    "1. A test user exists whose role does NOT have reports access (assign the Tech user such a role; restore the original role afterward).",
    "2. You are signed in as that user on a desktop browser."
   ],
-  "steps": [
-   "1. Open the reports navigation.",
-   "2. Look for \"Inventory Value\" under the Parts group."
-  ],
-  "expected": [
-   "1. The report does not appear in the navigation for this user.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S1-N1)."
-  ],
+  "steps": "1. Open the reports navigation.\n2. Look for \"Inventory Value\" under the Parts group.",
+  "expected": "1. The report does not appear in the navigation for this user.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S1-N1).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8668 (IV spec Story 1 S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\")",
   "viu_status": "VIU-Pending",
@@ -269,18 +199,8 @@
    "3. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers).",
    "4. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
   ],
-  "steps": [
-   "1. After the overnight capture, inspect the stored snapshot rows for that calendar date.",
-   "2. For a known part, read every captured field.",
-   "3. Check the rows for each location, including the empty one."
-  ],
-  "expected": [
-   "1. Once per day, overnight, one row per then-in-stock, non-core part is recorded for every location across every organization, under that day's calendar date.",
-   "2. Each row captures the part's identity (part, category, vendor), on-hand quantity, unit cost, unit sell, total cost, and total sell, stored to the cent.",
-   "3. A location with no in-stock parts on the date simply has no rows for that date — this is valid, not an error.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S11-R1, S11-R4)."
-  ],
+  "steps": "1. After the overnight capture, inspect the stored snapshot rows for that calendar date.\n2. For a known part, read every captured field.\n3. Check the rows for each location, including the empty one.",
+  "expected": "1. Once per day, overnight, one row per then-in-stock, non-core part is recorded for every location across every organization, under that day's calendar date.\n2. Each row captures the part's identity (part, category, vendor), on-hand quantity, unit cost, unit sell, total cost, and total sell, stored to the cent.\n3. A location with no in-stock parts on the date simply has no rows for that date — this is valid, not an error.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S11-R1, S11-R4).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R1; S11-R4)",
   "viu_status": "VIU-Pending",
@@ -301,19 +221,8 @@
    "3. You can read the live report on the capture date and the stored rows afterward.",
    "4. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
   ],
-  "steps": [
-   "1. On the capture date, note the live report's rows and values for the seeded parts.",
-   "2. After the overnight capture, read the same parts' captured rows.",
-   "3. Look for the core-charge and zero-quantity parts among the captured rows.",
-   "4. The next day, view the report as of the captured date and compare to the noted live values."
-  ],
-  "expected": [
-   "1. The captured parts use the same in-stock, non-core scope as the live report (Story 2) — the core-charge and zero-quantity parts are NOT captured.",
-   "2. The captured values use the same valuation as the live report (Story 3), including the sell-price fallback chain.",
-   "3. A recorded day equals what the live report would have shown that day — the as-of view of the captured date matches the noted live values.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S11-R2)."
-  ],
+  "steps": "1. On the capture date, note the live report's rows and values for the seeded parts.\n2. After the overnight capture, read the same parts' captured rows.\n3. Look for the core-charge and zero-quantity parts among the captured rows.\n4. The next day, view the report as of the captured date and compare to the noted live values.",
+  "expected": "1. The captured parts use the same in-stock, non-core scope as the live report (Story 2) — the core-charge and zero-quantity parts are NOT captured.\n2. The captured values use the same valuation as the live report (Story 3), including the sell-price fallback chain.\n3. A recorded day equals what the live report would have shown that day — the as-of view of the captured date matches the noted live values.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S11-R2).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R2; §2 Relationship to nightly history)",
   "viu_status": "VIU-Pending",
@@ -333,21 +242,8 @@
    "2. The capture can be re-run for that date (arrange with the developers).",
    "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
   ],
-  "steps": [
-   "1. Count the stored rows per location for the date.",
-   "2. Re-run the capture for the same date.",
-   "3. Count and inspect the rows again."
-  ],
-  "expected": [
-   "1. Re-running the capture for a date replaces that date's rows for each location — the existing rows for that location and date are removed, then re-inserted from current data.",
-   "2. No duplicate rows exist for the same part, location, and date.",
-   "3. The capture is idempotent and self-healing from current data.",
-   "4. No rows exist for dates before capture began — there is no backfill.",
-   "5. A re-run always records current truth under the CURRENT date; it cannot reconstruct a past date.",
-   "6. A past date's stored rows are unchanged by a current re-run.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S11-R3, S11-R5, S5-E1)."
-  ],
+  "steps": "1. Count the stored rows per location for the date.\n2. Re-run the capture for the same date.\n3. Count and inspect the rows again.",
+  "expected": "1. Re-running the capture for a date replaces that date's rows for each location — the existing rows for that location and date are removed, then re-inserted from current data.\n2. No duplicate rows exist for the same part, location, and date.\n3. The capture is idempotent and self-healing from current data.\n4. No rows exist for dates before capture began — there is no backfill.\n5. A re-run always records current truth under the CURRENT date; it cannot reconstruct a past date.\n6. A past date's stored rows are unchanged by a current re-run.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S11-R3, S11-R5, S5-E1).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R3; Story 11 S11-R5; Story 5 S5-E1)",
   "viu_status": "VIU-Pending",
@@ -397,20 +293,8 @@
    "2. The nightly capture (with its pruning) has run.",
    "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
   ],
-  "steps": [
-   "1. Inspect the retained captures for dates within the last 13 months.",
-   "2. Inspect the retained captures for dates older than 13 months.",
-   "3. Check when pruning runs relative to the nightly capture."
-  ],
-  "expected": [
-   "1. For ages 0–13 months (measured from the current date), every daily capture is kept — full daily per-part detail, covering the report's longest date preset (366 days / This Year / Last Year) entirely at daily resolution.",
-   "2. For ages older than 13 months, only the last capture of each calendar month is retained; the other daily captures in that band are pruned.",
-   "3. Pruning runs as part of, or alongside, the nightly capture.",
-   "---",
-   "Note for the tester: this one needs records going back more than a year, and this test system only holds a few days of records so far. If there is nothing old enough to look at, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.",
-   "",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S11-R6)."
-  ],
+  "steps": "1. Inspect the retained captures for dates within the last 13 months.\n2. Inspect the retained captures for dates older than 13 months.\n3. Check when pruning runs relative to the nightly capture.",
+  "expected": "1. For ages 0–13 months (measured from the current date), every daily capture is kept — full daily per-part detail, covering the report's longest date preset (366 days / This Year / Last Year) entirely at daily resolution.\n2. For ages older than 13 months, only the last capture of each calendar month is retained; the other daily captures in that band are pruned.\n3. Pruning runs as part of, or alongside, the nightly capture.\n---\nNote for the tester: this one needs records going back more than a year, and this test system only holds a few days of records so far. If there is nothing old enough to look at, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S11-R6).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R6)",
   "viu_status": "VIU-Pending",
@@ -430,20 +314,8 @@
    "2. The retained capture dates around the requested date are known.",
    "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
   ],
-  "steps": [
-   "1. On the report, select a range ending on a pruned date between two retained monthly captures.",
-   "2. Read which day the values represent and the \"As of\" indicator.",
-   "3. Select a range whose covering captures have ALL been pruned and no earlier retained capture remains."
-  ],
-  "expected": [
-   "1. The as-of resolution serves the thinned history unchanged: the report resolves to the nearest earlier retained capture (\"closest recorded day on or before\"), even when adjacent retained captures are up to a month apart.",
-   "2. The \"As of\" indicator names the day actually shown.",
-   "3. A requested date whose covering captures have all been pruned resolves to the nearest earlier retained capture, or shows the empty state if none remains.",
-   "---",
-   "Note for the tester: this one needs records going back more than a year, and this test system only holds a few days of records so far. If there is nothing old enough to look at, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.",
-   "",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S11-E1, S11-R6, S5-R4, S5-R5, S5-N1)."
-  ],
+  "steps": "1. On the report, select a range ending on a pruned date between two retained monthly captures.\n2. Read which day the values represent and the \"As of\" indicator.\n3. Select a range whose covering captures have ALL been pruned and no earlier retained capture remains.",
+  "expected": "1. The as-of resolution serves the thinned history unchanged: the report resolves to the nearest earlier retained capture (\"closest recorded day on or before\"), even when adjacent retained captures are up to a month apart.\n2. The \"As of\" indicator names the day actually shown.\n3. A requested date whose covering captures have all been pruned resolves to the nearest earlier retained capture, or shows the empty state if none remains.\n---\nNote for the tester: this one needs records going back more than a year, and this test system only holds a few days of records so far. If there is nothing old enough to look at, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S11-E1, S11-R6, S5-R4, S5-R5, S5-N1).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-E1; S11-R6; Story 5 S5-R4; S5-R5; S5-N1)",
   "viu_status": "VIU-Pending",

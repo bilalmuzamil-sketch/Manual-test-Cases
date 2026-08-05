@@ -10,16 +10,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. You are on the Sales By Representative report."
   ],
-  "steps": [
-   "1. Find the ⋯ (three-dot) button in the report toolbar — it is the first control in the toolbar's action cluster.",
-   "2. Click it and read the menu entries top to bottom."
-  ],
-  "expected": [
-   "1. The menu lists exactly four actions: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", and \"Download Expanded View (CSV)\".",
-   "2. No other entries appear in the menu.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R1, S17-R3)."
-  ],
+  "steps": "1. Find the ⋯ (three-dot) button in the report toolbar — it is the first control in the toolbar's action cluster.\n2. Click it and read the menu entries top to bottom.",
+  "expected": "1. The menu lists exactly four actions: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", and \"Download Expanded View (CSV)\".\n2. No other entries appear in the menu.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R1, S17-R3).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R1 + Story 17 S17-R3 (position) — S14-R1 CLOSES it in the spec's own words (\"lists exactly four actions\"); so the closed list IS the requirement)",
   "viu_status": "VIU-Pending",
@@ -40,20 +32,8 @@
    "3. Sort by a financial column (for example, click the Subtotal header).",
    "4. Leave at least one rep collapsed (do not expand it)."
   ],
-  "steps": [
-   "1. Download all four files from the ⋯ menu.",
-   "2. Compare each file's rows against the on-screen result: which reps appear, which invoices are included, and the row order.",
-   "3. Check where the Unassigned row sits in each file."
-  ],
-  "expected": [
-   "1. Every file contains only the reps/invoices matching ALL the active filters (date range, product type, invoice status, location, Show Unassigned).",
-   "2. The files reflect the FULL result set for those filters — a collapsed (never-expanded) rep's invoices still appear in the Expanded View files; on-screen expansion state does not matter.",
-   "3. Rep rows appear in the report's currently-active order — the active column sort if one is set, otherwise the A→Z default.",
-   "4. The Unassigned row (Show Unassigned on) is pinned first, ahead of the sorted reps.",
-   "5. Every file (all four downloads, PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R2, S14-R2a, S14-R20, S21-R6, S22-R4)."
-  ],
+  "steps": "1. Download all four files from the ⋯ menu.\n2. Compare each file's rows against the on-screen result: which reps appear, which invoices are included, and the row order.\n3. Check where the Unassigned row sits in each file.",
+  "expected": "1. Every file contains only the reps/invoices matching ALL the active filters (date range, product type, invoice status, location, Show Unassigned).\n2. The files reflect the FULL result set for those filters — a collapsed (never-expanded) rep's invoices still appear in the Expanded View files; on-screen expansion state does not matter.\n3. Rep rows appear in the report's currently-active order — the active column sort if one is set, otherwise the A→Z default.\n4. The Unassigned row (Show Unassigned on) is pinned first, ahead of the sorted reps.\n5. Every file (all four downloads, PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R2, S14-R2a, S14-R20, S21-R6, S22-R4).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R2; S14-R2a; S14-R20 + Story 21 S21-R6 + Story 22 S22-R4 — all four downloads honour the filters; the full result set and the active order; S14-R20 = the \"Locations:\" line in every export)",
   "viu_status": "VIU-Pending",
@@ -72,20 +52,8 @@
    "1. You are on the report with at least two reps showing, one of them a toggled-off (\"(Inactive)\") contributor if one can be arranged.",
    "2. A date range is selected."
   ],
-  "steps": [
-   "1. Choose \"Download Summary (PDF)\" from the ⋯ menu and open the file.",
-   "2. Read the top of the first page, the column headers, one rep row, and the last row.",
-   "3. Compare the totals row's Margin % against the child rows."
-  ],
-  "expected": [
-   "1. The PDF is A4 portrait, edge-to-edge, with a header strip on the first page showing the workplace name and address, the organization logo, the report title \"Sales By Representative,\" and the selected date range.",
-   "2. There is one rolled-up row per rep, in the report's currently-active order; a toggled-off contributor's name carries the \"(Inactive)\" tag.",
-   "3. With a single location in scope the columns are: Rep / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal. When more than one location is in scope a Location column is added immediately after the Representative name and before the money columns, and a rep who spans more than one location reads \"Multiple\".",
-   "4. Subtotal is bolded across the header, the body rows, and the grand totals row; Inv. Hrs keeps its green/red/default coloring.",
-   "5. The grand totals row reads \"Totals\" in the Rep cell and aggregates every summary row in the document (including the Unassigned row when Show Unassigned is on); its Margin % is RECOMPUTED as total Margin ÷ total Subtotal (shown \"—\" when that Subtotal is zero or below), never the sum or average of the rows' percentages.",
-   "---",
-   "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. The Sales By Representative report specification version 15 (S14-R3, S14-R5, S14-R20, S2-R5) is silent on this point, and it has not yet been confirmed on a build."
-  ],
+  "steps": "1. Choose \"Download Summary (PDF)\" from the ⋯ menu and open the file.\n2. Read the top of the first page, the column headers, one rep row, and the last row.\n3. Compare the totals row's Margin % against the child rows.",
+  "expected": "1. The PDF is A4 portrait, edge-to-edge, with a header strip on the first page showing the workplace name and address, the organization logo, the report title \"Sales By Representative,\" and the selected date range.\n2. There is one rolled-up row per rep, in the report's currently-active order; a toggled-off contributor's name carries the \"(Inactive)\" tag.\n3. With a single location in scope the columns are: Rep / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal. When more than one location is in scope a Location column is added immediately after the Representative name and before the money columns, and a rep who spans more than one location reads \"Multiple\".\n4. Subtotal is bolded across the header, the body rows, and the grand totals row; Inv. Hrs keeps its green/red/default coloring.\n5. The grand totals row reads \"Totals\" in the Rep cell and aggregates every summary row in the document (including the Unassigned row when Show Unassigned is on); its Margin % is RECOMPUTED as total Margin ÷ total Subtotal (shown \"—\" when that Subtotal is zero or below), never the sum or average of the rows' percentages.\n\n---\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. The Sales By Representative report specification version 15 (S14-R3, S14-R5, S14-R20, S2-R5) is silent on this point, and it has not yet been confirmed on a build.\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R3; S14-R5; S14-R20; Story 2 S2-R5; §3 Margin % definition — Summary PDF; plus the automatic Location column in all four exports)",
   "viu_status": "VIU-Pending",
@@ -103,22 +71,8 @@
   "preconditions": [
    "1. You are on the report with at least two reps showing, each with at least one invoice."
   ],
-  "steps": [
-   "1. Choose \"Download Expanded View (PDF)\" from the ⋯ menu and open the file.",
-   "2. Check how each rep's section starts and what its table contains.",
-   "3. Read the last row of one rep's block and the end of the document.",
-   "4. Compare the order of one rep's invoices against the on-screen expanded order."
-  ],
-  "expected": [
-   "1. There is one page-block per rep, in the report's currently-active order, with a page break before each new rep after the first.",
-   "2. Each block shows the header strip (workplace name and address, organization logo, title \"Sales By Representative,\" the selected date range), the rep's name, and a per-invoice table with columns: Date / Invoice / Customer / Status / (Location, only when more than one location is in scope, carrying that invoice's own location) / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal.",
-   "3. The Status column renders the same colored badge as on screen, vertically centered.",
-   "4. Invoices are ordered newest first (the same order as the on-screen expansion: invoice date descending, numeric invoice-number tie-break).",
-   "5. Each block ends with a per-rep totals row — \"Totals\" in the Date cell; Invoice/Customer/Status blank; each metric aggregated; Margin % recomputed.",
-   "6. There is NO grand-totals row across all reps at the end of the document.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R6, S14-R8, S14-R20, S6-R9). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
-  ],
+  "steps": "1. Choose \"Download Expanded View (PDF)\" from the ⋯ menu and open the file.\n2. Check how each rep's section starts and what its table contains.\n3. Read the last row of one rep's block and the end of the document.\n4. Compare the order of one rep's invoices against the on-screen expanded order.",
+  "expected": "1. There is one page-block per rep, in the report's currently-active order, with a page break before each new rep after the first.\n2. Each block shows the header strip (workplace name and address, organization logo, title \"Sales By Representative,\" the selected date range), the rep's name, and a per-invoice table with columns: Date / Invoice / Customer / Status / (Location, only when more than one location is in scope, carrying that invoice's own location) / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal.\n3. The Status column renders the same colored badge as on screen, vertically centered.\n4. Invoices are ordered newest first (the same order as the on-screen expansion: invoice date descending, numeric invoice-number tie-break).\n5. Each block ends with a per-rep totals row — \"Totals\" in the Date cell; Invoice/Customer/Status blank; each metric aggregated; Margin % recomputed.\n6. There is NO grand-totals row across all reps at the end of the document.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R6, S14-R8, S14-R20, S6-R9). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R6; S14-R8; S14-R20; Story 6 S6-R9 — Expanded PDF page-block per rep; plus the automatic Location column after Status)",
   "viu_status": "VIU-Pending",
@@ -136,17 +90,8 @@
   "preconditions": [
    "1. At least one invoice in the current view has an invoice number LONGER than 18 characters, and one has a number of 18 characters or fewer (seed data if needed)."
   ],
-  "steps": [
-   "1. Expand the rep on screen and read both invoice numbers.",
-   "2. Download the Expanded View PDF and read the same two invoice numbers."
-  ],
-  "expected": [
-   "1. On screen, both invoice numbers show in full — never truncated.",
-   "2. In the PDF, the long number is cut to its first 18 characters followed by an ellipsis (the ellipsis is not counted toward the 18).",
-   "3. In the PDF, the 18-character-or-shorter number shows in full with no ellipsis.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R7)."
-  ],
+  "steps": "1. Expand the rep on screen and read both invoice numbers.\n2. Download the Expanded View PDF and read the same two invoice numbers.",
+  "expected": "1. On screen, both invoice numbers show in full — never truncated.\n2. In the PDF, the long number is cut to its first 18 characters followed by an ellipsis (the ellipsis is not counted toward the 18).\n3. In the PDF, the 18-character-or-shorter number shows in full with no ellipsis.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R7).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R7)",
   "viu_status": "VIU-Pending",
@@ -165,20 +110,8 @@
    "1. You are on the report with data showing.",
    "2. For the fallback check: the organization has NO configured logo (clear it in settings if permitted, and restore afterward)."
   ],
-  "steps": [
-   "1. Download both PDFs and note each saved file's name.",
-   "2. Scroll through every page of both PDFs and read the footer.",
-   "3. With the organization logo not configured, download a PDF again and look at the header strip's logo region."
-  ],
-  "expected": [
-   "1. The files are named exactly \"sales-by-representative-summary.pdf\" and \"sales-by-representative-expanded.pdf\".",
-   "2. A footer reading \"Software Powered by ShopView\" appears on EVERY page of both PDFs.",
-   "3. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space. The PDF still generates normally either way.",
-   "---",
-   "Note for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers.",
-   "",
-   "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Sales By Representative report specification version 15 (S14-R3a, S14-R4, S14-R11) differs, his decision is the authority."
-  ],
+  "steps": "1. Download both PDFs and note each saved file's name.\n2. Scroll through every page of both PDFs and read the footer.\n3. With the organization logo not configured, download a PDF again and look at the header strip's logo region.",
+  "expected": "1. The files are named exactly \"sales-by-representative-summary.pdf\" and \"sales-by-representative-expanded.pdf\".\n2. A footer reading \"Software Powered by ShopView\" appears on EVERY page of both PDFs.\n3. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space. The PDF still generates normally either way.\n---\nNote for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers.\n\n---\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Sales By Representative report specification version 15 (S14-R3a, S14-R4, S14-R11) differs, his decision is the authority.\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R3a; S14-R4; S14-R11 — S14-R11 CLOSES both PDF filenames verbatim (\"deterministic\") and S14-R4 closes the footer string; so the exact strings ARE the requirement)",
   "viu_status": "DEVIATION",
@@ -196,18 +129,8 @@
   "preconditions": [
    "1. The current view includes at least one negative money value (for example, a net-credit/return invoice — seed one if needed) and, if arrangeable, one toggled-off \"(Inactive)\" contributor."
   ],
-  "steps": [
-   "1. Download both PDFs.",
-   "2. Find the negative money value in each and read how it is written.",
-   "3. Read the rep names in both PDFs."
-  ],
-  "expected": [
-   "1. Negative dollar values render in accounting parentheses — for example ($1,234.56) — in both PDFs, with no extra color treatment.",
-   "2. The on-screen (N) invoice count does NOT appear next to any rep name in either PDF.",
-   "3. The \"(Inactive)\" tag DOES render on toggled-off contributors' names in both PDFs; other rep names render plainly.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R9, S14-R10)."
-  ],
+  "steps": "1. Download both PDFs.\n2. Find the negative money value in each and read how it is written.\n3. Read the rep names in both PDFs.",
+  "expected": "1. Negative dollar values render in accounting parentheses — for example ($1,234.56) — in both PDFs, with no extra color treatment.\n2. The on-screen (N) invoice count does NOT appear next to any rep name in either PDF.\n3. The \"(Inactive)\" tag DOES render on toggled-off contributors' names in both PDFs; other rep names render plainly.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R9, S14-R10).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R9; S14-R10)",
   "viu_status": "VIU-Pending",
@@ -226,18 +149,8 @@
    "1. You can produce (or seed) filtered views whose LONGEST formatted positive dollar value — checked across every value in the document, including the totals row — falls in different length brackets (for example, $1,234.56 = 9 characters vs $1,000,000.00 = 13 characters).",
    "2. This test reads what is inside a downloaded PDF. Open the file in any PDF viewer and use the viewer's own text search (Ctrl+F) to find the text named below — that is enough. There is nothing to install."
   ],
-  "steps": [
-   "1. Download the Summary PDF for a view whose longest positive dollar value is 9 characters or fewer; note the body text size (a relative comparison across files is enough).",
-   "2. Repeat for views whose longest positive value is 10, 11, and 12-or-more characters (as far as seedable).",
-   "3. In each file, check whether any value overflows or wraps its column."
-  ],
-  "expected": [
-   "1. As the longest positive dollar value in the document grows past each length bracket, the PDF body text visibly steps DOWN in size — the relative step-downs are the pass criterion for this manual test.",
-   "2. Column widths are fixed for the worst case regardless of tier — the layout never breaks and no value overflows or wraps its column.",
-   "3. Both PDF formats adapt the same way.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R12, S14-R13)."
-  ],
+  "steps": "1. Download the Summary PDF for a view whose longest positive dollar value is 9 characters or fewer; note the body text size (a relative comparison across files is enough).\n2. Repeat for views whose longest positive value is 10, 11, and 12-or-more characters (as far as seedable).\n3. In each file, check whether any value overflows or wraps its column.",
+  "expected": "1. As the longest positive dollar value in the document grows past each length bracket, the PDF body text visibly steps DOWN in size — the relative step-downs are the pass criterion for this manual test.\n2. Column widths are fixed for the worst case regardless of tier — the layout never breaks and no value overflows or wraps its column.\n3. Both PDF formats adapt the same way.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R12, S14-R13).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R12; S14-R13)",
   "viu_status": "VIU-Pending",
@@ -280,23 +193,8 @@
   "preconditions": [
    "1. You are on the report with at least two reps showing; one rep has invoices for the same customer more than once (to check de-duplication)."
   ],
-  "steps": [
-   "1. Choose \"Download Summary (CSV)\" from the ⋯ menu and note the saved file's name.",
-   "2. Open the file in a text editor and read the header row.",
-   "3. Count the data rows against the on-screen rep rows and compare their order.",
-   "4. For one rep, compare \"# Invoices\" with the on-screen (N) count, and \"# Customers\" with the number of DISTINCT customers across that rep's matching invoices."
-  ],
-  "expected": [
-   "1. The file is named \"sales-by-representative-summary.csv\" and starts with a UTF-8 BOM.",
-   "2. With a single location in scope the headers, in order, are: Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. On this build only nine of them arrive - Representative, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal - because # Invoices, # Customers, Hrs Worked and Hrs Invoiced are missing by mistake. Record what you see; the four missing columns are with the developers.",
-   "3. There is one header row plus one row per rep in the current filtered view, in the report's currently-active order.",
-   "4. \"# Invoices\" equals the on-screen (N); \"# Customers\" counts distinct customers across those invoices (de-duplicated across locations when several are selected).",
-   "5. The CSV has NO totals row.",
-   "6. Note for the tester: the heading in this file reads simply \"Representative\". The product owner has confirmed that is correct and not slang, so do not fail the test for it.",
-   "7. When more than one location is in scope the file also carries a Location column, immediately after the Representative name and before the money columns; a rep whose invoices span more than one location reads \"Multiple\".",
-   "---",
-   "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Sales By Representative report specification version 15 (S14-R15, S14-R18, S14-R20) differs, his decision is the authority."
-  ],
+  "steps": "1. Choose \"Download Summary (CSV)\" from the ⋯ menu and note the saved file's name.\n2. Open the file in a text editor and read the header row.\n3. Count the data rows against the on-screen rep rows and compare their order.\n4. For one rep, compare \"# Invoices\" with the on-screen (N) count, and \"# Customers\" with the number of DISTINCT customers across that rep's matching invoices.",
+  "expected": "1. The file is named \"sales-by-representative-summary.csv\" and starts with a UTF-8 BOM.\n2. With a single location in scope the headers, in order, are: Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. On this build only nine of them arrive - Representative, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal - because # Invoices, # Customers, Hrs Worked and Hrs Invoiced are missing by mistake. Record what you see; the four missing columns are with the developers.\n3. There is one header row plus one row per rep in the current filtered view, in the report's currently-active order.\n4. \"# Invoices\" equals the on-screen (N); \"# Customers\" counts distinct customers across those invoices (de-duplicated across locations when several are selected).\n5. The CSV has NO totals row.\n6. Note for the tester: the heading in this file reads simply \"Representative\". The product owner has confirmed that is correct and not slang, so do not fail the test for it.\n7. When more than one location is in scope the file also carries a Location column, immediately after the Representative name and before the money columns; a rep whose invoices span more than one location reads \"Multiple\".\n\n---\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Sales By Representative report specification version 15 (S14-R15, S14-R18, S14-R20) differs, his decision is the authority.\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R15; S14-R18; S14-R20 — Summary CSV headers; plus the automatic Location column in all four exports; S14-R15's header list was left un-updated when S14-R20 was added — spec correction pending)",
   "viu_status": "VIU-Pending",
@@ -314,20 +212,8 @@
   "preconditions": [
    "1. You are on the report with at least two reps showing, each with at least one invoice."
   ],
-  "steps": [
-   "1. Choose \"Download Expanded View (CSV)\" from the ⋯ menu and note the saved file's name.",
-   "2. Open the file in a text editor and read the header row.",
-   "3. Compare the rows against the on-screen invoices (all reps, expanded)."
-  ],
-  "expected": [
-   "1. The file is named \"sales-by-representative-expanded.csv\" and starts with a UTF-8 BOM.",
-   "2. With a single location in scope the headers, in order, are: Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.",
-   "3. There is one header row plus one row per invoice, flattened across all reps in the report's currently-active order, for the current filtered view.",
-   "4. Note for the tester: the heading in this file reads simply \"Representative\". The product owner has confirmed that is correct and not slang, so do not fail the test for it.",
-   "5. When more than one location is in scope the file also carries a Location column immediately after Status — the position it holds on screen — and every row shows that invoice's own exact location, never \"Multiple\".",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Sales By Representative report specification version 15 (S14-R16, S14-R20) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
-  ],
+  "steps": "1. Choose \"Download Expanded View (CSV)\" from the ⋯ menu and note the saved file's name.\n2. Open the file in a text editor and read the header row.\n3. Compare the rows against the on-screen invoices (all reps, expanded).",
+  "expected": "1. The file is named \"sales-by-representative-expanded.csv\" and starts with a UTF-8 BOM.\n2. With a single location in scope the headers, in order, are: Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.\n3. There is one header row plus one row per invoice, flattened across all reps in the report's currently-active order, for the current filtered view.\n4. Note for the tester: the heading in this file reads simply \"Representative\". The product owner has confirmed that is correct and not slang, so do not fail the test for it.\n5. When more than one location is in scope the file also carries a Location column immediately after Status — the position it holds on screen — and every row shows that invoice's own exact location, never \"Multiple\".\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Sales By Representative report specification version 15 (S14-R16, S14-R20) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R16; S14-R20 — Expanded CSV headers; plus the automatic Location column after Status; S14-R16's header list was left un-updated when S14-R20 was added — spec correction pending)",
   "viu_status": "VIU-Pending",
@@ -345,22 +231,8 @@
   "preconditions": [
    "1. You have downloaded both report CSVs from a view that includes a negative money value, a rep whose Margin % shows \"—\" on screen (Subtotal ≤ 0), and an \"(Inactive)\" contributor (seed what is missing)."
   ],
-  "steps": [
-   "1. Open each CSV in a text editor (not a spreadsheet).",
-   "2. Read a money cell, the negative value's cell, an Inv. Hrs cell, the undefined Margin % cell, and the (Inactive) rep's \"Sales Representative\" cell."
-  ],
-  "expected": [
-   "1. Numeric columns are plain numbers — NO currency symbol, thousands separators, or parentheses; a negative uses a leading minus (for example, -1234.56).",
-   "2. Money values carry two decimals; Hrs Worked / Hrs Invoiced / Inv. Hrs carry their full stored precision; Inv. Hrs keeps its leading + or - sign.",
-   "3. Margin % is a plain number to one decimal (for example, 45.2) with no % sign, and the cell is EMPTY where Margin % is undefined (Subtotal ≤ 0).",
-   "4. The \"Sales Representative\" name carries the \"(Inactive)\" tag when applicable; the on-screen (N) count is NOT embedded in the name.",
-   "5. Text fields are quoted per standard CSV escaping; both CSVs are monochrome (Inv. Hrs conveys direction only by its sign).",
-   "6. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
-   "On this build the money in the spreadsheet file comes out as \"$1,979.40\" - with a dollar sign and a comma - instead of the plain number described in point 1 above.",
-   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R17)."
-  ],
+  "steps": "1. Open each CSV in a text editor (not a spreadsheet).\n2. Read a money cell, the negative value's cell, an Inv. Hrs cell, the undefined Margin % cell, and the (Inactive) rep's \"Sales Representative\" cell.",
+  "expected": "1. Numeric columns are plain numbers — NO currency symbol, thousands separators, or parentheses; a negative uses a leading minus (for example, -1234.56).\n2. Money values carry two decimals; Hrs Worked / Hrs Invoiced / Inv. Hrs carry their full stored precision; Inv. Hrs keeps its leading + or - sign.\n3. Margin % is a plain number to one decimal (for example, 45.2) with no % sign, and the cell is EMPTY where Margin % is undefined (Subtotal ≤ 0).\n4. The \"Sales Representative\" name carries the \"(Inactive)\" tag when applicable; the on-screen (N) count is NOT embedded in the name.\n5. Text fields are quoted per standard CSV escaping; both CSVs are monochrome (Inv. Hrs conveys direction only by its sign).\n6. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.\nOn this build the money in the spreadsheet file comes out as \"$1,979.40\" - with a dollar sign and a comma - instead of the plain number described in point 1 above.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R17).\n\nAUTOMATION: READY - EXPECT FAIL (SV-8823)\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R17; §3 Key Decisions (CSVs monochrome / plain signed numbers))",
   "viu_status": "VIU-Pending",
@@ -378,20 +250,8 @@
   "preconditions": [
    "1. The current filter set includes at least one invoice with no assigned sales representative (seed one if needed)."
   ],
-  "steps": [
-   "1. Turn Show Unassigned ON and download all four files.",
-   "2. Find the Unassigned entry in each file.",
-   "3. Turn Show Unassigned OFF and download all four files again.",
-   "4. Search each file for the unassigned invoices."
-  ],
-  "expected": [
-   "1. With the toggle ON: the Summary PDF and Summary CSV each carry one rolled-up row whose Rep / \"Sales Representative\" cell reads the literal \"Unassigned\", sorted to the top; the Expanded CSV rows for those invoices carry \"Sales Representative\" = \"Unassigned\"; the Expanded View PDF has its own TOP page-block titled \"Unassigned\".",
-   "2. The Summary PDF grand-totals row aggregates across all summary rows INCLUDING Unassigned; in the Summary CSV the Unassigned row is simply one of the data rows (no totals row exists).",
-   "3. With the toggle OFF: no Unassigned row and no unassigned invoices appear in ANY of the four files.",
-   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R19, S22-R2, S22-R4)."
-  ],
+  "steps": "1. Turn Show Unassigned ON and download all four files.\n2. Find the Unassigned entry in each file.\n3. Turn Show Unassigned OFF and download all four files again.\n4. Search each file for the unassigned invoices.",
+  "expected": "1. With the toggle ON: the Summary PDF and Summary CSV each carry one rolled-up row whose Rep / \"Sales Representative\" cell reads the literal \"Unassigned\", sorted to the top; the Expanded CSV rows for those invoices carry \"Sales Representative\" = \"Unassigned\"; the Expanded View PDF has its own TOP page-block titled \"Unassigned\".\n2. The Summary PDF grand-totals row aggregates across all summary rows INCLUDING Unassigned; in the Summary CSV the Unassigned row is simply one of the data rows (no totals row exists).\n3. With the toggle OFF: no Unassigned row and no unassigned invoices appear in ANY of the four files.\n4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R19, S22-R2, S22-R4).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R19; Story 22 S22-R2; S22-R4)",
   "viu_status": "VIU-Pending",
@@ -411,17 +271,8 @@
    "2. You can force a download failure (for example, cut the network just after triggering the download) — if not forceable, mark this Blocked with the reason.",
    "3. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
   ],
-  "steps": [
-   "1. Trigger a PDF download and watch the menu action while the file is being generated.",
-   "2. Force a failure on a download (PDF or CSV) and read the toast."
-  ],
-  "expected": [
-   "1. While a PDF is generating, the action shows a loading state and is non-interactive until the file is delivered.",
-   "2. A failed download shows the error toast \"Ooooops! An error occured\" (the typo is as-shipped) — it persists 120 seconds or until dismissed.",
-   "3. A genuine failure downloads nothing — never a malformed file.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-N1, S14-N2, S14-E1)."
-  ],
+  "steps": "1. Trigger a PDF download and watch the menu action while the file is being generated.\n2. Force a failure on a download (PDF or CSV) and read the toast.",
+  "expected": "1. While a PDF is generating, the action shows a loading state and is non-interactive until the file is delivered.\n2. A failed download shows the error toast \"Ooooops! An error occured\" (the typo is as-shipped) — it persists 120 seconds or until dismissed.\n3. A genuine failure downloads nothing — never a malformed file.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-N1, S14-N2, S14-E1).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-N1; S14-N2; S14-E1; §7)",
   "viu_status": "VIU-Pending",
@@ -439,18 +290,8 @@
   "preconditions": [
    "1. A filter set exists (or can be seeded) whose invoice detail rows exceed 10,000 — if this volume cannot be produced in the environment, mark Blocked-Env with the reason."
   ],
-  "steps": [
-   "1. Apply the over-cap filter set.",
-   "2. Choose \"Download Expanded View (PDF)\" and read the toast."
-  ],
-  "expected": [
-   "1. No file is produced — the server declines rather than generating a truncated file.",
-   "2. An error toast reads exactly: \"This report is too large to export. Narrow the date range or filters, then try again.\" (persists 120 seconds or until dismissed).",
-   "3. Below the cap, a large Expanded View PDF still generates normally (many reps × many invoices is expected).",
-   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-E2); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
-  ],
+  "steps": "1. Apply the over-cap filter set.\n2. Choose \"Download Expanded View (PDF)\" and read the toast.",
+  "expected": "1. No file is produced — the server declines rather than generating a truncated file.\n2. An error toast reads exactly: \"This report is too large to export. Narrow the date range or filters, then try again.\" (persists 120 seconds or until dismissed).\n3. Below the cap, a large Expanded View PDF still generates normally (many reps × many invoices is expected).\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-E2); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8818)\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-E2; §7 — 10k-row export cap; no truncated file; toast persists 120s; the toast STRING is the ONE suite-wide message ruled by Chris Ward 2026-07-31 Q2=A [newest-wins]; his SBR spec edit is pending)",
   "viu_status": "VIU-Pending",
@@ -468,19 +309,8 @@
   "preconditions": [
    "1. The current filter set matches ZERO invoices (for example, a date range with no activity) — the report shows its empty state."
   ],
-  "steps": [
-   "1. Download all four files from the ⋯ menu.",
-   "2. Open each and inspect its contents."
-  ],
-  "expected": [
-   "1. All four downloads produce a FILE, not an error.",
-   "2. The Summary PDF renders the header strip, no data rows, and a grand-totals row showing zeros for the money and Inv. Hrs columns and \"—\" for Margin %.",
-   "3. The Expanded View PDF renders just the header strip with no per-rep blocks (it has no grand-totals row).",
-   "4. Both CSVs generate a header-row-only file, still starting with the UTF-8 BOM.",
-   "5. No special \"empty\" treatment or message appears inside the files.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-E3)."
-  ],
+  "steps": "1. Download all four files from the ⋯ menu.\n2. Open each and inspect its contents.",
+  "expected": "1. All four downloads produce a FILE, not an error.\n2. The Summary PDF renders the header strip, no data rows, and a grand-totals row showing zeros for the money and Inv. Hrs columns and \"—\" for Margin %.\n3. The Expanded View PDF renders just the header strip with no per-rep blocks (it has no grand-totals row).\n4. Both CSVs generate a header-row-only file, still starting with the UTF-8 BOM.\n5. No special \"empty\" treatment or message appears inside the files.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-E3).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-E3)",
   "viu_status": "VIU-Pending",
@@ -499,19 +329,8 @@
    "1. You are signed in with Reports access.",
    "2. Note the current order of the Report Name dropdown entries before checking."
   ],
-  "steps": [
-   "1. In the Reports left sidebar, under the Accounting header, click the \"Export Reports\" entry — a dialog titled \"Export Report\" opens.",
-   "2. Open the Report Name dropdown and read the list top to bottom.",
-   "3. Select \"Sales Representative Assignments\" and look at the dialog body."
-  ],
-  "expected": [
-   "1. \"Sales Representative Assignments\" appears in the Report Name dropdown, appended at the BOTTOM of the list (additive — no existing entry moved or removed).",
-   "2. Selecting it HIDES the date range picker.",
-   "3. The dialog shows the note: \"Snapshot of current sales representative assignments. Both active and inactive reps with assignments are listed.\"",
-   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S15-R1, S15-R2)."
-  ],
+  "steps": "1. In the Reports left sidebar, under the Accounting header, click the \"Export Reports\" entry — a dialog titled \"Export Report\" opens.\n2. Open the Report Name dropdown and read the list top to bottom.\n3. Select \"Sales Representative Assignments\" and look at the dialog body.",
+  "expected": "1. \"Sales Representative Assignments\" appears in the Report Name dropdown, appended at the BOTTOM of the list (additive — no existing entry moved or removed).\n2. Selecting it HIDES the date range picker.\n3. The dialog shows the note: \"Snapshot of current sales representative assignments. Both active and inactive reps with assignments are listed.\"\n4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S15-R1, S15-R2).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R1; S15-R2)",
   "viu_status": "VIU-Pending",
@@ -530,20 +349,8 @@
    "1. At least one customer in the organization has an assigned sales representative.",
    "2. The Export Report dialog is open with \"Sales Representative Assignments\" selected."
   ],
-  "steps": [
-   "1. Click the Export action.",
-   "2. Note the saved file's name and read the toast.",
-   "3. Open the file in a text editor and read the header row."
-  ],
-  "expected": [
-   "1. The file downloads as \"sales-representative-assignments.csv\" — the short form \"rep\" is gone from the file name.",
-   "2. A success toast shows \"Success\" with the caption \"Report downloaded.\" and auto-fades after 5 seconds.",
-   "3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Representative, Rep is active?.",
-   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
-   "5. Note for the tester: this file has only those three columns even if you have several locations in scope. It is a separate customer-to-representative list, not one of the report's four downloads, so it has no Location column - do not fail it for that.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S15-R3, S15-R4, S14-R20); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
-  ],
+  "steps": "1. Click the Export action.\n2. Note the saved file's name and read the toast.\n3. Open the file in a text editor and read the header row.",
+  "expected": "1. The file downloads as \"sales-representative-assignments.csv\" — the short form \"rep\" is gone from the file name.\n2. A success toast shows \"Success\" with the caption \"Report downloaded.\" and auto-fades after 5 seconds.\n3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Representative, Rep is active?.\n4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.\n5. Note for the tester: this file has only those three columns even if you have several locations in scope. It is a separate customer-to-representative list, not one of the report's four downloads, so it has no Location column - do not fail it for that.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S15-R3, S15-R4, S14-R20); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R3; S15-R4; §7 — S15-R4 CLOSES the three headers; \"Sales Rep\"→\"Sales Representative\" per Chris Ward 2026-07-31 Q5 [newest-wins]; NOT one of the four report exports so S14-R20 adds no Location)",
   "viu_status": "VIU-Pending",
@@ -561,19 +368,8 @@
   "preconditions": [
    "1. The organization has several customers with assigned reps and at least one customer with NO assigned rep (seed as needed)."
   ],
-  "steps": [
-   "1. Download the Sales Representative Assignments CSV.",
-   "2. Count the rows against the customers with assigned reps.",
-   "3. Search for the no-rep customer.",
-   "4. Read the row order."
-  ],
-  "expected": [
-   "1. Every customer with an assigned sales representative produces exactly ONE row (single-rep model: one rep per customer).",
-   "2. Customers with no assigned rep are NOT included.",
-   "3. Rows are sorted by customer name A→Z (primary), then rep name A→Z (secondary).",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S15-R5, S15-R7, S15-R10)."
-  ],
+  "steps": "1. Download the Sales Representative Assignments CSV.\n2. Count the rows against the customers with assigned reps.\n3. Search for the no-rep customer.\n4. Read the row order.",
+  "expected": "1. Every customer with an assigned sales representative produces exactly ONE row (single-rep model: one rep per customer).\n2. Customers with no assigned rep are NOT included.\n3. Rows are sorted by customer name A→Z (primary), then rep name A→Z (secondary).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S15-R5, S15-R7, S15-R10).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R5; S15-R7; S15-R10)",
   "viu_status": "VIU-Pending",
@@ -591,17 +387,8 @@
   "preconditions": [
    "1. Arrange (and afterward restore): one assigned rep whose staff record is ACTIVE but whose sales-representative toggle is OFF, and one assigned rep whose staff record is INACTIVE but whose toggle is ON."
   ],
-  "steps": [
-   "1. Download the Sales Representative Assignments CSV.",
-   "2. Read the \"Rep is active?\" value on both reps' customer rows."
-  ],
-  "expected": [
-   "1. The staff-ACTIVE / toggle-off rep shows \"Rep is active?\" = \"Yes\" — the toggle does not drive this column.",
-   "2. The staff-INACTIVE / toggle-on rep shows \"Rep is active?\" = \"No\".",
-   "3. The value is always \"Yes\" or \"No\" (never \"Deactivated\" or another word).",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S15-R6, S13-R11)."
-  ],
+  "steps": "1. Download the Sales Representative Assignments CSV.\n2. Read the \"Rep is active?\" value on both reps' customer rows.",
+  "expected": "1. The staff-ACTIVE / toggle-off rep shows \"Rep is active?\" = \"Yes\" — the toggle does not drive this column.\n2. The staff-INACTIVE / toggle-on rep shows \"Rep is active?\" = \"No\".\n3. The value is always \"Yes\" or \"No\" (never \"Deactivated\" or another word).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S15-R6, S13-R11).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R6; Story 13 S13-R11)",
   "viu_status": "VIU-Pending",
@@ -619,19 +406,8 @@
   "preconditions": [
    "1. A customer exists whose assigned rep's staff record has been cleared or deleted while the customer still references it (seed and delete a throwaway ZZAUTOTEST rep if needed)."
   ],
-  "steps": [
-   "1. Download the Sales Representative Assignments CSV.",
-   "2. Find that customer's row and read its \"Sales Representative\" and \"Rep is active?\" cells.",
-   "3. If two customers carry different stored name spellings for the same underlying rep, compare their rows."
-  ],
-  "expected": [
-   "1. The customer still produces a row — the export never silently drops it.",
-   "2. The \"Sales Representative\" name comes from the customer-side stored (denormalized) rep name, and \"Rep is active?\" = \"No\".",
-   "3. When stored names differ across customers for the same rep (name drift), each customer's row uses its OWN stored name — drift never adds extra rows for a customer and never overwrites one customer's stored name with another's.",
-   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S15-R8, S15-R9)."
-  ],
+  "steps": "1. Download the Sales Representative Assignments CSV.\n2. Find that customer's row and read its \"Sales Representative\" and \"Rep is active?\" cells.\n3. If two customers carry different stored name spellings for the same underlying rep, compare their rows.",
+  "expected": "1. The customer still produces a row — the export never silently drops it.\n2. The \"Sales Representative\" name comes from the customer-side stored (denormalized) rep name, and \"Rep is active?\" = \"No\".\n3. When stored names differ across customers for the same rep (name drift), each customer's row uses its OWN stored name — drift never adds extra rows for a customer and never overwrites one customer's stored name with another's.\n4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S15-R8, S15-R9).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R8; S15-R9)",
   "viu_status": "VIU-Pending",
@@ -650,17 +426,8 @@
    "1. For the empty path: no customer in the organization has an assigned rep (or use a state where the export yields zero rows).",
    "2. For the failure path: you can force a generation failure (for example, cut the network on Export) — if not forceable, mark that step Blocked with the reason."
   ],
-  "steps": [
-   "1. With zero assigned customers, select \"Sales Representative Assignments\" in the Export Report dialog and click Export.",
-   "2. Read the dialog warning and inspect any downloaded file.",
-   "3. Force a generation failure and read the toast."
-  ],
-  "expected": [
-   "1. With zero assigned customers, the CSV downloads with a header row and no data rows, and the dialog shows its empty-export warning: \"There is no data to export for the selected report.\"",
-   "2. On a generation failure, an error toast reads \"An error occurred while exporting the report. Please try again.\" and auto-fades after 5 seconds.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S15-R11, S15-N2)."
-  ],
+  "steps": "1. With zero assigned customers, select \"Sales Representative Assignments\" in the Export Report dialog and click Export.\n2. Read the dialog warning and inspect any downloaded file.\n3. Force a generation failure and read the toast.",
+  "expected": "1. With zero assigned customers, the CSV downloads with a header row and no data rows, and the dialog shows its empty-export warning: \"There is no data to export for the selected report.\"\n2. On a generation failure, an error toast reads \"An error occurred while exporting the report. Please try again.\" and auto-fades after 5 seconds.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S15-R11, S15-N2).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R11; S15-N2; §7)",
   "viu_status": "VIU-Pending",
@@ -678,21 +445,8 @@
   "preconditions": [
    "1. You are on the report."
   ],
-  "steps": [
-   "1. Apply a filter set that matches no invoices for any rep (for example, a date range with no activity), with Show Unassigned OFF or with no matching unassigned invoices either.",
-   "2. Read the data area and look for the grand Totals indicator.",
-   "3. If checkable: view an organization/location state where NO staff member has ever been credited with an invoice, and compare the message.",
-   "4. Look at the toolbar, then change the date range to a period WITH activity."
-  ],
-  "expected": [
-   "1. The table shows no data rows and the empty-state message \"No sales activity matches the current filters.\"",
-   "2. The grand Totals indicator is NOT shown.",
-   "3. The same message appears when no staff member has ever been credited — there is no separate \"no reps configured\" message; the report is contributor-driven.",
-   "4. Whenever at least one rep row (or the Unassigned row) IS in the result set, the rep list renders and no empty/error message shows.",
-   "5. In the empty state the toolbar — filters, column selector, and the ⋯ exports — stays visible and interactive; widening the range re-fetches and renders the matching reps normally.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S16-R1, S16-R2, S16-R3, S16-N1, S2-N1, S21-N2)."
-  ],
+  "steps": "1. Apply a filter set that matches no invoices for any rep (for example, a date range with no activity), with Show Unassigned OFF or with no matching unassigned invoices either.\n2. Read the data area and look for the grand Totals indicator.\n3. If checkable: view an organization/location state where NO staff member has ever been credited with an invoice, and compare the message.\n4. Look at the toolbar, then change the date range to a period WITH activity.",
+  "expected": "1. The table shows no data rows and the empty-state message \"No sales activity matches the current filters.\"\n2. The grand Totals indicator is NOT shown.\n3. The same message appears when no staff member has ever been credited — there is no separate \"no reps configured\" message; the report is contributor-driven.\n4. Whenever at least one rep row (or the Unassigned row) IS in the result set, the rep list renders and no empty/error message shows.\n5. In the empty state the toolbar — filters, column selector, and the ⋯ exports — stays visible and interactive; widening the range re-fetches and renders the matching reps normally.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S16-R1, S16-R2, S16-R3, S16-N1, S2-N1, S21-N2).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8633 (SBR spec v15 2026-07-29 Story 16 S16-R1; S16-R2; S16-R3; S16-N1; Story 2 S2-N1; Story 21 S21-N2; §7)",
   "viu_status": "VIU-Pending",
@@ -735,19 +489,8 @@
    "1. You are on the report with data showing (use a slow/throttled connection if available to make the loading state observable).",
    "2. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
   ],
-  "steps": [
-   "1. Reload the report and watch the data area during the initial load.",
-   "2. Change a filter and watch the data area during the re-fetch.",
-   "3. While loading, try to interact with the toolbar."
-  ],
-  "expected": [
-   "1. On the initial load and on every filter-triggered re-fetch, the table shows the standard reports loading indicator — a centered spinner over the data area.",
-   "2. The grand Totals indicator is hidden during loading.",
-   "3. The toolbar stays interactive so filters can be changed mid-load.",
-   "4. A re-fetch replaces the previous data only when the new data returns — no flash of a blank table beyond the spinner overlay.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S16-R4)."
-  ],
+  "steps": "1. Reload the report and watch the data area during the initial load.\n2. Change a filter and watch the data area during the re-fetch.\n3. While loading, try to interact with the toolbar.",
+  "expected": "1. On the initial load and on every filter-triggered re-fetch, the table shows the standard reports loading indicator — a centered spinner over the data area.\n2. The grand Totals indicator is hidden during loading.\n3. The toolbar stays interactive so filters can be changed mid-load.\n4. A re-fetch replaces the previous data only when the new data returns — no flash of a blank table beyond the spinner overlay.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S16-R4).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8633 (SBR spec v15 2026-07-29 Story 16 S16-R4)",
   "viu_status": "VIU-Pending",
@@ -766,18 +509,8 @@
    "1. You can force a load failure (for example, cut the network and change a filter) — if not forceable, mark Blocked with the reason.",
    "2. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
   ],
-  "steps": [
-   "1. Set several non-default filters.",
-   "2. Force a load/re-fetch failure and read the data area.",
-   "3. Restore the network and click \"Retry\"."
-  ],
-  "expected": [
-   "1. The data area shows the inline error message \"Couldn't load the report. Please try again.\" with a \"Retry\" action.",
-   "2. The filters and toolbar remain interactive, and the failure does NOT clear the filter selections.",
-   "3. \"Retry\" re-runs the CURRENT request — the report loads with the same filters still applied.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S16-R5)."
-  ],
+  "steps": "1. Set several non-default filters.\n2. Force a load/re-fetch failure and read the data area.\n3. Restore the network and click \"Retry\".",
+  "expected": "1. The data area shows the inline error message \"Couldn't load the report. Please try again.\" with a \"Retry\" action.\n2. The filters and toolbar remain interactive, and the failure does NOT clear the filter selections.\n3. \"Retry\" re-runs the CURRENT request — the report loads with the same filters still applied.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S16-R5).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8633 (SBR spec v15 2026-07-29 Story 16 S16-R5; §7)",
   "viu_status": "VIU-Pending",
@@ -795,18 +528,8 @@
   "preconditions": [
    "1. Open the report on a phone-sized viewport (real device or browser device emulation, width under 1024px)."
   ],
-  "steps": [
-   "1. Find and operate each toolbar control by touch: the ⋯ exports, the column selector, the Show Unassigned toggle, the date range picker, Product Type, Invoice Status, and Location.",
-   "2. Look at how the controls are laid out.",
-   "3. Widen the viewport to 1024px or more and compare."
-  ],
-  "expected": [
-   "1. Every toolbar control is visible and operable on touch.",
-   "2. Below 1024px the toolbar controls stack vertically at full width; the ⋯ exports button — the first control of the action cluster — wraps to a partial row ABOVE the stacked controls.",
-   "3. At 1024px and above the desktop layout applies.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S17-R1, S17-R2, S17-R3)."
-  ],
+  "steps": "1. Find and operate each toolbar control by touch: the ⋯ exports, the column selector, the Show Unassigned toggle, the date range picker, Product Type, Invoice Status, and Location.\n2. Look at how the controls are laid out.\n3. Widen the viewport to 1024px or more and compare.",
+  "expected": "1. Every toolbar control is visible and operable on touch.\n2. Below 1024px the toolbar controls stack vertically at full width; the ⋯ exports button — the first control of the action cluster — wraps to a partial row ABOVE the stacked controls.\n3. At 1024px and above the desktop layout applies.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S17-R1, S17-R2, S17-R3).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8634 (SBR spec v15 2026-07-29 Story 17 S17-R1; S17-R2; S17-R3)",
   "viu_status": "VIU-Pending",
@@ -824,18 +547,8 @@
   "preconditions": [
    "1. The report is open on a phone-sized viewport (under 1024px) with at least one rep row."
   ],
-  "steps": [
-   "1. Swipe the data table sideways and watch the Subtotal column.",
-   "2. Look below the table for the totals bar and swipe the table again.",
-   "3. Tap a rep row's chevron."
-  ],
-  "expected": [
-   "1. The table scrolls horizontally to expose all columns; the pinned Subtotal column stays visible at the right edge throughout.",
-   "2. The mobile external totals bar (\"Totals\" left, grand Subtotal right) sits below the table, OUTSIDE the horizontal scroll container — it does not scroll horizontally and is always fully visible.",
-   "3. The chevron expands/collapses the rep on touch.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S17-R4, S17-R5, S10-R5)."
-  ],
+  "steps": "1. Swipe the data table sideways and watch the Subtotal column.\n2. Look below the table for the totals bar and swipe the table again.\n3. Tap a rep row's chevron.",
+  "expected": "1. The table scrolls horizontally to expose all columns; the pinned Subtotal column stays visible at the right edge throughout.\n2. The mobile external totals bar (\"Totals\" left, grand Subtotal right) sits below the table, OUTSIDE the horizontal scroll container — it does not scroll horizontally and is always fully visible.\n3. The chevron expands/collapses the rep on touch.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S17-R4, S17-R5, S10-R5).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8634 (SBR spec v15 2026-07-29 Story 17 S17-R4; S17-R5; Story 10 S10-R5 (mobile))",
   "viu_status": "VIU-Pending",
@@ -854,16 +567,8 @@
    "1. The report is open on a touch device or touch emulation (under 1024px).",
    "2. This test names exact colours or sizes. Use the browser's own developer tools: press F12, pick the element with the inspector, and read its colour or size from the \"Styles\" panel. There is nothing to install. If you cannot get a clear reading, mark this test Blocked rather than guessing."
   ],
-  "steps": [
-   "1. Measure (device emulation ruler/inspector) the touch targets of a row chevron, the Show Unassigned toggle, the ⋯ button, and — via the staff deactivation dialog if opened — the dialog's X.",
-   "2. Tap-and-hold the icon controls and watch for tooltips."
-  ],
-  "expected": [
-   "1. Each of these interactive controls presents a touch target of at least 44×44 px.",
-   "2. Hover-only tooltips are not shown on touch; the icons communicate the action and each icon-only control carries an accessible name.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S17-R6, S17-N1, S18-R9)."
-  ],
+  "steps": "1. Measure (device emulation ruler/inspector) the touch targets of a row chevron, the Show Unassigned toggle, the ⋯ button, and — via the staff deactivation dialog if opened — the dialog's X.\n2. Tap-and-hold the icon controls and watch for tooltips.",
+  "expected": "1. Each of these interactive controls presents a touch target of at least 44×44 px.\n2. Hover-only tooltips are not shown on touch; the icons communicate the action and each icon-only control carries an accessible name.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S17-R6, S17-N1, S18-R9).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8634 (SBR spec v15 2026-07-29 Story 17 S17-R6; S17-N1; Story 18 S18-R9)",
   "viu_status": "VIU-Pending",
@@ -881,23 +586,8 @@
   "preconditions": [
    "1. You are on the report on a desktop browser (light mode) with data showing."
   ],
-  "steps": [
-   "1. Look at the toolbar strip, at the space between its controls and the edges of the strip, and at how the title and the rightmost control line up with the table columns.",
-   "2. Look at the page background around the data area, the line between the toolbar and the column headers, and the table's side edges.",
-   "3. Look at the header cells, the body cells, the pinned Subtotal cells, and the grand Totals indicator's surface.",
-   "4. Open another report in the suite (for example Parts Velocity) side by side and compare."
-  ],
-  "expected": [
-   "1. The toolbar has a solid white background and its controls sit clear of the edges rather than pressed up against them; the title's left edge lines up with the leftmost data column, and the rightmost toolbar control (the Location filter) lines its right edge up with the rightmost data column.",
-   "2. The data area sits on the standard blue-grey page background and runs edge-to-edge against the side navigation — there is no strip of empty space down either side.",
-   "3. A thin horizontal separator line sits between the toolbar and the column headers.",
-   "4. Column-header cells and all body cells render on white; the pinned Subtotal column matches the row background (not a contrasting strip); the grand Totals indicator renders on the white card surface with a thin top border.",
-   "5. Row types are told apart by how heavy and what colour their text is, not by a different background colour.",
-   "6. It all looks the same as the other reports in the suite: put another report side by side and nothing should look out of place.",
-   "7. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether the spacing and the alignment look right and consistent with the other reports, and only report it if something looks obviously off. (The exact figures behind this — 32px/24px toolbar padding, 2rem edge padding — are design-token values the design and engineering team check with their own tooling, not by hand.)",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S18-R1, S18-R2, S18-R3, S18-R4, S18-R5, S18-R7, S18-N1)."
-  ],
+  "steps": "1. Look at the toolbar strip, at the space between its controls and the edges of the strip, and at how the title and the rightmost control line up with the table columns.\n2. Look at the page background around the data area, the line between the toolbar and the column headers, and the table's side edges.\n3. Look at the header cells, the body cells, the pinned Subtotal cells, and the grand Totals indicator's surface.\n4. Open another report in the suite (for example Parts Velocity) side by side and compare.",
+  "expected": "1. The toolbar has a solid white background and its controls sit clear of the edges rather than pressed up against them; the title's left edge lines up with the leftmost data column, and the rightmost toolbar control (the Location filter) lines its right edge up with the rightmost data column.\n2. The data area sits on the standard blue-grey page background and runs edge-to-edge against the side navigation — there is no strip of empty space down either side.\n3. A thin horizontal separator line sits between the toolbar and the column headers.\n4. Column-header cells and all body cells render on white; the pinned Subtotal column matches the row background (not a contrasting strip); the grand Totals indicator renders on the white card surface with a thin top border.\n5. Row types are told apart by how heavy and what colour their text is, not by a different background colour.\n6. It all looks the same as the other reports in the suite: put another report side by side and nothing should look out of place.\n7. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether the spacing and the alignment look right and consistent with the other reports, and only report it if something looks obviously off. (The exact figures behind this — 32px/24px toolbar padding, 2rem edge padding — are design-token values the design and engineering team check with their own tooling, not by hand.)\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S18-R1, S18-R2, S18-R3, S18-R4, S18-R5, S18-R7, S18-N1).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R1; S18-R2; S18-R3; S18-R4; S18-R5; S18-R7.1–R7.6; S18-N1)",
   "viu_status": "VIU-Pending",
@@ -915,20 +605,8 @@
   "preconditions": [
    "1. You are on the report with data showing, including at least one expanded rep (badges visible) and non-zero Inv. Hrs values."
   ],
-  "steps": [
-   "1. Switch the application to dark mode.",
-   "2. Look at the page, toolbar, header, body cells, and the grand Totals indicator.",
-   "3. Read the status badges and the green/red Inv. Hrs values.",
-   "4. Download a PDF while in dark mode and open it."
-  ],
-  "expected": [
-   "1. The page, toolbar, header, body cells, and the grand Totals indicator switch to their dark equivalents.",
-   "2. Status badges keep the same canonical payment-status color tokens and stay legible in both modes.",
-   "3. Inv. Hrs green/red use the application's positive/negative tokens, mode-appropriate.",
-   "4. PDFs always render in light-mode colors, even when downloaded from dark mode.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S18-R8)."
-  ],
+  "steps": "1. Switch the application to dark mode.\n2. Look at the page, toolbar, header, body cells, and the grand Totals indicator.\n3. Read the status badges and the green/red Inv. Hrs values.\n4. Download a PDF while in dark mode and open it.",
+  "expected": "1. The page, toolbar, header, body cells, and the grand Totals indicator switch to their dark equivalents.\n2. Status badges keep the same canonical payment-status color tokens and stay legible in both modes.\n3. Inv. Hrs green/red use the application's positive/negative tokens, mode-appropriate.\n4. PDFs always render in light-mode colors, even when downloaded from dark mode.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S18-R8).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R8)",
   "viu_status": "VIU-Pending",
@@ -947,19 +625,8 @@
    "1. You are on the report with at least one rep row; a screen reader or the browser's accessibility inspector is available.",
    "2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
   ],
-  "steps": [
-   "1. Inspect the accessible name of: the ⋯ exports button, the column selector button, one rep row's chevron (collapsed, then expanded), and the header chevron.",
-   "2. Open the staff deactivation dialog (Story 13 flow) and inspect its X close icon."
-  ],
-  "expected": [
-   "1. ⋯ exports = \"Report actions\".",
-   "2. Column selector = \"Show or hide columns\".",
-   "3. Per-row chevron = \"Expand {rep name}\" when collapsed / \"Collapse {rep name}\" when expanded.",
-   "4. Header chevron = \"Expand all reps\" / \"Collapse all reps\".",
-   "5. Dialog X = \"Close\".",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S18-R9)."
-  ],
+  "steps": "1. Inspect the accessible name of: the ⋯ exports button, the column selector button, one rep row's chevron (collapsed, then expanded), and the header chevron.\n2. Open the staff deactivation dialog (Story 13 flow) and inspect its X close icon.",
+  "expected": "1. ⋯ exports = \"Report actions\".\n2. Column selector = \"Show or hide columns\".\n3. Per-row chevron = \"Expand {rep name}\" when collapsed / \"Collapse {rep name}\" when expanded.\n4. Header chevron = \"Expand all reps\" / \"Collapse all reps\".\n5. Dialog X = \"Close\".\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S18-R9).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R9)",
   "viu_status": "DEVIATION",
@@ -978,18 +645,8 @@
    "1. You are on the report with at least two rep rows; a screen reader or accessibility inspector is available.",
    "2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
   ],
-  "steps": [
-   "1. Tab to a rep row's chevron; press Enter, then Space.",
-   "2. Tab to a financial column header; press Enter, then Space.",
-   "3. Inspect what state each control exposes to assistive technology."
-  ],
-  "expected": [
-   "1. The row chevrons and the sortable column headers are keyboard-focusable and activate on Enter and on Space.",
-   "2. A chevron exposes its expanded/collapsed state to assistive technology.",
-   "3. A sortable header exposes its current sort state (unsorted / ascending / descending) to assistive technology.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S18-R10)."
-  ],
+  "steps": "1. Tab to a rep row's chevron; press Enter, then Space.\n2. Tab to a financial column header; press Enter, then Space.\n3. Inspect what state each control exposes to assistive technology.",
+  "expected": "1. The row chevrons and the sortable column headers are keyboard-focusable and activate on Enter and on Space.\n2. A chevron exposes its expanded/collapsed state to assistive technology.\n3. A sortable header exposes its current sort state (unsorted / ascending / descending) to assistive technology.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S18-R10).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R10)",
   "viu_status": "VIU-Pending",
@@ -1007,17 +664,8 @@
   "preconditions": [
    "1. You are on the report with a rep row showing a (N) count and - if arrangeable - an \"(Inactive)\" tag."
   ],
-  "steps": [
-   "1. Read the subdued-grey (N) count and the \"(Inactive)\" tag in light mode, then switch to dark mode and read them again.",
-   "2. Review how Inv. Hrs, the status badges, and the links convey their meaning."
-  ],
-  "expected": [
-   "1. In BOTH light mode and dark mode the subdued-grey (N) count and the \"(Inactive)\" tag are easy to read against the surface behind them - the smaller text does not fade into the background.",
-   "2. No information is conveyed by color alone: Inv. Hrs carries its +/- sign, status badges carry their text label, and links carry a hover/focus underline.",
-   "3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can read the grey text easily in both modes, and only report it if you cannot. (The design rule behind this is WCAG AA contrast of at least 4.5:1, which the design and engineering team check with a contrast tool - not by hand.)",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S18-R11, S18-R12)."
-  ],
+  "steps": "1. Read the subdued-grey (N) count and the \"(Inactive)\" tag in light mode, then switch to dark mode and read them again.\n2. Review how Inv. Hrs, the status badges, and the links convey their meaning.",
+  "expected": "1. In BOTH light mode and dark mode the subdued-grey (N) count and the \"(Inactive)\" tag are easy to read against the surface behind them - the smaller text does not fade into the background.\n2. No information is conveyed by color alone: Inv. Hrs carries its +/- sign, status badges carry their text label, and links carry a hover/focus underline.\n3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can read the grey text easily in both modes, and only report it if you cannot. (The design rule behind this is WCAG AA contrast of at least 4.5:1, which the design and engineering team check with a contrast tool - not by hand.)\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S18-R11, S18-R12).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R11; S18-R12 — subdued-grey (N) count and \"(Inactive)\" tag at ≥ 4.5:1 WCAG AA in both modes; nothing conveyed by colour alone; the ratio is a design-token property so the check is by-eye)",
   "viu_status": "VIU-Pending",
@@ -1035,24 +683,8 @@
   "preconditions": [
    "1. You have: an open standard Work Order, an open Part Sale WO, an imported Work Order, and a way to view a WO in History mode."
   ],
-  "steps": [
-   "1. Open the standard Work Order and look at the left panel.",
-   "2. Open the Part Sale WO and look at the left panel.",
-   "3. Open the imported Work Order and look for the same field.",
-   "4. View a WO in History mode and look for the field."
-  ],
-  "expected": [
-   "1. The left panel includes a \"Sales Representative\" selector on the standard Work Order.",
-   "2. The left panel includes the same \"Sales Representative\" selector on the Part Sale WO.",
-   "3. The selector is NOT present on the imported Work Order.",
-   "4. The selector is NOT present in History mode.",
-   "5. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
-   "---",
-   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
-   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
-   "",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S19-R1, S19-N1)."
-  ],
+  "steps": "1. Open the standard Work Order and look at the left panel.\n2. Open the Part Sale WO and look at the left panel.\n3. Open the imported Work Order and look for the same field.\n4. View a WO in History mode and look for the field.",
+  "expected": "1. The left panel includes a \"Sales Representative\" selector on the standard Work Order.\n2. The left panel includes the same \"Sales Representative\" selector on the Part Sale WO.\n3. The selector is NOT present on the imported Work Order.\n4. The selector is NOT present in History mode.\n5. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S19-R1, S19-N1).\n\nAUTOMATION: HOLD - waiting on an answer from the product owner\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R1; S19-N1)",
   "viu_status": "VIU-Pending",
@@ -1070,19 +702,8 @@
   "preconditions": [
    "1. At least one staff member has the sales-representative toggle ON and at least one has it OFF. To arrange this: open Settings, go to Staff, edit the staff member, and use the sales-representative toggle there (restore both afterward)."
   ],
-  "steps": [
-   "1. Open a Work Order and open the \"Sales Representative\" selector.",
-   "2. Search the option list for both staff members.",
-   "3. Inspect the selector's accessible name."
-  ],
-  "expected": [
-   "1. The toggle-ON staff member is offered as a selectable rep.",
-   "2. The toggle-OFF staff member is NOT offered as a new selection.",
-   "3. The selector carries the accessible name \"Sales Representative\".",
-   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S19-R2, S19-R8)."
-  ],
+  "steps": "1. Open a Work Order and open the \"Sales Representative\" selector.\n2. Search the option list for both staff members.\n3. Inspect the selector's accessible name.",
+  "expected": "1. The toggle-ON staff member is offered as a selectable rep.\n2. The toggle-OFF staff member is NOT offered as a new selection.\n3. The selector carries the accessible name \"Sales Representative\".\n4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S19-R2, S19-R8).\n\nAUTOMATION: HOLD - this part of the report is not built yet\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R2; S19-R8 — toggle entry path Settings -> Staff -> edit the staff member per the PRD companion video 2026-07-30 09:17-09:41; exact toggle label to confirm live in the build)",
   "viu_status": "VIU-Pending",
@@ -1100,18 +721,8 @@
   "preconditions": [
    "1. At least one staff member is offered as a sales representative."
   ],
-  "steps": [
-   "1. Create a new Work Order (mark it ZZAUTOTEST) and read the Sales Representative field before touching it.",
-   "2. Select a rep in the field, then navigate away WITHOUT any explicit save and reopen the WO.",
-   "3. Repeat the unassigned-open check on a new Part Sale WO."
-  ],
-  "expected": [
-   "1. The new Work Order opens with the Sales Representative field UNASSIGNED — it is not pre-filled at creation.",
-   "2. Changing the Sales Representative persists immediately (save-on-change): the selection survives leaving and reopening the WO with no separate Save step.",
-   "3. A new Part Sale WO also opens with the field unassigned.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S19-R3, S19-R4)."
-  ],
+  "steps": "1. Create a new Work Order (mark it ZZAUTOTEST) and read the Sales Representative field before touching it.\n2. Select a rep in the field, then navigate away WITHOUT any explicit save and reopen the WO.\n3. Repeat the unassigned-open check on a new Part Sale WO.",
+  "expected": "1. The new Work Order opens with the Sales Representative field UNASSIGNED — it is not pre-filled at creation.\n2. Changing the Sales Representative persists immediately (save-on-change): the selection survives leaving and reopening the WO with no separate Save step.\n3. A new Part Sale WO also opens with the field unassigned.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S19-R3, S19-R4).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R3; S19-R4)",
   "viu_status": "VIU-Pending",
@@ -1129,18 +740,8 @@
   "preconditions": [
    "1. One Work Order is in \"Invoiced\" status and one is in \"Paid\" status (drive throwaway ZZAUTOTEST WOs into these states if needed)."
   ],
-  "steps": [
-   "1. Open the Invoiced WO and try to change the Sales Representative field.",
-   "2. Open the Paid WO and try the same."
-  ],
-  "expected": [
-   "1. On the Invoiced WO the Sales Representative selector is read-only (non-interactive) — the assignment cannot be changed.",
-   "2. On the Paid WO the selector is also read-only.",
-   "3. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
-   "4. Note for the tester: this field is only made read-only on the screen. If you find the sales rep can still be changed another way (through the back-end/API), that is expected — mark this test PASSED and do not raise it as a bug.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S19-R5)."
-  ],
+  "steps": "1. Open the Invoiced WO and try to change the Sales Representative field.\n2. Open the Paid WO and try the same.",
+  "expected": "1. On the Invoiced WO the Sales Representative selector is read-only (non-interactive) — the assignment cannot be changed.\n2. On the Paid WO the selector is also read-only.\n3. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.\n4. Note for the tester: this field is only made read-only on the screen. If you find the sales rep can still be changed another way (through the back-end/API), that is expected — mark this test PASSED and do not raise it as a bug.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S19-R5).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R5)",
   "viu_status": "VIU-Pending",
@@ -1158,19 +759,8 @@
   "preconditions": [
    "1. Three throwaway ZZAUTOTEST setups: (a) a WO WITH a Sales Representative assigned; (b) a WO with NO rep whose customer HAS an assigned rep; (c) a WO with NO rep whose customer has NO assigned rep."
   ],
-  "steps": [
-   "1. Invoice all three WOs.",
-   "2. On the report (Show Unassigned on, filters covering the invoices), find each invoice and note which row it sits under.",
-   "3. Go back to WO (a), change its Sales Representative to a different rep, and re-check the already-created invoice on the report."
-  ],
-  "expected": [
-   "1. Invoice (a) is credited to the WO's Sales Representative.",
-   "2. Invoice (b) falls back to the CUSTOMER's assigned rep.",
-   "3. Invoice (c) is unassigned — it appears only under the \"Unassigned\" row.",
-   "4. Changing WO (a)'s Sales Representative afterward does NOT retroactively alter the invoice already created from it — the invoice stays credited to the rep snapshotted at invoice creation.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S19-R6, S19-N2, S22-R3)."
-  ],
+  "steps": "1. Invoice all three WOs.\n2. On the report (Show Unassigned on, filters covering the invoices), find each invoice and note which row it sits under.\n3. Go back to WO (a), change its Sales Representative to a different rep, and re-check the already-created invoice on the report.",
+  "expected": "1. Invoice (a) is credited to the WO's Sales Representative.\n2. Invoice (b) falls back to the CUSTOMER's assigned rep.\n3. Invoice (c) is unassigned — it appears only under the \"Unassigned\" row.\n4. Changing WO (a)'s Sales Representative afterward does NOT retroactively alter the invoice already created from it — the invoice stays credited to the rep snapshotted at invoice creation.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S19-R6, S19-N2, S22-R3).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R6; S19-N2; §3 Key Decisions (single-rep snapshot); Story 22 S22-R3)",
   "viu_status": "VIU-Pending",
@@ -1189,22 +779,8 @@
    "1. One customer HAS an assigned sales representative and one customer has NONE.",
    "2. A Work Order exists whose bound Sales Representative can have their toggle turned off (arrange and restore afterward)."
   ],
-  "steps": [
-   "1. Open the assigned customer's record and read the left-panel sidebar.",
-   "2. Open the unassigned customer's record and read the same row.",
-   "3. Turn the bound rep's sales-representative toggle OFF, reopen the Work Order, and read the Sales Representative selector; then open its option list."
-  ],
-  "expected": [
-   "1. The customer record's left-panel sidebar shows a single row labeled \"Sales Representative\" (the full word — the product owner explicitly corrected the short-form \"Sales Representative\" label here) with the customer's assigned rep.",
-   "2. When no rep is assigned, the row renders \"Unassigned\".",
-   "3. On the WO, the selector renders the bound rep's name with an \"(Inactive)\" indicator so the current assignment stays visible — but that rep is NOT offered as a new selection in the list.",
-   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
-   "---",
-   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
-   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
-   "",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S19-R7, S19-E1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
-  ],
+  "steps": "1. Open the assigned customer's record and read the left-panel sidebar.\n2. Open the unassigned customer's record and read the same row.\n3. Turn the bound rep's sales-representative toggle OFF, reopen the Work Order, and read the Sales Representative selector; then open its option list.",
+  "expected": "1. The customer record's left-panel sidebar shows a single row labeled \"Sales Representative\" (the full word — the product owner explicitly corrected the short-form \"Sales Representative\" label here) with the customer's assigned rep.\n2. When no rep is assigned, the row renders \"Unassigned\".\n3. On the WO, the selector renders the bound rep's name with an \"(Inactive)\" indicator so the current assignment stays visible — but that rep is NOT offered as a new selection in the list.\n4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S19-R7, S19-E1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.\n\nAUTOMATION: HOLD - waiting on an answer from the product owner\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8636 (SBR spec Story 19 S19-R7; S19-E1 — customer-card label RE-RULED to the full \"Sales Representative\" per the PRD companion video 2026-07-30 + Chris Ward answer 2026-07-31 Q5=A; the spec text still says \"Sales Rep\")",
   "viu_status": "VIU-Pending",
@@ -1223,16 +799,8 @@
    "1. A staff member is active with the sales-rep toggle on.",
    "2. You can force the pre-deactivation assignment check to fail (for example, cut the network exactly when toggling active off) — if not forceable, mark Blocked with the reason."
   ],
-  "steps": [
-   "1. Toggle the staff member's active status off while forcing the check to fail.",
-   "2. Read the dialog that opens."
-  ],
-  "expected": [
-   "1. The system NEVER silently deactivates — the warning dialog still opens (fallback), so the type-to-confirm gate still applies.",
-   "2. Because the customer count is unavailable, the dialog OMITS the count headline and shows only the reassurance line \"Their customer assignments will stay where they are.\" above the \"Type YES to confirm\" gate.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S13-N4)."
-  ],
+  "steps": "1. Toggle the staff member's active status off while forcing the check to fail.\n2. Read the dialog that opens.",
+  "expected": "1. The system NEVER silently deactivates — the warning dialog still opens (fallback), so the type-to-confirm gate still applies.\n2. Because the customer count is unavailable, the dialog OMITS the count headline and shows only the reassurance line \"Their customer assignments will stay where they are.\" above the \"Type YES to confirm\" gate.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S13-N4).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-N4)",
   "viu_status": "VIU-Pending",
@@ -1252,18 +820,8 @@
    "2. The browser's network panel is open.",
    "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
   ],
-  "steps": [
-   "1. Load the report and note which requests deliver the summary rows.",
-   "2. Expand one rep and watch the network panel; collapse and re-expand it.",
-   "3. If a rep has many invoices, scroll/page through its expanded detail rows."
-  ],
-  "expected": [
-   "1. Invoice detail rows are NOT delivered with the initial summary payload — the first expand of a rep triggers a server fetch for that rep's matching invoices, with a brief row-level loading indicator.",
-   "2. A re-expand within the session does not necessarily re-fetch (the expansion state is session-preserved); no rep's details load before its first expand.",
-   "3. When a rep's matching-invoice count is large, its detail rows are paginated per rep.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S6-R2)."
-  ],
+  "steps": "1. Load the report and note which requests deliver the summary rows.\n2. Expand one rep and watch the network panel; collapse and re-expand it.\n3. If a rep has many invoices, scroll/page through its expanded detail rows.",
+  "expected": "1. Invoice detail rows are NOT delivered with the initial summary payload — the first expand of a rep triggers a server fetch for that rep's matching invoices, with a brief row-level loading indicator.\n2. A re-expand within the session does not necessarily re-fetch (the expansion state is session-preserved); no rep's details load before its first expand.\n3. When a rep's matching-invoice count is large, its detail rows are paginated per rep.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S6-R2).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R2)",
   "viu_status": "VIU-Pending",
@@ -1282,17 +840,8 @@
    "1. You are on the report with several rep rows; the network panel is open.",
    "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
   ],
-  "steps": [
-   "1. Click a financial column header and watch the network panel.",
-   "2. Click the same header again (descending) and watch again."
-  ],
-  "expected": [
-   "1. Each sort change triggers a server re-fetch of the rep summary rows in the requested order (a loading indicator shows during the fetch).",
-   "2. The returned rows arrive already ordered by the requested column and direction — the client does not re-sort locally.",
-   "3. Invoice detail rows continue to load lazily per rep on expand, unaffected by the sort mechanism.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S11-R5)."
-  ],
+  "steps": "1. Click a financial column header and watch the network panel.\n2. Click the same header again (descending) and watch again.",
+  "expected": "1. Each sort change triggers a server re-fetch of the rep summary rows in the requested order (a loading indicator shows during the fetch).\n2. The returned rows arrive already ordered by the requested column and direction — the client does not re-sort locally.\n3. Invoice detail rows continue to load lazily per rep on expand, unaffected by the sort mechanism.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S11-R5).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R5)",
   "viu_status": "VIU-Pending",
@@ -1311,17 +860,8 @@
    "1. You are on the report with several reps, at least one large enough that not all of its detail rows are loaded; the network panel is open.",
    "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
   ],
-  "steps": [
-   "1. Load the report with everything collapsed and inspect the summary response and the grand Totals indicator.",
-   "2. Compare the grand totals against the full filtered result (for example, via the Summary CSV), not just the loaded rows."
-  ],
-  "expected": [
-   "1. The grand totals arrive WITH the summary payload — the client does not derive them by summing loaded rows.",
-   "2. The totals cover EVERY matching non-reversed invoice across every rep, independent of which reps are expanded or how many detail rows are loaded.",
-   "3. The on-screen grand Totals match the export's aggregate for the same filter set.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S10-R5)."
-  ],
+  "steps": "1. Load the report with everything collapsed and inspect the summary response and the grand Totals indicator.\n2. Compare the grand totals against the full filtered result (for example, via the Summary CSV), not just the loaded rows.",
+  "expected": "1. The grand totals arrive WITH the summary payload — the client does not derive them by summing loaded rows.\n2. The totals cover EVERY matching non-reversed invoice across every rep, independent of which reps are expanded or how many detail rows are loaded.\n3. The on-screen grand Totals match the export's aggregate for the same filter set.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S10-R5).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R5)",
   "viu_status": "VIU-Pending",
@@ -1340,18 +880,8 @@
    "1. You are on the report with filters and a column sort applied; at least one rep is left unexpanded; the network panel is open.",
    "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
   ],
-  "steps": [
-   "1. Trigger each of the four downloads and observe the export requests and responses.",
-   "2. Compare the delivered files against the active filters and sort.",
-   "3. If forceable, fail one export server-side and check what (if anything) downloads."
-  ],
-  "expected": [
-   "1. Each export is generated by the server, receiving the active filters and sort — the file's contents and order match the screen even for reps never expanded (not built from loaded screen data).",
-   "2. A genuine server-side export failure produces NO file and shows the \"Ooooops! An error occured\" toast — never a malformed/partial file.",
-   "3. An empty-but-loaded result still produces a valid file (header-row-only CSV / no-rows PDF).",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R2a, S14-N2, S14-E3)."
-  ],
+  "steps": "1. Trigger each of the four downloads and observe the export requests and responses.\n2. Compare the delivered files against the active filters and sort.\n3. If forceable, fail one export server-side and check what (if anything) downloads.",
+  "expected": "1. Each export is generated by the server, receiving the active filters and sort — the file's contents and order match the screen even for reps never expanded (not built from loaded screen data).\n2. A genuine server-side export failure produces NO file and shows the \"Ooooops! An error occured\" toast — never a malformed/partial file.\n3. An empty-but-loaded result still produces a valid file (header-row-only CSV / no-rows PDF).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R2a, S14-N2, S14-E3).\n\nAUTOMATION: HOLD - this part of the report is not built yet\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R2a; S14-N2; S14-E3)",
   "viu_status": "VIU-Pending",
@@ -1371,18 +901,8 @@
    "2. The network panel is open.",
    "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
   ],
-  "steps": [
-   "1. Trigger \"Download Expanded View (PDF)\" against the over-cap filter set and observe the export request/response.",
-   "2. Check whether any file arrives."
-  ],
-  "expected": [
-   "1. The server counts the rows against the 10,000-data-row cap and DECLINES to generate — the refusal happens pre-generation, observed in the export response.",
-   "2. NO file (truncated or otherwise) is delivered; the client shows the specific too-large toast.",
-   "3. A filter set just below the cap still generates a complete (possibly very large) PDF.",
-   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-E2)."
-  ],
+  "steps": "1. Trigger \"Download Expanded View (PDF)\" against the over-cap filter set and observe the export request/response.\n2. Check whether any file arrives.",
+  "expected": "1. The server counts the rows against the 10,000-data-row cap and DECLINES to generate — the refusal happens pre-generation, observed in the export response.\n2. NO file (truncated or otherwise) is delivered; the client shows the specific too-large toast.\n3. A filter set just below the cap still generates a complete (possibly very large) PDF.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-E2).\n\nAUTOMATION: READY - EXPECT FAIL (SV-8818)\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-E2)",
   "viu_status": "VIU-Pending",
@@ -1402,18 +922,8 @@
    "2. The network panel is open.",
    "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
   ],
-  "steps": [
-   "1. In staff administration, toggle that staff member's active status off and watch the network panel BEFORE the dialog appears.",
-   "2. Read the pre-check response and compare it with the dialog's \"{N} customer{s}\" headline.",
-   "3. Cancel the dialog (leave the staff member active)."
-  ],
-  "expected": [
-   "1. A precondition-check request runs FIRST, before any change is applied, returning the count of distinct customers currently assigned to that staff member as their sales representative, plus a flag indicating whether any assignments exist.",
-   "2. The dialog's \"{Staff Name} is the sales representative on {N} customer{s}.\" headline matches the returned count.",
-   "3. No deactivation is committed by the pre-check itself — cancelling leaves the staff member's active status unchanged.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S13-R1, S13-R4)."
-  ],
+  "steps": "1. In staff administration, toggle that staff member's active status off and watch the network panel BEFORE the dialog appears.\n2. Read the pre-check response and compare it with the dialog's \"{N} customer{s}\" headline.\n3. Cancel the dialog (leave the staff member active).",
+  "expected": "1. A precondition-check request runs FIRST, before any change is applied, returning the count of distinct customers currently assigned to that staff member as their sales representative, plus a flag indicating whether any assignments exist.\n2. The dialog's \"{Staff Name} is the sales representative on {N} customer{s}.\" headline matches the returned count.\n3. No deactivation is committed by the pre-check itself — cancelling leaves the staff member's active status unchanged.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S13-R1, S13-R4).\n\nAUTOMATION: READY\n",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-R1; S13-R4)",
   "viu_status": "VIU-Pending",

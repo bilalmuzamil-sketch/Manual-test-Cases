@@ -10,18 +10,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Work In Progress report is open with rows loaded."
   ],
-  "steps": [
-   "1. Hover the column-selection icon button in the toolbar and read its tooltip.",
-   "2. Open the control and toggle a column off, then on again, watching the table.",
-   "3. Look for the Total column in the control's list."
-  ],
-  "expected": [
-   "1. The icon button's tooltip reads \"Column Selection\".",
-   "2. Toggling a column off hides it from the table; toggling it on shows it again.",
-   "3. The Total column is always shown and cannot be turned off — it is not offered in the control at all.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S8-R1, S8-R2)."
-  ],
+  "steps": "1. Hover the column-selection icon button in the toolbar and read its tooltip.\n2. Open the control and toggle a column off, then on again, watching the table.\n3. Look for the Total column in the control's list.",
+  "expected": "1. The icon button's tooltip reads \"Column Selection\".\n2. Toggling a column off hides it from the table; toggling it on shows it again.\n3. The Total column is always shown and cannot be turned off — it is not offered in the control at all.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S8-R1, S8-R2).\n\nAUTOMATION: HOLD - this part of the report is not built yet\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R1; S8-R2)",
   "viu_status": "VIU-Pending",
@@ -40,18 +30,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Work In Progress report is open with rows in at least two tabs."
   ],
-  "steps": [
-   "1. Turn several optional columns on and off in different orders (for example, turn on Inv. Hrs, then VIN, then Location).",
-   "2. Read the resulting column order after each change.",
-   "3. Switch to each of the other tabs and read their columns."
-  ],
-  "expected": [
-   "1. Whatever columns are shown, they always appear in the fixed left-to-right order (WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total) — the order you toggled them in never changes their position.",
-   "2. Total is always the last column.",
-   "3. The column selection applies to every tab at once — all four tabs show the same set of columns.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S8-R5, S8-R6, S4-R1)."
-  ],
+  "steps": "1. Turn several optional columns on and off in different orders (for example, turn on Inv. Hrs, then VIN, then Location).\n2. Read the resulting column order after each change.\n3. Switch to each of the other tabs and read their columns.",
+  "expected": "1. Whatever columns are shown, they always appear in the fixed left-to-right order (WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total) — the order you toggled them in never changes their position.\n2. Total is always the last column.\n3. The column selection applies to every tab at once — all four tabs show the same set of columns.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S8-R5, S8-R6, S4-R1).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R5; S8-R6; Story 4 S4-R1)",
   "viu_status": "VIU-Pending",
@@ -70,18 +50,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Work In Progress report is open."
   ],
-  "steps": [
-   "1. Change the date range, select an advisor, a customer, and an asset, change the location selection, change the column selection, and switch to a different tab.",
-   "2. Navigate away to another screen, then return to the report.",
-   "3. Reload the browser page and check again.",
-   "4. If practical, open the report in a different browser (or private window) and read its settings."
-  ],
-  "expected": [
-   "1. On return and after a reload, the report restores the saved date range, advisor selection, customer selection, asset selection, location selection, column selection, and active tab.",
-   "2. In a different browser the report shows the defaults instead — the settings are saved per browser, not on the user's account.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S8-R7)."
-  ],
+  "steps": "1. Change the date range, select an advisor, a customer, and an asset, change the location selection, change the column selection, and switch to a different tab.\n2. Navigate away to another screen, then return to the report.\n3. Reload the browser page and check again.\n4. If practical, open the report in a different browser (or private window) and read its settings.",
+  "expected": "1. On return and after a reload, the report restores the saved date range, advisor selection, customer selection, asset selection, location selection, column selection, and active tab.\n2. In a different browser the report shows the defaults instead — the settings are saved per browser, not on the user's account.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S8-R7).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R7; §3 Key Decisions (context note: per-browser persistence))",
   "viu_status": "VIU-Pending",
@@ -100,16 +70,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The report has saved settings in this browser that can be made stale (for example, a saved advisor/customer/asset selection whose jobs no longer load, or a saved location you no longer access)."
   ],
-  "steps": [
-   "1. Make a saved value invalid (for example, remove your access to the saved location, or reload after the saved customer no longer appears in the loaded jobs).",
-   "2. Open the Work In Progress report."
-  ],
-  "expected": [
-   "1. The report loads normally — the invalid saved value falls back to that setting's default rather than breaking the view.",
-   "2. All other saved settings are still restored.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S8-R8)."
-  ],
+  "steps": "1. Make a saved value invalid (for example, remove your access to the saved location, or reload after the saved customer no longer appears in the loaded jobs).\n2. Open the Work In Progress report.",
+  "expected": "1. The report loads normally — the invalid saved value falls back to that setting's default rather than breaking the view.\n2. All other saved settings are still restored.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S8-R8).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R8)",
   "viu_status": "VIU-Pending",
@@ -128,23 +90,8 @@
    "2. You are signed in as a person who has access to more than one location.",
    "3. The Work In Progress report is open with more than one location selected, so the Location column is showing."
   ],
-  "steps": [
-   "1. Open the column-selection control and switch the Location column OFF by hand.",
-   "2. Go to another screen, then come back to the report.",
-   "3. Reload the browser page and look again.",
-   "4. Switch Location back ON by hand, then reload the page once more."
-  ],
-  "expected": [
-   "1. After going away and coming back, Location is still switched OFF - your choice was remembered.",
-   "2. After reloading the browser page, Location is still switched OFF.",
-   "3. After switching it back ON and reloading, Location is switched ON.",
-   "4. Everything else is remembered exactly as before - the other column choices, the date range, the filters and the tab you were on. Turning Location on or off changes nothing else.",
-   "---",
-   "This is the expected behaviour as per the Work In Progress report specification version 6 (S8-R7), which says the report remembers the column selection in the user's browser and puts it back on the next visit. Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, is what makes Location a column you can switch on and off at all, and it does not say whether that choice is remembered - so this test applies the existing written rule about remembered column choices to the new switch. It has not been checked on a build yet.",
-   "",
-   "AUTOMATION: HOLD - nobody has run this test yet, and the product owner has not confirmed that a hand-made Location choice is remembered.",
-   ""
-  ],
+  "steps": "1. Open the column-selection control and switch the Location column OFF by hand.\n2. Go to another screen, then come back to the report.\n3. Reload the browser page and look again.\n4. Switch Location back ON by hand, then reload the page once more.",
+  "expected": "1. After going away and coming back, Location is still switched OFF - your choice was remembered.\n2. After reloading the browser page, Location is still switched OFF.\n3. After switching it back ON and reloading, Location is switched ON.\n4. Everything else is remembered exactly as before - the other column choices, the date range, the filters and the tab you were on. Turning Location on or off changes nothing else.\n\n---\nThis is the expected behaviour as per the Work In Progress report specification version 6 (S8-R7), which says the report remembers the column selection in the user's browser and puts it back on the next visit. Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, is what makes Location a column you can switch on and off at all, and it does not say whether that choice is remembered - so this test applies the existing written rule about remembered column choices to the new switch. It has not been checked on a build yet.\n\nAUTOMATION: HOLD - waiting on an answer from the product owner\n",
   "refs": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R7 - the report remembers the column selection in the browser; Location only became a switchable column in Chris Ward's answer T1-1 option C of 2026-08-05)"
  },
  {
@@ -158,17 +105,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Work In Progress report is open with rows loaded."
   ],
-  "steps": [
-   "1. Find and open the three-dot button in the toolbar.",
-   "2. Read the menu options.",
-   "3. Choose \"Download (PDF)\", then repeat with \"Download (CSV)\"."
-  ],
-  "expected": [
-   "1. The menu holds the download options \"Download (PDF)\" and \"Download (CSV)\".",
-   "2. Each option downloads a file of the current tab in the chosen format.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R1)."
-  ],
+  "steps": "1. Find and open the three-dot button in the toolbar.\n2. Read the menu options.\n3. Choose \"Download (PDF)\", then repeat with \"Download (CSV)\".",
+  "expected": "1. The menu holds the download options \"Download (PDF)\" and \"Download (CSV)\".\n2. Each option downloads a file of the current tab in the chosen format.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R1).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R1)",
   "viu_status": "VIU-Pending",
@@ -187,24 +125,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The report is open with a non-default column selection (for example, Inv. Hrs on and Advisor off), a chosen date range and location, and an advisor/customer/asset filter applied that hides some rows."
   ],
-  "steps": [
-   "1. Download the current tab as a CSV and open it.",
-   "2. Compare its columns to the screen's visible columns and order.",
-   "3. Compare its rows to the jobs left visible by the filters.",
-   "4. Compare its Totals row to the on-screen Totals row.",
-   "5. Repeat the same checks in the PDF."
-  ],
-  "expected": [
-   "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last. One exception on this build: if you turn Inv. Hrs on, the download is refused - that column cannot be exported yet.",
-   "2. Both downloads honor the current date range and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.",
-   "3. Both downloads include a Totals row matching the on-screen Totals row for the tab.",
-   "4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",
-   "5. Note for the tester: the file carries the Location column whenever it is showing on screen. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all. In the file it is headed \"Branch\", not \"Location\".",
-   "---",
-   "Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.",
-   "",
-   "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Work In Progress report specification version 6 (S9-R2, S9-R3, S9-R4, S9-R10a, S7-R13, S9-E1) differs, his decision is the authority."
-  ],
+  "steps": "1. Download the current tab as a CSV and open it.\n2. Compare its columns to the screen's visible columns and order.\n3. Compare its rows to the jobs left visible by the filters.\n4. Compare its Totals row to the on-screen Totals row.\n5. Repeat the same checks in the PDF.",
+  "expected": "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last. One exception on this build: if you turn Inv. Hrs on, the download is refused - that column cannot be exported yet.\n2. Both downloads honor the current date range and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.\n3. Both downloads include a Totals row matching the on-screen Totals row for the tab.\n4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to.\n5. Note for the tester: the file carries the Location column whenever it is showing on screen. In the file it is headed \"Branch\", not \"Location\".\n---\nNote for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.\nThe Location column is not offered in the column-selection control and you do not switch it on or off: it appears by itself whenever more than one location is in scope, and is hidden whenever a single location is in scope.\nNote for the tester: the product owner has been asked to confirm this one point and has not answered yet, so do not raise a bug either way — record what you see. The question is in Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx\n\n---\n\n---\nThis is the expected behaviour as per the Work In Progress report specification version 6 (S9-R2, S9-R3, S9-R4, S9-R10a, S7-R13, S9-E1), and as per the build tested on 8/4/2026 (build v3.4.1-3d03023). The product owner's answer of 8/5/2026 in this file reads both ways on the one point about the Location column, so it has NOT been treated as overriding the specification and he has been asked again: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: HOLD - waiting on one answer from the product owner about the Location column\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; the filters and the Totals row; S9-R10a = the \"Locations:\" line; S7-R13/S9-E1 = the automatic \"Branch\" column)",
   "viu_status": "VIU-Pending",
@@ -223,20 +145,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The current tab includes money values over $1,000 and, if producible, a negative value; the Inv. Hrs column is on."
   ],
-  "steps": [
-   "1. Download the current tab as a CSV and open it in a plain-text editor.",
-   "2. Read a money value over one thousand dollars and check its quoting.",
-   "3. Read a money value under one thousand dollars and check it is unquoted.",
-   "4. Read the Inv. Hrs values.",
-   "5. Repeat the format checks in the PDF."
-  ],
-  "expected": [
-   "1. Money values use the same \"$1,234.56\" / \"-$1,234.56\" format as on screen; Inv. Hrs uses the same signed one-decimal format.",
-   "2. In the CSV, a money value containing a comma (a thousands separator) is enclosed in double-quotes per standard CSV rules.",
-   "3. A value without a comma is written unquoted.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R5, S9-R6)."
-  ],
+  "steps": "1. Download the current tab as a CSV and open it in a plain-text editor.\n2. Read a money value over one thousand dollars and check its quoting.\n3. Read a money value under one thousand dollars and check it is unquoted.\n4. Read the Inv. Hrs values.\n5. Repeat the format checks in the PDF.",
+  "expected": "1. Money values use the same \"$1,234.56\" / \"-$1,234.56\" format as on screen; Inv. Hrs uses the same signed one-decimal format.\n2. In the CSV, a money value containing a comma (a thousands separator) is enclosed in double-quotes per standard CSV rules.\n3. A value without a comma is written unquoted.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R5, S9-R6).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R5; S9-R6)",
   "viu_status": "VIU-Pending",
@@ -255,16 +165,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Inv. Hrs column is on and the current tab includes positive and negative Inv. Hrs values."
   ],
-  "steps": [
-   "1. Download the current tab as a PDF and look at the Inv. Hrs values' coloring.",
-   "2. Download the current tab as a CSV and inspect the Inv. Hrs values."
-  ],
-  "expected": [
-   "1. In the PDF, Inv. Hrs keeps the green (positive) / red (negative) coloring.",
-   "2. In the CSV, the Inv. Hrs column is monochrome — plain signed numbers with no color or markup.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R7)."
-  ],
+  "steps": "1. Download the current tab as a PDF and look at the Inv. Hrs values' coloring.\n2. Download the current tab as a CSV and inspect the Inv. Hrs values.",
+  "expected": "1. In the PDF, Inv. Hrs keeps the green (positive) / red (negative) coloring.\n2. In the CSV, the Inv. Hrs column is monochrome — plain signed numbers with no color or markup.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R7).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R7)",
   "viu_status": "VIU-Pending",
@@ -283,17 +185,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The current tab shows rows with known creation dates and the Days Open column visible."
   ],
-  "steps": [
-   "1. Note a row's on-screen Days Open value.",
-   "2. Download the current tab as a CSV and read the same row's Days Open.",
-   "3. Compare the two values."
-  ],
-  "expected": [
-   "1. In the download, Days Open is the whole number of days as of the moment the file is generated.",
-   "2. Because the screen computes Days Open live while the file freezes it at generation time, the file can legitimately show a day count one higher than the screen it was generated from — that difference is EXPECTED, not a defect.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R8)."
-  ],
+  "steps": "1. Note a row's on-screen Days Open value.\n2. Download the current tab as a CSV and read the same row's Days Open.\n3. Compare the two values.",
+  "expected": "1. In the download, Days Open is the whole number of days as of the moment the file is generated.\n2. Because the screen computes Days Open live while the file freezes it at generation time, the file can legitimately show a day count one higher than the screen it was generated from — that difference is EXPECTED, not a defect.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R8).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R8; Story 4 context note (Days Open live vs frozen))",
   "viu_status": "VIU-Pending",
@@ -312,17 +205,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Work In Progress report is open with rows loaded."
   ],
-  "steps": [
-   "1. Download the current tab as a PDF and read the saved file's name.",
-   "2. Download the current tab as a CSV and read the saved file's name."
-  ],
-  "expected": [
-   "1. The PDF is named \"wip-2-report.pdf\".",
-   "2. The CSV is named \"wip-2-report.csv\".",
-   "3. These exact names (including the \"-2-\") are the specified current behavior.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R9)."
-  ],
+  "steps": "1. Download the current tab as a PDF and read the saved file's name.\n2. Download the current tab as a CSV and read the saved file's name.",
+  "expected": "1. The PDF is named \"wip-2-report.pdf\".\n2. The CSV is named \"wip-2-report.csv\".\n3. These exact names (including the \"-2-\") are the specified current behavior.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R9).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R9 — S9-R9 CLOSES both file names verbatim including the \"-2-\" segment; so the exact strings ARE the requirement)",
   "viu_status": "VIU-Pending",
@@ -341,19 +225,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Asset and Location columns are both turned on."
   ],
-  "steps": [
-   "1. Read the two columns' headers on screen.",
-   "2. Download the current tab as a CSV and read the same two columns' headers.",
-   "3. Download the PDF and read them there too."
-  ],
-  "expected": [
-   "1. On screen the headers read \"Asset\" and \"Location\".",
-   "2. In BOTH the PDF and the CSV, the same two columns are headed \"Unit\" and \"Branch\".",
-   "3. This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior.",
-   "4. The on-screen Asset cell leads with the Unit #, which is what the export header \"Unit\" already reflects - so no header change is expected here.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-E1) - the build and that specification agree. Chris Ward confirmed it again on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the specification."
-  ],
+  "steps": "1. Read the two columns' headers on screen.\n2. Download the current tab as a CSV and read the same two columns' headers.\n3. Download the PDF and read them there too.",
+  "expected": "1. On screen the headers read \"Asset\" and \"Location\".\n2. In BOTH the PDF and the CSV, the same two columns are headed \"Unit\" and \"Branch\".\n3. This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior.\n4. The on-screen Asset cell leads with the Unit #, which is what the export header \"Unit\" already reflects - so no header change is expected here.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-E1) - the build and that specification agree. Chris Ward confirmed it again on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the specification.\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling; export header text unpinned)",
   "viu_status": "VIU-Pending",
@@ -372,16 +245,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The shop has a logo set in its settings."
   ],
-  "steps": [
-   "1. Download the current tab as a PDF and look at the top of the document.",
-   "2. Download the current tab as a CSV and inspect the file."
-  ],
-  "expected": [
-   "1. The PDF shows the shop logo at the top.",
-   "2. The CSV never includes a logo (plain data only).",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R10)."
-  ],
+  "steps": "1. Download the current tab as a PDF and look at the top of the document.\n2. Download the current tab as a CSV and inspect the file.",
+  "expected": "1. The PDF shows the shop logo at the top.\n2. The CSV never includes a logo (plain data only).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R10).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R10)",
   "viu_status": "VIU-Pending",
@@ -401,18 +266,8 @@
    "2. The report can be put in three states: rows present, no rows visible (filters leave nothing), and (if simulatable) a failing download, for example by disconnecting the network before the download.",
    "3. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
   ],
-  "steps": [
-   "1. With rows present, download the current tab and read the notification.",
-   "2. Filter the report until no rows are visible, download again, and read the notification.",
-   "3. If simulatable, force a download failure (for example, drop the network) and read the notification."
-  ],
-  "expected": [
-   "1. On a successful download, a success notification shows with the caption \"Data exported successfully.\"",
-   "2. When a download yields no rows, a warning notification shows titled \"Empty export\" with the caption \"Export didn't yield any results\".",
-   "3. When a download fails, an error notification shows: \"An error occurred while exporting the report. Please try again.\"",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R11, S9-R12, S9-R13)."
-  ],
+  "steps": "1. With rows present, download the current tab and read the notification.\n2. Filter the report until no rows are visible, download again, and read the notification.\n3. If simulatable, force a download failure (for example, drop the network) and read the notification.",
+  "expected": "1. On a successful download, a success notification shows with the caption \"Data exported successfully.\"\n2. When a download yields no rows, a warning notification shows titled \"Empty export\" with the caption \"Export didn't yield any results\".\n3. When a download fails, an error notification shows: \"An error occurred while exporting the report. Please try again.\"\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R11, S9-R12, S9-R13).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R11; S9-R12; S9-R13; §7 User Feedback Summary)",
   "viu_status": "VIU-Pending",
@@ -430,19 +285,8 @@
   "preconditions": [
    "1. A filter combination exists whose work-order rows on one tab exceed 10,000 (widest date range, all locations, no advisor/customer/asset narrowing). If the environment cannot reach 10,000 rows even fully widened, record the maximum reachable and mark the case Blocked-Env with that reason."
   ],
-  "steps": [
-   "1. With the over-cap filter set, download the tab as a CSV.",
-   "2. Download the same tab as a PDF.",
-   "3. Narrow the filters below the cap and download once more."
-  ],
-  "expected": [
-   "1. For both the CSV and the PDF: no file is generated and no download starts.",
-   "2. An error toast is shown each time, reading exactly: \"This report is too large to export. Narrow the date range or filters, then try again.\" (dismissed by the user).",
-   "3. Below the cap the download works normally.",
-   "4. Note for the tester: on this environment the biggest single tab holds about 114 work orders, so you cannot make this message appear here. Record that and move on.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (Story 9); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
-  ],
+  "steps": "1. With the over-cap filter set, download the tab as a CSV.\n2. Download the same tab as a PDF.\n3. Narrow the filters below the cap and download once more.",
+  "expected": "1. For both the CSV and the PDF: no file is generated and no download starts.\n2. An error toast is shown each time, reading exactly: \"This report is too large to export. Narrow the date range or filters, then try again.\" (dismissed by the user).\n3. Below the cap the download works normally.\n4. Note for the tester: on this environment the biggest single tab holds about 114 work orders, so you cannot make this message appear here. Record that and move on.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (Story 9); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec Story 9 — the 10; 000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line; his spec edit is pending)",
   "viu_status": "VIU-Pending",

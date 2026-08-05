@@ -10,16 +10,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Work In Progress report is open with rows loaded."
   ],
-  "steps": [
-   "1. Read the summary strip across the top of the report, left to right.",
-   "2. Read each figure's number format."
-  ],
-  "expected": [
-   "1. The strip shows seven figures, in this order: Total Earned, Total Remaining, Not Started, Started — Earned, Started — Remaining, Ready to Invoice, and Estimates.",
-   "2. Every figure shows US-dollar currency with a leading \"$\", two decimals, and thousands separators.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S5-R1, S5-R10)."
-  ],
+  "steps": "1. Read the summary strip across the top of the report, left to right.\n2. Read each figure's number format.",
+  "expected": "1. The strip shows seven figures, in this order: Total Earned, Total Remaining, Not Started, Started — Earned, Started — Remaining, Ready to Invoice, and Estimates.\n2. Every figure shows US-dollar currency with a leading \"$\", two decimals, and thousands separators.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S5-R1, S5-R10).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R1; S5-R10 — S5-R1 CLOSES the seven figures and their order verbatim and S5-R10 closes the currency format; so the closed lists ARE the requirement)",
   "viu_status": "VIU-Pending",
@@ -38,17 +30,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The report shows jobs in the \"Approved - partially completed\" tab and the \"Completed\" tab with non-zero earned values."
   ],
-  "steps": [
-   "1. Look at how the Total Earned figure is styled compared to the other six figures.",
-   "2. Add the Started — Earned figure to the Ready to Invoice figure.",
-   "3. Compare the sum to Total Earned."
-  ],
-  "expected": [
-   "1. Total Earned is shown larger than the other figures and with a colored underline — it is the strip's hero figure.",
-   "2. Total Earned equals Started — Earned plus Ready to Invoice, to the cent.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S5-R2)."
-  ],
+  "steps": "1. Look at how the Total Earned figure is styled compared to the other six figures.\n2. Add the Started — Earned figure to the Ready to Invoice figure.\n3. Compare the sum to Total Earned.",
+  "expected": "1. Total Earned is shown larger than the other figures and with a colored underline — it is the strip's hero figure.\n2. Total Earned equals Started — Earned plus Ready to Invoice, to the cent.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S5-R2).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R2)",
   "viu_status": "VIU-Pending",
@@ -67,15 +50,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The report shows jobs in the \"Approved - not started\" and \"Approved - partially completed\" tabs with non-zero remaining values."
   ],
-  "steps": [
-   "1. Add the Not Started figure to the Started — Remaining figure.",
-   "2. Compare the sum to Total Remaining."
-  ],
-  "expected": [
-   "1. Total Remaining equals Not Started plus Started — Remaining, to the cent.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S5-R3)."
-  ],
+  "steps": "1. Add the Not Started figure to the Started — Remaining figure.\n2. Compare the sum to Total Remaining.",
+  "expected": "1. Total Remaining equals Not Started plus Started — Remaining, to the cent.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S5-R3).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R3)",
   "viu_status": "VIU-Pending",
@@ -95,18 +71,8 @@
    "2. All four tabs contain at least one job with non-zero money.",
    "3. The Earned and Remaining columns are visible."
   ],
-  "steps": [
-   "1. In the \"Approved - not started\" tab, add up each job's Earned + Remaining (its approved value) and compare to the Not Started figure.",
-   "2. In the \"Approved - partially completed\" tab, compare the tab's total Earned to the Started — Earned figure and the tab's total Remaining to the Started — Remaining figure.",
-   "3. In the \"Completed\" tab, compare the tab's total Earned to the Ready to Invoice figure."
-  ],
-  "expected": [
-   "1. Not Started equals the total approved value (earned + remaining) of the jobs in the \"Approved - not started\" tab.",
-   "2. Started — Earned equals the total Earned of the jobs in the \"Approved - partially completed\" tab, and Started — Remaining equals that tab's total Remaining.",
-   "3. Ready to Invoice equals the total Earned of the jobs in the \"Completed\" tab.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S5-R4, S5-R5, S5-R6, S5-R7)."
-  ],
+  "steps": "1. In the \"Approved - not started\" tab, add up each job's Earned + Remaining (its approved value) and compare to the Not Started figure.\n2. In the \"Approved - partially completed\" tab, compare the tab's total Earned to the Started — Earned figure and the tab's total Remaining to the Started — Remaining figure.\n3. In the \"Completed\" tab, compare the tab's total Earned to the Ready to Invoice figure.",
+  "expected": "1. Not Started equals the total approved value (earned + remaining) of the jobs in the \"Approved - not started\" tab.\n2. Started — Earned equals the total Earned of the jobs in the \"Approved - partially completed\" tab, and Started — Remaining equals that tab's total Remaining.\n3. Ready to Invoice equals the total Earned of the jobs in the \"Completed\" tab.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S5-R4, S5-R5, S5-R6, S5-R7).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R4; S5-R5; S5-R6; S5-R7)",
   "viu_status": "VIU-Pending",
@@ -125,19 +91,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Estimates tab contains at least one job with a non-zero quoted value."
   ],
-  "steps": [
-   "1. Compare the Estimates figure to the total quoted value of the jobs in the Estimates tab.",
-   "2. Look at how the Estimates figure is styled compared to the others.",
-   "3. Check whether the Estimates amount is included in Total Earned or Total Remaining (their component sums should not contain it)."
-  ],
-  "expected": [
-   "1. The Estimates figure equals the total quoted value of the jobs in the Estimates tab.",
-   "2. It is shown in a muted style.",
-   "3. The Estimates figure is excluded from Total Earned and from Total Remaining.",
-   "Known issue: the product does not currently do this — on the build tested, the Estimates figure read $0.00 even though the Estimates tab held jobs, because the product is showing the approved value instead of the quoted value. That is a fault for a developer to fix, not a decision for the product owner. No developer ticket has been raised for it yet, so this test will fail until it is fixed — record what you see and leave the test as it is.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S5-R8, S5-R9)."
-  ],
+  "steps": "1. Compare the Estimates figure to the total quoted value of the jobs in the Estimates tab.\n2. Look at how the Estimates figure is styled compared to the others.\n3. Check whether the Estimates amount is included in Total Earned or Total Remaining (their component sums should not contain it).",
+  "expected": "1. The Estimates figure equals the total quoted value of the jobs in the Estimates tab.\n2. It is shown in a muted style.\n3. The Estimates figure is excluded from Total Earned and from Total Remaining.\nKnown issue: the product does not currently do this — on the build tested, the Estimates figure read $0.00 even though the Estimates tab held jobs, because the product is showing the approved value instead of the quoted value. That is a fault for a developer to fix, not a decision for the product owner. No developer ticket has been raised for it yet, so this test will fail until it is fixed — record what you see and leave the test as it is.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S5-R8, S5-R9).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R8; S5-R9)",
   "viu_status": "VIU-Pending",
@@ -182,22 +137,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Work In Progress report is open with the summary strip visible."
   ],
-  "steps": [
-   "1. Hover (or focus, or tap) the small information icon next to each of the seven summary figures, one at a time.",
-   "2. Read each revealed explanation and compare it word-for-word to the expected text."
-  ],
-  "expected": [
-   "1. Total Earned — \"Work you have already done but have not billed yet — the money waiting to be collected.\"",
-   "2. Total Remaining — \"Approved work you still have to do — the money that comes in once it is finished.\"",
-   "3. Not Started — \"Approved jobs nobody has started yet. The full amount is still ahead.\"",
-   "4. Started — Earned — \"Jobs in progress: the work already done but not billed yet.\"",
-   "5. Started — Remaining — \"Jobs in progress: the work still left to finish.\"",
-   "6. Ready to Invoice — \"Finished jobs, ready to bill the customer.\"",
-   "7. Estimates — \"Quotes the customer has not approved yet — not counted in the totals.\"",
-   "8. Each explanation appears on hover, on keyboard focus, and on tap.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S5-R12)."
-  ],
+  "steps": "1. Hover (or focus, or tap) the small information icon next to each of the seven summary figures, one at a time.\n2. Read each revealed explanation and compare it word-for-word to the expected text.",
+  "expected": "1. Total Earned — \"Work you have already done but have not billed yet — the money waiting to be collected.\"\n2. Total Remaining — \"Approved work you still have to do — the money that comes in once it is finished.\"\n3. Not Started — \"Approved jobs nobody has started yet. The full amount is still ahead.\"\n4. Started — Earned — \"Jobs in progress: the work already done but not billed yet.\"\n5. Started — Remaining — \"Jobs in progress: the work still left to finish.\"\n6. Ready to Invoice — \"Finished jobs, ready to bill the customer.\"\n7. Estimates — \"Quotes the customer has not approved yet — not counted in the totals.\"\n8. Each explanation appears on hover, on keyboard focus, and on tap.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S5-R12).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R12)",
   "viu_status": "VIU-Pending",
@@ -216,18 +157,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. Each tab has at least one visible job."
   ],
-  "steps": [
-   "1. In each tab, look at the bottom of the table.",
-   "2. Read the Totals row's leftmost cell and its Total cell.",
-   "3. Compare the Totals row's number formats to the data rows."
-  ],
-  "expected": [
-   "1. Each tab's table has a Totals row pinned to the bottom, labeled \"Totals\" in its leftmost cell.",
-   "2. The Totals row's Total cell is pinned far right and shown in bold, matching the column.",
-   "3. The Totals row uses the same number formats as the data rows.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S6-R1, S6-R4, S6-R5)."
-  ],
+  "steps": "1. In each tab, look at the bottom of the table.\n2. Read the Totals row's leftmost cell and its Total cell.\n3. Compare the Totals row's number formats to the data rows.",
+  "expected": "1. Each tab's table has a Totals row pinned to the bottom, labeled \"Totals\" in its leftmost cell.\n2. The Totals row's Total cell is pinned far right and shown in bold, matching the column.\n3. The Totals row uses the same number formats as the data rows.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S6-R1, S6-R4, S6-R5).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8662 (WIP spec v6 2026-07-29 Story 6 S6-R1; S6-R4; S6-R5)",
   "viu_status": "VIU-Pending",
@@ -247,19 +178,8 @@
    "2. A tab shows several jobs with known money values.",
    "3. All money columns and the Inv. Hrs column are turned on."
   ],
-  "steps": [
-   "1. Add up each money column (Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Total) across the tab's visible jobs.",
-   "2. Compare each sum to the Totals row.",
-   "3. Add up the jobs' Inv. Hrs values and compare to the Totals row's Inv. Hrs cell, including its sign and color."
-  ],
-  "expected": [
-   "1. The Totals row sums each visible money column across the tab's visible jobs, to the cent.",
-   "2. The Totals row's Inv. Hrs shows the sum of the visible jobs' Inv. Hrs, in the same signed one-decimal format (\"+2.0\" / \"-14.0\" / \"0.0\").",
-   "3. The Inv. Hrs total uses the same green (positive) / red (negative) / default (exactly 0.0) coloring as a data row.",
-   "4. Note for the tester: the Inv. Hrs total can only be checked on screen. On this build a download that includes Inv. Hrs is refused, so do not try to verify this column from a file.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S6-R2, S6-R3)."
-  ],
+  "steps": "1. Add up each money column (Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Total) across the tab's visible jobs.\n2. Compare each sum to the Totals row.\n3. Add up the jobs' Inv. Hrs values and compare to the Totals row's Inv. Hrs cell, including its sign and color.",
+  "expected": "1. The Totals row sums each visible money column across the tab's visible jobs, to the cent.\n2. The Totals row's Inv. Hrs shows the sum of the visible jobs' Inv. Hrs, in the same signed one-decimal format (\"+2.0\" / \"-14.0\" / \"0.0\").\n3. The Inv. Hrs total uses the same green (positive) / red (negative) / default (exactly 0.0) coloring as a data row.\n4. Note for the tester: the Inv. Hrs total can only be checked on screen. On this build a download that includes Inv. Hrs is refused, so do not try to verify this column from a file.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S6-R2, S6-R3).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8662 (WIP spec v6 2026-07-29 Story 6 S6-R2; S6-R3)",
   "viu_status": "VIU-Pending",
@@ -328,18 +248,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The report shows jobs for at least two different advisors."
   ],
-  "steps": [
-   "1. Open the Advisor filter in the toolbar and read its options.",
-   "2. Select one advisor and watch the rows.",
-   "3. Add a second advisor to the selection."
-  ],
-  "expected": [
-   "1. The Advisor filter is a multi-select listing the advisors present in the loaded jobs.",
-   "2. Selecting one or more advisors narrows the visible jobs to those advisors instantly, on screen only — no reload and no loading indicator.",
-   "3. With two advisors selected, jobs for either advisor are shown.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R1)."
-  ],
+  "steps": "1. Open the Advisor filter in the toolbar and read its options.\n2. Select one advisor and watch the rows.\n3. Add a second advisor to the selection.",
+  "expected": "1. The Advisor filter is a multi-select listing the advisors present in the loaded jobs.\n2. Selecting one or more advisors narrows the visible jobs to those advisors instantly, on screen only — no reload and no loading indicator.\n3. With two advisors selected, jobs for either advisor are shown.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R1).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R1)",
   "viu_status": "VIU-Pending",
@@ -358,20 +268,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The report shows jobs for at least two different customers."
   ],
-  "steps": [
-   "1. Read the Customer filter's label before selecting anything, and check whether a Clear action is offered.",
-   "2. Open the filter and type part of a customer's name to narrow the list.",
-   "3. Select one or more customers and watch the rows.",
-   "4. Use the \"Clear\" action."
-  ],
-  "expected": [
-   "1. With no customer selected, the filter reads \"All customers\", every job is shown, and no Clear action is offered.",
-   "2. Typing narrows the option list (type-ahead); the options are the customers present in the loaded jobs.",
-   "3. Selecting customers narrows the visible jobs on screen only (no reload); a single \"Clear\" action appears once at least one customer is selected.",
-   "4. Clear returns the filter to \"All customers\" and every job is shown again.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R2, S7-R3)."
-  ],
+  "steps": "1. Read the Customer filter's label before selecting anything, and check whether a Clear action is offered.\n2. Open the filter and type part of a customer's name to narrow the list.\n3. Select one or more customers and watch the rows.\n4. Use the \"Clear\" action.",
+  "expected": "1. With no customer selected, the filter reads \"All customers\", every job is shown, and no Clear action is offered.\n2. Typing narrows the option list (type-ahead); the options are the customers present in the loaded jobs.\n3. Selecting customers narrows the visible jobs on screen only (no reload); a single \"Clear\" action appears once at least one customer is selected.\n4. Clear returns the filter to \"All customers\" and every job is shown again.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R2, S7-R3).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R2; S7-R3)",
   "viu_status": "VIU-Pending",
@@ -390,21 +288,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The report shows jobs for at least two assets whose VINs (and Unit #s or plates) you know."
   ],
-  "steps": [
-   "1. Read the Asset filter's label before selecting anything.",
-   "2. Open the filter and read how each option is presented.",
-   "3. Type part of a VIN and check the matching options; clear and type part of a Unit # instead.",
-   "4. Select one or more assets and watch the rows; then use the \"Clear\" action."
-  ],
-  "expected": [
-   "1. With no asset selected, the filter reads \"All assets\" and every job is shown.",
-   "2. Each option shows both the asset's Unit # and its VIN.",
-   "3. Text you type matches against either the Unit # or the VIN - a match on either one brings the asset up.",
-   "4. Selecting assets narrows the visible jobs on screen only (no reload); a single \"Clear\" action appears once at least one asset is selected and returns the filter to \"All assets\".",
-   "5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R4, S7-R5) - the build and that specification agree. Chris Ward confirmed it again on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the specification."
-  ],
+  "steps": "1. Read the Asset filter's label before selecting anything.\n2. Open the filter and read how each option is presented.\n3. Type part of a VIN and check the matching options; clear and type part of a Unit # instead.\n4. Select one or more assets and watch the rows; then use the \"Clear\" action.",
+  "expected": "1. With no asset selected, the filter reads \"All assets\" and every job is shown.\n2. Each option shows both the asset's Unit # and its VIN.\n3. Text you type matches against either the Unit # or the VIN - a match on either one brings the asset up.\n4. Selecting assets narrows the visible jobs on screen only (no reload); a single \"Clear\" action appears once at least one asset is selected and returns the filter to \"All assets\".\n5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R4, S7-R5) - the build and that specification agree. Chris Ward confirmed it again on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the specification.\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8663 (WIP spec Story 7 S7-R4; S7-R5 - option text + match fields RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [supersedes video P24])",
   "viu_status": "VIU-Pending",
@@ -422,17 +307,8 @@
   "preconditions": [
    "1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh visit)."
   ],
-  "steps": [
-   "1. Open the Work In Progress report and read the date-range control's current value.",
-   "2. Open the date-range control and read every option offered."
-  ],
-  "expected": [
-   "1. On a fresh visit the date range defaults to \"This Week\".",
-   "2. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no \"Today\", no \"Yesterday\" and no item called \"Custom\" - you build your own range on the calendar instead. There is no \"All Time\" option.",
-   "3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Work In Progress report specification version 6 (S7-R6) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
-  ],
+  "steps": "1. Open the Work In Progress report and read the date-range control's current value.\n2. Open the date-range control and read every option offered.",
+  "expected": "1. On a fresh visit the date range defaults to \"This Week\".\n2. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no \"Today\", no \"Yesterday\" and no item called \"Custom\" - you build your own range on the calendar instead. There is no \"All Time\" option.\n3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Work In Progress report specification version 6 (S7-R6) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R6; §3 Key Decisions (date range defaults to This Week))",
   "viu_status": "VIU-Pending",
@@ -451,22 +327,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. Open work orders exist with created dates both inside and outside the current week."
   ],
-  "steps": [
-   "1. With \"This Week\" selected, check which work orders are listed.",
-   "2. Change the preset to \"This Month\" and watch the data area.",
-   "3. Open the date control and pick a start and an end date on the calendar more than a year apart."
-  ],
-  "expected": [
-   "1. Each preset (or Custom) filters the report to work orders whose CREATED date falls within the selected range — an open work order created outside the range is not listed.",
-   "2. Changing the range reloads the report (the loading indicator shows).",
-   "3. A range longer than about a year is refused with the message \"Date range cannot be over one year.\" and the wider range is not loaded.",
-   "4. Note for the tester: on this build the exact cut-off sits one day later than the specification says (a 367-day span is accepted, 368 is refused). Record what you see; the one-day difference is already known and is with the product owner.",
-   "---",
-   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
-   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
-   "",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R7, S7-R8)."
-  ],
+  "steps": "1. With \"This Week\" selected, check which work orders are listed.\n2. Change the preset to \"This Month\" and watch the data area.\n3. Open the date control and pick a start and an end date on the calendar more than a year apart.",
+  "expected": "1. Each preset (or Custom) filters the report to work orders whose CREATED date falls within the selected range — an open work order created outside the range is not listed.\n2. Changing the range reloads the report (the loading indicator shows).\n3. A range longer than about a year is refused with the message \"Date range cannot be over one year.\" and the wider range is not loaded.\n4. Note for the tester: on this build the exact cut-off sits one day later than the specification says (a 367-day span is accepted, 368 is refused). Record what you see; the one-day difference is already known and is with the product owner.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R7, S7-R8).\n\nAUTOMATION: HOLD - waiting on an answer from the product owner\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R7; S7-R8)",
   "viu_status": "VIU-Pending",
@@ -486,22 +348,8 @@
    "2. This browser has never saved settings for this report (fresh visit).",
    "3. Open work orders exist at two different locations."
   ],
-  "steps": [
-   "1. Open the Work In Progress report and read the Location filter's position and default value.",
-   "2. Open the Location filter and read its options and its toggle.",
-   "3. Select a second location and watch the data area.",
-   "4. Use \"All locations\", then \"Clear all\".",
-   "5. Then sign in as a user with access to only ONE location, open the report and look for the Location filter again."
-  ],
-  "expected": [
-   "1. The Location filter is the rightmost toolbar filter, a multi-select listing the locations the signed-in user can access, with an \"All locations\" / \"Clear all\" toggle.",
-   "2. On a first visit it defaults to the user's currently active location.",
-   "3. Selecting one, several, or all locations reloads the report scoped to that set (rows from the added location appear).",
-   "4. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
-   "5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's work orders.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R9, S7-R10). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
-  ],
+  "steps": "1. Open the Work In Progress report and read the Location filter's position and default value.\n2. Open the Location filter and read its options and its toggle.\n3. Select a second location and watch the data area.\n4. Use \"All locations\", then \"Clear all\".\n5. Then sign in as a user with access to only ONE location, open the report and look for the Location filter again.",
+  "expected": "1. The Location filter is the rightmost toolbar filter, a multi-select listing the locations the signed-in user can access, with an \"All locations\" / \"Clear all\" toggle.\n2. On a first visit it defaults to the user's currently active location.\n3. Selecting one, several, or all locations reloads the report scoped to that set (rows from the added location appear).\n4. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's work orders.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R9, S7-R10). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8663 (WIP spec Story 7 S7-R9; S7-R10 + on-screen location-scope indicator; spec v6 2026-07-29; single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A)",
   "viu_status": "VIU-Pending",
@@ -520,18 +368,8 @@
    "1. You are signed in to the ShopView App on a desktop browser as a user who can access some, but not all, of the organization's locations.",
    "2. The Work In Progress report is open."
   ],
-  "steps": [
-   "1. Open the Location filter and read the locations offered.",
-   "2. Use \"Clear all\" so the selection resolves to no location, and watch what the report loads.",
-   "3. If possible, revisit the report after your saved location selection has been made invalid (for example, access to a saved location was removed)."
-  ],
-  "expected": [
-   "1. Only the locations the user can access are offered — a location the user cannot access is never included in the scope.",
-   "2. If the selection resolves to none, the report falls back to the user's currently active location rather than showing everything or erroring.",
-   "3. A saved selection that no longer resolves also falls back to the active location.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R11, S8-R8)."
-  ],
+  "steps": "1. Open the Location filter and read the locations offered.\n2. Use \"Clear all\" so the selection resolves to no location, and watch what the report loads.\n3. If possible, revisit the report after your saved location selection has been made invalid (for example, access to a saved location was removed).",
+  "expected": "1. Only the locations the user can access are offered — a location the user cannot access is never included in the scope.\n2. If the selection resolves to none, the report falls back to the user's currently active location rather than showing everything or erroring.\n3. A saved selection that no longer resolves also falls back to the active location.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R11, S8-R8).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R11; Story 8 S8-R8)",
   "viu_status": "VIU-Pending",
@@ -550,18 +388,8 @@
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The report shows several jobs with a known mix of advisors, customers, and assets."
   ],
-  "steps": [
-   "1. Select an advisor, then also a customer that advisor has a job for, then also an asset from one of those jobs — checking the rows after each step.",
-   "2. Read the summary strip and the active tab's Totals row after the three selections.",
-   "3. Change one selection so that NO job passes all three filters."
-  ],
-  "expected": [
-   "1. A job must pass all three filters to remain visible (the filters combine with AND).",
-   "2. The summary strip and each tab's Totals row recompute immediately from the still-visible jobs after every advisor, customer, or asset change — on screen, with no page reload.",
-   "3. When the combination leaves no visible jobs, every tab shows the no-data message \"Empty bays, endless possibilities. Get Going!\" and no Totals row.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R12, S7-N1, S5-R11, S6-R6)."
-  ],
+  "steps": "1. Select an advisor, then also a customer that advisor has a job for, then also an asset from one of those jobs — checking the rows after each step.\n2. Read the summary strip and the active tab's Totals row after the three selections.\n3. Change one selection so that NO job passes all three filters.",
+  "expected": "1. A job must pass all three filters to remain visible (the filters combine with AND).\n2. The summary strip and each tab's Totals row recompute immediately from the still-visible jobs after every advisor, customer, or asset change — on screen, with no page reload.\n3. When the combination leaves no visible jobs, every tab shows the no-data message \"Empty bays, endless possibilities. Get Going!\" and no Totals row.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R12, S7-N1, S5-R11, S6-R6).\n\nAUTOMATION: READY\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R12; S7-N1; Story 5 S5-R11; Story 6 S6-R6; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
@@ -581,29 +409,8 @@
    "2. Open work orders exist at two different locations.",
    "3. The Work In Progress report is open."
   ],
-  "steps": [
-   "1. Select two or more locations in the Location filter and read the column headers.",
-   "2. Read the Location cell on rows from each of the two locations, on every tab.",
-   "3. Look for any row showing \"Multiple\".",
-   "4. Open the column-selection control and look for Location in the list.",
-   "5. Narrow to a single location and read the headers again.",
-   "6. Download the tab as a CSV and a PDF and read the Location column's header in the files.",
-   "7. Change the selection between one location, several, and \"All locations\", watching the filter control's width."
-  ],
-  "expected": [
-   "1. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all. When it is on, the Location column sits between VIN and Advisor, left-aligned.",
-   "2. Each row names its own work order's location.",
-   "3. NO row ever shows \"Multiple\" — a work order belongs to exactly one location, and this report has no grouped or drill-down rows.",
-   "4. Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.",
-   "5. With the toggle off the Location column is not shown, whatever the location selection is.",
-   "6. In both downloads the column is headed \"Branch\" (a known naming difference from the screen — do not raise it as a bug).",
-   "7. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection.",
-   "---",
-   "DO NOT AUTOMATE YET: part of this behaviour is still waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
-   "The open question is in: Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx",
-   "",
-   "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Work In Progress report specification version 6 (S7-R13, S7-R14, S4-R3, S9-E1, S10-R5a) differs, his decision is the authority."
-  ],
+  "steps": "1. Select two or more locations in the Location filter and read the column headers.\n2. Read the Location cell on rows from each of the two locations, on every tab.\n3. Look for any row showing \"Multiple\".\n4. Open the column-selection control and look for Location in the list.\n5. Narrow to a single location and read the headers again.\n6. Download the tab as a CSV and a PDF and read the Location column's header in the files.\n7. Change the selection between one location, several, and \"All locations\", watching the filter control's width.",
+  "expected": " When it is on, the Location column sits between VIN and Advisor, left-aligned.\n1. Each row names its own work order's location.\n2. NO row ever shows \"Multiple\" — a work order belongs to exactly one location, and this report has no grouped or drill-down rows.\n3. Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.\n4. With the toggle off the Location column is not shown, whatever the location selection is.\n5. In both downloads the column is headed \"Branch\" (a known naming difference from the screen — do not raise it as a bug).\n6. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection.\nThe Location column is not offered in the column-selection control and you do not switch it on or off: it appears by itself whenever more than one location is in scope, and is hidden whenever a single location is in scope.\nNote for the tester: the product owner has been asked to confirm this one point and has not answered yet, so do not raise a bug either way — record what you see. The question is in Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx\n\n---\n\n---\nThis is the expected behaviour as per the Work In Progress report specification version 6 (S7-R13, S7-R14, S4-R3, S9-E1, S10-R5a), and as per the build tested on 8/4/2026 (build v3.4.1-3d03023). The product owner's answer of 8/5/2026 in this file reads both ways on the one point about the Location column, so it has NOT been treated as overriding the specification and he has been asked again: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n\nAUTOMATION: HOLD - waiting on one answer from the product owner about the Location column\n",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8663 (WIP spec v6 2026-07-29 S7-R13; S7-R14; S4-R3; S9-E1; S10-R5a; §4 Location (column) — automatic visibility; never \"Multiple\"; export header \"Branch\")",
   "viu_status": "VIU-Pending",
