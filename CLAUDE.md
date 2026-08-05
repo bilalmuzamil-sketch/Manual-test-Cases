@@ -1369,7 +1369,62 @@ deliver the 7-tab management report.
    **CANONICAL STATE DOC (read first for resume):** `build/report-suite/PROJECT-STATE.md`
    — single authoritative snapshot (per-report spec inventory + readiness snapshot,
    TestRail structure, open questions OQ-1..7, how-to-resume).
-   **STATUS 2026-08-05 (LATEST — CHRIS'S ANSWERS APPLIED + 4 NEW CASES + 3 DEFECT TICKETS; resume
+   **STATUS 2026-08-05 LATE (LATEST — THE EXPECTED-BEHAVIOUR CORRECTION: WE HAD BEEN TREATING BUILD
+   BEHAVIOUR AS EXPECTED BEHAVIOUR. Resume `build/report-suite/expected-behaviour-audit-2026-08-05.md`
+   → `build/report-suite/final-viu-2026-08-05/ADDENDUM-SPECS-MOVED-AGAIN.md` **(read the addendum before
+   acting on anything)** → `final-viu-2026-08-05/{SOURCE-CURRENCY,FINDINGS,testrail-execution-log,
+   RECHECK-QUEUE,DELIBERATE-DECISIONS,OUTSIDE-IN,API-ASK,DELETIONS}.md` → `READINESS-2026-08-05.md` →
+   `rulings-2026-08-05/FOLLOW-UP-QUESTIONS-ROUND-2-2026-08-05.md`.)** The QA lead's ruling, verbatim:
+   *"The expected behaviors are NOT the ones 'how the build is behaving'… From the Build we are JUST doing
+   the VIU… I am shocked to see that how come you considered the Build behavior as the expected behavior?"*
+   plus *"'the case should be matched to the build' … meant that the test case should be VIU'd from the
+   build"* — **labels and steps from the build, NEVER the expectation; if the expectation bends to whatever
+   shipped, the case can no longer fail and a test that cannot fail is not a test.** **ALL 473 AUDITED, no
+   sampling: A 16 · A\* 2 (spec states it both ways) · B 8 · C 440 · D 7.** **The systemic error was ONE
+   Location-column boilerplate paragraph pasted into 14 cases across all six reports**, contradicting
+   PV S3-R10 / TU S10-R4 / WIP S4-R3 / IV S7-R6 / SBR S20-R1 — **and it had overwritten wording that was
+   RIGHT** (C30352's line was PV S3-R10 almost verbatim, recorded in a manifest as "wrong under both
+   readings"). **Three of our own suspicions were WRONG and the specs cleared them** (C30356, C30336,
+   C30384); **C30265 is correct as written and was deliberately NOT changed** though the brief asked.
+   **Rule-41 forensics over all 41 commits touching the case source: NO pass ever changed a case's steps
+   and its expectation body together, and the two pure VIU passes changed ZERO expectations — the
+   contamination entered via an ANSWER-INGEST pass where an ambiguous PO answer met an observed build and
+   the observation won.** **473 × `update_case`, every one HTTP 200 + byte-verified, 30 fields compared,
+   0 mismatch, 0 collateral**, plus a **15-case second pass** fixing provenance lines that said the PO
+   overrode the spec while the body followed the spec. **MARKERS NOW ON 473/473, exactly one each, last
+   line: 423 READY · 17 READY-EXPECT-FAIL · 33 HOLD; gate 423+17 = 440 = the readiness figure** (before
+   this pass **453 carried NO marker** and two styles coexisted on the other 20). **Run 359 PROVEN
+   UNTOUCHED — 469 tests, 535 results (not 532: the owners logged 3 more before we started), all present
+   BY ID, 0 graded-field changes, 0 echo changes, 0 new during our window; the 5 foreign cases
+   byte-identical incl. `updated_on`/`updated_by`.** **Four counts set-equal BOTH ways at 473; import
+   header sha256 == all 6 peers.** **⚠️ THE SHREDDING BUG FIRED AGAIN — all 473 import rows came back with
+   a newline between every character (`joinlines` iterating a string after the live re-sync); FIXED in
+   `build/report-suite/gen_import.py`, guard now 0; the generator also blanked all 473 id-map C-ids and
+   dropped `refs` — both re-merged from live, 0 blanks, refs 473/473.** **NEW PLAYBOOK FACTS: `case_refs`
+   is a SECOND read-time echo on run results alongside `case_title`; and the reports export needs
+   `variant=summary|expanded`.** **LIVE ON `v3.5-16cf83f` (session alive — the previous two passes got
+   401; `quick-login` never called): the SBC Summary CSV carries a Location column with BOTH locations
+   selected and NOT with one, so the build follows the in-scope model; the two brand-new v14 requirements
+   S20-R19a and S20-R19 are ALREADY correctly built; S14-R14 filenames, the UTF-8 BOM and the
+   `"Locations:"` line all met; S15-R15 met (1 embedded image, 0 URLs); SV-8823 STILL REPRODUCES
+   (`$224.92`, `90.5%`); and NEW-UNTICKETED: the server rejects `last_12_months` (v14's new first preset)
+   while still accepting `today`/`yesterday` (both deleted) — ASKED not filed (Rule 51).**
+   **🔴 CHRIS WARD EDITED ALL SIX SPECS DURING THE PASS AND PART OF IT IS ALREADY REVERSED:** SBC v13→**14**
+   (13:07Z) · PV v4→**5** (13:21Z, one minute before it was fetched) · then **SBR v15→16 · TU v5→6 ·
+   WIP v6→7 · IV v3→4 between 13:55Z and 14:23Z**, all messaged *"Applied QA review workbook decisions"*.
+   **All four now ratify the ACCESS-GATE + TOGGLEABLE Location model and the exact anchors this pass cited
+   have FLIPPED (TU S10-R4, WIP S4-R3) — so the boilerplate we removed is now, for those reports, what the
+   spec says.** The audit was right against the sources at 13:20–13:55Z and is **partly overtaken**.
+   **The cases are SAFE because all 16 carry `AUTOMATION: HOLD` naming the open question.** **Four of six
+   specs STILL state it both ways (SBR S21-R7, WIP S7-R13, IV S7-R6, SBC S13-R4) and PV was never touched
+   on this point.** **OWED: re-diff the 4 moved specs, re-repair the 13 cases to the toggleable model,
+   re-stamp SBR→16/TU→6/WIP→7/IV→4, and ask Chris to finish the four leftover contradictions.**
+   **LESSON (Rule 31): re-read the sources immediately BEFORE the writes begin, not only at pass start.**
+   **Build `v3.5-16cf83f` byte-identical at 13:20:39Z, 13:55:25Z and 14:23:34Z. Rule-49 queue OPEN — all
+   473 verdicts PROVISIONAL; this pass was NOT a per-case live VIU of all 473 and does not claim to be.
+   0 deletions. 0 tickets filed. 4 of our cases (C43550–C43553) are still absent from run 359 and
+   `include_all` is false.**
+   **PRIOR STATUS 2026-08-05 (CHRIS'S ANSWERS APPLIED + 4 NEW CASES + 3 DEFECT TICKETS; resume
    `build/report-suite/approved-writes-2026-08-05/` — read `THE-46-EXECUTED.md` first, then
    `TASK-A-UNSUPPORTED-FREEZE-LINE.md`, `TASK-B-NEW-CASES.md`, `TASK-C-TICKETS-FILED.md`,
    `API-SPLIT.md`):** all four QA-lead authorisations executed. **TALLY: 473 ACTIVE OURS** (469 + 4 new;
