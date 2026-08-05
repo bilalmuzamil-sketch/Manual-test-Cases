@@ -30,7 +30,7 @@
 > stays hedged instead of asserted. A missing QA branch means **nothing is live-verified** and a
 > whole suite sits VIU-Pending.
 
-**Last updated:** 2026-08-05 (~18:20 UTC — the SV-7324 HEIC iPhone verification)
+**Last updated:** 2026-08-05 (~21:10 UTC — the SV-8910 re-test, run unattended at the QA lead's request)
 **Active projects:** Report Suite · Schedule · Filters (user ruling 2026-07-27)
 **Predecessor snapshot (kept for the record):** `build/PROJECTS-NEEDS-2026-07-27.md`
 **Companion defensibility register (read before answering any QA challenge in a public channel):** `build/qa-preemptive-answers-2026-07-31/ANTICIPATED-QUESTIONS-AND-ANSWERS.md` / `.xlsx` — 65 rows of *what someone could say* → *the paste-ready answer* → *the evidence*, across the three active projects, with a TOP 10 and an open list of what we would genuinely have to concede.
@@ -57,7 +57,49 @@ else owes).
 
 ---
 
-## ⚠️⚠️⚠️⚠️ NEWEST — 2026-08-05, ~18:20 UTC, **SV-7324 (HEIC upload) — A SIDE BUG TICKET, NOT ONE OF THE THREE SUITES. THE FIX IS PROVEN DEPLOYED AND CORRECTLY BUILT; THE ONE CHECK THAT DECIDES THE TICKET NEEDS A REAL IPHONE AND CANNOT BE DONE FROM HERE.**
+## ⚠️⚠️⚠️⚠️⚠️ NEWEST — 2026-08-05, ~21:10 UTC, **SV-8910 RE-TESTED AT YOUR REQUEST — THE DEFECT IS CONFIRMED AND THE TICKET STANDS. SV-8781 REMAINS PASSED.**
+
+**Run unattended, as you asked** (*"I have a doubt about it. Can you test it again. You need to do this
+unattended as I am going to sleep now."*). **Jira: one comment on SV-8910 (74583). No TestRail write.
+No change to SV-8781's QA verdict.**
+
+Because you doubted it, the re-test was built to **disprove** the finding: two amounts that cannot be
+confused with each other (**$7.11** and **$103.03**, invoice **$110.14**), with the correct-vs-broken
+figures written down **before** the receive was submitted. It did not disprove it, and it located the
+fault more precisely than the first run did.
+
+**The sharpest new evidence — each saved record contradicts its own contents:**
+
+```
+S-15894  ZZ-CHK-P (control)  header 7.11    items 7.11     MATCHES
+S-15894  ZZ-CHK-M            header 110.14  items 7.11     *** MISMATCH ***
+S-15895  ZZ-CHK-M            header 110.14  items 103.03   *** MISMATCH ***
+```
+
+The items were split across the two purchase orders **correctly**; both headers were then stamped with
+the submission-wide total. **That settles write-path vs read-path — it is the stored value that is
+wrong**, so a developer can see it without reproducing anything. The same-run control came out at
+exactly $7.11, which rules out rounding, display, cache or an error in my own figures. **Build marker
+re-read afterwards and byte-identical to the original finding (`v3.5-fb6371c`), so the doubt is not
+explained by a redeploy.**
+
+Deliverables: `build/sv8781-split-receive-2026-08-05/{SV-8910-RETEST-2026-08-05.md,
+verify-header-vs-items.mjs, evidence/ANNOTATED-3-retest-confirms-110.png}`.
+
+| # | Cat | What is missing | Who owes it | What it blocks | Since |
+|---|---|---|---|---|---|
+| **H5** | **DECISION** | **Whether SV-8910 should have an epic parent, and if so which.** Standing Rule 52 says every ticket we create is parented to an epic — but **SV-8781, the ticket this was raised from, has no epic either**; it is a customer-reported Intercom bug (reporter ShopView PowerTools, via Mike Freeman). **I deliberately left SV-8910 parentless rather than attach it to an unrelated epic and misattribute it to another squad** (Rule 52's own honesty caveat). Flagged, not guessed. | You | Nothing — the ticket is complete and actionable as filed. It is a tidiness/reporting call only. | 2026-08-05 |
+| **H6** | **OTHER TEAM** | **A developer fix for SV-8910.** Open, priority Low, linked *Relates* to SV-8781. The write-path evidence above is on the ticket. | Dev, once triaged | Nothing of ours. Worth noting the impact is **money-facing**: any figure built from those delivery rows reads roughly double for an affected invoice. | 2026-08-05 |
+| **H7** | **DECISION** | **Whether SV-8910 becomes a permanent TestRail case.** It is a reproducible, fully-specified money-facing defect, so it is a strong candidate under the standing "tickets → cases" practice (edge-case tickets get converted into test cases so the suite grows from real findings). **Nothing authored or pushed** (Rule 6). | You | Nothing today. | 2026-08-05 |
+
+**Honest limit on the re-test:** confirmed for **two** purchase orders under one invoice. Three or more
+was **not** tested, and neither was a partially-received merged invoice. Those are plausible extensions,
+not observations. The branch is a QA branch and **not declared final**, so the verdict is PROVISIONAL in
+the Rule-49 sense — the behaviour is confirmed, its durability against a redeploy is not.
+
+---
+
+## ⚠️⚠️⚠️⚠️ 2026-08-05, ~18:20 UTC, **SV-7324 (HEIC upload) — A SIDE BUG TICKET, NOT ONE OF THE THREE SUITES. THE FIX IS PROVEN DEPLOYED AND CORRECTLY BUILT; THE ONE CHECK THAT DECIDES THE TICKET NEEDS A REAL IPHONE AND CANNOT BE DONE FROM HERE.**
 
 **READ-ONLY PASS. No TestRail write, no Jira write, no comment posted on the ticket.**
 
