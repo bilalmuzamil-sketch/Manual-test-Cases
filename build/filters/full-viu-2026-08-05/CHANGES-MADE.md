@@ -155,3 +155,36 @@ timestamp check. Where a timestamp is quoted it is context, never proof.
 C29558, C29559, C29571, C29574, C29589, C29595, C29608, C29616, C38881, C38904 — in **all three**
 text fields. That is recorded as a pre-existing defect found, **not** something this pass caused;
 the snapshot committed before any write is the evidence.
+
+---
+
+## 7. ADDENDUM — a SECOND preference object was changed (found while observing the Parts page)
+
+The Parts page turned out to have a filter bar of its own, and it keeps its own saved state under a
+different key. Observing it changed that state, so it is recorded here with the same before/after
+discipline.
+
+**Object:** `PUT`/`GET /api/users/me/preferences/parts-inventory` (note the key is
+`parts-inventory`, **not** `parts-list` — `parts-list` exists but has never been saved and returns
+`value: null`).
+
+| | Value |
+|---|---|
+| **BEFORE** (as found, read live) | `{"sortBy":"","supply":"over-supplied","filters":{"category":["d1ddbdc6-0e02-46de-8051-4406d165d406"]},"descending":false}` — the page arrived at `/parts/inventory?category=d1ddbdc6…&supply=over-supplied` with the chips reading *Category: COCtest* and *Supply: Over-supplied*, so this state was **already there and is not ours** |
+| **WHAT WE DID** | Opened the Supply chip and chose its first option, **All**, to see whether a Parts filter narrows its page |
+| **AFTER** (read live) | `{"sortBy":"","supply":"all","filters":{"category":["d1ddbdc6-0e02-46de-8051-4406d165d406"]},"descending":false}` |
+| **NET CHANGE** | `supply`: **`over-supplied` → `all`**. The `category` filter (`d1ddbdc6-0e02-46de-8051-4406d165d406`, shown as *COCtest*) was **NOT** touched, and neither were `sortBy` or `descending`. |
+
+**Why this matters to the next person:** the Parts Inventory page still carries a **Category:
+COCtest** filter that predates this pass, which is why that page shows very few rows or none. That
+is leftover state on a shared account, **not** a product default and **not** a bug.
+
+Preference keys read read-only and confirmed never saved (HTTP 200, `value: null`): `parts-list`,
+`parts-inventory-list`, `inventory-list`, `reports-list`, `punch-clock-activities`.
+
+## 8. Page search terms typed into pages
+
+Search text is **session-only on this build** — it is not written to any saved preference (proven:
+the saved payload's keys are exactly `collapsed`, `columns`, `descending`, `filters`, `sortBy`,
+`tab`, with no `search` key before, during or after typing). So the terms typed during this pass
+(`Ceview`, `Bahampton`, `brake`, `zzzznomatchzzzz`) **left nothing behind** for the next person.
