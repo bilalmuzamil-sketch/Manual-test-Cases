@@ -210,9 +210,23 @@ instead of claiming no ticket exists.
 
 ### Ticket filed: [SV-8886](https://shopview.atlassian.net/browse/SV-8886)
 
-Bug · **Low** · parent **SV-8685** · story **SV-8689** linked *Relates* · Product Area Schedule ·
-7-section format · **11 field checks read back, all PASS** · duplicate-searched with 4 JQL queries
-first · test data named by on-screen name (S-12876 / Pamill Paving / unit 713 / MQ Test Tech Qamar).
+**FILED as** Bug · **Low** · parent **SV-8685** · story **SV-8689** linked *Relates* · Product Area
+Schedule · 7-section format · **11 field checks read back, all PASS** · duplicate-searched with 4 JQL
+queries first · test data named by on-screen name (S-12876 / Pamill Paving / unit 713 / MQ Test Tech
+Qamar).
+
+**⚠️ IT NO LONGER READS THAT WAY — re-read LIVE 2026-08-05.** SV-8886 is now a **`Story Defect`** (id
+10007, subtask, hierarchy level −1) parented to **STORY SV-8689** ("Scope Picker"), with **Product Area
+NULL**; still **Open / Low**. **Mudassir Qamar converted it at 2026-08-05T09:29:49 −0500** using the Jira
+UI "Change work type" wizard, which changed `issuetype` Bug → Story Defect **AND** re-parented it
+SV-8685 → SV-8689 **in ONE atomic action** (changelog read live).
+
+**Both halves of the audit trail stand: our filing was CORRECT for its date** — the 11 field checks did
+pass and Product Area **WAS** Schedule when we set it — **and someone else changed it afterwards.**
+**THE Product Area LOSS IS NOT IN THE CHANGELOG AT ALL** — the whole changelog logs only three fields
+ever (`IssueParentAssociation`, `Link`, `issuetype`), so **nobody can reconstruct that value from Jira's
+own history**; it is provable only because the ticket was byte-verified at filing (Rule 50). The shape
+now required is amended **Rule 52**; converting an existing ticket is never ours to do.
 
 ### Proofs
 

@@ -1210,10 +1210,21 @@ deliver the 7-tab management report.
    the filter accepts, 0 leaks** (the 6 empty ones are correct — the list holds only Approved ×90 + Review ×1
    of 91, though the org holds 1200 WOs across 6 statuses, which is useful for whoever fixes SV-8868) ·
    **SCH-LINE-03 = C29950 restored assertion PASSES — 533 of 533 sidebar lines approved** (`authorized` ×329,
-   `complete` ×204). **ONE TICKET FILED: [SV-8886](https://shopview.atlassian.net/browse/SV-8886)** — Bug ·
-   **Low** · parent **SV-8685** · story **SV-8689** linked *Relates* · Product Area Schedule · 7-section
+   `complete` ×204). **ONE TICKET FILED: [SV-8886](https://shopview.atlassian.net/browse/SV-8886)** — FILED as
+   Bug · **Low** · parent **SV-8685** · story **SV-8689** linked *Relates* · Product Area Schedule · 7-section
    format · **11 field checks read back, all PASS** · duplicate-searched with 4 JQL queries first · test data
-   named on-screen (S-12876 / Pamill Paving / unit 713 / MQ Test Tech Qamar). **API-only finding STILL NOT
+   named on-screen (S-12876 / Pamill Paving / unit 713 / MQ Test Tech Qamar).
+   **⚠️ IT NO LONGER READS THAT WAY — re-read LIVE 2026-08-05: SV-8886 is now a `Story Defect` (id 10007,
+   subtask, hierarchy level −1) parented to STORY **SV-8689** ("Scope Picker"), with **Product Area NULL**;
+   still Open / Low.** **Mudassir Qamar converted it at 2026-08-05T09:29:49 −0500** with the Jira UI "Change
+   work type" wizard, which changed `issuetype` Bug → Story Defect **AND** re-parented it SV-8685 → SV-8689
+   **in ONE atomic action** (changelog read live). **BOTH HALVES OF THE AUDIT TRAIL STAND: our filing was
+   CORRECT for its date — the 11 field checks did pass and Product Area WAS Schedule when we set it — and
+   someone else changed it afterwards.** **THE Product Area LOSS IS NOT IN THE CHANGELOG AT ALL** — the whole
+   changelog logs only three fields ever (`IssueParentAssociation`, `Link`, `issuetype`), **so NOBODY can
+   reconstruct that value from Jira's own history**; it is provable only because the ticket was byte-verified
+   at filing (Rule 50). The shape now required is amended **Rule 52**; converting a ticket is never ours to
+   do. **API-only finding STILL NOT
    FILED** (Rule 51) — and honestly, the 8-week/120-shift limits appear **only in the tech plan, nowhere in
    spec v23**, so there are three possible answers and we are not guessing: `final-viu-2026-08-05/API-ASK.md`.
    **`delete_case` called ZERO times** — 6 candidates considered, each kept with a reason (`DELETIONS.md`),
@@ -1322,7 +1333,14 @@ deliver the 7-tab management report.
    compared each, 0 mismatch; run 357 proven untouched BOTH times** (include_all false, 165 tests, all
    **429** result records present BY ID, case_id sets equal both ways). **10 defects filed SV-8848…
    SV-8857** — all **priority Low, parent SV-8685, owning story linked, Open** (Rules 52/53), each
-   read back from Jira. **Epic is now 28 children** (15 stories all `Ready for QA`, SV-8812 **Done** =
+   read back from Jira. **⚠️ THAT IS THE PRE-2026-08-05 `Bug`-on-the-EPIC CONVENTION — correct for its date,
+   NOT the shape required now: Rule 52 was AMENDED 2026-08-05 to require a `Story Defect` parented to the
+   OWNING STORY, so read this line as a historical record and Rule 52 for today's shape.** **AND IT HAS SINCE
+   MOVED (re-read LIVE 2026-08-05): NINE of the ten — SV-8849…SV-8857 — are now `Story Defect`s parented to
+   their owning stories with **Product Area NULL**, converted by others; only **SV-8848** is still a `Bug`
+   with Product Area Schedule, and **its parent was REMOVED** (Mudassir Qamar, 2026-08-05T09:21:39 −0500,
+   SV-8685 → None), so it now has NO parent. All ten remain Open / Low.**
+   **Epic is now 28 children** (15 stories all `Ready for QA`, SV-8812 **Done** =
    this branch, **+12 Bug tickets SV-8826…SV-8841 raised 2026-08-04 by Mudassir Qamar** — 6 confirmed,
    2 don't reproduce as written, 2 contradict Branko's own rulings [SV-8835 VIN / SV-8829 money] where
    **Rule 33 means the rulings STAND and nothing was changed on either side**, 1 = SV-8831 a REAL gap
