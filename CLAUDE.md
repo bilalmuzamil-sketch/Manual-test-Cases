@@ -3742,6 +3742,18 @@ regression / bug-fix re-testing.
 - Staging is **fully disposable**: mark throwaway data `ZZAUTOTEST`, use
   **exact-user-match** on role changes (never substring/email), and **restore
   Tech to Time Clock** after.
+- **PER-TICKET QA BRANCH ENVIRONMENTS (`sv<ticket>.qa.shopview.com`) NEED NO CLEANUP —
+  QA-lead ruling 2026-08-05, verbatim: *"NO need to clean the data after the tests, these
+  branches are QA branches which are temporary branches."*** These per-branch envs are
+  **thrown away with the branch**, so seeded work orders, parts, purchase orders, receipts,
+  roles and settings may be **left as they are** — do **not** spend a pass restoring state or
+  deleting test data there, and never let "I still have to clean up" delay or truncate a test.
+  **Still tag throwaway data `ZZAUTOTEST`** (it keeps evidence readable and tells the next
+  person what was ours), and **still leave the state that makes a finding reproducible** rather
+  than tidying evidence away. **This ruling is scoped to the per-ticket QA branch envs.** The
+  **SHARED** long-lived environments — `app.staging.shopview.com` (org `d55bc308…`), the `qb`
+  env, and **anything on PRODUCTION** — keep the restore-after discipline above, because other
+  sessions and other testers depend on their state (Standing Rule 26 drift).
 - Currently **ignore** Digital Inspections, Regression Suite (Minja's API file),
   and Backend API & Security in the Custom Roles execution scope (unless told
   otherwise).
