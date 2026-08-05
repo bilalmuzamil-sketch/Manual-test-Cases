@@ -193,6 +193,24 @@
 > coverage we do not have** — an unobserved row stays unobserved (Rules 12/17/50), and the correct
 > sentence is *"N of M observed on build <marker>; the remaining M−N carry their last recorded check"*.
 >
+> **Defect-ticket-shape qualifier (Standing Rule 52, AMENDED 2026-08-05) — applies to EVERY process row
+> below that MAY FILE A JIRA TICKET (rows 1, 3, 6, 8, 10, 11, 12 and any future VIU / recheck / defect
+> pass).** **ONE shape, no variants:** `issuetype` = **`Story Defect` (10007)** · `parent` = **THE OWNING
+> STORY** · `priority` = **`Low`** (Rule 53) · **ALSO link the owning story `relates to`** · **NO Product
+> Area** (`customfield_10153` does not exist on this type; his ruling: *"Product area loss is OK"*).
+> **A story parent IS what he asked for** — the story is itself a child of the epic, so the defect still
+> rolls up; and **a `Story Defect` cannot be parented to an Epic at all** (**HTTP 400 *"Please select
+> valid parent issue."***, while the identical body with a Story parent returns **201** — and **0 of all
+> 502 Story Defects in SV** has an Epic parent). **NEVER use `Story Defect - Archive` (10279)** — legacy,
+> wrong hierarchy level, a lookalike name. **NEVER convert an existing ticket on our own initiative:**
+> conversion is **UI-only** (the REST PUT is refused) and it **silently wipes Product Area with no
+> changelog entry**, so it is the QA lead's call — and other QAs are actively converting tickets
+> themselves (Rule 53's corollary). **Tickets filed BEFORE 2026-08-05 are `Bug`s on an epic parent and
+> are CORRECT FOR THEIR DATE** — do not "repair" them. **API-related findings are still never filed
+> without asking, whatever the shape (Rule 51).** Full field/type/conversion facts, the working create
+> body, and the fact that **our account cannot delete Jira issues (HTTP 403 — a throwaway must be
+> transitioned to OBSOLETE)**: `build/APP-ACTIONS-PLAYBOOK.md` § "Filing a defect ticket".
+>
 > **Two-session note:** this workspace is worked by more than one Claude session in parallel.
 > This catalog + `CLAUDE.md` + the `build/*-PROCESS.md`/`*-METHOD.md`/`*-RECIPE.md` docs are the
 > **shared brain** — both sessions read and update them, so any process is callable from either.

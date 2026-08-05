@@ -67,7 +67,8 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
 [K. PRODUCTION access & fix-verification](#k-production-access--fix-verification-sv-8721-proven-2026-07-29) ·
 [L. Git practice with parallel workers](#l-git-practice-with-parallel-workers) ·
 [M. Figma: extract ALL frames from a design link](#m-figma-extract-all-frames-from-a-design-link-proven-2026-07-31-filters) ·
-[Jira/Confluence access](#jiraconfluence-access)
+[Jira/Confluence access](#jiraconfluence-access) ·
+[Filing a defect ticket (Story Defect shape, fields, conversion)](#filing-a-defect-ticket--the-organisations-required-format-all-projects-all-future-tickets)
 
 ---
 
@@ -851,24 +852,71 @@ comment, set priority Low first, and NEVER DELETE** (deletion is irreversible; a
 its reasoning on the record is worth more). **Keep the finding in the pack — we withdraw the ticket, not
 the finding.** Read alongside **Rule 24**: FE-blocks + BE-allows is a **PASS**, not a defect at all.
 
-**2. PARENT = THE EPIC; THE OWNING STORY IS *LINKED*, NOT PARENTED (Rule 52).**
-His clarification, verbatim and operative: *"So Yes, attach the tickets to the Epic as Parent but when
-you liunk th etickets to the stories they should be linked as their story defects. You did it correctly
-before."*
-**Do NOT reparent a defect onto a story, do NOT convert it to a `Story Defect` subtask, do NOT create
-replacement issues or close the original as a duplicate to get a story parent.**
-**Why this shape is CORRECT and not a workaround:** in project **SV**, **`Bug` (10008) is hierarchy
-level 0** — same level as `Story` (10245) and `Task` (10005) — so **its parent may only be an `Epic`
-(10006, level 1)**. The only story-level child vehicle is **`Story Defect` (10007), a SUBTASK at level
-−1**, and **Jira REFUSES the level-0 → subtask conversion** (both attempts proven 2026-08-04):
-`PUT /rest/api/3/issue/{key}` with `issuetype:10007` + `parent` → **400
-`{"pid":"Issues with this Issue Type must be created in the same project as the parent."}`** (misleading
-— the parent *was* in the same project); `issuetype` alone → **400 `{"issuetype":"Issue type is a
-sub-task but parent issue key or id not specified."}`**. An unwinnable pair.
-**The LINK TYPE is his to name — never guess.** Available in this Jira (`GET /rest/api/3/issueLinkType`,
-read live 2026-08-04): **Blocks** · **Cause** (`caused by`/`causes`) · **Cloners** · **Duplicate** ·
-**Fixes** · **Polaris work item link** · **Relates** · **Split**. **None is a defect-of / is-defect-for
-type**, so if a "story defect link" is asked for, **change nothing and ask which of the eight he means.**
+**2. FILE A `Story Defect` PARENTED TO THE OWNING STORY (Rule 52, amended 2026-08-05 — this SUPERSEDES
+the Bug-on-an-epic-parent shape below).**
+His instruction, verbatim: *"Also, make sure that whenever you create a ticket it should be attached to
+the parent ticket as its epic and that ticket should be created as STORY DEFECT"*.
+**THE SHAPE — `issuetype` = `Story Defect` (10007) · `parent` = THE OWNING STORY · `priority` = `Low` ·
+ALSO link the owning story `relates to` · DO NOT send Product Area.**
+**Why a story parent still satisfies "attached to the epic":** the owning story is itself a child of the
+epic, so the defect **rolls up to the epic** one level further down. **A `Story Defect` cannot be
+parented to an Epic at all** — proven live 2026-08-05, a create with an Epic parent returns
+**HTTP 400 `{"errorMessages":[],"errors":{"parent":"Please select valid parent issue.","parentId":"Please
+select valid parent issue."}}`**, while the **identical body with a STORY parent (SV-8689) returns HTTP
+201** and reads back at hierarchy level −1 under a Story. Population check: **of ALL 502 Story Defects in
+SV** (exhaustive, fully paged) parents are **Story 294 · Task 149 · Bug 57 · none 2 · EPIC 0** (0 under
+SV-8685, 0 under SV-8785, 0 under SV-8582). His own cited example **SV-8883** sits under **SV-8786, a
+Story**.
+**ISSUE TYPES IN PROJECT SV** (`GET /rest/api/3/issue/createmeta/SV/issuetypes` → HTTP 200, 6 types, read
+live 2026-08-05):
+
+| type | id | subtask | hierarchyLevel | use |
+|---|---|---|---|---|
+| Task | 10005 | false | 0 | — |
+| Epic | 10006 | false | 1 | parent of stories/tasks/bugs |
+| **Story Defect** | **10007** | **true** | **−1** | **our defect tickets; parent must be level-0** |
+| Bug | 10008 | false | 0 | pre-2026-08-05 shape; may take an Epic parent |
+| Story | 10245 | false | 0 | the parent we use |
+| Story Defect - Archive | 10279 | false | 0 | **LEGACY — NEVER USE** (lookalike name, wrong level) |
+
+**WORKING CREATE SHAPE (Story Defect):**
+```
+POST /rest/api/3/issue
+{"fields":{"project":{"key":"SV"},"issuetype":{"id":"10007"},
+           "parent":{"key":"<OWNING-STORY>"},          # level-0 ONLY; an Epic key → 400
+           "summary":"<one line>","description":<ADF, 7 sections>,
+           "priority":{"name":"Low"},                   # Rule 53
+           "customfield_10418":{"value":"<Severity>"}}} # NO customfield_10153 on this type
+```
+then `POST /rest/api/3/issueLink` `relates to` the same story.
+**FIELD DIFFERENCE:** **Product Area (`customfield_10153`) is REQUIRED on `Bug` and ABSENT on
+`Story Defect`.** Priority `Low`, the `relates to` link and the seven-section ADF body behave identically
+on both.
+**CONVERSION IS UI-ONLY AND SILENTLY WIPES Product Area — AND IS NEVER OURS TO DO.** The REST API refuses
+level-0 → subtask (both proven 2026-08-04): `PUT /rest/api/3/issue/{key}` with `issuetype:10007` +
+`parent` → **400 `{"pid":"Issues with this Issue Type must be created in the same project as the
+parent."}`** (misleading — the parent *was* in the same project); `issuetype` alone → **400
+`{"issuetype":"Issue type is a sub-task but parent issue key or id not specified."}`**. **The org's UI
+"Change work type" wizard does what the API refuses — it converts the type AND atomically re-parents
+Epic→Story in ONE changelog action** (SV-8886 Mudassir Qamar 2026-08-05 09:29:49 →SV-8689 · SV-8849
+09:15:03 →SV-8692 · SV-8871 Ahtasham Amjad 04:51:42 →SV-8795 · SV-8846 04:46:32 →SV-8797). **⚠️ The
+conversion DESTROYS Product Area and the loss is NOT in the changelog** — proven on our own **SV-8886**
+(filed with Product Area = Schedule, byte-verified at filing, now NULL) vs **SV-8848** (never converted,
+still Schedule); **all 502 Story Defects in SV have Product Area null**. His ruling: **"Product area loss
+is OK"**. **Converting an existing ticket is HIS decision** — Mudassir and Ahtasham convert tickets
+themselves and Rule 53's corollary forbids cutting across their triage.
+**THE UI CONVERSION LANDS ON THE STORY WE *LINKED*** (SV-8886 linked SV-8689 → landed under SV-8689;
+SV-8849 linked SV-8692 → landed there), **so keep adding the `relates to` story link even though it now
+duplicates the parent.**
+**⚠️ WE CANNOT DELETE JIRA ISSUES** — `DELETE /rest/api/3/issue/{KEY}` → **HTTP 403 *"You do not have
+permission to delete issues in this project."*** So a throwaway/probe ticket **cannot be removed**:
+transition it to **OBSOLETE** with a comment saying it is a disposable ZZAUTOTEST probe, and expect it to
+persist as a closed item (this is why **SV-8902** still exists). Probe once, record the answer here.
+**The LINK TYPE list** (`GET /rest/api/3/issueLinkType`, read live 2026-08-04): **Blocks** · **Cause**
+(`caused by`/`causes`) · **Cloners** · **Duplicate** · **Fixes** · **Polaris work item link** ·
+**Relates** · **Split**. **None is a defect-of / is-defect-for type — and that no longer matters:** the
+story-defect relationship is carried by the **issue type + story parent**, so the link we add is
+**`relates to`**. If he ever asks for a different one, **change nothing and ask which of the eight.**
 
 **3. PRIORITY IS ALWAYS `Low` — NEVER `High` (Rule 53).**
 His words: *"never mark the priority as High for the tickets you create always keep the priority as
@@ -881,14 +929,17 @@ name. A change with no action of ours is **his triage**, to be **asked about, ne
 resolution**. On 2026-08-04 a pass read his four `High → Low` downgrades as drift and "restored" them;
 he re-applied `Low`, and the changelog now carries **`High → Low → High → Low`** on all four.
 
-### Fields to set on a ShopView `SV` bug (from `createmeta`, 2026-08-04)
+### Fields to set on a ShopView `SV` defect ticket (from `createmeta`, 2026-08-04; type amended 2026-08-05)
 
-`project` · `issuetype` (**`Bug`**) · `summary` · `description` · `labels` · **`priority` — ALWAYS
-`Low`** (Rule 53; the field offers Highest/High/Medium/Low, we use `Low`) · `customfield_10418`
-**Severity** (High/Medium/Low — put the real severity HERE) · **`customfield_10153` "Product Area" —
-REQUIRED** (Reports & Dashboards · Work Orders · Customers · …).
-**Parent:** the **Epic** (see gate 2 above) — a `Bug` is hierarchy level 0 so an Epic is the only parent
-it can take. **Attach the owning story as a LINK** (`POST /rest/api/3/issueLink`), not a parent.
+`project` · `issuetype` (**`Story Defect`, id 10007** — was `Bug` before 2026-08-05) · **`parent` — THE
+OWNING STORY, and it is REQUIRED on this type** (level-0 only; an Epic key → HTTP 400) · `summary` ·
+`description` · `labels` · **`priority` — ALWAYS `Low`** (Rule 53; the field offers
+Highest/High/Medium/Low, we use `Low`) · `customfield_10418` **Severity** (High/Medium/Low — put the real
+severity HERE).
+**⚠️ `customfield_10153` "Product Area" is REQUIRED on `Bug` and DOES NOT EXIST on `Story Defect`** — do
+not send it on a Story Defect (his ruling: *"Product area loss is OK"*).
+**Also attach the owning story as a LINK** (`POST /rest/api/3/issueLink`, `relates to`) even though it
+duplicates the parent — see gate 2 for why.
 **Withdrawing a ticket:** read `GET /rest/api/3/issue/{KEY}/transitions` and use the closest close
 transition — on `SV` that is **`Close` (id 8) → status `OBSOLETE`**, whose post-function sets
 **`resolution: Done`** with no resolution screen. Comment first (v2 `POST /rest/api/2/issue/{KEY}/comment`
