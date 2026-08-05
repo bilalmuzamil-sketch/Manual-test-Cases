@@ -1,3 +1,10 @@
+> # ⚠️ SUPERSEDED — 5 August 2026
+>
+> **This file is superseded by `READINESS-2026-08-05.md`.** It is kept as the record of what
+> was measured on build `v3.5-4873abe`, and it is NOT deleted. The branch has since been
+> rebuilt to `v3.5-be42149`; two of the verdicts below have changed and one feature it calls
+> *not built* has shipped. Use the 5 August file.
+
 > ## ⚠️ ITS VERDICTS ARE NO LONGER CONFIRMED — 5 August 2026
 >
 > **Every figure in this report was measured on build `v3.5-4873abe`. That build is gone** — the QA

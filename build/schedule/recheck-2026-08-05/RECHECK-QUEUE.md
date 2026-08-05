@@ -1,3 +1,10 @@
+> # ✅ CLOSED AS AN ATTEMPT — 5 August 2026, 14:1x UTC
+>
+> **Its blocker has cleared.** Fresh cookies arrived, the build was reachable, and a pass ran.
+> The live queue is now `../final-viu-2026-08-05/RECHECK-QUEUE.md`, which records **7 of 165**
+> rows re-checked on `v3.5-be42149` and the 158 still owed. This file is kept as the record of
+> the attempt that could not start.
+
 # Schedule — Standing Rule 49 RE-CHECK QUEUE (re-armed 5 August 2026)
 
 ## STATUS: **OPEN** — 0 of 165 rows re-checked
