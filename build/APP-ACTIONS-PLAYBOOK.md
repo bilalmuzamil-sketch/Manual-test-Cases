@@ -375,6 +375,27 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   · `defects` · `version` · `test_id` · `id` were **byte-identical on all 532**. **CONSEQUENCE for
   Standing Rules 34/47/50: verify a run untouched on those fields and treat `case_title` as DERIVED —
   a raw whole-record compare will otherwise report a false "results changed" and stop a clean batch.**
+- **⚠️ DECLARED NORMALISATION #2b — `case_refs` IS THE SAME KIND OF ECHO AS `case_title` (found 2026-08-05,
+  Report Suite).** A result record also carries a **`case_refs`** field, filled in **at read time from the
+  case's References as they stand now**. So **writing `refs` on a case makes its old result records read
+  back differently with NO run write** — exactly as retitling does (#2). Both are DERIVED; neither is a
+  graded field and neither can be written by us. **Verify a run untouched on the graded fields
+  (`status_id` · `comment` · `defects` · `elapsed` · `version` · `assignedto_id` · `created_by` ·
+  `created_on` · `test_id` · `case_id` · `id`) and treat `case_title` AND `case_refs` as echoes** — a raw
+  whole-record compare will otherwise report a false "results changed" and stop a clean batch. Confirmed by
+  reading a live run-359 result record whose `case_refs` reproduced its case's full Rule-20 reference
+  string verbatim.
+- **`/api/reporting/reports/{slug}/export` REQUIRES `variant` (proven live 2026-08-05, `sv8582`,
+  `v3.5-16cf83f`).** `?format=pdf&range=this_year` alone returns **HTTP 400** `{"errors":[{"error":"Invalid
+  export variant. Allowed values: summary, expanded."}]}`. The working shape is
+  `?format=csv|pdf&range=<preset>&variant=summary|expanded[&locations=<id>[,<id>]]`. Accepted `range`
+  values on that build: `this_year` `last_year` `this_quarter` `last_quarter` `this_month` `last_month`
+  `this_week` `last_week` `today` `yesterday` (all 200); `custom` needs `start_date`+`end_date`;
+  **`last_12_months` returns 400 "Selected date range is invalid."** `locations` is a **comma-separated**
+  list (not `locations[]`), and an unknown id gives 400 `Invalid location id "…"`. Report slugs:
+  `sales-by-customer` `sales-by-representative` `parts-velocity` `technician-utilization`
+  `work-in-progress` `inventory-value`. Filenames come back on `content-disposition`, and each CSV opens
+  with a UTF-8 BOM then `"Date Range: …"` and `"Locations: …"` metadata lines above the header row.
 - **Known runs — do NOT write without permission:** Custom Roles run **312**, section **3527**;
   Simple Flow / F&D / Schedule / Report Suite run **325** (and R359 Reports). Section IDs per project
   in CLAUDE.md.
