@@ -1,3 +1,95 @@
+# Schedule — PROJECT STATE
+
+## §0-FINAL-VIU-2026-08-05 — CANONICAL RESUME (read this first)
+
+**Resume order:** `expected-behaviour-audit-2026-08-05.md` → `final-viu-2026-08-05/FINDINGS.md` →
+`READINESS-2026-08-05.md` → `final-viu-2026-08-05/RECHECK-QUEUE.md`.
+
+### The headline: the QA lead was right, and the defect was on all 165 cases
+
+He wrote: *"The expected behaviors are NOT the ones 'how the build is behaving'… I am shocked to see
+that how come you considered the Build behavior as the expected behavior?"* An audit of all 165 found:
+
+- **The expected-result BODIES were sound — 0 of 165 described build behaviour as the requirement.**
+  The 27 cases where the build disagrees kept the documented expectation and carried the deviation as a
+  separately labelled note quoting the spec and instructing FAIL. That is the correct pattern.
+- **The defect was the PROVENANCE LINE, on every single case.** All 165 read *"This is the expected
+  behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic … and the
+  specification …"* — crediting the build, first, for the expectation. On the 27 deviation cases it was
+  **FALSE and self-contradictory**. **Honest note: that phrasing is Standing Rule 54's, taken from his
+  own earlier example sentence; his correction supersedes it (Rules 32/33).**
+- **TWO assertions HAD been rewritten to the build.** Found by diffing live text against the 4 August
+  pre-write snapshot with the provenance line excluded. **SCH-SCOPE-05 = C29967** had come to assert
+  that *Select all* and *Cancel* **do not exist** — the absence of two controls spec §4.3 requires. It
+  would have failed before the pass and passed after: **silently disarmed.** **SCH-LINE-03 = C29950**
+  item 3 had been weakened to a near-tautology. Both restored.
+- **The steps-VIU'd-but-expectation-bent failure mode did NOT occur — for an unflattering reason.**
+  The 4 August pass changed **37 expected results and ZERO steps or preconditions.** The Rule-9 label
+  half of VIU was never done to the steps on any of the 165, which is why 16 cases still showed raw
+  markup. **This pass fixed that.**
+
+### What was written: 165 update_case, all byte-verified
+
+**137 `AUTOMATION: READY` · 21 `READY - EXPECT FAIL` · 7 `HOLD`** (markers were on 0 of 165 before).
+**Arithmetic gate PASSES: 137 + 21 = 158 = 165 − 2 PO − 2 un-settable − 3 not-built.**
+Every op HTTP 200 + byte-verified, **30 fields compared each, 0 mismatches**, `refs` under the declared
+comma normalisation, **0 add / 0 delete / 0 section / 0 run writes**.
+
+**Provenance now credits the documented source** and names the build only as what the case was checked
+against — with an **honest per-case date**: the 7 re-observed today say *verified against v3.5-be42149
+on 8/5/2026*; the other **158 say in their own text that they have NOT been re-checked** against the
+rebuilt branch. Also fixed: **17 dead `blob/main` links** (404 — there is no `main` branch) → `blob/HEAD`
+(verified 200), **16 raw-markup cases** cleaned, and **C30010 / C30041** now name **SV-8834 / SV-8874**
+instead of claiming no ticket exists.
+
+### Verdicts that CHANGED, live on v3.5-be42149
+
+| Case | Was | Now | Why |
+|---|---|---|---|
+| **SCH-DND-08 = C29962** | NOT BUILT | **PASS** | **click-to-arm IS built** — `button_sidebar_arm_<woId>`, `aria-label="Schedule S-12876 by click"`, `aria-pressed`→`true`, label → *"Stop placing S-12876"*, and clicking a technician cell opens the same scope picker a drag does |
+| **SCH-WOL-04 = C29939** | PASS | **DEVIATION (SV-8873)** | **our verdict was wrong.** `Andrew`→12 rows, `Wade`→12, but **`Andrew Wade`→0**, `andrew wade`→0, `Wade Andrew`→0 — while multi-word `Vuchester Retail`→21, so it is not a spaces problem |
+| **SCH-SCOPE-05 = C29967** | PASS | **DEVIATION (SV-8886)** | restored to spec §4.3 and it fails: tally reads `1 selected · 1h`, confirm reads `Schedule`, **no Select all, no Cancel** |
+| **SCH-FILT-03 = C29944** | PASS (1 status proven) | **PASS (all 8 proven)** | all 8 statuses the filter accepts exercised, **0 leaks**; the 6 empty ones are correct — the list holds only Approved ×90 + Review ×1 of 91 |
+| **SCH-LINE-03 = C29950** | PASS | **PASS (restored assertion)** | **533 of 533** sidebar lines approved (`authorized` ×329, `complete` ×204), zero unapproved |
+
+### Ticket filed: [SV-8886](https://shopview.atlassian.net/browse/SV-8886)
+
+Bug · **Low** · parent **SV-8685** · story **SV-8689** linked *Relates* · Product Area Schedule ·
+7-section format · **11 field checks read back, all PASS** · duplicate-searched with 4 JQL queries
+first · test data named by on-screen name (S-12876 / Pamill Paving / unit 713 / MQ Test Tech Qamar).
+
+### Proofs
+
+- **Build `v3.5-be42149`** — read at **13:24:01Z / 13:49:34Z / 14:11:22Z**, `index.html` **byte-identical
+  all three**, etag `70e496609e155994b93f515db32d0289`.
+- **Run 357 untouched:** 165 tests, **429** results, all present BY ID, **0 new**, **0 fields changed on
+  any of the 429** (not even `case_title` — nothing was retitled). **No result logged anywhere.**
+- **Nothing seeded, nothing to restore:** 34 shifts / 9 events / 6 series **byte-identical** before and
+  after, shift id sets **equal both directions**. The scope picker's confirm button was never pressed.
+- **Four counts reconcile 165/165/165/165 set-equal both ways**; id-map came back **byte-identical, 0
+  blanks, refs 165/165**; **shredding guard PASSED**; import header sha256 **identical to all 5 peers**.
+- **Sources:** spec **CURRENT at Confluence v23** (last edited **30 July**, before our ingest — and its
+  in-body Version still reads `1.0`, the Rule-31(a) trap); epic **26 children** verified two ways, sets
+  equal; **22 story defects**; **all ten of our tickets SV-8848…SV-8857 still Open**.
+
+### THE HONEST LIMIT
+
+**Only 7 of the 165 were re-observed live.** The other 158 carry 4 August verdicts and say so on
+themselves. **The Rule-49 queue is OPEN, the branch is not final, and every verdict is PROVISIONAL.**
+
+### OUTSTANDING — what is needed
+
+1. **Send Branko the shop-closures question** — drafted **22 July**, never sent. Blocks C30089 + C29983.
+2. **A yes/no on the API-only finding** (`final-viu-2026-08-05/API-ASK.md`) — Rule 51.
+3. **Authorisation to author 3 candidate coverage gaps** — SV-8863, SV-8870, SV-8867. IDs reserved:
+   `SCH-NAV-08`, `SCH-DND-09`, `SCH-REAS-07`.
+4. **Branko to ratify 8 engineering-sourced expectations** (spec silent on 6).
+5. **Branko to fix a spec self-contradiction** — §7 says the cell menu opens on **left-click**, §14.1/§14.2
+   twice call it a **right-click** menu.
+6. **Engineering to declare the branch final**, and a **re-check of the 158 owed rows**.
+
+---
+
 # Schedule — PROJECT STATE (canonical cold-resume doc)
 
 ## 0-RECHECK-ATTEMPT-2026-08-05. **THE RE-CHECK COULD NOT RUN — NO SESSION ON THE NEW BUILD. NEWEST STATE.**

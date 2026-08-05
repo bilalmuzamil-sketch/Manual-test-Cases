@@ -57,6 +57,37 @@ else owes).
 
 ---
 
+## ⚠️⚠️ NEWEST — 2026-08-05, ~14:15 UTC, the SCHEDULE final VIU pass. **THE COOKIE ASK (A2) IS CLEARED FOR SCHEDULE. SIX SCHEDULE ASKS, ALL NEW OR RESTATED.**
+
+**Cookies arrived and worked. `A2` above is CLEARED for Schedule:** all 165 cases now carry an
+automation marker (137 READY · 21 READY-EXPECT-FAIL · 7 HOLD) and **no provenance line names the dead
+build any more.** Vlad can start. Sources: `build/schedule/expected-behaviour-audit-2026-08-05.md`,
+`build/schedule/final-viu-2026-08-05/`, `build/schedule/READINESS-2026-08-05.md`.
+
+**Ready to automate: 158 of 165** (up from 157 — click-to-arm turned out to be built).
+
+| # | What is missing | Who owes it | What it BLOCKS | Since |
+|---|---|---|---|---|
+| **S1** | **Send Branko the shop-closures question. IT HAS NEVER BEEN SENT — the blocker is US, not him.** The specification answers the point two opposite ways and both sentences are still in live v23: §4.5 *"Shop closures and public holidays are not skipped in V1."* vs §12 *"Shop closures … block the spread step from placing shifts on those days."* The sheet was drafted on 22 July and sits ready at `build/schedule/PO-Questions-Branko-Schedule-2026-07-27.md`. | **us first**, then Branko | **SCH-EDGE-05 = [C30089](https://shopview.testrail.io/index.php?/cases/view/30089) and SCH-SPREAD-07 = [C29983](https://shopview.testrail.io/index.php?/cases/view/29983) stay `AUTOMATION: HOLD`** and cannot be given a verdict. Their markers now say honestly that the question has not been sent, rather than implying he is sitting on it. | **2026-07-22** |
+| **S2** | **A yes or no on the API-only finding.** Standing Rule 51: an API-only defect is never filed on our own initiative, **and a go-ahead for a batch of ordinary defects does not cover it.** Honest complication: the 8-week / 120-shift limits appear **only in the engineering plan** and **nowhere in spec v23**, so there are three possible answers and we are not guessing. Write-up: `build/schedule/final-viu-2026-08-05/API-ASK.md`. | **the QA lead** | **SCH-API-02 = [C38873](https://shopview.testrail.io/index.php?/cases/view/38873) and SCH-SPREAD-11 = [C38863](https://shopview.testrail.io/index.php?/cases/view/38863)** sit on HOLD, and we cannot say whether they are defects, dropped scope, or future work. | 2026-08-04 |
+| **S3** | **Authorisation to author 3 new cases for coverage another QA can see and we cannot claim.** Found by reverse-coverage diff over all 22 story defects, **no counterpart among our 165**: **[SV-8863](https://shopview.atlassian.net/browse/SV-8863)** (which view the module opens on — already **Ready to Fix**, so its case would be born EXPECT FAIL), **[SV-8870](https://shopview.atlassian.net/browse/SV-8870)** (creating a shift by dragging onto a day in **Month** view), **[SV-8867](https://shopview.atlassian.net/browse/SV-8867)** (reassigning a **series** member, per view). Internal IDs reserved and never used: `SCH-NAV-08`, `SCH-DND-09`, `SCH-REAS-07`. | **the QA lead** (authorisation) **+ a live run** | **Three real coverage gaps stay open.** They were deliberately **not** authored, because authoring a case without observing the behaviour is exactly the failure this pass was correcting. | 2026-08-05 |
+| **S4** | **Branko to ratify 8 expectations that currently rest on the ENGINEERING PLAN, not on product truth — and the specification is silent on 6 of them.** SCH-REG-01…05 = [C38867](https://shopview.testrail.io/index.php?/cases/view/38867)–[C38871](https://shopview.testrail.io/index.php?/cases/view/38871) (data migration · the Dashboard collapsing many shifts into one row · work-order appointments reaching the board · cross-location leakage · work-order priority), plus SCH-API-04 = [C38875](https://shopview.testrail.io/index.php?/cases/view/38875), SCH-SPREAD-11, SCH-API-02. | **Branko** | Standing Rule 30: engineering intent never overrules product truth. **These are un-ratified expectations presented as tests** — the honest concession if challenged. They were **kept, not cut**, because they cover real release risks nothing else covers. | 2026-08-05 |
+| **S5** | **Branko to fix a specification self-contradiction nobody had noticed.** §7 says the grid cell menu opens on **left-click**; **§14.1 and §14.2 twice describe a right-click context menu** as an editing affordance a permission tier unlocks. | **Branko** | **No case is wrong today** — ours follow §7 and the build agrees — but **a reader of §14 alone would test the wrong gesture.** Affects SCH-REAS-03 = [C30054](https://shopview.testrail.io/index.php?/cases/view/30054), SCH-PERM-02 = [C30075](https://shopview.testrail.io/index.php?/cases/view/30075), SCH-PERM-04 = [C30077](https://shopview.testrail.io/index.php?/cases/view/30077). | 2026-08-05 |
+| **S6** | **Engineering to declare branch `sv8685` final; and a re-check of the 158 owed rows.** **Only 7 of the 165 were re-observed live this pass**; the other 158 carry 4 August verdicts on the now-dead `v3.5-4873abe` **and each says so in its own text.** Queue: `build/schedule/final-viu-2026-08-05/RECHECK-QUEUE.md`. | **engineering** (final) · **us** (the re-check) | **All 165 verdicts are PROVISIONAL** and the Rule-49 queue stays OPEN. Priority for the next run: the **3 not-built** cases first (one of the original four **did** flip today), then the 19 deviations. | 2026-08-05 |
+
+### ✅ CLEARED by this pass — so nothing is re-asked
+
+- **`A2` (Schedule markers + cookies)** — cookies arrived; **all 165 markers written and byte-verified**,
+  all 165 provenance lines re-pointed. **Arithmetic gate passes: 137 + 21 = 158.**
+- **The "which marker to standardise on" doubt for Schedule** — all 165 use the three exact literals.
+- **The 16 raw-markup Schedule cases** — repaired in the same single write per case, formatting only.
+- **Two Schedule cases claiming their fault had no ticket** — [C30010](https://shopview.testrail.io/index.php?/cases/view/30010) now names **SV-8834**, [C30041](https://shopview.testrail.io/index.php?/cases/view/30041) now names **SV-8874**.
+- **One NEW Schedule defect filed:** **[SV-8886](https://shopview.atlassian.net/browse/SV-8886)** — the scope picker's tick-box mode has no *Select all* and no *Cancel*. Bug · Low · parent SV-8685 · story SV-8689 linked *Relates* · 11 field checks read back, all PASS · duplicate-searched with 4 JQL queries first.
+- **A defect in OUR OWN work, found and reported rather than buried:** the 4 August pass changed **37 expected results and ZERO steps or preconditions**, so the label-correcting half of VIU was never done — and **two expectations had been bent to match the build** (SCH-SCOPE-05 = [C29967](https://shopview.testrail.io/index.php?/cases/view/29967) had come to assert that *Select all* and *Cancel* **do not exist**). Both restored. Full evidence: `build/schedule/expected-behaviour-audit-2026-08-05.md`.
+- **Two of our own verdicts corrected against other QAs' tickets:** **SV-8873 was right and we were wrong** (typing a technician's full name finds nothing), and **click-to-arm is BUILT**, so one of the four not-built features has shipped.
+
+---
+
 ## ⚠️ NEWEST — 2026-08-05, 12:30 UTC, the Filters cleanup pass. **TWO OF THE THREE ASKS BELOW ARE NOW CLEARED. ONE NEW ASK, AND IT IS THE SAME COOKIE ASK AS A2.**
 
 Source: `build/filters/cleanup-2026-08-05/`. **25 Filters cases were repaired, all byte-verified, run

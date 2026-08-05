@@ -1100,7 +1100,75 @@ deliver the 7-tab management report.
    transient HTTP 000). Audit `testrail-execution-log-epic-2026-07-27.md`; manifest header = EXECUTED.**
    Scripts: `epic-sv8685/backfill_refs.py`, `epic-sv8685/patch_edits.py`. Design-pinned ≠
    VIU-Verified (Rule 12); live VIU still pending QA branch (OQ-3).
-   **STATUS 2026-08-05 (LATEST — THE QA BRANCH WAS REBUILT; the authorised automation-marker pass
+   **STATUS 2026-08-05 ~14:15 UTC (LATEST — FINAL VIU PASS: THE QA LEAD'S "EXPECTED BEHAVIOUR IS NOT THE
+   BUILD" CORRECTION AUDITED ACROSS ALL 165 AND REPAIRED; resume `build/schedule/expected-behaviour-audit-2026-08-05.md`
+   → `build/schedule/final-viu-2026-08-05/FINDINGS.md` → `build/schedule/READINESS-2026-08-05.md` →
+   `build/schedule/PROJECT-STATE.md` §0-FINAL-VIU-2026-08-05):** cookies arrived, the branch was reachable,
+   build **`v3.5-be42149`** read at **13:24:01Z / 13:49:34Z / 14:11:22Z — `index.html` byte-identical all
+   three**, etag `70e496609e155994b93f515db32d0289`. **THE AUDIT (written and committed BEFORE any repair):
+   the expected-result BODIES were SOUND — 0 of 165 described build behaviour as the requirement**, and the
+   27 cases where the build disagrees kept the documented expectation with the deviation in a separately
+   labelled note quoting the spec and instructing FAIL. **THE DEFECT WAS THE PROVENANCE LINE, ON ALL 165** —
+   every one read *"This is the expected behaviour **as per the build tested on** 8/4/2026 (v3.5-4873abe),
+   and as per epic … and the specification …"*, crediting the build FIRST for the expectation, and on the 27
+   deviation cases it was **FALSE and self-contradictory**. **Honest note: that phrasing is Standing Rule
+   54's own, taken from the QA lead's earlier example sentence; his correction supersedes it (Rules 32/33).**
+   **TWO ASSERTIONS HAD GENUINELY BEEN REWRITTEN TO THE BUILD**, found by diffing live text against the
+   4 August pre-write snapshot with the provenance excluded: **SCH-SCOPE-05 = C29967 had come to assert that
+   `Select all` and `Cancel` DO NOT EXIST** — the absence of two controls spec §4.3 requires — so it would
+   have FAILED before that pass and PASSED after; **silently disarmed**, exactly the QA lead's point that a
+   test which cannot fail is not a test. **SCH-LINE-03 = C29950** item 3 had been weakened to a near-tautology.
+   Both **restored to the specification**. **THE steps-VIU'd-but-expectation-bent FAILURE MODE DID NOT OCCUR —
+   for an unflattering reason: the 4 August pass changed 37 expected results and ZERO steps or preconditions**,
+   so the Rule-9 label half of VIU was never done to the steps on any of the 165 (which is why 16 cases still
+   showed raw `<ol>` markup) — **fixed this pass**. **AUDIT TALLY over 165: C 155 · A 2 · T 8 · B 0 · D 0**,
+   with BOTH texts quoted side by side for every row (Rule 45(e)). **WRITTEN: 165 × `update_case`, every one
+   HTTP 200 + byte-verified, 30 fields compared each, 0 mismatches, `refs` under the declared comma
+   normalisation, 0 add / 0 delete / 0 section / 0 run writes.** Provenance now **credits the documented
+   source** and names the build only as what the case was **checked against**, with an **honest per-case
+   date** — the 7 re-observed today say *verified against v3.5-be42149 on 8/5/2026*, the other **158 say in
+   their own text that they have NOT been re-checked** against the rebuilt branch. Also fixed: **17 dead
+   `blob/main` links** (404 — there is no `main` branch) → `blob/HEAD` (both verified 200), **16 raw-markup
+   cases** cleaned (formatting only), **C30010 → SV-8834** and **C30041 → SV-8874** instead of claiming no
+   ticket exists. **MARKERS on all 165 (0 before): 137 `READY` · 21 `READY - EXPECT FAIL` · 7 `HOLD`.
+   ARITHMETIC GATE PASSES: 137 + 21 = 158 = 165 − 2 PO − 2 un-settable − 3 not-built** (the 2 PO holds say
+   honestly that **the shop-closures question has never been sent — the blocker is US**). **FOUR VERDICTS
+   CHANGED LIVE: SCH-DND-08 = C29962 NOT-BUILT → PASS — click-to-arm IS BUILT** (`button_sidebar_arm_<woId>`,
+   `aria-label="Schedule S-12876 by click"`, `aria-pressed`→`true`, label → *"Stop placing S-12876"*, and
+   clicking a technician cell opens the same scope picker a drag does) · **SCH-WOL-04 = C29939 PASS →
+   DEVIATION (SV-8873) — OUR VERDICT WAS WRONG**: `Andrew`→12 rows, `Wade`→12, but **`Andrew Wade`→0**,
+   `andrew wade`→0, `Wade Andrew`→0, while multi-word `Vuchester Retail`→21 proves it is **not** a spaces
+   problem · **SCH-SCOPE-05 = C29967 PASS → DEVIATION (SV-8886)** — tally reads `1 selected · 1h`, confirm
+   reads `Schedule`, **no Select all, no Cancel** · **SCH-FILT-03 = C29944 PASS re-proven over ALL 8 statuses
+   the filter accepts, 0 leaks** (the 6 empty ones are correct — the list holds only Approved ×90 + Review ×1
+   of 91, though the org holds 1200 WOs across 6 statuses, which is useful for whoever fixes SV-8868) ·
+   **SCH-LINE-03 = C29950 restored assertion PASSES — 533 of 533 sidebar lines approved** (`authorized` ×329,
+   `complete` ×204). **ONE TICKET FILED: [SV-8886](https://shopview.atlassian.net/browse/SV-8886)** — Bug ·
+   **Low** · parent **SV-8685** · story **SV-8689** linked *Relates* · Product Area Schedule · 7-section
+   format · **11 field checks read back, all PASS** · duplicate-searched with 4 JQL queries first · test data
+   named on-screen (S-12876 / Pamill Paving / unit 713 / MQ Test Tech Qamar). **API-only finding STILL NOT
+   FILED** (Rule 51) — and honestly, the 8-week/120-shift limits appear **only in the tech plan, nowhere in
+   spec v23**, so there are three possible answers and we are not guessing: `final-viu-2026-08-05/API-ASK.md`.
+   **`delete_case` called ZERO times** — 6 candidates considered, each kept with a reason (`DELETIONS.md`),
+   and the 27 July-retired internal IDs are listed as **never-reuse** after another project lost a retired
+   record to ID reuse today. **3 CANDIDATE COVERAGE GAPS deliberately NOT AUTHORED** (SV-8863 default view ·
+   SV-8870 Month-view drag-create · SV-8867 reassigning a series member); IDs reserved `SCH-NAV-08`,
+   `SCH-DND-09`, `SCH-REAS-07`. **SPEC DEFECT REPORTED NOT FIXED: §7 says the cell menu opens on left-click
+   while §14.1/§14.2 twice call it a right-click menu.** **PROOFS: run 357 untouched** — 165 tests, **429**
+   results, all present BY ID, **0 new, 0 fields changed on any of the 429** (not even `case_title` — nothing
+   was retitled); **no result logged anywhere**. **Nothing seeded, nothing to restore** — 34 shifts / 9 events
+   / 6 series **byte-identical** before and after, shift id sets **equal both directions**; the scope picker's
+   confirm button was never pressed. **Four counts reconcile 165/165/165/165 set-equal both ways**; id-map
+   came back **byte-identical, 0 blanks, refs 165/165**; **shredding guard PASSED**; import header sha256
+   **identical to all 5 peers**. **SOURCES: spec CURRENT at Confluence v23** (last edited **30 July**, before
+   our ingest; **its in-body Version still reads `1.0` — the Rule-31(a) trap confirmed again**), 33 apparent
+   word-diff gaps each individually resolved as boundary artefacts of our mirror's annotations, **0
+   requirements changed**; epic **26 children** verified two ways with equal key sets; **22 story defects**;
+   **all ten of our tickets SV-8848…SV-8857 read live and STILL OPEN**. **THE HONEST LIMIT: only 7 of the 165
+   were re-observed live** — the other 158 carry 4 August verdicts and say so on themselves; **the Rule-49
+   queue is OPEN, the branch is NOT declared final, and every verdict is PROVISIONAL.** `READINESS-2026-08-05.md`
+   written (the 4 Aug file kept + marked SUPERSEDED); `READINESS-2026-08-04.md` NOT deleted.
+   **PRIOR STATUS 2026-08-05 (THE QA BRANCH WAS REBUILT; the authorised automation-marker pass
    DELIBERATELY WROTE NOTHING; resume `build/automation-markers-2026-08-05/SCHEDULE-HALTED.md` then
    `build/schedule/PROJECT-STATE.md` §0-BUILD-MOVED-2026-08-05):** the `sv8685` branch **redeployed at
    08:09 UTC on 5 August** — **`v3.5-4873abe` → `v3.5-be42149`**, last-modified Wed 05 Aug 2026 08:09:19
