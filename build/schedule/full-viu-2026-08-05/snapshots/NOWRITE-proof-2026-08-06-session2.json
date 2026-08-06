@@ -1,0 +1,25 @@
+{
+ "taken": "2026-08-06, end of the second session of the day",
+ "method": "Cases and run re-read LIVE from TestRail and compared by CONTENT, field by field, against the snapshot taken at the start of this session and against snapshots/PRE-run357-results.json. Never by updated_on alone.",
+ "cases": {
+  "live_count": 168,
+  "snapshot_count": 168,
+  "id_sets_equal_both_directions": true,
+  "fields_compared_per_case": ["title","custom_preconds","custom_steps","custom_expected","refs","section_id","type_id","priority_id","custom_atmstatus","custom_automation_type","updated_on","updated_by","template_id"],
+  "field_differences_across_all_168": 0
+ },
+ "run_357": {
+  "name": "Schedule - Ayesha (VIU Pending)",
+  "include_all": false,
+  "tests": 168,
+  "case_id_set_equals_our_168_both_directions": true,
+  "results": 429,
+  "prior_results_missing_by_id": 0,
+  "new_results_since_pre_snapshot": 0,
+  "prior_results_with_any_real_field_changed": 0,
+  "real_fields_compared": ["status_id","comment","defects","elapsed","version","created_by","created_on","test_id","assignedto_id","attachment_ids","case_id"],
+  "declared_read_time_echoes_changed": 0,
+  "echo_fields_checked": ["case_title","case_refs"]
+ },
+ "conclusion": "ZERO TestRail writes were made in this session. Zero run writes, zero result writes. Nothing is half-written and no repair is owed."
+}
