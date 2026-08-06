@@ -1,0 +1,19 @@
+{
+ "description": "The Sales By Representative table is not white. Every heading cell and every data row is the same pale grey as the page behind it, so the table does not read as a separate white card at all.\n\nTwo things are also out of line with the table: the report title starts well to the left of the first column of data, and the Location filter stops short of the right-hand edge of the table.",
+ "env": "Environment: QA branch sv8582 (https://sv8582.qa.shopview.com), build v3.5-7168d14. Desktop browser, signed in as an Admin.",
+ "steps": [
+  "Open Reports, then Sales By Representative, in light mode.",
+  "Read the background colour of a heading cell, a data row and the page behind the table.",
+  "Compare the left edge of the report title with the leftmost data column, and the right edge of the Location filter with the rightmost data column. The named test data: sales representatives ZZAUTOTEST RepA (one invoice, S-16244) and ZZAUTOTEST RepB (three invoices, S-16243, S-16242, S-16241), plus Parth Fadadu (one invoice, S-15826); customers Aaborough Works, Aacastle Services, Aachester Partners, Aacrest Works and Beman Systems; both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310."
+ ],
+ "current": "The page and every table row report the same colour value, so this is not a faint tint — the table is the same pale grey as the page.\n\nThe pinned Subtotal column is correct: it matches its row rather than standing out as a strip.\n\nNothing is unreadable; the report simply does not look like the rest of the suite, and the two misalignments are visible at a glance. The same wrong-colour problem has been reported on two of the sister reports, so it looks shared rather than specific.",
+ "expected": "The heading cells and all body cells are white, on the blue-grey page. The title's left edge lines up with the leftmost data column, and the Location filter's right edge with the rightmost data column.",
+ "source": [
+  [
+   "spec",
+   "sbr",
+   "S18-R7.4",
+   "Column-header cells and all body cells render on white (dark equivalents in dark mode); the grand Totals indicator also renders on the white/dark card surface with a thin top border."
+  ]
+ ]
+}

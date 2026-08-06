@@ -1,0 +1,20 @@
+{
+ "description": "In the Sales By Representative \"Expanded View\" spreadsheet, one line per invoice, two things in the heading row are wrong: the Invoice # column comes before the Date column instead of after it, and the status column is headed \"Invoice Status\" instead of \"Status\".\n\nThe same two problems appear in the Expanded View PDF, which uses the same column list.",
+ "env": "Environment: QA branch sv8582 (https://sv8582.qa.shopview.com), build v3.5-7168d14. Desktop browser, signed in as an Admin.",
+ "steps": [
+  "Open Reports, then Sales By Representative.",
+  "Open the three-dot download menu and choose the Expanded View spreadsheet.",
+  "Open the file and read the heading row.",
+  "Compare it with the Summary spreadsheet from the same menu. The named test data: sales representatives ZZAUTOTEST RepA (one invoice, S-16244) and ZZAUTOTEST RepB (three invoices, S-16243, S-16242, S-16241), plus Parth Fadadu (one invoice, S-15826); customers Aaborough Works, Aacastle Services, Aachester Partners, Aacrest Works and Beman Systems; both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310."
+ ],
+ "current": "Read from the file, the headings run: Representative, Invoice #, Date, Customer, Invoice Status, Location, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.\n\nEvery figure in the file is correct. The Location column is present and in the right place, the three hours columns are present, and the file does start with the UTF-8 marker. The Summary spreadsheet's column order is correct, so this is specific to the Expanded file.\n\nAnyone who has built a spreadsheet formula or template against these positions gets the wrong column.",
+ "expected": "The headings run Representative, Date, Invoice #, Customer, Status, then the hours and money columns, with Location in the place it holds on screen.",
+ "source": [
+  [
+   "spec",
+   "sbr",
+   "S14-R16",
+   "Headers, in order: Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal."
+  ]
+ ]
+}

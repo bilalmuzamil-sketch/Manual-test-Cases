@@ -1,0 +1,23 @@
+{
+ "description": "On Sales By Representative the column heading row does not stay stuck to the top while you scroll down a long report — it scrolls away with the data, so you lose sight of which column you are reading.\n\nThe Totals row also scrolls away with the data.",
+ "env": "Environment: QA branch sv8582 (https://sv8582.qa.shopview.com), build v3.5-7168d14. Desktop browser, signed in as an Admin.",
+ "steps": [
+  "Open Reports, then Sales By Representative, and set a date range wide enough to produce a long list.",
+  "Scroll down the report and watch the column heading row.",
+  "Keep scrolling and watch the Totals row at the foot of the table. The named test data: sales representatives ZZAUTOTEST RepA (one invoice, S-16244) and ZZAUTOTEST RepB (three invoices, S-16243, S-16242, S-16241), plus Parth Fadadu (one invoice, S-15826); customers Aaborough Works, Aacastle Services, Aachester Partners, Aacrest Works and Beman Systems; both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310."
+ ],
+ "current": "Both the heading row and the Totals row scroll away with the data.\n\nThe pinned Subtotal column is correct and was checked in the same pass — it stays at the right-hand edge when scrolling sideways, and it is bold on the heading row, on every representative row and on the Totals row, so the pinning works in one direction and not the other. The Totals row is also correct in content: it reads \"Totals\", merges the four name columns, and every figure is the total across the whole filtered result.",
+ "expected": "The column heading row stays stuck to the top while the report is scrolled down.",
+ "source": [
+  [
+   "spec",
+   "sbr",
+   "S10-R6",
+   "On screen, the column-header row is sticky to the top during vertical scroll; the Subtotal header cell is sticky in both axes (top per this rule and right per S10-R2). PDFs have no scroll."
+  ],
+  [
+   "note",
+   "One honest note on scope: read live today, the description asks only for the column-header row to be sticky. Requirement S10-R5 describes the desktop Totals row as \"a Totals row as the last row inside the table\" and does not ask for it to stay in view, so the second half of what was originally reported here has no written requirement behind it and is not being claimed. Only the heading row is asked for above."
+  ]
+ ]
+}

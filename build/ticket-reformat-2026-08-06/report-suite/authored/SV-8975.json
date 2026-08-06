@@ -1,0 +1,19 @@
+{
+ "description": "Three of the five icon-only controls on Sales By Representative give a screen reader a name that is not the one written down. The three-dot download button announces \"Export report\" instead of \"Report actions\"; the column button announces \"Column Selection\" instead of \"Show or hide columns\"; and the chevron at the top of the table announces \"Expand all representatives\" and \"Collapse all representatives\" instead of \"Expand all reps\" and \"Collapse all reps\".",
+ "env": "Environment: QA branch sv8582 (https://sv8582.qa.shopview.com), build v3.5-7168d14. Desktop browser, signed in as an Admin.",
+ "steps": [
+  "Open Reports, then Sales By Representative.",
+  "With a screen reader or an accessibility inspector, read the name of the three-dot download button, then the column button.",
+  "Read the name of the chevron at the top of the table, both before and after using it. The named test data: sales representatives ZZAUTOTEST RepA (one invoice, S-16244) and ZZAUTOTEST RepB (three invoices, S-16243, S-16242, S-16241), plus Parth Fadadu (one invoice, S-15826); customers Aaborough Works, Aacastle Services, Aachester Partners, Aacrest Works and Beman Systems; both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310."
+ ],
+ "current": "The three names above are what the controls announce. Every control works, and a screen-reader user is told something sensible — just not the agreed wording, so it does not match the rest of the suite.\n\nAll five were checked. The per-row chevrons are correct: they announce \"Expand ZZAUTOTEST RepA\" and change to \"Collapse ZZAUTOTEST RepA\". The controls are properly keyboard operable, so this is the name only.",
+ "expected": "Each control announces the name the description gives it, word for word: \"Report actions\", \"Show or hide columns\", and \"Expand all reps\" / \"Collapse all reps\".",
+ "source": [
+  [
+   "spec",
+   "sbr",
+   "S18-R9",
+   "Every icon-only control has an accessible name ... exports = \"Report actions\"; column selector = \"Show or hide columns\"; per-row chevron = \"Expand {rep name}\" / \"Collapse {rep name}\"; header chevron = \"Expand all reps\" / \"Collapse all reps\"; dialog X = \"Close\"."
+  ]
+ ]
+}

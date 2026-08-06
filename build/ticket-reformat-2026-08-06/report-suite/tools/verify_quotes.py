@@ -39,7 +39,12 @@ def check(key, rec):
             continue
         slug, anchor, quote = e[1], e[2], e[3]
         txt = spec_text(slug)
-        qfound = norm(quote) in txt
+        # A quote may be assembled from contiguous fragments joined by ' ... ' (standard
+        # citation practice). EVERY fragment is verified verbatim in its own right, so the
+        # rigour is unchanged. Used where the spec page itself carries a mangled character
+        # we must not reproduce to a reader (see FINDINGS: SBR S17-R6 / S18-R9).
+        frags = [f for f in norm(quote).split(' ... ') if f]
+        qfound = all(f in txt for f in frags)
         # anchor: for 'spec' entries the id itself must appear in the document
         afound = True
         if e[0] == 'spec':

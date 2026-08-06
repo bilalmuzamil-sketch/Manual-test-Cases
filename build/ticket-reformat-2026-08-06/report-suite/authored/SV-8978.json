@@ -1,0 +1,23 @@
+{
+ "description": "On a narrow screen Sales By Representative shows no separate totals bar under the table. The full wide Totals row stays inside the table, so to read the grand Subtotal the user has to scroll the table all the way to the right.",
+ "env": "Environment: QA branch sv8582 (https://sv8582.qa.shopview.com), build v3.5-7168d14. Signed in as an Admin, in a browser sized to a phone — 390 by 844 pixels with touch on.",
+ "steps": [
+  "Open Reports, then Sales By Representative, in a window 390 by 844 pixels with touch enabled.",
+  "Look underneath the table, outside the part that scrolls sideways, for a totals bar.",
+  "Then scroll the table to the right to find the grand Subtotal. The named test data: sales representatives ZZAUTOTEST RepA (one invoice, S-16244) and ZZAUTOTEST RepB (three invoices, S-16243, S-16242, S-16241), plus Parth Fadadu (one invoice, S-15826); customers Aaborough Works, Aacastle Services, Aachester Partners, Aacrest Works and Beman Systems; both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310."
+ ],
+ "current": "There is no totals bar below the table. The wide Totals row stays inside the table, so the grand Subtotal is only reachable by scrolling the table right.\n\nThe rest of the narrow-screen layout is correct: the table scrolls sideways on its own — 1335 pixels of content in a 370 pixel window — while the page itself does not scroll sideways at all.",
+ "expected": "Below the table, and outside its sideways scroll, a simple bar reading Totals on the left and the grand Subtotal on the right, and no other figures.",
+ "source": [
+  [
+   "spec_note",
+   "sbr",
+   "requirement S10-R5, in its Mobile bullet",
+   "Mobile (< 1024px): a simplified external totals bar directly below the table and outside its horizontal scroll container, showing \"Totals\" left and the grand Subtotal right (no other metrics)."
+  ],
+  [
+   "note",
+   "Requirement S17-R4 of the same description refers to the same bar again: \"The mobile external totals bar is outside the horizontal scroll container and does not scroll horizontally (S10-R5).\""
+  ]
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "description": "The Sales By Representative Expanded View PDF is a single flat table containing every representative and every invoice together. There is no page break between representatives, no per-representative totals row, and it ends with one grand Totals row that this file is specifically not supposed to have.\n\nIt also comes out on A3 paper rather than A4.",
+ "env": "Environment: QA branch sv8582 (https://sv8582.qa.shopview.com), build v3.5-7168d14. Desktop browser, signed in as an Admin.",
+ "steps": [
+  "Open Reports, then Sales By Representative.",
+  "Open the three-dot download menu and choose the Expanded View PDF.",
+  "Open the file: look for a page break between representatives, for a totals row at the end of each representative's block, and at the last page.",
+  "Take the Summary PDF from the same menu and compare the paper size. The named test data: sales representatives ZZAUTOTEST RepA (one invoice, S-16244) and ZZAUTOTEST RepB (three invoices, S-16243, S-16242, S-16241), plus Parth Fadadu (one invoice, S-15826); customers Aaborough Works, Aacastle Services, Aachester Partners, Aacrest Works and Beman Systems; both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310."
+ ],
+ "current": "The file is one flat table across all representatives, with no page breaks, no per-representative totals rows, and a single grand Totals row at the end. It measures 1190 by 842 points, which is A3; the Summary PDF from the same menu and the same filters is 842 by 595, which is A4.\n\nEvery figure in the file is correct, and the footer and logo are present on both files, so this is specific to the Expanded file. It is unusable as a per-representative handout, which is what this download exists for, and it will shrink or crop on ordinary office paper.",
+ "expected": "One block per representative, a page break before each new representative after the first, the header strip repeated on each, and a totals row at the end of every block — with no grand totals row anywhere in the file. On A4.",
+ "source": [
+  [
+   "spec",
+   "sbr",
+   "S14-R6",
+   "Expanded View PDF — one page-block per rep, in the currently-active order (S14-R2a), page break before each new rep after the first, each with the header strip (which already includes the selected date range per S14-R3), the rep's name, and a per-invoice table"
+  ],
+  [
+   "note",
+   "The same requirement closes both remaining points: \"Each block ends with a per-rep totals row (\"Totals\" in the Date cell; Invoice/Customer/Status blank; each metric column aggregated as in S14-R5, Margin % recomputed). There is no grand-totals row across all reps.\""
+  ]
+ ]
+}

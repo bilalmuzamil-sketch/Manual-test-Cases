@@ -1,0 +1,20 @@
+{
+ "description": "The Sales Rep Assignments download is missing the small UTF-8 marker that should sit at the very start of the file. Without it, a spreadsheet application opening the file on a Windows machine can show accented letters in customer or representative names incorrectly.",
+ "env": "Environment: QA branch sv8582 (https://sv8582.qa.shopview.com), build v3.5-7168d14. Desktop browser, signed in as an Admin.",
+ "steps": [
+  "Open Reports, then Sales By Representative.",
+  "Take the Sales Rep Assignments download — the file is named sales-rep-assignments.csv.",
+  "Read the first three bytes of the file, rather than opening it in a spreadsheet, so you see the real start of the file.",
+  "For comparison, do the same with the report's own Summary and Expanded spreadsheets. The named test data: sales representatives ZZAUTOTEST RepA (one invoice, S-16244) and ZZAUTOTEST RepB (three invoices, S-16243, S-16242, S-16241), plus Parth Fadadu (one invoice, S-15826); customers Aaborough Works, Aacastle Services, Aachester Partners, Aacrest Works and Beman Systems; both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310."
+ ],
+ "current": "The file does not begin with the UTF-8 marker. The report's own Summary and Expanded spreadsheets, checked in the same session, both do — so this one file is the odd one out.\n\nEverything else about it is right: the three headings are exactly Customer Name, Sales Rep, Rep is active?, there is one row per customer with a representative (4,724 of them), they are in customer-name order, and the success message appears. It only shows up on names with accented characters.",
+ "expected": "The file starts with the UTF-8 marker, the same way the report's own two spreadsheets do.",
+ "source": [
+  [
+   "spec",
+   "sbr",
+   "S15-R4",
+   "The CSV has a header row + one row per customer. Headers, in order: Customer Name, Sales Rep, Rep is active?. UTF-8 BOM prepended."
+  ]
+ ]
+}

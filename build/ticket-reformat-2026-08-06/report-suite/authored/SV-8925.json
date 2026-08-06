@@ -1,0 +1,38 @@
+{
+ "description": "When Sales By Customer or Sales By Representative is downloaded as a spreadsheet, the numbers arrive dressed up as text. Money comes out as $1,979.40 with a dollar sign and a comma, percentages as 100.0% with a percent sign, and dates as Jul 31 2026.\n\nBecause those cells hold text and not numbers, somebody opening the file in Excel cannot add them up, sort them or build a pivot table without cleaning every column first.",
+ "steps": [
+  "Open Reports, then Sales By Customer.",
+  "Set the date range to Last Month — 1 to 31 July 2026 — and select the location Staging Heavy Duty - 9919.",
+  "Open the three-dot download menu and choose the summary spreadsheet download.",
+  "Open the downloaded file in a text editor or Excel and look at the money, percentage and date cells.",
+  "Repeat on Reports, then Sales By Representative. This was seen with customer Beman Systems, invoice S-15826 and sales representative Parth Fadadu; both the summary and the expanded downloads behave the same way on both reports."
+ ],
+ "current": "Sales By Customer, summary download — one row, read straight from the file:\n\n\"Beman Systems\",0.0,\"$1,979.40\",\"$1,979.40\",\"$2,459.48\",\"$2,459.48\",$207.84,\"$4,438.88\",95.5%,\"$4,646.72\"\n\nThe expanded download carries the date the same way: ,,P-126,\"Jul 31 2026\",0.0,$0.00,…\n\nIt is not the date range — the same formatting appears at Last Month, Last Quarter and Last Year. It is not one report or one download: both reports and both downloads do it. On screen the money is correctly shown with dollar signs, which is what the screen is meant to do; the problem is only in the downloaded file.",
+ "expected": "In the spreadsheets, money is a plain number with no dollar sign and no thousands separators, a percentage is a plain number with no percent sign, and a date is written mm-dd-yyyy.",
+ "source": [
+  [
+   "spec",
+   "sbc",
+   "S14-R11",
+   "Currency values export as plain numbers with no dollar sign and no thousands separators."
+  ],
+  [
+   "spec",
+   "sbc",
+   "S14-R9",
+   "The Margin % cell is a plain number to one decimal with no percent sign (for example, 64.7); it is empty when the row's Subtotal is zero or below."
+  ],
+  [
+   "spec",
+   "sbc",
+   "S14-R10",
+   "Dates export as mm-dd-yyyy — for example, 05-14-2026 — matching the ShopView-wide CSV date format."
+  ],
+  [
+   "spec",
+   "sbr",
+   "S14-R17",
+   "CSV cell formatting (both CSVs): numeric columns are emitted as plain numbers for re-pivoting — no currency symbol, thousands separators, or parentheses; a negative value uses a leading minus (-1234.56)."
+  ]
+ ]
+}

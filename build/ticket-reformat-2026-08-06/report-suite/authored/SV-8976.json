@@ -1,0 +1,19 @@
+{
+ "description": "Sales By Representative remembers the filters in the browser. If the remembered date range is one the report no longer recognises, it is not replaced by the normal default: the date button reads \"Select Date Range\", no data is asked for at all, and the report sits empty with the no-data message.\n\nThe user has no way of telling anything went wrong — it simply looks as though there is no sales activity.",
+ "env": "Environment: QA branch sv8582 (https://sv8582.qa.shopview.com), build v3.5-7168d14. Desktop browser, signed in as an Admin.",
+ "steps": [
+  "Open Reports, then Sales By Representative, so the remembered view is created.",
+  "Change the remembered date range to a value the report does not recognise.",
+  "Reload the report, and read the date button, the table and the message. The named test data: sales representatives ZZAUTOTEST RepA (one invoice, S-16244) and ZZAUTOTEST RepB (three invoices, S-16243, S-16242, S-16241), plus Parth Fadadu (one invoice, S-15826); customers Aaborough Works, Aacastle Services, Aachester Partners, Aacrest Works and Beman Systems; both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310."
+ ],
+ "current": "The date button reads \"Select Date Range\", no data is requested, and the report shows the no-data message.\n\nEvery other remembered setting does fall back correctly — an unknown sort column, an unknown column list, an unknown product type and an unknown invoice status all quietly revert to their defaults and are rewritten in the browser. It is the date range alone. Nothing errors, so the \"never causes an error\" half of the requirement is met.",
+ "expected": "A remembered value that is no longer valid falls back to that setting's default — here This Month — and the report loads normally.",
+ "source": [
+  [
+   "spec",
+   "sbr",
+   "S23-R3",
+   "Restoration is defensive: a remembered value that is no longer valid (a location the user can no longer access, a range or sort column that no longer exists, a hidden-but-sorted column) falls back to that setting's default rather than being sent to the server."
+  ]
+ ]
+}

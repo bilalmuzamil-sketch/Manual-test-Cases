@@ -1,0 +1,19 @@
+{
+ "description": "When the filters match no invoices at all, Sales By Representative shows the message \"No sales data found for the selected filters.\" The written description gives the wording word for word and it is different.",
+ "env": "Environment: QA branch sv8582 (https://sv8582.qa.shopview.com), build v3.5-7168d14. Desktop browser, signed in as an Admin.",
+ "steps": [
+  "Open Reports, then Sales By Representative.",
+  "Choose a date range with no invoices in it, so the report comes back empty.",
+  "Read the message shown in place of the rows. This was also reproduced by leaving a saved date range that is no longer valid. The named test data: sales representatives ZZAUTOTEST RepA (one invoice, S-16244) and ZZAUTOTEST RepB (three invoices, S-16243, S-16242, S-16241), plus Parth Fadadu (one invoice, S-15826); customers Aaborough Works, Aacastle Services, Aachester Partners, Aacrest Works and Beman Systems; both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310."
+ ],
+ "current": "The message reads \"No sales data found for the selected filters.\"\n\nThe rest of the empty state is correct: no data rows are drawn, and the toolbar stays visible and usable so the user can widen the range.",
+ "expected": "The message reads \"No sales activity matches the current filters.\"",
+ "source": [
+  [
+   "spec",
+   "sbr",
+   "S16-R1",
+   "Empty state. When the current filter set produces no rep rows (no rep has a matching invoice and — if Show Unassigned is on — there are no matching unassigned invoices either), the table shows no data rows and the empty-state message \"No sales activity matches the current filters.\" The grand Totals indicator is not shown."
+  ]
+ ]
+}

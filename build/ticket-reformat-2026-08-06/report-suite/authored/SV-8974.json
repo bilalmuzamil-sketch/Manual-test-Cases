@@ -1,0 +1,19 @@
+{
+ "description": "When a representative is expanded, the invoices underneath are listed newest first, which is right. But when several invoices fall on the same day they come out in the order they happened to be created rather than by invoice number, so the numbers appear in no order at all.",
+ "env": "Environment: QA branch sv8582 (https://sv8582.qa.shopview.com), build v3.5-7168d14. Desktop browser, signed in as an Admin.",
+ "steps": [
+  "Open Reports, then Sales By Representative, and set a date range wide enough to include June 2026.",
+  "Expand a representative who has several invoices on one day and read the invoice numbers in order. On 12 June 2026 the rows run S-15487, P-117, P-113, S-15750, S-15646, S-15828, S-15812.",
+  "For a smaller example, expand ZZAUTOTEST RepB, whose three invoices are all dated 4 August 2026. They come out S-16243, S-16242, S-16241 — counting downwards. The named test data: sales representatives ZZAUTOTEST RepA (one invoice, S-16244) and ZZAUTOTEST RepB (three invoices, S-16243, S-16242, S-16241), plus Parth Fadadu (one invoice, S-15826); customers Aaborough Works, Aacastle Services, Aachester Partners, Aacrest Works and Beman Systems; both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310."
+ ],
+ "current": "Invoices sharing a date come out in creation order rather than by number. On 12 June 2026 they run S-15487, P-117, P-113, S-15750, S-15646, S-15828, S-15812, and ZZAUTOTEST RepB's three same-day invoices count downwards.\n\nThe main sort is correct: across days the report does run newest first — 6 August, then 4 August, 31 July, 12 June, 11 June, 10 June. The same-day problem was proven on a large set of 849 invoice lines as well as on the small one, so it is not a quirk of one representative.\n\nEvery figure is correct; it is the order within a single day. It matters most where a day holds many invoices, because there is then no way to find one by its number.",
+ "expected": "Invoices sharing a date are listed by invoice number counting upwards on the number after the P or S — so 12 June 2026 would run P-113, P-117, S-15487, S-15646, S-15750, S-15812, S-15828. Where the day and the number both match, the P invoice comes before the S one.",
+ "source": [
+  [
+   "spec",
+   "sbr",
+   "S6-R9",
+   "Within an expanded rep (and within the Unassigned row), invoice detail rows are ordered by invoice date descending (newest first), tie-broken by invoice number ascending by the numeric portion after the P/S prefix (numeric, not lexical — so S999 precedes S1000); if both the date and the numeric portion tie (e.g., P100 and S100 on the same day), P (Parts) sorts before S (Service)."
+  ]
+ ]
+}
