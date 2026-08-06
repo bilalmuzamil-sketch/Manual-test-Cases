@@ -612,3 +612,129 @@ result contradicts the specification, and his ticket misses the real defect besi
 **His ticket was NOT touched (Rules 38 and 52).** Our position is retained on **S4-R4 verbatim**, and
 **SV-8987** was filed for Last Activity. **What source he worked from is not established** — his ticket
 cites none, and he could not be asked in this session. **This is for the QA lead to put to him.**
+
+---
+
+# SESSION 5 — 2026-08-06, from ~13:53Z
+
+## Build marker readings
+
+| Read at (UTC) | app-version | last-modified | etag | index.html sha256 |
+|---|---|---|---|---|
+| 13:53:17Z (start) | `v3.5-f77875c` | Thu, 06 Aug 2026 10:43:37 GMT | `829ed03832a746e78cbdb28eb9957a3e` | `b0f05b6f…94fc9b6` |
+
+## Sources at pass start (Rule 31), all fetched live
+
+SBC **15** · SBR **17** · PV **5** · TU **6** · WIP **9** · IV **4** — **none moved.**
+
+## Count re-derived independently from live TestRail
+
+Live under group 4281 **481** · ours **476** · foreign **5** (C38919–C38923, Vladimir Tomovic — untouched,
+Rule 38) · carrying an 8/6/2026 build line **387** · **outstanding 89**. **387 + 89 = 476.**
+Per-report split matches `RESUME.md` exactly: SBR 45 · PV 17 · SBC 14 · WIP 10 · TU 2 · IV 1.
+**I agree with the handover count.**
+
+## WORK IN PROGRESS — the seeding was finished, and it settled 8 cases
+
+**The previous session's blocker is cleared.** Its note said `input_tech_time` was the clocked time and
+that Save & Close needed one more unknown field. **Both points are corrected below, and the second one
+was a dead end worth abandoning: the canned-line route needs no unknown field at all.**
+
+### What was seeded (ZZAUTOTEST, on WO `e40c1c15-63ba-4202-9cc9-358da3d5fe21`, S8582-16263, Iibay Landscaping, Staging Heavy Duty - 9919)
+
+1. **An approved labour line with a known quote** — `POST /api/work-orders/{woId}/lines/create-from-canned-line`
+   `{another:false, canned_line_id, work_order_id, status}` → **201**. Canned line *Replace - Drive axle
+   brakes (Drum)*: **180 min estimate, HD Fleet Rate $149.95/h ⇒ $449.85 quoted**, plus 2 vendor part
+   requests. Approved with `POST /api/work-orders/lines/change-status {line_id,status:'authorized',workOrderId}` → **200**.
+2. **The work order moved to Approved** — `POST /api/work-orders/change-status {id, status}` → **201**
+   (note `id`, **not** `work_order_id`; `work_order_id` returns 400 "Work Order ID is missing").
+3. **A running clock on the line** — `POST /api/technician-tasks/check-in {task_id, line_id, work_order_id, refresh_lines:true}` → **201**.
+4. **An unapproved second line** — same canned-line endpoint with `status:'authorization_required'`;
+   *Replace - Suspension air bag*, 90 min ⇒ **$224.93 of unapproved value**.
+
+### 🔴 CORRECTION TO THE PLAYBOOK: `tech_time` IS NOT THE CLOCKED TIME
+
+The canned line arrived with `tech_time: 120` (2.00 h) and the report still showed
+**`worked_hours: 0` and `labor_earned: 0`**. The report reads **clock records** (`total_clocked_time`),
+not the "Tech Time" field. Playbook §Q says the opposite and needs correcting — **flagged, not edited
+from here** (§Q belongs to another worker's pass).
+
+### The maths, verified against three independent readings of the same running clock
+
+| worked_hours | quoted_hours | Labor Earned (report) | clocked share of $449.85 | match |
+|---:|---:|---:|---:|:--|
+| 0.01 | 3 | **$1.50** | 0.01/3 × 449.85 = $1.4995 | ✓ |
+| 0.02 | 3 | **$3.00** | $2.999 | ✓ |
+| 0.18 | 3 | **$26.99** | $26.991 | ✓ |
+
+`Labor Earned + Labor Remaining` equalled the quote at every reading (150+44835, 300+44685, 2699+42286
+= **44985** every time).
+
+### Verdicts — 8 cases, each with a control
+
+- **C30475 Labor Earned = clocked share — PASS** on items 1 and 3. Item 2 (**the per-line cap**) was
+  **NOT exercised** — see the honest limit below.
+- **C30476 Earned + Remaining = quoted value — PASS.** Three readings on the seeded WO, **and
+  exhaustively across all 104 live rows: 0 rows where Earned+Remaining ≠ Total, 0 where
+  Labor+Parts Earned ≠ Earned, 0 where Labor+Parts Remaining ≠ Remaining.**
+- **C30477 Parts Earned — PASS.** Verified against each work order's own part records:
+  **100 of 104 exact to the cent**, once the **core charge** is included (the first pass omitted it and
+  missed by exactly $149.50 on S8582-15781 — that was our formula's error, not the build's).
+  **All 4 remaining differences are work orders carrying part RETURNS**, and **the specification says
+  nothing about how a returned part affects Parts Earned** → logged as a question for Chris Ward, **not
+  a defect** (Rule 58: an ambiguous source is not resolved by looking at the build).
+- **C30478 Parts Remaining — PASS.** `outstanding qty × (sell price + core charge)` matched **to the cent
+  on 102 of 104** rows; the 2 differences are work orders where a part request still shows an outstanding
+  quantity after being fulfilled — the same returns/fulfilment representation question.
+- **C30480 unapproved lines contribute nothing — PASS, with a clean control.** A **$224.93** unapproved
+  line was added and `total` stayed at **44985** and `quoted_hours` at **3**. (Labor Earned moved only
+  because the clock was still running.)
+- **C38890 running clock counts toward Labor Earned — PASS** on items 1 and 2: the earned share was
+  non-zero **while the technician was still clocked in and had not clocked out**, and it **grew** across
+  the three readings. Item 3 (**the cap**) **NOT exercised.**
+- **C30464 tab placement, the started boundary — PASS, all three items, each controlled:**
+  (1) clocking time moved our WO **ApprovedNotStarted → ApprovedPartiallyCompleted** (counts 2/0 → 1/1),
+  with **no part received**; (2) **16 live rows** sit in Approved-partially-completed with
+  `worked_hours: 0` and parts received (e.g. S8582-15859, parts_earned 21992) — so a received part alone
+  is enough; (3) **0 of the 28** Approved-not-started rows have any worked hours or any received parts.
+- **C30456 every open service WO appears — PASS, exhaustively and in both directions.** Report
+  **260** distinct work orders; the work-order list filtered to the five open statuses in the same
+  window gives **260**; **set-equal both directions, 0 either way.** Status→tab mapping over all 260:
+  estimate→Estimates 156 · approved→ApprovedNotStarted 28 / ApprovedPartiallyCompleted 62 ·
+  in_progress→ApprovedPartiallyCompleted 1 · ready_for_review→ApprovedPartiallyCompleted 1 ·
+  complete→Completed 12. Our own seeded WO was watched entering the report as an Estimate and moving
+  tab as its state changed.
+
+### A FALSE DEFECT KILLED BY A CONTROL
+
+An intermediate run made it look as though **passing `locations=` dropped the entire
+Approved-not-started tab** (232 work orders instead of 260 — and 260 − 232 = 28, exactly that tab's
+count, which is precisely the kind of coincidence that reads as a real bug). **Re-running the four tabs
+with and without the parameter gave byte-identical counts (156 / 28 / 64 / 12 both ways).** It was a
+transient in **our own script**, not the product. **Nothing filed.**
+
+### 🔴 THE HONEST LIMIT — THE PER-LINE CAP WAS NOT EXERCISED
+
+**C30475 item 2 and C38890 item 3** both assert that Labor Earned never exceeds a line's quoted value.
+Proving it needs `worked_hours > quoted_hours`. The seeded line is quoted at **3.00 h** and the clock had
+reached **0.18 h**, so the cap never engaged, and it could not be forced:
+- the smallest canned line on this estate is **18 minutes** — still far more than a session can clock;
+- shrinking the line's own estimate needs `POST /api/work-orders/lines/change`, which was **probed and
+  not solved**: it takes **camelCase** keys (`lineName`, `timeEstimate`, `labourTypeId` — `line_id`/
+  `time_estimate` return *"Line name is missing"*), but every labour-price key tried
+  (`labourRate`, `labourPrice`, `fixedPrice`, `techTime`) still returns
+  **400 `{"error":"Labor or fixed prices must be set."}`**. **The field name is still unknown and is not
+  guessed here** — it must be captured from the *Edit labor* dialog's own request.
+- the *Edit labor* dialog (line kebab → **Edit labor**) is the right route and **was reached once**, but
+  its menu item could not be clicked reliably in the harness after a second line changed the row
+  geometry.
+
+**So both cases keep their documented expectation and their `AUTOMATION: READY` marker** (which asserts
+*automatable*, not *currently passing* — Rule 60), and **the cap is queued in `RECHECK-QUEUE.md` as the
+specific thing still owed.**
+
+### Left in place deliberately
+
+The seeded work order, both lines and the **still-running clock** were **left as they are** — the branch
+is disposable, no teardown was required, and the running clock is the exact precondition C38890 needs if
+someone can later let it pass 3 hours to close out the cap.

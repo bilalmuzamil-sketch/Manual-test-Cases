@@ -1,0 +1,28 @@
+
+---
+
+## SESSION 5 — batch 1: Work In Progress, 8 cases
+
+Build in force `v3.5-f77875c` (read 13:53:17Z). Sources re-read live at pass start: SBC 15 · SBR 17 ·
+PV 5 · TU 6 · WIP 9 · IV 4 — unmoved. All three text fields sent on every payload.
+
+| # | op | C-id | HTTP | verification |
+|--:|---|---|---:|---|
+| 1 | update_case | C30456 | 200 | 30 fields compared, 3 intended, 0 mismatch |
+| 2 | update_case | C30464 | 200 | 30 fields compared, 3 intended, 0 mismatch |
+| 3 | update_case | C30475 | 200 | 30 fields compared, 3 intended, 0 mismatch |
+| 4 | update_case | C30476 | 200 | 30 fields compared, 3 intended, 0 mismatch |
+| 5 | update_case | C30477 | 200 | 30 fields compared, 3 intended, 0 mismatch |
+| 6 | update_case | C30478 | 200 | 30 fields compared, 3 intended, 0 mismatch |
+| 7 | update_case | C30480 | 200 | 30 fields compared, 3 intended, 0 mismatch |
+| 8 | update_case | C38890 | 200 | 30 fields compared, 3 intended, 0 mismatch |
+
+**8 ops · 8 × HTTP 200 · 0 mismatches · 0 collateral changes. 0 add · 0 delete · 0 section · 0 run
+writes · 0 results logged.**
+
+**Post-write census of all 8, read back live:** exactly one provenance line, exactly one build sentence
+naming `v3.5-f77875c` on 8/6/2026, exactly one marker, marker last, 0 raw markup, 0 barred phrases.
+**8 of 8 clean** — run separately from the byte-check, because a byte-check proves the write matched the
+payload, not that the payload was right.
+
+`refs` was **not** written on any operation (the 432-case spec-version sweep remains unauthorised).
