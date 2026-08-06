@@ -1,0 +1,68 @@
+{
+ "30039": {
+  "build": "v3.5-7ec992f",
+  "ev": "b7a.json - stepped three weeks forward to 'Aug 16 - 22, 2026', pressed Today, label returned to 'Aug 2 - 8, 2026'. Today is 2026-08-06, which falls in that range.",
+  "iid": "SCH-TOOL-01",
+  "note": "Both items pass.",
+  "v": "PASS"
+ },
+ "30040": {
+  "build": "v3.5-7ec992f",
+  "ev": "b7a.json - Day: 'Thu, Aug 6' -> next 'Fri, Aug 7' -> prev 'Thu, Aug 6'. Week: 'Aug 2 - 8, 2026' -> 'Aug 9 - 15, 2026' -> back. Month: 'August 2026' -> 'September 2026' -> back. Every step returned to its starting label.",
+  "iid": "SCH-TOOL-02",
+  "note": "All 4 items pass; the arrow step matches the active view in all three views and the label matches the grid.",
+  "v": "PASS"
+ },
+ "30042": {
+  "build": "v3.5-7ec992f",
+  "ev": "b7b.json - the 'FILTER & DISPLAY' dropdown holds exactly: three department toggles (Service, Work order status, Service/Parts), 'My Shifts' and 'VIN Number'. All five carry class q-checkbox (checkbox style, not switches). Defaults read from aria-checked: the three departments true, My Shifts false, VIN Number false. View Options carries no department control, so this dropdown is the only one.",
+  "iid": "SCH-VIEW-01",
+  "note": "All 3 items pass. Rule 9 label detail: the build calls it 'VIN Number', our case item 1 says 'VIN'.",
+  "v": "PASS"
+ },
+ "30043": {
+  "build": "v3.5-7ec992f",
+  "ev": "b7c.json - turning off the first department toggle took the grid from 22 lanes / 18 technicians / 32 shifts / 6 series / 15 events to 5 lanes / 3 technicians / 12 shifts / 2 series / 5 events, i.e. that group's header AND its technician rows disappeared while the other department stayed. Turning it back on restored 22 / 18 / 32 / 6 / 15 exactly.",
+  "iid": "SCH-VIEW-02",
+  "note": "All 3 items pass.",
+  "v": "PASS"
+ },
+ "30044": {
+  "build": "v3.5-7ec992f",
+  "ev": "b7c.json - 'My Shifts' ON: lanes 22 -> 0, technicians 18 -> 0, shifts 32 -> 0 (the signed-in administrator holds no shifts of their own, so nothing remains, which is what the filter should do). OFF: restored to 22 / 18 / 32. Default read as aria-checked false (b7b.json).",
+  "iid": "SCH-VIEW-03",
+  "note": "Items 1, 2 and 3 pass. ITEM 4 NOT EXERCISED - 'for a user who has no technician/staff record of their own, the My Shifts option is not shown at all' needs a second sign-in as such a user; the account used has a staff record (it shows a Clock In timer). Belongs with the Permissions batch.",
+  "v": "PASS-ITEM4-NOT-EXERCISED"
+ },
+ "30046": {
+  "build": "v3.5-7ec992f",
+  "ev": "b7b.json - exactly six toggles, in this order: Business Hours, Tech Hours, Capacity Planning, Events, Show Saturday, Show Sunday. Defaults by aria-checked: Business Hours TRUE, Tech Hours false, Capacity Planning true, Events true, Show Saturday true, Show Sunday true. b7c.json - Capacity Planning OFF took the capacity bars 7 -> 0 with everything else unchanged, ON restored 7; Events OFF took event blocks 15 -> 0 while shifts stayed 32 and series stayed 6, ON restored 15.",
+  "iid": "SCH-VIEW-05",
+  "note": "Items 1, 3 and 4 PASS. ITEM 2 FAILS on one toggle: the spec S9 table requires Business Hours to default OFF and it defaults ON. The other five defaults match. STILL REPRODUCES on v3.5-7ec992f - already SV-8827, which is Open. Note the same ticket also claims Tech Hours starts ON; it does not, it starts OFF, and that half of the ticket is wrong. Rule 9 label detail: the build says 'Capacity Planning', 'Show Saturday', 'Show Sunday'; our case says 'Capacity Bars', 'Saturday', 'Sunday'.",
+  "ticket": "SV-8827",
+  "v": "DEVIATION"
+ },
+ "30047": {
+  "build": "v3.5-7ec992f",
+  "ev": "b7d.json + shots/b7d-bh-on.png - Day view, Thu 6 Aug 2026, Business Hours toggle ON (its default). The timeline from 12 AM to 11 PM renders UNIFORMLY WHITE - there is no grey overlay on the hours outside the working day. Measured three ways: with the toggle ON, OFF and restored, the only shaded element in the whole calendar is the department divider (class 'fc-resource-timeline-divider fc-cell-shaded'), count 2 in all three states. Confirmed visually on the screenshot, not only by class name.",
+  "iid": "SCH-VIEW-06",
+  "note": "Spec S9/S4.8: 'With the toggle on, the hours OUTSIDE the working day are shaded with a grey overlay.' Nothing is shaded. This is DISTINCT from SV-8827, which is about the toggle's DEFAULT STATE, not about it having no effect. NOT FILED - needs a duplicate search against the 22+ existing story defects and the QA lead's go-ahead (Rules 52/53).",
+  "ticket": "none found - NOT filed, needs a duplicate search",
+  "v": "DEVIATION-NEW"
+ },
+ "30050": {
+  "build": "v3.5-7ec992f",
+  "ev": "b7d.json - Tech Hours ON appends each technician's hours to their row header: 'MQ Test Tech Qamar|MQ Test Tech|7:00 AM - 7:00 PM', 'Jose Young|Parts Technician|7:00 AM - 7:00 PM', 'Brittany Anderson|HD Technician|7:00 AM - 7:00 PM', and for the technician with no configured hours 'MQ Test Tech No|MQ Test Tech|Not working'. The values match the configured windows exactly (420-1140 minutes = 7:00 AM - 7:00 PM). Turning it OFF removes the hours from every row.",
+  "iid": "SCH-VIEW-09",
+  "note": "VERDICT CHANGED: this was recorded as a DEVIATION ('toggling Tech Hours produced no observable change at all'). All three items now PASS on v3.5-7ec992f. A fix has shipped WITHOUT the ticket being closed - SV-8851 was read live today and is still Open. Worth telling the developers.",
+  "ticket": "SV-8851 still Open though the fault is gone",
+  "v": "PASS-WAS-DEVIATION-NOW-FIXED"
+ },
+ "30051": {
+  "build": "v3.5-7ec992f",
+  "ev": "b7c.json - Saturday OFF: 7 columns -> 6, days Sunday..Friday. Sunday OFF as well: 5 columns, days Monday..Friday. Both back ON: 7 columns, Sunday..Saturday, and shifts/series/events/capacity bars all returned to their baseline counts (32/6/15/7).",
+  "iid": "SCH-VIEW-10",
+  "note": "All 3 items pass on the behaviour under test (which columns are removed and restored). Item 3's phrase 'the full Monday-to-Sunday 7-column week' describes the ORDER, and this build orders the week Sunday..Saturday - that is the separate, already-recorded SCH-NAV-03 deviation, not a second fault here.",
+  "v": "PASS"
+ }
+}

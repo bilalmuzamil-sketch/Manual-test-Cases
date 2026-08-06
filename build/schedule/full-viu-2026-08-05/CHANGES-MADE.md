@@ -242,3 +242,25 @@ reassigned:
 **Nothing else was changed in batch 6.** No role, staff member, setting, department,
 customer, asset or work order was created or edited. No event was created, moved or deleted
 in this batch.
+
+### Batch 7 (2026-08-06, build `v3.5-7ec992f`) — display toggles only, all put back
+
+No shift, event, series, work order, role, staff member or setting was created or changed in
+batch 7. The only things touched are **per-user display preferences**, every one of which was
+flipped and then flipped back, with the restoration verified by re-counting the grid:
+
+| Toggle | What was done | Proof it was restored |
+|---|---|---|
+| **Capacity Planning** | off, then on | capacity bars 7 → 0 → **7** |
+| **Events** | off, then on | event blocks 15 → 0 → **15** |
+| **Show Saturday** / **Show Sunday** | both off, then both on | columns 7 → 6 → 5 → **7**, days back to Sunday…Saturday |
+| **Department toggle** (first of three) | off, then on | lanes 22 → 5 → **22**, technicians 18 → 3 → **18** |
+| **My Shifts** | on, then off | lanes 0 → **22**, shifts 0 → **32** |
+| **Business Hours** | off, then on (Day view) | returned to its default ON state |
+| **Tech Hours** | on, then off | row headers gained "7:00 AM – 7:00 PM", then lost it again |
+
+Baseline after batch 7 is byte-for-byte the baseline before it: **22 lanes, 18 technicians,
+32 shifts, 6 series, 15 events, 7 capacity bars, 7 columns Sunday…Saturday.**
+
+Navigation left the grid on whatever week the last check used; that is transient view state
+which resets on reload.

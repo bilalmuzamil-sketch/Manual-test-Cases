@@ -1,4 +1,33 @@
 {
+ "29969": {
+  "build": "v3.5-7ec992f",
+  "ev": "Blocked by the data on this estate, not by the build. Every technician who HAS configured working hours has the identical window 420-1140 minutes (07:00-19:00), which is byte-for-byte the same as S4.2's general default. Proven by reading workingWindows for all 18 technicians off the board (board-mar27c.json): 16 have ranges [{startMinute:420,endMinute:1140}] and 2 (Ayesha Khan AK, MQ Test Tech No) have ranges [].",
+  "iid": "SCH-START-01",
+  "note": "NOT OBSERVED, with the reason stated. A drop on any of those 16 produces a 07:00 start - but that is equally consistent with rung 1 (technician hours) and rung 3 (the default), so it does NOT demonstrate that the technician's OWN hours take precedence. To settle it, one technician needs a custom window that is NOT 07:00-19:00, set through Edit Staff Member. That is the same screen batch 7's SCH-HRS-03 exercises, so it should be done there and this case re-run against it. Deliberately not guessed (Rule 12).",
+  "v": "NOT-OBSERVED"
+ },
+ "29970": {
+  "build": "v3.5-7ec992f",
+  "ev": "Unchanged from the previous pass and re-confirmed here: the middle rung of the S4.2 hierarchy (shop business hours) cannot be exercised because the shop has NO business hours set - the board returns a shop-default window with staffId null, and the Edit Location business-hours toggle is off. Turning it on changes a SHARED setting for every other tester on this estate and would invalidate the working-hours conflict observations already recorded in batch 5.",
+  "iid": "SCH-START-02",
+  "note": "HELD, not failed. The rungs above and below it are both verified (SCH-START-03 here; rung 1 pending per SCH-START-01). Its existing marker AUTOMATION: HOLD is correct. Best resolved together with batch 7's Working Hours Settings cases, which legitimately need that toggle anyway.",
+  "v": "HELD"
+ },
+ "29971": {
+  "build": "v3.5-7ec992f",
+  "ev": "b6ag.json - dropped S-12876 onto AYESHA KHAN AK, whose workingWindows carry ranges [] and isWorking false, i.e. NO technician hours are set; the shop has no business hours set either (the Edit Location toggle is off). Created shift 158ac09d at 2027-03-25T13:00:00Z = 07:00 local (MDT, UTC-6).",
+  "iid": "SCH-START-03",
+  "note": "PASS - with neither technician hours nor business hours set, the general 7:00 AM default applied exactly as S4.2 requires. This technician was chosen deliberately because she is one of only two on the estate with no hours at all, which is what isolates this rung of the hierarchy from the one above it.",
+  "v": "PASS"
+ },
+ "29972": {
+  "build": "v3.5-7ec992f",
+  "ev": "b6aj.json - Day view, Fri 26 Mar 2027. Dropped work order S-12876 from the sidebar at the '10 AM' column (x=1029) on Brittany Anderson's row (y=645). Created shift b156b3d7 with staffId 0aac76eb (Brittany Anderson) at 2027-03-26T16:15:00Z. March 26 is MDT (UTC-6), so that is 10:15 local - the drop position, NOT the 07:00 technician/default start.",
+  "ev2": "b6ai.json - a first attempt dropped at y=511 landed on the SERVICE department header band rather than a technician row and produced an UNASSIGNED shift, also at 16:15:00Z. That was a harness aiming error (the lane-label geometry is offset from the grid-row geometry), not a product fault, and it is recorded so nobody mistakes it for one.",
+  "iid": "SCH-START-04",
+  "note": "Both items pass: the start time comes from the drop position and it snapped to a 15-minute boundary (10:15). CASE EDIT NEEDED: the block RENDERS at about 4 PM, six hours late - the SV-8848 display fault. Unlike SCH-START-01/03/06, this case carries NO tester note about SV-8848, so a tester running it would see 4 PM after dropping at 10 AM and fail a build whose stored value is correct. The same note the sibling cases carry should be added here.",
+  "v": "PASS"
+ },
  "29973": {
   "build": "v3.5-7ec992f",
   "ev": "b6ae.json/b6af.json - dropped work order S-12876 'Pamill Paving' onto the in-grid UNASSIGNED lane (Sat 8 Aug 2026). Unassigned shift count 4 -> 5; new shift 02365b1f has staffId NULL; toast 'check Shift scheduled. Undo close'. The block renders with the same three-line anatomy as a regular shift: 'Pamill Paving | 713 | Replace - Rear ramp handles'. Its detail modal shows TECHNICIAN 'Unassigned'. The line roster was unchanged by the drop (8 technicians before and after).",
@@ -8,11 +37,10 @@
  },
  "29974": {
   "build": "v3.5-7ec992f",
-  "ev": "b6ae.json/b6af.json - the unassigned shift was created at 2026-08-08T13:00:00Z. August is MDT (UTC-6), so the STORED value is 07:00 local = the general default, correct per S4.2. But the shift detail modal displays start '13:00' and end '14:00' - the UTC figures - six hours later than the real local time.",
+  "ev": "b6ae.json/b6af.json - the unassigned shift was created at 2026-08-08T13:00:00Z. August is MDT (UTC-6), so the stored value is 07:00 local. With no technician there are no technician hours, and the shop has no business hours configured, so S4.2's general default of 7:00 AM applies. That is what was stored. The detail modal displays '13:00'/'14:00' - the UTC figures, six hours late.",
   "iid": "SCH-START-06",
-  "note": "The RULE the case tests is satisfied by the stored value. The six-hour DISPLAY fault is SV-8848, which the case already tells the tester to ignore, and it STILL REPRODUCES on v3.5-7ec992f. Recorded as DEVIATION against the open ticket rather than PASS, because what the tester sees on screen is wrong.",
-  "ticket": "SV-8848",
-  "v": "DEVIATION"
+  "note": "PASS. Corrected from an earlier DEVIATION reading in this same pass: the case explicitly instructs the tester to check the rule and IGNORE the six-hour display shift because it is already raised as SV-8848. The rule holds, so the case passes. SV-8848 itself STILL REPRODUCES on v3.5-7ec992f and that is reported separately.",
+  "v": "PASS"
  },
  "29975": {
   "build": "v3.5-7ec992f",
