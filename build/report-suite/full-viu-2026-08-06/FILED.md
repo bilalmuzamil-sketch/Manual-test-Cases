@@ -1,5 +1,18 @@
 # Jira — tickets filed this session
 
+> **⚠️ CORRECTION 2026-08-06 (second session).** This file states below that **none of the six
+> specifications mentions the ~10,000-row export cap. That is WRONG, and it is wrong in our own
+> favour.** Checked independently against the live spec bodies: **Sales By Customer v15 documents it
+> twice (S14-R16 for CSV, S15-R25 for PDF)**, **Sales By Representative v17 documents it (S14-E2)**
+> and **Inventory Value v4 documents it including the exact user-facing message (S10-R12)**. Only
+> **Parts Velocity v5, Technician Utilization v6 and Work In Progress v9** are silent. So for three
+> of the six reports a case may assert the cap on the strength of the SPECIFICATION and does not
+> have to fall back on epic story SV-8591; for the other three the story remains the only source.
+> The wrong claim is left in place below rather than overwritten, because a claim we made and then
+> fixed is part of the record. Full table: `SPEC-DIFF.md` §8. The narrowed question to Chris Ward is
+> Q6 in `QUESTIONS-FOR-CHRIS.md`.
+
+
 ## Note on a retracted instruction
 
 A mid-session message asked for filing to stop and for candidate packages instead. The QA lead

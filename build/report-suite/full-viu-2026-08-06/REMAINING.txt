@@ -1,276 +1,431 @@
-C30605  IV — API                                   | Nightly snapshot records one row per in-stock non-core part per location
-C30606  IV — API                                   | A recorded snapshot day equals what the live report showed that day
-C30607  IV — API                                   | Nightly snapshot: re-running the capture for a date replaces that date's rows
-C30609  IV — API                                   | Snapshot retention: daily captures are kept for 0–13 months
-C30610  IV — API                                   | Thinned history still served by the closest-recorded-day rule
-C38892  IV — As-of Date & Snapshots                | A recorded day keeps its category and vendor names after a rename or delete
-C30577  IV — Location Filter                       | Inventory Value: the Location filter is hidden for a one-location user
-C30603  IV — Permissions                           | A user with ordinary reports access can open Inventory Value
-C30604  IV — Permissions                           | Without reports access Inventory Value is absent from the navigation
-C30391  PV — API                                   | The back end serves report data and export on ordinary reports access
-C38925  PV — API                                   | QuickBooks amount for a part-of-a-unit sale is exact and never inflated
-C30359  PV — Columns & Calculations                | Units Sold for an inventory part is net stock movement
-C30360  PV — Columns & Calculations                | Special Order Units Sold = in-window request quantity, net of reversals
-C30361  PV — Columns & Calculations                | Units Returned counts initiated part returns and parts-sale credits
-C30362  PV — Columns & Calculations                | Units Returned is windowed by initiation date, ignores invoice status
-C30363  PV — Columns & Calculations                | Sold (WO) counts Service work orders, Sold (Parts Sale) counts Parts
-C30364  PV — Columns & Calculations                | Demand counts each transaction once; a reversal neither adds nor subtracts
-C30369  PV — Columns & Calculations                | A reversed or voided sale is excluded from every billed-line column
-C30372  PV — Columns & Calculations                | Core parts are excluded from both the inventory and special-order result sets
-C30374  PV — Columns & Calculations                | Window anchors: movement uses the event date, billed uses the WO date
-C38924  PV — Columns & Calculations                | Units Sold keeps an exact part-of-a-unit quantity and is never rounded off
-C30355  PV — Columns & Remembered View             | A saved value that is no longer valid falls back to that setting's default
-C30356  PV — Columns & Remembered View             | A different user signing in on the same browser inherits the saved view
-C30382  PV — Exports                               | PDF export alignment: Type centered, text left, numeric and money right
-C30331  PV — Filters                               | A Custom date range needs valid dates and rejects a span over 366 days
-C30332  PV — Filters                               | Category and Vendor multi-select filters limit the table to matching parts
-C30334  PV — Filters                               | All active filters combine with AND logic
-C30339  PV — Filters                               | Parts with no category; vendor or bin are excluded when that filter is on
-C30340  PV — Filters                               | Parts Velocity: the Location filter is hidden for a one-location user
-C30325  PV — Permissions                           | A user with ordinary reports access can load the report and export it
-C30326  PV — Permissions                           | Without the Manager or Office User role the report entry is not shown
-C30327  PV — Permissions                           | Ordinary reports access alone opens Parts Velocity and its export
-C30385  PV — Visual Conformance                    | The report uses the standard two-tone layout
-C30386  PV — Visual Conformance                    | Toolbar and table detail styling matches the suite paddings and borders
-C30387  PV — Visual Conformance                    | Dark mode is supported and the grey info icon keeps 3:1 contrast in both
-C30192  SBC — API                                  | The Customer type-ahead queries the server instead of loading every name
-C30193  SBC — API                                  | Customer rows are server-paginated; the totals row is server-computed
-C43546  SBC — API                                  | The back end serves SBC report data and export on ordinary reports access
-C30096  SBC — Access & Navigation                  | Sales By Customer listed under Performance, below existing links; titles corre
-C30137  SBC — Asset Labels                         | Duplicate asset labels get stable (#1)/(#2) suffixes that survive reloads
-C30157  SBC — Column Selector                      | Column toggles hide header+cells; Customer, Subtotal and chevron never in list
-C43550  SBC — Column Selector                      | A one-location user never sees Location in the column-selection list
-C30112  SBC — Customer Filter                      | Customer filter sits between Product Type and Location, carries a search icon
-C30113  SBC — Customer Filter                      | Typing in the Customer filter lists matching customers by contains match
-C30114  SBC — Customer Filter                      | Pinned control toggles All customers and Clear all; clearing shows empty state
-C30116  SBC — Customer Filter                      | Collapsed label reads None, the customer's name, or N selected
-C30117  SBC — Customer Filter                      | Changing the customer selection narrows the table and refreshes the totals
-C30120  SBC — Customer Filter                      | A subset customer selection reconciles on a filter change; kept if present
-C30104  SBC — Date Range Filter                    | Building a custom range on the calendar cannot exceed a 366-day span
-C30181  SBC — Empty & Edge States                  | Empty state shows in the table body; toolbar interactive; kept selection retur
-C30184  SBC — Empty & Edge States                  | A failed data fetch shows the error toast which fades after 5 seconds
-C30163  SBC — Exports                              | CSV and PDF hold exactly the customers matching the active filters and sort
-C30164  SBC — Exports                              | Each download item shows a loading state and its own export-failed toast
-C30166  SBC — Exports                              | PDF page: A4 landscape, uniform margins, ShopView footer and page numbers
-C30167  SBC — Exports                              | PDF header: title, organization, date range, Product Type and Locations lines
-C30169  SBC — Exports                              | Expanded View PDF body matches the CSV's columns and on-screen rules
-C30173  SBC — Exports                              | A no-match export still downloads headers and a zero totals row
-C38856  SBC — Exports                              | Summary and Expanded View downloads exist for both PDF and CSV
-C43553  SBC — Exports                              | A logo that is set but will not load falls back to the ShopView logo
-C30141  SBC — Invoice Links & Navigation           | An invoice deleted after load shows the not-found state and back returns
-C43558  SBC — Invoice Links & Navigation           | You cannot reach an invoice you have no permission to open
-C30109  SBC — Location Filter                      | Location filter: rightmost, lists accessible locations, All locations on top
-C30111  SBC — Location Filter                      | Selecting locations scopes the data; All locations covers every accessible one
-C38912  SBC — Location Filter                      | The Location column shows only with more than one location; Multiple on totals
-C30188  SBC — Mobile                               | On a phone every toolbar control works on touch; the toolbar splits in two
-C30189  SBC — Mobile                               | On touch the table scrolls sideways with Subtotal pinned and chevrons work
-C30098  SBC — Permissions                          | Ordinary reports access opens Sales By Customer — no separate permission
-C30099  SBC — Permissions                          | Without reports access, Sales By Customer is not listed and cannot open
-C30100  SBC — Permissions                          | Opening an invoice you lack permission for shows access-denied; back works
-C30101  SBC — Permissions                          | Location access enforced: no data from a location the user cannot access
-C39447  SBC — Permissions                          | No Sales By Customer permission is offered in the role permission editor
-C30174  SBC — Saved View & Persistence             | Filters; sort and visible columns are restored on the next visit
-C30175  SBC — Saved View & Persistence             | Type-ahead search text, expansion state and scroll position are not saved
-C30176  SBC — Saved View & Persistence             | A saved value that is no longer valid is dropped and falls back to default
-C30177  SBC — Saved View & Persistence             | The saved view is specific to this report and does not affect any other report
-C30178  SBC — Saved View & Persistence             | With no saved view every setting uses its own default
-C30179  SBC — Saved View & Persistence             | When a saved view and a page-link range clash the saved view wins
-C30180  SBC — Saved View & Persistence             | Customer filter restore: all-customers stays all; an id set is intersected
-C30142  SBC — Sorting                              | All columns sortable except chevron; text alphabetical, numbers by value
-C30144  SBC — Sorting                              | Missing values sort to the bottom ascending and to the top descending
-C30145  SBC — Sorting                              | Sorting by Date orders customers by their most recent invoice date
-C30153  SBC — Totals & Calculations                | Invoice subtotals sum to their asset row and asset subtotals to the customer
-C30155  SBC — Totals & Calculations                | The totals row covers the whole filtered set; not just the current page
-C30122  SBC — Tree & Rows                          | A customer with no matching invoices in the current view is not shown
-C30123  SBC — Tree & Rows                          | Expanding a customer reveals asset rows; chevrons toggle and are independent
-C30128  SBC — Tree & Rows                          | Header-row chevron expands or collapses every customer on the current page
-C30129  SBC — Tree & Rows                          | Reload-causing changes collapse expansion; Customer filter typing does not
-C30130  SBC — Tree & Rows                          | Edge: a single-invoice asset can still be expanded
-C30131  SBC — Tree & Rows                          | A service (S) invoice with no vehicle also lands in the Parts Sales bucket
-C30132  SBC — Tree & Rows                          | Reversed and voided invoices are excluded from every row; count and total
-C30185  SBC — Visual Conformance                   | Page and toolbar match the suite theme in padding; surface and alignment
-C30186  SBC — Visual Conformance                   | Row surfaces alternate by tree level; header and totals rows stay white
-C30187  SBC — Visual Conformance                   | Dark mode darkens every surface while the PDF always renders light
-C30316  SBR — API                                  | A rep's invoice detail rows are fetched from the server only on the first expa
-C30317  SBR — API                                  | Sorting is performed server-side and returns the first page
-C30318  SBR — API                                  | Grand totals are server-computed over the full filtered set
-C30319  SBR — API                                  | All four exports are generated server-side against the active filters and sort
-C30321  SBR — API                                  | Deactivating a rep first runs a server pre-check returning the count
-C30195  SBR — Access & Navigation                  | Sales By Representative under Performance, below existing links; titles correc
-C30197  SBR — Access & Navigation                  | The nav entry fits the full Sales By Representative label; no truncation
-C30265  SBR — Column Selector                      | Column selector: seven metric toggles; five always-on columns cannot be hidden
-C30267  SBR — Column Selector                      | Toggling a column applies at once to summary; detail and Totals rows
-C30268  SBR — Column Selector                      | Column visibility never affects the exports
-C30269  SBR — Column Selector                      | Hiding the active sort column keeps the sort
-C30201  SBR — Date Range Filter                    | Date range picker is in the toolbar and offers the standard presets plus Custo
-C30202  SBR — Date Range Filter                    | A Custom range uses the date-picker and holds a 366-day maximum span
-C30204  SBR — Date Range Filter                    | An invoice sits in the range by its own invoice date; endpoints included
-C30276  SBR — Exports                              | The ⋯ overflow menu lists exactly four download actions
-C30277  SBR — Exports                              | All four downloads respect filters, full result set, and active order
-C30278  SBR — Exports                              | Summary PDF: one rolled-up row per rep with a recomputed grand totals row
-C30279  SBR — Exports                              | Expanded View PDF: one page-block per rep with its own totals; no grand
-C30280  SBR — Exports                              | Expanded View PDF truncates invoice numbers longer than 18 characters
-C30281  SBR — Exports                              | PDF footer on every page, default-logo fallback, and deterministic PDF filenam
-C30282  SBR — Exports                              | PDFs render negative dollars in accounting parentheses, keep the (Inactive) ta
-C30283  SBR — Exports                              | PDF body font steps down as the longest dollar value grows; no overflow
-C30285  SBR — Exports                              | Summary CSV: file name, UTF-8 BOM, verbatim headers, one row per rep
-C30286  SBR — Exports                              | Expanded CSV: file name, verbatim headers, one row per invoice
-C30288  SBR — Exports                              | The Unassigned row appears in all four downloads only when the toggle is on
-C30289  SBR — Exports                              | A failed download shows the canonical error toast
-C30291  SBR — Exports                              | An empty-data export still generates with zeroed Summary PDF totals
-C30229  SBR — Inv. Hrs & Calculations              | Inv. Hrs is hours invoiced minus hours worked; half-up to one decimal
-C30230  SBR — Inv. Hrs & Calculations              | Inv. Hrs: +green, -red, 0.0 default on every row; rollups from unrounded delta
-C30231  SBR — Inv. Hrs & Calculations              | No-labor-no-time invoices show 0.0; clocked-unbilled work shows negative
-C30233  SBR — Inv. Hrs & Calculations              | Margin % to one decimal; em dash when Subtotal <= 0; recomputed on rollups
-C30234  SBR — Inv. Hrs & Calculations              | Money columns use the standardized labels and definitions
-C30235  SBR — Inv. Hrs & Calculations              | Negative dollar values render in accounting parentheses; money columns only
-C30236  SBR — Inv. Hrs & Calculations              | Half-up rounding at each precision; totals may differ by one last-decimal unit
-C38894  SBR — Inv. Hrs & Calculations              | A clock-record edit after invoicing updates Inv. Hrs; billed money stays put
-C30208  SBR — Invoice Status Filter                | Invoice Status offers exactly four options; All Statuses is the default
-C30209  SBR — Invoice Status Filter                | Status filtering matches on the mapped display value
-C30211  SBR — Invoice Status Filter                | Filters compose: a rep appears only with an invoice matching ALL active filter
-C30212  SBR — Invoice Status Filter                | Money columns always show invoiced amounts, never the outstanding balance
-C30247  SBR — Links & Navigation                   | Detail-row invoice number and customer name links navigate in the current tab
-C30249  SBR — Links & Navigation                   | Browser back from a drilldown restores expansion and scroll; no reload
-C30250  SBR — Links & Navigation                   | Invoice links use theme-primary; customer links use the body color
-C30251  SBR — Links & Navigation                   | An unavailable link destination shows the standard not-found state
-C43559  SBR — Links & Navigation                   | Invoice # and customer name when you cannot open what they point at
-C30298  SBR — Loading, Empty & Error States        | Empty state: verbatim message, no grand Totals, toolbar stays interactive
-C30300  SBR — Loading, Empty & Error States        | Loading shows a centered spinner over the data area and hides the Totals
-C30301  SBR — Loading, Empty & Error States        | A load failure shows the inline could-not-load message with a Retry
-C30213  SBR — Location Filter                      | Location filter is the rightmost control with an All Locations option
-C30215  SBR — Location Filter                      | Location selection cascades; an inaccessible location's data is never included
-C30216  SBR — Location Filter                      | Sales By Representative: Location filter hidden for a one-location user
-C38913  SBR — Location Filter                      | The Location column shows only with more than one location; rep rows Multiple
-C30302  SBR — Mobile                               | On a phone every toolbar control works on touch
-C30303  SBR — Mobile                               | On a phone the table scrolls sideways with Subtotal pinned outside it
-C30304  SBR — Mobile                               | Touch targets are at least 44×44 px and touch users get no hover-only tooltips
-C30226  SBR — Payment Status Badge                 | Status badge between Customer and Inv. Hrs; every detail row shows mapped text
-C30227  SBR — Payment Status Badge                 | Badge colors use the canonical payment-status tokens in light and dark
-C30198  SBR — Permissions                          | Sales By Representative is visible to anyone who sees another Performance repo
-C30199  SBR — Permissions                          | Without Reports access: no navigation, no export menu, no Export dialog
-C30200  SBR — Permissions                          | Without staff-administration access the deactivation flow is unreachable
-C30271  SBR — Persistence                          | All filter and view settings are restored before the first data fetch
-C30272  SBR — Persistence                          | Expansion state and scroll position are not remembered and reset on reload
-C30273  SBR — Persistence                          | A stale saved value falls back to its default and never errors
-C30274  SBR — Persistence                          | First visit or cleared storage yields all defaults; no server-side profile
-C30275  SBR — Persistence                          | The A to Z default is its own saved value
-C30206  SBR — Product Type Filter                  | Product Type: three options, Parts & Service default, each option filters righ
-C30217  SBR — Rep Rows & Tree                      | A rep row appears only when the rep has a matching non-reversed invoice
-C30218  SBR — Rep Rows & Tree                      | Row layout: 12 columns in order, blanks in position, bold summary rows
-C30219  SBR — Rep Rows & Tree                      | A toggled-off or deleted contributor still appears; tagged (Inactive)
-C30221  SBR — Rep Rows & Tree                      | Expanding a rep loads its invoices on demand with a row-level spinner
-C30222  SBR — Rep Rows & Tree                      | The header chevron expands every visible rep and its glyph tracks state
-C30223  SBR — Rep Rows & Tree                      | Each invoice appears under exactly one rep or the Unassigned row
-C30224  SBR — Rep Rows & Tree                      | Expansion survives filter and sort changes within the session, resets on reloa
-C30225  SBR — Rep Rows & Tree                      | Detail rows run newest first with a numeric invoice-number tie-break
-C30292  SBR — Sales Rep Assignments Export         | Report Name dropdown lists Sales Representative Assignments at the bottom
-C30293  SBR — Sales Rep Assignments Export         | Sales Representative Assignments CSV: file name, headers, success toast
-C30294  SBR — Sales Rep Assignments Export         | Assignments CSV: one row per assigned customer, sorted customer then rep
-C30295  SBR — Sales Rep Assignments Export         | "Rep is active?" tracks the staff-active status, not the toggle
-C30296  SBR — Sales Rep Assignments Export         | A deleted rep record still exports one row from the stored name, marked No
-C30297  SBR — Sales Rep Assignments Export         | Assignments export failure and nothing-to-export use the dialog's messages
-C30261  SBR — Show Unassigned                      | Show Unassigned sits between the column selector and the date picker, off
-C30262  SBR — Show Unassigned                      | Show Unassigned adds one top-pinned Unassigned row that acts like a rep row
-C30264  SBR — Show Unassigned                      | No empty Unassigned row is ever rendered
-C30241  SBR — Sorting                              | All eight financial columns are sortable
-C30242  SBR — Sorting                              | Default order is plain A to Z by display name, case-insensitive
-C30243  SBR — Sorting                              | First header click sorts ascending; second descending; no third state
-C30244  SBR — Sorting                              | Sorting reorders rep rows only; Unassigned stays pinned on top
-C30245  SBR — Sorting                              | Ties keep the A to Z order and an em-dash Margin % sorts as zero
-C30253  SBR — Staff Deactivation                   | Deactivate dialog: counted pluralized headline, reassurance, focus trap
-C30254  SBR — Staff Deactivation                   | Type-YES gate: auto-focus; case-insensitive match; Enter submits
-C30255  SBR — Staff Deactivation                   | Cancel and X dismiss the Deactivate dialog; Escape and clicking outside do not
-C30256  SBR — Staff Deactivation                   | Valid submit locks the dialog, then deactivates keeping assignments
-C30257  SBR — Staff Deactivation                   | After deactivation: toggle unchanged, CSV shows No, report credit intact
-C30258  SBR — Staff Deactivation                   | No dialog: toggle off, no assignments, already inactive, or reactivation
-C30259  SBR — Staff Deactivation                   | A deactivation failure shows the error toast and leaves the status alone
-C30260  SBR — Staff Deactivation                   | If the assignment pre-check fails, the warning dialog still opens
-C30237  SBR — Subtotal & Totals                    | Subtotal: rightmost, pinned right, bold everywhere; header row sticky on scrol
-C30238  SBR — Subtotal & Totals                    | Desktop Totals row merges the identifier columns and sticks to the bottom
-C30239  SBR — Subtotal & Totals                    | Mobile shows a simplified totals bar below the table; Subtotal at right
-C30305  SBR — Visual Conformance & Accessibility   | Layout: white toolbar; blue-grey page; separator; edge-to-edge white table
-C30306  SBR — Visual Conformance & Accessibility   | Dark mode: page, toolbar, table; Totals switch to dark equivalents
-C30307  SBR — Visual Conformance & Accessibility   | Every icon-only control carries its specified accessible name
-C30308  SBR — Visual Conformance & Accessibility   | Chevrons and sortable headers are keyboard-operable and expose their state
-C30309  SBR — Visual Conformance & Accessibility   | The subdued grey of the (N) count and (Inactive) tag meets WCAG AA contrast
-C30310  SBR — Work Order Sales Rep                 | Sales Representative selector shows on WO and Part Sale, not on imported
-C30311  SBR — Work Order Sales Rep                 | Selector offers only reps whose sales-representative toggle is on
-C30312  SBR — Work Order Sales Rep                 | A new WO opens with Sales Representative unassigned; a change saves at once
-C30313  SBR — Work Order Sales Rep                 | The Sales Representative selector is read-only when Invoiced or Paid
-C30314  SBR — Work Order Sales Rep                 | Invoice credit snapshot: WO rep, else customer rep, else unassigned
-C30315  SBR — Work Order Sales Rep                 | Customer record shows a "Sales Representative" row; "Unassigned" when none
-C30397  TU — Access & Display                      | All clock records are day-grouped and windowed in one report-level time zone
-C30398  TU — Access & Display                      | Without reports access Technician Utilization is hidden
-C30431  TU — Deep Links                            | Reconcile exception (a): an open clock is snapshotted at each load instant
-C30407  TU — Est. Lost Labor                       | Internal hours with no default labor rate anywhere show an em-dash
-C30408  TU — Est. Lost Labor                       | Internal hours split across rated and unrated locations show a part value
-C30446  TU — Location Filter                       | Technician Utilization: Location filter hidden for a one-location user
-C30413  TU — Sorting                               | Sorting Est. Lost Labor keeps em-dash rows last both ways; $0.00 sorts as 0
-C30528  WIP — API                                  | Nightly snapshot records one row per then-open job per calendar date
-C30530  WIP — API                                  | Captured Earned and Remaining use the same maths as the on-screen report
-C30531  WIP — API                                  | Nightly snapshot spans every location with no user location filter
-C30533  WIP — API                                  | Nightly snapshot: a job with nothing approved is captured at $0.00; not skippe
-C30507  WIP — Column Selection & Persistence       | Toggling columns never reorders them (Total always last)
-C30508  WIP — Column Selection & Persistence       | Remembers the date range, filter selections, location, columns
-C30509  WIP — Column Selection & Persistence       | A saved setting that is no longer valid falls back to its default
-C43551  WIP — Column Selection & Persistence       | A hand-made Location column choice is remembered like any other column
-C30466  WIP — Columns & Rows                       | With all toggleable columns on, the fixed column order and alignment hold
-C30467  WIP — Columns & Rows                       | First visit shows the default columns; the rest are in the column selector
-C30468  WIP — Columns & Rows                       | The WO # is a link that opens the WO in the same browser tab
-C30469  WIP — Columns & Rows                       | Status shows as a color-coded badge whose label text is always present
-C30470  WIP — Columns & Rows                       | The Asset cell shows the Unit # in bold with the VIN underneath
-C30471  WIP — Columns & Rows                       | Customer shows the customer's company name
-C30472  WIP — Columns & Rows                       | Days Open shows whole days since creation and reads 0 days / 1 days
-C30473  WIP — Columns & Rows                       | Last Activity shows Today; Xd ago; or an em-dash when there is none
-C43557  WIP — Columns & Rows                       | The WO # is plain text, not a link, without Work Order permission
-C30474  WIP — Earned & Remaining                   | Money columns show US dollars to two decimals with thousands separators
-C30475  WIP — Earned & Remaining                   | Labor Earned is the clocked share of each approved line's quoted value
-C30476  WIP — Earned & Remaining                   | Labor Remaining is the approved labor's quoted value minus Labor Earned
-C30477  WIP — Earned & Remaining                   | Parts Earned is the sell value of approved-line parts already received
-C30478  WIP — Earned & Remaining                   | Parts Remaining values the not-yet-received quantity at its sell price
-C30479  WIP — Earned & Remaining                   | Earned + Remaining make Total; not the WO's grand total
-C30480  WIP — Earned & Remaining                   | Lines that are not yet approved contribute nothing to any money figure
-C30481  WIP — Earned & Remaining                   | Inv. Hrs shows quoted minus worked hours; signed to one decimal
-C30482  WIP — Earned & Remaining                   | An open estimate with no approved work shows $0.00 in every money column
-C38890  WIP — Earned & Remaining                   | A technician still clocked in counts toward Labor Earned, capped at the quote
-C30511  WIP — Exports                              | Downloads keep shown columns, honor filters, include the tab's Totals row
-C30498  WIP — Filters                              | The Advisor filter lists the advisors in the loaded jobs; screen only
-C30499  WIP — Filters                              | Customer filter is a type-ahead multi-select reading "All customers"
-C30501  WIP — Filters                              | The date range offers the presets plus Custom; This Week default; no All Time
-C30502  WIP — Filters                              | The date range filters on the WO's created date and reloads on change
-C30503  WIP — Filters                              | Location filter: rightmost multi-select with All locations, reloads on change
-C30504  WIP — Filters                              | The location scope never includes an inaccessible location
-C30505  WIP — Filters                              | Advisor, customer and asset filters AND together and recompute strip and Total
-C38916  WIP — Filters                              | The Location column is automatic and never reads Multiple on a work-order row
-C30526  WIP — Permissions                          | Ordinary reports access covers opening and downloading Work In Progress
-C30527  WIP — Permissions                          | Without reports access Work In Progress is absent from the navigation
-C30456  WIP — Scope & Loading                      | Every open service WO at a selected location appears in the report
-C30457  WIP — Scope & Loading                      | Invoiced; Paid and part-sale work orders never appear
-C30458  WIP — Scope & Loading                      | Each qualifying work order appears exactly once in exactly one tab
-C30459  WIP — Scope & Loading                      | While loading the standard indicator shows and old rows stay until data
-C30460  WIP — Scope & Loading                      | No qualifying work orders: every tab shows the no-data message and no Totals
-C30483  WIP — Sorting                              | The initial sort is Days Open with the longest-open work order first
-C30484  WIP — Sorting                              | Clicking a header sorts ascending, clicking again toggles descending
-C30485  WIP — Sorting                              | Columns sort by their underlying values; Asset sorts by the Unit #
-C30486  WIP — Sorting                              | Sorting reorders only the active tab's rows; Totals stays at the bottom
-C30487  WIP — Summary Strip                        | The summary strip shows seven figures in a fixed order as US dollars
-C30488  WIP — Summary Strip                        | Total Earned is the hero figure and equals the started-stage figures summed
-C30489  WIP — Summary Strip                        | Total Remaining equals Not Started plus Started — Remaining
-C30490  WIP — Summary Strip                        | Each per-stage figure equals the matching tab's money total
-C30491  WIP — Summary Strip                        | The Estimates figure is the Estimates tab's total quoted value, shown muted
-C30493  WIP — Summary Strip                        | Each summary figure's information icon reveals its plain explanation
-C30462  WIP — Tab Placement                        | Status-to-tab mapping: Estimate, Complete, In Progress and Review work orders
-C30464  WIP — Tab Placement                        | Approved started-boundary: time or part received vs neither decides the tab
-C30451  WIP — Tabs                                 | Work In Progress appears in the reports navigation under the Performance group
-C30452  WIP — Tabs                                 | Four tabs in a fixed order with the partially-completed tab selected
-C30455  WIP — Tabs                                 | There is no Trend / over-time tab or chart
-C30494  WIP — Totals Row                           | Each tab has a Totals row pinned to the bottom, labeled "Totals"
-C30495  WIP — Totals Row                           | The Totals row sums each visible money column and the Inv. Hrs column
-C30519  WIP — Visual & Accessibility               | Each tab uses an all-white table with no alternating row shading
-C30520  WIP — Visual & Accessibility               | The summary strip is a bold band ruled top and bottom above the tabs
-C30521  WIP — Visual & Accessibility               | The Total column is bold and stays pinned right on sideways scroll
-C30522  WIP — Visual & Accessibility               | The Totals row stays visible while only the active tab's body scrolls
-C30523  WIP — Visual & Accessibility               | The WO # link is keyboard-focusable and opens the work order
-C30524  WIP — Visual & Accessibility               | Each summary figure's info icon is keyboard-reachable and screen-read
-C30525  WIP — Visual & Accessibility               | In dark mode every table; strip; link and coloring stays legible
+# REMAINING — Report Suite, regenerated from LIVE TestRail 2026-08-06 after the second session
+# Count by case id, never by line:  grep -oE 'C[0-9]{5}' REMAINING.txt | sort -u | wc -l
+#
+# The build now running is v3.5-7168d14 (index.html last-modified Thu 06 Aug 2026 08:32:37 GMT).
+# It replaced v3.5-16cf83f at 08:32:37Z, EIGHT MINUTES into the second session.
+#
+# SECTION A = THE REAL OUTSTANDING WORK: 188 cases with NO verdict on any 6 August build.
+#             Sales By Representative is 109 of them and was never opened. START HERE.
+# SECTION B = 219 cases verdicted TODAY by the FIRST session, on v3.5-16cf83f, which the
+#             redeploy replaced. Do NOT re-drive these first. Under Standing Rule 60 their
+#             expectations are unaffected by a redeploy; only labels, verdicts and build-fact
+#             markers age, and every EXPECT-FAIL among them carries a Rule-61 block so the
+#             automated suite reports a fix or a changed failure with nobody re-observing it.
+# NOT LISTED = 69 cases already carrying v3.5-7168d14, written by the second session.
+#
+# A(188) + B(219) + 69 = 476, which is every one of our cases under group 4281.
+
+====================================================================================================================
+= SECTION A - NO 6 AUGUST VERDICT - START HERE (188 cases)
+====================================================================================================================
+C30592	IV — Exports                              | Exports are generated server-side over the full filtered set        | v3.5-16cf83f 8/5/2026
+C30391	PV — API                                  | The back end serves report data and export on ordinary reports acc  | v3.4.1-3d03023 8/4/2026
+C38925	PV — API                                  | QuickBooks amount for a part-of-a-unit sale is exact and never inf  | v3.4.1-3d03023 8/4/2026
+C30355	PV — Columns & Remembered View            | A saved value that is no longer valid falls back to that setting's  | v3.4.1-3d03023 8/4/2026
+C30356	PV — Columns & Remembered View            | A different user signing in on the same browser inherits the saved  | v3.4.1-3d03023 8/4/2026
+C30382	PV — Exports                              | PDF export alignment: Type centered, text left, numeric and money   | v3.4.1-3d03023 8/4/2026
+C30331	PV — Filters                              | A Custom date range needs valid dates and rejects a span over 366   | v3.4.1-3d03023 8/4/2026
+C30332	PV — Filters                              | Category and Vendor multi-select filters limit the table to matchi  | v3.4.1-3d03023 8/4/2026
+C30334	PV — Filters                              | All active filters combine with AND logic                           | v3.4.1-3d03023 8/4/2026
+C30339	PV — Filters                              | Parts with no category; vendor or bin are excluded when that filte  | v3.4.1-3d03023 8/4/2026
+C30340	PV — Filters                              | Parts Velocity: the Location filter is hidden for a one-location u  | v3.4.1-3d03023 8/4/2026
+C30325	PV — Permissions                          | A user with ordinary reports access can load the report and export  | v3.4.1-3d03023 8/4/2026
+C30326	PV — Permissions                          | Without the Manager or Office User role the report entry is not sh  | v3.4.1-3d03023 8/4/2026
+C30327	PV — Permissions                          | Ordinary reports access alone opens Parts Velocity and its export   | v3.4.1-3d03023 8/4/2026
+C30349	PV — Row Model                            | An inventory part drops out only with no movement, no stock and no  | v3.4.1-3d03023 8/4/2026
+C30385	PV — Visual Conformance                   | The report uses the standard two-tone layout                        | v3.4.1-3d03023 8/4/2026
+C30386	PV — Visual Conformance                   | Toolbar and table detail styling matches the suite paddings and bo  | v3.4.1-3d03023 8/4/2026
+C30387	PV — Visual Conformance                   | Dark mode is supported and the grey info icon keeps 3:1 contrast i  | v3.4.1-3d03023 8/4/2026
+C30191	SBC — API                                 | Sorting is applied on the server and re-fetches the first page      | v3.5-16cf83f 8/5/2026
+C43546	SBC — API                                 | The back end serves SBC report data and export on ordinary reports  | v3.4.1-3d03023 8/4/2026
+C43550	SBC — Column Selector                     | A one-location user never sees Location in the column-selection li  | none none
+C30164	SBC — Exports                             | Each download item shows a loading state and its own export-failed  | v3.4.1-3d03023 8/4/2026
+C43558	SBC — Invoice Links & Navigation          | You cannot reach an invoice you have no permission to open          | none none
+C30109	SBC — Location Filter                     | Location filter: rightmost, lists accessible locations, All locati  | v3.4.1-3d03023 8/4/2026
+C38912	SBC — Location Filter                     | The Location column shows only with more than one location; Multip  | v3.4.1-3d03023 8/4/2026
+C30098	SBC — Permissions                         | Ordinary reports access opens Sales By Customer — no separate perm  | v3.4.1-3d03023 8/4/2026
+C30099	SBC — Permissions                         | Without reports access, Sales By Customer is not listed and cannot  | v3.4.1-3d03023 8/4/2026
+C30100	SBC — Permissions                         | Opening an invoice you lack permission for shows access-denied; ba  | v3.4.1-3d03023 8/4/2026
+C30101	SBC — Permissions                         | Location access enforced: no data from a location the user cannot   | v3.4.1-3d03023 8/4/2026
+C39447	SBC — Permissions                         | No Sales By Customer permission is offered in the role permission   | v3.4.1-3d03023 8/4/2026
+C30179	SBC — Saved View & Persistence            | When a saved view and a page-link range clash the saved view wins   | v3.4.1-3d03023 8/4/2026
+C30180	SBC — Saved View & Persistence            | Customer filter restore: all-customers stays all; an id set is int  | v3.4.1-3d03023 8/4/2026
+C30316	SBR — API                                 | A rep's invoice detail rows are fetched from the server only on th  | v3.4.1-3d03023 8/4/2026
+C30317	SBR — API                                 | Sorting is performed server-side and returns the first page         | v3.4.1-3d03023 8/4/2026
+C30318	SBR — API                                 | Grand totals are server-computed over the full filtered set         | v3.4.1-3d03023 8/4/2026
+C30319	SBR — API                                 | All four exports are generated server-side against the active filt  | v3.4.1-3d03023 8/4/2026
+C30321	SBR — API                                 | Deactivating a rep first runs a server pre-check returning the cou  | v3.4.1-3d03023 8/4/2026
+C30195	SBR — Access & Navigation                 | Sales By Representative under Performance, below existing links; t  | v3.4.1-3d03023 8/4/2026
+C30197	SBR — Access & Navigation                 | The nav entry fits the full Sales By Representative label; no trun  | v3.4.1-3d03023 8/4/2026
+C30265	SBR — Column Selector                     | Column selector: seven metric toggles; five always-on columns cann  | v3.4.1-3d03023 8/4/2026
+C30267	SBR — Column Selector                     | Toggling a column applies at once to summary; detail and Totals ro  | v3.4.1-3d03023 8/4/2026
+C30268	SBR — Column Selector                     | Column visibility never affects the exports                         | v3.4.1-3d03023 8/4/2026
+C30269	SBR — Column Selector                     | Hiding the active sort column keeps the sort                        | v3.4.1-3d03023 8/4/2026
+C30201	SBR — Date Range Filter                   | Date range picker is in the toolbar and offers the standard preset  | v3.4.1-3d03023 8/4/2026
+C30202	SBR — Date Range Filter                   | A Custom range uses the date-picker and holds a 366-day maximum sp  | v3.4.1-3d03023 8/4/2026
+C30204	SBR — Date Range Filter                   | An invoice sits in the range by its own invoice date; endpoints in  | v3.4.1-3d03023 8/4/2026
+C30276	SBR — Exports                             | The ⋯ overflow menu lists exactly four download actions             | v3.4.1-3d03023 8/4/2026
+C30277	SBR — Exports                             | All four downloads respect filters, full result set, and active or  | v3.4.1-3d03023 8/4/2026
+C30278	SBR — Exports                             | Summary PDF: one rolled-up row per rep with a recomputed grand tot  | none none
+C30279	SBR — Exports                             | Expanded View PDF: one page-block per rep with its own totals; no   | v3.4.1-3d03023 8/4/2026
+C30280	SBR — Exports                             | Expanded View PDF truncates invoice numbers longer than 18 charact  | v3.4.1-3d03023 8/4/2026
+C30281	SBR — Exports                             | PDF footer on every page, default-logo fallback, and deterministic  | v3.4.1-3d03023 8/4/2026
+C30282	SBR — Exports                             | PDFs render negative dollars in accounting parentheses, keep the (  | v3.4.1-3d03023 8/4/2026
+C30283	SBR — Exports                             | PDF body font steps down as the longest dollar value grows; no ove  | v3.4.1-3d03023 8/4/2026
+C30285	SBR — Exports                             | Summary CSV: file name, UTF-8 BOM, verbatim headers, one row per r  | v3.4.1-3d03023 8/4/2026
+C30286	SBR — Exports                             | Expanded CSV: file name, verbatim headers, one row per invoice      | v3.4.1-3d03023 8/4/2026
+C30288	SBR — Exports                             | The Unassigned row appears in all four downloads only when the tog  | v3.4.1-3d03023 8/4/2026
+C30289	SBR — Exports                             | A failed download shows the canonical error toast                   | v3.4.1-3d03023 8/4/2026
+C30291	SBR — Exports                             | An empty-data export still generates with zeroed Summary PDF total  | v3.4.1-3d03023 8/4/2026
+C30229	SBR — Inv. Hrs & Calculations             | Inv. Hrs is hours invoiced minus hours worked; half-up to one deci  | v3.4.1-3d03023 8/4/2026
+C30230	SBR — Inv. Hrs & Calculations             | Inv. Hrs: +green, -red, 0.0 default on every row; rollups from unr  | v3.4.1-3d03023 8/4/2026
+C30231	SBR — Inv. Hrs & Calculations             | No-labor-no-time invoices show 0.0; clocked-unbilled work shows ne  | v3.4.1-3d03023 8/4/2026
+C30233	SBR — Inv. Hrs & Calculations             | Margin % to one decimal; em dash when Subtotal <= 0; recomputed on  | v3.4.1-3d03023 8/4/2026
+C30234	SBR — Inv. Hrs & Calculations             | Money columns use the standardized labels and definitions           | v3.4.1-3d03023 8/4/2026
+C30235	SBR — Inv. Hrs & Calculations             | Negative dollar values render in accounting parentheses; money col  | v3.4.1-3d03023 8/4/2026
+C30236	SBR — Inv. Hrs & Calculations             | Half-up rounding at each precision; totals may differ by one last-  | v3.4.1-3d03023 8/4/2026
+C38894	SBR — Inv. Hrs & Calculations             | A clock-record edit after invoicing updates Inv. Hrs; billed money  | v3.4.1-3d03023 8/4/2026
+C30208	SBR — Invoice Status Filter               | Invoice Status offers exactly four options; All Statuses is the de  | v3.4.1-3d03023 8/4/2026
+C30209	SBR — Invoice Status Filter               | Status filtering matches on the mapped display value                | v3.4.1-3d03023 8/4/2026
+C30211	SBR — Invoice Status Filter               | Filters compose: a rep appears only with an invoice matching ALL a  | v3.4.1-3d03023 8/4/2026
+C30212	SBR — Invoice Status Filter               | Money columns always show invoiced amounts, never the outstanding   | v3.4.1-3d03023 8/4/2026
+C30247	SBR — Links & Navigation                  | Detail-row invoice number and customer name links navigate in the   | v3.4.1-3d03023 8/4/2026
+C30249	SBR — Links & Navigation                  | Browser back from a drilldown restores expansion and scroll; no re  | v3.4.1-3d03023 8/4/2026
+C30250	SBR — Links & Navigation                  | Invoice links use theme-primary; customer links use the body color  | v3.4.1-3d03023 8/4/2026
+C30251	SBR — Links & Navigation                  | An unavailable link destination shows the standard not-found state  | v3.4.1-3d03023 8/4/2026
+C43559	SBR — Links & Navigation                  | Invoice # and customer name when you cannot open what they point a  | none none
+C30298	SBR — Loading, Empty & Error States       | Empty state: verbatim message, no grand Totals, toolbar stays inte  | v3.4.1-3d03023 8/4/2026
+C30300	SBR — Loading, Empty & Error States       | Loading shows a centered spinner over the data area and hides the   | v3.4.1-3d03023 8/4/2026
+C30301	SBR — Loading, Empty & Error States       | A load failure shows the inline could-not-load message with a Retr  | v3.4.1-3d03023 8/4/2026
+C30213	SBR — Location Filter                     | Location filter is the rightmost control with an All Locations opt  | v3.4.1-3d03023 8/4/2026
+C30215	SBR — Location Filter                     | Location selection cascades; an inaccessible location's data is ne  | v3.4.1-3d03023 8/4/2026
+C30216	SBR — Location Filter                     | Sales By Representative: Location filter hidden for a one-location  | v3.4.1-3d03023 8/4/2026
+C38913	SBR — Location Filter                     | The Location column shows only with more than one location; rep ro  | v3.4.1-3d03023 8/4/2026
+C30302	SBR — Mobile                              | On a phone every toolbar control works on touch                     | v3.4.1-3d03023 8/4/2026
+C30303	SBR — Mobile                              | On a phone the table scrolls sideways with Subtotal pinned outside  | v3.4.1-3d03023 8/4/2026
+C30304	SBR — Mobile                              | Touch targets are at least 44×44 px and touch users get no hover-o  | v3.4.1-3d03023 8/4/2026
+C30226	SBR — Payment Status Badge                | Status badge between Customer and Inv. Hrs; every detail row shows  | v3.4.1-3d03023 8/4/2026
+C30227	SBR — Payment Status Badge                | Badge colors use the canonical payment-status tokens in light and   | v3.4.1-3d03023 8/4/2026
+C30198	SBR — Permissions                         | Sales By Representative is visible to anyone who sees another Perf  | v3.4.1-3d03023 8/4/2026
+C30199	SBR — Permissions                         | Without Reports access: no navigation, no export menu, no Export d  | v3.4.1-3d03023 8/4/2026
+C30200	SBR — Permissions                         | Without staff-administration access the deactivation flow is unrea  | v3.4.1-3d03023 8/4/2026
+C30271	SBR — Persistence                         | All filter and view settings are restored before the first data fe  | v3.4.1-3d03023 8/4/2026
+C30272	SBR — Persistence                         | Expansion state and scroll position are not remembered and reset o  | v3.4.1-3d03023 8/4/2026
+C30273	SBR — Persistence                         | A stale saved value falls back to its default and never errors      | v3.4.1-3d03023 8/4/2026
+C30274	SBR — Persistence                         | First visit or cleared storage yields all defaults; no server-side  | v3.4.1-3d03023 8/4/2026
+C30275	SBR — Persistence                         | The A to Z default is its own saved value                           | v3.4.1-3d03023 8/4/2026
+C30206	SBR — Product Type Filter                 | Product Type: three options, Parts & Service default, each option   | v3.4.1-3d03023 8/4/2026
+C30217	SBR — Rep Rows & Tree                     | A rep row appears only when the rep has a matching non-reversed in  | v3.4.1-3d03023 8/4/2026
+C30218	SBR — Rep Rows & Tree                     | Row layout: 12 columns in order, blanks in position, bold summary   | v3.4.1-3d03023 8/4/2026
+C30219	SBR — Rep Rows & Tree                     | A toggled-off or deleted contributor still appears; tagged (Inacti  | v3.4.1-3d03023 8/4/2026
+C30221	SBR — Rep Rows & Tree                     | Expanding a rep loads its invoices on demand with a row-level spin  | v3.4.1-3d03023 8/4/2026
+C30222	SBR — Rep Rows & Tree                     | The header chevron expands every visible rep and its glyph tracks   | v3.4.1-3d03023 8/4/2026
+C30223	SBR — Rep Rows & Tree                     | Each invoice appears under exactly one rep or the Unassigned row    | v3.4.1-3d03023 8/4/2026
+C30224	SBR — Rep Rows & Tree                     | Expansion survives filter and sort changes within the session, res  | v3.4.1-3d03023 8/4/2026
+C30225	SBR — Rep Rows & Tree                     | Detail rows run newest first with a numeric invoice-number tie-bre  | v3.4.1-3d03023 8/4/2026
+C30292	SBR — Sales Rep Assignments Export        | Report Name dropdown lists Sales Representative Assignments at the  | v3.4.1-3d03023 8/4/2026
+C30293	SBR — Sales Rep Assignments Export        | Sales Representative Assignments CSV: file name, headers, success   | v3.4.1-3d03023 8/4/2026
+C30294	SBR — Sales Rep Assignments Export        | Assignments CSV: one row per assigned customer, sorted customer th  | v3.4.1-3d03023 8/4/2026
+C30295	SBR — Sales Rep Assignments Export        | "Rep is active?" tracks the staff-active status, not the toggle     | v3.4.1-3d03023 8/4/2026
+C30296	SBR — Sales Rep Assignments Export        | A deleted rep record still exports one row from the stored name, m  | v3.4.1-3d03023 8/4/2026
+C30297	SBR — Sales Rep Assignments Export        | Assignments export failure and nothing-to-export use the dialog's   | v3.4.1-3d03023 8/4/2026
+C30261	SBR — Show Unassigned                     | Show Unassigned sits between the column selector and the date pick  | v3.4.1-3d03023 8/4/2026
+C30262	SBR — Show Unassigned                     | Show Unassigned adds one top-pinned Unassigned row that acts like   | v3.4.1-3d03023 8/4/2026
+C30264	SBR — Show Unassigned                     | No empty Unassigned row is ever rendered                            | v3.4.1-3d03023 8/4/2026
+C30241	SBR — Sorting                             | All eight financial columns are sortable                            | v3.4.1-3d03023 8/4/2026
+C30242	SBR — Sorting                             | Default order is plain A to Z by display name, case-insensitive     | v3.4.1-3d03023 8/4/2026
+C30243	SBR — Sorting                             | First header click sorts ascending; second descending; no third st  | v3.4.1-3d03023 8/4/2026
+C30244	SBR — Sorting                             | Sorting reorders rep rows only; Unassigned stays pinned on top      | v3.4.1-3d03023 8/4/2026
+C30245	SBR — Sorting                             | Ties keep the A to Z order and an em-dash Margin % sorts as zero    | v3.4.1-3d03023 8/4/2026
+C30253	SBR — Staff Deactivation                  | Deactivate dialog: counted pluralized headline, reassurance, focus  | v3.4.1-3d03023 8/4/2026
+C30254	SBR — Staff Deactivation                  | Type-YES gate: auto-focus; case-insensitive match; Enter submits    | v3.4.1-3d03023 8/4/2026
+C30255	SBR — Staff Deactivation                  | Cancel and X dismiss the Deactivate dialog; Escape and clicking ou  | v3.4.1-3d03023 8/4/2026
+C30256	SBR — Staff Deactivation                  | Valid submit locks the dialog, then deactivates keeping assignment  | v3.4.1-3d03023 8/4/2026
+C30257	SBR — Staff Deactivation                  | After deactivation: toggle unchanged, CSV shows No, report credit   | v3.4.1-3d03023 8/4/2026
+C30258	SBR — Staff Deactivation                  | No dialog: toggle off, no assignments, already inactive, or reacti  | v3.4.1-3d03023 8/4/2026
+C30259	SBR — Staff Deactivation                  | A deactivation failure shows the error toast and leaves the status  | v3.4.1-3d03023 8/4/2026
+C30260	SBR — Staff Deactivation                  | If the assignment pre-check fails, the warning dialog still opens   | v3.4.1-3d03023 8/4/2026
+C30237	SBR — Subtotal & Totals                   | Subtotal: rightmost, pinned right, bold everywhere; header row sti  | v3.4.1-3d03023 8/4/2026
+C30238	SBR — Subtotal & Totals                   | Desktop Totals row merges the identifier columns and sticks to the  | v3.4.1-3d03023 8/4/2026
+C30239	SBR — Subtotal & Totals                   | Mobile shows a simplified totals bar below the table; Subtotal at   | v3.4.1-3d03023 8/4/2026
+C30305	SBR — Visual Conformance & Accessibility  | Layout: white toolbar; blue-grey page; separator; edge-to-edge whi  | v3.4.1-3d03023 8/4/2026
+C30306	SBR — Visual Conformance & Accessibility  | Dark mode: page, toolbar, table; Totals switch to dark equivalents  | v3.4.1-3d03023 8/4/2026
+C30307	SBR — Visual Conformance & Accessibility  | Every icon-only control carries its specified accessible name       | v3.4.1-3d03023 8/4/2026
+C30308	SBR — Visual Conformance & Accessibility  | Chevrons and sortable headers are keyboard-operable and expose the  | v3.4.1-3d03023 8/4/2026
+C30309	SBR — Visual Conformance & Accessibility  | The subdued grey of the (N) count and (Inactive) tag meets WCAG AA  | v3.4.1-3d03023 8/4/2026
+C30310	SBR — Work Order Sales Rep                | Sales Representative selector shows on WO and Part Sale, not on im  | v3.4.1-3d03023 8/4/2026
+C30311	SBR — Work Order Sales Rep                | Selector offers only reps whose sales-representative toggle is on   | v3.4.1-3d03023 8/4/2026
+C30312	SBR — Work Order Sales Rep                | A new WO opens with Sales Representative unassigned; a change save  | v3.4.1-3d03023 8/4/2026
+C30313	SBR — Work Order Sales Rep                | The Sales Representative selector is read-only when Invoiced or Pa  | v3.4.1-3d03023 8/4/2026
+C30314	SBR — Work Order Sales Rep                | Invoice credit snapshot: WO rep, else customer rep, else unassigne  | v3.4.1-3d03023 8/4/2026
+C30315	SBR — Work Order Sales Rep                | Customer record shows a "Sales Representative" row; "Unassigned" w  | v3.4.1-3d03023 8/4/2026
+C30442	TU — Location Filter                      | The Location filter is the rightmost multi-select; All Locations =  | v3.5-16cf83f 8/5/2026
+C38859	TU — Visual & Accessibility               | Column Selection: Technician always on, the other five toggleable,  | v3.5-16cf83f 8/5/2026
+C30528	WIP — API                                 | Nightly snapshot records one row per then-open job per calendar da  | v3.4.1-3d03023 8/4/2026
+C30530	WIP — API                                 | Captured Earned and Remaining use the same maths as the on-screen   | v3.4.1-3d03023 8/4/2026
+C30531	WIP — API                                 | Nightly snapshot spans every location with no user location filter  | v3.4.1-3d03023 8/4/2026
+C30533	WIP — API                                 | Nightly snapshot: a job with nothing approved is captured at $0.00  | v3.4.1-3d03023 8/4/2026
+C30506	WIP — Column Selection & Persistence      | Column Selection toggles columns; Total is not offered at all       | v3.5-16cf83f 8/5/2026
+C30507	WIP — Column Selection & Persistence      | Toggling columns never reorders them (Total always last)            | v3.4.1-3d03023 8/4/2026
+C30508	WIP — Column Selection & Persistence      | Remembers the date range, filter selections, location, columns      | v3.4.1-3d03023 8/4/2026
+C30509	WIP — Column Selection & Persistence      | A saved setting that is no longer valid falls back to its default   | v3.4.1-3d03023 8/4/2026
+C43551	WIP — Column Selection & Persistence      | A hand-made Location column choice is remembered like any other co  | none none
+C30466	WIP — Columns & Rows                      | With all toggleable columns on, the fixed column order and alignme  | v3.4.1-3d03023 8/4/2026
+C30467	WIP — Columns & Rows                      | First visit shows the default columns; the rest are in the column   | v3.4.1-3d03023 8/4/2026
+C30473	WIP — Columns & Rows                      | Last Activity shows Today; Xd ago; or an em-dash when there is non  | v3.4.1-3d03023 8/4/2026
+C30475	WIP — Earned & Remaining                  | Labor Earned is the clocked share of each approved line's quoted v  | v3.4.1-3d03023 8/4/2026
+C30476	WIP — Earned & Remaining                  | Labor Remaining is the approved labor's quoted value minus Labor E  | v3.4.1-3d03023 8/4/2026
+C30477	WIP — Earned & Remaining                  | Parts Earned is the sell value of approved-line parts already rece  | v3.4.1-3d03023 8/4/2026
+C30478	WIP — Earned & Remaining                  | Parts Remaining values the not-yet-received quantity at its sell p  | v3.4.1-3d03023 8/4/2026
+C30480	WIP — Earned & Remaining                  | Lines that are not yet approved contribute nothing to any money fi  | v3.4.1-3d03023 8/4/2026
+C30481	WIP — Earned & Remaining                  | Inv. Hrs shows quoted minus worked hours; signed to one decimal     | v3.4.1-3d03023 8/4/2026
+C30482	WIP — Earned & Remaining                  | An open estimate with no approved work shows $0.00 in every money   | v3.4.1-3d03023 8/4/2026
+C38890	WIP — Earned & Remaining                  | A technician still clocked in counts toward Labor Earned, capped a  | v3.4.1-3d03023 8/4/2026
+C30511	WIP — Exports                             | Downloads keep shown columns, honor filters, include the tab's Tot  | v3.4.1-3d03023 8/4/2026
+C30500	WIP — Filters                             | Asset filter shows Unit # and VIN and matches text against either   | v3.5-16cf83f 8/5/2026
+C30501	WIP — Filters                             | The date range offers the presets plus Custom; This Week default;   | v3.4.1-3d03023 8/4/2026
+C30502	WIP — Filters                             | The date range filters on the WO's created date and reloads on cha  | v3.5-16cf83f 8/5/2026
+C30503	WIP — Filters                             | Location filter: rightmost multi-select with All locations, reload  | v3.4.1-3d03023 8/4/2026
+C30504	WIP — Filters                             | The location scope never includes an inaccessible location          | v3.4.1-3d03023 8/4/2026
+C38916	WIP — Filters                             | The Location column is automatic and never reads Multiple on a wor  | v3.4.1-3d03023 8/4/2026
+C30526	WIP — Permissions                         | Ordinary reports access covers opening and downloading Work In Pro  | v3.4.1-3d03023 8/4/2026
+C30527	WIP — Permissions                         | Without reports access Work In Progress is absent from the navigat  | v3.4.1-3d03023 8/4/2026
+C30456	WIP — Scope & Loading                     | Every open service WO at a selected location appears in the report  | v3.4.1-3d03023 8/4/2026
+C30457	WIP — Scope & Loading                     | Invoiced; Paid and part-sale work orders never appear               | v3.4.1-3d03023 8/4/2026
+C30458	WIP — Scope & Loading                     | Each qualifying work order appears exactly once in exactly one tab  | v3.4.1-3d03023 8/4/2026
+C30459	WIP — Scope & Loading                     | While loading the standard indicator shows and old rows stay until  | v3.4.1-3d03023 8/4/2026
+C30460	WIP — Scope & Loading                     | No qualifying work orders: every tab shows the no-data message and  | v3.4.1-3d03023 8/4/2026
+C30484	WIP — Sorting                             | Clicking a header sorts ascending, clicking again toggles descendi  | v3.4.1-3d03023 8/4/2026
+C30485	WIP — Sorting                             | Columns sort by their underlying values; Asset sorts by the Unit #  | v3.4.1-3d03023 8/4/2026
+C30486	WIP — Sorting                             | Sorting reorders only the active tab's rows; Totals stays at the b  | v3.4.1-3d03023 8/4/2026
+C30490	WIP — Summary Strip                       | Each per-stage figure equals the matching tab's money total         | v3.4.1-3d03023 8/4/2026
+C30491	WIP — Summary Strip                       | The Estimates figure is the Estimates tab's total quoted value, sh  | v3.4.1-3d03023 8/4/2026
+C30462	WIP — Tab Placement                       | Status-to-tab mapping: Estimate, Complete, In Progress and Review   | v3.4.1-3d03023 8/4/2026
+C30464	WIP — Tab Placement                       | Approved started-boundary: time or part received vs neither decide  | v3.4.1-3d03023 8/4/2026
+C30520	WIP — Visual & Accessibility              | The summary strip is a bold band ruled top and bottom above the ta  | v3.4.1-3d03023 8/4/2026
+C30521	WIP — Visual & Accessibility              | The Total column is bold and stays pinned right on sideways scroll  | v3.4.1-3d03023 8/4/2026
+C30522	WIP — Visual & Accessibility              | The Totals row stays visible while only the active tab's body scro  | v3.4.1-3d03023 8/4/2026
+C30525	WIP — Visual & Accessibility              | In dark mode every table; strip; link and coloring stays legible    | v3.4.1-3d03023 8/4/2026
+
+====================================================================================================================
+= SECTION B - VERDICTED TODAY BY THE FIRST SESSION ON THE SUPERSEDED BUILD (219 cases)
+====================================================================================================================
+C30605	IV — API                                  | Nightly snapshot records one row per in-stock non-core part per lo  | v3.5-16cf83f 8/6/2026
+C30606	IV — API                                  | A recorded snapshot day equals what the live report showed that da  | v3.5-16cf83f 8/6/2026
+C30607	IV — API                                  | Nightly snapshot: re-running the capture for a date replaces that   | v3.5-16cf83f 8/6/2026
+C30609	IV — API                                  | Snapshot retention: daily captures are kept for 0–13 months         | v3.5-16cf83f 8/6/2026
+C30610	IV — API                                  | Thinned history still served by the closest-recorded-day rule       | v3.5-16cf83f 8/6/2026
+C30534	IV — Access & Display                     | Inventory Value appears in the reports navigation under the Parts   | v3.5-16cf83f 8/6/2026
+C30535	IV — Access & Display                     | One row per in-stock part at the selected locations valued at the   | v3.5-16cf83f 8/6/2026
+C30536	IV — Access & Display                     | First visit defaults to the current calendar month and the active   | v3.5-16cf83f 8/6/2026
+C30538	IV — Access & Display                     | The report is server-paginated: one page of rows at a time          | v3.5-16cf83f 8/6/2026
+C30539	IV — Access & Display                     | No qualifying parts, day or location: the no-data message shows an  | v3.5-16cf83f 8/6/2026
+C30561	IV — As-of Date & Snapshots               | Date range offers the standard presets plus Custom; no All Time op  | v3.5-16cf83f 8/6/2026
+C30562	IV — As-of Date & Snapshots               | The report values inventory as of the END of the selected range     | v3.5-16cf83f 8/6/2026
+C30563	IV — As-of Date & Snapshots               | A window reaching today with today not yet recorded values live st  | v3.5-16cf83f 8/6/2026
+C30564	IV — As-of Date & Snapshots               | For a past date the report replays the closest recorded day on or   | v3.5-16cf83f 8/6/2026
+C30565	IV — As-of Date & Snapshots               | "As of" indicator names the day shown; hidden when it matches the   | v3.5-16cf83f 8/6/2026
+C30566	IV — As-of Date & Snapshots               | A Custom range values stock as of the picked end date; capped at t  | v3.5-16cf83f 8/6/2026
+C30568	IV — As-of Date & Snapshots               | History accrues forward only; a pre-first-recording date is not sh  | v3.5-16cf83f 8/6/2026
+C38892	IV — As-of Date & Snapshots               | A recorded day keeps its category and vendor names after a rename   | v3.5-16cf83f 8/6/2026
+C30579	IV — Column Selection & Persistence       | Column Selection toggles columns; Total Cost cannot be turned off   | v3.5-16cf83f 8/6/2026
+C30580	IV — Column Selection & Persistence       | Toggling columns never reorders them                                | v3.5-16cf83f 8/6/2026
+C30581	IV — Column Selection & Persistence       | The report remembers all filters; columns and sort per browser      | v3.5-16cf83f 8/6/2026
+C30582	IV — Column Selection & Persistence       | Defensive restore: a stale saved category or vendor is dropped on   | v3.5-16cf83f 8/6/2026
+C30587	IV — Exports                              | Inventory Value: a three-dot menu holds Download (PDF) and Downloa  | v3.5-16cf83f 8/6/2026
+C30588	IV — Exports                              | Downloads keep shown columns and order, honor filters, and include  | v3.5-16cf83f 8/6/2026
+C30589	IV — Exports                              | Export number formats: money to 2 decimals; Margin % to 1 with em-  | v3.5-16cf83f 8/6/2026
+C30590	IV — Exports                              | PDF header shows report name; org; period and an as-of line; logo   | v3.5-16cf83f 8/6/2026
+C30591	IV — Exports                              | Downloaded files are named inventory-value-report.pdf and .csv      | v3.5-16cf83f 8/6/2026
+C30593	IV — Exports                              | An over-cap set produces no file and shows the too-large-to-export  | v3.5-16cf83f 8/6/2026
+C30595	IV — Exports                              | Download notifications: verbatim success and failure texts per for  | v3.5-16cf83f 8/6/2026
+C43548	IV — Exports                              | A large Inventory Value PDF fails instead of being refused politel  | v3.5-16cf83f 8/6/2026
+C30569	IV — Filters & Part Search                | Category and Vendor multi-selects reload the report to matching pa  | v3.5-16cf83f 8/6/2026
+C30570	IV — Filters & Part Search                | Category, Vendor and part search are server-side; each change retu  | v3.5-16cf83f 8/6/2026
+C30571	IV — Filters & Part Search                | With no category or vendor selected all parts show                  | v3.5-16cf83f 8/6/2026
+C30572	IV — Filters & Part Search                | Part search matches part number or description on the server; case  | v3.5-16cf83f 8/6/2026
+C30573	IV — Filters & Part Search                | Date range, Location, Category, Vendor, and the part search combin  | v3.5-16cf83f 8/6/2026
+C30574	IV — Location Filter                      | The Location filter is a rightmost multi-select with an All locati  | v3.5-16cf83f 8/6/2026
+C30575	IV — Location Filter                      | Selecting one, several, or all locations reloads the report scoped  | v3.5-16cf83f 8/6/2026
+C30576	IV — Location Filter                      | Scoping never includes an inaccessible location                     | v3.5-16cf83f 8/6/2026
+C30577	IV — Location Filter                      | Inventory Value: the Location filter is hidden for a one-location   | v3.5-16cf83f 8/6/2026
+C38917	IV — Location Filter                      | The Location column sits after Vendor and never reads Multiple      | v3.5-16cf83f 8/6/2026
+C30603	IV — Permissions                          | A user with ordinary reports access can open Inventory Value        | v3.5-16cf83f 8/6/2026
+C30604	IV — Permissions                          | Without reports access Inventory Value is absent from the navigati  | v3.5-16cf83f 8/6/2026
+C30540	IV — Row Scope                            | A part appears only if not a core charge and on-hand quantity is a  | v3.5-16cf83f 8/6/2026
+C30541	IV — Row Scope                            | A part stocked at two selected locations shows as two rows; never   | v3.5-16cf83f 8/6/2026
+C30583	IV — Sorting                              | Rows are sorted by Total Cost highest first on load and after any   | v3.5-16cf83f 8/6/2026
+C30584	IV — Sorting                              | Header clicks sort ascending then descending; no third state; page  | v3.5-16cf83f 8/6/2026
+C30585	IV — Sorting                              | Money and numeric columns sort by value; text columns sort as text  | v3.5-16cf83f 8/6/2026
+C30556	IV — Totals Row                           | Totals row: Total label, blank identity/per-unit cells, pinned bol  | v3.5-16cf83f 8/6/2026
+C30557	IV — Totals Row                           | Totals row sums the FULL filtered set on the server, not just the   | v3.5-16cf83f 8/6/2026
+C30558	IV — Totals Row                           | Totals-row Margin % is recomputed from the totals; not an average   | v3.5-16cf83f 8/6/2026
+C30545	IV — Valuation & Columns                  | Unit Sell uses the part's fixed sell price when one is set          | v3.5-16cf83f 8/6/2026
+C30546	IV — Valuation & Columns                  | With no fixed sell price Unit Sell is the category's pricing-matri  | v3.5-16cf83f 8/6/2026
+C30547	IV — Valuation & Columns                  | With no fixed sell price and no category, Unit Sell equals Unit Co  | v3.5-16cf83f 8/6/2026
+C30548	IV — Valuation & Columns                  | Total Sell is quantity × Unit Sell and Total Cost is quantity × Un  | v3.5-16cf83f 8/6/2026
+C30549	IV — Valuation & Columns                  | Margin is Total Sell minus Total Cost for the whole on-hand quanti  | v3.5-16cf83f 8/6/2026
+C30550	IV — Valuation & Columns                  | Margin % is Margin over Total Sell to one decimal; em-dash when Se  | v3.5-16cf83f 8/6/2026
+C30551	IV — Valuation & Columns                  | With every column on they appear in the fixed order with the set a  | v3.5-16cf83f 8/6/2026
+C30552	IV — Valuation & Columns                  | Value formats: Qty to two decimals; money as US-dollar currency     | v3.5-16cf83f 8/6/2026
+C30553	IV — Valuation & Columns                  | Total Cost is bold and pinned far right; it stays put on sideways   | v3.5-16cf83f 8/6/2026
+C30554	IV — Valuation & Columns                  | On a first visit the default columns show and the rest stay availa  | v3.5-16cf83f 8/6/2026
+C30555	IV — Valuation & Columns                  | Category and Vendor show their names; an em dash ("—") when the pa  | v3.5-16cf83f 8/6/2026
+C30596	IV — Visual & Accessibility               | All-white table with no row shading on the standard report backdro  | v3.5-16cf83f 8/6/2026
+C30597	IV — Visual & Accessibility               | Toolbar layout: menu leftmost then Column Selection; then the 5 fi  | v3.5-16cf83f 8/6/2026
+C30599	IV — Visual & Accessibility               | Long Description; Category and Vendor truncate on hover; Part # ne  | v3.5-16cf83f 8/6/2026
+C30600	IV — Visual & Accessibility               | In dark mode the page background, toolbar, cells; the "—" glyph re  | v3.5-16cf83f 8/6/2026
+C30601	IV — Visual & Accessibility               | Each sortable header exposes its sort state and shows the directio  | v3.5-16cf83f 8/6/2026
+C30602	IV — Visual & Accessibility               | The icon-only download and Column Selection buttons carry accessib  | v3.5-16cf83f 8/6/2026
+C30388	PV — API                                  | The report is server-paginated - the backend returns one page of r  | v3.5-16cf83f 8/6/2026
+C30389	PV — API                                  | Each filter or search change re-queries the server and returns pag  | v3.5-16cf83f 8/6/2026
+C30390	PV — API                                  | Header-click sorting re-queries the server; nulls first asc and la  | v3.5-16cf83f 8/6/2026
+C30322	PV — Access & Defaults                    | Parts Velocity appears under a new Parts section in the Reports na  | v3.5-16cf83f 8/6/2026
+C30323	PV — Access & Defaults                    | First visit: date range defaults to This Year and data is fetched   | v3.5-16cf83f 8/6/2026
+C30324	PV — Access & Defaults                    | A loading indicator shows and old rows are replaced only when data  | v3.5-16cf83f 8/6/2026
+C30359	PV — Columns & Calculations               | Units Sold for an inventory part is net stock movement              | v3.5-16cf83f 8/6/2026
+C30360	PV — Columns & Calculations               | Special Order Units Sold = in-window request quantity, net of reve  | v3.5-16cf83f 8/6/2026
+C30361	PV — Columns & Calculations               | Units Returned counts initiated part returns and parts-sale credit  | v3.5-16cf83f 8/6/2026
+C30362	PV — Columns & Calculations               | Units Returned is windowed by initiation date, ignores invoice sta  | v3.5-16cf83f 8/6/2026
+C30363	PV — Columns & Calculations               | Sold (WO) counts Service work orders, Sold (Parts Sale) counts Par  | v3.5-16cf83f 8/6/2026
+C30364	PV — Columns & Calculations               | Demand counts each transaction once; a reversal neither adds nor s  | v3.5-16cf83f 8/6/2026
+C30365	PV — Columns & Calculations               | Last Sale is whole days since the most recent sale over all-time h  | v3.5-16cf83f 8/6/2026
+C30366	PV — Columns & Calculations               | On Hand shows the row's own location stock                          | v3.5-16cf83f 8/6/2026
+C30367	PV — Columns & Calculations               | Turns / Yr annualizes the sales rate, is 0.00 at zero stock, can b  | v3.5-16cf83f 8/6/2026
+C30368	PV — Columns & Calculations               | Revenue, Margin, Unit Cost, Sell Price and Margin % use the billed  | v3.5-16cf83f 8/6/2026
+C30369	PV — Columns & Calculations               | A reversed or voided sale is excluded from every billed-line colum  | v3.5-16cf83f 8/6/2026
+C30370	PV — Columns & Calculations               | Unit Cost / Sell Price and Margin % use independent null triggers   | v3.5-16cf83f 8/6/2026
+C30371	PV — Columns & Calculations               | Number formats match the spec per column; rounding is half away fr  | v3.5-16cf83f 8/6/2026
+C30372	PV — Columns & Calculations               | Core parts are excluded from both the inventory and special-order   | v3.5-16cf83f 8/6/2026
+C30373	PV — Columns & Calculations               | Movement and billed bases may differ; Sold (WO) + Sold (Parts Sale  | v3.5-16cf83f 8/6/2026
+C30374	PV — Columns & Calculations               | Window anchors: movement uses the event date, billed uses the WO d  | v3.5-16cf83f 8/6/2026
+C38924	PV — Columns & Calculations               | Units Sold keeps an exact part-of-a-unit quantity and is never rou  | v3.5-16cf83f 8/6/2026
+C30351	PV — Columns & Remembered View            | Column picker lists all 20 columns and never offers the internal c  | v3.5-16cf83f 8/6/2026
+C30352	PV — Columns & Remembered View            | First visit shows exactly the 14 default columns in the specified   | v3.5-16cf83f 8/6/2026
+C30353	PV — Columns & Remembered View            | A re-enabled column returns to its canonical slot, with no reload   | v3.5-16cf83f 8/6/2026
+C30354	PV — Columns & Remembered View            | Filters; columns and sort are remembered per browser before the fi  | v3.5-16cf83f 8/6/2026
+C30358	PV — Columns & Remembered View            | All 20 columns can be hidden; the empty selection is never restore  | v3.5-16cf83f 8/6/2026
+C30375	PV — Exports                              | The overflow button opens Download (PDF) then Download (CSV) in th  | v3.5-16cf83f 8/6/2026
+C30376	PV — Exports                              | Both exports reflect the filters and search active at the time of   | v3.5-16cf83f 8/6/2026
+C30377	PV — Exports                              | Exports include only the enabled columns, in the canonical on-scre  | v3.5-16cf83f 8/6/2026
+C30378	PV — Exports                              | Exports reflect the active sort, including Min/Max and null placem  | v3.5-16cf83f 8/6/2026
+C30379	PV — Exports                              | PDF: filename, A3 landscape, title, text truncation, and the shop   | v3.5-16cf83f 8/6/2026
+C30380	PV — Exports                              | CSV is named velocity-report.csv and holds full untruncated text v  | v3.5-16cf83f 8/6/2026
+C30381	PV — Exports                              | Em-dash in both exports; Last Sale reads "N days" in the PDF        | v3.5-16cf83f 8/6/2026
+C30384	PV — Exports                              | Export toasts: exact success texts; server or fallback error text   | v3.5-16cf83f 8/6/2026
+C38885	PV — Exports                              | An over-cap Parts Velocity export is refused with the too-large me  | v3.5-16cf83f 8/6/2026
+C43547	PV — Exports                              | A large PDF download fails outright while the CSV of the same view  | v3.5-16cf83f 8/6/2026
+C30328	PV — Filters                              | Type filter: single-select, first in row, three options, default B  | v3.5-16cf83f 8/6/2026
+C30330	PV — Filters                              | Date range selector offers exactly the eleven bounded options and   | v3.5-16cf83f 8/6/2026
+C30333	PV — Filters                              | Toolbar search matches part number or description, case-insensitiv  | v3.5-16cf83f 8/6/2026
+C30335	PV — Filters                              | The Bin multi-select limits the table to parts stocked in those bi  | v3.5-16cf83f 8/6/2026
+C30336	PV — Filters                              | Bin filter excludes special-order rows; Bin plus that Type is empt  | v3.5-16cf83f 8/6/2026
+C30337	PV — Filters                              | Location filter is rightmost, defaults to the active location, acc  | v3.5-16cf83f 8/6/2026
+C30338	PV — Filters                              | Empty state shows the standard no-data message when no parts match  | v3.5-16cf83f 8/6/2026
+C38914	PV — Filters                              | The Location column shows only with more than one location, leftmo  | v3.5-16cf83f 8/6/2026
+C30341	PV — Row Model                            | A part stocked at two selected locations shows as two per-location  | v3.5-16cf83f 8/6/2026
+C30342	PV — Row Model                            | A Special Order part is one merged row summed across selected loca  | v3.5-16cf83f 8/6/2026
+C30343	PV — Row Model                            | Rows load ranked by Demand descending, indicator on the Demand hea  | v3.5-16cf83f 8/6/2026
+C30344	PV — Row Model                            | A header click sorts ascending first, toggles, and places nulls by  | v3.5-16cf83f 8/6/2026
+C30345	PV — Row Model                            | Sticky header, all-left alignment on screen, and plain-text Type v  | v3.5-16cf83f 8/6/2026
+C30346	PV — Row Model                            | Info icons sit on Units Sold, Demand and Turns/Yr with description  | v3.5-16cf83f 8/6/2026
+C30347	PV — Row Model                            | Description; Category and Vendor truncate on hover; Part # never d  | v3.5-16cf83f 8/6/2026
+C30348	PV — Row Model                            | Em-dash only in nullable fields; counts and Revenue/Margin are nev  | v3.5-16cf83f 8/6/2026
+C30190	SBC — API                                 | Asset and invoice rows are fetched on first expand; one call per c  | v3.5-16cf83f 8/6/2026
+C30194	SBC — API                                 | Exports are server-generated and the 10,000-row cap is counted fir  | v3.5-16cf83f 8/6/2026
+C30134	SBC — Asset Labels                        | Asset identified by VIN, falling back to Unit #, then plate         | v3.5-16cf83f 8/6/2026
+C30156	SBC — Column Selector                     | Column selector is its own toolbar button with nine toggles all on  | v3.5-16cf83f 8/6/2026
+C30115	SBC — Customer Filter                     | First load starts in the all-customers state and the report shows   | v3.5-16cf83f 8/6/2026
+C30102	SBC — Date Range Filter                   | Date range picker offers nine periods in the specified order, no A  | v3.5-16cf83f 8/6/2026
+C30105	SBC — Date Range Filter                   | Changing the date range writes it into the page link for sharing    | v3.5-16cf83f 8/6/2026
+C30159	SBC — Exports                             | The overflow menu holds exactly the four download items - no Print  | v3.5-16cf83f 8/6/2026
+C30160	SBC — Exports                             | Download file names carry the version and the active date range     | v3.5-16cf83f 8/6/2026
+C30161	SBC — Exports                             | Expanded View CSV: column order, blank-cell rules, and the Locatio  | v3.5-16cf83f 8/6/2026
+C30162	SBC — Exports                             | CSV formats: Margin % plain; dates mm-dd-yyyy; currency plain; no   | v3.5-16cf83f 8/6/2026
+C30168	SBC — Exports                             | PDF logo is embedded, scales without distortion                     | v3.5-16cf83f 8/6/2026
+C30172	SBC — Exports                             | An export over 10,000 data rows is refused with the too-large toas  | v3.5-16cf83f 8/6/2026
+C30138	SBC — Invoice Links & Navigation          | The invoice number opens the invoice in the same browser tab        | v3.5-16cf83f 8/6/2026
+C30139	SBC — Invoice Links & Navigation          | Browser back from an invoice restores filters; sort and columns; r  | v3.5-16cf83f 8/6/2026
+C30140	SBC — Invoice Links & Navigation          | Customer name is plain text; the invoice link never turns visited-  | v3.5-16cf83f 8/6/2026
+C30107	SBC — Product Type Filter                 | Product Type: three options with Parts & Service default; S/P pref  | v3.5-16cf83f 8/6/2026
+C30143	SBC — Sorting                             | Default sort is Customer name ascending case-insensitive            | v3.5-16cf83f 8/6/2026
+C30149	SBC — Totals & Calculations               | Financial columns run in the specified order with Subtotal and Mar  | v3.5-16cf83f 8/6/2026
+C30150	SBC — Totals & Calculations               | Margin % is Margin over Subtotal to one decimal; em dash when Subt  | v3.5-16cf83f 8/6/2026
+C30151	SBC — Totals & Calculations               | Inv. Hrs heading is verbatim; value shows +green / -red / 0.0 on e  | v3.5-16cf83f 8/6/2026
+C30152	SBC — Totals & Calculations               | Inv. Hrs is never blank: no-labor rows and near-zero values both s  | v3.5-16cf83f 8/6/2026
+C30154	SBC — Totals & Calculations               | Subtotal is the rightmost column; pinned on scroll and bold everyw  | v3.5-16cf83f 8/6/2026
+C30121	SBC — Tree & Rows                         | Each customer gets one summary row with its invoice count in paren  | v3.5-16cf83f 8/6/2026
+C30124	SBC — Tree & Rows                         | Expanding an asset reveals its invoice rows with number link and d  | v3.5-16cf83f 8/6/2026
+C30125	SBC — Tree & Rows                         | Invoices group into one asset row per vehicle record                | v3.5-16cf83f 8/6/2026
+C30126	SBC — Tree & Rows                         | Asset rows order A to Z with the Parts Sales bucket always last     | v3.5-16cf83f 8/6/2026
+C30133	SBC — Tree & Rows                         | Every row type renders the same columns in the same order           | v3.5-16cf83f 8/6/2026
+C30320	SBR — API                                 | The Expanded View PDF's 10,000-row cap is enforced server-side BEF  | v3.5-16cf83f 8/6/2026
+C30287	SBR — Exports                             | CSV cells: plain numbers, signed Inv. Hrs, empty Margin %, (Inacti  | v3.5-16cf83f 8/6/2026
+C30290	SBR — Exports                             | Over-cap Expanded View PDF is refused with the too-large message    | v3.5-16cf83f 8/6/2026
+C30449	TU — API                                  | The per-day breakdown is fetched only when a technician row is exp  | v3.5-16cf83f 8/6/2026
+C30450	TU — API                                  | Date-range and location changes trigger a fresh server load         | v3.5-16cf83f 8/6/2026
+C30392	TU — Access & Display                     | Technician Utilization sits under Performance, below existing repo  | v3.5-16cf83f 8/6/2026
+C30393	TU — Access & Display                     | One row per technician who clocked time in the range at those loca  | v3.5-16cf83f 8/6/2026
+C30394	TU — Access & Display                     | First visit defaults to the This Month preset and the user's activ  | v3.5-16cf83f 8/6/2026
+C30395	TU — Access & Display                     | Changing the date range reloads the rows; a Custom range is capped  | v3.5-16cf83f 8/6/2026
+C30396	TU — Access & Display                     | The loading indicator shows on load and reload; rows swap only on   | v3.5-16cf83f 8/6/2026
+C30397	TU — Access & Display                     | All clock records are day-grouped and windowed in one report-level  | v3.5-16cf83f 8/6/2026
+C30398	TU — Access & Display                     | Without reports access Technician Utilization is hidden             | v3.5-16cf83f 8/6/2026
+C30399	TU — Access & Display                     | Standard no-data message when no time in scope or all technicians   | v3.5-16cf83f 8/6/2026
+C30428	TU — Deep Links                           | Total Hours is a real link with a non-color affordance and keyboar  | v3.5-16cf83f 8/6/2026
+C30429	TU — Deep Links                           | The Total Hours link opens Timesheet Activities in the same tab     | v3.5-16cf83f 8/6/2026
+C30430	TU — Deep Links                           | Same range, single location, closed records: Total Hours matches T  | v3.5-16cf83f 8/6/2026
+C30431	TU — Deep Links                           | Reconcile exception (a): an open clock is snapshotted at each load  | v3.5-16cf83f 8/6/2026
+C30432	TU — Deep Links                           | Reconciliation exception (b): the link passes no location           | v3.5-16cf83f 8/6/2026
+C30433	TU — Deep Links                           | A day row's Total Hours links to that technician's single-day time  | v3.5-16cf83f 8/6/2026
+C30404	TU — Est. Lost Labor                      | Est. Lost Labor values internal hours at each location's default r  | v3.5-16cf83f 8/6/2026
+C30405	TU — Est. Lost Labor                      | Est. Lost Labor, when shown, is pinned right and bold with the inf  | v3.5-16cf83f 8/6/2026
+C30406	TU — Est. Lost Labor                      | Zero internal hours - or a configured $0.00 rate - shows $0.00, ne  | v3.5-16cf83f 8/6/2026
+C30407	TU — Est. Lost Labor                      | Internal hours with no default labor rate anywhere show an em-dash  | v3.5-16cf83f 8/6/2026
+C30408	TU — Est. Lost Labor                      | Internal hours split across rated and unrated locations show a par  | v3.5-16cf83f 8/6/2026
+C30434	TU — Exports                              | Three-dot menu is leftmost, then Column Selection; three download   | v3.5-16cf83f 8/6/2026
+C30435	TU — Exports                              | The Summary PDF holds the technician rows plus the Summary          | v3.5-16cf83f 8/6/2026
+C30436	TU — Exports                              | The CSV is always summary-level, quotes comma-containing values     | v3.5-16cf83f 8/6/2026
+C30437	TU — Exports                              | Downloads cover only selected technicians, locations, and date ran  | v3.5-16cf83f 8/6/2026
+C30438	TU — Exports                              | Downloads always order rows Technician A to Z; the on-screen sort   | v3.5-16cf83f 8/6/2026
+C30439	TU — Exports                              | PDF logo follows the uploaded logo; the spreadsheet never carries   | v3.5-16cf83f 8/6/2026
+C30440	TU — Exports                              | Choosing a download with no technician selected is a silent no-op   | v3.5-16cf83f 8/6/2026
+C30441	TU — Exports                              | A starting download notifies; a failed one shows the failure messa  | v3.5-16cf83f 8/6/2026
+C38887	TU — Exports                              | An over-cap Technician Utilization export is refused with the too-  | v3.5-16cf83f 8/6/2026
+C43552	TU — Exports                              | Both spreadsheet downloads hold the summary rows and no per-day ro  | v3.5-16cf83f 8/6/2026
+C30401	TU — Hours & Utilization                  | Headers in fixed order; Total, WO and Internal Hours show clocked   | v3.5-16cf83f 8/6/2026
+C30402	TU — Hours & Utilization                  | Utilization % is WO hours over total hours from unrounded values    | v3.5-16cf83f 8/6/2026
+C30403	TU — Hours & Utilization                  | A technician with only internal hours shows 0.0% utilization        | v3.5-16cf83f 8/6/2026
+C30443	TU — Location Filter                      | Location changes reload with hours pooled into one row per technic  | v3.5-16cf83f 8/6/2026
+C30444	TU — Location Filter                      | The saved location selection restores defensively; bad ones are dr  | v3.5-16cf83f 8/6/2026
+C30446	TU — Location Filter                      | Technician Utilization: Location filter hidden for a one-location   | v3.5-16cf83f 8/6/2026
+C38915	TU — Location Filter                      | The Location column shows only with more than one location; Summar  | v3.5-16cf83f 8/6/2026
+C30418	TU — Per-Day Breakdown                    | Each technician row has an accessible expand/collapse control       | v3.5-16cf83f 8/6/2026
+C30419	TU — Per-Day Breakdown                    | Expanding shows one row per clocked day in date order, loaded on d  | v3.5-16cf83f 8/6/2026
+C30420	TU — Per-Day Breakdown                    | Day rows use the same columns and formats as the technician rows    | v3.5-16cf83f 8/6/2026
+C30421	TU — Per-Day Breakdown                    | One control in the table header expands or collapses all technicia  | v3.5-16cf83f 8/6/2026
+C30422	TU — Per-Day Breakdown                    | Expansion state is view-only: it resets on any reload and fresh vi  | v3.5-16cf83f 8/6/2026
+C30409	TU — Sorting                              | On load rows sort by Technician A to Z with the ascending indicato  | v3.5-16cf83f 8/6/2026
+C30410	TU — Sorting                              | All six columns sort on screen: ascending first, toggling with no   | v3.5-16cf83f 8/6/2026
+C30411	TU — Sorting                              | A data reload resets the sort to Technician A to Z                  | v3.5-16cf83f 8/6/2026
+C30412	TU — Sorting                              | Sorting reorders only the technician rows                           | v3.5-16cf83f 8/6/2026
+C30413	TU — Sorting                              | Sorting Est. Lost Labor keeps em-dash rows last both ways; $0.00 s  | v3.5-16cf83f 8/6/2026
+C30414	TU — Summary                              | A pinned Summary row labeled Summary sits at the bottom, stays vis  | v3.5-16cf83f 8/6/2026
+C30415	TU — Summary                              | Summary totals visible technicians from unrounded hours; 0.01 drif  | v3.5-16cf83f 8/6/2026
+C30416	TU — Summary                              | Summary Utilization % is the weighted rate; not an average of the   | v3.5-16cf83f 8/6/2026
+C30417	TU — Summary                              | Summary Est. Lost Labor sums rated contributions; em-dash only if   | v3.5-16cf83f 8/6/2026
+C30423	TU — Technician Filter                    | Filter by Technician starts with every technician selected on a fi  | v3.5-16cf83f 8/6/2026
+C30424	TU — Technician Filter                    | Deselecting a technician hides the row and recalculates the Summar  | v3.5-16cf83f 8/6/2026
+C30425	TU — Technician Filter                    | All technicians and Clear all controls set every technician on or   | v3.5-16cf83f 8/6/2026
+C30426	TU — Technician Filter                    | Previously deselected technicians stay deselected on the next visi  | v3.5-16cf83f 8/6/2026
+C30447	TU — Visual & Accessibility               | All-white table with no row shading; toolbar controls in the fixed  | v3.5-16cf83f 8/6/2026
+C30448	TU — Visual & Accessibility               | Dark mode keeps every report element legible                        | v3.5-16cf83f 8/6/2026
+C30510	WIP — Exports                             | Work In Progress: a three-dot menu holds Download (PDF) and Downlo  | v3.5-16cf83f 8/6/2026
+C30512	WIP — Exports                             | Downloaded money and Inv. Hrs values keep the on-screen formats     | v3.5-16cf83f 8/6/2026
+C30513	WIP — Exports                             | Inv. Hrs green/red coloring appears on screen and in the PDF; not   | v3.5-16cf83f 8/6/2026
+C30514	WIP — Exports                             | Days Open in a download is frozen at the moment the file is genera  | v3.5-16cf83f 8/6/2026
+C30515	WIP — Exports                             | The downloaded files are named "wip-2-report.pdf" and "wip-2-repor  | v3.5-16cf83f 8/6/2026
+C30516	WIP — Exports                             | Export headers read "Unit" and "Branch" — documented limitation, d  | v3.5-16cf83f 8/6/2026
+C30517	WIP — Exports                             | The PDF shows the shop logo at the top when one is set              | v3.5-16cf83f 8/6/2026
+C30518	WIP — Exports                             | Export notifications: success caption, "Empty export" warning       | v3.5-16cf83f 8/6/2026
+C38918	WIP — Exports                             | An over-cap Work In Progress download is refused with the too-larg  | v3.5-16cf83f 8/6/2026
