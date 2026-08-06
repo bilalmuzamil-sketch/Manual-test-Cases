@@ -6,9 +6,38 @@ as simple, layman-followable steps with inline images and **nothing else** — s
 from the ticket. They are preserved here verbatim so nothing is lost, and the technical detail also
 lives on the ticket itself in **comment 74583** (the re-test), which is richer than what was removed.
 
-The replacement description uses the **simpler one-line reproduction** proved in the re-test
-($7.11 + $103.03 = $110.14) rather than the original two-line one ($25 + $30 + $12 = $61), because
-the amounts cannot be confused with one another and there are fewer steps to get wrong.
+The replacement description uses the **simpler one-line reproduction** proved in the re-test, rather
+than the original two-line one ($25 + $30 + $12 = $61), because there are fewer steps to get wrong.
+
+**Then revised again the same day, on the QA lead's own reproduction.** He re-ran it with round
+figures — **$100.00 and $200.00, invoice total $300.00** — and asked for the steps to use those
+instead of the re-test's $7.11 / $103.03, and to be made easier still for a layman.
+
+**THREE THINGS HE CAUGHT THAT THE STEPS HAD WRONG, all now fixed:**
+
+1. **Reusing our literal invoice numbers breaks the next person.** Anyone following the steps
+   verbatim hits *"this invoice number already exists"*. The steps no longer hard-code an invoice
+   number at all — they tell the tester to **invent two unused ones** (initials + date, e.g.
+   `AB-0806-1`), and repeat the **21-character limit** up front.
+2. **The part names and descriptions were ours.** Changed to neutral `Sample part one` / `SAMPLE-1`
+   and `Sample part two` / `SAMPLE-2`, different from anything we or he used.
+3. **The screenshots are from the $7.11 / $103.03 run**, so with the steps now at $100 / $200 the
+   numbers would have looked contradictory. Each image carries a **note strip** stating the example
+   costs and that the behaviour is the same whatever costs are entered.
+
+**One thing his screenshots revealed, now stated in Current behaviour.** His two delivery pages
+(`S2-15896` and `S2-15897`, invoice `ZZ-CHK-M9`) each show the **correct** amount inside — $100.00
+and $200.00. So **the delivery detail page is right and only the Vendor Invoices list doubles.**
+That matches our API finding exactly: the *stored* header `total_price` is wrong, the list renders
+that stored value, and the detail page recomputes from its own items. It is also why the defect is
+easy to miss — and why a tester who clicks into a row could wrongly pass it.
+
+**Honesty note (Standing Rule 12).** The **$300.00 / $600.00 figures in the current description
+describe the QA lead's run, not one we observed end to end.** What we observed live was
+**$110.14 written onto both rows** with a same-run control at exactly $7.11. The $300 figures follow
+from the same confirmed mechanism — the whole invoice total is written to every purchase order in
+the submission — and his screenshots corroborate the setup, but we did not personally see his
+Vendor Invoices list.
 
 ---
 
