@@ -211,3 +211,34 @@ error nobody downstream can detect. Anyone auditing the branch would have search
 ## 7. Batch 6 onwards — changes recorded as they are made
 
 *(appended per batch; see the batch sections below)*
+
+### Batch 6 (2026-08-06, build `v3.5-7ec992f`) — all in an empty part of March 2027
+
+**March 2027 held ZERO shifts, ZERO events and ZERO series before this batch** (proven by a
+board read over 1–31 Mar 2027). Everything below is therefore unmistakably test data. All of
+it is on **work order S-15868 "Joshore Farms" unit 70**, which already existed; no customer,
+asset, work order or line was created.
+
+| Item | What | State now |
+|---|---|---|
+| Series `9d634574-618d-40bd-9559-ba68d7f2a3ee` | 5 daily shifts, **Brittany Anderson**, 1–5 Mar 2027, 1h30 each, line "Service - Perform LOF and inspection" | **deleted** by the whole-series scope test |
+| Series `23b071a1-31d0-42fe-b89a-5c0cf8421841` | 5 daily shifts, **Andrew Wade**, 1–5 Mar 2027, 30m each, line "Service - Air filter" | **2 shifts remain** (1–2 Mar); 3–5 Mar removed by the "this and all later" test |
+| Series `d45ba499-942e-4c66-9c15-9a63b14b0a74` | an accidental duplicate of the Brittany series, created when a seeding script re-ran its first block | **deleted immediately**, all 5 shifts, before any test used it |
+| Series `dae00378-d9ca-416e-908a-a4b4808e56d3` | 3 daily shifts, Brittany Anderson, 15–17 Mar 2027 | **deleted** by the whole-series toast test |
+| Shift `1241a85c-4680-4b9f-b5be-9b589515deb5` | standalone, Brittany Anderson, 10 Mar 2027 | **deleted** by the standalone-delete test |
+| Shift `969e2202-5a35-4470-ac49-5dd033415aad` | standalone, 22 Mar 2027, 2h, line "Diagnose - Clutch" | **left in place**, back on **Brittany Anderson** at its original 22 Mar 15:00Z after the reassign was undone |
+| Shift `59f997f2-cc65-4781-a0fe-f4dbe9ef269c` | created by dragging **S-12876 Pamill Paving** from the sidebar, 30 Mar 2027 | **deleted** by the immediate-save test |
+| Shifts `9fa241be-…` and `5c41bd79-…` | standalone, Brittany Anderson, 23 and 24 Mar 2027 | `9fa241be` **deleted** by the toast-hover test; **`5c41bd79` left in place** |
+
+**Items ALTERED where a BEFORE value matters — none outside my own test data.** The one
+pre-existing thing touched was the **work-order line roster** of S-15868 line
+"Diagnose - Clutch" (`7a854816-…`), which the product itself updates when a shift is
+reassigned:
+
+| Item | BEFORE | AFTER the test | State now |
+|---|---|---|---|
+| S-15868 line "Diagnose - Clutch" roster | `["Brittany Anderson"]` | `["Ayesha Khan AK"]` after the reassign | **`["Brittany Anderson"]` — restored by the product's own Undo**, verified by re-reading `/api/schedule/work-orders` |
+
+**Nothing else was changed in batch 6.** No role, staff member, setting, department,
+customer, asset or work order was created or edited. No event was created, moved or deleted
+in this batch.
