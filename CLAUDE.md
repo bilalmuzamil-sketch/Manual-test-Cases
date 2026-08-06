@@ -2527,7 +2527,18 @@ deliver the 7-tab management report.
     cases, API contracts, and states/state machines the spec glosses over. But engineering
     intent NEVER overrules product truth from the spec/PO — where a tech plan conflicts with
     the spec/PO position, the conflict becomes a PO/dev QUESTION (Rules 7/11/15), never a
-    silent case change. Canonical example: the 2026-07-29 tech-plan reconciliations —
+    silent case change.
+    **⚠️ A TENSION WAS NAMED 2026-08-06 AND IS NOT YET RESOLVED — SEE RULE 57's FOLLOW-UP RULING (ii).**
+    His ruling that day, verbatim — *"Design is Claude design/Figma Design/ also I do share with you the
+    Technical design as well."* — puts the **TECHNICAL DESIGN** among the authoritative design artefacts
+    of Rule 57(d), while **THIS RULE'S SUBORDINATION CLAUSE ABOVE IS PRESERVED UNCHANGED AND
+    DELIBERATELY: engineering intent never overrules product truth.** Our reading is that a technical
+    design does **NOT** overrule the PRD or a PO answer on product behaviour — **that reading is OURS,
+    pending his confirmation, and it is NOT his position.** **THE QUESTION IS OUTSTANDING: does a
+    technical design carry PRD-level authority on what the product SHOULD DO, or does "informs but never
+    overrules" still hold for it?** Do not answer it for him; until he does, a case that would turn on
+    the difference is HELD.
+    Canonical example: the 2026-07-29 tech-plan reconciliations —
     build/filters/tech-plan-2026-07-29/, build/report-suite/tech-plan-2026-07-29/,
     build/schedule/tech-plan-2026-07-29/. Ties to Standing Rules 1 (complete inputs before
     work), 11 (ask which process on new inputs), 17 (complete data in/out), and the
@@ -2570,6 +2581,13 @@ deliver the 7-tab management report.
     2026-08-06: the design and Figma are now AUTHORITATIVE SOURCES OF EXPECTED BEHAVIOUR (Rule 57, as
     amended), so a STALE OR UNDATED design baseline is a source-currency gap of the same seriousness
     as a stale spec — record it as PARTIAL with the exact shortfall, never wave it through.**
+    **⚠️ "THE DESIGN" MEANS THREE ARTEFACT TYPES (his ruling 2026-08-06 — Rule 57 follow-up (ii)): a
+    CLAUDE DESIGN (including a Claude prototype export or share page) · a FIGMA DESIGN · the TECHNICAL
+    DESIGN he shares.** Check the currency of **each one that is in play**, not only Figma.
+    **⚠️ AN UNDATED ARTEFACT CANNOT BE DATED FOR RECENCY PURPOSES, SO RULE 32's LATEST-WINS CANNOT BE
+    APPLIED TO IT AT ALL** — an editable share page with no version and no date is recorded **PARTIAL**
+    and **ESCALATED** (Rule 57 follow-up (i)); it is never treated as the newest source merely because it
+    arrived most recently in a conversation.
     **(4) THE ENGINEERING TECH PLAN** (Rule 30) — confirm we hold the current version; if it was
     never supplied, remind the user.
     **(5) THE PO / STAKEHOLDER ANSWERS, MESSAGES AND VIDEOS** — the **newest authoritative product
@@ -2654,6 +2672,18 @@ deliver the 7-tab management report.
     outstanding register (Rule 36); the case follows the most recent authoritative source **and
     DISCLOSES the divergence in its text (Rule 56)**. **No new tiebreak exists** — where recency
     cannot be established, corollary (iii) above governs: **ASK the PO.**
+    **⚠️ CORROLLARY (iii) GAINED AN EXPLICIT SECOND LIMB 2026-08-06 — "OR IT DOES NOT MAKE SENSE".**
+    Asked which wins when the design and Figma disagree with each other, the QA lead ruled, verbatim:
+    *"the latest wins or if latest does not make sense we can create a question sheet for the PO to
+    respond."* So **this rule applies to DESIGN ARTEFACTS TOO — the most recent artefact wins** — **and
+    the most recent artefact is NOT followed where it DOES NOT MAKE SENSE, even if it is perfectly clear
+    and perfectly dated**, which is **broader than ambiguity alone**. *"Does not make sense"* is a
+    judgement **he has authorised us to make**; the **only permitted response is a QUESTION SHEET**
+    (Rules 7/55) + the outstanding register (Rule 36) — **never a choice of ours**, and never the build
+    (Rules 57/58). **CRUX: latest-wins needs a DATE, and an undated editable share link has none**, so
+    its recency cannot be established at all and it goes straight to the escalation limb — the live case
+    being Sasha Grosman's Schedule design link on SV-8915/SV-8916/SV-8917. Full text: **Rule 57's
+    FOLLOW-UP RULING (i), 2026-08-06.**
 33. **Review findings are INPUTS, not overrides — apply the authority precedence order (all
     projects).** USER DIRECTIVE (2026-07-31, verbatim): "Hold Ahtesham as the Junior most QA
     person, I do not want his findings to over rule me and your findings here. But we need to know
@@ -3991,10 +4021,73 @@ deliver the 7-tab management report.
     stays OPEN in the register (Rule 36) until the PO settles it.** **NO NEW TIEBREAK IS INTRODUCED
     HERE** — where recency itself cannot be established, Rule 32's own clause governs: **ASK the PO,
     never pick a side.**
+    **⇒ FOLLOW-UP RULINGS, 2026-08-06 — the SAME DAY, answering the TWO THINGS the amendment above
+    flagged and could not settle on its own: *"when the design and Figma disagree with EACH OTHER,
+    which wins?"* and *"what counts as the design?"*. Both are quoted verbatim, his typing preserved,
+    because Rule 25 applies to his instructions exactly as it does to a spec.**
+    **(i) THE TIEBREAK — USER DIRECTIVE (2026-08-06, verbatim):** *"the latest wins or if latest does
+    not make sense we can create a question sheet for the PO to respond."*
+    **THIS IS RULE 32 APPLYING TO DESIGN ARTEFACTS TOO — IT IS NOT A NEW TIEBREAK.** Where the design
+    and Figma (or any two design artefacts) disagree with **each other**, **the MOST RECENT ARTEFACT
+    WINS**, exactly as Rule 32 already provides for every other source type. **AND IT NOW CARRIES AN
+    EXPLICIT SECOND LIMB: "OR IT DOES NOT MAKE SENSE."** Rule 32's own corollary (iii) already sent an
+    **AMBIGUOUS** newest source, or one whose **recency cannot be established**, to the PO; his ruling
+    **BROADENS that** — the most recent artefact is **not followed** where it **does not make sense**,
+    **even when it is perfectly clear and perfectly dated.**
+    **"DOES NOT MAKE SENSE" IS A JUDGEMENT HE HAS AUTHORISED US TO MAKE — AND THE ONLY PERMITTED
+    RESPONSE TO IT IS A QUESTION SHEET (Rules 7/55), NEVER A DECISION OF OURS.** We may say *"this does
+    not make sense"*; we may **not** then choose what it should have said. The finding goes to the PO on
+    a question sheet in plain layman words and into the **OUTSTANDING-ITEMS REGISTER** (Rule 36) until
+    he answers; meanwhile the affected cases are **HELD**, or keep the sourced position they already
+    had, with the divergence disclosed (Rule 56). **Reaching for the build to break the tie remains
+    barred by Rules 57 and 58, and this ruling does not reopen it.**
+    **⚠️ THE PRACTICAL CRUX, AND IT IS LIVE RIGHT NOW: "LATEST WINS" REQUIRES A DATE, AND AN UNDATED,
+    EDITABLE SHARE LINK HAS NONE.** A `claude.ai/design/p/…?…&via=share` page is **live, editable, and
+    carries no version and no date**, so its recency **cannot be established at all** — which sends it
+    **straight to the escalation limb** instead of winning on recency. **WORKED EXAMPLE (the live one):**
+    Sasha Grosman's Schedule design share link, cited as the closing source of
+    **[SV-8915](https://shopview.atlassian.net/browse/SV-8915)**,
+    **[SV-8916](https://shopview.atlassian.net/browse/SV-8916)** and
+    **[SV-8917](https://shopview.atlassian.net/browse/SV-8917)** — it **cannot be dated**, so it does
+    **NOT** displace our ingested baseline **`build/schedule/design-2026-07-27/`** by recency, and
+    **which design artefact is canonical is a QUESTION** (already outstanding), never something we
+    resolve for ourselves.
+    **(ii) WHAT COUNTS AS "THE DESIGN" — USER DIRECTIVE (2026-08-06, verbatim):** *"Design is Claude
+    design/Figma Design/ also I do share with you the Technical design as well."*
+    **SO THE ARTEFACT TYPES THAT COUNT AS "THE DESIGN" UNDER (d) ARE THREE:** **(d1) a CLAUDE DESIGN**
+    — including a **Claude prototype export or share page** · **(d2) a FIGMA DESIGN** · **(d3) the
+    TECHNICAL DESIGN he shares.**
+    **(d1) CONFIRMS THAT A CLAUDE PROTOTYPE COUNTS, AND THAT MATTERS CONCRETELY:** the authoritative
+    Schedule design has been a **Claude prototype, not Figma**, and **~48 of our Schedule labels were
+    pinned from it** — so those labels rest on an artefact this ruling puts squarely inside the
+    authoritative list.
+    **AN UNDATED EDITABLE SHARE LINK STILL COUNTS AS A DESIGN under this ruling** — but **Rule 54
+    requires it be CITED AS EXACTLY THAT, undated and editable, and never dressed up as a versioned
+    source** (Rule 12). That constraint is already written in Rule 54 sentence 1; cross-referenced here
+    rather than restated.
+    **🔴 (d3) CARRIES A GENUINE TENSION WITH STANDING RULE 30, AND IT IS RAISED HERE RATHER THAN
+    RESOLVED.** Rule 30 says the **engineering tech plan INFORMS but NEVER OVERRULES product truth from
+    the spec/PO**, and that a tech-plan-vs-spec conflict becomes a **PO/dev QUESTION, never a silent
+    case change**. His ruling now names **"the Technical design"** among the design artefacts, and this
+    rule's amended list makes designs **authoritative sources of expected behaviour**. **THOSE TWO
+    READINGS CAN CONFLICT.** How it is recorded, pending his confirmation:
+    **· the TECHNICAL DESIGN IS a design artefact under (d)/(d3), as he instructed** — it is on the
+    authoritative list;
+    **· RULE 30'S SUBORDINATION CLAUSE IS PRESERVED IN FULL** — a technical design does **NOT** overrule
+    the PRD or a PO answer **on product behaviour**, and such a conflict is a **PO/dev question**;
+    **· THAT SECOND BULLET IS OUR READING, PENDING HIS CONFIRMATION — HE HAS NOT RULED ON IT.** It is
+    not his position and must never be quoted as one.
+    **⏳ OUTSTANDING QUESTION FOR THE QA LEAD (unanswered — do NOT answer it for him): does a TECHNICAL
+    DESIGN carry the same authority as the PRD on what the product SHOULD DO, or does Rule 30's
+    "informs but never overrules" still hold for it?** Until he answers, the two bullets above stand
+    together, and any case that would turn on the difference is **HELD**, not decided.
     **NO RETROACTIVE CHANGES — his words are the authority: *"For now seit it as a rule but do not
     change any test cases in retro."*** **No existing test case is re-sourced, re-worded or
     re-verdicted because of this amendment.** It governs **NEW AND FUTURE WORK ONLY**, and a pass that
-    "tidies" existing cases to it is acting **without authorisation** (Rule 6).
+    "tidies" existing cases to it is acting **without authorisation** (Rule 6). **THIS COVERS THE TWO
+    FOLLOW-UP RULINGS ABOVE AS WELL (recorded 2026-08-06): his no-retro instruction from earlier the
+    same day STILL STANDS, so neither the design tiebreak nor the three-artefact definition licenses a
+    single edit to an existing case.**
     **THE LIVE CONFLICT THIS RULING ARRIVES INTO — the worked example, and the reason the question was
     asked.** On **2026-08-06 Branko called the design the *"single source of truth"*** while **Stefan
     described a *"gap between PRD and design"*** — and **Stefan's remark led to a requirement being
@@ -4517,6 +4610,16 @@ regression / bug-fix re-testing.
   **"Everything should match the Build" means the BUILD must conform to the sources — the build is
   still NEVER a source of expected behaviour.** **NO RETROACTIVE CHANGES** — his words: *"For now seit
   it as a rule but do not change any test cases in retro."*
+- **"THE DESIGN" MEANS THREE ARTEFACT TYPES, AND THE TIEBREAK BETWEEN THEM IS LATEST-WINS-OR-ASK
+  (Standing Rule 57 follow-up rulings, 2026-08-06).** He ruled, verbatim: *"Design is Claude design/Figma
+  Design/ also I do share with you the Technical design as well."* — so a **Claude design (prototype
+  export or share page)**, a **Figma design** and the **technical design he shares** all count. And,
+  verbatim: *"the latest wins or if latest does not make sense we can create a question sheet for the PO
+  to respond."* — so the **most recent artefact wins**, **unless it does not make sense**, in which case
+  it becomes a **PO question sheet** (Rules 7/55), never a choice of ours. **An UNDATED, EDITABLE share
+  link has no date, so latest-wins cannot be applied to it — it is cited as exactly that (Rule 54) and
+  escalated.** **A technical design is on the authoritative list, but Rule 30's "informs but never
+  overrules" is PRESERVED and the question of which prevails is OUTSTANDING with him — do not answer it.**
 - **A PROVENANCE LINE ends every case's Expected Results (Standing Rule 54) — TWO SENTENCES THAT ARE
   NEVER MERGED:** after a separator line, **sentence 1 names ONLY DOCUMENTS** as the source of the
   expectation (the **epic and/or owning story + the specification with its version + the requirement
