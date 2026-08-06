@@ -67,6 +67,9 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
 [K. PRODUCTION access & fix-verification](#k-production-access--fix-verification-sv-8721-proven-2026-07-29) ·
 [L. Git practice with parallel workers](#l-git-practice-with-parallel-workers) ·
 [M. Figma: extract ALL frames from a design link](#m-figma-extract-all-frames-from-a-design-link-proven-2026-07-31-filters) ·
+[N. Report Suite QA branch `sv8582`](#n-report-suite-qa-branch-sv8582--reporting-api--report-ui-recipes-proven-2026-08-03) ·
+[O. Filters QA branch `sv8785`](#o--filters-qa-branch-sv8785-the-filter-bar-recipes-proven-2026-08-04) ·
+[P. Schedule QA branch `sv8685`](#p--schedule-qa-branch-sv8685-api-shapes-that-cost-real-time-proven-live-2026-08-06-build-v35-7ec992f) ·
 [Jira/Confluence access](#jiraconfluence-access) ·
 [Filing a defect ticket (Story Defect shape, fields, conversion)](#filing-a-defect-ticket--the-organisations-required-format-all-projects-all-future-tickets)
 
@@ -131,7 +134,44 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   JSON); typing a dollar amount live-recalculates Total = Subtotal + Tax (verified: 15.32 + 0.77
   → 16.09, SV-8721).
 
+- **🛑 THE FIVE TRAPS THAT PRODUCE A FALSE "DEAD SESSION" ON `.qa.shopview.com` — read this BEFORE
+  asking for new cookies (proven live 2026-08-06 on the Schedule branch `sv8685`; the first three each
+  cost a whole pass).**
+  **(1) A 401 `sso_required` IS USUALLY AN EXPIRED `cf_clearance`, NOT A DEAD SIGN-IN.** Measured
+  against the exact set that had just 401'd: **`sv_sso_session` and `PHPSESSID` were BYTE-IDENTICAL and
+  only `cf_clearance` had changed.** What expires first on this estate is the **Cloudflare clearance**.
+  **So on a 401, ask the QA lead for a fresh `cf_clearance` — not for a whole new sign-in.**
+  **(2) PROBE THE `…api.` HOST, NEVER THE APP HOST.** `GET https://sv8685.qa.shopview.com/api/auth/me/fe-permissions`
+  returns **HTTP 200** — and it is **not** a live session: the SPA host serves `index.html` for any
+  unmatched path, so the 200 is an HTML page, not an auth response. Always probe
+  `https://sv<n>api.qa.shopview.com/api/auth/me/fe-permissions`.
+  **(3) `paste -sd'; '` SILENTLY CORRUPTS THE COOKIE HEADER — it ALTERNATES the two delimiter
+  characters**, producing `A=1;B=2 C=3` and **dropping the third cookie**. That single bug produced a
+  false "dead session" that stopped an entire pass; rebuilt as **`'; '.join(lines)`** the very same
+  cookies returned **HTTP 200 with 42 permissions on the first try**. Keep the cookie file as **one
+  line**, `name=value; name=value; …` (the harness does `COOKIE.split('; ')`, so a multi-line file
+  breaks it too), `chmod 600`, `/tmp` only.
+  **(4) EACH QA BRANCH KEEPS ITS OWN SESSION STORE.** A cookie set that is **alive** on one branch
+  returns **HTTP 409 `{"errors":[{"error":"Session has expired."}]}`** on another — proven with the
+  live Filters set (200 against `sv8785api`) against the Schedule API (409, and `GET /api/schedule/board`
+  409 as well). **A live cookie on one branch is not a live session on another** — you need a per-branch
+  set. (This sits alongside §B's note that `sv_sso_session` + `cf_clearance` are shared while
+  `PHPSESSID` is per-branch: the shared tokens are necessary, not sufficient.)
+  **(5) `POST /api/quick-login` AND `POST /api/switch-user` BOTH ROTATE THE SHARED `sv_sso_session`,
+  SIGNING OUT ANY CONCURRENT WORKER ON ANOTHER BRANCH.** So **never call either while a sibling worker
+  is live** — and say so in the pass notes, because it is the honest reason a permission case goes
+  unobserved rather than being seeded around. (This is the cross-branch half of §N's one-login rule,
+  which already forbids a second `quick-login` within a single run.)
+- **QA-BRANCH SESSION DIAGNOSTIC ORDER, so nobody re-derives it:** build the header with `'; '.join`
+  → probe the **`…api.`** host → on 401 ask for a fresh **`cf_clearance`** → on 409 check you are using
+  **that branch's** `PHPSESSID` → only then consider the sign-in dead. **Never call `quick-login` to
+  "be safe" if a sibling is live.**
+
 ## B. Environment / location
+- **QA-BRANCH SESSION TRAPS live in §A** (the five that produce a false "dead session": expired
+  `cf_clearance` mistaken for a dead sign-in · the app host answering 200 on any path · `paste -sd`
+  corrupting the cookie header · per-branch session stores returning 409 · `quick-login`/`switch-user`
+  rotating the shared token out from under a sibling worker). Read them with the cookie-scope note below.
 - **QA-BRANCH HOST NAMING — now proven on three data points (2026-08-04), so never re-derive it:**
   a per-epic QA branch is served at **`sv<epic-number>.qa.shopview.com`**, and its API host follows
   the **`sv<number>api.qa.shopview.com`** shape — **`api` glued on with NO dot**. The three points:
@@ -340,6 +380,20 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   persistent dialogs). JS-click a tab: `document.querySelector('[data-test-id=link_finance_tab]').click()`.
 - **Quasar selects:** click `.q-dialog .q-select` by INDEX (labels wrap the whole dialog — never
   `label:has-text()`); options in `.q-menu .q-item`. Inputs: `input.q-field__native` by index.
+- **🛑 QUASAR CHECKBOX STATE LIVES ON THE COMPONENT ROOT'S `aria-checked`, NOT ON THE HIDDEN
+  `<input>` (proven live 2026-08-06, Schedule).** Reading the hidden input **mis-reported 9 of 11 roles**
+  as having a permission switched OFF when they did not. Read the root's `aria-checked` (and the
+  matching class), never the input's `checked` property. Same rule for the View-Options and
+  Filter-and-Display toggles, which are the same component.
+- **🛑 ALWAYS `scrollIntoViewIfNeeded()` BEFORE A COORDINATE CLICK — a click that misses looks EXACTLY
+  like a feature that does nothing (proven twice, 2026-08-06, Schedule).** In the staff dialog the
+  **Save & Close** button sits below the fold; a bounding-box-centre `page.mouse.click` landed on
+  nothing, **0 requests** were sent, the dialog stayed open, and that was read as *"saving working
+  hours does not persist"* — a **false "the working-hours service is broken" report** that came within
+  one step of being filed as a defect. Same script with `scrollIntoViewIfNeeded()` first:
+  `POST /change` **201** + `PUT /working-hours` **200**, and the edited value read back. **Two controls
+  proved the mechanism from both sides** (hours untouched + button scrolled into view → both requests
+  fired every time). **The variable is never the feature — it is whether the click reached the button.**
 
 ## J. TestRail API
 - **⚠️ TestRail is the ONLY real/production system — NEVER create/update/delete cases, runs, or
@@ -436,6 +490,41 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   `sales-by-customer` `sales-by-representative` `parts-velocity` `technician-utilization`
   `work-in-progress` `inventory-value`. Filenames come back on `content-disposition`, and each CSV opens
   with a UTF-8 BOM then `"Date Range: …"` and `"Locations: …"` metadata lines above the header row.
+- **🛑🛑 THE C30341 LESSON — BYTE-VERIFICATION PROVES YOU WROTE WHAT YOU INTENDED, NOT THAT YOUR
+  INTENT WAS **CORRECT** (found the hard way 2026-08-06, Report Suite). READ THIS BEFORE TRUSTING A
+  CLEAN BYTE-CHECK.** **C30341** stores its text as **raw HTML** (`<ol>/<li>`, `<hr />`,
+  `<p>AUTOMATION: READY</p>`). None of the writer's plain-text patterns matched that form, so instead of
+  **REPLACING** the Rule-54 provenance line and the automation marker it **APPENDED A SECOND ONE OF
+  EACH** — and **the Rule-50 byte-check PASSED, because the write was faithful to the payload; the
+  PAYLOAD ITSELF WAS WRONG.** **TWO MITIGATIONS, both now standing practice:** **(a) make the writer
+  REFUSE OUTRIGHT on any case whose stored text contains raw markup** rather than pattern-matching
+  through it (the `rebuild()` guard added that day); **(b) RUN A CENSUS AFTER EVERY BATCH** confirming
+  **exactly one provenance line and exactly one marker per touched case** — that census is what found
+  this, not chance. The repair converted the case to plain numbered text with **not one word of meaning
+  changed**. **Generalise it: a byte-check is a check on FIDELITY, never on CORRECTNESS — pair it with a
+  post-batch invariant census, always.**
+- **🛑 `updated_on` IS NOT PROOF A CASE IS UNTOUCHED — PROVE IT BY BYTE-COMPARING CONTENT (found
+  2026-08-05, Report Suite; corrects a belief Standing Rule 50 leaned on).** **Fourteen** of our cases —
+  **C30341 · C30392 · C30451 · C30456 · C30457 · C30460 · C30487 · C30490 · C30491 · C30493 · C30519 ·
+  C30522 · C30526 · C30528** — had **all three text fields change from plain numbered text into raw
+  `<ol>`/`<li>` HTML while `updated_on` and `updated_by` STAYED FROZEN** at values from *before* that
+  pass began. Confirmed with a direct `get_case/30341`, which returned the markup while still reporting
+  `updated_on=1785951654`. Nobody in that pass wrote to any of them. **CONSEQUENCE: every
+  "we did not touch it" proof — including the Rule-38 proof that a foreign case is untouched — must be a
+  BYTE COMPARISON OF THE FIELD CONTENT against a pre-write snapshot committed before the first write.
+  A timestamp is context, never evidence.**
+- **⚠️ THE WORK IN PROGRESS EXPORT TAKES DIFFERENT DATE PARAMETERS FROM THE OTHER FIVE REPORTS
+  (proven live 2026-08-06, `v3.5-16cf83f`) — and getting it wrong makes a REAL HTTP 500 look like your
+  own input error, which is exactly what blocked the finding for two passes.** The other five use
+  `range=<preset>` (or `range=custom&start_date=&end_date=`); **Work In Progress uses `from=` and `to=`
+  with FULL ISO INSTANTS**:
+  `GET /api/reporting/reports/work-in-progress/export?format=csv|pdf&tab=<Tab>&from=2026-08-02T00:00:00.000Z&to=2026-08-06T23:59:59.999Z&locations=<ids>&columns=<list>&sortBy=days_open&descending=true`.
+  **TAKE THE SHAPE FROM THE PRODUCT'S OWN DOWNLOAD MENU, NEVER GUESS IT** — attach a request listener
+  and click the menu item; that is how this was recovered. **The rule generalises: when an export or
+  read endpoint rejects every datetime form you try, assume YOUR shape is wrong and go read the request
+  the product itself sends.** (Once the shape was right the real defect appeared: HTTP 500 on every
+  non-empty tab in both formats, HTTP 200 with a real file when the window is empty — presence of rows,
+  not size.)
 - **Known runs — do NOT write without permission:** Custom Roles run **312**, section **3527**;
   Simple Flow / F&D / Schedule / Report Suite run **325** (and R359 Reports). Section IDs per project
   in CLAUDE.md.
@@ -626,6 +715,34 @@ Terse entries; where the full detail already lives elsewhere in this playbook, t
   be active. **Syntax gotcha:** `git commit -m "<msg>" -- <paths>` errors ("did not match any
   file(s)") — write the message to a temp file and use **`git commit -F /tmp/msg.txt -- <paths>`**
   (multi-line messages work cleanly this way too). *(proven 2026-07-31)*
+- **🛑 STAGE AND COMMIT IN ONE BREATH — NEVER LEAVE FILES SITTING STAGED. This is the half we had
+  BACKWARDS (proven 2026-08-06).** **Path-scoping protects what YOU commit from sweeping in someone
+  else's files. It does NOT protect YOUR staged files from being swept by someone else's un-scoped
+  commit.** Anything left in the index is exposed to the other worker for as long as it sits there.
+  **What happened:** a worker ran `git add` correctly path-scoped to `build/schedule/`, but then
+  committed with a **bare `git commit -q -F /tmp/cm4.txt`** — which takes **the whole index** — and swept
+  in **nine files staged by the live Report Suite worker**. The sibling's own path-scoped commit then
+  correctly answered *"nothing to commit, working tree clean"*, because its work was already in someone
+  else's commit. **Nothing was lost** (all nine byte-identical, md5-compared file by file, already
+  pushed) — **the damage is to the record**: the commit message talks only about Schedule and
+  **misattributes** the nine. **It was deliberately NOT fixed** — no amend, no rebase, no force push:
+  *"a misleading commit message is a documentation problem; a rewritten shared history is a data-loss
+  problem."* Both halves are recorded in `build/schedule/full-viu-2026-08-05/COMMIT-SCOPING-LESSON-2026-08-06.md`
+  and `build/report-suite/full-viu-2026-08-06/COMMIT-COLLISION-2026-08-06.md`.
+  **THE PRACTICE:** `git status` **immediately before** committing; if paths you do not own are staged,
+  name only yours in **BOTH** the add and the commit; then **`git add -- <paths>` and
+  `git commit -F /tmp/msg.txt -- <the same paths>` back to back, with nothing in between.**
+- **🛑 `git push <branch>` RESOLVES THE REF AT PUSH TIME, so a concurrent commit can be published
+  UNSCANNED.** Between the moment you review/scan a diff and the moment the push runs, a sibling worker
+  can add a commit to the same branch — and pushing the **branch name** publishes whatever the tip is
+  then, including work you never looked at. **PUSH THE EXPLICIT REVIEWED SHA:**
+  `git push origin <sha>:refs/heads/<branch>`. Report the pushed SHA and confirm it equals the SHA you
+  scanned. *(2026-08-06)*
+- **⚠️ A REMOTE-TRACKING REF READ WITHOUT A PRIOR `git fetch` IS STALE — and it produced a false
+  work-loss scare.** `origin/<branch>` is only as fresh as your last fetch, so `git rev-parse
+  origin/<branch>` can report *"local == origin, all pushed"* while local is in fact **49 commits
+  behind**. **Always `git fetch origin <branch>` FIRST**, then compare — and never conclude anything
+  about what is or is not on the remote from an unfetched ref. *(2026-08-06)*
 
 ## M. Figma: extract ALL frames from a design link (proven 2026-07-31, Filters)
 **Use when** the user hands over one or more `figma.com/design/<fileKey>/...?node-id=A-B` links and
@@ -2114,3 +2231,30 @@ and **`Clear Filters`** (capital second word) · in-dropdown placeholder is plai
 **`Create Work Order`** (the spec says "New Work Order") · **`Back To My Saved Filters`** (the spec
 says "Back to my view") · page-search placeholder **`Type to search`** · empty state
 **`No work orders match your filters`**.
+
+## §P — SCHEDULE QA BRANCH `sv8685`: API shapes that cost real time (proven live 2026-08-06, build `v3.5-7ec992f`)
+
+**Session handling for this branch is §A's five traps plus §N's one-login rule — read those first.**
+App `https://sv8685.qa.shopview.com` · API `https://sv8685api.qa.shopview.com` (now **verified**, not
+inferred). Build marker: `curl -sS -D- -o /tmp/idx.html https://sv8685.qa.shopview.com/index.html`
+then read `app-version` + `last-modified` + `etag`, and hash `index.html` — this branch redeployed
+**four times in two days**, so read it at the start AND the end of every pass.
+
+- **`GET /api/schedule/board?from=<ISO instant>&to=<ISO instant>` REJECTS A RANGE LONGER THAN 62 DAYS.**
+  A **bare date is also rejected** — it wants full ISO instants. So a "the board is broken" reading is
+  usually a range that is too wide or a date that is not an instant.
+- **A `PATCH` CARRYING ONLY `note` IS REFUSED `400 "The request changes nothing."` FOR *ANY* ID** — real
+  or invented. **Consequence: you cannot use a note-only PATCH to probe whether an id exists**, and a 400
+  here says nothing about the record. Send at least one substantive field.
+- **`/api/staff` ROWS CARRY BOTH `id` AND `staff_id`, AND THE WORKING-HOURS ENDPOINT WANTS `staff_id`.**
+  Using `id` **404s for everybody**, which reads exactly like a **total service outage** rather than a
+  wrong key. (`GET`/`PUT /api/staff/<staff_id>/working-hours`.) Pair this with §I's
+  `scrollIntoViewIfNeeded()` note — between them they account for both halves of the false
+  "the working-hours service is broken" report of 2026-08-06.
+- **Series create:** `POST /api/schedule/shifts {workOrderId, lineIds[], staffId, startDate, startTime,
+  spreadMode:'single'|'series', totalMinutes, perDayMinutes, isAllDay}` → **201**. `spreadMode:'multi'`
+  is **rejected**. A 4800-minute series at 480/day materialises as **10 shifts**.
+- **⚠️ CLICK-TO-ARM (the keyboard/click alternative to dragging) WAS REMOVED between `v3.5-be42149` and
+  `v3.5-7ec992f`** — filed **SV-8957**. It had been `button_sidebar_arm_<woId>` with `aria-pressed`.
+  **Practical consequence for tooling: with the click route gone, drag-dependent scenarios cannot be
+  driven headlessly at all** — 7 cases went to `HOLD` for exactly this reason. If it is restored, use it.

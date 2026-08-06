@@ -44,62 +44,59 @@
 >   earlier "OPEN NOW 73/85, DUE-AT `2026-07-30T23:27:02Z`" pointer that stood here was
 >   **STALE** — corrected 2026-08-04. Still run the glob at every session start.**
 > - **AT EVERY SESSION START (and before/after any project work): CHECK FOR OPEN NON-FINAL-BUILD
->   RE-CHECK QUEUES (Rule 49) — `ls build/*/viu-*/RECHECK-QUEUE.md`; a build declared NOT FINAL
->   yields PROVISIONAL findings only, so every finding is queued with its BUILD MARKER and no suite
->   may be called VIU-complete while a queue is OPEN. Re-run the queue when the build is declared
->   final or the app-version marker changes. **THREE QUEUES ARE OPEN NOW (2026-08-04):**
->   `build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md` (Report Suite QA branch `sv8582` — **the
->   TRIGGER FIRED AGAIN 2026-08-05: the branch redeployed `v3.4.1-3d03023` → `v3.5-16cf83f`, a
->   minor-version jump, and the queue COULD NOT be re-run because the deploy killed the sign-in
->   (401 `sso_required`). NOT ONE ROW has been re-verified against `v3.5-16cf83f`; all 473 verdicts are
->   PROVISIONAL and a fresh sign-in is the one thing needed**) · `build/filters/recheck-2026-08-05/RECHECK-QUEUE.md` (Filters QA branch `sv8785`, build
->   **`v3.4.2-d00239b`** — **RE-RUN IN FULL 2026-08-05: 110/110 rows, 91 CONFIRMED / 19 CHANGED**;
->   still OPEN only because the branch is not declared final) · **A FOURTH QUEUE OPENED 2026-08-05
->   12:30 UTC: `build/filters/cleanup-2026-08-05/RECHECK-QUEUE.md` — the 8 Filters PHONE cases.
->   Their expected behaviour is now DOCUMENT-SOURCED (spec v18 S12-R6 + Branko's SV-8825 closure)
->   and NOT ONE of them was observed on the app, because every `.qa.shopview.com` cookie set is
->   dead (401 `sso_required`). All 8 carry `AUTOMATION: HOLD - needs one live check…` and
->   Rule-54 STATE-1 provenance with NO build date. What to observe is written out ready to run in
->   that folder's `PENDING-LIVE-CHECK.md`) · **`build/schedule/recheck-2026-08-05/RECHECK-QUEUE.md`** (Schedule QA branch
->   `sv8685` — **THE LIVE QUEUE, re-armed 2026-08-05; the 2026-08-04 file is now the RECORD only and is
->   banner-marked as such.** The build MOVED 2026-08-05: `v3.5-4873abe` → **`v3.5-be42149`**, redeployed
->   08:09 UTC. **A FULL 165-row re-check was ATTEMPTED 2026-08-05 and COULD NOT START: 0 of 165 rows
->   re-observed** — the QA-branch cookies (2026-08-04 11:31 UTC, ~24.5 h old) return HTTP 401
->   `sso_required`, and the Filters + Report Suite sets are dead too, so it is the ordinary ~24 h expiry
->   across the whole `.qa.shopview.com` estate plus the deploy. **ALL 165 VERDICTS ARE PROVISIONAL AND
->   UNCONFIRMED; nothing was inferred and ZERO writes were made anywhere** (all 165 cases proven
->   byte-identical incl. `updated_on`; run 357 proven untouched with all **429** results present BY ID;
->   Jira 0 writes). **NEEDED: fresh `sv_sso_session` / `PHPSESSID` / `cf_clearance` for
->   `.qa.shopview.com`.** Everything else is ready and staged as ONE write per case —
->   `build/schedule/recheck-2026-08-05/WRITE-PLAN.md`. **Established live that pass:** spec **CURRENT at
->   Confluence v23, proven by word-diff of the live body (0 runs of 6+ words missing from our mirror) —
->   and its in-body "Version" field reads `1.0`, the Rule-31(a) trap confirmed**; epic **SV-8685 = 26
->   direct children** verified two ways with equal key sets (**our recorded "28 children incl. 12
->   epic-level Bugs" was WRONG — those 12 are Story Defect SUBTASKS of the stories, and the SV-8826–8841
->   range is 16 tickets of which 4 are not Schedule at all**); **story defects are now 22, not 12** (7 new
->   from Ayesha Khan, 3 from Mudassir Qamar on 5 Aug); **all 10 of our tickets SV-8848…SV-8857 still
->   Open, none fixed** (only a `FS-Schedule` label added). **TWO ASKS ANSWERED WITHOUT US:
->   [SV-8834](https://shopview.atlassian.net/browse/SV-8834) already covers SCH-MODAL-03 = C30010
->   exactly, so the "eleventh ticket" would be a DUPLICATE — do not file it; and
->   [SV-8874](https://shopview.atlassian.net/browse/SV-8874) now covers SCH-TOOL-03 = C30041, so
->   decisions-register entry 8 must stop calling it unticketed. Both cases' text still says "no developer
->   ticket yet" — FALSE, queued for repair.** **TWO OF OUR PASS VERDICTS ARE CONTRADICTED by accepted
->   Ready-to-Fix defects and they are probably right:** SV-8873 vs C29939 (our evidence never says which
->   FORM of the technician name we typed) and SV-8868 vs C29944 (**we proved ONE status of many and called
->   the filter good — a sample, not the filter**). **THREE CANDIDATE COVERAGE GAPS** with no counterpart
->   in our 165: SV-8863 (which view the module opens on), SV-8870 (drag-create in Month view), SV-8867
->   (reassigning a series member) — not authored, needs authorisation. **`READINESS-2026-08-05.md` was
->   DELIBERATELY NOT WRITTEN** — a readiness report is a statement about a build we could not see;
->   `READINESS-2026-08-04.md` is kept and banner-marked "its verdicts are no longer confirmed" rather than
->   superseded, because there is nothing newer to supersede it with. Canonical resume:
->   `build/schedule/PROJECT-STATE.md` §0-RECHECK-ATTEMPT-2026-08-05). **None of the three branches has been declared final, so every finding on all three
->   is PROVISIONAL.** **AUTOMATION MARKERS (QA-lead-authorised 2026-08-05, `build/automation-markers-2026-08-05/`):
->   Filters carries the marker on 102/110 cases (build byte-identical, safe); Schedule carries it on
->   0/165 BY DESIGN because of the redeploy above. The marker goes at the VERY END of Expected Results,
->   AFTER the Rule-54 provenance line, blank line before and a line break after, in exactly three forms:
->   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
->   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
->   external account we do not have) does.**
+>   RE-CHECK QUEUES (Standing Rules 49 + 60 + 61).** **THE GLOB IS `ls build/*/*/RECHECK-QUEUE.md` —
+>   NOT `build/*/viu-*/RECHECK-QUEUE.md`, which is what stood here and finds only 3 of the 14 queue
+>   files that exist** (passes now live in `full-viu-*`, `final-viu-*`, `recheck-*`, `cleanup-*` and
+>   `provenance-reword-*` folders as well; corrected 2026-08-06 after reading every one). A build
+>   declared NOT FINAL yields **PROVISIONAL** findings only, so every finding is queued with its
+>   **BUILD MARKER**, **no suite may be called VIU-complete while a queue is OPEN**, and **a queue
+>   closes ONLY when 100% of its rows are re-verified** (Rule 49, unchanged and not weakened).
+>   **⚠️ THE RE-RUN TRIGGER CHANGED 2026-08-06 — the old blanket "re-run the queue when the build is
+>   declared final or the app-version marker changes" is RETIRED as the default (Standing Rule 61).**
+>   The **automated suite is now the monitor**: every `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` case
+>   states the exact observable **SYMPTOM** and its **three outcomes**, so a fix that shipped
+>   (outcome 3) or a failure that CHANGED (outcome 2) is reported by the next automated run — at no
+>   cost, with no re-verification pass and no ticket polling. **What the queue now covers is only what
+>   the suite CANNOT see: `AUTOMATION: HOLD` cases, never-observed cases, and any verdict that was
+>   never automated — and THEIR trigger is the thing they are actually waiting on** (a PO answer, an
+>   access blocker clearing, a feature shipping, a drag our tooling cannot perform) — **not a deploy.**
+>   Rule **60(b)** still governs what a redeploy genuinely does invalidate: **layer 1** (on-screen
+>   labels + navigation path), **layer 2** (the pass/fail/deviation verdict) and **the `HOLD` half of
+>   layer 3**. Plain `AUTOMATION: READY` asserts *automatable*, not *currently passing*, and is
+>   **build-independent**. **Also unchanged: ticket status is NEVER read as evidence about the build**
+>   (Rule 61) — it is traceability, nothing more.
+>   **THE TRUE QUEUE STATE — 14 files, 13 OPEN, 1 CLOSED, established 2026-08-06 by reading every one
+>   (this REPLACES the "THREE QUEUES ARE OPEN NOW (2026-08-04)" pointer that stood here, whose count
+>   AND date were both stale — the body of this file already described a fourth and later ones):**
+>   · **FILTERS — LIVE queue `build/filters/full-viu-2026-08-05/RECHECK-QUEUE.md`** (OPEN; 110 rows;
+>   build `v3.4.2-d00239b`, etag `b9ab1d41…`, read three times byte-identical). Still OPEN as
+>   SUPERSEDED RECORDS: `final-viu-2026-08-05`, `recheck-2026-08-05`, `viu-2026-08-04`.
+>   **CLOSED: `cleanup-2026-08-05/RECHECK-QUEUE.md` (2026-08-05 14:25 UTC — all 8 phone rows observed
+>   live at 390 × 844), together with its `PENDING-LIVE-CHECK.md`.**
+>   · **SCHEDULE — LIVE queue `build/schedule/full-viu-2026-08-05/RECHECK-QUEUE.md`** (OPEN, opened
+>   2026-08-06; 168 rows; **90 on `v3.5-7ec992f`, 78 on `v3.5-d122eef` which no longer exists**).
+>   Still OPEN as SUPERSEDED RECORDS: `provenance-reword-2026-08-05`, `final-viu-2026-08-05`,
+>   `viu-2026-08-04`. **⚠️ `recheck-2026-08-05/RECHECK-QUEUE.md` CONTRADICTS ITSELF — its banner reads
+>   "✅ CLOSED AS AN ATTEMPT" while the status line immediately below still reads "STATUS: OPEN — 0 of
+>   165 rows re-checked". Left exactly as found and reported rather than silently resolved; treat it
+>   as a record either way, because the live queue is the `full-viu` one.**
+>   · **REPORT SUITE — FOUR OPEN, no single one is the live queue:** `full-viu-2026-08-05` (476 rows,
+>   `v3.5-16cf83f`) · `chris-newreqs-2026-08-05` · `final-viu-2026-08-05` · `viu-2026-08-03`.
+>   **⚠️ THE NEWEST REPORT SUITE PASS, `build/report-suite/full-viu-2026-08-06/`, OPENED NO QUEUE FILE
+>   AT ALL** — so the 200 verdicts it established on `v3.5-16cf83f` are queued nowhere. Recorded as a
+>   gap, not invented around; the next Report Suite pass owes that queue.
+>   **NONE of the three branches has been declared final — engineering has confirmed they will not be
+>   before release (Rule 60) — so an OPEN queue is the NORMAL STEADY STATE of an active project, a
+>   living work list rather than an embarrassment, and every verdict on all three stays PROVISIONAL.**
+>   **AUTOMATION MARKERS are now on 100% of all three suites** (they were on 102/110 Filters and
+>   0/165 Schedule when this pointer was last written): **Filters 110/110** (81 READY · 14
+>   READY-EXPECT-FAIL · 15 HOLD) · **Schedule 168/168** (119 · 21 · 28) · **Report Suite 464/476 by
+>   live census** (426 READY · 38 HOLD) with **12 carrying no plain-text marker because their text is
+>   raw HTML and the marker is wrapped in `<p>` tags** — all 12 in Work In Progress. The marker goes at
+>   the VERY END of Expected Results, AFTER the Rule-54 provenance line, blank line before and a line
+>   break after, in exactly three forms: `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL
+>   (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`. A tool flag NEVER justifies HOLD — only a genuinely
+>   unobtainable thing (a real physical device, an external account we do not have) does.
 > - **OUTSTANDING-ITEMS REGISTER (Standing Rule 36) — the single cross-project list of everything we
 >   are WAITING ON: build/OUTSTANDING-ITEMS-REGISTER.md. READ IT before writing any status report or
 >   management deliverable, and UPDATE IT the moment an item is raised or cleared. EVERY project
@@ -820,7 +817,7 @@ deliver the 7-tab management report.
    **CANONICAL STATE DOC (read first for resume):** `build/filters/PROJECT-STATE.md`
    — single authoritative snapshot (status, deliverables index, open questions,
    env/access TBD, how-to-resume).
-   **STATUS 2026-07-27 (LATEST — OPTION A design-level authoring): 43 NEW
+   **STATUS 2026-07-27 (SUPERSEDED — OPTION A design-level authoring): 43 NEW
    Parts/Reports/page-search cases AUTHORED, VIU-Pending, NO TestRail writes** —
    Parts 12 (FLT-PARTS-01..12), Reports 22 (FLT-RPTS-01..22), page-search 9
    (FLT-SRCH-01..09; every one carries an OVERLAP note = also the Global Search
@@ -836,7 +833,62 @@ deliver the 7-tab management report.
    Branko PRD/answers → SPEC-RELEVANCE-RECONCILIATION + build-accurate wording + live
    VIU on the 43 new cases → authorized add_case push. Canonical resume doc:
    build/filters/PROJECT-STATE.md (2026-07-27 header).
-   **STATUS 2026-08-05 14:25 UTC (LATEST — THE FINAL-CHECK PASS: THE BUILD IS NO LONGER TREATED AS A
+   **STATUS 2026-08-05 ~21:35 UTC (LATEST — THE FULL LIVE PASS: ALL 110 CASES DRIVEN LIVE, READY TO
+   AUTOMATE 95. Resume `build/filters/READINESS-2026-08-05-FULL-LIVE.md` →
+   `build/filters/full-viu-2026-08-05/{FINDINGS,CHANGES-MADE,testrail-execution-log,RECHECK-QUEUE,
+   DELIBERATE-DECISIONS,SOURCE-CURRENCY,FILED,API-ASK,RESUME}.md` → `build/filters/PROJECT-STATE.md`):**
+   **all 110 of the 110 cases were OBSERVED LIVE in this one pass — 0 carried forward** — on build
+   **`v3.4.2-d00239b`** (`index.html` last-modified Tue 04 Aug 2026 22:51:02 GMT, etag `b9ab1d41…`,
+   read at 19:53Z, 21:00Z and 21:34Z and **byte-identical by sha256 all three times**, so nothing
+   redeployed under the pass). Expected behaviour came from the documents only (Rule 57): spec at
+   **Confluence version 18**, epic **SV-8785** and its stories, and Branko's recorded answers.
+   **OUTCOMES: PASS 81 · DEVIATION 14 (every one ticketed) · HOLD 15.** **READY TO AUTOMATE = 95**, and
+   **the arithmetic gate passes two ways: 81 READY + 14 EXPECT-FAIL = 95, and 110 − 15 HOLD = 95.**
+   **The figure went DOWN from 100 to 95 and every one of the five is explained** — HOLD rose 10 → 15
+   (C29615 needs a second login; C38880 and C38881 assert behaviour no source documents or need an
+   account that no longer exists; C38891 and C38901 have preconditions the part-finished page-search
+   rollout cannot meet). **A lower honest figure is the point of the exercise.** **ALL 110 `refs` MOVED
+   OFF THE STALE TRAP NUMBER** — every entry now pins **`[spec v18 2026-08-04]`** instead of
+   **`[spec v1.6 2026-07-28]`**, so Rule 42's version-pin mechanism can finally fire, and no entry
+   exceeds the 248-character limit. **RAW MARKUP IS NOW 0 OF 110** — the ten cases showing raw
+   `<ol>`/`<li>` to the tester (C29558, C29559, C29571, C29574, C29589, C29595, C29608, C29616,
+   C38881, C38904, in all three text fields) are repaired; they were in the pre-write snapshot, so they
+   **predate this pass**. **WRITES: 110 × `update_case`, every one HTTP 200 + byte-verified MATCH, 30
+   fields compared each, 0 mismatches, 0 collateral changes**, with **all four fields on every payload**
+   (`custom_preconds`, `custom_steps`, `custom_expected`, `refs`) because TestRail re-renders any
+   omitted text field; **0 add / 0 delete / 0 section / 0 run writes; no result logged anywhere.**
+   **Run 352 PROVEN UNDAMAGED** — `include_all` still false, 110 tests, test-id and case-id sets equal
+   both directions, **all 458 result records present BY ID with 0 graded fields changed and 0 new
+   results during the write window**; the 458 moved `case_refs` values are the **declared read-time
+   echo** of the refs edit. **Untouched-proof is BY CONTENT, never by `updated_on`** — a sibling pass
+   found 14 Report Suite cases whose text changed while the timestamp stood still. **Rule 59 satisfied:
+   sources read at pass start 19:53Z and RE-READ at write start 21:34Z, verdict UNCHANGED.** **ONE
+   TICKET FILED: [SV-8912](https://shopview.atlassian.net/browse/SV-8912)** — Story Defect · parent
+   **SV-8798** (the owning story, itself a child of the epic) · priority **Low** · `relates to`
+   SV-8798 · Open · 11 field checks read back all PASS · duplicate-searched with four JQL queries
+   first · test data named (**Bahampton Holdings**, 6 work orders, with what was ruled out).
+   **NOTHING WAS CREATED OR DELETED ON THE BRANCH** — no ZZAUTOTEST data exists from this pass because
+   none was ever needed; every data state the 110 cases require already existed and was used read-only.
+   **The 15 HOLDs are waiting on four things, and the four rows total exactly 15:** Branko's
+   Parts/Reports product write-up (**10** — the bars ARE built, nothing documents what they should do) ·
+   a second test login on this branch (**2** — C29615, C38895) · the page-search rollout finishing
+   (**2**) · an account whose filters were saved before the redesign (**1**).
+   **🔴 COVERAGE-COMPLETENESS IS *NOT* ESTABLISHED, AND FILTERS MAY NOT BE DESCRIBED AS COMPLETE
+   WITHOUT THAT QUALIFIER.** This pass verified all 110 cases we **have**; it did **not** re-derive
+   whether **110 is the right set** — the requirement→case direction Rule 43 requires. **Vlad (the
+   automation engineer) has raised an ELEVEN-ROW requirement-side gap table**, transcribed and queued
+   at **`build/filters/vlad-gap-review-QUEUED.md`** and tracked as register row **F9**. **Nothing has
+   been analysed, checked or verified on it; no TestRail or Jira call was made.** It is queued on the
+   QA lead's own instruction, verbatim: *"But do that after everything else has ben done."* The rows
+   span `S9-R2/S9-R3`, `S11-R7`, `S10-R2`, `S13-R19`, `S13-N4`, `S14-R6`, Parts views, the Reports
+   date-range URL contract, `R3 Q5` parity, `R3 Q5` single-range, and mobile imported-exclusivity —
+   and **row 1 is the sharpest: it alleges our cases assert the REJECTED Status-chip behaviour rather
+   than the DECIDED one, which would be a Rule-57-class defect and not merely a gap.** Four rows name
+   cases that already exist (C38896, C38908, C38882, C38877), so those are PARTIAL-coverage claims
+   needing both texts quoted side by side (Rule 45(e)) before we agree or disagree.
+   **⚠️ Rule-49 queue OPEN (`full-viu-2026-08-05/RECHECK-QUEUE.md`) — the branch is NOT declared
+   final, so all 110 verdicts are PROVISIONAL.**
+   **PRIOR STATUS 2026-08-05 14:25 UTC (THE FINAL-CHECK PASS: THE BUILD IS NO LONGER TREATED AS A
    SOURCE OF EXPECTED BEHAVIOUR, AND THE 8 PHONE CASES ARE FINALLY OBSERVED; resume
    `build/filters/expected-behaviour-audit-2026-08-05.md` then `build/filters/final-viu-2026-08-05/FINDINGS.md`):**
    the QA lead found **FLT-BAR-01 = C29557** stating what the build does instead of what the spec
@@ -1058,7 +1110,7 @@ deliver the 7-tab management report.
    **FLT-MOB-09**. Env clean: throwaway customer deleted + **proven absent two ways**, filters cleared,
    Reports range back to This month, one sign-in reused. **⚠️ Rule-49 queue STILL OPEN — the branch has
    NOT been declared final, so all 110 verdicts remain PROVISIONAL.**
-   **STATUS 2026-08-04 (LATEST — STANDING RULE 54 PROVENANCE RETROFIT EXECUTED, user-authorized;
+   **STATUS 2026-08-04 (SUPERSEDED — STANDING RULE 54 PROVENANCE RETROFIT EXECUTED, user-authorized;
    resume `build/filters/provenance-2026-08-04/`):** all **110/110** cases now end their Expected
    Results with a plain provenance sentence naming **epic SV-8785** (see the epic entry above) + the
    **Filters specification version 1.6** + the case's own anchors — **state 1 (NO build date; still
@@ -1175,7 +1227,64 @@ deliver the 7-tab management report.
    transient HTTP 000). Audit `testrail-execution-log-epic-2026-07-27.md`; manifest header = EXECUTED.**
    Scripts: `epic-sv8685/backfill_refs.py`, `epic-sv8685/patch_edits.py`. Design-pinned ≠
    VIU-Verified (Rule 12); live VIU still pending QA branch (OQ-3).
-   **STATUS 2026-08-05 ~17:30 UTC (LATEST — THE SUITE IS 168 CASES, READY TO AUTOMATE 160; three coverage
+   **STATUS 2026-08-06 (LATEST — THE FULL LIVE PASS ACROSS TWO BUILDS: ALL 168 WRITTEN AND
+   BYTE-VERIFIED, 156 OF 168 OBSERVED, READY TO AUTOMATE 140. Resume
+   `build/schedule/READINESS-2026-08-06.md` → `build/schedule/full-viu-2026-08-05/{FINDINGS,RESUME,
+   CHANGES-MADE,RECHECK-QUEUE,FILED,NEW-TICKETS-ASSESSED,API-ASK,SOURCE-CURRENCY,
+   TECH-HOURS-RESOLVED-2026-08-06,SV-8923-WITHDRAWN,COMMIT-SCOPING-LESSON-2026-08-06}.md` →
+   `build/schedule/PROJECT-STATE.md`):** **168 × `update_case`, every one HTTP 200, 30 fields compared
+   each, 0 mismatches, 0 collateral changes**, all three text fields on every op; read back live,
+   **exactly one provenance line, one build stamp and one marker on every case, 0 raw markup, 0 barred
+   phrases**. **MARKERS: 119 `READY` · 21 `READY - EXPECT FAIL` · 28 `HOLD` = 168. THE ARITHMETIC GATE
+   PASSES: 119 + 21 = 140 = 168 − 28**, both arithmetics read back from the live cases rather than
+   computed from our notes. **Run 357 PROVEN UNTOUCHED** — 168 tests, **429** results, all present BY
+   ID, 0 graded and 0 derived fields changed, `include_all` still false. **THE HONEST SPLIT: 156 of the
+   168 were observed, 12 have NEVER been observed and say so on themselves** — they need a **second
+   sign-in as a non-administrator**, and impersonation was deliberately NOT used because a sibling
+   worker shares the session (`quick-login` and `switch-user` were never called). **The 168 verdicts do
+   not all come from one build: 90 were seen on `v3.5-7ec992f`** (last-mod Wed 05 Aug 22:49:36 GMT,
+   etag `e2a80a6ab5e0b47c29fd88af9db1e980`, byte-identical at session start and end) **and 78 on
+   `v3.5-d122eef`, which no longer exists** — and Rule-54 sentence 2 now names the marker **that case
+   was actually seen on**, so the split is visible per case instead of hidden in an average.
+   **🔴 A REGRESSION WAS FOUND IN A CASE WE HAD ALREADY PASSED: SCH-DND-08 =
+   [C29962](https://shopview.testrail.io/index.php?/cases/view/29962)'s CLICK-TO-ARM ALTERNATIVE TO
+   DRAGGING HAS BEEN REMOVED between `v3.5-be42149` and `v3.5-7ec992f`** — zero controls anywhere carry
+   it, on load, on hover, or in the expanded line list (it had been proven BUILT on 5 August:
+   `button_sidebar_arm_<woId>`, `aria-pressed`). Filed **[SV-8957](https://shopview.atlassian.net/browse/SV-8957)**.
+   **Its absence is also WHY 7 CASES COULD NOT BE RE-DRIVEN** — the drag will not complete through our
+   tooling and the click route no longer exists: **C29967, C29982, C29984, C29985, C30004, C30013,
+   C30020**, all now `HOLD - not re-checked against the current build`. **SEVEN CASES STOPPED BEING
+   FAILURES** (SV-8857, SV-8849 and SV-8850 are fixed; the create-event toast and Undo now exist; event
+   cards are structurally distinct; the tooltip caps line names at three) — **every one of those
+   tickets is still Open or Ready to Fix in Jira, which is exactly why ticket status is never used as a
+   verdict (Rule 61).** **ONE FEATURE SHIPPED** (the long-series and 120-shift guards on the scheduling
+   endpoint now exist and behave correctly). **ONE TICKET OF OURS WAS WITHDRAWN AS INVALID** —
+   **SV-8923**, closed OBSOLETE, because it had been raised against a shop with no business hours
+   configured, which the source case's own precondition required. **TWO NEAR-MISS FALSE DEFECTS WERE
+   AVOIDED BY LOOKING TWICE**, and one of them was ours: a "the working-hours service is broken" report
+   was **our own missed click** — the Save button sat below the fold and the coordinate click landed on
+   nothing (`scrollIntoViewIfNeeded()` then click → `POST /change` 201 + `PUT /working-hours` 200, value
+   read back). **The 28 HOLDs, grouped:** 13 waiting on a second sign-in as a different user (the whole
+   Permissions area plus two API cases and one Filter-and-Display case) · 7 needing a drag our tooling
+   cannot complete · 3 waiting on a product-owner answer **that has never been sent** · 3 whose feature
+   is simply not in the build · 1 needing shifts noted before a release already deployed · 1 needing a
+   user with no staff record of their own.
+   **⚠️ THE DESIGN BASELINE MAY BE STALE, AND IT IS RECORDED AS A PARTIAL SOURCE (Rule 31), NOT
+   ASSUMED FINE.** **Sasha Grosman's three tickets — SV-8915, SV-8916, SV-8917 — all close with the same
+   source: `Design: https://claude.ai/design/p/d3cdcf5c-83df-45ea-ba75-7ddedb5124b5?file=Schedule.dc.html&via=share`,
+   each *"Raised in the Schedule design review with Fabian on 5 Aug 2026"*.** That is a **share URL to a
+   live, editable design page with no version or date on it** — **NOT** the artefact we ingested
+   (`build/schedule/design-2026-07-27/`, the Claude prototype Branko ruled authoritative at Q0), and
+   **~48 of our labels were pinned from that prototype**. Consequences stated rather than assumed: we
+   **cannot verify any of Sasha's three design-sourced claims against a design we hold**; **SV-8916
+   could not be verified at all** — its button is in *his* design and in **no requirement of spec v23**;
+   and **if his link is newer, our design baseline is stale**, so the next Schedule pre-flight must
+   fetch and diff it. **What is owed: confirmation of which design artefact is canonical.**
+   **⚠️ Rule-49 queue OPEN (`full-viu-2026-08-05/RECHECK-QUEUE.md`, opened 2026-08-06) — the branch is
+   NOT declared final, so all 168 verdicts are PROVISIONAL. This pass drove the 27 previously
+   unobserved cases and re-drove 18 of the 25 stale deviations; it was NOT a fresh live run of all 168
+   and does not claim to be.**
+   **PRIOR STATUS 2026-08-05 ~17:30 UTC (THE SUITE IS 168 CASES, READY TO AUTOMATE 160; three coverage
    gaps authored, run 357 union-synced, and all 165 provenance lines re-worded off the build. Resume
    `build/schedule/PROJECT-STATE.md` §0-PROVENANCE-REWORD-2026-08-05 → `build/schedule/provenance-reword-2026-08-05/`
    {`SOURCE-CURRENCY`,`testrail-execution-log`,`NEW-CASES`,`RECHECK-QUEUE`}`.md` → `build/schedule/READINESS-2026-08-05.md`
@@ -1520,7 +1629,73 @@ deliver the 7-tab management report.
    **CANONICAL STATE DOC (read first for resume):** `build/report-suite/PROJECT-STATE.md`
    — single authoritative snapshot (per-report spec inventory + readiness snapshot,
    TestRail structure, open questions OQ-1..7, how-to-resume).
-   **STATUS 2026-08-05 LATE (LATEST — THE EXPECTED-BEHAVIOUR CORRECTION: WE HAD BEEN TREATING BUILD
+   **STATUS 2026-08-06 (LATEST — THE LIVE-OBSERVATION PASS: 200 OF 476 OBSERVED ON `v3.5-16cf83f`,
+   276 STILL OWED, THREE REPORTS FINISHED. Resume `build/report-suite/full-viu-2026-08-06/RESUME.md` →
+   `{FINDINGS,CHANGES-MADE,FILED,TICKET-SOURCE-BLOCK,COMMIT-COLLISION-2026-08-06}.md` + `REMAINING.txt`
+   + `verdicts.json` → `build/report-suite/PROJECT-STATE.md`):** build **`v3.5-16cf83f`** (last-mod Wed
+   05 Aug 2026 06:40:32 GMT, etag `177c59546701e7810b894492dabc1423`, `index.html` sha256
+   `67932a75…`), read at the start of every batch and at the end — **byte-identical every time, no
+   redeploy under any batch**. **Sources re-fetched live: SBC v15 · SBR v17 · PV v5 · TU v6 · WIP v9 ·
+   IV v4 — none moved**; epic **SV-8582 = 105 children**, verified two ways with equal key sets and no
+   paging remainder. **THE HONEST HEADLINE: 200 of our 476 cases carry a verdict established against
+   this build; 276 do NOT — they carry markers and verdicts inherited from earlier passes and say so on
+   themselves. THE ARITHMETIC GATE IS NOT CLAIMED TO PASS AND MUST NOT BE.** 200 + 276 = 476.
+   **INVENTORY VALUE, PARTS VELOCITY and TECHNICIAN UTILIZATION ARE FINISHED** — every one of their
+   68 + 71 + 57 cases carries either a verdict or a written not-observed reason. **THE 276 REMAINING
+   BREAK DOWN AS: SBR 109 (not started) · WIP 67 · SBC 58 · plus 42 already recorded NOT OBSERVED WITH
+   WRITTEN REASONS and an `AUTOMATION: HOLD` marker already on them (IV 9, PV 26, TU 7)** — a reason is
+   not a verdict, so they stay in `REMAINING.txt`. **Count by case id, never by line** (`grep -oE
+   'C[0-9]{5}' REMAINING.txt | sort -u | wc -l` = 276). **NEXT ACTION: Sales By Customer (58), then
+   Sales By Representative (109), then Work In Progress (67).** **LIVE MARKER CENSUS: 426 `READY` · 38
+   `HOLD` · 12 with NO plain-text marker = 476** — and **only 200 of those markers rest on this build.**
+   The 12 are the **raw-markup cases**, all now in **Work In Progress** (C30451, C30456, C30457, C30460,
+   C30487, C30490, C30491, C30493, C30519, C30522, C30526, C30528): their marker exists but is wrapped
+   in `<p>` tags, so it is not machine-findable. **8 cases still carry NO build line at all** (C30278,
+   C38856, C43550, C43551, C43553, C43557, C43558, C43559 — C43552 was given one in batch 7).
+   **OUR OWN DEFECT, OWNED AND REPAIRED IN THE SAME SESSION: C30341** stores its text as raw HTML, none
+   of the writer's plain-text patterns matched, so instead of REPLACING the provenance line and the
+   marker it **APPENDED a second one of each — and the byte-check PASSED, because the write was faithful
+   to the payload; the payload itself was wrong.** Found by a census of all 476, not by chance;
+   converted to plain numbered text with **not one word of meaning changed**, and `rebuild()` now
+   **REFUSES outright** on any case containing raw markup. **TWO THINGS THAT LOOKED LIKE DEFECTS AND
+   WERE NOT, mechanism established first:** the **~10,000-row export refusal is DELIBERATE and is in the
+   epic** ([SV-8591](https://shopview.atlassian.net/browse/SV-8591) *"Export contract + 10k row-cap
+   guard"*) — an epic story is a source of expected behaviour under Rule 57, so the cap is **expected**,
+   and **none of the six specifications mentions it**, which is a documentation gap for Chris recorded
+   as a **question**, not a defect; and the **header-click sort is CORRECT** — the first read was a stale
+   snapshot four seconds after the click. **THE WORK IN PROGRESS EXPORT WAS REPRODUCED AT LAST, and the
+   earlier failure to reproduce was our own input shape: WIP uses `from=`/`to=` with full ISO instants,
+   NOT the other five reports' `range=` parameters** (shape taken from the product's own download menu
+   via a request listener, not guessed). It returns **HTTP 500 on every non-empty tab, both formats** —
+   2 rows fail exactly as 65 do, so it is **presence of rows, not size** — and **HTTP 200 with a real
+   file when the window is empty**; already covered by
+   [SV-8907](https://shopview.atlassian.net/browse/SV-8907), so **no new ticket**. **29 Story Defects
+   filed** (SV-8925–SV-8940, SV-8943–SV-8956), all in the Rule-52 shape (issuetype 10007 · parent = the
+   owning story · priority **Low** · `relates to` the same story), every field read back with 11 checks
+   each all PASS; plus **one authorised edit to SV-8937**, WIDENED to three reports rather than
+   duplicated, with two new `relates to` links and 16 field checks read back. **0 edits to anyone
+   else's ticket.** **Run 359 PROVEN UNTOUCHED** — `include_all` false, 476 tests, sets equal both
+   directions, **all 535 results present BY ID, 0 new, 0 non-echo field changes**; the only movement is
+   **`case_title` on 2 results of the one case we were authorised to retitle (C30102)**, the declared
+   read-time echo. **THE PERMISSION CASES ACROSS EVERY REPORT STILL CANNOT BE DRIVEN** — one session on
+   this estate, shared with a sibling worker, and both `quick-login` and `switch-user` rotate it.
+   **⚠️ THIS PASS OPENED NO RULE-49 QUEUE FILE**, so its 200 verdicts are queued nowhere — the four
+   older Report Suite queues (`full-viu-2026-08-05`, `chris-newreqs-2026-08-05`, `final-viu-2026-08-05`,
+   `viu-2026-08-03`) are all still OPEN, the branch is **NOT declared final**, and **all 476 verdicts
+   are PROVISIONAL.**
+   **DEFECT-TICKET TOTAL ACROSS ALL PROJECTS** (source-block retrofit pass,
+   `build/ticket-source-blocks-2026-08-06/`): **66 tickets in our own records** · 1 skipped by instruction
+   (**SV-8923**, withdrawn as a false defect, no legitimate source) · **65 IN SCOPE** · 1 already
+   carried a block (SV-8937, untouched) · **64 BLOCKS WRITTEN**, all 65 re-read live after the writes =
+   **65 PASS / 0 FAIL**, one block each, description above it byte-identical, no other field changed.
+   Source types: **61 the specification · 2 a PO answer with tab + row · 0 an epic story**. **2 HAVE NO
+   DOCUMENTED SOURCE AND THEIR BLOCKS SAY SO — [SV-8821](https://shopview.atlassian.net/browse/SV-8821)
+   and [SV-8822](https://shopview.atlassian.net/browse/SV-8822)** — and **5 more are only PARTLY
+   supported**; every one is written up decision-ready in
+   **`build/ticket-source-blocks-2026-08-06/FLAGGED.md`** with what it claims, what the build does,
+   exactly where we looked and found nothing, what the expectation really rests on, a recommendation,
+   and the cases affected. **Nothing had a source invented for it.**
+   **PRIOR STATUS 2026-08-05 LATE (THE EXPECTED-BEHAVIOUR CORRECTION: WE HAD BEEN TREATING BUILD
    BEHAVIOUR AS EXPECTED BEHAVIOUR. Resume `build/report-suite/expected-behaviour-audit-2026-08-05.md`
    → `build/report-suite/final-viu-2026-08-05/ADDENDUM-SPECS-MOVED-AGAIN.md` **(read the addendum before
    acting on anything)** → `final-viu-2026-08-05/{SOURCE-CURRENCY,FINDINGS,testrail-execution-log,
@@ -3745,7 +3920,13 @@ deliver the 7-tab management report.
     **WHAT THIS REQUIRES IN PRACTICE:**
     **(a) STATE THE LAYER.** Per case, and in **every readiness report**, say **which layer a claim
     belongs to** — a documented expectation, a label observation, a verdict, or a build-fact marker.
-    **(b) ON A REDEPLOY, RE-CHECK ONLY LAYERS 1–3.** Do **NOT** re-derive the suite, re-read the spec
+    **(b) ON A REDEPLOY, RE-CHECK ONLY LAYERS 1–2 PLUS THE `HOLD` HALF OF LAYER 3.** **AMENDED
+    2026-08-06 (the clause used to read "layers 1–3"):** under **Standing Rule 61** the automated suite
+    detects a stale `READY - EXPECT FAIL` **itself** — the case names the symptom and its three
+    outcomes, so a shipped fix or a changed failure is reported by the next run — therefore that half
+    of layer 3 no longer needs re-observation on a deploy. **The `HOLD` half still does need a human,
+    and its trigger is the thing it is actually waiting on, not a deploy.** Do **NOT** re-derive the
+    suite, re-read the spec
     per case, or re-audit expectations — a redeploy is not a spec change, and treating it as one is how
     a cheap re-check turns into an unaffordable one that then does not happen at all.
     **(c) KEEP THE RULE-49 QUEUE PERMANENTLY OPEN AS THE STANDING MECHANISM, NOT AN EXCEPTION.** The
