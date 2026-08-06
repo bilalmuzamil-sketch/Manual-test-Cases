@@ -963,7 +963,10 @@ deliver the 7-tab management report.
    and **none needs Branko**. **SV-8843 and SV-8847 were closed OBSOLETE under OUR OWN shared account**
    (4 Aug 21:41:31 / 22:02:41 −0500 — Rule 53's corollary), and **Ahtasham had independently filed
    [SV-8876](https://shopview.atlassian.net/browse/SV-8876) at 06:17 today quoting C29557's waiver note
-   back at us — he found it eight hours before we did** (untouched, Rule 38; it is Branko's question).
+   back at us — he found it eight hours before we did** (untouched, Rule 38; ~~it is Branko's question~~ —
+   **CORRECTED 2026-08-06: Ahtasham CLOSED IT HIMSELF as Done on 5 August at 08:38:16−0500, so it was never
+   Branko's to answer; see the corrected OUTSTANDING line further down this entry, which also records that
+   his closing comment says he edited OUR case C29557**).
    **A second sweep answered his follow-up ask** (*"steps correctly VIU'd but the expectation quietly
    changed in the same edit"*): 26 commits replayed comparing steps against the **assertion body only**
    → **16 both-changed, 14 legitimate label work, 2 genuine reversals both driven by a document** (C38882
@@ -1012,8 +1015,28 @@ deliver the 7-tab management report.
    queue.** **HONEST LIMITS: 29 of the 110 were driven live THIS pass, not all 110** — the other 81 carry
    forward from the 04:20–04:53Z re-check **on the same build marker**, each labelled as such in
    `FINDINGS.md`; and **the branch is still NOT declared final, so every verdict is PROVISIONAL.**
-   **OUTSTANDING: reopen SV-8845? (recommended) · Branko owes SV-8876 · a second test login for C29615 ·
+   **OUTSTANDING: reopen SV-8845? (recommended) · ~~Branko owes SV-8876~~ **CORRECTED 2026-08-06 — SV-8876
+   IS NOT BRANKO'S TO ANSWER AND IS NOT OUTSTANDING: it is CLOSED.** Read live 2026-08-06: type **Task**,
+   **status Done**, resolution Done, resolved **2026-08-05T08:38:16−0500**, parent SV-8785, reporter
+   **Ahtasham Amjad — who closed it himself**, verbatim: *"closing this as it was a gap with test case ,
+   I've updated the test case here >>…/cases/view/29557 And created a story defect >> …/browse/SV-8883 as
+   the build is not behaving as per PRD"*. **The old claim is kept struck-through because a
+   silently-erased wrong claim is how a session re-asks a question a source has already answered — the
+   exact embarrassment this workspace has had once.** **The half that IS still Branko's** — did he want the
+   filter buttons on one row, in which case the developer job should be cancelled? — is **Filters item 5**
+   on `build/filters/questions-2026-08-06/`. · a second test login for C29615 ·
    the branch declared final · the playbook §J note · Branko's Parts/Reports PRD.**
+   **⚠️ AND IN THAT SAME CLOSING COMMENT AHTASHAM SAYS HE EDITED OUR CASE
+   [C29557](https://shopview.testrail.io/index.php?/cases/view/29557) (recorded 2026-08-06 under Rule 38).**
+   Recorded as a FACT, **reported and NOT acted on** — we do not touch another author's cases and, by the
+   same rule, ours are not his to edit. **This one needs the QA lead's eye specifically**, because C29557
+   (FLT-BAR-01) is **the case at the centre of the whole expected-behaviour correction** — the one whose
+   *"the product behaves this way on purpose for now"* waiver started the Rule-57 audit, and the one whose
+   waiver note Ahtasham quoted back at us in SV-8876. **We do not know what he changed**: no before/after
+   snapshot of his edit exists, and TestRail's `updated_by`/`updated_on` record only the LAST writer, which
+   our own later passes have since overwritten. **So the honest position is that C29557 has been edited by
+   someone else at least once and the change is not reconstructable from what we hold** — the QA lead's
+   call on whether to ask him what he altered.
    **PRIOR STATUS 2026-08-05 12:30 UTC (CLEANUP PASS: 25 CASES REPAIRED, ALL BYTE-VERIFIED; resume
    `build/filters/cleanup-2026-08-05/` then `build/filters/READINESS-2026-08-05.md`):** build confirmed
    by us at **both ends** — `v3.4.2-d00239b`, last-mod Tue 04 Aug 22:51:02 GMT, etag `b9ab1d41…`,
@@ -1286,6 +1309,18 @@ deliver the 7-tab management report.
    transient HTTP 000). Audit `testrail-execution-log-epic-2026-07-27.md`; manifest header = EXECUTED.**
    Scripts: `epic-sv8685/backfill_refs.py`, `epic-sv8685/patch_edits.py`. Design-pinned ≠
    VIU-Verified (Rule 12); live VIU still pending QA branch (OQ-3).
+   **🔴 SOURCE-CURRENCY GAP, RECORDED 2026-08-06 (Standing Rule 31) — THE SCHEDULE SPECIFICATION IS AT
+   CONFLUENCE v25 AND OUR RECORDS SAY v23. TWO VERSIONS ARE UNINGESTED.** Read live 2026-08-06:
+   `GET /wiki/api/v2/pages/713031682` → **HTTP 200, Confluence version 25, last edited
+   2026-08-06T09:13:51Z**. Every "spec CURRENT at Confluence v23" line in this entry, and **every one of the
+   168 cases' Rule-54 provenance lines naming "the Schedule specification version 23"**, is therefore
+   **STALE until the diff is done** — a version pin is only worth anything if it is the right version
+   (Rule 42). **This is recorded as a GAP, not resolved here: the v23 → v25 diff has NOT been attempted by
+   this note** (a separate worker is running it), so nothing below is re-verdicted and no case was touched.
+   Consequences to keep in view rather than assume away: a moved requirement re-opens its per-requirement
+   coverage verdict (Rule 43), and any case whose anchor moved needs re-checking (Rule 41). **The in-body
+   "Version" field on that page still reads `1.0` — Rule 31's trap (a); go by the Confluence number.**
+   **OUTSTANDING: the v23 → v25 diff, then a re-stamp of the affected provenance lines.**
    **STATUS 2026-08-06 (LATEST — THE FULL LIVE PASS ACROSS TWO BUILDS: ALL 168 WRITTEN AND
    BYTE-VERIFIED, 156 OF 168 OBSERVED, READY TO AUTOMATE 140. Resume
    `build/schedule/READINESS-2026-08-06.md` → `build/schedule/full-viu-2026-08-05/{FINDINGS,RESUME,
