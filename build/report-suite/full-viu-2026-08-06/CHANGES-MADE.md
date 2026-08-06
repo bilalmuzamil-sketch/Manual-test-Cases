@@ -258,3 +258,105 @@ staging, so **no teardown is required** — but it is recorded here rather than 
 called** — both are proven to 403 on this branch and a failed attempt rotates the shared session that the
 Filters and Schedule workers depend on. One `quick-login {"key":"admin"}` **was** attempted, once, as the
 documented 401 recovery; it returned **HTTP 401 itself**, so it changed nothing.
+
+---
+
+## SESSION 5 — 2026-08-06
+
+### TestRail — 16 `update_case`, no other operation of any kind
+
+**16 ops over 16 distinct cases, every one HTTP 200, 30 fields compared each, 0 mismatches, 0 collateral
+changes**, all three text fields on every payload. **0 `add_case` · 0 `delete_case` · 0 section ops ·
+0 run writes · 0 results logged. `refs` not written on any operation.**
+
+Batch 1 (WIP, 8): C30456 · C30464 · C30475 · C30476 · C30477 · C30478 · C30480 · C38890.
+Batch 2 (SBR Inv. Hrs, 4): C30229 · C30230 · C30231 · C38894.
+Batch 3 (SBR rows/tree/sort/badges, 4): C30218 · C30221 · C30242 · C30227.
+
+**Post-write census run separately on each batch** (a byte-check proves the write matched the payload, not
+that the payload was right — the lesson C30341 taught this pass): exactly one provenance line, exactly one
+build sentence naming `v3.5-f77875c` on 8/6/2026, exactly one marker, marker last, 0 raw markup, 0 barred
+phrases, and on the 5 expect-fail cases exactly one symptom block containing all three outcomes.
+
+### Run 359 — PROVEN UNTOUCHED, by content
+
+`include_all` still **false** · **476 tests** · case_id sets **equal in both directions** with our 476 ·
+**535 result records** — the same 535 sessions 1 and 2 recorded today · counters unchanged at
+**6 passed / 470 untested** · **0 results created during this session's window** (the newest result on the
+run dates from 5 August 12:42:21Z).
+
+**Reported honestly rather than hidden:** a 4 August snapshot at `/tmp/testrail/run359-resultids-START.json`
+holds **539** result ids, so **10 of those are no longer present and 6 have been added since**. That delta
+is **historical and not ours** — sessions 1 and 2 already recorded 535 this morning, before this session
+began, and the run belongs to Nebojsa and Viktoria who grade it. It is recorded because comparing against
+the wrong baseline and saying nothing would have been the worse choice.
+
+### Jira — 2 issues created, 1 existing issue edited (description only)
+
+- **[SV-8999](https://shopview.atlassian.net/browse/SV-8999)** created — Inv. Hrs zero on SBR and SBC.
+- **[SV-9001](https://shopview.atlassian.net/browse/SV-9001)** created — SBR summary rows merge the four
+  leading columns. **16 field checks read back, all PASS.**
+- **[SV-8818](https://shopview.atlassian.net/browse/SV-8818)** — the owed screenshot attached and inlined.
+  **Description only.** 5 attachments before, 6 after, **0 lost**; `summary`, `status`, `priority`,
+  `issuetype`, `parent` all byte-identical.
+- **0 edits to anyone else's ticket.**
+
+### The application — what was created, and what was left behind
+
+Everything is tagged or named so it is identifiable, and **nothing was torn down**, because the branch is
+disposable and the QA lead's standing instruction is to seed rather than block.
+
+**On WO `e40c1c15-63ba-4202-9cc9-358da3d5fe21` (S8582-16263, Iibay Landscaping, Staging Heavy Duty - 9919):**
+- an **approved** canned line *Replace - Drive axle brakes (Drum)* (180 min, HD Fleet Rate, $449.85);
+- a second, **unapproved** canned line *Replace - Suspension air bag* (90 min, $224.93) — created as the
+  control for C30480 and **deliberately left in place**, since it is the precondition that case needs;
+- a labour task assigned to a technician, and **a clock record that is STILL RUNNING**. Left open on
+  purpose: it is exactly the state C38890 needs, and once it passes three hours somebody can read the
+  per-line cap straight off the report without any seeding at all;
+- the work order was moved to **Approved**, a contact (Christine Hill) and mileage `123456` were set, and a
+  sales rep was assigned.
+
+**A second work order was created and invoiced: `1bd4c3f0-338e-4357-8764-7dfcfb963767` (S-16265).** Zero-parts
+canned line *Service - 5th wheel adjustment* (45 min, $112.46), contact set, mileage `222222`, tech story
+`ZZAUTOTEST 5th wheel adjusted`, sales rep **Parth Fadadu**, line completed, work order completed, invoice
+`ae148b0e-edd9-4d20-8f06-78366743c20d` created. **This is the invoice that proved the Inv. Hrs defect** —
+known billed hours, correct money, zero hours.
+
+**Three failed removal attempts are recorded so nobody repeats them:** the part-request delete endpoint was
+not found (`work-orders/parts/delete` answers `400 {"part_id":"Not found"}` for a part *request* id), and
+`work-orders/lines/delete-lines` wants `lines`, not `line_ids`, and then returns **500** — which is why the
+unapproved line is still there and why a fresh zero-parts work order was used for the invoicing chain
+instead of clearing this one.
+
+**Settings and roles: nothing changed.** No role was created, edited or reset; `quick-login` and
+`switch-user` were **never called**, deliberately, because a sibling worker shares the session token.
+
+### API facts worth keeping (flagged for the playbook, NOT edited from here)
+
+`build/APP-ACTIONS-PLAYBOOK.md` §Q belongs to another worker's pass, so these are flagged rather than written:
+
+1. **§Q IS WRONG ON ONE POINT: `tech_time` is NOT the clocked time.** It says *"`input_tech_time` is the
+   clocked time"*. A canned line arrived with `tech_time: 120` and the report still read
+   `worked_hours: 0` / `labor_earned: 0`. The reports read **clock records** (`total_clocked_time`).
+2. **§Q's "Save & Close fired no request … at least one more field is required" is a dead end worth
+   abandoning.** Picking a canned line **collapses the dialog to Title + Line Approved + Save**, and
+   `POST /api/work-orders/{woId}/lines/create-from-canned-line`
+   `{another, canned_line_id, work_order_id, status}` returns **201**. No unknown field is involved.
+3. **`POST /api/work-orders/change-status` takes `id`, NOT `work_order_id`** (`work_order_id` → 400
+   *"Work Order ID is missing"*; `{id}` alone → 500; `{id, status}` → 201).
+4. **The staff list has TWO ids and the task endpoints want the second one.** `GET /api/staff` returns both
+   `id` and `staff_id`; `POST /api/work-orders/tasks/create` answers `400 {"staff_id":"Not found"}` for the
+   `id` and **201** for the `staff_id`.
+5. **Clock in: `POST /api/technician-tasks/check-in {task_id, line_id, work_order_id, refresh_lines:true}`
+   → 201.** Clock **out** was not solved — `check-out` answers
+   `400 {"error":"Task not found for the given technician ID."}` for every id tried (task id, the returned
+   record id, with and without the work order), and a second check-in elsewhere then fails with
+   *"You are already clocked into different line."*
+6. **`POST /api/work-orders/lines/change` is camelCase** (`lineName`, `timeEstimate`, `labourTypeId`);
+   snake_case returns *"Line name is missing"*. The **labour-price key is still unknown** — every candidate
+   returns `400 {"error":"Labor or fixed prices must be set."}`.
+7. **The work-order list response key is `data.work_orders`, not `data.collection`** — and reading it as
+   `collection` returns an empty list with HTTP 200, which silently reads as "no work orders exist".
+8. **WIP received-vs-outstanding parts live in two different arrays on a line:** `parts[]` holds what
+   arrived (it carries `arrived_date` / `delivery_id`), `part_requests[]` what is outstanding. **Parts
+   Earned includes the core charge**; omitting it is what made our first formula miss by $149.50.

@@ -1,3 +1,104 @@
+# RESUME - Report Suite VIU, as at 2026-08-06 end of the FIFTH session
+
+> **⚠️ EVERYTHING BELOW THE NEXT HORIZONTAL RULE IS EARLIER SESSIONS' AND IS SUPERSEDED FOR THE COUNTS.**
+> Session 5's record is this banner plus the SESSION 5 sections of `FINDINGS.md`,
+> `testrail-execution-log.md`, `FILED.md`, `CHANGES-MADE.md`, `QUESTIONS-FOR-CHRIS.md` (Q8) and
+> **section H of `RECHECK-QUEUE.md`**.
+
+## THE STATE NOW, re-derived from live at the end of the session
+
+| | Count |
+|---|---:|
+| Live under group 4281 | **481** |
+| **Ours** | **476** (foreign C38919-C38923, Vladimir Tomovic - hands off, Rule 38) |
+| **Carrying a 6 August verdict** | **403** |
+| **STILL OUTSTANDING** | **73** |
+
+**403 + 73 = 476.** The gap was **89** when this session started, so **16 were closed**. Count by case id,
+never by line: `grep -oE 'C[0-9]{5}' REMAINING.txt | sort -u | wc -l`.
+
+**I re-derived the 89 independently from live TestRail before starting and AGREED with the handover** —
+476 ours, 387 verdicted, 89 outstanding, and the per-report split matched exactly.
+
+## THE BUILD DID NOT MOVE DURING THIS SESSION
+
+`v3.5-f77875c`, last-mod Thu 06 Aug 2026 10:43:37 GMT, etag `829ed03832a746e78cbdb28eb9957a3e`.
+Read at **13:53:17Z**, **14:49:05Z** and **15:02:29Z** — `index.html` sha256 **identical all three times**
+(`b0f05b6f…94fc9b6`). It had moved **twice earlier today**, before this session; **zero times under it.**
+**Every one of the 16 cases carries the marker it was actually observed on.**
+
+## Sources (Rule 31 at start, Rule 59 re-read before the writes)
+
+SBC **15** · SBR **17** · PV **5** · TU **6** · WIP **9** · IV **4** — **none moved.**
+
+## THE EXACT NEXT ACTION
+
+`REMAINING.txt` **section A** is the work list, **73 cases**, regenerated from live, each row carrying the
+build it was last checked against and its current marker:
+
+| Report | Outstanding |
+|---|---:|
+| **Sales By Representative** | **37** |
+| Parts Velocity | 17 |
+| Sales By Customer | 14 |
+| Technician Utilization | 2 |
+| Work In Progress | 2 |
+| Inventory Value | 1 |
+
+**Start with the Sales By Representative groups that an Admin can drive**, in this order, because each is a
+self-contained block with no new access needed:
+1. **Staff Deactivation — 8 cases** (C30253–C30260). An Admin has staff administration, so the whole
+   dialog is drivable. **Doing this first also unblocks C30242 item 2**, which needs an `(Inactive)`
+   contributor to exist.
+2. **Work Order Sales Rep — 6 cases** (C30310–C30315). The playbook §N.2 already documents
+   `GET /api/sales-reps`, the `is_sales_rep` flag and `change-sales-rep`, and note its warning that
+   `change-sales-rep` **returns 201 but silently no-ops for a work order in another workplace**.
+3. **Sales Rep Assignments export — 5 cases** (C30292–C30297) and **Exports — 5 cases**
+   (C30280/82/83/88/89).
+4. **The 4 remaining calculation cases** (C30233 Margin %, C30234 money labels, C30235 accounting
+   parentheses, C30236 half-up rounding). **Beware:** every row on this estate has `margin_pct: 100` and
+   `margin == subtotal` because costs are zero, and **no negative money value exists**, so C30235 needs a
+   credit or a negative adjustment seeded before it can be observed at all.
+5. **Then Parts Velocity (17), Sales By Customer (14), TU (2), IV (1).**
+
+## ⚠️ ~19 OF THE 73 CANNOT BE DRIVEN WITHOUT A SECOND SIGN-IN, AND IT IS STILL THE BRANCH REFUSING
+
+Do **not** spend a session re-discovering this — `SECOND-LOGIN-ATTEMPT.md` has the proof.
+`POST /api/switch-user` and `POST /api/quick-login {"key":"tech"}` both return **HTTP 403 "Access denied."**
+on this branch. **Neither was called in this session** (a sibling worker shares the token). The affected
+cases: SBC C30098/C30099/C30100/C30101/C39447/C43546/C43558 · SBR C30198/C30199/C30200/C43559 ·
+PV C30325/C30326/C30327/C30391 · WIP C30526/C30527. The one-location cases (SBC C43550, C38912, C30109,
+SBR C30216, PV C30340) need a **single-location user**, which is the same ask.
+
+**C39447 is worth a look though — it may be drivable as an Admin.** It asserts that *no* Sales By Customer
+permission is offered in the role permission editor, which is a negative an Admin can read directly.
+
+## 🔴 THE ARITHMETIC GATE IS NOT CLAIMED AND MUST NOT BE
+
+**Only 51 of the 476 cases carry a verdict established on the build now running** (35 from session 4, 16
+from this one). Live markers: **330 `READY` · 103 `READY - EXPECT FAIL` · 43 `HOLD` = 476**. The suite spans
+five markers — **51 on `v3.5-f77875c` · 133 on `v3.5-7168d14` · 219 on `v3.5-16cf83f` · 4 on
+`v3.5-16cf83f` (5 Aug) · 66 on `v3.4.1-3d03023` · 3 on none** — stated per case in `REMAINING.txt` rather
+than averaged.
+
+## Outstanding, in the order it blocks work
+
+1. **A second sign-in as a non-administrator, and a single-location user** — blocks ~19 of the 73 across
+   six reports. **The branch, not us.** QA lead or a developer.
+2. **Chris Ward: 8 unanswered questions** — Q5 (the Location column) still holds 8 cases, and **Q8 is
+   new** (should a returned part come back out of Parts Earned? — the specification is silent, so the
+   question is asked rather than guessed).
+3. **The labour-price field name for `POST /api/work-orders/lines/change`** — the only thing standing
+   between us and the per-line cap (C30475 item 2, C38890 item 3). Capture it from the *Edit labor*
+   dialog's own request; do not guess it.
+4. **A negative money value somewhere in Sales By Representative** — C30235 cannot be observed without one.
+5. **The 432-case `refs` version sweep** — still not authorised, still not started. Note the refs on the
+   cases touched today still read *"SBR spec v15"* / *"WIP spec v6"* against live 17 and 9; **`refs` was
+   not written on any operation this session.**
+6. **The branch declared final** — it will not be, so the Rule-49 queue stays open by design (Rule 60).
+
+---
+
 # RESUME - Report Suite VIU, as at 2026-08-06 end of the FOURTH session
 
 > **⚠️ EVERYTHING BELOW THIS BANNER IS EARLIER SESSIONS' AND IS SUPERSEDED FOR THE COUNTS.** Session 4's

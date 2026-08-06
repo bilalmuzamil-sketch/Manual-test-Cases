@@ -411,3 +411,49 @@ this row to find out why.
 
 **C30114's repair does not depend on this row.** It rests on `sbc9.json`, whose `label: "None"` is the
 `S18-R5` label for an empty selection, making it unambiguously `S18-N1`'s scenario.
+
+---
+
+## SECTION H — SESSION 5, 2026-08-06 (16 cases)
+
+**Build all 16 were observed on: `v3.5-f77875c`** (last-mod Thu 06 Aug 2026 10:43:37 GMT, etag
+`829ed03832a746e78cbdb28eb9957a3e`, `index.html` sha256 `b0f05b6f…94fc9b6`; read at **13:53:17Z** and
+**14:49:05Z**, byte-identical, so nothing redeployed under this session). **The branch is NOT declared
+final, so every verdict below is PROVISIONAL** (Rule 49). Per Rule 61 the `READY` and
+`READY - EXPECT FAIL` rows are monitored by the automated suite itself and do **not** need
+re-observation on a redeploy; what the queue genuinely still owes is the two named shortfalls at the end.
+
+| Case | Link | Verdict | Observed on | What was seen | Re-check obligation |
+|---|---|---|---|---|---|
+| C30456 | [30456](https://shopview.testrail.io/index.php?/cases/view/30456) | PASS | `v3.5-f77875c` | report set-equal to the WO list both directions, 260 = 260, all five open statuses present | none — automated |
+| C30464 | [30464](https://shopview.testrail.io/index.php?/cases/view/30464) | PASS | `v3.5-f77875c` | all 3 tab-boundary items, incl. a before/after control on our own seeded WO | none — automated |
+| C30475 | [30475](https://shopview.testrail.io/index.php?/cases/view/30475) | PASS (items 1, 3) | `v3.5-f77875c` | clocked share exact at 0.01 h, 0.02 h and 0.18 h against a 3.00 h / $449.85 quote | **item 2, the per-line CAP, was NOT exercised** |
+| C30476 | [30476](https://shopview.testrail.io/index.php?/cases/view/30476) | PASS | `v3.5-f77875c` | Earned + Remaining = Total on all 104 live rows and 3× on the seeded WO | none — automated |
+| C30477 | [30477](https://shopview.testrail.io/index.php?/cases/view/30477) | PASS | `v3.5-f77875c` | 100 of 104 exact once the core charge is included | the 4 outliers all carry part RETURNS — **question for Chris**, not a defect |
+| C30478 | [30478](https://shopview.testrail.io/index.php?/cases/view/30478) | PASS | `v3.5-f77875c` | 102 of 104 exact | as above |
+| C30480 | [30480](https://shopview.testrail.io/index.php?/cases/view/30480) | PASS | `v3.5-f77875c` | a $224.93 unapproved line left Total unchanged at $449.85 | none — automated |
+| C38890 | [38890](https://shopview.testrail.io/index.php?/cases/view/38890) | PASS (items 1, 2) | `v3.5-f77875c` | a still-running clock counted, and the earned share grew across three readings | **item 3, the CAP, was NOT exercised** |
+| C30229 | [30229](https://shopview.testrail.io/index.php?/cases/view/30229) | DEVIATION (SV-8999) | `v3.5-f77875c` | item 1 passes (heading is "Inv. Hrs"); item 2 fails — value is hard-zero | Rule 61 — the suite reports a fix |
+| C30230 | [30230](https://shopview.testrail.io/index.php?/cases/view/30230) | DEVIATION (SV-8999) | `v3.5-f77875c` | green/red/default cannot be exercised at all | Rule 61 |
+| C30231 | [30231](https://shopview.testrail.io/index.php?/cases/view/30231) | DEVIATION (SV-8999) | `v3.5-f77875c` | S9-N1's worked-but-unbilled negative is suppressed to 0.0 | Rule 61 |
+| C38894 | [38894](https://shopview.testrail.io/index.php?/cases/view/38894) | DEVIATION (SV-8999) | `v3.5-f77875c` | a clock edit cannot move a hard-zero figure | Rule 61 |
+| C30218 | [30218](https://shopview.testrail.io/index.php?/cases/view/30218) | DEVIATION (SV-9001) | `v3.5-f77875c` | items 1, 2, 4 and the alignment half of 5 pass; item 3 fails — the four leading columns are merged, not blank | Rule 61 |
+| C30221 | [30221](https://shopview.testrail.io/index.php?/cases/view/30221) | PASS | `v3.5-f77875c` | drill-down fires only on expand; a **row-level** `q-spinner` appears at 0 ms once the request is slowed to 3 s; detail row layout matches | none — automated |
+| C30242 | [30242](https://shopview.testrail.io/index.php?/cases/view/30242) | PASS (item 1) | `v3.5-f77875c` | A→Z by display name with the saved view cleared, and the API default is `sortBy=rep_name` ascending | **item 2 (no active/inactive tiers) NOT exercised — no inactive contributor exists in range** |
+| C30227 | [30227](https://shopview.testrail.io/index.php?/cases/view/30227) | PASS (item 1) | `v3.5-f77875c` | all three badges read from computed style: Paid `bg-teal-1 text-teal-9`, Partially Paid `bg-orange-1 text-orange-10`, Unpaid `bg-red-1 text-red-10` | **item 3 (dark mode) NOT exercised — the Light/Dark menu items could not be reached** |
+
+### WHAT THIS QUEUE STILL GENUINELY OWES — three things, all named on their cases
+
+1. **The per-line Inv. Hrs / Labor Earned CAP** (C30475 item 2, C38890 item 3). Needs `worked_hours >
+   quoted_hours`. The smallest canned line on this estate is 18 minutes, and the *Edit labor* route needs
+   a labour-price field name that is **still unknown** — `POST /api/work-orders/lines/change` takes
+   **camelCase** keys (`lineName`, `timeEstimate`, `labourTypeId`) but every price key tried
+   (`labourRate`, `labourPrice`, `fixedPrice`, `techTime`) returns
+   **400 `{"error":"Labor or fixed prices must be set."}`**. Capture it from the dialog's own request.
+   **A running clock was deliberately LEFT OPEN on WO S8582-16263** so that whoever returns after three
+   hours have passed can read the cap straight off the report.
+2. **C30242 item 2** — needs a contributor tagged `(Inactive)` in range, i.e. the Staff Deactivation flow
+   (C30253–C30260) run first.
+3. **C30227 item 3** — dark mode. The playbook says the control is
+   `[data-test-id="profile_menu_button"]` → menu items `Light` / `Dark`; the button was found but the
+   items were not, so this needs a second attempt, not new access.

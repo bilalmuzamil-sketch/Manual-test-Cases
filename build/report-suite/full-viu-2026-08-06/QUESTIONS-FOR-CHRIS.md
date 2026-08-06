@@ -177,3 +177,32 @@ Week** instead.
 **You have already answered this**, on 5 August, and our own test case already follows your answer and
 says so on itself. Checking our own newer sources first is what stopped a needless question reaching
 you. Nothing is owed here.
+
+---
+
+## Q8 — Work In Progress: when a part is sent back, should the money already counted come back out? (session 5)
+
+**What happens now.** In the Work In Progress report, the Parts Earned figure is the value of the parts on
+an approved job that have already arrived. We checked this against every job in the report — 104 of them —
+and on 100 the figure is exactly right to the penny.
+
+**On the other four it is out, and all four are jobs where a part was sent back to the supplier.** On three
+of them the report shows *less* than the parts that arrived are worth, and on one it shows *more*.
+
+**The question.** When a part that had already arrived is returned, what should happen to the Parts Earned
+figure for that job?
+
+- **A** — Take the returned part's value back out, so Parts Earned only ever counts parts that arrived and
+  stayed.
+- **B** — Leave it in, because the part did arrive and the work was done at the time.
+- **C** — Something else (please describe).
+
+**Why we are asking rather than deciding.** The Work In Progress description explains what Parts Earned is,
+but it does not say anything at all about returns, so there is no written answer for us to test against. We
+have deliberately not guessed: the four jobs are recorded in our findings and the test cases still say what
+the description says.
+
+**Which tests this affects.** WIP-EARN Parts Earned and Parts Remaining — cases
+[C30477](https://shopview.testrail.io/index.php?/cases/view/30477) and
+[C30478](https://shopview.testrail.io/index.php?/cases/view/30478). Both are currently marked as passing on
+the main rule; your answer would let us add the returns rule to them.
