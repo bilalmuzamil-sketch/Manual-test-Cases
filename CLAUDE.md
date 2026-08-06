@@ -86,17 +86,33 @@
 >   as a record either way, because the live queue is the `full-viu` one.**
 >   · **REPORT SUITE — FOUR OPEN, no single one is the live queue:** `full-viu-2026-08-05` (476 rows,
 >   `v3.5-16cf83f`) · `chris-newreqs-2026-08-05` · `final-viu-2026-08-05` · `viu-2026-08-03`.
->   **⚠️ THE NEWEST REPORT SUITE PASS, `build/report-suite/full-viu-2026-08-06/`, OPENED NO QUEUE FILE
->   AT ALL** — so the 200 verdicts it established on `v3.5-16cf83f` are queued nowhere. Recorded as a
->   gap, not invented around; the next Report Suite pass owes that queue.
+>   **✅ CORRECTED 2026-08-06 — `build/report-suite/full-viu-2026-08-06/RECHECK-QUEUE.md` NOW EXISTS
+>   AND IS OPEN.** The pointer that stood here — *"THE NEWEST REPORT SUITE PASS … OPENED NO QUEUE FILE
+>   AT ALL — so the 200 verdicts it established on `v3.5-16cf83f` are queued nowhere … the next Report
+>   Suite pass owes that queue"* — was **TRUE WHEN WRITTEN**; a later session on the same day opened the
+>   queue, and it covers **both** the earlier verdicts and its own. **So the Report Suite queue family is
+>   FIVE files, all OPEN**, not four. The gap is discharged, and the superseded wording is kept visible
+>   and dated rather than deleted.
 >   **NONE of the three branches has been declared final — engineering has confirmed they will not be
 >   before release (Rule 60) — so an OPEN queue is the NORMAL STEADY STATE of an active project, a
 >   living work list rather than an embarrassment, and every verdict on all three stays PROVISIONAL.**
 >   **AUTOMATION MARKERS are now on 100% of all three suites** (they were on 102/110 Filters and
 >   0/165 Schedule when this pointer was last written): **Filters 110/110** (81 READY · 14
->   READY-EXPECT-FAIL · 15 HOLD) · **Schedule 168/168** (119 · 21 · 28) · **Report Suite 464/476 by
->   live census** (426 READY · 38 HOLD) with **12 carrying no plain-text marker because their text is
->   raw HTML and the marker is wrapped in `<p>` tags** — all 12 in Work In Progress. The marker goes at
+>   READY-EXPECT-FAIL · 15 HOLD) · **Schedule 168/168** (119 · 21 · 28) · **Report Suite 476/476 —
+>   CORRECTED 2026-08-06** by a full live census of all 476 cases (commit `a1c38d38`): **330 READY ·
+>   103 READY-EXPECT-FAIL · 43 HOLD = 476, exactly one marker each with the marker last, exactly one
+>   provenance line each, and RAW MARKUP IS 0 OF 476.**
+>   **⚠️ THE TWO FIGURES THAT STOOD HERE WERE TRUE WHEN WRITTEN AND ARE NOW STALE — kept visible and
+>   dated rather than silently overwritten:** *"Report Suite **464/476** by live census (**426** READY
+>   · **38** HOLD)"* with *"**12** carrying no plain-text marker because their text is raw HTML and
+>   the marker is wrapped in `<p>` tags — all 12 in Work In Progress"* (C30451, C30456, C30457,
+>   C30460, C30487, C30490, C30491, C30493, C30519, C30522, C30526, C30528). **Those 12 have been
+>   REPAIRED.** All twelve were re-read **INDIVIDUALLY**, and `get_case` was byte-compared against
+>   `get_cases` on three of them to rule out a bulk-endpoint read trap — so the 0 is a measurement,
+>   not an assumption.
+>   **⚠️ THE ARITHMETIC GATE (330 + 103 = 433 = 476 − 43) IS NOT A COVERAGE CLAIM AND MUST NOT BE
+>   QUOTED AS ONE — only 403 of 476 carry a verdict, and only 51 rest on the build now running.**
+>   The marker goes at
 >   the VERY END of Expected Results, AFTER the Rule-54 provenance line, blank line before and a line
 >   break after, in exactly three forms: `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL
 >   (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`. A tool flag NEVER justifies HOLD — only a genuinely
@@ -1723,7 +1739,35 @@ deliver the 7-tab management report.
    **CANONICAL STATE DOC (read first for resume):** `build/report-suite/PROJECT-STATE.md`
    — single authoritative snapshot (per-report spec inventory + readiness snapshot,
    TestRail structure, open questions OQ-1..7, how-to-resume).
-   **STATUS 2026-08-06 (LATEST — THE LIVE-OBSERVATION PASS: 200 OF 476 OBSERVED ON `v3.5-16cf83f`,
+   **STATUS 2026-08-06 LATE (NEWEST — THE COUNT MOVED AND THREE CLAIMS BELOW ARE SUPERSEDED. Session 6,
+   commits `0446f226` / `a1c38d38`; resume `build/report-suite/full-viu-2026-08-06/RESUME.md`):**
+   **THE COUNT IS NOW 403 OF 476 VERDICTED · 73 OUTSTANDING** (403 + 73 = 476), re-derived from live
+   TestRail and **set-equal in BOTH directions** to the handover list. **⚠️ THE BLOCK IMMEDIATELY BELOW
+   SAYS "200 OF 476 OBSERVED / 276 STILL OWED" — TRUE WHEN WRITTEN, NOW SUPERSEDED**; the superseded
+   figures are kept visible and dated rather than overwritten. The branch has since moved to
+   **`v3.5-f77875c`** (last-mod Thu 06 Aug 2026 10:43:37 GMT, etag `829ed03832a746e78cbdb28eb9957a3e`),
+   so **only 51 of the 476 verdicts rest on the build now running** — the rest carry their own honest
+   earlier build line, which under Rule 60 is the record, not a defect.
+   **TWO FURTHER CLAIMS BELOW ARE STALE, BOTH DISPROVED BY A FULL LIVE CENSUS OF ALL 476:**
+   **(a) "12 with NO plain-text marker … raw-markup cases"** — the census found **0 raw markup and
+   476/476 carrying exactly one marker and one provenance line** (**330 READY · 103 READY-EXPECT-FAIL ·
+   43 HOLD**); the 12 named cases were re-read individually and are clean.
+   **(b) "8 cases still carry NO build line at all"** — it is **5** (C30278, C43550, C43551, C43558,
+   C43559), and it is **NOT a defect**: each says in its own text that it has not yet been checked
+   against any build, which is exactly what Rule 60 requires.
+   **THE EPIC MOVED 105 → 104 CHILDREN, AND THE CAUSE IS KNOWN:**
+   **[SV-8821](https://shopview.atlassian.net/browse/SV-8821) was closed OBSOLETE and had its PARENT
+   STRIPPED at 14:23:46Z**, and **SV-8822 likewise** — both under **our own shared account**, so
+   somebody was tidying closed tickets off the epic. **LEFT EXACTLY AS FOUND (Rule 53's corollary —
+   his edits are indistinguishable from ours in the changelog, and nobody may "restore" them).** A
+   sweep of all 476 cases confirms **neither ticket is named on any case**, so **nothing downstream is
+   affected**. **All six specs re-read live and NONE moved** (SBC 15 · SBR 17 · PV 5 · TU 6 · WIP 9 ·
+   IV 4). **0 cases were closed this session — the sign-in died estate-wide 80 minutes into it, and a
+   verdict is an observation (Rule 12), so nothing was inferred to pad the number; 0 TestRail writes
+   even though `update_case` was authorised.** **`AND A RULE-49 QUEUE NOW EXISTS`** — see the
+   correction note on the queue-state pointer near the top of this file.
+   **STATUS 2026-08-06 (SUPERSEDED IN PART BY THE BLOCK ABOVE — THE LIVE-OBSERVATION PASS: 200 OF 476
+   OBSERVED ON `v3.5-16cf83f`,
    276 STILL OWED, THREE REPORTS FINISHED. Resume `build/report-suite/full-viu-2026-08-06/RESUME.md` →
    `{FINDINGS,CHANGES-MADE,FILED,TICKET-SOURCE-BLOCK,COMMIT-COLLISION-2026-08-06}.md` + `REMAINING.txt`
    + `verdicts.json` → `build/report-suite/PROJECT-STATE.md`):** build **`v3.5-16cf83f`** (last-mod Wed
