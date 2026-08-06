@@ -1,5 +1,33 @@
 # Schedule full live VIU — RESUME (updated every batch)
 
+## 🔴 BLOCKED ON A DEAD SIGN-IN — read `SESSION-BLOCKED-2026-08-06.md` first
+
+The 2026-08-06 resume attempt **stopped at step 0 and observed nothing**. The stored
+Schedule cookies return **HTTP 401 `sso_required`** and `POST /api/quick-login` is barred
+for this session, so the run cannot start. **The one thing needed is a fresh
+`sv_sso_session` / `PHPSESSID` / `cf_clearance` for `.qa.shopview.com`, valid against
+`sv8685api.qa.shopview.com`.**
+
+Two traps recorded there so they are not re-tried: the **app** host answers HTTP 200 for
+any path because it serves the SPA shell, so **always probe the `…api.` host**; and the
+**Filters cookie set is alive but useless here** — 409 `Session has expired.` against the
+Schedule API, because each branch keeps its own session store.
+
+**The build has NOT moved** — `v3.5-7ec992f`, last-modified Wed 05 Aug 2026 22:49:36 GMT,
+etag `e2a80a6ab5e0b47c29fd88af9db1e980`, re-read 2026-08-06 03:27 UTC. So the 29 verdicts
+on that marker are still current and the 97 on `v3.5-d122eef` are still stale.
+
+**Still zero TestRail writes, proven by CONTENT not by timestamp:** all 168 re-read live,
+0 field differences, 0 `updated_on` movement. Run 357 re-read: 168 tests, 429 results, all
+present by id, 0 changed, 0 new. See `snapshots/NOWRITE-proof-2026-08-06.json` and
+`snapshots/run357-untouched-2026-08-06.json`.
+
+**Done anyway this session:** the two unfiled defects are now filed after clean duplicate
+searches — **[SV-8923](https://shopview.atlassian.net/browse/SV-8923)** (C30047) and
+**[SV-8924](https://shopview.atlassian.net/browse/SV-8924)** (C29975). And **six new Jira
+tickets appeared** while we were away, one of which (**SV-8915**) carries a V1 product
+decision our cases do not yet reflect. Details in `SESSION-BLOCKED-2026-08-06.md` §5.
+
 ## ⚠️ THE BUILD MOVED MID-PASS — read `BUILD-MARKER-MOVED.md` before anything else
 
 | Half | Cases | Build | Date |
@@ -41,17 +69,45 @@ die, ask for fresh `sv_sso_session` / `PHPSESSID` / `cf_clearance` for `.qa.shop
 
 ## NEXT ACTION — exact
 
-**Batch 7, the 13 still to do**, all on `v3.5-7ec992f`:
+**Batch 7, the 13 still to do**, all on `v3.5-7ec992f`. *(This list was re-derived from
+`batches-6-9.json` minus the recorded verdicts on 2026-08-06 — an earlier edition of it
+named only 12 and **omitted SCH-VIEW-04**, which is outstanding. The 13 below are the
+computed set and reconcile to the 42 total.)*
 
 * `SCH-TOOL-03` = C30041 — toolbar search highlights matches, fades non-matches
   (open with `[data-test-id=button_schedule_search_toggle]`). Ticket **SV-8874** already covers
   its known fault; the case still says "no developer ticket yet" and that sentence is FALSE.
+* `SCH-VIEW-04` = C30045 — the remaining View Options item.
 * `SCH-COLOR-01/02/03` = C30071 / C30072 / C30073 — default blue, per-shift recolour
   (`button_shift_detail_color`), editable colour labels.
 * `SCH-KEY-01/03/05` = C30066 / C30068 / C30070 — Escape closes topmost, Enter confirms
   (but not inside a note textarea), focus trap.
 * `SCH-HRS-02/03/04/05/06` = C38847 / C38848 / C38849 / C38850 / C38851 — the Working Hours
   settings screens.
+
+**Batch 8 — 20, none started:** `SCH-PERM-01…11` = C30074–C30084, `SCH-PERM-12` = C30614,
+`SCH-PERM-13` = C38926, `SCH-EDGE-02…06` = C30086–C30090, `SCH-EDGE-07/08` = C38865/C38866.
+**Rule 26 applies to the whole of it.**
+
+**Batch 9 — 9, none started:** `SCH-REG-01…05` = C38867–C38871, `SCH-API-01…04` =
+C38872–C38875. **Rule 51: an API-only fault goes to `API-ASK.md`, it is not filed.**
+
+## The 25 stale deviations to re-drive after the 42 (step 2)
+
+All were seen on **`v3.5-d122eef`, which no longer exists**. Re-derived from the batch 1–5
+verdict files on 2026-08-06:
+
+C29927 SCH-NAV-03 · C29939 SCH-WOL-04 (SV-8873) · C29946 SCH-FILT-05 (SV-8857) ·
+C29960 SCH-DND-06 (SV-8840) · C29967 SCH-SCOPE-05 (SV-8886) · C29982 SCH-SPREAD-06
+(SV-8855) · C29984 SCH-SPREAD-08 · C29985 SCH-SPREAD-09 · C29987 SCH-SER-01 ·
+C29988 SCH-SER-02 (SV-8849) · C29998 SCH-LANE-03 (SV-8850) · C29999 SCH-LANE-04 (SV-8850) ·
+C30001 SCH-DAY-01 (SV-8837 — **and now also SV-8915**) · C30004 SCH-DAY-04 (SV-8856) ·
+C30009 SCH-MODAL-02 (SV-8833) · C30010 SCH-MODAL-03 (SV-8834) · C30013 SCH-MODAL-06 ·
+C30014 SCH-MODAL-07 (SV-8852) · C30016 SCH-EVT-01 · C30020 SCH-EVT-05 · C30021 SCH-EVT-06 ·
+C30034 SCH-TIP-01 · C30035 SCH-TIP-02 · C30036 SCH-TIP-03 · C43554 SCH-NAV-08 (SV-8863).
+
+The other **72** from that period are passes and carry forward on the old marker; their
+provenance sentence 2 must name **`v3.5-d122eef` / 8/5/2026**, not today's build.
 
 **Do `SCH-HRS-03` together with `SCH-START-01` = C29969 and `SCH-START-02` = C29970.** Both are
 blocked on the same thing: every technician who has hours has the identical 07:00–19:00 window

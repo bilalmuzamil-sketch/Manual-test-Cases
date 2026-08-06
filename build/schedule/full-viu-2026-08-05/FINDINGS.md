@@ -76,22 +76,31 @@ Six toggles offered; five defaults correct. **Business Hours defaults ON; §9 re
 **A correction to the ticket:** SV-8827 also claims Tech Hours starts ON. **It does not** — it
 starts OFF, which is what the spec wants. That half of the ticket is wrong.
 
-### SCH-VIEW-06 = C30047 — the Business Hours toggle shades nothing · NO TICKET · NOT FILED
+### SCH-VIEW-06 = C30047 — the Business Hours toggle shades nothing · **NOW FILED as [SV-8923](https://shopview.atlassian.net/browse/SV-8923)**
 §9/§4.8: "With the toggle on, the hours OUTSIDE the working day are shaded with a grey overlay."
 In Day view on Thu 6 Aug 2026 with the toggle **on** (its default) the timeline from 12 AM to
 11 PM renders **uniformly white**. Measured ON, OFF and restored: the only shaded element in the
 whole calendar is the department divider (`fc-resource-timeline-divider fc-cell-shaded`), count
 **2 in all three states**. Confirmed on the screenshot, not only by class name. **Distinct from
 SV-8827**, which is about the default state, not about the toggle having no effect.
-**NOT FILED** — needs a duplicate search and the QA lead's go-ahead (Rules 52/53).
+**FILED 2026-08-06 as [SV-8923](https://shopview.atlassian.net/browse/SV-8923)** —
+`Story Defect`, parent SV-8700, priority Low, `relates to` SV-8700, no Product Area.
+Duplicate search run first over four queries; the nearest three (SV-8827 default state,
+SV-8837 and SV-8915 opening scroll position) are all a different assertion.
 
-### SCH-START-07 = C29975 — assigning an unassigned shift moves its start six hours · NOT FILED
+### SCH-START-07 = C29975 — assigning an unassigned shift moves its start six hours · **NOW FILED as [SV-8924](https://shopview.atlassian.net/browse/SV-8924)**
 Items 1 and 2 pass (shift moves to the technician; line roster gains them). **Item 3 fails:**
 on assignment to Kellie Ayers the stored start moved from `2026-08-08T13:00:00Z` (07:00 local)
 to **`2026-08-08T07:00:00Z`** = **01:00 local**, outside her own working hours. Her configured
 start is 07:00, so the app took the right number in the wrong timezone frame. **Not a display
-problem — the stored instant moved.** Likely the same root cause as SV-8848 but the opposite
-symptom (wrong *write*, not wrong *read*). **NOT FILED** without a duplicate check.
+problem — the stored instant moved.** SV-8848 was then read in full before filing: it
+describes times being *shown* six hours late (block position, hover summary, shift window,
+now-marker), whereas this is the stored value being *written* six hours early. Same six hours,
+opposite direction — most likely one missing conversion on read and another on write, but
+separately testable, because fixing the display leaves records already damaged by the assign
+path still wrong. **FILED 2026-08-06 as
+[SV-8924](https://shopview.atlassian.net/browse/SV-8924)** — `Story Defect`, parent SV-8688,
+priority Low, `relates to` SV-8688 and SV-8848, no Product Area.
 
 ### SV-8848 still reproduces
 An unassigned shift stored at `13:00Z` (07:00 local) shows **"13:00"** in its modal; a shift
@@ -115,6 +124,23 @@ it a tester fails a build whose stored value is correct.
 shifts *are created by* dropping onto that row — but in a week with none, there is nothing to
 drop onto. Recorded as an observation, not filed.
 
+## Sources moved after this pass — read `SESSION-BLOCKED-2026-08-06.md` §5
+
+Checked live on 2026-08-06. **Six new Schedule tickets** appeared on 5 Aug evening, after
+the batch-1–5 observations were taken. Three are from **Sasha Grosman**, raised in a
+**Schedule design review with Fabian on 5 Aug** and **scoped for V1**:
+[SV-8915](https://shopview.atlassian.net/browse/SV-8915) (view opens at midnight — touches
+**SCH-DAY-01 = C30001**, which we carry against SV-8837, and it **states the opening
+hierarchy in full**, a documented expectation our cases do not yet reflect),
+[SV-8916](https://shopview.atlassian.net/browse/SV-8916) ("Add Existing Work Order" button
+missing — **no case of ours identified, a possible gap**),
+[SV-8917](https://shopview.atlassian.net/browse/SV-8917) (conflict label wording).
+Three more are Ayesha Khan's: [SV-8922](https://shopview.atlassian.net/browse/SV-8922),
+[SV-8921](https://shopview.atlassian.net/browse/SV-8921),
+[SV-8919](https://shopview.atlassian.net/browse/SV-8919) — **candidate coverage gaps, not
+authored**. All three Sasha tickets cite a **design link**, so the design source may have
+moved since our ingest; not re-checked.
+
 ## Honest limits
 
 * **42 of 168 have no verdict** — rest of batch 7 (Toolbar search, Colour, Working Hours,
@@ -128,5 +154,8 @@ drop onto. Recorded as an observation, not filed.
   Edit Location toggle on changes a shared setting that would invalidate batch 5's
   working-hours observations.
 * **NO TESTRAIL WRITE HAS BEEN MADE**, deliberately: the write pass begins only once all 168
-  are observed.
+  are observed. Re-proven on 2026-08-06 by re-reading all 168 live and comparing **content**
+  field by field (0 differences, and 0 `updated_on` movement) — not by trusting the timestamp.
+* **The 2026-08-06 resume attempt observed NOTHING** — the Schedule sign-in returns HTTP 401
+  `sso_required` and `quick-login` is barred. The 42 are still 42.
 * **The branch is not declared final, so every verdict is PROVISIONAL** (Rule 49).
