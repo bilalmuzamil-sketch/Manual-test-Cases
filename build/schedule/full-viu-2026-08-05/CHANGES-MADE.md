@@ -282,3 +282,16 @@ Teardown is not required (QA lead, 2026-08-05). Every change is listed with its 
 | 7 | Note on shift, work order S-9379 | Xiriver Apparel · 16604 · "Service - Wheels off…" | Two-line note added: "ZZAUTOTEST line one" / "ZZAUTOTEST line two" | 2026-08-06 ~05:45Z | the shift had no note |
 
 An earlier drag of the same S-12876 shift onto Jose Young (row 2) was **cancelled with Escape and made no change** — recorded here only so the two drags are not mistaken for two reassignments.
+
+### Working Hours settings — 2026-08-06
+
+| # | Object | On-screen name | What was done | When (UTC) | BEFORE |
+|---|---|---|---|---|---|
+| 8 | Staff working hours | **Ayesha Khan AK** (Staging Heavy Duty - 9919, role Technician) — Edit Staff Member → TECHNICIAN HOURS → **Monday** | First range changed to **10:00 – 16:00** and **saved** with "Save & Close" | 2026-08-06 ~06:40Z | **07:00 – 21:00** — **NOT restored** |
+| 9 | Staff working hours | Ayesha Khan AK — Monday | A second range was added, set to 07:00–21:00 to force the overlap error, then **removed again**; a further added range was also removed | 2026-08-06 ~06:30Z | no second range — **net zero, removed** |
+| 10 | Grid view option | "Tech Hours" in **View Options** | Toggled **ON** and left ON | 2026-08-06 ~06:50Z | **OFF** |
+
+**Not changed, recorded so it is not mistaken for a change:** the custom-hours toggle was clicked once
+on **Benjamin Peters** and once on **Branko Cicovic** during the row-targeting work, but in both cases
+the dialog was closed **without saving**, and Ayesha's toggle was re-read afterwards and still stood at
+its original ON — so no staff member's toggle state was persisted by those clicks.

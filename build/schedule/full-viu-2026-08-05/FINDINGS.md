@@ -6,156 +6,129 @@ build was ever observed across all 168 cases.
 | | Cases | Build checked against | Date |
 |---|---|---|---|
 | Batches 1–5 | **97** | `v3.5-d122eef` — **superseded, no longer exists** | 8/5/2026 |
-| Batch 6 + part of 7 | **29** | `v3.5-7ec992f` | 8/6/2026 |
-| Rest of 7, all of 8 and 9 | **42** | **not yet observed** | — |
+| Batch 6, batch 7, batch 7b | **40** | `v3.5-7ec992f` | 8/6/2026 |
+| Rest of 7b, all of 8 and 9 | **31** | **not yet observed** | — |
 
-**126 of 168 carry a verdict; 42 do not.** Nothing was inferred for the 42, and nothing from
+**137 of 168 carry a verdict; 31 do not.** Nothing was inferred for the 31, and nothing from
 the first 97 has been quietly upgraded to look as though it was seen on the current build.
 
-## Verdict tally (126 recorded)
+## 2026-08-06 session — the sign-in, and what caused the earlier 401
+
+**The session was alive the whole time. The 401 that stopped the previous attempt was OUR OWN
+malformed cookie header, not a dead sign-in.** Building the header with `paste -sd'; '` alternates
+the two delimiter characters, so the string came out as `A=1;B=2 C=3` and the third cookie was lost.
+Rebuilt correctly, `GET /api/auth/me/fe-permissions` on `sv8685api.qa.shopview.com` returned **HTTP
+200** with 42 permissions and `view_mode: full` on the first try.
+
+**The diagnostic supplied with the cookies is confirmed:** `sv_sso_session` and `PHPSESSID` were
+byte-identical to the set that had 401'd, and only `cf_clearance` differed. So what expires first on
+this estate is the **Cloudflare clearance**, not the sign-in — on a 401, ask for a fresh
+`cf_clearance` before assuming a whole new sign-in is needed. `POST /api/quick-login` was **never
+called**.
+
+**Build read at session start and at session end: `v3.5-7ec992f`, last-modified Wed 05 Aug 2026
+22:49:36 GMT, etag `e2a80a6ab5e0b47c29fd88af9db1e980`, and the served `index.html` is BYTE-IDENTICAL
+on sha256 across both reads. No redeploy occurred under this session.**
+
+## Verdict tally (137 recorded)
 
 | Family | Count |
 |---|---|
-| PASS (incl. label-fix, hold-lifted, over-specified-case, was-expect-fail) | **93** |
-| DEVIATION (incl. new, partly-fixed, stale-text, wrong-marker) | **29** |
+| PASS (incl. label-fix, hold-lifted, over-specified-case, was-expect-fail) | **99** |
+| DEVIATION (incl. new, partly-fixed, stale-text, wrong-marker) | **31** |
 | HELD | **3** |
 | NOT OBSERVED, reason recorded | **1** |
+| **Re-opened as UNSETTLED by a later observation** | **1** (C30050 — see below) |
 
-## Sources re-established this session
+## The headline of this session: two EXPECT-FAIL markers are now wrong
 
-* **Specification CURRENT at Confluence version 23**, last edited 30 July 2026 by Branko
-  Cicovic — before our ingest. Proven by content: the live body (58,584 chars) was split into
-  335 sentences over 25 characters and each searched in our mirror; **5 were not found and all
-  5 are the documented boundary artefacts** (the page header block plus four heading/sentence
-  merges). **0 requirements changed.** The **Rule-31(a) trap is confirmed again** — the page
-  body's own "Version" field still reads **1.0** while the Confluence version is **23**.
-* **Our ten tickets, read live one by one: all still Open**, resolution null, priority Low.
-  Nine are `Story Defect`s under their owning stories; **SV-8848 has no parent**, exactly as
-  Mudassir Qamar left it — not reversed. **SV-8857 has moved to `TESTING QA`** (updated
-  2026-08-05 19:00:57), the only movement among the ten, and it moved *before* the 22:49
-  deploy, so a fix for it may be in this build.
-* **A fix shipped without its ticket being closed** — SV-8851, see SCH-VIEW-09.
+**SV-8853 no longer reproduces on either half it was raised for.**
 
-## Verdicts that CHANGED
+* **SCH-KEY-01 = [C30066](https://shopview.testrail.io/index.php?/cases/view/30066)** — Escape now
+  closes the **"Delete from this series?"** dialog and the **"Reassign shift"** dialog on the FIRST
+  press. Both are the layers the spec names first in its stacking order, and both are exactly what
+  the case's "Known issue" paragraph says do not close.
+* **SCH-KEY-03 = [C30068](https://shopview.testrail.io/index.php?/cases/view/30068)** — Enter now
+  confirms the reassign dialog: it closed and produced the toast **"Shift reassigned."** with an Undo
+  action.
 
-### SCH-VIEW-09 = C30050 — DEVIATION → **PASS. Fixed.**
-Previously "toggling Tech Hours produced no observable change at all". Now the toggle appends
-each technician's hours to their row header — `Brittany Anderson | HD Technician | 7:00 AM –
-7:00 PM` — and shows **"Not working"** for the technician with no configured hours. Values
-match the stored windows (420–1140 minutes). Off removes them. **All three items pass.**
-**SV-8851 is still Open and should be closed.**
+Both cases currently carry `AUTOMATION: READY - EXPECT FAIL (SV-8853)` **for a fault that no longer
+reproduces** — precisely the defect class this pass was sent to find. **SV-8853 should be re-checked
+and probably closed.**
 
-### SCH-DEL-08 = C30064 — our case was OVER-SPECIFIED, the build is fine
-Our case asserts "~7 seconds with Undo; ~4 seconds without". **Neither half is in the spec.**
-§7 says "The toast persists for **4 to 7 seconds**, stays while the cursor is over it", and in
-the same paragraph "**Every** create, delete, move, and reassign action produces a toast **with
-an Undo option**" — so a no-Undo toast should not exist. Consistent with that, all four actions
-produced Undo toasts and none without could be found to time. Measured **~6.8s**, inside the
-spec window. **PASS**; the unsourced split is deleted, not replaced by an observation
-(Rules 25/42/57).
+This is the third instance in this project of ticket status failing to track build state, and it is
+the reason the QA lead's new three-outcome block exists — see
+`EXPECT-FAIL-BLOCK-REQUIREMENT.md`.
 
-### SCH-REAS-06 = C38855 — our case was OVER-SPECIFIED
-Our case demands "a toast / prompt pointing to the Work Orders tab". The spec says only
-"Left-click on empty grid space opens a menu with: Create event, New work order" and **nothing**
-about what choosing it does. The build opens a **New Work Order dialog in place** (Customer +
-Add, Asset + Add, "Asset Here?", Save) — *more* than our case asked for. **PASS**; the
-unsourced parenthetical is removed.
+## Verdicts recorded this session (11 cases, all on `v3.5-7ec992f`)
 
-## Deviations found this session
+| Case | Internal ID | Verdict | One line |
+|---|---|---|---|
+| [C30041](https://shopview.testrail.io/index.php?/cases/view/30041) | SCH-TOOL-03 | **DEVIATION** (SV-8874) | Searching removes non-matching blocks instead of fading them — 53 blocks became 16, all 16 matching, none faded. All five search fields do match, and clearing restores all 53. |
+| [C30045](https://shopview.testrail.io/index.php?/cases/view/30045) | SCH-VIEW-04 | **DEVIATION — NEW, no ticket** | Month view shows the VIN on 9 of 25 blocks. Spec §4.4: *"Shown in day and week views only; month view omits it due to space constraints."* Items 1, 2, 4 and 5 pass, including the day-view lane growing 104px → 123px. |
+| [C30066](https://shopview.testrail.io/index.php?/cases/view/30066) | SCH-KEY-01 | **PASS** (was expect-fail) | See above. |
+| [C30068](https://shopview.testrail.io/index.php?/cases/view/30068) | SCH-KEY-03 | **PASS** (was expect-fail) | See above. Enter in the note textarea correctly inserts a newline instead of confirming. |
+| [C30070](https://shopview.testrail.io/index.php?/cases/view/30070) | SCH-KEY-05 | **PASS** | Focus never left the modal across 18 tabs and wrapped; all seven toolbar controls and the sidebar are reachable across 65 stops. |
+| [C30071](https://shopview.testrail.io/index.php?/cases/view/30071) | SCH-COLOR-01 | **PASS** | A seeded single shift and a seeded 10-shift series spanning 11–20 Aug both came back `#e2effe` and render `schedule-block--blue`. |
+| [C30072](https://shopview.testrail.io/index.php?/cases/view/30072) | SCH-COLOR-02 | **PASS** | Recolouring one shift changed **zero** other blocks, including the other shift of the same work order. Three tones confirmed: fill, text, 3px left border. |
+| [C30073](https://shopview.testrail.io/index.php?/cases/view/30073) | SCH-COLOR-03 | **PASS** | Label renamed shop-wide and seen from another shift **and** from an event's picker. Restored afterwards. |
+| [C38848](https://shopview.testrail.io/index.php?/cases/view/38848) | SCH-HRS-02 | **PASS** | Toggle labelled exactly "Set custom hours for this technician", OFF by default, reveals a Monday–Sunday editor. |
+| [C38850](https://shopview.testrail.io/index.php?/cases/view/38850) | SCH-HRS-04 | **PASS** | "Add Hours" appends an **empty** second range, removable on its own. |
+| [C38851](https://shopview.testrail.io/index.php?/cases/view/38851) | SCH-HRS-05 | **PASS** | Message reads exactly *"These hours overlap. Adjust the times so they don't conflict."*; Save disabled during the overlap; an incomplete row shows *"Both times are required"* instead and does **not** block Save. |
 
-### SCH-REAS-07 = C43556 — series members still cannot be reassigned · SV-8867 · STILL REPRODUCES
-Dragging a series block ("Joshore Farms | 70 | Service - Air filter | Part of a series") from
-Andrew Wade to Colleen Guerrero produced **no dialog, no toast, no change**. **Controlled
-contrast in the same session:** an ordinary shift dragged between the same rows *does* open
-`Reassign shift → "Move this shift to Ayesha Khan AK on Mon, Mar 22?"` and completes. Spec §7
-requires drag reassignment with a confirmation modal and §8.2 makes a series a grouping over
-ordinary shifts. The case keeps the documented expectation (Rule 57).
+## Two label corrections owed to the cases (Rule 9)
 
-### SCH-VIEW-05 = C30046 — Business Hours defaults ON · SV-8827 · STILL REPRODUCES
-Six toggles offered; five defaults correct. **Business Hours defaults ON; §9 requires OFF.**
-**A correction to the ticket:** SV-8827 also claims Tech Hours starts ON. **It does not** — it
-starts OFF, which is what the spec wants. That half of the ticket is wrong.
+1. **[C30073](https://shopview.testrail.io/index.php?/cases/view/30073)** — pressing **Enter does
+   not save** a renamed colour label; there is a dedicated save control and Enter alone leaves the
+   row in edit mode. The case's step should say to save.
+2. **[C30072](https://shopview.testrail.io/index.php?/cases/view/30072)** — the case asserts the
+   sibling shift keeps its *"(default blue)"* colour. Only the substantive half — that it does not
+   change — is provable when the sibling has been recoloured before. Relax the parenthetical.
 
-### SCH-VIEW-06 = C30047 — the Business Hours toggle shades nothing · **NOW FILED as [SV-8923](https://shopview.atlassian.net/browse/SV-8923)**
-§9/§4.8: "With the toggle on, the hours OUTSIDE the working day are shaded with a grey overlay."
-In Day view on Thu 6 Aug 2026 with the toggle **on** (its default) the timeline from 12 AM to
-11 PM renders **uniformly white**. Measured ON, OFF and restored: the only shaded element in the
-whole calendar is the department divider (`fc-resource-timeline-divider fc-cell-shaded`), count
-**2 in all three states**. Confirmed on the screenshot, not only by class name. **Distinct from
-SV-8827**, which is about the default state, not about the toggle having no effect.
-**FILED 2026-08-06 as [SV-8923](https://shopview.atlassian.net/browse/SV-8923)** —
-`Story Defect`, parent SV-8700, priority Low, `relates to` SV-8700, no Product Area.
-Duplicate search run first over four queries; the nearest three (SV-8827 default state,
-SV-8837 and SV-8915 opening scroll position) are all a different assertion.
+## A defect seen but deliberately NOT filed
 
-### SCH-START-07 = C29975 — assigning an unassigned shift moves its start six hours · **NOW FILED as [SV-8924](https://shopview.atlassian.net/browse/SV-8924)**
-Items 1 and 2 pass (shift moves to the technician; line roster gains them). **Item 3 fails:**
-on assignment to Kellie Ayers the stored start moved from `2026-08-08T13:00:00Z` (07:00 local)
-to **`2026-08-08T07:00:00Z`** = **01:00 local**, outside her own working hours. Her configured
-start is 07:00, so the app took the right number in the wrong timezone frame. **Not a display
-problem — the stored instant moved.** SV-8848 was then read in full before filing: it
-describes times being *shown* six hours late (block position, hover summary, shift window,
-now-marker), whereas this is the stored value being *written* six hours early. Same six hours,
-opposite direction — most likely one missing conversion on read and another on write, but
-separately testable, because fixing the display leaves records already damaged by the assign
-path still wrong. **FILED 2026-08-06 as
-[SV-8924](https://shopview.atlassian.net/browse/SV-8924)** — `Story Defect`, parent SV-8688,
-priority Low, `relates to` SV-8688 and SV-8848, no Product Area.
+Turning **"Set custom hours for this technician"** ON for **Benjamin Peters** (Staging Lethbridge -
+4310) produced the inline error *"Couldn't load this technician's hours, so they can't be edited
+right now. Close and reopen the dialog to try again."* on **every** attempt, and the toggle snapped
+back to OFF, so no editor ever appeared for him. Whether this is staff-specific or location-specific
+was **not** established, and it is entangled with the item below — so it is recorded, not filed.
 
-### SV-8848 still reproduces
-An unassigned shift stored at `13:00Z` (07:00 local) shows **"13:00"** in its modal; a shift
-dropped at the 10 AM column in Day view renders at about **4 PM**. Three start-time cases carry
-a tester note to ignore it; **SCH-START-04 = C29972 does not and needs the same note** — without
-it a tester fails a build whose stored value is correct.
+## ⚠️ C30050 IS RE-OPENED — read `TECH-HOURS-REGRESSION-2026-08-06.md`
+
+**SCH-VIEW-09 = [C30050](https://shopview.testrail.io/index.php?/cases/view/30050)** was flipped to
+PASS earlier today because Tech Hours rendered each technician's window on their row. **Later in the
+same session, under a byte-identical build, no row showed hours at all** and the board payload
+carried no hours data anywhere.
+
+**One of the candidate causes is our own edit** — we changed Ayesha Khan AK's Monday hours and saved
+between the two observations. So **nothing has been filed**, and **C30050 must be re-observed before
+it is written either way.** The exact three-step way to settle it is in that file.
 
 ## Two near-misses — false defects avoided by looking twice
 
 1. **A cross-technician drag looked completely broken** — three attempts moved nothing and
    produced no toast. Each had in fact **opened a "Reassign shift" confirmation that was never
    confirmed**. The drag works. (Rules 12/44.)
-2. **The Unassigned lane looked absent** — not in the visible grid, not in Day view, the word
-   never on screen; three cases looked like "not built" against a requirement the spec states
-   four times. It is **real**: it sits **below every technician row**, reachable only by
-   scrolling, and is **only rendered in a date range that already contains an unassigned
-   shift**. In an empty week it is absent when idle, during a drag, and when dragging to the
-   bottom (21 lanes both ways).
-
-**Point 2 deserves engineering's attention even though the case passes:** §4.2 says unassigned
-shifts *are created by* dropping onto that row — but in a week with none, there is nothing to
-drop onto. Recorded as an observation, not filed.
-
-## Sources moved after this pass — read `SESSION-BLOCKED-2026-08-06.md` §5
-
-Checked live on 2026-08-06. **Six new Schedule tickets** appeared on 5 Aug evening, after
-the batch-1–5 observations were taken. Three are from **Sasha Grosman**, raised in a
-**Schedule design review with Fabian on 5 Aug** and **scoped for V1**:
-[SV-8915](https://shopview.atlassian.net/browse/SV-8915) (view opens at midnight — touches
-**SCH-DAY-01 = C30001**, which we carry against SV-8837, and it **states the opening
-hierarchy in full**, a documented expectation our cases do not yet reflect),
-[SV-8916](https://shopview.atlassian.net/browse/SV-8916) ("Add Existing Work Order" button
-missing — **no case of ours identified, a possible gap**),
-[SV-8917](https://shopview.atlassian.net/browse/SV-8917) (conflict label wording).
-Three more are Ayesha Khan's: [SV-8922](https://shopview.atlassian.net/browse/SV-8922),
-[SV-8921](https://shopview.atlassian.net/browse/SV-8921),
-[SV-8919](https://shopview.atlassian.net/browse/SV-8919) — **candidate coverage gaps, not
-authored**. All three Sasha tickets cite a **design link**, so the design source may have
-moved since our ingest; not re-checked.
+2. **The shift modal looked to have no focus rings at all** — 1 of 26 stops by outline and
+   box-shadow. **Quasar paints its focus indicator on a `.q-focus-helper` CHILD element**; once that
+   was read, **every button in the modal had one**. Had it been filed it would have been wrong.
+3. **The Unassigned lane looked absent** (recorded in the earlier session) — it is real, sits below
+   every technician row, and only renders in a range that already contains an unassigned shift.
 
 ## Honest limits
 
-* **42 of 168 have no verdict** — rest of batch 7 (Toolbar search, Colour, Working Hours,
-  Keyboard), all of batch 8 (Permissions, Edge Cases), all of batch 9 (Regression, API).
-* **The 97 verdicts from batches 1–5 sit on a build that no longer exists.** The 25 deviations
-  among them are the exposed ones. We did not look, and we do not guess.
-* **SCH-START-01 = C29969 could not be settled** — every technician with configured hours has
-  the identical 07:00–19:00 window, byte-for-byte the general default, so a 07:00 start proves
-  nothing about precedence. Needs one technician given a genuinely different window.
-* **SCH-START-02 = C29970 stays HELD** — the shop has no business hours set, and turning the
-  Edit Location toggle on changes a shared setting that would invalidate batch 5's
-  working-hours observations.
-* **NO TESTRAIL WRITE HAS BEEN MADE**, deliberately: the write pass begins only once all 168
-  are observed. Re-proven on 2026-08-06 by re-reading all 168 live and comparing **content**
-  field by field (0 differences, and 0 `updated_on` movement) — not by trusting the timestamp.
-* **The 2026-08-06 resume attempt observed NOTHING** — the Schedule sign-in returns HTTP 401
-  `sso_required` and `quick-login` is barred. The 42 are still 42.
+* **31 of 168 have no verdict** — two Working Hours cases that need shop business hours, all of
+  batch 8 (Permissions, Edge Cases) and all of batch 9 (Regression, API). Listed case by case in
+  `RESUME.md`.
+* **The 97 verdicts from batches 1–5 sit on a build that no longer exists**, and **the 25 deviations
+  among them were NOT re-driven this session.** We did not look, and we do not guess.
+* **SCH-START-01 = [C29969](https://shopview.testrail.io/index.php?/cases/view/29969) is now
+  settleable but is NOT yet settled** — the blocker is removed (Ayesha Khan AK's Monday is now
+  10:00–16:00, genuinely distinct from the 07:00–19:00 every other technician carries), but the
+  shift-creation observation that uses it was not reached.
+* **SCH-START-02 = [C29970](https://shopview.testrail.io/index.php?/cases/view/29970) is still
+  HELD**, together with **C38847** and **C38849**, all three of which need shop business hours set
+  on Edit Location.
+* **NO TESTRAIL WRITE HAS BEEN MADE.** Not one, in this session or the previous one. Nothing is
+  half-written and there is no repair owed.
 * **The branch is not declared final, so every verdict is PROVISIONAL** (Rule 49).

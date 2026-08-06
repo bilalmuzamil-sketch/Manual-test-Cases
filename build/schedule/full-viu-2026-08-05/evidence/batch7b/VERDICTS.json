@@ -1,68 +1,92 @@
 {
  "30041": {
-  "iid": "SCH-TOOL-03",
-  "v": "DEVIATION",
   "build": "v3.5-7ec992f",
   "date": "2026-08-06",
-  "ticket": "SV-8874",
   "ev": "b7f.json + b7h.json. Toolbar search input is data-test-id=input_schedule_search, placeholder 'Search work orders...' (the sidebar's is 'Search work orders' with no ellipsis). Typing 'Pamill Paving' took the grid from 53 blocks to 16; every surviving block contained the term and EVERY non-matching block was REMOVED from the DOM, not faded (all 16 survivors at opacity 1, and 0 blocks carried any --match class). Item 2 PASSES: all five fields match - customer name 'Xiriver Apparel' 9, work order number 'S-9379' 7, unit number '16604' 7, technician name 'Brittany Anderson' 5, line name 'Wheels off' 5. Item 4 PASSES: clearing restored all 53.",
-  "note": "SV-8874 still reproduces exactly as recorded. Items 1 and 3 fail, items 2 and 4 pass. No new ticket."
+  "iid": "SCH-TOOL-03",
+  "note": "SV-8874 still reproduces exactly as recorded. Items 1 and 3 fail, items 2 and 4 pass. No new ticket.",
+  "ticket": "SV-8874",
+  "v": "DEVIATION"
  },
  "30045": {
-  "iid": "SCH-VIEW-04",
-  "v": "DEVIATION-NEW",
   "build": "v3.5-7ec992f",
   "date": "2026-08-06",
-  "ticket": null,
   "ev": "b7k.json + b7l.json + b7m.json. VIN toggle is data-test-id=toggle_schedule_show_vin in the 'Filter and Display' menu (data-test-id=schedule_filter_display_menu), default OFF - matches spec. Item 1 PASSES: with it off the block shows three lines and no VIN, while the hover tooltip DOES show 'VIN 2H9U7A228VA048027' and the detail modal shows it too. Item 2 PASSES: with it on the VIN becomes an extra line in week and day views. Item 4 PASSES: in day view the shift's lane grew 104px to 123px and no text was clipped. Item 5 PASSES. Item 3 FAILS: in month view (proven to be month view - the grid is fc-dayGridMonth-view and the Month button carries aria-pressed=true) 9 of 25 blocks render the 17-character VIN, e.g. 'Xiriver Apparel~16604~2H9U7A228VA048027~Service - Wheels off single or tandem axle'.",
-  "note": "Spec 4.4 verbatim: 'Line 3 (optional): VIN number, visible only when the VIN toggle is on in Filter and Display (6). Shown in day and week views only; month view omits it due to space constraints.' No ticket exists for this - duplicate search owed before filing."
+  "iid": "SCH-VIEW-04",
+  "note": "Spec 4.4 verbatim: 'Line 3 (optional): VIN number, visible only when the VIN toggle is on in Filter and Display (6). Shown in day and week views only; month view omits it due to space constraints.' No ticket exists for this - duplicate search owed before filing.",
+  "ticket": null,
+  "v": "DEVIATION-NEW"
  },
  "30066": {
-  "iid": "SCH-KEY-01",
-  "v": "PASS-WAS-EXPECT-FAIL",
   "build": "v3.5-7ec992f",
   "date": "2026-08-06",
   "ev": "b8c.json + b8d.json + b8e.json. Item 1 PASSES: with the shift modal open (dialog_schedule_shift_detail) opening the colour picker put a q-menu on top; Escape closed the menu only and left the modal open - dialogs 1, menus 1 -> dialogs 1, menus 0. Item 3 PASSES: a further Escape with no sub-layer closed the modal. THE RECORDED KNOWN ISSUE NO LONGER REPRODUCES: the 'Delete from this series?' dialog closed on the FIRST Escape (dialogs 1 -> 0), and the 'Reassign shift' dialog ('Move this shift to Jose Young on Mon, Aug 3?') also closed on the FIRST Escape (dialogs 1 -> 0). Both are the two layers named first in the spec stacking order and both are what SV-8853 reported.",
-  "note": "SV-8853's Escape half is FIXED on this build. The case's 'Known issue' paragraph and its EXPECT-FAIL marker are now false. HONEST LIMIT: the time-picker sub-layer in item 2 could not be exercised - the modal's start/end time controls are inline segmented <input> fields (input_shift_detail_start_time / _end_time), not a popover, so there is no second layer to close; the note editor is likewise inline. Item 2 is therefore recorded as not-reachable-as-written rather than passed."
+  "iid": "SCH-KEY-01",
+  "note": "SV-8853's Escape half is FIXED on this build. The case's 'Known issue' paragraph and its EXPECT-FAIL marker are now false. HONEST LIMIT: the time-picker sub-layer in item 2 could not be exercised - the modal's start/end time controls are inline segmented <input> fields (input_shift_detail_start_time / _end_time), not a popover, so there is no second layer to close; the note editor is likewise inline. Item 2 is therefore recorded as not-reachable-as-written rather than passed.",
+  "v": "PASS-WAS-EXPECT-FAIL"
  },
  "30068": {
-  "iid": "SCH-KEY-03",
-  "v": "PASS-WAS-EXPECT-FAIL",
   "build": "v3.5-7ec992f",
   "date": "2026-08-06",
   "ev": "b8f.json + b8g.json. THE RECORDED KNOWN ISSUE NO LONGER REPRODUCES: with the 'Reassign shift' dialog open ('Move this shift to Jose Young on Mon, Aug 3?'), Enter confirmed it - the dialog closed and the toast 'Shift reassigned.' with an Undo action appeared. Items 3 and 4 PASS: in the note editor (input_shift_detail_note, a real <textarea>) typing 'ZZAUTOTEST line one', pressing Enter and typing 'ZZAUTOTEST line two' left the value as 'ZZAUTOTEST line one\\nZZAUTOTEST line two' with the dialog still open, and button_shift_detail_note_confirm saved the multi-line note (the note then rendered with button_shift_detail_note_edit / _note_delete controls).",
-  "note": "SV-8853's Enter half is FIXED on this build. The case's 'Known issue' paragraph and its EXPECT-FAIL marker are now false. HONEST LIMIT: Enter was proven on the reassign dialog and the note textarea; the spread step and the event create/edit dialog were not separately driven with Enter this run."
+  "iid": "SCH-KEY-03",
+  "note": "SV-8853's Enter half is FIXED on this build. The case's 'Known issue' paragraph and its EXPECT-FAIL marker are now false. HONEST LIMIT: Enter was proven on the reassign dialog and the note textarea; the spread step and the event create/edit dialog were not separately driven with Enter this run.",
+  "v": "PASS-WAS-EXPECT-FAIL"
  },
  "30070": {
-  "iid": "SCH-KEY-05",
-  "v": "PASS",
   "build": "v3.5-7ec992f",
   "date": "2026-08-06",
   "ev": "b8i.json + b8j.json + b8k.json. Item 2 PASSES: 18 consecutive Tab presses with the shift modal open never focused a single control outside the dialog (modalEscapedToPage empty) and the order wrapped back to its first control. Item 3 PASSES: tabbing the page reached all seven grid-toolbar controls (button_schedule_today, _prev, _next, _conflicts, _search_toggle, schedule_filter_display_menu, schedule_view_options_menu) and the sidebar (input_sidebar_search, button_sidebar_filters, sidebar_work_order_card, button_sidebar_load_more) across 65 distinct stops. Item 1 PASSES: 7 of the 15 in-modal stops carry a visible focus indicator; the 8 that do not are the two segmented time inputs, which show focus as a caret.",
-  "note": "A FALSE DEFECT WAS AVOIDED HERE. The first measurement read outline and box-shadow only and returned 1 of 26, which looked like 'no focus rings in the modal'. Quasar paints its focus indicator on a .q-focus-helper CHILD element, and once that was read every button in the modal had one (opacity ~0.158). Recorded so the next pass does not repeat the mistake."
+  "iid": "SCH-KEY-05",
+  "note": "A FALSE DEFECT WAS AVOIDED HERE. The first measurement read outline and box-shadow only and returned 1 of 26, which looked like 'no focus rings in the modal'. Quasar paints its focus indicator on a .q-focus-helper CHILD element, and once that was read every button in the modal had one (opacity ~0.158). Recorded so the next pass does not repeat the mistake.",
+  "v": "PASS"
  },
  "30071": {
-  "iid": "SCH-COLOR-01",
-  "v": "PASS",
   "build": "v3.5-7ec992f",
   "date": "2026-08-06",
   "ev": "b7z.json + b8a.json + b8b.json. Seeded on work order S-12876 (Pamill Paving, unit 713) onto Margaret Garcia with no colour argument: a single-day shift on 2026-08-10 (id a139ed96-4a20-4a05-9118-35ea5c806992) and a series on 2026-08-11 of 4800 total minutes at 480 per day (seriesId 2b3a3536-065b-48db-a7f6-673b98750f26). The series materialised as 10 shifts spanning 2026-08-11 to 2026-08-20, i.e. across two calendar weeks. Every one of the 10, and the single shift, came back with colour #e2effe, and on the grid every Pamill block rendered with class schedule-block--blue and background rgb(233, 245, 255).",
-  "note": "Both items pass. The multi-week series is not given any special colour."
+  "iid": "SCH-COLOR-01",
+  "note": "Both items pass. The multi-week series is not given any special colour.",
+  "v": "PASS"
  },
  "30072": {
-  "iid": "SCH-COLOR-02",
-  "v": "PASS",
   "build": "v3.5-7ec992f",
   "date": "2026-08-06",
   "ev": "b7q.json. Controlled before/after over every block on screen. Target: the 'Xiriver Apparel | 16604 | Repair - Frame rail' shift of work order S-9379, read as schedule-block--amber before. Set to Teal through button_shift_detail_color -> button_color_swatch_teal. After: schedule-block--teal with THREE consistent tones - background rgb(240, 253, 249), text rgb(16, 117, 105), left border rgb(21, 183, 158) at 3px. Item 3 PASSES decisively: of every block on the grid, exactly ZERO others changed, and the other shift of the SAME work order S-9379 ('Service - Wheels off single or tandem axle') kept its own colour. Item 4 PASSES: seven free-choice swatches - Blue rgb(37,124,255), Teal rgb(21,183,158), Violet rgb(135,91,247), Pink rgb(238,70,188), Cyan rgb(6,174,212), Amber rgb(229,164,0), Grey rgb(105,117,134).",
-  "note": "The case says the sibling keeps its '(default blue)' colour. The sibling was violet at the time, not blue, so only the substantive half - that it does not change - was proven. Worth relaxing that parenthetical when the case is next touched."
+  "iid": "SCH-COLOR-02",
+  "note": "The case says the sibling keeps its '(default blue)' colour. The sibling was violet at the time, not blue, so only the substantive half - that it does not change - was proven. Worth relaxing that parenthetical when the case is next touched.",
+  "v": "PASS"
  },
  "30073": {
-  "iid": "SCH-COLOR-03",
-  "v": "PASS",
   "build": "v3.5-7ec992f",
   "date": "2026-08-06",
   "ev": "b7t.json + b7u.json + b7w.json + b7x.json. Item 1 PASSES: every colour carries its own edit control (button_color_label_rename_<colour>) which swaps the label for input_color_label_name. Item 2 PASSES: Pink renamed to 'ZZAUTOTEST Rush' and saved; reopening the picker from a DIFFERENT shift (Ceview Builders) showed 'ZZAUTOTEST Rush', so it is shop-wide. Item 3 PASSES: opening an event's picker (Edit Event -> button_event_color, on event 'MQ AllDay') showed the identical seven labels including 'ZZAUTOTEST Rush', and the event's own default is Grey. Label restored to 'Pink' and read back.",
-  "note": "LABEL CORRECTION FOR THE CASE (Rule 9): pressing Enter does NOT save the rename - there is a dedicated button_color_label_save control, and Enter alone leaves the row in edit mode. The case's step 2 should say to save."
+  "iid": "SCH-COLOR-03",
+  "note": "LABEL CORRECTION FOR THE CASE (Rule 9): pressing Enter does NOT save the rename - there is a dedicated button_color_label_save control, and Enter alone leaves the row in edit mode. The case's step 2 should say to save.",
+  "v": "PASS"
+ },
+ "38848": {
+  "build": "v3.5-7ec992f",
+  "date": "2026-08-06",
+  "ev": "b9g.json + b9j.json + b9k.json. The Edit Staff Member dialog (data-test-id=dialog_staff) carries a section headed 'TECHNICIAN HOURS' with a toggle labelled EXACTLY 'Set custom hours for this technician' (toggle_custom_working_hours) - item 1 PASSES on the literal label. Item 2 PASSES: read OFF (aria-checked=false) on staff who have never had it set - Benjamin Peters and Branko Cicovic both read false. Item 3 PASSES on Ayesha Khan AK (Staging Heavy Duty - 9919, role Technician), whose toggle is ON and reveals a per-day editor: Monday, Tuesday, Wednesday, Thursday and Friday each with a From/To pair, a remove control and an 'Add Hours' control, and Saturday and Sunday reading 'Not working'.",
+  "iid": "SCH-HRS-02",
+  "note": "A SEPARATE FAULT WAS SEEN HERE, recorded not filed: turning the toggle ON for Benjamin Peters (Staging Lethbridge - 4310) produced the inline error \"Couldn't load this technician's hours, so they can't be edited right now. Close and reopen the dialog to try again.\" (text_working_hours_error) and the toggle snapped back to OFF, so no editor appeared for him. Reproduced on every attempt for that staff member. Whether it is location-specific or staff-specific was not established.",
+  "v": "PASS"
+ },
+ "38850": {
+  "build": "v3.5-7ec992f",
+  "date": "2026-08-06",
+  "ev": "b9m.json, on Ayesha Khan AK's Monday row. Item 1 PASSES: 'Add Hours' (button_add_working_hours_monday) appended a second range - input_working_hours_start_monday_1 / _end_monday_1 with its own button_remove_working_hours_monday_1. Item 2 PASSES: the appended range started EMPTY, both values read the empty string, nothing pre-filled. Item 3 PASSES: clicking button_remove_working_hours_monday_1 removed that range alone and left _monday_0 intact.",
+  "iid": "SCH-HRS-04",
+  "note": "Control names are per-day and per-index, which is worth knowing for automation: button_add_working_hours_<day>, input_working_hours_start_<day>_<n>, button_remove_working_hours_<day>_<n>.",
+  "v": "PASS"
+ },
+ "38851": {
+  "build": "v3.5-7ec992f",
+  "date": "2026-08-06",
+  "ev": "b9m.json. With Monday range 0 at 07:00-21:00, a second range set to the same 07:00-21:00 produced the inline message reading EXACTLY 'These hours overlap. Adjust the times so they don't conflict.' preceded by a warning icon - item 2 PASSES on the literal wording. Item 3 PASSES: 'Save & Close' (button_save_staff) went from enabled to DISABLED while the overlap existed. Items 4 and 5 PASS: clearing the second range's To time replaced the overlap message with 'Both times are required' - so the incomplete row is NOT treated as an overlap - and Save became ENABLED again, so an incomplete row alone does not block saving.",
+  "iid": "SCH-HRS-05",
+  "note": "HONEST LIMIT on item 1: the message and its warning icon were both read from the live text, but the case says the offending range is 'flagged in red' and the colour was NOT measured - a later attempt to re-create the overlap to sample the computed colour did not reproduce the message in time. Item 1 is recorded as message-proven, colour-unproven.",
+  "v": "PASS"
  }
 }
