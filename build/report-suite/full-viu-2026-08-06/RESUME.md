@@ -52,12 +52,15 @@ fail on the build: **SV-8967** (the WO # link) and **SV-8968** (the WIP filters)
 **1. Sales By Representative. 109 cases. Never opened.** It is the whole of the gap and nothing blocks
 it. `REMAINING.txt` **section A** lists them by section.
 
-**2. The second test login — 17 permission cases, and the QA lead already authorised it**, verbatim:
-*"You should unblock yourself."* It was not done. The method is Rules 5/14: `POST /api/switch-user` to
-impersonate an existing non-admin holder, or `POST /api/iam/create` for a fresh staff. **The caution
-that made it last, and then made it not happen: both `switch-user` and `quick-login` rotate the single
-shared `sv_sso_session`, so they will sign out any sibling worker live on the Filters or Schedule
-branch.** Do it when nobody else is live, and end by restoring a clean admin session.
+**2. The second test login — 17 permission cases. ATTEMPTED, AND BOTH SELF-SERVICE ROUTES ARE CLOSED
+ON THIS BRANCH. Read `SECOND-LOGIN-ATTEMPT.md` before trying again.** `POST /api/switch-user` returns
+**HTTP 403 "Access denied."** to the administrator against a real, active, confirmed Technician; and
+`POST /api/quick-login {"key":"tech"}` returns **HTTP 403 "Access denied."** — only `admin` works here.
+**The failed attempt also killed the session (409 "Session has expired."), recovered by calling
+`quick-login {"key":"admin"}` and swapping ONLY the returned `PHPSESSID` into the existing cookie
+header.** So this needs the QA lead or a developer: a second set of cookies for a non-admin user, or the
+`tech` key enabled on `sv8582`, or `switch-user` granted. **Do not spend another session re-discovering
+this.**
 
 **3. The remaining 42 Work In Progress cases** — `REMAINING.txt` section A, WIP rows.
 
@@ -115,7 +118,9 @@ Story Defects created**, one authorised edit (SV-8937, first session).
 
 ## 8 · Outstanding
 
-1. **A second test login** — 17 permission cases. Authorised; not done.
+1. **A second test login** — 17 permission cases. **Authorised, attempted, and BLOCKED on the branch
+   itself**: `switch-user` 403s and `quick-login {"key":"tech"}` 403s (`SECOND-LOGIN-ATTEMPT.md`). Needs
+   a non-admin cookie set from the QA lead, or a developer enabling one of the two routes.
 2. **Chris Ward: six questions** — `QUESTIONS-FOR-CHRIS.md`. Q5 (the Location column) unblocks **16**
    held cases and is probably a five-minute edit, because he has already decided and four requirements
    simply were not tidied up.

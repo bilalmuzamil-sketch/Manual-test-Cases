@@ -237,11 +237,18 @@ Section 2. **Corrected on all 69, byte-verified.** Recorded rather than quietly 
 
 - **Sales By Representative: 109 cases, not driven.** Ran out of session.
 - **42 of Work In Progress's 66: not driven.** Same reason.
-- **The second test login: NOT obtained, though the QA lead authorised unblocking it.** The honest
-  reason: `switch-user` and `quick-login` both rotate the one shared `sv_sso_session` on this estate, so
-  it had to be the **last** live action — and the session ran out on the deliverables first. **17
-  permission cases remain unobserved because of this.** It is the highest-value thing the next pass can
-  do and it needs no new access, only a window when no sibling worker is live on `.qa.shopview.com`.
+- **The second test login: ATTEMPTED at the end of the pass, and BOTH self-service routes are CLOSED on
+  this branch.** `POST /api/switch-user` → **HTTP 403 "Access denied."** to the administrator against a
+  real, active, invitation-confirmed Technician (a wrong id gave 401 "Invalid credentials.", the right id
+  gave 403 — which is what proves the id was right and the endpoint is refusing an admin).
+  `POST /api/quick-login {"key":"tech"}` → **HTTP 403 "Access denied."**; only `admin` works here. **And
+  the failed attempt burned the session** — every endpoint then returned 409 "Session has expired." —
+  **recovered by calling `quick-login {"key":"admin"}` and swapping ONLY the returned `PHPSESSID` into the
+  existing cookie header**, which restored 42 permissions and `view_mode: full`. **So the 17 permission
+  cases are blocked by the branch, not by our effort**, and unblocking them needs a non-admin cookie set
+  from the QA lead or a developer enabling one of the two routes. Full write-up:
+  `SECOND-LOGIN-ATTEMPT.md`. **This also means a sibling worker holding the old `PHPSESSID` will see 409
+  and needs the new value from `/tmp/rs-viu/cookie-header.txt`.**
 - **The `refs` spec versions were not updated.** **432 of 476 cases name a stale spec version in `refs`**
   — IV v3 (64), PV v4 (61), SBC v13 (78), SBR v15 (105), TU v5 (57), WIP v6 (67). Rule 42 depends on that
   version pin to connect a closed list to the requirement that invalidates it, so this is a real gap. A

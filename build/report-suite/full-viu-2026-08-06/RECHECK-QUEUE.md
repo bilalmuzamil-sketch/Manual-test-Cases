@@ -95,8 +95,13 @@ this ("You should unblock yourself") — **it was not done in this pass and that
 | [C30325](https://shopview.testrail.io/index.php?/cases/view/30325) · [C30326](https://shopview.testrail.io/index.php?/cases/view/30326) · [C30327](https://shopview.testrail.io/index.php?/cases/view/30327) · [C30340](https://shopview.testrail.io/index.php?/cases/view/30340) · [C30391](https://shopview.testrail.io/index.php?/cases/view/30391) | PV | the permission set, carried forward from the first session | not observed |
 | [C30603](https://shopview.testrail.io/index.php?/cases/view/30603) · [C30604](https://shopview.testrail.io/index.php?/cases/view/30604) | IV | the permission pair, carried forward | not observed |
 
-**Trigger:** a second test login, **or** authorisation to rotate the shared session when no sibling
-worker is live on the estate.
+**Trigger:** a **second set of cookies for a NON-ADMIN user** on `.qa.shopview.com` — and that is now the
+only trigger, because **both self-service routes were tried on 2026-08-06 and both are CLOSED on this
+branch**: `POST /api/switch-user` returns **HTTP 403 "Access denied."** to the administrator against a
+real, active, confirmed Technician, and `POST /api/quick-login {"key":"tech"}` returns **HTTP 403 "Access
+denied."** — only `admin` works here. **Do not spend another session re-discovering this**; read
+`SECOND-LOGIN-ATTEMPT.md`. Alternatives that would also work: a developer enabling the `tech` key on
+`sv8582`, or granting `switch-user` to the administrator.
 
 ## B · Waiting on a DATA STATE that this organisation does not hold — 12 rows
 

@@ -27,15 +27,26 @@ persisted beyond the run that made it. For completeness:
 **No organisation setting and no user preference stored on the server was touched.** The saved view lives in
 the browser, not on the account — which is itself one of the things this pass verified.
 
-## Impersonation: NONE
+## Impersonation: ATTEMPTED AND REFUSED — nobody was impersonated, and one session id was rotated
 
-**No `POST /api/switch-user` and no `POST /api/quick-login` was called.** The QA lead authorised unblocking
-the second-login problem, but both of those rotate the single shared `sv_sso_session` on this estate and
-would sign out any sibling worker live on the Filters or Schedule branch. It had to be the last live action
-of the session, and the session ran out on the deliverables first.
+At the very end of the pass, on the QA lead's authorisation, the second-login problem was attacked. **Both
+attempts were refused by the branch before they took effect, so no user was ever impersonated:**
 
-**Consequence, stated so nobody has to work it out:** the 17 permission cases in section A of
-`RECHECK-QUEUE.md` are still unobserved, and the shared session was left exactly as it was found.
+- `POST /api/switch-user` with a real, active, confirmed Technician → **HTTP 403 "Access denied."**
+- `POST /api/quick-login {"key":"tech"}` → **HTTP 403 "Access denied."**
+
+**⚠️ THE ONE REAL SIDE EFFECT: the failed `quick-login` burned the shared session.** Every endpoint then
+returned **409 "Session has expired."** It was recovered immediately by calling
+`POST /api/quick-login {"key":"admin"}` (HTTP 200) and swapping **only the returned `PHPSESSID`** into the
+existing cookie header — `sv_sso_session` and `cf_clearance` untouched. Full access confirmed back: 42
+permissions, `reportsPageAccess` and `workOrdersView` present, `view_mode: full`, report endpoint HTTP 200.
+
+**`/tmp/rs-viu/cookie-header.txt` now holds the working value (chmod 600, never committed). A sibling
+worker still holding the previous `PHPSESSID` will see 409 and needs that new value, or their own fresh
+sign-in.** That is the only thing on the estate this pass changed, and it is recorded rather than glossed.
+
+Full write-up, including what would actually unblock the 17 permission cases:
+`SECOND-LOGIN-ATTEMPT.md`.
 
 ## Downloads
 
