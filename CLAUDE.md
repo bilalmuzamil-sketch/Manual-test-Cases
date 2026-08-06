@@ -3290,7 +3290,7 @@ deliver the 7-tab management report.
     **(4)** if an API ticket was already filed before this rule was known, **withdraw it on his ruling**
     — **CLOSE it via a workflow transition with a plain-language closing comment, NEVER DELETE it**
     (a withdrawn ticket with its reasoning on the record is worth more than a deleted one, and deletion
-    is irreversible); set **priority Low first** (Rule 53) so it does not sit closed at the wrong
+    is irreversible); set **priority Medium first** (Rule 53) so it does not sit closed at the wrong
     priority; and **keep the underlying finding written up in the defect pack** — we withdraw the
     *ticket*, we do not discard the *finding*.
     **TIE TO RULE 24 (read them together):** Rule 24 already says **front-end blocks + back-end/API
@@ -3315,14 +3315,15 @@ deliver the 7-tab management report.
     written to a system of record without permission), 7 (plain layman wording for the ask), 12
     (observed, never inferred), 24 (FE-blocks/BE-allows is a PASS), 36 (an unanswered ask is an
     OUTSTANDING item and belongs in the register), 48 (a blocked item cites the ruling that blocks it)
-    and 53 (priority Low).
+    and 53 (priority Medium).
 52. **A defect ticket is filed as a `Story Defect` parented to the OWNING STORY — and because that story
     is itself a child of the epic, the defect STILL ROLLS UP TO THE EPIC (all projects; this SUPERSEDES
     the Bug-on-an-epic-parent convention of 2026-08-04, which is preserved below as dated history).**
     USER DIRECTIVE (2026-08-05, verbatim): *"Also, make sure that whenever you create a ticket it should
     be attached to the parent ticket as its epic and that ticket should be created as STORY DEFECT"*.
     **THE REQUIRED SHAPE — five things, and no ambiguity between them:** **`issuetype` = `Story Defect`
-    (10007)** · **`parent` = THE OWNING STORY** · **`priority` = `Low`** (Rule 53) · **ALSO link the
+    (10007)** · **`parent` = THE OWNING STORY** · **`priority` = `Medium`** (Rule 53, amended
+    2026-08-06 — it was `Low` before that date) · **ALSO link the
     owning story `relates to`** · **DO NOT send Product Area** (`customfield_10153` does not exist on
     this issue type).
     **WHY THIS SATISFIES HIS INSTRUCTION, PLAINLY: the owning story is itself a child of the epic, so a
@@ -3347,7 +3348,7 @@ deliver the 7-tab management report.
     Bug shape under a Story-Defect name).
     **FIELD DIFFERENCES THAT BITE:** `Story Defect` **REQUIRES `parent`** (and only a level-0 issue is
     valid there) and **has NO Product Area field at all**; `Bug` **REQUIRES Product Area
-    (`customfield_10153`)** and **may** take an Epic parent. **Priority `Low`, the `relates to` story
+    (`customfield_10153`)** and **may** take an Epic parent. **Priority, the `relates to` story
     link and the seven-section ADF body all work identically on both types.**
     **THE PRE-2026-08-05 CONVENTION, PRESERVED AND DATED (Rules 32/33 — the latest ruling wins, and the
     earlier one is DATED, never deleted):** until 2026-08-05 the required shape was **`Bug` parented to
@@ -3449,17 +3450,33 @@ deliver the 7-tab management report.
     2026-08-04 Bug shape, which is kept and dated rather than deleted), 38 (another author's ticket is
     theirs — we do not convert it), 50 (byte-verifying at filing is the ONLY reason the silent Product
     Area loss was ever detectable), 51 (an API-related ticket is not filed without asking, whatever its
-    shape) and 53 (priority `Low`, and never "restore" a field he changed — which is exactly why a
+    shape) and 53 (priority `Medium` since 2026-08-06, and never "restore" a field he changed — which is exactly why a
     conversion someone else performed is left alone).
-53. **NEVER set a ticket's priority to High — always file at Low; and NEVER "restore" a field the QA
-    lead has changed (all projects).**
-    USER DIRECTIVE (2026-08-04, verbatim): *"never mark the priority as High for the tickets you create
-    always keep the priority as LOW"*.
-    **THE RULE:** **every ticket we create is filed at priority `Low`.** Not Medium, not "the severity
+53. **NEVER set a ticket's priority to High — always file at Medium; and NEVER "restore" a field the QA
+    lead has changed (all projects; the required value became `Medium` on 2026-08-06, superseding `Low`,
+    which is preserved below as dated history).**
+    USER DIRECTIVE (2026-08-06, verbatim — this SUPERSEDES the 2026-08-04 directive quoted further
+    down): *"One thing which I want to correct, please keep the priority of the tickets which you create
+    to Medium instead of keeping them to LOW."*
+    **THE RULE:** **every ticket we create is filed at priority `Medium`.** Not Low, not "the severity
     the pack states", not High however bad the defect looks to us. **Priority is the QA lead's to
     RAISE, not ours to ASSERT** — he triages; we report. This is unconditional and applies to every
     project and every ticket type. **Where the finding genuinely is severe, that belongs in the ticket's
     own words and in the project's `Severity` field — not in `Priority`.**
+    **`High` REMAINS BARRED. The amendment moved the filing value from `Low` to `Medium`; it did NOT
+    relax the ceiling** — filing at High is still never ours to do, however bad the defect looks.
+    **THE PRE-2026-08-06 VALUE, PRESERVED AND DATED (Rules 32/33 — the latest ruling wins, and the
+    earlier one is DATED, never deleted):** until 2026-08-06 the required priority was **`Low`**, on his
+    2026-08-04 directive, verbatim: *"never mark the priority as High for the tickets you create always
+    keep the priority as LOW"*. **Tickets filed at `Low` BEFORE 2026-08-06 are therefore CORRECT FOR
+    THEIR DATE and must NOT be "fixed"** — exactly the treatment Rule 52 gives the Bug-on-an-epic-parent
+    convention it superseded.
+    **ALREADY-FILED TICKETS ARE NOT RETROSPECTIVELY RE-PRIORITISED.** Raising an existing ticket from
+    `Low` to `Medium` is **the QA lead's decision, not ours** — it has been **put to him and is AWAITING
+    HIS ANSWER**. Until he rules, existing tickets stay exactly as they are; the new value applies to
+    tickets we file from 2026-08-06 onward. **Note how directly this follows from the corollary below:
+    re-prioritising a batch of his tickets on our own initiative is the very move that produced the
+    `High → Low → High → Low` round trip.**
     **THE COROLLARY THAT BURNED US — A CHANGE MADE UNDER HIS ACCOUNT IS HIS TRIAGE, NOT AN ANOMALY:**
     **NEVER "restore", "correct" or "repair" a field value that has changed without an action of ours.**
     He works in the Jira UI **under this same account** (`bilal.muzamil@shopview.com`, accountId
@@ -3476,7 +3493,8 @@ deliver the 7-tab management report.
     decision.** He then **re-applied `Low` at 00:56:00–00:56:29** — the changelog now carries the full
     embarrassing round trip **`High → Low → High → Low`** on all four, and it is on the record precisely
     so nobody repeats it. **The restore was WRONG twice over: wrong because it undid his triage, and
-    wrong because the correct value under this rule was `Low` all along.** Ties to Standing Rules 6
+    wrong because the correct value under this rule **as it then stood** was `Low` all along (from
+    2026-08-06 that value is `Medium`).** Ties to Standing Rules 6
     (nothing changed in a system of record without permission — *including* changing it back), 12
     (observed, never inferred — "drift" was an inference and it was false), 25 (cite the changelog
     verbatim), 32/33 (his ruling outranks our reading of a pack), 48 (never imply his decision is an
@@ -4284,7 +4302,8 @@ regression / bug-fix re-testing.
 - **EVERY DEFECT TICKET WE FILE HAS ONE SHAPE (Standing Rule 52, amended 2026-08-05):** `issuetype` =
   **`Story Defect`** · `parent` = **THE OWNING STORY** (never the Epic — Jira returns **HTTP 400
   *"Please select valid parent issue."*** for an Epic parent on this type; the story is itself a child of
-  the epic, so the defect still rolls up) · `priority` = **`Low`** (Rule 53) · **ALSO link the owning
+  the epic, so the defect still rolls up) · `priority` = **`Medium`** (Rule 53, amended 2026-08-06 — it
+  was `Low` before that date; tickets filed earlier are correct for their date) · **ALSO link the owning
   story `relates to`** (it duplicates the parent, but it is what makes the org's UI conversions land on
   the right story) · **NO Product Area** (the field does not exist on this type; his ruling: *"Product
   area loss is OK"*). **NEVER use `Story Defect - Archive`** (legacy, wrong level). **Never convert
