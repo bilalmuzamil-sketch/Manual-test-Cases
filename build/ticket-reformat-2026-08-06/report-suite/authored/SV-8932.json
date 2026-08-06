@@ -1,0 +1,30 @@
+{
+ "description": "Two things on the Inventory Value report are missing.\n\nFirst, long text in the Description, Category and Vendor columns is never shortened — the column grows to fit and the table scrolls sideways instead, so on a narrow screen the numbers are a long way to the right.\n\nSecond, somebody using a screen reader cannot tell which column the report is sorted by, or in which direction.",
+ "steps": [
+  "Open Reports, then Inventory Value.",
+  "Make the browser window narrow, about 760 pixels wide.",
+  "Find a row with a long description and look at the end of the text, then hover over it. The longest in view here was \"SAE 50 SYNTHETIC TRANSMISSION FLUID BULK (122205) (PER LITER)\" on part KL-TF4090, at 61 characters.",
+  "Click the Total Cost heading to sort by it.",
+  "With an accessibility inspector or a screen reader, read what that heading announces. This was seen with Locations Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 and the date range This Month."
+ ],
+ "current": "Long text: the Description cell never wraps and clips instead of adding an ellipsis. Measured on that cell, the visible width and the full content width were the same, 447 pixels each — the column had grown to fit rather than cutting the text off. There is no ellipsis and no hover text, so there is nothing for a \"full value on hover\" to attach to. Description, Category and Vendor all behave the same way, at 760, 900 and 1680 pixels wide.\n\nSort state: none of the twelve headings exposes a sort state to assistive technology, sorted or not. The sorting itself works and the arrow updates; only the announcement is missing.",
+ "expected": "Long text in the Description, Category and Vendor columns is shortened with an ellipsis when it overflows its column, with the full value shown on hover, and the Part # is never shortened.\n\nEach sortable heading tells assistive technology how the report is sorted, as well as showing it visually.",
+ "source": [
+  [
+   "spec",
+   "iv",
+   "S12-R6",
+   "Long text values (Description, Category, Vendor) are truncated with an ellipsis when they overflow their column, with the full value available on hover; the Part # is never truncated."
+  ],
+  [
+   "spec",
+   "iv",
+   "S12-R8",
+   "Each sortable column header exposes its sort state to assistive technology, and the active sort direction is indicated visually."
+  ],
+  [
+   "note",
+   "The ticket previously cited S12-R7 for the long-text rule. Read live today, S12-R7 is the dark-mode requirement and the long-text rule is S12-R6, quoted above; the reference has been corrected."
+  ]
+ ]
+}

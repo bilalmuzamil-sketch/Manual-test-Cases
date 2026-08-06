@@ -1,0 +1,25 @@
+{
+ "description": "Opening the Inventory Value report for the first time sets the Location filter to All locations rather than the location the user is working at. Their report opens with other branches' stock mixed in, and the totals cover the whole company.",
+ "steps": [
+  "Open a browser window that has never opened this report before — a private window works.",
+  "Sign in and note which location is shown in the top bar; that is the active location. Here it was Staging Heavy Duty - 9919, on an account that can also reach Staging Lethbridge - 4310.",
+  "Open Reports, then Inventory Value.",
+  "Read the Location filter in the toolbar."
+ ],
+ "current": "The Location filter reads All locations, and rows from both locations are in the table with the totals covering both.\n\nThe filter is not broken — unticking one location correctly reloads the report scoped to the other. The date range half of the same requirement is also right; it does open on This Month.",
+ "expected": "On a first visit the report opens scoped to the user's currently active location, and they can widen it from there.",
+ "source": [
+  [
+   "spec",
+   "iv",
+   "S1-R3",
+   "On the user's first visit (no saved settings — Story 8), the report defaults to the current calendar month date range and the user's currently active location."
+  ],
+  [
+   "spec",
+   "iv",
+   "S7-R2",
+   "On a first visit (no saved selection — Story 8), it defaults to the user's currently active location."
+  ]
+ ]
+}

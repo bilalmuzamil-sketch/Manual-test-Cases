@@ -1,0 +1,30 @@
+{
+ "description": "Opening the Inventory Value report for the first time in a browser shows every column already switched on, including Margin and Total Sell. Those two are meant to start hidden.",
+ "steps": [
+  "Open a browser window that has never opened this report before — a private window works.",
+  "Sign in and open Reports, then Inventory Value.",
+  "Read the column headings across the top of the table. No test data needs setting up; this was seen with Locations Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 and the date range This Month."
+ ],
+ "current": "On a genuine first visit the headings read: Part #, Description, Category, Vendor, Location, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost. Margin and Total Sell are both on.\n\nThe control itself works — switching Margin off hides it and switching it back on restores it in the right place. Only the starting state is wrong.",
+ "expected": "On a first visit the report opens with Margin and Total Sell hidden, and the user turns them on from the column-selection control if they want them.",
+ "source": [
+  [
+   "spec",
+   "iv",
+   "S3-R12",
+   "On first visit, the visible columns are: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin %, and Total Cost."
+  ],
+  [
+   "spec",
+   "iv",
+   "S3-R13",
+   "The Margin and Total Sell columns are hidden by default and can be turned on from the column-selection control (Story 8)."
+  ],
+  [
+   "spec",
+   "iv",
+   "S8-R3",
+   "Every other column is available in the control; Margin and Total Sell are off by default, the rest on by default (S3-R12)."
+  ]
+ ]
+}

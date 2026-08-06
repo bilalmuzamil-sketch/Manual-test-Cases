@@ -1,0 +1,23 @@
+{
+ "description": "The Inventory Value report remembers the date range, the locations, the columns and the sort between visits, but it forgets whatever was typed in the Search parts box. The report comes back showing everything.",
+ "steps": [
+  "Open Reports, then Inventory Value.",
+  "Type refrigerant into the Search parts box and wait for the table to narrow — that term matches the part R134A \"Refrigerant\" at both locations.",
+  "Click the Part # heading once, so the sort changes too.",
+  "Go to another screen and then come back to the report. This was seen with Locations Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 and the date range This Month."
+ ],
+ "current": "On returning, the Search parts box is empty and the table is back to the full unfiltered list. The sort came back exactly as it was left, on Part # ascending, so the remembering itself is working — the search text is simply never stored.",
+ "expected": "The report comes back with the search text still in the box and the table still narrowed by it, alongside the other settings it already restores.",
+ "source": [
+  [
+   "spec",
+   "iv",
+   "S8-R5",
+   "The report remembers, in the user's browser, the selected date range, category selection, vendor selection, part search text, location selection, column selection, and sort, and restores them on the user's next visit."
+  ],
+  [
+   "note",
+   "The part search text is named in that list, beside the settings that do come back."
+  ]
+ ]
+}

@@ -1,0 +1,792 @@
+{
+ "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+ "id": "55061",
+ "self": "https://shopview.atlassian.net/rest/api/3/issue/55061",
+ "key": "SV-8927",
+ "names": {
+  "statuscategorychangedate": "Status Category Changed",
+  "parent": "Parent",
+  "issuetype": "Issue Type",
+  "timespent": "Time Spent",
+  "project": "Project",
+  "customfield_10351": "Target field",
+  "fixVersions": "Fix versions",
+  "aggregatetimespent": "\u03a3 Time Spent",
+  "statusCategory": "Status Category",
+  "resolution": "Resolution",
+  "resolutiondate": "Resolved",
+  "workratio": "Work Ratio",
+  "watches": "Watchers",
+  "issuerestriction": "Restrict to",
+  "lastViewed": "Last Viewed",
+  "created": "Created",
+  "customfield_10021": "Flagged",
+  "customfield_10385": "QA Assignee",
+  "priority": "Priority",
+  "labels": "Labels",
+  "customfield_10016": "Story point estimate",
+  "customfield_10019": "Rank",
+  "timeestimate": "Remaining Estimate",
+  "aggregatetimeoriginalestimate": "\u03a3 Original Estimate",
+  "versions": "Affects versions",
+  "customfield_10418": "Severity",
+  "customfield_10419": "QA Test Plan",
+  "issuelinks": "Linked Issues",
+  "assignee": "Assignee",
+  "updated": "Updated",
+  "status": "Status",
+  "components": "Components",
+  "timeoriginalestimate": "Original estimate",
+  "description": "Description",
+  "customfield_10015": "Start date",
+  "timetracking": "Time tracking",
+  "security": "Security Level",
+  "aggregatetimeestimate": "\u03a3 Remaining Estimate",
+  "attachment": "Attachment",
+  "summary": "Summary",
+  "creator": "Creator",
+  "subtasks": "Sub-tasks",
+  "customfield_10285": "Regression Version",
+  "reporter": "Reporter",
+  "customfield_10044": "Number of linked Intercom conversations",
+  "aggregateprogress": "\u03a3 Progress",
+  "customfield_10046": "Design",
+  "customfield_10047": "Vulnerability",
+  "environment": "Environment",
+  "customfield_10318": "QA Branch",
+  "duedate": "Due date",
+  "customfield_10518": "Agent Sessions",
+  "progress": "Progress",
+  "votes": "Votes",
+  "comment": "Comment",
+  "worklog": "Log Work"
+ },
+ "fields": {
+  "statuscategorychangedate": "2026-08-05T23:04:50.164-0500",
+  "issuetype": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+   "id": "10007",
+   "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+   "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+   "name": "Story Defect",
+   "subtask": true,
+   "avatarId": 10854,
+   "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+   "hierarchyLevel": -1
+  },
+  "parent": {
+   "id": "54691",
+   "key": "SV-8670",
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54691",
+   "fields": {
+    "summary": "Inv Value - Story 3 - Columns and Calculations",
+    "status": {
+     "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+     "description": "",
+     "iconUrl": "https://shopview.atlassian.net/",
+     "name": "Open",
+     "id": "10349",
+     "statusCategory": {
+      "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+      "id": 2,
+      "key": "new",
+      "colorName": "blue-gray",
+      "name": "To Do"
+     }
+    },
+    "priority": {
+     "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+     "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+     "name": "Medium",
+     "id": "3"
+    },
+    "issuetype": {
+     "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+     "id": "10245",
+     "description": "Stories track functionality or features expressed as user goals.",
+     "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+     "name": "Story",
+     "subtask": false,
+     "avatarId": 10315,
+     "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+     "hierarchyLevel": 0
+    }
+   }
+  },
+  "timespent": null,
+  "project": {
+   "self": "https://shopview.atlassian.net/rest/api/3/project/10001",
+   "id": "10001",
+   "key": "SV",
+   "name": "ShopView",
+   "projectTypeKey": "software",
+   "simplified": true,
+   "avatarUrls": {
+    "48x48": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551",
+    "24x24": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=small",
+    "16x16": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=xsmall",
+    "32x32": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=medium"
+   }
+  },
+  "customfield_10351": null,
+  "fixVersions": [],
+  "aggregatetimespent": null,
+  "statusCategory": {
+   "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+   "id": 2,
+   "key": "new",
+   "colorName": "blue-gray",
+   "name": "To Do"
+  },
+  "resolution": null,
+  "resolutiondate": null,
+  "workratio": -1,
+  "watches": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8927/watchers",
+   "watchCount": 1,
+   "isWatching": true
+  },
+  "issuerestriction": {
+   "issuerestrictions": {},
+   "shouldDisplay": true
+  },
+  "lastViewed": null,
+  "created": "2026-08-05T23:04:49.696-0500",
+  "customfield_10021": null,
+  "customfield_10385": null,
+  "priority": {
+   "self": "https://shopview.atlassian.net/rest/api/3/priority/4",
+   "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+   "name": "Low",
+   "id": "4"
+  },
+  "labels": [],
+  "customfield_10016": null,
+  "customfield_10019": "0|i01vqp:",
+  "timeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "versions": [],
+  "customfield_10418": {
+   "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10500",
+   "value": "Low",
+   "id": "10500",
+   "color": "GREEN_DARKER"
+  },
+  "customfield_10419": null,
+  "issuelinks": [
+   {
+    "id": "32090",
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/32090",
+    "type": {
+     "id": "10003",
+     "name": "Relates",
+     "inward": "relates to",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    },
+    "outwardIssue": {
+     "id": "54691",
+     "key": "SV-8670",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54691",
+     "fields": {
+      "summary": "Inv Value - Story 3 - Columns and Calculations",
+      "status": {
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+       "description": "",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "name": "Open",
+       "id": "10349",
+       "statusCategory": {
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+        "id": 2,
+        "key": "new",
+        "colorName": "blue-gray",
+        "name": "To Do"
+       }
+      },
+      "priority": {
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "name": "Medium",
+       "id": "3"
+      },
+      "issuetype": {
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+       "id": "10245",
+       "description": "Stories track functionality or features expressed as user goals.",
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+       "name": "Story",
+       "subtask": false,
+       "avatarId": 10315,
+       "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+       "hierarchyLevel": 0
+      }
+     }
+    }
+   }
+  ],
+  "assignee": null,
+  "updated": "2026-08-06T02:49:47.073-0500",
+  "status": {
+   "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+   "description": "",
+   "iconUrl": "https://shopview.atlassian.net/",
+   "name": "Open",
+   "id": "10349",
+   "statusCategory": {
+    "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+    "id": 2,
+    "key": "new",
+    "colorName": "blue-gray",
+    "name": "To Do"
+   }
+  },
+  "components": [],
+  "timeoriginalestimate": null,
+  "description": {
+   "type": "doc",
+   "version": 1,
+   "content": [
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "1. What happens now"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "The first time somebody opens the Inventory Value report in a browser, every column is already switched on - including "
+      },
+      {
+       "type": "text",
+       "text": "Margin",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": " and "
+      },
+      {
+       "type": "text",
+       "text": "Total Sell",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": "."
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "2. What should happen instead"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Those two columns are meant to start switched off, so the report opens on the narrower default view and the user turns them on if they want them."
+      }
+     ]
+    },
+    {
+     "type": "bulletList",
+     "content": [
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Inventory Value requirement S3-R12: \"On first visit, the visible columns are: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin %, and Total Cost.\" Margin and Total Sell are not in that list."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Inventory Value requirement S3-R13: \"The Margin and Total Sell columns are hidden by default and can be turned on from the column-selection control.\""
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Inventory Value requirement S8-R3: \"Margin and Total Sell are off by default, the rest on by default.\""
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "3. How to see it"
+      }
+     ]
+    },
+    {
+     "type": "orderedList",
+     "attrs": {
+      "order": 1
+     },
+     "content": [
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Open a browser window that has never opened this report before (a private window works)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Sign in and open "
+          },
+          {
+           "type": "text",
+           "text": "Reports",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " > "
+          },
+          {
+           "type": "text",
+           "text": "Inventory Value",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": "."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Read the column headers across the top of the table."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Exact test data this was seen with:",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": " no seeding needed. Locations "
+      },
+      {
+       "type": "text",
+       "text": "Staging Heavy Duty - 9919",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": " and "
+      },
+      {
+       "type": "text",
+       "text": "Staging Lethbridge - 4310",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": ", date range "
+      },
+      {
+       "type": "text",
+       "text": "This Month",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": "."
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "4. What was actually seen"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "The headers on a genuine first visit read:"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "{noquote}"
+      },
+      {
+       "type": "hardBreak"
+      },
+      {
+       "type": "text",
+       "text": "Part # | Description | Category | Vendor | Location | Qty | Unit Cost | Unit Sell | Margin | Margin % | Total Sell | Total Cost"
+      },
+      {
+       "type": "hardBreak"
+      },
+      {
+       "type": "text",
+       "text": "{noquote}"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "The saved view the page writes for itself on that first load also lists all of them, Margin and Total Sell included."
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "5. What was ruled out"
+      }
+     ]
+    },
+    {
+     "type": "bulletList",
+     "content": [
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "It is not a leftover setting.",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " This was a brand-new browser session with nothing stored for this report - the saved view did not exist until the page created it, and it was created with both columns on."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "The control itself works.",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " Turning Margin off hides it and turning it back on restores it in the right place, so this is only about the starting state."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "It is not the separate Location question.",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " The Location column is a different, still-open point. Margin and Total Sell are described plainly in three places with no disagreement."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "6. How often"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Every time, on every fresh browser."
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "7. Where it was seen"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Reports > Inventory Value, on the QA branch, build v3.5-16cf83f, on 6 August 2026."
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": " "
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Where this expected behaviour comes from: the Inventory Value report specification, version 4, requirement S3-R12, which lists what is on screen at the start: \"On first visit, the visible columns are: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin %, and Total Cost.\" Margin and Total Sell are not in that list."
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "The same specification, requirement S3-R13, says so directly: \"The Margin and Total Sell columns are hidden by default and can be turned on from the column-selection control (Story 8).\" And requirement S8-R3 repeats it: \"Every other column is available in the control; Margin and Total Sell are off by default, the rest on by default (S3-R12).\""
+      }
+     ]
+    }
+   ]
+  },
+  "customfield_10015": null,
+  "timetracking": {},
+  "security": null,
+  "aggregatetimeestimate": null,
+  "attachment": [],
+  "summary": "Inventory Value opens with Margin and Total Sell already switched on; both should start hidden",
+  "creator": {
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "avatarUrls": {
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "active": true,
+   "timeZone": "Asia/Karachi",
+   "accountType": "atlassian"
+  },
+  "subtasks": [],
+  "customfield_10285": null,
+  "reporter": {
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "avatarUrls": {
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "active": true,
+   "timeZone": "Asia/Karachi",
+   "accountType": "atlassian"
+  },
+  "customfield_10044": null,
+  "aggregateprogress": {
+   "progress": 0,
+   "total": 0
+  },
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "environment": null,
+  "customfield_10318": null,
+  "duedate": null,
+  "customfield_10518": null,
+  "progress": {
+   "progress": 0,
+   "total": 0
+  },
+  "votes": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8927/votes",
+   "votes": 0,
+   "hasVoted": false
+  },
+  "comment": {
+   "comments": [],
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/55061/comment",
+   "maxResults": 0,
+   "total": 0,
+   "startAt": 0
+  },
+  "worklog": {
+   "startAt": 0,
+   "maxResults": 20,
+   "total": 0,
+   "worklogs": []
+  }
+ }
+}

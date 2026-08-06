@@ -1,0 +1,22 @@
+{
+ "description": "The summary row at the bottom of the Inventory Value report is labelled Totals. The written description asks for the singular Total on screen; Totals is the word the downloaded files are meant to use.",
+ "steps": [
+  "Open Reports, then Inventory Value.",
+  "Leave the date range on This Month with both locations selected (Locations Staging Heavy Duty - 9919 and Staging Lethbridge - 4310) — no test data needs setting up, the organisation's own stock is enough.",
+  "Scroll to the bottom of the table and read the first cell of the last row, in the Part # column."
+ ],
+ "current": "The first cell of the totals row reads Totals.\n\nEverything else about the row is right: the Description, Category, Vendor, Unit Cost and Unit Sell cells are blank, the Total Cost cell is bold and pinned right, and the row stays visible while the rows scroll. Only the word is wrong.",
+ "expected": "The first cell of the totals row reads Total. The plural Totals belongs to the downloaded files, not the screen.",
+ "source": [
+  [
+   "spec",
+   "iv",
+   "S4-R1",
+   "A totals row is shown at the bottom of the report, with the literal label \"Total\" in the Part # column's cell."
+  ],
+  [
+   "note",
+   "The word \"literal\" is the description's own."
+  ]
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "description": "When nothing matches, the Inventory Value report shows column headings with nothing underneath and no message at all. There is no way to tell \"nothing found\" apart from \"still loading\" or \"something broke\".",
+ "steps": [
+  "Open Reports, then Inventory Value.",
+  "Type ZZZZNOMATCHZZZZ into the Search parts box — a term that matches no part.",
+  "Wait for the table to reload and look at the data area. This was seen with Locations Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 and the date range This Month, which holds 5,657 rows before the search.",
+  "The same empty result can be reached two other ways, and both look the same: pick a date range entirely before nightly recording began, such as January 2024; or combine two categories with a search term none of their parts match."
+ ],
+ "current": "The table holds only its heading row. The words \"Empty bays\" appear nowhere on the page. The reload had finished and the server had answered.\n\nThe totals row is correctly hidden — that half is right.",
+ "expected": "The data area shows the application's standard reports no-data message, \"Empty bays, endless possibilities. Get Going!\", with the totals row hidden.",
+ "source": [
+  [
+   "spec",
+   "iv",
+   "S1-N2",
+   "If no in-stock part exists for the selected location(s) on the resolved date, the report shows the no-data message (Story 12) instead of rows."
+  ],
+  [
+   "spec",
+   "iv",
+   "S7-N2",
+   "If the selected location(s) hold no in-stock parts on the resolved date, the report shows the no-data message (Story 12)."
+  ],
+  [
+   "note",
+   "The same description gives the exact words of that message in its message table: \"Empty bays, endless possibilities. Get Going!\", described there as the application's standard reports no-data label shown in the data area, with the totals row hidden. Requirement S5-N1 says the same for a date range with no recorded day in it."
+  ]
+ ]
+}
