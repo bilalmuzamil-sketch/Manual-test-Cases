@@ -3,6 +3,95 @@
 
 ---
 
+## §0-VLAD-GAP-REVIEW-2026-08-06 — THE SUITE IS 114 CASES. Vlad's eleven rows are worked, and row 1 was OUR defect.
+
+**Paper: `build/filters/vlad-gap-review-2026-08-06/` — read `ROOT-CAUSE.md`, then `ROW-BY-ROW.md`,
+`NEW-CASES.md`, `testrail-execution-log.md`, `SOURCE-CURRENCY.md`, `DELIBERATE-DECISIONS.md`,
+`QUESTIONS-FOR-BRANKO.md`, `RECHECK-QUEUE.md`, `STAGED-RUN-352-SYNC.md`.** Snapshots committed in
+**8ddceb8** before the first write; execution in **946cd5b**.
+
+**VERDICTS on his eleven rows (twelve once one is split per assertion, Rule 45(e)): COVERED 5 ·
+PARTIAL 2 · GAP 3 · GAP-not-authorable 1 · deliberate HOLD 1. He is right on 6 and mistaken on 5.
+All twelve were settled from DOCUMENTS ALONE — nothing needed a live check, and nothing got one.**
+
+**🔴 ROW 1 IS NOT A GAP, IT IS A RULE-57-CLASS DEFECT WE INTRODUCED ON 5 AUGUST.** That pass reversed
+**C29609 / C29610** from Branko's ruling to the PRD's wording, reasoning verbatim that *"the
+specification is the newer authoritative source"*. **That premise is provably false: `S9-R2` and
+`S9-R3` were fetched at spec versions 4, 5, 6, 7, 9, 12, 14, 17, 18 and 19 and are BYTE-IDENTICAL in
+all ten — unchanged since 2026-05-14**, two and a half months before Branko's 17 July Q4=B answer. The
+pass had compared the **page's** publication date with the answer's date; the **page** was newer, the
+**requirement** was far older. It also **silently reversed the QA lead's own 30 July ruling**, which
+Rule 33 forbids outright. **A NEW TRAP, distinct from Rule 31(a): a page version being new says
+nothing about whether the requirement inside it is new.** **5 cases corrected back to the ruled
+behaviour (C29609, C29610, C29559, C29612, C29558) and set to HOLD pending Branko.**
+
+**4 NEW CASES, each for a gap proven absent with both texts quoted side by side:** **FLT-PERS-07 =
+[C43560](https://shopview.testrail.io/index.php?/cases/view/43560)** (`S10-R2`'s last-write-wins half —
+covered nowhere) · **FLT-PSRCH-14 = [C43561](https://shopview.testrail.io/index.php?/cases/view/43561)**
+(`S13-R19`'s six named toolbars; C38889 asserted the rule on one example page) · **FLT-PARTS-14 =
+[C43562](https://shopview.testrail.io/index.php?/cases/view/43562)** (Branko's Q5 promised parity on
+six things; **collapse, shareable URL and mobile** were covered by nothing) · **FLT-MOB-11 =
+[C43563](https://shopview.testrail.io/index.php?/cases/view/43563)** (Imported exclusivity on a phone;
+C38877 is desktop-only). **Internal IDs checked three ways before use.**
+
+**WRITES: 9 ops — 5 `update_case` + 4 `add_case`, every one HTTP 200 + byte-verified** (30 fields per
+update, 11 per add, **0 mismatches, 0 collateral**), all three text fields on every payload. **The 105
+untouched cases proven byte-identical INCLUDING `updated_on`/`updated_by`.** **0 `delete_case`, 0
+section writes, 0 run writes, no result logged.** **The batch STOPPED once as Rule 50 requires** — a
+`refs` entry measured 253 characters against the 248 limit and was shortened before the run resumed.
+
+**RUN 352 PROVEN UNDAMAGED** — `include_all` still false, 110 tests, test-id and case-id sets equal
+both directions, **all 459 result records present BY ID with 0 graded-field changes and 0 new results**;
+the 42 moved `case_refs`/`case_title` values trace to **exactly the five cases whose refs or title we
+edited** and are the declared read-time echo.
+
+**MARKERS read back live: 79 `READY` · 15 `READY - EXPECT FAIL` · 20 `HOLD` = 114, exactly one each,
+0 unmarked. THE GATE PASSES BOTH WAYS: 79 + 15 = 94 = 114 − 20.** **READY TO AUTOMATE = 94.** It did
+not rise: +3 new READY and C29558 regaining a marker are offset by **4 cases moving to HOLD** pending
+Branko on row 1. **And the previously reported 95 was already one too high** — the live census showed
+80 READY plus **one case with no marker at all** (C29558, stripped by another author's edit), so the
+true figure before this pass was **94**.
+
+**⚠️ THE SPEC MOVED THIS MORNING: Confluence v18 → v19 at 11:48:47Z**, one sentence, and it is a **NEW
+requirement** — `S1-R3` now demands *"a leading type-icon identifying the filter"*. **Ahtasham Amjad
+had already covered it on C29558 at 11:27Z, twenty-one minutes before Branko published it**, having
+filed **[SV-8986](https://shopview.atlassian.net/browse/SV-8986)** at 06:16. His assertion was kept;
+his edit had dropped the provenance line and the marker, and those were restored.
+**105 cases still pin `[spec v18 2026-08-04]` and owe a re-stamp.**
+
+**⚠️ THE BUILD REDEPLOYED: `v3.4.2-d00239b` → `v3.4.2-280ca5a`** (last-mod Thu 06 Aug 09:37:49 GMT,
+etag `720a7f1f…`), so the 110 verdicts of 5 August name a build that no longer exists. **The API
+returned HTTP 401 `sso_required` all session** — probed once, `switch-user` and
+`quick-login {"key":"tech"}` never called — so **none of the 9 written cases has been observed, and
+each says so on itself instead of carrying a build stamp.**
+
+**🔴 COVERAGE-COMPLETENESS IS STILL NOT ESTABLISHED, and the root cause names why: the
+requirement→case map (`build/filters/coverage-matrix.md`) still covers 81 requirements / 79 cases as
+at 17 JULY. The spec now has 132 requirements and the suite has 114 cases, and the map contains ZERO
+hits for anything in Stories 13 or 14** — the two largest sections, added on 26 July. **Rule 43's
+both-directions re-derivation has never been run for Filters.** Three of Vlad's four genuine gaps sit
+in exactly that unmapped territory. **Authorising that re-derivation is the single highest-value next
+step on this project.**
+
+**ALSO FOUND, REPORTED NOT FIXED:** **14 of the 114 cases still show raw `<ol>`/`<li>`/`<p>` markup
+literally to the tester** (C29560, C29561, C29562, C29563, C29564, C29565, C29583, C29584, C29585,
+C29586, C29587, C29588, C38877, C38882) — **eleven of them last written by our own 5 August pass, so
+the standing claim "RAW MARKUP IS NOW 0 OF 110" is NOT true of the live suite.** And **other authors
+are editing our cases**: Vladimir Tomovic touched C29560, C29600, C29614 and C38877 today; Ahtasham
+touched C29558. **All left exactly as they left them (Rule 38).**
+
+**⚠️ Rule-49 queue OPEN — `vlad-gap-review-2026-08-06/RECHECK-QUEUE.md`** (9 rows, none observed) **on
+top of `full-viu-2026-08-05/RECHECK-QUEUE.md`** (110 rows). The branch is **not declared final**, so
+every verdict is **PROVISIONAL**.
+
+**OUTSTANDING: Branko must settle the Status chip (Q1 — 4 cases held) · Branko owes the Parts/Reports
+write-up (Q2 — 11 cases held, fourth week) · Q3 the date-filter URL contract · Q4 the phone Imported
+behaviour · the QA lead's view on his 30 July ruling being reversed and now reinstated · authorise the
+requirement→case re-derivation · authorise the 14-case markup repair and the 105-case v19 re-stamp ·
+a fresh `.qa.shopview.com` sign-in · execute the STAGED run-352 sync (110 → 114).**
+
+---
+
 ## §0-FULL-LIVE-VIU-2026-08-05 — ALL 110 CASES OBSERVED LIVE. The observation gap is closed.
 
 **Paper: `build/filters/full-viu-2026-08-05/` — read `RESUME.md`, then `SOURCE-CURRENCY.md`,

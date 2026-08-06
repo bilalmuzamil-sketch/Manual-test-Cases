@@ -1,5 +1,14 @@
 # FILTERS — Vlad's coverage-gap table (eleven rows). QUEUED CAPTURE, NOT THE ANALYSIS.
 
+> ## ✅ WORKED 2026-08-06 — this file is now the RECORD OF THE ASK, not a to-do.
+> **The analysis, the verdicts and the writes are in `build/filters/vlad-gap-review-2026-08-06/`.**
+> Read `ROOT-CAUSE.md`, then `ROW-BY-ROW.md`, then `NEW-CASES.md`.
+> **Outcome: Vlad is right on 6 of the 12 rows (his 11, one split per assertion), mistaken on 5, and
+> one row was never a gap.** Row 1 turned out to be a **Rule-57-class defect in our own suite**, not a
+> gap. **5 cases corrected · 4 new cases authored (C43560, C43561, C43562, C43563) · 4 questions to
+> Branko · the run-352 sync STAGED and NOT executed.** All twelve rows were settled **from documents
+> alone**; the branch API was dead all session, so **nothing was observed live.**
+
 **State: QUEUED — not started.** Raised by **Vlad (automation engineer)** via the QA lead,
 **2026-08-06**. **To be worked only after all other outstanding work is complete, on the QA lead's
 explicit instruction.**
