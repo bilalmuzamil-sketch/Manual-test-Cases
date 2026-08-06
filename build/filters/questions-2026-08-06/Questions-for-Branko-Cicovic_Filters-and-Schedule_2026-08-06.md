@@ -13,14 +13,22 @@ exactly, and it carries a QA-only tab that must not be forwarded.
 was never sent. Standing Rule 55 says to sweep every open ambiguity onto ONE sheet so a product
 owner answers in a single sitting rather than receiving a drip of separate asks — two unsent sheets
 to the same person is that drip. All 13 of that sheet's items are carried forward here, imported
-from its own generator so the wording cannot drift, and 4 new items are added. **The 2026-08-05
+from its own generator so the wording cannot drift, and 8 new items are added. **The 2026-08-05
 workbook should be marked superseded so an old one cannot go out by mistake.**
 
 Nothing here is a complaint, and one of these is honestly our own fault for not sending it sooner. It covers TWO of your projects, so every question says which one it belongs to - Filters or Schedule - and the tabs are split the same way. It is gathered into one place so you can go through it in a single sitting rather than getting a trickle of separate messages.
 
-**Seventeen items in total: seven Filters, four Schedule questions about his own document, and six
+**Twenty-one items in total: seven Filters, eight Schedule questions about his own document, and six
 Schedule behaviours that only the engineering plan describes. Seventeen of our tests are on hold
-across them.**
+across them, and two more are waiting on the two new Schedule questions that decide whether they
+pass or fail.**
+
+**Schedule items 5 to 8 were added on 2026-08-06** from the Schedule description's move to version 25
+earlier the same day. **Items 5 and 6 are the decisive ones:** item 5 decides what one of our tests should
+say at all, and item 6 is the difference between a test that passes and a test that fails on the same
+software. One further question that the same review raised was **deliberately left off**, because he
+had already answered it in his own words and it changed no test — the reason is recorded on the
+QA-only tab.
 
 **Live source versions confirmed on 2026-08-06, immediately before writing** — Filters
 specification **version 19** (published 11:48 UTC this morning) · Schedule specification **version
@@ -212,9 +220,12 @@ project:** ten tests are waiting on it.
 
 ## Tab 2 — Schedule - your document
 
-**Four items, and an apology with the first.** Question 1 was written on 22 July and we never
+**Eight items, and an apology with the first.** Question 1 was written on 22 July and we never
 actually sent it to you. Two tests have been sitting parked ever since waiting for an answer you
 were never asked for. That delay is ours, not yours.
+
+**Questions 5 and 6 are the two that matter most** — each one decides whether a test of ours is right
+or wrong, and both come out of the changes made to your own description this morning.
 
 ### Item 1.0 — Schedule (the technician scheduling calendar) - planning a job across several days (the multi-day spread story, SV-8691, under epic SV-8685)
 
@@ -321,6 +332,110 @@ were never asked for. That delay is ours, not yours.
 > B) THE NEWER SHARED PAGE is the finished one - please confirm it is final, and we will go through it and update whatever has changed.
 >
 > C) Neither is final yet - please say when a finished drawing will be available.
+
+**Your answer:** _______________________________________________
+
+### Item 5.0 — Schedule (the technician scheduling calendar) - the search box in the toolbar above the calendar grid (not the one in the job list down the left) (the story about the calendar layout, SV-8686, under epic SV-8685)
+
+**What happens now**
+
+> THIS ONE DECIDES WHETHER ONE OF OUR TESTS IS RIGHT OR WRONG, so it is worth a minute.
+>
+> Your written description used to say that when someone searches, the jobs that do not match go FADED BUT STAY ON SCREEN, so you keep sight of the whole week. That sentence was taken out of the description THIS MORNING, after your team decided the description was wrong and that the drawing shows only the matching jobs. The description now says only WHAT the search looks through - customer name, work order number, unit number, technician name and line name. It no longer says anything at all about what happens to the jobs that do NOT match.
+>
+> Our test still says the non-matching jobs go faded, because that is what was written down when we wrote it. We are not going to quietly change it to match what the software does today, because that would tell us what was built rather than what you wanted.
+>
+> One more thing in the same place: the developer ticket that describes the calendar layout STILL says the non-matching jobs should fade - in two places, in its requirements and again in its acceptance criteria. So your description and that ticket now disagree with each other. If your answer is A, somebody should tidy that ticket up. We have not touched it, because it is not ours.
+
+**The question**
+
+> When someone searches, what should happen to the jobs that do not match?
+
+**Options**
+
+> A) They should disappear from the calendar - only the matching jobs are shown. (This is what your team said the drawing shows.)
+>
+> B) They should stay on screen but faded, and the matching ones stand out.
+>
+> C) Something else - please describe it.
+
+**Your answer:** _______________________________________________
+
+### Item 6.0 — Schedule (the technician scheduling calendar) - the pop-up window that opens when you click a scheduled job (the story about that window, SV-8695, under epic SV-8685)
+
+**What happens now**
+
+> THIS ONE DECIDES WHETHER A TEST PASSES OR FAILS, which is exactly why we are asking instead of choosing.
+>
+> Earlier today, on the report about that window, you told us the little ESTIMATE BADGE should not be clickable, and that the time is changed in the fields higher up the window instead. That makes sense to us.
+>
+> What we cannot tell is how far your answer reaches. Your written description STILL says the window should let someone type a new estimate straight into it, and the developer ticket for that window still says the same. Both of those are live today. So your sentence might mean the estimate cannot be changed anywhere in that window, or it might mean only that the small badge on the job line should not be clickable.
+>
+> We have one test that says the estimate CAN be typed into. If you mean the first, that test is wrong and we will correct it. If you mean the second, the test is right and the software has something to fix. We are deliberately not settling it by looking at what the software does today.
+
+**The question**
+
+> In that pop-up window, should someone be able to change the ESTIMATED HOURS by typing into them?
+
+**Options**
+
+> A) NO - the estimate cannot be changed in that window at all; only the start and end times can be changed, in the fields above.
+>
+> B) YES - the estimate itself can still be typed into; only the little badge on the job line should not be clickable.
+>
+> C) Something else - please describe it.
+
+**Your answer:** _______________________________________________
+
+### Item 7.0 — Schedule (the technician scheduling calendar) - the list of jobs INSIDE that same pop-up window (the story about that window, SV-8695, under epic SV-8685)
+
+**What happens now**
+
+> This one is small, and it is only two of your own documents disagreeing with each other.
+>
+> Your written description was changed this morning so that each job line in that pop-up shows an estimate figure and a status label. In your own words earlier today, the lines should show the estimate and the status badge and there should not be any totals. Our test already expects exactly that - the hours and a status label, and no money anywhere in the window - so nothing of ours is stuck.
+>
+> But the developer ticket for that window still says each line shows a labour TOTAL, and it has said so since before your change. You edited that same ticket three days ago and the word is still sitting in it. So your description and that ticket now say different things, and only you can say which one is the one to keep.
+>
+> While you are in that ticket: it also still says the estimate can be typed in, which is the question just above this one. Both would be tidied up in the same visit.
+
+**The question**
+
+> On each job line in that pop-up, should there be a money total, or only the hours and a status label?
+
+**Options**
+
+> A) ONLY the hours and a status label - no money anywhere. Your description is right and the developer ticket needs tidying up.
+>
+> B) A MONEY TOTAL should be shown there - the developer ticket is right and your description needs correcting. (Then our test is wrong and we will change it.)
+>
+> C) Something else - please describe it.
+
+**Your answer:** _______________________________________________
+
+### Item 8.0 — Schedule (the technician scheduling calendar) - how much of the day the timeline shows when the day view opens (under epic SV-8685)
+
+**What happens now**
+
+> Nothing is stuck on this one and no test of ours is wrong today. We are asking so that we are not quietly relying on a note that disagrees with your own description.
+>
+> Your description says the day view keeps the WHOLE 24 HOURS there and scrollable, and simply scrolls itself so the start of the working day is on the left.
+>
+> A note on one of the design-review reports asks for something different: that the timeline show ONLY THE WORKING HOURS plus a small amount after them, with anything outside that reached by scrolling. That note says it is being tracked as a later improvement rather than for this release, which is why we have left our test alone.
+>
+> If the narrower version is meant for this release, your description needs changing first and then we will change the test to match it.
+
+**The question**
+
+> For THIS release, which is right?
+
+**Options**
+
+> A) Keep the full 24 hours, as your description says today - the narrower version is for later.
+>
+> B) Change it now to show only the working hours plus a small amount after them.
+>
+> C) Something else - please describe it.
 
 **Your answer:** _______________________________________________
 

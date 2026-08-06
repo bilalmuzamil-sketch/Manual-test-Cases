@@ -174,6 +174,121 @@ NEW_SCHEDULE = [
     ),
 ]
 
+# ------------------------------------------- NEW Schedule items from spec v24/v25
+# Raised by build/schedule/spec-v25-2026-08-06/QUESTIONS-FOR-BRANKO.md. Every
+# sentence below was re-verified live against Confluence page 713031682 at VERSION
+# 25 and against Jira SV-8686 / SV-8695 / SV-8829 / SV-8874 / SV-8915 on
+# 2026-08-06 before it was written. Appended AFTER the existing four items so the
+# established tab order is not restructured (Rule 16); the tab note names which of
+# them are decisive so importance is still visible.
+NEW_SCHEDULE_V25 = [
+    (
+        "Schedule (the technician scheduling calendar) - the search box in the toolbar above the "
+        "calendar grid (not the one in the job list down the left) (the story about the calendar "
+        "layout, SV-8686, under epic SV-8685)",
+
+        "THIS ONE DECIDES WHETHER ONE OF OUR TESTS IS RIGHT OR WRONG, so it is worth a minute.\n\n"
+        "Your written description used to say that when someone searches, the jobs that do not match "
+        "go FADED BUT STAY ON SCREEN, so you keep sight of the whole week. That sentence was taken "
+        "out of the description THIS MORNING, after your team decided the description was wrong "
+        "and that the drawing shows only the matching jobs. The description now says only WHAT the "
+        "search looks through - customer name, work order number, unit number, technician name and "
+        "line name. It no longer says anything at all about what happens to the jobs that do NOT "
+        "match.\n\n"
+        "Our test still says the non-matching jobs go faded, because that is what was written down "
+        "when we wrote it. We are not going to quietly change it to match what the software does "
+        "today, because that would tell us what was built rather than what you wanted.\n\n"
+        "One more thing in the same place: the developer ticket that describes the calendar layout "
+        "STILL says the non-matching jobs should fade - in two places, in its requirements and again "
+        "in its acceptance criteria. So your description and that ticket now disagree with each "
+        "other. If your answer is A, somebody should tidy that ticket up. We have not touched it, "
+        "because it is not ours.",
+
+        "When someone searches, what should happen to the jobs that do not match?",
+
+        "A) They should disappear from the calendar - only the matching jobs are shown. (This is what "
+        "your team said the drawing shows.)\n\n"
+        "B) They should stay on screen but faded, and the matching ones stand out.\n\n"
+        "C) Something else - please describe it.",
+    ),
+    (
+        "Schedule (the technician scheduling calendar) - the pop-up window that opens when you click "
+        "a scheduled job (the story about that window, SV-8695, under epic SV-8685)",
+
+        "THIS ONE DECIDES WHETHER A TEST PASSES OR FAILS, which is exactly why we are asking instead "
+        "of choosing.\n\n"
+        "Earlier today, on the report about that window, you told us the little ESTIMATE BADGE should "
+        "not be clickable, and that the time is changed in the fields higher up the window instead. "
+        "That makes sense to us.\n\n"
+        "What we cannot tell is how far your answer reaches. Your written description STILL says the "
+        "window should let someone type a new estimate straight into it, and the developer ticket "
+        "for that window still says the same. Both of those are live today. So your sentence might "
+        "mean the estimate cannot be changed anywhere in that window, or it might mean only that the "
+        "small badge on the job line should not be clickable.\n\n"
+        "We have one test that says the estimate CAN be typed into. If you mean the first, that test "
+        "is wrong and we will correct it. If you mean the second, the test is right and the software "
+        "has something to fix. We are deliberately not settling it by looking at what the software "
+        "does today.",
+
+        "In that pop-up window, should someone be able to change the ESTIMATED HOURS by typing into "
+        "them?",
+
+        "A) NO - the estimate cannot be changed in that window at all; only the start and end times "
+        "can be changed, in the fields above.\n\n"
+        "B) YES - the estimate itself can still be typed into; only the little badge on the job line "
+        "should not be clickable.\n\n"
+        "C) Something else - please describe it.",
+    ),
+    (
+        "Schedule (the technician scheduling calendar) - the list of jobs INSIDE that same pop-up "
+        "window (the story about that window, SV-8695, under epic SV-8685)",
+
+        "This one is small, and it is only two of your own documents disagreeing with each other.\n\n"
+        "Your written description was changed this morning so that each job line in that pop-up shows "
+        "an estimate figure and a status label. In your own words earlier today, the lines should show "
+        "the estimate and the status badge and there should not be any totals. Our test already "
+        "expects exactly that - the hours and a status label, and no money anywhere in the window - "
+        "so nothing of ours is stuck.\n\n"
+        "But the developer ticket for that window still says each line shows a labour TOTAL, and it "
+        "has said so since before your change. You edited that same ticket three days ago and the "
+        "word is still sitting in it. So your description and that ticket now say different things, "
+        "and only you can say which one is the one to keep.\n\n"
+        "While you are in that ticket: it also still says the estimate can be typed in, which is the "
+        "question just above this one. Both would be tidied up in the same visit.",
+
+        "On each job line in that pop-up, should there be a money total, or only the hours and a "
+        "status label?",
+
+        "A) ONLY the hours and a status label - no money anywhere. Your description is right and the "
+        "developer ticket needs tidying up.\n\n"
+        "B) A MONEY TOTAL should be shown there - the developer ticket is right and your description "
+        "needs correcting. (Then our test is wrong and we will change it.)\n\n"
+        "C) Something else - please describe it.",
+    ),
+    (
+        "Schedule (the technician scheduling calendar) - how much of the day the timeline shows when "
+        "the day view opens (under epic SV-8685)",
+
+        "Nothing is stuck on this one and no test of ours is wrong today. We are asking so that we "
+        "are not quietly relying on a note that disagrees with your own description.\n\n"
+        "Your description says the day view keeps the WHOLE 24 HOURS there and scrollable, and "
+        "simply scrolls itself so the start of the working day is on the left.\n\n"
+        "A note on one of the design-review reports asks for something different: that the timeline "
+        "show ONLY THE WORKING HOURS plus a small amount after them, with anything outside that "
+        "reached by scrolling. That note says it is being tracked as a later improvement rather than "
+        "for this release, which is why we have left our test alone.\n\n"
+        "If the narrower version is meant for this release, your description needs changing first "
+        "and then we will change the test to match it.",
+
+        "For THIS release, which is right?",
+
+        "A) Keep the full 24 hours, as your description says today - the narrower version is for "
+        "later.\n\n"
+        "B) Change it now to show only the working hours plus a small amount after them.\n\n"
+        "C) Something else - please describe it.",
+    ),
+]
+
 
 # ------------------------------------------------------------------------ helpers
 def _hdr(ws, row, cols):
@@ -219,7 +334,7 @@ def _sheet(wb, name, title, note, band, items, widths, first=False):
 # Filters items in the order the 2026-08-05 sheet had them.
 TAB1 = [NEW_FILTERS[0], PRIOR_FILTERS[3], NEW_FILTERS[1], NEW_FILTERS[2],
         PRIOR_FILTERS[0], PRIOR_FILTERS[1], PRIOR_FILTERS[2]]
-TAB2 = list(PRIOR_SCHED_DOC) + NEW_SCHEDULE
+TAB2 = list(PRIOR_SCHED_DOC) + NEW_SCHEDULE + NEW_SCHEDULE_V25
 TAB3 = list(PRIOR_SCHED_ENG)
 
 TR = "https://shopview.testrail.io/index.php?/cases/view/"
@@ -369,6 +484,120 @@ QA_ROWS = [
      "register names Sasha Grosman / Fabian as the people who can say whether it is final; it is "
      "asked of Branko because HE made the July ruling and is already engaged on exactly this point."),
 
+    ("Tab 2", "5",
+     "Schedule - what should happen to the calendar blocks that do NOT match the toolbar search?",
+     "NEW, from the Schedule spec v23 -> v25 diff: Q1 of "
+     "build/schedule/spec-v25-2026-08-06/QUESTIONS-FOR-BRANKO.md. Confluence **v24** DELETED the "
+     "fade/highlight requirement; the PRD is now SILENT on what happens instead.",
+     "ONE case, and his answer decides what it should ASSERT - SCH-TOOL-03 (C30041). It is NOT on "
+     "HOLD today; it carries AUTOMATION: READY - EXPECT FAIL (SV-8874), and a HOLD is PROPOSED "
+     "pending this answer (spec-v25-2026-08-06/PROPOSED-CHANGES.md §2).",
+     f"C30041 {TR}30041",
+     "VERIFIED LIVE 2026-08-06, read-only. Schedule Confluence page 713031682 at VERSION 25 "
+     "(2026-08-06T09:13:51Z, HTTP 200): §6 now reads only \"Search - Filters grid blocks by matching "
+     "against customer name, WO number, unit number, technician name, and line name.\" Searched the "
+     "whole v25 body: \"non-matching\" = 0 hits, \"de-emphas\" = 0, \"dim\" = 0; the single \"faded\" "
+     "hit is the series \"continues\" label and is unrelated. SO THE PRD IS SILENT, NOT REVERSED. "
+     "JIRA READ LIVE: SV-8686 (Story, TESTING QA, parent SV-8685) STILL CARRIES IT TWICE - "
+     "Requirements verbatim \"Non-matching blocks fade; matching blocks highlight. - (PRD: §6)\" and "
+     "Acceptance Criteria verbatim \"...then matching blocks highlight and non-matching blocks "
+     "fade.\" SV-8874 (Story Defect, parent SV-8686) is OBSOLETE/Done, resolved "
+     "2026-08-06T03:32:42-0500 by Milos Vasic, whose comment reads \"All good on this one updated the "
+     "PRD , i will close this ticket as absolute\", 81 seconds before v24. TESTRAIL READ LIVE: "
+     "C30041's title is \"Toolbar search highlights matching blocks and fades non-matching ones\" and "
+     "expected item 1 is \"Blocks that match the search are highlighted; blocks that do not match "
+     "fade.\" - so the deleted requirement is in the title AND the body.",
+     "A -> the fade assertion is REMOVED and the case asserts non-matching blocks are gone; marker "
+     "becomes READY. B -> the build has a real defect and SV-8874 was closed wrongly. EITHER WAY THE "
+     "MARKER IS ALREADY WRONG, because it names SV-8874 as an open expect-fail and SV-8874 is closed. "
+     "Rule 57 is why this is asked and not read off the build: the PRD's SILENCE licenses REMOVING "
+     "our assertion, it does not license asserting the opposite. Stefan Vukovic's \"per design we "
+     "show only shifts/events that are matching the search\" (2026-08-06T03:15:35-0500) is an "
+     "ENGINEER's statement about a design we do not hold, so it is not a PO ruling (Rule 33). "
+     "SV-8686 is the OWNER's to correct - Rule 38, not ours to edit."),
+
+    ("Tab 2", "6",
+     "Schedule - can the estimated hours still be typed into inside the shift window?",
+     "NEW, Q2 of the same file, and THE SHARPEST ROW ON THE SHEET: it is the difference between a "
+     "case that passes and a case that fails on the same build. Branko's own ruling created the "
+     "ambiguity 17 minutes after he published v25.",
+     "ONE case - SCH-MODAL-05 (C30012). Currently AUTOMATION: READY, i.e. we expect it to PASS, while "
+     "the PO has closed a report saying the build does not allow the edit. A HOLD is PROPOSED, not "
+     "applied (PROPOSED-CHANGES.md §5).",
+     f"C30012 {TR}30012",
+     "VERIFIED LIVE 2026-08-06, read-only. v25 §4.9 STILL READS \"Estimated hours with inline "
+     "edit.\" - the spec line was NOT changed by v24 or v25. SV-8695 (Story, Ready for QA) Requirements "
+     "verbatim: \"...scope summary with scheduled line(s) and labor/total, estimated hours with inline "
+     "edit...\" - SO TWO WRITTEN SOURCES STILL REQUIRE IT. Against that, SV-8829 (Story Defect, "
+     "OBSOLETE/Done, parent SV-8695) carries Branko Cicovic's ONLY comment, at "
+     "2026-08-06T04:31:05-0500 = 09:31:05Z, SEVENTEEN MINUTES AFTER v25 was published at 09:13:51Z, "
+     "verbatim: \"Estimated badge should not be clickable, you can change time only in the input "
+     "fields above. I updated PRD, for work order lines we just show estimate and status badge, there "
+     "shouldn't be totals. Please always check the design as it is single source of truth.\" THE "
+     "AMBIGUITY IS SCOPE: SV-8829's own steps distinguish the LINE ROW's badge (\"only 1h and an "
+     "Authorized badge\") from the MODAL-level \"estimated hours with inline edit\", and his sentence "
+     "names \"the Estimated badge\". TestRail read live: C30012 = \"Estimated hours can be edited "
+     "inline in the modal\", refs SV-8695 (§4.9 (Estimated hours with inline edit)), marker READY.",
+     "A -> the case is WRONG, is rewritten, and both the spec line and SV-8695 are stale. B -> the "
+     "case is RIGHT and SV-8829 was closed wrongly, so a defect is owed. Rule 58 is the whole reason "
+     "this is a question: an ambiguous source is NEVER resolved by looking at what the build does - "
+     "and flipping the case off two written sources onto one ambiguous sentence would be the Filters "
+     "mistake in reverse."),
+
+    ("Tab 2", "7",
+     "Schedule - his own story still says the shift window's job lines show a labour TOTAL, while "
+     "his own spec now says a labour/status figure",
+     "NEW, and it is the row the QA lead asked for explicitly: a small inconsistency between two of "
+     "HIS OWN documents that he owes. It also carries the second half of item 6's tidy-up.",
+     "ONE case, and it does NOT change under answer A - SCH-MODAL-04 (C30011). Marker AUTOMATION: "
+     "READY. PROPOSED-CHANGES.md §1 proposes a provenance/divergence edit only, no assertion change.",
+     f"C30011 {TR}30011",
+     "VERIFIED LIVE 2026-08-06, read-only. v25 §4.9 verbatim: \"Scope summary and the scheduled "
+     "line(s) with labor/status figures.\" SV-8695 Requirements verbatim, STILL: \"...scope summary "
+     "with scheduled line(s) and labor/total...\" - and per the v25 diff pass that phrase is present "
+     "both BEFORE AND AFTER Branko's own description edit of 2026-08-03T08:54:30Z, so the PO edited "
+     "this story three days ago and left `total` standing, then changed the PRD on 2026-08-06. THREE "
+     "SOURCES AGREE AND ONE LAGS: his 22 July no-money-on-the-Schedule ruling, PRD v25 "
+     "(`labor/status`), and his SV-8829 comment (\"we just show estimate and status badge, there "
+     "shouldn't be totals\") all say no totals; SV-8695 alone still says `total`. TestRail read live: "
+     "C30011 = \"The modal lists the scheduled line(s) with no money fields\", expected items 2-3 "
+     "verbatim \"...each showing its line number, title, hours, and a status pill only. 3. No labor "
+     "figures and no total dollar amount appear anywhere in the modal.\" - so under Rules 32/33 the "
+     "case ALREADY follows the three, which is why nothing is blocked on this row.",
+     "A (expected) -> nothing changes in the case; SV-8695 is corrected BY ITS OWNER (Rule 38). "
+     "B -> C30011 is wrong and item 3 of its expected result must be rewritten, and the PRD needs "
+     "correcting too. NOTE FOR THE QA LEAD ON WHAT WAS DELIBERATELY *NOT* ASKED: the source file's "
+     "Q2b asked what the WORD \"labor\" means in \"labor/status figures\" - hours or money. That was "
+     "LEFT OFF, because his SV-8829 comment already answers it in his own words and, on the source "
+     "file's own admission, NEITHER answer changes the case's substance. Asking it would have re-asked "
+     "a settled point for zero test consequence. Its one live consequence - that two of his documents "
+     "now disagree - is THIS row. Our own text using \"labor\" for both hours and money in C30011 is "
+     "an internal wording repair, not a product question."),
+
+    ("Tab 2", "8",
+     "Schedule - for this release, does the day view keep the full 24 hours or only the working "
+     "hours plus a buffer?",
+     "NEW, Q3 of the same file. Asked so we are not silently relying on a change-request note that "
+     "contradicts the live spec - not because any case is wrong today.",
+     "ONE case, and NO change is proposed to it - SCH-DAY-01 (C30001). It is correct against v25 as "
+     "written and already covers the full start-time hierarchy.",
+     f"C30001 {TR}30001",
+     "VERIFIED LIVE 2026-08-06, read-only. v25 §4.8 verbatim: \"The full 24-hour timeline remains "
+     "intact and scrollable.\", and §3.2: \"Day view. A 24-hour timeline per technician row with "
+     "time-positioned blocks.\" Against that, SV-8915 (Bug, OBSOLETE/Done, parent SV-8685, reporter "
+     "Sasha Grosman) carries under \"Related change requests\", verbatim: \"Schedule width should "
+     "render only business hours plus a small trailing buffer rather than the full 24 hours; "
+     "after-hours scheduling is an edge case reachable by scrolling. Tracked separately on the "
+     "enhancements list for the Schedule design.\" TestRail read live: C30001 = \"Day view "
+     "auto-scrolls to the working-day start; manual scrolling stands\", refs SV-8694 (§4.8 "
+     "(Auto-scroll to business hours)), marker AUTOMATION: READY - EXPECT FAIL (SV-8837) - and "
+     "SV-8837 is live-confirmed STILL OPEN (Story Defect, Ready for QA, parent SV-8694), so that "
+     "marker is correct and untouched by this question.",
+     "A (recommended, and what the spec says today) -> nothing changes; the item closes in the "
+     "decisions register as out of V1. B -> §4.8 becomes wrong and needs a spec edit BEFORE any case "
+     "change - the spec is corrected first, never the case. SV-8915 is ALSO the design-authority "
+     "ticket, which is why its other half sits on Schedule item 4 of this sheet rather than here."),
+
     ("Tab 3", "1-6",
      "Schedule - six behaviours only the engineering plan describes: pre-existing shifts and "
      "events · a multi-day job on the Dashboard · an appointment set while creating a job · jobs "
@@ -389,11 +618,45 @@ QA_ROWS = [
 ]
 
 QA_NOTES = [
+    "ADDENDUM 2026-08-06 - FOUR SCHEDULE ITEMS ADDED, TAKING THE SHEET FROM 17 TO 21. They come from "
+    "build/schedule/spec-v25-2026-08-06/QUESTIONS-FOR-BRANKO.md, the Schedule spec v23 -> v25 diff. "
+    "They are APPENDED as Schedule items 5-8 rather than re-ordered into the tab, so the established "
+    "structure and the carried-forward wording are untouched (Rule 16); the tab note names items 5 "
+    "and 6 as the decisive ones so their importance is still visible on the reader tab. TWO OF THEM "
+    "EACH DECIDE A VERDICT: item 5 decides what C30041 should assert, item 6 decides whether C30012 "
+    "passes or fails. Nothing was applied to TestRail - no case was edited, and the HOLDs those two "
+    "items imply are PROPOSED in PROPOSED-CHANGES.md, not written.",
+
+    "ONE OF THE FOUR SOURCE QUESTIONS WAS DELIBERATELY LEFT OFF, AND THIS IS THE REASON (Rule 55: "
+    "ask what is unclear; it does not say invent an ask). The source file's Q2b asked what the word "
+    "\"labor\" means in v25's new phrase \"labor/status figures\" - the number of HOURS or a MONEY "
+    "amount. It is NOT asked, on two grounds, both checked rather than assumed. FIRST, HE HAS ALREADY "
+    "ANSWERED IT IN HIS OWN WORDS: SV-8829, 2026-08-06T04:31:05-0500, verbatim \"for work order lines "
+    "we just show estimate and status badge, there shouldn't be totals\" - which, with his 22 July "
+    "no-money-on-the-Schedule ruling, says plainly that no money appears. SECOND, THE SOURCE FILE "
+    "ITSELF RECORDS THAT NEITHER ANSWER CHANGES THE CASE: \"Neither answer changes the case's "
+    "substance; A confirms it as written.\" So it would have cost a PO round trip for zero test "
+    "consequence - and re-asking something a source has already settled is the exact embarrassment "
+    "this project has had once already. ITS ONE GENUINELY LIVE CONSEQUENCE IS ON THE SHEET as "
+    "Schedule item 7: that his STORY and his SPEC now disagree (`labor/total` vs `labor/status`), "
+    "which is a fork with a real answer and a named owner. The residual ambiguity is in OUR OWN text "
+    "- C30011 uses \"labor\" for both hours and money in one expected result - and that is an "
+    "internal wording repair, not a question for a product owner.",
+
+    "THE DESIGN-AUTHORITY QUESTION WAS DELIBERATELY *NOT* ADDED AS A NEW ROW, ON THE QA LEAD'S "
+    "INSTRUCTION AND BECAUSE IT WOULD HAVE BEEN A DUPLICATE. The source file's Q4 is a two-part item. "
+    "Its PRODUCT half - which drawing of the Schedule is the one to work from - is ALREADY Schedule "
+    "item 4 on this very sheet, and asking it twice inside one workbook would be the drip Rule 55 "
+    "exists to prevent, in miniature. Its PROCESS half - whether a design may outrank the written "
+    "description in OUR OWN method - is a decision for the QA LEAD, not for Branko, and has been put "
+    "to him separately. Branko is asked which drawing is canonical; he is not asked to rule on our "
+    "sourcing rules.",
+
     "WHY ONE FILE AND NOT TWO (Standing Rule 55). build/branko-questions-2026-08-05/ holds a "
     "13-item Branko sheet that is READY TO SEND and WAS NEVER SENT (register row C4). Producing a "
     "second sheet without absorbing it would leave the QA lead holding two unsent sheets for the "
     "same person - the exact 'drip of separate asks' Rule 55 exists to prevent. So this workbook "
-    "CARRIES FORWARD all 13 of its items and adds 4 new ones = 17. ⚠️ ACTION NEEDED FROM THE QA "
+    "CARRIES FORWARD all 13 of its items and adds 8 new ones = 21 (4 added when it was first built, and 4 more Schedule items added later the same day from the spec's move to version 25). ⚠️ ACTION NEEDED FROM THE QA "
     "LEAD: the 2026-08-05 workbook should be marked SUPERSEDED so an old one cannot go out by "
     "mistake. It was NOT edited by this pass, because this task was scoped to write only inside "
     "build/filters/questions-2026-08-06/ and build/report-suite/questions-2026-08-06/.",
@@ -401,7 +664,7 @@ QA_NOTES = [
     "HOW DRIFT WAS PREVENTED: every carried-forward reader-facing row is IMPORTED from the "
     "2026-08-05 generator's own TAB1/TAB2/TAB3 lists at build time, not retyped. So the 13 carried "
     "items are byte-identical to the rows that sheet carried - the same technique the 2026-08-04 "
-    "Chris consolidation used. Only the 4 new items and the tab notes are new text.",
+    "Chris consolidation used. Only the 8 new items and the tab notes are new text.",
 
     "SV-8876 IS DELIBERATELY NOT ON THIS SHEET, AND THE BRIEF FOR THIS TASK WAS WRONG ABOUT IT. "
     "The brief listed it as \"Ahtasham's clarification question, still his to answer\", and "
@@ -429,13 +692,16 @@ QA_NOTES = [
     "is still wrong. ⚠️ OWED: a proper v18 -> v19 diff. This pass checked the points the sheet "
     "depends on, not the whole document, and does not claim to have diffed it.",
 
-    "THE SCHEDULE SPEC HAS MOVED 23 -> 25 AND WE HAVE NOT DIFFED IT. Page 713031682 is at VERSION "
-    "25 (2026-08-06T09:13:51Z) while CLAUDE.md and build/OUTSTANDING-ITEMS-REGISTER.md both name "
-    "version 23. TWO VERSIONS OF PRODUCT CHANGE ARE UNINGESTED on an active project. What was "
-    "checked live today is only what this sheet rests on: both shop-closure sentences survive, both "
-    "click-menu wordings survive, and all six engineering-only topics are still absent. Nothing "
-    "else about v24 or v25 is known. This is a genuine outstanding item and is reported rather than "
-    "glossed (Rules 31 and 59).",
+    "THE SCHEDULE v23 -> v25 DIFF HAS SINCE BEEN DONE, AND THIS ADDENDUM IS ITS OUTPUT - so the "
+    "warning that stood here (\"we have not diffed it\") IS NOW OUT OF DATE and is corrected rather "
+    "than deleted. Page 713031682 is at VERSION 25 (2026-08-06T09:13:51Z, re-confirmed live for this "
+    "addendum); CLAUDE.md and build/OUTSTANDING-ITEMS-REGISTER.md still name version 23, and NEITHER "
+    "WAS EDITED (out of scope for this pass - the record correction is owed). The diff lives at "
+    "build/schedule/spec-v25-2026-08-06/SPEC-DIFF.md: 2 requirements changed, 1 governing-source "
+    "change that is not a page edit, 3 cases affected. Its four reader-facing questions are Schedule "
+    "items 5-8 of this sheet. Also re-confirmed by that diff and unchanged in v25: both shop-closure "
+    "sentences survive, both click-menu wordings survive, and all six engineering-only topics are "
+    "still absent - so items 1-3 and tab 3 stand exactly as written.",
 
     "WORDING RULES APPLIED (Standing Rules 7 and 55): every reader-facing question row names the "
     "PROJECT (Filters or Schedule) and the SCREEN, because Branko owns THREE projects - Filters, "
@@ -450,9 +716,15 @@ QA_NOTES = [
     "reads \"Version: 1.6\" - the Rule-31(a) trap; the CONFLUENCE number is the one used). Schedule "
     "spec page 713031682 = VERSION 25, HTTP 200, and STALE against our records at 23. Jira read "
     "live for SV-8876, SV-8825, SV-8915, SV-8916, SV-8917. TestRail read live for all 114 Filters "
-    "cases. Schedule cases were NOT re-pulled this pass - the three held C-ids above are taken from "
-    "the project's committed records and are cited as such. Designs = PARTIAL, and which artefact "
-    "is canonical is Schedule item 4 on this very sheet.",
+    "cases. Designs = PARTIAL, and which artefact is canonical is Schedule item 4 on this very sheet. "
+    "ADDENDUM, 2026-08-06: for the four new Schedule items the Schedule spec was RE-FETCHED live "
+    "(page 713031682, version 25, HTTP 200, by Branko Cicovic at 09:13:51Z) and every sentence they "
+    "rest on was searched in its body; JIRA was read live and read-only for SV-8686, SV-8695, "
+    "SV-8829, SV-8874, SV-8837 and SV-8915; and FOUR SCHEDULE CASES WERE PULLED LIVE FROM TESTRAIL - "
+    "C30041, C30012, C30011 and C30001, all HTTP 200, titles, refs and automation markers read from "
+    "the live cases rather than from our records. So the earlier line saying \"Schedule cases were "
+    "NOT re-pulled this pass\" now holds only for the THREE HELD C-ids on items 1-3 (C29983, C30089, "
+    "C43555), which still come from committed records and are still cited as such.",
 
     "THE BUILD WAS NOT OBSERVED (Standing Rules 12, 49, 60). The shared QA sign-in is dead - a "
     "read-only probe returned HTTP 401 {\"error\":\"sso_required\"} - and quick-login and "
@@ -488,10 +760,12 @@ def write_xlsx():
 
     _sheet(wb, TAB2_NAME,
            "Schedule - your document - questions for Branko Cicovic - 2026-08-06",
-           "FOUR ITEMS, AND AN APOLOGY WITH THE FIRST. Question 1 was written on 22 July and we "
+           "EIGHT ITEMS, AND AN APOLOGY WITH THE FIRST. Question 1 was written on 22 July and we "
            "never actually sent it to you. Two tests have been sitting parked ever since waiting "
-           "for an answer you were never asked for. That delay is ours, not yours. " + THANKS,
-           "Four Schedule items - three tests are on hold", TAB2, w_narrow)
+           "for an answer you were never asked for. That delay is ours, not yours. QUESTIONS 5 AND 6 "
+           "ARE THE TWO THAT MATTER MOST: each one decides whether a test of ours is right or wrong, "
+           "and both come out of the changes made to your own description this morning. " + THANKS,
+           "Eight Schedule items - five of our tests are waiting on your answers", TAB2, w_narrow)
 
     _sheet(wb, TAB3_NAME,
            "Schedule - engineering only - questions for Branko Cicovic - 2026-08-06",
@@ -561,14 +835,22 @@ exactly, and it carries a QA-only tab that must not be forwarded.
 was never sent. Standing Rule 55 says to sweep every open ambiguity onto ONE sheet so a product
 owner answers in a single sitting rather than receiving a drip of separate asks — two unsent sheets
 to the same person is that drip. All 13 of that sheet's items are carried forward here, imported
-from its own generator so the wording cannot drift, and 4 new items are added. **The 2026-08-05
+from its own generator so the wording cannot drift, and 8 new items are added. **The 2026-08-05
 workbook should be marked superseded so an old one cannot go out by mistake.**
 
 {THANKS}
 
-**Seventeen items in total: seven Filters, four Schedule questions about his own document, and six
+**Twenty-one items in total: seven Filters, eight Schedule questions about his own document, and six
 Schedule behaviours that only the engineering plan describes. Seventeen of our tests are on hold
-across them.**
+across them, and two more are waiting on the two new Schedule questions that decide whether they
+pass or fail.**
+
+**Schedule items 5 to 8 were added on 2026-08-06** from the Schedule description's move to version 25
+earlier the same day. **Items 5 and 6 are the decisive ones:** item 5 decides what one of our tests should
+say at all, and item 6 is the difference between a test that passes and a test that fails on the same
+software. One further question that the same review raised was **deliberately left off**, because he
+had already answered it in his own words and it changed no test — the reason is recorded on the
+QA-only tab.
 
 **Live source versions confirmed on 2026-08-06, immediately before writing** — Filters
 specification **version 19** (published 11:48 UTC this morning) · Schedule specification **version
@@ -591,9 +873,12 @@ project:** ten tests are waiting on it.
 
 ## Tab 2 — {TAB2_NAME}
 
-**Four items, and an apology with the first.** Question 1 was written on 22 July and we never
+**Eight items, and an apology with the first.** Question 1 was written on 22 July and we never
 actually sent it to you. Two tests have been sitting parked ever since waiting for an answer you
 were never asked for. That delay is ours, not yours.
+
+**Questions 5 and 6 are the two that matter most** — each one decides whether a test of ours is right
+or wrong, and both come out of the changes made to your own description this morning.
 
 {block(TAB2)}
 
