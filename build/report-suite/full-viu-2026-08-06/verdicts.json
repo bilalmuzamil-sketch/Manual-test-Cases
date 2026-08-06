@@ -1,0 +1,209 @@
+{
+ "30540": {
+  "anchor": "IV S2-R1",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "iv-all/parts scan",
+  "note": "Zero and negative quantity: verified - 0 of 100 report rows have qty<=0, and parts PS1/8, SVC-SILVER-DOC and 89558K (all qty 0 in inventory) are absent from the report. Core charge: NOT exercisable - 1200 inventory parts were scanned and not one carries is_core=1, so no core-charge part exists in this organisation to check. R134A-CORE is merely named \"CORE\" and has is_core=0.",
+  "verdict": "PARTIAL"
+ },
+ "30541": {
+  "anchor": "IV S2-R2/S2-R3",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b1i.json",
+  "note": "Searched R134A with both locations selected: the part returns two rows, \"Staging Heavy Duty - 9919\" qty 786.55 and \"Staging Lethbridge - 4310\" qty 113.99, each with its own values. Not merged.",
+  "verdict": "PASS"
+ },
+ "30545": {
+  "anchor": "IV S3-R5",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "iv-search API",
+  "note": "Part 4--1493-6C carries a fixed sell price of 12.12 (is_fixed_price true) with cost 5.09; the report shows Unit Sell $12.12, so the fixed price wins over any category markup.",
+  "verdict": "PASS"
+ },
+ "30546": {
+  "anchor": "IV S3-R5",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "iv-search + parts API",
+  "note": "Part P550848 has no fixed price (is_fixed_price false), category HD-Filters, cost $53.52. The parts list resolves its sell price to 86.32 and the report shows Unit Sell $86.32 - identical, which is exactly what the requirement asks (resolved the same way the parts list resolves it).",
+  "verdict": "PASS"
+ },
+ "30547": {
+  "anchor": "IV S3-R5",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "parts scan",
+  "note": "Not producible and the case says so: category is mandatory on this build. 1200 inventory parts were scanned and every one carries a category, so no part exists whose Unit Sell could fall back to Unit Cost through the no-category path. The case directs the tester to mark this Blocked in exactly this situation.",
+  "verdict": "BLOCKED"
+ },
+ "30548": {
+  "anchor": "IV S3-R6/S3-R7",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "iv-all API",
+  "note": "Checked all 100 rows of a page: qty x unit_sell equals total_sell and qty x unit_cost equals total_cost on every row, 0 mismatches.",
+  "verdict": "PASS"
+ },
+ "30549": {
+  "anchor": "IV S3-R8",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "iv-all API",
+  "note": "Checked all 100 rows: total_sell minus total_cost equals margin on every row, 0 mismatches. It is the extended figure, not the per-unit difference.",
+  "verdict": "PASS"
+ },
+ "30550": {
+  "anchor": "IV S3-R9/S3-E3",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "iv-all + b1i.json",
+  "note": "Margin over Total Sell to one decimal on all 100 rows, 0 mismatches. Part N000000001069 has Total Sell $0.00 and its Margin % cell shows the em dash, and its Margin shows the signed negative -$0.76.",
+  "verdict": "PASS"
+ },
+ "30551": {
+  "anchor": "IV S3-R1/S3-R2",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b1a.json",
+  "note": "Column order matches S3-R1 exactly, with Location between Vendor and Qty. Alignment: Part #, Description, Category and Vendor are left-aligned and every other column is right-aligned - INCLUDING Location, which renders text-right. The case asserts Location is left-aligned; no source supports that, and S3-R2 says every column other than the four named ones is right-aligned. The case is wrong, not the build. Stays HOLD for the separate, still-open Location toggleability question.",
+  "verdict": "DEVIATION"
+ },
+ "30552": {
+  "anchor": "IV S3-R3/S3-R10",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b1a.json/b1i.json",
+  "note": "Qty shows two decimals with no symbol (\"1,027.00\"). Money shows a leading $, two decimals and thousands separators (\"$1,862.67\"). A negative shows the minus before the dollar sign (\"-$0.76\") and a genuine zero shows \"$0.00\".",
+  "verdict": "PASS"
+ },
+ "30553": {
+  "anchor": "IV S3-R11",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b1a.json/b1f.json",
+  "note": "The Total Cost header carries text-weight-bold report-col-pinned with position:sticky right:0px. Scrolling the table sideways by 400px moved the first column to -122px while the Total Cost column stayed at exactly the same right edge (1650 before and after).",
+  "verdict": "PASS"
+ },
+ "30554": {
+  "anchor": "IV S3-R12/S3-R13/S8-R3",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b1c.json/b1d.json",
+  "note": "On a genuine first visit (fresh browser context, empty local storage) the visible columns include BOTH Margin and Total Sell, and the saved view written on load lists all eleven. S3-R12 and S3-R13 (and S8-R3) require Margin and Total Sell to be hidden by default. Both can be turned on and off from the control and land in their fixed positions. Independent of the open Location question.",
+  "verdict": "DEVIATION"
+ },
+ "30555": {
+  "anchor": "IV S3-R14/S3-E2",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b1f.json",
+  "note": "Category and Vendor show their names. A part with no vendor shows the em dash - 31 of 100 rows have a null vendor and RLHD2436FOOTHILLS renders \"\u2014\" in its Vendor cell. The category half is not producible and the case already says so.",
+  "verdict": "PASS"
+ },
+ "30556": {
+  "anchor": "IV S4-R1",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b1a.json/b1g.json",
+  "note": "The on-screen totals row is labelled \"Totals\". S4-R1 requires the literal label \"Total\" in the Part # cell (\"Totals\" is the label the DOWNLOADS use, S10). Everything else passes: Description/Category/Vendor blank, Unit Cost/Unit Sell blank, Total Cost bold and pinned, and the row is position:sticky bottom:0 so it stays visible while the rows scroll. The case already instructs the tester to mark this Failed if the label reads \"Totals\".",
+  "verdict": "DEVIATION"
+ },
+ "30557": {
+  "anchor": "IV S4-R2",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "p1/p2 API",
+  "note": "Totals are byte-identical on page 1 and page 2 and are computed over the full 5657-row set, not the visible page: page totals qty 7887.90 / total_cost 17545763 against server totals qty 63096.08 / total_cost 48554218.",
+  "verdict": "PASS"
+ },
+ "30558": {
+  "anchor": "IV S4-R4",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "iv-all API",
+  "note": "Totals row Margin % = 43.55, and total margin 37464712 / total total_sell 86018930 x 100 = 43.55 exactly. On screen the totals read Margin $855,066.82, Total Sell $1,832,142.09, Margin % 46.7% - 46.67 rounded to one decimal. Not an average of the row percentages.",
+  "verdict": "PASS"
+ },
+ "30579": {
+  "anchor": "IV S8-R1/S8-R2",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b1e.json",
+  "note": "Tooltip/accessible name reads \"Column Selection\". Toggling Margin off removed the column, on restored it. The control lists 11 columns; Total Cost is not among them, so it cannot be turned off.",
+  "verdict": "PASS"
+ },
+ "30580": {
+  "anchor": "IV S8-R4/S3-R1",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b1e.json",
+  "note": "Turned Margin off, Total Sell off, Total Sell back on, then Margin back on. Header order returned byte-identical to the original fixed order and Total Cost stayed last, even though the stored column array order had changed to [...margin_pct,total_sell,margin].",
+  "verdict": "PASS"
+ },
+ "30581": {
+  "anchor": "IV S8-R5",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b1j.json",
+  "note": "Date range, locations, columns and sort all persisted and restored. The PART SEARCH TEXT did not: typing \"refrigerant\" never entered report_view:inventory-value, and on return the search box was empty and all 33 rows came back. S8-R5 lists \"part search text\" among the remembered settings.",
+  "verdict": "DEVIATION"
+ },
+ "30582": {
+  "anchor": "IV S8-R6",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b1j.json",
+  "note": "Injected a category id that is not present in the data into the saved view, then reloaded. The stale id was NOT dropped - it survived in the saved view and was still applied, collapsing the result set to zero data rows. S8-R6 requires a saved category no longer present in the data to be dropped.",
+  "verdict": "DEVIATION"
+ },
+ "30583": {
+  "anchor": "IV S9",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "p1/p2 API",
+  "note": "Default order is Total Cost descending and it holds across pages: page 1 ends at 194290 and page 2 begins at 191520 over the full 5657-row set.",
+  "verdict": "PASS"
+ },
+ "30584": {
+  "anchor": "IV S9",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b1f.json",
+  "note": "Clicked Part # three times: ascending, then descending, then ascending again - there is no third cleared state. Clicking Qty moved the sort to Qty ascending and Part # lost its sorted state, so only one column sorts at a time. A sort request returns page 1.",
+  "verdict": "PASS"
+ },
+ "30585": {
+  "anchor": "IV S9",
+  "batch": 1,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "sorting API + b1f",
+  "note": "Qty descending returned 1027, 892, 792, 786.55 and Total Cost ascending returned 0,0,0,0 - ordered by value, not text. Description ascending interleaves \"#04 - #12 STEEL NPT...\" with \"#04 - #12 Steel NPT...\", so text sorts case-insensitively.",
+  "verdict": "PASS"
+ }
+}
