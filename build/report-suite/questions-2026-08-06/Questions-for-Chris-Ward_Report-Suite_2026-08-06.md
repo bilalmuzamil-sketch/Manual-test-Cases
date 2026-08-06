@@ -1,3 +1,5 @@
+**⚠️ SUPERSEDED 2026-08-06 — DO NOT SEND THIS FILE. The version to send is `Questions-for-Chris-Ward_Report-Suite_Friendly-Version_2026-08-06.xlsx` (plain-language twin `Questions-for-Chris-Ward_Report-Suite_Friendly-Version_2026-08-06.md`) in this same folder: same substance, reordered by what to do first and rewritten to read easily. This file is kept only as the record of what was verified and when.**
+
 # Questions for Chris Ward — Report Suite — 2026-08-06
 
 **Project: Report Suite (the six reports) · epic SV-8582 · Product Owner: Chris Ward**

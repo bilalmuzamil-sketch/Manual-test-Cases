@@ -128,3 +128,18 @@ links. Rule 55 says ask what is unclear; it does not say invent an ask.
    still name Schedule version 23, and neither was edited by this pass.
 4. **Fresh `cf_clearance` for `.qa.shopview.com`** before any build claim is re-measured.
 5. **Nothing here is authorised to be applied.** No case was edited; the 17 held cases stay held.
+
+
+---
+
+## ⚠️ 2026-08-06 — THE FRIENDLY VERSION IS THE ONE TO SEND
+
+`Questions-for-Branko-Cicovic_Filters-and-Schedule_Friendly-Version_2026-08-06.xlsx` (+ `.md`) is the forward-as-is version for Branko Cicovic: same substance, a short warm
+opening note, ordered by what to do first, shorter sentences. Generator
+`gen_branko_friendly.py`.
+The earlier pair in this folder is **superseded and bannered** — kept as the record, not for sending.
+
+**One item was removed from what Branko reads** — the exact shape of the Reports page web
+address. His own specification already states it verbatim (confirmed live, page version 19). The
+reason, the quoted sentence, and the correction owed to
+`build/filters/vlad-gap-review-2026-08-06/ROW-BY-ROW.md` are on the QA-only tab.

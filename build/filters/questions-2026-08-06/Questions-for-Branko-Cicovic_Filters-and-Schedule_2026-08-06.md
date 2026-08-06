@@ -1,3 +1,5 @@
+**⚠️ SUPERSEDED 2026-08-06 — DO NOT SEND THIS FILE. The version to send is `Questions-for-Branko-Cicovic_Filters-and-Schedule_Friendly-Version_2026-08-06.xlsx` (plain-language twin `Questions-for-Branko-Cicovic_Filters-and-Schedule_Friendly-Version_2026-08-06.md`) in this same folder: same substance, reordered by what to do first and rewritten to read easily. This file is kept only as the record of what was verified and when.**
+
 # Questions for Branko Cicovic — Filters and Schedule — 2026-08-06
 
 **Projects: Filters (epic SV-8785) and Schedule (epic SV-8685) · Product Owner: Branko Cicovic**

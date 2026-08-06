@@ -76,3 +76,13 @@ All Report Suite verdicts remain **PROVISIONAL**; Rule-49 queues are OPEN.
    playbook §A's traps first; a 401 is usually an expired clearance, not a dead sign-in.
 5. **Nothing here is authorised to be applied.** No case was edited; the 7 held cases stay held until
    Chris answers.
+
+
+---
+
+## ⚠️ 2026-08-06 — THE FRIENDLY VERSION IS THE ONE TO SEND
+
+`Questions-for-Chris-Ward_Report-Suite_Friendly-Version_2026-08-06.xlsx` (+ `.md`) is the forward-as-is version for Chris Ward: same substance, a short warm
+opening note, ordered by what to do first, shorter sentences. Generator
+`gen_chris_friendly.py`.
+The earlier pair in this folder is **superseded and bannered** — kept as the record, not for sending.
