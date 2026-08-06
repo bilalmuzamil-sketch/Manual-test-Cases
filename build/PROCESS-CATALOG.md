@@ -193,6 +193,32 @@
 > coverage we do not have** — an unobserved row stays unobserved (Rules 12/17/50), and the correct
 > sentence is *"N of M observed on build <marker>; the remaining M−N carry their last recorded check"*.
 >
+> **Expect-fail-marker qualifier (Standing Rule 61, added 2026-08-06) — applies to EVERY process row
+> below that AUTHORS, VIU's or RE-CHECKS a case (rows 1, 2, 3, 10, 11, 12 and any future authoring /
+> VIU / recheck pass).** **`AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` is an INSTRUCTION, NOT A
+> PREDICTION.** Such a case MUST name, **in the tester-facing Expected Results, BEFORE the Rule-54
+> provenance line**, **the exact observable SYMPTOM** of the known failure and what to do in **each of
+> three outcomes**: **(1)** fails with **that** symptom → known, already reported, **mark it failed and
+> raise nothing new**; **(2)** fails in a **DIFFERENT** way → **a NEW problem, report it**; **(3)**
+> **PASSES** → **the fix has shipped, report it** so the ticket can be closed and the marker removed.
+> **Outcome (3) makes the automated run ITSELF the detector** of a fix that shipped while its ticket sat
+> Open — continuously, at no cost, with **no re-verification pass and no ticket polling**; **outcome (2)
+> is the genuinely new part**, because a case can keep failing **for a different reason than its ticket
+> describes**, and naming the symptom is the only thing that tells a new defect from the old one.
+> **TICKET STATUS IS NEVER EVIDENCE ABOUT THE BUILD** — not to set a marker, not to clear one, not to
+> decide whether to re-check; it is traceability, nothing more (Rule 57's sibling: a closed ticket is
+> not a spec change, an open ticket is not proof of a live defect). **THE TRIGGER CHANGES:** *"re-check
+> every verdict on redeploy"* is **retired as the default** — the automated suite monitors itself, and
+> only **`AUTOMATION: HOLD`** cases need a human trigger, which is **the thing they are waiting on, not
+> a deploy** (Rule 49, scoped). **Where the ticket was CLOSED WITHOUT A FIX, that qualifier sits
+> alongside the symptom** so nobody waits for a fix that is not coming. **HONESTY HALF: this changes
+> what we MONITOR, not what we may ASSERT** — an unobserved case is still unobserved and Rule 60's bar
+> stands. **Earned 2026-08-06: SV-8851 sat Open while its fix had shipped (C30050 passes); SV-8843 and
+> SV-8847 were closed OBSOLETE and still reproduce byte-identically; SV-8819 was walked through seven
+> statuses in 22 seconds; SV-8827 mis-describes the very failure it explains; and five Filters cases
+> carried expect-fail markers for failures that no longer happened — found only by driving all 110
+> live.**
+>
 > **Defect-ticket-shape qualifier (Standing Rule 52, AMENDED 2026-08-05) — applies to EVERY process row
 > below that MAY FILE A JIRA TICKET (rows 1, 3, 6, 8, 10, 11, 12 and any future VIU / recheck / defect
 > pass).** **ONE shape, no variants:** `issuetype` = **`Story Defect` (10007)** · `parent` = **THE OWNING

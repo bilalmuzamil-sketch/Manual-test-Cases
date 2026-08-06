@@ -2966,9 +2966,22 @@ deliver the 7-tab management report.
     **WHEN TO RE-RUN THE QUEUE:** at **every session start** for that project (alongside the Rule-35
     design-queue check), **before and after any work on that project**, and **immediately** when the
     build is declared final, a deploy is detected (the app-version marker changed, or a session dies
-    early — cookies on these estates die at ~24h **or on deploy**), or the QA lead asks. Re-check each
+    early — cookies on these estates die at ~24h **or on deploy**), or the QA lead asks — **but see
+    WHAT THE QUEUE COVERS below: since 2026-08-06 these triggers apply to the queue's SCOPED rows, not
+    to every verdict in the suite.** Re-check each
     row against the new build, **flip it to CONFIRMED or CHANGED with fresh evidence**, and only close
     the queue when **100% of rows are re-verified** (Rule 17 — no sampling, no "the important ones").
+    **WHAT THE QUEUE COVERS — SCOPED 2026-08-06 BY STANDING RULE 61. THIS NARROWS THE ROWS, NEVER THE
+    BAR.** *"A redeploy triggers a re-check of every finding"* is **RETIRED as the default**: an
+    **AUTOMATED** case is now monitored **by the suite itself** — its next run reports a fix that has
+    shipped (Rule 61 outcome 3) or a failure that has CHANGED (outcome 2) **without anyone
+    re-observing it**. **The queue therefore carries what the suite CANNOT see: every
+    `AUTOMATION: HOLD` case, every case that was NEVER OBSERVED at all, and any case whose verdict was
+    never automated** — and **their trigger is the thing they are actually waiting on**, not a deploy.
+    **THE CLOSE CONDITION IS UNCHANGED — 100% of the queue's rows re-verified, no sampling** — and **a
+    row is NOT re-verified by the existence of a passing automated run unless that run ACTUALLY
+    EXERCISES it** (Rules 12/50). **THE PROVISIONAL LABELLING ABOVE IS LIKEWISE UNCHANGED:** a case an
+    automated suite watches is still a case observed on a **non-final build**.
     **AN OPEN QUEUE IS THEREFORE THE NORMAL STEADY STATE of an active project, not a failure —
     Rule 60(c) explains WHY this close condition will rarely be met on branches that are never declared
     final; it does NOT lower it, and Rule 60 may never be cited to close a queue with rows unverified.**
@@ -2986,7 +2999,9 @@ deliver the 7-tab management report.
     (cite the source verbatim — here, the build marker), 29 (the queue is committed to git, the only
     durable store), 31 (source currency — the build is a source), 35 (the design-fetch queue is the
     same due-dated-queue pattern), 36 (an OPEN queue is an outstanding item and belongs in the
-    register) and 46 (a provisional finding recorded as final is indistinguishable from a miss).
+    register), 46 (a provisional finding recorded as final is indistinguishable from a miss) and 61
+    (**which scopes this queue to what an automated suite cannot see, without lowering its close
+    condition or its PROVISIONAL labelling**).
 50. **VERIFY EXHAUSTIVELY — "byte-level" means NOTHING is skipped, sampled, or assumed (all
     projects).**
     USER DIRECTIVE (2026-08-04, verbatim): *"Also remember, the verification should always be
@@ -3718,7 +3733,12 @@ deliver the 7-tab management report.
     **(3) THE MARKERS THAT ASSERT A BUILD FACT** — `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` and
     `AUTOMATION: HOLD - <not built>`. **NOTE, because this is routinely got wrong: plain
     `AUTOMATION: READY` asserts that a case is AUTOMATABLE, NOT that it currently passes — so it is
-    BUILD-INDEPENDENT and SURVIVES A REDEPLOY untouched.**
+    BUILD-INDEPENDENT and SURVIVES A REDEPLOY untouched.** **AMENDED 2026-08-06: THE EXPECT-FAIL
+    MARKER'S STALENESS IS NOW DETECTED BY THE SUITE ITSELF, NOT BY RE-OBSERVATION** — under **Standing
+    Rule 61** the case names the exact observable SYMPTOM and its three outcomes, so a fix that has
+    shipped (outcome 3) or a failure that has CHANGED (outcome 2) is reported by the next automated
+    run. **`AUTOMATION: HOLD` is the part that still needs a human trigger**, and that trigger is the
+    thing it is waiting on, not a deploy.
     **EVERYTHING ELSE — the expectation, the requirement anchor, the spec version, the epic/story
     reference, the traceability, the Rule-54 SOURCE sentence — is BUILD-INDEPENDENT and survives a
     redeploy unchanged.**
@@ -3761,6 +3781,102 @@ deliver the 7-tab management report.
     covers every row of layers 1–3, no sampling), 54 (sentence 2 is the per-case record of when it was
     last checked) and 57 (because expectations come from documents, a redeploy cannot invalidate them —
     that is the whole reason this strategy is possible).
+61. **THE EXPECT-FAIL MARKER IS AN INSTRUCTION, NOT A PREDICTION — NAME THE SYMPTOM, AND LET THE
+    SUITE BE THE MONITOR (all projects).**
+    **ORIGIN (2026-08-06):** the QA lead proposed that the ticket link plus the tested-on date already
+    makes an expect-fail case self-documenting, because a reader can track the ticket. The objection
+    put to him was that **TICKET STATUS IS NOT A RELIABLE PROXY FOR BUILD STATE**, and he agreed,
+    verbatim: *"I agree with you then lets make a strategy that doesnt bite in any case"*.
+    **THE PROBLEM IN ONE LINE:** `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` as it stands is a
+    **PREDICTION about the build's future state**, and **predictions go stale**. The obvious remedy —
+    re-verifying every deviation on every redeploy — is **unwinnable**: the **Schedule QA branch
+    redeployed FOUR TIMES IN TWO DAYS**.
+    **THE CORE RULE:** an `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` case MUST state, **in the
+    TESTER-FACING Expected Results, THE EXACT OBSERVABLE SYMPTOM of the known failure**, and then what
+    to do in **EACH of three outcomes**:
+    **(1) IT FAILS WITH THAT SYMPTOM** → the known problem, already reported: **mark it failed and
+    raise nothing new.**
+    **(2) IT FAILS IN A DIFFERENT WAY** → **that is a NEW problem: report it.**
+    **(3) IT PASSES** → **the fix has shipped: report it** so the ticket can be closed and the marker
+    removed.
+    **WHY OUTCOME (3) IS THE WHOLE POINT: it makes the automated run ITSELF the detector.** A fix that
+    ships silently while its ticket sits Open is caught by **the very run that would otherwise be
+    confused by it** — **at no cost, continuously, with no re-verification pass and no ticket
+    polling.**
+    **WHY OUTCOME (2) MATTERS, AND IT IS THE GENUINELY NEW PART:** a case can keep failing **FOR A
+    DIFFERENT REASON THAN ITS TICKET DESCRIBES**, hiding a **new defect behind an old one**. **Naming
+    the symptom is the only thing that tells the two apart** — **nothing in the previous scheme could
+    catch it**, because *"it failed, as expected"* reads identically either way.
+    **TICKET STATUS IS NEVER READ AS EVIDENCE ABOUT THE BUILD** — **not to set a marker, not to clear
+    one, not to decide whether a case needs re-checking.** It is **traceability, nothing more.** This
+    is **Rule 57's sibling: a CLOSED ticket is not a spec change, and an OPEN ticket is not proof of a
+    live defect.**
+    **THE STANDING RE-CHECK TRIGGER CHANGES — and this is what makes the rule affordable.**
+    *"Re-check every verdict on redeploy"* is **RETIRED as the default**. **The automated suite
+    monitors itself.** Only cases that are **NOT automated — every `AUTOMATION: HOLD`** — need a human
+    trigger, and **their trigger is the thing they are actually waiting on** (a PO answer, a feature
+    shipping, an access blocker clearing) — **NOT a deploy.** The current scale, so the size of what
+    still needs a human is honest: roughly **43 HOLD cases across the three active projects, against
+    754 cases in total.**
+    **THE REQUIRED WORDING — plain layman English (Rule 7). This is the canonical form to copy:**
+    > *"What you should see today: <the exact symptom, in plain words>. This is a known problem and it
+    > is already reported — see https://shopview.atlassian.net/browse/SV-xxxx.*
+    > *· If you see exactly that, mark this test FAILED and do not raise anything new.*
+    > *· If it fails in a DIFFERENT way from what is described above, that is a NEW problem — please
+    > report it.*
+    > *· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note
+    > removed."*
+    **PLACEMENT:** it sits **with the deviation note in Expected Results, BEFORE the Rule-54 provenance
+    line**; the `AUTOMATION:` marker still goes **LAST**, with a **blank line before it and a line
+    break after it**.
+    **IT APPLIES EQUALLY TO A TICKET CLOSED AS ACCEPTED.** The qualifier already required — **"closed
+    without a fix"** — sits **alongside** the symptom, so **nobody waits for a fix that is not
+    coming**.
+    **HONESTY CLAUSE:** this **does NOT licence claiming a case is verified when it has not been
+    observed.** It changes **WHAT WE MONITOR, not what we may ASSERT.** An unobserved case is still
+    unobserved, and **Rule 60's bar stands** — the correct sentence remains *"N of M observed on build
+    <marker>; the remaining M−N carry their last recorded check"*.
+    **RATIONALE, 2026-08-06 — FIVE evidenced failures of status-as-proxy, all from 2026-08-05/06.**
+    **(a) A FIX SHIPPED WHILE ITS TICKET STAYED OPEN.**
+    **[SV-8851](https://shopview.atlassian.net/browse/SV-8851) is still Open**, yet Tech Hours now
+    writes the working window beside each technician and **SCH-VIEW-09 =
+    [C30050](https://shopview.testrail.io/index.php?/cases/view/30050) PASSES**. A reader checking the
+    ticket would **wrongly conclude the test should still fail**.
+    **(b) TWO TICKETS CLOSED OBSOLETE STILL REPRODUCE BYTE-IDENTICALLY** —
+    **[SV-8843](https://shopview.atlassian.net/browse/SV-8843)** and
+    **[SV-8847](https://shopview.atlassian.net/browse/SV-8847)**; a reader checking the tickets would
+    **wrongly conclude they were fixed**.
+    **(c) STATUS CARRIED NO INFORMATION AT ALL.**
+    **[SV-8819](https://shopview.atlassian.net/browse/SV-8819) was walked through SEVEN STATUSES IN 22
+    SECONDS** under our own shared account (Rule 53's corollary — his edits are indistinguishable from
+    ours).
+    **(d) A TICKET MIS-DESCRIBES THE VERY FAILURE IT EXISTS TO EXPLAIN.**
+    **[SV-8827](https://shopview.atlassian.net/browse/SV-8827) is half wrong** — it asserts Tech Hours
+    defaults ON; it **defaults OFF, correctly**.
+    **(e) FIVE FILTERS CASES CARRIED EXPECT-FAIL MARKERS FOR FAILURES THAT NO LONGER HAPPENED**
+    (**[SV-8828](https://shopview.atlassian.net/browse/SV-8828)** fixed) — and this was **found ONLY
+    because somebody drove all 110 live**, which is precisely the expensive thing this rule removes the
+    need for.
+    **THE TRIGGER CHANGE IS WHAT MAKES THIS AFFORDABLE: the alternative was re-verifying HUNDREDS of
+    cases against branches that redeploy daily** — a job that, being unaffordable, would simply not get
+    done, and the markers would rot in place.
+    Ties to Standing Rules 7 (plain layman wording — the three outcomes are written for a
+    non-technical tester), 9 (build-accurate labels — the symptom is described in the words the tester
+    will actually see), 10 (the VIU push stamps the symptom, the provenance line and the marker in the
+    same write), 12 (observed, never inferred — a ticket status is not an observation), 13 (live
+    feature-by-feature — outcome (2) is what keeps a live run informative instead of merely
+    confirmatory), 17 (complete data in/out — EVERY expect-fail case carries all three outcomes, no
+    sampling), 25 (cite verbatim — the symptom is quoted from what was actually seen, not paraphrased),
+    29 (no work loss — the monitoring lives in the committed suite, never in anyone's memory), 36 (an
+    outcome-(3) report is an OUTSTANDING item until the ticket is closed and the marker removed), 42
+    (the symptom is written scope-conditionally, never as a closed enumeration a partial fix would
+    break), 44 (a case that starts PASSING is a bug report against our own marker), 49 (**this scopes
+    the re-check queue to what the suite cannot see**), 50 (exhaustive and exact — the symptom is
+    stated precisely enough to be told apart from a different failure), 53 (we REPORT outcome (3); the
+    QA lead closes the ticket — ticket fields are his), 54 (the provenance line still follows this
+    note, and the marker still goes last), 57 (**its sibling — a closed ticket is not a spec change,
+    and an open ticket is not proof of a live defect**) and 60 (**this is how layer 3, the build-fact
+    markers, is monitored without re-observation**).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
@@ -3968,6 +4084,19 @@ regression / bug-fix re-testing.
   unobtainable thing** — a real physical device, an external account we do not have — justifies
   `HOLD`. **NOT-BUILT cases are EXCLUDED from any "ready to automate" figure** (they are not a
   readiness shortfall, they are absent product).
+- **AN `EXPECT FAIL` CASE CARRIES THE SYMPTOM AND ALL THREE OUTCOMES (Standing Rule 61, added
+  2026-08-06) — the marker is an INSTRUCTION, not a prediction.** In the tester-facing Expected
+  Results, **before the Rule-54 provenance line**, name **the exact observable symptom** and what to do
+  if the case **(1)** fails with **that** symptom, **(2)** fails in a **different** way, or **(3)**
+  **passes**. Canonical wording to copy: *"What you should see today: <the exact symptom, in plain
+  words>. This is a known problem and it is already reported — see
+  https://shopview.atlassian.net/browse/SV-xxxx. · If you see exactly that, mark this test FAILED and
+  do not raise anything new. · If it fails in a DIFFERENT way from what is described above, that is a
+  NEW problem — please report it. · If it PASSES, the fix has shipped: tell the QA lead so the ticket
+  can be closed and this note removed."* **Outcome (3) is what makes the automated run itself the
+  detector** of a fix that shipped while its ticket sat Open; **outcome (2) is what stops a NEW defect
+  hiding behind an old one.** Where the ticket was **closed without a fix**, that qualifier sits
+  alongside the symptom. **Ticket status is never read as evidence about the build.**
 - Excel workbooks: a **separate tab per result status** + a **Summary** tab.
 - Provide **GitHub raw download links** for deliverables.
 - **Per-case audit logs** for any TestRail edits.
