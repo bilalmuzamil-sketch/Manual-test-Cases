@@ -1,0 +1,19 @@
+{
+ "description": "On Parts Velocity the Location column sits in sixth place, after Vendor. It is meant to be the first column of all, before Type.",
+ "steps": [
+  "Open Reports, then Parts Velocity, signed in as a user who can see more than one location.",
+  "Leave the Location filter on All locations so more than one location is in view — here both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 — with the date range This Year, Type Both and no search.",
+  "Read the column headings from left to right.",
+  "Open the three-dot menu, choose Download (CSV), and read the heading row of the file."
+ ],
+ "current": "On screen the headings run: Type, Part #, Description, Category, Vendor, Location, Units Sold, Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand. The downloaded spreadsheet puts Location in the same sixth place, because it follows the screen.\n\nThe column is not one of the twenty entries in the column chooser, so a user cannot have moved it — the report places it there itself. Everything else about it is right: it only appears when more than one location is in view, each stocked row shows its own location, and a special-order row spanning several locations correctly reads Multiple.",
+ "expected": "The Location column is the leftmost column, before Type, on screen and in both downloads, matching where the same column sits on the other reports.",
+ "source": [
+  [
+   "spec",
+   "pv",
+   "S7-R8",
+   "When shown (S2-R12 / S3-R10), the per-row Location column renders as the leftmost column, before Type, using the suite's standard column treatment so its placement matches the same column on the other reports in the suite."
+  ]
+ ]
+}

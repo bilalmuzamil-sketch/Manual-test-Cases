@@ -1,186 +1,98 @@
 [
  {
-  "ticket": "SV-8926",
+  "ticket": "SV-8934",
   "kind": "spec",
-  "spec": "iv",
-  "anchor": "S4-R1",
+  "spec": "pv",
+  "anchor": "S6-R6",
   "anchor_found": true,
   "quote_found": true,
   "verdict": "PASS",
-  "quote_head": "A totals row is shown at the bottom of the report, with the literal label \"Total"
+  "quote_head": "The PDF is formatted for A3 landscape, titled Parts Velocity. In the PDF, Descri"
  },
  {
-  "ticket": "SV-8926",
+  "ticket": "SV-8935",
+  "kind": "spec",
+  "spec": "pv",
+  "anchor": "S6-R8",
+  "anchor_found": true,
+  "quote_found": true,
+  "verdict": "PASS",
+  "quote_head": "Last Sale renders as N days (e.g. 42 days) in the PDF; the CSV renders the raw i"
+ },
+ {
+  "ticket": "SV-8936",
+  "kind": "spec",
+  "spec": "pv",
+  "anchor": "S6-R9",
+  "anchor_found": true,
+  "quote_found": true,
+  "verdict": "PASS",
+  "quote_head": "On a successful download, a success toast reads \"Velocity report exported (CSV)\""
+ },
+ {
+  "ticket": "SV-8937",
+  "kind": "spec",
+  "spec": "sbc",
+  "anchor": "S15-R11",
+  "anchor_found": true,
+  "quote_found": true,
+  "verdict": "PASS",
+  "quote_head": "The header date range shows the start and end dates in the format \"Mon D, YYYY,\""
+ },
+ {
+  "ticket": "SV-8937",
+  "kind": "spec",
+  "spec": "pv",
+  "anchor": "S6-R2",
+  "anchor_found": true,
+  "quote_found": true,
+  "verdict": "PASS",
+  "quote_head": "Both exports reflect the date range, type, category, vendor, bin location, locat"
+ },
+ {
+  "ticket": "SV-8937",
+  "kind": "spec",
+  "spec": "tu",
+  "anchor": "S7-R9",
+  "anchor_found": true,
+  "quote_found": true,
+  "verdict": "PASS",
+  "quote_head": "Every download covers the date range that is currently active on the report."
+ },
+ {
+  "ticket": "SV-8937",
   "kind": "note",
   "verdict": "n/a (not a spec quote)",
-  "detail": "The word \"literal\" is the description's own."
+  "detail": "One honest caveat about the label: none of the three descriptions writ"
  },
  {
-  "ticket": "SV-8927",
+  "ticket": "SV-8938",
   "kind": "spec",
-  "spec": "iv",
-  "anchor": "S3-R12",
+  "spec": "pv",
+  "anchor": "S7-R8",
   "anchor_found": true,
   "quote_found": true,
   "verdict": "PASS",
-  "quote_head": "On first visit, the visible columns are: Part #, Description, Category, Vendor, "
+  "quote_head": "When shown (S2-R12 / S3-R10), the per-row Location column renders as the leftmos"
  },
  {
-  "ticket": "SV-8927",
+  "ticket": "SV-8939",
   "kind": "spec",
-  "spec": "iv",
-  "anchor": "S3-R13",
+  "spec": "pv",
+  "anchor": "S2-R9",
   "anchor_found": true,
   "quote_found": true,
   "verdict": "PASS",
-  "quote_head": "The Margin and Total Sell columns are hidden by default and can be turned on fro"
+  "quote_head": "The toolbar provides a Location multi-select filter as the rightmost control in "
  },
  {
-  "ticket": "SV-8927",
+  "ticket": "SV-8940",
   "kind": "spec",
-  "spec": "iv",
-  "anchor": "S8-R3",
+  "spec": "pv",
+  "anchor": "S3-R7",
   "anchor_found": true,
   "quote_found": true,
   "verdict": "PASS",
-  "quote_head": "Every other column is available in the control; Margin and Total Sell are off by"
- },
- {
-  "ticket": "SV-8928",
-  "kind": "spec",
-  "spec": "iv",
-  "anchor": "S8-R5",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "The report remembers, in the user's browser, the selected date range, category s"
- },
- {
-  "ticket": "SV-8928",
-  "kind": "note",
-  "verdict": "n/a (not a spec quote)",
-  "detail": "The part search text is named in that list, beside the settings that d"
- },
- {
-  "ticket": "SV-8929",
-  "kind": "spec",
-  "spec": "iv",
-  "anchor": "S8-R6",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "Restore is defensive: a saved value that is no longer valid falls back to that s"
- },
- {
-  "ticket": "SV-8930",
-  "kind": "spec",
-  "spec": "iv",
-  "anchor": "S1-N2",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "If no in-stock part exists for the selected location(s) on the resolved date, th"
- },
- {
-  "ticket": "SV-8930",
-  "kind": "spec",
-  "spec": "iv",
-  "anchor": "S7-N2",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "If the selected location(s) hold no in-stock parts on the resolved date, the rep"
- },
- {
-  "ticket": "SV-8930",
-  "kind": "note",
-  "verdict": "n/a (not a spec quote)",
-  "detail": "The same description gives the exact words of that message in its mess"
- },
- {
-  "ticket": "SV-8930",
-  "kind": "note-anchor",
-  "anchor": "S5-N1",
-  "found_in": [
-   "sbr",
-   "tu",
-   "iv"
-  ],
-  "verdict": "PASS"
- },
- {
-  "ticket": "SV-8931",
-  "kind": "spec",
-  "spec": "iv",
-  "anchor": "S1-R3",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "On the user's first visit (no saved settings \u2014 Story 8), the report defaults to "
- },
- {
-  "ticket": "SV-8931",
-  "kind": "spec",
-  "spec": "iv",
-  "anchor": "S7-R2",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "On a first visit (no saved selection \u2014 Story 8), it defaults to the user's curre"
- },
- {
-  "ticket": "SV-8932",
-  "kind": "spec",
-  "spec": "iv",
-  "anchor": "S12-R6",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "Long text values (Description, Category, Vendor) are truncated with an ellipsis "
- },
- {
-  "ticket": "SV-8932",
-  "kind": "spec",
-  "spec": "iv",
-  "anchor": "S12-R8",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "Each sortable column header exposes its sort state to assistive technology, and "
- },
- {
-  "ticket": "SV-8932",
-  "kind": "note",
-  "verdict": "n/a (not a spec quote)",
-  "detail": "The ticket previously cited S12-R7 for the long-text rule. Read live t"
- },
- {
-  "ticket": "SV-8932",
-  "kind": "note-anchor",
-  "anchor": "S12-R7",
-  "found_in": [
-   "iv"
-  ],
-  "verdict": "PASS"
- },
- {
-  "ticket": "SV-8932",
-  "kind": "note-anchor",
-  "anchor": "S12-R7",
-  "found_in": [
-   "iv"
-  ],
-  "verdict": "PASS"
- },
- {
-  "ticket": "SV-8932",
-  "kind": "note-anchor",
-  "anchor": "S12-R6",
-  "found_in": [
-   "sbc",
-   "sbr",
-   "iv"
-  ],
-  "verdict": "PASS"
+  "quote_head": "The Description, Category, and Vendor columns truncate long text with an ellipsi"
  }
 ]

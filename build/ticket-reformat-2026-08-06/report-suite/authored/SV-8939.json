@@ -1,0 +1,18 @@
+{
+ "description": "Parts Velocity opens with its Location filter set to All locations, so the first thing a user sees is every location they can reach, mixed together. It is meant to open on the one location they are working in.",
+ "steps": [
+  "Sign in as a user with access to more than one location and check the location shown beside your name at the top right — here it read Staging Heavy Duty - 9919, on an account that can also reach Staging Lethbridge - 4310.",
+  "Open Reports, then Parts Velocity, for the first time in this browser — a private window guarantees there is no saved view.",
+  "Read the Location filter at the right-hand end of the filter row, and read the Location column in the table."
+ ],
+ "current": "The filter reads All locations and the table returns rows from both locations — BRAKECLEAN appears once for Staging Heavy Duty - 9919 and again for Staging Lethbridge - 4310.\n\nIt is not a remembered setting: the browser held no saved view, the page's first request carried no location at all and the second carried both. Choosing a single location works correctly, so only the starting value is wrong. Both locations are ones this user is allowed to see.\n\nFor triage: the same starting behaviour on Inventory Value is SV-8931. This ticket is Parts Velocity, which has its own requirement wording.",
+ "expected": "On a first visit the Location filter is set to the user's currently active location — the one selected in the application's location switcher — and they can widen it from there.",
+ "source": [
+  [
+   "spec",
+   "pv",
+   "S2-R9",
+   "The toolbar provides a Location multi-select filter as the rightmost control in the filter row, listing the locations the signed-in user has access to plus an \"All Locations\" option. On a first visit it defaults to the user's currently active location (the location currently selected in the application's global location switcher)."
+  ]
+ ]
+}

@@ -1,0 +1,19 @@
+{
+ "description": "The Parts Velocity spreadsheet prints the Last Sale column as text such as \"54 days\" instead of the plain number 54. Because the cell holds text, it cannot be sorted or used in a calculation without cleaning the column first.",
+ "steps": [
+  "Open Reports, then Parts Velocity.",
+  "Set the date range to This Year with both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 selected, and type BRAKECLEAN into the report's search box — the part Brake & Parts Cleaner.",
+  "Open the three-dot menu and choose Download (CSV). The file is named velocity-report.csv.",
+  "Open the downloaded file and look at the Last Sale column."
+ ],
+ "current": "The cell reads \"54 days\" where it should read 54. Every row in the file carries the same wording.\n\nThe PDF correctly prints 54 days, which is what the PDF is meant to do, so only the spreadsheet is wrong. A part with no sale at all correctly prints an em dash in both files.",
+ "expected": "The spreadsheet holds the plain whole number, for example 54. The \"N days\" wording belongs to the PDF only.",
+ "source": [
+  [
+   "spec",
+   "pv",
+   "S6-R8",
+   "Last Sale renders as N days (e.g. 42 days) in the PDF; the CSV renders the raw integer."
+  ]
+ ]
+}

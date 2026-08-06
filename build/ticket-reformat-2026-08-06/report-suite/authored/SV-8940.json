@@ -1,0 +1,19 @@
+{
+ "description": "On Parts Velocity, long text in the Description, Category and Vendor columns is never shortened. The column grows as wide as its longest value, which pushes the table far wider than the window and forces the user to scroll sideways to reach the numbers. Resting the pointer on a long value shows no tooltip.",
+ "steps": [
+  "Open Reports, then Parts Velocity, in a browser window 1680 pixels wide.",
+  "Set the date range to This Year with both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 selected, and type 179.YK5005 into the report's search box — a part whose description is 117 characters long and whose category, HD-Air Brakes & Air Suspension, is 30.",
+  "Look at the Description cell in the row that comes back, and rest the pointer on it.",
+  "Look at the horizontal scrollbar under the table."
+ ],
+ "current": "The Description cell was 744 pixels wide and held the whole 117-character value with nothing cut off, and carried no tooltip text at all. The table came out 2,429 pixels wide inside a 1,372 pixel space, so around a thousand pixels of it sat off-screen.\n\nThe cell is not clipped — it is sized to fit the whole value. Category behaves the same way, showing 30 characters in full in a 217-pixel cell. Part # is correctly left alone.\n\nFor triage: the same behaviour on Inventory Value is SV-8932. This ticket is Parts Velocity.",
+ "expected": "Long Description, Category and Vendor text is shortened with an ellipsis on screen, with the full value shown on hover, and written out in full in the spreadsheet. Part # is never shortened.",
+ "source": [
+  [
+   "spec",
+   "pv",
+   "S3-R7",
+   "The Description, Category, and Vendor columns truncate long text with an ellipsis on screen; the full value is available on native hover (browser tooltip) and is written in full to the CSV export (S6). Part # is never truncated (on screen or in any export)."
+  ]
+ ]
+}

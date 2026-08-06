@@ -1,0 +1,19 @@
+{
+ "description": "The Parts Velocity PDF prints the Description, Category and Vendor columns in full instead of shortening them to 18 characters. A description over a hundred characters long wraps onto several lines inside its cell, which makes the rows very tall and the page hard to read.",
+ "steps": [
+  "Open Reports, then Parts Velocity.",
+  "Set the date range to This Year with both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 selected, and type 179.YK5005 into the report's search box.",
+  "Open the three-dot menu and choose Download (PDF).",
+  "Open the downloaded file and look at the Description and Category columns. That part's description is 117 characters long — CLEVIS KIT MERITOR TYPE 5/8\"Straight, 5/8in-18 Threads, 1/2in and 1/4in Pins, Pin C to C is 1-3/8in(E11430A, R810019) — and its category, HD-Air Brakes & Air Suspension, is 30."
+ ],
+ "current": "The PDF prints the whole description and the whole category. Shortened to eighteen characters they would have read CLEVIS KIT MERITOR and HD-Air Brakes & Ai.\n\nNothing is being shortened at all — a much shorter description, Brake & Parts Cleaner at 21 characters, is also printed in full. Part # is correctly left alone, the PDF is correctly A3 landscape and titled Parts Velocity, and the shop logo prints. The spreadsheet is supposed to carry the full text and does.",
+ "expected": "In the PDF, Description, Category and Vendor are shortened to 18 characters. Part # is not shortened, and the spreadsheet keeps the full text.",
+ "source": [
+  [
+   "spec",
+   "pv",
+   "S6-R6",
+   "The PDF is formatted for A3 landscape, titled Parts Velocity. In the PDF, Description, Category, and Vendor are truncated to 18 characters. Part # is not truncated. The CSV carries the full, untruncated Description / Category / Vendor values."
+  ]
+ ]
+}

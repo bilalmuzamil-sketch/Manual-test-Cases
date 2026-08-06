@@ -1,0 +1,19 @@
+{
+ "description": "When a download from Parts Velocity finishes, the message reads \"Success — Data exported successfully.\" That is a general message that could belong to any screen. It does not name the report or say which file was produced.",
+ "steps": [
+  "Open Reports, then Parts Velocity.",
+  "Set the date range to This Year with both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 selected and Type set to Both, and type BRAKECLEAN into the report's search box so the view is small enough to download.",
+  "Open the three-dot menu, choose Download (CSV), and watch the message that appears.",
+  "Do it again and choose Download (PDF), and watch the message that appears."
+ ],
+ "current": "Both downloads show the same message: \"Success\" then \"Data exported successfully.\"\n\nA message does appear for both file types, so nothing is missing — the wording is wrong. The failure message is correct: when a download is refused, the server's own message is passed through word for word.",
+ "expected": "A successful download says which report and which file type it produced: \"Velocity report exported (CSV)\" or \"Velocity report exported (PDF)\".",
+ "source": [
+  [
+   "spec",
+   "pv",
+   "S6-R9",
+   "On a successful download, a success toast reads \"Velocity report exported (CSV)\" or \"Velocity report exported (PDF)\"."
+  ]
+ ]
+}

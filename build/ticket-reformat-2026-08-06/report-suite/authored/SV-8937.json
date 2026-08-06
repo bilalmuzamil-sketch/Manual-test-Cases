@@ -1,0 +1,36 @@
+{
+ "description": "Three reports print a heading line in their PDF describing the date range the file covers, and that line always shows an end date one day later than the range asked for. It happens on Parts Velocity, Technician Utilization and Sales By Customer.\n\nThe spreadsheet of exactly the same view prints the correct end date, so the two files disagree about the same report.\n\nOn Parts Velocity and Technician Utilization the line also begins with a stray word — \"Start Date Range:\" rather than \"Date Range:\".",
+ "steps": [
+  "Open Reports, then Parts Velocity, with both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 selected and Type set to Both, and type BRAKECLEAN into the report's search box so the view is small enough to download.",
+  "Open the date picker, build a range from 1 January 2026 to 31 July 2026, and press Apply.",
+  "Open the three-dot menu, choose Download (PDF), and read the heading line under the report title. Then choose Download (CSV) for the same view and read its first line.",
+  "Open Reports, then Technician Utilization, set the date range to This Year, and choose Summary (PDF). Read the heading line.",
+  "Open Reports, then Sales By Customer, leave the date range on This Month, and choose Download Summary (PDF). Read the heading line."
+ ],
+ "current": "Parts Velocity, asked for 1 January to 31 July 2026, printed \"Start Date Range: Jan 1, 2026 - Aug 1, 2026\". Asked for 1 to 28 February it printed \"Feb 1, 2026 - Mar 1, 2026\". Asked for 1 January to 6 August it printed \"Aug 7, 2026\" while the spreadsheet of the same view correctly printed \"Aug 6, 2026\".\n\nTechnician Utilization, asked for 1 January to 6 August, printed \"Start Date Range: Jan 1, 2026 - Aug 7, 2026\". Sales By Customer, asked for 1 to 6 August, printed \"Date Range: Aug 1, 2026 - Aug 7, 2026\" — the label is right there, only the end date is a day late.\n\nIt is not the month rolling over: 28 February came out as 1 March. It is not today's date being printed: on 6 August a range ending 31 July printed 1 August. Work In Progress prints its heading correctly, so it is not every report.\n\nOnly the heading line was proven wrong. Nothing was established either way about the reports' own figures.",
+ "expected": "The PDF heading describes the range the report was actually run for — a range ending 6 August reads 6 August — and the label reads \"Date Range:\", as it already does on Sales By Customer.",
+ "source": [
+  [
+   "spec",
+   "sbc",
+   "S15-R11",
+   "The header date range shows the start and end dates in the format \"Mon D, YYYY,\" joined by an em dash — for example, \"May 1, 2026 — May 31, 2026.\""
+  ],
+  [
+   "spec",
+   "pv",
+   "S6-R2",
+   "Both exports reflect the date range, type, category, vendor, bin location, location, and search active at the time of export."
+  ],
+  [
+   "spec",
+   "tu",
+   "S7-R9",
+   "Every download covers the date range that is currently active on the report."
+  ],
+  [
+   "note",
+   "One honest caveat about the label: none of the three descriptions writes down the words the heading should begin with, so \"Start Date Range:\" breaks no written rule. What makes it wrong is that the same line reads \"Date Range:\" on Sales By Customer, so one heading is worded two ways across reports meant to match. If the product owner would rather keep \"Start Date Range:\", that half can be dropped — the wrong end date stands on its own."
+  ]
+ ]
+}
