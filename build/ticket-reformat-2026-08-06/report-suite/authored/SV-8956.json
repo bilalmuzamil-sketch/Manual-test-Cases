@@ -1,0 +1,24 @@
+{
+ "description": "A Sales By Customer download is always called the same thing whatever period it covers, so two files taken for different date ranges cannot be told apart once they are saved.",
+ "steps": [
+  "Open Reports, then Sales By Customer, with the date range on This Month.",
+  "Open the three-dot menu, choose Download Summary (CSV), and note the file name.",
+  "Choose Download Expanded View (CSV) and note that name too. This was seen with Product Type Parts & Service and both locations selected, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310."
+ ],
+ "current": "The two files were called sales-by-customer-summary.csv and sales-by-customer-expanded.csv — correct apart from the missing period. Nothing in either name says which range it covers.\n\nThe files themselves are right: each begins with a \"Date Range: Aug 1, 2026 - Aug 6, 2026\" line and a \"Locations: All locations\" line, so the information is in the file but not in its name. The name comes from the download itself, and both spreadsheet options behave the same way.",
+ "expected": "The file name carries the period that was chosen — sales-by-customer-summary-this_month.csv and sales-by-customer-expanded-this_month.csv for This Month — and the PDFs are named the same way.",
+ "source": [
+  [
+   "spec",
+   "sbc",
+   "S14-R14",
+   "The files are named for the report, the version, and the active date range: the Summary CSV is sales-by-customer-summary-{range}.csv and the Expanded CSV is sales-by-customer-expanded-{range}.csv. {range} uses this map from range label: Today → today; Yesterday → yesterday; This Week → this_week; Last Week → last_week; This Month → this_month; Last Month → last_month; This Year → this_year; Last Year → last_year; This Quarter → this_quarter; Last Quarter → last_quarter; Custom → custom."
+  ],
+  [
+   "spec",
+   "sbc",
+   "S15-R6",
+   "The files follow the same version-and-range naming as the CSV (S14-R14) with a .pdf extension"
+  ]
+ ]
+}

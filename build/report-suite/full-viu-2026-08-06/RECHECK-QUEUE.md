@@ -56,12 +56,16 @@ standing obligation is the group row at the end of this file.
 
 | Marker | Count |
 |---|---|
-| `AUTOMATION: READY` | **357** |
-| `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` | **77** |
+| `AUTOMATION: READY` | ~~357~~ → **356** |
+| `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` | ~~77~~ → **78** |
 | `AUTOMATION: HOLD - <reason>` | **42** |
 | **Total** | **476** |
 
-**Arithmetic gate: 357 + 77 = 434 = 476 − 42 held. The gate PASSES.**
+**⚠️ Amended 2026-08-06 by the C30114 repair (section H below): one case moved `READY` → `READY - EXPECT
+FAIL (SV-8991)`.** The two figures move in opposite directions by one, so the total and the gate are
+unaffected.
+
+**Arithmetic gate: 356 + 78 = 434 = 476 − 42 held. The gate PASSES.**
 **Ready to automate = 434 of 476.** (Was 426 READY + 38 HOLD + 12 unmarked at the end of the first
 session; the 12 unmarked were the raw-markup cases and are now readable and counted.)
 
@@ -368,3 +372,42 @@ run at no cost. **They need no deploy-triggered re-observation.**
 |---|---|
 | **C30495** | Verdicted **PASS** on `v3.5-7168d14` by an earlier session, but **S6-R3** requires the Totals row's Inv. Hrs to carry the same green/red colouring as a row and **it carries none** on all four tabs (`+246.84`, `+1434.65`, `+0.52`, `+173.50`, all positive, all black in light mode). **Outside this session's work list; not re-verdicted.** |
 | **The five APC rows** | Five of 116 "Approved - Partially Completed" rows have neither clocked time nor Parts Earned, where **S3-R4** requires one or the other. A part received at a $0.00 sell value would make all five correct, and that could not be separated before the session was lost. **Not filed.** |
+
+---
+
+## SECTION H — THE C30114 ZEROS-ROW REPAIR, 2026-08-06
+
+**STATUS: OPEN**, like every other section — the branch is **not declared final**, so the verdict below is
+**PROVISIONAL**.
+
+**One case was written: [C30114](https://shopview.testrail.io/index.php?/cases/view/30114)** — the *screen*
+half of [SV-8991](https://shopview.atlassian.net/browse/SV-8991), whose *export* half
+([C30173](https://shopview.testrail.io/index.php?/cases/view/30173)) was repaired earlier the same day.
+Both had been disarmed by a note claiming the description is silent on the totals row; **`S18-N1` states it
+plainly**, and did so at v15, published the previous evening. Full working:
+`execution-log.md` and `../zeros-row-2026-08-06/SOURCE-VERIFICATION.md`.
+
+### H.1 — What the automated suite now monitors by itself (Rule 61), so it is NOT a re-check task
+
+| Case | Verdict | Build the verdict rests on | Ticket | Marker now |
+|---|---|---|---|---|
+| [C30114](https://shopview.testrail.io/index.php?/cases/view/30114) | **DEVIATION** — after "Clear all" the empty state and the `"None"` label are correct, but **no totals row is rendered at all**, where `S18-N1` requires a row of zeros | **`v3.5-7168d14`** — **NOT re-observed today; the branch is unreachable** and has since redeployed to `v3.5-f77875c` | **SV-8991** | `READY - EXPECT FAIL (SV-8991)` |
+
+**Trigger: the next automated run reporting a change.** Not a deploy, and **not the ticket's status.** The
+case now carries the Rule-61 three-outcome block, so a shipped fix (outcome 3) or a *different* failure
+(outcome 2) is reported at no cost. Its symptom is written **narrower** than C30173's on purpose: this case
+asserts four things and only one fails, so outcome (2) names the other three explicitly to stop a pinned-
+control fault being filed under SV-8991.
+
+**It is listed here, rather than only under the group row, because its marker CHANGED in this pass** — the
+census above had to be amended, and a reader reconciling `READY 357` against a live count of `356` needs
+this row to find out why.
+
+### H.2 — The one row that needs a human, against the thing it is actually waiting on
+
+| Row | What it is | Trigger |
+|---|---|---|
+| **The `sbc7.json` ambiguity** | `full-viu-2026-08-06/evidence/2026-08-06-session2/sbc7.json` holds `emptyBody: " \| "` beside a **fully populated, non-zero** totals row — which cannot be the same state as `sbc9.json`'s `totals: null`. The likeliest reading is **two different empty states** (an empty **date range** vs an empty **customer selection**), in which case a stale non-zero totals row over a range matching nothing is a **SECOND, SEPARATE DEFECT**. The harness that produced the capture is **not in the repository**, so it cannot be settled from what we hold. **Asserted nowhere and not filed** (Rule 12) | **A live pass on a reachable branch** that drives an empty **date range** (not an empty customer selection) and reads the totals row. Not a deploy |
+
+**C30114's repair does not depend on this row.** It rests on `sbc9.json`, whose `label: "None"` is the
+`S18-R5` label for an empty selection, making it unambiguously `S18-N1`'s scenario.

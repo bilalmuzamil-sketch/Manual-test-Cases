@@ -79,10 +79,20 @@ requirement is **`S18-N1`**, not `S18-R11` — which is a different requirement 
   **REPAIRED 2026-08-06:** assertion restored, the false note replaced by the Rule-61 symptom and its three
   outcomes, marker now `AUTOMATION: READY - EXPECT FAIL (SV-8991)`, `refs` pinned to v15. One
   `update_case`, HTTP 200, 30 fields compared, 0 mismatches.
-- **[C30114](https://shopview.testrail.io/index.php?/cases/view/30114)** — the **screen** half. ⚠️ **STILL
-  CARRIES THE FALSE NOTE and still reads `AUTOMATION: READY`.** Not touched: the repair pass was authorised
-  for C30173 only. It needs one authorised `update_case`. Details:
-  `build/report-suite/zeros-row-2026-08-06/testrail-execution-log.md`.
+- **[C30114](https://shopview.testrail.io/index.php?/cases/view/30114)** — the **screen** half.
+  **REPAIRED 2026-08-06, authorised separately:** the false note removed, the S18-N1 assertion *"and the
+  totals row shows zeros"* restored to item 4, the Rule-61 symptom and its three outcomes added before the
+  provenance line, marker now `AUTOMATION: READY - EXPECT FAIL (SV-8991)`, `refs` repinned v13 → **v15**.
+  One `update_case`, HTTP 200, **30 fields compared, 0 mismatches**; run 359 proven untouched **by result
+  id** (535 of 535 present, 0 graded fields changed). Its symptom block is deliberately **narrower** than
+  C30173's, because this case asserts four things and only the totals row fails — `sbc9.json` records
+  `label: "None"` passing alongside `totals: null`. Details:
+  `build/report-suite/full-viu-2026-08-06/execution-log.md`.
+
+**⇒ Both halves of SV-8991 are now armed.** Neither case can any longer pass on a build that drops the
+totals row, and the marker census moves **READY 357 → 356 · EXPECT FAIL 77 → 78** (the gate still holds at
+434 ready to automate). The provenance build lines on both were **not** re-stamped — nothing was
+re-observed today, so both still read `v3.5-7168d14` and the verdicts stay **PROVISIONAL** (Rule 49).
 
 **An unresolved ambiguity in our own evidence, asserted nowhere.** `evidence/2026-08-06-session2/sbc7.json`
 holds `emptyBody: " | "` followed immediately by `totalsInEmpty` reading a **fully populated, non-zero**

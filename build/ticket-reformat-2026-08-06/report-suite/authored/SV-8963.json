@@ -1,0 +1,24 @@
+{
+ "description": "Two things about sorting on Sales By Customer are wrong.\n\nThe Location column cannot be sorted — it has no sort arrow and clicking it does nothing, while every other column sorts.\n\nAnd rows with no value sort to the wrong end: sorting Margin % smallest-first puts the blank ones at the top, and largest-first puts them at the bottom.",
+ "steps": [
+  "Open Reports, then Sales By Customer, and choose This Year so there are plenty of rows — that view holds 384 customers.",
+  "Click each column heading in turn. Every one sorts except Location.",
+  "Click Margin % once, for smallest first, and look at the first rows. Click it again, for largest first, and look again. Here 19 of the first 30 rows had no Margin % value. This was seen with Product Type Parts & Service and both locations selected, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310."
+ ],
+ "current": "Location has no sort arrow and does not respond to a click. The server itself sorts by location correctly when asked, so this is missing from the screen only.\n\nSorting Margin % smallest-first puts the rows with a dash instead of a percentage at the top; largest-first moves them to the end. That is the opposite way round.\n\nThe sorting is genuinely applied and not a stale screen — each click sends a fresh request, the first page comes back in the new order, and the heading reports which way it is sorted. The order on the other twelve columns is correct.",
+ "expected": "Location sorts like every other column, apart from the arrow column at the far left. Rows with no value sort to the bottom when sorting smallest-first and to the top when sorting largest-first.",
+ "source": [
+  [
+   "spec",
+   "sbc",
+   "S10-R1",
+   "Every column is sortable except the chevron column."
+  ],
+  [
+   "spec",
+   "sbc",
+   "S10-R3",
+   "A missing value sorts to the bottom in ascending order and to the top in descending order; a Margin % em-dash cell (S7-R12) counts as a missing value."
+  ]
+ ]
+}

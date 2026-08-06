@@ -1,153 +1,207 @@
 [
  {
-  "ticket": "SV-8949",
+  "ticket": "SV-8955",
   "kind": "spec",
-  "spec": "tu",
-  "anchor": "S7-R10a",
+  "spec": "sbc",
+  "anchor": "S2-R6",
   "anchor_found": true,
   "quote_found": true,
   "verdict": "PASS",
-  "quote_head": "Rows in every download are ordered by Technician name A\u2192Z (the default order). T"
+  "quote_head": "When the user changes the date range, the chosen value is written to the page li"
  },
  {
-  "ticket": "SV-8950",
+  "ticket": "SV-8955",
   "kind": "spec",
-  "spec": "tu",
-  "anchor": "S7-R5",
+  "spec": "sbc",
+  "anchor": "S9-R3",
   "anchor_found": true,
   "quote_found": true,
   "verdict": "PASS",
-  "quote_head": "The Summary PDF shows the technician rows and the Summary row."
+  "quote_head": "Before navigating, the active date range and Product Type are written to the pag"
  },
  {
-  "ticket": "SV-8950",
+  "ticket": "SV-8956",
   "kind": "spec",
-  "spec": "tu",
-  "anchor": "S7-R6",
+  "spec": "sbc",
+  "anchor": "S14-R14",
   "anchor_found": true,
   "quote_found": true,
   "verdict": "PASS",
-  "quote_head": "The Expanded PDF shows the technician rows, each technician's per-day breakdown,"
+  "quote_head": "The files are named for the report, the version, and the active date range: the "
  },
  {
-  "ticket": "SV-8950",
+  "ticket": "SV-8956",
   "kind": "spec",
-  "spec": "tu",
-  "anchor": "S7-R7",
+  "spec": "sbc",
+  "anchor": "S15-R6",
   "anchor_found": true,
   "quote_found": true,
   "verdict": "PASS",
-  "quote_head": "The CSV file shows the technician rows and the Summary row. The CSV is always th"
+  "quote_head": "The files follow the same version-and-range naming as the CSV (S14-R14) with a ."
  },
  {
-  "ticket": "SV-8951",
+  "ticket": "SV-8962",
   "kind": "spec",
-  "spec": "tu",
-  "anchor": "S7-R7",
+  "spec": "sbc",
+  "anchor": "S18-R2",
   "anchor_found": true,
   "quote_found": true,
   "verdict": "PASS",
-  "quote_head": "The CSV file shows the technician rows and the Summary row. The CSV is always th"
+  "quote_head": "The filter is a multi-select with server-backed type-ahead. The control carries "
  },
  {
-  "ticket": "SV-8951",
+  "ticket": "SV-8962",
   "kind": "spec",
-  "spec": "tu",
-  "anchor": "S7-R12",
+  "spec": "sbc",
+  "anchor": "S18-R5",
   "anchor_found": true,
   "quote_found": true,
   "verdict": "PASS",
-  "quote_head": "The downloaded files are named \"Technician-Utilization-Summary.pdf\", \"Technician"
+  "quote_head": "The collapsed filter label reads \"All customers\" when the filter is in the all-c"
  },
  {
-  "ticket": "SV-8951",
+  "ticket": "SV-8963",
+  "kind": "spec",
+  "spec": "sbc",
+  "anchor": "S10-R1",
+  "anchor_found": true,
+  "quote_found": true,
+  "verdict": "PASS",
+  "quote_head": "Every column is sortable except the chevron column."
+ },
+ {
+  "ticket": "SV-8963",
+  "kind": "spec",
+  "spec": "sbc",
+  "anchor": "S10-R3",
+  "anchor_found": true,
+  "quote_found": true,
+  "verdict": "PASS",
+  "quote_head": "A missing value sorts to the bottom in ascending order and to the top in descend"
+ },
+ {
+  "ticket": "SV-8964",
+  "kind": "spec",
+  "spec": "sbc",
+  "anchor": "S15-R7",
+  "anchor_found": true,
+  "quote_found": true,
+  "verdict": "PASS",
+  "quote_head": "The PDF is A4 landscape with 25px margins on all sides, using the application's "
+ },
+ {
+  "ticket": "SV-8964",
   "kind": "note",
   "verdict": "n/a (not a spec quote)",
-  "detail": "One honest caveat: a second spreadsheet option exists at all because o"
+  "detail": "The same description treats the two files as one format with one paper"
  },
  {
-  "ticket": "SV-8952",
+  "ticket": "SV-8965",
   "kind": "spec",
-  "spec": "tu",
-  "anchor": "Story 7 under Error Handling",
+  "spec": "sbc",
+  "anchor": "S20-R8",
   "anchor_found": true,
   "quote_found": true,
   "verdict": "PASS",
-  "quote_head": "When a download starts, the user sees a success notification: \"Download started\""
+  "quote_head": "Column-header cells and customer summary rows use the white surface (#ffffff), o"
  },
  {
-  "ticket": "SV-8952",
+  "ticket": "SV-8965",
   "kind": "spec",
-  "spec": "tu",
-  "anchor": "Story 7 under Error Handling",
+  "spec": "sbc",
+  "anchor": "S20-R9",
   "anchor_found": true,
   "quote_found": true,
   "verdict": "PASS",
-  "quote_head": "If a download fails, the user sees an error notification: \"Failed to download re"
+  "quote_head": "Asset rows and invoice rows use the blue-grey background (#f9fafb), or the dark "
  },
  {
-  "ticket": "SV-8952",
+  "ticket": "SV-8965",
+  "kind": "spec",
+  "spec": "sbc",
+  "anchor": "S20-R10",
+  "anchor_found": true,
+  "quote_found": true,
+  "verdict": "PASS",
+  "quote_head": "The totals row uses the white surface (#ffffff), or the dark surface in dark mod"
+ },
+ {
+  "ticket": "SV-8965",
+  "kind": "spec",
+  "spec": "sbc",
+  "anchor": "S20-R12",
+  "anchor_found": true,
+  "quote_found": true,
+  "verdict": "PASS",
+  "quote_head": "The leftmost cell (header, body, totals) has 2rem of left padding; the rightmost"
+ },
+ {
+  "ticket": "SV-8965",
+  "kind": "spec",
+  "spec": "sbc",
+  "anchor": "S20-R14",
+  "anchor_found": true,
+  "quote_found": true,
+  "verdict": "PASS",
+  "quote_head": "The three tree levels are shown by indentation: the customer row is at the base;"
+ },
+ {
+  "ticket": "SV-8966",
+  "kind": "spec",
+  "spec": "sbc",
+  "anchor": "S6-R5",
+  "anchor_found": true,
+  "quote_found": true,
+  "verdict": "PASS",
+  "quote_head": "On restore, any saved value that is no longer valid is discarded, and that setti"
+ },
+ {
+  "ticket": "SV-8966",
+  "kind": "spec",
+  "spec": "sbc",
+  "anchor": "S6-R6",
+  "anchor_found": true,
+  "quote_found": true,
+  "verdict": "PASS",
+  "quote_head": "A saved value is treated as no longer valid when it is an unknown date range, a "
+ },
+ {
+  "ticket": "SV-8966",
   "kind": "note",
   "verdict": "n/a (not a spec quote)",
-  "detail": "Both wordings appear a second time in the notifications table in secti"
+  "detail": "S6-R6 names the date range and the location, so those two are squarely"
  },
  {
-  "ticket": "SV-8953",
-  "kind": "spec",
-  "spec": "tu",
-  "anchor": "S8-R12",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "The expand/collapse controls (per-row S4-R1 and the all-rows control S4-R4) are "
- },
- {
-  "ticket": "SV-8954",
-  "kind": "spec",
-  "spec": "tu",
-  "anchor": "S10-R4",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "The per-row Location column is one of the toggleable columns for a user with acc"
- },
- {
-  "ticket": "SV-8954",
-  "kind": "spec",
-  "spec": "tu",
-  "anchor": "S9-R9",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "The report shows a per-row Location column to any user with access to more than "
- },
- {
-  "ticket": "SV-8954",
-  "kind": "note",
-  "verdict": "n/a (not a spec quote)",
-  "detail": "One honest caveat on the first half: requirement S7-R13 of the same de"
- },
- {
-  "ticket": "SV-8954",
+  "ticket": "SV-8966",
   "kind": "note-anchor",
-  "anchor": "S7-R13",
+  "anchor": "S6-R6",
   "found_in": [
    "sbc",
+   "sbr",
+   "pv",
    "tu",
-   "wip"
+   "wip",
+   "iv"
   ],
   "verdict": "PASS"
  },
  {
-  "ticket": "SV-8954",
+  "ticket": "SV-8966",
   "kind": "note-anchor",
-  "anchor": "S10-R4",
+  "anchor": "S18-R9",
   "found_in": [
    "sbc",
-   "sbr",
-   "tu",
-   "wip",
-   "iv"
+   "sbr"
+  ],
+  "verdict": "PASS"
+ },
+ {
+  "ticket": "SV-8966",
+  "kind": "note-anchor",
+  "anchor": "S18-R9",
+  "found_in": [
+   "sbc",
+   "sbr"
   ],
   "verdict": "PASS"
  }

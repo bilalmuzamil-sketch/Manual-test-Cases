@@ -1,0 +1,42 @@
+{
+ "description": "Four things about how the Sales By Customer table is drawn do not match the written description: the heading, customer and totals rows are the pale blue-grey where they should be white; the asset and invoice rows are a third, darker grey that appears nowhere in the description; the outer cells have about 14 pixels of padding where 32 is asked for; and invoice rows are not indented deeper than asset rows.",
+ "steps": [
+  "Open Reports, then Sales By Customer, and choose This Year.",
+  "Expand a customer and then one of its assets, so all three kinds of row are on screen together — Aaborough Works down to invoice S-16244 was used here.",
+  "Read the background colour of the heading row, a customer row and the totals row, then of an asset row and an invoice row. Measure the padding on the outer cells, and compare where an invoice number starts against where a customer name starts. Seen in light mode at 1680 x 1050. This was seen with Product Type Parts & Service and both locations selected, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310."
+ ],
+ "current": "The heading row, the customer rows and the totals row all read rgb(249, 250, 251) — the pale blue-grey. The asset and invoice rows read rgb(238, 241, 245). The outer cells measure 14.28 pixels of padding. The invoice number sits at the same left edge as the customer name above it.\n\nEvery number in the table is correct and the rows do still separate by shade. Asset rows are indented one step; it is only the invoice rows that are not indented further.\n\nThe rest of the same story is right and was checked: the pinned Subtotal cell takes its own row colour, the table has no rounded corners, the totals row has its top border and bold text, and dark mode darkens every surface.",
+ "expected": "Heading cells, customer rows and the totals row use the white surface; asset and invoice rows use the pale blue-grey; the leftmost and rightmost cells have 2rem of padding on the outside edge; and invoice rows are indented one level deeper than asset rows.",
+ "source": [
+  [
+   "spec",
+   "sbc",
+   "S20-R8",
+   "Column-header cells and customer summary rows use the white surface (#ffffff), or the dark surface in dark mode."
+  ],
+  [
+   "spec",
+   "sbc",
+   "S20-R9",
+   "Asset rows and invoice rows use the blue-grey background (#f9fafb), or the dark background in dark mode."
+  ],
+  [
+   "spec",
+   "sbc",
+   "S20-R10",
+   "The totals row uses the white surface (#ffffff), or the dark surface in dark mode, with a top border and bold text."
+  ],
+  [
+   "spec",
+   "sbc",
+   "S20-R12",
+   "The leftmost cell (header, body, totals) has 2rem of left padding; the rightmost cell has 2rem of right padding."
+  ],
+  [
+   "spec",
+   "sbc",
+   "S20-R14",
+   "The three tree levels are shown by indentation: the customer row is at the base; asset rows are indented one level (their chevron and vehicle icon sit in from the customer); invoice rows are indented one level deeper."
+  ]
+ ]
+}

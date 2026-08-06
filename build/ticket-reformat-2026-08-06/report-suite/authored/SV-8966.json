@@ -1,0 +1,28 @@
+{
+ "description": "Sales By Customer remembers the filters a user left behind. When a remembered choice is no longer a real choice it should be dropped and the filter should fall back to its normal default. Two of the four do not.\n\nA remembered location that no longer exists is kept, and a remembered customer that no longer exists is kept, each showing \"1 selected\" for something the user cannot see or name. A remembered date range that is no longer offered is also kept, and the report opens completely empty.",
+ "steps": [
+  "Open Reports, then Sales By Customer, so the remembered view is created. It is held in the browser under the name report_view:sales-by-customer.",
+  "Change that remembered view so it holds a location identifier and a customer identifier that do not exist, and a date range value that is not one of the offered ranges.",
+  "Reload the report and read the date control, the table, and the Location and Customer filters. This was seen with Product Type Parts & Service and both locations selected, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310."
+ ],
+ "current": "The date control reads \"Select Date Range\" and the table is empty. Location and Customer each read \"1 selected\". Product Type has gone back to Parts & Service and every column is showing again, so those two fall back correctly.\n\nNothing is lost and the user can put the filters right by hand. The date-range one is the least pleasant, because the report looks broken rather than filtered.\n\nRemembering itself works and was checked first: date range, Product Type, locations, sort and the chosen columns are all restored exactly, and each report keeps its own separate remembered view.",
+ "expected": "Anything remembered that is no longer valid is dropped, and that filter falls back to its default — This Month for the date range, All locations, and all customers.",
+ "source": [
+  [
+   "spec",
+   "sbc",
+   "S6-R5",
+   "On restore, any saved value that is no longer valid is discarded, and that setting uses its default instead."
+  ],
+  [
+   "spec",
+   "sbc",
+   "S6-R6",
+   "A saved value is treated as no longer valid when it is an unknown date range, a location the user no longer has access to, a sort column that no longer exists, or a column set that does not match the current columns."
+  ],
+  [
+   "note",
+   "S6-R6 names the date range and the location, so those two are squarely covered. The customer half rests on requirement S18-R9 of the same description, which says that when the results reload \"the still-present selected ids are kept, ids no longer present are dropped, and newly-present customers are not added\". Read live today, S18-R9 speaks about a reload rather than about restoring a remembered view, so the customer half is the weaker of the two claims and is stated here as such."
+  ]
+ ]
+}

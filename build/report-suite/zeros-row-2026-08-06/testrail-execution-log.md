@@ -101,3 +101,24 @@ restore *"and the totals row shows zeros"* to item 4, replace note 4a with the s
 naming SV-8991, set the marker to `AUTOMATION: READY - EXPECT FAIL (SV-8991)`, and pin its `refs` to
 v15 (they read `SBC spec v13 2026-07-31`). **This is the single most important follow-up from this pass**
 — leaving it half-repaired means the screen half of a filed defect still cannot fail.
+
+---
+
+## ✅ FOLLOW-UP CLOSED — C30114 WAS REPAIRED LATER THE SAME DAY
+
+The authorisation asked for above was given, and the repair was executed exactly as this section
+specified: the S18-N1 assertion *"and the totals row shows zeros"* restored to item 4, the false note 4a
+removed, the Rule-61 symptom block with all three outcomes added before the provenance line, the marker set
+to `AUTOMATION: READY - EXPECT FAIL (SV-8991)`, and `refs` repinned `v13 2026-07-31` → **`v15 2026-08-05`**.
+
+**One `update_case`, HTTP 200, 30 fields compared, 0 mismatches.** The provenance build line was **not**
+re-stamped — nothing was re-observed, and the branch is unreachable. **Run 359 proven untouched BY RESULT
+ID** this time (a PRE snapshot was taken before the write, which this pass could not do): all 535 records
+present by id, 0 new, 0 graded fields changed; the only movement is `case_refs` on the 2 records belonging
+to test 2019167 = C30114, the declared read-time echo.
+
+**Both halves of SV-8991 are now armed.** Full working: `../full-viu-2026-08-06/execution-log.md`.
+
+**The honest limit in this pass's own words still stands for C30114 too:** its DEVIATION rests on the
+`v3.5-7168d14` observation and was **not** re-observed, so the Rule-61 outcome (3) line is what will catch
+the fix if it has already shipped.

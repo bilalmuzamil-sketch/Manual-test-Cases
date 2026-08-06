@@ -1,0 +1,24 @@
+{
+ "description": "The Customer filter on Sales By Customer finds and applies the right customers, but three things about it are wrong.\n\nIt carries no magnifier icon, so nothing tells the user it can be searched. With two customers picked it reads \"2 customers\" rather than \"2 selected\". And while the user is typing a search, the control keeps showing the summary label instead of the typed text.",
+ "steps": [
+  "Open Reports, then Sales By Customer, and look at the Customer filter in the toolbar. There is no magnifier icon on it — only a drop-down arrow.",
+  "Open the Customer filter, type Aacrest and tick Aacrest Works, then type Aacastle and tick Aacastle Services. Close the list and read the control.",
+  "Open it again and type any text, and watch the closed control behind the list. This was seen at 1680 x 1050 in desktop Chrome, date range This Month. This was seen with Product Type Parts & Service and both locations selected, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310."
+ ],
+ "current": "There is no magnifier icon on the control; the Location filter beside it does carry its own icons, so this is not a general styling choice.\n\nWith two customers picked the closed control reads \"2 customers\".\n\nWhile the user types, the closed control still shows the summary label — the typed text goes into a separate search box inside the open list and never appears in the control.\n\nThe search itself is correct: typing matches anywhere inside a name, the list is limited to customers with invoices in the chosen date range, and a ticked customer shows a checkmark.",
+ "expected": "The control carries a magnifier icon, reads \"2 selected\" when more than one customer is picked, and shows the typed text in place of the summary label while the user is searching.",
+ "source": [
+  [
+   "spec",
+   "sbc",
+   "S18-R2",
+   "The filter is a multi-select with server-backed type-ahead. The control carries a search (magnifier) icon marking it as searchable."
+  ],
+  [
+   "spec",
+   "sbc",
+   "S18-R5",
+   "The collapsed filter label reads \"All customers\" when the filter is in the all-customers state (S18-R4), \"None\" when the selection is an empty set, the customer's name when exactly one customer is selected, and \"N selected\" when more than one customer is selected (N is the number of selected customers). While the user is typing a search query in the filter, the field shows the query text instead of the summary label; the summary label returns when the query is cleared or the field loses focus."
+  ]
+ ]
+}

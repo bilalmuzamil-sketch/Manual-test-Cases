@@ -1,0 +1,25 @@
+{
+ "description": "Nothing a user chooses on Sales By Customer is written into the browser's address bar. The address stays at the plain report address whatever the date range or Product Type, so the report cannot be shared or bookmarked at a particular range — whoever receives the link just gets their own saved view.",
+ "steps": [
+  "Open Reports, then Sales By Customer, and look at the browser address bar.",
+  "Change the date range to Last Month and apply it. Watch the address bar for at least fifteen seconds.",
+  "Change the Product Type to Service only, and watch the address bar again.",
+  "Expand a customer, then an asset, and click an invoice number. Look at the address you came from. This was seen with Product Type Parts & Service and both locations selected, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310."
+ ],
+ "current": "The address stays at /reports/sales-by-customer throughout — after the date change (sampled ten times over fifteen seconds), after the Product Type change, and at the moment of clicking through to an invoice.\n\nEverything else about those steps works: the report does reload for the new range and Product Type, and the browser's back button restores Last Month and Service Only correctly. The requests the page sends carry the new values each time. The saved view is a separate mechanism and works; it is the address bar that stays bare.",
+ "expected": "The chosen date range and Product Type are written into the page link, so the report can be shared or bookmarked at that range and restored from the link.",
+ "source": [
+  [
+   "spec",
+   "sbc",
+   "S2-R6",
+   "When the user changes the date range, the chosen value is written to the page link so the report can be shared or bookmarked at that range."
+  ],
+  [
+   "spec",
+   "sbc",
+   "S9-R3",
+   "Before navigating, the active date range and Product Type are written to the page link so the report can be restored."
+  ]
+ ]
+}
