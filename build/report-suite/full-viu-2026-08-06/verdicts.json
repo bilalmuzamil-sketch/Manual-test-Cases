@@ -1,4 +1,85 @@
 {
+ "30322": {
+  "anchor": "PV S1-R1",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4a",
+  "note": "Reports navigation carries a PARTS group (data-test-id report_nav_group_parts) holding Parts Velocity and Inventory Value; report_nav_parts_velocity opens /reports/parts-velocity.",
+  "verdict": "PASS"
+ },
+ "30323": {
+  "anchor": "PV S1-R2/S2-R2",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4a",
+  "note": "On a first visit in a fresh browser the date trigger reads \"This Year\" and the report fetched automatically as range=custom&start_date=2026-01-01&end_date=2026-08-06 with no user action.",
+  "verdict": "PASS"
+ },
+ "30328": {
+  "anchor": "PV S2-R1",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4b/b4e",
+  "note": "Type filter is the first control in the filter row (x=935, left of Category/Vendor/Bin/Location), single-select, three options Both / Inventory / Special Order, default Both; choosing Special Order re-queried with type=special_order.",
+  "verdict": "PASS"
+ },
+ "30330": {
+  "anchor": "PV S2-R2 (Chris 8/5 decision)",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4c",
+  "note": "Nine presets in the specified order - Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week - plus a month calendar, a live \"Range: 218 days\" readout and an Apply button. No Today, no Yesterday, no item called Custom, no All Time. Matches the case as written; the PV spec text itself still lists the old eleven options and has not caught up with Chris's 4 Aug decision.",
+  "verdict": "PASS"
+ },
+ "30333": {
+  "anchor": "PV S2-R6",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4c",
+  "note": "Lower-case \"brakeclean\" returned the BRAKECLEAN rows and \"BRAKE & PARTS\" returned them too, so the toolbar search matches part number and description case-insensitively; the request carried &search=.",
+  "verdict": "PASS"
+ },
+ "30335": {
+  "anchor": "PV S2-R8",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4d/b4e",
+  "note": "Choosing the bin \"General Storage\" sent &bins=0dfc09d7-479b-11f1-9bed-020a144de1a3 and narrowed the table.",
+  "verdict": "PASS"
+ },
+ "30336": {
+  "anchor": "PV S2-R8",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4e",
+  "note": "Type = Special Order plus the bin \"General Storage\" returned zero rows and the empty state, exactly as the requirement says it must.",
+  "verdict": "PASS"
+ },
+ "30337": {
+  "anchor": "PV S2-R9",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4b/b4a",
+  "note": "The Location filter is correctly the rightmost control, lists only accessible locations and narrows the report when used - but on a genuine first visit in a fresh browser it opens on \"All locations\" and returns both locations, where S2-R9 requires the user's currently active location (Staging Heavy Duty - 9919). Filed as SV-8939.",
+  "verdict": "DEVIATION"
+ },
+ "30338": {
+  "anchor": "PV S2-R11/S2-N1",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4c",
+  "note": "A search for ZZZNOSUCHPARTZZZ produced no rows and the label \"Empty bays, endless possibilities. Get Going!\" - the spec string verbatim.",
+  "verdict": "PASS"
+ },
  "30341": {
   "anchor": "PV S3-R1a",
   "batch": 3,
@@ -60,6 +141,51 @@
   "date": "2026-08-06",
   "evidence": "pv-rows.json",
   "note": "Across 250 rows the only nulls are On Hand, Turns / Yr, Min and Max, and they occur on exactly the two special-order rows. Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Demand, Revenue and Margin are never null on any row.",
+  "verdict": "PASS"
+ },
+ "30351": {
+  "anchor": "PV S4-R1",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4b",
+  "note": "The column chooser lists exactly 20 entries: Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns/Yr, Min, Max. No internal cost column is offered.",
+  "verdict": "PASS"
+ },
+ "30352": {
+  "anchor": "PV S4-R2/S4-R3/S3-R10",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4i",
+  "note": "The 14 default columns and their order are exactly right, and the 6 secondary columns start hidden. The Location column is shown but sits sixth, after Vendor, where item 3 of the case and S7-R8 require it leftmost before Type. Filed as SV-8938.",
+  "verdict": "DEVIATION"
+ },
+ "30353": {
+  "anchor": "PV S4-R4",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4i",
+  "note": "Hiding Category removed it; re-enabling it put it back between Description and Vendor, its canonical slot. Zero report requests fired during either toggle, so nothing reloaded.",
+  "verdict": "PASS"
+ },
+ "30354": {
+  "anchor": "PV S4-R6",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4j",
+  "note": "Type = Inventory and a Part # ascending sort were written to report_view:parts-velocity and, after leaving and returning, the first request carried type=inventory&sortBy=part_number&descending=false and the Type control read Inventory.",
+  "verdict": "PASS"
+ },
+ "30358": {
+  "anchor": "PV S4-E1",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4i",
+  "note": "All 20 columns were switched off; only the automatic Location column remained and the saved view stored columns:[]. On the next visit the 14-column default came back - the empty selection was not restored.",
   "verdict": "PASS"
  },
  "30359": {
@@ -196,6 +322,105 @@
   "evidence": "-",
   "note": "Not driven this pass: needs one sale whose stock movement and work-order dates fall in different windows. Nothing was inferred from the data that happens to exist.",
   "verdict": "NOT OBSERVED"
+ },
+ "30375": {
+  "anchor": "PV S6-R1",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4b",
+  "note": "The three-dot button (Export report) opens exactly two items in this order: Download (PDF) then Download (CSV).",
+  "verdict": "PASS"
+ },
+ "30376": {
+  "anchor": "PV S6-R2/S6-R11",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "pv-BRAKECLEAN.csv/.pdf",
+  "note": "With search BRAKECLEAN the export request carried the same filters and the files held only BRAKECLEAN rows; the PDF header read Type: Both, Search: \"BRAKECLEAN\", Locations: All locations and the CSV carried \"Locations: All locations\" as a leading metadata line.",
+  "verdict": "PASS"
+ },
+ "30377": {
+  "anchor": "PV S6-R3",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "pv-reenabled.csv",
+  "note": "units_returned was sent APPENDED at the end of the columns parameter and the export still emitted it in its canonical slot, immediately after Units Sold. The build-delta the spec warns about is fixed.",
+  "verdict": "PASS"
+ },
+ "30378": {
+  "anchor": "PV S6-R4/S3-R3",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "pv-min-false.csv/pv-min-true.csv",
+  "note": "Sorting on Min: ascending put the em-dash rows first and 30 then 144 after; descending put 144 first and the em-dash rows last. Min and Max are honoured and null placement matches the screen.",
+  "verdict": "PASS"
+ },
+ "30379": {
+  "anchor": "PV S6-R6",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "pv-long.pdf",
+  "note": "Filename velocity-report.pdf, A3 landscape (1190.55 x 841.89 pt), title Parts Velocity, Part # untruncated and the shop logo all correct - but Description, Category and Vendor are NOT truncated to 18 characters. A 117-character description and a 30-character category printed in full. Filed as SV-8934.",
+  "verdict": "DEVIATION"
+ },
+ "30380": {
+  "anchor": "PV S6-R5/S6-R6/S6-R8",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "pv-BRAKECLEAN.csv",
+  "note": "Filename velocity-report.csv correct and the full untruncated text correct, but Last Sale prints the words \"54 days\" where S6-R8 requires the raw integer. Filed as SV-8935.",
+  "verdict": "DEVIATION"
+ },
+ "30381": {
+  "anchor": "PV S6-R7/S6-R8",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "pv-BRAKECLEAN.csv/pv-long.pdf",
+  "note": "A null vendor printed as an em-dash in the CSV and null Unit Cost / Sell Price / Margin % / Last Sale printed as em-dashes in the PDF; Revenue, Margin and the counts printed $0.00 / 0. The PDF prints Last Sale as \"54 days\".",
+  "verdict": "PASS"
+ },
+ "30384": {
+  "anchor": "PV S6-R9/S6-N1",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4j",
+  "note": "The failure toast correctly passes through the server message (\"This report is too large to export...\"), but both success toasts read \"Success / Data exported successfully.\" instead of \"Velocity report exported (CSV)\" / \"(PDF)\". Filed as SV-8936.",
+  "verdict": "DEVIATION"
+ },
+ "30388": {
+  "anchor": "PV \u00a72/S8",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4f",
+  "note": "The API returns one page at a time: rowsNumber 10064, 30 rows per page, page 1 and page 2 disjoint with demand continuing to descend.",
+  "verdict": "PASS"
+ },
+ "30389": {
+  "anchor": "PV S2-R10",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4c/b4e/b4f",
+  "note": "Every filter and search change re-queried the server and came back on page 1 - observed on search, type, bin, category and location.",
+  "verdict": "PASS"
+ },
+ "30390": {
+  "anchor": "PV S3-R3",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4f/b4k",
+  "note": "Sorting is resolved server-side: on vendor ascending the first ten rows were all null, on descending none were. A header click re-queries; first click ascending, second reverses to descending.",
+  "verdict": "PASS"
  },
  "30534": {
   "anchor": "IV S1-R1",
@@ -718,6 +943,15 @@
   "evidence": "-",
   "note": "Requires a recorded past day to exist, then a category rename, then reading that recorded day. The as-of history in this organisation could not be confirmed to hold a usable earlier recorded day, and the snapshot store is not inspectable.",
   "verdict": "NOT OBSERVED"
+ },
+ "38914": {
+  "anchor": "PV S7-R8/S3-R10/S6-R11",
+  "batch": 4,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4b/b4e/pv-BRAKECLEAN.csv",
+  "note": "Values are right - each inventory row carries its own location name and a merged special-order row reads \"Multiple\" - and the column appears only with more than one location in scope and is absent from the 20-entry picker. But it renders sixth, after Vendor, not leftmost before Type, on screen and in both downloads. Filed as SV-8938.",
+  "verdict": "DEVIATION"
  },
  "38917": {
   "anchor": "IV S7-R6/S3-R1",

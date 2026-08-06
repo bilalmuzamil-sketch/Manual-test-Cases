@@ -86,3 +86,35 @@ case containing raw markup.
 plain text). They sit in Sales By Representative, Work In Progress and Technician Utilization,
 which this session did not reach. They carry no plain-text `AUTOMATION:` marker because their
 marker is wrapped in `<p>` tags.
+
+## Update after batch 4 (Parts Velocity, 2026-08-06)
+
+**Application data: still nothing created, deleted or altered.** Every observation this batch used the
+signed-in Admin session read-only over the report read endpoints, the export endpoints and the report
+page itself. The only writes anywhere were to **browser local storage inside a throwaway headless
+context** (`report_view:parts-velocity`, written by the product itself when a filter, sort or column
+selection changes, and once removed by us to force a genuine first-visit state). That context is
+destroyed when the script ends; nothing persists on the server or in any real user's browser.
+No role was changed, no role reset, no organisation setting written.
+
+| Batch | Operation | Count | Verification |
+|---|---|---|---|
+| 4 (Parts Velocity) | `update_case` | 26 | every one HTTP 200, re-GET, 30 fields compared, 0 mismatches, 0 collateral |
+
+Running TestRail total: **137 `update_case`** over **125 distinct cases**. Still 0 add · 0 delete ·
+0 section · **0 run writes** · **0 results logged**.
+
+Six Story Defects filed, all in the Rule-52 shape (issuetype 10007 · parent = the owning story ·
+priority Low · `relates to` link to the same story · no Product Area), every field read back —
+11 checks each, all PASS:
+
+| Key | Parent story | Summary |
+|---|---|---|
+| [SV-8934](https://shopview.atlassian.net/browse/SV-8934) | SV-8646 | Parts Velocity PDF prints Description, Category and Vendor in full instead of shortening them to 18 characters |
+| [SV-8935](https://shopview.atlassian.net/browse/SV-8935) | SV-8646 | Parts Velocity spreadsheet prints Last Sale as the words "54 days" instead of a plain number |
+| [SV-8936](https://shopview.atlassian.net/browse/SV-8936) | SV-8646 | Parts Velocity download success message is a general one and does not name the report or the file type |
+| [SV-8937](https://shopview.atlassian.net/browse/SV-8937) | SV-8646 | Parts Velocity PDF heading shows an end date one day later than the range asked for, and is labelled "Start Date Range" |
+| [SV-8938](https://shopview.atlassian.net/browse/SV-8938) | SV-8643 | Parts Velocity Location column sits sixth, after Vendor, instead of first before Type |
+| [SV-8939](https://shopview.atlassian.net/browse/SV-8939) | SV-8642 | Parts Velocity opens on All locations instead of the location the user is working in |
+
+No existing ticket was edited, commented on, transitioned or re-prioritised.
