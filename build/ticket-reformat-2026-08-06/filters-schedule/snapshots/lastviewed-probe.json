@@ -1,0 +1,11 @@
+{
+ "question": "Is `lastViewed` moved by our own API calls, or is it something else?",
+ "answer": "It is a PER-USER marker set by the Jira WEB UI. Our REST GETs and our PUT do not set it.",
+ "evidence": [
+  "SV-8843 was read by us at least 5 times today (snapshot + a 3-read probe + this check) and its lastViewed still reads 2026-08-05T12:31:46.607-0500 -- unmoved.",
+  "SV-8959 was read AND written (PUT 204) by us today and its lastViewed is still null.",
+  "SV-8845's lastViewed moved to 2026-08-06T08:20:05.198-0500 (13:20:05Z), which is 9 minutes after Stefan Mitrovic raised its priority and ~7 minutes BEFORE our write -- so somebody opened SV-8845 in the Jira web UI under this shared account in that window."
+ ],
+ "consequence": "lastViewed is per-user metadata, not part of the issue's content, and nothing we did moved it. It is therefore excluded from the field comparison, and the browser view is reported as an observed event rather than absorbed as noise.",
+ "not_a_content_change": "SV-8845's description, type, parent, priority, status, links, labels, assignee and attachments were all compared and unmoved; only `updated` (our write) and `lastViewed` (someone's browser view) differ."
+}

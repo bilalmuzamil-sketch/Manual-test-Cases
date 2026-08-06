@@ -1,0 +1,251 @@
+{
+ "content": [
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Description",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "The work order filters on the left of the Schedule can be switched on one at a time but not switched off in one go \u2014 there is no 'Clear all'. There is also nothing on the Filters button to show that filters are on or how many, so a planner can be looking at a filtered list without realising it and then has to hunt through three groups of tick boxes to undo it.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Steps to reproduce",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ],
+     "text": "Environment: ",
+     "type": "text"
+    },
+    {
+     "text": "QA branch sv8685 \u2014 https://sv8685.qa.shopview.com/schedule. Desktop browser, signed in as an Admin, with the location Staging Heavy Duty - 9919 selected.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Open Schedule.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Click 'Filters' in the left-hand panel.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Tick 'Unassigned' under Assignment and 'Approved' under Status.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Close the pop-up and note that the work order list is now narrowed.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Look at the Filters button for any badge or count showing that filters are on.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Open the pop-up again and look for a 'Clear all' control.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    }
+   ],
+   "type": "orderedList"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Current behaviour",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "There is no count or badge on the Filters button, so nothing on the closed button says a filter is on.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "There is no 'Clear all' anywhere in the pop-up. Every tick box has to be unticked one at a time.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "For a developer: the pop-up holds the heading 'FILTERS' and then the Assignment, Status and Priority tick boxes with their counts, and nothing else.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "Two screen recordings made by Ayesha Khan are attached to this ticket \u2014 'Reproduced on QA - 8857.mp4' shows the fault and 'Verified in QA.mp4' was recorded during her QA check.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Expected behaviour",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "The Filters button carries a small count of how many filters are on, and the pop-up has a 'Clear all' that resets every filter in one click.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Source",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "Epic SV-8685, story SV-8687 (Work Order Sidebar & Mini Calendar), and the Schedule specification (Confluence page 713031682), version 25.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "Section 5.1 (Work order filters): \"Filters live behind a 'Filter' button (with an active-count badge); there are no assignment tabs. Applying a filter narrows the flat card list, and 'Clear all' resets in one click.\" Both missing things \u2014 the count on the button and the one-click reset \u2014 are in that one sentence.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  }
+ ],
+ "type": "doc",
+ "version": 1
+}

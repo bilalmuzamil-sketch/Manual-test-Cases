@@ -1,0 +1,237 @@
+{
+ "content": [
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Description",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "On a narrow window the Schedule page slides sideways as a whole \u2014 the top navigation and the toolbar go with it \u2014 instead of only the grid scrolling, and the left-hand work order panel never folds away. A planner on a small window ends up scrolling the entire page left and right to see the end of the week while a third of the screen is still taken by the panel.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Steps to reproduce",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ],
+     "text": "Environment: ",
+     "type": "text"
+    },
+    {
+     "text": "QA branch sv8685 \u2014 https://sv8685.qa.shopview.com/schedule. Desktop browser, signed in as an Admin, with the location Staging Heavy Duty - 9919 selected.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Open Schedule in Week view for the week of 3 August 2026, which on this shop shows 22 technician rows and 55 shift blocks.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Make the browser window 960 pixels wide \u2014 the narrowest width the Schedule is meant to support.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Look at the left-hand work order panel, and try scrolling the page sideways.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Narrow the window further, to 900 pixels and then to 700, and look again each time.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Widen it to 1680 pixels and look once more.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    }
+   ],
+   "type": "orderedList"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Current behaviour",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "The left-hand panel keeps the same width all the way down \u2014 at 1000, 960, 900 and 700 pixels alike. It never folds away.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "The page itself is what scrolls sideways, not the grid. The page stays 1030 pixels wide however narrow the window gets, so the sideways scrollbar belongs to the whole page.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "There is no sideways scroller on the grid at all.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "At 1680 pixels there is no sideways scrolling, so this only appears once the window is narrowed. It happens at exactly 960 pixels, which is inside the supported range and not only an edge case. The page reports no errors at any width.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Expected behaviour",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "The grid \u2014 not the whole page \u2014 is what scrolls sideways, and the left-hand panel collapses once the window is narrow.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Source",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "Epic SV-8685, story SV-8686 (Schedule Grid Layout & Navigation), and the Schedule specification (Confluence page 713031682), version 25.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "Section 11 (Non-functional requirements), under Responsiveness: \"Minimum supported width is 960px (the grid scrolls horizontally below that), and the sidebar collapses on narrow viewports.\" Both halves are in that one sentence.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  }
+ ],
+ "type": "doc",
+ "version": 1
+}

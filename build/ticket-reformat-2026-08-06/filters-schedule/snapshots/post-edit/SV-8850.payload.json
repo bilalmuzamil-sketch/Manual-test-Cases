@@ -1,0 +1,228 @@
+{
+ "content": [
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Description",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "When a technician has more than three overlapping jobs on one day, the extra ones are folded away behind a '+N more' link. Clicking that link opens a box that shows only the date and the capacity bar \u2014 the hidden jobs are never listed. There is no other way to reach them from that view, so work that is genuinely on the schedule is invisible.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Steps to reproduce",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ],
+     "text": "Environment: ",
+     "type": "text"
+    },
+    {
+     "text": "QA branch sv8685 \u2014 https://sv8685.qa.shopview.com/schedule. Desktop browser, signed in as an Admin, with the location Staging Heavy Duty - 9919 selected.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Open Schedule and choose the Week view for the week of 2 to 8 August 2026.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Find technician Colleen Guerrero's row, Sunday 2 August. She has four overlapping jobs there \u2014 Ceview Builders unit 10, Pamill Paving unit 713, Xiriver Apparel unit 16604 and one more.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Note that only three blocks are drawn, with a '+1 more' link underneath them.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Click '+1 more'.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Read what is inside the box that opens.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    }
+   ],
+   "type": "orderedList"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Current behaviour",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "The box opens with the heading 'August 2, 2026' and a close X, and its body holds only the day cell and its capacity bar.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "No job is listed at all, so the fourth job cannot be seen or reached from this view.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "For a developer: the pop-up's body contains the day cell and capacity bar and zero shift blocks.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Expected behaviour",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "The box lists the hidden job or jobs, so the planner can see them and click through to them.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Source",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "Epic SV-8685, story SV-8693 (Overlap & Lane Stacking), and the Schedule specification (Confluence page 713031682), version 25.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "Section 4.7: \"Visible lanes are capped at 3. Additional overlapping shifts collapse into a '+N more' affordance that opens a popover listing the hidden shifts. This applies in day, week, and month views (week and month reach the overflow much sooner because cells are narrower).\" Listing the hidden shifts is the whole purpose the specification gives that control.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  }
+ ],
+ "type": "doc",
+ "version": 1
+}

@@ -1,0 +1,214 @@
+{
+ "content": [
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Description",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "In Month view a job spread over several days is drawn as one bar, and the bar does not say whose it is. Month view has no technician rows to read the name off, unlike Day and Week, so a planner looking at the month cannot tell who a job is booked to without opening it.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Steps to reproduce",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ],
+     "text": "Environment: ",
+     "type": "text"
+    },
+    {
+     "text": "QA branch sv8685 \u2014 https://sv8685.qa.shopview.com/schedule. Desktop browser, signed in as an Admin, with the location Staging Heavy Duty - 9919 selected.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Open Schedule and switch to Month view for August 2026.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Find a job that runs over several days \u2014 it will say 'Part of a series'. On this shop, Xiriver Apparel unit 24069 (19 lines) and Kastone Solutions unit HE2-001 (7 lines) are both there.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Read the bar from left to right.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "For a contrast, switch to Week view and look at the same job.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    }
+   ],
+   "type": "orderedList"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Current behaviour",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "The bar reads, for example, 'Xiriver Apparel  24069  19 Lines  Part of a series', and another reads 'Kastone Solutions  HE2-001  7 Lines  Part of a series'. No technician name or initials appear on it at all.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "Six series bars were read in Month view and none carried a technician. In Week view the technician is the row, so the name is available there \u2014 this is specific to Month view.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "It is not a display setting: the VIN switch and the department filters were not the cause; the technician is simply not part of the bar's text.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Expected behaviour",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "The label at the start of the bar includes the technician the job is booked to.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Source",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "Epic SV-8685, story SV-8692 (Linked Series & Banners), and the Schedule specification (Confluence page 713031682), version 25.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "Section 4.6 (Linked series and banners): \"Month view: a continuous bar wrapping across week rows, labeled once at the start (with the technician), with a faded 'continues' label on later weeks, empty weekend columns (when business hours are not set for weekends).\" The words in brackets are the part that is missing.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  }
+ ],
+ "type": "doc",
+ "version": 1
+}

@@ -1,0 +1,301 @@
+{
+ "content": [
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Description",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "A Work Orders link that already carries a filter works on a desktop screen but not on a phone. On a phone the filter buttons light up as though the filter had been applied, while the list underneath shows a completely different set of work orders.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Steps to reproduce",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ],
+     "text": "Environment: ",
+     "type": "text"
+    },
+    {
+     "text": "QA branch sv8785 \u2014 https://sv8785.qa.shopview.com/workorders. Phone-sized browser, 390 x 844 with touch on, signed in as an Admin.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "On a phone, or in a browser window 390 pixels wide with touch turned on, sign in as an Admin and pick the location Staging Heavy Duty - 9919.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Open this exact address: https://sv8785.qa.shopview.com/workorders?status=declined&tab=all",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Read the filter buttons above the list.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Read the status and the customer name on the work order cards below them.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "For a contrast in the same sitting, open the same address again in a desktop-sized window.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    }
+   ],
+   "type": "orderedList"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Current behaviour",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "The filter buttons say a filter is on \u2014 \"All Filters (1)\" and \"Status (1)\" are both highlighted in blue.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "The cards listed are not Declined work orders at all. They are Estimate work orders for the customer Aagate Landscaping; the first three are S2-15017, S2-14846 and S2-13145.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "The same address in a desktop window lists Declined work orders correctly, so this happens only on the phone layout.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "For a developer: the list request the phone sends asks for status \"estimate\" instead of the \"declined\" the address asked for. Choosing Status and then Paid by hand is sent correctly, so only filter state arriving from the address bar is affected.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "The two screenshots below were taken on the phone layout at the moment described above.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "layout": "align-start",
+    "localId": "e870d96bd011",
+    "width": 412,
+    "widthType": "pixel"
+   },
+   "content": [
+    {
+     "attrs": {
+      "alt": "image-20260805-025923.png",
+      "collection": "",
+      "height": 787,
+      "id": "7d8081e6-e8ae-498d-ad5f-a028429046bc",
+      "localId": "52fd4530752c",
+      "type": "file",
+      "width": 412
+     },
+     "type": "media"
+    }
+   ],
+   "type": "mediaSingle"
+  },
+  {
+   "attrs": {
+    "layout": "align-start",
+    "localId": "6d694337d711",
+    "width": 402,
+    "widthType": "pixel"
+   },
+   "content": [
+    {
+     "attrs": {
+      "alt": "image-20260805-025741.png",
+      "collection": "",
+      "height": 791,
+      "id": "79cea153-1115-48bd-85a2-550147615ccd",
+      "localId": "92b0c3ce294b",
+      "type": "file",
+      "width": 402
+     },
+     "type": "media"
+    }
+   ],
+   "type": "mediaSingle"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Expected behaviour",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "The page opens with the Declined filter already applied and lists only Declined work orders, exactly as it does on a desktop screen.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Source",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "Epic SV-8785, story SV-8797 (Mobile Filter Bar), and the Filters specification (Confluence page 572030978), version 19.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "Requirement S11-R2: \"When a user opens a URL that contains filter state, the Work Orders page loads with those filters pre-applied and the table already filtered\".",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "Requirement S12-R2 makes it apply on a phone too: \"The filter chips behave like desktop with one exception (see S12-R5): tapping a chip opens its dropdown, selections update the chip appearance, and 'Clear filters' appears when active\". The one exception it names is about holding selections behind an Apply button, not about which records are listed.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  }
+ ],
+ "type": "doc",
+ "version": 1
+}

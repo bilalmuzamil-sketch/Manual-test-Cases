@@ -1,0 +1,214 @@
+{
+ "content": [
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Description",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "When you hover a shift that has a clash, the tooltip does warn you, but the warning sits at the very bottom, several rows below the customer name, and the customer name row carries no warning mark. The customer name is the first thing anyone reads, so a planner scanning quickly can miss that the shift clashes at all.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Steps to reproduce",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ],
+     "text": "Environment: ",
+     "type": "text"
+    },
+    {
+     "text": "QA branch sv8685 \u2014 https://sv8685.qa.shopview.com/schedule. Desktop browser, signed in as an Admin, with the location Staging Heavy Duty - 9919 selected.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Open Schedule in Week view for the week of 3 August 2026.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Find a shift with an amber warning triangle on the block. The one used here was Brabay Maintenance, VIN C44ECN300699, Tuesday 4 August, 27 lines, technician Ayesha Khan \u2014 it has three clash reasons at once.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Hover over the middle of that block and wait for the tooltip. Hover the block, not the warning triangle, which has a small tooltip of its own.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Read the tooltip from the top down.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    }
+   ],
+   "type": "orderedList"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Current behaviour",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "The first row is just the customer name \u2014 'Brabay Maintenance' \u2014 with no warning mark beside it.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "The warning appears only in the last row, as 'Starts before working hours - Extends past working hours - Double-booked' with a triangle beside it. The warning text is amber, which is correct.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "The rest of the tooltip renders correctly \u2014 customer, VIN, date and time, technician, line list and progress bar \u2014 so only the position of the warning mark is wrong.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Expected behaviour",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "The warning mark sits next to the customer name on the first line of the tooltip. The reason line in amber at the bottom is correct and stays.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Source",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "Epic SV-8685, story SV-8695 (Shift Detail Modal & Hover Tooltips), and the Schedule specification (Confluence page 713031682), version 25.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "Section 4.13 (Hover tooltips) sets out the order of the tooltip's contents: \"Shift tooltip: customer name (plus the conflict icon if conflicted); unit, vehicle, and VIN; date and time range; technician; scope summary ('N lines - Xh'); the individual line names as a short list capped at 3 with a '+N more lines' row (no line statuses); a time-logged progress bar ('X / Yh'); and the conflict reason in amber when conflicted.\" So the reason at the bottom is right; what is missing is the icon beside the customer name on the first line.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  }
+ ],
+ "type": "doc",
+ "version": 1
+}

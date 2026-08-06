@@ -1,0 +1,283 @@
+{
+ "content": [
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Description",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "Every time on the Schedule is shown six hours later than the time the job was scheduled for. A job put on a technician's calendar for 7:00 in the morning appears as 1:00 in the afternoon \u2014 on the block, in the hover summary, in the shift window and in the Day view. The 'now' marker is wrong by the same six hours.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "This makes the Schedule unusable as a planning board: a morning job looks like an afternoon job, and a 7:00 AM to 7:00 PM day shift reads 1:00 PM to 1:00 AM and spills onto the next day.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Steps to reproduce",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ],
+     "text": "Environment: ",
+     "type": "text"
+    },
+    {
+     "text": "QA branch sv8685 \u2014 https://sv8685.qa.shopview.com/schedule. Desktop browser, signed in as an Admin, with the location Staging Heavy Duty - 9919 selected.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Open Schedule from the top navigation and choose the Week view.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "In the left-hand panel, type S-15855 into 'Search work orders' to find the Vuchester Retail work order, unit 10123073, line 'Service - Mobile service call made by George Donald 403-369-7067'.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Check technician Ayesha Khan's hours first, in Administration then Staff, then Edit Staff Member: Monday 7:00 AM to 9:00 PM and Tuesday to Friday 7:00 AM to 7:00 PM. So a job placed on her should start at 7:00 in the morning.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Drag that work order card onto Ayesha Khan's row, on the Tuesday column.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Hover the new block and read the time range in the pop-up summary.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Click the block and read the two time boxes in the shift window.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Switch to the Day view for that date. Read where the block sits against the hour labels, and read the time printed on the 'now' marker.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    }
+   ],
+   "type": "orderedList"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Current behaviour",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "Every time reads six hours later than it should. The 7:00 AM job reads 1:00 PM. A 9:00 AM job reads 3:00 PM. The 'now' marker read 4:11 PM while the clock at the shop read 10:11 AM.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "The date can roll over too: a 7:00 AM to 7:00 PM shift reads 1:00 PM to 1:00 AM and is drawn partly on the following day.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "For a developer: the times are stored correctly and shown wrongly. A shift saved as 16:01 UTC (10:01 in the shop's own time zone, America/Edmonton, which is six hours behind) is displayed as 4:01 PM. Forcing the browser's own time zone to America/Edmonton gives the same wrong result, so this is not the viewer's machine.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Expected behaviour",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "The Schedule shows the time at the shop. A job scheduled to start at 7:00 in the morning reads 7:00 AM everywhere \u2014 on the block, in the hover summary, in the shift window and in the Day view \u2014 and the 'now' marker matches the clock on the shop wall.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Source",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "Epic SV-8685, story SV-8686 (Schedule Grid Layout & Navigation), and the Schedule specification (Confluence page 713031682), version 25.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "Section 4.2: \"Every shift has a start time. It is derived from a hierarchy: The technician's configured working hours take precedence.\" The technician in the steps above has hours of 7:00 AM to 7:00 PM, so a shift placed on her must read 7:00 AM, not 1:00 PM.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "Section 4.8, on the Day view: \"Now line. A vertical indicator showing the current time, with a label on hover over the grid.\" The current time for a shop is the time on the shop's own clock.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "One honest note: the specification writes no rule about time zones anywhere, so it is silent on that point. What those two lines do settle is that a shift's start follows the technician's hours and that the marker shows the current time, and the six-hour shift breaks both.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  }
+ ],
+ "type": "doc",
+ "version": 1
+}

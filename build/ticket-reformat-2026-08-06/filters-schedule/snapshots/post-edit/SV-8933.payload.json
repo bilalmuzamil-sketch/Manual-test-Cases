@@ -1,0 +1,306 @@
+{
+ "content": [
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Description",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "A staff member's working hours cannot be opened at all if that person belongs to a different location from the one you are working in. The Staff list shows everyone, so you can find the person and open them, but switching on 'Set custom hours for this technician' fails with an error and flicks the switch back off.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "It affects a large part of the list rather than one record: of the 161 people, 63 cannot have their hours opened from the Heavy Duty location and 98 can. The Schedule uses those hours for shift start times, conflict warnings and capacity bars.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Steps to reproduce",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ],
+     "text": "Environment: ",
+     "type": "text"
+    },
+    {
+     "text": "QA branch sv8685 \u2014 https://sv8685.qa.shopview.com. Desktop browser, signed in as an Admin, starting with the location Staging Heavy Duty - 9919 selected.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Make sure the location at the top of the app is Staging Heavy Duty - 9919.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Go to Administration and open the Staff list.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Find Benjamin Peters. His record belongs to the other location, Staging Lethbridge - 4310, but he is listed here all the same.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Open his record with the pencil icon on his row.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Switch on 'Set custom hours for this technician'.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Close and reopen the window, as the error message suggests, and switch it on again.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Now change the location at the top of the app to Staging Lethbridge - 4310, open the same person and switch the same thing on.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "For a direct contrast, go back to Staging Heavy Duty - 9919 and repeat steps 3 to 5 with Ayesha Khan, who belongs to that location.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    }
+   ],
+   "type": "orderedList"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Current behaviour",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "The switch flicks on and straight back off, and this error appears: \"Couldn't load this technician's hours, so they can't be edited right now. Close and reopen the dialog to try again.\"",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "Closing and reopening makes no difference \u2014 it fails the same way every time, and no editor is ever shown, so the hours cannot be set at all from this location.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "From the person's own location it works immediately, and going back to the other location brings the failure back. Ayesha Khan, who belongs to the location being viewed, opens normally, so the editor itself is working.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "For a developer: the window's request for that person's working hours is answered with \"'Staff' was not found\", while another request the same window makes moments earlier finds the same person without difficulty and reports their location as Staging Lethbridge - 4310. The result flips reliably with the session's current location.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Expected behaviour",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "Switching the toggle on reveals the Monday to Sunday From/To editor and lets the hours be set, for any staff member the Staff list offers.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "If working hours really are meant to be held per location, then the screen should say so \u2014 by not offering the toggle, or by telling the user which location to switch to \u2014 rather than failing with an error that reads as a fault.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Source",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "Epic SV-8685, story SV-8699 (Working Hours Settings), and the Schedule specification (Confluence page 713031682), version 25.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "Section 4.2, under \"Hours settings (tech and business hours)\": \"Behind a toggle, off by default. Each section sits behind a toggle ('Set custom hours for this technician' / 'Set business hours for this shop'). The per-day editor appears only when the toggle is on.\" And of the editor itself: \"One row per day (Mon-Sun): day name, with From to To ranges on the right.\"",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "One honest note: the specification puts no condition on which location the staff member is viewed from and never says whether working hours are held per location, so it is silent on that point. What it does settle is that turning the toggle on must reveal the editor. Whether a person from another location should be reachable at all is a product owner's decision.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  }
+ ],
+ "type": "doc",
+ "version": 1
+}

@@ -1,0 +1,283 @@
+{
+ "content": [
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Description",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "Dragging a job out of the Unassigned row onto a technician moves it correctly, but silently changes its saved start time to six hours earlier. A job booked for 7:00 in the morning became 1:00 in the morning, which is outside the working hours of the technician it was given to. Nothing on screen warned about it.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "This is separate from SV-8848. There the times are stored correctly and shown wrongly; here the stored value itself is changed, so the record stays wrong even after the display is fixed.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Steps to reproduce",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ],
+     "text": "Environment: ",
+     "type": "text"
+    },
+    {
+     "text": "QA branch sv8685 \u2014 https://sv8685.qa.shopview.com/schedule. Desktop browser, signed in as an Admin, with the location Staging Heavy Duty - 9919 selected.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Open Schedule and go to the week containing Saturday 8 August 2026.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Find a job sitting in the Unassigned row. The one used here was work order S-12876, customer Pamill Paving, unit 713, line 'Replace - Rear ramp handles', sitting unassigned on Saturday 8 August. The Unassigned row sits below every technician row, so you have to scroll down to reach it; if it is not drawn, put a job there first by dragging a work order onto it.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Open the job and note its start time. This one read 7:00 AM.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Check the receiving technician's hours: Kellie Ayers (Foreman) works 7:00 AM to 7:00 PM.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Drag the block up onto Kellie Ayers' row for the same day.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Confirm the 'Move this shift to Kellie Ayers on Sat, Aug 8?' window with Reassign.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Open the job again and read its start time.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    }
+   ],
+   "type": "orderedList"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Current behaviour",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "The job does move to the chosen technician and does leave the Unassigned row, and the technician is correctly added to the work order line's technician list. That part is right.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "But the saved start time moves six hours earlier \u2014 from 7:00 in the morning to 1:00 in the morning. 1:00 AM is outside the receiving technician's own hours of 7:00 AM to 7:00 PM.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "It is not just what is drawn on screen: the time quoted above was read back from the saved record after the move. It is not the technician's hours being applied either \u2014 her start is 7:00 AM, and 7:00 is the number that ended up saved, but saved as 7:00 UTC instead of 7:00 at the shop. The same block dragged between two technician rows moves normally.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Expected behaviour",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "Assigning an unassigned job to a technician moves it to that technician and leaves its start time as it was \u2014 and in any case leaves it inside that technician's own working hours.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Source",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "Epic SV-8685, story SV-8688 (Drag-and-Drop Scheduling & Shift Creation), and the Schedule specification (Confluence page 713031682), version 25.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "Section 3.2, on the unassigned row: \"Dragging a shift from this row down onto a technician assigns it.\"",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "Section 4.2: \"When an unassigned shift is later dragged onto a technician row in the grid, that technician's hours apply.\"",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "One honest note: the specification does not say the start time must be left exactly as it was, so the first half of the expected behaviour above is stricter than the written rule. The second half is not \u2014 1:00 in the morning is neither the time the job had nor within the hours of the technician it was given to.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  }
+ ],
+ "type": "doc",
+ "version": 1
+}

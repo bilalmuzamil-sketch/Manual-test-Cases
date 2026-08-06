@@ -1,0 +1,265 @@
+{
+ "content": [
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Description",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "When a manager schedules only some of the jobs on a work order, the 'Select multiple' tick-box mode is missing two of the controls it should have and a third reads differently from what was asked for. There is no 'Select all' shortcut, and no 'Cancel' to step back to the quick single-tap list \u2014 the only way out is the X, which throws the whole window away.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Steps to reproduce",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ],
+     "text": "Environment: ",
+     "type": "text"
+    },
+    {
+     "text": "QA branch sv8685 \u2014 https://sv8685.qa.shopview.com/schedule. Desktop browser, signed in as an Admin, with the location Staging Heavy Duty - 9919 selected.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Open Schedule and choose the Week view.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "In the left-hand panel find work order S-12876, customer Pamill Paving, unit 713. It has 2 lines \u2014 'Replace - Rear ramp handles' (estimate 1h) and 'Quality control check over' (no estimate) \u2014 and its lead technician shows as Brittany Anderson. Any work order with two or more approved lines behaves the same way.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Click the small calendar button on that work order's card, labelled 'Schedule S-12876 by click'.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Click an empty day cell on technician MQ Test Tech Qamar's row \u2014 for example Thursday 6 August. The picker opens, headed 'dropped on MQ Test Tech Qamar - Thu, Aug 6'.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Click 'Select multiple'.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Tick one line, for example 'Replace - Rear ramp handles'.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "Read the bottom bar of the picker, and look for a way back to the ordinary single-tap list.",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "listItem"
+    }
+   ],
+   "type": "orderedList"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Current behaviour",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "The tick boxes appear correctly, one per line.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "The bottom bar shows a tally, but it reads '1 selected - 1h' rather than the 'Create shift - 2 lines - 6h' shape the specification gives. The confirm button reads 'Schedule'.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "There is no 'Select all' button anywhere in the picker. The only 'All' control is the 'All 2' chip higher up, which is the filter between all lines and unscheduled lines \u2014 it ticks nothing.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "There is no 'Cancel' button. The only way out is the X in the top corner, which closes the whole picker instead of going back to the single-tap list, so the work order has to be placed again from the start.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Expected behaviour",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "In tick-box mode the bottom bar offers a running tally, a 'Select all' shortcut that is the same as choosing the whole work order, and a 'Cancel' that returns to the quick single-tap list.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "text": "Source",
+     "type": "text"
+    }
+   ],
+   "type": "heading"
+  },
+  {
+   "content": [
+    {
+     "text": "Epic SV-8685, story SV-8689 (Scope Picker), and the Schedule specification (Confluence page 713031682), version 25.",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  },
+  {
+   "content": [
+    {
+     "text": "Section 4.3: \"'Select multiple' is an opt-in control that switches the line rows into checkboxes and shows a confirm bar with a running tally ('Create shift - 2 lines - 6h'), a 'Select all' shortcut (equivalent to whole order), and Cancel (returns to the fast single-tap list).\"",
+     "type": "text"
+    }
+   ],
+   "type": "paragraph"
+  }
+ ],
+ "type": "doc",
+ "version": 1
+}
