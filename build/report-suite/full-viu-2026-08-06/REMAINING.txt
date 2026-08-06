@@ -180,7 +180,6 @@ C30317  SBR — API                                  | Sorting is performed serv
 C30318  SBR — API                                  | Grand totals are server-computed over the full filtered set
 C30319  SBR — API                                  | All four exports are generated server-side against the active filters and sort
 C30321  SBR — API                                  | Deactivating a rep first runs a server pre-check returning the count
-C30324  PV — Access & Defaults                     | A loading indicator shows and old rows are replaced only when data returns
 C30325  PV — Permissions                           | A user with ordinary reports access can load the report and export it
 C30326  PV — Permissions                           | Without the Manager or Office User role the report entry is not shown
 C30327  PV — Permissions                           | Ordinary reports access alone opens Parts Velocity and its export
@@ -189,8 +188,6 @@ C30332  PV — Filters                               | Category and Vendor multi
 C30334  PV — Filters                               | All active filters combine with AND logic
 C30339  PV — Filters                               | Parts with no category; vendor or bin are excluded when that filter is on
 C30340  PV — Filters                               | Parts Velocity: the Location filter is hidden for a one-location user
-C30347  PV — Row Model                             | Description; Category and Vendor truncate on hover; Part # never does
-C30349  PV — Row Model                             | An inventory part drops out only with no movement, no stock and no revenue
 C30355  PV — Columns & Remembered View             | A saved value that is no longer valid falls back to that setting's default
 C30356  PV — Columns & Remembered View             | A different user signing in on the same browser inherits the saved view
 C30359  PV — Columns & Calculations                | Units Sold for an inventory part is net stock movement
@@ -200,9 +197,7 @@ C30362  PV — Columns & Calculations                | Units Returned is windowe
 C30363  PV — Columns & Calculations                | Sold (WO) counts Service work orders, Sold (Parts Sale) counts Parts
 C30364  PV — Columns & Calculations                | Demand counts each transaction once; a reversal neither adds nor subtracts
 C30369  PV — Columns & Calculations                | A reversed or voided sale is excluded from every billed-line column
-C30370  PV — Columns & Calculations                | Unit Cost / Sell Price and Margin % use independent null triggers
 C30372  PV — Columns & Calculations                | Core parts are excluded from both the inventory and special-order result sets
-C30373  PV — Columns & Calculations                | Movement and billed bases may differ; Sold (WO) + Sold (Parts Sale) = billed
 C30374  PV — Columns & Calculations                | Window anchors: movement uses the event date, billed uses the WO date
 C30382  PV — Exports                               | PDF export alignment: Type centered, text left, numeric and money right
 C30385  PV — Visual Conformance                    | The report uses the standard two-tone layout

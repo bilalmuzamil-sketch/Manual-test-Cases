@@ -118,3 +118,21 @@ priority Low · `relates to` link to the same story · no Product Area), every f
 | [SV-8939](https://shopview.atlassian.net/browse/SV-8939) | SV-8642 | Parts Velocity opens on All locations instead of the location the user is working in |
 
 No existing ticket was edited, commented on, transitioned or re-prioritised.
+
+## Update after batch 5 (Parts Velocity finished, 2026-08-06)
+
+**Application data: still nothing created, deleted or altered.** Read-only throughout, plus the
+product's own `report_view:parts-velocity` local-storage key inside a throwaway headless context.
+
+| Batch | Operation | Count | Verification |
+|---|---|---|---|
+| 5 (Parts Velocity tail) | `update_case` | 3 | every one HTTP 200, re-GET, 30 fields compared, 0 mismatches, 0 collateral |
+
+Running TestRail total: **140 `update_case`** over **128 distinct cases**. Still 0 add · 0 delete ·
+0 section · **0 run writes** · **0 results logged**.
+
+One further Story Defect filed, same Rule-52 shape, every field read back:
+
+| Key | Parent story | Summary |
+|---|---|---|
+| [SV-8940](https://shopview.atlassian.net/browse/SV-8940) | SV-8643 | Parts Velocity never shortens long Description, Category or Vendor text, so the table runs far wider than the window |

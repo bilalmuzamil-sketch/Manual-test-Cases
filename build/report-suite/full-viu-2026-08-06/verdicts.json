@@ -17,6 +17,42 @@
   "note": "On a first visit in a fresh browser the date trigger reads \"This Year\" and the report fetched automatically as range=custom&start_date=2026-01-01&end_date=2026-08-06 with no user action.",
   "verdict": "PASS"
  },
+ "30324": {
+  "anchor": "PV S1-R3",
+  "batch": 5,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b5c",
+  "note": "On the initial load a loading indicator was present for about eight seconds while the table held only placeholder rows, then cleared as 32 rows appeared. On a search change the indicator appeared again for about four seconds and the existing 32 rows STAYED on screen throughout - the table never blanked out and rebuilt.",
+  "verdict": "PASS"
+ },
+ "30325": {
+  "anchor": "PV S1-R4",
+  "batch": 5,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "NOT OBSERVED. Permission case - needs a second sign-in as a different role. See C30356 for why a second sign-in is not available.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30326": {
+  "anchor": "PV S1-R5",
+  "batch": 5,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "NOT OBSERVED. Permission case - needs a second sign-in as a user without the role.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30327": {
+  "anchor": "PV S1-R4",
+  "batch": 5,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "NOT OBSERVED. Permission case - needs a second sign-in as an ordinary reports user.",
+  "verdict": "NOT OBSERVED"
+ },
  "30328": {
   "anchor": "PV S2-R1",
   "batch": 4,
@@ -35,6 +71,24 @@
   "note": "Nine presets in the specified order - Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week - plus a month calendar, a live \"Range: 218 days\" readout and an Apply button. No Today, no Yesterday, no item called Custom, no All Time. Matches the case as written; the PV spec text itself still lists the old eleven options and has not caught up with Chris's 4 Aug decision.",
   "verdict": "PASS"
  },
+ "30331": {
+  "anchor": "PV S2-R3",
+  "batch": 5,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4c",
+  "note": "NOT OBSERVED. The 366-day cap needs the calendar driven across a span wider than a year; the calendar was opened and its controls catalogued (month and year steppers, a live \"Range: 218 days\" readout, Today and Apply) but the date pair was not built this session.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30332": {
+  "anchor": "PV S2-R4/S2-R5",
+  "batch": 5,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4b",
+  "note": "NOT OBSERVED. The Category and Vendor lists were opened and read, but neither was driven to the point of confirming the table narrows to matching parts.",
+  "verdict": "NOT OBSERVED"
+ },
  "30333": {
   "anchor": "PV S2-R6",
   "batch": 4,
@@ -43,6 +97,15 @@
   "evidence": "b4c",
   "note": "Lower-case \"brakeclean\" returned the BRAKECLEAN rows and \"BRAKE & PARTS\" returned them too, so the toolbar search matches part number and description case-insensitively; the request carried &search=.",
   "verdict": "PASS"
+ },
+ "30334": {
+  "anchor": "PV S2-R7",
+  "batch": 5,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b4d",
+  "note": "NOT OBSERVED. Two filters were not combined and the AND result checked; the attempt was cut short when the toolbar re-rendered on an empty result.",
+  "verdict": "NOT OBSERVED"
  },
  "30335": {
   "anchor": "PV S2-R8",
@@ -79,6 +142,24 @@
   "evidence": "b4c",
   "note": "A search for ZZZNOSUCHPARTZZZ produced no rows and the label \"Empty bays, endless possibilities. Get Going!\" - the spec string verbatim.",
   "verdict": "PASS"
+ },
+ "30339": {
+  "anchor": "PV S2-E1/E2/E3",
+  "batch": 5,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "NOT OBSERVED. Needs a part with no category, no vendor or no bin, checked against each filter in turn.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30340": {
+  "anchor": "PV S2-E4",
+  "batch": 5,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "NOT OBSERVED. Needs a user whose access is limited to a single location; the only sign-in available reaches two.",
+  "verdict": "NOT OBSERVED"
  },
  "30341": {
   "anchor": "PV S3-R1a",
@@ -134,6 +215,15 @@
   "note": "Units Sold and Demand each carry an always-on grey info icon (info_outline), and Turns / Yr gains its own once that column is switched on - it is hidden by default. The Units Sold text matches the required wording exactly: \"Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Sell Price.\" The Demand text matches exactly too. The Turns / Yr text reads \"How many times you sell through this part in a year. Higher is better.\"",
   "verdict": "PASS"
  },
+ "30347": {
+  "anchor": "PV S3-R7",
+  "batch": 5,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b5d",
+  "note": "Part # is correctly never truncated, but Description, Category and Vendor are not truncated either: a 117-character description renders complete with text-overflow clip, overflow visible, clientWidth == scrollWidth (744px) and NO title attribute, so there is no ellipsis and no hover tooltip. The table runs 2,429px inside a 1,372px parent. Filed as SV-8940.",
+  "verdict": "DEVIATION"
+ },
  "30348": {
   "anchor": "PV S6",
   "batch": 3,
@@ -142,6 +232,15 @@
   "evidence": "pv-rows.json",
   "note": "Across 250 rows the only nulls are On Hand, Turns / Yr, Min and Max, and they occur on exactly the two special-order rows. Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Demand, Revenue and Margin are never null on any row.",
   "verdict": "PASS"
+ },
+ "30349": {
+  "anchor": "PV S3-N1",
+  "batch": 5,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b5b",
+  "note": "Half proven, half not producible. Assertion 2 IS proven: part 2108982 has Units Sold 0, On Hand 0 and Demand 0 yet Revenue $2,564.13, and it appears in the report - a part with revenue is kept. Assertion 1 (a part failing all three keep-criteria does not appear) cannot be proven by observation, because such a part is by definition absent and its absence is indistinguishable from it not existing.",
+  "verdict": "PARTIAL"
  },
  "30351": {
   "anchor": "PV S4-R1",
@@ -179,6 +278,24 @@
   "note": "Type = Inventory and a Part # ascending sort were written to report_view:parts-velocity and, after leaving and returning, the first request carried type=inventory&sortBy=part_number&descending=false and the Type control read Inventory.",
   "verdict": "PASS"
  },
+ "30355": {
+  "anchor": "PV S4-R6",
+  "batch": 5,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "NOT OBSERVED. Needs a saved view holding a value that has since become invalid (for example a location the user can no longer reach). Producing that means changing what the signed-in user can reach, which would disturb the one shared sign-in on this estate.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30356": {
+  "anchor": "PV S4-R6",
+  "batch": 5,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "NOT OBSERVED. Needs a SECOND user signing in on the same browser. There is exactly one session on this estate and it is shared with a sibling worker on another project; quick-login and switch-user both rotate it and would sign them out mid-run.",
+  "verdict": "NOT OBSERVED"
+ },
  "30358": {
   "anchor": "PV S4-E1",
   "batch": 4,
@@ -189,57 +306,57 @@
   "verdict": "PASS"
  },
  "30359": {
-  "anchor": "PV S5",
-  "batch": 3,
+  "anchor": "PV S5-R1",
+  "batch": 5,
   "build": "v3.5-16cf83f",
   "date": "2026-08-06",
   "evidence": "-",
-  "note": "Not driven this pass: needs a controlled sequence - invoice a work order, then reverse it, then return a part - watching Units Sold after each step. Nothing was inferred from the data that happens to exist.",
+  "note": "NOT OBSERVED. Needs a seeded transaction sequence: invoice a work order carrying the part, then reverse that invoice, then take a part return, reading Units Sold after each step. Not seeded this session.",
   "verdict": "NOT OBSERVED"
  },
  "30360": {
-  "anchor": "PV S5",
-  "batch": 3,
+  "anchor": "PV S5-R2",
+  "batch": 5,
   "build": "v3.5-16cf83f",
   "date": "2026-08-06",
   "evidence": "-",
-  "note": "Not driven this pass: needs seeded special-order vendor requests including a reversed one. Nothing was inferred from the data that happens to exist.",
+  "note": "NOT OBSERVED. Needs seeded special-order vendor requests including a reversed one.",
   "verdict": "NOT OBSERVED"
  },
  "30361": {
-  "anchor": "PV S5",
-  "batch": 3,
+  "anchor": "PV S5-R3",
+  "batch": 5,
   "build": "v3.5-16cf83f",
   "date": "2026-08-06",
   "evidence": "-",
-  "note": "Not driven this pass: needs a seeded part return, then a parts-sale credit, then a cancellation. Nothing was inferred from the data that happens to exist.",
+  "note": "NOT OBSERVED. Needs a seeded part return, a parts-sale credit and a cancelled return.",
   "verdict": "NOT OBSERVED"
  },
  "30362": {
-  "anchor": "PV S5",
-  "batch": 3,
+  "anchor": "PV S5-R3",
+  "batch": 5,
   "build": "v3.5-16cf83f",
   "date": "2026-08-06",
   "evidence": "-",
-  "note": "Not driven this pass: needs a return initiated in one window against a sale in another. Nothing was inferred from the data that happens to exist.",
+  "note": "NOT OBSERVED. Needs a return initiated in one window against a sale made in another.",
   "verdict": "NOT OBSERVED"
  },
  "30363": {
-  "anchor": "PV S5",
-  "batch": 3,
+  "anchor": "PV S5-R4",
+  "batch": 5,
   "build": "v3.5-16cf83f",
   "date": "2026-08-06",
   "evidence": "-",
-  "note": "Not driven this pass: needs a seeded Service work order and a seeded Parts-type counter sale for the same part. Nothing was inferred from the data that happens to exist.",
+  "note": "NOT OBSERVED. Needs a Service work order and a Parts Sale for the same part, both invoiced in a known window.",
   "verdict": "NOT OBSERVED"
  },
  "30364": {
-  "anchor": "PV S5",
-  "batch": 3,
+  "anchor": "PV S5-R4",
+  "batch": 5,
   "build": "v3.5-16cf83f",
   "date": "2026-08-06",
   "evidence": "-",
-  "note": "Not driven this pass: needs two invoicing events of different sizes plus a reversal, to show Demand counting once and not moving. Nothing was inferred from the data that happens to exist.",
+  "note": "NOT OBSERVED. Needs two seeded invoicing events of different quantities plus a reversal, reading Demand after each.",
   "verdict": "NOT OBSERVED"
  },
  "30365": {
@@ -279,22 +396,22 @@
   "verdict": "PASS"
  },
  "30369": {
-  "anchor": "PV S5",
-  "batch": 3,
+  "anchor": "PV S5-R4a",
+  "batch": 5,
   "build": "v3.5-16cf83f",
   "date": "2026-08-06",
   "evidence": "-",
-  "note": "Not driven this pass: needs a sale reversed after the fact, with every billed column read before and after. Nothing was inferred from the data that happens to exist.",
+  "note": "NOT OBSERVED. Needs a seeded sale that is then reversed, reading every billed-line column before and after.",
   "verdict": "NOT OBSERVED"
  },
  "30370": {
-  "anchor": "PV S5",
-  "batch": 3,
+  "anchor": "PV S5-R5",
+  "batch": 5,
   "build": "v3.5-16cf83f",
   "date": "2026-08-06",
-  "evidence": "pv-rows.json",
-  "note": "Needs rows in the three specific null-trigger states. Across 250 rows there is not a single null Unit Cost, Sell Price or Margin %, so none of the three combinations exists to read. Producing them needs seeded sales with zero or negative billed units and zero or negative revenue.",
-  "verdict": "NOT OBSERVED"
+  "evidence": "b5b",
+  "note": "Half proven, half not producible. Assertion 3 IS proven 250 times over: every row with a null Unit Cost also had a null Sell Price AND a null Margin %, and every one of those had Revenue 0 - the both-triggers-fire case. Assertions 1 and 2 need a MIXED row (billed units at or below zero while Revenue is above zero, or the reverse) and no such row exists anywhere in this data, so the independence of the two triggers was not demonstrated.",
+  "verdict": "PARTIAL"
  },
  "30371": {
   "anchor": "PV S5-R5",
@@ -306,21 +423,30 @@
   "verdict": "PARTIAL"
  },
  "30372": {
-  "anchor": "PV S3",
-  "batch": 3,
+  "anchor": "PV S3-R1",
+  "batch": 5,
   "build": "v3.5-16cf83f",
   "date": "2026-08-06",
-  "evidence": "parts scan",
-  "note": "Needs a part flagged as a core. 1200 inventory parts were scanned and not one carries the core flag, so neither the inventory nor the special-order core-exclusion can be exercised.",
+  "evidence": "b5b",
+  "note": "NOT OBSERVED. No part in this organisation carries the core-charge flag - 1,200 inventory parts were scanned on the previous batch and not one has it set; R134A-CORE is merely named \"CORE\". Proving the exclusion needs a core-flagged part WITH stock and in-window activity, which is a multi-step seeding chain (create the part, flag it, sell it, invoice it) that was not attempted in this session.",
   "verdict": "NOT OBSERVED"
  },
+ "30373": {
+  "anchor": "PV S5-R7",
+  "batch": 5,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b5b",
+  "note": "Over 250 inventory rows, 129 have Units Sold different from Sold (WO) + Sold (Parts Sale) - the movement-versus-billed divergence the case says is correct. Over 250 special-order rows there are ZERO such differences: Units Sold = Sold (WO) + Sold (Parts Sale) on every one, because they share the vendor-request quantity as a single source.",
+  "verdict": "PASS"
+ },
  "30374": {
-  "anchor": "PV S5",
-  "batch": 3,
+  "anchor": "PV S5-R6",
+  "batch": 5,
   "build": "v3.5-16cf83f",
   "date": "2026-08-06",
   "evidence": "-",
-  "note": "Not driven this pass: needs one sale whose stock movement and work-order dates fall in different windows. Nothing was inferred from the data that happens to exist.",
+  "note": "NOT OBSERVED. Needs a sale whose stock-movement date and work-order date fall in different windows.",
   "verdict": "NOT OBSERVED"
  },
  "30375": {
@@ -386,6 +512,15 @@
   "note": "A null vendor printed as an em-dash in the CSV and null Unit Cost / Sell Price / Margin % / Last Sale printed as em-dashes in the PDF; Revenue, Margin and the counts printed $0.00 / 0. The PDF prints Last Sale as \"54 days\".",
   "verdict": "PASS"
  },
+ "30382": {
+  "anchor": "PV S6-R10",
+  "batch": 5,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "pv-long.pdf",
+  "note": "NOT OBSERVED. Column alignment inside the PDF needs the drawn text positions compared against each column box; the PDF text was extracted but the per-column alignment was not measured.",
+  "verdict": "NOT OBSERVED"
+ },
  "30384": {
   "anchor": "PV S6-R9/S6-N1",
   "batch": 4,
@@ -394,6 +529,33 @@
   "evidence": "b4j",
   "note": "The failure toast correctly passes through the server message (\"This report is too large to export...\"), but both success toasts read \"Success / Data exported successfully.\" instead of \"Velocity report exported (CSV)\" / \"(PDF)\". Filed as SV-8936.",
   "verdict": "DEVIATION"
+ },
+ "30385": {
+  "anchor": "PV S7-R1",
+  "batch": 5,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b5c/b5d",
+  "note": "NOT OBSERVED. The report shell does carry the class report-shell--two-tone, but the computed colours do not resolve cleanly into the \"white card on a soft blue-grey page\" the case describes: the table cells, the header band and the report area are all rgb(249,250,251) while an outer card is rgb(255,255,255), and the container carries a 4px radius where the case asks for none. Which element the case means is a visual judgement this pass is not confident enough to call either way, and calling it wrong would either invent a defect or hide one.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30386": {
+  "anchor": "PV S7-R2",
+  "batch": 5,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b5c",
+  "note": "NOT OBSERVED. The case asks the tester to put another report side by side and say whether anything looks out of place. That is a human side-by-side comparison, not a measurement, and this pass did not make it.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30387": {
+  "anchor": "PV S7-R3",
+  "batch": 5,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b5c",
+  "note": "NOT OBSERVED. No dark-mode control appears among the page's own test-ids, so the theme was never switched and the icon was never seen in dark mode. The case explicitly asks a human whether the icon is easy to see in both modes.",
+  "verdict": "NOT OBSERVED"
  },
  "30388": {
   "anchor": "PV \u00a72/S8",
@@ -421,6 +583,15 @@
   "evidence": "b4f/b4k",
   "note": "Sorting is resolved server-side: on vendor ascending the first ten rows were all null, on descending none were. A header click re-queries; first click ascending, second reverses to descending.",
   "verdict": "PASS"
+ },
+ "30391": {
+  "anchor": "PV S8",
+  "batch": 5,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "NOT OBSERVED. Permission case - needs a second sign-in to prove the back end serves the report on ordinary reports access and refuses without it.",
+  "verdict": "NOT OBSERVED"
  },
  "30534": {
   "anchor": "IV S1-R1",
@@ -963,12 +1134,21 @@
   "verdict": "PARTIAL"
  },
  "38924": {
-  "anchor": "PV S5",
-  "batch": 3,
+  "anchor": "PV S5-R1",
+  "batch": 5,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b5a",
+  "note": "NOT OBSERVED. Needs a sale of part of a unit (2.50) seeded and invoiced. Not one of the 250 rows read carries a fractional Units Sold, so the state does not exist in the data.",
+  "verdict": "NOT OBSERVED"
+ },
+ "38925": {
+  "anchor": "PV S8",
+  "batch": 5,
   "build": "v3.5-16cf83f",
   "date": "2026-08-06",
   "evidence": "-",
-  "note": "Not driven this pass: needs a sale of a part-of-a-unit quantity; no fractional Units Sold exists in the data. Nothing was inferred from the data that happens to exist.",
+  "note": "NOT OBSERVED. Needs the same part-of-a-unit sale AND a QuickBooks-connected company to read the amount back.",
   "verdict": "NOT OBSERVED"
  }
 }
