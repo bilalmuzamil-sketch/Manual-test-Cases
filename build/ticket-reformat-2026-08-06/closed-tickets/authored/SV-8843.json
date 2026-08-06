@@ -1,0 +1,236 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Description"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "On a desktop screen the five filter buttons sit on the same row as the tabs, instead of on their own row directly below them."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "This ticket is closed as OBSOLETE and is kept as a record. One correction belongs with it: the second half of the original claim was wrong. It said that collapsing the filter bar frees no space, and collapsing it does free space."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Steps to reproduce"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Environment: QA branch sv8785 (https://sv8785.qa.shopview.com/workorders). Desktop browser, signed in as an Admin."
+    }
+   ]
+  },
+  {
+   "type": "orderedList",
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Open Work Orders on a desktop browser in a window about 1680 by 1050, on the All tab."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Look at where the five filter buttons \u2014 Status, Customer, Lead Technician, Service Advisor, Asset on Site \u2014 sit in relation to the tab row (All, Estimates, Completed, My Work Orders)."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Click the filter icon to the left of the Status button to collapse the filter bar."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Watch whether the table moves up into the space the buttons were using."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Current behaviour"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The five filter buttons sit on the same row as the tabs, to the right of My Work Orders, rather than on their own row below them. A later live check found this still happening: the tabs and the filter bar were measured side by side in one row."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The other half of the original claim does not hold. Collapsing the bar hides all five buttons and the table does move up into the space they were using, so that part of the product is behaving as it should."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The ticket is closed and has not been reopened. Whether the remaining half is worth reopening is the QA lead\u2019s decision, not ours."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Expected behaviour"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The five filter buttons sit on their own row directly below the tab row, and collapsing the bar frees the space it was using so the table moves up."
+    }
+   ]
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Source",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " \u2014 the "
+    },
+    {
+     "type": "text",
+     "text": "Filters specification",
+     "marks": [
+      {
+       "type": "link",
+       "attrs": {
+        "href": "https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/572030978/Filters"
+       }
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " on Confluence, version 19, requirement S1-R1: \u201cThe filter bar is displayed below the tab navigation row (All, Estimates, Completed, My Work Orders) by default\u201d"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The same description, requirement S1-R5: \u201cWhen the user collapses the filter bar, the bar is hidden and the table expands to use the reclaimed vertical space\u201d"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The first requirement is the half that still happens. The second is the half the original ticket got wrong."
+    }
+   ]
+  }
+ ]
+}

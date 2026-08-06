@@ -1,0 +1,250 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Description"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Withdrawn \u2014 this was not a real fault, and it should stay closed."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "It reported that the Business Hours switch on the Schedule shaded nothing. The first check was made against a shop that had no working hours set, which is the one condition the check needed: with no working hours there is nothing to shade. We re-checked it ourselves against a shop that does have working hours set, and the switch behaves correctly."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "It is closed as OBSOLETE. It was kept rather than deleted because the reasoning is worth having on the record."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Steps to reproduce"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Environment: QA branch sv8685 (https://sv8685.qa.shopview.com). Desktop browser, signed in as an Admin."
+    }
+   ]
+  },
+  {
+   "type": "orderedList",
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Sign in as an Administrator and pick the location Staging Heavy Duty - 9919."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Open that location for editing and check that \"Set business hours for this shop\" is switched on, with Monday to Friday reading 06:00 to 18:00 and no Saturday or Sunday rows. This is the condition the original report was missing."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Open Schedule from the top navigation, choose Day view, and go to Thursday, 6 August 2026."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Open the FILTER & DISPLAY dropdown and find the Business Hours switch."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Turn it on and look along the timeline from 12 AM through to 11 PM, then turn it off and look again."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Current behaviour"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "With the switch on, midnight to six in the morning and six in the evening to the end of the day are shaded grey, and the working day between six and six is left clear. Turning the switch off removes the shading, and turning it back on brings it back. That is correct behaviour."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The original report was made on a shop with no working hours set. In that state there is no working day to draw a boundary around, so nothing is shaded \u2014 which is why the switch looked broken."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Expected behaviour"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "With the switch on, the hours outside the working day are covered by a grey overlay and the working hours are left clear. Turning the switch off removes the shading."
+    }
+   ]
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Source",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " \u2014 the "
+    },
+    {
+     "type": "text",
+     "text": "Schedule specification",
+     "marks": [
+      {
+       "type": "link",
+       "attrs": {
+        "href": "https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule"
+       }
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " on Confluence, version 25, section 4.8 (Day view: timeline interactions): \u201cBusiness-hours shading. An optional grey overlay outside working hours.\u201d"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The same description, section 9 (View options and customization), the View Options table: \u201cBusiness Hours \u2026 Off \u2026 Shades non-working hours in day view.\u201d"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The earlier version of this ticket quoted a sentence that does not appear in the specification. The two quotations above were read from the live page and are what it actually says."
+    }
+   ]
+  }
+ ]
+}

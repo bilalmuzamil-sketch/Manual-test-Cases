@@ -1,0 +1,222 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Description"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "When only a page search is active and nothing matches it, the empty screen says no work orders match your filters and offers a Clear Filters link. No filter is on, so that link does nothing useful and there is no way to clear the search from the empty screen."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "This ticket is closed as OBSOLETE and is kept as a record."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Steps to reproduce"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Environment: QA branch sv8785 (https://sv8785.qa.shopview.com/workorders). Desktop browser, signed in as an Admin."
+    }
+   ]
+  },
+  {
+   "type": "orderedList",
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Open Work Orders on a desktop browser, All tab, and use Clear Filters first so that no filter is on."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Click the Search button in the page toolbar and type text that matches nothing, for example: ZZQQNOMATCHXX"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Read the message in the empty table area and look at the link underneath it."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Current behaviour"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The message reads \"No work orders match your filters\" even though no filter is on, and the only link offered is Clear Filters. Clicking it changes nothing, because there are no filters to clear: the search text stays and the screen stays empty. Nothing on the empty screen clears the search."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "A later live check found this still happening. One part of the original report does now behave correctly: clearing filters no longer clears the search text."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "A screen recording taken at the time is attached. The ticket is closed and has not been reopened \u2014 that is the QA lead\u2019s decision, not ours."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Expected behaviour"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The empty screen tells the user that nothing matched their search and offers a way to clear the search. Where both a search and filters are on, it offers each of them separately, so clearing one does not clear the other."
+    }
+   ]
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Source",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " \u2014 the "
+    },
+    {
+     "type": "text",
+     "text": "Filters specification",
+     "marks": [
+      {
+       "type": "link",
+       "attrs": {
+        "href": "https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/572030978/Filters"
+       }
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " on Confluence, version 19, requirement S8-R3: \u201cWhen the combination of active filters and any active search query produces no matching records, the table shows an empty state with a message indicating no results were found for the current filters and search\u201d"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The same description, requirement S8-R4: \u201cThe empty state includes a prompt or link to clear filters and, where a search query is active, to clear the query\u201d"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The same description, requirement S8-R5: \u201cWhere both a query and filters are active, each is cleared independently from the empty state. Clearing filters does not clear the query and clearing the query does not clear the filters, consistent with S13-R13\u201d"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,246 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Description"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "On the Parts Velocity report the Turns / Yr figure came out slightly too high whenever the date range was set with the This Year shortcut, because the shortcut counted one day too few. Setting the very same period by picking the dates by hand gave the right answer, so the sum itself was correct \u2014 it was the shortcut's idea of how long the period is that was wrong."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "This ticket is closed as Done. It is kept as the record of what was fixed, so anyone re-checking the fix can follow the same steps."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Steps to reproduce"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Environment: QA branch sv8582 (https://sv8582.qa.shopview.com). Desktop browser, signed in as an Admin."
+    }
+   ]
+  },
+  {
+   "type": "orderedList",
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Open Reports, then Parts Velocity."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Set the date range with the This Year shortcut and press Apply."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Open Column Selection and switch Turns / Yr on \u2014 it is hidden until you do."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Search for the part BRAKECLEAN and write down its Units Sold, On Hand and Turns / Yr."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Now set the same period by hand on the calendar \u2014 1 January 2026 to 4 August 2026 \u2014 press Apply, and look at the same part again."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Compare the two Turns / Yr figures for that part."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Current behaviour"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The two figures are different even though the period is identical. The shortcut gave 1.40648754422 and the hand-picked dates gave 1.39997602781, and the hand-picked one is the correct one: 1 January to 4 August, counting both the first and the last day, is 216 days, and the shortcut counted 215."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Nothing on screen shows that anything is wrong, so two people looking at the same period \u2014 one using the shortcut, one picking the dates by hand \u2014 see different numbers with no way to tell which is right. The shorter the period, the bigger the difference."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Expected behaviour"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Both the first and the last day of the chosen period are counted, so the shortcut gives exactly the same Turns / Yr figure as picking the same two dates by hand."
+    }
+   ]
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Source",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " \u2014 the "
+    },
+    {
+     "type": "text",
+     "text": "Parts Velocity report specification",
+     "marks": [
+      {
+       "type": "link",
+       "attrs": {
+        "href": "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report"
+       }
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " on Confluence, version 5, Story 5 (Metric Calculations), the definition of Window: \u201cWindow \u2014 the whole-day span of the selected range, inclusive of both the start and end dates, with a floor of 1 day (so a single-day range such as Today has Window = 1). This is the divisor used to annualize Turns / Yr.\u201d"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The same description, the Turns / Yr column in the same Story 5 table: \u201c(Units Sold \u00f7 Window days \u00d7 365) \u00f7 On Hand; renders 0.00 when On Hand is 0.\u201d"
+    }
+   ]
+  }
+ ]
+}

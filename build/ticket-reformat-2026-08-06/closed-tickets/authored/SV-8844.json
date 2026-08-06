@@ -1,0 +1,271 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Description"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Typing into the page Search on the Work Orders screen did not narrow the list \u2014 the search had no effect on what was shown."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "This ticket is closed as OBSOLETE because the fault it reported has since been fixed. It is kept as a record."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Steps to reproduce"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Environment: QA branch sv8785 (https://sv8785.qa.shopview.com/workorders). Desktop browser, signed in as an Admin."
+    }
+   ]
+  },
+  {
+   "type": "orderedList",
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Open Work Orders on a desktop browser, All tab, with no filters on and nothing typed in the page Search."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Click the Search button in the page toolbar, to the left of the columns icon."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Type: Lastone"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Watch the list of work orders underneath."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Current behaviour"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "At the time this was raised the list did not change at all. Typing Lastone left every work order on the page, so there was no way to narrow the list from the page search."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The picture and the short screen recording below were both taken at the time and show what was happening. A second picture, image-20260805-074204.png, is attached to the ticket as well."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "This has since been fixed and the ticket is closed."
+    }
+   ]
+  },
+  {
+   "type": "mediaSingle",
+   "attrs": {
+    "width": 921,
+    "widthType": "pixel",
+    "localId": "f2f957f9d0c8",
+    "layout": "align-start"
+   },
+   "content": [
+    {
+     "type": "media",
+     "attrs": {
+      "type": "file",
+      "id": "471f854b-49ec-4317-a390-f792caa33bea",
+      "alt": "image-20260805-024810.png",
+      "collection": "",
+      "localId": "105d0556031f",
+      "height": 712,
+      "width": 1494
+     }
+    }
+   ]
+  },
+  {
+   "type": "mediaSingle",
+   "attrs": {
+    "width": 320,
+    "widthType": "pixel",
+    "localId": "4b6f58c477c7",
+    "layout": "align-start"
+   },
+   "content": [
+    {
+     "type": "media",
+     "attrs": {
+      "type": "file",
+      "id": "4c4ab192-5f42-4708-94cd-ef8ec3119d26",
+      "alt": "screen-capture - 2026-08-05T074453.985.webm",
+      "collection": "",
+      "localId": "fa9d6d26e0bc"
+     }
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Expected behaviour"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The list narrows as you type, without pressing a button and without a separate results screen \u2014 the same table simply shows fewer rows."
+    }
+   ]
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Source",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " \u2014 the "
+    },
+    {
+     "type": "text",
+     "text": "Filters specification",
+     "marks": [
+      {
+       "type": "link",
+       "attrs": {
+        "href": "https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/572030978/Filters"
+       }
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " on Confluence, version 19, requirement S13-R7: \u201cThe query applies as the user types, debounced at 300ms. There is no apply or submit button and Enter is not required.\u201d"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The same description, requirement S13-R12: \u201cResults replace the table contents in place. There is no separate results view or results page\u201d"
+    }
+   ]
+  }
+ ]
+}

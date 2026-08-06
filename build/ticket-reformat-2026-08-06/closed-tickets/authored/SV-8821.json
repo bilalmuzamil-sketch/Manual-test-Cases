@@ -1,0 +1,270 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Description"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Creating an invoice from a completed work order works, provided the work order has a contact person on it. Where there is no contact, the product does not let you try: the Finance tab is greyed out and says why, so there is no button to press and nothing a person using the product can run into."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "This ticket is closed as OBSOLETE and is kept only as a record. It was originally raised the wrong way round \u2014 it said that pressing Create Invoice fails with a server error \u2014 and re-testing on the same branch showed that is not what happens."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Steps to reproduce"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Environment: QA branch sv8582 (https://sv8582.qa.shopview.com). Desktop browser, signed in as an Admin."
+    }
+   ]
+  },
+  {
+   "type": "orderedList",
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Go to Work Orders and press Create Work Order."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Choose Customer Aaborough Works and Asset the 2020 Ford Transit with serial 86J8FAC1VALJ43SJY, then press Save."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Add any job line to the work order and complete it."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "While the work order still has no contact person, look at the Finance tab. It is greyed out, and resting the pointer on it reads \"Please select a contact for the asset\". There is no Create Invoice button on screen."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Set a contact on that asset, open the work order again and look at the Finance tab. It is now available, Create Invoice appears, and pressing it creates the invoice and moves the work order to Invoiced."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Current behaviour"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "On screen the product behaves correctly throughout: it stops you when there is no contact, tells you what is missing, and works as soon as the contact is set."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What is left is behind the screens only. If the invoice request is sent straight to the back end for a work order with no contact \u2014 skipping the screen that would have stopped you \u2014 the answer is a general \"something went wrong\" server error rather than a clear message saying a contact is missing. Nobody can reach that by using the product."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The pre-set job chosen for the work order makes no difference. Eleven different pre-set jobs, covering every way they can be priced, all behaved the same. The only thing that matters is whether a contact is set."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The two pictures below show both halves: the greyed-out Finance tab while there is no contact, and the invoice created once a contact has been set."
+    }
+   ]
+  },
+  {
+   "type": "mediaSingle",
+   "attrs": {
+    "layout": "center"
+   },
+   "content": [
+    {
+     "type": "media",
+     "attrs": {
+      "type": "file",
+      "id": "d88dc82e-4afb-4583-9e82-8111c21cbafe",
+      "collection": "",
+      "height": 183,
+      "width": 900
+     }
+    }
+   ]
+  },
+  {
+   "type": "mediaSingle",
+   "attrs": {
+    "layout": "center"
+   },
+   "content": [
+    {
+     "type": "media",
+     "attrs": {
+      "type": "file",
+      "id": "6792a94f-6ead-4879-86a2-d96aede516e7",
+      "collection": "",
+      "height": 183,
+      "width": 900
+     }
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Expected behaviour"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "A work order with no contact person cannot be invoiced, and the product says so on screen \u2014 which is what it does."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Behind the screens, the same request would ideally come back with a clear message saying the contact is missing, rather than a general server error."
+    }
+   ]
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Source \u2014 none. No written requirement covers this, and that is said plainly rather than dressed up: creating an invoice is not a reporting feature, and none of the six report descriptions mentions it. The expectation above is ordinary robustness, not a quoted requirement."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "This is one of the two tickets in the estate with no documented source. It is recorded as such in our own notes, and it is closed."
+    }
+   ]
+  }
+ ]
+}
