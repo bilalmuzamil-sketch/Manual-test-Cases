@@ -1,0 +1,19 @@
+{
+ "description": "In the summary strip across the top of the Work In Progress report, the ESTIMATES figure looks exactly like the others — same grey label, same dark value colour, same size and weight as NOT STARTED, STARTED - EARNED, STARTED - REMAINING and READY TO INVOICE.\n\nNothing about it is toned down, so a reader cannot tell by looking that it is the one figure deliberately left out of the two headline totals.",
+ "env": "Environment: QA branch sv8582 (https://sv8582.qa.shopview.com), build v3.5-f77875c. Desktop browser, signed in as an Admin.",
+ "steps": [
+  "Open Reports, then Work In Progress, and set the date range to Last 12 Months so there are estimates to show, with both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 selected.",
+  "Compare the ESTIMATES figure at the right-hand end of the strip with NOT STARTED and READY TO INVOICE.",
+  "Here ESTIMATES read $527,356.34 alongside NOT STARTED $31,172.38 and READY TO INVOICE $56,494.23."
+ ],
+ "current": "The ESTIMATES label and amount are styled identically to the figures beside them.\n\nThe amount itself is correct — it matches the Estimates tab's own total exactly — and it is correctly left out of Total Earned and Total Remaining. Only the styling differs.",
+ "expected": "The Estimates figure is shown in a muted style, visibly quieter than the figures that do count toward the totals.",
+ "source": [
+  [
+   "spec",
+   "wip",
+   "S5-R8",
+   "Estimates is the total quoted value of the jobs in the \"Estimates\" tab, and is shown in a muted style."
+  ]
+ ]
+}

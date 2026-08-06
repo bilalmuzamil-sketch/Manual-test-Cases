@@ -1,0 +1,19 @@
+{
+ "description": "In the Work In Progress report the Inv. Hrs column shows two decimal places — for example +0.50, +1.24, -0.81, -14.86, and a zero reads 0.00. The Totals row does the same. One decimal place is asked for.",
+ "env": "Environment: QA branch sv8582 (https://sv8582.qa.shopview.com), build v3.5-f77875c. Desktop browser, signed in as an Admin.",
+ "steps": [
+  "Open Reports, then Work In Progress, and set the date range to Last 12 Months, with both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 selected.",
+  "Open Column Selection and switch Inv. Hrs on.",
+  "Read any value in that column, and the Totals row at the bottom. This was checked on all four tabs."
+ ],
+ "current": "Every value carries two decimal places — +0.50, +1.24, -0.81, -14.86 — and a zero reads 0.00. The Totals row does the same: +246.84, +1434.65, +0.52, +173.50.\n\nThe sign is right, the zero is correctly unsigned, the arithmetic is right and the green and red colouring is correct. It is the number of decimal places only.",
+ "expected": "Inv. Hrs shows a signed number with one decimal place — the same values would read +0.5, +1.2, -0.8, -14.9 — and a zero reads 0.0, unsigned.",
+ "source": [
+  [
+   "spec",
+   "wip",
+   "S4-R23",
+   "Inv. Hrs shows the quoted labor hours minus the worked (clocked) labor hours across the approved lines, as a signed number with one decimal place (\"+2.0\", \"-14.0\", \"0.0\"). A zero value shows unsigned as \"0.0\" (never \"+0.0\" or blank)."
+  ]
+ ]
+}

@@ -1,0 +1,28 @@
+{
+ "description": "Two things about the three Work In Progress filters are wrong.\n\nEach filter offers its Clear action all the time, even before anything is picked, and it is labelled \"Clear all\" where a single \"Clear\" is asked for.\n\nAnd the Customer and Asset filters each have an \"All customers\" or \"All assets\" item at the top of their list, while the Advisor filter has no \"All advisors\" item at all.",
+ "steps": [
+  "Open Reports, then Work In Progress, with the date range This Week and both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 selected, without touching any filter.",
+  "Open the Customer filter. The list reads \"All customers\", \"Clear all\", then the customers — and nothing is selected yet. The Asset filter behaves the same way.",
+  "Open the Advisor filter. The list reads \"Clear all\", then Admin ShopView, with no \"All advisors\" item."
+ ],
+ "current": "All three filters show their Clear action before anything is selected, labelled \"Clear all\". The Advisor filter has no \"All advisors\" item, though its closed control does read \"All advisors\", so the state exists and it is the item that is missing.\n\nEverything works: each filter lists the values found across the whole scope, the closed controls read \"All advisors\", \"All customers\" and \"All assets\", and Clear all does return a filter to its all state.",
+ "expected": "The Clear action appears only once at least one thing is selected, as a single \"Clear\", and the Advisor filter offers an \"All advisors\" item like the other two.",
+ "source": [
+  [
+   "spec",
+   "wip",
+   "S7-R3",
+   "When no customer is selected, the Customer filter reads \"All customers\" and every job is shown; the filter offers a single \"Clear\" action that returns it to \"All customers\", shown only once at least one customer is selected."
+  ],
+  [
+   "spec",
+   "wip",
+   "S7-R5",
+   "When no asset is selected, the Asset filter reads \"All assets\" and every job is shown; the filter offers a single \"Clear\" action that returns it to \"All assets\", shown only once at least one asset is selected."
+  ],
+  [
+   "note",
+   "The Advisor half rests on requirement S7-R1 of the same description, which describes the Advisor filter as the same kind of multi-select as the other two but does not spell out an \"All advisors\" item of its own. That makes it the weaker of the two claims, and it is stated here as such."
+  ]
+ ]
+}

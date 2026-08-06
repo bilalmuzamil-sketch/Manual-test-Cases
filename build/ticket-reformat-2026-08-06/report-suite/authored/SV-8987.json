@@ -1,0 +1,23 @@
+{
+ "description": "In the Work In Progress report the Last Activity column is left-aligned. Every other column in that group is right-aligned — Days Open, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs and Total. Last Activity is the only one that is not.",
+ "env": "Environment: QA branch sv8582 (https://sv8582.qa.shopview.com), build v3.5-f77875c. Desktop browser, signed in as an Admin.",
+ "steps": [
+  "Open Reports, then Work In Progress, with the date range Last 12 Months and both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 selected.",
+  "Open Column Selection and switch Last Activity on.",
+  "Look at where the heading and the values sit in that column, and compare with the Days Open column beside it."
+ ],
+ "current": "The Last Activity heading and its values sit on the left of the column, while every other column in that group sits on the right.\n\nThe dates themselves are right — Today, then a number of days ago, then a dash when there is no activity. It is the alignment only.",
+ "expected": "Last Activity is right-aligned, like every column that is not named in the left-aligned list.",
+ "source": [
+  [
+   "spec",
+   "wip",
+   "S4-R4",
+   "WO #, Status, Customer, Asset, VIN, Location, and Advisor are left-aligned; every other column is right-aligned."
+  ],
+  [
+   "note",
+   "Last Activity is not in that left-aligned list, so it falls under \"every other column\"."
+  ]
+ ]
+}
