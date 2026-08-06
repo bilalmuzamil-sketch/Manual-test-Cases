@@ -1,4 +1,74 @@
-# Schedule full live VIU — RESUME (updated every batch)
+# Schedule full live VIU — RESUME
+
+> ## ⚠️ READ THIS BLOCK FIRST — it supersedes the older text below (updated 2026-08-06, session 2)
+>
+> **141 of 168 observed. 27 remain. STILL ZERO TESTRAIL WRITES** — proven this session by re-reading
+> all 168 live and comparing every field: **0 cases differ, including `updated_on`**. Nothing is
+> half-written and no repair is owed.
+>
+> **Build: `v3.5-7ec992f`**, last-modified Wed 05 Aug 2026 22:49:36 GMT, etag `e2a80a6ab5e0b47c29fd88af9db1e980`,
+> `index.html` sha256 `66e91c52…dbbc53`. Read at **04:58Z and 05:34Z** — identical. **No redeploy.**
+>
+> **Access works.** Cookie header must be built as `'; '.join(lines)` — `paste -sd'; '` corrupts it.
+> Probe `GET https://sv8685api.qa.shopview.com/api/auth/me/fe-permissions` → 200, 42 permissions.
+> `POST /api/quick-login` has never been called and must not be.
+>
+> ### THE 27 STILL TO OBSERVE — re-derived, do not trust blindly
+>
+> * **Permissions (11)** — `C30074` `C30075` `C30076` `C30077` `C30078` `C30079` `C30081` `C30082`
+>   `C30083` `C30084` `C30614`. **Nearly all need IMPERSONATION** (sign in AS a holder of each tier).
+>   Rule 26 groundwork is already DONE: all 9 in-scope roles were read and are **at template**
+>   (Reset To Template leaves Save disabled), so no reset is owed before observing.
+> * **Edge Cases and Responsiveness (7)** — `C30086` `C30087` `C30088` `C30089` `C30090` `C38865` `C38866`.
+> * **Cross-Module and Rewrite Regression (5)** — `C38867` … `C38871`.
+> * **API — Schedule (4)** — `C38872` … `C38875`. **Rule 51: an API-only fault is NOT filed** — it
+>   goes to `API-ASK.md` and is raised as an ask.
+>
+> ### Settled in session 2 — do NOT redo these
+>
+> `C38847` PASS · `C38849` PASS · `C29970` PASS (was HELD) · `C29969` PASS (was BLOCKED) ·
+> `C30047` PASS (was DEVIATION — **SV-8923 is invalid**) · `C30050` DEVIATION (SV-8851) ·
+> `C30045` DEVIATION (**SV-8941 filed**) · `C30080` PASS · `C38926` **PARTLY OBSERVED**
+> (items 1–2 pass; items 3–4 need impersonation and are NOT claimed).
+>
+> ### Tickets
+>
+> **Filed this session: [SV-8933](https://shopview.atlassian.net/browse/SV-8933)** (working hours
+> unreachable for staff of another location, parent SV-8699) and
+> **[SV-8941](https://shopview.atlassian.net/browse/SV-8941)** (Month view shows the VIN, parent
+> SV-8690). Both 12/12 field checks PASS.
+> **[SV-8923](https://shopview.atlassian.net/browse/SV-8923), which we filed earlier today, is
+> INVALID — recommend withdrawal.** See `SV-8923-SHOULD-BE-WITHDRAWN.md`. Not actioned.
+>
+> ### The working-hours "regression" is CLOSED — see `TECH-HOURS-RESOLVED-2026-08-06.md`
+>
+> It was three separate things: the save failure was **our own harness bug** (the Save button was
+> never scrolled into view); the grid showing no hours is **SV-8851**, still Open; and the load
+> failure is **location scoping**, now SV-8933. **`TECH-HOURS-REGRESSION-2026-08-06.md` is
+> SUPERSEDED** — kept only as the record of what was first seen.
+>
+> ### Environment changes left in place (recorded in `CHANGES-MADE.md` §batch 8)
+>
+> **Shop business hours are now SET** on Staging Heavy Duty - 9919: **06:00–18:00 Mon–Fri**
+> (previously OFF, none at all). Three cases were held or mis-verdicted because of that gap, so if a
+> later pass expects an unconfigured shop, **this is why it is not**. Two test shifts were created on
+> Mon 2026-08-03 and left in place.
+>
+> ### Two method traps that cost real time — do not repeat them
+>
+> 1. **Always `scrollIntoViewIfNeeded()` before a coordinate click.** A click that misses looks
+>    exactly like a feature that does nothing. This produced a false "saving does not persist" defect.
+> 2. **Quasar checkbox state lives on the ROOT element's `aria-checked`** (and a
+>    `q-checkbox__inner--truthy` class). The hidden `<input type=checkbox>` reads `checked=false` even
+>    when the permission is ON — it reported 9 of 11 roles wrongly.
+> 3. **`/api/staff` rows carry BOTH `id` and `staff_id`.** The working-hours endpoint wants
+>    **`staff_id`**. Using `id` returns 404 for everybody and looks like a total outage.
+>
+> ### Still owed after the 27
+>
+> **The 25 stale deviations from batches 1–5 have STILL not been re-driven** — they sit on
+> `v3.5-d122eef`, which no longer exists. Then the 168 TestRail writes. Both unchanged from below.
+
 
 ## State in one paragraph
 

@@ -56,5 +56,21 @@
   "date": "2026-08-06",
   "ev": "b9n-vin.json. VIN Number switch driven aria-checked false -> true in FILTER & DISPLAY. Counting TOP-LEVEL block elements (.fc-timeline-event/.fc-daygrid-event) only, matched against a strict VIN pattern (17 chars from the VIN alphabet with at least one digit AND one letter): MONTH 11 of 67 blocks carry a full VIN; WEEK 29 of 55 (correct); DAY 6 of 12 (correct). Examples read off Month blocks: 'Xiriver Apparel ~ 24069 ~ 3HSDZAPT9KN042164 ~ 19 Lines ~ Part of a series'. Spec v23 4.4: 'Shown in day and week views only; month view omits it due to space constraints.' Items 1,2,4,5 PASS.",
   "note": "A FIRST COUNT WAS WRONG AND WAS DISCARDED: a loose 17-char pattern plus a selector matching nested children gave inflated figures. Re-taken with the strict method above before filing, and the ticket records that. Filed as SV-8941 (Story Defect, Low, parent SV-8690, relates-to SV-8690, 12/12 field checks PASS) after a four-query duplicate search; SV-8835 is the nearest and is the opposite switch position on a different surface."
+ },
+ "30080": {
+  "iid": "SCH-PERM-07",
+  "v": "PASS",
+  "build": "v3.5-7ec992f",
+  "date": "2026-08-06",
+  "ev": "b9r2-tiers.json. Driven on the Sales Representative role, which starts with NO schedule permission at all. Start: View OFF, Edit OFF, Delete OFF. Clicking 'Create & Edit' while View was OFF turned BOTH Edit AND View ON - the admin screen auto-selects the dependency, so Edit cannot exist without View (item 1). Clicking 'Delete' then turned Delete ON on top of Edit+View (item 2). The three tiers therefore enable in dependency order and each higher level includes the ones beneath it (item 3).",
+  "note": "NOTHING WAS SAVED, and that is proven rather than asserted: after navigating away without saving and re-opening the same role, all three read OFF again - the role is exactly as it was found."
+ },
+ "38926": {
+  "iid": "SCH-PERM-13",
+  "v": "PARTLY-OBSERVED",
+  "build": "v3.5-7ec992f",
+  "date": "2026-08-06",
+  "ev": "b9q-role-sched.json + b9b-roles-before.json. Items 1 and 2 OBSERVED and PASS, read on the role edit screen and independently corroborated by GET /api/roles/{id} fe_permissions. Technician, Parts Manager, Parts Technician, Office User and Time Clock User each: Schedule View ON, Create & Edit OFF, Delete OFF (item 1). Service Manager, Senior Service Advisor, Service Advisor and Foreman each: View ON, Create & Edit ON, Delete ON - so Edit is ON as the case requires (item 2). Rule 26: 'Reset To Template' was clicked on each of the 7 editable in-scope roles and the Save button stayed DISABLED every time, which is this app's signal that the role already matches its template - so there is NO drift and NOTHING was saved. Office User and Time Clock User are LOCKED roles (the roles list shows a lock icon and offers action_view_ rather than action_edit_), so they carry no reset control at all.",
+  "note": "ITEMS 3 AND 4 ARE NOT OBSERVED and are not claimed. They require signing in AS a holder of each tier and confirming the read-only user cannot drag onto the grid while the edit-tier user can. That impersonation was not run, so this case is recorded PARTLY OBSERVED rather than PASS. A METHOD TRAP WORTH KEEPING: the Quasar permission checkbox holds its real state on the ROOT element's aria-checked (and a q-checkbox__inner--truthy class); the hidden <input type=checkbox> inside it reads checked=false even when the permission is ON. A first read preferred the input and reported 9 of 11 roles as having Schedule View OFF, which was FALSE and contradicted the API. Same class of trap as the .q-focus-helper focus-ring one. Belongs in APP-ACTIONS-PLAYBOOK section J - not edited from here, flagged in the report."
  }
 }

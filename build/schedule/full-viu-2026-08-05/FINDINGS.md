@@ -153,3 +153,73 @@ and "it does not work" is not the standard for a symptom line.
 * **NO TESTRAIL WRITE HAS BEEN MADE.** Not one, in this session or the previous one. Nothing is
   half-written and there is no repair owed.
 * **The branch is not declared final, so every verdict is PROVISIONAL** (Rule 49).
+
+---
+
+# 2026-08-06 SESSION 2 (batch 8) — build `v3.5-7ec992f`, unchanged all session
+
+**Build read at 04:58Z and 05:34Z: `v3.5-7ec992f`, last-modified Wed 05 Aug 2026 22:49:36 GMT, etag
+`e2a80a6ab5e0b47c29fd88af9db1e980`, `index.html` sha256 `66e91c52…dbbc53` — identical to the previous
+session's reads. NO redeploy.**
+
+**141 of 168 now carry a verdict; 27 do not. STILL ZERO TESTRAIL WRITES** — proven, not asserted: all
+168 re-read live and compared field by field, **0 differ on any field including `updated_on`**.
+
+## The headline: the "broken working-hours service" was three different things, and one was ours
+
+Full write-up in `TECH-HOURS-RESOLVED-2026-08-06.md`.
+
+| Symptom | Verdict |
+|---|---|
+| *"Saving a technician's hours does not persist"* | **FALSE — our own harness bug.** The Save button was clicked without being scrolled into view, so the click hit nothing. Scrolled first, the `PUT` fires with the edited value, returns 200, and it reads back. |
+| *"The grid shows no technician hours"* | **REAL, and already SV-8851** (read live: Open, Low, parent SV-8700). |
+| *"One staff member's hours cannot be loaded"* | **REAL, unticketed, user-facing — now [SV-8933](https://shopview.atlassian.net/browse/SV-8933).** It is location scoping. |
+
+**Two near-miss false defects avoided by trying to disprove first**, which is the whole point of that
+step: the save bug was ours, and **SV-8923 — which we filed earlier today — is invalid** because it
+was observed against an unmet precondition.
+
+## Nine cases settled this session
+
+| Case | Verdict | One line |
+|---|---|---|
+| [C38847](https://shopview.testrail.io/index.php?/cases/view/38847) SCH-HRS-01 | **PASS** | Toggle *"Set business hours for this shop"* is OFF by default and reveals one row per day, Monday to Sunday. All five items. |
+| [C38849](https://shopview.testrail.io/index.php?/cases/view/38849) SCH-HRS-03 | **PASS** | A technician with no custom hours now shows the shop's `360–1080` window on the board, identical to the shop-level window; Ayesha keeps her own `420–1260`. Causal — the shop hours were set minutes earlier. |
+| [C29970](https://shopview.testrail.io/index.php?/cases/view/29970) SCH-START-02 | **PASS** *(was HELD)* | Drop on a technician with no hours → `12:00Z` = 06:00 Edmonton = the shop start exactly. |
+| [C29969](https://shopview.testrail.io/index.php?/cases/view/29969) SCH-START-01 | **PASS** *(was BLOCKED)* | Drop on Ayesha → `13:00Z` = 07:00 = her own start. The two drops prove the §4.2 hierarchy in one sitting. |
+| [C30047](https://shopview.testrail.io/index.php?/cases/view/30047) SCH-VIEW-06 | **PASS** *(was DEVIATION)* | Shading works: 40 elements ON, 0 OFF, 40 ON again, two bands of exactly 6.0 hours. **SV-8923 is invalid.** |
+| [C30050](https://shopview.testrail.io/index.php?/cases/view/30050) SCH-VIEW-09 | **DEVIATION (SV-8851)** *(was UNSETTLED)* | 0 of 23 rows show hours. The earlier same-day flip to PASS/"fixed" is **withdrawn — no fix shipped.** |
+| [C30045](https://shopview.testrail.io/index.php?/cases/view/30045) SCH-VIEW-04 | **DEVIATION (SV-8941)** | Month view shows the VIN on 11 of 67 blocks; Week 29/55 and Day 6/12 are correct. |
+| [C30080](https://shopview.testrail.io/index.php?/cases/view/30080) SCH-PERM-07 | **PASS** | Clicking Edit while View is off **auto-selects View**; Delete nests on top. Nothing saved — re-read shows all three OFF again. |
+| [C38926](https://shopview.testrail.io/index.php?/cases/view/38926) SCH-PERM-13 | **PARTLY OBSERVED** | Items 1 and 2 PASS on all nine roles. **Items 3 and 4 NOT observed** — they need impersonation. Not claimed. |
+
+## Corrections to our own earlier claims
+
+1. **"The board payload carries no hours data" is FALSE.** It carries a **`workingWindows` array of
+   162 entries** with correct per-technician ranges. The grid simply does not render them — a sharper
+   statement of SV-8851, and useful to whoever fixes it. The earlier scan ran over an empty capture
+   and returned `undefined`, which was read as "nothing found".
+2. **A staff-scope figure of "161 of 161 failing" was WRONG.** It used the staff list's `id` where
+   this endpoint wants the separate **`staff_id`** on the same record. The real figure is **63 of
+   161**. Same user-id-vs-staff-id trap already recorded for Custom Roles.
+3. **A role-permission read reporting 9 of 11 roles with Schedule View OFF was WRONG.** The Quasar
+   permission checkbox holds its state on the **root's `aria-checked`** (and a
+   `q-checkbox__inner--truthy` class); the hidden `<input type=checkbox>` inside reads `checked=false`
+   even when the permission is ON. Same class of trap as the `.q-focus-helper` focus-ring one.
+
+## Two method traps worth adding to the playbook (§J) — not edited from here
+
+* **Quasar checkbox state** is on the root's `aria-checked`, never the hidden `<input>`.
+* **Clicking a control below the fold**: always `scrollIntoViewIfNeeded()` before a coordinate click.
+  A missed click looks exactly like a feature that does nothing, and it cost us a false defect today.
+
+## Honest limits
+
+* **27 of 168 still have no verdict** — 11 Permissions, 7 Edge Cases, 5 Cross-Module, 4 API. Listed
+  case by case in `RESUME.md`. Nothing was inferred for any of them.
+* **C38926 is PARTLY observed** and says so; its items 3 and 4 are not claimed.
+* **The 25 stale deviations from batches 1–5 were NOT re-driven this session** — they still sit on
+  `v3.5-d122eef`, a build that no longer exists.
+* **NO TESTRAIL WRITE HAS BEEN MADE**, in this session or any before it. Nothing is half-written.
+* **The branch is not declared final, so every verdict is PROVISIONAL** (Rule 49).
+
