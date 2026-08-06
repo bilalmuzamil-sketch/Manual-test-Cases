@@ -218,3 +218,22 @@ Two Story Defects filed, same Rule-52 shape, every field read back — 11 checks
 | [SV-8956](https://shopview.atlassian.net/browse/SV-8956) | SV-8612 | Sales By Customer download file names leave out the date range |
 
 No existing ticket was edited, commented on, transitioned or re-prioritised.
+
+## Update after the QA lead's three decisions (2026-08-06)
+
+**Application data: nothing created, deleted or altered.** No application screen was opened for this
+pass — it was TestRail and Jira only.
+
+| Operation | Count | Verification |
+|---|---|---|
+| `update_case` (C38918 marker, C30102 title) | 3 | every one HTTP 200, re-GET, 30 fields compared, 0 mismatches, 0 collateral |
+| Jira `PUT` on SV-8937 (summary + description) | 1 | HTTP 204, 16 field checks read back, all PASS |
+| Jira `issueLink` on SV-8937 | 2 | HTTP 201 each; `relates to` SV-8654 and SV-8613 |
+
+Running TestRail total: **233 `update_case`** over **220 distinct cases**. Still 0 add · 0 delete ·
+0 section · **0 run writes** · **0 results logged**.
+
+**SV-8937 is the ONLY already-filed ticket edited**, and only because the QA lead asked for it to be
+widened and given the new source block in the same pass. **No other existing ticket was edited,
+commented on, transitioned or re-prioritised** — he is retrofitting the rest himself, in one pass, to
+avoid a collision.

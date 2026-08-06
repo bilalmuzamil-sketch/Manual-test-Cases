@@ -126,9 +126,10 @@ Rule-61 block: **C30500** and **C38918** — see the decisions section below.
 
 ## Write ledger (this pass, cumulative)
 
-TestRail **230 `update_case` over 218 distinct cases**, every one HTTP 200 + byte-verified,
+TestRail **233 `update_case` over 220 distinct cases**, every one HTTP 200 + byte-verified,
 30 fields compared each, 0 mismatches, 0 collateral. **0 add · 0 delete · 0 section · 0 run writes ·
-0 results logged.** Jira **29 Story Defects created** (SV-8925–SV-8940, SV-8943–SV-8956), 0 edits to
+0 results logged.** Jira **29 Story Defects created** (SV-8925–SV-8940, SV-8943–SV-8956) plus **one authorised edit to
+SV-8937** (widened to three reports + the new source block + two `relates to` links). 0 edits to
 anyone else's ticket. Application **read-only**.
 
 ## Marker census caveat
@@ -148,18 +149,36 @@ established against `v3.5-16cf83f`; the other 276 carry markers inherited from e
   a sibling worker; `quick-login` and `switch-user` both rotate it.
 - **A question for Chris Ward**: none of the six specifications mentions the ~10,000-row export cap,
   yet it is real, deliberate and in epic story SV-8591.
-- **A decision for the QA lead**: **SV-8937** is written as a Parts Velocity defect but the
-  one-day-late PDF end date reproduces on **Technician Utilization AND Sales By Customer**. The
-  "Start Date Range:" mislabel is narrower — PV and TU have it, SBC prints "Date Range:" correctly.
-  Widen that ticket, or file a second one? It was **not edited**.
-- **A stale title in one of our own cases**: **C30102** is titled "Date range picker offers eleven
-  options in the specified order" while the specification says nine and the build shows nine. Its
-  body does not enumerate and passes. A title change was out of this batch's scope.
-- **C30500 and C38918** still carry no Rule-61 block. C30500's symptom (the Asset filter, SV-8908)
-  was never driven. **C38918 asserts the over-cap refusal, which cannot be produced on this estate** —
-  the biggest Work In Progress tab holds 65 work orders against a cap near 10,000 — so the honest
-  marker for it is **`AUTOMATION: HOLD`**, not expect-fail. That change needs the QA lead's word
-  because it lowers the ready-to-automate figure by one.
+- ~~**SV-8937 scope**~~ — **CLOSED 2026-08-06.** Widened to all three reports on the QA lead's
+  ruling, with the new source block added, and `relates to` links to SV-8654 and SV-8613. 16 field
+  checks read back, all PASS.
+- ~~**C30102's stale title**~~ — **CLOSED 2026-08-06.** Now "Date range picker offers nine periods in
+  the specified order, no All Time" (73 chars). Body untouched.
+- **C30500 still carries no Rule-61 block** — its symptom (the Asset filter, SV-8908) was never
+  driven, and an unobserved symptom must never be written.
+- ~~**C38918's marker**~~ — **CLOSED 2026-08-06.** It is now `AUTOMATION: HOLD` on the QA lead's
+  ruling, with a plain explanation of why the test cannot be run here. The ready-to-automate figure
+  is one lower, which is the honest direction.
+
+## ⚠️ EVERY NEW TICKET NEEDS A SOURCE BLOCK — read `TICKET-SOURCE-BLOCK.md` BEFORE FILING
+
+QA lead's ruling, 2026-08-06: every ticket ends, **at the very bottom after a line break**, with a
+plain-English statement of **where the expected behaviour comes from**. Exactly three valid source
+types — **a story in the epic** · **the specification (version + requirement, Confluence version
+never the in-body one)** · **a PO answer in a Google spreadsheet (link AND tab AND row — the row
+reference is MANDATORY)**. Quote the source's own words. No case IDs. If a PO answer differs from the
+spec, say so. **If there is no documented source, do not invent one — say the spec is silent and
+reconsider whether it should be a question rather than a ticket (Rule 57).** Report, per ticket, that
+the block is present and which of the three types it uses. **The full form is in
+`TICKET-SOURCE-BLOCK.md` in this folder.**
+
+**Do NOT retrofit tickets already filed** — the QA lead is doing those in one pass. The only exception
+already taken is SV-8937, which he asked to be widened and given the block at the same time.
+
+## The export cap is a STORY source, not a spec source
+
+None of the six specifications mentions the ~10,000-row export cap. It is in **story SV-8591**. Any
+ticket touching it names **the story**, in source-type 1 form.
 
 ## Ticket filing — the standing authorisation STANDS
 

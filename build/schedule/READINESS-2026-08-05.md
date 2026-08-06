@@ -1,3 +1,8 @@
+> ## ⚠️ SUPERSEDED by `READINESS-2026-08-06.md` (6 August 2026)
+> Kept for the record, not deleted. Its figures were taken against build `v3.5-be42149`, which no
+> longer exists, and 7 of the failures it counts have since been fixed. Read the 6 August file for
+> the current numbers.
+
 # Schedule — READINESS, 5 August 2026
 
 > **UPDATED LATER THE SAME DAY, 17:xx UTC — READ THIS FIRST.**

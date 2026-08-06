@@ -335,3 +335,60 @@ Date Range:"*. So the ticket's Parts-Velocity-only framing is wrong on **two** r
 - **Census over all 82 touched cases: exactly one provenance line, one build line and one
   `AUTOMATION:` marker each; the marker last; no raw markup; no stale build; no barred phrase; and
   all 20 expect-fail cases among them carry the Rule-61 block.**
+
+---
+
+## The QA lead's three decisions, carried out 2026-08-06
+
+Build re-read before and after: `v3.5-16cf83f`, sha256 `67932a75…` — unchanged.
+
+### 1. C38918 is now `AUTOMATION: HOLD`
+
+**[C38918](https://shopview.testrail.io/index.php?/cases/view/38918)** asserted the over-size export
+refusal, and that condition **cannot be produced on this estate** — no Work In Progress tab comes
+anywhere near the limit. Expect-fail would have claimed a failure nobody has observed. Its marker is
+now:
+
+`AUTOMATION: HOLD - the over-size refusal cannot be produced on this environment; no tab comes near the size limit`
+
+The case also gained a plain explanation of **why** it cannot be run, which keeps the fact that the
+Work In Progress download currently fails on any tab with rows (**SV-8907**) — a separate problem
+that blocks the road to this one. **This lowers the ready-to-automate figure by one**, which is the
+honest direction. Live census now: **426 `READY` · 38 `HOLD` · 12 with no plain-text marker** (the
+raw-markup cases) **= 476**.
+
+### 2. SV-8937 WIDENED, not duplicated — and it now carries the source block
+
+**[SV-8937](https://shopview.atlassian.net/browse/SV-8937)** was written as a Parts Velocity defect.
+It now covers **three reports**, and its summary says so: *"PDF heading shows an end date one day
+later than the range asked for, on three reports"*. The body carries the evidence from all three —
+Parts Velocity over three separate ranges, Technician Utilization on This Year, Sales By Customer on
+This Month — and records honestly that **Sales By Customer prints the label "Date Range:" correctly**
+and only has the wrong date, so the mislabel is narrower than the date fault. **Work In Progress was
+checked and is clean**, which is in the ruled-out section.
+
+**Parent, type, priority and status untouched**: Story Defect (10007), parent SV-8646, priority Low,
+Open. **Two `relates to` links added** — SV-8654 (the Technician Utilization export story) and
+SV-8613 (the Sales By Customer PDF story) — so the two newly-named reports' owners can see it.
+**16 field checks read back from Jira, all PASS.**
+
+### 3. C30102's title fixed
+
+**[C30102](https://shopview.testrail.io/index.php?/cases/view/30102)** read *"Date range picker
+offers **eleven** options in the specified order"* while the specification says nine and the build
+shows nine. Now: *"Date range picker offers nine periods in the specified order, no All Time"* —
+73 characters, comfortably inside the 80 limit. **The body was not touched**; it never enumerated and
+it passes.
+
+### Proofs for this pass
+
+- **3 `update_case`** (C38918, C30102, and C30102's title in the same op), every one HTTP 200,
+  re-GET and byte-compared, **30 fields each, 0 mismatches, 0 collateral**. All three text fields
+  sent every time; the title op sent four intended fields.
+- **1 Jira `PUT`** (HTTP 204) and **2 `issueLink` POSTs** (HTTP 201) on SV-8937, all read back.
+- Cumulative: **83 cases touched**, and the **398 untouched proven byte-identical BY CONTENT**,
+  foreign C38919–C38923 included.
+- **Run 359**: `include_all` false, 476 tests, sets equal both directions, **all 535 results present
+  BY ID, 0 new, 0 non-echo fields changed**. **2 results moved in `case_title` only** — both on
+  C30102, the one case we were told to retitle. That is the **declared read-time echo**, and it is
+  the expected consequence of a title change, not a write to the run.

@@ -1,73 +1,122 @@
 # Schedule full live VIU — RESUME
 
-> ## ⚠️ READ THIS BLOCK FIRST — it supersedes the older text below (updated 2026-08-06, session 2)
+> ## ⚠️ READ THIS BLOCK FIRST — it supersedes everything below it (updated 2026-08-06, session 3)
 >
-> **141 of 168 observed. 27 remain. STILL ZERO TESTRAIL WRITES** — proven this session by re-reading
-> all 168 live and comparing every field: **0 cases differ, including `updated_on`**. Nothing is
-> half-written and no repair is owed.
+> ### The pass is DONE and WRITTEN. There is nothing half-finished.
 >
-> **Build: `v3.5-7ec992f`**, last-modified Wed 05 Aug 2026 22:49:36 GMT, etag `e2a80a6ab5e0b47c29fd88af9db1e980`,
-> `index.html` sha256 `66e91c52…dbbc53`. Read at **04:58Z and 05:34Z** — identical. **No redeploy.**
+> **All 168 cases carry a definite recorded state and all 168 have been written to TestRail** —
+> 168 `update_case` ops, every one HTTP 200, **30 fields compared each, 0 mismatches, 0 collateral
+> changes**. All three text fields were sent on every op, so nothing was re-rendered into `<p>` tags.
 >
-> **Access works.** Cookie header must be built as `'; '.join(lines)` — `paste -sd'; '` corrupts it.
-> Probe `GET https://sv8685api.qa.shopview.com/api/auth/me/fe-permissions` → 200, 42 permissions.
-> `POST /api/quick-login` has never been called and must not be.
+> **Read back live after the writes:** 168 of 168 carry **exactly one** provenance line, **exactly one**
+> build stamp and **exactly one** automation marker · **0 raw markup** (the 16 repaired earlier had not
+> regressed and none was introduced) · **0** uses of the barred phrases *"as per the build tested on"* and
+> *"verified by the build"*.
 >
-> ### THE 27 STILL TO OBSERVE — re-derived, do not trust blindly
+> **Markers: 119 `READY` · 21 `READY - EXPECT FAIL` · 28 `HOLD` = 168.**
+> **Arithmetic gate holds: 119 + 21 = 140 = 168 − 28.** Ready to automate = **140**.
 >
-> * **Permissions (11)** — `C30074` `C30075` `C30076` `C30077` `C30078` `C30079` `C30081` `C30082`
->   `C30083` `C30084` `C30614`. **Nearly all need IMPERSONATION** (sign in AS a holder of each tier).
->   Rule 26 groundwork is already DONE: all 9 in-scope roles were read and are **at template**
->   (Reset To Template leaves Save disabled), so no reset is owed before observing.
-> * **Edge Cases and Responsiveness (7)** — `C30086` `C30087` `C30088` `C30089` `C30090` `C38865` `C38866`.
-> * **Cross-Module and Rewrite Regression (5)** — `C38867` … `C38871`.
-> * **API — Schedule (4)** — `C38872` … `C38875`. **Rule 51: an API-only fault is NOT filed** — it
->   goes to `API-ASK.md` and is raised as an ask.
+> **Run 357 PROVEN UNTOUCHED** — 168 tests, **429** results, every one present BY ID, **0 graded fields
+> changed and 0 derived fields changed either** (not even `case_title`, because nothing was retitled).
+> `include_all` still false. Counters unchanged at 0 / 0 / 168.
 >
-> ### Settled in session 2 — do NOT redo these
+> **Four counts reconcile, set-equal BOTH directions: live 168 · local active 168 · id-map 168 · import
+> 168.** id-map 0 blanks, refs 168/168, header identical to the committed one, refs and titles byte-equal
+> to live. Shredding guard **PASSED (0)**. Import header sha256 **identical to all five peer imports**.
 >
-> `C38847` PASS · `C38849` PASS · `C29970` PASS (was HELD) · `C29969` PASS (was BLOCKED) ·
-> `C30047` PASS (was DEVIATION — **SV-8923 is invalid**) · `C30050` DEVIATION (SV-8851) ·
-> `C30045` DEVIATION (**SV-8941 filed**) · `C30080` PASS · `C38926` **PARTLY OBSERVED**
-> (items 1–2 pass; items 3–4 need impersonation and are NOT claimed).
+> ### Build
 >
-> ### Tickets
+> **`v3.5-7ec992f`** · last-modified Wed 05 Aug 2026 22:49:36 GMT · etag
+> `e2a80a6ab5e0b47c29fd88af9db1e980` · `index.html` sha256 `66e91c52…dbbc53`. Read at **06:03:34Z** and
+> **06:37:13Z** — **byte-identical**. **No redeploy under this session.**
 >
-> **Filed this session: [SV-8933](https://shopview.atlassian.net/browse/SV-8933)** (working hours
-> unreachable for staff of another location, parent SV-8699) and
-> **[SV-8941](https://shopview.atlassian.net/browse/SV-8941)** (Month view shows the VIN, parent
-> SV-8690). Both 12/12 field checks PASS.
-> **[SV-8923](https://shopview.atlassian.net/browse/SV-8923), which we filed earlier today, is
-> INVALID — recommend withdrawal.** See `SV-8923-SHOULD-BE-WITHDRAWN.md`. Not actioned.
+> **The 168 verdicts span TWO builds and every case says which on itself:** **90** on `v3.5-7ec992f`
+> (8/6/2026) and **78** on `v3.5-d122eef` (8/5/2026), which **no longer exists**.
 >
-> ### The working-hours "regression" is CLOSED — see `TECH-HOURS-RESOLVED-2026-08-06.md`
+> ### Outcomes: PASS 120 · product-is-wrong 28 · held on the PO 3 · not built 3 · partly seen 2 · not seen 12 = 168
 >
-> It was three separate things: the save failure was **our own harness bug** (the Save button was
-> never scrolled into view); the grid showing no hours is **SV-8851**, still Open; and the load
-> failure is **location scoping**, now SV-8933. **`TECH-HOURS-REGRESSION-2026-08-06.md` is
-> SUPERSEDED** — kept only as the record of what was first seen.
+> Full table, every row summing, in **`build/schedule/READINESS-2026-08-06.md`**.
 >
-> ### Environment changes left in place (recorded in `CHANGES-MADE.md` §batch 8)
+> ### What is left, in priority order — the Rule-49 queue is `RECHECK-QUEUE.md`
 >
-> **Shop business hours are now SET** on Staging Heavy Duty - 9919: **06:00–18:00 Mon–Fri**
-> (previously OFF, none at all). Three cases were held or mis-verdicted because of that gap, so if a
-> later pass expects an unconfigured shop, **this is why it is not**. Two test shifts were created on
-> Mon 2026-08-03 and left in place.
+> 1. **The 78 cases still on the retired build** must be re-driven. This session proved the risk seven
+>    times over.
+> 2. **13 cases need a SECOND SIGN-IN as a non-administrator.** The single biggest gap. Impersonation was
+>    deliberately not used — a sibling Report Suite worker shares this `sv_sso_session`, and
+>    `POST /api/quick-login` and `/api/switch-user` were **never called**.
+> 3. **7 deviations could not be re-driven** — they need a drag our tooling cannot perform, and the
+>    click-to-arm alternative has been **removed from the build** (SV-8957). Drive them by hand.
+> 4. **The branch is still NOT declared final**, so every verdict is PROVISIONAL.
 >
-> ### Two method traps that cost real time — do not repeat them
+> ### Tickets — 4 filed, 1 withdrawn, all read back
 >
-> 1. **Always `scrollIntoViewIfNeeded()` before a coordinate click.** A click that misses looks
->    exactly like a feature that does nothing. This produced a false "saving does not persist" defect.
-> 2. **Quasar checkbox state lives on the ROOT element's `aria-checked`** (and a
->    `q-checkbox__inner--truthy` class). The hidden `<input type=checkbox>` reads `checked=false` even
->    when the permission is ON — it reported 9 of 11 roles wrongly.
-> 3. **`/api/staff` rows carry BOTH `id` and `staff_id`.** The working-hours endpoint wants
->    **`staff_id`**. Using `id` returns 404 for everybody and looks like a total outage.
+> * **[SV-8942](https://shopview.atlassian.net/browse/SV-8942)** — at 960px and below the whole page
+>   scrolls sideways and the work order panel never collapses. Parent SV-8686. **12/12 field checks PASS.**
+> * **[SV-8957](https://shopview.atlassian.net/browse/SV-8957)** — the click alternative to dragging a job
+>   onto the grid has disappeared from the build. Parent SV-8688. **12/12 PASS.**
+> * **[SV-8958](https://shopview.atlassian.net/browse/SV-8958)** — Month view series bar does not name the
+>   technician. Parent SV-8692. **12/12 PASS.**
+> * **[SV-8959](https://shopview.atlassian.net/browse/SV-8959)** — the clash warning sits at the bottom of
+>   the hover tooltip instead of beside the customer name. Parent SV-8695. **12/12 PASS.**
+> * **[SV-8923](https://shopview.atlassian.net/browse/SV-8923) WITHDRAWN** — closed **OBSOLETE / Done**
+>   with a plain comment, **not deleted**. It was raised against a shop with no business hours set, which
+>   breaches the source case's own precondition. Proof and the withdrawal record:
+>   `SV-8923-WITHDRAWN.md`.
 >
-> ### Still owed after the 27
+> ### ⚠️ NEW REQUIREMENT ON EVERY FUTURE TICKET — read `TICKET-SOURCE-BLOCK-REQUIREMENT.md`
 >
-> **The 25 stale deviations from batches 1–5 have STILL not been re-driven** — they sit on
-> `v3.5-d122eef`, which no longer exists. Then the 168 TestRail writes. Both unchanged from below.
+> Every ticket must **close with a plain statement of where its expected behaviour comes from**, and the
+> source must be **one of exactly three things**: a **story in the epic**, the **specification (PRD, with
+> the Confluence version and the requirement reference)**, or a **product owner answer in a Google
+> spreadsheet — with the link AND the tab name AND the row reference, which are mandatory**. **All four
+> tickets filed today are source type 2, the specification**; none carries the block because the
+> instruction arrived after they were filed, and **the coordinator is retrofitting them in one pass** — do
+> not edit them. That file lists the exact source each one should name.
+>
+> ### Seven verdict flips this session, every one against a ticket that is still open in Jira
+>
+> C29946 (SV-8857 fixed) · C29988 (SV-8849 fixed) · C29998 and C29999 (SV-8850 fixed) · C30016 · C30021 ·
+> C30034. **Ticket status does not track build state — never use it as a verdict.** Conversely
+> **C29962's earlier PASS was wrong**: click-to-arm has been removed since `v3.5-be42149`.
+>
+> ### Environment left as it is, by instruction — every change recorded in `CHANGES-MADE.md`
+>
+> Nothing was deleted, ever. Shop business hours on Staging Heavy Duty - 9919 are **06:00–18:00 Mon–Fri**.
+> A **70-shift series** sits on S-15875 / Alyssa Randall from 1 Sep to 7 Dec 2026 (it is the evidence for
+> both C38873 and C38865). **Four overlapping shifts** sit on Angela Roman on 6 Aug (evidence for C29999).
+> An event **"ZZAUTOTEST redrive event"** sits on 6 Aug. Ayesha Khan AK's Monday hours are 10:00–16:00.
+>
+> ### Access — the traps, all ours, all still true
+>
+> * Build the cookie header as `'; '.join(lines)`. **Never `paste -sd'; '`** — it alternates the two
+>   delimiters and silently drops the third cookie. That once produced a false "dead session".
+> * Probe the **`…api.`** host: `GET https://sv8685api.qa.shopview.com/api/auth/me/fe-permissions`. The app
+>   host answers 200 on any path because it serves the SPA shell.
+> * A genuine 401 is usually an expired **`cf_clearance`**, not a dead sign-in.
+> * `/api/staff` rows carry BOTH `id` and `staff_id`; the working-hours endpoint wants **`staff_id`**.
+> * **Always `scrollIntoViewIfNeeded()` before a coordinate click.** A click that misses looks exactly like
+>   a feature that does nothing. It cost us a false defect, and it cost this session an hour again.
+> * **Quasar checkbox state is on the component root's `aria-checked`**, never the hidden `<input>`.
+> * **The MITM bridge must be started as a BACKGROUND tool call** and it dies when that call is stopped —
+>   restart it and re-read `bridge-port.txt`.
+> * New this session: **`GET /api/schedule/board` rejects a range longer than 62 days**, and a
+>   **`PATCH` carrying only `note`** is refused `400 "The request changes nothing."` for **any** id, real
+>   or invented — which is why that is not an information leak.
+>
+> ### The files, in reading order
+>
+> `build/schedule/READINESS-2026-08-06.md` → `full-viu-2026-08-05/FINDINGS.md` →
+> `evidence/batch10/VERDICTS.json` and `evidence/batch11/VERDICTS.json` →
+> `testrail-execution-log-2026-08-06.json` → `RECHECK-QUEUE.md` → `CHANGES-MADE.md` →
+> `SV-8923-WITHDRAWN.md` → `TICKET-SOURCE-BLOCK-REQUIREMENT.md`.
+> Snapshots: `snapshots/PRE-WRITE-168-2026-08-06.json`, `POST-WRITE-168-2026-08-06.json`,
+> `PRE-WRITE-run357-2026-08-06.json`, `POST-WRITE-run357-2026-08-06.json`.
+> Writer: `write_plan_2026-08-06.py` (composes the payload, and **refuses on any case carrying raw
+> markup**) + `write_exec_2026-08-06.py` (writes and byte-verifies).
+
+---
+
+## The older record below is kept for history and is NO LONGER CURRENT
 
 
 ## State in one paragraph

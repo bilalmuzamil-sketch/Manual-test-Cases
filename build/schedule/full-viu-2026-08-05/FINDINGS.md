@@ -223,3 +223,96 @@ was observed against an unmet precondition.
 * **NO TESTRAIL WRITE HAS BEEN MADE**, in this session or any before it. Nothing is half-written.
 * **The branch is not declared final, so every verdict is PROVISIONAL** (Rule 49).
 
+
+---
+
+# 2026-08-06 SESSION 3 — the pass FINISHED and WRITTEN
+
+**Build `v3.5-7ec992f`, read at 06:03:34Z and 06:37:13Z — `index.html` byte-identical on sha256. No
+redeploy under this session.**
+
+**All 168 cases now carry a definite recorded state, and all 168 have been WRITTEN.** This is the first
+session of the pass in which any TestRail write was made.
+
+## The three things this session was sent to do, and what came of each
+
+### 1. SV-8923 was disproved and withdrawn
+
+We filed it, it was wrong, and we proved it wrong ourselves before touching it. C30047's own precondition
+says *"The shop has working hours set"* and the original observation was taken with none set. With them
+set to 06:00–18:00 the switch shades correctly: **0 shaded elements off, 40 on, 0 off again**, in two
+bands that begin at exactly the **midnight** and **6 PM** slot marks read straight off the time axis
+(x 524 and x 1390). **C30047 is a PASS.** SV-8923 is closed **OBSOLETE / Done** with a plain comment,
+**not deleted**; every field read back. Full record: `SV-8923-WITHDRAWN.md`.
+
+**The lesson is the useful part: a precondition that is not satisfied does not produce a defect, it
+produces a test that could not be run.** Checking the source case's own preconditions is now the first
+step before filing anything.
+
+### 2. The 27 unobserved cases were driven — 15 settled, 12 need a sign-in we do not have
+
+Re-derived by **CASE ID** from the live 168 minus every recorded verdict: **27**, matching `RESUME.md`.
+
+**Two verdict changes worth naming.** **C38873 HAS SHIPPED** — the long-series guard returns **HTTP 409**
+(*"The series would span 98 days, beyond the 56-day limit. Resubmit with acknowledgeLongSeries…"*), the
+acknowledgement lets it through as **201** materialising **70 shifts under one series id**, and the
+**120-shift cap returns 422 even with the acknowledgement**; the refused calls left **nothing** behind.
+And **C38865's own text claiming it cannot be run is FALSE** — a series *can* be spread across the
+1 November clock change, and it was: all 70 shifts hold **06:00 America/Edmonton** on both sides with the
+stored UTC correctly moving 12:00Z → 13:00Z. The requirement is met in the data; the **screen** shows
+12 PM then 1 PM, because the Schedule renders raw UTC — already **SV-8848**.
+
+**Two candidate defects were disproved rather than filed.** A suspected cross-location information leak
+turned out to answer **identically for a completely invented id**, so it distinguishes nothing. And a
+Month view apparently rendering **zero** blocks was **our own selector** — Month uses `.fc-daygrid-event`;
+re-counted properly it renders 68.
+
+### 3. The 25 stale deviations were re-driven — 18 of them, and SEVEN FLIPPED TO PASS
+
+**Every one of the 27 tickets our cases cite was read live first. Not one is Done.** Ticket status was
+then deliberately **not** used as a verdict, and that judgement paid for itself seven times:
+
+**SV-8857 is fixed** (the Filters button now carries a count badge and *Clear all* resets everything in
+one click) · **SV-8849 is fixed** (a series block opens from Week view, and the banner carries an edge
+chevron and a *"Week 1 of 2"* cue) · **SV-8850 is fixed** (the *"+N more"* popover **lists** the hidden
+shifts and clicking one **opens** it — proven in Day view by seeding four overlapping shifts to force an
+overflow) · the **create-event toast and Undo now exist** · **event cards are now structurally distinct**
+from shifts, checked on grey, teal **and** violet · and the **tooltip now caps line names at three** with
+a *"+24 more lines"* row.
+
+**Eleven still deviate and were re-proven, not assumed.** Three of them have gained tickets since they
+were written — **SV-8826**, **SV-8893**, **SV-8915** — so their *"no ticket exists"* text was false and is
+now gone.
+
+**And a regression in a case we had already passed.** **C29962's click-to-arm alternative has been REMOVED
+between `v3.5-be42149` and `v3.5-7ec992f`** — zero controls anywhere carry it, on load, on hover, or in
+the expanded line list. Filed **SV-8957**. Its absence is also why four spread and scope cases could not
+be re-driven: the drag will not complete through our tooling, and the click route no longer exists.
+
+## The write pass
+
+**168 `update_case` ops, every one HTTP 200, 30 fields compared each, 0 mismatches, 0 collateral changes.**
+All three text fields sent on every op. Read back live: **exactly one** provenance line, **one** build
+stamp and **one** marker on every case; **0 raw markup**; **0** barred phrases.
+
+**Provenance is now two sentences that never merge** — the first names only documents, the second says
+which build the case was **actually seen on**, so **78** say `v3.5-d122eef` / 8/5/2026 and **90** say
+`v3.5-7ec992f` / 8/6/2026. **Every expect-fail case carries the three-outcome block** with a symptom we
+observed ourselves and a **named ticket** — there is no no-ticket variant.
+
+**Markers: 119 READY · 21 READY - EXPECT FAIL · 28 HOLD = 168. Gate: 119 + 21 = 140 = 168 − 28.**
+
+**Run 357 proven untouched** — 168 tests, 429 results, all present by id, **0 graded and 0 derived fields
+changed**, `include_all` still false.
+
+## Honest limits
+
+* **The branch is NOT declared final, so all 168 verdicts are PROVISIONAL** (Rule 49). Queue: `RECHECK-QUEUE.md`.
+* **78 of the 168 verdicts sit on a build that no longer exists.** Each case says so on itself.
+* **12 cases have never been observed** and say so — they need a second sign-in as a non-administrator.
+  Impersonation was deliberately not used: a sibling worker shares this session, and `quick-login` and
+  `switch-user` were **never called**.
+* **7 deviations were not re-driven** — two drag techniques were tried and the click alternative is gone.
+* **2 cases are only partly observed** and name the items they do not claim.
+* This pass drove the 27 unobserved and re-drove 18 of the 25. **It was not a fresh live run of all 168
+  and does not claim to be.**

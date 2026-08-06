@@ -5,7 +5,7 @@
   "build": "v3.5-16cf83f",
   "date": "2026-08-06",
   "evidence": "batch8",
-  "note": "The picker is in the toolbar and holds nine named periods in the specified order - Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week - beside a month calendar, a live \"Range: 6 days\" readout and an Apply button. There is no All Time item, no Today, no Yesterday and no item labelled Custom. Honest note: this case is still TITLED \"eleven options\" while the specification says nine and the build shows nine; the title is stale and is reported as owed.",
+  "note": "The picker is in the toolbar and holds nine named periods in the specified order - Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week - beside a month calendar, a live \"Range: 6 days\" readout and an Apply button. There is no All Time item, no Today, no Yesterday and no item labelled Custom. Honest note: this case is still TITLED \"eleven options\" while the specification says nine and the build shows nine; the title is stale and is reported as owed. TITLE CORRECTED 2026-08-06 on the QA lead's ruling: \"eleven options\" -> \"Date range picker offers nine periods in the specified order, no All Time\" (73 chars). The body was not touched.",
   "verdict": "PASS"
  },
  "30105": {
@@ -1963,12 +1963,12 @@
   "verdict": "PARTIAL"
  },
  "38918": {
-  "anchor": "WIP S6-R11",
-  "batch": 6,
+  "anchor": "WIP Story 9 / the over-size export refusal",
+  "batch": "decisions",
   "build": "v3.5-16cf83f",
   "date": "2026-08-06",
-  "evidence": "wip-tabs",
-  "note": "The over-cap refusal cannot be produced here: the biggest single tab holds 65 work orders against a cap of about 10,000. The case says so itself. It still carries an EXPECT FAIL marker with no block, which is worth the QA lead deciding on - arguably it should be AUTOMATION: HOLD instead.",
+  "evidence": "qa-lead-decision-2026-08-06",
+  "note": "QA lead ruling 2026-08-06: this case becomes AUTOMATION: HOLD, not expect-fail. The over-size condition cannot be produced on this estate - no Work In Progress tab comes near the limit - and expect-fail would claim a failure nobody has observed. The case now also explains why it cannot be run, keeping the separate fact that the download fails on any tab with rows (SV-8907). Ready-to-automate drops by one, which is the honest direction.",
   "verdict": "NOT OBSERVED"
  },
  "38924": {

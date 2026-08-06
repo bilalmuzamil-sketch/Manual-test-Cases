@@ -1,5 +1,87 @@
 # Schedule — PROJECT STATE
 
+## §0-FINISHED-AND-WRITTEN-2026-08-06 — READ THIS FIRST
+
+**The full live VIU pass is COMPLETE and all 168 cases are WRITTEN to TestRail.** This is the first
+session of the pass in which any TestRail write was made; the two before it deliberately wrote nothing.
+
+**Canonical resume:** `build/schedule/full-viu-2026-08-05/RESUME.md` (its top block is exact) →
+`build/schedule/READINESS-2026-08-06.md` → `full-viu-2026-08-05/FINDINGS.md` →
+`evidence/batch10/VERDICTS.json` + `evidence/batch11/VERDICTS.json` →
+`full-viu-2026-08-05/RECHECK-QUEUE.md` → `full-viu-2026-08-05/CHANGES-MADE.md` →
+`full-viu-2026-08-05/SV-8923-WITHDRAWN.md` →
+`full-viu-2026-08-05/TICKET-SOURCE-BLOCK-REQUIREMENT.md`.
+
+### The numbers
+
+| | |
+|---|---|
+| Cases live under the Schedule group | **168**, all `created_by = 3` (ours; **no foreign cases**) |
+| Written this session | **168** `update_case`, all HTTP 200, **30 fields compared each, 0 mismatches** |
+| Outcomes | **PASS 120 · product-is-wrong 28 · held on the PO 3 · not built 3 · partly seen 2 · not seen 12** |
+| Markers | **119 `READY` · 21 `READY - EXPECT FAIL` · 28 `HOLD`** |
+| **Ready to automate** | **140** — the gate holds: 119 + 21 = 140 = 168 − 28 |
+| Build | **`v3.5-7ec992f`**, etag `e2a80a6ab5e0b47c29fd88af9db1e980`, read twice byte-identical |
+| Verdict build split | **90** on `v3.5-7ec992f` · **78** on `v3.5-d122eef` (**gone**) — each case says which |
+| Run 357 | **PROVEN UNTOUCHED** — 168 tests, 429 results, 0 graded and 0 derived fields changed |
+| Four counts | live 168 · local active 168 · id-map 168 · import 168, **set-equal BOTH directions** |
+
+### Tickets
+
+**Filed:** [SV-8942](https://shopview.atlassian.net/browse/SV-8942) (page scrolls sideways and the panel
+never collapses at the supported 960px minimum, parent SV-8686) ·
+[SV-8957](https://shopview.atlassian.net/browse/SV-8957) (the click alternative to dragging has been
+removed — a regression against a case we had already passed, parent SV-8688) ·
+[SV-8958](https://shopview.atlassian.net/browse/SV-8958) (Month view series bar does not name the
+technician, parent SV-8692) · [SV-8959](https://shopview.atlassian.net/browse/SV-8959) (the clash warning
+sits at the bottom of the hover tooltip, parent SV-8695). **12/12 field checks PASS on each.**
+
+**Withdrawn:** [SV-8923](https://shopview.atlassian.net/browse/SV-8923) → **OBSOLETE / Done**, comment
+posted, **not deleted**. We filed it and it was wrong: raised against a shop with **no business hours
+configured**, which the source case's own precondition required. With them set the shading is correct to
+the pixel, so **C30047 is a PASS**.
+
+**⚠️ NEW REQUIREMENT on every future ticket:** it must close with a plain statement of **where its
+expected behaviour comes from**, and the source must be one of exactly three — a **story in the epic**,
+the **specification (PRD, with the Confluence version and the requirement reference)**, or a **product
+owner answer in a Google spreadsheet, with the link AND tab AND row reference, mandatory**. All four
+tickets above are **source type 2, the specification**; none carries the block because the instruction
+arrived after they were filed, and the **coordinator is retrofitting them** — do not edit them.
+Details and the exact source each should name: `full-viu-2026-08-05/TICKET-SOURCE-BLOCK-REQUIREMENT.md`.
+
+### Seven verdict flips — and the reason ticket status is never a verdict
+
+**SV-8857, SV-8849 and SV-8850 are all FIXED while every one of them is still Open or Ready to Fix in
+Jira.** Every one of the 27 tickets our cases cite was read live at the start of this pass and **not one
+is Done**. The flips: C29946 · C29988 · C29998 · C29999 · C30016 · C30021 · C30034. Conversely **C29962's
+earlier PASS was wrong** — click-to-arm has been removed since `v3.5-be42149`. And **C38873 has shipped**:
+the 409 long-series guard and the 422 120-shift cap now both exist and behave correctly.
+
+### What is left, in priority order
+
+1. **Re-drive the 78 cases still on the retired build.** This session proved the risk seven times over.
+2. **A SECOND SIGN-IN as a non-administrator** — the single biggest gap, blocking **13 cases** including
+   the whole Permissions area. Impersonation was deliberately not used because a sibling Report Suite
+   worker shares this `sv_sso_session`; **`quick-login` and `switch-user` were never called**.
+3. **7 deviations could not be re-driven** — they need a drag our tooling cannot perform, and the
+   click-to-arm alternative has been removed from the build (SV-8957). They must be driven by hand.
+4. **Branko's shop-closure answer**, which has never been sent, blocking 3 cases — and note the
+   shop-closure setting **does not exist anywhere in the product**, so his answer alone will not make
+   them runnable.
+5. **The branch declared final.** Until then every verdict is PROVISIONAL and the Rule-49 queue is OPEN.
+
+### Environment left as-is, by instruction — all recorded with BEFORE values in `CHANGES-MADE.md`
+
+**Nothing was ever deleted.** Shop business hours on Staging Heavy Duty - 9919 are **06:00–18:00 Mon–Fri**
+(previously off). A **70-shift series** sits on S-15875 / Alyssa Randall, 1 Sep → 7 Dec 2026 — it is the
+evidence for both C38873 and C38865. **Four overlapping shifts** sit on Angela Roman on 6 Aug (the
+evidence for C29999). An event **"ZZAUTOTEST redrive event"** sits on 6 Aug. Ayesha Khan AK's Monday hours
+are 10:00–16:00.
+
+---
+
+## The record below is kept for history
+
 ## §0-PROVENANCE-REWORD-2026-08-05 — CANONICAL RESUME (read this first)
 
 **Paper: `build/schedule/provenance-reword-2026-08-05/`.** Resume order:
