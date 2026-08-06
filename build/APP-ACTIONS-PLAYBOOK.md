@@ -499,6 +499,57 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   (`custom_mission`, `custom_goals`, `custom_steps_separated`, `custom_testrail_bdd_scenario`) are
   **null on all 753 of our cases**, so they cannot be damaged today — but if any project ever populates
   one, it joins the send-it-every-time list.
+- **🛑 DECLARED HAZARD #4 — EDITING A JIRA DESCRIPTION *DESTROYS* ANY PASTED IMAGE WHOSE MEDIA NODE
+  YOU DO NOT CARRY INTO THE NEW BODY, AND THE DELETION IS NOT IN THE CHANGELOG (proven the hard way
+  2026-08-06, Report Suite ticket reformat).** This one is in §J rather than the Jira section because
+  §J is where the declared write hazards live and this is the same class of silent, unlogged loss as
+  #3 — **but it is JIRA, not TestRail.**
+  **THE MECHANISM.** A **pasted** screenshot is an **embedded** attachment: the only reason the file
+  exists is the `media` node inside the description that points at it. `PUT /rest/api/3/issue/{key}`
+  with a new `description` that does not contain that node removes its last reference, **and Jira
+  deletes the file.** Proven: **[SV-8818](https://shopview.atlassian.net/browse/SV-8818)** lost
+  `image-20260804-061644.png` (attachment `59255`, media `4aec0119-…`) on write **1 of 63**. The file
+  is **unrecoverable** — `GET /rest/api/3/attachment/59255` now returns **HTTP 404** *"The attachment
+  with id '59255' does not exist"* — and no copy exists anywhere.
+  **AND THE CHANGELOG DOES NOT MENTION IT — VERIFIED LIVE, AND THE ASYMMETRY IS THE POINT.** Read
+  live 2026-08-06 (`GET /rest/api/3/issue/SV-8818/changelog`, 22 entries): the changelog **DOES** log
+  attachment **additions** — five separate `Attachment` items, including `image-20260804-06164…` being
+  added at `01:17:54.565-0500` — but the destroying write at `08:25:43.777-0500` logs **exactly one
+  item, `description`, and NO attachment item at all.** **Jira records the arrival of a pasted image
+  and stays silent about its deletion.** So from Jira's own history nobody can reconstruct that the
+  file went. **The loss is provable ONLY because the write was byte-compared against a pre-write
+  snapshot (Rule 50)** — the same reason the silent Product Area wipe under Rule 52 was ever
+  detectable.
+  **THE WORKING METHOD — LIFT THE EXISTING NODES VERBATIM, DO NOT REBUILD THEM.** Before building the
+  new body: walk the CURRENT description's ADF, deep-copy every **`mediaSingle` / `mediaGroup`** node
+  whole, and place those copies into the new body. Then **assert `media_ids(new) ⊇ media_ids(old)` and
+  REFUSE TO WRITE the ticket at all if it does not hold** — a refusal costs nothing, a write costs the
+  file. Proven on 8 tickets: SV-8821's two pictures and SV-8844's picture + screen recording came back
+  **byte-identical**.
+  **REBUILDING A NODE FROM THE MEDIA ID IS SAFE FOR THE FILE BUT LOSES THE DISPLAY ATTRIBUTES.** The
+  Report Suite pass rebuilt nodes as `{'mediaSingle', attrs:{layout:'align-start'}}` + `{'media',
+  attrs:{type:'file', id, alt, collection:''}}`. The file reference survives — nothing is deleted —
+  but `width` / `height` / `localId` on the media node and `width` / `widthType` / `layout` on the
+  wrapper are **dropped**, so a picture the author had sized to 921px renders at full size and a
+  centred one becomes left-aligned. Cosmetic, but it is a real diff a byte-check will flag: seen on
+  SV-8820 (×2), SV-8823 and SV-8879. **Verbatim lifting avoids it entirely.**
+  **VERIFY AFTER EVERY WRITE, BY ID.** Re-read the issue and compare the `attachment` array
+  **attachment id by attachment id, and each survivor's filename** — never by count, because a count
+  match hides a swap. A description-only edit must leave `attachment` byte-identical.
+  **A DANGLING ATTACHMENT *CAN* BE MADE INLINE — the media UUID is obtainable (proven 2026-08-06,
+  correcting an earlier note that said it was not).** `curl -D - -o /dev/null` on
+  `/rest/api/3/attachment/content/{attachment_id}` returns a **303** whose `location` is
+  `https://api.media.atlassian.com/file/{UUID}/…`; that UUID is the `attrs.id` an ADF `media` node
+  needs. **Keep only the UUID — the signed token on that URL is a secret and is never stored or
+  printed.** This is how SV-8818 came to show `parts-velocity-download-menu.png`, an image that had
+  been attached and never referenced. No media-API upload is required.
+  **REUSABLE TOOLING (read-only auditor + safe writer):**
+  `build/ticket-reformat-2026-08-06/attachment-audit/tools/{jira.py,audit.py,media_exact.py}` — audits
+  every ticket's attachment set against a pre-write baseline and every media reference attribute by
+  attribute; `build/ticket-reformat-2026-08-06/closed-tickets/tools/rewrite.py` — the writer that
+  lifts nodes verbatim, refuses on a would-be drop, and byte-verifies. Full evidence:
+  `build/ticket-reformat-2026-08-06/attachment-audit/ATTACHMENT-VERIFICATION.md` (92 tickets, 46
+  attachments before, 45 now, 1 loss, 0 renamed, 0 broken references).
 - **`/api/reporting/reports/{slug}/export` REQUIRES `variant` (proven live 2026-08-05, `sv8582`,
   `v3.5-16cf83f`).** `?format=pdf&range=this_year` alone returns **HTTP 400** `{"errors":[{"error":"Invalid
   export variant. Allowed values: summary, expanded."}]}`. The working shape is
@@ -870,6 +921,13 @@ and do not assume the Figma MCP is connected — it usually is not.
 **Standing instruction from the QA lead, 2026-08-04. Every defect ticket we file, on every project,
 uses these SEVEN sections IN THIS ORDER.** Do not re-derive this (Rule 27). Canonical worked examples:
 `build/report-suite/defect-pack-2026-08-04/TICKET-1…6*.md` (filed as SV-8818…SV-8823).
+
+**🛑 BEFORE YOU EDIT AN EXISTING TICKET'S DESCRIPTION, READ §J DECLARED HAZARD #4.** Rewriting a
+description over the REST API **DELETES any pasted image whose `media` node you do not carry into the
+new body**, and **Jira logs the addition of such an image but NOT its deletion** — so the loss is
+invisible in the changelog and provable only from a pre-write snapshot. One image was destroyed this
+way on 2026-08-06 (SV-8818) and it is unrecoverable. The working method, the verbatim node-lifting
+code and the read-only auditor are all in §J.
 
 | # | Section | What goes in it |
 |---|---|---|

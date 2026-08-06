@@ -1,0 +1,17 @@
+# Deliberate decisions on this pass — written down before anyone asks (Standing Rule 46)
+
+An undocumented deliberate choice is indistinguishable from a miss, so every one of them is here
+with a plain one-sentence answer, the evidence, and who can close it.
+
+| # | The decision | The plain answer | Evidence | Who closes it | Risk |
+|---|---|---|---|---|---|
+| 1 | [SV-8902](https://shopview.atlassian.net/browse/SV-8902) was **not** written in the five-part shape | It is a throwaway probe of Jira's own behaviour, not a defect, and giving it "Steps to reproduce" and "Expected behaviour" would dress a probe up as a defect. | its own body, and `tools/content.py` marks it `shape: probe` | QA lead — one write if he wants the headings anyway | LOW |
+| 2 | [SV-8923](https://shopview.atlassian.net/browse/SV-8923) keeps the five headings but leads with its withdrawal | It was withdrawn by us as a false defect, so the first thing a reader must see is that it is not a live defect; the requirement is still quoted, because that is what makes the withdrawal checkable. | `build/schedule/full-viu-2026-08-05/SV-8923-WITHDRAWN.md` | nobody — it is settled | LOW |
+| 3 | **No status was changed on any of the eight**, including the two our records say still reproduce | Reopening somebody else's closure cuts across their triage, and on this shared account their edits are indistinguishable from ours. | Standing Rule 53's corollary; `execution-log.md` proves only `description` and `updated` moved | QA lead | MEDIUM — [SV-8843](https://shopview.atlassian.net/browse/SV-8843) and [SV-8847](https://shopview.atlassian.net/browse/SV-8847) stay closed while the behaviour continues |
+| 4 | [SV-8843](https://shopview.atlassian.net/browse/SV-8843)'s body now says **half of its own claim is wrong** | Its main claim holds — the filter buttons do share the tab row — but its stated reason, that collapsing frees no space, is wrong: collapsing does free space. Saying so stops anyone reopening a half-incorrect ticket. | our live measurements recorded in the Filters project notes | QA lead | MEDIUM — it reads as an argument against our own ticket, and it is |
+| 5 | Dangling pictures and recordings were **left dangling**, not made to show in the body | The instruction was to preserve images, not to add new ones; embedding another person's recording into our text would also present their evidence as ours. | `../attachment-audit/ATTACHMENT-VERIFICATION.md`, "Pictures shown in the body" column | QA lead | LOW |
+| 6 | [SV-8819](https://shopview.atlassian.net/browse/SV-8819)'s long technical appendix was **removed** | It is closed as Done, and the rewritten body keeps every number a re-verification needs — the two figures, the two day counts and the exact part — in six steps instead of thirty-five thousand bytes. | old body preserved in `snapshots/pre-write/SV-8819.json` | QA lead | MEDIUM — if anyone re-verifies that fix from the ticket alone, they now have less detail |
+| 7 | [SV-8821](https://shopview.atlassian.net/browse/SV-8821) and [SV-8822](https://shopview.atlassian.net/browse/SV-8822) keep saying they have **no written requirement** | Both are true and both were already flagged that way; inventing a source would be worse than admitting there is none. | [`SOURCE-PROBLEMS.md`](SOURCE-PROBLEMS.md) part 2 | QA lead | LOW |
+
+**Nothing here reverses a ruling of his, and nothing here was back-dated.** Every row was a choice
+made during this pass, on the evidence named beside it.

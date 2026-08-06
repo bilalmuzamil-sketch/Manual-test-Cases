@@ -26,7 +26,8 @@ Evidence:
 
 | | |
 |---|---|
-| pre-write snapshot | `snapshots/pre-write/SV-8818.json` — 6 attachments, including `59255` |
+| pre-write snapshot | **`snapshots/working-set.json` — 6 attachments, including `59255`.** ⚠️ **Corrected 2026-08-06:** this row used to cite `snapshots/pre-write/SV-8818.json`, and **that file holds 5, not 6** — SV-8818 was written twice (the failed write, then the repair) and the second write overwrote it with the post-loss state. `working-set.json` was committed **before any write** and is the true baseline. The finding is unchanged; only the citation was wrong. |
+| the destroyed picture's own reference | `snapshots/pre-edit/SV-8818.adf.json` — still contains the `media` node `4aec0119-0131-4ead-a82d-b460af9b6309` |
 | post-write snapshot | `snapshots/post-write/SV-8818.json` — 5 attachments, `59255` absent |
 | live re-read | `GET /rest/api/3/attachment/59255` → **HTTP 404** *"The attachment with id '59255' does not exist"* |
 | changelog | one `description` item at `2026-08-06T08:25:43`, nothing about an attachment |
@@ -57,5 +58,14 @@ session is available again. Recorded in `IMAGES-OWED.md`.
 > the current ADF and carry every one of them into the new body. Verify by comparing the `attachment`
 > field pre and post — a description-only edit must leave it byte-identical.
 
-Recording it here rather than in `build/APP-ACTIONS-PLAYBOOK.md` § J because that file is owned by
-other live workers this session. **It needs folding into § J by whoever holds that file next.**
+**✅ NOW FOLDED INTO `build/APP-ACTIONS-PLAYBOOK.md` § J as DECLARED HAZARD #4 (2026-08-06)**, with
+the working method (lift every existing `mediaSingle` / `mediaGroup` node **verbatim**, then refuse to
+write at all if the new body would drop one), the reusable auditor and writer, and one extra fact
+verified live: **the changelog records an attachment being ADDED but never being DELETED.** A pointer
+was also added at the top of the "Filing a defect ticket" section so a Jira-focused reader meets the
+hazard before touching a description.
+
+**And the guarantee the QA lead asked for now exists as evidence, not assertion:** all **92** tickets
+across both reformat passes were compared attachment by attachment, **by id**, against pre-write
+baselines — **46 before, 45 now, this one loss, 0 renamed, 0 broken references.** See
+[`../attachment-audit/ATTACHMENT-VERIFICATION.md`](../attachment-audit/ATTACHMENT-VERIFICATION.md).
