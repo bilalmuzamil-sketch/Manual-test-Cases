@@ -69,7 +69,11 @@
 >   (this REPLACES the "THREE QUEUES ARE OPEN NOW (2026-08-04)" pointer that stood here, whose count
 >   AND date were both stale — the body of this file already described a fourth and later ones):**
 >   · **FILTERS — LIVE queue `build/filters/full-viu-2026-08-05/RECHECK-QUEUE.md`** (OPEN; 110 rows;
->   build `v3.4.2-d00239b`, etag `b9ab1d41…`, read three times byte-identical). Still OPEN as
+>   build `v3.4.2-d00239b`, etag `b9ab1d41…`, read three times byte-identical). **⚠️ UPDATED
+>   2026-08-06: a NEWER queue is also OPEN — `build/filters/vlad-gap-review-2026-08-06/RECHECK-QUEUE.md`
+>   (9 rows), and the BUILD HAS MOVED to `v3.4.2-280ca5a` (Thu 06 Aug 09:37:49 GMT, etag `720a7f1f…`),
+>   so `v3.4.2-d00239b` above is the build those 110 rows WERE RECORDED ON, not the build running.**
+>   Still OPEN as
 >   SUPERSEDED RECORDS: `final-viu-2026-08-05`, `recheck-2026-08-05`, `viu-2026-08-04`.
 >   **CLOSED: `cleanup-2026-08-05/RECHECK-QUEUE.md` (2026-08-05 14:25 UTC — all 8 phone rows observed
 >   live at 390 × 844), together with its `PENDING-LIVE-CHECK.md`.**
@@ -833,7 +837,53 @@ deliver the 7-tab management report.
    Branko PRD/answers → SPEC-RELEVANCE-RECONCILIATION + build-accurate wording + live
    VIU on the 43 new cases → authorized add_case push. Canonical resume doc:
    build/filters/PROJECT-STATE.md (2026-07-27 header).
-   **STATUS 2026-08-05 ~21:35 UTC (LATEST — THE FULL LIVE PASS: ALL 110 CASES DRIVEN LIVE, READY TO
+   **STATUS 2026-08-06 (LATEST — VLAD'S GAP REVIEW WORKED: THE SUITE IS 114 CASES, READY TO AUTOMATE
+   94, AND THREE CLAIMS BELOW ARE CORRECTED. Resume
+   `build/filters/vlad-gap-review-2026-08-06/{ROOT-CAUSE,ROW-BY-ROW,SOURCE-CURRENCY,NEW-CASES,
+   RECHECK-QUEUE,DELIBERATE-DECISIONS,QUESTIONS-FOR-BRANKO,testrail-execution-log,
+   STAGED-RUN-352-SYNC}.md` → `build/filters/PROJECT-STATE.md`; commit `6a51f273`):**
+   **🔴 THE ROOT CAUSE, IN ONE LINE: WE VERIFIED THAT THE 110 CASES WE HAD WERE CORRECT; WE NEVER
+   VERIFIED THAT 110 WAS THE RIGHT SET.** The requirement→case map (`build/filters/coverage-matrix.md`)
+   was last written **17 July** — **81 rules / 79 cases** — while the spec now carries **132 rules**,
+   and the map has **ZERO entries for Stories 13 and 14**, the two largest sections, added **26 July**.
+   **Rule 43 already required that map to be RE-DERIVED every spec version, and it was simply never
+   run** (not for v12, v18 or v19). Three of the genuine gaps live in exactly that unmapped territory.
+   Full five-whys, with the recurrence-vs-new analysis: `vlad-gap-review-2026-08-06/ROOT-CAUSE.md`.
+   **⚠️ A REQUIREMENT→CASE RE-DERIVATION FOR FILTERS IS NOW AN OUTSTANDING ASK AWAITING THE QA LEAD'S
+   GO-AHEAD — IT HAS NOT BEEN DONE and must not be described as done.**
+   **THE HONEST SCOREBOARD on Vlad's eleven rows (twelve, because one splits in two under Rule 45(e)):
+   he was RIGHT on 6 · MISTAKEN on 5 · and 1 was never a gap** (row 7, a deliberate HOLD on the QA
+   lead's own *"lets wait for Brankos PRD"*). **AND 4 OF THE 5 HE GOT WRONG ARE STILL OUR FAULT** — the
+   coverage he could not find sits **mid-list inside cases titled after a different rule** (point 4 of
+   five, point 6 of seven), and **there is no published requirement→case map for him to check**, so his
+   only option was reading 110 case bodies. **That last point is the actionable one:** publishing the
+   map turns an outsider's review from archaeology into a one-page check.
+   **CORRECTION 1 — "RAW MARKUP IS NOW 0 OF 110" (claimed 2026-08-05, below) IS NOT TRUE OF THE LIVE
+   SUITE.** A live census on **2026-08-06** found **14 of the 114 cases still showing raw markup to the
+   tester** (15 before one was repaired in passing): C29558, C29560, C29561, C29562, C29563, C29564,
+   C29565, C29583, C29584, C29585, C29586, C29587, C29588, C38877, C38882 — and **11 of the 15 were
+   last written by our own 5 August pass**, so this is ours, not drift. **REPAIRING THEM IS NOT YET
+   AUTHORISED** — it is a TestRail write and its own pass (Rule 6).
+   **CORRECTION 2 — READY TO AUTOMATE IS 94, NOT 95, AND THE SUITE IS 114 CASES, NOT 110.** Live
+   markers read **79 `READY` + 15 `READY - EXPECT FAIL` + 20 `HOLD` = 114**, and **the gate passes both
+   ways: 79 + 15 = 94, and 114 − 20 = 94.** Four new cases were authored (**C43560–C43563**), taking
+   110 → 114. **And the honest detail: the old figure of 95 was ALREADY ONE TOO HIGH** — it was counted
+   as 81 + 14, but the live census showed **80 READY plus C29558 carrying NO MARKER AT ALL** after
+   another author's edit, so the true figure at the end of the 5 August pass was **94**.
+   **CORRECTION 3 / SOURCE FACTS — BOTH THE SPEC AND THE BUILD MOVED ON 2026-08-06:** the spec went to
+   **Confluence v19 at 11:48:47Z**, the whole diff being **one new requirement, `S1-R3`** (chips carry a
+   leading type-icon; SV-8986), **so all 110 pre-existing `refs` now pin a superseded `[spec v18
+   2026-08-04]`** — and note that **Ahtasham had already covered it 21 minutes BEFORE Branko published
+   it**, rewriting C29558 at 11:27:20Z. The build redeployed to **`v3.4.2-280ca5a`** (last-mod Thu 06
+   Aug 2026 09:37:49 GMT, etag `720a7f1f…`), **superseding the `v3.4.2-d00239b` recorded throughout the
+   blocks below**, so **every Filters verdict now predates the build that is running** — under **Rule
+   60** that is the ORDINARY CONSEQUENCE of a branch that is never declared final, not an alarm: it
+   touches layer 1 (labels/navigation), layer 2 (the verdict) and the `HOLD` half of layer 3, and
+   invalidates **no** expectation, because expectations come from documents (Rule 57).
+   **⚠️ Rule-49 queue OPEN (`vlad-gap-review-2026-08-06/RECHECK-QUEUE.md`, 9 rows) — the branch is NOT
+   declared final, so all 114 verdicts remain PROVISIONAL.**
+   **PRIOR STATUS 2026-08-05 ~21:35 UTC (SUPERSEDED for the three claims corrected above — THE FULL
+   LIVE PASS: ALL 110 CASES DRIVEN LIVE, READY TO
    AUTOMATE 95. Resume `build/filters/READINESS-2026-08-05-FULL-LIVE.md` →
    `build/filters/full-viu-2026-08-05/{FINDINGS,CHANGES-MADE,testrail-execution-log,RECHECK-QUEUE,
    DELIBERATE-DECISIONS,SOURCE-CURRENCY,FILED,API-ASK,RESUME}.md` → `build/filters/PROJECT-STATE.md`):**
@@ -844,6 +894,9 @@ deliver the 7-tab management report.
    **Confluence version 18**, epic **SV-8785** and its stories, and Branko's recorded answers.
    **OUTCOMES: PASS 81 · DEVIATION 14 (every one ticketed) · HOLD 15.** **READY TO AUTOMATE = 95**, and
    **the arithmetic gate passes two ways: 81 READY + 14 EXPECT-FAIL = 95, and 110 − 15 HOLD = 95.**
+   **⚠️ CORRECTED 2026-08-06 — THE 95 WAS ONE TOO HIGH EVEN THEN (a live census found 80 READY, not 81,
+   because C29558 carried NO marker after another author's edit) and the suite is now 114 cases:
+   THE FIGURE IS 94. Superseded wording kept above; see CORRECTION 2 in the 2026-08-06 block.**
    **The figure went DOWN from 100 to 95 and every one of the five is explained** — HOLD rose 10 → 15
    (C29615 needs a second login; C38880 and C38881 assert behaviour no source documents or need an
    account that no longer exists; C38891 and C38901 have preconditions the part-finished page-search
@@ -853,7 +906,10 @@ deliver the 7-tab management report.
    exceeds the 248-character limit. **RAW MARKUP IS NOW 0 OF 110** — the ten cases showing raw
    `<ol>`/`<li>` to the tester (C29558, C29559, C29571, C29574, C29589, C29595, C29608, C29616,
    C38881, C38904, in all three text fields) are repaired; they were in the pre-write snapshot, so they
-   **predate this pass**. **WRITES: 110 × `update_case`, every one HTTP 200 + byte-verified MATCH, 30
+   **predate this pass**. **⚠️ THIS CLAIM IS UNTRUE AND IS CORRECTED 2026-08-06: a live census found 14
+   of 114 cases still showing raw markup to the tester, 11 of them written by THIS pass. Superseded
+   wording kept above; see CORRECTION 1 in the 2026-08-06 block. Repair NOT yet authorised.**
+   **WRITES: 110 × `update_case`, every one HTTP 200 + byte-verified MATCH, 30
    fields compared each, 0 mismatches, 0 collateral changes**, with **all four fields on every payload**
    (`custom_preconds`, `custom_steps`, `custom_expected`, `refs`) because TestRail re-renders any
    omitted text field; **0 add / 0 delete / 0 section / 0 run writes; no result logged anywhere.**
@@ -879,7 +935,10 @@ deliver the 7-tab management report.
    automation engineer) has raised an ELEVEN-ROW requirement-side gap table**, transcribed and queued
    at **`build/filters/vlad-gap-review-QUEUED.md`** and tracked as register row **F9**. **Nothing has
    been analysed, checked or verified on it; no TestRail or Jira call was made.** It is queued on the
-   QA lead's own instruction, verbatim: *"But do that after everything else has ben done."* The rows
+   QA lead's own instruction, verbatim: *"But do that after everything else has ben done."* **⚠️ NO
+   LONGER TRUE — the review WAS worked on 2026-08-06 (all twelve rows verdicted from documents; see the
+   2026-08-06 block above and `build/filters/vlad-gap-review-2026-08-06/`). Kept as the record of where
+   the 5 August pass stopped.** The rows
    span `S9-R2/S9-R3`, `S11-R7`, `S10-R2`, `S13-R19`, `S13-N4`, `S14-R6`, Parts views, the Reports
    date-range URL contract, `R3 Q5` parity, `R3 Q5` single-range, and mobile imported-exclusivity —
    and **row 1 is the sharpest: it alleges our cases assert the REJECTED Status-chip behaviour rather
@@ -2485,13 +2544,39 @@ deliver the 7-tab management report.
     **CURRENT / STALE / PARTIAL** — e.g. *"designs PARTIAL — 12 of 85 frames pending, Rule-35 queue
     open"*. **No deliverable may claim completeness while ANY source is STALE**, and a **PARTIAL**
     source must name the **exact shortfall** (which frames/stories/sections are missing).
-    **⚠️ STALENESS MARKERS ARE UNRELIABLE — VERIFY THE RIGHT ONE (two proven traps):**
+    **⚠️ STALENESS MARKERS ARE UNRELIABLE — VERIFY THE RIGHT ONE (three proven traps):**
     **(a)** a Confluence page's **BODY "Version" field can sit at 1.0 forever** while the real
     Confluence page version advances — this is exactly how the **Schedule spec drifted 5 versions**
     unnoticed; **use the CONFLUENCE VERSION NUMBER, not the version written inside the document.**
     **(b)** a Jira epic's **"updated" timestamp moves for purely ADMINISTRATIVE edits** such as a
     QA-Assignee change — on **2026-07-31 two epics looked changed when their content was identical**;
     **use the JIRA CHANGELOG (what actually changed), not the surface updated-date.**
+    **(c) ⚠️ A PAGE VERSION BEING NEW SAYS NOTHING ABOUT WHETHER A GIVEN RULE INSIDE IT IS NEW —
+    established 2026-08-06, and it is the MIRROR IMAGE of trap (a): there, the printed version lies
+    while the page version is honest; here, the page version is honest AND STILL TELLS YOU NOTHING
+    about the age of the requirement you are reading.** A spec page republished yesterday can carry a
+    requirement untouched for five months. **TO DATE A REQUIREMENT YOU MUST DIFF THAT REQUIREMENT'S
+    OWN TEXT ACROSS VERSIONS — never read the page's version number or its last-updated date as the
+    rule's date.** **THE METHOD, and it is CHEAP:** fetch the anchor's text from each page version and
+    find the version at which it **actually changed** (Confluence serves any historical version, so
+    this is one extra call per version per requirement — it settled the incident below in about two
+    minutes). **WHY IT MATTERS: this is the exact input to Rule 32's latest-wins test**, so getting
+    the rule's date wrong applies Rule 32 **BACKWARDS** — an older requirement is used to overrule a
+    newer decision, while the case looks freshly reviewed and carries a confident explanation of
+    itself (Rule 57's hardest-to-spot failure). **INCIDENT (2026-08-06, Filters):** our 5 August pass
+    flipped **FLT-TAB-02 = [C29609](https://shopview.testrail.io/index.php?/cases/view/29609)** and
+    **FLT-TAB-03 = [C29610](https://shopview.testrail.io/index.php?/cases/view/29610)** off Branko's
+    **17 July** Q4=B ruling and onto the spec's wording, reasoning verbatim *"The specification is the
+    newer authoritative source (Standing Rule 32), so the cases follow it"* — a comparison of the
+    **PAGE's** publication date (v18, 4 August) against the answer's date. The rule was then fetched
+    from **ten spec versions (4, 5, 6, 7, 9, 12, 14, 17, 18, 19)** and **`S9-R2`/`S9-R3` are
+    BYTE-IDENTICAL in all ten, unchanged since version 4, 2026-05-14** — two and a half months
+    **BEFORE** the answer. The spec text was **OLDER, not newer**, so latest-wins pointed the other
+    way. **AND THE SAME PASS SILENTLY REVERSED THE QA LEAD'S OWN 30 JULY RULING WITHOUT CITING IT** —
+    the deleted `refs` read *"behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown
+    greyed-out/disabled"*. **That is the second half of the defect and Rule 33 forbids it outright**
+    (see Rule 33; a ruling is a source and gets cited, Rule 48). Evidence:
+    `build/filters/vlad-gap-review-2026-08-06/ROOT-CAUSE.md` + `ROW-BY-ROW.md` row 1.
     **If a source cannot be fetched, STOP and ASK THE USER for access** — never proceed on a
     possibly-stale copy, never fabricate content to appear complete (Rule 12).
     **RATIONALE (both incidents are the evidence):** the **Filters** spec was **8 versions behind**
@@ -2513,10 +2598,17 @@ deliver the 7-tab management report.
     CONFIRMED; **(ii) engineering docs INFORM but NEVER OVERRULE product truth** from the spec/PO
     (Rule 30); **(iii) if the newest source is AMBIGUOUS or its recency cannot be established, ASK
     THE PO rather than pick a side** (Rules 7/11/15 — never silently choose); **(iv) ALWAYS state
-    the source + date in the case metadata** so the next pass can re-evaluate. Proven precedent:
+    the source + date in the case metadata** so the next pass can re-evaluate.
+    **⚠️ ESTABLISH THE RULE'S OWN DATE, NOT ITS PAGE'S DATE — SEE RULE 31 TRAP (c), added 2026-08-06.**
+    A spec page republished yesterday can carry a requirement untouched for five months, so **"the spec
+    is newer than the answer" is NOT established by the page's version or last-updated date** — it is
+    established by **diffing that requirement's own text across versions.** Get this wrong and
+    latest-wins is applied **BACKWARDS**: on 2026-08-06 two Filters cases (C29609/C29610) had been
+    flipped off a PO ruling onto spec text that turned out to be **two and a half months OLDER** than
+    the ruling. Proven precedent:
     the **Simple Flow "last-update-wins" contradiction rule** (spec `_3`/design `_4` overrode the
     earlier V2.4 doc + round-1 answer sheet) — this rule generalizes it to EVERY project and EVERY
-    source type. Ties to Standing Rules 7/11/15/20/23/25/30/31.
+    source type. Ties to Standing Rules 7/11/15/20/23/25/30/31 (**especially trap (c)**)/33.
 33. **Review findings are INPUTS, not overrides — apply the authority precedence order (all
     projects).** USER DIRECTIVE (2026-07-31, verbatim): "Hold Ahtesham as the Junior most QA
     person, I do not want his findings to over rule me and your findings here. But we need to know
@@ -2536,9 +2628,19 @@ deliver the 7-tab management report.
     and note the reviewer's observation as the trigger that surfaced the inconsistency; escalate to
     the PO only if the underlying product question is genuinely open. **Never let a review claim
     silently reverse a recorded ruling** — every adoption/rejection is logged with its evidence
-    (Rules 20/25). Canonical example:
-    `build/filters/ahtesham-review-2026-07-31/VERIFICATION.md`. Ties to Standing Rules
-    7/11/12/15/20/25/31/32.
+    (Rules 20/25). **⚠️ AND IT IS NOT ONLY REVIEWERS WHO CAN REVERSE A RULING — WE DID IT OURSELVES,
+    2026-08-06 (Filters):** our own 5 August pass reversed **the QA lead's recorded 30 July ruling**
+    on the Status chip **WITHOUT CITING IT AT ALL**, deleting the very `refs` entry that named it
+    (*"behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled"*)
+    — reversing both the PO's ruling and the QA lead's on a mis-dated reading of which source was newer
+    (**Rule 31 trap (c)**). **Naming the mis-dating is only half the defect; the other half is that a
+    recorded ruling was overturned in silence**, which this rule forbids outright — a ruling is a source
+    and gets cited (Rule 48). **THE CHECK THAT CATCHES IT: before overriding any case, read what the
+    case's OWN `refs` credits — if a ruling is named there, it may not be dropped without citing it and
+    saying why.** Canonical examples:
+    `build/filters/ahtesham-review-2026-07-31/VERIFICATION.md` and
+    `build/filters/vlad-gap-review-2026-08-06/ROW-BY-ROW.md` row 1. Ties to Standing Rules
+    7/11/12/15/20/25/31/32/48/57.
 34. **Keep test runs in sync with the cases (all projects) — new/updated cases must appear in
     the existing run.** USER DIRECTIVE (2026-07-31, verbatim): "when we update or add test cases
     for any projects and we have a test run for them, make sure that those test cases also appear
