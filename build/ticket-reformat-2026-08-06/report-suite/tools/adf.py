@@ -91,11 +91,13 @@ def ol(items):
     return {'type': 'orderedList', 'attrs': {'order': 1}, 'content': lis}
 
 
-def media_para(mid, filename, collection=None):
-    """A media single referencing an existing attachment id, so the image renders inline."""
-    attrs = {'id': mid, 'type': 'file', 'collection': collection or ''}
-    return {'type': 'mediaSingle', 'attrs': {'layout': 'center'},
-            'content': [{'type': 'media', 'attrs': attrs}]}
+def media_para(mid, filename):
+    """A mediaSingle referencing an image ALREADY attached to the issue, mirroring the
+    exact attrs shape Jira itself writes for a pasted image."""
+    return {'type': 'mediaSingle', 'attrs': {'layout': 'align-start'},
+            'content': [{'type': 'media',
+                         'attrs': {'type': 'file', 'id': mid,
+                                   'alt': filename, 'collection': ''}}]}
 
 
 def doc(nodes):

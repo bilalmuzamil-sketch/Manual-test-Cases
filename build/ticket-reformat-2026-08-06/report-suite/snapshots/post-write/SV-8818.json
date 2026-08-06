@@ -1,0 +1,785 @@
+{
+ "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+ "id": "54937",
+ "self": "https://shopview.atlassian.net/rest/api/3/issue/54937",
+ "key": "SV-8818",
+ "names": {
+  "statuscategorychangedate": "Status Category Changed",
+  "parent": "Parent",
+  "issuetype": "Issue Type",
+  "timespent": "Time Spent",
+  "project": "Project",
+  "customfield_10153": "Product Area",
+  "customfield_10351": "Target field",
+  "fixVersions": "Fix versions",
+  "customfield_10352": "Target version",
+  "aggregatetimespent": "\u03a3 Time Spent",
+  "statusCategory": "Status Category",
+  "resolution": "Resolution",
+  "resolutiondate": "Resolved",
+  "workratio": "Work Ratio",
+  "issuerestriction": "Restrict to",
+  "watches": "Watchers",
+  "lastViewed": "Last Viewed",
+  "created": "Created",
+  "customfield_10021": "Flagged",
+  "customfield_10385": "QA Assignee",
+  "priority": "Priority",
+  "labels": "Labels",
+  "customfield_10016": "Story point estimate",
+  "customfield_10019": "Rank",
+  "timeestimate": "Remaining Estimate",
+  "aggregatetimeoriginalestimate": "\u03a3 Original Estimate",
+  "versions": "Affects versions",
+  "customfield_10418": "Severity",
+  "customfield_10419": "QA Test Plan",
+  "issuelinks": "Linked Issues",
+  "assignee": "Assignee",
+  "updated": "Updated",
+  "status": "Status",
+  "components": "Components",
+  "timeoriginalestimate": "Original estimate",
+  "description": "Description",
+  "customfield_10252": "Release Notes",
+  "timetracking": "Time tracking",
+  "customfield_10015": "Start date",
+  "security": "Security Level",
+  "attachment": "Attachment",
+  "aggregatetimeestimate": "\u03a3 Remaining Estimate",
+  "summary": "Summary",
+  "creator": "Creator",
+  "subtasks": "Sub-tasks",
+  "customfield_10285": "Regression Version",
+  "reporter": "Reporter",
+  "customfield_10044": "Number of linked Intercom conversations",
+  "aggregateprogress": "\u03a3 Progress",
+  "customfield_10046": "Design",
+  "customfield_10047": "Vulnerability",
+  "environment": "Environment",
+  "customfield_10318": "QA Branch",
+  "duedate": "Due date",
+  "customfield_10518": "Agent Sessions",
+  "progress": "Progress",
+  "votes": "Votes",
+  "comment": "Comment",
+  "worklog": "Log Work"
+ },
+ "fields": {
+  "statuscategorychangedate": "2026-08-04T00:22:20.416-0500",
+  "issuetype": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10008",
+   "id": "10008",
+   "description": "Bugs track problems or errors. (Migrated on 31 Dec 2023 09:01 UTC)",
+   "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium",
+   "name": "Bug",
+   "subtask": false,
+   "avatarId": 10303,
+   "entityId": "28af1af2-ae8b-4de4-94eb-bcecd7d4031c",
+   "hierarchyLevel": 0
+  },
+  "parent": {
+   "id": "54603",
+   "key": "SV-8582",
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54603",
+   "fields": {
+    "summary": "Reporting Suite \u2014 Technician Utilization, Sales By Customer, Sales By Representative, Inventory Velocity, Inventory Value, WIP",
+    "status": {
+     "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+     "description": "",
+     "iconUrl": "https://shopview.atlassian.net/",
+     "name": "Open",
+     "id": "10349",
+     "statusCategory": {
+      "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+      "id": 2,
+      "key": "new",
+      "colorName": "blue-gray",
+      "name": "To Do"
+     }
+    },
+    "priority": {
+     "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+     "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+     "name": "Medium",
+     "id": "3"
+    },
+    "issuetype": {
+     "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10006",
+     "id": "10006",
+     "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+     "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+     "name": "Epic",
+     "subtask": false,
+     "avatarId": 10306,
+     "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+     "hierarchyLevel": 1
+    }
+   }
+  },
+  "timespent": null,
+  "project": {
+   "self": "https://shopview.atlassian.net/rest/api/3/project/10001",
+   "id": "10001",
+   "key": "SV",
+   "name": "ShopView",
+   "projectTypeKey": "software",
+   "simplified": true,
+   "avatarUrls": {
+    "48x48": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551",
+    "24x24": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=small",
+    "16x16": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=xsmall",
+    "32x32": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=medium"
+   }
+  },
+  "customfield_10153": {
+   "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10566",
+   "value": "Reports & Dashboards",
+   "id": "10566",
+   "color": "GREY_DARKEST"
+  },
+  "customfield_10351": null,
+  "fixVersions": [],
+  "customfield_10352": null,
+  "aggregatetimespent": null,
+  "statusCategory": {
+   "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+   "id": 2,
+   "key": "new",
+   "colorName": "blue-gray",
+   "name": "To Do"
+  },
+  "resolution": null,
+  "resolutiondate": null,
+  "workratio": -1,
+  "issuerestriction": {
+   "issuerestrictions": {},
+   "shouldDisplay": true
+  },
+  "watches": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8818/watchers",
+   "watchCount": 1,
+   "isWatching": true
+  },
+  "lastViewed": "2026-08-06T08:18:32.442-0500",
+  "created": "2026-08-04T00:22:19.680-0500",
+  "customfield_10021": null,
+  "customfield_10385": null,
+  "priority": {
+   "self": "https://shopview.atlassian.net/rest/api/3/priority/4",
+   "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+   "name": "Low",
+   "id": "4"
+  },
+  "labels": [
+   "reports-suite"
+  ],
+  "customfield_10016": null,
+  "customfield_10019": "0|i01v1t:",
+  "timeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "versions": [],
+  "customfield_10418": {
+   "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10498",
+   "value": "High",
+   "id": "10498",
+   "color": "RED_DARKER"
+  },
+  "customfield_10419": null,
+  "issuelinks": [
+   {
+    "id": "32044",
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/32044",
+    "type": {
+     "id": "10003",
+     "name": "Relates",
+     "inward": "relates to",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    },
+    "outwardIssue": {
+     "id": "54612",
+     "key": "SV-8591",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54612",
+     "fields": {
+      "summary": "[Reports Suite][A3] Export contract + 10k row-cap guard (CSV attachment + PDF scaffold)",
+      "status": {
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10004",
+       "description": "This work item is being actively worked on at the moment by the assignee.",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "name": "In Progress",
+       "id": "10004",
+       "statusCategory": {
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4",
+        "id": 4,
+        "key": "indeterminate",
+        "colorName": "yellow",
+        "name": "In Progress"
+       }
+      },
+      "priority": {
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "name": "Medium",
+       "id": "3"
+      },
+      "issuetype": {
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+       "id": "10245",
+       "description": "Stories track functionality or features expressed as user goals.",
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+       "name": "Story",
+       "subtask": false,
+       "avatarId": 10315,
+       "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+       "hierarchyLevel": 0
+      }
+     }
+    }
+   }
+  ],
+  "assignee": {
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=5bd6d7573aa82432ce72b8d3",
+   "accountId": "5bd6d7573aa82432ce72b8d3",
+   "avatarUrls": {
+    "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5bd6d7573aa82432ce72b8d3/4b59acf7-e166-4f2e-8fb6-9ebc8137b1f3/48",
+    "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5bd6d7573aa82432ce72b8d3/4b59acf7-e166-4f2e-8fb6-9ebc8137b1f3/24",
+    "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5bd6d7573aa82432ce72b8d3/4b59acf7-e166-4f2e-8fb6-9ebc8137b1f3/16",
+    "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5bd6d7573aa82432ce72b8d3/4b59acf7-e166-4f2e-8fb6-9ebc8137b1f3/32"
+   },
+   "displayName": "parth fadadu",
+   "active": true,
+   "timeZone": "Asia/Calcutta",
+   "accountType": "atlassian"
+  },
+  "updated": "2026-08-06T08:28:37.085-0500",
+  "status": {
+   "self": "https://shopview.atlassian.net/rest/api/3/status/10453",
+   "description": "",
+   "iconUrl": "https://shopview.atlassian.net/",
+   "name": "Ready to Fix",
+   "id": "10453",
+   "statusCategory": {
+    "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+    "id": 2,
+    "key": "new",
+    "colorName": "blue-gray",
+    "name": "To Do"
+   }
+  },
+  "components": [],
+  "timeoriginalestimate": null,
+  "description": {
+   "type": "doc",
+   "version": 1,
+   "content": [
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Description"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Asking any report for a PDF fails with a server error once the view holds more than a few hundred rows. No file arrives. Asking for the spreadsheet version of exactly the same view works, and takes about a second."
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "It happens on five of the six reports: Parts Velocity, Technician Utilization, Inventory Value, Sales By Customer and Sales By Representative."
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Steps to reproduce"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Environment: QA branch sv8582 (https://sv8582.qa.shopview.com). Desktop browser, signed in as an Admin."
+      }
+     ]
+    },
+    {
+     "type": "orderedList",
+     "attrs": {
+      "order": 1
+     },
+     "content": [
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Open Reports, then Parts Velocity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Set the date range to This Year and select the single location Staging Heavy Duty - 9919."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Type HO in the report's search box, which brings the view to 449 rows, and leave all twenty columns switched on."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Open the three-dot menu and choose the PDF download. After about half a minute no file arrives and an error appears."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "On the same view choose the CSV download. The spreadsheet arrives in about a second with all the data in it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "For a second report: open Inventory Value with no filters at all and choose the PDF download. It fails the same way."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Current behaviour"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "No file is produced. After about thirty seconds an error message appears saying something went wrong. The spreadsheet of the very same view downloads normally, so the data itself is fine and only the PDF fails."
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "The polite \"too large, narrow your filters\" message never appears, because the view is nowhere near the size that triggers it."
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "For the developer: the download request answers HTTP 500 from the application itself, not a gateway timeout. One example to look up in the server log is request id e583742c-a980-4ce3-86a2-7baee1c47519 (Parts Velocity, 449 rows, all columns). The same 449 rows with only two columns selected succeeds, so row count alone is not the trigger."
+      }
+     ]
+    },
+    {
+     "type": "mediaSingle",
+     "attrs": {
+      "layout": "align-start"
+     },
+     "content": [
+      {
+       "type": "media",
+       "attrs": {
+        "type": "file",
+        "id": "9cca34fe-cc43-44c8-9aea-c783eb588881",
+        "alt": "parts-velocity-download-menu.png",
+        "collection": ""
+       }
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "The Parts Velocity three-dot download menu used in step 4."
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Expected behaviour"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "The PDF download either produces the file, or \u2014 if the view is genuinely too large \u2014 refuses with the clear message the specification gives, naming the report and the format. A server error is not an acceptable outcome either way."
+      }
+     ]
+    },
+    {
+     "type": "rule"
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Source",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": " \u2014 "
+      },
+      {
+       "type": "text",
+       "text": "the "
+      },
+      {
+       "type": "text",
+       "text": "Inventory Value report specification",
+       "marks": [
+        {
+         "type": "link",
+         "attrs": {
+          "href": "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report"
+         }
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": " on Confluence, version 4, requirement S10-R12: \u201cExport size guardrail. To keep a single-shot export renderable, an export is capped at a maximum of 10,000 rows in the filtered set. When the current filtered set exceeds the cap, neither the PDF nor the CSV is produced; instead the user sees the message: \"This report is too large to export. Narrow the date range or filters, then try again.\"\u201d"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "The same description, requirement S10-R14: \u201cIf a download fails, the user sees an error notification: \"Failed to export inventory value report (pdf)\" or \"Failed to export inventory value report (csv)\".\u201d"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "The "
+      },
+      {
+       "type": "text",
+       "text": "Parts Velocity report specification",
+       "marks": [
+        {
+         "type": "link",
+         "attrs": {
+          "href": "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report"
+         }
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": " on Confluence, version 5, requirement S6-N1: \u201cIf an export fails, an error toast is shown. The server-provided message is used when available; otherwise the toast reads \"Failed to export velocity report (csv)\" or \"Failed to export velocity report (pdf)\".\u201d"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "The views in this ticket are far below the 10,000-row cap, so the graceful refusal is not what should have happened here \u2014 the download should simply have worked."
+      }
+     ]
+    }
+   ]
+  },
+  "customfield_10252": null,
+  "timetracking": {},
+  "customfield_10015": null,
+  "security": null,
+  "attachment": [
+   {
+    "self": "https://shopview.atlassian.net/rest/api/3/attachment/59227",
+    "id": "59227",
+    "filename": "defect-pack-2026-08-04__probe__pdf500-mechanism-probe.json",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "avatarUrls": {
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "active": true,
+     "timeZone": "Asia/Karachi",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-04T00:29:13.646-0500",
+    "size": 8051,
+    "mimeType": "application/json",
+    "content": "https://shopview.atlassian.net/rest/api/3/attachment/content/59227"
+   },
+   {
+    "self": "https://shopview.atlassian.net/rest/api/3/attachment/59251",
+    "id": "59251",
+    "filename": "parts-velocity-download-menu.png",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "avatarUrls": {
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "active": true,
+     "timeZone": "Asia/Karachi",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-04T00:49:23.208-0500",
+    "size": 226120,
+    "mimeType": "image/png",
+    "content": "https://shopview.atlassian.net/rest/api/3/attachment/content/59251",
+    "thumbnail": "https://shopview.atlassian.net/rest/api/3/attachment/thumbnail/59251"
+   },
+   {
+    "self": "https://shopview.atlassian.net/rest/api/3/attachment/59228",
+    "id": "59228",
+    "filename": "viu-2026-08-03__batch-pv-tu__evidence__pv__exports__exports-log.jsonl",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "avatarUrls": {
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "active": true,
+     "timeZone": "Asia/Karachi",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-04T00:29:14.846-0500",
+    "size": 12052,
+    "mimeType": "application/octet-stream",
+    "content": "https://shopview.atlassian.net/rest/api/3/attachment/content/59228"
+   },
+   {
+    "self": "https://shopview.atlassian.net/rest/api/3/attachment/59229",
+    "id": "59229",
+    "filename": "viu-2026-08-03__batch-sbc-sbr__evidence__export-guards.md",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "avatarUrls": {
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "active": true,
+     "timeZone": "Asia/Karachi",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-04T00:29:16.048-0500",
+    "size": 4526,
+    "mimeType": "application/octet-stream",
+    "content": "https://shopview.atlassian.net/rest/api/3/attachment/content/59229"
+   },
+   {
+    "self": "https://shopview.atlassian.net/rest/api/3/attachment/59230",
+    "id": "59230",
+    "filename": "viu-2026-08-03__batch-wip-iv__evidence__api__iv-pdf-boundary.json",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "avatarUrls": {
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "active": true,
+     "timeZone": "Asia/Karachi",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-04T00:29:17.182-0500",
+    "size": 6357,
+    "mimeType": "application/json",
+    "content": "https://shopview.atlassian.net/rest/api/3/attachment/content/59230"
+   }
+  ],
+  "aggregatetimeestimate": null,
+  "summary": "PDF download fails with a server error on a medium-sized report view, on 5 of the 6 reports",
+  "creator": {
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "avatarUrls": {
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "active": true,
+   "timeZone": "Asia/Karachi",
+   "accountType": "atlassian"
+  },
+  "subtasks": [],
+  "customfield_10285": null,
+  "reporter": {
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "avatarUrls": {
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "active": true,
+   "timeZone": "Asia/Karachi",
+   "accountType": "atlassian"
+  },
+  "customfield_10044": null,
+  "aggregateprogress": {
+   "progress": 0,
+   "total": 0
+  },
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "environment": null,
+  "customfield_10318": null,
+  "duedate": null,
+  "customfield_10518": null,
+  "progress": {
+   "progress": 0,
+   "total": 0
+  },
+  "votes": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8818/votes",
+   "votes": 0,
+   "hasVoted": false
+  },
+  "comment": {
+   "comments": [],
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54937/comment",
+   "maxResults": 0,
+   "total": 0,
+   "startAt": 0
+  },
+  "worklog": {
+   "startAt": 0,
+   "maxResults": 20,
+   "total": 0,
+   "worklogs": []
+  }
+ }
+}

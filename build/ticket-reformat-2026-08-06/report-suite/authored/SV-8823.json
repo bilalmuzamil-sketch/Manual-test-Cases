@@ -1,0 +1,35 @@
+{
+ "description": "Two faults in the Inventory Value spreadsheet download.\n\nFirst, the money arrives as text rather than numbers, so it cannot be added up in a spreadsheet without cleaning every column by hand.\n\nSecond, the file ignores which columns were chosen on screen and puts them in a different order.",
+ "steps": [
+  "Open Reports, then Inventory Value.",
+  "Open Column Selection and switch Margin and Total Sell off. The screen correctly loses those two columns.",
+  "Open the three-dot menu and choose the CSV download.",
+  "Open the file in Excel, Numbers or Google Sheets. The two columns switched off in step 2 are still in the file — it has all twelve.",
+  "Look at the column order: Total Cost sits ninth in the file and Margin % is last. On screen Total Cost is the last column.",
+  "Select any money column in the file and try to total it. The total comes out as nothing usable, because the cells hold text such as $11,176.88 with a dollar sign and a comma."
+ ],
+ "current": "Every money column in the spreadsheet is written the way the screen shows it, with a dollar sign and comma separators, so spreadsheet software reads it as words. Totals come out as zero or as an error.\n\nThe file also carries all twelve columns whatever was switched off on screen, in an order that differs from the screen.\n\nThe PDF download of the same view is formatted correctly and is not part of this ticket.",
+ "expected": "The spreadsheet writes money as plain numbers with two decimals and no separators, and carries only the columns currently shown on screen, in the screen's own left-to-right order with Total Cost last.",
+ "source": [
+  [
+   "spec",
+   "iv",
+   "S10-R3",
+   "Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last."
+  ],
+  [
+   "spec_note",
+   "iv",
+   "the Story 10 context note",
+   "in the CSV, money values are written as plain numbers with two decimals and no thousands separators (so they parse cleanly in a spreadsheet); the PDF uses the same on-screen currency formatting with the \"$\" and thousands separators"
+  ]
+ ],
+ "images": [
+  {
+   "attachment_id": "59254",
+   "media_id": "64865b81-3eee-47f9-879e-3db0c3493734",
+   "filename": "inventory-value-screen-column-order.png",
+   "caption": "The Inventory Value report on screen, where Total Cost is the last column. In the downloaded spreadsheet it is ninth."
+  }
+ ]
+}

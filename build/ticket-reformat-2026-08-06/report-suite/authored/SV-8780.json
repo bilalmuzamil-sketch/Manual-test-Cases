@@ -1,0 +1,24 @@
+{
+ "description": "The Sales By Customer report can only be opened by a user who has been given a permission created just for that one report. The other five reports in the suite open for anyone who has ordinary reports access.\n\nThis is not a malfunction — the report works. It is a permission model that the specification no longer asks for.",
+ "env": "Environment: QA branch sv8582 (https://sv8582.qa.shopview.com). Desktop browser, signed in as an Admin. Step 3 needs a second sign-in as a non-administrator.",
+ "steps": [
+  "Go to Administration, then the custom roles and permissions screen, and open any role.",
+  "Look through the report permissions. There is a permission for the Sales By Customer report on its own, separate from the general reports access. The other five reports have no such entry.",
+  "Give a test user ordinary reports access but not the Sales By Customer permission, then sign in as that user and open Reports.",
+  "Sales By Customer cannot be opened, while the other five reports can."
+ ],
+ "current": "Sales By Customer is behind its own permission. A user who has ordinary reports access, and can open the other five reports, cannot open this one unless the extra permission is granted as well.\n\nFor the developer: the gate is the dedicated permission ROLE_SALES_BY_CUSTOMER_REPORT::VIEW.",
+ "expected": "Sales By Customer opens for any user with ordinary reports access, exactly like the other five reports. There is no permission specific to this one report.",
+ "source": [
+  [
+   "spec",
+   "sbc",
+   "S1-R2",
+   "The report is gated by ordinary reports access, not by a report-specific permission. Any user with standard reports access can open it; there is no dedicated Sales By Customer View permission."
+  ],
+  [
+   "note",
+   "The specification said the opposite until version 12. Chris Ward reversed that on 28 July 2026 and confirmed it again on 31 July 2026, and the correction is carried in version 15 above, so the requirement and his ruling now agree."
+  ]
+ ]
+}

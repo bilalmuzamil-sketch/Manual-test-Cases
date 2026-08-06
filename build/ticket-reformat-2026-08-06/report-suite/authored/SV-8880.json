@@ -1,0 +1,31 @@
+{
+ "description": "The short \"Summary\" spreadsheet download of Sales By Representative leaves out four of the columns the report shows on screen: # Invoices, # Customers, Hrs Worked and Hrs Invoiced. It also adds a Totals row that this download is not supposed to have.\n\nThe figures are not missing from the report itself — only from the downloaded file.",
+ "steps": [
+  "Open Reports, then Sales By Representative.",
+  "Leave every control at its default: date range This Month, Product Type Parts & Service, All Statuses, All locations.",
+  "Read the column headings on screen and note that # Invoices, # Customers, Hrs Worked and Hrs Invoiced are among them.",
+  "Open the three-dot menu and choose the Summary CSV download.",
+  "Open the downloaded file in a plain text editor, not a spreadsheet application, so the real first line is visible.",
+  "Compare its heading row with what was read in step 3, then scroll to the bottom of the file and look for a Totals row."
+ ],
+ "current": "The Summary spreadsheet has ten columns, and this exact heading row read straight out of the file:\n\nRepresentative,Location,\"Inv. Hrs\",\"Labor Invoiced\",\"Labor Margin\",\"Parts Invoiced\",\"Parts Margin\",Margin,\"Margin %\",Subtotal\n\n# Invoices, # Customers, Hrs Worked and Hrs Invoiced are not in it. The file also ends with a Totals row.\n\nThe longer Expanded spreadsheet of the same report does contain Hrs Worked and Hrs Invoiced, so the figures reach the download code.",
+ "expected": "The Summary spreadsheet carries the same columns the Summary view shows on screen, including # Invoices, # Customers, Hrs Worked and Hrs Invoiced, and it has no Totals row.",
+ "source": [
+  [
+   "spec",
+   "sbr",
+   "S14-R15",
+   "Summary CSV — file sales-by-representative-summary.csv, UTF-8 BOM, one header row + one row per rep in the current filtered view, in the currently-active order (S14-R2a). Headers, in order: Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal."
+  ],
+  [
+   "po",
+   "Chris Ward confirmed the same thing in our questions spreadsheet",
+   "https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true",
+   "on-screen should match download"
+  ],
+  [
+   "note",
+   "That answer is from the tab \"The product vs your write-up\", row 9, on 5 August 2026. It agrees with the requirement above; nothing is being overridden."
+  ]
+ ]
+}

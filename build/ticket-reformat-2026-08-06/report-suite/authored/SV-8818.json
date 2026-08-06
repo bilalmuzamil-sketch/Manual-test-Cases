@@ -1,0 +1,45 @@
+{
+ "description": "Asking any report for a PDF fails with a server error once the view holds more than a few hundred rows. No file arrives. Asking for the spreadsheet version of exactly the same view works, and takes about a second.\n\nIt happens on five of the six reports: Parts Velocity, Technician Utilization, Inventory Value, Sales By Customer and Sales By Representative.",
+ "steps": [
+  "Open Reports, then Parts Velocity.",
+  "Set the date range to This Year and select the single location Staging Heavy Duty - 9919.",
+  "Type HO in the report's search box, which brings the view to 449 rows, and leave all twenty columns switched on.",
+  "Open the three-dot menu and choose the PDF download. After about half a minute no file arrives and an error appears.",
+  "On the same view choose the CSV download. The spreadsheet arrives in about a second with all the data in it.",
+  "For a second report: open Inventory Value with no filters at all and choose the PDF download. It fails the same way."
+ ],
+ "current": "No file is produced. After about thirty seconds an error message appears saying something went wrong. The spreadsheet of the very same view downloads normally, so the data itself is fine and only the PDF fails.\n\nThe polite \"too large, narrow your filters\" message never appears, because the view is nowhere near the size that triggers it.\n\nFor the developer: the download request answers HTTP 500 from the application itself, not a gateway timeout. One example to look up in the server log is request id e583742c-a980-4ce3-86a2-7baee1c47519 (Parts Velocity, 449 rows, all columns). The same 449 rows with only two columns selected succeeds, so row count alone is not the trigger.",
+ "expected": "The PDF download either produces the file, or — if the view is genuinely too large — refuses with the clear message the specification gives, naming the report and the format. A server error is not an acceptable outcome either way.",
+ "source": [
+  [
+   "spec",
+   "iv",
+   "S10-R12",
+   "Export size guardrail. To keep a single-shot export renderable, an export is capped at a maximum of 10,000 rows in the filtered set. When the current filtered set exceeds the cap, neither the PDF nor the CSV is produced; instead the user sees the message: \"This report is too large to export. Narrow the date range or filters, then try again.\""
+  ],
+  [
+   "spec",
+   "iv",
+   "S10-R14",
+   "If a download fails, the user sees an error notification: \"Failed to export inventory value report (pdf)\" or \"Failed to export inventory value report (csv)\"."
+  ],
+  [
+   "spec",
+   "pv",
+   "S6-N1",
+   "If an export fails, an error toast is shown. The server-provided message is used when available; otherwise the toast reads \"Failed to export velocity report (csv)\" or \"Failed to export velocity report (pdf)\"."
+  ],
+  [
+   "note",
+   "The views in this ticket are far below the 10,000-row cap, so the graceful refusal is not what should have happened here — the download should simply have worked."
+  ]
+ ],
+ "images": [
+  {
+   "attachment_id": "59251",
+   "media_id": "9cca34fe-cc43-44c8-9aea-c783eb588881",
+   "filename": "parts-velocity-download-menu.png",
+   "caption": "The Parts Velocity three-dot download menu used in step 4."
+  }
+ ]
+}

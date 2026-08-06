@@ -1,0 +1,45 @@
+{
+ "description": "Each of the six reports has a Location chooser in its toolbar. A user who has access to only one location has nothing to choose there, and the chooser should not be shown to them. It is shown, on all six reports.",
+ "env": "Environment: QA branch sv8582 (https://sv8582.qa.shopview.com). Desktop browser. Steps 1 to 3 are done signed in as an Admin; steps 4 onwards need a sign-in as the single-location user.",
+ "steps": [
+  "Signed in as an Admin, go to Administration, then Staff, and open Wesley McClure (wesley.mcclure@staging.shopview.local). Write down the role and location access first so they can be put back — they were Technician at Staging Lethbridge - 4310.",
+  "Set that person's role to Sales Representative and give them access to exactly one location, Staging Lethbridge - 4310. Save.",
+  "Sign out.",
+  "Sign in as Wesley McClure and open Reports, then Sales By Customer.",
+  "Look along the report toolbar, to the right of the date range, Product Type and Customer controls. The Location chooser is there, reading \"Location - All locations\".",
+  "Repeat step 5 on Sales By Representative, Parts Velocity, Technician Utilization, Work In Progress and Inventory Value.",
+  "Put Wesley McClure back to the role Technician at Staging Lethbridge - 4310."
+ ],
+ "current": "The Location chooser is shown on all six reports to a user with access to only one location. It reads \"Location - All locations\", carries a clear button and a dropdown arrow, and opening it offers the single location that person can reach. Nothing they do with it changes what they see.\n\nThe per-row Location column behaves correctly for the same user on five of the six reports — it is properly absent — so this is about the chooser, not the column.",
+ "expected": "A user with access to only one location does not see the Location chooser at all, on any of the six reports. The report simply shows that one location's data.",
+ "source": [
+  [
+   "spec",
+   "pv",
+   "S2-E4",
+   "A user with access to only one location does not see the Location filter; it is hidden for a single-location user."
+  ],
+  [
+   "note",
+   "The same requirement is now in three more descriptions in the same words — Technician Utilization version 6 requirement S9-N1, Inventory Value version 4 requirement S7-N1, and Sales By Representative version 17 requirement S21-N1."
+  ],
+  [
+   "po",
+   "Chris Ward's answer in our questions spreadsheet",
+   "https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true",
+   "Change the product to match your ruling - hide it"
+  ],
+  [
+   "note",
+   "That answer is from the tab \"The product vs your write-up\", row 6, on 5 August 2026, and he then had the four descriptions above corrected to match it. The Sales By Customer and Work In Progress descriptions still say nothing either way about the chooser for a single-location user, so for those two reports his answer is the source on its own."
+  ]
+ ],
+ "images": [
+  {
+   "attachment_id": "59340",
+   "media_id": "774cf1c3-eda1-4781-a7b3-e00137942b08",
+   "filename": "sales-by-customer-single-location-chooser.png",
+   "caption": "Sales By Customer, signed in as Wesley McClure at Staging Lethbridge - 4310, with the Location chooser shown."
+  }
+ ]
+}

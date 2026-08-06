@@ -1,0 +1,46 @@
+{
+ "description": "The Inventory Value report values stock as of a date you choose. Whatever date is chosen, it answers with the day after it — always exactly one day out.",
+ "steps": [
+  "Open Reports, then Inventory Value.",
+  "Set a custom date range ending 3 August 2026 and press Apply.",
+  "Read the \"As of\" line just under the report title. It reads 08/04/2026, not the 3 August that was asked for.",
+  "Set a range ending 31 July 2026 and press Apply. The \"As of\" line reads 08/01/2026.",
+  "Set a range ending 31 January 2026 and press Apply. The \"As of\" line reads 02/01/2026."
+ ],
+ "current": "The report values stock one day later than the date asked for, every time. The stored history is genuinely being read — a 31 July request returns a different total from today's — so it is reading the wrong day rather than falling back to today.\n\nAsking for a date years before any stock history exists still comes back one day late, so the shift is arithmetic on the date asked for.\n\nFor the developer: the resolved date comes back as as_of_date on the Inventory Value report response.",
+ "expected": "The report values stock as of the last day of the range asked for. If no stock was recorded on that exact day, it falls back to the nearest recorded day on or before it — never after it.",
+ "source": [
+  [
+   "spec",
+   "iv",
+   "S5-R2",
+   "The report values inventory as of the end of the selected range."
+  ],
+  [
+   "spec",
+   "iv",
+   "S5-R4",
+   "Otherwise, the report replays the closest recorded day on or before the end of the selected range."
+  ],
+  [
+   "spec",
+   "iv",
+   "S5-R7",
+   "A Custom range lets the user pick a start and end date; the report values as of the picked end date (never a future date — it is capped at today)."
+  ]
+ ],
+ "images": [
+  {
+   "attachment_id": "59256",
+   "media_id": "22fd1dc5-c4f8-410b-998a-ec8c2dfcc60b",
+   "filename": "image-20260804-063045.png",
+   "caption": "A range ending 3 August 2026, with the \"As of\" line reading 08/04/2026."
+  },
+  {
+   "attachment_id": "59257",
+   "media_id": "80bf7126-7184-44b7-8a0c-1f269f4f8f16",
+   "filename": "image-20260804-063240.png",
+   "caption": "A range ending 31 July 2026, with the \"As of\" line reading 08/01/2026."
+  }
+ ]
+}

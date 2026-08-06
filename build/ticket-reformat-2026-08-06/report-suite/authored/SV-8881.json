@@ -1,0 +1,35 @@
+{
+ "description": "Every report in the suite has a three-dot menu for downloading it. On Technician Utilization the four options in that menu read Summary (PDF), Summary (CSV), Expanded (PDF) and Expanded (CSV).\n\nOn the other reports the same four options begin with the word Download, and say Expanded View rather than Expanded. Technician Utilization is the odd one out.",
+ "steps": [
+  "Open Reports, then Technician Utilization.",
+  "Leave every control at its default: date range This Year, All technicians, All locations.",
+  "Click the three-dot button, which is the leftmost of the buttons at the top right of the report, just before the column-selection button.",
+  "Read the four options in the menu word for word.",
+  "Now open Reports, then Sales By Customer, click its three-dot button and read its four options.",
+  "Compare the two lists."
+ ],
+ "current": "The Technician Utilization menu holds these four items, read off the screen: Summary (PDF), Summary (CSV), Expanded (PDF) and Expanded (CSV).\n\nThe word Download is missing from all four, and Expanded View has become Expanded. Sales By Customer and Sales By Representative both use the longer wording.",
+ "expected": "The Technician Utilization menu uses the same wording as the other reports: Download Summary (PDF), Download Expanded View (PDF), Download Summary (CSV) and Download Expanded View (CSV).",
+ "source": [
+  [
+   "spec",
+   "tu",
+   "S7-R2",
+   "The menu has an option labeled \"Download Summary (PDF)\"."
+  ],
+  [
+   "note",
+   "The next two requirements in the same description say the same for the other options — S7-R3: \"The menu has an option labeled “Download Expanded View (PDF)”.\" and S7-R4: \"The menu has an option labeled “Download Summary (CSV)”.\" Every one begins with the word Download."
+  ],
+  [
+   "po",
+   "Chris Ward's answer in our questions spreadsheet",
+   "https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true",
+   "B) is correct here. Consistency is key."
+  ],
+  [
+   "note",
+   "That answer is from the tab \"The product vs your write-up\", row 11, on 5 August 2026, where option B read: \"Bring it into line with Sales By Customer and Sales By Representative - the longer “Download …” wording.\" One honest caveat, about the number of options rather than their wording: the description names three options and the product ships four, and that count is still his to confirm."
+  ]
+ ]
+}
