@@ -26,3 +26,19 @@ naming `v3.5-f77875c` on 8/6/2026, exactly one marker, marker last, 0 raw markup
 payload, not that the payload was right.
 
 `refs` was **not** written on any operation (the 432-case spec-version sweep remains unauthorised).
+
+## SESSION 5 — batch 2: Sales By Representative, the 4 Inv. Hrs cases
+
+| # | op | C-id | HTTP | verification |
+|--:|---|---|---:|---|
+| 9 | update_case | C30229 | 200 | 30 fields compared, 3 intended, 0 mismatch |
+| 10 | update_case | C30230 | 200 | 30 fields compared, 3 intended, 0 mismatch |
+| 11 | update_case | C30231 | 200 | 30 fields compared, 3 intended, 0 mismatch |
+| 12 | update_case | C38894 | 200 | 30 fields compared, 3 intended, 0 mismatch |
+
+All four set to `AUTOMATION: READY - EXPECT FAIL (SV-8999)` with a Rule-61 symptom-and-three-outcomes
+block. Post-write census on all four: one provenance line, build `v3.5-f77875c` 8/6/2026, one marker,
+marker last, symptom present once, outcome 3 present, 0 raw markup.
+
+Build marker re-read **mid-pass at 14:49:05Z: `v3.5-f77875c`, etag `829ed03832a746e78cbdb28eb9957a3e`,
+`index.html` sha256 byte-identical to the 13:53:17Z read.** No redeploy under the batch.

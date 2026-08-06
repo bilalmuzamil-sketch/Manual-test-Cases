@@ -192,3 +192,53 @@ which contradicts S4-R4, was left exactly as found and escalated in `FINDINGS.md
 **Not filed, deliberately:** the five "Approved - Partially Completed" rows with no started signal (an
 innocent explanation could not be ruled out) and the **C30495 / S6-R3 Totals-row colouring** contradiction
 (it contradicts an already-verdicted case, so it is the QA lead's call, not a unilateral filing).
+
+---
+
+## SESSION 5
+
+### [SV-8999](https://shopview.atlassian.net/browse/SV-8999) — Inv. Hrs is 0.0 on every SBR and SBC row
+
+**Story Defect · parent SV-8626 · priority Medium · `relates to` SV-8626 + SV-8610 · Product Area not
+sent · Open.** Summary: *"Sales By Representative and Sales By Customer show Inv. Hrs as 0.0 on every
+row, though the hours exist and Work In Progress shows them."*
+
+**16 field checks read back live — all PASS** (type Story Defect / id 10007 / subtask true / parent
+SV-8626 / priority Medium / Product Area None / status Open / both links / four headings / rule before
+Source / Source line correct / Environment names branch + build / no `/api/` in the body / image inlined
+once / rendered `<img>` present / exactly 1 attachment).
+
+**Honest note on the check run:** one of the sixteen first reported FAIL — the "Source line present"
+string test — and that was **the test's own fault, not the ticket's**: the Source paragraph is split
+across text nodes because the two spec quotations are italic, so the contiguous substring did not appear
+in the serialised JSON. **The paragraph was then read directly and is correct**, beginning
+*"Source — the Sales By Representative report specification on Confluence, version 17…"* and immediately
+preceded by a horizontal rule. Recorded rather than quietly re-scored.
+
+**Evidence image:** `sbr-invhrs.png` (attachment 59433, media `ce803aff…`), attached and referenced
+**inline** in *Current behaviour* with a caption — the report over the last twelve months showing Inv.
+Hrs 0.0 on every row and on Totals beside real money in Labor Invoiced.
+
+**Duplicate search first — five JQL queries**, listed in `FINDINGS.md`. Nearest hits SV-8989 (WIP, decimal
+places) and SV-8972 (an SBR spreadsheet column order); neither covers this.
+
+### [SV-8818](https://shopview.atlassian.net/browse/SV-8818) — the owed screenshot is now attached and inline
+
+`IMAGES-OWED.md` asked for one screenshot and it is done, by the documented steps: Parts Velocity, **This
+Year**, the single location **Staging Heavy Duty - 9919**, the report's search set to **HO**, then the
+**Download (PDF)** item.
+
+**SV-8818 STILL REPRODUCES on `v3.5-f77875c`:** the export answered **HTTP 500** and the error toast
+appeared after about **32 seconds** reading *"An error occurred. We're sorry for this inconvenience,
+please try again a bit later later."* (Reproduced three times while getting a clean capture — 34.5s,
+32.5s, 31.6s, 34.1s.)
+
+`parts-velocity-pdf-export-error.png` (attachment **59431**, media `bd9c49a6…`) is attached and inlined
+in *Current behaviour* immediately after the paragraph beginning *"No file is produced."*, exactly where
+the instructions asked for it.
+
+**⚠️ THE ATTACHMENT-LOSS TRAP WAS AVOIDED, AND PROVEN AVOIDED.** The pre-existing media node
+(`9cca34fe…`, the download-menu screenshot) was carried into the new body, and the description-only edit
+was verified afterwards: **5 attachments before, 6 after, 0 lost**, the new one being ours; `summary`,
+`status`, `priority`, `issuetype` and `parent` all byte-identical; **2 `mediaSingle` nodes live, 2
+`<img>` in the rendered description**, and the new image sits after the anchor paragraph.

@@ -738,3 +738,72 @@ specific thing still owed.**
 The seeded work order, both lines and the **still-running clock** were **left as they are** — the branch
 is disposable, no teardown was required, and the running clock is the exact precondition C38890 needs if
 someone can later let it pass 3 hours to close out the cap.
+
+## 🔴 SALES BY REPRESENTATIVE — THE Inv. Hrs COLUMN IS ZERO EVERYWHERE, AND IT IS THE BUILD, NOT THE DATA
+
+**This is the largest finding of the session, and it CORRECTS a conclusion three earlier sessions
+reached.** Sessions 2–4 recorded that the 8 Inv. Hrs calculation cases could not be checked *"because
+every hours figure on this estate is 0.0"* and treated that as a **data** shortage. It is not. **The data
+exists; Sales By Representative and Sales By Customer simply do not populate the column.**
+
+### How it was established, and the control that rules out an estate problem
+
+1. **A work order was seeded and invoiced under a named representative** so that the billed hours were
+   known: WO **S-16265**, customer **Iibay Landscaping**, rep **Parth Fadadu**, one labour line of
+   **45 minutes at the HD Fleet Rate $149.95/h**.
+2. The report shows **`labor_invoiced` = 11246 = $112.46**, which is **exactly 0.75 h × $149.95** — so
+   the report has correctly derived the *money* for three-quarters of an hour of billed labour.
+3. **The same row reports `hours_invoiced: 0`, `hours_worked: 0`, `inv_hrs: 0`.** The internal
+   contradiction is the proof: the money knows about the hours, the hours column does not.
+4. **It is not our seeded row being odd.** Across the full twelve-month range there are **3,248
+   invoices** in the report and **not one** has a non-zero `hours_worked`, `hours_invoiced` or `inv_hrs`.
+   The **grand totals are 0** as well.
+5. **Four sampled work orders behind existing invoices carry real logged labour AND real clocked time** —
+   e.g. **S-15487 with 415.53 minutes clocked and 1,309.8 minutes estimated against $1,799.06 of billed
+   labour** — and their report rows still read 0.
+6. **THE DECISIVE CONTROL: the Work In Progress report, on the same build and the same work orders, does
+   show the hours.** `quoted_hours` is non-zero on **56 of 64** rows, `worked_hours` on **46 of 64**, and
+   its **`totals.inv_hours` = 266.84 is exactly Σ(quoted − worked)** across those rows. Some of those
+   work orders sit under invoices in Sales By Representative. **So the hours are computable on this
+   estate and one report already computes them.**
+7. **On screen** (not only in the payload): every representative row and the **Totals** row read **0.0**
+   in Inv. Hrs beside real money — Parth Fadadu 0.0 / $112.46, ZZAUTOTEST RepA 0.0 / $224.92, ZZAUTOTEST
+   RepB 0.0 / $799.84, Totals 0.0 / $1,137.22.
+8. **Sales By Customer is affected identically** — `inv_hrs: 0` on all 60 rows and in its totals, while
+   its money columns are populated and its `margin_pct` varies properly (92.5%, 96.1%), so that report is
+   otherwise working.
+
+**Requirement breached** — SBR spec **version 17**, §3: *"Inv. Hrs (Labor Delta) = hours invoiced − hours
+worked, where hours invoiced = the billed labor hours on the invoice's work-order labor lines…"*, and
+**S9-N1** explicitly: *"An invoice with clocked technician hours but no billed labor line shows the
+resulting negative delta … this worked-but-unbilled signal is not suppressed to 0.0"* — here **every**
+invoice is flattened to 0.0.
+
+**FILED: [SV-8999](https://shopview.atlassian.net/browse/SV-8999)** — Story Defect · parent **SV-8626**
+(SBR Story 9, the owning story) · priority **Medium** · `relates to` **SV-8626 and SV-8610** (the SBC
+story, since both reports are affected — widened rather than duplicated, following the SV-8937
+precedent) · Product Area not sent · five-part body · **16 field checks read back live, all PASS** ·
+**evidence screenshot attached and referenced inline** in *Current behaviour*.
+**Duplicate-searched with five JQL queries first** (`text ~ "Inv. Hrs"`, `text ~ "hours invoiced"`,
+`text ~ "Labor Delta"`, `text ~ "Hrs Worked" OR "hours worked"`, `parent = SV-8626`) — the nearest hits
+are **SV-8989** (WIP's Inv. Hrs decimal places, a different report and a different fault) and **SV-8972**
+(an SBR spreadsheet column order), neither of which covers this.
+
+**Worth knowing for whoever fixes it:** **[SV-8592](https://shopview.atlassian.net/browse/SV-8592)**
+*"[Reports Suite][A4] Denormalized invoice financial columns + backfill + clock subscriber"* is **In
+Progress** and looks like the implementation ticket for exactly these columns. **That is context, not
+evidence** — under Rule 61 a ticket's status is never read as a statement about the build, and the
+observation above stands on its own.
+
+### Cases moved to DEVIATION on SV-8999 — 4
+
+Each now carries the Rule-61 block naming the exact symptom and all three outcomes.
+
+| Case | Verdict |
+|---|---|
+| [C30229](https://shopview.testrail.io/index.php?/cases/view/30229) | **DEVIATION.** Item 1 **passes** — the heading really is "Inv. Hrs" with the period, read off the live table. Item 2 fails. The note says so, rather than condemning the whole case. |
+| [C30230](https://shopview.testrail.io/index.php?/cases/view/30230) | **DEVIATION.** Green/red/default colouring cannot be exercised at all when every value is 0.0. |
+| [C30231](https://shopview.testrail.io/index.php?/cases/view/30231) | **DEVIATION.** This is the case S9-N1 was written for, and it is the clearest breach: the worked-but-unbilled negative is suppressed. |
+| [C38894](https://shopview.testrail.io/index.php?/cases/view/38894) | **DEVIATION.** A clock edit cannot move a figure that is hard-zero. |
+
+**The documented expectation was kept on all four** (Rule 57) — nothing was rewritten to match the build.
