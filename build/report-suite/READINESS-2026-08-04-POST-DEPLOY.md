@@ -1,10 +1,19 @@
-> # ⚠️ SUPERSEDED — 2026-08-05
-> **This file is superseded by `READINESS-2026-08-05.md` and is kept for the record only.**
-> Its ready-to-automate figure of **401 is out of date on two counts**: 4 cases have been added
-> since, and 35 cases it held have been released. The current figure is **440 of 473**, derived
-> by one written formula in the new file.
-> **Its verdicts are also no longer confirmed** — they were taken on build `v3.4.1-3d03023` and
-> the branch has since redeployed twice, to `v3.5-16cf83f`.
+> # ⚠️ SUPERSEDED — re-marked 2026-08-06
+> **This file is superseded by `READINESS-2026-08-06.md`** (which also supersedes the
+> `READINESS-2026-08-05.md` this banner used to point at). It is **kept for the record only** and is
+> **not deleted**.
+>
+> **Its ready-to-automate figure of 401 is out of date**, and so is the 440-of-473 correction that
+> stood in this banner. **The live figure, read from TestRail on 2026-08-06 at 11:00Z, is
+> `435 of 476`** — 343 `AUTOMATION: READY` + 92 `AUTOMATION: READY - EXPECT FAIL`, with 41 on hold.
+>
+> **Its verdicts are also no longer confirmed.** They were taken on build `v3.4.1-3d03023` and the
+> branch has since redeployed **three** more times — to `v3.5-16cf83f`, then `v3.5-7168d14`, and now
+> **`v3.5-f77875c`** (deployed 2026-08-06 at 10:43:37Z). **No case in the suite has been checked
+> against the build now running.**
+>
+> **113 cases still carry a verdict taken on this file's build**, `v3.4.1-3d03023`, and say so on
+> themselves. See section 4 of `READINESS-2026-08-06.md`.
 
 # Report Suite — is it ready for automation? (4 August 2026, table restructured 5 August)
 
