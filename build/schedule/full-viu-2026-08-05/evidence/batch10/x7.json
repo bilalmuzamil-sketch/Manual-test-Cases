@@ -1,0 +1,46 @@
+{
+ "ts": "2026-08-06T06:33:08.824Z",
+ "probes": [
+  {
+   "name": "GET foreign",
+   "status": 404,
+   "body": "{\"errors\":[{\"error\":\"'Shift' was not found.\"}]}"
+  },
+  {
+   "name": "GET nonexistent",
+   "status": 404,
+   "body": "{\"errors\":[{\"error\":\"'Shift' was not found.\"}]}"
+  },
+  {
+   "name": "PATCH foreign note",
+   "status": 400,
+   "body": "{\"errors\":[{\"error\":\"The request changes nothing.\"}]}"
+  },
+  {
+   "name": "PATCH nonexistent note",
+   "status": 400,
+   "body": "{\"errors\":[{\"error\":\"The request changes nothing.\"}]}"
+  },
+  {
+   "name": "PATCH foreign color",
+   "status": 404,
+   "body": "{\"errors\":[{\"error\":\"'Shift' was not found.\"}]}"
+  },
+  {
+   "name": "PATCH nonexistent color",
+   "status": 404,
+   "body": "{\"errors\":[{\"error\":\"'Shift' was not found.\"}]}"
+  },
+  {
+   "name": "DELETE foreign",
+   "status": 404,
+   "body": "{\"errors\":[{\"error\":\"'Shift' was not found.\"}]}"
+  }
+ ],
+ "afterState": {
+  "status": 200,
+  "note": null,
+  "color": "#e2effe",
+  "startsAt": "2026-08-03T13:00:00Z"
+ }
+}

@@ -327,3 +327,27 @@ BEFORE value so a later reader can see exactly what moved.
 all**, and three test cases were held or mis-verdicted because of it. It is now set to 06:00–18:00
 Monday to Friday. If a later pass expects an unconfigured shop, this is why it is not.
 
+
+---
+
+## Batch 10 — 2026-08-06 session 3 (build `v3.5-7ec992f`)
+
+Per the standing instruction, seeded data is **left in place**. Every pre-existing value changed is
+recorded with its BEFORE value.
+
+| # | What | BEFORE | AFTER | Why | Undone? |
+|---|---|---|---|---|---|
+| 1 | **A 70-shift series seeded** on work order **S-15875** (`e8d42b49…`), line *Replace - Windshield button*, technician **Alyssa Randall**, series id `52e7be83-94b7-4186-ac6a-54d0dc1bb7d4`, 60 min/day from **2026-09-01 to 2026-12-07** | did not exist | 70 shifts, 4200 scheduled minutes | C38873 step 2 requires a >8-week series created **with** the long-series acknowledgement | **No — left in place.** It also became the evidence for C38865, because it spans the 1 Nov 2026 clock change. |
+| 2 | Two `POST /api/schedule/shifts` calls that were **REFUSED** (409 and 422) | — | — | C38873 steps 1 and 3 | Nothing to undo — both were verified to have created **nothing** (0 stray shifts on that work order) |
+| 3 | Session location switched **Heavy Duty → Lethbridge → Heavy Duty** | Heavy Duty - 9919 | Heavy Duty - 9919 | C38870 and C38875 need the board read from the other location | **Yes.** Switched back and the Heavy Duty board proven identical — same 45 shifts, same id set. |
+| 4 | `PATCH` and `DELETE` attempted against a Heavy-Duty shift while scoped to Lethbridge | note `null`, colour `#e2effe`, startsAt `2026-08-03T13:00:00Z` | **unchanged** | C38875 | Nothing changed — every attempt was refused 404 and the shift was re-read and proven identical |
+| 5 | App theme switched **Light → Dark → Light** | `body--light` | `body--light` | C38866 | **Yes** — restored and read back |
+| 6 | Business Hours view-option toggled OFF → ON → OFF (and back) on the Schedule | ON | as found | C30047 re-drive and C38866 | **Yes** |
+| 7 | Browser viewport resized 1680 → 1000/960/900/700 → 1680 | — | — | C30086 | **Yes** — the viewport is per-session, nothing persisted |
+
+**Nothing was deleted.** No work order, shift, event, staff record, role or setting was removed.
+
+**Carried forward from batch 8 and still in place** (repeated because a later reader needs it):
+shop business hours on **Staging Heavy Duty - 9919** are **06:00–18:00 Mon–Fri** (previously OFF);
+**Ayesha Khan AK's Monday hours** are **10:00–16:00** (was 07:00–21:00); a **Pamill Paving shift on
+S-12876** was reassigned to **Jose Young** and not undone; two test shifts sit on Mon 2026-08-03.

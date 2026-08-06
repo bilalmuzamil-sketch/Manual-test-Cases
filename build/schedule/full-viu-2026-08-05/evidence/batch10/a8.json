@@ -1,0 +1,15 @@
+{
+ "ts": "2026-08-06T06:12:55.219Z",
+ "step1": {
+  "status": 409,
+  "body": "{\"errors\":[{\"error\":\"The series would span 98 days, beyond the 56-day limit. Resubmit with acknowledgeLongSeries to schedule it anyway.\"}]}"
+ },
+ "step3": {
+  "status": 422,
+  "body": "{\"errors\":[{\"error\":\"A single scheduling action may not create more than 120 shifts.\"}]}"
+ },
+ "step2": {
+  "status": 201,
+  "body": "{\"data\":{\"shifts\":[{\"id\":\"a5dfa682-06da-4e15-a4ff-b4569b966fab\",\"staffId\":\"740249f3-6e80-4e64-a8af-f24bb1838f7e\",\"departmentId\":null,\"seriesId\":\"52e7be83-94b7-4186-ac6a-54d0dc1bb7d4\",\"startsAt\":\"2026-09-01T12:00:00Z\",\"endsAt\":\"2026-09-01T13:00:00Z\",\"isAllDay\":false,\"durationMinutes\":60,\"color\":\"#e2effe\",\"note\":null,\"isConflict\":false,\"conflictReasons\":[],\"workOrder\":{\"id\":\"e8d42b49-f189-4949-8d0f-40283f14be85\",\"number\":\"S-15875\",\"status\":\"approved\",\"statusLabel\":\"Approved\",\"priority\":null,\"customerName\":\"Vuchester Retail\",\"unit\":\"10154522\",\"vin\":\"1T0324GMLPJ445971\"},\"lines\":[{\"id\":\"0fbf6ef5-e730-40ef-8a7e-d2e861a79dc6\",\"name\":\"Replace - Windshield button\",\"status\":\"authorized\",\"statusLabel\":\"Authorized\",\"timeEstimateMinutes\":\"60.00\",\"techTimeMinutes\":\"60.00\"}]},{\"id\":\"e7ae3418-6092-4df8-9160-bf2ec223b33f\",\"staffId\":\"740249f3-6e80-4e64-a8af-f24bb1838f7e\",\"departmentId\":null,\"seriesId\":\"52"
+ }
+}
