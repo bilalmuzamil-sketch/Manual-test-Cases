@@ -7,8 +7,9 @@
 > | | |
 > |---|---|
 > | **Sources read at pass start** | **2026-08-06 13:10Z** |
-> | **Sources re-read at write start** | **2026-08-06 13:19Z** (spec version, build marker, epic child set) |
-> | **Verdict of the second read** | **UNCHANGED for the spec and the epic. The BUILD MOVED** — see B below; it had already moved before the pass began, and it is recorded rather than glossed. |
+> | **Sources re-read at write start** | **2026-08-06 13:19Z**, and **again at 13:33Z** immediately before the final commit (spec version, build marker, epic child set) |
+> | **Verdict of the second read** | **UNCHANGED.** Spec still **Confluence v25** (`version.when` 2026-08-06T09:13:51.655Z, identical). Build still **`v3.5-d64ba62`** with `index.html` **byte-identical by sha256 across both reads** (`add638c5…`), same etag, same last-modified — **so nothing redeployed under this pass**. The epic child set is unchanged at 19. **No conclusion in this pass rests on a source that moved while it was being written.** |
+> | **The build had ALREADY moved before the pass began** | Recorded rather than glossed — see **B** below. It is the ordinary Rule-60 consequence, not an alarm, but it means **none of the 168 verdicts was taken on the build now running**. |
 
 ---
 

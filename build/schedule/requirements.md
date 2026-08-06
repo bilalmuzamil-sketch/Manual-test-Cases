@@ -1,15 +1,15 @@
-# Schedule — Requirements (COMPLETE spec, verbatim-structured) — **Confluence version 23**
+# Schedule — Requirements (COMPLETE spec, verbatim-structured) — **Confluence version 25**
 
 > ## Spec-currency header (READ FIRST)
 >
 > | Field | Value |
 > |---|---|
 > | **Source page** | Confluence page id **713031682** — "Schedule", space **SHOPVIEW** (`/wiki/spaces/shopviewapp/pages/713031682/Schedule`) |
-> | **Confluence version this doc reflects** | **23** |
-> | **Upstream last updated** | **2026-07-30T10:40:32Z** by **Branko Cicovic** (PO) — no version comment |
-> | **We ingested / promoted to v23 on** | **2026-07-31** |
-> | **Previous baseline** | Confluence **version 18** (2026-07-22T09:18Z) — we were **5 versions behind** (19, 20, 21, 22, 23) |
-> | **Live pull method** | `GET /wiki/rest/api/content/713031682?expand=body.storage,version,history.lastUpdated` (HTTP 200) — verbatim body in `spec-current-2026-07-31/Schedule-spec-current.md`; version-attributed delta in `spec-current-2026-07-31/SPEC-DIFF.md` |
+> | **Confluence version this doc reflects** | **25** |
+> | **Upstream last updated** | **2026-08-06T09:13:51Z** by **Branko Cicovic** (PO) — **no version comment** (v24 at 08:34:03Z carried none either) |
+> | **We ingested / promoted to v25 on** | **2026-08-06** |
+> | **Previous baseline** | Confluence **version 23** (2026-07-30T10:40:32Z) — we were **2 versions behind** (24, 25), **both published on 2026-08-06, 39 minutes apart** |
+> | **Live pull method** | `GET /wiki/rest/api/content/713031682?expand=body.storage,version,history.lastUpdated` (HTTP 200); historical bodies with `?status=historical&version=<n>` — **all 25 versions pulled, 25 × HTTP 200**. Verbatim v23/v24/v25 storage bodies in `spec-v25-2026-08-06/evidence/raw-v{23,24,25}.xml`; version-attributed delta in `spec-v25-2026-08-06/SPEC-DIFF.md`. The earlier v18→v23 promotion is in `spec-current-2026-07-31/`. |
 >
 > ### ⚠️ STALENESS GOTCHA — the page body's own "Version" field is a LIE
 >
@@ -86,8 +86,38 @@
 > | §11 | **NEW** "Dark theme" non-functional requirement | v19 |
 >
 > Nothing was silently dropped: every sentence the upstream edits removed is preserved
-> verbatim in the **"Removed upstream (v19–v23)"** appendix at the end of this file.
+> verbatim in the **"Removed upstream (v19–v25)"** appendix at the end of this file.
 > Branko's 2026-07-31 answers are folded in as **`[PO 2026-07-31]`** notes.
+>
+> ### What changed when it was promoted v23 → v25 (2026-08-06)
+>
+> **Exactly TWO substantive changes, and that is the whole of it.** Both versions were published on
+> **2026-08-06**, 39 minutes apart, both by Branko Cicovic, **both with an empty version comment**, on
+> a page that **has never had a change-log section**. Proven exhaustively rather than by eye: the v23
+> and v25 bodies tokenise to **2182 tokens each with exactly 3 non-equal opcodes**, one of which is the
+> Jira macro's `ac:macro-id` — machinery that **Confluence regenerates on every save** (it changed at
+> v24 *and again* at v25, which is how you tell).
+>
+> | Where | Change | Version |
+> |---|---|---|
+> | §4.9 | Modal line figures: **`labor/total` → `labor/status`** — ratifies the PO's 22 July "no money on the Schedule" ruling | **v25** |
+> | §6 | Search row: **"Non-matching blocks fade; matching blocks highlight." DELETED** — deliberate de-scope, spec now silent | **v24** |
+>
+> **Dated by their own text, not by the page version (Rule 31 trap (c)).** Every marker string was
+> traced across **all 25 historical bodies**: `labor/total figures` was the **original wording, present
+> unchanged from v1 through v24 (22 days)**; `labor/status figures` is **new in v25**; the fade sentence
+> ran **v7 → v23**. Versions **10, 12 and 14** have truncated bodies (7,314 / 8,632 / 5,918 chars) —
+> Confluence **partial intermediate saves**, excluded from the dating and named so the gaps are not
+> misread as removals.
+>
+> **⚠️ ONE THING A SPEC DIFF CANNOT SHOW, and it is the sharpest item of the v25 pass.** Branko ruled on
+> [SV-8829](https://shopview.atlassian.net/browse/SV-8829) at **2026-08-06T09:31:05Z** — **17 minutes
+> AFTER v25 was published** — that *"**Estimated badge should not be clickable**, you can change time
+> only in the input fields above"*. **§4.9's *"Estimated hours with inline edit."* is UNCHANGED in
+> v25**, and SV-8695 still lists it, so **a PO ruling now contradicts live spec text this file still
+> carries**. Whether the ruling covers the modal field or only the line badge **is not determinable
+> from his words**, so it is **not resolved here** (Rule 58): see
+> `spec-v25-2026-08-06/QUESTIONS-FOR-BRANKO.md` **Q2**.
 
 ---
 
@@ -379,7 +409,7 @@ Clicking a shift block opens a detail panel showing:
 - Scheduled date and start/end time pickers (15-minute increments).
 - Technician.
 - Time logged vs estimate (progress).
-- Scope summary and the scheduled line(s) with labor/total figures.
+- Scope summary and the scheduled line(s) with labor/status figures. *`[v25 — changed: was "labor/total figures", the ORIGINAL wording present unchanged since v1]`*
 - Estimated hours with inline edit.
 - Color picker (see §10).
 - Notes: add, edit, and delete per work order.
@@ -532,10 +562,33 @@ yet), plus a line-name search (see §3.1).
 | Left/right arrows | Navigate by day, week, or month depending on the active range. |
 | Date label | Shows the current range (e.g. "Jul 14 to 20, 2026"). |
 | Conflict pill | Shows the issue count; click opens the conflict detail dropdown. |
-| Search | Filters grid blocks by matching against customer name, WO number, unit number, technician name, and line name. Non-matching blocks fade; matching blocks highlight. |
+| Search | Filters grid blocks by matching against customer name, WO number, unit number, technician name, and line name. *`[v24 — "Non-matching blocks fade; matching blocks highlight." DELETED; the spec is now SILENT on what happens to non-matching blocks — see the note under this table]`* |
 | Filter and Display | Dropdown (checkbox style) combining department visibility toggles, My Shifts, and VIN. Replaces the former "Departments" control. |
 | View Options | Toggles: Business hours, Capacity bars, Events, Tech hours, Saturday, Sunday. |
 | Day / Week / Month | Segmented control to switch the grid range. |
+
+> **`[v24 2026-08-06 — a requirement was REMOVED here, deliberately, and the spec is now SILENT]`**
+> Until Confluence **v24** the Search row ended with a second sentence: *"Non-matching blocks fade;
+> matching blocks highlight."* It stood from **v7 (2026-07-17)** to **v23** — about 20 days — and was
+> **deleted on purpose**, with an audit trail: **Stefan Vukovic** on
+> [SV-8874](https://shopview.atlassian.net/browse/SV-8874) at **08:15:35Z** — *"per design we show
+> only shifts/events that are matching the search. **This is a gap between PRD and design.**"* —
+> **Milos Vasic** at **08:32:34Z** — *"All good on this one **updated the PRD** , i will close this
+> ticket as absolute"* — the ticket closed **OBSOLETE** at 08:32:42Z, and **v24 published 81 seconds
+> later**.
+>
+> **We do NOT fill the silence from the build (Rule 57).** The spec now says only that the search
+> *matches against* those five fields; it does **not** say whether non-matching blocks disappear or
+> dim. The build removes them, and an engineer says the design shows only matching blocks — **but that
+> design is a source we do not hold** (`spec-v25-2026-08-06/DESIGN-SOURCE.md`), so the positive
+> assertion is **an open PO question**, not a requirement. See `QUESTIONS-FOR-BRANKO.md` **Q1**.
+>
+> **⚠️ The owning story still requires the deleted behaviour.** **SV-8686** asserts *"Non-matching
+> blocks fade; matching blocks highlight"* in **both** its Requirements and its Acceptance Criteria,
+> confirmed present through its most recent edit (**2026-08-05T19:22:33Z**). Under Rule 57 a story is
+> a source, so the requirement is **not gone, it is contradicted** — SV-8686 is now the stale
+> artefact, exactly as SV-8695 was when v23 deleted the modal *Reassign* action. **Not edited by us
+> (Rule 38); reported.**
 
 ## 7. Interactions and micro-interactions
 - **Drag feedback.** Drop-target cells highlight, and a ghost block shows the line name
@@ -845,14 +898,16 @@ V1 scope.)*
 
 ---
 
-## APPENDIX — Removed upstream (v19–v23)
+## APPENDIX — Removed upstream (v19–v25)
 
 Every sentence/clause that Branko **deleted or replaced** between Confluence v18 (our old
-baseline) and v23, kept verbatim so the history is not lost. **None of this is a current
+baseline) and v25, kept verbatim so the history is not lost. **None of this is a current
 requirement** — do not write cases to it.
 
 | # | Section | Removed / replaced text (verbatim from v18) | Replaced by | Version |
 |---|---|---|---|---|
+| **R9** | **§6 Grid toolbar — Search** | **"Filters grid blocks by matching against customer name, WO number, unit number, technician name, and line name. *Non-matching blocks fade; matching blocks highlight.*"** | **"Filters grid blocks by matching against customer name, WO number, unit number, technician name, and line name." — the second sentence is gone and NOTHING replaces it; the spec is now SILENT on what happens to non-matching blocks. Introduced v7 (2026-07-17), so it stood ~20 days. Deliberate de-scope with an audit trail on [SV-8874](https://shopview.atlassian.net/browse/SV-8874). ⚠️ Story SV-8686 STILL requires it — see the note under the §6 table.** | **v24** |
+| **R10** | **§4.9 Shift detail modal** | **"Scope summary and the scheduled line(s) with *labor/total* figures."** | **"Scope summary and the scheduled line(s) with *labor/status* figures." — `labor/total` was the ORIGINAL wording, unchanged from v1 to v24. Ratifies the PO's 22 July no-money ruling, and his [SV-8829](https://shopview.atlassian.net/browse/SV-8829) comment of 2026-08-06: *"for work order lines we just show estimate and status badge, there shouldn't be totals."* ⚠️ Story SV-8695 STILL says `labor/total`.** | **v25** |
 | R1 | §4.9 Shift detail modal | "Actions: Delete (series-aware, §7) **and Reassign to another technician**." | "Actions: Delete (series-aware, §7)" — the Reassign action is gone; drag-only reassignment | **v23** |
 | R2 | §4.4 Shift block anatomy | "…with **color tied to the work order (so blocks from the same order share a color)**:" | "…with a **default blue color** (users can optionally assign a custom color per shift via the color picker in the detail modal, see §10):" | v22 |
 | R3 | §4.5 Multi-day spread | "Uses the technician's own working hours. **Automatically skips weekends and shop closures, so the end date is emergent.**" | "Uses the technician's own working hours. Automatically skips weekends **when business hours are not set for them**. **Shop closures and public holidays are not skipped in V1..**" | v22 |
