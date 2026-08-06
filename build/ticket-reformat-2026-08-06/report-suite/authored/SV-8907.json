@@ -1,0 +1,36 @@
+{
+ "description": "The Work In Progress report cannot be downloaded. Whenever the tab on screen has any work orders in it, both the spreadsheet and the PDF fail and no file arrives — a general error appears instead. A download only succeeds when the tab is completely empty, and then the file holds nothing but its two heading lines.\n\nThe other five reports download normally, so this is Work In Progress only.",
+ "steps": [
+  "Open Reports, then Work In Progress, and set the Location filter to Staging Heavy Duty - 9919.",
+  "Set a custom date range of 1 January 2026 to 4 August 2026, so the tabs have data — the default This Week leaves most tabs empty, which hides the problem.",
+  "Click the Completed tab and confirm at least one work order row is showing. With that range there are 12.",
+  "Open the three-dot menu and choose Download (CSV). No file arrives and an error appears. On the same view choose Download (PDF); the same thing happens.",
+  "Now click the Approved - Partially Completed tab, set the date range to 1 August 2026 to 5 August 2026 so that tab is empty, and choose Download (CSV) again. This time a file does arrive, holding only the \"Date Range:\" and \"Locations:\" lines and no rows."
+ ],
+ "current": "No file arrives and an error message appears. It happens on every tab that has rows, in both formats. The number of rows makes no difference — a tab with one row fails just as a tab with 139 does. The only download that succeeds is the empty tab, and that file has no rows in it.\n\nIt is not the choice of columns, not the format, and not the location: it fails with the default columns and with a single column, on both formats, with one location selected and with none.\n\nFor the developer: the download request answers HTTP 500 from the application. Request ids to look up include 709b3abd-de84-41a7-84e8-dc439e7ab76b (spreadsheet, Completed tab) and 1eb5693a-fae6-4402-ac47-34c561ec1ff2 (PDF, Completed tab). The request is accepted before it fails — an invalid column still returns the correct polite refusal — and the read endpoint that feeds the same view returns all 392 rows normally, so the data is fine and the failure is in producing the file.",
+ "expected": "A download produces a file holding the rows on screen — the columns currently shown, in the screen's order, honouring the date range and location filter, and ending with a Totals row matching the one on screen.",
+ "source": [
+  [
+   "spec",
+   "wip",
+   "S9-R2",
+   "Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last."
+  ],
+  [
+   "spec",
+   "wip",
+   "S9-R4",
+   "Both downloads include a Totals row matching the on-screen Totals row for the tab."
+  ],
+  [
+   "spec",
+   "wip",
+   "S9-R9",
+   "The downloaded files are named \"wip-2-report.pdf\" and \"wip-2-report.csv\"."
+  ],
+  [
+   "note",
+   "A description that says what is inside the file and what the file is called is asking for a file to be produced. One honest note: unlike the Inventory Value and Sales By Customer descriptions, this one sets no export size limit and gives no wording for a failed download, so a download that fails is not an outcome it contemplates at all."
+  ]
+ ]
+}

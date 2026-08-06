@@ -1,0 +1,581 @@
+{
+ "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+ "id": "55036",
+ "self": "https://shopview.atlassian.net/rest/api/3/issue/55036",
+ "key": "SV-8907",
+ "names": {
+  "statuscategorychangedate": "Status Category Changed",
+  "parent": "Parent",
+  "issuetype": "Issue Type",
+  "timespent": "Time Spent",
+  "project": "Project",
+  "customfield_10351": "Target field",
+  "fixVersions": "Fix versions",
+  "aggregatetimespent": "\u03a3 Time Spent",
+  "statusCategory": "Status Category",
+  "resolution": "Resolution",
+  "resolutiondate": "Resolved",
+  "workratio": "Work Ratio",
+  "watches": "Watchers",
+  "issuerestriction": "Restrict to",
+  "lastViewed": "Last Viewed",
+  "created": "Created",
+  "customfield_10021": "Flagged",
+  "customfield_10385": "QA Assignee",
+  "priority": "Priority",
+  "labels": "Labels",
+  "customfield_10016": "Story point estimate",
+  "customfield_10019": "Rank",
+  "timeestimate": "Remaining Estimate",
+  "aggregatetimeoriginalestimate": "\u03a3 Original Estimate",
+  "versions": "Affects versions",
+  "customfield_10418": "Severity",
+  "customfield_10419": "QA Test Plan",
+  "issuelinks": "Linked Issues",
+  "assignee": "Assignee",
+  "updated": "Updated",
+  "status": "Status",
+  "components": "Components",
+  "timeoriginalestimate": "Original estimate",
+  "description": "Description",
+  "customfield_10015": "Start date",
+  "timetracking": "Time tracking",
+  "security": "Security Level",
+  "aggregatetimeestimate": "\u03a3 Remaining Estimate",
+  "attachment": "Attachment",
+  "summary": "Summary",
+  "creator": "Creator",
+  "subtasks": "Sub-tasks",
+  "customfield_10285": "Regression Version",
+  "reporter": "Reporter",
+  "customfield_10044": "Number of linked Intercom conversations",
+  "aggregateprogress": "\u03a3 Progress",
+  "customfield_10046": "Design",
+  "customfield_10047": "Vulnerability",
+  "environment": "Environment",
+  "customfield_10318": "QA Branch",
+  "duedate": "Due date",
+  "customfield_10518": "Agent Sessions",
+  "progress": "Progress",
+  "votes": "Votes",
+  "comment": "Comment",
+  "worklog": "Log Work"
+ },
+ "fields": {
+  "statuscategorychangedate": "2026-08-05T14:06:01.138-0500",
+  "issuetype": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+   "id": "10007",
+   "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+   "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+   "name": "Story Defect",
+   "subtask": true,
+   "avatarId": 10854,
+   "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+   "hierarchyLevel": -1
+  },
+  "parent": {
+   "id": "54686",
+   "key": "SV-8665",
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54686",
+   "fields": {
+    "summary": "WIP - Story 9 - Export to PDF and CSV",
+    "status": {
+     "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+     "description": "",
+     "iconUrl": "https://shopview.atlassian.net/",
+     "name": "Open",
+     "id": "10349",
+     "statusCategory": {
+      "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+      "id": 2,
+      "key": "new",
+      "colorName": "blue-gray",
+      "name": "To Do"
+     }
+    },
+    "priority": {
+     "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+     "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+     "name": "Medium",
+     "id": "3"
+    },
+    "issuetype": {
+     "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+     "id": "10245",
+     "description": "Stories track functionality or features expressed as user goals.",
+     "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+     "name": "Story",
+     "subtask": false,
+     "avatarId": 10315,
+     "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+     "hierarchyLevel": 0
+    }
+   }
+  },
+  "timespent": null,
+  "project": {
+   "self": "https://shopview.atlassian.net/rest/api/3/project/10001",
+   "id": "10001",
+   "key": "SV",
+   "name": "ShopView",
+   "projectTypeKey": "software",
+   "simplified": true,
+   "avatarUrls": {
+    "48x48": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551",
+    "24x24": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=small",
+    "16x16": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=xsmall",
+    "32x32": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=medium"
+   }
+  },
+  "customfield_10351": null,
+  "fixVersions": [],
+  "aggregatetimespent": null,
+  "statusCategory": {
+   "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+   "id": 2,
+   "key": "new",
+   "colorName": "blue-gray",
+   "name": "To Do"
+  },
+  "resolution": null,
+  "resolutiondate": null,
+  "workratio": -1,
+  "watches": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8907/watchers",
+   "watchCount": 1,
+   "isWatching": true
+  },
+  "issuerestriction": {
+   "issuerestrictions": {},
+   "shouldDisplay": true
+  },
+  "lastViewed": null,
+  "created": "2026-08-05T14:06:00.597-0500",
+  "customfield_10021": null,
+  "customfield_10385": null,
+  "priority": {
+   "self": "https://shopview.atlassian.net/rest/api/3/priority/4",
+   "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+   "name": "Low",
+   "id": "4"
+  },
+  "labels": [],
+  "customfield_10016": null,
+  "customfield_10019": "0|i01vlt:",
+  "timeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "versions": [],
+  "customfield_10418": {
+   "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10498",
+   "value": "High",
+   "id": "10498",
+   "color": "RED_DARKER"
+  },
+  "customfield_10419": null,
+  "issuelinks": [
+   {
+    "id": "32079",
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/32079",
+    "type": {
+     "id": "10003",
+     "name": "Relates",
+     "inward": "relates to",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    },
+    "outwardIssue": {
+     "id": "54686",
+     "key": "SV-8665",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54686",
+     "fields": {
+      "summary": "WIP - Story 9 - Export to PDF and CSV",
+      "status": {
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+       "description": "",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "name": "Open",
+       "id": "10349",
+       "statusCategory": {
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+        "id": 2,
+        "key": "new",
+        "colorName": "blue-gray",
+        "name": "To Do"
+       }
+      },
+      "priority": {
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "name": "Medium",
+       "id": "3"
+      },
+      "issuetype": {
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+       "id": "10245",
+       "description": "Stories track functionality or features expressed as user goals.",
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+       "name": "Story",
+       "subtask": false,
+       "avatarId": 10315,
+       "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+       "hierarchyLevel": 0
+      }
+     }
+    }
+   }
+  ],
+  "assignee": null,
+  "updated": "2026-08-06T08:39:05.604-0500",
+  "status": {
+   "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+   "description": "",
+   "iconUrl": "https://shopview.atlassian.net/",
+   "name": "Open",
+   "id": "10349",
+   "statusCategory": {
+    "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+    "id": 2,
+    "key": "new",
+    "colorName": "blue-gray",
+    "name": "To Do"
+   }
+  },
+  "components": [],
+  "timeoriginalestimate": null,
+  "description": {
+   "type": "doc",
+   "version": 1,
+   "content": [
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Description"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "The Work In Progress report cannot be downloaded. Whenever the tab on screen has any work orders in it, both the spreadsheet and the PDF fail and no file arrives \u2014 a general error appears instead. A download only succeeds when the tab is completely empty, and then the file holds nothing but its two heading lines."
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "The other five reports download normally, so this is Work In Progress only."
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Steps to reproduce"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Environment: QA branch sv8582 (https://sv8582.qa.shopview.com). Desktop browser, signed in as an Admin."
+      }
+     ]
+    },
+    {
+     "type": "orderedList",
+     "attrs": {
+      "order": 1
+     },
+     "content": [
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Open Reports, then Work In Progress, and set the Location filter to Staging Heavy Duty - 9919."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Set a custom date range of 1 January 2026 to 4 August 2026, so the tabs have data \u2014 the default This Week leaves most tabs empty, which hides the problem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Click the Completed tab and confirm at least one work order row is showing. With that range there are 12."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Open the three-dot menu and choose Download (CSV). No file arrives and an error appears. On the same view choose Download (PDF); the same thing happens."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Now click the Approved - Partially Completed tab, set the date range to 1 August 2026 to 5 August 2026 so that tab is empty, and choose Download (CSV) again. This time a file does arrive, holding only the \"Date Range:\" and \"Locations:\" lines and no rows."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Current behaviour"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "No file arrives and an error message appears. It happens on every tab that has rows, in both formats. The number of rows makes no difference \u2014 a tab with one row fails just as a tab with 139 does. The only download that succeeds is the empty tab, and that file has no rows in it."
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "It is not the choice of columns, not the format, and not the location: it fails with the default columns and with a single column, on both formats, with one location selected and with none."
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "For the developer: the download request answers HTTP 500 from the application. Request ids to look up include 709b3abd-de84-41a7-84e8-dc439e7ab76b (spreadsheet, Completed tab) and 1eb5693a-fae6-4402-ac47-34c561ec1ff2 (PDF, Completed tab). The request is accepted before it fails \u2014 an invalid column still returns the correct polite refusal \u2014 and the read endpoint that feeds the same view returns all 392 rows normally, so the data is fine and the failure is in producing the file."
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Expected behaviour"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "A download produces a file holding the rows on screen \u2014 the columns currently shown, in the screen's order, honouring the date range and location filter, and ending with a Totals row matching the one on screen."
+      }
+     ]
+    },
+    {
+     "type": "rule"
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Source",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": " \u2014 "
+      },
+      {
+       "type": "text",
+       "text": "the "
+      },
+      {
+       "type": "text",
+       "text": "Work In Progress report specification",
+       "marks": [
+        {
+         "type": "link",
+         "attrs": {
+          "href": "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report"
+         }
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": " on Confluence, version 9, requirement S9-R2: \u201cBoth downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last.\u201d"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "The same description, requirement S9-R4: \u201cBoth downloads include a Totals row matching the on-screen Totals row for the tab.\u201d"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "The same description, requirement S9-R9: \u201cThe downloaded files are named \"wip-2-report.pdf\" and \"wip-2-report.csv\".\u201d"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "A description that says what is inside the file and what the file is called is asking for a file to be produced. One honest note: unlike the Inventory Value and Sales By Customer descriptions, this one sets no export size limit and gives no wording for a failed download, so a download that fails is not an outcome it contemplates at all."
+      }
+     ]
+    }
+   ]
+  },
+  "customfield_10015": null,
+  "timetracking": {},
+  "security": null,
+  "aggregatetimeestimate": null,
+  "attachment": [],
+  "summary": "Work In Progress cannot be downloaded - a server error whenever the tab has any rows",
+  "creator": {
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "avatarUrls": {
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "active": true,
+   "timeZone": "Asia/Karachi",
+   "accountType": "atlassian"
+  },
+  "subtasks": [],
+  "customfield_10285": null,
+  "reporter": {
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "avatarUrls": {
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "active": true,
+   "timeZone": "Asia/Karachi",
+   "accountType": "atlassian"
+  },
+  "customfield_10044": null,
+  "aggregateprogress": {
+   "progress": 0,
+   "total": 0
+  },
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "environment": null,
+  "customfield_10318": null,
+  "duedate": null,
+  "customfield_10518": null,
+  "progress": {
+   "progress": 0,
+   "total": 0
+  },
+  "votes": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8907/votes",
+   "votes": 0,
+   "hasVoted": false
+  },
+  "comment": {
+   "comments": [],
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/55036/comment",
+   "maxResults": 0,
+   "total": 0,
+   "startAt": 0
+  },
+  "worklog": {
+   "startAt": 0,
+   "maxResults": 20,
+   "total": 0,
+   "worklogs": []
+  }
+ }
+}

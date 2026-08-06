@@ -1,0 +1,22 @@
+{
+ "description": "On Work In Progress the WO number in the first column is plain black text. It is not a link, clicking it does nothing, and there is no way to get from the report to the work order.\n\nThis was checked signed in as an administrator who does hold Work Orders access, so it is not the permission rule doing its job.",
+ "steps": [
+  "Open Reports, then Work In Progress, with the date range This Week, both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 selected, on the Approved - Partially Completed tab.",
+  "Click any WO number, for example S8582-16256, and watch the address bar.",
+  "Look at the cell itself: whether it is underlined, what colour it is, and whether the mouse pointer changes over it. This was seen signed in as Admin ShopView, whose permissions include Work Orders View, Create & Edit and Delete."
+ ],
+ "current": "Nothing happens when the number is clicked and the address bar does not change. The cell is ordinary text — no underline, black, and the pointer does not change to a hand.\n\nThe whole table contains no links at all. Every other cell in the row is correct and the report data itself is right.",
+ "expected": "For a user with Work Orders access the WO number is a link that opens that work order in the same tab, so they can look at the job and come back with the browser's back button. A user without Work Orders access sees plain text.",
+ "source": [
+  [
+   "spec",
+   "wip",
+   "S4-R5",
+   "WO # is shown as a link that opens the work order in the same browser tab (the user returns via the browser's back navigation) only when the user has permission to access Work Orders. A user without Work Order permission sees the WO # as plain text, not a link."
+  ],
+  [
+   "note",
+   "That requirement was rewritten on 5 August 2026 to spell out both halves — the link for someone with permission, and plain text for someone without. The half that gives the link is the half that is missing."
+  ]
+ ]
+}

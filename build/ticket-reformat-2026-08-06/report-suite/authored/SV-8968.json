@@ -1,0 +1,23 @@
+{
+ "description": "The Advisor, Customer and Asset filters on Work In Progress are meant to narrow what is on screen without going back to the server, because the report loads the complete set of open jobs in one request.\n\nInstead, ticking an advisor or a customer sends a fresh request with the choice attached and the table is rebuilt from the answer. Switching tab afterwards carries those choices to the server too.",
+ "steps": [
+  "Open Reports, then Work In Progress, with the date range This Week and both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 selected.",
+  "Open the Advisor filter and tick Admin ShopView, watching for a request to the server.",
+  "Open the Customer filter and tick Aaborough Works, watching again.",
+  "Click the Estimates tab and look at the request that follows — it carries both choices with it."
+ ],
+ "current": "Each tick sends a fresh request to the server and the table is rebuilt from the answer, and the tab change carries the choices to the server as well, so the narrowing is being done by the server rather than on screen.\n\nThe filtering itself gives the right answer: filtering to one customer leaves the right jobs on screen, the Totals row recalculates to match, and the summary figures move with it. The filter lists themselves are drawn from the full scope, which is the other half of the requirement and is correct.",
+ "expected": "The report loads the open jobs once, and ticking an advisor, a customer or an asset hides the rows that do not match, with no new request to the server.",
+ "source": [
+  [
+   "spec",
+   "wip",
+   "S7-R1",
+   "The toolbar has an Advisor filter, a multi-select listing the advisors present across all open jobs in the current scope (the report loads the complete set of open jobs in one request). Selecting one or more advisors narrows the visible jobs to those advisors, on screen only (no reload)."
+  ],
+  [
+   "note",
+   "Requirements S7-R2 and S7-R4 of the same description say the same for the Customer and Asset filters, each ending \"narrowing is on screen only (no reload)\". All three were rewritten on 5 August 2026."
+  ]
+ ]
+}

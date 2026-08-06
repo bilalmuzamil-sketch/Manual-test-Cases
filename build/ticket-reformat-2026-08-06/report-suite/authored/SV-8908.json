@@ -1,0 +1,21 @@
+{
+ "description": "On Work In Progress the Asset filter does not offer every asset that is on the report. Where two vehicles share a unit number, only one of them is listed, and the entry shows only that one's vehicle identification number. Typing the other vehicle's identification number finds nothing, so a service manager searching by the number on the windscreen concludes the truck has no open work when it has.\n\nSix vehicles are affected on today's test data, across five shared unit numbers.",
+ "steps": [
+  "Open Reports, then Work In Progress, with both locations, Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 selected.",
+  "Set a custom date range of 1 September 2025 to 5 August 2026, so all four tabs have work orders in them.",
+  "Open the Asset filter and type 854. One option appears: unit 854 shown with vehicle identification number 5SHFE4730MB001604.",
+  "Clear that and type the full vehicle identification number 1HTKTSWK4RH442544. Nothing matches.",
+  "Confirm that vehicle really is on the report: it is the asset on work orders S8582-15742 (Approved - Partially Completed tab) and S8582-11992 (Estimates tab), both for customer Euwood Paving.",
+  "The same happens for the other affected vehicles: 3HTMMAAP19N045446 (unit 4, work order S8582-15133, Iowell Works), 54DC4W1C2GS805134 (unit 4, S8582-15668, Auline Consulting), 54DC4W1B9ES801599 (unit 1, S8582-15544, Auline Consulting), 5KKPALDV3DPBY2035 (unit 80, S8582-14030, Suman Solutions) and 5100036463 (unit B104, S8582-15391, Kabridge Enterprises)."
+ ],
+ "current": "The Asset filter offers one entry per unit number. Where two vehicles share a unit number, only one is listed, that entry shows only one identification number, and the other vehicle's number matches nothing typed into the filter.\n\nThe filter is not limited to the rows currently loaded, and it does work across all four tabs and both locations: the Advisor filter offers 15 against 15 on the report, Customer 215 against 215, and Asset by unit number 172 against 172. It is only the identification numbers that fall short — 273 offered against 279 on the report. The same six are missing on a narrower date range.\n\nThe B104 entry has an additional oddity: its option carries no vehicle identification number at all, even though the work order does.\n\nFor non-vehicle assets this field holds the unit's serial number rather than a true vehicle identification number. That is expected and is not what this ticket is about.",
+ "expected": "Every asset on the report is offered in the Asset filter, each option showing the unit number and the vehicle identification number, and typing either one finds it. Two vehicles that share a unit number are two assets, so both are listed and both identification numbers match.",
+ "source": [
+  [
+   "spec",
+   "wip",
+   "S7-R4",
+   "The toolbar has an Asset filter, a searchable type-ahead multi-select listing the assets present across all open jobs in the current scope. Each option shows the unit number and the vehicle identification number, and the user's typed text matches against EITHER the unit number OR the vehicle identification number."
+  ]
+ ]
+}

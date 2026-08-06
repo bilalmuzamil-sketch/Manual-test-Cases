@@ -1,183 +1,88 @@
 [
  {
-  "ticket": "SV-8955",
+  "ticket": "SV-8907",
   "kind": "spec",
-  "spec": "sbc",
-  "anchor": "S2-R6",
+  "spec": "wip",
+  "anchor": "S9-R2",
   "anchor_found": true,
   "quote_found": true,
   "verdict": "PASS",
-  "quote_head": "When the user changes the date range, the chosen value is written to the page li"
+  "quote_head": "Both downloads include only the columns currently shown, in the same left-to-rig"
  },
  {
-  "ticket": "SV-8955",
+  "ticket": "SV-8907",
   "kind": "spec",
-  "spec": "sbc",
-  "anchor": "S9-R3",
+  "spec": "wip",
+  "anchor": "S9-R4",
   "anchor_found": true,
   "quote_found": true,
   "verdict": "PASS",
-  "quote_head": "Before navigating, the active date range and Product Type are written to the pag"
+  "quote_head": "Both downloads include a Totals row matching the on-screen Totals row for the ta"
  },
  {
-  "ticket": "SV-8956",
+  "ticket": "SV-8907",
   "kind": "spec",
-  "spec": "sbc",
-  "anchor": "S14-R14",
+  "spec": "wip",
+  "anchor": "S9-R9",
   "anchor_found": true,
   "quote_found": true,
   "verdict": "PASS",
-  "quote_head": "The files are named for the report, the version, and the active date range: the "
+  "quote_head": "The downloaded files are named \"wip-2-report.pdf\" and \"wip-2-report.csv\"."
  },
  {
-  "ticket": "SV-8956",
-  "kind": "spec",
-  "spec": "sbc",
-  "anchor": "S15-R6",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "The files follow the same version-and-range naming as the CSV (S14-R14) with a ."
- },
- {
-  "ticket": "SV-8962",
-  "kind": "spec",
-  "spec": "sbc",
-  "anchor": "S18-R2",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "The filter is a multi-select with server-backed type-ahead. The control carries "
- },
- {
-  "ticket": "SV-8962",
-  "kind": "spec",
-  "spec": "sbc",
-  "anchor": "S18-R5",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "The collapsed filter label reads \"All customers\" when the filter is in the all-c"
- },
- {
-  "ticket": "SV-8963",
-  "kind": "spec",
-  "spec": "sbc",
-  "anchor": "S10-R1",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "Every column is sortable except the chevron column."
- },
- {
-  "ticket": "SV-8963",
-  "kind": "spec",
-  "spec": "sbc",
-  "anchor": "S10-R3",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "A missing value sorts to the bottom in ascending order and to the top in descend"
- },
- {
-  "ticket": "SV-8964",
-  "kind": "spec",
-  "spec": "sbc",
-  "anchor": "S15-R7",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "The PDF is A4 landscape with 25px margins on all sides, using the application's "
- },
- {
-  "ticket": "SV-8964",
+  "ticket": "SV-8907",
   "kind": "note",
   "verdict": "n/a (not a spec quote)",
-  "detail": "The same description treats the two files as one format with one paper"
+  "detail": "A description that says what is inside the file and what the file is c"
  },
  {
-  "ticket": "SV-8965",
+  "ticket": "SV-8908",
   "kind": "spec",
-  "spec": "sbc",
-  "anchor": "S20-R8",
+  "spec": "wip",
+  "anchor": "S7-R4",
   "anchor_found": true,
   "quote_found": true,
   "verdict": "PASS",
-  "quote_head": "Column-header cells and customer summary rows use the white surface (#ffffff), o"
+  "quote_head": "The toolbar has an Asset filter, a searchable type-ahead multi-select listing th"
  },
  {
-  "ticket": "SV-8965",
+  "ticket": "SV-8967",
   "kind": "spec",
-  "spec": "sbc",
-  "anchor": "S20-R9",
+  "spec": "wip",
+  "anchor": "S4-R5",
   "anchor_found": true,
   "quote_found": true,
   "verdict": "PASS",
-  "quote_head": "Asset rows and invoice rows use the blue-grey background (#f9fafb), or the dark "
+  "quote_head": "WO # is shown as a link that opens the work order in the same browser tab (the u"
  },
  {
-  "ticket": "SV-8965",
-  "kind": "spec",
-  "spec": "sbc",
-  "anchor": "S20-R10",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "The totals row uses the white surface (#ffffff), or the dark surface in dark mod"
- },
- {
-  "ticket": "SV-8965",
-  "kind": "spec",
-  "spec": "sbc",
-  "anchor": "S20-R12",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "The leftmost cell (header, body, totals) has 2rem of left padding; the rightmost"
- },
- {
-  "ticket": "SV-8965",
-  "kind": "spec",
-  "spec": "sbc",
-  "anchor": "S20-R14",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "The three tree levels are shown by indentation: the customer row is at the base;"
- },
- {
-  "ticket": "SV-8966",
-  "kind": "spec",
-  "spec": "sbc",
-  "anchor": "S6-R5",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "On restore, any saved value that is no longer valid is discarded, and that setti"
- },
- {
-  "ticket": "SV-8966",
-  "kind": "spec",
-  "spec": "sbc",
-  "anchor": "S6-R6",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "A saved value is treated as no longer valid when it is an unknown date range, a "
- },
- {
-  "ticket": "SV-8966",
+  "ticket": "SV-8967",
   "kind": "note",
   "verdict": "n/a (not a spec quote)",
-  "detail": "S6-R6 names the date range and the location, so those two are squarely"
+  "detail": "That requirement was rewritten on 5 August 2026 to spell out both halv"
  },
  {
-  "ticket": "SV-8966",
+  "ticket": "SV-8968",
+  "kind": "spec",
+  "spec": "wip",
+  "anchor": "S7-R1",
+  "anchor_found": true,
+  "quote_found": true,
+  "verdict": "PASS",
+  "quote_head": "The toolbar has an Advisor filter, a multi-select listing the advisors present a"
+ },
+ {
+  "ticket": "SV-8968",
+  "kind": "note",
+  "verdict": "n/a (not a spec quote)",
+  "detail": "Requirements S7-R2 and S7-R4 of the same description say the same for "
+ },
+ {
+  "ticket": "SV-8968",
   "kind": "note-anchor",
-  "anchor": "S6-R6",
+  "anchor": "S7-R2",
   "found_in": [
    "sbc",
-   "sbr",
    "pv",
    "tu",
    "wip",
@@ -186,22 +91,15 @@
   "verdict": "PASS"
  },
  {
-  "ticket": "SV-8966",
+  "ticket": "SV-8968",
   "kind": "note-anchor",
-  "anchor": "S18-R9",
+  "anchor": "S7-R4",
   "found_in": [
    "sbc",
-   "sbr"
-  ],
-  "verdict": "PASS"
- },
- {
-  "ticket": "SV-8966",
-  "kind": "note-anchor",
-  "anchor": "S18-R9",
-  "found_in": [
-   "sbc",
-   "sbr"
+   "pv",
+   "tu",
+   "wip",
+   "iv"
   ],
   "verdict": "PASS"
  }
