@@ -74,10 +74,10 @@ it is waiting on**.
 
 ## A · Waiting on a SECOND TEST LOGIN — 17 rows
 
-These are permission cases. There is exactly **one** sign-in on this estate, shared with sibling
-workers, and both `POST /api/quick-login` and `POST /api/switch-user` **rotate the shared
-`sv_sso_session`** and would sign the other workers out mid-run. The QA lead has authorised unblocking
-this ("You should unblock yourself") — **it was not done in this pass and that is the honest gap.**
+These are permission cases. The QA lead authorised unblocking them ("You should unblock yourself") and
+**it WAS attempted on 2026-08-06 — both self-service routes are shut on this branch**, so this is an
+evidenced blocker rather than an omission. Details in the Trigger note below and in
+`SECOND-LOGIN-ATTEMPT.md`.
 
 | Case | Report | What is owed | Observed on |
 |---|---|---|---|
