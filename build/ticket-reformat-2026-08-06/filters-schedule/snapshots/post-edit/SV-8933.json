@@ -1,0 +1,629 @@
+{
+ "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+ "fields": {
+  "aggregateprogress": {
+   "progress": 0,
+   "total": 0
+  },
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [],
+  "comment": {
+   "comments": [],
+   "maxResults": 0,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/55067/comment",
+   "startAt": 0,
+   "total": 0
+  },
+  "components": [],
+  "created": "2026-08-06T00:22:56.095-0500",
+  "creator": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": "0|i01vs1:",
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10285": null,
+  "customfield_10318": null,
+  "customfield_10351": null,
+  "customfield_10385": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": {
+   "content": [
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Description",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "A staff member's working hours cannot be opened at all if that person belongs to a different location from the one you are working in. The Staff list shows everyone, so you can find the person and open them, but switching on 'Set custom hours for this technician' fails with an error and flicks the switch back off.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "It affects a large part of the list rather than one record: of the 161 people, 63 cannot have their hours opened from the Heavy Duty location and 98 can. The Schedule uses those hours for shift start times, conflict warnings and capacity bars.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Steps to reproduce",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ],
+       "text": "Environment: ",
+       "type": "text"
+      },
+      {
+       "text": "QA branch sv8685 \u2014 https://sv8685.qa.shopview.com. Desktop browser, signed in as an Admin, starting with the location Staging Heavy Duty - 9919 selected.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "order": 1
+     },
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Make sure the location at the top of the app is Staging Heavy Duty - 9919.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Go to Administration and open the Staff list.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Find Benjamin Peters. His record belongs to the other location, Staging Lethbridge - 4310, but he is listed here all the same.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Open his record with the pencil icon on his row.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Switch on 'Set custom hours for this technician'.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Close and reopen the window, as the error message suggests, and switch it on again.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Now change the location at the top of the app to Staging Lethbridge - 4310, open the same person and switch the same thing on.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "For a direct contrast, go back to Staging Heavy Duty - 9919 and repeat steps 3 to 5 with Ayesha Khan, who belongs to that location.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "orderedList"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Current behaviour",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "The switch flicks on and straight back off, and this error appears: \"Couldn't load this technician's hours, so they can't be edited right now. Close and reopen the dialog to try again.\"",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Closing and reopening makes no difference \u2014 it fails the same way every time, and no editor is ever shown, so the hours cannot be set at all from this location.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "From the person's own location it works immediately, and going back to the other location brings the failure back. Ayesha Khan, who belongs to the location being viewed, opens normally, so the editor itself is working.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "For a developer: the window's request for that person's working hours is answered with \"'Staff' was not found\", while another request the same window makes moments earlier finds the same person without difficulty and reports their location as Staging Lethbridge - 4310. The result flips reliably with the session's current location.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Expected behaviour",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Switching the toggle on reveals the Monday to Sunday From/To editor and lets the hours be set, for any staff member the Staff list offers.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "If working hours really are meant to be held per location, then the screen should say so \u2014 by not offering the toggle, or by telling the user which location to switch to \u2014 rather than failing with an error that reads as a fault.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "type": "rule"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Source",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Epic SV-8685, story SV-8699 (Working Hours Settings), and the Schedule specification (Confluence page 713031682), version 25.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Section 4.2, under \"Hours settings (tech and business hours)\": \"Behind a toggle, off by default. Each section sits behind a toggle ('Set custom hours for this technician' / 'Set business hours for this shop'). The per-day editor appears only when the toggle is on.\" And of the editor itself: \"One row per day (Mon-Sun): day name, with From to To ranges on the right.\"",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "One honest note: the specification puts no condition on which location the staff member is viewed from and never says whether working hours are held per location, so it is silent on that point. What it does settle is that turning the toggle on must reveal the editor. Whether a person from another location should be reachable at all is a product owner's decision.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    }
+   ],
+   "type": "doc",
+   "version": 1
+  },
+  "duedate": null,
+  "environment": null,
+  "fixVersions": [],
+  "issuelinks": [
+   {
+    "id": "32096",
+    "outwardIssue": {
+     "fields": {
+      "issuetype": {
+       "avatarId": 10315,
+       "description": "Stories track functionality or features expressed as user goals.",
+       "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+       "hierarchyLevel": 0,
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+       "id": "10245",
+       "name": "Story",
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+       "subtask": false
+      },
+      "priority": {
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "id": "3",
+       "name": "Medium",
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+      },
+      "status": {
+       "description": "",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "id": "10350",
+       "name": "Ready for QA",
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10350",
+       "statusCategory": {
+        "colorName": "yellow",
+        "id": 4,
+        "key": "indeterminate",
+        "name": "In Progress",
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+       }
+      },
+      "summary": "Working Hours Settings"
+     },
+     "id": "54721",
+     "key": "SV-8699",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54721"
+    },
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/32096",
+    "type": {
+     "id": "10003",
+     "inward": "relates to",
+     "name": "Relates",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    }
+   }
+  ],
+  "issuerestriction": {
+   "issuerestrictions": {},
+   "shouldDisplay": true
+  },
+  "issuetype": {
+   "avatarId": 10854,
+   "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+   "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+   "hierarchyLevel": -1,
+   "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+   "id": "10007",
+   "name": "Story Defect",
+   "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+   "subtask": true
+  },
+  "labels": [],
+  "lastViewed": null,
+  "parent": {
+   "fields": {
+    "issuetype": {
+     "avatarId": 10315,
+     "description": "Stories track functionality or features expressed as user goals.",
+     "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+     "hierarchyLevel": 0,
+     "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+     "id": "10245",
+     "name": "Story",
+     "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+     "subtask": false
+    },
+    "priority": {
+     "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+     "id": "3",
+     "name": "Medium",
+     "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+    },
+    "status": {
+     "description": "",
+     "iconUrl": "https://shopview.atlassian.net/",
+     "id": "10350",
+     "name": "Ready for QA",
+     "self": "https://shopview.atlassian.net/rest/api/3/status/10350",
+     "statusCategory": {
+      "colorName": "yellow",
+      "id": 4,
+      "key": "indeterminate",
+      "name": "In Progress",
+      "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+     }
+    },
+    "summary": "Working Hours Settings"
+   },
+   "id": "54721",
+   "key": "SV-8699",
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54721"
+  },
+  "priority": {
+   "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+   "id": "4",
+   "name": "Low",
+   "self": "https://shopview.atlassian.net/rest/api/3/priority/4"
+  },
+  "progress": {
+   "progress": 0,
+   "total": 0
+  },
+  "project": {
+   "avatarUrls": {
+    "16x16": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=xsmall",
+    "24x24": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=small",
+    "32x32": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=medium",
+    "48x48": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551"
+   },
+   "id": "10001",
+   "key": "SV",
+   "name": "ShopView",
+   "projectTypeKey": "software",
+   "self": "https://shopview.atlassian.net/rest/api/3/project/10001",
+   "simplified": true
+  },
+  "reporter": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "resolution": null,
+  "resolutiondate": null,
+  "security": null,
+  "status": {
+   "description": "",
+   "iconUrl": "https://shopview.atlassian.net/",
+   "id": "10349",
+   "name": "Open",
+   "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+   "statusCategory": {
+    "colorName": "blue-gray",
+    "id": 2,
+    "key": "new",
+    "name": "To Do",
+    "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+   }
+  },
+  "statusCategory": {
+   "colorName": "blue-gray",
+   "id": 2,
+   "key": "new",
+   "name": "To Do",
+   "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+  },
+  "statuscategorychangedate": "2026-08-06T00:22:56.614-0500",
+  "subtasks": [],
+  "summary": "Working hours cannot be opened for a staff member who belongs to another location",
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "2026-08-06T08:29:56.214-0500",
+  "versions": [],
+  "votes": {
+   "hasVoted": false,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8933/votes",
+   "votes": 0
+  },
+  "watches": {
+   "isWatching": true,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8933/watchers",
+   "watchCount": 1
+  },
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": -1
+ },
+ "id": "55067",
+ "key": "SV-8933",
+ "renderedFields": {
+  "aggregateprogress": null,
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [],
+  "comment": {
+   "comments": [],
+   "maxResults": 0,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/55067/comment",
+   "startAt": 0,
+   "total": 0
+  },
+  "components": null,
+  "created": "Today 10:22 AM",
+  "creator": null,
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": null,
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10285": "",
+  "customfield_10318": null,
+  "customfield_10351": "",
+  "customfield_10385": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": "<h3><a name=\"Description\"></a>Description</h3>\n\n<p>A staff member's working hours cannot be opened at all if that person belongs to a different location from the one you are working in. The Staff list shows everyone, so you can find the person and open them, but switching on 'Set custom hours for this technician' fails with an error and flicks the switch back off.</p>\n\n<p>It affects a large part of the list rather than one record: of the 161 people, 63 cannot have their hours opened from the Heavy Duty location and 98 can. The Schedule uses those hours for shift start times, conflict warnings and capacity bars.</p>\n\n<h3><a name=\"Stepstoreproduce\"></a>Steps to reproduce</h3>\n\n<p><b>Environment:</b> QA branch sv8685 \u2014 <a href=\"https://sv8685.qa.shopview.com\" class=\"external-link\" rel=\"nofollow noreferrer\">https://sv8685.qa.shopview.com</a>. Desktop browser, signed in as an Admin, starting with the location Staging Heavy Duty - 9919 selected.</p>\n\n<ol>\n\t<li>Make sure the location at the top of the app is Staging Heavy Duty - 9919.</li>\n\t<li>Go to Administration and open the Staff list.</li>\n\t<li>Find Benjamin Peters. His record belongs to the other location, Staging Lethbridge - 4310, but he is listed here all the same.</li>\n\t<li>Open his record with the pencil icon on his row.</li>\n\t<li>Switch on 'Set custom hours for this technician'.</li>\n\t<li>Close and reopen the window, as the error message suggests, and switch it on again.</li>\n\t<li>Now change the location at the top of the app to Staging Lethbridge - 4310, open the same person and switch the same thing on.</li>\n\t<li>For a direct contrast, go back to Staging Heavy Duty - 9919 and repeat steps 3 to 5 with Ayesha Khan, who belongs to that location.</li>\n</ol>\n\n\n<h3><a name=\"Currentbehaviour\"></a>Current behaviour</h3>\n\n<p>The switch flicks on and straight back off, and this error appears: \"Couldn't load this technician's hours, so they can't be edited right now. Close and reopen the dialog to try again.\"</p>\n\n<p>Closing and reopening makes no difference \u2014 it fails the same way every time, and no editor is ever shown, so the hours cannot be set at all from this location.</p>\n\n<p>From the person's own location it works immediately, and going back to the other location brings the failure back. Ayesha Khan, who belongs to the location being viewed, opens normally, so the editor itself is working.</p>\n\n<p>For a developer: the window's request for that person's working hours is answered with \"'Staff' was not found\", while another request the same window makes moments earlier finds the same person without difficulty and reports their location as Staging Lethbridge - 4310. The result flips reliably with the session's current location.</p>\n\n<h3><a name=\"Expectedbehaviour\"></a>Expected behaviour</h3>\n\n<p>Switching the toggle on reveals the Monday to Sunday From/To editor and lets the hours be set, for any staff member the Staff list offers.</p>\n\n<p>If working hours really are meant to be held per location, then the screen should say so \u2014 by not offering the toggle, or by telling the user which location to switch to \u2014 rather than failing with an error that reads as a fault.</p>\n\n<hr />\n\n<h3><a name=\"Source\"></a>Source</h3>\n\n<p>Epic \n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-8685\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-8685\" class=\"jira-issue-macro-key issue-link\"  title=\"Schedule \u2014 Technician Scheduling Module\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium\" />\n            SV-8685\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-complete jira-macro-single-issue-export-pdf\">Open</span>\n            </span>\n, story \n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-8699\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-8699\" class=\"jira-issue-macro-key issue-link\"  title=\"Working Hours Settings\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium\" />\n            SV-8699\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-current jira-macro-single-issue-export-pdf\">Ready for QA</span>\n            </span>\n (Working Hours Settings), and the Schedule specification (Confluence page 713031682), version 25.</p>\n\n<p>Section 4.2, under \"Hours settings (tech and business hours)\": \"Behind a toggle, off by default. Each section sits behind a toggle ('Set custom hours for this technician' / 'Set business hours for this shop'). The per-day editor appears only when the toggle is on.\" And of the editor itself: \"One row per day (Mon-Sun): day name, with From to To ranges on the right.\"</p>\n\n<p>One honest note: the specification puts no condition on which location the staff member is viewed from and never says whether working hours are held per location, so it is silent on that point. What it does settle is that turning the toggle on must reveal the editor. Whether a person from another location should be reachable at all is a product owner's decision.</p>",
+  "duedate": null,
+  "environment": "",
+  "fixVersions": null,
+  "issuelinks": null,
+  "issuerestriction": null,
+  "issuetype": null,
+  "labels": null,
+  "lastViewed": null,
+  "priority": null,
+  "progress": null,
+  "project": null,
+  "reporter": null,
+  "resolution": null,
+  "resolutiondate": null,
+  "security": null,
+  "status": null,
+  "statusCategory": null,
+  "statuscategorychangedate": "Today 10:22 AM",
+  "subtasks": null,
+  "summary": null,
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "Today 6:29 PM",
+  "versions": null,
+  "votes": null,
+  "watches": null,
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": null
+ },
+ "self": "https://shopview.atlassian.net/rest/api/3/issue/55067"
+}

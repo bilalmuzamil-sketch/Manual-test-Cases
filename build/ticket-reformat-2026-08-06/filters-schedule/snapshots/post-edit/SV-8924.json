@@ -1,0 +1,656 @@
+{
+ "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+ "fields": {
+  "aggregateprogress": {
+   "progress": 0,
+   "total": 0
+  },
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [],
+  "comment": {
+   "comments": [],
+   "maxResults": 0,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/55057/comment",
+   "startAt": 0,
+   "total": 0
+  },
+  "components": [],
+  "created": "2026-08-05T22:37:09.629-0500",
+  "creator": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": "0|i01vq1:",
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10285": null,
+  "customfield_10318": null,
+  "customfield_10351": null,
+  "customfield_10385": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": {
+   "content": [
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Description",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Dragging a job out of the Unassigned row onto a technician moves it correctly, but silently changes its saved start time to six hours earlier. A job booked for 7:00 in the morning became 1:00 in the morning, which is outside the working hours of the technician it was given to. Nothing on screen warned about it.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "This is separate from SV-8848. There the times are stored correctly and shown wrongly; here the stored value itself is changed, so the record stays wrong even after the display is fixed.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Steps to reproduce",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ],
+       "text": "Environment: ",
+       "type": "text"
+      },
+      {
+       "text": "QA branch sv8685 \u2014 https://sv8685.qa.shopview.com/schedule. Desktop browser, signed in as an Admin, with the location Staging Heavy Duty - 9919 selected.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "order": 1
+     },
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Open Schedule and go to the week containing Saturday 8 August 2026.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Find a job sitting in the Unassigned row. The one used here was work order S-12876, customer Pamill Paving, unit 713, line 'Replace - Rear ramp handles', sitting unassigned on Saturday 8 August. The Unassigned row sits below every technician row, so you have to scroll down to reach it; if it is not drawn, put a job there first by dragging a work order onto it.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Open the job and note its start time. This one read 7:00 AM.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Check the receiving technician's hours: Kellie Ayers (Foreman) works 7:00 AM to 7:00 PM.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Drag the block up onto Kellie Ayers' row for the same day.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Confirm the 'Move this shift to Kellie Ayers on Sat, Aug 8?' window with Reassign.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Open the job again and read its start time.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "orderedList"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Current behaviour",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "The job does move to the chosen technician and does leave the Unassigned row, and the technician is correctly added to the work order line's technician list. That part is right.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "But the saved start time moves six hours earlier \u2014 from 7:00 in the morning to 1:00 in the morning. 1:00 AM is outside the receiving technician's own hours of 7:00 AM to 7:00 PM.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "It is not just what is drawn on screen: the time quoted above was read back from the saved record after the move. It is not the technician's hours being applied either \u2014 her start is 7:00 AM, and 7:00 is the number that ended up saved, but saved as 7:00 UTC instead of 7:00 at the shop. The same block dragged between two technician rows moves normally.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Expected behaviour",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Assigning an unassigned job to a technician moves it to that technician and leaves its start time as it was \u2014 and in any case leaves it inside that technician's own working hours.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "type": "rule"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Source",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Epic SV-8685, story SV-8688 (Drag-and-Drop Scheduling & Shift Creation), and the Schedule specification (Confluence page 713031682), version 25.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Section 3.2, on the unassigned row: \"Dragging a shift from this row down onto a technician assigns it.\"",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Section 4.2: \"When an unassigned shift is later dragged onto a technician row in the grid, that technician's hours apply.\"",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "One honest note: the specification does not say the start time must be left exactly as it was, so the first half of the expected behaviour above is stricter than the written rule. The second half is not \u2014 1:00 in the morning is neither the time the job had nor within the hours of the technician it was given to.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    }
+   ],
+   "type": "doc",
+   "version": 1
+  },
+  "duedate": null,
+  "environment": null,
+  "fixVersions": [],
+  "issuelinks": [
+   {
+    "id": "32086",
+    "outwardIssue": {
+     "fields": {
+      "issuetype": {
+       "avatarId": 10315,
+       "description": "Stories track functionality or features expressed as user goals.",
+       "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+       "hierarchyLevel": 0,
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+       "id": "10245",
+       "name": "Story",
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+       "subtask": false
+      },
+      "priority": {
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "id": "3",
+       "name": "Medium",
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+      },
+      "status": {
+       "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "id": "10006",
+       "name": "TESTING QA",
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10006",
+       "statusCategory": {
+        "colorName": "yellow",
+        "id": 4,
+        "key": "indeterminate",
+        "name": "In Progress",
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+       }
+      },
+      "summary": "Drag-and-Drop Scheduling & Shift Creation"
+     },
+     "id": "54710",
+     "key": "SV-8688",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54710"
+    },
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/32086",
+    "type": {
+     "id": "10003",
+     "inward": "relates to",
+     "name": "Relates",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    }
+   },
+   {
+    "id": "32087",
+    "outwardIssue": {
+     "fields": {
+      "issuetype": {
+       "avatarId": 10303,
+       "description": "Bugs track problems or errors. (Migrated on 31 Dec 2023 09:01 UTC)",
+       "entityId": "28af1af2-ae8b-4de4-94eb-bcecd7d4031c",
+       "hierarchyLevel": 0,
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium",
+       "id": "10008",
+       "name": "Bug",
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10008",
+       "subtask": false
+      },
+      "priority": {
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+       "id": "4",
+       "name": "Low",
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/4"
+      },
+      "status": {
+       "description": "",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "id": "10349",
+       "name": "Open",
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+       "statusCategory": {
+        "colorName": "blue-gray",
+        "id": 2,
+        "key": "new",
+        "name": "To Do",
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+       }
+      },
+      "summary": "Every time on the Schedule is shown six hours later than the time it was scheduled for"
+     },
+     "id": "54975",
+     "key": "SV-8848",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54975"
+    },
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/32087",
+    "type": {
+     "id": "10003",
+     "inward": "relates to",
+     "name": "Relates",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    }
+   }
+  ],
+  "issuerestriction": {
+   "issuerestrictions": {},
+   "shouldDisplay": true
+  },
+  "issuetype": {
+   "avatarId": 10854,
+   "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+   "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+   "hierarchyLevel": -1,
+   "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+   "id": "10007",
+   "name": "Story Defect",
+   "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+   "subtask": true
+  },
+  "labels": [],
+  "lastViewed": "2026-08-05T23:00:58.454-0500",
+  "parent": {
+   "fields": {
+    "issuetype": {
+     "avatarId": 10315,
+     "description": "Stories track functionality or features expressed as user goals.",
+     "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+     "hierarchyLevel": 0,
+     "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+     "id": "10245",
+     "name": "Story",
+     "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+     "subtask": false
+    },
+    "priority": {
+     "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+     "id": "3",
+     "name": "Medium",
+     "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+    },
+    "status": {
+     "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+     "iconUrl": "https://shopview.atlassian.net/",
+     "id": "10006",
+     "name": "TESTING QA",
+     "self": "https://shopview.atlassian.net/rest/api/3/status/10006",
+     "statusCategory": {
+      "colorName": "yellow",
+      "id": 4,
+      "key": "indeterminate",
+      "name": "In Progress",
+      "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+     }
+    },
+    "summary": "Drag-and-Drop Scheduling & Shift Creation"
+   },
+   "id": "54710",
+   "key": "SV-8688",
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54710"
+  },
+  "priority": {
+   "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+   "id": "4",
+   "name": "Low",
+   "self": "https://shopview.atlassian.net/rest/api/3/priority/4"
+  },
+  "progress": {
+   "progress": 0,
+   "total": 0
+  },
+  "project": {
+   "avatarUrls": {
+    "16x16": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=xsmall",
+    "24x24": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=small",
+    "32x32": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=medium",
+    "48x48": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551"
+   },
+   "id": "10001",
+   "key": "SV",
+   "name": "ShopView",
+   "projectTypeKey": "software",
+   "self": "https://shopview.atlassian.net/rest/api/3/project/10001",
+   "simplified": true
+  },
+  "reporter": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "resolution": null,
+  "resolutiondate": null,
+  "security": null,
+  "status": {
+   "description": "",
+   "iconUrl": "https://shopview.atlassian.net/",
+   "id": "10349",
+   "name": "Open",
+   "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+   "statusCategory": {
+    "colorName": "blue-gray",
+    "id": 2,
+    "key": "new",
+    "name": "To Do",
+    "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+   }
+  },
+  "statusCategory": {
+   "colorName": "blue-gray",
+   "id": 2,
+   "key": "new",
+   "name": "To Do",
+   "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+  },
+  "statuscategorychangedate": "2026-08-05T22:37:10.096-0500",
+  "subtasks": [],
+  "summary": "Schedule: assigning an unassigned job to a technician moves its saved start time six hours earlier",
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "2026-08-06T08:29:54.256-0500",
+  "versions": [],
+  "votes": {
+   "hasVoted": false,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8924/votes",
+   "votes": 0
+  },
+  "watches": {
+   "isWatching": true,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8924/watchers",
+   "watchCount": 1
+  },
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": -1
+ },
+ "id": "55057",
+ "key": "SV-8924",
+ "renderedFields": {
+  "aggregateprogress": null,
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [],
+  "comment": {
+   "comments": [],
+   "maxResults": 0,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/55057/comment",
+   "startAt": 0,
+   "total": 0
+  },
+  "components": null,
+  "created": "Today 8:37 AM",
+  "creator": null,
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": null,
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10285": "",
+  "customfield_10318": null,
+  "customfield_10351": "",
+  "customfield_10385": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": "<h3><a name=\"Description\"></a>Description</h3>\n\n<p>Dragging a job out of the Unassigned row onto a technician moves it correctly, but silently changes its saved start time to six hours earlier. A job booked for 7:00 in the morning became 1:00 in the morning, which is outside the working hours of the technician it was given to. Nothing on screen warned about it.</p>\n\n<p>This is separate from \n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-8848\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-8848\" class=\"jira-issue-macro-key issue-link\"  title=\"Every time on the Schedule is shown six hours later than the time it was scheduled for\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium\" />\n            SV-8848\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-complete jira-macro-single-issue-export-pdf\">Open</span>\n            </span>\n. There the times are stored correctly and shown wrongly; here the stored value itself is changed, so the record stays wrong even after the display is fixed.</p>\n\n<h3><a name=\"Stepstoreproduce\"></a>Steps to reproduce</h3>\n\n<p><b>Environment:</b> QA branch sv8685 \u2014 <a href=\"https://sv8685.qa.shopview.com/schedule\" class=\"external-link\" rel=\"nofollow noreferrer\">https://sv8685.qa.shopview.com/schedule</a>. Desktop browser, signed in as an Admin, with the location Staging Heavy Duty - 9919 selected.</p>\n\n<ol>\n\t<li>Open Schedule and go to the week containing Saturday 8 August 2026.</li>\n\t<li>Find a job sitting in the Unassigned row. The one used here was work order S-12876, customer Pamill Paving, unit 713, line 'Replace - Rear ramp handles', sitting unassigned on Saturday 8 August. The Unassigned row sits below every technician row, so you have to scroll down to reach it; if it is not drawn, put a job there first by dragging a work order onto it.</li>\n\t<li>Open the job and note its start time. This one read 7:00 AM.</li>\n\t<li>Check the receiving technician's hours: Kellie Ayers (Foreman) works 7:00 AM to 7:00 PM.</li>\n\t<li>Drag the block up onto Kellie Ayers' row for the same day.</li>\n\t<li>Confirm the 'Move this shift to Kellie Ayers on Sat, Aug 8?' window with Reassign.</li>\n\t<li>Open the job again and read its start time.</li>\n</ol>\n\n\n<h3><a name=\"Currentbehaviour\"></a>Current behaviour</h3>\n\n<p>The job does move to the chosen technician and does leave the Unassigned row, and the technician is correctly added to the work order line's technician list. That part is right.</p>\n\n<p>But the saved start time moves six hours earlier \u2014 from 7:00 in the morning to 1:00 in the morning. 1:00 AM is outside the receiving technician's own hours of 7:00 AM to 7:00 PM.</p>\n\n<p>It is not just what is drawn on screen: the time quoted above was read back from the saved record after the move. It is not the technician's hours being applied either \u2014 her start is 7:00 AM, and 7:00 is the number that ended up saved, but saved as 7:00 UTC instead of 7:00 at the shop. The same block dragged between two technician rows moves normally.</p>\n\n<h3><a name=\"Expectedbehaviour\"></a>Expected behaviour</h3>\n\n<p>Assigning an unassigned job to a technician moves it to that technician and leaves its start time as it was \u2014 and in any case leaves it inside that technician's own working hours.</p>\n\n<hr />\n\n<h3><a name=\"Source\"></a>Source</h3>\n\n<p>Epic \n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-8685\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-8685\" class=\"jira-issue-macro-key issue-link\"  title=\"Schedule \u2014 Technician Scheduling Module\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium\" />\n            SV-8685\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-complete jira-macro-single-issue-export-pdf\">Open</span>\n            </span>\n, story \n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-8688\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-8688\" class=\"jira-issue-macro-key issue-link\"  title=\"Drag-and-Drop Scheduling &amp; Shift Creation\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium\" />\n            SV-8688\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-current jira-macro-single-issue-export-pdf\">TESTING QA</span>\n            </span>\n (Drag-and-Drop Scheduling &amp; Shift Creation), and the Schedule specification (Confluence page 713031682), version 25.</p>\n\n<p>Section 3.2, on the unassigned row: \"Dragging a shift from this row down onto a technician assigns it.\"</p>\n\n<p>Section 4.2: \"When an unassigned shift is later dragged onto a technician row in the grid, that technician's hours apply.\"</p>\n\n<p>One honest note: the specification does not say the start time must be left exactly as it was, so the first half of the expected behaviour above is stricter than the written rule. The second half is not \u2014 1:00 in the morning is neither the time the job had nor within the hours of the technician it was given to.</p>",
+  "duedate": null,
+  "environment": "",
+  "fixVersions": null,
+  "issuelinks": null,
+  "issuerestriction": null,
+  "issuetype": null,
+  "labels": null,
+  "lastViewed": "Today 9:00 AM",
+  "priority": null,
+  "progress": null,
+  "project": null,
+  "reporter": null,
+  "resolution": null,
+  "resolutiondate": null,
+  "security": null,
+  "status": null,
+  "statusCategory": null,
+  "statuscategorychangedate": "Today 8:37 AM",
+  "subtasks": null,
+  "summary": null,
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "Today 6:29 PM",
+  "versions": null,
+  "votes": null,
+  "watches": null,
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": null
+ },
+ "self": "https://shopview.atlassian.net/rest/api/3/issue/55057"
+}
