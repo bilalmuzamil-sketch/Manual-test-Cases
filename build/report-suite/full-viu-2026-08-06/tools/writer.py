@@ -8,7 +8,7 @@ import json, re, sys
 sys.path.insert(0, '/tmp/testrail')
 import tr
 
-BUILD = 'v3.5-7168d14'
+BUILD = 'v3.5-f77875c'
 DATE = '8/6/2026'
 MARKER_RE = re.compile(r'^AUTOMATION: (?:READY - EXPECT FAIL \([^)]*\)|READY|HOLD.*)$', re.M)
 LASTCHK_RE = re.compile(r'^Last checked against build .*$', re.M)

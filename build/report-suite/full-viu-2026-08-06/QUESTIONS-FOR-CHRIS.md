@@ -85,7 +85,7 @@ number on a detail row is a clickable link" and "Each customer name on a detail 
 
 ---
 
-## Q5 · Report Suite — the Location column — the one that is blocking sixteen tests
+## Q5 · Report Suite — the Location column — the one that is blocking eight tests
 
 **What happens now.** Four of the six written descriptions say the Location column **two different ways in
 the same document**. One part says a person who can see more than one location gets the column and can
@@ -105,7 +105,7 @@ exactly the nine money columns and nothing else.
 
 **Your answer:** ______
 
-**Why we are asking.** Sixteen tests are on hold for this and cannot come off hold until you answer. It is
+**Why we are asking.** Eight tests are on hold for this and cannot come off hold until you answer. It is
 also worth saying that **you have already decided this** — the decision notes in four of the descriptions
 say the column is the person's own choice. What is missing is the tidy-up: four numbered requirements still
 say the opposite. **So this may be a five-minute edit rather than a decision.** The four are Sales By
