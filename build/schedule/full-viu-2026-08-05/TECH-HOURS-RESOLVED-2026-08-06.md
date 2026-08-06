@@ -53,7 +53,18 @@ from `aria-checked=false` to `true`:
 * **Ayesha Khan AK — who demonstrably has stored working hours** (`GET
   /api/staff/1e81b8a0…/working-hours` → **200**, ranges Mon–Fri) — renders as
   `AKA | Ayesha Khan AK | <job title>`: initials, name, job title. **No hours.**
-* Toggling fires **no board request at all**, and the board payload carries no hours key.
+* Toggling fires **no board request at all**.
+
+**⚠️ CORRECTION to an earlier technical claim, including one made in the first draft of this file.**
+Both the previous session and this one first reported that *"the board payload carries no hours data
+anywhere"*. **That is wrong.** The board response carries a **`workingWindows` array of 162 entries**
+with correct per-technician ranges — for example MQ Test Tech Qamar
+`{"date":"2026-08-03","isWorking":true,"availableMinutes":720,"ranges":[{"startMinute":360,"endMinute":1080}]}`
+and Ayesha Khan AK `{"ranges":[{"startMinute":420,"endMinute":1260}]}`. The earlier search missed it
+because the recursive key scan ran over an **empty capture** and returned `undefined`, which was read
+as "nothing found". **The data is present and correct; the grid simply does not render it.** That is a
+sharper and more useful statement of the same defect, and it should go in front of whoever fixes
+SV-8851.
 
 This is **exactly** what **[SV-8851](https://shopview.atlassian.net/browse/SV-8851)** describes —
 *"Turning on the Tech Hours option in View Options changes nothing on the screen"* — read live

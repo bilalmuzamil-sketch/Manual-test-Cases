@@ -305,3 +305,25 @@ the original values already in the fields, which likewise changed nothing.
 **Row 10 stands but is weaker than it looks:** the "Tech Hours" view option was toggled on, but it
 does **not** persist across a fresh browser session either — it reads OFF again on every new load,
 so it has been left effectively as found.
+
+---
+
+## 2026-08-06 session (batch 8) — build `v3.5-7ec992f`
+
+Per the QA lead's ruling, seeded data is **left in place**; every change is recorded here with its
+BEFORE value so a later reader can see exactly what moved.
+
+| # | What | On-screen name / id | BEFORE | AFTER | When (UTC) |
+|---|---|---|---|---|---|
+| B8-1 | Staff job title (accidental — a control test) | **Ayesha Khan AK**, staff_id `1e81b8a0-9a45-4f16-89e3-209bf240990a` | `null` (empty) | set to `ZZAUTOTEST title`, then **restored to empty** | 05:1x / 05:3x |
+| B8-2 | Technician working hours, Monday | **Ayesha Khan AK** | Mon `07:00–21:00` (`endMinute 1260`) | set `15:00`, then `20:00`, then **restored to `21:00`** — verified `endMinute:1260` on the final PUT and on re-open | 05:1x–05:3x |
+| B8-3 | **Shop business hours — DELIBERATE SEED, LEFT IN PLACE** | Location **Staging Heavy Duty - 9919** (`b3c8c820-f815-4cf1-8938-10956c5ee71a`), Edit Location → BUSINESS HOURS | toggle **OFF**, no business hours set at all | toggle **ON**, Mon–Fri **06:00–18:00** (`startMinute 360`, `endMinute 1080`); Sat/Sun left with no range | 05:4x |
+| B8-4 | New shift (drag-drop test) | **MQ Test Tech Qamar**, WO **S-12876** Pamill Paving unit 713 | did not exist | shift `b5cbf00d-9525-427e-b59b-433076c0258d`, Mon 2026-08-03, `12:00Z`–`13:00Z` | 06:0x |
+| B8-5 | New shift (drag-drop test) | **Ayesha Khan AK**, WO **S-12876** | did not exist | shift `640207db-51bf-4159-ac3a-4b2519c66852`, Mon 2026-08-03, `13:00Z`–`14:00Z` | 06:1x |
+| B8-6 | Session location, twice, for a scoping experiment | app location selector | Staging Heavy Duty - 9919 | switched to Lethbridge - 4310 and **switched back**; final state Heavy Duty - 9919 | 05:2x |
+| B8-7 | View Options toggles driven and returned | Schedule → View Options | Business Hours ON, Tech Hours OFF | Business Hours toggled OFF then **back ON**; Tech Hours toggled ON (left ON) | 05:5x–06:0x |
+
+**The one that matters most to a later reader: B8-3.** The shop previously had **no business hours at
+all**, and three test cases were held or mis-verdicted because of it. It is now set to 06:00–18:00
+Monday to Friday. If a later pass expects an unconfigured shop, this is why it is not.
+
