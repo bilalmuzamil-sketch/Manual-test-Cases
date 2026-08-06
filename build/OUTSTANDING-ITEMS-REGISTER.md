@@ -1228,3 +1228,23 @@ what is still owed.
 | **Print in the export requirements** | Removed at v14 **S18-R7** and **S18-R10**. |
 | **Whether markers exist on Report Suite** | **473 of 473 now carry exactly one `AUTOMATION:` marker.** Before today, 453 carried none and two competing styles coexisted on the other 20. |
 | **Whether a VIU pass had rewritten expectations** | **Checked across all 41 commits that touched the case source: no pass ever changed a case's steps and its expectation body together, and the two pure VIU passes changed ZERO expectations.** The contamination came from an answer-ingest pass. Audit §10. |
+
+---
+
+## 2026-08-06 (end of budget) — COLD-RESUME POINTER
+
+**Work stopped at 98% of the weekly usage budget (resets Monday evening). The entry point for the
+next session is `build/RESUME-2026-08-06.md`** — it carries the one thing needed first (a fresh
+`sv_sso_session` for `.qa.shopview.com`, which unblocks 47 of the 73 remaining Report Suite cases),
+where all three projects stand, the eleven things waiting on the QA lead, the rules added today, and
+the traps that cost time. **Nothing in this register is superseded by it; the resume file points here
+for the detail.**
+
+**Highest-value thing to check first on FILTERS — an UNCONFIRMED LEAD, not a finding.** The stopped
+coverage worker's last output (never committed, never verified) said the specification has stated the
+**Reports date-range URL contract verbatim since v5, 20 July**. If true, **row 8 of Vlad's gap table
+is settled wrongly** in `build/filters/vlad-gap-review-2026-08-06/ROW-BY-ROW.md` (recorded as "GAP,
+not authorable"), **Vlad was right on 7 of 12 rather than 6, and question Q3 on Branko's 21-item
+sheet may already be answered by his own spec** — the Rule-55 embarrassment we have had once before.
+**Check the requirement's own text across spec versions (Rule 31 trap (c) — never the page version or
+date), correct `ROW-BY-ROW.md`, and pull the question off Branko's sheet BEFORE it is sent.**

@@ -3,6 +3,7 @@
 > **Before any staging or TestRail testing, read `build/TESTING-RUNBOOK.md`.**
 > That runbook holds the full, proven method; this file is a concise index +
 > durable memory. **No secrets in this repo — ever** (secrets live in `/tmp`).
+> - **COLD-RESUME ENTRY POINT (2026-08-06, weekly budget exhausted): read `build/RESUME-2026-08-06.md` FIRST** — the one thing needed first (a fresh `sv_sso_session`), where all three projects stand, what is waiting on the QA lead, and the UNCONFIRMED Filters lead on Vlad's row 8 to check before Branko's question sheet is sent.
 > - **PRE-FLIGHT — THE FIRST ACTION OF ANY PROJECT TASK (Standing Rules 31 + 32): ESTABLISH THE
 >   CURRENCY OF **ALL SOURCES** — not just the spec — BEFORE doing ANYTHING on a project (test cases,
 >   question sheets, reports, audits, TestRail pushes, reconciliations, bug work, or even answering a
