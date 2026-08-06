@@ -208,3 +208,119 @@ this queue only if they are `HOLD` (rows A–E above) or if a run reports someth
 `v3.5-16cf83f`, which the 08:32:37Z redeploy replaced.
 
 **Nothing in this folder claims the suite is verified.** The correct sentence is the one above.
+
+
+---
+
+# Section F - added by the THIRD session, 2026-08-06 (Sales By Representative)
+
+**Scoped per Standing Rule 61: these rows are what the automated suite CANNOT see.** The **15** cases
+this session marked `READY - EXPECT FAIL` are **deliberately NOT listed here** - each one names its exact
+symptom and the three outcomes, so the next automated run reports a fix that has shipped or a failure
+that has changed, with nobody re-observing it. Ticket status is never read as evidence about the build.
+
+**The arithmetic, stated so it can be checked.** This session **wrote 64 cases**:
+**48 `READY` + 15 `READY - EXPECT FAIL` + 1 `HOLD` = 64.** The rows below are **52**: the 48 READY, the
+1 HOLD, and **3 permission cases that were NOT written at all** because they cannot be observed without a
+second sign-in and there was nothing honest to stamp on them. **48 + 1 + 3 = 52**, and **52 + 15 EF = 67**,
+which is the 64 written plus those 3 untouched.
+
+**Every row that was observed was observed on build `v3.5-7168d14`** (last-modified Thu 06 Aug 2026
+08:32:37 GMT), read at 09:54:19Z, at 10:31:45Z and again immediately before the writes at 10:35:43Z -
+byte-identical each time by sha256, so no redeploy ran under this pass.
+
+## F1 - Waiting on a SECOND SIGN-IN as a non-administrator - 3 rows, NOT WRITTEN
+
+These three were **deliberately left untouched**: with nothing observed, any build stamp would assert a
+check that did not happen (Rule 12). They still carry their older build line and say so on themselves.
+
+| Case | What is owed | Observed on |
+|---|---|---|
+| [C30198](https://shopview.testrail.io/index.php?/cases/view/30198) | Sales By Representative is visible to anyone who can see another Performance report | not observed |
+| [C30199](https://shopview.testrail.io/index.php?/cases/view/30199) | without Reports access there is no navigation entry, no download menu and no export dialog | not observed |
+| [C30200](https://shopview.testrail.io/index.php?/cases/view/30200) | without staff-administration access the deactivation flow cannot be reached | not observed |
+
+**Trigger: a second set of cookies for a NON-ADMIN user.** Not a deploy. Both self-service routes are
+**shut on this branch** and were **not re-attempted this session**, because a failed `quick-login` burns
+the sign-on token shared by all three QA branches: `POST /api/switch-user` returns HTTP 403 "Access
+denied." to an administrator against a real confirmed Technician, and `POST /api/quick-login` with the
+technician key returns HTTP 403. Read `SECOND-LOGIN-ATTEMPT.md` before trying again.
+
+## F2 - Waiting on something this HARNESS could not drive - 1 row
+
+| Case | What is owed | Observed on |
+|---|---|---|
+| [C30202](https://shopview.testrail.io/index.php?/cases/view/30202) | the on-screen prevention of a custom range longer than 366 days. **The server does refuse it, but one day late** - counting both ends, 367 days is accepted and only 368 is refused, with "Date range cannot exceed 366 days." The calendar itself could not be driven past the limit from this harness | partly, `v3.5-7168d14` |
+
+**Trigger: a run that can drive the calendar across a year boundary.** Not a deploy. The one-day-late
+server boundary is recorded in `API-ASK.md` and **deliberately not filed** - it was not shown to be
+reachable from the screen, and Rule 51 forbids filing an API-only finding without asking first.
+
+## F3 - PASSED on this build, and therefore PROVISIONAL only - 48 rows
+
+The branch is **not declared final**, so these verdicts are provisional under Rule 49 even though they
+passed. Under Rule 61 they need **no re-observation on a redeploy**: each carries `AUTOMATION: READY`,
+which asserts that the case is automatable rather than that it currently passes, and the automated suite
+is the monitor.
+
+- [C30195](https://shopview.testrail.io/index.php?/cases/view/30195)
+- [C30197](https://shopview.testrail.io/index.php?/cases/view/30197)
+- [C30201](https://shopview.testrail.io/index.php?/cases/view/30201)
+- [C30204](https://shopview.testrail.io/index.php?/cases/view/30204)
+- [C30206](https://shopview.testrail.io/index.php?/cases/view/30206)
+- [C30208](https://shopview.testrail.io/index.php?/cases/view/30208)
+- [C30209](https://shopview.testrail.io/index.php?/cases/view/30209)
+- [C30211](https://shopview.testrail.io/index.php?/cases/view/30211)
+- [C30212](https://shopview.testrail.io/index.php?/cases/view/30212)
+- [C30213](https://shopview.testrail.io/index.php?/cases/view/30213)
+- [C30215](https://shopview.testrail.io/index.php?/cases/view/30215)
+- [C30217](https://shopview.testrail.io/index.php?/cases/view/30217)
+- [C30219](https://shopview.testrail.io/index.php?/cases/view/30219)
+- [C30222](https://shopview.testrail.io/index.php?/cases/view/30222)
+- [C30223](https://shopview.testrail.io/index.php?/cases/view/30223)
+- [C30224](https://shopview.testrail.io/index.php?/cases/view/30224)
+- [C30226](https://shopview.testrail.io/index.php?/cases/view/30226)
+- [C30241](https://shopview.testrail.io/index.php?/cases/view/30241)
+- [C30243](https://shopview.testrail.io/index.php?/cases/view/30243)
+- [C30244](https://shopview.testrail.io/index.php?/cases/view/30244)
+- [C30245](https://shopview.testrail.io/index.php?/cases/view/30245)
+- [C30247](https://shopview.testrail.io/index.php?/cases/view/30247)
+- [C30249](https://shopview.testrail.io/index.php?/cases/view/30249)
+- [C30250](https://shopview.testrail.io/index.php?/cases/view/30250)
+- [C30251](https://shopview.testrail.io/index.php?/cases/view/30251)
+- [C30261](https://shopview.testrail.io/index.php?/cases/view/30261)
+- [C30262](https://shopview.testrail.io/index.php?/cases/view/30262)
+- [C30264](https://shopview.testrail.io/index.php?/cases/view/30264)
+- [C30265](https://shopview.testrail.io/index.php?/cases/view/30265)
+- [C30267](https://shopview.testrail.io/index.php?/cases/view/30267)
+- [C30268](https://shopview.testrail.io/index.php?/cases/view/30268)
+- [C30269](https://shopview.testrail.io/index.php?/cases/view/30269)
+- [C30271](https://shopview.testrail.io/index.php?/cases/view/30271)
+- [C30272](https://shopview.testrail.io/index.php?/cases/view/30272)
+- [C30274](https://shopview.testrail.io/index.php?/cases/view/30274)
+- [C30275](https://shopview.testrail.io/index.php?/cases/view/30275)
+- [C30276](https://shopview.testrail.io/index.php?/cases/view/30276)
+- [C30278](https://shopview.testrail.io/index.php?/cases/view/30278)
+- [C30291](https://shopview.testrail.io/index.php?/cases/view/30291)
+- [C30300](https://shopview.testrail.io/index.php?/cases/view/30300)
+- [C30302](https://shopview.testrail.io/index.php?/cases/view/30302)
+- [C30303](https://shopview.testrail.io/index.php?/cases/view/30303)
+- [C30308](https://shopview.testrail.io/index.php?/cases/view/30308)
+- [C30316](https://shopview.testrail.io/index.php?/cases/view/30316)
+- [C30317](https://shopview.testrail.io/index.php?/cases/view/30317)
+- [C30318](https://shopview.testrail.io/index.php?/cases/view/30318)
+- [C30319](https://shopview.testrail.io/index.php?/cases/view/30319)
+- [C38913](https://shopview.testrail.io/index.php?/cases/view/38913)
+
+**Trigger for this group: the automated suite reporting a change.** Not a deploy, and not a ticket status.
+
+## F4 - One PRODUCT-OWNER answer is owed, and it does not hold up a whole case
+
+[C30279](https://shopview.testrail.io/index.php?/cases/view/30279) is marked `READY - EXPECT FAIL` against **SV-8981**, because its Expanded View PDF is a flat table on
+A3 paper and that is wrong under **either** reading of the description. Only one sentence inside it is in
+doubt: whether the paper should be **A4 portrait** (what the Sales By Representative description says) or
+**A4 landscape** (what the Sales By Customer description says, and what both reports actually render).
+That single point is **Q7 in `QUESTIONS-FOR-CHRIS.md`**, and it is **not** listed as a held row because
+the case can be run and failed today regardless of the answer.
+
+**Trigger: Chris Ward answering Q7.** Not a deploy.

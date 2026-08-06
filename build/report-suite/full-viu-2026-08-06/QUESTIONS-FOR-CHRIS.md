@@ -136,3 +136,44 @@ description — so a tester meeting the message on those reports has nothing to 
 
 **Honest note on our own record.** We previously told you that **none** of the six descriptions mentioned
 this limit. **That was wrong** — three of them do. The question above is the narrow one that remains.
+
+
+---
+
+# Added by the third session, 2026-08-06
+
+## Q7 - What paper size and orientation should the Sales By Representative PDFs use?
+
+**What happens now.** The Sales By Representative report offers two PDF downloads. The Summary one comes
+out on A4 landscape. The Expanded View one comes out on A3 landscape - a sheet half again as wide, which
+will shrink or crop on ordinary office paper.
+
+**Why we are asking rather than just reporting it.** The two written descriptions disagree with each
+other about the same thing. The **Sales By Representative** description says the PDFs are **"A4
+portrait"**. The **Sales By Customer** description says **"A4 landscape"**. Both reports actually render
+landscape, and the Sales By Representative table has sixteen columns, which could not fit on a portrait
+page at all.
+
+**The question.** For Sales By Representative, should the PDFs be:
+
+- **A)** A4 **landscape**, the same as Sales By Customer - and the Sales By Representative description
+  should be corrected to say landscape.
+- **B)** A4 **portrait**, as its description currently says.
+
+**Your answer:** ______
+
+**What it changes for us.** The A3 part is wrong under either answer and has been reported. Your answer
+tells us whether the *orientation* half of that test should expect portrait or landscape - we have not
+guessed, and the test is on hold for this one point.
+
+---
+
+## A question we were about to ask and then did not - recorded so nobody asks it twice
+
+We nearly asked you whether the date-range chooser should still offer **Today** and **Yesterday**, since
+the Sales By Representative description lists them and the report offers **Last 12 Months** and **Last
+Week** instead.
+
+**You have already answered this**, on 5 August, and our own test case already follows your answer and
+says so on itself. Checking our own newer sources first is what stopped a needless question reaching
+you. Nothing is owed here.

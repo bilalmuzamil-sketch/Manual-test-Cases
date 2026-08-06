@@ -1,3 +1,79 @@
+# RESUME - Report Suite VIU, as at 2026-08-06 end of the THIRD session
+
+> **⚠️ THE NUMBERS BELOW THIS BANNER ARE THE SECOND SESSION'S AND ARE SUPERSEDED. The third session's
+> state is in this banner. Read `FINDINGS-SESSION3.md`, `testrail-execution-log-session3.md`,
+> `FILED-SESSION3.md`, `CHANGES-MADE-SESSION3.md` and section F of `RECHECK-QUEUE.md`.**
+
+## THE STATE NOW, re-derived from live at the end of the session
+
+| | Count |
+|---|---|
+| Live under group 4281 | **481** |
+| **Ours** | **476** (foreign: C38919-C38923, Vladimir Tomovic - hands off) |
+| **Carrying a 6 August verdict** | **352** |
+| **STILL OUTSTANDING - no 6 August verdict** | **124** |
+
+**352 + 124 = 476.** The gap was **188** when this session started, so **64 were closed**, all of them
+Sales By Representative. **Count by case id, never by line:**
+`grep -oE 'C[0-9]{5}' REMAINING.txt | sort -u | wc -l`.
+
+## THE EXACT NEXT ACTION
+
+`REMAINING.txt` **section A** is the work list, **124 cases**, regenerated from live at the end of this
+session:
+
+| Report | Outstanding |
+|---|---|
+| **Work In Progress** | **45** |
+| **Sales By Representative** | **45** |
+| Parts Velocity | 17 |
+| Sales By Customer | 14 |
+| Technician Utilization | 2 |
+| Inventory Value | 1 |
+
+**Start with Work In Progress** - the second session already established its endpoints and its date
+parameters (`from=`/`to=` with full ISO instants plus `tab=`, unlike the other five reports), so it is the
+cheapest block to finish. **Then the 45 Sales By Representative that remain**: this session drove the
+report but did **not** reach Story 13 (staff deactivation, 8 cases), Story 19 (the work-order Sales Rep
+selector, 6 cases), the Inv. Hrs calculations (8 cases - every hours figure on this estate is 0.0, so they
+need a work order with known billed labour hours **and** known clocked hours), the remaining Story 15
+assignments rows, dark mode, and the permission cases.
+
+## What this session did
+
+**64 `update_case`, every one HTTP 200, 30 fields compared each, 0 mismatches, 0 collateral changes.**
+All three text fields on every payload. **0 add - 0 delete - 0 section - 0 run writes - 0 results logged.**
+Markers written: **48 `READY` + 15 `READY - EXPECT FAIL` + 1 `HOLD` = 64.** Read back live: exactly one
+provenance line, one build sentence naming `v3.5-7168d14`, one marker, marker last, on all 64; 0 raw markup.
+
+**Run 359 PROVEN UNTOUCHED** - `include_all` still false, 476 tests, sets equal both directions, **all 535
+results present BY ID, 0 new, 0 graded-field changes**; the only movement is `case_title` on 2 records,
+both on **C30102**, which is the SECOND session's authorised retitle and **not in this session's write set**.
+
+**12 Story Defects filed, SV-8972 to SV-8983**, all at the new **priority Medium**, 11 field checks each,
+**132 of 132 PASS**. One further finding was **dropped as a duplicate of SV-8925** by the duplicate search.
+
+**The build did NOT move during this session** - `v3.5-7168d14` read byte-identical at 09:54:19Z,
+10:31:45Z and 10:35:43Z. The single move today (`v3.5-16cf83f` to `v3.5-7168d14` at 08:32:37Z) happened
+during the SECOND session and was handled there.
+
+**Sources re-read at write start per Rule 59: unchanged** - SBC 15, SBR 17, PV 5, TU 6, WIP 9, IV 4.
+
+## Outstanding, in the order it blocks work
+
+1. **A second test login as a non-administrator.** Still the branch refusing, not us - both routes 403.
+   Blocks roughly 20 permission cases across all six reports.
+2. **Chris Ward: Q7** (`QUESTIONS-FOR-CHRIS.md`) - A4 portrait or landscape for the Sales By
+   Representative PDFs. The two specifications contradict each other.
+3. **A run that can drive the calendar past a 366-day span**, for C30202 and the sister case C30104.
+4. **A work order with known billed labour hours and known clocked hours**, invoiced under a
+   representative - without it the 8 Inv. Hrs calculation cases cannot be checked at all, because every
+   hours figure on this estate is 0.0.
+5. **The 432-case `refs` version sweep** - NOT started, still queued for the QA lead's authorisation.
+6. **The branch declared final** - it will not be, so the Rule-49 queue stays open by design.
+
+---
+
 # RESUME — Report Suite VIU, as at 2026-08-06 end of the SECOND session
 
 **Read in this order:** this file → `SOURCE-CURRENCY.md` → `SPEC-DIFF.md` → `FINDINGS-SESSION2.md` →

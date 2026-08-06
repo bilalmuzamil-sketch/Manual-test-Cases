@@ -36,3 +36,42 @@ are reachable from the product's own screens**:
 **Nothing else surfaced.** The nightly-snapshot cases (WIP C30528/C30530/C30531/C30533 and IV
 C30605/C30607) are server-side jobs, but **no fault was found in them** — they simply could not be observed,
 so they are re-check rows, not API asks.
+
+
+---
+
+# Added by the third session, 2026-08-06
+
+## The custom date range accepts one day more than the documented limit
+
+**What we found.** Sales By Representative's written description caps a custom date range at **366 days,
+counting both end dates**. The server accepts **367**. Asking for 368 is correctly refused with
+"Date range cannot exceed 366 days."
+
+The boundary was pinned exactly rather than estimated:
+
+| Range asked for, counting both ends | Server answer |
+|---|---|
+| 366 days (2025-08-06 to 2026-08-06) | accepted |
+| **367 days (2025-08-05 to 2026-08-06)** | **accepted - one day past the limit** |
+| 368 days (2025-08-04 to 2026-08-06) | refused, "Date range cannot exceed 366 days." |
+
+**Why this is an ASK and not a ticket.** We could not get the calendar itself to build a range longer than
+366 days from our harness, so we have **not shown that a person using the screen can reach the extra
+day**. If the calendar stops them, this is only reachable by calling the service directly, which makes it
+API-related - and an API-related finding is never filed without asking (Rule 51).
+
+**The question for the QA lead:** file it, or leave it? And if the answer depends on whether the calendar
+allows it, that is one more thing to check on a run that can drive the calendar across a year boundary.
+
+**Source:** the Sales By Representative report specification, version 17, requirement **S2-R6**: *"The
+Custom range is capped at a maximum span of 366 days (start and end dates inclusive), matching the largest
+preset. A custom selection whose start-to-end span exceeds 366 days is not accepted; the picker holds the
+user to a range of 366 days or fewer."*
+
+## Already recorded, re-confirmed today
+
+The service **rejects `last_12_months`** as a range name with "Selected date range is invalid.", and that
+is the first period the chooser offers. **It is not reachable from the screen** - the application always
+turns a chosen period into explicit start and end dates before asking - so it stays an ask rather than a
+ticket.

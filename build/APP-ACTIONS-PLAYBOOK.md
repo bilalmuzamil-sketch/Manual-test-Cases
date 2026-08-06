@@ -162,6 +162,26 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   is live** — and say so in the pass notes, because it is the honest reason a permission case goes
   unobserved rather than being seeded around. (This is the cross-branch half of §N's one-login rule,
   which already forbids a second `quick-login` within a single run.)
+- **🔧 THE 409 RECOVERY RECIPE — a FAILED `quick-login` BURNS THE SESSION, and this is how you get it
+  back (proven live 2026-08-06 on the Report Suite branch `sv8582`).** Symptom: you call
+  `POST /api/quick-login {"key":"tech"}`, it returns **HTTP 403 "Access denied."** — and from that moment
+  **every** request on that branch returns **HTTP 409 `{"errors":[{"error":"Session has expired."}]}`**,
+  including ones that worked seconds earlier. The failed attempt has rotated the session out from under
+  you. **THE FIX:** call **`POST /api/quick-login {"key":"admin"}`** (the key that DOES work on this
+  estate), take **only the `PHPSESSID` it returns**, and **swap that one value into the existing cookie
+  header, leaving `sv_sso_session` and `cf_clearance` exactly as they were.** All requests return 200
+  again. **Do not rebuild the whole header and do not ask for new cookies** — the other two values were
+  never invalid.
+  **The cheaper lesson: do not probe `{"key":"tech"}` at all on a branch where it has already been shown
+  to 403** (`sv8582` is one), because the probe costs you the working session to learn nothing new.
+- **WHICH COOKIE IS SHARED, RE-PROVEN ON THREE BRANCHES AT ONCE (2026-08-06):** one supplied set for
+  Reports, Filters and Schedule differed **only** in `PHPSESSID`; the `sv_sso_session` and `cf_clearance`
+  values were byte-identical across all three, and each set returned **HTTP 200 with 42 permissions**
+  against **its own** `…api.` host. So: **`sv_sso_session` + `cf_clearance` are shared across branches,
+  `PHPSESSID` is per-branch** — which is exactly why `quick-login` / `switch-user` signs out workers on
+  the OTHER branches, and why the recovery above only needs the one value swapped. Convention:
+  **`/tmp/qa-cookies/{project}-cookie-header.txt`, one line, `'; '.join`, `chmod 600` in a `chmod 700`
+  directory.**
 - **QA-BRANCH SESSION DIAGNOSTIC ORDER, so nobody re-derives it:** build the header with `'; '.join`
   → probe the **`…api.`** host → on 401 ask for a fresh **`cf_clearance`** → on 409 check you are using
   **that branch's** `PHPSESSID` → only then consider the sign-in dead. **Never call `quick-login` to
@@ -965,7 +985,7 @@ API-RELATED.** If **the same failure also happens through the product's own scre
 vehicle: a dated `API-SPLIT.md` beside the pack, e.g.
 `build/report-suite/defect-pack-2026-08-04/API-SPLIT.md`), ask separately in plain words, file only on a
 yes. **Already filed one? Withdraw on his ruling — CLOSE it by workflow transition with a plain-language
-comment, set priority Low first, and NEVER DELETE** (deletion is irreversible; a withdrawn ticket with
+comment, set priority first (`Medium` since 2026-08-06), and NEVER DELETE** (deletion is irreversible; a withdrawn ticket with
 its reasoning on the record is worth more). **Keep the finding in the pack — we withdraw the ticket, not
 the finding.** Read alongside **Rule 24**: FE-blocks + BE-allows is a **PASS**, not a defect at all.
 
@@ -973,7 +993,16 @@ the finding.** Read alongside **Rule 24**: FE-blocks + BE-allows is a **PASS**, 
 the Bug-on-an-epic-parent shape below).**
 His instruction, verbatim: *"Also, make sure that whenever you create a ticket it should be attached to
 the parent ticket as its epic and that ticket should be created as STORY DEFECT"*.
-**THE SHAPE — `issuetype` = `Story Defect` (10007) · `parent` = THE OWNING STORY · `priority` = `Low` ·
+**⚠️ PRIORITY IS `Medium` FROM 2026-08-06 — `Low` was the rule until that date.** QA lead's ruling,
+verbatim: *"One thing which I want to correct, please keep the priority of the tickets which you create to
+Medium instead of keeping them to LOW."* So **every NEW ticket is `Medium`**; **`High` is still never
+used**. The old value is left visible here on purpose — tickets filed **before 2026-08-06 carry `Low` and
+are CORRECT for their date**, and a superseded rule that is quietly deleted is how a session ends up not
+knowing why an old ticket looks different. **Do NOT retro-change a priority that is already set** (Rule 53's
+corollary — the one time a pass "corrected" priorities it had misread the QA lead's own triage and left a
+High→Low→High→Low round trip in the changelog).
+
+**THE SHAPE — `issuetype` = `Story Defect` (10007) · `parent` = THE OWNING STORY · `priority` = `Medium` (was `Low` before 2026-08-06) ·
 ALSO link the owning story `relates to` · DO NOT send Product Area.**
 **Why a story parent still satisfies "attached to the epic":** the owning story is itself a child of the
 epic, so the defect **rolls up to the epic** one level further down. **A `Story Defect` cannot be
@@ -1002,12 +1031,12 @@ POST /rest/api/3/issue
 {"fields":{"project":{"key":"SV"},"issuetype":{"id":"10007"},
            "parent":{"key":"<OWNING-STORY>"},          # level-0 ONLY; an Epic key → 400
            "summary":"<one line>","description":<ADF, 7 sections>,
-           "priority":{"name":"Low"},                   # Rule 53
+           "priority":{"name":"Medium"},                # Rule 53 as amended 2026-08-06 (was "Low")
            "customfield_10418":{"value":"<Severity>"}}} # NO customfield_10153 on this type
 ```
 then `POST /rest/api/3/issueLink` `relates to` the same story.
 **FIELD DIFFERENCE:** **Product Area (`customfield_10153`) is REQUIRED on `Bug` and ABSENT on
-`Story Defect`.** Priority `Low`, the `relates to` link and the seven-section ADF body behave identically
+`Story Defect`.** Priority (`Medium` since 2026-08-06), the `relates to` link and the seven-section ADF body behave identically
 on both.
 **CONVERSION IS UI-ONLY AND SILENTLY WIPES Product Area — AND IS NEVER OURS TO DO.** The REST API refuses
 level-0 → subtask (both proven 2026-08-04): `PUT /rest/api/3/issue/{key}` with `issuetype:10007` +
@@ -1050,7 +1079,7 @@ he re-applied `Low`, and the changelog now carries **`High → Low → High → 
 
 `project` · `issuetype` (**`Story Defect`, id 10007** — was `Bug` before 2026-08-05) · **`parent` — THE
 OWNING STORY, and it is REQUIRED on this type** (level-0 only; an Epic key → HTTP 400) · `summary` ·
-`description` · `labels` · **`priority` — ALWAYS `Low`** (Rule 53; the field offers
+`description` · `labels` · **`priority` — ALWAYS `Medium` since 2026-08-06, `Low` before it** (Rule 53; the field offers
 Highest/High/Medium/Low, we use `Low`) · `customfield_10418` **Severity** (High/Medium/Low — put the real
 severity HERE).
 **⚠️ `customfield_10153` "Product Area" is REQUIRED on `Bug` and DOES NOT EXIST on `Story Defect`** — do
