@@ -17,6 +17,14 @@
   "ticket": null,
   "v": "DEVIATION-NEW"
  },
+ "30050-REOPENED": {
+  "build": "v3.5-7ec992f",
+  "date": "2026-08-06",
+  "ev": "c1.json + c2.json + c3.json. Recorded in evidence/batch7/VERDICTS.json earlier the SAME DAY on the SAME build as PASS, with each technician's window appended to their row header. Re-observed later: the Tech Hours toggle goes aria-checked false -> true and 0 of 23 rows show any hours, sampled at 1.5s, 5.5s and 11.5s and again on a fresh page load, with no hours data anywhere in GET /api/schedule/board. The build is byte-identical across both observations (sha256 66e91c52..dbbc53 at session start and end).",
+  "iid": "SCH-VIEW-09",
+  "note": "DO NOT WRITE THIS CASE EITHER WAY. Both observations are real and both are on v3.5-7ec992f. Our own edit is RULED OUT as the cause - Ayesha Khan AK's Monday hours were re-read and never moved from 07:00-21:00, so nothing we did altered a stored value. See TECH-HOURS-REGRESSION-2026-08-06.md. This also puts the earlier report that SV-8851's fix had shipped while its ticket sat Open back in doubt.",
+  "v": "UNSETTLED-REOPENED"
+ },
  "30066": {
   "build": "v3.5-7ec992f",
   "date": "2026-08-06",

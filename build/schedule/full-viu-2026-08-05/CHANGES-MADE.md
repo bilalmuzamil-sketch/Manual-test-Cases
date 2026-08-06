@@ -287,7 +287,7 @@ An earlier drag of the same S-12876 shift onto Jose Young (row 2) was **cancelle
 
 | # | Object | On-screen name | What was done | When (UTC) | BEFORE |
 |---|---|---|---|---|---|
-| 8 | Staff working hours | **Ayesha Khan AK** (Staging Heavy Duty - 9919, role Technician) — Edit Staff Member → TECHNICIAN HOURS → **Monday** | First range changed to **10:00 – 16:00** and **saved** with "Save & Close" | 2026-08-06 ~06:40Z | **07:00 – 21:00** — **NOT restored** |
+| 8 | Staff working hours | **Ayesha Khan AK** (Staging Heavy Duty - 9919, role Technician) — Edit Staff Member → TECHNICIAN HOURS → **Monday** | Attempted to change the first range to **10:00 – 16:00** and clicked "Save & Close". **THE SAVE DID NOT PERSIST** — re-opened later, Monday reads 07:00 – 21:00. **NET EFFECT: NO CHANGE.** The failed save is itself a symptom, see `TECH-HOURS-REGRESSION-2026-08-06.md` | 2026-08-06 ~06:40Z | **07:00 – 21:00** — and still 07:00 – 21:00 |
 | 9 | Staff working hours | Ayesha Khan AK — Monday | A second range was added, set to 07:00–21:00 to force the overlap error, then **removed again**; a further added range was also removed | 2026-08-06 ~06:30Z | no second range — **net zero, removed** |
 | 10 | Grid view option | "Tech Hours" in **View Options** | Toggled **ON** and left ON | 2026-08-06 ~06:50Z | **OFF** |
 
@@ -295,3 +295,13 @@ An earlier drag of the same S-12876 shift onto Jose Young (row 2) was **cancelle
 on **Benjamin Peters** and once on **Branko Cicovic** during the row-targeting work, but in both cases
 the dialog was closed **without saving**, and Ayesha's toggle was re-read afterwards and still stood at
 its original ON — so no staff member's toggle state was persisted by those clicks.
+
+**Correction issued 2026-08-06, after the fact:** row 8 originally read *"changed … and saved …
+NOT restored"*. That was wrong. Re-opening the record proved the value never moved: **Ayesha Khan
+AK's Monday hours are unchanged at 07:00 – 21:00**, because the save silently failed. **We altered
+no stored working-hours value in this session.** A second "Save & Close" was performed later with
+the original values already in the fields, which likewise changed nothing.
+
+**Row 10 stands but is weaker than it looks:** the "Tech Hours" view option was toggled on, but it
+does **not** persist across a fresh browser session either — it reads OFF again on every new load,
+so it has been left effectively as found.

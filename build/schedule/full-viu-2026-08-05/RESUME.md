@@ -2,7 +2,7 @@
 
 ## State in one paragraph
 
-**137 of 168 observed. 31 remain. STILL ZERO TESTRAIL WRITES** — every verdict lives only in
+**137 of 168 observed, of which ONE (C30050) is re-opened as unsettled. 31 remain. STILL ZERO TESTRAIL WRITES** — every verdict lives only in
 `evidence/batch*/VERDICTS.json`, so nothing is half-written and no repair is owed. The write pass
 begins only once observation is complete, per the standing instruction.
 
@@ -83,24 +83,32 @@ still carry `EXPECT-FAIL`. Expect more of the 25 to have been fixed.
 The other **72** from that period are passes and carry forward on the old marker; their provenance
 sentence 2 must name **`v3.5-d122eef` / 8/5/2026**, never today's build.
 
-## ⚠️ ONE CASE IS RE-OPENED — settle it FIRST, it is cheap
+## ⚠️ THE WORKING-HOURS SERVICE LOOKS BROKEN — and C30050 is RE-OPENED
 
-**C30050 SCH-VIEW-09.** Flipped to PASS earlier on 2026-08-06 because Tech Hours rendered each
-technician's window; **later the same session, under a byte-identical build, no row showed hours at
-all.** One candidate cause is **our own edit**. Full detail and the three-step way to settle it:
-`TECH-HOURS-REGRESSION-2026-08-06.md`. **Step 1 is free:** set Ayesha Khan AK's Monday back to
-**07:00 – 21:00** and re-read the grid. If the hours return it was our footprint, not a defect.
+`TECH-HOURS-REGRESSION-2026-08-06.md`. Three symptoms on `v3.5-7ec992f`, one likely cause: the grid
+shows **0 of 23** technician-hours rows with the toggle on and no hours anywhere in the board
+payload; **saving a technician's hours does not persist**; and one staff member's hours **cannot be
+loaded at all**. **Our own edit is RULED OUT** — the stored value never moved.
 
-## Two blockers that this session REMOVED
+**C30050 SCH-VIEW-09 must NOT be written either way** until this is resolved. Its PASS earlier the
+same day, and the accompanying report that **SV-8851's fix had shipped while its ticket sat Open**,
+may both have been taken during a healthy window of a flapping service.
 
-* **SCH-START-01 = C29969** — the blocker is gone. Every technician used to carry the identical
-  07:00–19:00 window, so a 07:00 start proved nothing. **Ayesha Khan AK's Monday is now
-  10:00 – 16:00**, genuinely distinct. Create a shift for her on a **Monday** and observe the default
-  start. *(Note this is also the change entangled with C30050 above — settle that first.)*
-* **SCH-START-02 = C29970**, with **C38847** and **C38849** — still HELD, all three on the same
-  thing: the shop has **no business hours**. Set them on **Edit Location** and all four become
-  observable. **Do it LAST** — it is a shared setting and it invalidates batch 5's working-hours
-  observations. Record the BEFORE state.
+**Owed before any ticket:** a network capture of the failing request, a duplicate search across the
+epic, and a scope check (one location or the whole org — Lethbridge and Heavy Duty both fail).
+
+## The working-hours blockers — NOT removed, and the reason has CHANGED
+
+* **SCH-START-01 = C29969** — **still blocked, for a NEW reason.** The plan was to give one
+  technician a distinct window. It was attempted on Ayesha Khan AK and **the save does not
+  persist** — her Monday still reads its original 07:00 – 21:00. A distinct window cannot be
+  created through the UI while the working-hours service is failing. **Record the new reason; the
+  old one ("every technician has the identical 07:00–19:00 window") is superseded.**
+* **SCH-START-02 = C29970**, with **C38847** and **C38849** — still HELD on the shop having no
+  business hours. **Check whether the Edit Location business-hours screen is backed by the same
+  failing service before assuming these are merely unstarted.** If it works, set them **LAST** —
+  it is a shared setting that invalidates batch 5's working-hours observations — and record the
+  BEFORE state.
 
 ## Then, and only then, the TestRail write pass
 

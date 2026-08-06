@@ -93,16 +93,37 @@ right now. Close and reopen the dialog to try again."* on **every** attempt, and
 back to OFF, so no editor ever appeared for him. Whether this is staff-specific or location-specific
 was **not** established, and it is entangled with the item below — so it is recorded, not filed.
 
-## ⚠️ C30050 IS RE-OPENED — read `TECH-HOURS-REGRESSION-2026-08-06.md`
+## ⚠️ C30050 IS RE-OPENED, AND THE WORKING-HOURS SERVICE LOOKS BROKEN
 
-**SCH-VIEW-09 = [C30050](https://shopview.testrail.io/index.php?/cases/view/30050)** was flipped to
-PASS earlier today because Tech Hours rendered each technician's window on their row. **Later in the
-same session, under a byte-identical build, no row showed hours at all** and the board payload
-carried no hours data anywhere.
+Read `TECH-HOURS-REGRESSION-2026-08-06.md`. **Three symptoms were observed live on
+`v3.5-7ec992f`, and one explanation fits all three — the working-hours service is erroring.**
 
-**One of the candidate causes is our own edit** — we changed Ayesha Khan AK's Monday hours and saved
-between the two observations. So **nothing has been filed**, and **C30050 must be re-observed before
-it is written either way.** The exact three-step way to settle it is in that file.
+1. **The grid shows no technician hours** though the toggle reads on — **0 of 23 rows**, sampled at
+   1.5 s, 5.5 s and 11.5 s and again on a fresh load, with **no hours data anywhere** in the board
+   payload.
+2. **Saving a technician's hours does not persist** — Ayesha Khan AK's Monday was set to 10:00–16:00
+   and saved; re-opened, it reads **07:00 – 21:00**, its original value.
+3. **One staff member's hours cannot be loaded at all** — Benjamin Peters produces *"Couldn't load
+   this technician's hours…"* on every attempt.
+
+**Our own edit is RULED OUT as the cause.** The first reading of this suspected our save had broken
+something; re-opening the record proved **the stored value never moved**, so nothing we did altered
+it. Our failed save is itself symptom 2.
+
+**Nothing has been filed** — a network capture, a duplicate search and a scope check are owed first,
+and "it does not work" is not the standard for a symptom line.
+
+**Consequences that the write pass must respect:**
+
+* **SCH-VIEW-09 = [C30050](https://shopview.testrail.io/index.php?/cases/view/30050) must NOT be
+  written either way.** Its PASS earlier today, and the report that **SV-8851's fix had shipped
+  while its ticket sat Open**, may both have been taken during a healthy window of a flapping
+  service. Both observations are real; both are on the same build.
+* **SCH-START-01 = [C29969](https://shopview.testrail.io/index.php?/cases/view/29969) is NOT
+  settleable after all** — a distinct technician window cannot be created while saves do not
+  persist. It stays blocked, **for a new reason**.
+* **C38847, C38849 and SCH-START-02 = [C29970](https://shopview.testrail.io/index.php?/cases/view/29970)**
+  may be blocked by the same service rather than merely unstarted — check before assuming.
 
 ## Two near-misses — false defects avoided by looking twice
 
@@ -122,10 +143,10 @@ it is written either way.** The exact three-step way to settle it is in that fil
   `RESUME.md`.
 * **The 97 verdicts from batches 1–5 sit on a build that no longer exists**, and **the 25 deviations
   among them were NOT re-driven this session.** We did not look, and we do not guess.
-* **SCH-START-01 = [C29969](https://shopview.testrail.io/index.php?/cases/view/29969) is now
-  settleable but is NOT yet settled** — the blocker is removed (Ayesha Khan AK's Monday is now
-  10:00–16:00, genuinely distinct from the 07:00–19:00 every other technician carries), but the
-  shift-creation observation that uses it was not reached.
+* **SCH-START-01 = [C29969](https://shopview.testrail.io/index.php?/cases/view/29969) is still
+  BLOCKED, for a NEW reason.** The plan — give one technician a genuinely distinct window — was
+  attempted and **the save does not persist**, so the distinct window cannot be created through the
+  UI at all. The old reason ("every technician has the identical window") is superseded.
 * **SCH-START-02 = [C29970](https://shopview.testrail.io/index.php?/cases/view/29970) is still
   HELD**, together with **C38847** and **C38849**, all three of which need shop business hours set
   on Edit Location.

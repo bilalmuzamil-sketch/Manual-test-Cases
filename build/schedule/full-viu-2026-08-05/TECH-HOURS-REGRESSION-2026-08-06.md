@@ -1,56 +1,76 @@
-# Technician hours stopped rendering on the grid — under a build that never moved
+# The working-hours service is failing — three symptoms, one likely cause
 
-**Status: OBSERVED AND RECORDED, NOT FILED.** A cause has not been established and one of the
-candidate causes is **our own edit**. Filing it now would risk reporting our own footprint as a
-product defect.
+**Status: OBSERVED, CAUSE NARROWED, NOT YET FILED.** A duplicate search and one network capture are
+owed before a ticket is raised. **Our own edit has been RULED OUT as the cause** — see step 2 below.
 
-## What changed, precisely
+## The three symptoms, all live on `v3.5-7ec992f`
 
-| | Batch 7, earlier on 2026-08-06 | Later on 2026-08-06 |
-|---|---|---|
-| Build | `v3.5-7ec992f` | `v3.5-7ec992f` |
-| `index.html` sha256 | `66e91c52…dbbc53` | `66e91c52…dbbc53` — **byte-identical** |
-| "Tech Hours" toggle | `aria-checked=true` | `aria-checked=true` |
-| Row headers | `Brittany Anderson \| HD Technician \| 7:00 AM – 7:00 PM`, and `MQ Test Tech No \| MQ Test Tech \| Not working` | `Brittany Anderson \| HD Technician` — **no hours on any row** |
-| Rows showing any hours text | every technician row | **0 of 21** |
-| Hours data anywhere in `GET /api/schedule/board` | present | **absent** — a recursive key search for `hour`/`workingHours` returned nothing |
+**1. The grid shows no technician hours, though the toggle is on.**
+"Tech Hours" in View Options goes `aria-checked=false` → `true`, and **0 of 23 rows** show any hours
+text — sampled at **1.5 s, 5.5 s and 11.5 s** after the toggle, and again on a fresh page load.
+`GET /api/schedule/board` carries **no hours data anywhere** (recursive key search for
+`hour`/`workingHours` returned nothing).
 
-**There was no deploy.** The build marker was read at session start and again at the end and the
-served `index.html` is byte-identical on sha256, `last-modified` and `etag`. So this is not a build
-change; it is a data or service change under a fixed build.
+**2. Saving a technician's hours does not persist.**
+Ayesha Khan AK's Monday was set to **10:00 – 16:00** and saved with "Save & Close"; the dialog
+accepted it. Re-opened later, Monday reads **07:00 – 21:00** — **the original value, unchanged**.
 
-Evidence: `evidence/batch7b/b9p.json`, `b9q.json`, `b9r.json` (and `evidence/batch7/b7d.json` for the
-earlier, working observation).
+**3. One staff member's hours cannot be loaded at all.**
+Turning "Set custom hours for this technician" ON for **Benjamin Peters** (Staging Lethbridge - 4310)
+produces, on **every** attempt, the inline error `text_working_hours_error`:
 
-## Why this matters
+> "Couldn't load this technician's hours, so they can't be edited right now. Close and reopen the
+> dialog to try again."
 
-**SCH-VIEW-09 = [C30050](https://shopview.testrail.io/index.php?/cases/view/30050)** was flipped this
-same day from DEVIATION to **PASS — "Fixed"** on the strength of the earlier observation, and that
-flip was reported as evidence that **SV-8851's fix had shipped while the ticket sat Open**. If the
-hours are not rendering now, that PASS is no longer safe to write.
+…and the toggle snaps back to OFF, so no editor ever appears for him.
 
-**C30050 is therefore re-opened as UNSETTLED for the write pass.** It must be re-observed before it is
-written either way. It is listed in `RECHECK-QUEUE.md`.
+**A single explanation fits all three: the working-hours service is erroring.** It cannot be read
+(symptom 1 and 3) and writes are not landing (symptom 2).
 
-## The three candidate causes, none of them ruled out
+## This is not a build change
 
-1. **Our own edit.** Between the two observations we changed **Ayesha Khan AK's Monday hours from
-   07:00–21:00 to 10:00–16:00 and saved** (`CHANGES-MADE.md` row 8). If one malformed or unexpected
-   record makes the whole location's hours payload fail, that would produce exactly this.
-2. **A pre-existing fault in the hours service.** Turning the custom-hours toggle on for
-   **Benjamin Peters** produced *"Couldn't load this technician's hours, so they can't be edited
-   right now. Close and reopen the dialog to try again."* on **every** attempt — and that was seen
-   **before** the Ayesha save. So the hours service was already failing for at least one staff member
-   independently of anything we did.
-3. **Intermittency.** Not tested, and it cannot be dismissed on one pair of observations.
+The build marker was read at session start and at session end: **`v3.5-7ec992f`**, last-modified
+**Wed 05 Aug 2026 22:49:36 GMT**, etag `e2a80a6ab5e0b47c29fd88af9db1e980`, and the served
+`index.html` is **byte-identical on sha256** (`66e91c52…dbbc53`) across both reads. **No redeploy
+occurred.** Earlier the same day, on this same marker, the hours rendered correctly.
 
-## What would settle it, in order
+## Our own edit is RULED OUT
 
-1. Re-read the grid with Tech Hours on **without changing anything** — is it still empty?
-2. Set **Ayesha Khan AK's Monday back to 07:00–21:00** and re-read. If the hours return, cause 1 is
-   proven and this is **our footprint, not a defect** — restore and say so plainly.
-3. If they do **not** return, capture the failing request from the network log and check whether it is
-   the same failure behind the Benjamin Peters error. Only then is there a ticket, and it should be
-   about the hours service, not about the toggle.
+The first draft of this note listed "our own edit" as the leading candidate, because we had changed
+Ayesha Khan AK's Monday hours between the working and failing observations.
 
-**Until step 2 is done, no ticket may be raised and C30050 may not be written.**
+**That is now disproven.** Re-opening her record shows Monday at **07:00 – 21:00** — exactly its
+original value. **Our change never persisted**, so no stored value was altered by us and the failure
+cannot be a consequence of it. (Our failed save is itself symptom 2.)
+
+## The consequence for the suite
+
+**SCH-VIEW-09 = [C30050](https://shopview.testrail.io/index.php?/cases/view/30050) is UNSETTLED and
+must not be written either way.** It was flipped from DEVIATION to **PASS — "Fixed"** earlier today,
+and that flip was reported as evidence that **SV-8851's fix had shipped while its ticket sat Open**.
+Both observations are real and both are on the same build. Until the service question is resolved we
+cannot say whether the fix shipped, whether it regressed, or whether the earlier PASS was taken
+during a healthy window of a flapping service.
+
+**SCH-START-01 = [C29969](https://shopview.testrail.io/index.php?/cases/view/29969) is NOT settleable
+after all.** The plan was to give one technician a genuinely distinct window; the save does not
+persist, so the distinct window cannot be created through the UI. It stays blocked, and the reason
+has changed — record the new reason, not the old one.
+
+**C38847, C38849 and SCH-START-02 = [C29970](https://shopview.testrail.io/index.php?/cases/view/29970)**
+all depend on setting shop business hours on Edit Location. If the same service backs that screen,
+they may be blocked by this too — **check before assuming they are merely unstarted.**
+
+## What is owed before a ticket is raised
+
+1. **A network capture** of the failing request behind symptom 1 or 3 — the status code and response
+   body. Without it the ticket says "it does not work", which is not the standard.
+2. **A duplicate search** across the epic. SV-8851 is adjacent (Tech Hours toggle) but is about the
+   toggle doing nothing, not about the service failing; **SV-8827 is about the toggle's default
+   state and is itself half wrong.** Neither is this.
+3. **Confirmation of scope** — is it one location, or the whole org? Benjamin Peters is Lethbridge;
+   the grid is Heavy Duty. Both fail, which suggests the whole org, but that has not been proven.
+
+**When it is filed:** `Story Defect` (10007), parent **the owning story** (an epic parent returns
+HTTP 400), priority **Low**, also link the owning story `relates to`, and **do not send Product
+Area**.
