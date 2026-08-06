@@ -2566,7 +2566,10 @@ deliver the 7-tab management report.
     a **newly-Done** story CHANGES what must be tested, so this is never optional.
     **(3) THE DESIGNS** — the Figma file + node set (and any prototype/Claude design in play); **if
     a design-fetch queue is OPEN per Rule 35, the design source is NOT current and that must be
-    STATED in the deliverable**, naming the shortfall.
+    STATED in the deliverable**, naming the shortfall. **⚠️ THIS SOURCE CARRIES MORE WEIGHT FROM
+    2026-08-06: the design and Figma are now AUTHORITATIVE SOURCES OF EXPECTED BEHAVIOUR (Rule 57, as
+    amended), so a STALE OR UNDATED design baseline is a source-currency gap of the same seriousness
+    as a stale spec — record it as PARTIAL with the exact shortfall, never wave it through.**
     **(4) THE ENGINEERING TECH PLAN** (Rule 30) — confirm we hold the current version; if it was
     never supplied, remind the user.
     **(5) THE PO / STAKEHOLDER ANSWERS, MESSAGES AND VIDEOS** — the **newest authoritative product
@@ -2644,6 +2647,13 @@ deliver the 7-tab management report.
     the **Simple Flow "last-update-wins" contradiction rule** (spec `_3`/design `_4` overrode the
     earlier V2.4 doc + round-1 answer sheet) — this rule generalizes it to EVERY project and EVERY
     source type. Ties to Standing Rules 7/11/15/20/23/25/30/31 (**especially trap (c)**)/33.
+    **⚠️ A PRD-vs-DESIGN MISMATCH IS RAISED FIRST, NOT SILENTLY RESOLVED BY THIS RULE (added
+    2026-08-06, per Rule 57 as amended — the design and Figma are now authoritative sources too).**
+    Latest-wins **still applies to what a case must ASSERT in the meantime**, but the disagreement
+    itself is a **defect in the documents** and goes to the PO as a question (Rules 7/55) + the
+    outstanding register (Rule 36); the case follows the most recent authoritative source **and
+    DISCLOSES the divergence in its text (Rule 56)**. **No new tiebreak exists** — where recency
+    cannot be established, corollary (iii) above governs: **ASK the PO.**
 33. **Review findings are INPUTS, not overrides — apply the authority precedence order (all
     projects).** USER DIRECTIVE (2026-07-31, verbatim): "Hold Ahtesham as the Junior most QA
     person, I do not want his findings to over rule me and your findings here. But we need to know
@@ -2676,6 +2686,11 @@ deliver the 7-tab management report.
     `build/filters/ahtesham-review-2026-07-31/VERIFICATION.md` and
     `build/filters/vlad-gap-review-2026-08-06/ROW-BY-ROW.md` row 1. Ties to Standing Rules
     7/11/12/15/20/25/31/32/48/57.
+    **⚠️ THIS ORDER RANKS WHO RULES, NOT WHICH DOCUMENT — AND FROM 2026-08-06 THE PRD, THE DESIGN AND
+    FIGMA ARE ALL AUTHORITATIVE (Rule 57, as amended).** Two of the PO's OWN sources contradicting each
+    other therefore sits at **tier (a) against itself**, and this rule does **not** break that tie: it
+    is **RAISED to the PO as a question** (Rules 7/55/57) and logged (Rule 36), while the case follows
+    the most recent authoritative source (Rule 32) and **discloses the divergence (Rule 56)**.
 34. **Keep test runs in sync with the cases (all projects) — new/updated cases must appear in
     the existing run.** USER DIRECTIVE (2026-07-31, verbatim): "when we update or add test cases
     for any projects and we have a test run for them, make sure that those test cases also appear
@@ -3698,8 +3713,11 @@ deliver the 7-tab management report.
     what caused the problem, so keep them as two sentences even when both are present.**
     **SENTENCE 1 — THE SOURCE OF THE EXPECTATION. MANDATORY. NAMES ONLY DOCUMENTS.** The
     **specification with its VERSION and the requirement anchor**, and/or the **epic and/or the owning
-    story**, and/or the **PO's verified answer with its file link and date**. **THE BUILD IS NEVER
-    NAMED HERE — not as a source, not as corroboration, not in passing.** Shapes:
+    story**, and/or the **PO's verified answer with its file link and date**, **and/or — from
+    2026-08-06 — the DESIGN or FIGMA, now authoritative sources of expected behaviour (Rule 57, as
+    amended): name the design artefact and, where it has one, its version/date** (an **undated,
+    editable share link** is cited as exactly that, never dressed up as a versioned source — Rule 12).
+    **THE BUILD IS NEVER NAMED HERE — not as a source, not as corroboration, not in passing.** Shapes:
     *"This is the expected behaviour as per the Schedule specification version 23 (§4.3) and epic
     SV-8685."* · *"This is the expected behaviour as per Branko's answer in this file: <link>
     (5 August 2026), and epic SV-8785."*
@@ -3892,6 +3910,12 @@ deliver the 7-tab management report.
     divergence note is **re-written along with the provenance line** (Rule 54's keep-it-current half;
     Rule 31's currency logic). **A divergence note naming a source that has since been superseded is
     ITSELF STALE, and a stale note is a FINDING** — reported, not quietly overwritten.
+    **⚠️ IT ALSO COVERS A PRD-vs-DESIGN DIVERGENCE FROM 2026-08-06 (Rule 57, as amended: the design and
+    Figma are now authoritative).** Where a case must assert something while a **PRD/design/Figma
+    mismatch is still OPEN with the PO**, it follows the **most recent authoritative source (Rule 32)**
+    and **discloses that divergence here, in these same three parts** — naming the other document and
+    what it said. **The disclosure is NOT a substitute for RAISING the mismatch** (Rules 36/55/57);
+    both happen.
     **WORKED EXAMPLE (the one that produced the rule).** **Chris Ward ruled on 2026-07-29** that the
     asset-identifier chain **VIN → Unit # → plate** is the standard **everywhere**, verbatim: *"Not
     just for these specs though -- really good to keep this in mind for all actions moving forward"*
@@ -3925,10 +3949,73 @@ deliver the 7-tab management report.
     the rule: 'the case should be matched to the build' That doesnt mean the expected behavior should
     match the build. That kills the purpose of the test case. I think when we said 'the case should
     be matched to the build' it meant that the test case should be VIU'd from the build"*.
+    **⚠️ THE SOURCE LIST WAS AMENDED 2026-08-06 — IT WAS THREE SOURCES, IT IS NOW FIVE: THE DESIGN
+    AND FIGMA ARE AUTHORITATIVE TOO. Read the AMENDMENT block below BEFORE relying on the
+    three-source list that follows, which is kept verbatim and dated rather than overwritten.**
+    **THE ORIGINAL THREE-SOURCE LIST (2026-08-05 — SUPERSEDED 2026-08-06 by the amendment below;
+    kept visible as the record of what the rule said, exactly as Rules 31/52/53 keep theirs):**
     **EXPECTED BEHAVIOUR COMES FROM EXACTLY THREE PLACES, AND NOWHERE ELSE:** **(a)** the **PRD /
     Confluence specification** · **(b)** the **epic's stories** — description, acceptance criteria,
     comments · **(c)** the **PO's verified answers** in an answer sheet or message. That is the whole
     list. **A build is not on it.**
+    **⇒ AMENDMENT, 2026-08-06 — THE DESIGN AND FIGMA JOIN THE LIST, AND THEY ARE EXPECTED TO AGREE
+    WITH THE PRD.** Asked whether designs should be an authoritative source and where they sit
+    relative to the PRD, the QA lead answered — **USER DIRECTIVE (2026-08-06, verbatim, his typing
+    preserved exactly as he wrote it, because Rule 25 applies to his instructions exactly as it does
+    to a spec):** *"PRD/Design?Figm shuld match and then everything should match the Build."* and
+    *"For now seit it as a rule but do not change any test cases in retro."*
+    **SO EXPECTED BEHAVIOUR NOW COMES FROM FIVE PLACES, AND NOWHERE ELSE:** **(a)** the **PRD /
+    Confluence specification** · **(b)** the **epic's stories** — description, acceptance criteria,
+    comments · **(c)** the **PO's verified answers** in an answer sheet or message · **(d)** the
+    **DESIGN** · **(e)** **FIGMA**. **A build is still NOT on it.** Everywhere this rule (or another
+    rule citing it) says **"a source in (a)/(b)/(c)"**, read **(a)–(e)** from 2026-08-06 onward.
+    **(a)–(e) ARE EXPECTED TO AGREE WITH ONE ANOTHER.** The PRD, the design and Figma are **all
+    authoritative sources of expected behaviour**, and the ruling's first half — *"PRD/Design?Figm
+    shuld match"* — is a statement that they are **supposed to say the same thing**.
+    **WHERE THEY DISAGREE, THAT DISAGREEMENT IS A FINDING TO BE RAISED — NEVER A SIDE TO BE SILENTLY
+    PICKED.** A mismatch between the PRD and the design is a **defect IN THE DOCUMENTS**: it goes to
+    the **PO as a question** (Rules 7/55) and into the **OUTSTANDING-ITEMS REGISTER** (Rule 36).
+    **Quietly picking a side hides a documentation defect** — the same failure mode Rule 58 exists to
+    prevent, one layer up.
+    **🔴 "EVERYTHING SHOULD MATCH THE BUILD" DOES NOT WEAKEN THIS RULE'S CORE — THE BUILD IS STILL
+    NEVER A SOURCE OF EXPECTED BEHAVIOUR. IT IS THE THING UNDER TEST.** The ruling's second half means
+    **the BUILD is expected to CONFORM to the agreed sources**. It does **NOT** mean the sources are
+    read off the build, and it does **NOT** reopen the door Rules 57 and 58 closed. **This sentence is
+    spelled out because it is the exact clause a future session could misread, and misreading it is
+    what cost us the whole 2026-08-05 expected-behaviour correction across 748 cases.**
+    **ORDER OF OPERATIONS WHEN THE SOURCES DISAGREE — THIS DOES NOT DISPLACE RULE 32.** Rule 32
+    stands: **the most recent authoritative product source wins.** So: **(1) RAISE the mismatch** as a
+    finding per the paragraph above — it is never resolved silently; **(2) MEANWHILE, where a case
+    must assert something before the PO answers, it follows the MOST RECENT authoritative source
+    (Rule 32)** and **DISCLOSES the divergence in the case text (Rule 56)**; **(3) the raised question
+    stays OPEN in the register (Rule 36) until the PO settles it.** **NO NEW TIEBREAK IS INTRODUCED
+    HERE** — where recency itself cannot be established, Rule 32's own clause governs: **ASK the PO,
+    never pick a side.**
+    **NO RETROACTIVE CHANGES — his words are the authority: *"For now seit it as a rule but do not
+    change any test cases in retro."*** **No existing test case is re-sourced, re-worded or
+    re-verdicted because of this amendment.** It governs **NEW AND FUTURE WORK ONLY**, and a pass that
+    "tidies" existing cases to it is acting **without authorisation** (Rule 6).
+    **THE LIVE CONFLICT THIS RULING ARRIVES INTO — the worked example, and the reason the question was
+    asked.** On **2026-08-06 Branko called the design the *"single source of truth"*** while **Stefan
+    described a *"gap between PRD and design"*** — and **Stefan's remark led to a requirement being
+    DELETED from the Schedule specification at v24** (the fade/highlight line in **§6**), **81 seconds
+    after [SV-8874](https://shopview.atlassian.net/browse/SV-8874) was closed OBSOLETE**. Meanwhile
+    **story SV-8686 STILL REQUIRES that behaviour** in both its Requirements and its Acceptance
+    Criteria, **so the specification and the story now disagree** — precisely the (a)-vs-(b) mismatch
+    this amendment says must be RAISED rather than silently resolved. Evidence:
+    `build/schedule/spec-v25-2026-08-06/`. **NOTHING about those cases changes because of this
+    ruling** — they are pending the QA lead's separate go-ahead and are driven by the **spec diff**,
+    not by this amendment.
+    **STANDING CONSEQUENCE FOR SCHEDULE — A STALE DESIGN BASELINE IS NOW A MORE SERIOUS
+    SOURCE-CURRENCY GAP THAN IT WAS.** Our Schedule design baseline is
+    **`build/schedule/design-2026-07-27/`**; **~48 of our Schedule labels were pinned from it**;
+    **three tickets cite a NEWER, UNDATED, EDITABLE design SHARE LINK**; and re-ingestion is
+    authorised **only *"if Sasha's design is final"* — a condition NOT YET ESTABLISHED.** Because the
+    design is now **authoritative**, that baseline carries the weight of a source in the **Rule-31
+    pre-flight** and must be recorded there as **PARTIAL** with the exact shortfall named: *"design
+    PARTIAL — baseline `build/schedule/design-2026-07-27/`, ~48 labels pinned from it; a newer
+    undated editable share link exists; re-ingestion authorised only if Sasha's design is final,
+    which is not established."*
     **FROM THE BUILD WE TAKE EXACTLY TWO THINGS:** **(1)** the **exact on-screen labels and wording**,
     so the tester reads what they will actually see (Rule 9); and **(2)** the **PASS / FAIL /
     deviation VERDICT** (Rules 10/12/13). **Nothing else. Not the assertion, not the rule, not the
@@ -3986,6 +4073,10 @@ deliver the 7-tab management report.
     reconstruction identified **ANSWER-INGEST, not VIU, as the mechanism** by which build behaviour
     became expected behaviour. **No existing rule guarded this path** — Rules 10/57 guard the VIU pass,
     which is where we would naturally have put the guard, and it is not where the damage came from.
+    **⚠️ AMENDED SCOPE, 2026-08-06: "SOURCE" HERE INCLUDES THE DESIGN AND FIGMA (Rule 57, as amended),
+    AND IT INCLUDES TWO SOURCES CONTRADICTING EACH OTHER — not only one source being vague.** A
+    PRD-vs-design mismatch is exactly the kind of ambiguity this rule forbids settling from the build:
+    **HOLD the affected cases, cite the open question on them, and ASK** (Rules 7/36/55/57).
     **THE RULE:** when ingesting a **PO answer, a spec delta, a walkthrough video, a tech plan or any
     other source**, if that source is **AMBIGUOUS about what the behaviour should be, the ambiguity is
     NEVER settled by observing what the build does.** An ambiguous answer goes **BACK to the PO
@@ -4412,10 +4503,20 @@ regression / bug-fix re-testing.
 ## Deliverable conventions the user likes
 - Plain, layman English.
 - Numbered **Preconditions / Steps / Expected**, each with line breaks.
-- **EXPECTED RESULTS STATE WHAT THE DOCUMENT REQUIRES — the spec/PRD, the epic's stories, or the
-  PO's verified answers. The build supplies ONLY the labels and the pass/fail verdict (Standing
-  Rule 57).** Never write an expected result to describe how the build behaves; if the build
-  differs, the case keeps the documented expectation and becomes a deviation with a ticket.
+- **EXPECTED RESULTS STATE WHAT THE DOCUMENT REQUIRES — the spec/PRD, the epic's stories, the PO's
+  verified answers, and (from 2026-08-06) the DESIGN and FIGMA, which are now authoritative too. The
+  build supplies ONLY the labels and the pass/fail verdict (Standing Rule 57, source list amended
+  2026-08-06 from three sources to five).** Never write an expected result to describe how the build
+  behaves; if the build differs, the case keeps the documented expectation and becomes a deviation
+  with a ticket.
+- **THE PRD, THE DESIGN AND FIGMA ARE EXPECTED TO AGREE; WHERE THEY DISAGREE THAT IS A FINDING TO
+  RAISE, NOT A SIDE TO PICK (Standing Rule 57, amended 2026-08-06 — QA lead, verbatim: *"PRD/Design?Figm
+  shuld match and then everything should match the Build."*).** The mismatch is a **defect in the
+  documents** → a PO question (Rules 7/55) + the outstanding register (Rule 36); meanwhile the case
+  follows the **most recent authoritative source** (Rule 32) and **discloses the divergence** (Rule 56).
+  **"Everything should match the Build" means the BUILD must conform to the sources — the build is
+  still NEVER a source of expected behaviour.** **NO RETROACTIVE CHANGES** — his words: *"For now seit
+  it as a rule but do not change any test cases in retro."*
 - **A PROVENANCE LINE ends every case's Expected Results (Standing Rule 54) — TWO SENTENCES THAT ARE
   NEVER MERGED:** after a separator line, **sentence 1 names ONLY DOCUMENTS** as the source of the
   expectation (the **epic and/or owning story + the specification with its version + the requirement
