@@ -1,41 +1,117 @@
 {
- "30057": {"iid":"SCH-DEL-01","v":"PASS","build":"v3.5-7ec992f",
-  "ev":"b6d.json/b6f.json - dialog_schedule_delete_scope on 'Shift 3 of 5'. Three options, each with hours returned: 'This shift only returns 1h 30m' | 'This and all later shifts returns 4h 30m' | 'Entire series (5 shifts) returns 7h 30m'. Header 'Delete from this series?', badge 'Series of 5 shifts', body 'This shift is part of a series. Choose how much to remove.'",
-  "note":"All 3 items pass. Item 3 (routine not alarming styling) judged from shots/b6d-scope.png: plain white option cards, grey Cancel, no red, no warning icon, no destructive-styled confirm. LABEL CORRECTIONS for Rule 9: the case says 'this and everything after' but the build reads 'This and all later shifts'; 'the whole series' reads 'Entire series (5 shifts)'."},
-
- "30058": {"iid":"SCH-DEL-02","v":"PASS","build":"v3.5-7ec992f",
-  "ev":"b6g.json - deleted Wed Mar 3 of Brittany Anderson's 5-shift series with 'This shift only'. Board after: series 9d634574 count 5->4, dates ['2027-03-01','2027-03-02','2027-03-04','2027-03-05'], scheduledMinutes 450->360 (-90 = exactly that day's hours). Grid proof: the single week bar SPLIT into two segments x=692 w=323 and x=1187 w=323, i.e. a visible gap where Wednesday was.",
-  "note":"All 4 items pass. Item 2 is the strong one - the remaining shifts did NOT shuffle to close the gap; the bar physically split. Toast confirmed on the identical control in b6h/b6i ('Shift deleted. Undo')."},
-
- "30059": {"iid":"SCH-DEL-03","v":"PASS","build":"v3.5-7ec992f",
-  "ev":"b6i.json - Andrew Wade's 5-shift series, opened 'Shift 3 of 5' (Wed Mar 3), chose 'This and all later shifts returns 1h 30m'. Board after: series 23b071a1 count 5->2, dates ['2027-03-01','2027-03-02'], minutes 150->60. Bar width 818px->323px. Toast 'check Shift deleted. Undo close'.",
-  "note":"All 3 items pass - shifts 3,4,5 removed, shifts 1,2 untouched, toast with Undo."},
-
- "30060": {"iid":"SCH-DEL-04","v":"PASS","build":"v3.5-7ec992f",
-  "ev":"b6j.json + b6k.json - chose 'Entire series' on Brittany Anderson's series. Board: her series 9d634574 disappeared entirely (6 shifts -> 2), while Andrew Wade's independent series 23b071a1 stayed at count 2 / 60 min / Mar 1-2 UNCHANGED. Toast observed first-hand in b6k.json on a whole-series delete: 'check Shift deleted. Undo close' with ids [undo_toast, button_undo_schedule_action, button_dismiss_toast], visible 1354ms-8290ms.",
-  "note":"All 3 items pass. Item 2 is the point of the case and it holds: the scope really is per-technician's-series, not per work order. Item 3's toast was re-observed deliberately in b6k because the b6j sample raced the toast's appearance."},
-
- "30061": {"iid":"SCH-DEL-05","v":"PASS","build":"v3.5-7ec992f",
-  "ev":"b6f.json - same series, three positions targeted by coordinate inside the week bar. FIRST (Mon, 'Shift 1 of 5'): 2 options - This shift only / Entire series. MIDDLE (Wed, 'Shift 3 of 5'): 3 options. LAST (Fri): 2 options - This shift only / Entire series. Board re-read after all three cancels: both series still count 5, minutes 450 and 150 - unchanged.",
-  "note":"All 4 items pass, including item 4 (cancel is non-destructive), proven by the board read rather than by the screen."},
-
- "30062": {"iid":"SCH-DEL-06","v":"PASS","build":"v3.5-7ec992f",
-  "ev":"b6h.json - standalone shift 1241a85c on Mar 10. Modal had NO text_shift_detail_series element (hasSeriesField=false). After Delete, dialog_schedule_delete_scope never appeared in 40 polls over 10s (scopeOpen false throughout). Toast 'check Shift deleted. Undo close'. Re-confirmed in b6l.json on shift 969e2202 (scopeShownForStandalone=false).",
-  "note":"Both items pass, observed twice on two different standalone shifts."},
-
- "30064": {"iid":"SCH-DEL-08","v":"PASS-PARTLY-UNEXERCISED","build":"v3.5-7ec992f",
-  "ev":"b6h.json - Undo toast first seen 512ms, last seen 7292ms, gone by 7546ms => visible ~6.8s ('about 7 seconds'). b6k.json corroborates: visible 1354ms-8290ms. b6u.json - cursor parked on the toast: still displayed at 13407ms, i.e. held for 14s, roughly double its unattended life. Cursor moved away at t=0: UP through 6044ms, 'gone' from 6548ms.",
-  "note":"Items 2 and 3 PASS outright. Item 1 passes for the WITH-Undo half (~7s, measured twice). The '~4s without Undo' half was NOT EXERCISED: every toast this module produced carries Undo (scheduled / deleted / moved / reassigned), so no no-Undo toast could be found to time. Recorded as unexercised with the reason rather than assumed - see FINDINGS."},
-
- "30065": {"iid":"SCH-DEL-09","v":"PASS","build":"v3.5-7ec992f",
-  "ev":"All four actions produced a toast carrying Undo. CREATE (b6s.json, drag S-12876 from the sidebar): 'check Shift scheduled. Undo close', undo=true. DELETE (b6l.json): 'check Shift deleted. Undo close'; after Undo the shift returned with the SAME id 969e2202, same startsAt 2027-03-22T15:00:00Z, same staffId, same 120 min. MOVE (b6m.json): 'check Shift moved to Thu, Mar 25. Undo close'; moved 03-22 -> 03-25, Undo returned it to 03-22 exactly. REASSIGN (b6r.json): 'check Shift reassigned. Undo close'; staffId Brittany Anderson -> Ayesha Khan AK and the line roster for 'Diagnose - Clutch' went ['Brittany Anderson'] -> ['Ayesha Khan AK']; after Undo, staffId back to Brittany AND roster back to ['Brittany Anderson'].",
-  "note":"All 5 items pass. Item 4 is the demanding one and it is fully met - the roster was read from /api/schedule/work-orders before, after and after-undo."},
-
- "38864": {"iid":"SCH-DEL-10","v":"PASS","build":"v3.5-7ec992f",
-  "ev":"b6t.json - MOVE then reload without touching Undo (toast still on screen at reload: 'check Shift moved to Thu, Apr 1. Undo close'): the shift stayed moved (it left the March window entirely, i.e. it is on Apr 1). DELETE then reload without touching Undo (toast up at reload: 'check Shift deleted. Undo close'): after reload the shift is GONE. Toast did not survive the reload. Undo-within-lifetime reversal proven three separate ways in b6l/b6m/b6r.",
-  "note":"All 4 items pass. Confirms the tester note: the change is written immediately and Undo is a reversing action, not a deferred commit."},
-
- "30052": {"iid":"SCH-REAS-01","v":"PASS","build":"v3.5-7ec992f",
-  "ev":"b6q.json + b6r.json - dragging a shift block onto another technician's row opens dialog 'Reassign shift' / 'S-15868 - Joshore Farms' / 'Move this shift to Ayesha Khan AK on Mon, Mar 22?' with Cancel and Reassign. On confirming: toast 'check Shift reassigned. Undo close', shift staffId 0aac76eb (Brittany Anderson) -> 1e81b8a0 (Ayesha Khan AK), and the work-order line roster updated from ['Brittany Anderson'] to ['Ayesha Khan AK'].",
-  "note":"IMPORTANT PROCESS NOTE: three earlier drags (b6n, b6o) appeared to do nothing and were on the point of being recorded as a deviation. They had in fact opened this confirmation dialog, which was never confirmed. The drag works. Rule 12/44 - the second look is what prevented a false defect report."}
+ "29973": {
+  "build": "v3.5-7ec992f",
+  "ev": "b6ae.json/b6af.json - dropped work order S-12876 'Pamill Paving' onto the in-grid UNASSIGNED lane (Sat 8 Aug 2026). Unassigned shift count 4 -> 5; new shift 02365b1f has staffId NULL; toast 'check Shift scheduled. Undo close'. The block renders with the same three-line anatomy as a regular shift: 'Pamill Paving | 713 | Replace - Rear ramp handles'. Its detail modal shows TECHNICIAN 'Unassigned'. The line roster was unchanged by the drop (8 technicians before and after).",
+  "iid": "SCH-START-05",
+  "note": "All 3 items pass. SETUP FACT FOUND THE HARD WAY (b6aa/b6ac/b6ad): the UNASSIGNED lane sits at the very BOTTOM of the grid, reachable only by scrolling, AND it is only rendered in a date range that already contains at least one unassigned shift - in an empty week it is absent when idle, absent during a drag and absent when dragging to the bottom (21 lanes both ways). See FINDINGS.",
+  "v": "PASS"
+ },
+ "29974": {
+  "build": "v3.5-7ec992f",
+  "ev": "b6ae.json/b6af.json - the unassigned shift was created at 2026-08-08T13:00:00Z. August is MDT (UTC-6), so the STORED value is 07:00 local = the general default, correct per S4.2. But the shift detail modal displays start '13:00' and end '14:00' - the UTC figures - six hours later than the real local time.",
+  "iid": "SCH-START-06",
+  "note": "The RULE the case tests is satisfied by the stored value. The six-hour DISPLAY fault is SV-8848, which the case already tells the tester to ignore, and it STILL REPRODUCES on v3.5-7ec992f. Recorded as DEVIATION against the open ticket rather than PASS, because what the tester sees on screen is wrong.",
+  "ticket": "SV-8848",
+  "v": "DEVIATION"
+ },
+ "29975": {
+  "build": "v3.5-7ec992f",
+  "ev": "b6af.json - dragged the unassigned block onto Kellie Ayers' row. Dialog 'Reassign shift | S-12876 - Pamill Paving | Move this shift to Kellie Ayers on Sat, Aug 8?' -> Reassign -> toast 'check Shift reassigned. Undo close'. ITEM 1 PASS: staffId became 776696c4 (Kellie Ayers), left the Unassigned row. ITEM 2 PASS: the line roster gained 'Kellie Ayers' (8 -> 9, all previous retained). ITEM 3 FAILS: startsAt moved from 2026-08-08T13:00:00Z to 2026-08-08T07:00:00Z. Kellie's configured hours are 420-1140 minutes (07:00-19:00), so the app took her 07:00 start but wrote it as 07:00 UTC = 01:00 local, outside her own working hours.",
+  "iid": "SCH-START-07",
+  "note": "Items 1 and 2 pass; item 3 is a real fault, and NOT merely a display problem - the STORED instant moved six hours. Very likely the same timezone root cause as SV-8848 but the opposite symptom (a wrong write, not a wrong read), so NOT filed as a new ticket without a duplicate check and the QA lead's decision.",
+  "ticket": "SV-8848 probable same root cause - NOT filed, see FINDINGS",
+  "v": "DEVIATION"
+ },
+ "30052": {
+  "build": "v3.5-7ec992f",
+  "ev": "b6q.json + b6r.json - dragging a shift block onto another technician's row opens dialog 'Reassign shift' / 'S-15868 - Joshore Farms' / 'Move this shift to Ayesha Khan AK on Mon, Mar 22?' with Cancel and Reassign. On confirming: toast 'check Shift reassigned. Undo close', shift staffId 0aac76eb (Brittany Anderson) -> 1e81b8a0 (Ayesha Khan AK), and the work-order line roster updated from ['Brittany Anderson'] to ['Ayesha Khan AK'].",
+  "iid": "SCH-REAS-01",
+  "note": "IMPORTANT PROCESS NOTE: three earlier drags (b6n, b6o) appeared to do nothing and were on the point of being recorded as a deviation. They had in fact opened this confirmation dialog, which was never confirmed. The drag works. Rule 12/44 - the second look is what prevented a false defect report.",
+  "v": "PASS"
+ },
+ "30054": {
+  "build": "v3.5-7ec992f",
+  "ev": "b6v.json - left-click on an empty cell (Brittany Anderson, Sun Mar 21) opens a menu headed 'BRITTANY ANDERSON - SUN, MAR 21' containing exactly two items: menu_schedule_create_event ('Create Event') and menu_schedule_new_work_order ('New Work Order'). RIGHT-click at the identical coordinates produced NO schedule menu at all (only the persistent profile button was returned).",
+  "iid": "SCH-REAS-03",
+  "note": "All 5 items pass. Spec agrees (S7): 'Left-click on empty grid space opens a menu with: Create event, New work order.' NOTE the standing SPEC DEFECT is reconfirmed on v23 - S9 twice calls this a 'right-click context menu' while S7/S4.10 call it left-click. The build follows S7. Reported, not fixed.",
+  "v": "PASS"
+ },
+ "30057": {
+  "build": "v3.5-7ec992f",
+  "ev": "b6d.json/b6f.json - dialog_schedule_delete_scope on 'Shift 3 of 5'. Three options, each with hours returned: 'This shift only returns 1h 30m' | 'This and all later shifts returns 4h 30m' | 'Entire series (5 shifts) returns 7h 30m'. Header 'Delete from this series?', badge 'Series of 5 shifts', body 'This shift is part of a series. Choose how much to remove.'",
+  "iid": "SCH-DEL-01",
+  "note": "All 3 items pass. Item 3 (routine not alarming styling) judged from shots/b6d-scope.png: plain white option cards, grey Cancel, no red, no warning icon, no destructive-styled confirm. LABEL CORRECTIONS for Rule 9: the case says 'this and everything after' but the build reads 'This and all later shifts'; 'the whole series' reads 'Entire series (5 shifts)'.",
+  "v": "PASS"
+ },
+ "30058": {
+  "build": "v3.5-7ec992f",
+  "ev": "b6g.json - deleted Wed Mar 3 of Brittany Anderson's 5-shift series with 'This shift only'. Board after: series 9d634574 count 5->4, dates ['2027-03-01','2027-03-02','2027-03-04','2027-03-05'], scheduledMinutes 450->360 (-90 = exactly that day's hours). Grid proof: the single week bar SPLIT into two segments x=692 w=323 and x=1187 w=323, i.e. a visible gap where Wednesday was.",
+  "iid": "SCH-DEL-02",
+  "note": "All 4 items pass. Item 2 is the strong one - the remaining shifts did NOT shuffle to close the gap; the bar physically split. Toast confirmed on the identical control in b6h/b6i ('Shift deleted. Undo').",
+  "v": "PASS"
+ },
+ "30059": {
+  "build": "v3.5-7ec992f",
+  "ev": "b6i.json - Andrew Wade's 5-shift series, opened 'Shift 3 of 5' (Wed Mar 3), chose 'This and all later shifts returns 1h 30m'. Board after: series 23b071a1 count 5->2, dates ['2027-03-01','2027-03-02'], minutes 150->60. Bar width 818px->323px. Toast 'check Shift deleted. Undo close'.",
+  "iid": "SCH-DEL-03",
+  "note": "All 3 items pass - shifts 3,4,5 removed, shifts 1,2 untouched, toast with Undo.",
+  "v": "PASS"
+ },
+ "30060": {
+  "build": "v3.5-7ec992f",
+  "ev": "b6j.json + b6k.json - chose 'Entire series' on Brittany Anderson's series. Board: her series 9d634574 disappeared entirely (6 shifts -> 2), while Andrew Wade's independent series 23b071a1 stayed at count 2 / 60 min / Mar 1-2 UNCHANGED. Toast observed first-hand in b6k.json on a whole-series delete: 'check Shift deleted. Undo close' with ids [undo_toast, button_undo_schedule_action, button_dismiss_toast], visible 1354ms-8290ms.",
+  "iid": "SCH-DEL-04",
+  "note": "All 3 items pass. Item 2 is the point of the case and it holds: the scope really is per-technician's-series, not per work order. Item 3's toast was re-observed deliberately in b6k because the b6j sample raced the toast's appearance.",
+  "v": "PASS"
+ },
+ "30061": {
+  "build": "v3.5-7ec992f",
+  "ev": "b6f.json - same series, three positions targeted by coordinate inside the week bar. FIRST (Mon, 'Shift 1 of 5'): 2 options - This shift only / Entire series. MIDDLE (Wed, 'Shift 3 of 5'): 3 options. LAST (Fri): 2 options - This shift only / Entire series. Board re-read after all three cancels: both series still count 5, minutes 450 and 150 - unchanged.",
+  "iid": "SCH-DEL-05",
+  "note": "All 4 items pass, including item 4 (cancel is non-destructive), proven by the board read rather than by the screen.",
+  "v": "PASS"
+ },
+ "30062": {
+  "build": "v3.5-7ec992f",
+  "ev": "b6h.json - standalone shift 1241a85c on Mar 10. Modal had NO text_shift_detail_series element (hasSeriesField=false). After Delete, dialog_schedule_delete_scope never appeared in 40 polls over 10s (scopeOpen false throughout). Toast 'check Shift deleted. Undo close'. Re-confirmed in b6l.json on shift 969e2202 (scopeShownForStandalone=false).",
+  "iid": "SCH-DEL-06",
+  "note": "Both items pass, observed twice on two different standalone shifts.",
+  "v": "PASS"
+ },
+ "30064": {
+  "build": "v3.5-7ec992f",
+  "ev": "b6h.json - Undo toast first seen 512ms, last seen 7292ms, gone by 7546ms => visible ~6.8s. b6k.json corroborates: visible 1354ms-8290ms. b6u.json - cursor parked on the toast: still displayed at 13407ms (~14s, double its unattended life). Cursor moved away at t=0: UP through 6044ms, 'gone' from 6548ms.",
+  "iid": "SCH-DEL-08",
+  "note": "ALL THREE ITEMS PASS once the case is read against the spec instead of against itself. The spec (S7) says: 'The toast persists for 4 to 7 seconds, stays while the cursor is over it' - a RANGE, with no split by whether Undo is present - and in the same breath 'Every create, delete, move, and reassign action produces a toast with an Undo option.' Our case's '~7s with Undo / ~4s without' split has NO source, and a no-Undo toast should not exist at all; consistent with that, all four actions observed here produced Undo toasts and no no-Undo toast could be found to time. The measured ~6.8-7s sits inside the spec's 4-7s window. Rule 25/42/57: delete the unsourced split, do not substitute an observation. Verdict PASS.",
+  "v": "PASS-CASE-OVERSPECIFIED"
+ },
+ "30065": {
+  "build": "v3.5-7ec992f",
+  "ev": "All four actions produced a toast carrying Undo. CREATE (b6s.json, drag S-12876 from the sidebar): 'check Shift scheduled. Undo close', undo=true. DELETE (b6l.json): 'check Shift deleted. Undo close'; after Undo the shift returned with the SAME id 969e2202, same startsAt 2027-03-22T15:00:00Z, same staffId, same 120 min. MOVE (b6m.json): 'check Shift moved to Thu, Mar 25. Undo close'; moved 03-22 -> 03-25, Undo returned it to 03-22 exactly. REASSIGN (b6r.json): 'check Shift reassigned. Undo close'; staffId Brittany Anderson -> Ayesha Khan AK and the line roster for 'Diagnose - Clutch' went ['Brittany Anderson'] -> ['Ayesha Khan AK']; after Undo, staffId back to Brittany AND roster back to ['Brittany Anderson'].",
+  "iid": "SCH-DEL-09",
+  "note": "All 5 items pass. Item 4 is the demanding one and it is fully met - the roster was read from /api/schedule/work-orders before, after and after-undo.",
+  "v": "PASS"
+ },
+ "38855": {
+  "build": "v3.5-7ec992f",
+  "ev": "b6w.json/b6x.json + shots/b6x.png - the menu offers 'New Work Order' (item 1 PASS). Choosing it opens a 'New Work Order' dialog IN PLACE: a Customer picker with Add, an Asset picker with Add, an 'Asset Here?' checkbox and Save. The URL stays /schedule; there is no toast and no navigation to the Work Orders tab.",
+  "iid": "SCH-REAS-06",
+  "note": "ITEM 2 IS OVER-SPECIFIED IN OUR CASE, not failed by the build. The spec says only 'Left-click on empty grid space opens a menu with: Create event, New work order.' It says NOTHING about what choosing it does. Our parenthetical '(a toast / prompt pointing to the Work Orders tab)' has no source and describes something WEAKER than what is built. Rule 25/42/57: remove the unsourced assertion, do NOT substitute the observed behaviour. Verdict PASS.",
+  "v": "PASS-CASE-OVERSPECIFIED"
+ },
+ "38864": {
+  "build": "v3.5-7ec992f",
+  "ev": "b6t.json - MOVE then reload without touching Undo (toast still on screen at reload: 'check Shift moved to Thu, Apr 1. Undo close'): the shift stayed moved (it left the March window entirely, i.e. it is on Apr 1). DELETE then reload without touching Undo (toast up at reload: 'check Shift deleted. Undo close'): after reload the shift is GONE. Toast did not survive the reload. Undo-within-lifetime reversal proven three separate ways in b6l/b6m/b6r.",
+  "iid": "SCH-DEL-10",
+  "note": "All 4 items pass. Confirms the tester note: the change is written immediately and Undo is a reversing action, not a deferred commit.",
+  "v": "PASS"
+ },
+ "43556": {
+  "build": "v3.5-7ec992f",
+  "ev": "b6y.json - series block 'Joshore Farms | 70 | Service - Air filter | Part of a series' (series 23b071a1, Andrew Wade) dragged from his row y=905 up to Colleen Guerrero y=698. Result: NO confirmation dialog (dialogAfterDrop []), NO toast (''), both series shifts still on staffId 4d18c4ef (Andrew Wade), startsAt unchanged. CONTROLLED CONTRAST in the same session: an ORDINARY shift dragged between technician rows DID open 'Reassign shift ... Move this shift to Ayesha Khan AK?' and completed (b6q/b6r).",
+  "iid": "SCH-REAS-07",
+  "note": "STILL REPRODUCES on the new build. Spec S7: 'Dragging a shift block from one technician row to another reassigns it... A confirmation modal handles cross-tech moves', and S8.2 makes a series a grouping over ordinary shifts, so a series member should behave like any shift. The case keeps the documented expectation (Rule 57).",
+  "ticket": "SV-8867",
+  "v": "DEVIATION"
+ }
 }
