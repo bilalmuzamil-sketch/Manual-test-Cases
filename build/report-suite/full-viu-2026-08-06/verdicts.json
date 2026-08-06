@@ -1,4 +1,49 @@
 {
+ "30534": {
+  "anchor": "IV S1-R1",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b2a.json",
+  "note": "The reports navigation carries a PARTS group and \"Inventory Value\" sits in it beside \"Parts Velocity\"; clicking it opens the report at /reports/inventory-value.",
+  "verdict": "PASS"
+ },
+ "30535": {
+  "anchor": "IV S1-R2",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b1i.json/iv-all API",
+  "note": "One row per in-stock part per selected location: 5,657 rows over the two locations, and R134A returns two rows, one per location. The valuation-date half is delegated by the case to the As-of cases, where the off-by-one is already ticketed as SV-8820.",
+  "verdict": "PASS"
+ },
+ "30536": {
+  "anchor": "IV S1-R3/S7-R2",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b2a.json/b1c.json",
+  "note": "Date range defaults to This Month, correct. The LOCATION does not: on a genuine first visit the filter reads \"All locations\" and the saved view written on load carries BOTH location ids, while the signed-in user's active location is Staging Heavy Duty - 9919. S1-R3 and S7-R2 both require the default to be the user's currently active location.",
+  "verdict": "DEVIATION"
+ },
+ "30538": {
+  "anchor": "IV S1-R5",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b2f.json",
+  "note": "Server-paginated: scrolling to the bottom fetched pages 2, 3, 4 and 5 one at a time and the row count grew from 33 to 43. No numbered page controls exist, which the case already records as a known difference. A filter, search or sort change returns page 1.",
+  "verdict": "PASS"
+ },
+ "30539": {
+  "anchor": "IV S1-N2/S12",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b2c.json",
+  "note": "With a search that matches nothing the table renders its column headers and NOTHING ELSE - no message anywhere on the page. The required text \"Empty bays, endless possibilities. Get Going!\" (the standard reports no-data label, S1-N2 and the Story 12 feedback table) is absent. The totals row is correctly hidden.",
+  "verdict": "DEVIATION"
+ },
  "30540": {
   "anchor": "IV S2-R1",
   "batch": 1,
@@ -143,6 +188,114 @@
   "note": "Totals row Margin % = 43.55, and total margin 37464712 / total total_sell 86018930 x 100 = 43.55 exactly. On screen the totals read Margin $855,066.82, Total Sell $1,832,142.09, Margin % 46.7% - 46.67 rounded to one decimal. Not an average of the row percentages.",
   "verdict": "PASS"
  },
+ "30561": {
+  "anchor": "IV S5",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b2a.json",
+  "note": "The control offers exactly nine periods in the required order - Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week - beside a month calendar, a live \"Range: 6 days\" readout and an Apply button. No Today, no Yesterday, no item called Custom, no All Time.",
+  "verdict": "PASS"
+ },
+ "30563": {
+  "anchor": "IV S5-R3",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "asof API",
+  "note": "A window reaching today values live stock: range=today and range=this_month both return the full 5,657-row live set with as_of 2026-08-06, today. The second half - a part whose quantity changed TODAY showing today's figure rather than yesterday's snapshot - was not driven, because no inventory movement was made today and none was seeded.",
+  "verdict": "PARTIAL"
+ },
+ "30568": {
+  "anchor": "IV S5-N1",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "asof API",
+  "note": "A range entirely before recording began (1-31 January 2024) returns zero rows and a zero row count - there is no backfill and no reconstruction. The no-data message that should accompany it is missing, but that is C30539's finding, not this one.",
+  "verdict": "PASS"
+ },
+ "30569": {
+  "anchor": "IV S6-R1/R2/R3",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b2c.json/b2h.json",
+  "note": "Both filters exist and are labelled \"Category\" and \"Vendor\". Selecting one category sent categories=<id>; adding a second sent categories=<id1>,<id2>. Selecting one vendor sent vendors=<id>; adding a second sent vendors=<id1>,<id2>. Each change reloaded the report to matching parts only.",
+  "verdict": "PASS"
+ },
+ "30570": {
+  "anchor": "IV S6-R5",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b2b.json/b2c.json",
+  "note": "Every change re-queries the server: the category, vendor, search, date, location and sort each produced a fresh request carrying pagination[page]=1, so the list returns to the top of the new set. Filtering covers the whole data set, not a narrowing of the loaded rows - a search for \"oil\" returned parts that were far down the unfiltered list.",
+  "verdict": "PASS"
+ },
+ "30571": {
+  "anchor": "IV S6-R4",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b2c.json",
+  "note": "With no category selected the control reads \"All categories\" and parts of every category show; with no vendor selected it reads \"All vendors\" and every vendor's parts show; with the search empty no narrowing is applied - 5,657 rows in scope.",
+  "verdict": "PASS"
+ },
+ "30572": {
+  "anchor": "IV S6-R6/R7",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b1i.json",
+  "note": "The search is the report's own toolbar field (data-test-id input_report_search, placeholder \"Search parts\"), not the application global search. Typing a part number returned that part; typing \"refrigerant\" in lower case matched the stored description \"Refrigerant\", so matching is case-insensitive and covers part number OR description. It is server-side - the request carries &search= and returns page 1.",
+  "verdict": "PASS"
+ },
+ "30573": {
+  "anchor": "IV S6-R8",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b2c.json",
+  "note": "Two categories plus a part search combined with AND: the request carried categories=<id1>,<id2> AND search=oil together and returned zero rows, because no oil part sits in those two categories. The totals row recomputed to the combined filtered set at every step.",
+  "verdict": "PASS"
+ },
+ "30574": {
+  "anchor": "IV S7-R1/S7-R2",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b2e.json/b2a.json",
+  "note": "Everything passes except the default. The filter is labelled \"Location\", is a multi-select, is the rightmost filter, lists only the two locations this user can access, and carries both an \"All locations\" toggle and \"Clear all\". Its width stays exactly 160px whether it reads \"All locations\" or the long \"Staging Lethbridge - 4310\". But on a first visit it defaults to \"All locations\", where S7-R2 requires the user's currently active location.",
+  "verdict": "DEVIATION"
+ },
+ "30575": {
+  "anchor": "IV S7-R3/R4",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b2e.json/b1i.json",
+  "note": "Unticking one location left the other and sent locations=f8a8b802-..., reloading scoped to that set. With both selected a part stocked at both returns one row per location and the totals cover both.",
+  "verdict": "PASS"
+ },
+ "30576": {
+  "anchor": "IV S7-R5",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b2e.json",
+  "note": "Verified: only the two locations this user can access are offered - no inaccessible location appears. Not verified: the fallback when the set resolves to none, because the control does not permit an empty selection - \"Clear all\" returns it to \"All locations\" and fires no request, so the S7-R5 fallback path cannot be reached from the interface.",
+  "verdict": "PARTIAL"
+ },
+ "30577": {
+  "anchor": "IV S7-N1",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "Needs a second sign-in as a user with access to only one location. No such account is available to this session and creating one needs an invitation the QA lead must accept.",
+  "verdict": "NOT OBSERVED"
+ },
  "30579": {
   "anchor": "IV S8-R1/S8-R2",
   "batch": 1,
@@ -205,5 +358,176 @@
   "evidence": "sorting API + b1f",
   "note": "Qty descending returned 1027, 892, 792, 786.55 and Total Cost ascending returned 0,0,0,0 - ordered by value, not text. Description ascending interleaves \"#04 - #12 STEEL NPT...\" with \"#04 - #12 Steel NPT...\", so text sorts case-insensitively.",
   "verdict": "PASS"
+ },
+ "30587": {
+  "anchor": "IV S10-R1",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b2a.json/iv-export",
+  "note": "The menu labels are exactly right - \"Download (PDF)\" and \"Download (CSV)\". The CSV downloads correctly (HTTP 200, 724,150 bytes, filename inventory-value-report.csv). The PDF does NOT: it returns HTTP 500 with a server error body. That is the already-filed SV-8818, still Ready to Fix, still reproducing.",
+  "verdict": "DEVIATION"
+ },
+ "30588": {
+  "anchor": "IV S10-R2/R3/R4",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "iv-export.csv",
+  "note": "Driven and recorded, but the case stays on hold for the separate Location question. The spreadsheet carries columns Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Total Cost, Total Sell, Margin, Margin % - a DIFFERENT order from the screen, with Total Cost not last, and with NO Location column although Location is showing on screen. It does honour the filters and it does carry a totals row labelled \"Totals\" and a \"Locations:\" line. The column-order and ignored-selection faults are the already-filed SV-8823.",
+  "verdict": "PARTIAL"
+ },
+ "30590": {
+  "anchor": "IV S10-R6/R7",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "iv-export.csv",
+  "note": "The spreadsheet half is verified: it carries \"As of: 2026-08-06\" with a colon, exactly as the case describes, plus a \"Date Range:\" and a \"Locations:\" line, and no logo. The PDF half could not be checked at all because the PDF download returns HTTP 500 (SV-8818).",
+  "verdict": "PARTIAL"
+ },
+ "30591": {
+  "anchor": "IV S10-R9",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "iv-export",
+  "note": "The CSV is named inventory-value-report.csv, confirmed from the content-disposition header. The PDF name could not be read because the PDF download returns HTTP 500 (SV-8818).",
+  "verdict": "PARTIAL"
+ },
+ "30596": {
+  "anchor": "IV S12-R1",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b2a.json",
+  "note": "Consecutive rows share one background colour - there is no alternating row shading - and the column headers use the same colour as the cells, so the table reads as a single flat surface on the reports backdrop.",
+  "verdict": "PASS"
+ },
+ "30597": {
+  "anchor": "IV S12-R2/S12-R3",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b2a.json",
+  "note": "The action cluster runs three-dot download menu (aria-label \"Export report\") then the Column Selection control. The filters run left to right: date range, part search, Category, Vendor, Location - Location rightmost.",
+  "verdict": "PASS"
+ },
+ "30599": {
+  "anchor": "IV S12-R7",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b2g.json",
+  "note": "Long text is never truncated. The Description cell computes text-overflow: clip, overflow: visible and white-space: nowrap, and the column simply widens to fit the longest value (client width and scroll width both 447px on a 760px-wide window) while the table scrolls sideways instead. There is no ellipsis and no title attribute or tooltip, so no full value on hover. The requirement asks for ellipsis truncation with the full value on hover.",
+  "verdict": "DEVIATION"
+ },
+ "30600": {
+  "anchor": "IV S12-R6",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b2f.json/iv-dark.png",
+  "note": "In dark mode the page switches properly: body carries body--dark, the page background is rgb(20,24,36), the table cells and headers rgb(15,17,26) and the text pure white. An empty Vendor cell renders its em dash in white on the dark cell, easily legible.",
+  "verdict": "PASS"
+ },
+ "30601": {
+  "anchor": "IV S12-R8",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b2a.json",
+  "note": "The direction IS shown visually - the active header carries the sorted/sort-desc classes and an arrow glyph. But NO sortable header carries aria-sort, and none exposes a role or any other sort state: aria-sort is null on all twelve headers, sorted or not. S12-R8 requires each sortable header to expose its sort state to assistive technology.",
+  "verdict": "DEVIATION"
+ },
+ "30602": {
+  "anchor": "IV S12-R9",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b2f.json",
+  "note": "Both icon-only controls carry accessible names: the three-dot download button announces \"Export report\" and the column control announces \"Column Selection\". Neither is an unnamed button.",
+  "verdict": "PASS"
+ },
+ "30603": {
+  "anchor": "IV S1-R6",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "Needs a second sign-in as a user holding only the ordinary reports access. The only session available is Admin, and confirming that no per-report permission is demanded requires the lesser account.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30604": {
+  "anchor": "IV S1-N1",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "Needs a second sign-in as a user with no reports access at all.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30605": {
+  "anchor": "IV S11",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "The nightly snapshot capture is a server-side job. Its stored rows are not exposed by any endpoint the application calls, so the captured fields cannot be inspected from here. Needs a developer or database check.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30606": {
+  "anchor": "IV S11",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "Requires comparing a captured day against what the live report showed that same day, which needs the stored snapshot rows. Not reachable from the application.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30607": {
+  "anchor": "IV S11",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "Requires re-running the capture job for a date and counting stored rows. The job cannot be triggered or inspected from the application.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30609": {
+  "anchor": "IV S11",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "Retention pruning is a server-side job over stored history. Not observable from the application.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30610": {
+  "anchor": "IV S11",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "Requires a thinned history - retained monthly captures with pruned days between them - which this organisation does not have and which cannot be produced from the application.",
+  "verdict": "NOT OBSERVED"
+ },
+ "38892": {
+  "anchor": "IV S11",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "Requires a recorded past day to exist, then a category rename, then reading that recorded day. The as-of history in this organisation could not be confirmed to hold a usable earlier recorded day, and the snapshot store is not inspectable.",
+  "verdict": "NOT OBSERVED"
+ },
+ "38917": {
+  "anchor": "IV S7-R6/S3-R1",
+  "batch": 2,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b2e.json/b1e.json",
+  "note": "Driven and recorded; stays on hold because this is the very point Chris Ward has been asked about. Observed: the Location column sits between Vendor and Qty; every row names one location and none reads \"Multiple\"; the Location filter keeps a constant 160px width. But the column is STILL SHOWN when the scope is narrowed to a single location, and Location IS offered in the column-selection control - which matches the access-gate reading of the specification and contradicts the scope-gate reading in S7-R6. That is the open contradiction, so no verdict is asserted.",
+  "verdict": "PARTIAL"
  }
 }

@@ -24,19 +24,26 @@ this epic in the last 48 hours — the six new tickets the coordinator flagged a
 |---|---|
 | Our cases | **476** (481 live incl. 5 foreign) |
 | Observed by the 5 Aug pass | 32 |
-| **Observed by this pass (batch 1)** | **23** |
-| **Total observed** | **55** |
-| **Remaining** | **421** |
+| Adjudicated by this pass, batch 1 (Inventory Value core) | 23 |
+| Adjudicated by this pass, batch 2 (rest of Inventory Value) | 27 |
+| **Total adjudicated** | **82** |
+| **Remaining** | **394** |
+
+**Inventory Value is COMPLETE**: all 68 IV cases now carry a verdict, except the 9 recorded below
+as driven-but-not-observable, which are listed in `REMAINING.txt` with their exact reason.
 
 The full remaining list, re-derived from the population minus recorded verdicts, is
 `REMAINING.txt` (421 lines, each with its C-id and section). **Do not copy a list forward — re-derive it.**
 
 ## THE EXACT NEXT ACTION
 
-Take the next section from `REMAINING.txt`. Suggested order (biggest evidence reuse first):
-**IV — Filters & Part Search (5)**, **IV — Location Filter (5)**, **IV — Access & Display (5)**,
-**IV — Exports (4)** — these finish Inventory Value while the IV evidence is fresh — then
-**PV — Columns & Calculations (17)**, **SBR — Exports (13)**, **PV — Filters (13)**.
+Inventory Value is finished. Take the next report from `REMAINING.txt`, in this order (biggest
+evidence reuse first): **Parts Velocity** (71 cases — Columns & Calculations 17, Filters 13,
+Exports 9, Row Model 9), then **Sales By Representative** (112), **Sales By Customer** (87),
+**Work In Progress** (78), **Technician Utilization** (60).
+
+Every Inventory Value technique transfers: the report slug pattern, the toolbar test-ids, the
+column control, the export endpoint, and the AND-logic and paging checks.
 
 ## Tooling that works (reuse, do not re-derive)
 - `build/report-suite/full-viu-2026-08-05/tools/rs.py` — raw-cookie API + export downloader.

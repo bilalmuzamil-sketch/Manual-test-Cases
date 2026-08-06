@@ -37,3 +37,22 @@ priority Low · `relates to` link to the same story · no Product Area), every f
 | [SV-8929](https://shopview.atlassian.net/browse/SV-8929) | SV-8675 | Inventory Value keeps a saved category that no longer exists |
 
 No existing ticket was edited, commented on, transitioned or re-prioritised.
+
+## Update after batch 2
+
+| Batch | Operation | Count | Verification |
+|---|---|---|---|
+| 2 | `update_case` | 36 | every one HTTP 200, re-GET, 30 fields compared, 0 mismatches, 0 collateral |
+
+Running TestRail total: **59 `update_case`**. Still 0 add · 0 delete · 0 section · **0 run writes**
+· **0 results logged**.
+
+Three further Story Defects filed, same Rule-52 shape, every field read back:
+
+| Key | Parent story | Summary |
+|---|---|---|
+| [SV-8930](https://shopview.atlassian.net/browse/SV-8930) | SV-8668 | Inventory Value shows an empty table with no message when nothing matches |
+| [SV-8931](https://shopview.atlassian.net/browse/SV-8931) | SV-8674 | Inventory Value opens on All locations instead of the user's current location |
+| [SV-8932](https://shopview.atlassian.net/browse/SV-8932) | SV-8679 | Inventory Value: long text never shortens, and headings announce no sort state |
+
+Still nothing created or altered in the application.
