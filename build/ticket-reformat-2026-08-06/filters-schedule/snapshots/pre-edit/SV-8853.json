@@ -1,0 +1,835 @@
+{
+ "changelog": {
+  "histories": [
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-06T02:49:24.161-0500",
+    "id": "140549",
+    "items": [
+     {
+      "field": "description",
+      "fieldId": "description",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": "h3. Description\n\nTwo of the Schedule's confirmation windows ignore the keyboard. The 'Delete from this series?' window and the 'Reassign shift' window cannot be dismissed with Escape, and cannot be confirmed with Enter - the only way in or out of them is the mouse. Every other pop-up on the page closes with Escape, so the behaviour is inconsistent as well as inaccessible: anyone working keyboard-only gets stuck in these two windows.\n\nh3. Branch / Environment\n\nBranch tested: https://sv8685.qa.shopview.com/schedule \u00b7 API host: https://sv8685api.qa.shopview.com \u00b7 Build marker (meta app-version): v3.5-4873abe \u00b7 index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 \u00b7 Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f \u00b7 Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) \u00b7 Signed in as admin@shopview.com (Administrator) \u00b7 Observed 2026-08-04, 16:00-19:00 UTC.\n\nh3. Steps to reproduce\n\n# Open the Schedule and pick the Day view for a day that holds a multi-day job (use S-14527 Qispring Rentals spread over four days from a Monday).\n# Click a shift in the middle of that series to open the shift window, then click the delete bin.\n# The 'Delete from this series?' window opens. Press Escape - nothing happens. Press it again - still nothing. Click inside the window first and press Escape again - still nothing. Only Cancel or the close X will shut it.\n# Now close everything and switch to the Week view.\n# Drag any shift block from one technician's row to another technician's row.\n# The 'Reassign shift' window opens asking 'Move this shift to <name> on <date>?'. Press Enter - nothing happens, the move is not confirmed. Press Escape - nothing happens either.\n\nh3. Expected behaviour\n\nEscape closes whichever pop-up is on top, and Enter confirms the window that is asking for confirmation, so both windows can be driven entirely from the keyboard.\n\nh3. Current behaviour\n\nNeither key does anything in either window. Escape does work on the shift window itself and on both toolbar menus, so it is specifically these two confirmation windows that ignore it.\n\nh3. Images\n\nNo screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.\n\nh3. Technical details for developers\n\nEscape tested twice on the delete-scope dialog, the second time after moving focus to a button inside it: .q-dialog count stayed 1 both times. Enter on the reassign dialog left .q-dialog count at 1 and produced no .undo-toast, so no request was sent. Escape DOES close dialog_schedule_shift_detail, schedule_view_options_menu and schedule_filter_display_menu. Spec section 7 names both windows first in its stacking order: 'Escape closes the topmost open modal or popover, following a defined stacking order (delete scope, reassign, spread, ...)' and 'Enter confirms the active confirmable dialog (delete scope, reassign, spread, event create/edit).'",
+      "to": null,
+      "toString": "h3. Description\n\nTwo of the Schedule's confirmation windows ignore the keyboard. The 'Delete from this series?' window and the 'Reassign shift' window cannot be dismissed with Escape, and cannot be confirmed with Enter - the only way in or out of them is the mouse. Every other pop-up on the page closes with Escape, so the behaviour is inconsistent as well as inaccessible: anyone working keyboard-only gets stuck in these two windows.\n\nh3. Branch / Environment\n\nBranch tested: https://sv8685.qa.shopview.com/schedule \u00b7 API host: https://sv8685api.qa.shopview.com \u00b7 Build marker (meta app-version): v3.5-4873abe \u00b7 index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 \u00b7 Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f \u00b7 Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) \u00b7 Signed in as admin@shopview.com (Administrator) \u00b7 Observed 2026-08-04, 16:00-19:00 UTC.\n\nh3. Steps to reproduce\n\n# Open the Schedule and pick the Day view for a day that holds a multi-day job (use S-14527 Qispring Rentals spread over four days from a Monday).\n# Click a shift in the middle of that series to open the shift window, then click the delete bin.\n# The 'Delete from this series?' window opens. Press Escape - nothing happens. Press it again - still nothing. Click inside the window first and press Escape again - still nothing. Only Cancel or the close X will shut it.\n# Now close everything and switch to the Week view.\n# Drag any shift block from one technician's row to another technician's row.\n# The 'Reassign shift' window opens asking 'Move this shift to <name> on <date>?'. Press Enter - nothing happens, the move is not confirmed. Press Escape - nothing happens either.\n\nh3. Expected behaviour\n\nEscape closes whichever pop-up is on top, and Enter confirms the window that is asking for confirmation, so both windows can be driven entirely from the keyboard.\n\nh3. Current behaviour\n\nNeither key does anything in either window. Escape does work on the shift window itself and on both toolbar menus, so it is specifically these two confirmation windows that ignore it.\n\nh3. Images\n\nNo screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.\n\nh3. Technical details for developers\n\nEscape tested twice on the delete-scope dialog, the second time after moving focus to a button inside it: .q-dialog count stayed 1 both times. Enter on the reassign dialog left .q-dialog count at 1 and produced no .undo-toast, so no request was sent. Escape DOES close dialog_schedule_shift_detail, schedule_view_options_menu and schedule_filter_display_menu. Spec section 7 names both windows first in its stacking order: 'Escape closes the topmost open modal or popover, following a defined stacking order (delete scope, reassign, spread, ...)' and 'Enter confirms the active confirmable dialog (delete scope, reassign, spread, event create/edit).'\n\n \n\nWhere this expected behaviour comes from: the Schedule specification, version 23, section 7 (Interactions and micro-interactions), under \"Keyboard support. Global shortcuts work anywhere on the schedule page\". Both keys are written down separately.\n\nOn Escape: \"Escape closes the topmost open modal or popover, following a defined stacking order (delete scope, reassign, spread, capacity, event modal, event view, line picker, shift detail, cell menu, calendar picker, customize, filters, search).\"\n\nOn Enter: \"Enter confirms the active confirmable dialog (delete scope, reassign, spread, event create/edit). It does not fire inside textareas, so multiline note editing still works normally.\" The delete-scope and reassign windows are both named in that list."
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T09:33:39.552-0500",
+    "id": "140072",
+    "items": [
+     {
+      "field": "assignee",
+      "fieldId": "assignee",
+      "fieldtype": "jira",
+      "from": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+      "fromString": "Mudassir Qamar",
+      "to": null,
+      "toString": null
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T09:19:20.112-0500",
+    "id": "140043",
+    "items": [
+     {
+      "field": "IssueParentAssociation",
+      "fieldtype": "jira",
+      "from": "54707",
+      "fromString": "SV-8685",
+      "to": "54722",
+      "toString": "SV-8700"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T09:19:20.099-0500",
+    "id": "140044",
+    "items": [
+     {
+      "field": "issuetype",
+      "fieldId": "issuetype",
+      "fieldtype": "jira",
+      "from": "10008",
+      "fromString": "Bug",
+      "to": "10007",
+      "toString": "Story Defect"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T07:21:40.065-0500",
+    "id": "139962",
+    "items": [
+     {
+      "field": "assignee",
+      "fieldId": "assignee",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "tmpFromAccountId": null,
+      "tmpToAccountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+      "to": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+      "toString": "Mudassir Qamar"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T03:21:39.475-0500",
+    "id": "139782",
+    "items": [
+     {
+      "field": "labels",
+      "fieldId": "labels",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": "",
+      "to": null,
+      "toString": "FS-Schedule"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-04T12:18:53.601-0500",
+    "id": "139615",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-8686",
+      "toString": "This work item relates to SV-8686"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-04T12:18:52.608-0500",
+    "id": "139613",
+    "items": [
+     {
+      "field": "IssueParentAssociation",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "54707",
+      "toString": "SV-8685"
+     }
+    ]
+   }
+  ],
+  "maxResults": 8,
+  "startAt": 0,
+  "total": 8
+ },
+ "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+ "fields": {
+  "aggregateprogress": {
+   "progress": 0,
+   "total": 0
+  },
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [],
+  "comment": {
+   "comments": [],
+   "maxResults": 0,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54980/comment",
+   "startAt": 0,
+   "total": 0
+  },
+  "components": [],
+  "created": "2026-08-04T12:18:52.582-0500",
+  "creator": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": "0|i01v9t:",
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10285": null,
+  "customfield_10318": null,
+  "customfield_10351": null,
+  "customfield_10385": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": {
+   "content": [
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Description",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Two of the Schedule's confirmation windows ignore the keyboard. The 'Delete from this series?' window and the 'Reassign shift' window cannot be dismissed with Escape, and cannot be confirmed with Enter - the only way in or out of them is the mouse. Every other pop-up on the page closes with Escape, so the behaviour is inconsistent as well as inaccessible: anyone working keyboard-only gets stuck in these two windows.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Branch / Environment",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Branch tested: https://sv8685.qa.shopview.com/schedule \u00b7 API host: https://sv8685api.qa.shopview.com \u00b7 Build marker (meta app-version): v3.5-4873abe \u00b7 index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 \u00b7 Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f \u00b7 Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) \u00b7 Signed in as admin@shopview.com (Administrator) \u00b7 Observed 2026-08-04, 16:00-19:00 UTC.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Steps to reproduce",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Open the Schedule and pick the Day view for a day that holds a multi-day job (use S-14527 Qispring Rentals spread over four days from a Monday).",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Click a shift in the middle of that series to open the shift window, then click the delete bin.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "The 'Delete from this series?' window opens. Press Escape - nothing happens. Press it again - still nothing. Click inside the window first and press Escape again - still nothing. Only Cancel or the close X will shut it.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Now close everything and switch to the Week view.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Drag any shift block from one technician's row to another technician's row.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "The 'Reassign shift' window opens asking 'Move this shift to <name> on <date>?'. Press Enter - nothing happens, the move is not confirmed. Press Escape - nothing happens either.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "orderedList"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Expected behaviour",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Escape closes whichever pop-up is on top, and Enter confirms the window that is asking for confirmation, so both windows can be driven entirely from the keyboard.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Current behaviour",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Neither key does anything in either window. Escape does work on the shift window itself and on both toolbar menus, so it is specifically these two confirmation windows that ignore it.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Images",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "No screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Technical details for developers",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Escape tested twice on the delete-scope dialog, the second time after moving focus to a button inside it: .q-dialog count stayed 1 both times. Enter on the reassign dialog left .q-dialog count at 1 and produced no .undo-toast, so no request was sent. Escape DOES close dialog_schedule_shift_detail, schedule_view_options_menu and schedule_filter_display_menu. Spec section 7 names both windows first in its stacking order: 'Escape closes the topmost open modal or popover, following a defined stacking order (delete scope, reassign, spread, ...)' and 'Enter confirms the active confirmable dialog (delete scope, reassign, spread, event create/edit).'",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": " ",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Where this expected behaviour comes from: the Schedule specification, version 23, section 7 (Interactions and micro-interactions), under \"Keyboard support. Global shortcuts work anywhere on the schedule page\". Both keys are written down separately.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "On Escape: \"Escape closes the topmost open modal or popover, following a defined stacking order (delete scope, reassign, spread, capacity, event modal, event view, line picker, shift detail, cell menu, calendar picker, customize, filters, search).\"",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "On Enter: \"Enter confirms the active confirmable dialog (delete scope, reassign, spread, event create/edit). It does not fire inside textareas, so multiline note editing still works normally.\" The delete-scope and reassign windows are both named in that list.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    }
+   ],
+   "type": "doc",
+   "version": 1
+  },
+  "duedate": null,
+  "environment": null,
+  "fixVersions": [],
+  "issuelinks": [
+   {
+    "id": "32065",
+    "outwardIssue": {
+     "fields": {
+      "issuetype": {
+       "avatarId": 10315,
+       "description": "Stories track functionality or features expressed as user goals.",
+       "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+       "hierarchyLevel": 0,
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+       "id": "10245",
+       "name": "Story",
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+       "subtask": false
+      },
+      "priority": {
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "id": "3",
+       "name": "Medium",
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+      },
+      "status": {
+       "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "id": "10006",
+       "name": "TESTING QA",
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10006",
+       "statusCategory": {
+        "colorName": "yellow",
+        "id": 4,
+        "key": "indeterminate",
+        "name": "In Progress",
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+       }
+      },
+      "summary": "Schedule Grid Layout & Navigation"
+     },
+     "id": "54708",
+     "key": "SV-8686",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54708"
+    },
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/32065",
+    "type": {
+     "id": "10003",
+     "inward": "relates to",
+     "name": "Relates",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    }
+   }
+  ],
+  "issuerestriction": {
+   "issuerestrictions": {},
+   "shouldDisplay": true
+  },
+  "issuetype": {
+   "avatarId": 10854,
+   "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+   "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+   "hierarchyLevel": -1,
+   "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+   "id": "10007",
+   "name": "Story Defect",
+   "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+   "subtask": true
+  },
+  "labels": [
+   "FS-Schedule"
+  ],
+  "lastViewed": "2026-08-04T22:07:46.999-0500",
+  "parent": {
+   "fields": {
+    "issuetype": {
+     "avatarId": 10315,
+     "description": "Stories track functionality or features expressed as user goals.",
+     "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+     "hierarchyLevel": 0,
+     "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+     "id": "10245",
+     "name": "Story",
+     "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+     "subtask": false
+    },
+    "priority": {
+     "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+     "id": "3",
+     "name": "Medium",
+     "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+    },
+    "status": {
+     "description": "",
+     "iconUrl": "https://shopview.atlassian.net/",
+     "id": "10350",
+     "name": "Ready for QA",
+     "self": "https://shopview.atlassian.net/rest/api/3/status/10350",
+     "statusCategory": {
+      "colorName": "yellow",
+      "id": 4,
+      "key": "indeterminate",
+      "name": "In Progress",
+      "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+     }
+    },
+    "summary": "View Options, Color System & Display Customization"
+   },
+   "id": "54722",
+   "key": "SV-8700",
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54722"
+  },
+  "priority": {
+   "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+   "id": "4",
+   "name": "Low",
+   "self": "https://shopview.atlassian.net/rest/api/3/priority/4"
+  },
+  "progress": {
+   "progress": 0,
+   "total": 0
+  },
+  "project": {
+   "avatarUrls": {
+    "16x16": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=xsmall",
+    "24x24": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=small",
+    "32x32": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=medium",
+    "48x48": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551"
+   },
+   "id": "10001",
+   "key": "SV",
+   "name": "ShopView",
+   "projectTypeKey": "software",
+   "self": "https://shopview.atlassian.net/rest/api/3/project/10001",
+   "simplified": true
+  },
+  "reporter": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "resolution": null,
+  "resolutiondate": null,
+  "security": null,
+  "status": {
+   "description": "",
+   "iconUrl": "https://shopview.atlassian.net/",
+   "id": "10349",
+   "name": "Open",
+   "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+   "statusCategory": {
+    "colorName": "blue-gray",
+    "id": 2,
+    "key": "new",
+    "name": "To Do",
+    "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+   }
+  },
+  "statusCategory": {
+   "colorName": "blue-gray",
+   "id": 2,
+   "key": "new",
+   "name": "To Do",
+   "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+  },
+  "statuscategorychangedate": "2026-08-04T12:18:53.073-0500",
+  "subtasks": [],
+  "summary": "The Escape and Enter keys do not work on the delete and reassign confirmation windows",
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "2026-08-06T02:49:24.161-0500",
+  "versions": [],
+  "votes": {
+   "hasVoted": false,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8853/votes",
+   "votes": 0
+  },
+  "watches": {
+   "isWatching": true,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8853/watchers",
+   "watchCount": 1
+  },
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": -1
+ },
+ "id": "54980",
+ "key": "SV-8853",
+ "renderedFields": {
+  "aggregateprogress": null,
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [],
+  "comment": {
+   "comments": [],
+   "maxResults": 0,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54980/comment",
+   "startAt": 0,
+   "total": 0
+  },
+  "components": null,
+  "created": "Tuesday 10:18 PM",
+  "creator": null,
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": null,
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10285": "",
+  "customfield_10318": null,
+  "customfield_10351": "",
+  "customfield_10385": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": "<h3><a name=\"Description\"></a>Description</h3>\n\n<p>Two of the Schedule's confirmation windows ignore the keyboard. The 'Delete from this series?' window and the 'Reassign shift' window cannot be dismissed with Escape, and cannot be confirmed with Enter - the only way in or out of them is the mouse. Every other pop-up on the page closes with Escape, so the behaviour is inconsistent as well as inaccessible: anyone working keyboard-only gets stuck in these two windows.</p>\n\n<h3><a name=\"Branch%2FEnvironment\"></a>Branch / Environment</h3>\n\n<p>Branch tested: <a href=\"https://sv8685.qa.shopview.com/schedule\" class=\"external-link\" rel=\"nofollow noreferrer\">https://sv8685.qa.shopview.com/schedule</a> \u00b7 API host: <a href=\"https://sv8685api.qa.shopview.com\" class=\"external-link\" rel=\"nofollow noreferrer\">https://sv8685api.qa.shopview.com</a> \u00b7 Build marker (meta app-version): v3.5-4873abe \u00b7 index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 \u00b7 Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f \u00b7 Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) \u00b7 Signed in as admin@shopview.com (Administrator) \u00b7 Observed 2026-08-04, 16:00-19:00 UTC.</p>\n\n<h3><a name=\"Stepstoreproduce\"></a>Steps to reproduce</h3>\n\n<ol>\n\t<li>Open the Schedule and pick the Day view for a day that holds a multi-day job (use S-14527 Qispring Rentals spread over four days from a Monday).</li>\n\t<li>Click a shift in the middle of that series to open the shift window, then click the delete bin.</li>\n\t<li>The 'Delete from this series?' window opens. Press Escape - nothing happens. Press it again - still nothing. Click inside the window first and press Escape again - still nothing. Only Cancel or the close X will shut it.</li>\n\t<li>Now close everything and switch to the Week view.</li>\n\t<li>Drag any shift block from one technician's row to another technician's row.</li>\n\t<li>The 'Reassign shift' window opens asking 'Move this shift to &lt;name&gt; on &lt;date&gt;?'. Press Enter - nothing happens, the move is not confirmed. Press Escape - nothing happens either.</li>\n</ol>\n\n\n<h3><a name=\"Expectedbehaviour\"></a>Expected behaviour</h3>\n\n<p>Escape closes whichever pop-up is on top, and Enter confirms the window that is asking for confirmation, so both windows can be driven entirely from the keyboard.</p>\n\n<h3><a name=\"Currentbehaviour\"></a>Current behaviour</h3>\n\n<p>Neither key does anything in either window. Escape does work on the shift window itself and on both toolbar menus, so it is specifically these two confirmation windows that ignore it.</p>\n\n<h3><a name=\"Images\"></a>Images</h3>\n\n<p>No screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.</p>\n\n<h3><a name=\"Technicaldetailsfordevelopers\"></a>Technical details for developers</h3>\n\n<p>Escape tested twice on the delete-scope dialog, the second time after moving focus to a button inside it: .q-dialog count stayed 1 both times. Enter on the reassign dialog left .q-dialog count at 1 and produced no .undo-toast, so no request was sent. Escape DOES close dialog_schedule_shift_detail, schedule_view_options_menu and schedule_filter_display_menu. Spec section 7 names both windows first in its stacking order: 'Escape closes the topmost open modal or popover, following a defined stacking order (delete scope, reassign, spread, ...)' and 'Enter confirms the active confirmable dialog (delete scope, reassign, spread, event create/edit).'</p>\n\n\n\n<p>Where this expected behaviour comes from: the Schedule specification, version 23, section 7 (Interactions and micro-interactions), under \"Keyboard support. Global shortcuts work anywhere on the schedule page\". Both keys are written down separately.</p>\n\n<p>On Escape: \"Escape closes the topmost open modal or popover, following a defined stacking order (delete scope, reassign, spread, capacity, event modal, event view, line picker, shift detail, cell menu, calendar picker, customize, filters, search).\"</p>\n\n<p>On Enter: \"Enter confirms the active confirmable dialog (delete scope, reassign, spread, event create/edit). It does not fire inside textareas, so multiline note editing still works normally.\" The delete-scope and reassign windows are both named in that list.</p>",
+  "duedate": null,
+  "environment": "",
+  "fixVersions": null,
+  "issuelinks": null,
+  "issuerestriction": null,
+  "issuetype": null,
+  "labels": null,
+  "lastViewed": "Yesterday 8:07 AM",
+  "priority": null,
+  "progress": null,
+  "project": null,
+  "reporter": null,
+  "resolution": null,
+  "resolutiondate": null,
+  "security": null,
+  "status": null,
+  "statusCategory": null,
+  "statuscategorychangedate": "Tuesday 10:18 PM",
+  "subtasks": null,
+  "summary": null,
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "Today 12:49 PM",
+  "versions": null,
+  "votes": null,
+  "watches": null,
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": null
+ },
+ "self": "https://shopview.atlassian.net/rest/api/3/issue/54980"
+}

@@ -1,0 +1,774 @@
+{
+ "changelog": {
+  "histories": [
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-06T02:50:29.847-0500",
+    "id": "140595",
+    "items": [
+     {
+      "field": "description",
+      "fieldId": "description",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": "h3. What happens now\n\nIn Month view a job spread over several days is drawn as one bar, but the bar does not say whose it is. It shows the customer, the unit, how many lines the job has and the words \"Part of a series\" - and no technician name anywhere.\n\nh3. Why this matters\n\nMonth view has no technician rows to read the name off, unlike Day and Week. So a planner looking at the month cannot tell who a job is booked to without opening it.\n\nh3. How to see it\n\n# Open the Schedule page and switch to Month view.\n# Find a job that runs over several days - it will say \"Part of a series\".\n# Read the bar from left to right.\n\nh3. What you see\n\n* The bar reads, for example, \"Xiriver Apparel  24069  19 Lines  Part of a series\" and another reads \"Kastone Solutions  HE2-001  7 Lines  Part of a series\".\n* No technician name or initials appear on the bar at all.\n\nh3. What should happen\n\nFrom the Schedule specification, section 4.6: *\"Month view: a continuous bar wrapping across week rows, labeled once at the start (with the technician)\".* The label at the start of the bar should include the technician.\n\nh3. Exact test data used\n\n* Location: Staging Heavy Duty - 9919. Build v3.5-7ec992f. Signed in as admin@shopview.com.\n* Month view covering August 2026. Series bars seen: Xiriver Apparel unit 24069 (19 lines) and Kastone Solutions unit HE2-001 (7 lines).\n* Six series entries were read in Month view; none carried a technician.\n\nh3. Things checked and ruled out first\n\n* Not a display setting - the VIN switch and the department filters were not the cause; the technician is simply not part of the bar's text.\n* Not a Week-view problem - in Week view the technician is the row, so the name is available there. This is specific to Month view.\n* Not the same as the missing chevrons and week counter reported in SV-8895; those were checked on this build and the chevron and the \"Week 1 of 2\" text are present.\n\nh3. Where this came from\n\nFound while re-checking Schedule test case {{SCH-SER-01}} (TestRail C29987) on 6 August 2026.",
+      "to": null,
+      "toString": "h3. What happens now\n\nIn Month view a job spread over several days is drawn as one bar, but the bar does not say whose it is. It shows the customer, the unit, how many lines the job has and the words \"Part of a series\" - and no technician name anywhere.\n\nh3. Why this matters\n\nMonth view has no technician rows to read the name off, unlike Day and Week. So a planner looking at the month cannot tell who a job is booked to without opening it.\n\nh3. How to see it\n\n# Open the Schedule page and switch to Month view.\n# Find a job that runs over several days - it will say \"Part of a series\".\n# Read the bar from left to right.\n\nh3. What you see\n\n* The bar reads, for example, \"Xiriver Apparel  24069  19 Lines  Part of a series\" and another reads \"Kastone Solutions  HE2-001  7 Lines  Part of a series\".\n* No technician name or initials appear on the bar at all.\n\nh3. What should happen\n\nFrom the Schedule specification, section 4.6: *\"Month view: a continuous bar wrapping across week rows, labeled once at the start (with the technician)\".* The label at the start of the bar should include the technician.\n\nh3. Exact test data used\n\n* Location: Staging Heavy Duty - 9919. Build v3.5-7ec992f. Signed in as admin@shopview.com.\n* Month view covering August 2026. Series bars seen: Xiriver Apparel unit 24069 (19 lines) and Kastone Solutions unit HE2-001 (7 lines).\n* Six series entries were read in Month view; none carried a technician.\n\nh3. Things checked and ruled out first\n\n* Not a display setting - the VIN switch and the department filters were not the cause; the technician is simply not part of the bar's text.\n* Not a Week-view problem - in Week view the technician is the row, so the name is available there. This is specific to Month view.\n* Not the same as the missing chevrons and week counter reported in SV-8895; those were checked on this build and the chevron and the \"Week 1 of 2\" text are present.\n\nh3. Where this came from\n\nFound while re-checking Schedule test case {{SCH-SER-01}} (TestRail C29987) on 6 August 2026.\n\n \n\nWhere this expected behaviour comes from: the Schedule specification, version 23, section 4.6 (Linked series and banners), which says: \"Month view: a continuous bar wrapping across week rows, labeled once at the start (with the technician), with a faded \u201ccontinues\u201d label on later weeks, empty weekend columns (when business hours are not set for weekends).\" The words in brackets are the part that is missing."
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-06T02:13:02.830-0500",
+    "id": "140522",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-8692",
+      "toString": "This work item relates to SV-8692"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-06T02:13:01.433-0500",
+    "id": "140520",
+    "items": [
+     {
+      "field": "IssueParentAssociation",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "54714",
+      "toString": "SV-8692"
+     }
+    ]
+   }
+  ],
+  "maxResults": 3,
+  "startAt": 0,
+  "total": 3
+ },
+ "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+ "fields": {
+  "aggregateprogress": {
+   "progress": 0,
+   "total": 0
+  },
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [],
+  "comment": {
+   "comments": [],
+   "maxResults": 0,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/55093/comment",
+   "startAt": 0,
+   "total": 0
+  },
+  "components": [],
+  "created": "2026-08-06T02:13:01.401-0500",
+  "creator": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": "0|i01vxl:",
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10285": null,
+  "customfield_10318": null,
+  "customfield_10351": null,
+  "customfield_10385": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": {
+   "content": [
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "What happens now",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "In Month view a job spread over several days is drawn as one bar, but the bar does not say whose it is. It shows the customer, the unit, how many lines the job has and the words \"Part of a series\" - and no technician name anywhere.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Why this matters",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Month view has no technician rows to read the name off, unlike Day and Week. So a planner looking at the month cannot tell who a job is booked to without opening it.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "How to see it",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Open the Schedule page and switch to Month view.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Find a job that runs over several days - it will say \"Part of a series\".",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Read the bar from left to right.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "orderedList"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "What you see",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "The bar reads, for example, \"Xiriver Apparel  24069  19 Lines  Part of a series\" and another reads \"Kastone Solutions  HE2-001  7 Lines  Part of a series\".",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "No technician name or initials appear on the bar at all.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "bulletList"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "What should happen",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "From the Schedule specification, section 4.6: ",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ],
+       "text": "\"Month view: a continuous bar wrapping across week rows, labeled once at the start (with the technician)\".",
+       "type": "text"
+      },
+      {
+       "text": " The label at the start of the bar should include the technician.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Exact test data used",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Location: Staging Heavy Duty - 9919. Build v3.5-7ec992f. Signed in as admin@shopview.com.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Month view covering August 2026. Series bars seen: Xiriver Apparel unit 24069 (19 lines) and Kastone Solutions unit HE2-001 (7 lines).",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Six series entries were read in Month view; none carried a technician.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "bulletList"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Things checked and ruled out first",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Not a display setting - the VIN switch and the department filters were not the cause; the technician is simply not part of the bar's text.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Not a Week-view problem - in Week view the technician is the row, so the name is available there. This is specific to Month view.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Not the same as the missing chevrons and week counter reported in SV-8895; those were checked on this build and the chevron and the \"Week 1 of 2\" text are present.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "bulletList"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Where this came from",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Found while re-checking Schedule test case ",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "code"
+        }
+       ],
+       "text": "SCH-SER-01",
+       "type": "text"
+      },
+      {
+       "text": " (TestRail C29987) on 6 August 2026.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": " ",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Where this expected behaviour comes from: the Schedule specification, version 23, section 4.6 (Linked series and banners), which says: \"Month view: a continuous bar wrapping across week rows, labeled once at the start (with the technician), with a faded \u201ccontinues\u201d label on later weeks, empty weekend columns (when business hours are not set for weekends).\" The words in brackets are the part that is missing.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    }
+   ],
+   "type": "doc",
+   "version": 1
+  },
+  "duedate": null,
+  "environment": null,
+  "fixVersions": [],
+  "issuelinks": [
+   {
+    "id": "32121",
+    "outwardIssue": {
+     "fields": {
+      "issuetype": {
+       "avatarId": 10315,
+       "description": "Stories track functionality or features expressed as user goals.",
+       "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+       "hierarchyLevel": 0,
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+       "id": "10245",
+       "name": "Story",
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+       "subtask": false
+      },
+      "priority": {
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "id": "3",
+       "name": "Medium",
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+      },
+      "status": {
+       "description": "",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "id": "10350",
+       "name": "Ready for QA",
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10350",
+       "statusCategory": {
+        "colorName": "yellow",
+        "id": 4,
+        "key": "indeterminate",
+        "name": "In Progress",
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+       }
+      },
+      "summary": "Linked Series & Banners"
+     },
+     "id": "54714",
+     "key": "SV-8692",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54714"
+    },
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/32121",
+    "type": {
+     "id": "10003",
+     "inward": "relates to",
+     "name": "Relates",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    }
+   }
+  ],
+  "issuerestriction": {
+   "issuerestrictions": {},
+   "shouldDisplay": true
+  },
+  "issuetype": {
+   "avatarId": 10854,
+   "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+   "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+   "hierarchyLevel": -1,
+   "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+   "id": "10007",
+   "name": "Story Defect",
+   "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+   "subtask": true
+  },
+  "labels": [],
+  "lastViewed": null,
+  "parent": {
+   "fields": {
+    "issuetype": {
+     "avatarId": 10315,
+     "description": "Stories track functionality or features expressed as user goals.",
+     "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+     "hierarchyLevel": 0,
+     "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+     "id": "10245",
+     "name": "Story",
+     "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+     "subtask": false
+    },
+    "priority": {
+     "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+     "id": "3",
+     "name": "Medium",
+     "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+    },
+    "status": {
+     "description": "",
+     "iconUrl": "https://shopview.atlassian.net/",
+     "id": "10350",
+     "name": "Ready for QA",
+     "self": "https://shopview.atlassian.net/rest/api/3/status/10350",
+     "statusCategory": {
+      "colorName": "yellow",
+      "id": 4,
+      "key": "indeterminate",
+      "name": "In Progress",
+      "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+     }
+    },
+    "summary": "Linked Series & Banners"
+   },
+   "id": "54714",
+   "key": "SV-8692",
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54714"
+  },
+  "priority": {
+   "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+   "id": "4",
+   "name": "Low",
+   "self": "https://shopview.atlassian.net/rest/api/3/priority/4"
+  },
+  "progress": {
+   "progress": 0,
+   "total": 0
+  },
+  "project": {
+   "avatarUrls": {
+    "16x16": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=xsmall",
+    "24x24": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=small",
+    "32x32": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=medium",
+    "48x48": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551"
+   },
+   "id": "10001",
+   "key": "SV",
+   "name": "ShopView",
+   "projectTypeKey": "software",
+   "self": "https://shopview.atlassian.net/rest/api/3/project/10001",
+   "simplified": true
+  },
+  "reporter": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "resolution": null,
+  "resolutiondate": null,
+  "security": null,
+  "status": {
+   "description": "",
+   "iconUrl": "https://shopview.atlassian.net/",
+   "id": "10349",
+   "name": "Open",
+   "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+   "statusCategory": {
+    "colorName": "blue-gray",
+    "id": 2,
+    "key": "new",
+    "name": "To Do",
+    "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+   }
+  },
+  "statusCategory": {
+   "colorName": "blue-gray",
+   "id": 2,
+   "key": "new",
+   "name": "To Do",
+   "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+  },
+  "statuscategorychangedate": "2026-08-06T02:13:01.999-0500",
+  "subtasks": [],
+  "summary": "Schedule: Month view series bar does not name the technician it belongs to",
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "2026-08-06T02:50:29.847-0500",
+  "versions": [],
+  "votes": {
+   "hasVoted": false,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8958/votes",
+   "votes": 0
+  },
+  "watches": {
+   "isWatching": true,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8958/watchers",
+   "watchCount": 1
+  },
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": -1
+ },
+ "id": "55093",
+ "key": "SV-8958",
+ "renderedFields": {
+  "aggregateprogress": null,
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [],
+  "comment": {
+   "comments": [],
+   "maxResults": 0,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/55093/comment",
+   "startAt": 0,
+   "total": 0
+  },
+  "components": null,
+  "created": "Today 12:13 PM",
+  "creator": null,
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": null,
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10285": "",
+  "customfield_10318": null,
+  "customfield_10351": "",
+  "customfield_10385": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": "<h3><a name=\"Whathappensnow\"></a>What happens now</h3>\n\n<p>In Month view a job spread over several days is drawn as one bar, but the bar does not say whose it is. It shows the customer, the unit, how many lines the job has and the words \"Part of a series\" - and no technician name anywhere.</p>\n\n<h3><a name=\"Whythismatters\"></a>Why this matters</h3>\n\n<p>Month view has no technician rows to read the name off, unlike Day and Week. So a planner looking at the month cannot tell who a job is booked to without opening it.</p>\n\n<h3><a name=\"Howtoseeit\"></a>How to see it</h3>\n\n<ol>\n\t<li>Open the Schedule page and switch to Month view.</li>\n\t<li>Find a job that runs over several days - it will say \"Part of a series\".</li>\n\t<li>Read the bar from left to right.</li>\n</ol>\n\n\n<h3><a name=\"Whatyousee\"></a>What you see</h3>\n\n<ul>\n\t<li>The bar reads, for example, \"Xiriver Apparel  24069  19 Lines  Part of a series\" and another reads \"Kastone Solutions  HE2-001  7 Lines  Part of a series\".</li>\n\t<li>No technician name or initials appear on the bar at all.</li>\n</ul>\n\n\n<h3><a name=\"Whatshouldhappen\"></a>What should happen</h3>\n\n<p>From the Schedule specification, section 4.6: <b>\"Month view: a continuous bar wrapping across week rows, labeled once at the start (with the technician)\".</b> The label at the start of the bar should include the technician.</p>\n\n<h3><a name=\"Exacttestdataused\"></a>Exact test data used</h3>\n\n<ul>\n\t<li>Location: Staging Heavy Duty - 9919. Build v3.5-7ec992f. Signed in as admin@shopview.com.</li>\n\t<li>Month view covering August 2026. Series bars seen: Xiriver Apparel unit 24069 (19 lines) and Kastone Solutions unit HE2-001 (7 lines).</li>\n\t<li>Six series entries were read in Month view; none carried a technician.</li>\n</ul>\n\n\n<h3><a name=\"Thingscheckedandruledoutfirst\"></a>Things checked and ruled out first</h3>\n\n<ul>\n\t<li>Not a display setting - the VIN switch and the department filters were not the cause; the technician is simply not part of the bar's text.</li>\n\t<li>Not a Week-view problem - in Week view the technician is the row, so the name is available there. This is specific to Month view.</li>\n\t<li>Not the same as the missing chevrons and week counter reported in SV-8895; those were checked on this build and the chevron and the \"Week 1 of 2\" text are present.</li>\n</ul>\n\n\n<h3><a name=\"Wherethiscamefrom\"></a>Where this came from</h3>\n\n<p>Found while re-checking Schedule test case <tt>SCH-SER-01</tt> (TestRail C29987) on 6 August 2026.</p>\n\n\n\n<p>Where this expected behaviour comes from: the Schedule specification, version 23, section 4.6 (Linked series and banners), which says: \"Month view: a continuous bar wrapping across week rows, labeled once at the start (with the technician), with a faded \u201ccontinues\u201d label on later weeks, empty weekend columns (when business hours are not set for weekends).\" The words in brackets are the part that is missing.</p>",
+  "duedate": null,
+  "environment": "",
+  "fixVersions": null,
+  "issuelinks": null,
+  "issuerestriction": null,
+  "issuetype": null,
+  "labels": null,
+  "lastViewed": null,
+  "priority": null,
+  "progress": null,
+  "project": null,
+  "reporter": null,
+  "resolution": null,
+  "resolutiondate": null,
+  "security": null,
+  "status": null,
+  "statusCategory": null,
+  "statuscategorychangedate": "Today 12:13 PM",
+  "subtasks": null,
+  "summary": null,
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "Today 12:50 PM",
+  "versions": null,
+  "votes": null,
+  "watches": null,
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": null
+ },
+ "self": "https://shopview.atlassian.net/rest/api/3/issue/55093"
+}

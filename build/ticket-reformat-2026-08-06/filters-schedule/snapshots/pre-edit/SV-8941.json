@@ -1,0 +1,1136 @@
+{
+ "changelog": {
+  "histories": [
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-06T02:50:05.595-0500",
+    "id": "140578",
+    "items": [
+     {
+      "field": "description",
+      "fieldId": "description",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": "h3. Description\n\nThe Schedule can show a unit's VIN on the shift blocks. That is useful in Day and Week view, where a block is wide enough to carry an extra line of text. In Month view the blocks are small, and the specification says the VIN is deliberately left off there so the block stays readable.\n\nMonth view shows it anyway. The VIN is printed on the blocks alongside the customer, the unit number and the job, which crowds an already small block and pushes the job description out of sight.\n\nIt matters because Month view is the planning view - it is where a service manager looks across four or five weeks at once - and the block text is what makes a job recognisable at a glance. A 17-character VIN takes the space the job description needed.\n\nh3. Branch / Environment\n\n* Application: https://sv8685.qa.shopview.com\n* API host: https://sv8685api.qa.shopview.com\n* Build marker ({{<meta name=\"app-version\">}}): {{v3.5-7ec992f}}\n* index.html last-modified: Wed, 05 Aug 2026 22:49:36 GMT, etag {{e2a80a6ab5e0b47c29fd88af9db1e980}}\n* Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f\n* Location / workplace: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton)\n* Signed in as admin@shopview.com (Administrator)\n* Observed: 2026-08-06, 06:0x UTC\n\nh3. Steps to reproduce\n\n# Sign in as an Administrator on the location Staging Heavy Duty - 9919 and open Schedule from the top navigation.\n# Open the *FILTER & DISPLAY* dropdown in the toolbar and turn the *VIN Number* switch *ON*. (It is off by default, so this step is needed - the fault is about what Month view does when the switch is on.)\n# Switch to Week view using the Day / Week / Month control and look at the blocks. The VIN appears - this part is correct.\n# Now switch to Month view and look at the blocks.\n# Switch to Day view and look again - the VIN appears there too, which is also correct.\n\nNo special test data is needed beyond a unit that actually has a VIN recorded; the week of 2 to 8 August 2026 on this shop already contains several.\n\nh3. Expected behaviour\n\nMonth view blocks should not show the VIN at all, even with the switch on.\n\nSchedule specification, Confluence page 713031682, version 23, section 4.4, states it plainly:\n\n{{\"Shown in day and week views only; month view omits it due to space constraints.\"}}\n\nh3. Current behaviour\n\nWith the VIN Number switch on, Month view prints the VIN on the blocks that have one.\n\n* *Month view: 11 of 67* blocks carry a full 17-character VIN.\n* Week view: 29 of 55 blocks - *correct*\n* Day view: 6 of 12 blocks - *correct*\n\nExamples read straight off the Month view blocks:\n\n* {{Xiriver Apparel ~ 24069 ~ 3HSDZAPT9KN042164 ~ 19 Lines ~ Part of a series}}\n* {{Xiriver Apparel ~ 16604 ~ 2H9U7A228VA048027 ~ Service - Wheels off single or tandem axle}}\n* {{Pamill Paving ~ 713 ~ 3HAEUMMP1NL291283 ~ Replace - Rear ramp handles}}\n\nNot every block shows one, because not every unit has a VIN recorded - some carry a unit number such as {{12-06696}} instead. The fault is that any VIN appears in Month view at all.\n\nh3. Images\n\nNo screenshot is attached. The block text is quoted verbatim above, which shows the VIN more precisely than a picture of a small block would, and the check is a single glance at Month view with the switch on.\n\nh3. Technical details for developers\n\nCounted by reading the rendered top-level block elements ({{.fc-timeline-event}}, {{.fc-daygrid-event}}) in each view and matching their text against a strict VIN pattern - exactly 17 characters from the VIN alphabet, containing at least one digit and at least one letter, so that unit numbers and job codes cannot be mistaken for a VIN.\n\nA first pass used a looser pattern and a selector that also matched nested child elements; it produced inflated and unreliable counts and was discarded. The figures above come from the corrected method, with the raw block text kept alongside each count.\n\nThe same switch was confirmed to be doing its job elsewhere in the same sitting, so this is specific to Month view rather than the switch being ignored: with the switch off no block in any view carries a VIN, and with it on both Day and Week views show it as intended.\n\nA duplicate search was run before filing. Four queries were used: every descendant of epic SV-8685 (69 issues), and project-wide text searches for \"VIN\", summary \"VIN\", and \"month view\".\n\n* SV-8835 is the closest and is NOT this: it reports the hover TOOLTIP showing the VIN while the toggle is OFF. This report is about the BLOCK in Month view while the toggle is ON - a different surface and the opposite switch position. (The tooltip behaviour SV-8835 describes was in fact ruled correct by the product owner on 31 July 2026.)\n* SV-8865, SV-8867, SV-8870 and SV-8909 are all Month view faults but concern opening, reassigning, drag-creating and empty-cell clicking - none touches block text.",
+      "to": null,
+      "toString": "h3. Description\n\nThe Schedule can show a unit's VIN on the shift blocks. That is useful in Day and Week view, where a block is wide enough to carry an extra line of text. In Month view the blocks are small, and the specification says the VIN is deliberately left off there so the block stays readable.\n\nMonth view shows it anyway. The VIN is printed on the blocks alongside the customer, the unit number and the job, which crowds an already small block and pushes the job description out of sight.\n\nIt matters because Month view is the planning view - it is where a service manager looks across four or five weeks at once - and the block text is what makes a job recognisable at a glance. A 17-character VIN takes the space the job description needed.\n\nh3. Branch / Environment\n\n* Application: https://sv8685.qa.shopview.com\n* API host: https://sv8685api.qa.shopview.com\n* Build marker ({{<meta name=\"app-version\">}}): {{v3.5-7ec992f}}\n* index.html last-modified: Wed, 05 Aug 2026 22:49:36 GMT, etag {{e2a80a6ab5e0b47c29fd88af9db1e980}}\n* Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f\n* Location / workplace: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton)\n* Signed in as admin@shopview.com (Administrator)\n* Observed: 2026-08-06, 06:0x UTC\n\nh3. Steps to reproduce\n\n# Sign in as an Administrator on the location Staging Heavy Duty - 9919 and open Schedule from the top navigation.\n# Open the *FILTER & DISPLAY* dropdown in the toolbar and turn the *VIN Number* switch *ON*. (It is off by default, so this step is needed - the fault is about what Month view does when the switch is on.)\n# Switch to Week view using the Day / Week / Month control and look at the blocks. The VIN appears - this part is correct.\n# Now switch to Month view and look at the blocks.\n# Switch to Day view and look again - the VIN appears there too, which is also correct.\n\nNo special test data is needed beyond a unit that actually has a VIN recorded; the week of 2 to 8 August 2026 on this shop already contains several.\n\nh3. Expected behaviour\n\nMonth view blocks should not show the VIN at all, even with the switch on.\n\nSchedule specification, Confluence page 713031682, version 23, section 4.4, states it plainly:\n\n{{\"Shown in day and week views only; month view omits it due to space constraints.\"}}\n\nh3. Current behaviour\n\nWith the VIN Number switch on, Month view prints the VIN on the blocks that have one.\n\n* *Month view: 11 of 67* blocks carry a full 17-character VIN.\n* Week view: 29 of 55 blocks - *correct*\n* Day view: 6 of 12 blocks - *correct*\n\nExamples read straight off the Month view blocks:\n\n* {{Xiriver Apparel ~ 24069 ~ 3HSDZAPT9KN042164 ~ 19 Lines ~ Part of a series}}\n* {{Xiriver Apparel ~ 16604 ~ 2H9U7A228VA048027 ~ Service - Wheels off single or tandem axle}}\n* {{Pamill Paving ~ 713 ~ 3HAEUMMP1NL291283 ~ Replace - Rear ramp handles}}\n\nNot every block shows one, because not every unit has a VIN recorded - some carry a unit number such as {{12-06696}} instead. The fault is that any VIN appears in Month view at all.\n\nh3. Images\n\nNo screenshot is attached. The block text is quoted verbatim above, which shows the VIN more precisely than a picture of a small block would, and the check is a single glance at Month view with the switch on.\n\nh3. Technical details for developers\n\nCounted by reading the rendered top-level block elements ({{.fc-timeline-event}}, {{.fc-daygrid-event}}) in each view and matching their text against a strict VIN pattern - exactly 17 characters from the VIN alphabet, containing at least one digit and at least one letter, so that unit numbers and job codes cannot be mistaken for a VIN.\n\nA first pass used a looser pattern and a selector that also matched nested child elements; it produced inflated and unreliable counts and was discarded. The figures above come from the corrected method, with the raw block text kept alongside each count.\n\nThe same switch was confirmed to be doing its job elsewhere in the same sitting, so this is specific to Month view rather than the switch being ignored: with the switch off no block in any view carries a VIN, and with it on both Day and Week views show it as intended.\n\nA duplicate search was run before filing. Four queries were used: every descendant of epic SV-8685 (69 issues), and project-wide text searches for \"VIN\", summary \"VIN\", and \"month view\".\n\n* SV-8835 is the closest and is NOT this: it reports the hover TOOLTIP showing the VIN while the toggle is OFF. This report is about the BLOCK in Month view while the toggle is ON - a different surface and the opposite switch position. (The tooltip behaviour SV-8835 describes was in fact ruled correct by the product owner on 31 July 2026.)\n* SV-8865, SV-8867, SV-8870 and SV-8909 are all Month view faults but concern opening, reassigning, drag-creating and empty-cell clicking - none touches block text.\n\n \n\nWhere this expected behaviour comes from: the Schedule specification, version 23, section 4.4 (Shift block anatomy and scope labeling), which says of the VIN line: \"Line 3 (optional): VIN number, visible only when the VIN toggle is on in Filter and Display (\u00a76). Shown in day and week views only; month view omits it due to space constraints.\""
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-06T00:51:45.775-0500",
+    "id": "140442",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-8690",
+      "toString": "This work item relates to SV-8690"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-06T00:51:34.029-0500",
+    "id": "140440",
+    "items": [
+     {
+      "field": "IssueParentAssociation",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "54712",
+      "toString": "SV-8690"
+     }
+    ]
+   }
+  ],
+  "maxResults": 3,
+  "startAt": 0,
+  "total": 3
+ },
+ "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+ "fields": {
+  "aggregateprogress": {
+   "progress": 0,
+   "total": 0
+  },
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [],
+  "comment": {
+   "comments": [],
+   "maxResults": 0,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/55076/comment",
+   "startAt": 0,
+   "total": 0
+  },
+  "components": [],
+  "created": "2026-08-06T00:51:34.001-0500",
+  "creator": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": "0|i01vtt:",
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10285": null,
+  "customfield_10318": null,
+  "customfield_10351": null,
+  "customfield_10385": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": {
+   "content": [
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Description",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "The Schedule can show a unit's VIN on the shift blocks. That is useful in Day and Week view, where a block is wide enough to carry an extra line of text. In Month view the blocks are small, and the specification says the VIN is deliberately left off there so the block stays readable.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Month view shows it anyway. The VIN is printed on the blocks alongside the customer, the unit number and the job, which crowds an already small block and pushes the job description out of sight.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "It matters because Month view is the planning view - it is where a service manager looks across four or five weeks at once - and the block text is what makes a job recognisable at a glance. A 17-character VIN takes the space the job description needed.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Branch / Environment",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Application: https://sv8685.qa.shopview.com",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "API host: https://sv8685api.qa.shopview.com",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Build marker (",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "<meta name=\"app-version\">",
+           "type": "text"
+          },
+          {
+           "text": "): ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "v3.5-7ec992f",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "index.html last-modified: Wed, 05 Aug 2026 22:49:36 GMT, etag ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "e2a80a6ab5e0b47c29fd88af9db1e980",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Location / workplace: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton)",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Signed in as admin@shopview.com (Administrator)",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Observed: 2026-08-06, 06:0x UTC",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "bulletList"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Steps to reproduce",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Sign in as an Administrator on the location Staging Heavy Duty - 9919 and open Schedule from the top navigation.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Open the ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "FILTER & DISPLAY",
+           "type": "text"
+          },
+          {
+           "text": " dropdown in the toolbar and turn the ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "VIN Number",
+           "type": "text"
+          },
+          {
+           "text": " switch ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "ON",
+           "type": "text"
+          },
+          {
+           "text": ". (It is off by default, so this step is needed - the fault is about what Month view does when the switch is on.)",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Switch to Week view using the Day / Week / Month control and look at the blocks. The VIN appears - this part is correct.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Now switch to Month view and look at the blocks.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Switch to Day view and look again - the VIN appears there too, which is also correct.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "orderedList"
+    },
+    {
+     "content": [
+      {
+       "text": "No special test data is needed beyond a unit that actually has a VIN recorded; the week of 2 to 8 August 2026 on this shop already contains several.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Expected behaviour",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Month view blocks should not show the VIN at all, even with the switch on.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Schedule specification, Confluence page 713031682, version 23, section 4.4, states it plainly:",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "marks": [
+        {
+         "type": "code"
+        }
+       ],
+       "text": "\"Shown in day and week views only; month view omits it due to space constraints.\"",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Current behaviour",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "With the VIN Number switch on, Month view prints the VIN on the blocks that have one.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "Month view: 11 of 67",
+           "type": "text"
+          },
+          {
+           "text": " blocks carry a full 17-character VIN.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Week view: 29 of 55 blocks - ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "correct",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Day view: 6 of 12 blocks - ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "correct",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "bulletList"
+    },
+    {
+     "content": [
+      {
+       "text": "Examples read straight off the Month view blocks:",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "Xiriver Apparel ~ 24069 ~ 3HSDZAPT9KN042164 ~ 19 Lines ~ Part of a series",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "Xiriver Apparel ~ 16604 ~ 2H9U7A228VA048027 ~ Service - Wheels off single or tandem axle",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "Pamill Paving ~ 713 ~ 3HAEUMMP1NL291283 ~ Replace - Rear ramp handles",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "bulletList"
+    },
+    {
+     "content": [
+      {
+       "text": "Not every block shows one, because not every unit has a VIN recorded - some carry a unit number such as ",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "code"
+        }
+       ],
+       "text": "12-06696",
+       "type": "text"
+      },
+      {
+       "text": " instead. The fault is that any VIN appears in Month view at all.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Images",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "No screenshot is attached. The block text is quoted verbatim above, which shows the VIN more precisely than a picture of a small block would, and the check is a single glance at Month view with the switch on.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Technical details for developers",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Counted by reading the rendered top-level block elements (",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "code"
+        }
+       ],
+       "text": ".fc-timeline-event",
+       "type": "text"
+      },
+      {
+       "text": ", ",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "code"
+        }
+       ],
+       "text": ".fc-daygrid-event",
+       "type": "text"
+      },
+      {
+       "text": ") in each view and matching their text against a strict VIN pattern - exactly 17 characters from the VIN alphabet, containing at least one digit and at least one letter, so that unit numbers and job codes cannot be mistaken for a VIN.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "A first pass used a looser pattern and a selector that also matched nested child elements; it produced inflated and unreliable counts and was discarded. The figures above come from the corrected method, with the raw block text kept alongside each count.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "The same switch was confirmed to be doing its job elsewhere in the same sitting, so this is specific to Month view rather than the switch being ignored: with the switch off no block in any view carries a VIN, and with it on both Day and Week views show it as intended.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "A duplicate search was run before filing. Four queries were used: every descendant of epic SV-8685 (69 issues), and project-wide text searches for \"VIN\", summary \"VIN\", and \"month view\".",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "SV-8835 is the closest and is NOT this: it reports the hover TOOLTIP showing the VIN while the toggle is OFF. This report is about the BLOCK in Month view while the toggle is ON - a different surface and the opposite switch position. (The tooltip behaviour SV-8835 describes was in fact ruled correct by the product owner on 31 July 2026.)",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "SV-8865, SV-8867, SV-8870 and SV-8909 are all Month view faults but concern opening, reassigning, drag-creating and empty-cell clicking - none touches block text.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "bulletList"
+    },
+    {
+     "content": [
+      {
+       "text": " ",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Where this expected behaviour comes from: the Schedule specification, version 23, section 4.4 (Shift block anatomy and scope labeling), which says of the VIN line: \"Line 3 (optional): VIN number, visible only when the VIN toggle is on in Filter and Display (\u00a76). Shown in day and week views only; month view omits it due to space constraints.\"",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    }
+   ],
+   "type": "doc",
+   "version": 1
+  },
+  "duedate": null,
+  "environment": null,
+  "fixVersions": [],
+  "issuelinks": [
+   {
+    "id": "32104",
+    "outwardIssue": {
+     "fields": {
+      "issuetype": {
+       "avatarId": 10315,
+       "description": "Stories track functionality or features expressed as user goals.",
+       "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+       "hierarchyLevel": 0,
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+       "id": "10245",
+       "name": "Story",
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+       "subtask": false
+      },
+      "priority": {
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "id": "3",
+       "name": "Medium",
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+      },
+      "status": {
+       "description": "",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "id": "10350",
+       "name": "Ready for QA",
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10350",
+       "statusCategory": {
+        "colorName": "yellow",
+        "id": 4,
+        "key": "indeterminate",
+        "name": "In Progress",
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+       }
+      },
+      "summary": "Shift Block Anatomy & Scope Labeling"
+     },
+     "id": "54712",
+     "key": "SV-8690",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54712"
+    },
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/32104",
+    "type": {
+     "id": "10003",
+     "inward": "relates to",
+     "name": "Relates",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    }
+   }
+  ],
+  "issuerestriction": {
+   "issuerestrictions": {},
+   "shouldDisplay": true
+  },
+  "issuetype": {
+   "avatarId": 10854,
+   "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+   "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+   "hierarchyLevel": -1,
+   "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+   "id": "10007",
+   "name": "Story Defect",
+   "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+   "subtask": true
+  },
+  "labels": [],
+  "lastViewed": null,
+  "parent": {
+   "fields": {
+    "issuetype": {
+     "avatarId": 10315,
+     "description": "Stories track functionality or features expressed as user goals.",
+     "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+     "hierarchyLevel": 0,
+     "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+     "id": "10245",
+     "name": "Story",
+     "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+     "subtask": false
+    },
+    "priority": {
+     "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+     "id": "3",
+     "name": "Medium",
+     "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+    },
+    "status": {
+     "description": "",
+     "iconUrl": "https://shopview.atlassian.net/",
+     "id": "10350",
+     "name": "Ready for QA",
+     "self": "https://shopview.atlassian.net/rest/api/3/status/10350",
+     "statusCategory": {
+      "colorName": "yellow",
+      "id": 4,
+      "key": "indeterminate",
+      "name": "In Progress",
+      "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+     }
+    },
+    "summary": "Shift Block Anatomy & Scope Labeling"
+   },
+   "id": "54712",
+   "key": "SV-8690",
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54712"
+  },
+  "priority": {
+   "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+   "id": "4",
+   "name": "Low",
+   "self": "https://shopview.atlassian.net/rest/api/3/priority/4"
+  },
+  "progress": {
+   "progress": 0,
+   "total": 0
+  },
+  "project": {
+   "avatarUrls": {
+    "16x16": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=xsmall",
+    "24x24": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=small",
+    "32x32": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=medium",
+    "48x48": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551"
+   },
+   "id": "10001",
+   "key": "SV",
+   "name": "ShopView",
+   "projectTypeKey": "software",
+   "self": "https://shopview.atlassian.net/rest/api/3/project/10001",
+   "simplified": true
+  },
+  "reporter": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "resolution": null,
+  "resolutiondate": null,
+  "security": null,
+  "status": {
+   "description": "",
+   "iconUrl": "https://shopview.atlassian.net/",
+   "id": "10349",
+   "name": "Open",
+   "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+   "statusCategory": {
+    "colorName": "blue-gray",
+    "id": 2,
+    "key": "new",
+    "name": "To Do",
+    "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+   }
+  },
+  "statusCategory": {
+   "colorName": "blue-gray",
+   "id": 2,
+   "key": "new",
+   "name": "To Do",
+   "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+  },
+  "statuscategorychangedate": "2026-08-06T00:51:34.438-0500",
+  "subtasks": [],
+  "summary": "Month view shows the VIN on shift blocks although the spec says it is omitted there",
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "2026-08-06T02:50:05.595-0500",
+  "versions": [],
+  "votes": {
+   "hasVoted": false,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8941/votes",
+   "votes": 0
+  },
+  "watches": {
+   "isWatching": true,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8941/watchers",
+   "watchCount": 1
+  },
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": -1
+ },
+ "id": "55076",
+ "key": "SV-8941",
+ "renderedFields": {
+  "aggregateprogress": null,
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [],
+  "comment": {
+   "comments": [],
+   "maxResults": 0,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/55076/comment",
+   "startAt": 0,
+   "total": 0
+  },
+  "components": null,
+  "created": "Today 10:51 AM",
+  "creator": null,
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": null,
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10285": "",
+  "customfield_10318": null,
+  "customfield_10351": "",
+  "customfield_10385": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": "<h3><a name=\"Description\"></a>Description</h3>\n\n<p>The Schedule can show a unit's VIN on the shift blocks. That is useful in Day and Week view, where a block is wide enough to carry an extra line of text. In Month view the blocks are small, and the specification says the VIN is deliberately left off there so the block stays readable.</p>\n\n<p>Month view shows it anyway. The VIN is printed on the blocks alongside the customer, the unit number and the job, which crowds an already small block and pushes the job description out of sight.</p>\n\n<p>It matters because Month view is the planning view - it is where a service manager looks across four or five weeks at once - and the block text is what makes a job recognisable at a glance. A 17-character VIN takes the space the job description needed.</p>\n\n<h3><a name=\"Branch%2FEnvironment\"></a>Branch / Environment</h3>\n\n<ul>\n\t<li>Application: <a href=\"https://sv8685.qa.shopview.com\" class=\"external-link\" rel=\"nofollow noreferrer\">https://sv8685.qa.shopview.com</a></li>\n\t<li>API host: <a href=\"https://sv8685api.qa.shopview.com\" class=\"external-link\" rel=\"nofollow noreferrer\">https://sv8685api.qa.shopview.com</a></li>\n\t<li>Build marker (<tt>&lt;meta name=\"app-version\"&gt;</tt>): <tt>v3.5-7ec992f</tt></li>\n\t<li>index.html last-modified: Wed, 05 Aug 2026 22:49:36 GMT, etag <tt>e2a80a6ab5e0b47c29fd88af9db1e980</tt></li>\n\t<li>Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f</li>\n\t<li>Location / workplace: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton)</li>\n\t<li>Signed in as admin@shopview.com (Administrator)</li>\n\t<li>Observed: 2026-08-06, 06:0x UTC</li>\n</ul>\n\n\n<h3><a name=\"Stepstoreproduce\"></a>Steps to reproduce</h3>\n\n<ol>\n\t<li>Sign in as an Administrator on the location Staging Heavy Duty - 9919 and open Schedule from the top navigation.</li>\n\t<li>Open the <b>FILTER &amp; DISPLAY</b> dropdown in the toolbar and turn the <b>VIN Number</b> switch <b>ON</b>. (It is off by default, so this step is needed - the fault is about what Month view does when the switch is on.)</li>\n\t<li>Switch to Week view using the Day / Week / Month control and look at the blocks. The VIN appears - this part is correct.</li>\n\t<li>Now switch to Month view and look at the blocks.</li>\n\t<li>Switch to Day view and look again - the VIN appears there too, which is also correct.</li>\n</ol>\n\n\n<p>No special test data is needed beyond a unit that actually has a VIN recorded; the week of 2 to 8 August 2026 on this shop already contains several.</p>\n\n<h3><a name=\"Expectedbehaviour\"></a>Expected behaviour</h3>\n\n<p>Month view blocks should not show the VIN at all, even with the switch on.</p>\n\n<p>Schedule specification, Confluence page 713031682, version 23, section 4.4, states it plainly:</p>\n\n<p><tt>\"Shown in day and week views only; month view omits it due to space constraints.\"</tt></p>\n\n<h3><a name=\"Currentbehaviour\"></a>Current behaviour</h3>\n\n<p>With the VIN Number switch on, Month view prints the VIN on the blocks that have one.</p>\n\n<ul>\n\t<li><b>Month view: 11 of 67</b> blocks carry a full 17-character VIN.</li>\n\t<li>Week view: 29 of 55 blocks - <b>correct</b></li>\n\t<li>Day view: 6 of 12 blocks - <b>correct</b></li>\n</ul>\n\n\n<p>Examples read straight off the Month view blocks:</p>\n\n<ul>\n\t<li><tt>Xiriver Apparel ~ 24069 ~ 3HSDZAPT9KN042164 ~ 19 Lines ~ Part of a series</tt></li>\n\t<li><tt>Xiriver Apparel ~ 16604 ~ 2H9U7A228VA048027 ~ Service - Wheels off single or tandem axle</tt></li>\n\t<li><tt>Pamill Paving ~ 713 ~ 3HAEUMMP1NL291283 ~ Replace - Rear ramp handles</tt></li>\n</ul>\n\n\n<p>Not every block shows one, because not every unit has a VIN recorded - some carry a unit number such as <tt>12-06696</tt> instead. The fault is that any VIN appears in Month view at all.</p>\n\n<h3><a name=\"Images\"></a>Images</h3>\n\n<p>No screenshot is attached. The block text is quoted verbatim above, which shows the VIN more precisely than a picture of a small block would, and the check is a single glance at Month view with the switch on.</p>\n\n<h3><a name=\"Technicaldetailsfordevelopers\"></a>Technical details for developers</h3>\n\n<p>Counted by reading the rendered top-level block elements (<tt>.fc-timeline-event</tt>, <tt>.fc-daygrid-event</tt>) in each view and matching their text against a strict VIN pattern - exactly 17 characters from the VIN alphabet, containing at least one digit and at least one letter, so that unit numbers and job codes cannot be mistaken for a VIN.</p>\n\n<p>A first pass used a looser pattern and a selector that also matched nested child elements; it produced inflated and unreliable counts and was discarded. The figures above come from the corrected method, with the raw block text kept alongside each count.</p>\n\n<p>The same switch was confirmed to be doing its job elsewhere in the same sitting, so this is specific to Month view rather than the switch being ignored: with the switch off no block in any view carries a VIN, and with it on both Day and Week views show it as intended.</p>\n\n<p>A duplicate search was run before filing. Four queries were used: every descendant of epic \n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-8685\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-8685\" class=\"jira-issue-macro-key issue-link\"  title=\"Schedule \u2014 Technician Scheduling Module\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium\" />\n            SV-8685\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-complete jira-macro-single-issue-export-pdf\">Open</span>\n            </span>\n (69 issues), and project-wide text searches for \"VIN\", summary \"VIN\", and \"month view\".</p>\n\n<ul>\n\t<li>\n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-8835\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-8835\" class=\"jira-issue-macro-key issue-link\"  title=\"Hover tooltip shows VIN even when the VIN toggle is off\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium\" />\n            SV-8835\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-complete jira-macro-single-issue-export-pdf\">Ready to Fix</span>\n            </span>\n is the closest and is NOT this: it reports the hover TOOLTIP showing the VIN while the toggle is OFF. This report is about the BLOCK in Month view while the toggle is ON - a different surface and the opposite switch position. (The tooltip behaviour \n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-8835\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-8835\" class=\"jira-issue-macro-key issue-link\"  title=\"Hover tooltip shows VIN even when the VIN toggle is off\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium\" />\n            SV-8835\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-complete jira-macro-single-issue-export-pdf\">Ready to Fix</span>\n            </span>\n describes was in fact ruled correct by the product owner on 31 July 2026.)</li>\n\t<li>\n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-8865\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-8865\" class=\"jira-issue-macro-key issue-link\"  title=\"Recurring (series) shift can&#39;t be opened or deleted in Month view\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium\" />\n            SV-8865\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-current jira-macro-single-issue-export-pdf\">Ready for QA</span>\n            </span>\n, \n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-8867\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-8867\" class=\"jira-issue-macro-key issue-link\"  title=\"Recurring (series) shift can&#39;t be reassigned in Week and Month view \u2014 drag bounces back\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium\" />\n            SV-8867\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-current jira-macro-single-issue-export-pdf\">In Progress</span>\n            </span>\n, \n    <span class=\"jira-issue-macro resolved\" data-jira-key=\"SV-8870\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-8870\" class=\"jira-issue-macro-key issue-link\"  title=\"Cannot create a shift by dragging a work order onto a day in Month view\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium\" />\n            SV-8870\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-success jira-macro-single-issue-export-pdf\">OBSOLETE</span>\n            </span>\n and \n    <span class=\"jira-issue-macro resolved\" data-jira-key=\"SV-8909\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-8909\" class=\"jira-issue-macro-key issue-link\"  title=\"Clarify whether clicking an empty cell in Month view should allow creating events/shifts\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium\" />\n            SV-8909\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-success jira-macro-single-issue-export-pdf\">OBSOLETE</span>\n            </span>\n are all Month view faults but concern opening, reassigning, drag-creating and empty-cell clicking - none touches block text.</li>\n</ul>\n\n\n\n\n<p>Where this expected behaviour comes from: the Schedule specification, version 23, section 4.4 (Shift block anatomy and scope labeling), which says of the VIN line: \"Line 3 (optional): VIN number, visible only when the VIN toggle is on in Filter and Display (\u00a76). Shown in day and week views only; month view omits it due to space constraints.\"</p>",
+  "duedate": null,
+  "environment": "",
+  "fixVersions": null,
+  "issuelinks": null,
+  "issuerestriction": null,
+  "issuetype": null,
+  "labels": null,
+  "lastViewed": null,
+  "priority": null,
+  "progress": null,
+  "project": null,
+  "reporter": null,
+  "resolution": null,
+  "resolutiondate": null,
+  "security": null,
+  "status": null,
+  "statusCategory": null,
+  "statuscategorychangedate": "Today 10:51 AM",
+  "subtasks": null,
+  "summary": null,
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "Today 12:50 PM",
+  "versions": null,
+  "votes": null,
+  "watches": null,
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": null
+ },
+ "self": "https://shopview.atlassian.net/rest/api/3/issue/55076"
+}

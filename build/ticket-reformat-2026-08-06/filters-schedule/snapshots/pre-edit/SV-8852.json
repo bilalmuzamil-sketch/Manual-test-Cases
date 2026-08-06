@@ -1,0 +1,930 @@
+{
+ "changelog": {
+  "histories": [
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-06T02:49:22.808-0500",
+    "id": "140548",
+    "items": [
+     {
+      "field": "description",
+      "fieldId": "description",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": "h3. Description\n\nWhen a shift clashes - a double booking, a day the technician does not work, or hours outside their shift - the shift window shows a warning banner naming the reason. The banner is supposed to carry an action that takes the planner straight to fixing it. There is no such action. The planner is told there is a problem and then left to work out for themselves how to move the job.\n\nh3. Branch / Environment\n\nBranch tested: https://sv8685.qa.shopview.com/schedule \u00b7 API host: https://sv8685api.qa.shopview.com \u00b7 Build marker (meta app-version): v3.5-4873abe \u00b7 index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 \u00b7 Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f \u00b7 Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) \u00b7 Signed in as admin@shopview.com (Administrator) \u00b7 Observed 2026-08-04, 16:00-19:00 UTC.\n\nh3. Steps to reproduce\n\n# Open the Schedule and pick the Week view.\n# Note that technician Ayesha Khan does not work Sundays (Edit Staff Member shows Saturday and Sunday as Not working).\n# Type S-15855 into 'Search work orders' to find the Vuchester Retail work order, unit 10123073, line ' Service - Mobile service call made by George Donald 403-369-7067'.\n# Drag that card onto Ayesha Khan's row on a Sunday column.\n# The new block gets an amber warning triangle. Click the block to open the shift window.\n# Read the warning banner and look for an action next to it.\n\nh3. Expected behaviour\n\nThe banner reads the clash reason and offers an action - an 'Adjust' button or link - that lets the planner correct the shift there and then.\n\nh3. Current behaviour\n\nThe banner reads 'Scheduling conflict / Not a working day' and offers nothing. The only controls in the whole window are the delete bin, the close X, the colour selector, Add Note and Open Work Order.\n\nh3. Images\n\nNo screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.\n\nh3. Technical details for developers\n\nEnumerated every button inside dialog_schedule_shift_detail for a conflicted shift: button_shift_detail_delete, the close X, button_shift_detail_color, button_shift_detail_add_note, button_shift_detail_open_work_order. No adjust control exists under any test id or any label. Spec section 4.9: 'A conflict banner with an \"Adjust\" action when the shift is conflicted.'",
+      "to": null,
+      "toString": "h3. Description\n\nWhen a shift clashes - a double booking, a day the technician does not work, or hours outside their shift - the shift window shows a warning banner naming the reason. The banner is supposed to carry an action that takes the planner straight to fixing it. There is no such action. The planner is told there is a problem and then left to work out for themselves how to move the job.\n\nh3. Branch / Environment\n\nBranch tested: https://sv8685.qa.shopview.com/schedule \u00b7 API host: https://sv8685api.qa.shopview.com \u00b7 Build marker (meta app-version): v3.5-4873abe \u00b7 index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 \u00b7 Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f \u00b7 Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) \u00b7 Signed in as admin@shopview.com (Administrator) \u00b7 Observed 2026-08-04, 16:00-19:00 UTC.\n\nh3. Steps to reproduce\n\n# Open the Schedule and pick the Week view.\n# Note that technician Ayesha Khan does not work Sundays (Edit Staff Member shows Saturday and Sunday as Not working).\n# Type S-15855 into 'Search work orders' to find the Vuchester Retail work order, unit 10123073, line ' Service - Mobile service call made by George Donald 403-369-7067'.\n# Drag that card onto Ayesha Khan's row on a Sunday column.\n# The new block gets an amber warning triangle. Click the block to open the shift window.\n# Read the warning banner and look for an action next to it.\n\nh3. Expected behaviour\n\nThe banner reads the clash reason and offers an action - an 'Adjust' button or link - that lets the planner correct the shift there and then.\n\nh3. Current behaviour\n\nThe banner reads 'Scheduling conflict / Not a working day' and offers nothing. The only controls in the whole window are the delete bin, the close X, the colour selector, Add Note and Open Work Order.\n\nh3. Images\n\nNo screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.\n\nh3. Technical details for developers\n\nEnumerated every button inside dialog_schedule_shift_detail for a conflicted shift: button_shift_detail_delete, the close X, button_shift_detail_color, button_shift_detail_add_note, button_shift_detail_open_work_order. No adjust control exists under any test id or any label. Spec section 4.9: 'A conflict banner with an \"Adjust\" action when the shift is conflicted.'\n\n \n\nWhere this expected behaviour comes from: the Schedule specification, version 23, section 4.9, which lists among the things the shift detail panel shows: \"A conflict banner with an \u201cAdjust\u201d action when the shift is conflicted.\" The banner and the action are named together, so a banner on its own does not meet it."
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T09:33:40.960-0500",
+    "id": "140073",
+    "items": [
+     {
+      "field": "assignee",
+      "fieldId": "assignee",
+      "fieldtype": "jira",
+      "from": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+      "fromString": "Mudassir Qamar",
+      "to": null,
+      "toString": null
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T09:18:28.691-0500",
+    "id": "140039",
+    "items": [
+     {
+      "field": "IssueParentAssociation",
+      "fieldtype": "jira",
+      "from": "54707",
+      "fromString": "SV-8685",
+      "to": "54719",
+      "toString": "SV-8697"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T09:18:28.677-0500",
+    "id": "140040",
+    "items": [
+     {
+      "field": "issuetype",
+      "fieldId": "issuetype",
+      "fieldtype": "jira",
+      "from": "10008",
+      "fromString": "Bug",
+      "to": "10007",
+      "toString": "Story Defect"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T07:21:37.278-0500",
+    "id": "139961",
+    "items": [
+     {
+      "field": "assignee",
+      "fieldId": "assignee",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "tmpFromAccountId": null,
+      "tmpToAccountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+      "to": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+      "toString": "Mudassir Qamar"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T03:21:35.166-0500",
+    "id": "139781",
+    "items": [
+     {
+      "field": "labels",
+      "fieldId": "labels",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": "",
+      "to": null,
+      "toString": "FS-Schedule"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-04T12:18:51.750-0500",
+    "id": "139611",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-8695",
+      "toString": "This work item relates to SV-8695"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-04T12:18:50.645-0500",
+    "id": "139609",
+    "items": [
+     {
+      "field": "IssueParentAssociation",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "54707",
+      "toString": "SV-8685"
+     }
+    ]
+   }
+  ],
+  "maxResults": 8,
+  "startAt": 0,
+  "total": 8
+ },
+ "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+ "fields": {
+  "aggregateprogress": {
+   "progress": 0,
+   "total": 0
+  },
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [],
+  "comment": {
+   "comments": [
+    {
+     "author": {
+      "accountId": "712020:b60d0335-ad52-459c-b20c-490448734cda",
+      "accountType": "atlassian",
+      "active": true,
+      "avatarUrls": {
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/16",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/24",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/32",
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/48"
+      },
+      "displayName": "Stefan Vukovic",
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3Ab60d0335-ad52-459c-b20c-490448734cda",
+      "timeZone": "America/Bogota"
+     },
+     "body": {
+      "content": [
+       {
+        "attrs": {
+         "localId": "2f14c095db67"
+        },
+        "content": [
+         {
+          "attrs": {
+           "accessLevel": "",
+           "id": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+           "localId": "6c00e7b9-03c4-43c2-8740-7f20d2facb8f",
+           "text": "@Branko Cicovic"
+          },
+          "type": "mention"
+         },
+         {
+          "text": " ",
+          "type": "text"
+         },
+         {
+          "attrs": {
+           "accessLevel": "",
+           "id": "712020:1f21c3b6-c183-4d46-9561-7b79f0e197ab",
+           "localId": "d7de4847-3eea-49fa-9f33-a07657820cfd",
+           "text": "@Milos Vasic"
+          },
+          "type": "mention"
+         },
+         {
+          "text": " - take a look at this one. Branko and I discussed that only \u2018out of working hours\u2019 conflicts should have adjust option.",
+          "type": "text"
+         }
+        ],
+        "type": "paragraph"
+       }
+      ],
+      "type": "doc",
+      "version": 1
+     },
+     "created": "2026-08-06T03:38:59.696-0500",
+     "id": "74602",
+     "jsdPublic": true,
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54979/comment/74602",
+     "updateAuthor": {
+      "accountId": "712020:b60d0335-ad52-459c-b20c-490448734cda",
+      "accountType": "atlassian",
+      "active": true,
+      "avatarUrls": {
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/16",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/24",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/32",
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/48"
+      },
+      "displayName": "Stefan Vukovic",
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3Ab60d0335-ad52-459c-b20c-490448734cda",
+      "timeZone": "America/Bogota"
+     },
+     "updated": "2026-08-06T03:38:59.696-0500"
+    }
+   ],
+   "maxResults": 1,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54979/comment",
+   "startAt": 0,
+   "total": 1
+  },
+  "components": [],
+  "created": "2026-08-04T12:18:50.613-0500",
+  "creator": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": "0|i01v9l:",
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10285": null,
+  "customfield_10318": null,
+  "customfield_10351": null,
+  "customfield_10385": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": {
+   "content": [
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Description",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "When a shift clashes - a double booking, a day the technician does not work, or hours outside their shift - the shift window shows a warning banner naming the reason. The banner is supposed to carry an action that takes the planner straight to fixing it. There is no such action. The planner is told there is a problem and then left to work out for themselves how to move the job.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Branch / Environment",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Branch tested: https://sv8685.qa.shopview.com/schedule \u00b7 API host: https://sv8685api.qa.shopview.com \u00b7 Build marker (meta app-version): v3.5-4873abe \u00b7 index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 \u00b7 Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f \u00b7 Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) \u00b7 Signed in as admin@shopview.com (Administrator) \u00b7 Observed 2026-08-04, 16:00-19:00 UTC.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Steps to reproduce",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Open the Schedule and pick the Week view.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Note that technician Ayesha Khan does not work Sundays (Edit Staff Member shows Saturday and Sunday as Not working).",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Type S-15855 into 'Search work orders' to find the Vuchester Retail work order, unit 10123073, line ' Service - Mobile service call made by George Donald 403-369-7067'.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Drag that card onto Ayesha Khan's row on a Sunday column.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "The new block gets an amber warning triangle. Click the block to open the shift window.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Read the warning banner and look for an action next to it.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "orderedList"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Expected behaviour",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "The banner reads the clash reason and offers an action - an 'Adjust' button or link - that lets the planner correct the shift there and then.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Current behaviour",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "The banner reads 'Scheduling conflict / Not a working day' and offers nothing. The only controls in the whole window are the delete bin, the close X, the colour selector, Add Note and Open Work Order.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Images",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "No screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Technical details for developers",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Enumerated every button inside dialog_schedule_shift_detail for a conflicted shift: button_shift_detail_delete, the close X, button_shift_detail_color, button_shift_detail_add_note, button_shift_detail_open_work_order. No adjust control exists under any test id or any label. Spec section 4.9: 'A conflict banner with an \"Adjust\" action when the shift is conflicted.'",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": " ",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Where this expected behaviour comes from: the Schedule specification, version 23, section 4.9, which lists among the things the shift detail panel shows: \"A conflict banner with an \u201cAdjust\u201d action when the shift is conflicted.\" The banner and the action are named together, so a banner on its own does not meet it.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    }
+   ],
+   "type": "doc",
+   "version": 1
+  },
+  "duedate": null,
+  "environment": null,
+  "fixVersions": [],
+  "issuelinks": [
+   {
+    "id": "32064",
+    "outwardIssue": {
+     "fields": {
+      "issuetype": {
+       "avatarId": 10315,
+       "description": "Stories track functionality or features expressed as user goals.",
+       "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+       "hierarchyLevel": 0,
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+       "id": "10245",
+       "name": "Story",
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+       "subtask": false
+      },
+      "priority": {
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "id": "3",
+       "name": "Medium",
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+      },
+      "status": {
+       "description": "",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "id": "10350",
+       "name": "Ready for QA",
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10350",
+       "statusCategory": {
+        "colorName": "yellow",
+        "id": 4,
+        "key": "indeterminate",
+        "name": "In Progress",
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+       }
+      },
+      "summary": "Shift Detail Modal & Hover Tooltips"
+     },
+     "id": "54717",
+     "key": "SV-8695",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54717"
+    },
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/32064",
+    "type": {
+     "id": "10003",
+     "inward": "relates to",
+     "name": "Relates",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    }
+   }
+  ],
+  "issuerestriction": {
+   "issuerestrictions": {},
+   "shouldDisplay": true
+  },
+  "issuetype": {
+   "avatarId": 10854,
+   "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+   "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+   "hierarchyLevel": -1,
+   "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+   "id": "10007",
+   "name": "Story Defect",
+   "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+   "subtask": true
+  },
+  "labels": [
+   "FS-Schedule"
+  ],
+  "lastViewed": "2026-08-05T20:31:53.261-0500",
+  "parent": {
+   "fields": {
+    "issuetype": {
+     "avatarId": 10315,
+     "description": "Stories track functionality or features expressed as user goals.",
+     "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+     "hierarchyLevel": 0,
+     "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+     "id": "10245",
+     "name": "Story",
+     "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+     "subtask": false
+    },
+    "priority": {
+     "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+     "id": "3",
+     "name": "Medium",
+     "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+    },
+    "status": {
+     "description": "",
+     "iconUrl": "https://shopview.atlassian.net/",
+     "id": "10350",
+     "name": "Ready for QA",
+     "self": "https://shopview.atlassian.net/rest/api/3/status/10350",
+     "statusCategory": {
+      "colorName": "yellow",
+      "id": 4,
+      "key": "indeterminate",
+      "name": "In Progress",
+      "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+     }
+    },
+    "summary": "Conflict Detection"
+   },
+   "id": "54719",
+   "key": "SV-8697",
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54719"
+  },
+  "priority": {
+   "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+   "id": "4",
+   "name": "Low",
+   "self": "https://shopview.atlassian.net/rest/api/3/priority/4"
+  },
+  "progress": {
+   "progress": 0,
+   "total": 0
+  },
+  "project": {
+   "avatarUrls": {
+    "16x16": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=xsmall",
+    "24x24": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=small",
+    "32x32": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=medium",
+    "48x48": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551"
+   },
+   "id": "10001",
+   "key": "SV",
+   "name": "ShopView",
+   "projectTypeKey": "software",
+   "self": "https://shopview.atlassian.net/rest/api/3/project/10001",
+   "simplified": true
+  },
+  "reporter": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "resolution": null,
+  "resolutiondate": null,
+  "security": null,
+  "status": {
+   "description": "",
+   "iconUrl": "https://shopview.atlassian.net/",
+   "id": "10349",
+   "name": "Open",
+   "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+   "statusCategory": {
+    "colorName": "blue-gray",
+    "id": 2,
+    "key": "new",
+    "name": "To Do",
+    "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+   }
+  },
+  "statusCategory": {
+   "colorName": "blue-gray",
+   "id": 2,
+   "key": "new",
+   "name": "To Do",
+   "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+  },
+  "statuscategorychangedate": "2026-08-04T12:18:51.165-0500",
+  "subtasks": [],
+  "summary": "The shift window warns about a scheduling clash but gives no way to fix it",
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "2026-08-06T03:38:59.771-0500",
+  "versions": [],
+  "votes": {
+   "hasVoted": false,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8852/votes",
+   "votes": 0
+  },
+  "watches": {
+   "isWatching": true,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8852/watchers",
+   "watchCount": 2
+  },
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": -1
+ },
+ "id": "54979",
+ "key": "SV-8852",
+ "renderedFields": {
+  "aggregateprogress": null,
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [],
+  "comment": {
+   "comments": [
+    {
+     "author": {
+      "accountId": "712020:b60d0335-ad52-459c-b20c-490448734cda",
+      "accountType": "atlassian",
+      "active": true,
+      "avatarUrls": {
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/16",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/24",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/32",
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/48"
+      },
+      "displayName": "Stefan Vukovic",
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3Ab60d0335-ad52-459c-b20c-490448734cda",
+      "timeZone": "America/Bogota"
+     },
+     "body": "<p><a href=\"https://shopview.atlassian.net/secure/ViewProfile.jspa?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09\" class=\"user-hover\" rel=\"712020:92c46428-d353-4811-9672-e47eeb410d09\" data-account-id=\"712020:92c46428-d353-4811-9672-e47eeb410d09\" accountid=\"712020:92c46428-d353-4811-9672-e47eeb410d09\" rel=\"noreferrer\">Branko Cicovic</a> <a href=\"https://shopview.atlassian.net/secure/ViewProfile.jspa?accountId=712020%3A1f21c3b6-c183-4d46-9561-7b79f0e197ab\" class=\"user-hover\" rel=\"712020:1f21c3b6-c183-4d46-9561-7b79f0e197ab\" data-account-id=\"712020:1f21c3b6-c183-4d46-9561-7b79f0e197ab\" accountid=\"712020:1f21c3b6-c183-4d46-9561-7b79f0e197ab\" rel=\"noreferrer\">Milos Vasic</a> - take a look at this one. Branko and I discussed that only \u2018out of working hours\u2019 conflicts should have adjust option.</p>",
+     "created": "Today 1:38 PM",
+     "id": "74602",
+     "jsdPublic": true,
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54979/comment/74602",
+     "updateAuthor": {
+      "accountId": "712020:b60d0335-ad52-459c-b20c-490448734cda",
+      "accountType": "atlassian",
+      "active": true,
+      "avatarUrls": {
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/16",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/24",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/32",
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/48"
+      },
+      "displayName": "Stefan Vukovic",
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3Ab60d0335-ad52-459c-b20c-490448734cda",
+      "timeZone": "America/Bogota"
+     },
+     "updated": "Today 1:38 PM"
+    }
+   ],
+   "maxResults": 1,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54979/comment",
+   "startAt": 0,
+   "total": 1
+  },
+  "components": null,
+  "created": "Tuesday 10:18 PM",
+  "creator": null,
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": null,
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10285": "",
+  "customfield_10318": null,
+  "customfield_10351": "",
+  "customfield_10385": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": "<h3><a name=\"Description\"></a>Description</h3>\n\n<p>When a shift clashes - a double booking, a day the technician does not work, or hours outside their shift - the shift window shows a warning banner naming the reason. The banner is supposed to carry an action that takes the planner straight to fixing it. There is no such action. The planner is told there is a problem and then left to work out for themselves how to move the job.</p>\n\n<h3><a name=\"Branch%2FEnvironment\"></a>Branch / Environment</h3>\n\n<p>Branch tested: <a href=\"https://sv8685.qa.shopview.com/schedule\" class=\"external-link\" rel=\"nofollow noreferrer\">https://sv8685.qa.shopview.com/schedule</a> \u00b7 API host: <a href=\"https://sv8685api.qa.shopview.com\" class=\"external-link\" rel=\"nofollow noreferrer\">https://sv8685api.qa.shopview.com</a> \u00b7 Build marker (meta app-version): v3.5-4873abe \u00b7 index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 \u00b7 Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f \u00b7 Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) \u00b7 Signed in as admin@shopview.com (Administrator) \u00b7 Observed 2026-08-04, 16:00-19:00 UTC.</p>\n\n<h3><a name=\"Stepstoreproduce\"></a>Steps to reproduce</h3>\n\n<ol>\n\t<li>Open the Schedule and pick the Week view.</li>\n\t<li>Note that technician Ayesha Khan does not work Sundays (Edit Staff Member shows Saturday and Sunday as Not working).</li>\n\t<li>Type S-15855 into 'Search work orders' to find the Vuchester Retail work order, unit 10123073, line ' Service - Mobile service call made by George Donald 403-369-7067'.</li>\n\t<li>Drag that card onto Ayesha Khan's row on a Sunday column.</li>\n\t<li>The new block gets an amber warning triangle. Click the block to open the shift window.</li>\n\t<li>Read the warning banner and look for an action next to it.</li>\n</ol>\n\n\n<h3><a name=\"Expectedbehaviour\"></a>Expected behaviour</h3>\n\n<p>The banner reads the clash reason and offers an action - an 'Adjust' button or link - that lets the planner correct the shift there and then.</p>\n\n<h3><a name=\"Currentbehaviour\"></a>Current behaviour</h3>\n\n<p>The banner reads 'Scheduling conflict / Not a working day' and offers nothing. The only controls in the whole window are the delete bin, the close X, the colour selector, Add Note and Open Work Order.</p>\n\n<h3><a name=\"Images\"></a>Images</h3>\n\n<p>No screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.</p>\n\n<h3><a name=\"Technicaldetailsfordevelopers\"></a>Technical details for developers</h3>\n\n<p>Enumerated every button inside dialog_schedule_shift_detail for a conflicted shift: button_shift_detail_delete, the close X, button_shift_detail_color, button_shift_detail_add_note, button_shift_detail_open_work_order. No adjust control exists under any test id or any label. Spec section 4.9: 'A conflict banner with an \"Adjust\" action when the shift is conflicted.'</p>\n\n\n\n<p>Where this expected behaviour comes from: the Schedule specification, version 23, section 4.9, which lists among the things the shift detail panel shows: \"A conflict banner with an \u201cAdjust\u201d action when the shift is conflicted.\" The banner and the action are named together, so a banner on its own does not meet it.</p>",
+  "duedate": null,
+  "environment": "",
+  "fixVersions": null,
+  "issuelinks": null,
+  "issuerestriction": null,
+  "issuetype": null,
+  "labels": null,
+  "lastViewed": "Today 6:31 AM",
+  "priority": null,
+  "progress": null,
+  "project": null,
+  "reporter": null,
+  "resolution": null,
+  "resolutiondate": null,
+  "security": null,
+  "status": null,
+  "statusCategory": null,
+  "statuscategorychangedate": "Tuesday 10:18 PM",
+  "subtasks": null,
+  "summary": null,
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "Today 1:38 PM",
+  "versions": null,
+  "votes": null,
+  "watches": null,
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": null
+ },
+ "self": "https://shopview.atlassian.net/rest/api/3/issue/54979"
+}

@@ -1,0 +1,1781 @@
+{
+ "changelog": {
+  "histories": [
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-06T02:49:37.304-0500",
+    "id": "140558",
+    "items": [
+     {
+      "field": "description",
+      "fieldId": "description",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": "h2. Description\n\nWhen a manager schedules only _some_ of the jobs on a work order, the schedule offers a \"Select multiple\" mode with tick boxes. That mode is missing two of the controls it is supposed to have, and a third reads differently from what was asked for.\n\nThere is no *\"Select all\"* shortcut, so a manager who wants every job on the order has to tick each one by hand instead of pressing one button. And there is no *\"Cancel\"* button, so once you are in tick-box mode there is no way back to the quick single-tap list \u2014 the only way out is the small X, which throws away the whole window and you have to start again by placing the work order a second time.\n\nIt matters because picking part of a work order is the everyday case for a multi-job order, and both missing controls are the ones that make it quick and forgiving. Losing the whole window when you only wanted to step back one screen is the kind of thing that makes people avoid the feature.\n\nh2. Branch / Environment\n\n* Application: {{https://sv8685.qa.shopview.com}}\n* API host: {{https://sv8685api.qa.shopview.com}}\n* Build marker ({{<meta name=\"app-version\">}}): {{v3.5-be42149}}\n* {{index.html}} last-modified: Wed, 05 Aug 2026 08:09:19 GMT\n* Location / workplace: *Staging Heavy Duty - 9919*\n* Observed: *2026-08-05, 14:0x UTC*\n\nh2. Steps to reproduce\n\n# Sign in as a user who is allowed to change the schedule (an Admin is fine) and pick the location *Staging Heavy Duty - 9919*.\n# Open *Schedule* from the top navigation.\n# In the left-hand panel, find work order *S-12876*, customer *Pamill Paving*, unit *713*. It has *2 lines*: *\"Replace - Rear ramp handles\"* (estimate 1h) and *\"Quality control check over\"* (no estimate). Its lead technician shows as *Brittany Anderson*. _If that work order is gone, any work order with two or more approved lines behaves the same way \u2014 the fault does not depend on which one. Proven by repeating it on the whole-order row of the same picker, which is unaffected._\n# Click the small calendar button on that work order's card (its label reads *\"Schedule S-12876 by click\"*).\n# Click an empty day cell on the row for technician *MQ Test Tech Qamar* \u2014 for example *Thursday, Aug 6*.\n# The picker opens, headed *\"dropped on MQ Test Tech Qamar \u00b7 Thu, Aug 6\"*.\n# Click *\"Select multiple\"*.\n# Tick one line, for example *\"Replace - Rear ramp handles\"*.\n# Look along the bottom bar of the picker, and look for a way to go back to the ordinary single-tap list.\n\nh2. Expected behaviour\n\nIn tick-box mode the bottom bar should offer a running tally, a *\"Select all\"* shortcut that is the same as choosing the whole work order, and a *\"Cancel\"* that returns you to the quick single-tap list.\n\nThe Schedule specification asks for exactly that:\n\n{quote}\"'Select multiple' is an opt-in control that switches the line rows into checkboxes and shows a confirm bar with a running tally (\"Create shift \u00b7 2 lines \u00b7 6h\"), a \"Select all\" shortcut (equivalent to whole order), and Cancel (returns to the fast single-tap list).\"{quote}\n\nh2. Current behaviour\n\n* The tick boxes appear correctly, one per line.\n* The bottom bar shows a tally, but it reads *\"1 selected \u00b7 1h\"* rather than the \"Create shift \u00b7 2 lines \u00b7 6h\" shape the specification gives.\n* The confirm button reads *\"Schedule\"*.\n* *There is no \"Select all\" button anywhere in the picker.* The only \"All\" control is the *\"All 2\"* chip higher up, which is the filter that switches between all lines and unscheduled lines \u2014 it does not tick anything.\n* *There is no \"Cancel\" button.* The only way out is the *X* in the top corner, which closes the whole picker rather than returning to the single-tap list.\n\nh2. Images\n\nNo screenshot is attached. The finding was taken by reading the picker's own rendered text and its controls directly from the running page, and the exact strings are reproduced above and in the technical section, so an image would add nothing a reader cannot already check by following the steps.\n\nh2. Technical details for developers\n\nObserved in the live DOM with the picker open in multi-select mode.\n\nControls present inside the picker ({{data-test-id}}):\n\n{noformat}text_line_picker_dropped_on      button_line_picker_close\ntext_line_picker_title           line_picker_whole_work_order\nbutton_line_picker_multi_select  input_line_picker_search\nbutton_line_picker_scope_all     button_line_picker_scope_unscheduled\nline_picker_line_<lineId>        checkbox_line_picker_<lineId>\nline_picker_techs_<lineId>       line_picker_footer\ntext_line_picker_tally           button_line_picker_schedule{noformat}\n\n* {{text_line_picker_tally}} rendered {{1 selected \u00b7 1h}} after one line was ticked.\n* {{button_line_picker_schedule}} rendered {{Schedule}}.\n* There is *no* {{button_line_picker_select_all}} and *no* {{button_line_picker_cancel}}.\n* {{button_line_picker_scope_all}} renders as {{All 2}} and is the All / Unscheduled scope filter, not a selection shortcut.\n* Full button label set read from the open popover: {{close}}, {{content_paste Schedule whole work order All 2 lines \u00b7 1h total chevron_right}}, {{Select multiple}}, {{All 2}}, {{Unscheduled 0}}, {{Schedule}}.\n\nGoverning requirement: Schedule specification, Confluence page {{713031682}}, *version 23*, section *4.3 Scope picker* (quoted verbatim above).\n\nWork order used: {{582a8993-793d-4e6f-8dd0-abec5b4a3be0}} (S-12876). Lines {{32bb5deb-a207-4501-bc8f-31b775d79b73}} and {{935e36d9-2dc1-4639-b39d-de2d00dbd289}}. Technician lane {{01ddd277-e1fc-41c8-acb5-94bc575f2722}}.\n\nNothing was created during the observation: the schedule board for 2 \u2013 9 Aug held 34 shifts, 9 events and 6 series before and after, every record byte-identical and the id sets equal in both directions.",
+      "to": null,
+      "toString": "h2. Description\n\nWhen a manager schedules only _some_ of the jobs on a work order, the schedule offers a \"Select multiple\" mode with tick boxes. That mode is missing two of the controls it is supposed to have, and a third reads differently from what was asked for.\n\nThere is no *\"Select all\"* shortcut, so a manager who wants every job on the order has to tick each one by hand instead of pressing one button. And there is no *\"Cancel\"* button, so once you are in tick-box mode there is no way back to the quick single-tap list \u2014 the only way out is the small X, which throws away the whole window and you have to start again by placing the work order a second time.\n\nIt matters because picking part of a work order is the everyday case for a multi-job order, and both missing controls are the ones that make it quick and forgiving. Losing the whole window when you only wanted to step back one screen is the kind of thing that makes people avoid the feature.\n\nh2. Branch / Environment\n\n* Application: {{https://sv8685.qa.shopview.com}}\n* API host: {{https://sv8685api.qa.shopview.com}}\n* Build marker ({{<meta name=\"app-version\">}}): {{v3.5-be42149}}\n* {{index.html}} last-modified: Wed, 05 Aug 2026 08:09:19 GMT\n* Location / workplace: *Staging Heavy Duty - 9919*\n* Observed: *2026-08-05, 14:0x UTC*\n\nh2. Steps to reproduce\n\n# Sign in as a user who is allowed to change the schedule (an Admin is fine) and pick the location *Staging Heavy Duty - 9919*.\n# Open *Schedule* from the top navigation.\n# In the left-hand panel, find work order *S-12876*, customer *Pamill Paving*, unit *713*. It has *2 lines*: *\"Replace - Rear ramp handles\"* (estimate 1h) and *\"Quality control check over\"* (no estimate). Its lead technician shows as *Brittany Anderson*. _If that work order is gone, any work order with two or more approved lines behaves the same way \u2014 the fault does not depend on which one. Proven by repeating it on the whole-order row of the same picker, which is unaffected._\n# Click the small calendar button on that work order's card (its label reads *\"Schedule S-12876 by click\"*).\n# Click an empty day cell on the row for technician *MQ Test Tech Qamar* \u2014 for example *Thursday, Aug 6*.\n# The picker opens, headed *\"dropped on MQ Test Tech Qamar \u00b7 Thu, Aug 6\"*.\n# Click *\"Select multiple\"*.\n# Tick one line, for example *\"Replace - Rear ramp handles\"*.\n# Look along the bottom bar of the picker, and look for a way to go back to the ordinary single-tap list.\n\nh2. Expected behaviour\n\nIn tick-box mode the bottom bar should offer a running tally, a *\"Select all\"* shortcut that is the same as choosing the whole work order, and a *\"Cancel\"* that returns you to the quick single-tap list.\n\nThe Schedule specification asks for exactly that:\n\n{quote}\"'Select multiple' is an opt-in control that switches the line rows into checkboxes and shows a confirm bar with a running tally (\"Create shift \u00b7 2 lines \u00b7 6h\"), a \"Select all\" shortcut (equivalent to whole order), and Cancel (returns to the fast single-tap list).\"{quote}\n\nh2. Current behaviour\n\n* The tick boxes appear correctly, one per line.\n* The bottom bar shows a tally, but it reads *\"1 selected \u00b7 1h\"* rather than the \"Create shift \u00b7 2 lines \u00b7 6h\" shape the specification gives.\n* The confirm button reads *\"Schedule\"*.\n* *There is no \"Select all\" button anywhere in the picker.* The only \"All\" control is the *\"All 2\"* chip higher up, which is the filter that switches between all lines and unscheduled lines \u2014 it does not tick anything.\n* *There is no \"Cancel\" button.* The only way out is the *X* in the top corner, which closes the whole picker rather than returning to the single-tap list.\n\nh2. Images\n\nNo screenshot is attached. The finding was taken by reading the picker's own rendered text and its controls directly from the running page, and the exact strings are reproduced above and in the technical section, so an image would add nothing a reader cannot already check by following the steps.\n\nh2. Technical details for developers\n\nObserved in the live DOM with the picker open in multi-select mode.\n\nControls present inside the picker ({{data-test-id}}):\n\n{noformat}text_line_picker_dropped_on      button_line_picker_close\ntext_line_picker_title           line_picker_whole_work_order\nbutton_line_picker_multi_select  input_line_picker_search\nbutton_line_picker_scope_all     button_line_picker_scope_unscheduled\nline_picker_line_<lineId>        checkbox_line_picker_<lineId>\nline_picker_techs_<lineId>       line_picker_footer\ntext_line_picker_tally           button_line_picker_schedule{noformat}\n\n* {{text_line_picker_tally}} rendered {{1 selected \u00b7 1h}} after one line was ticked.\n* {{button_line_picker_schedule}} rendered {{Schedule}}.\n* There is *no* {{button_line_picker_select_all}} and *no* {{button_line_picker_cancel}}.\n* {{button_line_picker_scope_all}} renders as {{All 2}} and is the All / Unscheduled scope filter, not a selection shortcut.\n* Full button label set read from the open popover: {{close}}, {{content_paste Schedule whole work order All 2 lines \u00b7 1h total chevron_right}}, {{Select multiple}}, {{All 2}}, {{Unscheduled 0}}, {{Schedule}}.\n\nGoverning requirement: Schedule specification, Confluence page {{713031682}}, *version 23*, section *4.3 Scope picker* (quoted verbatim above).\n\nWork order used: {{582a8993-793d-4e6f-8dd0-abec5b4a3be0}} (S-12876). Lines {{32bb5deb-a207-4501-bc8f-31b775d79b73}} and {{935e36d9-2dc1-4639-b39d-de2d00dbd289}}. Technician lane {{01ddd277-e1fc-41c8-acb5-94bc575f2722}}.\n\nNothing was created during the observation: the schedule board for 2 \u2013 9 Aug held 34 shifts, 9 events and 6 series before and after, every record byte-identical and the id sets equal in both directions.\n\n \n\nWhere this expected behaviour comes from: the Schedule specification, version 23, section 4.3 (Scope picker), which says: \"\u201cSelect multiple\u201d is an opt-in control that switches the line rows into checkboxes and shows a confirm bar with a running tally (\u201cCreate shift \u00b7 2 lines \u00b7 6h\u201d), a \u201cSelect all\u201d shortcut (equivalent to whole order), and Cancel (returns to the fast single-tap list).\""
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T09:29:49.886-0500",
+    "id": "140062",
+    "items": [
+     {
+      "field": "IssueParentAssociation",
+      "fieldtype": "jira",
+      "from": "54707",
+      "fromString": "SV-8685",
+      "to": "54711",
+      "toString": "SV-8689"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T09:29:49.874-0500",
+    "id": "140063",
+    "items": [
+     {
+      "field": "issuetype",
+      "fieldId": "issuetype",
+      "fieldtype": "jira",
+      "from": "10008",
+      "fromString": "Bug",
+      "to": "10007",
+      "toString": "Story Defect"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-05T09:04:58.995-0500",
+    "id": "140012",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-8689",
+      "toString": "This work item relates to SV-8689"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-05T09:04:44.869-0500",
+    "id": "140010",
+    "items": [
+     {
+      "field": "IssueParentAssociation",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "54707",
+      "toString": "SV-8685"
+     }
+    ]
+   }
+  ],
+  "maxResults": 5,
+  "startAt": 0,
+  "total": 5
+ },
+ "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+ "fields": {
+  "aggregateprogress": {
+   "progress": 0,
+   "total": 0
+  },
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [],
+  "comment": {
+   "comments": [],
+   "maxResults": 0,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/55014/comment",
+   "startAt": 0,
+   "total": 0
+  },
+  "components": [],
+  "created": "2026-08-05T09:04:44.830-0500",
+  "creator": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": "0|i01vh5:",
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10285": null,
+  "customfield_10318": null,
+  "customfield_10351": null,
+  "customfield_10385": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": {
+   "content": [
+    {
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "text": "Description",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "When a manager schedules only ",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "em"
+        }
+       ],
+       "text": "some",
+       "type": "text"
+      },
+      {
+       "text": " of the jobs on a work order, the schedule offers a \"Select multiple\" mode with tick boxes. That mode is missing two of the controls it is supposed to have, and a third reads differently from what was asked for.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "There is no ",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ],
+       "text": "\"Select all\"",
+       "type": "text"
+      },
+      {
+       "text": " shortcut, so a manager who wants every job on the order has to tick each one by hand instead of pressing one button. And there is no ",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ],
+       "text": "\"Cancel\"",
+       "type": "text"
+      },
+      {
+       "text": " button, so once you are in tick-box mode there is no way back to the quick single-tap list \u2014 the only way out is the small X, which throws away the whole window and you have to start again by placing the work order a second time.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "It matters because picking part of a work order is the everyday case for a multi-job order, and both missing controls are the ones that make it quick and forgiving. Losing the whole window when you only wanted to step back one screen is the kind of thing that makes people avoid the feature.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "text": "Branch / Environment",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Application: ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "https://sv8685.qa.shopview.com",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "API host: ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "https://sv8685api.qa.shopview.com",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Build marker (",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "<meta name=\"app-version\">",
+           "type": "text"
+          },
+          {
+           "text": "): ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "v3.5-be42149",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "index.html",
+           "type": "text"
+          },
+          {
+           "text": " last-modified: Wed, 05 Aug 2026 08:09:19 GMT",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Location / workplace: ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "Staging Heavy Duty - 9919",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Observed: ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "2026-08-05, 14:0x UTC",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "bulletList"
+    },
+    {
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "text": "Steps to reproduce",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Sign in as a user who is allowed to change the schedule (an Admin is fine) and pick the location ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "Staging Heavy Duty - 9919",
+           "type": "text"
+          },
+          {
+           "text": ".",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Open ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "Schedule",
+           "type": "text"
+          },
+          {
+           "text": " from the top navigation.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "In the left-hand panel, find work order ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "S-12876",
+           "type": "text"
+          },
+          {
+           "text": ", customer ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "Pamill Paving",
+           "type": "text"
+          },
+          {
+           "text": ", unit ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "713",
+           "type": "text"
+          },
+          {
+           "text": ". It has ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "2 lines",
+           "type": "text"
+          },
+          {
+           "text": ": ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "\"Replace - Rear ramp handles\"",
+           "type": "text"
+          },
+          {
+           "text": " (estimate 1h) and ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "\"Quality control check over\"",
+           "type": "text"
+          },
+          {
+           "text": " (no estimate). Its lead technician shows as ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "Brittany Anderson",
+           "type": "text"
+          },
+          {
+           "text": ". ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "em"
+            }
+           ],
+           "text": "If that work order is gone, any work order with two or more approved lines behaves the same way \u2014 the fault does not depend on which one. Proven by repeating it on the whole-order row of the same picker, which is unaffected.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Click the small calendar button on that work order's card (its label reads ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "\"Schedule S-12876 by click\"",
+           "type": "text"
+          },
+          {
+           "text": ").",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Click an empty day cell on the row for technician ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "MQ Test Tech Qamar",
+           "type": "text"
+          },
+          {
+           "text": " \u2014 for example ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "Thursday, Aug 6",
+           "type": "text"
+          },
+          {
+           "text": ".",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "The picker opens, headed ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "\"dropped on MQ Test Tech Qamar \u00b7 Thu, Aug 6\"",
+           "type": "text"
+          },
+          {
+           "text": ".",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Click ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "\"Select multiple\"",
+           "type": "text"
+          },
+          {
+           "text": ".",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Tick one line, for example ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "\"Replace - Rear ramp handles\"",
+           "type": "text"
+          },
+          {
+           "text": ".",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Look along the bottom bar of the picker, and look for a way to go back to the ordinary single-tap list.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "orderedList"
+    },
+    {
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "text": "Expected behaviour",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "In tick-box mode the bottom bar should offer a running tally, a ",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ],
+       "text": "\"Select all\"",
+       "type": "text"
+      },
+      {
+       "text": " shortcut that is the same as choosing the whole work order, and a ",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ],
+       "text": "\"Cancel\"",
+       "type": "text"
+      },
+      {
+       "text": " that returns you to the quick single-tap list.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "The Schedule specification asks for exactly that:",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "text": "\"'Select multiple' is an opt-in control that switches the line rows into checkboxes and shows a confirm bar with a running tally (\"Create shift \u00b7 2 lines \u00b7 6h\"), a \"Select all\" shortcut (equivalent to whole order), and Cancel (returns to the fast single-tap list).\"",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      }
+     ],
+     "type": "blockquote"
+    },
+    {
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "text": "Current behaviour",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "The tick boxes appear correctly, one per line.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "The bottom bar shows a tally, but it reads ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "\"1 selected \u00b7 1h\"",
+           "type": "text"
+          },
+          {
+           "text": " rather than the \"Create shift \u00b7 2 lines \u00b7 6h\" shape the specification gives.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "The confirm button reads ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "\"Schedule\"",
+           "type": "text"
+          },
+          {
+           "text": ".",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "There is no \"Select all\" button anywhere in the picker.",
+           "type": "text"
+          },
+          {
+           "text": " The only \"All\" control is the ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "\"All 2\"",
+           "type": "text"
+          },
+          {
+           "text": " chip higher up, which is the filter that switches between all lines and unscheduled lines \u2014 it does not tick anything.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "There is no \"Cancel\" button.",
+           "type": "text"
+          },
+          {
+           "text": " The only way out is the ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "X",
+           "type": "text"
+          },
+          {
+           "text": " in the top corner, which closes the whole picker rather than returning to the single-tap list.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "bulletList"
+    },
+    {
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "text": "Images",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "No screenshot is attached. The finding was taken by reading the picker's own rendered text and its controls directly from the running page, and the exact strings are reproduced above and in the technical section, so an image would add nothing a reader cannot already check by following the steps.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "text": "Technical details for developers",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Observed in the live DOM with the picker open in multi-select mode.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Controls present inside the picker (",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "code"
+        }
+       ],
+       "text": "data-test-id",
+       "type": "text"
+      },
+      {
+       "text": "):",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "text_line_picker_dropped_on      button_line_picker_close\ntext_line_picker_title           line_picker_whole_work_order\nbutton_line_picker_multi_select  input_line_picker_search\nbutton_line_picker_scope_all     button_line_picker_scope_unscheduled\nline_picker_line_<lineId>        checkbox_line_picker_<lineId>\nline_picker_techs_<lineId>       line_picker_footer\ntext_line_picker_tally           button_line_picker_schedule",
+       "type": "text"
+      }
+     ],
+     "type": "codeBlock"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "text_line_picker_tally",
+           "type": "text"
+          },
+          {
+           "text": " rendered ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "1 selected \u00b7 1h",
+           "type": "text"
+          },
+          {
+           "text": " after one line was ticked.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "button_line_picker_schedule",
+           "type": "text"
+          },
+          {
+           "text": " rendered ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "Schedule",
+           "type": "text"
+          },
+          {
+           "text": ".",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "There is ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "no",
+           "type": "text"
+          },
+          {
+           "text": " ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "button_line_picker_select_all",
+           "type": "text"
+          },
+          {
+           "text": " and ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ],
+           "text": "no",
+           "type": "text"
+          },
+          {
+           "text": " ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "button_line_picker_cancel",
+           "type": "text"
+          },
+          {
+           "text": ".",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "button_line_picker_scope_all",
+           "type": "text"
+          },
+          {
+           "text": " renders as ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "All 2",
+           "type": "text"
+          },
+          {
+           "text": " and is the All / Unscheduled scope filter, not a selection shortcut.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Full button label set read from the open popover: ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "close",
+           "type": "text"
+          },
+          {
+           "text": ", ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "content_paste Schedule whole work order All 2 lines \u00b7 1h total chevron_right",
+           "type": "text"
+          },
+          {
+           "text": ", ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "Select multiple",
+           "type": "text"
+          },
+          {
+           "text": ", ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "All 2",
+           "type": "text"
+          },
+          {
+           "text": ", ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "Unscheduled 0",
+           "type": "text"
+          },
+          {
+           "text": ", ",
+           "type": "text"
+          },
+          {
+           "marks": [
+            {
+             "type": "code"
+            }
+           ],
+           "text": "Schedule",
+           "type": "text"
+          },
+          {
+           "text": ".",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "bulletList"
+    },
+    {
+     "content": [
+      {
+       "text": "Governing requirement: Schedule specification, Confluence page ",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "code"
+        }
+       ],
+       "text": "713031682",
+       "type": "text"
+      },
+      {
+       "text": ", ",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ],
+       "text": "version 23",
+       "type": "text"
+      },
+      {
+       "text": ", section ",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ],
+       "text": "4.3 Scope picker",
+       "type": "text"
+      },
+      {
+       "text": " (quoted verbatim above).",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Work order used: ",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "code"
+        }
+       ],
+       "text": "582a8993-793d-4e6f-8dd0-abec5b4a3be0",
+       "type": "text"
+      },
+      {
+       "text": " (S-12876). Lines ",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "code"
+        }
+       ],
+       "text": "32bb5deb-a207-4501-bc8f-31b775d79b73",
+       "type": "text"
+      },
+      {
+       "text": " and ",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "code"
+        }
+       ],
+       "text": "935e36d9-2dc1-4639-b39d-de2d00dbd289",
+       "type": "text"
+      },
+      {
+       "text": ". Technician lane ",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "code"
+        }
+       ],
+       "text": "01ddd277-e1fc-41c8-acb5-94bc575f2722",
+       "type": "text"
+      },
+      {
+       "text": ".",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Nothing was created during the observation: the schedule board for 2 \u2013 9 Aug held 34 shifts, 9 events and 6 series before and after, every record byte-identical and the id sets equal in both directions.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": " ",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Where this expected behaviour comes from: the Schedule specification, version 23, section 4.3 (Scope picker), which says: \"\u201cSelect multiple\u201d is an opt-in control that switches the line rows into checkboxes and shows a confirm bar with a running tally (\u201cCreate shift \u00b7 2 lines \u00b7 6h\u201d), a \u201cSelect all\u201d shortcut (equivalent to whole order), and Cancel (returns to the fast single-tap list).\"",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    }
+   ],
+   "type": "doc",
+   "version": 1
+  },
+  "duedate": null,
+  "environment": null,
+  "fixVersions": [],
+  "issuelinks": [
+   {
+    "id": "32077",
+    "outwardIssue": {
+     "fields": {
+      "issuetype": {
+       "avatarId": 10315,
+       "description": "Stories track functionality or features expressed as user goals.",
+       "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+       "hierarchyLevel": 0,
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+       "id": "10245",
+       "name": "Story",
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+       "subtask": false
+      },
+      "priority": {
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "id": "3",
+       "name": "Medium",
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+      },
+      "status": {
+       "description": "",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "id": "10350",
+       "name": "Ready for QA",
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10350",
+       "statusCategory": {
+        "colorName": "yellow",
+        "id": 4,
+        "key": "indeterminate",
+        "name": "In Progress",
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+       }
+      },
+      "summary": "Scope Picker"
+     },
+     "id": "54711",
+     "key": "SV-8689",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54711"
+    },
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/32077",
+    "type": {
+     "id": "10003",
+     "inward": "relates to",
+     "name": "Relates",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    }
+   }
+  ],
+  "issuerestriction": {
+   "issuerestrictions": {},
+   "shouldDisplay": true
+  },
+  "issuetype": {
+   "avatarId": 10854,
+   "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+   "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+   "hierarchyLevel": -1,
+   "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+   "id": "10007",
+   "name": "Story Defect",
+   "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+   "subtask": true
+  },
+  "labels": [],
+  "lastViewed": "2026-08-05T13:50:49.509-0500",
+  "parent": {
+   "fields": {
+    "issuetype": {
+     "avatarId": 10315,
+     "description": "Stories track functionality or features expressed as user goals.",
+     "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+     "hierarchyLevel": 0,
+     "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+     "id": "10245",
+     "name": "Story",
+     "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+     "subtask": false
+    },
+    "priority": {
+     "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+     "id": "3",
+     "name": "Medium",
+     "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+    },
+    "status": {
+     "description": "",
+     "iconUrl": "https://shopview.atlassian.net/",
+     "id": "10350",
+     "name": "Ready for QA",
+     "self": "https://shopview.atlassian.net/rest/api/3/status/10350",
+     "statusCategory": {
+      "colorName": "yellow",
+      "id": 4,
+      "key": "indeterminate",
+      "name": "In Progress",
+      "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+     }
+    },
+    "summary": "Scope Picker"
+   },
+   "id": "54711",
+   "key": "SV-8689",
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54711"
+  },
+  "priority": {
+   "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+   "id": "4",
+   "name": "Low",
+   "self": "https://shopview.atlassian.net/rest/api/3/priority/4"
+  },
+  "progress": {
+   "progress": 0,
+   "total": 0
+  },
+  "project": {
+   "avatarUrls": {
+    "16x16": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=xsmall",
+    "24x24": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=small",
+    "32x32": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=medium",
+    "48x48": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551"
+   },
+   "id": "10001",
+   "key": "SV",
+   "name": "ShopView",
+   "projectTypeKey": "software",
+   "self": "https://shopview.atlassian.net/rest/api/3/project/10001",
+   "simplified": true
+  },
+  "reporter": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "resolution": null,
+  "resolutiondate": null,
+  "security": null,
+  "status": {
+   "description": "",
+   "iconUrl": "https://shopview.atlassian.net/",
+   "id": "10349",
+   "name": "Open",
+   "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+   "statusCategory": {
+    "colorName": "blue-gray",
+    "id": 2,
+    "key": "new",
+    "name": "To Do",
+    "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+   }
+  },
+  "statusCategory": {
+   "colorName": "blue-gray",
+   "id": 2,
+   "key": "new",
+   "name": "To Do",
+   "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+  },
+  "statuscategorychangedate": "2026-08-05T09:04:45.385-0500",
+  "subtasks": [],
+  "summary": "Schedule scope picker: tick-box mode has no Select all and no Cancel, and the tally text differs from the spec",
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "2026-08-06T02:49:37.304-0500",
+  "versions": [],
+  "votes": {
+   "hasVoted": false,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8886/votes",
+   "votes": 0
+  },
+  "watches": {
+   "isWatching": true,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8886/watchers",
+   "watchCount": 1
+  },
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": -1
+ },
+ "id": "55014",
+ "key": "SV-8886",
+ "renderedFields": {
+  "aggregateprogress": null,
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [],
+  "comment": {
+   "comments": [],
+   "maxResults": 0,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/55014/comment",
+   "startAt": 0,
+   "total": 0
+  },
+  "components": null,
+  "created": "Yesterday 7:04 PM",
+  "creator": null,
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": null,
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10285": "",
+  "customfield_10318": null,
+  "customfield_10351": "",
+  "customfield_10385": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": "<h2><a name=\"Description\"></a>Description</h2>\n\n<p>When a manager schedules only <em>some</em> of the jobs on a work order, the schedule offers a \"Select multiple\" mode with tick boxes. That mode is missing two of the controls it is supposed to have, and a third reads differently from what was asked for.</p>\n\n<p>There is no <b>\"Select all\"</b> shortcut, so a manager who wants every job on the order has to tick each one by hand instead of pressing one button. And there is no <b>\"Cancel\"</b> button, so once you are in tick-box mode there is no way back to the quick single-tap list \u2014 the only way out is the small X, which throws away the whole window and you have to start again by placing the work order a second time.</p>\n\n<p>It matters because picking part of a work order is the everyday case for a multi-job order, and both missing controls are the ones that make it quick and forgiving. Losing the whole window when you only wanted to step back one screen is the kind of thing that makes people avoid the feature.</p>\n\n<h2><a name=\"Branch%2FEnvironment\"></a>Branch / Environment</h2>\n\n<ul>\n\t<li>Application: <tt><a href=\"https://sv8685.qa.shopview.com\" class=\"external-link\" rel=\"nofollow noreferrer\">https://sv8685.qa.shopview.com</a></tt></li>\n\t<li>API host: <tt><a href=\"https://sv8685api.qa.shopview.com\" class=\"external-link\" rel=\"nofollow noreferrer\">https://sv8685api.qa.shopview.com</a></tt></li>\n\t<li>Build marker (<tt>&lt;meta name=\"app-version\"&gt;</tt>): <tt>v3.5-be42149</tt></li>\n\t<li><tt>index.html</tt> last-modified: Wed, 05 Aug 2026 08:09:19 GMT</li>\n\t<li>Location / workplace: <b>Staging Heavy Duty - 9919</b></li>\n\t<li>Observed: <b>2026-08-05, 14:0x UTC</b></li>\n</ul>\n\n\n<h2><a name=\"Stepstoreproduce\"></a>Steps to reproduce</h2>\n\n<ol>\n\t<li>Sign in as a user who is allowed to change the schedule (an Admin is fine) and pick the location <b>Staging Heavy Duty - 9919</b>.</li>\n\t<li>Open <b>Schedule</b> from the top navigation.</li>\n\t<li>In the left-hand panel, find work order <b>S-12876</b>, customer <b>Pamill Paving</b>, unit <b>713</b>. It has <b>2 lines</b>: <b>\"Replace - Rear ramp handles\"</b> (estimate 1h) and <b>\"Quality control check over\"</b> (no estimate). Its lead technician shows as <b>Brittany Anderson</b>. <em>If that work order is gone, any work order with two or more approved lines behaves the same way \u2014 the fault does not depend on which one. Proven by repeating it on the whole-order row of the same picker, which is unaffected.</em></li>\n\t<li>Click the small calendar button on that work order's card (its label reads <b>\"Schedule S-12876 by click\"</b>).</li>\n\t<li>Click an empty day cell on the row for technician <b>MQ Test Tech Qamar</b> \u2014 for example <b>Thursday, Aug 6</b>.</li>\n\t<li>The picker opens, headed <b>\"dropped on MQ Test Tech Qamar \u00b7 Thu, Aug 6\"</b>.</li>\n\t<li>Click <b>\"Select multiple\"</b>.</li>\n\t<li>Tick one line, for example <b>\"Replace - Rear ramp handles\"</b>.</li>\n\t<li>Look along the bottom bar of the picker, and look for a way to go back to the ordinary single-tap list.</li>\n</ol>\n\n\n<h2><a name=\"Expectedbehaviour\"></a>Expected behaviour</h2>\n\n<p>In tick-box mode the bottom bar should offer a running tally, a <b>\"Select all\"</b> shortcut that is the same as choosing the whole work order, and a <b>\"Cancel\"</b> that returns you to the quick single-tap list.</p>\n\n<p>The Schedule specification asks for exactly that:</p>\n\n<blockquote><p>\"'Select multiple' is an opt-in control that switches the line rows into checkboxes and shows a confirm bar with a running tally (\"Create shift \u00b7 2 lines \u00b7 6h\"), a \"Select all\" shortcut (equivalent to whole order), and Cancel (returns to the fast single-tap list).\"</p></blockquote>\n\n<h2><a name=\"Currentbehaviour\"></a>Current behaviour</h2>\n\n<ul>\n\t<li>The tick boxes appear correctly, one per line.</li>\n\t<li>The bottom bar shows a tally, but it reads <b>\"1 selected \u00b7 1h\"</b> rather than the \"Create shift \u00b7 2 lines \u00b7 6h\" shape the specification gives.</li>\n\t<li>The confirm button reads <b>\"Schedule\"</b>.</li>\n\t<li><b>There is no \"Select all\" button anywhere in the picker.</b> The only \"All\" control is the <b>\"All 2\"</b> chip higher up, which is the filter that switches between all lines and unscheduled lines \u2014 it does not tick anything.</li>\n\t<li><b>There is no \"Cancel\" button.</b> The only way out is the <b>X</b> in the top corner, which closes the whole picker rather than returning to the single-tap list.</li>\n</ul>\n\n\n<h2><a name=\"Images\"></a>Images</h2>\n\n<p>No screenshot is attached. The finding was taken by reading the picker's own rendered text and its controls directly from the running page, and the exact strings are reproduced above and in the technical section, so an image would add nothing a reader cannot already check by following the steps.</p>\n\n<h2><a name=\"Technicaldetailsfordevelopers\"></a>Technical details for developers</h2>\n\n<p>Observed in the live DOM with the picker open in multi-select mode.</p>\n\n<p>Controls present inside the picker (<tt>data-test-id</tt>):</p>\n\n<div class=\"preformatted panel\" style=\"border-width: 1px;\"><div class=\"preformattedContent panelContent\">\n<pre>text_line_picker_dropped_on      button_line_picker_close\ntext_line_picker_title           line_picker_whole_work_order\nbutton_line_picker_multi_select  input_line_picker_search\nbutton_line_picker_scope_all     button_line_picker_scope_unscheduled\nline_picker_line_&lt;lineId&gt;        checkbox_line_picker_&lt;lineId&gt;\nline_picker_techs_&lt;lineId&gt;       line_picker_footer\ntext_line_picker_tally           button_line_picker_schedule</pre>\n</div></div>\n\n<ul>\n\t<li><tt>text_line_picker_tally</tt> rendered <tt>1 selected \u00b7 1h</tt> after one line was ticked.</li>\n\t<li><tt>button_line_picker_schedule</tt> rendered <tt>Schedule</tt>.</li>\n\t<li>There is <b>no</b> <tt>button_line_picker_select_all</tt> and <b>no</b> <tt>button_line_picker_cancel</tt>.</li>\n\t<li><tt>button_line_picker_scope_all</tt> renders as <tt>All 2</tt> and is the All / Unscheduled scope filter, not a selection shortcut.</li>\n\t<li>Full button label set read from the open popover: <tt>close</tt>, <tt>content_paste Schedule whole work order All 2 lines \u00b7 1h total chevron_right</tt>, <tt>Select multiple</tt>, <tt>All 2</tt>, <tt>Unscheduled 0</tt>, <tt>Schedule</tt>.</li>\n</ul>\n\n\n<p>Governing requirement: Schedule specification, Confluence page <tt>713031682</tt>, <b>version 23</b>, section <b>4.3 Scope picker</b> (quoted verbatim above).</p>\n\n<p>Work order used: <tt>582a8993-793d-4e6f-8dd0-abec5b4a3be0</tt> (S-12876). Lines <tt>32bb5deb-a207-4501-bc8f-31b775d79b73</tt> and <tt>935e36d9-2dc1-4639-b39d-de2d00dbd289</tt>. Technician lane <tt>01ddd277-e1fc-41c8-acb5-94bc575f2722</tt>.</p>\n\n<p>Nothing was created during the observation: the schedule board for 2 \u2013 9 Aug held 34 shifts, 9 events and 6 series before and after, every record byte-identical and the id sets equal in both directions.</p>\n\n\n\n<p>Where this expected behaviour comes from: the Schedule specification, version 23, section 4.3 (Scope picker), which says: \"\u201cSelect multiple\u201d is an opt-in control that switches the line rows into checkboxes and shows a confirm bar with a running tally (\u201cCreate shift \u00b7 2 lines \u00b7 6h\u201d), a \u201cSelect all\u201d shortcut (equivalent to whole order), and Cancel (returns to the fast single-tap list).\"</p>",
+  "duedate": null,
+  "environment": "",
+  "fixVersions": null,
+  "issuelinks": null,
+  "issuerestriction": null,
+  "issuetype": null,
+  "labels": null,
+  "lastViewed": "Yesterday 11:50 PM",
+  "priority": null,
+  "progress": null,
+  "project": null,
+  "reporter": null,
+  "resolution": null,
+  "resolutiondate": null,
+  "security": null,
+  "status": null,
+  "statusCategory": null,
+  "statuscategorychangedate": "Yesterday 7:04 PM",
+  "subtasks": null,
+  "summary": null,
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "Today 12:49 PM",
+  "versions": null,
+  "votes": null,
+  "watches": null,
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": null
+ },
+ "self": "https://shopview.atlassian.net/rest/api/3/issue/55014"
+}

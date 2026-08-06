@@ -1,0 +1,939 @@
+{
+ "changelog": {
+  "histories": [
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-06T02:49:15.897-0500",
+    "id": "140543",
+    "items": [
+     {
+      "field": "description",
+      "fieldId": "description",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": "h3. Environment\n\nQA branch https://sv8785.qa.shopview.com/workorders \u2014 API host sv8785api.qa.shopview.com \u2014 build marker <meta name=\"app-version\"> = v3.4.2-4f8211c (index.html last-modified Mon, 03 Aug 2026 20:09:32 GMT) \u2014 observed 2026-08-04, org d55bc308-e61a-438d-b5f1-c7a73c89d49f, location \"Staging Heavy Duty - 9919\", signed in as an Administrator.\n\nh3. Steps to Reproduce\n\n# Open Work Orders on desktop, All tab, and use Clear Filters first so no filter is on.\n# Click the \"Search\" button in the page toolbar and type text that matches nothing, for example: ZZQQNOMATCHXX\n# Read the message in the empty table area and look at the link underneath it.\n\nh3. Expected Result\n\nThe empty screen tells the user that nothing matched their search and offers a way to clear the search. Where both a search and filters are on, it offers each of them separately, so clearing one does not clear the other.\n\nh3. Current Result\n\nThe message reads \"No work orders match your filters\" even though no filter is on, and the only link offered is \"Clear Filters\". Clicking it does nothing useful because there are no filters to clear: the search text stays and the screen stays empty. There is no way to clear the search from the empty screen.\n\nh3. How often\n\nEvery time.\n\nh3. Technical detail\n\nThe empty state renders one link only, data-test-id=\"empty_state_clear_filters\", labelled \"Clear Filters\"; there is no clear-the-query counterpart. The toolbar copy of the same control (data-test-id=\"clear_filters\") is hidden when no filter is active. Specification references S8-R4 and S8-R5.",
+      "to": null,
+      "toString": "h3. Environment\n\nQA branch https://sv8785.qa.shopview.com/workorders \u2014 API host sv8785api.qa.shopview.com \u2014 build marker <meta name=\"app-version\"> = v3.4.2-4f8211c (index.html last-modified Mon, 03 Aug 2026 20:09:32 GMT) \u2014 observed 2026-08-04, org d55bc308-e61a-438d-b5f1-c7a73c89d49f, location \"Staging Heavy Duty - 9919\", signed in as an Administrator.\n\nh3. Steps to Reproduce\n\n# Open Work Orders on desktop, All tab, and use Clear Filters first so no filter is on.\n# Click the \"Search\" button in the page toolbar and type text that matches nothing, for example: ZZQQNOMATCHXX\n# Read the message in the empty table area and look at the link underneath it.\n\nh3. Expected Result\n\nThe empty screen tells the user that nothing matched their search and offers a way to clear the search. Where both a search and filters are on, it offers each of them separately, so clearing one does not clear the other.\n\nh3. Current Result\n\nThe message reads \"No work orders match your filters\" even though no filter is on, and the only link offered is \"Clear Filters\". Clicking it does nothing useful because there are no filters to clear: the search text stays and the screen stays empty. There is no way to clear the search from the empty screen.\n\nh3. How often\n\nEvery time.\n\nh3. Technical detail\n\nThe empty state renders one link only, data-test-id=\"empty_state_clear_filters\", labelled \"Clear Filters\"; there is no clear-the-query counterpart. The toolbar copy of the same control (data-test-id=\"clear_filters\") is hidden when no filter is active. Specification references S8-R4 and S8-R5.\n\n \n\nWhere this expected behaviour comes from: the Filters specification, version 18, and it takes three requirements, all of which the empty screen has to satisfy.\n\nRequirement S8-R3: \"When the combination of active filters and any active search query produces no matching records, the table shows an empty state with a message indicating no results were found for the current filters and search\".\n\nRequirement S8-R4: \"The empty state includes a prompt or link to clear filters and, where a search query is active, to clear the query\".\n\nRequirement S8-R5: \"Where both a query and filters are active, each is cleared independently from the empty state. Clearing filters does not clear the query and clearing the query does not clear the filters, consistent with S13-R13\"."
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-05T02:37:23.350-0500",
+    "id": "139766",
+    "items": [
+     {
+      "field": "QA Assignee",
+      "fieldId": "customfield_10385",
+      "fieldtype": "custom",
+      "from": null,
+      "fromString": null,
+      "to": "[712020:6d590212-5c9b-4135-ae11-277f3826110e]",
+      "toString": "[Bilal Muzamil]"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-05T02:37:16.122-0500",
+    "id": "139765",
+    "items": [
+     {
+      "field": "Attachment",
+      "fieldId": "attachment",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "59324",
+      "toString": "screen-capture - 2026-08-05T123655.032.webm"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-04T22:02:41.929-0500",
+    "id": "139754",
+    "items": [
+     {
+      "field": "resolution",
+      "fieldId": "resolution",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "10000",
+      "toString": "Done"
+     },
+     {
+      "field": "status",
+      "fieldId": "status",
+      "fieldtype": "jira",
+      "from": "10349",
+      "fromString": "Open",
+      "to": "10250",
+      "toString": "OBSOLETE"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-04T10:36:14.735-0500",
+    "id": "139576",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-8793",
+      "toString": "This work item relates to SV-8793"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-04T10:35:59.230-0500",
+    "id": "139566",
+    "items": [
+     {
+      "field": "IssueParentAssociation",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "54901",
+      "toString": "SV-8785"
+     }
+    ]
+   }
+  ],
+  "maxResults": 6,
+  "startAt": 0,
+  "total": 6
+ },
+ "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+ "fields": {
+  "aggregateprogress": {
+   "progress": 0,
+   "total": 0
+  },
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "content": "https://shopview.atlassian.net/rest/api/3/attachment/content/59324",
+    "created": "2026-08-05T02:37:15.826-0500",
+    "filename": "screen-capture - 2026-08-05T123655.032.webm",
+    "id": "59324",
+    "mimeType": "video/x-matroska",
+    "self": "https://shopview.atlassian.net/rest/api/3/attachment/59324",
+    "size": 1526166
+   }
+  ],
+  "comment": {
+   "comments": [
+    {
+     "author": {
+      "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+      "accountType": "atlassian",
+      "active": true,
+      "avatarUrls": {
+       "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+       "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+       "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+       "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+      },
+      "displayName": "Bilal Muzamil",
+      "emailAddress": "bilal.muzamil@shopview.com",
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+      "timeZone": "Asia/Karachi"
+     },
+     "body": {
+      "content": [
+       {
+        "attrs": {
+         "localId": "ae015857aa12"
+        },
+        "content": [
+         {
+          "text": "No More reproducible:",
+          "type": "text"
+         },
+         {
+          "type": "hardBreak"
+         },
+         {
+          "type": "hardBreak"
+         },
+         {
+          "type": "hardBreak"
+         }
+        ],
+        "type": "paragraph"
+       },
+       {
+        "attrs": {
+         "layout": "align-start",
+         "localId": "fe6c0b22d025",
+         "width": 320,
+         "widthType": "pixel"
+        },
+        "content": [
+         {
+          "attrs": {
+           "alt": "screen-capture - 2026-08-05T123655.032.webm",
+           "collection": "",
+           "id": "99c62d62-dba5-480c-ba81-ccf97459777a",
+           "localId": "a2f78c97b3c7",
+           "type": "file"
+          },
+          "type": "media"
+         }
+        ],
+        "type": "mediaSingle"
+       }
+      ],
+      "type": "doc",
+      "version": 1
+     },
+     "created": "2026-08-05T02:37:16.171-0500",
+     "id": "74529",
+     "jsdPublic": true,
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54974/comment/74529",
+     "updateAuthor": {
+      "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+      "accountType": "atlassian",
+      "active": true,
+      "avatarUrls": {
+       "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+       "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+       "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+       "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+      },
+      "displayName": "Bilal Muzamil",
+      "emailAddress": "bilal.muzamil@shopview.com",
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+      "timeZone": "Asia/Karachi"
+     },
+     "updated": "2026-08-05T02:37:16.171-0500"
+    }
+   ],
+   "maxResults": 1,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54974/comment",
+   "startAt": 0,
+   "total": 1
+  },
+  "components": [],
+  "created": "2026-08-04T10:35:59.199-0500",
+  "creator": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": "0|i01v8h:",
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10153": {
+   "color": "RED",
+   "id": "10120",
+   "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10120",
+   "value": "Work Orders"
+  },
+  "customfield_10252": null,
+  "customfield_10285": null,
+  "customfield_10318": null,
+  "customfield_10351": null,
+  "customfield_10352": null,
+  "customfield_10385": [
+   {
+    "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+    "accountType": "atlassian",
+    "active": true,
+    "avatarUrls": {
+     "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+     "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+     "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+     "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+    },
+    "displayName": "Bilal Muzamil",
+    "emailAddress": "bilal.muzamil@shopview.com",
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+    "timeZone": "Asia/Karachi"
+   }
+  ],
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": {
+   "content": [
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Environment",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "QA branch https://sv8785.qa.shopview.com/workorders \u2014 API host sv8785api.qa.shopview.com \u2014 build marker <meta name=\"app-version\"> = v3.4.2-4f8211c (index.html last-modified Mon, 03 Aug 2026 20:09:32 GMT) \u2014 observed 2026-08-04, org d55bc308-e61a-438d-b5f1-c7a73c89d49f, location \"Staging Heavy Duty - 9919\", signed in as an Administrator.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Steps to Reproduce",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Open Work Orders on desktop, All tab, and use Clear Filters first so no filter is on.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Click the \"Search\" button in the page toolbar and type text that matches nothing, for example: ZZQQNOMATCHXX",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Read the message in the empty table area and look at the link underneath it.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "orderedList"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Expected Result",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "The empty screen tells the user that nothing matched their search and offers a way to clear the search. Where both a search and filters are on, it offers each of them separately, so clearing one does not clear the other.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Current Result",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "The message reads \"No work orders match your filters\" even though no filter is on, and the only link offered is \"Clear Filters\". Clicking it does nothing useful because there are no filters to clear: the search text stays and the screen stays empty. There is no way to clear the search from the empty screen.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "How often",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Every time.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Technical detail",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "The empty state renders one link only, data-test-id=\"empty_state_clear_filters\", labelled \"Clear Filters\"; there is no clear-the-query counterpart. The toolbar copy of the same control (data-test-id=\"clear_filters\") is hidden when no filter is active. Specification references S8-R4 and S8-R5.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": " ",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Where this expected behaviour comes from: the Filters specification, version 18, and it takes three requirements, all of which the empty screen has to satisfy.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Requirement S8-R3: \"When the combination of active filters and any active search query produces no matching records, the table shows an empty state with a message indicating no results were found for the current filters and search\".",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Requirement S8-R4: \"The empty state includes a prompt or link to clear filters and, where a search query is active, to clear the query\".",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Requirement S8-R5: \"Where both a query and filters are active, each is cleared independently from the empty state. Clearing filters does not clear the query and clearing the query does not clear the filters, consistent with S13-R13\".",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    }
+   ],
+   "type": "doc",
+   "version": 1
+  },
+  "duedate": null,
+  "environment": null,
+  "fixVersions": [],
+  "issuelinks": [
+   {
+    "id": "32059",
+    "outwardIssue": {
+     "fields": {
+      "issuetype": {
+       "avatarId": 10315,
+       "description": "Stories track functionality or features expressed as user goals.",
+       "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+       "hierarchyLevel": 0,
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+       "id": "10245",
+       "name": "Story",
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+       "subtask": false
+      },
+      "priority": {
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "id": "3",
+       "name": "Medium",
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+      },
+      "status": {
+       "description": "",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "id": "10350",
+       "name": "Ready for QA",
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10350",
+       "statusCategory": {
+        "colorName": "yellow",
+        "id": 4,
+        "key": "indeterminate",
+        "name": "In Progress",
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+       }
+      },
+      "summary": "Clearing Filters & Empty State"
+     },
+     "id": "54909",
+     "key": "SV-8793",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54909"
+    },
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/32059",
+    "type": {
+     "id": "10003",
+     "inward": "relates to",
+     "name": "Relates",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    }
+   }
+  ],
+  "issuerestriction": {
+   "issuerestrictions": {},
+   "shouldDisplay": true
+  },
+  "issuetype": {
+   "avatarId": 10303,
+   "description": "Bugs track problems or errors. (Migrated on 31 Dec 2023 09:01 UTC)",
+   "entityId": "28af1af2-ae8b-4de4-94eb-bcecd7d4031c",
+   "hierarchyLevel": 0,
+   "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium",
+   "id": "10008",
+   "name": "Bug",
+   "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10008",
+   "subtask": false
+  },
+  "labels": [],
+  "lastViewed": "2026-08-05T21:23:16.918-0500",
+  "parent": {
+   "fields": {
+    "issuetype": {
+     "avatarId": 10306,
+     "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+     "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+     "hierarchyLevel": 1,
+     "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+     "id": "10006",
+     "name": "Epic",
+     "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10006",
+     "subtask": false
+    },
+    "priority": {
+     "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+     "id": "3",
+     "name": "Medium",
+     "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+    },
+    "status": {
+     "description": "",
+     "iconUrl": "https://shopview.atlassian.net/",
+     "id": "10349",
+     "name": "Open",
+     "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+     "statusCategory": {
+      "colorName": "blue-gray",
+      "id": 2,
+      "key": "new",
+      "name": "To Do",
+      "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+     }
+    },
+    "summary": "Filters"
+   },
+   "id": "54901",
+   "key": "SV-8785",
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54901"
+  },
+  "priority": {
+   "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+   "id": "4",
+   "name": "Low",
+   "self": "https://shopview.atlassian.net/rest/api/3/priority/4"
+  },
+  "progress": {
+   "progress": 0,
+   "total": 0
+  },
+  "project": {
+   "avatarUrls": {
+    "16x16": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=xsmall",
+    "24x24": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=small",
+    "32x32": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=medium",
+    "48x48": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551"
+   },
+   "id": "10001",
+   "key": "SV",
+   "name": "ShopView",
+   "projectTypeKey": "software",
+   "self": "https://shopview.atlassian.net/rest/api/3/project/10001",
+   "simplified": true
+  },
+  "reporter": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "resolution": {
+   "description": "Work has been completed on this work item.",
+   "id": "10000",
+   "name": "Done",
+   "self": "https://shopview.atlassian.net/rest/api/3/resolution/10000"
+  },
+  "resolutiondate": "2026-08-04T22:02:41.909-0500",
+  "security": null,
+  "status": {
+   "description": "",
+   "iconUrl": "https://shopview.atlassian.net/",
+   "id": "10250",
+   "name": "OBSOLETE",
+   "self": "https://shopview.atlassian.net/rest/api/3/status/10250",
+   "statusCategory": {
+    "colorName": "green",
+    "id": 3,
+    "key": "done",
+    "name": "Done",
+    "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/3"
+   }
+  },
+  "statusCategory": {
+   "colorName": "green",
+   "id": 3,
+   "key": "done",
+   "name": "Done",
+   "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/3"
+  },
+  "statuscategorychangedate": "2026-08-04T22:02:41.929-0500",
+  "subtasks": [],
+  "summary": "When only a page search is active the empty screen offers Clear Filters, which does not help",
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "2026-08-06T02:49:15.897-0500",
+  "versions": [],
+  "votes": {
+   "hasVoted": false,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8847/votes",
+   "votes": 0
+  },
+  "watches": {
+   "isWatching": true,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8847/watchers",
+   "watchCount": 1
+  },
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": -1
+ },
+ "id": "54974",
+ "key": "SV-8847",
+ "renderedFields": {
+  "aggregateprogress": null,
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "content": "https://shopview.atlassian.net/rest/api/3/attachment/content/59324",
+    "created": "Yesterday 12:37 PM",
+    "filename": "screen-capture - 2026-08-05T123655.032.webm",
+    "id": "59324",
+    "mimeType": "video/x-matroska",
+    "self": "https://shopview.atlassian.net/rest/api/3/attachment/59324",
+    "size": "1.46 MB"
+   }
+  ],
+  "comment": {
+   "comments": [
+    {
+     "author": {
+      "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+      "accountType": "atlassian",
+      "active": true,
+      "avatarUrls": {
+       "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+       "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+       "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+       "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+      },
+      "displayName": "Bilal Muzamil",
+      "emailAddress": "bilal.muzamil@shopview.com",
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+      "timeZone": "Asia/Karachi"
+     },
+     "body": "<p>No More reproducible:</p>\n\n\n\n\n<p><span class=\"nobr\"><a href=\"/rest/api/3/attachment/content/59324\" title=\"screen-capture - 2026-08-05T123655.032.webm attached to SV-8847\" data-attachment-type=\"file\" data-attachment-name=\"screen-capture - 2026-08-05T123655.032.webm\" data-media-services-type=\"file\" data-media-services-id=\"99c62d62-dba5-480c-ba81-ccf97459777a\" rel=\"noreferrer\">screen-capture - 2026-08-05T123655.032.webm<sup><img class=\"rendericon\" src=\"/images/icons/link_attachment_7.gif\" height=\"7\" width=\"7\" align=\"absmiddle\" alt=\"\" border=\"0\"/></sup></a></span></p>",
+     "created": "Yesterday 12:37 PM",
+     "id": "74529",
+     "jsdPublic": true,
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54974/comment/74529",
+     "updateAuthor": {
+      "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+      "accountType": "atlassian",
+      "active": true,
+      "avatarUrls": {
+       "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+       "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+       "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+       "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+      },
+      "displayName": "Bilal Muzamil",
+      "emailAddress": "bilal.muzamil@shopview.com",
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+      "timeZone": "Asia/Karachi"
+     },
+     "updated": "Yesterday 12:37 PM"
+    }
+   ],
+   "maxResults": 1,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54974/comment",
+   "startAt": 0,
+   "total": 1
+  },
+  "components": null,
+  "created": "Tuesday 8:35 PM",
+  "creator": null,
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": null,
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10153": null,
+  "customfield_10252": "",
+  "customfield_10285": "",
+  "customfield_10318": null,
+  "customfield_10351": "",
+  "customfield_10352": null,
+  "customfield_10385": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": "<h3><a name=\"Environment\"></a>Environment</h3>\n\n<p>QA branch <a href=\"https://sv8785.qa.shopview.com/workorders\" class=\"external-link\" rel=\"nofollow noreferrer\">https://sv8785.qa.shopview.com/workorders</a> \u2014 API host sv8785api.qa.shopview.com \u2014 build marker &lt;meta name=\"app-version\"&gt; = v3.4.2-4f8211c (index.html last-modified Mon, 03 Aug 2026 20:09:32 GMT) \u2014 observed 2026-08-04, org d55bc308-e61a-438d-b5f1-c7a73c89d49f, location \"Staging Heavy Duty - 9919\", signed in as an Administrator.</p>\n\n<h3><a name=\"StepstoReproduce\"></a>Steps to Reproduce</h3>\n\n<ol>\n\t<li>Open Work Orders on desktop, All tab, and use Clear Filters first so no filter is on.</li>\n\t<li>Click the \"Search\" button in the page toolbar and type text that matches nothing, for example: ZZQQNOMATCHXX</li>\n\t<li>Read the message in the empty table area and look at the link underneath it.</li>\n</ol>\n\n\n<h3><a name=\"ExpectedResult\"></a>Expected Result</h3>\n\n<p>The empty screen tells the user that nothing matched their search and offers a way to clear the search. Where both a search and filters are on, it offers each of them separately, so clearing one does not clear the other.</p>\n\n<h3><a name=\"CurrentResult\"></a>Current Result</h3>\n\n<p>The message reads \"No work orders match your filters\" even though no filter is on, and the only link offered is \"Clear Filters\". Clicking it does nothing useful because there are no filters to clear: the search text stays and the screen stays empty. There is no way to clear the search from the empty screen.</p>\n\n<h3><a name=\"Howoften\"></a>How often</h3>\n\n<p>Every time.</p>\n\n<h3><a name=\"Technicaldetail\"></a>Technical detail</h3>\n\n<p>The empty state renders one link only, data-test-id=\"empty_state_clear_filters\", labelled \"Clear Filters\"; there is no clear-the-query counterpart. The toolbar copy of the same control (data-test-id=\"clear_filters\") is hidden when no filter is active. Specification references S8-R4 and S8-R5.</p>\n\n\n\n<p>Where this expected behaviour comes from: the Filters specification, version 18, and it takes three requirements, all of which the empty screen has to satisfy.</p>\n\n<p>Requirement S8-R3: \"When the combination of active filters and any active search query produces no matching records, the table shows an empty state with a message indicating no results were found for the current filters and search\".</p>\n\n<p>Requirement S8-R4: \"The empty state includes a prompt or link to clear filters and, where a search query is active, to clear the query\".</p>\n\n<p>Requirement S8-R5: \"Where both a query and filters are active, each is cleared independently from the empty state. Clearing filters does not clear the query and clearing the query does not clear the filters, consistent with S13-R13\".</p>",
+  "duedate": null,
+  "environment": "",
+  "fixVersions": null,
+  "issuelinks": null,
+  "issuerestriction": null,
+  "issuetype": null,
+  "labels": null,
+  "lastViewed": "Today 7:23 AM",
+  "priority": null,
+  "progress": null,
+  "project": null,
+  "reporter": null,
+  "resolution": null,
+  "resolutiondate": "Yesterday 8:02 AM",
+  "security": null,
+  "status": null,
+  "statusCategory": null,
+  "statuscategorychangedate": "Yesterday 8:02 AM",
+  "subtasks": null,
+  "summary": null,
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "Today 12:49 PM",
+  "versions": null,
+  "votes": null,
+  "watches": null,
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": null
+ },
+ "self": "https://shopview.atlassian.net/rest/api/3/issue/54974"
+}

@@ -1,0 +1,871 @@
+{
+ "changelog": {
+  "histories": [
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-06T02:49:17.278-0500",
+    "id": "140544",
+    "items": [
+     {
+      "field": "description",
+      "fieldId": "description",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": "h3. Description\n\nWhen you schedule a technician for the morning, the Schedule shows the job in the afternoon. A one-hour job put on a technician's calendar for 9:00 in the morning appears on the board, in the pop-up summary and in the shift window as 3:00 in the afternoon. Every time on the page is shifted by six hours - the block position, the hover summary, the start and end times in the shift window, and the little 'now' marker in Day view. A twelve-hour day shift that should read 7:00 AM to 7:00 PM instead reads 1:00 PM to 1:00 AM and spills over into the next day on the Day view. This makes the Schedule unusable as a planning board: nobody can tell a technician when to start, and a morning job looks like an evening job.\n\nh3. Branch / Environment\n\nBranch tested: https://sv8685.qa.shopview.com/schedule \u00b7 API host: https://sv8685api.qa.shopview.com \u00b7 Build marker (meta app-version): v3.5-4873abe \u00b7 index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 \u00b7 Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f \u00b7 Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) \u00b7 Signed in as admin@shopview.com (Administrator) \u00b7 Observed 2026-08-04, 16:00-19:00 UTC.\n\nh3. Steps to reproduce\n\n# Open the Schedule and pick the Week view.\n# Find the work order S-15855 Vuchester Retail, unit 10123073, line ' Service - Mobile service call made by George Donald 403-369-7067' in the left-hand list (type S-15855 into 'Search work orders').\n# Drag that card onto the row for technician Ayesha Khan, on the Tuesday column.\n# Note that Ayesha Khan's working hours in Edit Staff Member are Monday 7:00 AM to 9:00 PM and Tuesday to Friday 7:00 AM to 7:00 PM, so the job should start at 7:00 in the morning.\n# Hover the new block and read the time range in the pop-up summary.\n# Click the block and read the two time boxes in the shift window.\n# Switch to the Day view for that date and look at where the block sits against the hour labels, and at the time printed on the 'now' marker.\n\nh3. Expected behaviour\n\nThe Schedule shows shop-local times. A job scheduled to start at 7:00 in the morning reads 7:00 AM everywhere - on the block, in the hover summary, in the shift window and in the Day view position. The 'now' marker matches the clock on the wall at the shop.\n\nh3. Current behaviour\n\nEvery time is six hours later than it should be. The 7:00 AM job reads 1:00 PM; a 9:00 AM job reads 3:00 PM; the 'now' marker read 4:11 PM while the shop clock read 10:11 AM. The date can roll over too: a 7:00 AM to 7:00 PM shift reads 1:00 PM to 1:00 AM and is drawn partly on the following day.\n\nh3. Images\n\nNo screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.\n\nh3. Technical details for developers\n\nThe write path converts shop-local to UTC correctly and the read path never converts back, so UTC is rendered as wall-clock. Evidence: shift cea79194-02d3-46d1-958b-a76f17ee1cec is stored startsAt 2026-08-02T16:01:00Z (= 10:01 local, America/Edmonton is UTC-6) and the tooltip reads 'Sun, Aug 2, 2026 - 4:01 PM - 5:13 PM'. Creating a shift with startTime '09:00' via POST /api/schedule/shifts stored 15:00Z and the modal's native input[type=time] value attribute is literally '15:00'. This is NOT a client-locale artefact: forcing the browser timezone to America/Edmonton (the workplace's own timezone from GET /api/staff/my-workplaces) produced the identical wrong value. Affected surfaces: schedule_shift_block text_schedule_block_time, the hover card, input_shift_detail_start_time / input_shift_detail_end_time, text_schedule_now_time, and Day-view horizontal positioning.",
+      "to": null,
+      "toString": "h3. Description\n\nWhen you schedule a technician for the morning, the Schedule shows the job in the afternoon. A one-hour job put on a technician's calendar for 9:00 in the morning appears on the board, in the pop-up summary and in the shift window as 3:00 in the afternoon. Every time on the page is shifted by six hours - the block position, the hover summary, the start and end times in the shift window, and the little 'now' marker in Day view. A twelve-hour day shift that should read 7:00 AM to 7:00 PM instead reads 1:00 PM to 1:00 AM and spills over into the next day on the Day view. This makes the Schedule unusable as a planning board: nobody can tell a technician when to start, and a morning job looks like an evening job.\n\nh3. Branch / Environment\n\nBranch tested: https://sv8685.qa.shopview.com/schedule \u00b7 API host: https://sv8685api.qa.shopview.com \u00b7 Build marker (meta app-version): v3.5-4873abe \u00b7 index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 \u00b7 Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f \u00b7 Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) \u00b7 Signed in as admin@shopview.com (Administrator) \u00b7 Observed 2026-08-04, 16:00-19:00 UTC.\n\nh3. Steps to reproduce\n\n# Open the Schedule and pick the Week view.\n# Find the work order S-15855 Vuchester Retail, unit 10123073, line ' Service - Mobile service call made by George Donald 403-369-7067' in the left-hand list (type S-15855 into 'Search work orders').\n# Drag that card onto the row for technician Ayesha Khan, on the Tuesday column.\n# Note that Ayesha Khan's working hours in Edit Staff Member are Monday 7:00 AM to 9:00 PM and Tuesday to Friday 7:00 AM to 7:00 PM, so the job should start at 7:00 in the morning.\n# Hover the new block and read the time range in the pop-up summary.\n# Click the block and read the two time boxes in the shift window.\n# Switch to the Day view for that date and look at where the block sits against the hour labels, and at the time printed on the 'now' marker.\n\nh3. Expected behaviour\n\nThe Schedule shows shop-local times. A job scheduled to start at 7:00 in the morning reads 7:00 AM everywhere - on the block, in the hover summary, in the shift window and in the Day view position. The 'now' marker matches the clock on the wall at the shop.\n\nh3. Current behaviour\n\nEvery time is six hours later than it should be. The 7:00 AM job reads 1:00 PM; a 9:00 AM job reads 3:00 PM; the 'now' marker read 4:11 PM while the shop clock read 10:11 AM. The date can roll over too: a 7:00 AM to 7:00 PM shift reads 1:00 PM to 1:00 AM and is drawn partly on the following day.\n\nh3. Images\n\nNo screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.\n\nh3. Technical details for developers\n\nThe write path converts shop-local to UTC correctly and the read path never converts back, so UTC is rendered as wall-clock. Evidence: shift cea79194-02d3-46d1-958b-a76f17ee1cec is stored startsAt 2026-08-02T16:01:00Z (= 10:01 local, America/Edmonton is UTC-6) and the tooltip reads 'Sun, Aug 2, 2026 - 4:01 PM - 5:13 PM'. Creating a shift with startTime '09:00' via POST /api/schedule/shifts stored 15:00Z and the modal's native input[type=time] value attribute is literally '15:00'. This is NOT a client-locale artefact: forcing the browser timezone to America/Edmonton (the workplace's own timezone from GET /api/staff/my-workplaces) produced the identical wrong value. Affected surfaces: schedule_shift_block text_schedule_block_time, the hover card, input_shift_detail_start_time / input_shift_detail_end_time, text_schedule_now_time, and Day-view horizontal positioning.\n\n \n\nWhere this expected behaviour comes from: the Schedule specification, version 23, section 4.2, which says: \"Every shift has a start time. It is derived from a hierarchy: The technician's configured working hours take precedence.\" The technician in the steps above has working hours of 7:00 AM to 7:00 PM, so a shift placed on her must read 7:00 AM, not 1:00 PM.\n\nThe same specification, section 4.8, says of the day view: \"Now line. A vertical indicator showing the current time, with a label on hover over the grid.\" The current time for a shop is the time on the shop's own clock.\n\nOne honest caveat, so nobody has to take our word for it: the specification nowhere writes down a rule about time zones, and it is silent on that point. What the two lines above do settle is that a shift's start time follows the technician's configured hours, and that the day view's marker shows the current time. The six-hour shift breaks both. If the product owner takes a different view of which clock the board should show, this belongs back with him as a question rather than with a developer."
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-05T22:37:20.647-0500",
+    "id": "140364",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-8924",
+      "toString": "This work item relates to SV-8924"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T09:33:48.141-0500",
+    "id": "140077",
+    "items": [
+     {
+      "field": "assignee",
+      "fieldId": "assignee",
+      "fieldtype": "jira",
+      "from": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+      "fromString": "Mudassir Qamar",
+      "to": null,
+      "toString": null
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T09:21:39.651-0500",
+    "id": "140050",
+    "items": [
+     {
+      "field": "IssueParentAssociation",
+      "fieldtype": "jira",
+      "from": "54707",
+      "fromString": "SV-8685",
+      "to": null,
+      "toString": null
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T07:21:08.708-0500",
+    "id": "139955",
+    "items": [
+     {
+      "field": "assignee",
+      "fieldId": "assignee",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "tmpFromAccountId": null,
+      "tmpToAccountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+      "to": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+      "toString": "Mudassir Qamar"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T04:02:11.077-0500",
+    "id": "139810",
+    "items": [
+     {
+      "field": "labels",
+      "fieldId": "labels",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": "",
+      "to": null,
+      "toString": "FS-Schedule"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-04T12:18:43.747-0500",
+    "id": "139595",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-8686",
+      "toString": "This work item relates to SV-8686"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-04T12:18:42.446-0500",
+    "id": "139593",
+    "items": [
+     {
+      "field": "IssueParentAssociation",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "54707",
+      "toString": "SV-8685"
+     }
+    ]
+   }
+  ],
+  "maxResults": 8,
+  "startAt": 0,
+  "total": 8
+ },
+ "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+ "fields": {
+  "aggregateprogress": {
+   "progress": 0,
+   "total": 0
+  },
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [],
+  "comment": {
+   "comments": [],
+   "maxResults": 0,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54975/comment",
+   "startAt": 0,
+   "total": 0
+  },
+  "components": [],
+  "created": "2026-08-04T12:18:42.412-0500",
+  "creator": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": "0|i01v8p:",
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10153": {
+   "color": "GREY",
+   "id": "10123",
+   "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10123",
+   "value": "Schedule"
+  },
+  "customfield_10252": null,
+  "customfield_10285": null,
+  "customfield_10318": null,
+  "customfield_10351": null,
+  "customfield_10352": null,
+  "customfield_10385": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": {
+   "content": [
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Description",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "When you schedule a technician for the morning, the Schedule shows the job in the afternoon. A one-hour job put on a technician's calendar for 9:00 in the morning appears on the board, in the pop-up summary and in the shift window as 3:00 in the afternoon. Every time on the page is shifted by six hours - the block position, the hover summary, the start and end times in the shift window, and the little 'now' marker in Day view. A twelve-hour day shift that should read 7:00 AM to 7:00 PM instead reads 1:00 PM to 1:00 AM and spills over into the next day on the Day view. This makes the Schedule unusable as a planning board: nobody can tell a technician when to start, and a morning job looks like an evening job.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Branch / Environment",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Branch tested: https://sv8685.qa.shopview.com/schedule \u00b7 API host: https://sv8685api.qa.shopview.com \u00b7 Build marker (meta app-version): v3.5-4873abe \u00b7 index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 \u00b7 Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f \u00b7 Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) \u00b7 Signed in as admin@shopview.com (Administrator) \u00b7 Observed 2026-08-04, 16:00-19:00 UTC.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Steps to reproduce",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Open the Schedule and pick the Week view.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Find the work order S-15855 Vuchester Retail, unit 10123073, line ' Service - Mobile service call made by George Donald 403-369-7067' in the left-hand list (type S-15855 into 'Search work orders').",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Drag that card onto the row for technician Ayesha Khan, on the Tuesday column.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Note that Ayesha Khan's working hours in Edit Staff Member are Monday 7:00 AM to 9:00 PM and Tuesday to Friday 7:00 AM to 7:00 PM, so the job should start at 7:00 in the morning.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Hover the new block and read the time range in the pop-up summary.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Click the block and read the two time boxes in the shift window.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Switch to the Day view for that date and look at where the block sits against the hour labels, and at the time printed on the 'now' marker.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "orderedList"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Expected behaviour",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "The Schedule shows shop-local times. A job scheduled to start at 7:00 in the morning reads 7:00 AM everywhere - on the block, in the hover summary, in the shift window and in the Day view position. The 'now' marker matches the clock on the wall at the shop.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Current behaviour",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Every time is six hours later than it should be. The 7:00 AM job reads 1:00 PM; a 9:00 AM job reads 3:00 PM; the 'now' marker read 4:11 PM while the shop clock read 10:11 AM. The date can roll over too: a 7:00 AM to 7:00 PM shift reads 1:00 PM to 1:00 AM and is drawn partly on the following day.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Images",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "No screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Technical details for developers",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "The write path converts shop-local to UTC correctly and the read path never converts back, so UTC is rendered as wall-clock. Evidence: shift cea79194-02d3-46d1-958b-a76f17ee1cec is stored startsAt 2026-08-02T16:01:00Z (= 10:01 local, America/Edmonton is UTC-6) and the tooltip reads 'Sun, Aug 2, 2026 - 4:01 PM - 5:13 PM'. Creating a shift with startTime '09:00' via POST /api/schedule/shifts stored 15:00Z and the modal's native input[type=time] value attribute is literally '15:00'. This is NOT a client-locale artefact: forcing the browser timezone to America/Edmonton (the workplace's own timezone from GET /api/staff/my-workplaces) produced the identical wrong value. Affected surfaces: schedule_shift_block text_schedule_block_time, the hover card, input_shift_detail_start_time / input_shift_detail_end_time, text_schedule_now_time, and Day-view horizontal positioning.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": " ",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Where this expected behaviour comes from: the Schedule specification, version 23, section 4.2, which says: \"Every shift has a start time. It is derived from a hierarchy: The technician's configured working hours take precedence.\" The technician in the steps above has working hours of 7:00 AM to 7:00 PM, so a shift placed on her must read 7:00 AM, not 1:00 PM.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "The same specification, section 4.8, says of the day view: \"Now line. A vertical indicator showing the current time, with a label on hover over the grid.\" The current time for a shop is the time on the shop's own clock.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "One honest caveat, so nobody has to take our word for it: the specification nowhere writes down a rule about time zones, and it is silent on that point. What the two lines above do settle is that a shift's start time follows the technician's configured hours, and that the day view's marker shows the current time. The six-hour shift breaks both. If the product owner takes a different view of which clock the board should show, this belongs back with him as a question rather than with a developer.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    }
+   ],
+   "type": "doc",
+   "version": 1
+  },
+  "duedate": null,
+  "environment": null,
+  "fixVersions": [],
+  "issuelinks": [
+   {
+    "id": "32060",
+    "outwardIssue": {
+     "fields": {
+      "issuetype": {
+       "avatarId": 10315,
+       "description": "Stories track functionality or features expressed as user goals.",
+       "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+       "hierarchyLevel": 0,
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+       "id": "10245",
+       "name": "Story",
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+       "subtask": false
+      },
+      "priority": {
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "id": "3",
+       "name": "Medium",
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+      },
+      "status": {
+       "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "id": "10006",
+       "name": "TESTING QA",
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10006",
+       "statusCategory": {
+        "colorName": "yellow",
+        "id": 4,
+        "key": "indeterminate",
+        "name": "In Progress",
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+       }
+      },
+      "summary": "Schedule Grid Layout & Navigation"
+     },
+     "id": "54708",
+     "key": "SV-8686",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54708"
+    },
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/32060",
+    "type": {
+     "id": "10003",
+     "inward": "relates to",
+     "name": "Relates",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    }
+   },
+   {
+    "id": "32087",
+    "inwardIssue": {
+     "fields": {
+      "issuetype": {
+       "avatarId": 10854,
+       "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+       "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+       "hierarchyLevel": -1,
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+       "id": "10007",
+       "name": "Story Defect",
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+       "subtask": true
+      },
+      "priority": {
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+       "id": "4",
+       "name": "Low",
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/4"
+      },
+      "status": {
+       "description": "",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "id": "10349",
+       "name": "Open",
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+       "statusCategory": {
+        "colorName": "blue-gray",
+        "id": 2,
+        "key": "new",
+        "name": "To Do",
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+       }
+      },
+      "summary": "Schedule: assigning an unassigned job to a technician moves its saved start time six hours earlier"
+     },
+     "id": "55057",
+     "key": "SV-8924",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/55057"
+    },
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/32087",
+    "type": {
+     "id": "10003",
+     "inward": "relates to",
+     "name": "Relates",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    }
+   }
+  ],
+  "issuerestriction": {
+   "issuerestrictions": {},
+   "shouldDisplay": true
+  },
+  "issuetype": {
+   "avatarId": 10303,
+   "description": "Bugs track problems or errors. (Migrated on 31 Dec 2023 09:01 UTC)",
+   "entityId": "28af1af2-ae8b-4de4-94eb-bcecd7d4031c",
+   "hierarchyLevel": 0,
+   "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium",
+   "id": "10008",
+   "name": "Bug",
+   "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10008",
+   "subtask": false
+  },
+  "labels": [
+   "FS-Schedule"
+  ],
+  "lastViewed": "2026-08-06T03:07:16.369-0500",
+  "priority": {
+   "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+   "id": "4",
+   "name": "Low",
+   "self": "https://shopview.atlassian.net/rest/api/3/priority/4"
+  },
+  "progress": {
+   "progress": 0,
+   "total": 0
+  },
+  "project": {
+   "avatarUrls": {
+    "16x16": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=xsmall",
+    "24x24": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=small",
+    "32x32": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=medium",
+    "48x48": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551"
+   },
+   "id": "10001",
+   "key": "SV",
+   "name": "ShopView",
+   "projectTypeKey": "software",
+   "self": "https://shopview.atlassian.net/rest/api/3/project/10001",
+   "simplified": true
+  },
+  "reporter": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "resolution": null,
+  "resolutiondate": null,
+  "security": null,
+  "status": {
+   "description": "",
+   "iconUrl": "https://shopview.atlassian.net/",
+   "id": "10349",
+   "name": "Open",
+   "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+   "statusCategory": {
+    "colorName": "blue-gray",
+    "id": 2,
+    "key": "new",
+    "name": "To Do",
+    "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+   }
+  },
+  "statusCategory": {
+   "colorName": "blue-gray",
+   "id": 2,
+   "key": "new",
+   "name": "To Do",
+   "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+  },
+  "statuscategorychangedate": "2026-08-04T12:18:43.062-0500",
+  "subtasks": [],
+  "summary": "Every time on the Schedule is shown six hours later than the time it was scheduled for",
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "2026-08-06T02:49:17.278-0500",
+  "versions": [],
+  "votes": {
+   "hasVoted": false,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8848/votes",
+   "votes": 0
+  },
+  "watches": {
+   "isWatching": true,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8848/watchers",
+   "watchCount": 1
+  },
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": -1
+ },
+ "id": "54975",
+ "key": "SV-8848",
+ "renderedFields": {
+  "aggregateprogress": null,
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [],
+  "comment": {
+   "comments": [],
+   "maxResults": 0,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54975/comment",
+   "startAt": 0,
+   "total": 0
+  },
+  "components": null,
+  "created": "Tuesday 10:18 PM",
+  "creator": null,
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": null,
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10153": null,
+  "customfield_10252": "",
+  "customfield_10285": "",
+  "customfield_10318": null,
+  "customfield_10351": "",
+  "customfield_10352": null,
+  "customfield_10385": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": "<h3><a name=\"Description\"></a>Description</h3>\n\n<p>When you schedule a technician for the morning, the Schedule shows the job in the afternoon. A one-hour job put on a technician's calendar for 9:00 in the morning appears on the board, in the pop-up summary and in the shift window as 3:00 in the afternoon. Every time on the page is shifted by six hours - the block position, the hover summary, the start and end times in the shift window, and the little 'now' marker in Day view. A twelve-hour day shift that should read 7:00 AM to 7:00 PM instead reads 1:00 PM to 1:00 AM and spills over into the next day on the Day view. This makes the Schedule unusable as a planning board: nobody can tell a technician when to start, and a morning job looks like an evening job.</p>\n\n<h3><a name=\"Branch%2FEnvironment\"></a>Branch / Environment</h3>\n\n<p>Branch tested: <a href=\"https://sv8685.qa.shopview.com/schedule\" class=\"external-link\" rel=\"nofollow noreferrer\">https://sv8685.qa.shopview.com/schedule</a> \u00b7 API host: <a href=\"https://sv8685api.qa.shopview.com\" class=\"external-link\" rel=\"nofollow noreferrer\">https://sv8685api.qa.shopview.com</a> \u00b7 Build marker (meta app-version): v3.5-4873abe \u00b7 index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 \u00b7 Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f \u00b7 Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) \u00b7 Signed in as admin@shopview.com (Administrator) \u00b7 Observed 2026-08-04, 16:00-19:00 UTC.</p>\n\n<h3><a name=\"Stepstoreproduce\"></a>Steps to reproduce</h3>\n\n<ol>\n\t<li>Open the Schedule and pick the Week view.</li>\n\t<li>Find the work order S-15855 Vuchester Retail, unit 10123073, line ' Service - Mobile service call made by George Donald 403-369-7067' in the left-hand list (type S-15855 into 'Search work orders').</li>\n\t<li>Drag that card onto the row for technician Ayesha Khan, on the Tuesday column.</li>\n\t<li>Note that Ayesha Khan's working hours in Edit Staff Member are Monday 7:00 AM to 9:00 PM and Tuesday to Friday 7:00 AM to 7:00 PM, so the job should start at 7:00 in the morning.</li>\n\t<li>Hover the new block and read the time range in the pop-up summary.</li>\n\t<li>Click the block and read the two time boxes in the shift window.</li>\n\t<li>Switch to the Day view for that date and look at where the block sits against the hour labels, and at the time printed on the 'now' marker.</li>\n</ol>\n\n\n<h3><a name=\"Expectedbehaviour\"></a>Expected behaviour</h3>\n\n<p>The Schedule shows shop-local times. A job scheduled to start at 7:00 in the morning reads 7:00 AM everywhere - on the block, in the hover summary, in the shift window and in the Day view position. The 'now' marker matches the clock on the wall at the shop.</p>\n\n<h3><a name=\"Currentbehaviour\"></a>Current behaviour</h3>\n\n<p>Every time is six hours later than it should be. The 7:00 AM job reads 1:00 PM; a 9:00 AM job reads 3:00 PM; the 'now' marker read 4:11 PM while the shop clock read 10:11 AM. The date can roll over too: a 7:00 AM to 7:00 PM shift reads 1:00 PM to 1:00 AM and is drawn partly on the following day.</p>\n\n<h3><a name=\"Images\"></a>Images</h3>\n\n<p>No screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.</p>\n\n<h3><a name=\"Technicaldetailsfordevelopers\"></a>Technical details for developers</h3>\n\n<p>The write path converts shop-local to UTC correctly and the read path never converts back, so UTC is rendered as wall-clock. Evidence: shift cea79194-02d3-46d1-958b-a76f17ee1cec is stored startsAt 2026-08-02T16:01:00Z (= 10:01 local, America/Edmonton is UTC-6) and the tooltip reads 'Sun, Aug 2, 2026 - 4:01 PM - 5:13 PM'. Creating a shift with startTime '09:00' via POST /api/schedule/shifts stored 15:00Z and the modal's native input<span class=\"error\">&#91;type=time&#93;</span> value attribute is literally '15:00'. This is NOT a client-locale artefact: forcing the browser timezone to America/Edmonton (the workplace's own timezone from GET /api/staff/my-workplaces) produced the identical wrong value. Affected surfaces: schedule_shift_block text_schedule_block_time, the hover card, input_shift_detail_start_time / input_shift_detail_end_time, text_schedule_now_time, and Day-view horizontal positioning.</p>\n\n\n\n<p>Where this expected behaviour comes from: the Schedule specification, version 23, section 4.2, which says: \"Every shift has a start time. It is derived from a hierarchy: The technician's configured working hours take precedence.\" The technician in the steps above has working hours of 7:00 AM to 7:00 PM, so a shift placed on her must read 7:00 AM, not 1:00 PM.</p>\n\n<p>The same specification, section 4.8, says of the day view: \"Now line. A vertical indicator showing the current time, with a label on hover over the grid.\" The current time for a shop is the time on the shop's own clock.</p>\n\n<p>One honest caveat, so nobody has to take our word for it: the specification nowhere writes down a rule about time zones, and it is silent on that point. What the two lines above do settle is that a shift's start time follows the technician's configured hours, and that the day view's marker shows the current time. The six-hour shift breaks both. If the product owner takes a different view of which clock the board should show, this belongs back with him as a question rather than with a developer.</p>",
+  "duedate": null,
+  "environment": "",
+  "fixVersions": null,
+  "issuelinks": null,
+  "issuerestriction": null,
+  "issuetype": null,
+  "labels": null,
+  "lastViewed": "Today 1:07 PM",
+  "priority": null,
+  "progress": null,
+  "project": null,
+  "reporter": null,
+  "resolution": null,
+  "resolutiondate": null,
+  "security": null,
+  "status": null,
+  "statusCategory": null,
+  "statuscategorychangedate": "Tuesday 10:18 PM",
+  "subtasks": null,
+  "summary": null,
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "Today 12:49 PM",
+  "versions": null,
+  "votes": null,
+  "watches": null,
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": null
+ },
+ "self": "https://shopview.atlassian.net/rest/api/3/issue/54975"
+}

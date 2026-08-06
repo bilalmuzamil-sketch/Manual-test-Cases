@@ -1,0 +1,983 @@
+{
+ "changelog": {
+  "histories": [
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-06T02:50:28.427-0500",
+    "id": "140594",
+    "items": [
+     {
+      "field": "description",
+      "fieldId": "description",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": "h3. What happens now\n\nThe only way to put a job on the Schedule is to drag it. There used to be a click alternative - you clicked a small control on the work order card, the card showed as armed, and you then clicked the technician's cell to place the job. That control has gone from the current build, so anyone who cannot drag has no way to schedule at all.\n\nh3. Why this matters\n\nDragging is hard or impossible for some people - anyone using a keyboard, a trackpad they struggle with, or assistive software. The Schedule specification asks for a click alternative precisely so that scheduling does not depend on being able to drag. With it gone, the whole feature is unreachable for those users.\n\nh3. How to see it\n\n# Sign in and open the Schedule page.\n# Look at any work order card in the left-hand panel. Hover over it.\n# Open the card's line list too, using the arrow on the right.\n# Look for any button that arms the card for click placement.\n\nh3. What you see\n\n* There is no such button anywhere - not on the card, not when hovering it, and not inside the line list.\n* The card carries no button of any kind. Its only interactive parts are the status chip and the arrow that opens the line list.\n* It was there in an earlier build of this same branch, where the control was labelled so that it read as \"Schedule S-12876 by click\", and clicking it turned the card on and then let a technician cell be clicked to place the job.\n\nh3. What should happen\n\nFrom the Schedule specification, section 11: *\"drag-and-drop has a click-to-arm alternative\".* The click alternative should be present and should place a job on the cell you click, opening the same scope window the drag opens.\n\nh3. Exact test data used\n\n* Location: Staging Heavy Duty - 9919. Build v3.5-7ec992f (index.html last modified Wed 05 Aug 2026 22:49:36 GMT).\n* Work order card S-12876, Pamill Paving, unit 713, 1 line, and also a multi-line card S-13014, Fuline Enterprises, unit G30, 7 lines.\n* Signed in as admin@shopview.com, week of 3 August 2026, Week view.\n* The control it replaced was seen on the earlier build v3.5-be42149 of this same branch.\n\nh3. Things checked and ruled out first\n\n* Not hidden until hover - hovering the card was tried and adds nothing.\n* Not tucked inside the line list - the list was opened and its controls are only a back button, a search box, two scope buttons and the line rows.\n* Not a naming change - the whole page was searched for any control whose test name or accessible label mentions arming or clicking to schedule, and there are none.\n* Not a permissions problem - this was seen as an administrator with the full Schedule permission.\n* This is separate from the drag problems already reported. SV-8840 and SV-8869 are about missing drag feedback, SV-8870 is about Month view, and SV-8867 is about reassigning a series. None of them is about the click alternative being absent.\n\nh3. Where this came from\n\nFound while re-checking the Schedule test cases {{SCH-DND-08}} (TestRail C29962) and {{SCH-SCOPE-05}} (TestRail C29967) against build {{v3.5-7ec992f}} on 6 August 2026. C29962 was recorded as passing on the earlier build of this branch, which is how the change was noticed.",
+      "to": null,
+      "toString": "h3. What happens now\n\nThe only way to put a job on the Schedule is to drag it. There used to be a click alternative - you clicked a small control on the work order card, the card showed as armed, and you then clicked the technician's cell to place the job. That control has gone from the current build, so anyone who cannot drag has no way to schedule at all.\n\nh3. Why this matters\n\nDragging is hard or impossible for some people - anyone using a keyboard, a trackpad they struggle with, or assistive software. The Schedule specification asks for a click alternative precisely so that scheduling does not depend on being able to drag. With it gone, the whole feature is unreachable for those users.\n\nh3. How to see it\n\n# Sign in and open the Schedule page.\n# Look at any work order card in the left-hand panel. Hover over it.\n# Open the card's line list too, using the arrow on the right.\n# Look for any button that arms the card for click placement.\n\nh3. What you see\n\n* There is no such button anywhere - not on the card, not when hovering it, and not inside the line list.\n* The card carries no button of any kind. Its only interactive parts are the status chip and the arrow that opens the line list.\n* It was there in an earlier build of this same branch, where the control was labelled so that it read as \"Schedule S-12876 by click\", and clicking it turned the card on and then let a technician cell be clicked to place the job.\n\nh3. What should happen\n\nFrom the Schedule specification, section 11: *\"drag-and-drop has a click-to-arm alternative\".* The click alternative should be present and should place a job on the cell you click, opening the same scope window the drag opens.\n\nh3. Exact test data used\n\n* Location: Staging Heavy Duty - 9919. Build v3.5-7ec992f (index.html last modified Wed 05 Aug 2026 22:49:36 GMT).\n* Work order card S-12876, Pamill Paving, unit 713, 1 line, and also a multi-line card S-13014, Fuline Enterprises, unit G30, 7 lines.\n* Signed in as admin@shopview.com, week of 3 August 2026, Week view.\n* The control it replaced was seen on the earlier build v3.5-be42149 of this same branch.\n\nh3. Things checked and ruled out first\n\n* Not hidden until hover - hovering the card was tried and adds nothing.\n* Not tucked inside the line list - the list was opened and its controls are only a back button, a search box, two scope buttons and the line rows.\n* Not a naming change - the whole page was searched for any control whose test name or accessible label mentions arming or clicking to schedule, and there are none.\n* Not a permissions problem - this was seen as an administrator with the full Schedule permission.\n* This is separate from the drag problems already reported. SV-8840 and SV-8869 are about missing drag feedback, SV-8870 is about Month view, and SV-8867 is about reassigning a series. None of them is about the click alternative being absent.\n\nh3. Where this came from\n\nFound while re-checking the Schedule test cases {{SCH-DND-08}} (TestRail C29962) and {{SCH-SCOPE-05}} (TestRail C29967) against build {{v3.5-7ec992f}} on 6 August 2026. C29962 was recorded as passing on the earlier build of this branch, which is how the change was noticed.\n\n \n\nWhere this expected behaviour comes from: the Schedule specification, version 23, section 11 (Non-functional requirements), which says under Accessibility: \"drag-and-drop has a click-to-arm alternative\". The same specification repeats it in section 7 (Interactions and micro-interactions): \"Drag-and-drop has a click-to-arm alternative for users who cannot drag.\""
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-06T02:03:32.168-0500",
+    "id": "140518",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-8688",
+      "toString": "This work item relates to SV-8688"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-06T02:03:30.849-0500",
+    "id": "140516",
+    "items": [
+     {
+      "field": "IssueParentAssociation",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "54710",
+      "toString": "SV-8688"
+     }
+    ]
+   }
+  ],
+  "maxResults": 3,
+  "startAt": 0,
+  "total": 3
+ },
+ "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+ "fields": {
+  "aggregateprogress": {
+   "progress": 0,
+   "total": 0
+  },
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [],
+  "comment": {
+   "comments": [
+    {
+     "author": {
+      "accountId": "712020:b60d0335-ad52-459c-b20c-490448734cda",
+      "accountType": "atlassian",
+      "active": true,
+      "avatarUrls": {
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/16",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/24",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/32",
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/48"
+      },
+      "displayName": "Stefan Vukovic",
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3Ab60d0335-ad52-459c-b20c-490448734cda",
+      "timeZone": "America/Bogota"
+     },
+     "body": {
+      "content": [
+       {
+        "attrs": {
+         "localId": "3b8bf42e573d"
+        },
+        "content": [
+         {
+          "attrs": {
+           "accessLevel": "",
+           "id": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+           "localId": "bc747008-06e6-497b-9abf-d61a42023822",
+           "text": "@Branko Cicovic"
+          },
+          "type": "mention"
+         },
+         {
+          "text": " ",
+          "type": "text"
+         },
+         {
+          "attrs": {
+           "accessLevel": "",
+           "id": "712020:1f21c3b6-c183-4d46-9561-7b79f0e197ab",
+           "localId": "1b026646-1e67-4cfd-8dd3-440fdda2514c",
+           "text": "@Milos Vasic"
+          },
+          "type": "mention"
+         },
+         {
+          "text": " - take a look at this one. Branko and I discussed this already, and agreed this functionality should not be in the scope of v1.",
+          "type": "text"
+         }
+        ],
+        "type": "paragraph"
+       }
+      ],
+      "type": "doc",
+      "version": 1
+     },
+     "created": "2026-08-06T03:26:43.860-0500",
+     "id": "74595",
+     "jsdPublic": true,
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/55092/comment/74595",
+     "updateAuthor": {
+      "accountId": "712020:b60d0335-ad52-459c-b20c-490448734cda",
+      "accountType": "atlassian",
+      "active": true,
+      "avatarUrls": {
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/16",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/24",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/32",
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/48"
+      },
+      "displayName": "Stefan Vukovic",
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3Ab60d0335-ad52-459c-b20c-490448734cda",
+      "timeZone": "America/Bogota"
+     },
+     "updated": "2026-08-06T03:26:43.860-0500"
+    }
+   ],
+   "maxResults": 1,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/55092/comment",
+   "startAt": 0,
+   "total": 1
+  },
+  "components": [],
+  "created": "2026-08-06T02:03:30.815-0500",
+  "creator": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": "0|i01vxd:",
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10285": null,
+  "customfield_10318": null,
+  "customfield_10351": null,
+  "customfield_10385": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": {
+   "content": [
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "What happens now",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "The only way to put a job on the Schedule is to drag it. There used to be a click alternative - you clicked a small control on the work order card, the card showed as armed, and you then clicked the technician's cell to place the job. That control has gone from the current build, so anyone who cannot drag has no way to schedule at all.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Why this matters",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Dragging is hard or impossible for some people - anyone using a keyboard, a trackpad they struggle with, or assistive software. The Schedule specification asks for a click alternative precisely so that scheduling does not depend on being able to drag. With it gone, the whole feature is unreachable for those users.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "How to see it",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Sign in and open the Schedule page.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Look at any work order card in the left-hand panel. Hover over it.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Open the card's line list too, using the arrow on the right.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Look for any button that arms the card for click placement.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "orderedList"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "What you see",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "There is no such button anywhere - not on the card, not when hovering it, and not inside the line list.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "The card carries no button of any kind. Its only interactive parts are the status chip and the arrow that opens the line list.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "It was there in an earlier build of this same branch, where the control was labelled so that it read as \"Schedule S-12876 by click\", and clicking it turned the card on and then let a technician cell be clicked to place the job.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "bulletList"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "What should happen",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "From the Schedule specification, section 11: ",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ],
+       "text": "\"drag-and-drop has a click-to-arm alternative\".",
+       "type": "text"
+      },
+      {
+       "text": " The click alternative should be present and should place a job on the cell you click, opening the same scope window the drag opens.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Exact test data used",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Location: Staging Heavy Duty - 9919. Build v3.5-7ec992f (index.html last modified Wed 05 Aug 2026 22:49:36 GMT).",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Work order card S-12876, Pamill Paving, unit 713, 1 line, and also a multi-line card S-13014, Fuline Enterprises, unit G30, 7 lines.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Signed in as admin@shopview.com, week of 3 August 2026, Week view.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "The control it replaced was seen on the earlier build v3.5-be42149 of this same branch.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "bulletList"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Things checked and ruled out first",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Not hidden until hover - hovering the card was tried and adds nothing.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Not tucked inside the line list - the list was opened and its controls are only a back button, a search box, two scope buttons and the line rows.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Not a naming change - the whole page was searched for any control whose test name or accessible label mentions arming or clicking to schedule, and there are none.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Not a permissions problem - this was seen as an administrator with the full Schedule permission.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "This is separate from the drag problems already reported. SV-8840 and SV-8869 are about missing drag feedback, SV-8870 is about Month view, and SV-8867 is about reassigning a series. None of them is about the click alternative being absent.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "bulletList"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Where this came from",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Found while re-checking the Schedule test cases ",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "code"
+        }
+       ],
+       "text": "SCH-DND-08",
+       "type": "text"
+      },
+      {
+       "text": " (TestRail C29962) and ",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "code"
+        }
+       ],
+       "text": "SCH-SCOPE-05",
+       "type": "text"
+      },
+      {
+       "text": " (TestRail C29967) against build ",
+       "type": "text"
+      },
+      {
+       "marks": [
+        {
+         "type": "code"
+        }
+       ],
+       "text": "v3.5-7ec992f",
+       "type": "text"
+      },
+      {
+       "text": " on 6 August 2026. C29962 was recorded as passing on the earlier build of this branch, which is how the change was noticed.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": " ",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Where this expected behaviour comes from: the Schedule specification, version 23, section 11 (Non-functional requirements), which says under Accessibility: \"drag-and-drop has a click-to-arm alternative\". The same specification repeats it in section 7 (Interactions and micro-interactions): \"Drag-and-drop has a click-to-arm alternative for users who cannot drag.\"",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    }
+   ],
+   "type": "doc",
+   "version": 1
+  },
+  "duedate": null,
+  "environment": null,
+  "fixVersions": [],
+  "issuelinks": [
+   {
+    "id": "32120",
+    "outwardIssue": {
+     "fields": {
+      "issuetype": {
+       "avatarId": 10315,
+       "description": "Stories track functionality or features expressed as user goals.",
+       "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+       "hierarchyLevel": 0,
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+       "id": "10245",
+       "name": "Story",
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+       "subtask": false
+      },
+      "priority": {
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "id": "3",
+       "name": "Medium",
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+      },
+      "status": {
+       "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "id": "10006",
+       "name": "TESTING QA",
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10006",
+       "statusCategory": {
+        "colorName": "yellow",
+        "id": 4,
+        "key": "indeterminate",
+        "name": "In Progress",
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+       }
+      },
+      "summary": "Drag-and-Drop Scheduling & Shift Creation"
+     },
+     "id": "54710",
+     "key": "SV-8688",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54710"
+    },
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/32120",
+    "type": {
+     "id": "10003",
+     "inward": "relates to",
+     "name": "Relates",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    }
+   }
+  ],
+  "issuerestriction": {
+   "issuerestrictions": {},
+   "shouldDisplay": true
+  },
+  "issuetype": {
+   "avatarId": 10854,
+   "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+   "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+   "hierarchyLevel": -1,
+   "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+   "id": "10007",
+   "name": "Story Defect",
+   "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+   "subtask": true
+  },
+  "labels": [],
+  "lastViewed": null,
+  "parent": {
+   "fields": {
+    "issuetype": {
+     "avatarId": 10315,
+     "description": "Stories track functionality or features expressed as user goals.",
+     "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+     "hierarchyLevel": 0,
+     "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+     "id": "10245",
+     "name": "Story",
+     "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+     "subtask": false
+    },
+    "priority": {
+     "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+     "id": "3",
+     "name": "Medium",
+     "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+    },
+    "status": {
+     "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+     "iconUrl": "https://shopview.atlassian.net/",
+     "id": "10006",
+     "name": "TESTING QA",
+     "self": "https://shopview.atlassian.net/rest/api/3/status/10006",
+     "statusCategory": {
+      "colorName": "yellow",
+      "id": 4,
+      "key": "indeterminate",
+      "name": "In Progress",
+      "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+     }
+    },
+    "summary": "Drag-and-Drop Scheduling & Shift Creation"
+   },
+   "id": "54710",
+   "key": "SV-8688",
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54710"
+  },
+  "priority": {
+   "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+   "id": "4",
+   "name": "Low",
+   "self": "https://shopview.atlassian.net/rest/api/3/priority/4"
+  },
+  "progress": {
+   "progress": 0,
+   "total": 0
+  },
+  "project": {
+   "avatarUrls": {
+    "16x16": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=xsmall",
+    "24x24": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=small",
+    "32x32": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=medium",
+    "48x48": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551"
+   },
+   "id": "10001",
+   "key": "SV",
+   "name": "ShopView",
+   "projectTypeKey": "software",
+   "self": "https://shopview.atlassian.net/rest/api/3/project/10001",
+   "simplified": true
+  },
+  "reporter": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "resolution": null,
+  "resolutiondate": null,
+  "security": null,
+  "status": {
+   "description": "",
+   "iconUrl": "https://shopview.atlassian.net/",
+   "id": "10349",
+   "name": "Open",
+   "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+   "statusCategory": {
+    "colorName": "blue-gray",
+    "id": 2,
+    "key": "new",
+    "name": "To Do",
+    "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+   }
+  },
+  "statusCategory": {
+   "colorName": "blue-gray",
+   "id": 2,
+   "key": "new",
+   "name": "To Do",
+   "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+  },
+  "statuscategorychangedate": "2026-08-06T02:03:31.330-0500",
+  "subtasks": [],
+  "summary": "Schedule: the click alternative to dragging a job onto the grid has disappeared from the build",
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "2026-08-06T03:26:43.923-0500",
+  "versions": [],
+  "votes": {
+   "hasVoted": false,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8957/votes",
+   "votes": 0
+  },
+  "watches": {
+   "isWatching": true,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8957/watchers",
+   "watchCount": 2
+  },
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": -1
+ },
+ "id": "55092",
+ "key": "SV-8957",
+ "renderedFields": {
+  "aggregateprogress": null,
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [],
+  "comment": {
+   "comments": [
+    {
+     "author": {
+      "accountId": "712020:b60d0335-ad52-459c-b20c-490448734cda",
+      "accountType": "atlassian",
+      "active": true,
+      "avatarUrls": {
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/16",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/24",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/32",
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/48"
+      },
+      "displayName": "Stefan Vukovic",
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3Ab60d0335-ad52-459c-b20c-490448734cda",
+      "timeZone": "America/Bogota"
+     },
+     "body": "<p><a href=\"https://shopview.atlassian.net/secure/ViewProfile.jspa?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09\" class=\"user-hover\" rel=\"712020:92c46428-d353-4811-9672-e47eeb410d09\" data-account-id=\"712020:92c46428-d353-4811-9672-e47eeb410d09\" accountid=\"712020:92c46428-d353-4811-9672-e47eeb410d09\" rel=\"noreferrer\">Branko Cicovic</a> <a href=\"https://shopview.atlassian.net/secure/ViewProfile.jspa?accountId=712020%3A1f21c3b6-c183-4d46-9561-7b79f0e197ab\" class=\"user-hover\" rel=\"712020:1f21c3b6-c183-4d46-9561-7b79f0e197ab\" data-account-id=\"712020:1f21c3b6-c183-4d46-9561-7b79f0e197ab\" accountid=\"712020:1f21c3b6-c183-4d46-9561-7b79f0e197ab\" rel=\"noreferrer\">Milos Vasic</a> - take a look at this one. Branko and I discussed this already, and agreed this functionality should not be in the scope of v1.</p>",
+     "created": "Today 1:26 PM",
+     "id": "74595",
+     "jsdPublic": true,
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/55092/comment/74595",
+     "updateAuthor": {
+      "accountId": "712020:b60d0335-ad52-459c-b20c-490448734cda",
+      "accountType": "atlassian",
+      "active": true,
+      "avatarUrls": {
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/16",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/24",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/32",
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/48"
+      },
+      "displayName": "Stefan Vukovic",
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3Ab60d0335-ad52-459c-b20c-490448734cda",
+      "timeZone": "America/Bogota"
+     },
+     "updated": "Today 1:26 PM"
+    }
+   ],
+   "maxResults": 1,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/55092/comment",
+   "startAt": 0,
+   "total": 1
+  },
+  "components": null,
+  "created": "Today 12:03 PM",
+  "creator": null,
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": null,
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10285": "",
+  "customfield_10318": null,
+  "customfield_10351": "",
+  "customfield_10385": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": "<h3><a name=\"Whathappensnow\"></a>What happens now</h3>\n\n<p>The only way to put a job on the Schedule is to drag it. There used to be a click alternative - you clicked a small control on the work order card, the card showed as armed, and you then clicked the technician's cell to place the job. That control has gone from the current build, so anyone who cannot drag has no way to schedule at all.</p>\n\n<h3><a name=\"Whythismatters\"></a>Why this matters</h3>\n\n<p>Dragging is hard or impossible for some people - anyone using a keyboard, a trackpad they struggle with, or assistive software. The Schedule specification asks for a click alternative precisely so that scheduling does not depend on being able to drag. With it gone, the whole feature is unreachable for those users.</p>\n\n<h3><a name=\"Howtoseeit\"></a>How to see it</h3>\n\n<ol>\n\t<li>Sign in and open the Schedule page.</li>\n\t<li>Look at any work order card in the left-hand panel. Hover over it.</li>\n\t<li>Open the card's line list too, using the arrow on the right.</li>\n\t<li>Look for any button that arms the card for click placement.</li>\n</ol>\n\n\n<h3><a name=\"Whatyousee\"></a>What you see</h3>\n\n<ul>\n\t<li>There is no such button anywhere - not on the card, not when hovering it, and not inside the line list.</li>\n\t<li>The card carries no button of any kind. Its only interactive parts are the status chip and the arrow that opens the line list.</li>\n\t<li>It was there in an earlier build of this same branch, where the control was labelled so that it read as \"Schedule S-12876 by click\", and clicking it turned the card on and then let a technician cell be clicked to place the job.</li>\n</ul>\n\n\n<h3><a name=\"Whatshouldhappen\"></a>What should happen</h3>\n\n<p>From the Schedule specification, section 11: <b>\"drag-and-drop has a click-to-arm alternative\".</b> The click alternative should be present and should place a job on the cell you click, opening the same scope window the drag opens.</p>\n\n<h3><a name=\"Exacttestdataused\"></a>Exact test data used</h3>\n\n<ul>\n\t<li>Location: Staging Heavy Duty - 9919. Build v3.5-7ec992f (index.html last modified Wed 05 Aug 2026 22:49:36 GMT).</li>\n\t<li>Work order card S-12876, Pamill Paving, unit 713, 1 line, and also a multi-line card S-13014, Fuline Enterprises, unit G30, 7 lines.</li>\n\t<li>Signed in as admin@shopview.com, week of 3 August 2026, Week view.</li>\n\t<li>The control it replaced was seen on the earlier build v3.5-be42149 of this same branch.</li>\n</ul>\n\n\n<h3><a name=\"Thingscheckedandruledoutfirst\"></a>Things checked and ruled out first</h3>\n\n<ul>\n\t<li>Not hidden until hover - hovering the card was tried and adds nothing.</li>\n\t<li>Not tucked inside the line list - the list was opened and its controls are only a back button, a search box, two scope buttons and the line rows.</li>\n\t<li>Not a naming change - the whole page was searched for any control whose test name or accessible label mentions arming or clicking to schedule, and there are none.</li>\n\t<li>Not a permissions problem - this was seen as an administrator with the full Schedule permission.</li>\n\t<li>This is separate from the drag problems already reported. \n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-8840\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-8840\" class=\"jira-issue-macro-key issue-link\"  title=\"No drag feedback while dragging a line onto the grid\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium\" />\n            SV-8840\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-current jira-macro-single-issue-export-pdf\">Ready for QA</span>\n            </span>\n and \n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-8869\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-8869\" class=\"jira-issue-macro-key issue-link\"  title=\"No drag feedback when dragging a work order onto the grid in Day view (SV-8840 is Week view only)\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium\" />\n            SV-8869\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-current jira-macro-single-issue-export-pdf\">Ready for QA</span>\n            </span>\n are about missing drag feedback, \n    <span class=\"jira-issue-macro resolved\" data-jira-key=\"SV-8870\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-8870\" class=\"jira-issue-macro-key issue-link\"  title=\"Cannot create a shift by dragging a work order onto a day in Month view\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium\" />\n            SV-8870\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-success jira-macro-single-issue-export-pdf\">OBSOLETE</span>\n            </span>\n is about Month view, and \n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-8867\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-8867\" class=\"jira-issue-macro-key issue-link\"  title=\"Recurring (series) shift can&#39;t be reassigned in Week and Month view \u2014 drag bounces back\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium\" />\n            SV-8867\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-current jira-macro-single-issue-export-pdf\">In Progress</span>\n            </span>\n is about reassigning a series. None of them is about the click alternative being absent.</li>\n</ul>\n\n\n<h3><a name=\"Wherethiscamefrom\"></a>Where this came from</h3>\n\n<p>Found while re-checking the Schedule test cases <tt>SCH-DND-08</tt> (TestRail C29962) and <tt>SCH-SCOPE-05</tt> (TestRail C29967) against build <tt>v3.5-7ec992f</tt> on 6 August 2026. C29962 was recorded as passing on the earlier build of this branch, which is how the change was noticed.</p>\n\n\n\n<p>Where this expected behaviour comes from: the Schedule specification, version 23, section 11 (Non-functional requirements), which says under Accessibility: \"drag-and-drop has a click-to-arm alternative\". The same specification repeats it in section 7 (Interactions and micro-interactions): \"Drag-and-drop has a click-to-arm alternative for users who cannot drag.\"</p>",
+  "duedate": null,
+  "environment": "",
+  "fixVersions": null,
+  "issuelinks": null,
+  "issuerestriction": null,
+  "issuetype": null,
+  "labels": null,
+  "lastViewed": null,
+  "priority": null,
+  "progress": null,
+  "project": null,
+  "reporter": null,
+  "resolution": null,
+  "resolutiondate": null,
+  "security": null,
+  "status": null,
+  "statusCategory": null,
+  "statuscategorychangedate": "Today 12:03 PM",
+  "subtasks": null,
+  "summary": null,
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "Today 1:26 PM",
+  "versions": null,
+  "votes": null,
+  "watches": null,
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": null
+ },
+ "self": "https://shopview.atlassian.net/rest/api/3/issue/55092"
+}

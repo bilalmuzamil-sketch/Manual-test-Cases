@@ -1,0 +1,1469 @@
+{
+ "changelog": {
+  "histories": [
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-06T02:49:29.895-0500",
+    "id": "140553",
+    "items": [
+     {
+      "field": "description",
+      "fieldId": "description",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": "h3. Description\n\nThe work order filters on the left of the Schedule can be switched on one at a time but not switched off in one go - there is no 'Clear all'. There is also nothing on the Filters button to show that filters are currently applied or how many, so a planner can easily be looking at a filtered list and not realise it, and then has to hunt through three groups of tick boxes to undo it.\n\nh3. Branch / Environment\n\nBranch tested: https://sv8685.qa.shopview.com/schedule \u00b7 API host: https://sv8685api.qa.shopview.com \u00b7 Build marker (meta app-version): v3.5-4873abe \u00b7 index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 \u00b7 Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f \u00b7 Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) \u00b7 Signed in as admin@shopview.com (Administrator) \u00b7 Observed 2026-08-04, 16:00-19:00 UTC.\n\nh3. Steps to reproduce\n\n# Open the Schedule.\n# Click 'Filters' in the left-hand panel.\n# Tick 'Unassigned' under Assignment and 'Approved' under Status.\n# Close the popover and note the work order list is now narrowed.\n# Look at the Filters button for any badge or count showing that filters are on.\n# Open the popover again and look for a 'Clear all' control.\n\nh3. Expected behaviour\n\nThe Filters button carries a small count of how many filters are applied, and the popover has a 'Clear all' that resets every filter in one click.\n\nh3. Current behaviour\n\nThere is no count on the button and no 'Clear all' anywhere in the popover. Each tick box has to be unticked individually.\n\nh3. Images\n\nNo screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.\n\nh3. Technical details for developers\n\nEnumerated the popover's contents: heading 'FILTERS' then checkbox_sidebar_assignment_unassigned / _assigned, checkbox_sidebar_status_{estimate,approved,in_progress,declined,ready_for_review,complete,invoiced,paid} and checkbox_sidebar_priority_{high,medium,low}, each with its live count. No clear-all button and no badge element on button_sidebar_filters. Spec section 5.1: 'Filters live behind a \"Filter\" button (with an active-count badge); there are no assignment tabs. Applying a filter narrows the flat card list, and \"Clear all\" resets in one click.'",
+      "to": null,
+      "toString": "h3. Description\n\nThe work order filters on the left of the Schedule can be switched on one at a time but not switched off in one go - there is no 'Clear all'. There is also nothing on the Filters button to show that filters are currently applied or how many, so a planner can easily be looking at a filtered list and not realise it, and then has to hunt through three groups of tick boxes to undo it.\n\nh3. Branch / Environment\n\nBranch tested: https://sv8685.qa.shopview.com/schedule \u00b7 API host: https://sv8685api.qa.shopview.com \u00b7 Build marker (meta app-version): v3.5-4873abe \u00b7 index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 \u00b7 Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f \u00b7 Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) \u00b7 Signed in as admin@shopview.com (Administrator) \u00b7 Observed 2026-08-04, 16:00-19:00 UTC.\n\nh3. Steps to reproduce\n\n# Open the Schedule.\n# Click 'Filters' in the left-hand panel.\n# Tick 'Unassigned' under Assignment and 'Approved' under Status.\n# Close the popover and note the work order list is now narrowed.\n# Look at the Filters button for any badge or count showing that filters are on.\n# Open the popover again and look for a 'Clear all' control.\n\nh3. Expected behaviour\n\nThe Filters button carries a small count of how many filters are applied, and the popover has a 'Clear all' that resets every filter in one click.\n\nh3. Current behaviour\n\nThere is no count on the button and no 'Clear all' anywhere in the popover. Each tick box has to be unticked individually.\n\nh3. Images\n\nNo screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.\n\nh3. Technical details for developers\n\nEnumerated the popover's contents: heading 'FILTERS' then checkbox_sidebar_assignment_unassigned / _assigned, checkbox_sidebar_status_{estimate,approved,in_progress,declined,ready_for_review,complete,invoiced,paid} and checkbox_sidebar_priority_{high,medium,low}, each with its live count. No clear-all button and no badge element on button_sidebar_filters. Spec section 5.1: 'Filters live behind a \"Filter\" button (with an active-count badge); there are no assignment tabs. Applying a filter narrows the flat card list, and \"Clear all\" resets in one click.'\n\n \n\nWhere this expected behaviour comes from: the Schedule specification, version 23, section 5.1 (Work order filters), which says: \"Filters live behind a \u201cFilter\u201d button (with an active-count badge); there are no assignment tabs. Applying a filter narrows the flat card list, and \u201cClear all\u201d resets in one click.\" Both missing things \u2014 the count on the button and the one-click reset \u2014 are in that one sentence."
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+     },
+     "displayName": "Ayesha Khan",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T19:00:18.233-0500",
+    "id": "140337",
+    "items": [
+     {
+      "field": "labels",
+      "fieldId": "labels",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": "FS-Schedule",
+      "to": null,
+      "toString": "FS-Schedule QAComplete_Ayesha_Khan"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+     },
+     "displayName": "Ayesha Khan",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T18:59:55.466-0500",
+    "id": "140336",
+    "items": [
+     {
+      "field": "status",
+      "fieldId": "status",
+      "fieldtype": "jira",
+      "from": "10350",
+      "fromString": "Ready for QA",
+      "to": "10006",
+      "toString": "TESTING QA"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+     },
+     "displayName": "Ayesha Khan",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T18:59:52.990-0500",
+    "id": "140335",
+    "items": [
+     {
+      "field": "status",
+      "fieldId": "status",
+      "fieldtype": "jira",
+      "from": "10009",
+      "fromString": "Code Review",
+      "to": "10350",
+      "toString": "Ready for QA"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+     },
+     "displayName": "Ayesha Khan",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T18:59:49.493-0500",
+    "id": "140334",
+    "items": [
+     {
+      "field": "status",
+      "fieldId": "status",
+      "fieldtype": "jira",
+      "from": "10004",
+      "fromString": "In Progress",
+      "to": "10009",
+      "toString": "Code Review"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+     },
+     "displayName": "Ayesha Khan",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T18:59:45.954-0500",
+    "id": "140333",
+    "items": [
+     {
+      "field": "status",
+      "fieldId": "status",
+      "fieldtype": "jira",
+      "from": "10453",
+      "fromString": "Ready to Fix",
+      "to": "10004",
+      "toString": "In Progress"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+     },
+     "displayName": "Ayesha Khan",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T18:59:43.226-0500",
+    "id": "140332",
+    "items": [
+     {
+      "field": "status",
+      "fieldId": "status",
+      "fieldtype": "jira",
+      "from": "10349",
+      "fromString": "Open",
+      "to": "10453",
+      "toString": "Ready to Fix"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+     },
+     "displayName": "Ayesha Khan",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T18:54:07.991-0500",
+    "id": "140331",
+    "items": [
+     {
+      "field": "Attachment",
+      "fieldId": "attachment",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "59397",
+      "toString": "Verified in QA.mp4"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+     },
+     "displayName": "Ayesha Khan",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T18:15:25.710-0500",
+    "id": "140316",
+    "items": [
+     {
+      "field": "Attachment",
+      "fieldId": "attachment",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "59392",
+      "toString": "Reproduced on QA - 8857.mp4"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+     },
+     "displayName": "Ayesha Khan",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T18:15:23.827-0500",
+    "id": "140315",
+    "items": [
+     {
+      "field": "QA Assignee",
+      "fieldId": "customfield_10385",
+      "fieldtype": "custom",
+      "from": null,
+      "fromString": null,
+      "to": "[712020:67f76d27-9119-4cb6-93c6-dbf94204abba]",
+      "toString": "[Ayesha Khan]"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T09:33:28.020-0500",
+    "id": "140068",
+    "items": [
+     {
+      "field": "assignee",
+      "fieldId": "assignee",
+      "fieldtype": "jira",
+      "from": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+      "fromString": "Mudassir Qamar",
+      "to": null,
+      "toString": null
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T09:23:07.124-0500",
+    "id": "140057",
+    "items": [
+     {
+      "field": "IssueParentAssociation",
+      "fieldtype": "jira",
+      "from": "54707",
+      "fromString": "SV-8685",
+      "to": "54709",
+      "toString": "SV-8687"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T09:23:07.110-0500",
+    "id": "140058",
+    "items": [
+     {
+      "field": "issuetype",
+      "fieldId": "issuetype",
+      "fieldtype": "jira",
+      "from": "10008",
+      "fromString": "Bug",
+      "to": "10007",
+      "toString": "Story Defect"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T07:21:52.305-0500",
+    "id": "139966",
+    "items": [
+     {
+      "field": "assignee",
+      "fieldId": "assignee",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "tmpFromAccountId": null,
+      "tmpToAccountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+      "to": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+      "toString": "Mudassir Qamar"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "timeZone": "America/Bogota"
+    },
+    "created": "2026-08-05T03:21:55.695-0500",
+    "id": "139786",
+    "items": [
+     {
+      "field": "labels",
+      "fieldId": "labels",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": "",
+      "to": null,
+      "toString": "FS-Schedule"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-04T12:19:01.498-0500",
+    "id": "139631",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-8687",
+      "toString": "This work item relates to SV-8687"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-04T12:19:00.329-0500",
+    "id": "139629",
+    "items": [
+     {
+      "field": "IssueParentAssociation",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "54707",
+      "toString": "SV-8685"
+     }
+    ]
+   }
+  ],
+  "maxResults": 17,
+  "startAt": 0,
+  "total": 17
+ },
+ "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+ "fields": {
+  "aggregateprogress": {
+   "progress": 0,
+   "total": 0
+  },
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [
+   {
+    "author": {
+     "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+     },
+     "displayName": "Ayesha Khan",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "timeZone": "America/Bogota"
+    },
+    "content": "https://shopview.atlassian.net/rest/api/3/attachment/content/59392",
+    "created": "2026-08-05T18:15:25.359-0500",
+    "filename": "Reproduced on QA - 8857.mp4",
+    "id": "59392",
+    "mimeType": "video/mp4",
+    "self": "https://shopview.atlassian.net/rest/api/3/attachment/59392",
+    "size": 2265140
+   },
+   {
+    "author": {
+     "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+     },
+     "displayName": "Ayesha Khan",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "timeZone": "America/Bogota"
+    },
+    "content": "https://shopview.atlassian.net/rest/api/3/attachment/content/59397",
+    "created": "2026-08-05T18:54:07.665-0500",
+    "filename": "Verified in QA.mp4",
+    "id": "59397",
+    "mimeType": "video/mp4",
+    "self": "https://shopview.atlassian.net/rest/api/3/attachment/59397",
+    "size": 1851218
+   }
+  ],
+  "comment": {
+   "comments": [
+    {
+     "author": {
+      "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+      "accountType": "atlassian",
+      "active": true,
+      "avatarUrls": {
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+      },
+      "displayName": "Ayesha Khan",
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+      "timeZone": "America/Bogota"
+     },
+     "body": {
+      "content": [
+       {
+        "attrs": {
+         "localId": "fbc06f41eafc"
+        },
+        "content": [
+         {
+          "text": "Reproduced on QA (admin, Schedule sidebar Filters). Confirmed: no \"Clear all\" in the popover, and the Filters button shows no active-filter count. Matches PRD \u00a75.1 (\"Filter button with an active-count badge\u2026 Clear all resets in one click\"). No new ticket \u2014 covered here.",
+          "type": "text"
+         }
+        ],
+        "type": "paragraph"
+       },
+       {
+        "attrs": {
+         "layout": "align-start",
+         "localId": "bba08fa96b98",
+         "width": 742,
+         "widthType": "pixel"
+        },
+        "content": [
+         {
+          "attrs": {
+           "alt": "Reproduced on QA - 8857.mp4",
+           "collection": "",
+           "height": 720,
+           "id": "2b46d7ea-aade-453a-bb05-1edb83d89a53",
+           "localId": "2e0661534b0b",
+           "type": "file",
+           "width": 1280
+          },
+          "type": "media"
+         }
+        ],
+        "type": "mediaSingle"
+       },
+       {
+        "attrs": {
+         "localId": "f75fd5eaf558"
+        },
+        "content": [
+         {
+          "attrs": {
+           "accessLevel": "",
+           "id": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+           "localId": "6afc2c96-b787-40c8-89eb-bbc16d72aa16",
+           "text": "@Bilal Muzamil"
+          },
+          "type": "mention"
+         },
+         {
+          "text": " ",
+          "type": "text"
+         },
+         {
+          "attrs": {
+           "accessLevel": "",
+           "id": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+           "localId": "6d203ecb-cbc2-4dbf-9dc5-e5a795c30ad4",
+           "text": "@Branko Cicovic"
+          },
+          "type": "mention"
+         },
+         {
+          "text": " ",
+          "type": "text"
+         }
+        ],
+        "type": "paragraph"
+       }
+      ],
+      "type": "doc",
+      "version": 1
+     },
+     "created": "2026-08-05T18:15:25.751-0500",
+     "id": "74584",
+     "jsdPublic": true,
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54984/comment/74584",
+     "updateAuthor": {
+      "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+      "accountType": "atlassian",
+      "active": true,
+      "avatarUrls": {
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+      },
+      "displayName": "Ayesha Khan",
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+      "timeZone": "America/Bogota"
+     },
+     "updated": "2026-08-05T18:15:25.751-0500"
+    },
+    {
+     "author": {
+      "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+      "accountType": "atlassian",
+      "active": true,
+      "avatarUrls": {
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+      },
+      "displayName": "Ayesha Khan",
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+      "timeZone": "America/Bogota"
+     },
+     "body": {
+      "content": [
+       {
+        "attrs": {
+         "localId": "f5f9e5c0616a"
+        },
+        "content": [
+         {
+          "text": "Verified fixed on QA (build v3.5+, 2026-08-06). Filters popover now shows \"Clear all,\" the Filters button shows an active-filter count badge, and per-row counts render. Matches PRD \u00a75.1. Marking as Done.",
+          "type": "text"
+         }
+        ],
+        "type": "paragraph"
+       },
+       {
+        "attrs": {
+         "layout": "align-start",
+         "localId": "82f577c9109b",
+         "width": 742,
+         "widthType": "pixel"
+        },
+        "content": [
+         {
+          "attrs": {
+           "alt": "Verified in QA.mp4",
+           "collection": "",
+           "height": 1080,
+           "id": "dd07f7ae-738a-4f3c-861d-a234f0b344ff",
+           "localId": "6ef759d0510d",
+           "type": "file",
+           "width": 1920
+          },
+          "type": "media"
+         }
+        ],
+        "type": "mediaSingle"
+       },
+       {
+        "attrs": {
+         "localId": "369fc73297c7"
+        },
+        "content": [
+         {
+          "attrs": {
+           "accessLevel": "",
+           "id": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+           "localId": "87485710-d12c-4b01-9d20-6b23ec61693c",
+           "text": "@Bilal Muzamil"
+          },
+          "type": "mention"
+         },
+         {
+          "text": " I don\u2019t have the option to mark as Done but I have verified this on QA.",
+          "type": "text"
+         }
+        ],
+        "type": "paragraph"
+       }
+      ],
+      "type": "doc",
+      "version": 1
+     },
+     "created": "2026-08-05T18:54:08.034-0500",
+     "id": "74585",
+     "jsdPublic": true,
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54984/comment/74585",
+     "updateAuthor": {
+      "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+      "accountType": "atlassian",
+      "active": true,
+      "avatarUrls": {
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+      },
+      "displayName": "Ayesha Khan",
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+      "timeZone": "America/Bogota"
+     },
+     "updated": "2026-08-05T19:00:57.340-0500"
+    }
+   ],
+   "maxResults": 2,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54984/comment",
+   "startAt": 0,
+   "total": 2
+  },
+  "components": [],
+  "created": "2026-08-04T12:19:00.305-0500",
+  "creator": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": "0|i01vap:",
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10285": null,
+  "customfield_10318": null,
+  "customfield_10351": null,
+  "customfield_10385": [
+   {
+    "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+    "accountType": "atlassian",
+    "active": true,
+    "avatarUrls": {
+     "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+     "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+     "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+     "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+    },
+    "displayName": "Ayesha Khan",
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+    "timeZone": "America/Bogota"
+   }
+  ],
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": {
+   "content": [
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Description",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "The work order filters on the left of the Schedule can be switched on one at a time but not switched off in one go - there is no 'Clear all'. There is also nothing on the Filters button to show that filters are currently applied or how many, so a planner can easily be looking at a filtered list and not realise it, and then has to hunt through three groups of tick boxes to undo it.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Branch / Environment",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Branch tested: https://sv8685.qa.shopview.com/schedule \u00b7 API host: https://sv8685api.qa.shopview.com \u00b7 Build marker (meta app-version): v3.5-4873abe \u00b7 index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 \u00b7 Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f \u00b7 Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) \u00b7 Signed in as admin@shopview.com (Administrator) \u00b7 Observed 2026-08-04, 16:00-19:00 UTC.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Steps to reproduce",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Open the Schedule.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Click 'Filters' in the left-hand panel.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Tick 'Unassigned' under Assignment and 'Approved' under Status.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Close the popover and note the work order list is now narrowed.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Look at the Filters button for any badge or count showing that filters are on.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Open the popover again and look for a 'Clear all' control.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "orderedList"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Expected behaviour",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "The Filters button carries a small count of how many filters are applied, and the popover has a 'Clear all' that resets every filter in one click.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Current behaviour",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "There is no count on the button and no 'Clear all' anywhere in the popover. Each tick box has to be unticked individually.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Images",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "No screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Technical details for developers",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Enumerated the popover's contents: heading 'FILTERS' then checkbox_sidebar_assignment_unassigned / _assigned, checkbox_sidebar_status_{estimate,approved,in_progress,declined,ready_for_review,complete,invoiced,paid} and checkbox_sidebar_priority_{high,medium,low}, each with its live count. No clear-all button and no badge element on button_sidebar_filters. Spec section 5.1: 'Filters live behind a \"Filter\" button (with an active-count badge); there are no assignment tabs. Applying a filter narrows the flat card list, and \"Clear all\" resets in one click.'",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": " ",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Where this expected behaviour comes from: the Schedule specification, version 23, section 5.1 (Work order filters), which says: \"Filters live behind a \u201cFilter\u201d button (with an active-count badge); there are no assignment tabs. Applying a filter narrows the flat card list, and \u201cClear all\u201d resets in one click.\" Both missing things \u2014 the count on the button and the one-click reset \u2014 are in that one sentence.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    }
+   ],
+   "type": "doc",
+   "version": 1
+  },
+  "duedate": null,
+  "environment": null,
+  "fixVersions": [],
+  "issuelinks": [
+   {
+    "id": "32069",
+    "outwardIssue": {
+     "fields": {
+      "issuetype": {
+       "avatarId": 10315,
+       "description": "Stories track functionality or features expressed as user goals.",
+       "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+       "hierarchyLevel": 0,
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+       "id": "10245",
+       "name": "Story",
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+       "subtask": false
+      },
+      "priority": {
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "id": "3",
+       "name": "Medium",
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+      },
+      "status": {
+       "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "id": "10006",
+       "name": "TESTING QA",
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10006",
+       "statusCategory": {
+        "colorName": "yellow",
+        "id": 4,
+        "key": "indeterminate",
+        "name": "In Progress",
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+       }
+      },
+      "summary": "Work Order Sidebar & Mini Calendar"
+     },
+     "id": "54709",
+     "key": "SV-8687",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54709"
+    },
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/32069",
+    "type": {
+     "id": "10003",
+     "inward": "relates to",
+     "name": "Relates",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    }
+   }
+  ],
+  "issuerestriction": {
+   "issuerestrictions": {},
+   "shouldDisplay": true
+  },
+  "issuetype": {
+   "avatarId": 10854,
+   "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+   "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+   "hierarchyLevel": -1,
+   "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+   "id": "10007",
+   "name": "Story Defect",
+   "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+   "subtask": true
+  },
+  "labels": [
+   "FS-Schedule",
+   "QAComplete_Ayesha_Khan"
+  ],
+  "lastViewed": "2026-08-05T22:31:19.307-0500",
+  "parent": {
+   "fields": {
+    "issuetype": {
+     "avatarId": 10315,
+     "description": "Stories track functionality or features expressed as user goals.",
+     "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+     "hierarchyLevel": 0,
+     "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+     "id": "10245",
+     "name": "Story",
+     "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+     "subtask": false
+    },
+    "priority": {
+     "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+     "id": "3",
+     "name": "Medium",
+     "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+    },
+    "status": {
+     "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+     "iconUrl": "https://shopview.atlassian.net/",
+     "id": "10006",
+     "name": "TESTING QA",
+     "self": "https://shopview.atlassian.net/rest/api/3/status/10006",
+     "statusCategory": {
+      "colorName": "yellow",
+      "id": 4,
+      "key": "indeterminate",
+      "name": "In Progress",
+      "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+     }
+    },
+    "summary": "Work Order Sidebar & Mini Calendar"
+   },
+   "id": "54709",
+   "key": "SV-8687",
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54709"
+  },
+  "priority": {
+   "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+   "id": "4",
+   "name": "Low",
+   "self": "https://shopview.atlassian.net/rest/api/3/priority/4"
+  },
+  "progress": {
+   "progress": 0,
+   "total": 0
+  },
+  "project": {
+   "avatarUrls": {
+    "16x16": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=xsmall",
+    "24x24": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=small",
+    "32x32": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=medium",
+    "48x48": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551"
+   },
+   "id": "10001",
+   "key": "SV",
+   "name": "ShopView",
+   "projectTypeKey": "software",
+   "self": "https://shopview.atlassian.net/rest/api/3/project/10001",
+   "simplified": true
+  },
+  "reporter": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "resolution": null,
+  "resolutiondate": null,
+  "security": null,
+  "status": {
+   "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+   "iconUrl": "https://shopview.atlassian.net/",
+   "id": "10006",
+   "name": "TESTING QA",
+   "self": "https://shopview.atlassian.net/rest/api/3/status/10006",
+   "statusCategory": {
+    "colorName": "yellow",
+    "id": 4,
+    "key": "indeterminate",
+    "name": "In Progress",
+    "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+   }
+  },
+  "statusCategory": {
+   "colorName": "yellow",
+   "id": 4,
+   "key": "indeterminate",
+   "name": "In Progress",
+   "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+  },
+  "statuscategorychangedate": "2026-08-05T18:59:45.954-0500",
+  "subtasks": [],
+  "summary": "The Schedule sidebar filters have no 'Clear all' and the Filters button does not show how many are on",
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "2026-08-06T02:49:29.895-0500",
+  "versions": [],
+  "votes": {
+   "hasVoted": false,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8857/votes",
+   "votes": 0
+  },
+  "watches": {
+   "isWatching": true,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8857/watchers",
+   "watchCount": 2
+  },
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": -1
+ },
+ "id": "54984",
+ "key": "SV-8857",
+ "renderedFields": {
+  "aggregateprogress": null,
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [
+   {
+    "author": {
+     "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+     },
+     "displayName": "Ayesha Khan",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "timeZone": "America/Bogota"
+    },
+    "content": "https://shopview.atlassian.net/rest/api/3/attachment/content/59392",
+    "created": "Today 4:15 AM",
+    "filename": "Reproduced on QA - 8857.mp4",
+    "id": "59392",
+    "mimeType": "video/mp4",
+    "self": "https://shopview.atlassian.net/rest/api/3/attachment/59392",
+    "size": "2.16 MB"
+   },
+   {
+    "author": {
+     "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+     },
+     "displayName": "Ayesha Khan",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "timeZone": "America/Bogota"
+    },
+    "content": "https://shopview.atlassian.net/rest/api/3/attachment/content/59397",
+    "created": "Today 4:54 AM",
+    "filename": "Verified in QA.mp4",
+    "id": "59397",
+    "mimeType": "video/mp4",
+    "self": "https://shopview.atlassian.net/rest/api/3/attachment/59397",
+    "size": "1.77 MB"
+   }
+  ],
+  "comment": {
+   "comments": [
+    {
+     "author": {
+      "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+      "accountType": "atlassian",
+      "active": true,
+      "avatarUrls": {
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+      },
+      "displayName": "Ayesha Khan",
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+      "timeZone": "America/Bogota"
+     },
+     "body": "<p>Reproduced on QA (admin, Schedule sidebar Filters). Confirmed: no \"Clear all\" in the popover, and the Filters button shows no active-filter count. Matches PRD \u00a75.1 (\"Filter button with an active-count badge\u2026 Clear all resets in one click\"). No new ticket \u2014 covered here.</p>\n\n<p><div class=\"embeddedObject\"><object classid=\"clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B\" codebase=\"https://www.apple.com/qtactivex/qtplugin.cab\" data=\"/rest/api/3/attachment/content/59392?stream=true\" height=\"380\" type=\"video/mp4\" width=\"742\" ><param name=\"data\" value=\"/rest/api/3/attachment/content/59392?stream=true\"/><param name=\"src\" value=\"/rest/api/3/attachment/content/59392?stream=true\"/><param name=\"type\" value=\"video/mp4\"/><embed height=\"380\" pluginspage=\"https://www.apple.com/quicktime/download/\" src=\"/rest/api/3/attachment/content/59392?stream=true\" type=\"video/mp4\" width=\"742\" /></object></div></p>\n\n<p><a href=\"https://shopview.atlassian.net/secure/ViewProfile.jspa?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e\" class=\"user-hover\" rel=\"712020:6d590212-5c9b-4135-ae11-277f3826110e\" data-account-id=\"712020:6d590212-5c9b-4135-ae11-277f3826110e\" accountid=\"712020:6d590212-5c9b-4135-ae11-277f3826110e\" rel=\"noreferrer\">Bilal Muzamil</a> <a href=\"https://shopview.atlassian.net/secure/ViewProfile.jspa?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09\" class=\"user-hover\" rel=\"712020:92c46428-d353-4811-9672-e47eeb410d09\" data-account-id=\"712020:92c46428-d353-4811-9672-e47eeb410d09\" accountid=\"712020:92c46428-d353-4811-9672-e47eeb410d09\" rel=\"noreferrer\">Branko Cicovic</a> </p>",
+     "created": "Today 4:15 AM",
+     "id": "74584",
+     "jsdPublic": true,
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54984/comment/74584",
+     "updateAuthor": {
+      "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+      "accountType": "atlassian",
+      "active": true,
+      "avatarUrls": {
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+      },
+      "displayName": "Ayesha Khan",
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+      "timeZone": "America/Bogota"
+     },
+     "updated": "Today 4:15 AM"
+    },
+    {
+     "author": {
+      "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+      "accountType": "atlassian",
+      "active": true,
+      "avatarUrls": {
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+      },
+      "displayName": "Ayesha Khan",
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+      "timeZone": "America/Bogota"
+     },
+     "body": "<p>Verified fixed on QA (build v3.5+, 2026-08-06). Filters popover now shows \"Clear all,\" the Filters button shows an active-filter count badge, and per-row counts render. Matches PRD \u00a75.1. Marking as Done.</p>\n\n<p><div class=\"embeddedObject\"><object classid=\"clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B\" codebase=\"https://www.apple.com/qtactivex/qtplugin.cab\" data=\"/rest/api/3/attachment/content/59397?stream=true\" height=\"380\" type=\"video/mp4\" width=\"742\" ><param name=\"data\" value=\"/rest/api/3/attachment/content/59397?stream=true\"/><param name=\"src\" value=\"/rest/api/3/attachment/content/59397?stream=true\"/><param name=\"type\" value=\"video/mp4\"/><embed height=\"380\" pluginspage=\"https://www.apple.com/quicktime/download/\" src=\"/rest/api/3/attachment/content/59397?stream=true\" type=\"video/mp4\" width=\"742\" /></object></div></p>\n\n<p><a href=\"https://shopview.atlassian.net/secure/ViewProfile.jspa?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e\" class=\"user-hover\" rel=\"712020:6d590212-5c9b-4135-ae11-277f3826110e\" data-account-id=\"712020:6d590212-5c9b-4135-ae11-277f3826110e\" accountid=\"712020:6d590212-5c9b-4135-ae11-277f3826110e\" rel=\"noreferrer\">Bilal Muzamil</a> I don\u2019t have the option to mark as Done but I have verified this on QA.</p>",
+     "created": "Today 4:54 AM",
+     "id": "74585",
+     "jsdPublic": true,
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54984/comment/74585",
+     "updateAuthor": {
+      "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+      "accountType": "atlassian",
+      "active": true,
+      "avatarUrls": {
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32",
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48"
+      },
+      "displayName": "Ayesha Khan",
+      "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+      "timeZone": "America/Bogota"
+     },
+     "updated": "Today 5:00 AM"
+    }
+   ],
+   "maxResults": 2,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54984/comment",
+   "startAt": 0,
+   "total": 2
+  },
+  "components": null,
+  "created": "Tuesday 10:19 PM",
+  "creator": null,
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": null,
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10285": "",
+  "customfield_10318": null,
+  "customfield_10351": "",
+  "customfield_10385": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": "<h3><a name=\"Description\"></a>Description</h3>\n\n<p>The work order filters on the left of the Schedule can be switched on one at a time but not switched off in one go - there is no 'Clear all'. There is also nothing on the Filters button to show that filters are currently applied or how many, so a planner can easily be looking at a filtered list and not realise it, and then has to hunt through three groups of tick boxes to undo it.</p>\n\n<h3><a name=\"Branch%2FEnvironment\"></a>Branch / Environment</h3>\n\n<p>Branch tested: <a href=\"https://sv8685.qa.shopview.com/schedule\" class=\"external-link\" rel=\"nofollow noreferrer\">https://sv8685.qa.shopview.com/schedule</a> \u00b7 API host: <a href=\"https://sv8685api.qa.shopview.com\" class=\"external-link\" rel=\"nofollow noreferrer\">https://sv8685api.qa.shopview.com</a> \u00b7 Build marker (meta app-version): v3.5-4873abe \u00b7 index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 \u00b7 Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f \u00b7 Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) \u00b7 Signed in as admin@shopview.com (Administrator) \u00b7 Observed 2026-08-04, 16:00-19:00 UTC.</p>\n\n<h3><a name=\"Stepstoreproduce\"></a>Steps to reproduce</h3>\n\n<ol>\n\t<li>Open the Schedule.</li>\n\t<li>Click 'Filters' in the left-hand panel.</li>\n\t<li>Tick 'Unassigned' under Assignment and 'Approved' under Status.</li>\n\t<li>Close the popover and note the work order list is now narrowed.</li>\n\t<li>Look at the Filters button for any badge or count showing that filters are on.</li>\n\t<li>Open the popover again and look for a 'Clear all' control.</li>\n</ol>\n\n\n<h3><a name=\"Expectedbehaviour\"></a>Expected behaviour</h3>\n\n<p>The Filters button carries a small count of how many filters are applied, and the popover has a 'Clear all' that resets every filter in one click.</p>\n\n<h3><a name=\"Currentbehaviour\"></a>Current behaviour</h3>\n\n<p>There is no count on the button and no 'Clear all' anywhere in the popover. Each tick box has to be unticked individually.</p>\n\n<h3><a name=\"Images\"></a>Images</h3>\n\n<p>No screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.</p>\n\n<h3><a name=\"Technicaldetailsfordevelopers\"></a>Technical details for developers</h3>\n\n<p>Enumerated the popover's contents: heading 'FILTERS' then checkbox_sidebar_assignment_unassigned / <em>assigned, checkbox_sidebar_status</em></p>\n{estimate,approved,in_progress,declined,ready_for_review,complete,invoiced,paid}\n<p> and checkbox_sidebar_priority_</p>\n{high,medium,low}\n<p>, each with its live count. No clear-all button and no badge element on button_sidebar_filters. Spec section 5.1: 'Filters live behind a \"Filter\" button (with an active-count badge); there are no assignment tabs. Applying a filter narrows the flat card list, and \"Clear all\" resets in one click.'</p>\n\n\n\n<p>Where this expected behaviour comes from: the Schedule specification, version 23, section 5.1 (Work order filters), which says: \"Filters live behind a \u201cFilter\u201d button (with an active-count badge); there are no assignment tabs. Applying a filter narrows the flat card list, and \u201cClear all\u201d resets in one click.\" Both missing things \u2014 the count on the button and the one-click reset \u2014 are in that one sentence.</p>",
+  "duedate": null,
+  "environment": "",
+  "fixVersions": null,
+  "issuelinks": null,
+  "issuerestriction": null,
+  "issuetype": null,
+  "labels": null,
+  "lastViewed": "Today 8:31 AM",
+  "priority": null,
+  "progress": null,
+  "project": null,
+  "reporter": null,
+  "resolution": null,
+  "resolutiondate": null,
+  "security": null,
+  "status": null,
+  "statusCategory": null,
+  "statuscategorychangedate": "Today 4:59 AM",
+  "subtasks": null,
+  "summary": null,
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "Today 12:49 PM",
+  "versions": null,
+  "votes": null,
+  "watches": null,
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": null
+ },
+ "self": "https://shopview.atlassian.net/rest/api/3/issue/54984"
+}

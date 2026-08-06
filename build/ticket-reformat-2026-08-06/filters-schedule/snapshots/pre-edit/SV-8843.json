@@ -1,0 +1,928 @@
+{
+ "changelog": {
+  "histories": [
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-06T02:49:10.195-0500",
+    "id": "140539",
+    "items": [
+     {
+      "field": "description",
+      "fieldId": "description",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": "h3. Environment\n\nQA branch https://sv8785.qa.shopview.com/workorders \u2014 API host sv8785api.qa.shopview.com \u2014 build marker <meta name=\"app-version\"> = v3.4.2-4f8211c (index.html last-modified Mon, 03 Aug 2026 20:09:32 GMT) \u2014 observed 2026-08-04, org d55bc308-e61a-438d-b5f1-c7a73c89d49f, location \"Staging Heavy Duty - 9919\", signed in as an Administrator.\n\nh3. Steps to Reproduce\n\n# Open Work Orders on a desktop browser at a 1680x1050 window, on the All tab.\n# Look at where the five filter buttons (Status, Customer, Lead Technician, Service Advisor, Asset on Site) sit in relation to the tab row (All, Estimates, Completed, My Work Orders).\n# Click the filter icon to the left of the Status button to collapse the filter bar.\n# Watch whether the table moves up into the space the buttons were using.\n\nh3. Expected Result\n\nThe five filter buttons sit on their own row directly BELOW the tab row, and when the bar is collapsed the table moves up and uses the space that is freed.\n\nh3. Current Result\n\nThe filter buttons sit on the SAME row as the tabs, to the right of \"My Work Orders\". Because they share the tab row there is no separate row to give back: collapsing hides the buttons but the table does not move up at all. The table header stays in exactly the same place before and after collapsing.\n\nh3. How often\n\nEvery time, on desktop.\n\nh3. Technical detail\n\nMeasured from the DOM: the tab elements are at y=85 with height 40; the five buttons (CSS class \"filter-chip\") are at y=90 with height 30 and x from 452 to 1164, i.e. inside the same band, to the right of the tabs. The table head element stays at y=144 both before and after clicking the collapse toggle (data-test-id=\"toggle_filter_bar\"). The approved design frame for the final desktop layout (Figma node 11854:24657) also draws the bar on its own row below the tabs.",
+      "to": null,
+      "toString": "h3. Environment\n\nQA branch https://sv8785.qa.shopview.com/workorders \u2014 API host sv8785api.qa.shopview.com \u2014 build marker <meta name=\"app-version\"> = v3.4.2-4f8211c (index.html last-modified Mon, 03 Aug 2026 20:09:32 GMT) \u2014 observed 2026-08-04, org d55bc308-e61a-438d-b5f1-c7a73c89d49f, location \"Staging Heavy Duty - 9919\", signed in as an Administrator.\n\nh3. Steps to Reproduce\n\n# Open Work Orders on a desktop browser at a 1680x1050 window, on the All tab.\n# Look at where the five filter buttons (Status, Customer, Lead Technician, Service Advisor, Asset on Site) sit in relation to the tab row (All, Estimates, Completed, My Work Orders).\n# Click the filter icon to the left of the Status button to collapse the filter bar.\n# Watch whether the table moves up into the space the buttons were using.\n\nh3. Expected Result\n\nThe five filter buttons sit on their own row directly BELOW the tab row, and when the bar is collapsed the table moves up and uses the space that is freed.\n\nh3. Current Result\n\nThe filter buttons sit on the SAME row as the tabs, to the right of \"My Work Orders\". Because they share the tab row there is no separate row to give back: collapsing hides the buttons but the table does not move up at all. The table header stays in exactly the same place before and after collapsing.\n\nh3. How often\n\nEvery time, on desktop.\n\nh3. Technical detail\n\nMeasured from the DOM: the tab elements are at y=85 with height 40; the five buttons (CSS class \"filter-chip\") are at y=90 with height 30 and x from 452 to 1164, i.e. inside the same band, to the right of the tabs. The table head element stays at y=144 both before and after clicking the collapse toggle (data-test-id=\"toggle_filter_bar\"). The approved design frame for the final desktop layout (Figma node 11854:24657) also draws the bar on its own row below the tabs.\n\n \n\nWhere this expected behaviour comes from: the Filters specification, version 18, requirement S1-R1, which says: \"The filter bar is displayed below the tab navigation row (All, Estimates, Completed, My Work Orders) by default\".\n\nAnd requirement S1-R5, which says: \"When the user collapses the filter bar, the bar is hidden and the table expands to use the reclaimed vertical space\". Both halves of this ticket are covered: the row the bar sits on, and what collapsing it should free up."
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-05T12:32:50.573-0500",
+    "id": "140180",
+    "items": [
+     {
+      "field": "resolution",
+      "fieldId": "resolution",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "10000",
+      "toString": "Done"
+     },
+     {
+      "field": "status",
+      "fieldId": "status",
+      "fieldtype": "jira",
+      "from": "10349",
+      "fromString": "Open",
+      "to": "10250",
+      "toString": "OBSOLETE"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-05T12:32:16.270-0500",
+    "id": "140179",
+    "items": [
+     {
+      "field": "Comment",
+      "fieldId": "comment",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": "Not Reproducible Anymore:\n\n\n\n[^screen-capture - 2026-08-05T074127.525.webm]\n\n\n\n\n\n\n",
+      "to": null,
+      "toString": null
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-05T12:32:09.719-0500",
+    "id": "140178",
+    "items": [
+     {
+      "field": "status",
+      "fieldId": "status",
+      "fieldtype": "jira",
+      "from": "10453",
+      "fromString": "Ready to Fix",
+      "to": "10349",
+      "toString": "Open"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-05T12:32:05.997-0500",
+    "id": "140177",
+    "items": [
+     {
+      "field": "status",
+      "fieldId": "status",
+      "fieldtype": "jira",
+      "from": "10184",
+      "fromString": "Blocked",
+      "to": "10453",
+      "toString": "Ready to Fix"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-05T12:32:02.717-0500",
+    "id": "140176",
+    "items": [
+     {
+      "field": "resolution",
+      "fieldId": "resolution",
+      "fieldtype": "jira",
+      "from": "10000",
+      "fromString": "Done",
+      "to": null,
+      "toString": null
+     },
+     {
+      "field": "status",
+      "fieldId": "status",
+      "fieldtype": "jira",
+      "from": "10250",
+      "fromString": "OBSOLETE",
+      "to": "10184",
+      "toString": "Blocked"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-04T21:42:17.989-0500",
+    "id": "139740",
+    "items": [
+     {
+      "field": "Attachment",
+      "fieldId": "attachment",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "59315",
+      "toString": "screen-capture - 2026-08-05T074127.525.webm"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-04T21:42:17.511-0500",
+    "id": "139739",
+    "items": [
+     {
+      "field": "QA Assignee",
+      "fieldId": "customfield_10385",
+      "fieldtype": "custom",
+      "from": null,
+      "fromString": null,
+      "to": "[712020:6d590212-5c9b-4135-ae11-277f3826110e]",
+      "toString": "[Bilal Muzamil]"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-04T21:41:31.109-0500",
+    "id": "139738",
+    "items": [
+     {
+      "field": "resolution",
+      "fieldId": "resolution",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "10000",
+      "toString": "Done"
+     },
+     {
+      "field": "status",
+      "fieldId": "status",
+      "fieldtype": "jira",
+      "from": "10349",
+      "fromString": "Open",
+      "to": "10250",
+      "toString": "OBSOLETE"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-04T10:36:11.469-0500",
+    "id": "139568",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-8786",
+      "toString": "This work item relates to SV-8786"
+     }
+    ]
+   },
+   {
+    "author": {
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountType": "atlassian",
+     "active": true,
+     "avatarUrls": {
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "timeZone": "Asia/Karachi"
+    },
+    "created": "2026-08-04T10:35:54.221-0500",
+    "id": "139558",
+    "items": [
+     {
+      "field": "IssueParentAssociation",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "54901",
+      "toString": "SV-8785"
+     }
+    ]
+   }
+  ],
+  "maxResults": 11,
+  "startAt": 0,
+  "total": 11
+ },
+ "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+ "fields": {
+  "aggregateprogress": {
+   "progress": 0,
+   "total": 0
+  },
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [],
+  "comment": {
+   "comments": [],
+   "maxResults": 0,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54970/comment",
+   "startAt": 0,
+   "total": 0
+  },
+  "components": [],
+  "created": "2026-08-04T10:35:54.189-0500",
+  "creator": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": "0|i01v7l:",
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10153": {
+   "color": "RED",
+   "id": "10120",
+   "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10120",
+   "value": "Work Orders"
+  },
+  "customfield_10252": null,
+  "customfield_10285": null,
+  "customfield_10318": null,
+  "customfield_10351": null,
+  "customfield_10352": null,
+  "customfield_10385": [
+   {
+    "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+    "accountType": "atlassian",
+    "active": true,
+    "avatarUrls": {
+     "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+     "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+     "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+     "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+    },
+    "displayName": "Bilal Muzamil",
+    "emailAddress": "bilal.muzamil@shopview.com",
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+    "timeZone": "Asia/Karachi"
+   }
+  ],
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": {
+   "content": [
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Environment",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "QA branch https://sv8785.qa.shopview.com/workorders \u2014 API host sv8785api.qa.shopview.com \u2014 build marker <meta name=\"app-version\"> = v3.4.2-4f8211c (index.html last-modified Mon, 03 Aug 2026 20:09:32 GMT) \u2014 observed 2026-08-04, org d55bc308-e61a-438d-b5f1-c7a73c89d49f, location \"Staging Heavy Duty - 9919\", signed in as an Administrator.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Steps to Reproduce",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Open Work Orders on a desktop browser at a 1680x1050 window, on the All tab.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Look at where the five filter buttons (Status, Customer, Lead Technician, Service Advisor, Asset on Site) sit in relation to the tab row (All, Estimates, Completed, My Work Orders).",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Click the filter icon to the left of the Status button to collapse the filter bar.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      },
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "Watch whether the table moves up into the space the buttons were using.",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "orderedList"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Expected Result",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "The five filter buttons sit on their own row directly BELOW the tab row, and when the bar is collapsed the table moves up and uses the space that is freed.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Current Result",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "The filter buttons sit on the SAME row as the tabs, to the right of \"My Work Orders\". Because they share the tab row there is no separate row to give back: collapsing hides the buttons but the table does not move up at all. The table header stays in exactly the same place before and after collapsing.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "How often",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Every time, on desktop.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "text": "Technical detail",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Measured from the DOM: the tab elements are at y=85 with height 40; the five buttons (CSS class \"filter-chip\") are at y=90 with height 30 and x from 452 to 1164, i.e. inside the same band, to the right of the tabs. The table head element stays at y=144 both before and after clicking the collapse toggle (data-test-id=\"toggle_filter_bar\"). The approved design frame for the final desktop layout (Figma node 11854:24657) also draws the bar on its own row below the tabs.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": " ",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "Where this expected behaviour comes from: the Filters specification, version 18, requirement S1-R1, which says: \"The filter bar is displayed below the tab navigation row (All, Estimates, Completed, My Work Orders) by default\".",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "content": [
+      {
+       "text": "And requirement S1-R5, which says: \"When the user collapses the filter bar, the bar is hidden and the table expands to use the reclaimed vertical space\". Both halves of this ticket are covered: the row the bar sits on, and what collapsing it should free up.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    }
+   ],
+   "type": "doc",
+   "version": 1
+  },
+  "duedate": null,
+  "environment": null,
+  "fixVersions": [],
+  "issuelinks": [
+   {
+    "id": "32055",
+    "outwardIssue": {
+     "fields": {
+      "issuetype": {
+       "avatarId": 10315,
+       "description": "Stories track functionality or features expressed as user goals.",
+       "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+       "hierarchyLevel": 0,
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+       "id": "10245",
+       "name": "Story",
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+       "subtask": false
+      },
+      "priority": {
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "id": "3",
+       "name": "Medium",
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+      },
+      "status": {
+       "description": "",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "id": "10350",
+       "name": "Ready for QA",
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10350",
+       "statusCategory": {
+        "colorName": "yellow",
+        "id": 4,
+        "key": "indeterminate",
+        "name": "In Progress",
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4"
+       }
+      },
+      "summary": "Filter Bar Layout & Visibility"
+     },
+     "id": "54902",
+     "key": "SV-8786",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54902"
+    },
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/32055",
+    "type": {
+     "id": "10003",
+     "inward": "relates to",
+     "name": "Relates",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    }
+   }
+  ],
+  "issuerestriction": {
+   "issuerestrictions": {},
+   "shouldDisplay": true
+  },
+  "issuetype": {
+   "avatarId": 10303,
+   "description": "Bugs track problems or errors. (Migrated on 31 Dec 2023 09:01 UTC)",
+   "entityId": "28af1af2-ae8b-4de4-94eb-bcecd7d4031c",
+   "hierarchyLevel": 0,
+   "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium",
+   "id": "10008",
+   "name": "Bug",
+   "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10008",
+   "subtask": false
+  },
+  "labels": [],
+  "lastViewed": "2026-08-05T12:31:46.607-0500",
+  "parent": {
+   "fields": {
+    "issuetype": {
+     "avatarId": 10306,
+     "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+     "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+     "hierarchyLevel": 1,
+     "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+     "id": "10006",
+     "name": "Epic",
+     "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10006",
+     "subtask": false
+    },
+    "priority": {
+     "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+     "id": "3",
+     "name": "Medium",
+     "self": "https://shopview.atlassian.net/rest/api/3/priority/3"
+    },
+    "status": {
+     "description": "",
+     "iconUrl": "https://shopview.atlassian.net/",
+     "id": "10349",
+     "name": "Open",
+     "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+     "statusCategory": {
+      "colorName": "blue-gray",
+      "id": 2,
+      "key": "new",
+      "name": "To Do",
+      "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2"
+     }
+    },
+    "summary": "Filters"
+   },
+   "id": "54901",
+   "key": "SV-8785",
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54901"
+  },
+  "priority": {
+   "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+   "id": "4",
+   "name": "Low",
+   "self": "https://shopview.atlassian.net/rest/api/3/priority/4"
+  },
+  "progress": {
+   "progress": 0,
+   "total": 0
+  },
+  "project": {
+   "avatarUrls": {
+    "16x16": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=xsmall",
+    "24x24": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=small",
+    "32x32": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=medium",
+    "48x48": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551"
+   },
+   "id": "10001",
+   "key": "SV",
+   "name": "ShopView",
+   "projectTypeKey": "software",
+   "self": "https://shopview.atlassian.net/rest/api/3/project/10001",
+   "simplified": true
+  },
+  "reporter": {
+   "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+   "accountType": "atlassian",
+   "active": true,
+   "avatarUrls": {
+    "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+    "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+   },
+   "displayName": "Bilal Muzamil",
+   "emailAddress": "bilal.muzamil@shopview.com",
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+   "timeZone": "Asia/Karachi"
+  },
+  "resolution": {
+   "description": "Work has been completed on this work item.",
+   "id": "10000",
+   "name": "Done",
+   "self": "https://shopview.atlassian.net/rest/api/3/resolution/10000"
+  },
+  "resolutiondate": "2026-08-05T12:32:50.549-0500",
+  "security": null,
+  "status": {
+   "description": "",
+   "iconUrl": "https://shopview.atlassian.net/",
+   "id": "10250",
+   "name": "OBSOLETE",
+   "self": "https://shopview.atlassian.net/rest/api/3/status/10250",
+   "statusCategory": {
+    "colorName": "green",
+    "id": 3,
+    "key": "done",
+    "name": "Done",
+    "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/3"
+   }
+  },
+  "statusCategory": {
+   "colorName": "green",
+   "id": 3,
+   "key": "done",
+   "name": "Done",
+   "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/3"
+  },
+  "statuscategorychangedate": "2026-08-05T12:32:50.574-0500",
+  "subtasks": [],
+  "summary": "Filter bar sits on the same row as the tabs, so collapsing it frees no space",
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "2026-08-06T02:49:10.195-0500",
+  "versions": [],
+  "votes": {
+   "hasVoted": false,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8843/votes",
+   "votes": 0
+  },
+  "watches": {
+   "isWatching": true,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8843/watchers",
+   "watchCount": 1
+  },
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": -1
+ },
+ "id": "54970",
+ "key": "SV-8843",
+ "renderedFields": {
+  "aggregateprogress": null,
+  "aggregatetimeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "aggregatetimespent": null,
+  "assignee": null,
+  "attachment": [],
+  "comment": {
+   "comments": [],
+   "maxResults": 0,
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54970/comment",
+   "startAt": 0,
+   "total": 0
+  },
+  "components": null,
+  "created": "Tuesday 8:35 PM",
+  "creator": null,
+  "customfield_10015": null,
+  "customfield_10016": null,
+  "customfield_10019": null,
+  "customfield_10021": null,
+  "customfield_10044": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "customfield_10153": null,
+  "customfield_10252": "",
+  "customfield_10285": "",
+  "customfield_10318": null,
+  "customfield_10351": "",
+  "customfield_10352": null,
+  "customfield_10385": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "customfield_10518": null,
+  "description": "<h3><a name=\"Environment\"></a>Environment</h3>\n\n<p>QA branch <a href=\"https://sv8785.qa.shopview.com/workorders\" class=\"external-link\" rel=\"nofollow noreferrer\">https://sv8785.qa.shopview.com/workorders</a> \u2014 API host sv8785api.qa.shopview.com \u2014 build marker &lt;meta name=\"app-version\"&gt; = v3.4.2-4f8211c (index.html last-modified Mon, 03 Aug 2026 20:09:32 GMT) \u2014 observed 2026-08-04, org d55bc308-e61a-438d-b5f1-c7a73c89d49f, location \"Staging Heavy Duty - 9919\", signed in as an Administrator.</p>\n\n<h3><a name=\"StepstoReproduce\"></a>Steps to Reproduce</h3>\n\n<ol>\n\t<li>Open Work Orders on a desktop browser at a 1680x1050 window, on the All tab.</li>\n\t<li>Look at where the five filter buttons (Status, Customer, Lead Technician, Service Advisor, Asset on Site) sit in relation to the tab row (All, Estimates, Completed, My Work Orders).</li>\n\t<li>Click the filter icon to the left of the Status button to collapse the filter bar.</li>\n\t<li>Watch whether the table moves up into the space the buttons were using.</li>\n</ol>\n\n\n<h3><a name=\"ExpectedResult\"></a>Expected Result</h3>\n\n<p>The five filter buttons sit on their own row directly BELOW the tab row, and when the bar is collapsed the table moves up and uses the space that is freed.</p>\n\n<h3><a name=\"CurrentResult\"></a>Current Result</h3>\n\n<p>The filter buttons sit on the SAME row as the tabs, to the right of \"My Work Orders\". Because they share the tab row there is no separate row to give back: collapsing hides the buttons but the table does not move up at all. The table header stays in exactly the same place before and after collapsing.</p>\n\n<h3><a name=\"Howoften\"></a>How often</h3>\n\n<p>Every time, on desktop.</p>\n\n<h3><a name=\"Technicaldetail\"></a>Technical detail</h3>\n\n<p>Measured from the DOM: the tab elements are at y=85 with height 40; the five buttons (CSS class \"filter-chip\") are at y=90 with height 30 and x from 452 to 1164, i.e. inside the same band, to the right of the tabs. The table head element stays at y=144 both before and after clicking the collapse toggle (data-test-id=\"toggle_filter_bar\"). The approved design frame for the final desktop layout (Figma node 11854:24657) also draws the bar on its own row below the tabs.</p>\n\n\n\n<p>Where this expected behaviour comes from: the Filters specification, version 18, requirement S1-R1, which says: \"The filter bar is displayed below the tab navigation row (All, Estimates, Completed, My Work Orders) by default\".</p>\n\n<p>And requirement S1-R5, which says: \"When the user collapses the filter bar, the bar is hidden and the table expands to use the reclaimed vertical space\". Both halves of this ticket are covered: the row the bar sits on, and what collapsing it should free up.</p>",
+  "duedate": null,
+  "environment": "",
+  "fixVersions": null,
+  "issuelinks": null,
+  "issuerestriction": null,
+  "issuetype": null,
+  "labels": null,
+  "lastViewed": "Yesterday 10:31 PM",
+  "priority": null,
+  "progress": null,
+  "project": null,
+  "reporter": null,
+  "resolution": null,
+  "resolutiondate": "Yesterday 10:32 PM",
+  "security": null,
+  "status": null,
+  "statusCategory": null,
+  "statuscategorychangedate": "Yesterday 10:32 PM",
+  "subtasks": null,
+  "summary": null,
+  "timeestimate": null,
+  "timeoriginalestimate": null,
+  "timespent": null,
+  "timetracking": {},
+  "updated": "Today 12:49 PM",
+  "versions": null,
+  "votes": null,
+  "watches": null,
+  "worklog": {
+   "maxResults": 20,
+   "startAt": 0,
+   "total": 0,
+   "worklogs": []
+  },
+  "workratio": null
+ },
+ "self": "https://shopview.atlassian.net/rest/api/3/issue/54970"
+}
