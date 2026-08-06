@@ -274,3 +274,64 @@ edited** — widening someone's ticket scope is the QA lead's call.
   formatting only, not one word of meaning changed. **12 raw-markup cases remain**, all in Work In
   Progress: C30451, C30456, C30457, C30460, C30487, C30490, C30491, C30493, C30519, C30522, C30526,
   C30528.
+
+---
+
+## Batch 8 — SALES BY CUSTOMER, the first 25 cases
+
+Build read again at **07:05:57Z**: `v3.5-16cf83f`, sha256 `67932a75…` — **byte-identical. No redeploy.**
+
+**25 of Sales By Customer's 83 remaining cases now carry a verdict: 21 PASS · 2 DEVIATION ·
+2 PARTIAL.** The other 58 were **not** adjudicated, and deliberately so — the report was opened and
+characterised but a characterisation is not a per-case observation, and no case was counted because a
+broad artefact happened to touch it.
+
+### The two deviations, both ticketed
+
+| Case | What the document requires | What the build does | Ticket |
+|---|---|---|---|
+| [C30105](https://shopview.testrail.io/index.php?/cases/view/30105) | S2-R6 — the chosen date range is written to the page link so the report can be shared | **The address bar never changes.** Sampled ten times over fifteen seconds after applying Last Month, then after a Product Type change, then at the moment of clicking through to an invoice — bare `/reports/sales-by-customer` every time | [SV-8955](https://shopview.atlassian.net/browse/SV-8955) |
+| [C30160](https://shopview.testrail.io/index.php?/cases/view/30160) | file names `sales-by-customer-summary-{range}.csv` | `sales-by-customer-summary.csv` and `sales-by-customer-expanded.csv` — **no period in either name** | [SV-8956](https://shopview.atlassian.net/browse/SV-8956) |
+
+### What was verified by arithmetic, not by eye
+
+**Aagate Landscaping**: Subtotal **34,948.98 = 18,640.80 + 14,350.89 + 1,957.29**, and Margin
+**32,991.69 = 18,640.80 + 14,350.89** — so Shop Supplies adds to Subtotal and **nothing** to Margin,
+exactly as the requirement says. Margin % = 32,991.69 / 34,948.98 = **94.4%**. Invoice **S-12528**
+checks the same way: 1,097.90 = 479.85 + 567.67 + 50.38, Margin 1,047.52, Margin % **95.4%**.
+
+### Two cases left PARTIAL for want of data, not for want of trying
+
+**[C30150](https://shopview.testrail.io/index.php?/cases/view/30150)** — the em dash when Subtotal is
+zero or below: **no row in this data has a Subtotal at or below zero.**
+**[C30151](https://shopview.testrail.io/index.php?/cases/view/30151)** — the green `+` and red `-`
+Inv. Hrs values: **every row in this data reads `0.0`**, because no invoice has hours invoiced
+differing from hours worked. The heading is verbatim `Inv. Hrs` and the zero case is correct.
+
+### One defect in OUR OWN case, reported not fixed
+
+**[C30102](https://shopview.testrail.io/index.php?/cases/view/30102)** is still **titled** *"Date
+range picker offers **eleven** options in the specified order"*. The specification says **nine** and
+the build shows **nine**; the body does not enumerate them at all and passes. **The title is stale**
+and a title change was not in this batch's scope — it is listed as owed.
+
+### The one-day-late PDF end date reproduces on Sales By Customer too — with a twist
+
+The SBC Summary PDF heads *"Date Range: Aug 1, 2026 – Aug 7, 2026"* for a range ending **6 August**.
+Same off-by-one as **[SV-8937](https://shopview.atlassian.net/browse/SV-8937)** — but here the label
+reads *"Date Range:"* correctly, where Parts Velocity and Technician Utilization both print *"Start
+Date Range:"*. So the ticket's Parts-Velocity-only framing is wrong on **two** reports now.
+**Reported, not edited.**
+
+### Proofs for batch 8
+
+- **25 `update_case`**, every one HTTP 200, re-GET and byte-compared, **30 fields each, 0 mismatches,
+  0 collateral**. All three text fields sent on every write.
+- **0 add · 0 delete · 0 section · 0 run writes · 0 results logged.**
+- Cumulative over batches 7–8: **82 cases touched**, and **all 399 untouched cases proven
+  byte-identical BY CONTENT**, foreign C38919–C38923 included.
+- **Run 359 proven untouched again**: `include_all` false, **476 tests**, test-id and case_id sets
+  equal both directions, **all 535 results present BY ID, 0 new, 0 non-echo fields changed**.
+- **Census over all 82 touched cases: exactly one provenance line, one build line and one
+  `AUTOMATION:` marker each; the marker last; no raw markup; no stale build; no barred phrase; and
+  all 20 expect-fail cases among them carry the Rule-61 block.**

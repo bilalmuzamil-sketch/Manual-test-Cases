@@ -1,4 +1,231 @@
 {
+ "30102": {
+  "anchor": "SBC S2-R1, S2-R2",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "The picker is in the toolbar and holds nine named periods in the specified order - Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week - beside a month calendar, a live \"Range: 6 days\" readout and an Apply button. There is no All Time item, no Today, no Yesterday and no item labelled Custom. Honest note: this case is still TITLED \"eleven options\" while the specification says nine and the build shows nine; the title is stale and is reported as owed.",
+  "verdict": "PASS"
+ },
+ "30105": {
+  "anchor": "SBC S2-R6",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "After applying Last Month the address bar stayed at the bare /reports/sales-by-customer, sampled ten times over fifteen seconds. It also stayed bare after a Product Type change and at the moment of clicking through to an invoice. The report itself reloads correctly for the new range.",
+  "ticket": "SV-8955",
+  "verdict": "DEVIATION"
+ },
+ "30107": {
+  "anchor": "SBC S3-R1..R6",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "Product Type is a toolbar dropdown holding exactly Parts & Service, Parts only, Service only in that order, defaulting to Parts & Service, and sending productType=all, productType=parts and productType=service. The S and P invoice-prefix half of items 5 and 6 was not proven - the two selections return different customer sets but individual invoice numbers were not enumerated for each. The collapsed label re-cases to \"Service Only\" and \"Parts Only\", which is worth reading against S3-R2 on a later pass.",
+  "verdict": "PARTIAL"
+ },
+ "30115": {
+  "anchor": "SBC S? all-customers state",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "On first load the Customer filter's collapsed label reads \"All customers\" and the table holds every customer matching the other filters - 30 rows on page one with the totals row computed over the whole filtered set.",
+  "verdict": "PASS"
+ },
+ "30121": {
+  "anchor": "SBC S7-R1..R5",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "Each customer occupies exactly one top-level row - for example \"Aagate Landscaping(26)\" - with the name first and the contributing invoice count in parentheses immediately after it. The count renders at the same 13px as the name in rgb(97,97,97), a softer grey. The count is view-scoped, not lifetime: Aacrest Works reads (2) on This Month and (3) on This Year.",
+  "verdict": "PASS"
+ },
+ "30124": {
+  "anchor": "SBC S8-R4, S8-R12",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "Expanding the asset 2Y6DM9TD185GM0J0G revealed its invoice row carrying the invoice number as a link (S-12528 -> /workorders/<id>/finance), the invoice date \"Jan 15 2026\", and the per-invoice figures across every financial column.",
+  "verdict": "PASS"
+ },
+ "30125": {
+  "anchor": "SBC S8-R3",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "The drill-down request is /sales-by-customer/<customerId>/assets and each asset row is keyed vehicle:<vehicleId> - one row per vehicle record. Aagate Landscaping's 26 invoices resolved into asset rows carrying counts of 1, 7, 2, 3, 2, 1, 1 and so on, each grouping the invoices for one vehicle.",
+  "verdict": "PASS"
+ },
+ "30126": {
+  "anchor": "SBC S8-R6, S? asset ordering",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "Aagate Landscaping's asset rows came back ordered A to Z by label - 2Y6DM9TD185GM0J0G, BWUHK6P6LVU1XV1DG, D6A55Y3KHD43XEL7M, DPTCLB8S05DZCV1KN, EFSPSR4M634HAFEMZ, FL3NU51DZ6LKCNUNN, KBFL2NVSB96FHDMM4 - and the order did not change when the column sort was changed.",
+  "verdict": "PASS"
+ },
+ "30133": {
+  "anchor": "SBC S7-R15, S7-R16, S7-R8",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "Customer, asset, invoice and totals rows all render the same thirteen columns in the same order. The Date cell is blank on the customer row and on the asset row and holds the invoice date only on an invoice row; nothing shifts column. The customer row's Subtotal cell is font-weight 700 and reads as the heaviest cell on the row.",
+  "verdict": "PASS"
+ },
+ "30134": {
+  "anchor": "SBC S8-R7",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "Asset rows are labelled by VIN - 2Y6DM9TD185GM0J0G, 86J8FAC1VALJ43SJY and so on, all seventeen characters - each preceded by the vehicle icon. Nothing fell back to a unit number or a plate because every asset in this data carries a VIN.",
+  "verdict": "PASS"
+ },
+ "30138": {
+  "anchor": "SBC S9-R1, S9-R2",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "Clicking the invoice number opened /workorders/45717cf3-c927-4bff-a49c-a0fa1d60f7d4/finance in the SAME tab - the browser context held one page before the click and one after.",
+  "verdict": "PASS"
+ },
+ "30139": {
+  "anchor": "SBC S9-R4",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "After the browser back button the report returned with Last Month and Service Only both restored, and the expanded asset and invoice rows were collapsed - zero of either remained.",
+  "verdict": "PASS"
+ },
+ "30140": {
+  "anchor": "SBC S9-R5, S9-R6, S9-R7, S9-R8",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "The customer name is plain text, not a link. The invoice number is an <a> in rgb(34,118,218) with no underline, and it stayed that colour after being clicked - it never took the browser's visited-link colour.",
+  "verdict": "PASS"
+ },
+ "30143": {
+  "anchor": "SBC S? default sort",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "On load the Customer header carries aria-sort=\"ascending\" while every other header carries none, and the rows run Aaborough Works, Aacastle Services, Aachester Partners, Aacrest Works, Aadale Motors.",
+  "verdict": "PASS"
+ },
+ "30149": {
+  "anchor": "SBC S7-R6, S? Subtotal and Margin rules",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "The financial columns run Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin % with Subtotal rightmost. Arithmetic checks on Aagate Landscaping: Subtotal 34,948.98 = 18,640.80 + 14,350.89 + 1,957.29; Margin 32,991.69 = 18,640.80 + 14,350.89, so Shop Supplies adds to Subtotal and nothing to Margin. Invoice S-12528 checks the same way: 1,097.90 = 479.85 + 567.67 + 50.38 and Margin 1,047.52 = 479.85 + 567.67.",
+  "verdict": "PASS"
+ },
+ "30150": {
+  "anchor": "SBC S7-R11, S7-R13, S7-R14",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "Margin % is Margin over Subtotal to one decimal with a percent sign - Aagate Landscaping 32,991.69/34,948.98 = 94.4%, invoice S-12528 1,047.52/1,097.90 = 95.4% - it renders in rgb(0,0,0) with no green or red, and the same calculation holds on customer, asset and invoice rows. Item 2 (the em dash when Subtotal is zero or below) was not produced: no row in this data has a Subtotal at or below zero.",
+  "verdict": "PARTIAL"
+ },
+ "30151": {
+  "anchor": "SBC S? Inv. Hrs",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "The column heading reads exactly \"Inv. Hrs\", including the period. Every row in this data reads \"0.0\" in the default rgb(0,0,0), which is item 5. Items 3 and 4 - the green + value and the red - value - could not be observed: no invoice in this data has hours invoiced differing from hours worked.",
+  "verdict": "PARTIAL"
+ },
+ "30152": {
+  "anchor": "SBC S? Inv. Hrs never blank",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "No Inv. Hrs cell is blank on any row type - customer, asset or invoice - including rows with no labour at all; every one reads \"0.0\".",
+  "verdict": "PASS"
+ },
+ "30154": {
+  "anchor": "SBC S? Subtotal column",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "Subtotal is the rightmost column, carries class report-col-pinned so it stays at the right edge as the table scrolls sideways, and is font-weight 700 on the header and on every customer, asset, invoice and totals row. It held after a range change and after sorting by two different columns.",
+  "verdict": "PASS"
+ },
+ "30156": {
+  "anchor": "SBC S? column selector",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "The column selector is its own toolbar button (data-test-id button_column_selection) beside the overflow menu, not an item inside it, and its panel lists exactly nine toggles in the order Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, all nine switched on. As the case already says, Location is not among them.",
+  "verdict": "PASS"
+ },
+ "30159": {
+  "anchor": "SBC S? export menu",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "The overflow menu is the leftmost control in the toolbar action area and holds exactly four items in order - \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", \"Download Expanded View (CSV)\". There is no Print item and no separate always-visible export button.",
+  "verdict": "PASS"
+ },
+ "30160": {
+  "anchor": "SBC S? download file names",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "The two spreadsheets download as sales-by-customer-summary.csv and sales-by-customer-expanded.csv - correct except that the period is missing from both names. The files themselves carry a \"Date Range: Aug 1, 2026 - Aug 6, 2026\" line, so the range is recorded inside but not in the name.",
+  "ticket": "SV-8956",
+  "verdict": "DEVIATION"
+ },
+ "30161": {
+  "anchor": "SBC S? Expanded CSV",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "The Expanded spreadsheet heads its columns Customer, Asset, Invoice #, Date, Location, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal. A customer line leaves Asset, Invoice # and Date empty; an asset line fills Asset only; an invoice line fills Invoice # and Date - every blank keeps its column. It opens with a UTF-8 byte-order mark, a \"Date Range:\" line and a \"Locations: All locations\" line, and ends with a Totals line.",
+  "verdict": "PASS"
+ },
+ "30168": {
+  "anchor": "SBC S? PDF logo",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "The Summary PDF carries exactly one embedded image, the organisation logo, at the top above the title block, and the spreadsheets carry none.",
+  "verdict": "PASS"
+ },
+ "30190": {
+  "anchor": "SBC S8-R14",
+  "batch": 8,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch8",
+  "note": "Nothing below customer level ships with the first payload. Expanding a customer issued exactly one request, /sales-by-customer/<customerId>/assets; expanding an asset issued exactly one more, /sales-by-customer/<customerId>/assets/vehicle:<vehicleId>/invoices. One call per expansion, nothing else reloaded.",
+  "verdict": "PASS"
+ },
  "30322": {
   "anchor": "PV S1-R1",
   "batch": 4,

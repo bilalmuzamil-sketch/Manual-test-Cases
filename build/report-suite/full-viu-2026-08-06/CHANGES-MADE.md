@@ -194,3 +194,27 @@ priority Low · `relates to` link to the same story · no Product Area), every f
 No existing ticket was edited, commented on, transitioned or re-prioritised — including
 **SV-8937**, whose stated scope this batch showed to be too narrow, and **SV-8818**, which already
 covers the Expanded PDF failure.
+
+## Update after batch 8 (Sales By Customer, part 1, 2026-08-06)
+
+**Application data: nothing created, deleted or altered.** Read-only throughout — the report read
+endpoint, the two drill-down endpoints, the export endpoint and the report page itself, plus one
+navigation into a work order's finance tab and straight back out. The only writes anywhere were the
+product's own `report_view:sales-by-customer` local-storage key inside a throwaway headless context,
+which was also removed once to force a genuine first-visit state.
+
+| Batch | Operation | Count | Verification |
+|---|---|---|---|
+| 8 (Sales By Customer part 1) | `update_case` | 25 | every one HTTP 200, re-GET, 30 fields compared, 0 mismatches, 0 collateral |
+
+Running TestRail total: **230 `update_case`** over **218 distinct cases**. Still 0 add · 0 delete ·
+0 section · **0 run writes** · **0 results logged**.
+
+Two Story Defects filed, same Rule-52 shape, every field read back — 11 checks each, all PASS:
+
+| Key | Parent story | Summary |
+|---|---|---|
+| [SV-8955](https://shopview.atlassian.net/browse/SV-8955) | SV-8601 | Sales By Customer never puts the date range or Product Type in the page link, so the report cannot be shared |
+| [SV-8956](https://shopview.atlassian.net/browse/SV-8956) | SV-8612 | Sales By Customer download file names leave out the date range |
+
+No existing ticket was edited, commented on, transitioned or re-prioritised.

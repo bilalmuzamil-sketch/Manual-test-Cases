@@ -14,15 +14,15 @@ Epic **SV-8582 = 105 children**, verified two ways with equal key sets, no pagin
 | | Count |
 |---|---|
 | Our cases | **476** (481 live under group 4281, incl. 5 foreign) |
-| With a verdict established on `v3.5-16cf83f` | **175** |
-| **Remaining** | **301** |
+| With a verdict established on `v3.5-16cf83f` | **200** |
+| **Remaining** | **276** |
 
-175 + 301 = 476. `REMAINING.txt` is regenerated from the population minus recorded verdicts every
+200 + 276 = 476. `REMAINING.txt` is regenerated from the population minus recorded verdicts every
 batch — **do not copy it forward, re-derive it.** A case recorded `NOT OBSERVED` **stays** in
 `REMAINING.txt`, because a reason is not a verdict.
 
-**⚠️ COUNT BY CASE ID, NOT BY LINE.** As of this write `REMAINING.txt` happens to have 301 lines and
-301 ids, but long titles have wrapped before and will again: `grep -oE 'C[0-9]{5}' REMAINING.txt |
+**⚠️ COUNT BY CASE ID, NOT BY LINE.** As of this write `REMAINING.txt` happens to have 276 lines and
+276 ids, but long titles have wrapped before and will again: `grep -oE 'C[0-9]{5}' REMAINING.txt |
 sort -u | wc -l`.
 
 **Inventory Value, Parts Velocity and Technician Utilization are all FINISHED** — every one of their
@@ -32,10 +32,10 @@ listed in `REMAINING.txt` (IV 9, PV 26, TU 7) are the not-observed ones, each wi
 
 ## THE EXACT NEXT ACTION
 
-**Sales By Customer (83), then Sales By Representative (109), then Work In Progress (67).**
+**Sales By Customer (58 left), then Sales By Representative (109), then Work In Progress (67).**
 
-Sales By Customer has already been **opened and characterised** by this session but **not one case
-was adjudicated** — no verdict was recorded, deliberately, because a characterisation is not a
+**25 Sales By Customer cases were adjudicated in batch 8** — see `FINDINGS.md`. The remaining **58**
+were deliberately NOT counted: the report was characterised broadly, and a characterisation is not a
 per-case observation. What is already established and can be reused without re-deriving:
 
 - Report path `/reports/sales-by-customer`; data endpoint
@@ -126,15 +126,15 @@ Rule-61 block: **C30500** and **C38918** — see the decisions section below.
 
 ## Write ledger (this pass, cumulative)
 
-TestRail **205 `update_case` over 193 distinct cases**, every one HTTP 200 + byte-verified,
+TestRail **230 `update_case` over 218 distinct cases**, every one HTTP 200 + byte-verified,
 30 fields compared each, 0 mismatches, 0 collateral. **0 add · 0 delete · 0 section · 0 run writes ·
-0 results logged.** Jira **27 Story Defects created** (SV-8925–SV-8940, SV-8943–SV-8954), 0 edits to
+0 results logged.** Jira **29 Story Defects created** (SV-8925–SV-8940, SV-8943–SV-8956), 0 edits to
 anyone else's ticket. Application **read-only**.
 
 ## Marker census caveat
 
-**THE ARITHMETIC GATE IS NOT CLAIMED TO PASS AND MUST NOT BE.** 175 of the 476 carry a verdict
-established against `v3.5-16cf83f`; the other 301 carry markers inherited from earlier passes.
+**THE ARITHMETIC GATE IS NOT CLAIMED TO PASS AND MUST NOT BE.** 200 of the 476 carry a verdict
+established against `v3.5-16cf83f`; the other 276 carry markers inherited from earlier passes.
 
 ## STILL OWED — carried forward
 
@@ -148,9 +148,13 @@ established against `v3.5-16cf83f`; the other 301 carry markers inherited from e
   a sibling worker; `quick-login` and `switch-user` both rotate it.
 - **A question for Chris Ward**: none of the six specifications mentions the ~10,000-row export cap,
   yet it is real, deliberate and in epic story SV-8591.
-- **A decision for the QA lead**: **SV-8937** is written as a Parts Velocity defect but Technician
-  Utilization prints the same one-day-late end date and the same "Start Date Range:" label. Widen
-  that ticket, or file a second one? It was **not edited**.
+- **A decision for the QA lead**: **SV-8937** is written as a Parts Velocity defect but the
+  one-day-late PDF end date reproduces on **Technician Utilization AND Sales By Customer**. The
+  "Start Date Range:" mislabel is narrower — PV and TU have it, SBC prints "Date Range:" correctly.
+  Widen that ticket, or file a second one? It was **not edited**.
+- **A stale title in one of our own cases**: **C30102** is titled "Date range picker offers eleven
+  options in the specified order" while the specification says nine and the build shows nine. Its
+  body does not enumerate and passes. A title change was out of this batch's scope.
 - **C30500 and C38918** still carry no Rule-61 block. C30500's symptom (the Asset filter, SV-8908)
   was never driven. **C38918 asserts the over-cap refusal, which cannot be produced on this estate** —
   the biggest Work In Progress tab holds 65 work orders against a cap near 10,000 — so the honest

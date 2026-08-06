@@ -33,43 +33,30 @@ C30327  PV — Permissions                           | Ordinary reports access a
 C30385  PV — Visual Conformance                    | The report uses the standard two-tone layout
 C30386  PV — Visual Conformance                    | Toolbar and table detail styling matches the suite paddings and borders
 C30387  PV — Visual Conformance                    | Dark mode is supported and the grey info icon keeps 3:1 contrast in both
-C30190  SBC — API                                  | Asset and invoice rows are fetched on first expand; one call per customer
 C30192  SBC — API                                  | The Customer type-ahead queries the server instead of loading every name
 C30193  SBC — API                                  | Customer rows are server-paginated; the totals row is server-computed
 C43546  SBC — API                                  | The back end serves SBC report data and export on ordinary reports access
 C30096  SBC — Access & Navigation                  | Sales By Customer listed under Performance, below existing links; titles corre
-C30134  SBC — Asset Labels                         | Asset identified by VIN, falling back to Unit #, then plate
 C30137  SBC — Asset Labels                         | Duplicate asset labels get stable (#1)/(#2) suffixes that survive reloads
-C30156  SBC — Column Selector                      | Column selector is its own toolbar button with nine toggles all on
 C30157  SBC — Column Selector                      | Column toggles hide header+cells; Customer, Subtotal and chevron never in list
 C43550  SBC — Column Selector                      | A one-location user never sees Location in the column-selection list
 C30112  SBC — Customer Filter                      | Customer filter sits between Product Type and Location, carries a search icon
 C30113  SBC — Customer Filter                      | Typing in the Customer filter lists matching customers by contains match
 C30114  SBC — Customer Filter                      | Pinned control toggles All customers and Clear all; clearing shows empty state
-C30115  SBC — Customer Filter                      | First load starts in the all-customers state and the report shows every custom
 C30116  SBC — Customer Filter                      | Collapsed label reads None, the customer's name, or N selected
 C30117  SBC — Customer Filter                      | Changing the customer selection narrows the table and refreshes the totals
 C30120  SBC — Customer Filter                      | A subset customer selection reconciles on a filter change; kept if present
-C30102  SBC — Date Range Filter                    | Date range picker offers eleven options in the specified order
 C30104  SBC — Date Range Filter                    | Building a custom range on the calendar cannot exceed a 366-day span
-C30105  SBC — Date Range Filter                    | Changing the date range writes it into the page link for sharing
 C30181  SBC — Empty & Edge States                  | Empty state shows in the table body; toolbar interactive; kept selection retur
 C30184  SBC — Empty & Edge States                  | A failed data fetch shows the error toast which fades after 5 seconds
-C30159  SBC — Exports                              | The overflow menu holds exactly the four download items - no Print
-C30160  SBC — Exports                              | Download file names carry the version and the active date range
-C30161  SBC — Exports                              | Expanded View CSV: column order, blank-cell rules, and the Locations line
 C30163  SBC — Exports                              | CSV and PDF hold exactly the customers matching the active filters and sort
 C30164  SBC — Exports                              | Each download item shows a loading state and its own export-failed toast
 C30166  SBC — Exports                              | PDF page: A4 landscape, uniform margins, ShopView footer and page numbers
 C30167  SBC — Exports                              | PDF header: title, organization, date range, Product Type and Locations lines
-C30168  SBC — Exports                              | PDF logo is embedded, scales without distortion
 C30169  SBC — Exports                              | Expanded View PDF body matches the CSV's columns and on-screen rules
 C30173  SBC — Exports                              | A no-match export still downloads headers and a zero totals row
 C38856  SBC — Exports                              | Summary and Expanded View downloads exist for both PDF and CSV
 C43553  SBC — Exports                              | A logo that is set but will not load falls back to the ShopView logo
-C30138  SBC — Invoice Links & Navigation           | The invoice number opens the invoice in the same browser tab
-C30139  SBC — Invoice Links & Navigation           | Browser back from an invoice restores filters; sort and columns; rows shut
-C30140  SBC — Invoice Links & Navigation           | Customer name is plain text; the invoice link never turns visited-purple
 C30141  SBC — Invoice Links & Navigation           | An invoice deleted after load shows the not-found state and back returns
 C43558  SBC — Invoice Links & Navigation           | You cannot reach an invoice you have no permission to open
 C30109  SBC — Location Filter                      | Location filter: rightmost, lists accessible locations, All locations on top
@@ -82,7 +69,6 @@ C30099  SBC — Permissions                          | Without reports access, S
 C30100  SBC — Permissions                          | Opening an invoice you lack permission for shows access-denied; back works
 C30101  SBC — Permissions                          | Location access enforced: no data from a location the user cannot access
 C39447  SBC — Permissions                          | No Sales By Customer permission is offered in the role permission editor
-C30107  SBC — Product Type Filter                  | Product Type: three options with Parts & Service default; S/P prefix filtering
 C30174  SBC — Saved View & Persistence             | Filters; sort and visible columns are restored on the next visit
 C30175  SBC — Saved View & Persistence             | Type-ahead search text, expansion state and scroll position are not saved
 C30176  SBC — Saved View & Persistence             | A saved value that is no longer valid is dropped and falls back to default
@@ -91,28 +77,17 @@ C30178  SBC — Saved View & Persistence             | With no saved view every 
 C30179  SBC — Saved View & Persistence             | When a saved view and a page-link range clash the saved view wins
 C30180  SBC — Saved View & Persistence             | Customer filter restore: all-customers stays all; an id set is intersected
 C30142  SBC — Sorting                              | All columns sortable except chevron; text alphabetical, numbers by value
-C30143  SBC — Sorting                              | Default sort is Customer name ascending case-insensitive
 C30144  SBC — Sorting                              | Missing values sort to the bottom ascending and to the top descending
 C30145  SBC — Sorting                              | Sorting by Date orders customers by their most recent invoice date
-C30149  SBC — Totals & Calculations                | Financial columns run in the specified order with Subtotal and Margin rules
-C30150  SBC — Totals & Calculations                | Margin % is Margin over Subtotal to one decimal; em dash when Subtotal <= 0
-C30151  SBC — Totals & Calculations                | Inv. Hrs heading is verbatim; value shows +green / -red / 0.0 on every row
-C30152  SBC — Totals & Calculations                | Inv. Hrs is never blank: no-labor rows and near-zero values both show 0.0
 C30153  SBC — Totals & Calculations                | Invoice subtotals sum to their asset row and asset subtotals to the customer
-C30154  SBC — Totals & Calculations                | Subtotal is the rightmost column; pinned on scroll and bold everywhere
 C30155  SBC — Totals & Calculations                | The totals row covers the whole filtered set; not just the current page
-C30121  SBC — Tree & Rows                          | Each customer gets one summary row with its invoice count in parentheses
 C30122  SBC — Tree & Rows                          | A customer with no matching invoices in the current view is not shown
 C30123  SBC — Tree & Rows                          | Expanding a customer reveals asset rows; chevrons toggle and are independent
-C30124  SBC — Tree & Rows                          | Expanding an asset reveals its invoice rows with number link and date
-C30125  SBC — Tree & Rows                          | Invoices group into one asset row per vehicle record
-C30126  SBC — Tree & Rows                          | Asset rows order A to Z with the Parts Sales bucket always last
 C30128  SBC — Tree & Rows                          | Header-row chevron expands or collapses every customer on the current page
 C30129  SBC — Tree & Rows                          | Reload-causing changes collapse expansion; Customer filter typing does not
 C30130  SBC — Tree & Rows                          | Edge: a single-invoice asset can still be expanded
 C30131  SBC — Tree & Rows                          | A service (S) invoice with no vehicle also lands in the Parts Sales bucket
 C30132  SBC — Tree & Rows                          | Reversed and voided invoices are excluded from every row; count and total
-C30133  SBC — Tree & Rows                          | Every row type renders the same columns in the same order
 C30185  SBC — Visual Conformance                   | Page and toolbar match the suite theme in padding; surface and alignment
 C30186  SBC — Visual Conformance                   | Row surfaces alternate by tree level; header and totals rows stay white
 C30187  SBC — Visual Conformance                   | Dark mode darkens every surface while the PDF always renders light

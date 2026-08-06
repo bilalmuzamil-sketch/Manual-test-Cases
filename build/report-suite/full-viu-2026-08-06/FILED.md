@@ -128,3 +128,25 @@ figures reconcile to the raw seconds exactly.
 the *"Start Date Range:"* label are specific to Parts Velocity. **Technician Utilization does exactly
 the same thing** — asked for 1 Jan to 6 Aug 2026 it prints *"Start Date Range: Jan 1, 2026 - Aug 7,
 2026"*. Reported, not edited: widening someone's ticket is the QA lead's call.
+
+## Batch 8 — two more Story Defects (Sales By Customer)
+
+| Key | Parent story | Summary |
+|---|---|---|
+| [SV-8955](https://shopview.atlassian.net/browse/SV-8955) | SV-8601 | Never puts the date range or Product Type in the page link, so the report cannot be shared |
+| [SV-8956](https://shopview.atlassian.net/browse/SV-8956) | SV-8612 | Download file names leave out the date range |
+
+**Duplicate search run before filing:** `parent in (SV-8606..SV-8615)` → 1 result, SV-8925, this
+session's own spreadsheet-formatting ticket; `project=SV AND text ~ "page link" ORDER BY created DESC`
+→ 231 results, all about the Filters project's URL-state work (SV-8796, SV-8871, SV-8828 and
+neighbours) and none about a report's address bar; `project=SV AND text ~ "Sales By Customer" AND
+created > 2026-07-25` → 50 results, of which the near neighbours are SV-8780 (SBC gated by its own
+permission), SV-8818, SV-8819, SV-8820, SV-8879, SV-8880 and SV-8925 — **none covers either of these
+two.**
+
+## A second existing ticket whose scope is wider than its own text — NOT edited
+
+**[SV-8937](https://shopview.atlassian.net/browse/SV-8937)** is written as Parts Velocity only. The
+one-day-late PDF end date now reproduces on **Technician Utilization** and on **Sales By Customer**
+as well. The *"Start Date Range:"* mislabel is narrower — Parts Velocity and Technician Utilization
+have it, Sales By Customer prints *"Date Range:"* correctly. Reported for the QA lead's decision.
