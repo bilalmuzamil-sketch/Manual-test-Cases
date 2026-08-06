@@ -1,6 +1,6 @@
 # Everything I created or altered on QA branch `sv8685` — full record
 
-**Branch:** `https://sv8685.qa.shopview.com` · build `v3.5-d122eef` · org
+**Branch:** `https://sv8685.qa.shopview.com` · builds `v3.5-d122eef` (batches 1–5) then **`v3.5-7ec992f`** (batches 6–9, redeployed 22:49:36 GMT — see `BUILD-MARKER-MOVED.md`) · org
 `d55bc308-e61a-438d-b5f1-c7a73c89d49f` (Staging Heavy Duty - 9919, America/Edmonton)
 **Signed in as:** the shared admin account. **`POST /api/quick-login` was never called.**
 
@@ -66,7 +66,7 @@ with real data.
 
 | Series / shift | Work order | Technician | Dates | Detail |
 |---|---|---|---|---|
-| series `89fd410a-18a8-403d-a09f-cde720de7aad` | **S-15681** Vuchester Retail | **William Johns** | 4 Nov 2026 → 16 Feb 2027 | **105 daily shifts**, 1h/day — created to prove the over-8-weeks confirmation. Renders as "37 Lines · Week 1 of 16" |
+| series **`20882de1-4a1a-42ae-bbaa-55ac970a49a0`** | **S-15681** Vuchester Retail | **William Johns** | 4 Nov 2026 → 16 Feb 2027 | **105 daily shifts**, 1h/day — created to prove the over-8-weeks confirmation. Renders as "37 Lines · Week 1 of 16". **(This row previously carried the id `89fd410a-…` by mistake — corrected 2026-08-06, see "Two corrections" at the end.)** |
 | series `2d145d7e-e318-45b7-ae30-8015ca548001` | **S-15683** Vuchester Retail | **Ayesha Khan** | 4 → 17 Nov 2026 | **10 daily shifts**, 2h/day, Mon–Fri. Renders as "11 Lines · Week 1 of 3" |
 | series (4 shifts) | **S-15683** Vuchester Retail | **Brittany Anderson** | from 16 Dec 2026 | 5h/day — created to test the confirm toast |
 | shift `b07bf2e7-b192-47f3-823b-e9fafb83ea47` | **S-15875** Vuchester Retail | Brittany Anderson | 25 Nov 2026 08:00–09:00 | back-to-back pair, same lane |
@@ -142,10 +142,72 @@ completeness:
 
 ## 6. Things I did NOT change, stated so nobody has to wonder
 
-* The **shop's working hours** and the **location business-hours toggle** — read only.
-* Any **pre-existing shift's** technician, day, time, duration, colour or note. No drag
-  ever started from an existing block; every drag started from the sidebar, which creates
-  new shifts.
-* Any **event**. No event was created, moved, reassigned or deleted.
-* **TestRail**: no write of any kind at the time of writing this section.
-* **Jira**: no write of any kind at the time of writing this section.
+* The **shop's working hours** and the **location business-hours toggle** — read only
+  up to the end of batch 5. **Batch 7 opens the Working Hours settings screen; anything
+  changed there is recorded in section 7 below.**
+* Any **pre-existing shift's** technician, day, time, duration, colour or note — with the
+  **one exception in section 2**, a pre-existing shift deleted by an over-wide clean-up and
+  re-created field-for-field. No drag ever started from an existing block; every drag
+  started from the sidebar, which creates new shifts.
+* No **customer, asset, staff member, department or organisation setting** was created or
+  changed. One work-order line **estimate** was edited and put back (section 3b).
+* **TestRail**: no write of any kind up to the end of batch 5.
+* **Jira**: no write of any kind up to the end of batch 5.
+
+**⚠️ This section previously claimed "no event was created, moved, reassigned or deleted",
+which was FALSE and is now removed — see "Two corrections" immediately below. Events WERE
+created, one was dragged to another technician and recoloured, and one was deleted and
+re-created. They are listed in sections 3b and 3c.**
+
+---
+
+## Two corrections to this document, made 2026-08-06 and proven live
+
+This document contradicted itself in two places. Both were checked against the live board
+rather than reasoned about, and both are corrected above.
+
+### Correction 1 — section 6 was stale and denied the event work
+
+**The claim:** section 6 said *"Any event. No event was created, moved, reassigned or
+deleted."*
+**Why it was wrong:** section 3b records event `ac95c9e3-e880-45d2-a9e7-6dcb2a094ef9`
+"ZZAUTOTEST Team meeting" being **created**, and section 3c records **four** ZZAUTOTEST
+events, one of which was **dragged from Colleen Guerrero 9 Dec to William Johns 11 Dec**,
+then **recoloured grey → teal**, and separately **deleted and re-created** to measure a
+capacity bar.
+**Cause:** section 6 was written at the end of batch 3, when it was true, and was never
+revisited when batches 4 and 5 created events. **Section 6 is the wrong row**, not 3b/3c.
+**Fixed:** the false bullet is deleted and replaced with a pointer to the real record.
+
+### Correction 2 — one series id was written into two rows that cannot both be true
+
+**The claim:** series `89fd410a-18a8-403d-a09f-cde720de7aad` appeared in **section 1** as
+*deleted*, on work order S-15683, **and** in **section 3** as *left in place*, on work
+order S-15681. One of those had to be wrong.
+
+**How it was settled — live, not by reasoning.** `GET /api/schedule/board` was read for
+1–30 November 2026 (`board-nov-clean.json`, 45 shifts):
+
+* **`89fd410a-…` returns ZERO shifts and does not appear in the board's `series` list at
+  all.** It is genuinely gone. **Section 1 is CORRECT.**
+* The 105-shift series that *is* still live has a **different id:
+  `20882de1-4a1a-42ae-bbaa-55ac970a49a0`** — `shiftCount: 105`, `scheduledMinutes: 6259`,
+  first start `2026-11-04T14:00:00Z`, last start `2027-02-16T14:00:00Z`, on **S-15681**,
+  technician **William Johns**, 60-minute shifts. That matches section 3's description in
+  every other particular.
+
+**Verdict: section 3 had copied the deleted series' id.** The id is corrected to
+`20882de1-…`. The neighbouring row was checked at the same time and is right:
+`2d145d7e-e318-45b7-ae30-8015ca548001` really is 10 shifts of 120 minutes on **S-15683**
+for **Ayesha Khan AK**, 4 → 17 Nov 2026.
+
+**Why this mattered enough to chase:** a wrong id in a change record is the one kind of
+error nobody downstream can detect. Anyone auditing the branch would have searched for
+`89fd410a-…`, found nothing, and concluded the record was fiction — while the real
+105-shift series sat on the board unexplained.
+
+---
+
+## 7. Batch 6 onwards — changes recorded as they are made
+
+*(appended per batch; see the batch sections below)*
