@@ -1,5 +1,16 @@
 import json, os, ssl, sys, urllib.request, uuid
-CFG="/tmp/mcp-config-cse_019dmB3md6EmV3wWsFZh24Ce.json"
+# Find THIS session's MCP config — the filename carries the session id, so it must never be
+# hardcoded or a scheduled run in a fresh session cannot find it.
+def _find_cfg():
+    import glob
+    best=None
+    for f in sorted(glob.glob("/tmp/mcp-config-*.json"), key=os.path.getmtime, reverse=True):
+        try: d=json.load(open(f))
+        except Exception: continue
+        if "Atlassian" in (d.get("mcpServers") or {}): best=f; break
+    if not best: raise RuntimeError("no /tmp/mcp-config-*.json with an Atlassian server found")
+    return best
+CFG=os.environ.get("MCP_CONFIG") or _find_cfg()
 _CFG=json.load(open(CFG))["mcpServers"]["Atlassian"]
 URL=_CFG["url"]
 HDRS=dict(_CFG.get("headers") or {})

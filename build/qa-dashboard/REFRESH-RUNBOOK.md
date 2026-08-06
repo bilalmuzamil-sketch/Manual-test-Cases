@@ -23,12 +23,31 @@ it, because the question being answered is "how is this epic doing", not "what i
 Steps 2–6 are unchanged. Use `epic-scope-tools/` (committed beside this runbook):
 
 ```
-python3 epic-scope-tools/fetch.py            # recursive descent over the 3 epic trees -> raw_issues.json
-python3 epic-scope-tools/transform.py        # -> tickets-unique.json + story-epic-map.json
-python3 epic-scope-tools/fetch_details.py    # per-issue changelog + comments -> details/ (resumable)
-python3 epic-scope-tools/build_activity.py <asof>   # -> activity.json + finish-dates.json
-python3 gen_data.py <workdir> <asof>         # -> dash-data.json
+cd <workdir>                                   # scripts read/write the folder they live in,
+cp <repo>/build/qa-dashboard/epic-scope-tools/*.py .   # so copy them into the workdir first
+cp <repo>/build/qa-dashboard/finish-dates.json .       # committed; merged, never overwritten
+
+python3 fetch.py                     # recursive descent over the 3 epic trees -> raw_issues.json
+python3 transform.py                 # -> tickets-unique.json + story-epic-map.json
+python3 fetch_details.py <asof>      # changelog + comments (SCOPED — see below) -> details/
+python3 build_activity.py <asof>     # -> activity.json + finish-dates.json
+python3 <repo>/build/qa-dashboard/gen_data.py . <asof>   # -> dash-data.json
 ```
+
+`mcpcall.py` is the transport: it speaks MCP JSON-RPC to the Atlassian server over HTTP, so the
+bulky Jira payloads land **on disk instead of in the model's context** (the whole reason the old
+runbook needed the tool-results-file trick). It discovers `/tmp/mcp-config-*.json` itself and
+reads the session token from `$CLAUDE_SESSION_INGRESS_TOKEN_FILE` — **never hardcode either, the
+filename carries the session id.** No secrets are stored in the repo.
+
+**Cost control — both matter for an hourly slot.** A full changelog read is ~300 calls (~8 min).
+- `fetch_details.py <asof>` fetches only what can affect the page: issues **touched in the last
+  two days** (all the activity table can show) plus **every ticket in a finished status** (for the
+  QA-finish date). On a normal day that is tens of calls, not hundreds.
+- Within a workdir it is also incremental: each cached file records the issue's `updated` stamp
+  and is only re-read when that stamp moves.
+- `finish-dates.json` is **committed and merged**, so a ticket that finished weeks ago keeps its
+  date without its changelog ever being re-read.
 
 ### Three traps that cost real time on 2026-08-06 — do not re-derive these
 

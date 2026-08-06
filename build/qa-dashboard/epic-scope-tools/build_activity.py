@@ -53,7 +53,12 @@ for p in QA: ordered[p]=people.get(p,{k:[[],[]] for k in ("created","commented",
 for p,v in people.items():
     if p not in ordered and any(any(x) for x in v.values()): ordered[p]=v
 json.dump({"people":ordered}, open(D+"/activity.json","w"))
-json.dump(finish, open(D+"/finish-dates.json","w"))
+# Merge with any previously computed finish dates: a ticket that finished weeks ago keeps its
+# date even when its changelog is no longer re-read by the incremental fetch above.
+try: prev=json.load(open(D+"/finish-dates.json"))
+except Exception: prev={}
+prev.update(finish)
+json.dump(prev, open(D+"/finish-dates.json","w"))
 tot=lambda kind: sum(len(v[kind][0])+len(v[kind][1]) for v in ordered.values())
 print("details read:", len(glob.glob(D+'/details/*.json')), "| people:", len(ordered))
 print("PKT yest %s / today %s" % (yest,today))
