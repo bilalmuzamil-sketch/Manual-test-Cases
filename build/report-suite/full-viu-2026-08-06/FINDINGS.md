@@ -807,3 +807,212 @@ Each now carries the Rule-61 block naming the exact symptom and all three outcom
 | [C38894](https://shopview.testrail.io/index.php?/cases/view/38894) | **DEVIATION.** A clock edit cannot move a figure that is hard-zero. |
 
 **The documented expectation was kept on all four** (Rule 57) — nothing was rewritten to match the build.
+
+---
+
+# SESSION 6 — 2026-08-06, from ~15:08Z
+
+## 🔴 THE HEADLINE, STATED PLAINLY: **0 OF THE 73 WERE CLOSED, BECAUSE THE BRANCH CANNOT BE REACHED**
+
+The sign-in was alive when the handover was written and was **dead by the time this session probed it,
+80 minutes later**. A verdict is an observation (Rule 12), so **no verdict could be established on any
+case.** Nothing was inferred to make the number look better, and **no case was re-stamped with a build
+marker it was not checked on.**
+
+**What this session did instead is build-INDEPENDENT work (Rule 60):** re-derive the count, re-establish
+every source's currency, audit all 73 against the live specifications, census all 476, prove the run and
+the foreign cases untouched, and correct the playbook. **0 TestRail writes were made.**
+
+## The count — re-derived independently from live TestRail, and I AGREE with the handover
+
+| | Count |
+|---|---:|
+| Live under group 4281 | **481** |
+| **Ours** | **476** (foreign C38919–C38923, Vladimir Tomovic — hands off, Rule 38) |
+| Carrying a build line dated 8/6/2026 | **403** |
+| Carrying an older date | **70** |
+| Carrying no build line at all | **3** (C43550, C43558, C43559) |
+| **STILL OUTSTANDING** | **73** |
+
+**403 + 73 = 476**, and my 73 is **set-equal in BOTH directions** to `REMAINING.txt` section A — 0 in mine
+not listed, 0 listed not in mine. The per-report split matches too. **The handover list is accurate.**
+
+## The build did not move
+
+`v3.5-f77875c`, last-mod Thu 06 Aug 2026 10:43:37 GMT, etag `829ed03832a746e78cbdb28eb9957a3e`,
+`index.html` sha256 `b0f05b6f…94fc9b6`. **Read at 15:08:24Z and again at the end of the session —
+identical. It moved ZERO times under this session.**
+
+## Why the branch is unreachable — all five false-dead-session traps ruled out first
+
+`GET /api/auth/me` on **`sv8582api`** returns **HTTP 401 `{"error":"sso_required"}`**.
+
+1. **Header shape** — read back and confirmed **exactly three `name=value` pairs separated by `; `**
+   (`sv_sso_session`, `PHPSESSID`, `cf_clearance`). Not the `paste -sd` bug.
+2. **The api host was probed, never the SPA host.**
+3. **Not `cf_clearance`** — the refusal comes from **nginx/1.30.4 as `content-type: application/json`**,
+   so the request **reaches the application**. A Cloudflare block would be a challenge page.
+4. **Not a `PHPSESSID` mismatch** — that shows as 409, and nothing returned 409.
+5. **All three branches 401 together** (`sv8785api`, `sv8685api`, `sv8582api`), and the three cookie files
+   carry an **identical `sv_sso_session` and `cf_clearance`** (only `PHPSESSID` differs) — so **the shared
+   token is gone and there is no self-service recovery.**
+
+**Two other candidate cookie files were tried** (`/tmp/rs-viu/cookie-header.txt`, `/tmp/rs4/cookie-new.txt`)
+— **both 401.** **`quick-login` and `switch-user` were NOT called**, per the instruction and because a
+sibling worker shares the estate. A background probe re-tested every 90 seconds for the rest of the
+session; **it never came back.**
+
+## Sources — Rule 31 pre-flight, all read LIVE this session
+
+| Source | Live version | Verdict |
+|---|---|---|
+| Sales By Customer `577634305` | **15** (2026-08-05T17:53:06Z) | CURRENT |
+| Sales By Representative `585629698` | **17** (2026-08-05T17:53:08Z) | CURRENT |
+| Parts Velocity `620888066` | **5** (2026-08-05T13:21:40Z) | CURRENT |
+| Technician Utilization `641400833` | **6** (2026-08-05T13:33:10Z) | CURRENT |
+| Work In Progress `703660034` | **9** (2026-08-05T17:54:07Z) | CURRENT |
+| Inventory Value `720142338` | **4** (2026-08-05T13:33:13Z) | CURRENT |
+
+**None of the six moved.** Versions are the **Confluence page versions**, not the in-body field (Rule 31a).
+
+### 🔴 THE EPIC MOVED — 105 CHILDREN → **104**, AND THE CAUSE IS ONE OF OUR OWN TICKETS
+
+Verified **two independent ways** (`parent=SV-8582` and `"Epic Link"=SV-8582`), **104 each, key sets equal
+in both directions, no paging remainder.** The epic itself is still **Open**.
+
+**The missing child is [SV-8821](https://shopview.atlassian.net/browse/SV-8821)** — the create-invoice
+server error. Read live: it is now **OBSOLETE / resolution Done / priority Low, and its PARENT HAS BEEN
+REMOVED** (SV-8582 → None), changed at **2026-08-06T09:23:46 −0500 = 14:23:46Z**.
+**[SV-8822](https://shopview.atlassian.net/browse/SV-8822)** was given the same treatment a minute later
+(09:24:37 −0500); it was already withdrawn, but it has now lost its parent too.
+
+**NEITHER WAS REVERSED, and neither should be.** Both changes were made **under our own shared account**,
+so the changelog shows our name — and **Rule 53's corollary is explicit: a selective, semantically
+coherent change made under this account is the QA lead's deliberate triage, to be ASKED about, never
+"restored".** It is also **consistent with our own record**: `NO-SOURCE-DEFECTS.md` names SV-8821 and
+SV-8822 as **the only two tickets with no documented source**, so closing them is coherent.
+
+**Consequence for the cases: NONE. Checked rather than assumed** — a sweep of all 476 found **SV-8821 named
+on 0 of our cases and SV-8822 on 0**, in expected results, steps, preconditions and `refs` alike. So no
+Rule-61 block names a newly-closed ticket, and **no repair is owed.**
+
+## The 73 audited against the live specifications — and they are CLEAN
+
+Every one of the 73 was checked for: a stale requirement anchor, a wrong spec version in the provenance
+line, raw markup shown to the tester, a barred build-crediting phrase, a Rule-57 "known and accepted"
+build-as-expectation block, a doubled or missing provenance line or marker, and a Rule-42 closed
+enumeration.
+
+**Result: 0 defects to repair.** 0 stale anchors (every anchor cited by the 73 exists in its live spec),
+0 wrong versions, 0 raw markup, 0 barred phrases, 0 build-as-expected blocks, 0 marker or provenance
+anomalies. **The earlier sessions' repair work holds up.**
+
+**Two heuristic flags were raised and BOTH were disproved by reading the source:**
+
+1. **C38925 has no spec version in its provenance line — and that is CORRECT.** Its source is the epic
+   story plus the engineering technical plan, and the line says so in words: *"…as per epic SV-8582 and the
+   engineering technical plan; this point is not covered by any of the six report specifications."* That is
+   exactly Rule 54's honesty clause. **Not a defect.**
+2. **C30234's closed enumeration is legitimate — the closed list IS the requirement.** Its expected result
+   reads *"The labels read exactly: Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin,
+   Margin %, Subtotal."* **My first read of live SBR v17 suggested `S5-R2` had been renumbered to something
+   else and that the case was citing a moved anchor** — which would have been a Rule-42-class defect. **That
+   reading was WRONG, and it was my own text-flattening artefact:** the string I hit was a cross-reference
+   in a neighbouring requirement, not `S5-R2` itself. Read properly, live v17 `S5-R2` still says *"The
+   columns appear left-to-right: Date, Invoice, Customer, Status, Inv. Hrs, Labor Invoiced, Labor Margin,
+   Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. (12 columns…)"* — **the same seven money
+   labels, unchanged.** **No edit was made.** Recorded because it is the fifteenth false reading killed by
+   looking twice, and because it is a warning about flattened-HTML anchor matching.
+
+## FULL LIVE CENSUS OF ALL 476 — and a correction to the standing record
+
+| Check | Result |
+|---|---|
+| Raw markup anywhere (preconditions, steps, expected) | **0 of 476** |
+| Exactly one machine-findable `AUTOMATION:` marker | **476 of 476** |
+| Marker is the LAST line of Expected Results | **476 of 476** |
+| Exactly one provenance line | **476 of 476** |
+| Barred build-crediting phrases | **0 of 476** |
+
+### ⚠️ `CLAUDE.md` IS STALE ON TWO NUMBERS — REPORTED, NOT EDITED
+
+The standing record says *"Report Suite 464/476 by live census … with 12 carrying no plain-text marker
+because their text is raw HTML and the marker is wrapped in `<p>` tags — all 12 in Work In Progress"*, and
+names them C30451, C30456, C30457, C30460, C30487, C30490, C30491, C30493, C30519, C30522, C30526, C30528.
+
+**All twelve are now clean.** Every one was re-read individually and carries plain numbered text and a
+plain-text marker. **So the live figure is 476 of 476, not 464 of 476, and the raw-markup count is 0, not
+12.** Checked against a read trap first: `get_case` and `get_cases` were compared field by field on three
+of them and **agree byte-for-byte**, so this is not a bulk-endpoint normalisation artefact.
+**`CLAUDE.md` was not edited** — it is outside this session's scope.
+
+### Markers, read live — the arithmetic holds, and it is NOT a coverage claim
+
+**READY 330 · READY - EXPECT FAIL 103 · HOLD 43 = 476.** The gate passes two ways:
+**330 + 103 = 433**, and **476 − 43 = 433.**
+
+🔴 **BUT ONLY 403 OF THE 476 CARRY A VERDICT ESTABLISHED TODAY, AND ONLY 51 REST ON THE BUILD NOW RUNNING.**
+The arithmetic being consistent says the markers are internally coherent. **It says nothing about how much
+of the suite has been observed, and it must never be quoted as if it did.**
+
+## Proofs of no damage
+
+**Run 359 — Nebojsa's and Viktoria's — PROVEN UNTOUCHED BY CONTENT, never by `updated_on`:**
+`include_all` still **false**; **476 tests**; **535 result records**; **test-id and case-id sets equal in
+BOTH directions**; **every prior result present BY ID (0 missing)**; **0 graded-field changes** across
+`status_id`, `comment`, `defects`, `elapsed`, `version`, `created_by`, `created_on`, `test_id`,
+`assignedto_id`; **0 new results.** The only movement is **`case_refs` on 4 records**, traced to exactly
+**two cases (C30114 and C30173)** whose `refs` an earlier session moved from *SBC spec v13* to *v15* — the
+declared read-time echo, and **not this session's doing, because this session wrote nothing.**
+
+**The 5 foreign cases C38919–C38923 — byte-identical INCLUDING `updated_on` and `updated_by`.**
+
+**One reading that looked alarming and was not.** A comparison against the newest available full-case
+snapshot showed **189 of our cases differing**, far more than session 5 reported writing. **The control:
+the snapshot is from 08:26Z, i.e. the START of session 3, not the end of session 5.** Bucketing the 189 by
+the hour they were last updated gives 09:00 → 65, 10:00 → 63, 11:00 → 43, 13:00 → 2, **14:00 → 16** — and
+**16 is exactly what session 5 reported writing.** All 189 carry `updated_by: 3`. **Sessions 3, 4 and 5's
+authorised writes, accounted for hour by hour. No anomaly.**
+
+## THE TWO LOOSE ENDS LEFT FOR THIS SESSION
+
+### 1. The running clock — **NOT ENOUGH TIME HAS PASSED. Said, not guessed.**
+
+The clock was started during session 5's Work In Progress seeding and read **0.18 h** at about 14:20Z. The
+seeded line is quoted at **3.00 h**, so *worked hours exceed quoted hours* needs the clock past **3.00 h**.
+At the close of this session it has run roughly **1.1–1.2 hours**. **It is not yet true, so C30475 item 2
+and C38890 item 3 still cannot be read** — and in any case the report could not be opened.
+
+**It becomes readable at approximately 17:20Z**, and it needs no seeding at all — just a working sign-in
+and one look at the report. **Note from the playbook correction below: clock-OUT is not solved, so the
+clock will keep running.** Work order `e40c1c15-63ba-4202-9cc9-358da3d5fe21` (S8582-16263).
+
+### 2. The labour-price key on `lines/change` — **still unknown, and now OFF the critical path**
+
+It could not be probed: probing requires a live session, and there is none. **It was NOT guessed.** But it
+matters less than the handover implies — **`POST /api/work-orders/{woId}/lines/create-from-canned-line`
+seeds a priced line outright (201)**, so the only thing the unknown key would buy is *shrinking* an
+existing line's estimate to force the cap, and **the running clock reaches the same state by simply
+waiting.** Both facts are now written into the playbook.
+
+## TWO METHODOLOGICAL UNBLOCKS FOR THE NEXT SESSION — each was recorded as harder than it is
+
+1. **C30349 is NOT "unprovable by observation", and it should not be left that way.** The note on it says
+   assertion 1 *"cannot be proven by observation, because such a part is by definition absent and its
+   absence is indistinguishable from it not existing."* **That is the exact reasoning the Inv. Hrs lesson
+   warns against — treating an absence as missing data instead of finding a control.** The control exists
+   and is cheap on a disposable branch (Rule 14): **seed a ZZAUTOTEST part that fails all three of
+   `S3-N1`'s keep-criteria** — zero net movement, under one unit on hand, zero billed revenue — **confirm
+   it EXISTS in inventory, then confirm it is ABSENT from the report.** That distinguishes *"correctly
+   excluded"* from *"never existed"*, which is precisely what was said to be impossible. Live PV v5
+   `S3-N1` states the three criteria explicitly, so the expectation is fully sourced.
+2. **C30385 is properly sourced and is a fast settle — do NOT weaken it.** It was left uncalled because
+   *"which element the case means is a visual judgement"*. **Live PV v5 `S7-R1` is explicit:** *"The page
+   uses the two-tone theme: white card surfaces (toolbar + table cells) on the standard soft blue-grey page
+   background. No card border-radius (edge-to-edge table)."* That is **three checkable assertions**, and the
+   case is quoting its own spec — **so there is nothing to remove or make scope-conditional under Rule 42.**
+   ⚠️ **The measurement already taken points at a DEVIATION on two of the three** — table cells read
+   `rgb(249,250,251)`, which is not white, and the container carried a **4px radius where `S7-R1` says
+   none**. **That is NOT recorded as a verdict here**, for a reason that matters: the measurement was taken
+   on **`v3.5-16cf83f`**, and the build has since moved to **`v3.5-f77875c`**. **Re-measure the three
+   elements on the current build; do not inherit the old numbers.**

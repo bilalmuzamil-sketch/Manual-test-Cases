@@ -151,3 +151,36 @@ five false-dead-session traps before concluding anything:
 
 **This is not something this pass did:** `switch-user` was never called and `quick-login {"key":"tech"}`
 was never called. **Only the QA lead can clear it, with a fresh `sv_sso_session` for `.qa.shopview.com`.**
+
+---
+
+## SESSION 6 — 2026-08-06, read live at ~15:10Z
+
+| Source | Identifier | Live version / state | Checked | Verdict |
+|---|---|---|---|---|
+| Sales By Customer spec | Confluence `577634305` | **15** (2026-08-05T17:53:06Z) | 2026-08-06 15:10Z | **CURRENT** |
+| Sales By Representative spec | Confluence `585629698` | **17** (2026-08-05T17:53:08Z) | 2026-08-06 15:10Z | **CURRENT** |
+| Parts Velocity spec | Confluence `620888066` | **5** (2026-08-05T13:21:40Z) | 2026-08-06 15:10Z | **CURRENT** |
+| Technician Utilization spec | Confluence `641400833` | **6** (2026-08-05T13:33:10Z) | 2026-08-06 15:10Z | **CURRENT** |
+| Work In Progress spec | Confluence `703660034` | **9** (2026-08-05T17:54:07Z) | 2026-08-06 15:10Z | **CURRENT** |
+| Inventory Value spec | Confluence `720142338` | **4** (2026-08-05T13:33:13Z) | 2026-08-06 15:10Z | **CURRENT** |
+| Epic + child stories | Jira `SV-8582` | Open · **104 children** (was 105) | 2026-08-06 15:22Z | **CURRENT, and the change is EXPLAINED** |
+| The build | `sv8582` · `v3.5-f77875c` | etag `829ed03832a746e78cbdb28eb9957a3e`, sha256 `b0f05b6f…94fc9b6` | read at start and end — **identical, 0 moves** | **PARTIAL — not declared final (Rule 60), and UNREACHABLE this session** |
+| Designs / Figma | — | **still none supplied for this project** | 2026-08-06 | **ABSENT** |
+| Engineering tech plan | `tech-plan-2026-07-29` | held; cited by C38925 | 2026-08-06 | CURRENT |
+| PO answers (Chris Ward) | `chris-answers-2026-08-05/` | **8 questions still unanswered** | 2026-08-06 | **PARTIAL** |
+
+**Versions are Confluence PAGE versions, not the in-body "Version" field** (Rule 31a trap).
+**None of the six specifications moved.** Rule 59's re-read-before-writing did not arise — **no writes were
+made.**
+
+**The epic child count fell 105 → 104**, verified two independent ways with equal key sets and no paging
+remainder. **Cause identified, not assumed:** [SV-8821](https://shopview.atlassian.net/browse/SV-8821) was
+closed **OBSOLETE** and had its **parent stripped** (SV-8582 → None) at **2026-08-06T09:23:46 −0500**;
+SV-8822 the same a minute later. Both under our shared account, both **left exactly as found** (Rule 53's
+corollary). **Neither is named on any of our 476 cases**, so nothing downstream is affected.
+
+**⚠️ Rule-57's source list is now FIVE and includes DESIGN and FIGMA. For this project the design source is
+still ABSENT** — no Figma file and no design artefact has been supplied for any of the six reports. That is
+not a stale source; it is a **missing** one, and it means no case in this suite can cite a design. It stays
+on the outstanding list.

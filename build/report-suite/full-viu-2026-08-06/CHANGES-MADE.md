@@ -360,3 +360,45 @@ instead of clearing this one.
 8. **WIP received-vs-outstanding parts live in two different arrays on a line:** `parts[]` holds what
    arrived (it carries `arrived_date` / `delivery_id`), `part_requests[]` what is outstanding. **Parts
    Earned includes the core charge**; omitting it is what made our first formula miss by $149.50.
+
+---
+
+## SESSION 6 — 2026-08-06
+
+### NOTHING WAS CREATED, CHANGED OR DELETED ANYWHERE — and that is the whole entry
+
+**In the product: nothing.** The branch could not be reached (HTTP 401 `sso_required` estate-wide), so
+**no work order, line, part, customer, staff record, role, clock record or setting was created, changed or
+removed. No ZZAUTOTEST data exists from this session, because none could be made.** Nothing needed
+restoring.
+
+**In TestRail: nothing.** 0 writes of any kind. See `testrail-execution-log.md`.
+
+**In Jira: nothing.** 0 issues created, 0 edited, 0 transitioned, 0 comments, 0 attachments.
+
+**`quick-login` and `switch-user` were NOT called** — not once, not as a recovery attempt. A failed
+`quick-login` burns the shared token and a sibling worker is live on the estate.
+
+### The one thing left running is NOT this session's, and it is deliberate
+
+**The clock record on WO `e40c1c15-63ba-4202-9cc9-358da3d5fe21` (S8582-16263) is still open.** It was
+started by **session 5**, on purpose, so the per-line cap becomes readable once it passes three hours. This
+session **could not have closed it even if that were wanted** — clock-out is unsolved (`check-out` answers
+*"Task not found for the given technician ID."* for every id tried). Recorded so nobody mistakes it for
+stray state: it is the precondition C30475 item 2 and C38890 item 3 need, and it is ~1.1 h into a 3.00 h
+quote.
+
+### Repository changes made
+
+1. **`build/APP-ACTIONS-PLAYBOOK.md` §Q** — authorised correction of another worker's section:
+   the two claims proven wrong (**`input_tech_time` is not the clocked time**; **the "one more required
+   field" hunt was a dead end**) marked as **dated corrections**, plus **six proven recipes** that had only
+   ever been flagged in a pass note and were at risk of being re-derived (`change-status` takes `id`; the
+   staff list's second id; **clock-out is unsolved**; `lines/change` is camelCase with the price key still
+   unknown; the work-order list key is `data.work_orders`; Parts Earned includes the core charge).
+2. **This session's sections** of `FINDINGS.md`, `RECHECK-QUEUE.md` (section I), `testrail-execution-log.md`,
+   `SOURCE-CURRENCY.md`, `RESUME.md` and a regenerated `REMAINING.txt`.
+
+**`CLAUDE.md` and `build/OUTSTANDING-ITEMS-REGISTER.md` were NOT touched** — out of scope. Two stale
+figures in `CLAUDE.md` are **reported in `FINDINGS.md` instead**: the raw-markup count is now **0, not 12**,
+and the live marker census is **476 of 476, not 464 of 476**.

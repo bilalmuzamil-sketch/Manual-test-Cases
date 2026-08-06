@@ -1,3 +1,153 @@
+# RESUME - Report Suite VIU, as at 2026-08-06 end of the SIXTH session
+
+> **⚠️ EVERYTHING BELOW THE NEXT HORIZONTAL RULE IS EARLIER SESSIONS' AND IS SUPERSEDED FOR THE COUNTS.**
+> Session 6's record is this banner plus the SESSION 6 sections of `FINDINGS.md`,
+> `testrail-execution-log.md`, `CHANGES-MADE.md`, `SOURCE-CURRENCY.md` and **section I of
+> `RECHECK-QUEUE.md`**, plus the regenerated `REMAINING.txt`.
+
+## 🔴 READ THIS FIRST: **0 OF THE 73 WERE CLOSED. THE BRANCH IS UNREACHABLE.**
+
+The sign-in was alive when the session-5 handover was written and **dead 80 minutes later**, before this
+session observed anything. A verdict is an observation (Rule 12), so **no verdict could be established.**
+**Nothing was inferred to pad the number, and no case was stamped with a build marker it was not checked
+on.** **0 TestRail writes**, although `update_case` was authorised — because there was nothing correct to
+write (see the audit below).
+
+**All five false-dead-session traps were ruled out before calling it a blocker.** `GET /api/auth/me` on
+`sv8582api` returns **HTTP 401 `{"error":"sso_required"}`**; the header is correctly formed with exactly
+three `; `-separated pairs; the **api** host was probed, not the SPA host; the refusal comes from
+**nginx as `application/json`**, so the request reaches the app and `cf_clearance` is fine; nothing
+returned 409, so it is not a `PHPSESSID` mismatch; and **all three branches 401 together on an identical
+shared `sv_sso_session`.** Two other candidate cookie files were tried — both 401. A background probe
+re-tested every 90 seconds for the whole session and **it never came back.**
+
+**`quick-login` and `switch-user` were NOT called, not even as a recovery attempt.**
+
+## 🟢 WHAT IS NEEDED, IN ONE LINE
+
+**A fresh `sv_sso_session` for `.qa.shopview.com`.** That single value unblocks **47 of the 73
+immediately.** Nothing else is in the way of those 47.
+
+## THE STATE NOW, re-derived from live and AGREED with the handover
+
+| | Count |
+|---|---:|
+| Live under group 4281 | **481** |
+| **Ours** | **476** (foreign C38919-C38923, Vladimir Tomovic - hands off, Rule 38) |
+| **Carrying a 6 August verdict** | **403** |
+| **STILL OUTSTANDING** | **73** |
+
+**403 + 73 = 476.** I re-derived the 73 independently from live TestRail and it is **set-equal in BOTH
+directions** to the handover list - 0 in mine not listed, 0 listed not in mine, per-report split identical.
+**I agree with the handover.** Count by case id, never by line:
+`grep -oE 'C[0-9]{5}' REMAINING.txt | sort -u | wc -l`.
+
+## THE BUILD DID NOT MOVE
+
+`v3.5-f77875c`, last-mod Thu 06 Aug 2026 10:43:37 GMT, etag `829ed03832a746e78cbdb28eb9957a3e`, sha256
+`b0f05b6f...94fc9b6`. Read at **15:08:24Z** and again at session end - **identical. Zero moves under this
+session.**
+
+## THE EXACT NEXT ACTION
+
+`REMAINING.txt` **section A is now grouped by WHAT EACH CASE IS BLOCKED ON**, which is the actionable view;
+the by-report split is kept as section B for continuity.
+
+| Group | Cases |
+|---|---:|
+| **A. an Admin can drive it - needs only a working sign-in** | **47** |
+| B. needs a second sign-in as a different / lesser role | 18 |
+| C. needs a single-location user | 5 |
+| E. needs a negative money value seeded | 2 |
+| D. needs a QuickBooks-connected company | 1 |
+
+**Start at group A and work down it.** ⚠️ **A CORRECTION TO THE HANDOVER'S OWN FIGURE: it said "~19 of
+your 73" need a second or single-location sign-in. The true figure is 23** - its own named list adds to 22,
+and **C30356** ("a different user signing in on the same browser inherits the saved view") belongs there
+too and was in neither count.
+
+**Two cheap wins are waiting the moment a sign-in exists:**
+
+1. **The per-line cap - C30475 item 2 and C38890 item 3 - needs NO seeding, only the clock to age.**
+   Session 5 deliberately left a clock running on WO `e40c1c15-63ba-4202-9cc9-358da3d5fe21` (S8582-16263).
+   **It is NOT yet true: it read 0.18 h at ~14:20Z against a 3.00 h quote, so ~1.1 h of the 3 h needed.**
+   **It becomes readable at approximately 17:20Z.** Clock-out is unsolved, so it keeps running by itself.
+2. **The Staff Deactivation block (C30253-C30260, 8 cases) is all group A**, and doing it also unblocks
+   C30242 item 2, which needs an `(Inactive)` contributor to exist.
+
+## THE 73 ARE CLEAN - AUDITED AGAINST THE LIVE SPECS, 0 DEFECTS TO REPAIR
+
+Every one of the 73 was checked for a stale anchor, a wrong spec version, raw markup, a barred
+build-crediting phrase, a Rule-57 build-as-expectation block, a doubled/missing provenance line or marker,
+and a Rule-42 closed enumeration. **All clean.** Two flags were raised and **both were disproved by reading
+the source** - C38925 correctly has no spec version (its source is the epic story plus the tech plan, and it
+says so), and C30234's closed list **is** the requirement (live SBR v17 `S5-R2` still enumerates the same 12
+columns; my first contrary reading was my own text-flattening artefact).
+
+## FULL LIVE CENSUS OF ALL 476 - AND TWO STALE FIGURES IN `CLAUDE.md`
+
+**0 raw markup · 476/476 exactly one marker, marker last · 476/476 exactly one provenance line · 0 barred
+phrases.** Markers: **READY 330 · READY - EXPECT FAIL 103 · HOLD 43 = 476**; the gate is arithmetically
+consistent both ways (330+103 = 433 = 476-43).
+
+⚠️ **`CLAUDE.md` says "464/476 by live census" with "12 carrying no plain-text marker because their text is
+raw HTML". BOTH FIGURES ARE NOW STALE: the raw-markup count is 0, not 12, and the census is 476 of 476.**
+All twelve named cases were re-read individually and are clean; `get_case` and `get_cases` were compared
+byte-for-byte on three of them to rule out a bulk-endpoint read trap. **`CLAUDE.md` was NOT edited** - out of
+scope, reported here instead.
+
+🔴 **The arithmetic gate is NOT a coverage claim and must not be quoted as one: only 403 of 476 carry a
+verdict established today, and only 51 rest on the build now running.**
+
+## THE EPIC MOVED: 105 CHILDREN -> 104, CAUSE IDENTIFIED
+
+Verified two independent ways with equal key sets. **[SV-8821](https://shopview.atlassian.net/browse/SV-8821)**
+was closed **OBSOLETE** and had its **parent stripped** (SV-8582 -> None) at **2026-08-06T09:23:46 -0500**;
+**SV-8822** the same a minute later. Both under our shared account, so the changelog reads as ours. **Left
+exactly as found (Rule 53's corollary) - this is deliberate triage, not drift, and it is coherent with our
+own `NO-SOURCE-DEFECTS.md`, which names those two as the only tickets with no documented source.** A sweep
+of all 476 found **neither ticket named on any of our cases**, so nothing downstream is affected.
+
+## PROOFS OF NO DAMAGE
+
+**Run 359 (Nebojsa's and Viktoria's) PROVEN UNTOUCHED BY CONTENT** - `include_all` false, 476 tests, 535
+results, test-id and case-id sets equal both directions, every prior result present BY ID, **0 graded-field
+changes, 0 new results**. Only movement: `case_refs` on 4 records tracing to C30114/C30173, an earlier
+session's authorised refs edit - the declared read-time echo. **Foreign cases C38919-C38923 byte-identical
+including `updated_on`/`updated_by`.**
+
+**One alarming reading that was NOT a problem:** 189 of our cases differ from the newest full-case snapshot.
+**The control: that snapshot is from 08:26Z, the START of session 3.** Bucketed by update hour the 189 give
+09:00 -> 65, 10:00 -> 63, 11:00 -> 43, 13:00 -> 2, **14:00 -> 16**, and 16 is exactly session 5's reported
+write count. All `updated_by: 3`. Accounted for.
+
+## TWO ROWS RECORDED AS HARDER THAN THEY ARE - fix the method, not the case
+
+- **C30349** is recorded PARTIAL with assertion 1 called *"unprovable by observation"*. **It is provable.**
+  Seed a ZZAUTOTEST part failing all three of PV v5 `S3-N1`'s keep-criteria, prove it EXISTS in inventory,
+  then prove it is ABSENT from the report - that control separates *correctly excluded* from *never
+  existed*. **This is the same mistake as the Inv. Hrs cases: treating an absence as missing data.**
+- **C30385** was left uncalled as a *"visual judgement"*. Live PV v5 `S7-R1` is explicit and gives **three**
+  checkable assertions. ⚠️ The measurement already taken suggests a **DEVIATION on two of them** (cells
+  `rgb(249,250,251)`, not white; a 4px radius where the spec says none) - **but it was taken on the
+  superseded build `v3.5-16cf83f`, so re-measure on `v3.5-f77875c` and do not inherit those numbers.**
+
+## Outstanding, in the order it blocks work
+
+1. **A fresh `sv_sso_session` for `.qa.shopview.com`** - blocks everything; unblocks 47 of the 73 at once.
+2. **A second sign-in as a non-administrator, and a single-location user** - blocks **23** of the 73. The
+   branch refuses the switch (403); QA lead or a developer.
+3. **Chris Ward: 8 unanswered questions** - Q5 (the Location column) still holds 8 cases; Q8 is the newest.
+4. **A negative money value in Sales By Representative** - C30235 and C30282 cannot be observed without one.
+5. **A QuickBooks-connected company** - C38925 only, and its own preconditions already say so.
+6. **The 432-case `refs` version sweep** - still not authorised, still not started. Many refs still name
+   older spec versions (e.g. C30253 reads *"SBR spec v15"* against live **17**).
+7. **No design or Figma artefact has ever been supplied for this project** - Rule 57's source list now
+   includes design and Figma, so this is a genuinely missing source, not a stale one.
+8. **The branch declared final** - it will not be, so the Rule-49 queue stays open by design (Rule 60).
+
+---
+
 # RESUME - Report Suite VIU, as at 2026-08-06 end of the FIFTH session
 
 > **⚠️ EVERYTHING BELOW THE NEXT HORIZONTAL RULE IS EARLIER SESSIONS' AND IS SUPERSEDED FOR THE COUNTS.**

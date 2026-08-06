@@ -457,3 +457,39 @@ re-observation on a redeploy; what the queue genuinely still owes is the two nam
 3. **C30227 item 3** — dark mode. The playbook says the control is
    `[data-test-id="profile_menu_button"]` → menu items `Light` / `Dark`; the button was found but the
    items were not, so this needs a second attempt, not new access.
+
+---
+
+## SECTION I — SESSION 6, 2026-08-06 from ~15:08Z: **NO ROWS ADDED, AND THE REASON IS THE POINT**
+
+**STATUS: OPEN.** The branch is not declared final (Rule 60), so every verdict in this queue stays
+**PROVISIONAL**, and an open queue is this project's normal steady state.
+
+**This session added ZERO rows, because it OBSERVED ZERO CASES.** The sign-in died between the handover
+and this session's first probe — **all three QA branches return HTTP 401 `sso_required` on a shared
+`sv_sso_session`**, with all five false-dead-session traps ruled out first (see `FINDINGS.md` session 6).
+**No case was given a build marker it was not checked on, and no row was flipped to CONFIRMED or CHANGED
+without fresh evidence.**
+
+**The queue's outstanding obligations are UNCHANGED from section H**, with three clarifications this
+session established from the documents rather than the build:
+
+| Obligation | What changed this session |
+|---|---|
+| **The per-line cap** — C30475 item 2, [30475](https://shopview.testrail.io/index.php?/cases/view/30475); C38890 item 3, [38890](https://shopview.testrail.io/index.php?/cases/view/38890) | **Timing pinned: NOT YET TRUE.** The clock started ~14:20Z and read 0.18 h; the line is quoted at **3.00 h**, so it has run only ~1.1 h. **Readable at approximately 17:20Z**, with no seeding — one look at the report. ⚠️ Clock-OUT is not solved, so it keeps running. |
+| **The labour-price key on `lines/change`** | Still unknown; **not guessed, and not probeable without a session.** Now recorded as **OFF the critical path** — `create-from-canned-line` seeds a priced line, and the running clock reaches the same state by waiting. |
+| **C30242 item 2** and **C30227 item 3** | Unchanged. Both need a working sign-in only, not new access. |
+
+**Two rows in this queue are recorded as harder than they are, and section 6 of `FINDINGS.md` gives the
+control for each:** **C30349** ([30349](https://shopview.testrail.io/index.php?/cases/view/30349)) is *not*
+unprovable — seed a ZZAUTOTEST part failing all three of PV `S3-N1`'s keep-criteria and prove it exists
+then is absent; **C30385** ([30385](https://shopview.testrail.io/index.php?/cases/view/30385)) is fully
+sourced by PV `S7-R1`'s three explicit assertions and is a fast settle, **but its existing measurement was
+taken on the superseded build `v3.5-16cf83f` and must be re-taken on `v3.5-f77875c`.**
+
+### One queue-relevant change OUTSIDE our cases
+
+**[SV-8821](https://shopview.atlassian.net/browse/SV-8821)** was closed **OBSOLETE** and had its **parent
+removed** at 14:23:46Z today (and SV-8822 likewise a minute later), taking epic SV-8582 from **105 children
+to 104**. **Not reversed** — Rule 53's corollary. **A sweep of all 476 cases found neither ticket named on
+any of them**, so **no queue row and no Rule-61 block is affected.**

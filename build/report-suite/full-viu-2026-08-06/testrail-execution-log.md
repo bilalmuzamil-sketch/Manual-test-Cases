@@ -67,3 +67,41 @@ session.**
 
 **Sources read at pass start (13:53Z) and re-read before the writes (Rule 59): SBC 15 · SBR 17 · PV 5 ·
 TU 6 · WIP 9 · IV 4 — verdict UNCHANGED.**
+
+---
+
+## SESSION 6 — 2026-08-06 from ~15:08Z
+
+### **ZERO TESTRAIL WRITES. 0 `update_case` · 0 `add_case` · 0 `delete_case` · 0 section ops · 0 run writes · 0 results.**
+
+`update_case` **was** authorised for this session. **It was not used, deliberately**, because every write a
+verdict pass makes owes a Rule-54 sentence-2 re-stamp, and the branch could not be reached — so any write
+would either have carried a build stamp for an observation that never happened, or left a freshly-updated
+case with a stale stamp. **The 73 were also audited and found to need no build-independent repair** (0 stale
+anchors, 0 raw markup, 0 barred phrases, 0 marker or provenance anomalies), so **there was nothing correct
+to write.**
+
+### Read-only calls made
+
+| Call | Purpose | Result |
+|---|---|---|
+| `get_sections/1` (paged, 625 total) | derive the 96 sections under group 4281 | 200 |
+| `get_cases/1` (paged, 4065 total) | full case bodies | 200 |
+| `get_case/{id}` × 3 | rule out a bulk-endpoint read trap on C30451, C30526, C30341 | 200; **`get_case` and `get_cases` agree byte-for-byte** |
+| `get_run/359`, `get_tests/359`, `get_results_for_run/359` | prove the run untouched | 200 |
+
+### Verification carried out (Rule 50, exhaustive then exact)
+
+- **Count re-derived from live and proven set-equal in BOTH directions** to `REMAINING.txt` section A: 73.
+- **Full census of all 476 of our cases**, every field: 0 raw markup · 476/476 exactly one marker, marker
+  last · 476/476 exactly one provenance line · 0 barred phrases.
+- **All 73 audited against the live specifications** for stale anchors, wrong versions, closed
+  enumerations, build-as-expectation blocks: **0 defects.**
+- **Run 359 proven untouched BY CONTENT** — `include_all` false, 476 tests, 535 results, test-id and
+  case-id sets equal both directions, all prior results present BY ID, **0 graded-field changes, 0 new
+  results**; the only movement is `case_refs` on 4 records tracing to C30114/C30173, an earlier session's
+  authorised refs edit and the declared read-time echo.
+- **Foreign cases C38919–C38923 byte-identical including `updated_on`/`updated_by`.**
+- **The `refs` sweep was NOT run** (not authorised). `refs` was written on **0** operations. Note the refs
+  on many cases still name older spec versions — e.g. C30253 reads *"SBR spec v15 2026-07-29"* against live
+  **17** — and that remains an outstanding authorisation, not an oversight.
