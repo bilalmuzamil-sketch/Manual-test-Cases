@@ -30,7 +30,7 @@
 > stays hedged instead of asserted. A missing QA branch means **nothing is live-verified** and a
 > whole suite sits VIU-Pending.
 
-**Last updated:** 2026-08-05 (~17:05 UTC — the PO question-sheet pass)
+**Last updated:** 2026-08-06 (Vlad's Filters coverage-gap table queued — record-only)
 **Active projects:** Report Suite · Schedule · Filters (user ruling 2026-07-27)
 **Predecessor snapshot (kept for the record):** `build/PROJECTS-NEEDS-2026-07-27.md`
 **Companion defensibility register (read before answering any QA challenge in a public channel):** `build/qa-preemptive-answers-2026-07-31/ANTICIPATED-QUESTIONS-AND-ANSWERS.md` / `.xlsx` — 65 rows of *what someone could say* → *the paste-ready answer* → *the evidence*, across the three active projects, with a TOP 10 and an open list of what we would genuinely have to concede.
@@ -57,7 +57,30 @@ else owes).
 
 ---
 
-## ⚠️⚠️⚠️ NEWEST — 2026-08-05, ~17:05 UTC, the PO QUESTION-SHEET pass. **THE TWO SHEETS ARE WRITTEN AND READY TO SEND. NOTHING NEW IS BLOCKED — WHAT CHANGES IS THAT 26 QUESTIONS NOW EXIST IN SENDABLE FORM, AND THREE PREVIOUS ROWS WERE WRONG.**
+## ⚠️⚠️⚠️⚠️ NEWEST — 2026-08-06. **FILTERS: Vlad has raised an ELEVEN-ROW COVERAGE-GAP TABLE. It is QUEUED behind all other work on the QA lead's instruction, and until it is worked we CANNOT claim the Filters suite is coverage-complete.**
+
+**RECORD-ONLY so far. Nothing analysed, nothing verified, no TestRail or Jira call, no case touched.**
+Full transcription of the table, the four deliverables he asked for, and the starting hypotheses:
+**`build/filters/vlad-gap-review-QUEUED.md`**.
+
+| # | What is missing | Who owes it | What it BLOCKS | Since |
+|---|---|---|---|---|
+| **F9** | **The work on Vlad's eleven-row Filters coverage-gap table** — four deliverables, none started: **(1)** a **root cause in simple words** for how these were missed; **(2)** a **per-row verification** of whether the coverage is genuinely **absent**, **partial**, or **actually present**; **(3)** for anything that **does** exist, its internal ID + C-id + `https://shopview.testrail.io/index.php?/cases/view/<id>` link (Rule 8); **(4)** for anything genuinely missing, **the case authored** — a TestRail write needing a go-ahead (Rule 6). The rows span `S9-R2/S9-R3`, `S11-R7`, `S10-R2`, `S13-R19`, `S13-N4`, `S14-R6`, Parts views, Reports date-range URL, `R3 Q5` parity, `R3 Q5` single-range, and mobile imported-exclusivity. **Four rows name cases that already exist — C38896, C38908, C38882, C38877 — so those are PARTIAL-coverage claims, not absence, and each needs both texts quoted side by side (Rule 45(e)) before we agree or disagree.** | **us** to work it · **the QA lead** to release it from the queue and to authorise any authoring · **Branko** for row 7 (the Parts/Reports PRD, already tracked as **F8**) | **Any claim that the Filters suite is coverage-complete.** The 2026-08-05 final pass verified all **110** cases we **have**, each driven live — it did **not** re-derive whether **110 is the right set**, which is the requirement→case direction Rule 43 requires and Rule 45 exists to force. **Row 1 is the sharpest: it alleges our cases assert the REJECTED Status-chip behaviour rather than the DECIDED one, which would be a Rule-57-class defect and not merely a gap.** | 2026-08-06 |
+
+**Why it is queued and not being worked now — Standing Rule 48, the QA lead's own instruction,
+verbatim:** *"But do that after everything else has ben done."* It answers *"when should this be
+picked up?"*, it is **reasonable** (an eleven-row requirement-side re-derivation is a whole pass, not
+a patch, and starting it would interleave with three OPEN Rule-49 queues), and **the one thing that
+would unblock it is his word that everything else is done.**
+
+**The honest part, recorded now rather than discovered later:** this is the **fourth time this week**
+an outsider saw something our own checks did not — **Vlad in July on the SBR export columns**,
+**Ahtasham twice on Filters**, and now this. **The root-cause deliverable must address that pattern,
+not just these eleven rows.**
+
+---
+
+## ⚠️⚠️⚠️ 2026-08-05, ~17:05 UTC, the PO QUESTION-SHEET pass. **THE TWO SHEETS ARE WRITTEN AND READY TO SEND. NOTHING NEW IS BLOCKED — WHAT CHANGES IS THAT 26 QUESTIONS NOW EXIST IN SENDABLE FORM, AND THREE PREVIOUS ROWS WERE WRONG.**
 
 **DOCUMENTATION ONLY. No TestRail write, no Jira write, no case edit.** Both sheets are drafts for
 the QA lead to send, mirroring the established format 1:1 (Rule 16) with a QA-only tab that must not
