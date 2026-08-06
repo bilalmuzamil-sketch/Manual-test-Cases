@@ -1,0 +1,337 @@
+{
+ "title": "Work In Progress - Report | ShopView",
+ "firstReqs": [
+  "https://sv8582api.qa.shopview.com/api/reporting/reports/work-in-progress?from=2026-08-02T00%3A00%3A00.000Z&to=2026-08-06T23%3A59%3A59.999Z&tab=ApprovedPartiallyCompleted&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_open&pagination%5Bdescending%5D=true",
+  "https://sv8582api.qa.shopview.com/api/reporting/reports/work-in-progress/filters?from=2026-08-02T00%3A00%3A00.000Z&to=2026-08-06T23%3A59%3A59.999Z",
+  "https://sv8582api.qa.shopview.com/api/reporting/reports/work-in-progress?from=2026-08-02T00%3A00%3A00.000Z&to=2026-08-06T23%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2&tab=ApprovedPartiallyCompleted&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_open&pagination%5Bdescending%5D=true",
+  "https://sv8582api.qa.shopview.com/api/reporting/reports/work-in-progress/filters?from=2026-08-02T00%3A00%3A00.000Z&to=2026-08-06T23%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2"
+ ],
+ "tabs": [
+  {
+   "t": "schedule Timesheet Activities",
+   "act": true,
+   "id": "report_nav_punch_clock_activities"
+  },
+  {
+   "t": "description Sales",
+   "act": true,
+   "id": "report_nav_sales"
+  },
+  {
+   "t": "percent Technician Efficiency",
+   "act": true,
+   "id": "report_nav_technician_efficiency"
+  },
+  {
+   "t": "query_stats Advisor Analysis",
+   "act": true,
+   "id": "report_nav_service_advisor_analysis"
+  },
+  {
+   "t": "engineering Shop Efficiency",
+   "act": true,
+   "id": "report_nav_shop_billing_efficiency"
+  },
+  {
+   "t": "loop Work In Progress",
+   "act": true,
+   "id": "report_nav_work_in_progress"
+  },
+  {
+   "t": "groups Technician Utilization",
+   "act": true,
+   "id": "report_nav_technician_utilization"
+  },
+  {
+   "t": "badge Sales By Representative",
+   "act": true,
+   "id": "report_nav_sales_by_representative"
+  },
+  {
+   "t": "inventory_2 Parts Velocity",
+   "act": true,
+   "id": "report_nav_parts_velocity"
+  },
+  {
+   "t": "sell Inventory Value",
+   "act": true,
+   "id": "report_nav_inventory_value"
+  },
+  {
+   "t": "groups_2 Sales By Customer",
+   "act": true,
+   "id": "report_nav_sales_by_customer"
+  },
+  {
+   "t": "payments Sales Tax Collected",
+   "act": true,
+   "id": "report_nav_sales_tax_report"
+  },
+  {
+   "t": "article A/R Aging Summary",
+   "act": true,
+   "id": "report_nav_aging_summary_report"
+  },
+  {
+   "t": "list_alt A/R Aging Detail",
+   "act": true,
+   "id": "report_nav_aging_detail_report"
+  },
+  {
+   "t": "library_books A/R Aging Collection",
+   "act": true,
+   "id": "report_nav_aging_collection_report"
+  },
+  {
+   "t": "article A/P Aging Summary",
+   "act": true,
+   "id": "report_nav_ap_aging_summary_report"
+  },
+  {
+   "t": "list_alt A/P Aging Detail",
+   "act": true,
+   "id": "report_nav_ap_aging_detail_report"
+  },
+  {
+   "t": "library_books A/P Unpaid Invoices",
+   "act": true,
+   "id": "report_nav_ap_unpaid_invoices_report"
+  },
+  {
+   "t": "paid IBS Batches",
+   "act": true,
+   "id": "report_nav_batch_transactions"
+  },
+  {
+   "t": "warning QB Unexported",
+   "act": true,
+   "id": "report_nav_unexported_items"
+  },
+  {
+   "t": "download Export Reports",
+   "act": true,
+   "id": "report_nav_export_reports"
+  },
+  {
+   "t": "chat Notes",
+   "act": true,
+   "id": "report_nav_notes_report"
+  },
+  {
+   "t": "alarm Reminders",
+   "act": true,
+   "id": "report_nav_reminders_report"
+  },
+  {
+   "t": "Approved - Partially Completed (4)",
+   "act": true,
+   "id": "tab_wip_approved_partially_completed"
+  },
+  {
+   "t": "Approved - Not Started (4)",
+   "act": true,
+   "id": "tab_wip_approved_not_started"
+  },
+  {
+   "t": "Completed (2)",
+   "act": true,
+   "id": "tab_wip_completed"
+  },
+  {
+   "t": "Estimates (65)",
+   "act": true,
+   "id": "tab_wip_estimates"
+  }
+ ],
+ "testids": [
+  "skip-to-content",
+  "button_desktop_nav_link",
+  "button_desktop_nav_link",
+  "button_desktop_nav_link",
+  "button_desktop_nav_link",
+  "button_desktop_nav_link",
+  "select_global_search",
+  "clock_in_button",
+  "clock_in_timer",
+  "button_notifications",
+  "profile_menu_button",
+  "report_nav_punch_clock_activities",
+  "report_nav_sales",
+  "report_nav_technician_efficiency",
+  "report_nav_service_advisor_analysis",
+  "report_nav_shop_billing_efficiency",
+  "report_nav_work_in_progress",
+  "report_nav_technician_utilization",
+  "report_nav_sales_by_representative",
+  "report_nav_group_parts",
+  "report_nav_parts_velocity",
+  "report_nav_inventory_value",
+  "report_nav_group_sales",
+  "report_nav_sales_by_customer",
+  "report_nav_sales_tax_report",
+  "report_nav_aging_summary_report",
+  "report_nav_aging_detail_report",
+  "report_nav_aging_collection_report",
+  "report_nav_ap_aging_summary_report",
+  "report_nav_ap_aging_detail_report",
+  "report_nav_ap_unpaid_invoices_report",
+  "report_nav_batch_transactions",
+  "report_nav_unexported_items",
+  "report_nav_export_reports",
+  "report_nav_notes_report",
+  "report_nav_reminders_report",
+  "page_work_in_progress_report",
+  "btn_dropdown_wip_export",
+  "button_column_selection",
+  "date-range-selector_wip_trigger",
+  "select_multiple_wip_advisor_filter",
+  "select_multiple_wip_customer_filter",
+  "select_multiple_wip_asset_filter",
+  "select_multiple_report_location_filter",
+  "clear_report_location_filter",
+  "wip_summary_strip",
+  "wip_summary_total_earned",
+  "wip_summary_info_total_earned",
+  "wip_summary_total_remaining",
+  "wip_summary_info_total_remaining",
+  "wip_summary_not_started",
+  "wip_summary_info_not_started",
+  "wip_summary_started_earned",
+  "wip_summary_info_started_earned",
+  "wip_summary_started_remaining",
+  "wip_summary_info_started_remaining",
+  "wip_summary_ready_to_invoice",
+  "wip_summary_info_ready_to_invoice",
+  "wip_summary_estimates",
+  "wip_summary_info_estimates",
+  "tab_wip_approved_partially_completed",
+  "tab_wip_approved_not_started",
+  "tab_wip_completed",
+  "tab_wip_estimates",
+  "table_work_in_progress_report",
+  "text_wip_wo_4a4022c7-9fd8-45a3-a81b-8bbe70341902",
+  "text_wip_wo_622a8d42-c305-4bba-ae9b-22fee05b187d",
+  "text_wip_wo_ded470da-1da2-4061-900b-0628956c7ac4",
+  "text_wip_wo_45693d83-633c-4ab8-b169-16a9c8e14c46"
+ ],
+ "heads": [
+  "WO #",
+  "Status",
+  "Customer",
+  "Asset",
+  "Location",
+  "Advisor",
+  "Days Open",
+  "Earned",
+  "Remaining",
+  "Total"
+ ],
+ "n": 5,
+ "rows0": [
+  [
+   "S8582-16256",
+   "Review",
+   "Aaford Plumbing",
+   "471\nAAA2MC306YY37JZSC",
+   "Staging Lethbridge - 4310",
+   "Admin ShopView",
+   "1 days",
+   "$10.00",
+   "$100.00",
+   "$110.00"
+  ],
+  [
+   "S8582-16252",
+   "Review",
+   "Aacrest Works",
+   "(no unit #)\n31UPV8H0JC1XBGM40",
+   "Staging Lethbridge - 4310",
+   "Admin ShopView",
+   "1 days",
+   "$0.00",
+   "$145.00",
+   "$145.00"
+  ],
+  [
+   "S8582-16251",
+   "Approved",
+   "Aaborough Works",
+   "(no unit #)\n12345",
+   "Staging Lethbridge - 4310",
+   "Admin ShopView",
+   "1 days",
+   "$129.69",
+   "$860.31",
+   "$990.00"
+  ],
+  [
+   "S8582-16258",
+   "Approved",
+   "Aaborough Works",
+   "(no unit #)\n12345",
+   "Staging Lethbridge - 4310",
+   "Admin ShopView",
+   "0 days",
+   "$25.00",
+   "$100.00",
+   "$125.00"
+  ]
+ ],
+ "summaryStrip": [],
+ "summaryCards": [
+  {
+   "id": "report_nav_aging_summary_report",
+   "cls": "q-tab relative-position self-stretch flex flex-cen",
+   "t": "article | A/R Aging Summary"
+  },
+  {
+   "id": "report_nav_ap_aging_summary_report",
+   "cls": "q-tab relative-position self-stretch flex flex-cen",
+   "t": "article | A/P Aging Summary"
+  },
+  {
+   "id": "wip_summary_strip",
+   "cls": "wip-summary-strip",
+   "t": "TOTAL EARNED | info_outline | $254.69 | TOTAL REMAINING | info_outline | $2,755.15 | NOT STARTED | info_outline | $1,549.84 | STARTED — EARNED | info_outline | $164.69 | STARTED — REMAINING | info_outline | $1,205.31 | R"
+  },
+  {
+   "id": "wip_summary_total_earned",
+   "cls": "wip-summary-strip__figure wip-summary-strip__figur",
+   "t": "TOTAL EARNED | info_outline | $254.69"
+  },
+  {
+   "id": null,
+   "cls": "wip-summary-strip__label",
+   "t": "TOTAL EARNED | info_outline"
+  },
+  {
+   "id": null,
+   "cls": "wip-summary-strip__label-text",
+   "t": "TOTAL EARNED"
+  },
+  {
+   "id": "wip_summary_info_total_earned",
+   "cls": "q-icon notranslate material-icons report-info-icon",
+   "t": "info_outline"
+  },
+  {
+   "id": null,
+   "cls": "wip-summary-strip__value",
+   "t": "$254.69"
+  },
+  {
+   "id": "wip_summary_total_remaining",
+   "cls": "wip-summary-strip__figure",
+   "t": "TOTAL REMAINING | info_outline | $2,755.15"
+  },
+  {
+   "id": null,
+   "cls": "wip-summary-strip__label",
+   "t": "TOTAL REMAINING | info_outline"
+  }
+ ],
+ "totalsRow": {
+  "txt": "Totals |  |  |  |  |  |  | $164.69 | $1,205.31 | $1,370.00",
+  "cls": "q-tr report-totals-row"
+ }
+}

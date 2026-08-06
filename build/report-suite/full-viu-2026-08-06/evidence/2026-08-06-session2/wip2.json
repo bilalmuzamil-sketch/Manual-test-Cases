@@ -1,0 +1,161 @@
+{
+ "woCell": {
+  "textId": {
+   "tag": "SPAN",
+   "t": "S8582-16256",
+   "href": null,
+   "td": "none",
+   "color": "rgb(0, 0, 0)",
+   "fw": "400",
+   "cursor": "auto"
+  },
+  "linkId": false,
+  "firstCellHtml": "",
+  "anchorsInTable": 0
+ },
+ "advisor": {
+  "items": [
+   "Clear all",
+   "Admin ShopView"
+  ],
+  "count": 2,
+  "searchIn": {
+   "ph": null,
+   "type": "checkbox"
+  },
+  "picked": "Admin ShopView",
+  "reqsAfter": 1,
+  "rows": 5,
+  "label": "All advisors",
+  "totals": "Totals |  |  |  |  |  |  | $164.69 | $1,205.31 | $1,370.00",
+  "strip": "TOTAL EARNED | info_outline | $254.69 | TOTAL REMAINING | info_outline | $2,755.15 | NOT STARTED | info_outline | $1,549.84 | STARTED — EARNED | info_outline | $164.69 | STARTED — REMAINING | info_outline | $1,205.31 | READY TO INVOICE | info_outline | $90.00 "
+ },
+ "customer": {
+  "items": [
+   "All customers",
+   "Clear all",
+   "Aaborough Works",
+   "Aacrest Works",
+   "Aadale Motors",
+   "Aaford Plumbing",
+   "Aagate Systems",
+   "Aariver Technology",
+   "Aason Ventures",
+   "Aason Works"
+  ],
+  "count": 32,
+  "searchIn": {
+   "ph": "Search customers",
+   "type": "text"
+  },
+  "picked": "Aaborough Works",
+  "reqsAfter": 1,
+  "rows": 3,
+  "label": "Aaborough Works",
+  "totals": "Totals |  |  |  |  |  |  | $154.69 | $960.31 | $1,115.00",
+  "strip": "TOTAL EARNED | info_outline | $154.69 | TOTAL REMAINING | info_outline | $960.31 | NOT STARTED | info_outline | $0.00 | STARTED — EARNED | info_outline | $154.69 | STARTED — REMAINING | info_outline | $960.31 | READY TO INVOICE | info_outline | $0.00 | ESTIMAT"
+ },
+ "asset": {
+  "items": [
+   "All assets",
+   "Clear all",
+   "123 — no VIN —",
+   "(no unit #) 12345",
+   "(no unit #) 31UPV8H0JC1XBGM40",
+   "471 AAA2MC306YY37JZSC",
+   "(no unit #) 86J8FAC1VALJ43SJY",
+   "(no unit #) 9FSEK5376Z9XESFY2",
+   "(no unit #) A100F6T6ZBK008V0W",
+   "(no unit #) NTXJK3Y7AD14PS5AB"
+  ],
+  "count": 10,
+  "searchIn": {
+   "ph": null,
+   "type": "checkbox"
+  },
+  "picked": null,
+  "reqsAfter": 0,
+  "rows": 3,
+  "label": "All assets",
+  "totals": "Totals |  |  |  |  |  |  | $154.69 | $960.31 | $1,115.00",
+  "strip": "TOTAL EARNED | info_outline | $154.69 | TOTAL REMAINING | info_outline | $960.31 | NOT STARTED | info_outline | $0.00 | STARTED — EARNED | info_outline | $154.69 | STARTED — REMAINING | info_outline | $960.31 | READY TO INVOICE | info_outline | $0.00 | ESTIMAT"
+ },
+ "estTab": {
+  "reqs": [
+   "https://sv8582api.qa.shopview.com/api/reporting/reports/work-in-progress?from=2026-08-02T00%3A00%3A00.000Z&to=2026-08-06T23%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2&tab=Estimates&advisors=Admin%20ShopView&customers=Aaborough%20Works&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_open&pagination%5Bdescending%5D=true"
+  ],
+  "rows": 3,
+  "heads": [
+   "WO #",
+   "Status",
+   "Customer",
+   "Asset",
+   "Location",
+   "Advisor",
+   "Days Open",
+   "Earned",
+   "Remaining",
+   "Total"
+  ],
+  "totals": "Totals |  |  |  |  |  |  | $0.00 | $0.00 | $0.00",
+  "strip": "TOTAL EARNED | info_outline | $154.69 | TOTAL REMAINING | info_outline | $960.31 | NOT STARTED | info_outline | $0.00 | STARTED — EARNED | info_outline | $154.69 | STARTED — REMAINING | info_outline | $960.31 | READY TO INVOICE | info_outline | $0.00 | ESTIMATES | info_outline | $0.00"
+ },
+ "surfaces": {
+  "th": "rgb(249, 250, 251)",
+  "rows": [
+   "rgb(249, 250, 251)",
+   "rgb(249, 250, 251)",
+   "rgb(249, 250, 251)",
+   "rgb(249, 250, 251)",
+   "rgb(249, 250, 251)"
+  ],
+  "totals": {
+   "bg": "rgb(249, 250, 251)",
+   "fw": "700"
+  }
+ },
+ "infoIcons": [
+  {
+   "id": "wip_summary_info_total_earned",
+   "tabindex": "0",
+   "role": "button",
+   "aria": "Total Earned: Work you have already done but have not billed yet — the money waiting to be collected."
+  },
+  {
+   "id": "wip_summary_info_total_remaining",
+   "tabindex": "0",
+   "role": "button",
+   "aria": "Total Remaining: Approved work you still have to do — the money that comes in once it is finished."
+  },
+  {
+   "id": "wip_summary_info_not_started",
+   "tabindex": "0",
+   "role": "button",
+   "aria": "Not Started: Approved jobs nobody has started yet. The full amount is still ahead."
+  },
+  {
+   "id": "wip_summary_info_started_earned",
+   "tabindex": "0",
+   "role": "button",
+   "aria": "Started — Earned: Jobs in progress: the work already done but not billed yet."
+  },
+  {
+   "id": "wip_summary_info_started_remaining",
+   "tabindex": "0",
+   "role": "button",
+   "aria": "Started — Remaining: Jobs in progress: the work still left to finish."
+  },
+  {
+   "id": "wip_summary_info_ready_to_invoice",
+   "tabindex": "0",
+   "role": "button",
+   "aria": "Ready to Invoice: Finished jobs, ready to bill the customer."
+  },
+  {
+   "id": "wip_summary_info_estimates",
+   "tabindex": "0",
+   "role": "button",
+   "aria": "Estimates: Quotes the customer has not approved yet — not counted in the totals."
+  }
+ ]
+}
