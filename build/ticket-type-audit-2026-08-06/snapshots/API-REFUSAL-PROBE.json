@@ -1,0 +1,51 @@
+{
+ "after": {
+  "all_fields_sha": "91f88ade7894d54a3dab97edc6f441be9a3e5119d67a44d0f8fab1156faaa578",
+  "field_count": 59,
+  "http": "200",
+  "issuetype": "Bug",
+  "issuetype_id": "10008",
+  "parent": "SV-8582",
+  "priority": "Low",
+  "product_area": "Reports & Dashboards",
+  "status": "Open",
+  "summary": "Technician Utilization download menu drops the word Download from all four options, unlike the other reports",
+  "updated": "2026-08-06T02:49:35.862-0500"
+ },
+ "api_still_refuses": true,
+ "before": {
+  "all_fields_sha": "91f88ade7894d54a3dab97edc6f441be9a3e5119d67a44d0f8fab1156faaa578",
+  "field_count": 59,
+  "http": "200",
+  "issuetype": "Bug",
+  "issuetype_id": "10008",
+  "parent": "SV-8582",
+  "priority": "Low",
+  "product_area": "Reports & Dashboards",
+  "status": "Open",
+  "summary": "Technician Utilization download menu drops the word Download from all four options, unlike the other reports",
+  "updated": "2026-08-06T02:49:35.862-0500"
+ },
+ "every_field_byte_identical": true,
+ "fields_compared": 59,
+ "http": "400",
+ "payload": {
+  "fields": {
+   "issuetype": {
+    "id": "10007"
+   },
+   "parent": {
+    "key": "SV-8654"
+   }
+  }
+ },
+ "purpose": "re-confirm the REST API refusal to convert a level-0 Bug into a Story Defect",
+ "response": {
+  "errorMessages": [],
+  "errors": {
+   "pid": "Issues with this Issue Type must be created in the same project as the parent."
+  }
+ },
+ "target": "SV-8881",
+ "target_story": "SV-8654"
+}

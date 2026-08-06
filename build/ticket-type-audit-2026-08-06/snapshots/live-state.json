@@ -1,0 +1,4072 @@
+{
+ "SV-8818": {
+  "created": "2026-08-04T00:22:19.680-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": 0,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Bug",
+  "issuetype_id": "10008",
+  "key": "SV-8818",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8591",
+    "name": "relates to",
+    "summary": "[Reports Suite][A3] Export contract + 10k row-cap guard (CSV attachment + PDF scaffold)",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8582",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8582",
+    "when": "2026-08-04T00:22:19.735-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Reporting Suite \u2014 Technician Utilization, Sales By Customer, Sales By Representative, Inventory Velocity, Inventory Value, WIP",
+  "parent_type": "Epic",
+  "priority": "Low",
+  "product_area": "Reports & Dashboards",
+  "project": "Report Suite",
+  "record": "build/report-suite/defect-pack-2026-08-04/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Ready to Fix",
+  "status_category": "To Do",
+  "subtask": false,
+  "summary": "PDF download fails with a server error on a medium-sized report view, on 5 of the 6 reports",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:01.945-0500"
+ },
+ "SV-8819": {
+  "created": "2026-08-04T00:23:25.239-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": 0,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Bug",
+  "issuetype_id": "10008",
+  "key": "SV-8819",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8645",
+    "name": "relates to",
+    "summary": "Velocity - Story 5 - Metric Calculations",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8582",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8582",
+    "when": "2026-08-04T00:23:25.268-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Reporting Suite \u2014 Technician Utilization, Sales By Customer, Sales By Representative, Inventory Velocity, Inventory Value, WIP",
+  "parent_type": "Epic",
+  "priority": "Low",
+  "product_area": "Reports & Dashboards",
+  "project": "Report Suite",
+  "record": "build/report-suite/defect-pack-2026-08-04/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": "Done",
+  "status": "Done",
+  "status_category": "Done",
+  "subtask": false,
+  "summary": "Parts Velocity: Turns / Yr is overstated on the \"This Year\" preset \u2014 it divides by one day too few",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:04.031-0500"
+ },
+ "SV-8820": {
+  "created": "2026-08-04T00:23:28.870-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": 0,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Bug",
+  "issuetype_id": "10008",
+  "key": "SV-8820",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8672",
+    "name": "relates to",
+    "summary": "Inv Value - Story 5 - As-Of Date and History",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8582",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8582",
+    "when": "2026-08-04T00:23:28.912-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Reporting Suite \u2014 Technician Utilization, Sales By Customer, Sales By Representative, Inventory Velocity, Inventory Value, WIP",
+  "parent_type": "Epic",
+  "priority": "Low",
+  "product_area": "Reports & Dashboards",
+  "project": "Report Suite",
+  "record": "build/report-suite/defect-pack-2026-08-04/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Ready to Fix",
+  "status_category": "To Do",
+  "subtask": false,
+  "summary": "Inventory Value reports the stock value for one day AFTER the date asked for",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:05.568-0500"
+ },
+ "SV-8821": {
+  "created": "2026-08-04T00:23:32.174-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": 0,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Bug",
+  "issuetype_id": "10008",
+  "key": "SV-8821",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Epic",
+    "key": "SV-8582",
+    "name": "blocks",
+    "summary": "Reporting Suite \u2014 Technician Utilization, Sales By Customer, Sales By Representative, Inventory Velocity, Inventory Value, WIP",
+    "type": "Blocks"
+   },
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8592",
+    "name": "blocks",
+    "summary": "[Reports Suite][A4] Denormalized invoice financial columns + backfill + clock subscriber",
+    "type": "Blocks"
+   }
+  ],
+  "parent": null,
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8582",
+    "when": "2026-08-04T01:11:14.007-0500",
+    "who": "Bilal Muzamil"
+   },
+   {
+    "field": "IssueParentAssociation",
+    "from": "SV-8582",
+    "to": null,
+    "when": "2026-08-06T03:05:46.028-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": null,
+  "parent_type": null,
+  "priority": "Low",
+  "product_area": "Work Orders",
+  "project": "Report Suite",
+  "record": "build/report-suite/defect-pack-2026-08-04/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": "Done",
+  "status": "OBSOLETE",
+  "status_category": "Done",
+  "subtask": false,
+  "summary": "Creating an invoice from a completed work order fails with a server error",
+  "type_changes": [],
+  "updated": "2026-08-06T03:05:56.905-0500"
+ },
+ "SV-8822": {
+  "created": "2026-08-04T00:23:35.807-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": 0,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Bug",
+  "issuetype_id": "10008",
+  "key": "SV-8822",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Epic",
+    "key": "SV-8582",
+    "name": "relates to",
+    "summary": "Reporting Suite \u2014 Technician Utilization, Sales By Customer, Sales By Representative, Inventory Velocity, Inventory Value, WIP",
+    "type": "Relates"
+   }
+  ],
+  "parent": null,
+  "parent_changes": [],
+  "parent_summary": null,
+  "parent_type": null,
+  "priority": "Low",
+  "product_area": "Customers",
+  "project": "Report Suite",
+  "record": "build/report-suite/defect-pack-2026-08-04/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": "Done",
+  "status": "OBSOLETE",
+  "status_category": "Done",
+  "subtask": false,
+  "summary": "Saving a customer returns a server error instead of a validation error when a sales-rep id is supplied",
+  "type_changes": [],
+  "updated": "2026-08-06T03:06:46.780-0500"
+ },
+ "SV-8823": {
+  "created": "2026-08-04T00:23:38.996-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": 0,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Bug",
+  "issuetype_id": "10008",
+  "key": "SV-8823",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8677",
+    "name": "relates to",
+    "summary": "Inv Value - Story 10 - Export to PDF and CSV",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8582",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8582",
+    "when": "2026-08-04T00:23:39.024-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Reporting Suite \u2014 Technician Utilization, Sales By Customer, Sales By Representative, Inventory Velocity, Inventory Value, WIP",
+  "parent_type": "Epic",
+  "priority": "Low",
+  "product_area": "Reports & Dashboards",
+  "project": "Report Suite",
+  "record": "build/report-suite/defect-pack-2026-08-04/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Ready to Fix",
+  "status_category": "To Do",
+  "subtask": false,
+  "summary": "Inventory Value spreadsheet: money arrives as text, and the file ignores the chosen columns and re-orders them",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:08.670-0500"
+ },
+ "SV-8843": {
+  "created": "2026-08-04T10:35:54.189-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": 0,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Bug",
+  "issuetype_id": "10008",
+  "key": "SV-8843",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8786",
+    "name": "relates to",
+    "summary": "Filter Bar Layout & Visibility",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8785",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8785",
+    "when": "2026-08-04T10:35:54.221-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Filters",
+  "parent_type": "Epic",
+  "priority": "Low",
+  "product_area": "Work Orders",
+  "project": "Filters",
+  "record": "build/filters/viu-2026-08-04/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": "Done",
+  "status": "OBSOLETE",
+  "status_category": "Done",
+  "subtask": false,
+  "summary": "Filter bar sits on the same row as the tabs, so collapsing it frees no space",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:10.195-0500"
+ },
+ "SV-8844": {
+  "created": "2026-08-04T10:35:55.507-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": 0,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Bug",
+  "issuetype_id": "10008",
+  "key": "SV-8844",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8798",
+    "name": "relates to",
+    "summary": "Page Search",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8785",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8785",
+    "when": "2026-08-04T10:35:55.544-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Filters",
+  "parent_type": "Epic",
+  "priority": "Low",
+  "product_area": "Work Orders",
+  "project": "Filters",
+  "record": "build/filters/viu-2026-08-04/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": "Done",
+  "status": "OBSOLETE",
+  "status_category": "Done",
+  "subtask": false,
+  "summary": "Page Search is not working Anymore",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:11.680-0500"
+ },
+ "SV-8845": {
+  "created": "2026-08-04T10:35:56.830-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": 0,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Bug",
+  "issuetype_id": "10008",
+  "key": "SV-8845",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8797",
+    "name": "relates to",
+    "summary": "Mobile Filter Bar",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8785",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8785",
+    "when": "2026-08-04T10:35:56.858-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Filters",
+  "parent_type": "Epic",
+  "priority": "Low",
+  "product_area": "Work Orders",
+  "project": "Filters",
+  "record": "build/filters/viu-2026-08-04/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Ready to Fix",
+  "status_category": "To Do",
+  "subtask": false,
+  "summary": "On a phone, a shared filter link shows the filters as on but lists the wrong work orders",
+  "type_changes": [],
+  "updated": "2026-08-06T05:30:19.728-0500"
+ },
+ "SV-8846": {
+  "created": "2026-08-04T10:35:58.048-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8846",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8797",
+    "name": "relates to",
+    "summary": "Mobile Filter Bar",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8797",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8785",
+    "when": "2026-08-04T10:35:58.073-0500",
+    "who": "Bilal Muzamil"
+   },
+   {
+    "field": "IssueParentAssociation",
+    "from": "SV-8785",
+    "to": "SV-8797",
+    "when": "2026-08-05T04:46:32.317-0500",
+    "who": "Ahtasham Amjad"
+   }
+  ],
+  "parent_summary": "Mobile Filter Bar",
+  "parent_type": "Story",
+  "priority": "Medium",
+  "product_area": null,
+  "project": "Filters",
+  "record": "build/filters/viu-2026-08-04/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Ready to Fix",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "On a phone there is no Clear Filters button, so filters cannot all be cleared at once",
+  "type_changes": [
+   {
+    "field": "issuetype",
+    "from": "Bug",
+    "to": "Story Defect",
+    "when": "2026-08-05T04:46:32.307-0500",
+    "who": "Ahtasham Amjad"
+   }
+  ],
+  "updated": "2026-08-06T05:51:38.434-0500"
+ },
+ "SV-8847": {
+  "created": "2026-08-04T10:35:59.199-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": 0,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Bug",
+  "issuetype_id": "10008",
+  "key": "SV-8847",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8793",
+    "name": "relates to",
+    "summary": "Clearing Filters & Empty State",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8785",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8785",
+    "when": "2026-08-04T10:35:59.230-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Filters",
+  "parent_type": "Epic",
+  "priority": "Low",
+  "product_area": "Work Orders",
+  "project": "Filters",
+  "record": "build/filters/viu-2026-08-04/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": "Done",
+  "status": "OBSOLETE",
+  "status_category": "Done",
+  "subtask": false,
+  "summary": "When only a page search is active the empty screen offers Clear Filters, which does not help",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:15.897-0500"
+ },
+ "SV-8848": {
+  "created": "2026-08-04T12:18:42.412-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": 0,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Bug",
+  "issuetype_id": "10008",
+  "key": "SV-8848",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8686",
+    "name": "relates to",
+    "summary": "Schedule Grid Layout & Navigation",
+    "type": "Relates"
+   },
+   {
+    "dir": "inward",
+    "itype": "Story Defect",
+    "key": "SV-8924",
+    "name": "relates to",
+    "summary": "Schedule: assigning an unassigned job to a technician moves its saved start time six hours earlier",
+    "type": "Relates"
+   }
+  ],
+  "parent": null,
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8685",
+    "when": "2026-08-04T12:18:42.446-0500",
+    "who": "Bilal Muzamil"
+   },
+   {
+    "field": "IssueParentAssociation",
+    "from": "SV-8685",
+    "to": null,
+    "when": "2026-08-05T09:21:39.651-0500",
+    "who": "Mudassir Qamar"
+   }
+  ],
+  "parent_summary": null,
+  "parent_type": null,
+  "priority": "Low",
+  "product_area": "Schedule",
+  "project": "Schedule",
+  "record": "build/schedule/READINESS-2026-08-04.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": false,
+  "summary": "Every time on the Schedule is shown six hours later than the time it was scheduled for",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:17.278-0500"
+ },
+ "SV-8849": {
+  "created": "2026-08-04T12:18:44.616-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8849",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8692",
+    "name": "relates to",
+    "summary": "Linked Series & Banners",
+    "type": "Relates"
+   },
+   {
+    "dir": "outward",
+    "itype": "Story Defect",
+    "key": "SV-8865",
+    "name": "relates to",
+    "summary": "Recurring (series) shift can't be opened or deleted in Month view",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8692",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8685",
+    "when": "2026-08-04T12:18:44.647-0500",
+    "who": "Bilal Muzamil"
+   },
+   {
+    "field": "IssueParentAssociation",
+    "from": "SV-8685",
+    "to": "SV-8692",
+    "when": "2026-08-05T09:15:03.608-0500",
+    "who": "Mudassir Qamar"
+   }
+  ],
+  "parent_summary": "Linked Series & Banners",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Schedule",
+  "record": "build/schedule/READINESS-2026-08-04.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Ready for QA",
+  "status_category": "In Progress",
+  "subtask": true,
+  "summary": "A shift that is part of a multi-day series cannot be opened from the Week view",
+  "type_changes": [
+   {
+    "field": "issuetype",
+    "from": "Bug",
+    "to": "Story Defect",
+    "when": "2026-08-05T09:15:03.593-0500",
+    "who": "Mudassir Qamar"
+   }
+  ],
+  "updated": "2026-08-06T03:28:31.217-0500"
+ },
+ "SV-8850": {
+  "created": "2026-08-04T12:18:46.505-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8850",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8693",
+    "name": "relates to",
+    "summary": "Overlap & Lane Stacking",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8693",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8685",
+    "when": "2026-08-04T12:18:46.542-0500",
+    "who": "Bilal Muzamil"
+   },
+   {
+    "field": "IssueParentAssociation",
+    "from": "SV-8685",
+    "to": "SV-8693",
+    "when": "2026-08-05T09:15:55.853-0500",
+    "who": "Mudassir Qamar"
+   }
+  ],
+  "parent_summary": "Overlap & Lane Stacking",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Schedule",
+  "record": "build/schedule/READINESS-2026-08-04.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Ready for QA",
+  "status_category": "In Progress",
+  "subtask": true,
+  "summary": "The '+N more' link on a crowded day opens an empty box - the hidden shifts are never listed",
+  "type_changes": [
+   {
+    "field": "issuetype",
+    "from": "Bug",
+    "to": "Story Defect",
+    "when": "2026-08-05T09:15:55.835-0500",
+    "who": "Mudassir Qamar"
+   }
+  ],
+  "updated": "2026-08-06T03:35:21.057-0500"
+ },
+ "SV-8851": {
+  "created": "2026-08-04T12:18:48.379-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8851",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8700",
+    "name": "relates to",
+    "summary": "View Options, Color System & Display Customization",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8700",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8685",
+    "when": "2026-08-04T12:18:48.409-0500",
+    "who": "Bilal Muzamil"
+   },
+   {
+    "field": "IssueParentAssociation",
+    "from": "SV-8685",
+    "to": "SV-8700",
+    "when": "2026-08-05T09:16:51.132-0500",
+    "who": "Mudassir Qamar"
+   }
+  ],
+  "parent_summary": "View Options, Color System & Display Customization",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Schedule",
+  "record": "build/schedule/READINESS-2026-08-04.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Ready for QA",
+  "status_category": "In Progress",
+  "subtask": true,
+  "summary": "Turning on the Tech Hours option in View Options changes nothing on the screen",
+  "type_changes": [
+   {
+    "field": "issuetype",
+    "from": "Bug",
+    "to": "Story Defect",
+    "when": "2026-08-05T09:16:51.117-0500",
+    "who": "Mudassir Qamar"
+   }
+  ],
+  "updated": "2026-08-06T03:43:46.902-0500"
+ },
+ "SV-8852": {
+  "created": "2026-08-04T12:18:50.613-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8852",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8695",
+    "name": "relates to",
+    "summary": "Shift Detail Modal & Hover Tooltips",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8697",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8685",
+    "when": "2026-08-04T12:18:50.645-0500",
+    "who": "Bilal Muzamil"
+   },
+   {
+    "field": "IssueParentAssociation",
+    "from": "SV-8685",
+    "to": "SV-8697",
+    "when": "2026-08-05T09:18:28.691-0500",
+    "who": "Mudassir Qamar"
+   }
+  ],
+  "parent_summary": "Conflict Detection",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Schedule",
+  "record": "build/schedule/READINESS-2026-08-04.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "The shift window warns about a scheduling clash but gives no way to fix it",
+  "type_changes": [
+   {
+    "field": "issuetype",
+    "from": "Bug",
+    "to": "Story Defect",
+    "when": "2026-08-05T09:18:28.677-0500",
+    "who": "Mudassir Qamar"
+   }
+  ],
+  "updated": "2026-08-06T03:38:59.771-0500"
+ },
+ "SV-8853": {
+  "created": "2026-08-04T12:18:52.582-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8853",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8686",
+    "name": "relates to",
+    "summary": "Schedule Grid Layout & Navigation",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8700",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8685",
+    "when": "2026-08-04T12:18:52.608-0500",
+    "who": "Bilal Muzamil"
+   },
+   {
+    "field": "IssueParentAssociation",
+    "from": "SV-8685",
+    "to": "SV-8700",
+    "when": "2026-08-05T09:19:20.112-0500",
+    "who": "Mudassir Qamar"
+   }
+  ],
+  "parent_summary": "View Options, Color System & Display Customization",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Schedule",
+  "record": "build/schedule/READINESS-2026-08-04.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "The Escape and Enter keys do not work on the delete and reassign confirmation windows",
+  "type_changes": [
+   {
+    "field": "issuetype",
+    "from": "Bug",
+    "to": "Story Defect",
+    "when": "2026-08-05T09:19:20.099-0500",
+    "who": "Mudassir Qamar"
+   }
+  ],
+  "updated": "2026-08-06T02:49:24.161-0500"
+ },
+ "SV-8854": {
+  "created": "2026-08-04T12:18:54.429-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8854",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8687",
+    "name": "relates to",
+    "summary": "Work Order Sidebar & Mini Calendar",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8687",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8685",
+    "when": "2026-08-04T12:18:54.469-0500",
+    "who": "Bilal Muzamil"
+   },
+   {
+    "field": "IssueParentAssociation",
+    "from": "SV-8685",
+    "to": "SV-8687",
+    "when": "2026-08-05T09:20:08.002-0500",
+    "who": "Mudassir Qamar"
+   }
+  ],
+  "parent_summary": "Work Order Sidebar & Mini Calendar",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Schedule",
+  "record": "build/schedule/READINESS-2026-08-04.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "A user who is not allowed to see work orders can still read the whole work order list on the Schedule",
+  "type_changes": [
+   {
+    "field": "issuetype",
+    "from": "Bug",
+    "to": "Story Defect",
+    "when": "2026-08-05T09:20:07.990-0500",
+    "who": "Mudassir Qamar"
+   }
+  ],
+  "updated": "2026-08-06T02:49:25.524-0500"
+ },
+ "SV-8855": {
+  "created": "2026-08-04T12:18:56.320-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8855",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8691",
+    "name": "relates to",
+    "summary": "Multi-Day Spread Scheduling",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8691",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8685",
+    "when": "2026-08-04T12:18:56.346-0500",
+    "who": "Bilal Muzamil"
+   },
+   {
+    "field": "IssueParentAssociation",
+    "from": "SV-8685",
+    "to": "SV-8691",
+    "when": "2026-08-05T09:21:12.244-0500",
+    "who": "Mudassir Qamar"
+   }
+  ],
+  "parent_summary": "Multi-Day Spread Scheduling",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Schedule",
+  "record": "build/schedule/READINESS-2026-08-04.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "The spread window has no start date, so a second technician's run of days cannot be made to follow the first",
+  "type_changes": [
+   {
+    "field": "issuetype",
+    "from": "Bug",
+    "to": "Story Defect",
+    "when": "2026-08-05T09:21:12.231-0500",
+    "who": "Mudassir Qamar"
+   }
+  ],
+  "updated": "2026-08-06T02:49:27.098-0500"
+ },
+ "SV-8856": {
+  "created": "2026-08-04T12:18:58.359-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8856",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8694",
+    "name": "relates to",
+    "summary": "Day View Timeline Interactions",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8694",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8685",
+    "when": "2026-08-04T12:18:58.393-0500",
+    "who": "Bilal Muzamil"
+   },
+   {
+    "field": "IssueParentAssociation",
+    "from": "SV-8685",
+    "to": "SV-8694",
+    "when": "2026-08-05T09:22:12.813-0500",
+    "who": "Mudassir Qamar"
+   }
+  ],
+  "parent_summary": "Day View Timeline Interactions",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Schedule",
+  "record": "build/schedule/READINESS-2026-08-04.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Dragging a shift sideways in Day view jumps it a whole hour instead of a quarter of an hour",
+  "type_changes": [
+   {
+    "field": "issuetype",
+    "from": "Bug",
+    "to": "Story Defect",
+    "when": "2026-08-05T09:22:12.798-0500",
+    "who": "Mudassir Qamar"
+   }
+  ],
+  "updated": "2026-08-06T02:49:28.486-0500"
+ },
+ "SV-8857": {
+  "created": "2026-08-04T12:19:00.305-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8857",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8687",
+    "name": "relates to",
+    "summary": "Work Order Sidebar & Mini Calendar",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8687",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8685",
+    "when": "2026-08-04T12:19:00.329-0500",
+    "who": "Bilal Muzamil"
+   },
+   {
+    "field": "IssueParentAssociation",
+    "from": "SV-8685",
+    "to": "SV-8687",
+    "when": "2026-08-05T09:23:07.124-0500",
+    "who": "Mudassir Qamar"
+   }
+  ],
+  "parent_summary": "Work Order Sidebar & Mini Calendar",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Schedule",
+  "record": "build/schedule/READINESS-2026-08-04.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "TESTING QA",
+  "status_category": "In Progress",
+  "subtask": true,
+  "summary": "The Schedule sidebar filters have no 'Clear all' and the Filters button does not show how many are on",
+  "type_changes": [
+   {
+    "field": "issuetype",
+    "from": "Bug",
+    "to": "Story Defect",
+    "when": "2026-08-05T09:23:07.110-0500",
+    "who": "Mudassir Qamar"
+   }
+  ],
+  "updated": "2026-08-06T02:49:29.895-0500"
+ },
+ "SV-8871": {
+  "created": "2026-08-04T23:31:52.178-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8871",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8792",
+    "name": "relates to",
+    "summary": "Active Filter Chip Appearance",
+    "type": "Relates"
+   },
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8795",
+    "name": "relates to",
+    "summary": "Filter Persistence",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8795",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8785",
+    "when": "2026-08-04T23:31:52.209-0500",
+    "who": "Bilal Muzamil"
+   },
+   {
+    "field": "IssueParentAssociation",
+    "from": "SV-8785",
+    "to": "SV-8795",
+    "when": "2026-08-05T04:51:42.920-0500",
+    "who": "Ahtasham Amjad"
+   }
+  ],
+  "parent_summary": "Filter Persistence",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Filters",
+  "record": "build/filters/recheck-2026-08-05/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Ready to Fix",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "A saved Customer, Lead Technician or Service Advisor filter comes back without its name on the button",
+  "type_changes": [
+   {
+    "field": "issuetype",
+    "from": "Bug",
+    "to": "Story Defect",
+    "when": "2026-08-05T04:51:42.908-0500",
+    "who": "Ahtasham Amjad"
+   }
+  ],
+  "updated": "2026-08-06T05:42:50.332-0500"
+ },
+ "SV-8879": {
+  "created": "2026-08-05T07:04:42.682-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": 0,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Bug",
+  "issuetype_id": "10008",
+  "key": "SV-8879",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8603",
+    "name": "relates to",
+    "summary": "SBC - Story 4 - Filter by location",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8582",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8582",
+    "when": "2026-08-05T07:04:42.718-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Reporting Suite \u2014 Technician Utilization, Sales By Customer, Sales By Representative, Inventory Velocity, Inventory Value, WIP",
+  "parent_type": "Epic",
+  "priority": "Low",
+  "product_area": "Reports & Dashboards",
+  "project": "Report Suite",
+  "record": "build/report-suite/approved-writes-2026-08-05/TASK-C-TICKETS-FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": false,
+  "summary": "Location chooser is shown to a user who has access to only one location, on all six new reports",
+  "type_changes": [],
+  "updated": "2026-08-06T03:08:17.700-0500"
+ },
+ "SV-8880": {
+  "created": "2026-08-05T07:04:45.265-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": 0,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Bug",
+  "issuetype_id": "10008",
+  "key": "SV-8880",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8631",
+    "name": "relates to",
+    "summary": "SBR - Story 14 - PDF and CSV exports",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8582",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8582",
+    "when": "2026-08-05T07:04:45.304-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Reporting Suite \u2014 Technician Utilization, Sales By Customer, Sales By Representative, Inventory Velocity, Inventory Value, WIP",
+  "parent_type": "Epic",
+  "priority": "Low",
+  "product_area": "Reports & Dashboards",
+  "project": "Report Suite",
+  "record": "build/report-suite/approved-writes-2026-08-05/TASK-C-TICKETS-FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": false,
+  "summary": "Sales By Representative Summary spreadsheet is missing four columns the screen shows, and adds a Totals row",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:34.303-0500"
+ },
+ "SV-8881": {
+  "created": "2026-08-05T07:04:47.187-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": 0,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Bug",
+  "issuetype_id": "10008",
+  "key": "SV-8881",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8654",
+    "name": "relates to",
+    "summary": "Tech Util - Story 7 - Export to PDF and CSV",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8582",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8582",
+    "when": "2026-08-05T07:04:47.225-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Reporting Suite \u2014 Technician Utilization, Sales By Customer, Sales By Representative, Inventory Velocity, Inventory Value, WIP",
+  "parent_type": "Epic",
+  "priority": "Low",
+  "product_area": "Reports & Dashboards",
+  "project": "Report Suite",
+  "record": "build/report-suite/approved-writes-2026-08-05/TASK-C-TICKETS-FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": false,
+  "summary": "Technician Utilization download menu drops the word Download from all four options, unlike the other reports",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:35.862-0500"
+ },
+ "SV-8886": {
+  "created": "2026-08-05T09:04:44.830-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8886",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8689",
+    "name": "relates to",
+    "summary": "Scope Picker",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8689",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8685",
+    "when": "2026-08-05T09:04:44.869-0500",
+    "who": "Bilal Muzamil"
+   },
+   {
+    "field": "IssueParentAssociation",
+    "from": "SV-8685",
+    "to": "SV-8689",
+    "when": "2026-08-05T09:29:49.886-0500",
+    "who": "Mudassir Qamar"
+   }
+  ],
+  "parent_summary": "Scope Picker",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Schedule",
+  "record": "build/schedule/final-viu-2026-08-05/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Schedule scope picker: tick-box mode has no Select all and no Cancel, and the tally text differs from the spec",
+  "type_changes": [
+   {
+    "field": "issuetype",
+    "from": "Bug",
+    "to": "Story Defect",
+    "when": "2026-08-05T09:29:49.874-0500",
+    "who": "Mudassir Qamar"
+   }
+  ],
+  "updated": "2026-08-06T02:49:37.304-0500"
+ },
+ "SV-8907": {
+  "created": "2026-08-05T14:06:00.597-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8907",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8665",
+    "name": "relates to",
+    "summary": "WIP - Story 9 - Export to PDF and CSV",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8665",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8665",
+    "when": "2026-08-05T14:06:00.639-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "WIP - Story 9 - Export to PDF and CSV",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/chris-newreqs-2026-08-05/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Work In Progress cannot be downloaded - a server error whenever the tab has any rows",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:38.687-0500"
+ },
+ "SV-8908": {
+  "created": "2026-08-05T14:06:07.694-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8908",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8663",
+    "name": "relates to",
+    "summary": "WIP - Story 7 - Filters",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8663",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8663",
+    "when": "2026-08-05T14:06:07.735-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "WIP - Story 7 - Filters",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/chris-newreqs-2026-08-05/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Work In Progress Asset filter leaves out a vehicle that shares a unit number",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:40.130-0500"
+ },
+ "SV-8912": {
+  "created": "2026-08-05T16:30:27.906-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8912",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8798",
+    "name": "relates to",
+    "summary": "Page Search",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8798",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8798",
+    "when": "2026-08-05T16:30:27.943-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Page Search",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Filters",
+  "record": "build/filters/full-viu-2026-08-05/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Ready to Fix",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "On a phone there is no page search: the magnifier opens global search, which does not narrow the list (S13-R17/R18)",
+  "type_changes": [],
+  "updated": "2026-08-06T05:51:11.756-0500"
+ },
+ "SV-8923": {
+  "created": "2026-08-05T22:36:12.676-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8923",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8700",
+    "name": "relates to",
+    "summary": "View Options, Color System & Display Customization",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8700",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8700",
+    "when": "2026-08-05T22:36:12.709-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "View Options, Color System & Display Customization",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Schedule",
+  "record": "build/schedule/full-viu-2026-08-05/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": "Done",
+  "status": "OBSOLETE",
+  "status_category": "Done",
+  "subtask": true,
+  "summary": "Schedule: the Business Hours switch shades nothing - out-of-hours time looks identical to the working day",
+  "type_changes": [],
+  "updated": "2026-08-06T01:07:57.442-0500"
+ },
+ "SV-8924": {
+  "created": "2026-08-05T22:37:09.629-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8924",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8688",
+    "name": "relates to",
+    "summary": "Drag-and-Drop Scheduling & Shift Creation",
+    "type": "Relates"
+   },
+   {
+    "dir": "outward",
+    "itype": "Bug",
+    "key": "SV-8848",
+    "name": "relates to",
+    "summary": "Every time on the Schedule is shown six hours later than the time it was scheduled for",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8688",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8688",
+    "when": "2026-08-05T22:37:09.655-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Drag-and-Drop Scheduling & Shift Creation",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Schedule",
+  "record": "build/schedule/full-viu-2026-08-05/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Schedule: assigning an unassigned job to a technician moves its saved start time six hours earlier",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:43.027-0500"
+ },
+ "SV-8925": {
+  "created": "2026-08-05T23:04:13.910-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8925",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8612",
+    "name": "relates to",
+    "summary": "SBC - Story 14 - Export as CSV",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8612",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8612",
+    "when": "2026-08-05T23:04:13.953-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "SBC - Story 14 - Export as CSV",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Sales By Customer and Sales By Representative spreadsheets export money, percentages and dates as text instead of plain numbers",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:44.410-0500"
+ },
+ "SV-8926": {
+  "created": "2026-08-05T23:04:33.052-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8926",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8671",
+    "name": "relates to",
+    "summary": "Inv Value - Story 4 - Totals Row",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8671",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8671",
+    "when": "2026-08-05T23:04:33.082-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Inv Value - Story 4 - Totals Row",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Inventory Value totals row is labelled Totals on screen where the written description asks for Total",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:45.736-0500"
+ },
+ "SV-8927": {
+  "created": "2026-08-05T23:04:49.696-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8927",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8670",
+    "name": "relates to",
+    "summary": "Inv Value - Story 3 - Columns and Calculations",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8670",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8670",
+    "when": "2026-08-05T23:04:49.723-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Inv Value - Story 3 - Columns and Calculations",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Inventory Value opens with Margin and Total Sell already switched on; both should start hidden",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:47.073-0500"
+ },
+ "SV-8928": {
+  "created": "2026-08-05T23:05:07.382-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8928",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8675",
+    "name": "relates to",
+    "summary": "Inv Value - Story 8 - Column Selection and Persistence",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8675",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8675",
+    "when": "2026-08-05T23:05:07.409-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Inv Value - Story 8 - Column Selection and Persistence",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Inventory Value forgets the part search text between visits, though it remembers every other setting",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:48.472-0500"
+ },
+ "SV-8929": {
+  "created": "2026-08-05T23:05:49.484-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8929",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8675",
+    "name": "relates to",
+    "summary": "Inv Value - Story 8 - Column Selection and Persistence",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8675",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8675",
+    "when": "2026-08-05T23:05:49.512-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Inv Value - Story 8 - Column Selection and Persistence",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Inventory Value keeps a saved category that no longer exists, so the report opens empty instead of dropping it",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:49.901-0500"
+ },
+ "SV-8930": {
+  "created": "2026-08-05T23:23:38.022-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8930",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8668",
+    "name": "relates to",
+    "summary": "Inv Value - Story 1 - Report Access and Display",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8668",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8668",
+    "when": "2026-08-05T23:23:38.060-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Inv Value - Story 1 - Report Access and Display",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Inventory Value shows an empty table with no message when nothing matches",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:51.274-0500"
+ },
+ "SV-8931": {
+  "created": "2026-08-05T23:24:09.272-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8931",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8674",
+    "name": "relates to",
+    "summary": "Inv Value - Story 7 - Location Filter",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8674",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8674",
+    "when": "2026-08-05T23:24:09.303-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Inv Value - Story 7 - Location Filter",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Inventory Value opens on All locations instead of the user's current location",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:52.666-0500"
+ },
+ "SV-8932": {
+  "created": "2026-08-05T23:24:11.527-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8932",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8679",
+    "name": "relates to",
+    "summary": "Inv Value - Story 12 - Visual Conformance and Accessibility",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8679",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8679",
+    "when": "2026-08-05T23:24:11.563-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Inv Value - Story 12 - Visual Conformance and Accessibility",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Inventory Value: long text never shortens with an ellipsis, and column headings announce no sort state",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:54.062-0500"
+ },
+ "SV-8933": {
+  "created": "2026-08-06T00:22:56.095-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8933",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8699",
+    "name": "relates to",
+    "summary": "Working Hours Settings",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8699",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8699",
+    "when": "2026-08-06T00:22:56.132-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Working Hours Settings",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Schedule",
+  "record": "build/schedule/full-viu-2026-08-05/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Working hours cannot be opened for a staff member who belongs to another location",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:55.423-0500"
+ },
+ "SV-8934": {
+  "created": "2026-08-06T00:27:14.247-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8934",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8646",
+    "name": "relates to",
+    "summary": "Velocity - Story 6 - Exports (CSV & PDF)",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8646",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8646",
+    "when": "2026-08-06T00:27:14.279-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Velocity - Story 6 - Exports (CSV & PDF)",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Parts Velocity PDF prints Description, Category and Vendor in full instead of shortening them to 18 characters",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:57.002-0500"
+ },
+ "SV-8935": {
+  "created": "2026-08-06T00:27:17.424-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8935",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8646",
+    "name": "relates to",
+    "summary": "Velocity - Story 6 - Exports (CSV & PDF)",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8646",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8646",
+    "when": "2026-08-06T00:27:17.455-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Velocity - Story 6 - Exports (CSV & PDF)",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Parts Velocity spreadsheet prints Last Sale as the words \"54 days\" instead of a plain number",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:58.377-0500"
+ },
+ "SV-8936": {
+  "created": "2026-08-06T00:27:20.155-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8936",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8646",
+    "name": "relates to",
+    "summary": "Velocity - Story 6 - Exports (CSV & PDF)",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8646",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8646",
+    "when": "2026-08-06T00:27:20.185-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Velocity - Story 6 - Exports (CSV & PDF)",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Parts Velocity download success message is a general one and does not name the report or the file type",
+  "type_changes": [],
+  "updated": "2026-08-06T02:49:59.788-0500"
+ },
+ "SV-8937": {
+  "created": "2026-08-06T00:27:22.841-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8937",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8646",
+    "name": "relates to",
+    "summary": "Velocity - Story 6 - Exports (CSV & PDF)",
+    "type": "Relates"
+   },
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8654",
+    "name": "relates to",
+    "summary": "Tech Util - Story 7 - Export to PDF and CSV",
+    "type": "Relates"
+   },
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8613",
+    "name": "relates to",
+    "summary": "SBC - Story 15 - Download as PDF",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8646",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8646",
+    "when": "2026-08-06T00:27:22.867-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Velocity - Story 6 - Exports (CSV & PDF)",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "PDF heading shows an end date one day later than the range asked for, on three reports",
+  "type_changes": [],
+  "updated": "2026-08-06T02:26:05.834-0500"
+ },
+ "SV-8938": {
+  "created": "2026-08-06T00:27:25.598-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8938",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8643",
+    "name": "relates to",
+    "summary": "Velocity - Story 3 - Data Table",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8643",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8643",
+    "when": "2026-08-06T00:27:25.623-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Velocity - Story 3 - Data Table",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Parts Velocity Location column sits sixth, after Vendor, instead of first before Type",
+  "type_changes": [],
+  "updated": "2026-08-06T02:50:01.133-0500"
+ },
+ "SV-8939": {
+  "created": "2026-08-06T00:27:28.382-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8939",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8642",
+    "name": "relates to",
+    "summary": "Velocity - Story 2 - Filters & Search",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8642",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8642",
+    "when": "2026-08-06T00:27:28.416-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Velocity - Story 2 - Filters & Search",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Parts Velocity opens on All locations instead of the location the user is working in",
+  "type_changes": [],
+  "updated": "2026-08-06T02:50:02.765-0500"
+ },
+ "SV-8940": {
+  "created": "2026-08-06T00:38:42.195-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8940",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8643",
+    "name": "relates to",
+    "summary": "Velocity - Story 3 - Data Table",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8643",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8643",
+    "when": "2026-08-06T00:38:42.229-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Velocity - Story 3 - Data Table",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Parts Velocity never shortens long Description, Category or Vendor text, so the table runs far wider than the window",
+  "type_changes": [],
+  "updated": "2026-08-06T02:50:04.222-0500"
+ },
+ "SV-8941": {
+  "created": "2026-08-06T00:51:34.001-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8941",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8690",
+    "name": "relates to",
+    "summary": "Shift Block Anatomy & Scope Labeling",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8690",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8690",
+    "when": "2026-08-06T00:51:34.029-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Shift Block Anatomy & Scope Labeling",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Schedule",
+  "record": "build/schedule/full-viu-2026-08-05/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Month view shows the VIN on shift blocks although the spec says it is omitted there",
+  "type_changes": [],
+  "updated": "2026-08-06T02:50:05.595-0500"
+ },
+ "SV-8942": {
+  "created": "2026-08-06T01:35:59.396-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8942",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8686",
+    "name": "relates to",
+    "summary": "Schedule Grid Layout & Navigation",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8686",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8686",
+    "when": "2026-08-06T01:35:59.433-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Schedule Grid Layout & Navigation",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Schedule",
+  "record": "build/schedule/full-viu-2026-08-05/TICKET-SOURCE-BLOCK-REQUIREMENT.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Schedule: at 960px and below the whole page scrolls sideways and the work order panel never collapses",
+  "type_changes": [],
+  "updated": "2026-08-06T02:50:07.196-0500"
+ },
+ "SV-8943": {
+  "created": "2026-08-06T01:38:41.491-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8943",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8648",
+    "name": "relates to",
+    "summary": "Tech Util - Story 1 - Report Access and Display",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8648",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8648",
+    "when": "2026-08-06T01:38:41.519-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Tech Util - Story 1 - Report Access and Display",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Technician Utilization opens on All locations instead of the location the user is working in",
+  "type_changes": [],
+  "updated": "2026-08-06T02:50:08.592-0500"
+ },
+ "SV-8944": {
+  "created": "2026-08-06T01:38:44.245-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8944",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8648",
+    "name": "relates to",
+    "summary": "Tech Util - Story 1 - Report Access and Display",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8648",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8648",
+    "when": "2026-08-06T01:38:44.272-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Tech Util - Story 1 - Report Access and Display",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Technician Utilization total hours do not match Timesheet Activities for the same technician, range and location",
+  "type_changes": [],
+  "updated": "2026-08-06T02:50:10.066-0500"
+ },
+ "SV-8945": {
+  "created": "2026-08-06T01:38:46.936-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8945",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8649",
+    "name": "relates to",
+    "summary": "Tech Util - Story 2 - Columns and Calculations",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8649",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8649",
+    "when": "2026-08-06T01:38:46.966-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Tech Util - Story 2 - Columns and Calculations",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Sorting a Technician Utilization column reloads the report from the server instead of reordering the rows on screen",
+  "type_changes": [],
+  "updated": "2026-08-06T02:50:11.467-0500"
+ },
+ "SV-8946": {
+  "created": "2026-08-06T01:38:49.081-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8946",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8652",
+    "name": "relates to",
+    "summary": "Tech Util - Story 5 - Technician Filter",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8652",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8652",
+    "when": "2026-08-06T01:38:49.106-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Tech Util - Story 5 - Technician Filter",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "The Technician Utilization technician filter reloads the report from the server instead of hiding rows on screen",
+  "type_changes": [],
+  "updated": "2026-08-06T02:50:12.877-0500"
+ },
+ "SV-8947": {
+  "created": "2026-08-06T01:38:51.503-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8947",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8652",
+    "name": "relates to",
+    "summary": "Tech Util - Story 5 - Technician Filter",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8652",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8652",
+    "when": "2026-08-06T01:38:51.537-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Tech Util - Story 5 - Technician Filter",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Technician Utilization technician filter and its select-all control are labelled differently from the specification",
+  "type_changes": [],
+  "updated": "2026-08-06T02:50:14.215-0500"
+ },
+ "SV-8948": {
+  "created": "2026-08-06T01:40:10.867-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8948",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8654",
+    "name": "relates to",
+    "summary": "Tech Util - Story 7 - Export to PDF and CSV",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8654",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8654",
+    "when": "2026-08-06T01:40:10.900-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Tech Util - Story 7 - Export to PDF and CSV",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Technician Utilization downloads ignore the technician filter and include everybody",
+  "type_changes": [],
+  "updated": "2026-08-06T02:50:15.754-0500"
+ },
+ "SV-8949": {
+  "created": "2026-08-06T01:40:13.393-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8949",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8654",
+    "name": "relates to",
+    "summary": "Tech Util - Story 7 - Export to PDF and CSV",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8654",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8654",
+    "when": "2026-08-06T01:40:13.428-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Tech Util - Story 7 - Export to PDF and CSV",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Technician Utilization downloads are not ordered by technician name A to Z",
+  "type_changes": [],
+  "updated": "2026-08-06T02:50:17.550-0500"
+ },
+ "SV-8950": {
+  "created": "2026-08-06T01:40:15.702-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8950",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8654",
+    "name": "relates to",
+    "summary": "Tech Util - Story 7 - Export to PDF and CSV",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8654",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8654",
+    "when": "2026-08-06T01:40:15.730-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Tech Util - Story 7 - Export to PDF and CSV",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Technician Utilization downloads leave out the Summary row",
+  "type_changes": [],
+  "updated": "2026-08-06T02:50:18.890-0500"
+ },
+ "SV-8951": {
+  "created": "2026-08-06T01:40:17.811-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8951",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8654",
+    "name": "relates to",
+    "summary": "Tech Util - Story 7 - Export to PDF and CSV",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8654",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8654",
+    "when": "2026-08-06T01:40:17.844-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Tech Util - Story 7 - Export to PDF and CSV",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "The Technician Utilization Expanded spreadsheet contains per-day rows and the file names differ from the specification",
+  "type_changes": [],
+  "updated": "2026-08-06T02:50:20.286-0500"
+ },
+ "SV-8952": {
+  "created": "2026-08-06T01:40:20.038-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8952",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8654",
+    "name": "relates to",
+    "summary": "Tech Util - Story 7 - Export to PDF and CSV",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8654",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8654",
+    "when": "2026-08-06T01:40:20.068-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Tech Util - Story 7 - Export to PDF and CSV",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Technician Utilization download messages: the success wording is generic and a failed download says nothing at all",
+  "type_changes": [],
+  "updated": "2026-08-06T02:50:21.598-0500"
+ },
+ "SV-8953": {
+  "created": "2026-08-06T01:40:22.272-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8953",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8655",
+    "name": "relates to",
+    "summary": "Tech Util - Story 8 - Visual Conformance and Accessibility",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8655",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8655",
+    "when": "2026-08-06T01:40:22.302-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Tech Util - Story 8 - Visual Conformance and Accessibility",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Technician Utilization expand and collapse controls do not tell assistive technology whether a row is open",
+  "type_changes": [],
+  "updated": "2026-08-06T02:50:23.076-0500"
+ },
+ "SV-8954": {
+  "created": "2026-08-06T01:40:24.331-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8954",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8656",
+    "name": "relates to",
+    "summary": "Tech Util - Story 9 - Location Filter",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8656",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8656",
+    "when": "2026-08-06T01:40:24.363-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Tech Util - Story 9 - Location Filter",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "The Technician Utilization Location column disappears when one location is chosen, and cannot be turned on again",
+  "type_changes": [],
+  "updated": "2026-08-06T02:50:24.466-0500"
+ },
+ "SV-8955": {
+  "created": "2026-08-06T02:02:13.412-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8955",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8601",
+    "name": "relates to",
+    "summary": "SBC - Story 2 - Filter by date range",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8601",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8601",
+    "when": "2026-08-06T02:02:13.448-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "SBC - Story 2 - Filter by date range",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Sales By Customer never puts the date range or Product Type in the page link, so the report cannot be shared",
+  "type_changes": [],
+  "updated": "2026-08-06T02:50:25.729-0500"
+ },
+ "SV-8956": {
+  "created": "2026-08-06T02:02:16.127-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8956",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8612",
+    "name": "relates to",
+    "summary": "SBC - Story 14 - Export as CSV",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8612",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8612",
+    "when": "2026-08-06T02:02:16.162-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "SBC - Story 14 - Export as CSV",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Sales By Customer download file names leave out the date range",
+  "type_changes": [],
+  "updated": "2026-08-06T02:50:27.065-0500"
+ },
+ "SV-8957": {
+  "created": "2026-08-06T02:03:30.815-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8957",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8688",
+    "name": "relates to",
+    "summary": "Drag-and-Drop Scheduling & Shift Creation",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8688",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8688",
+    "when": "2026-08-06T02:03:30.849-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Drag-and-Drop Scheduling & Shift Creation",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Schedule",
+  "record": "build/schedule/full-viu-2026-08-05/TICKET-SOURCE-BLOCK-REQUIREMENT.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Schedule: the click alternative to dragging a job onto the grid has disappeared from the build",
+  "type_changes": [],
+  "updated": "2026-08-06T03:26:43.923-0500"
+ },
+ "SV-8958": {
+  "created": "2026-08-06T02:13:01.401-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8958",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8692",
+    "name": "relates to",
+    "summary": "Linked Series & Banners",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8692",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8692",
+    "when": "2026-08-06T02:13:01.433-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Linked Series & Banners",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Schedule",
+  "record": "build/schedule/full-viu-2026-08-05/TICKET-SOURCE-BLOCK-REQUIREMENT.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Schedule: Month view series bar does not name the technician it belongs to",
+  "type_changes": [],
+  "updated": "2026-08-06T02:50:29.847-0500"
+ },
+ "SV-8959": {
+  "created": "2026-08-06T02:13:03.978-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": true,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8959",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8695",
+    "name": "relates to",
+    "summary": "Shift Detail Modal & Hover Tooltips",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8695",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8695",
+    "when": "2026-08-06T02:13:04.006-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "Shift Detail Modal & Hover Tooltips",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Schedule",
+  "record": "build/schedule/full-viu-2026-08-05/TICKET-SOURCE-BLOCK-REQUIREMENT.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Schedule: hover tooltip puts the conflict warning at the bottom, not beside the customer name",
+  "type_changes": [],
+  "updated": "2026-08-06T02:50:31.224-0500"
+ },
+ "SV-8962": {
+  "created": "2026-08-06T03:57:26.423-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": false,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8962",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8616",
+    "name": "relates to",
+    "summary": "SBC - Story 18 - Filter by customer",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8616",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8616",
+    "when": "2026-08-06T03:57:26.448-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "SBC - Story 18 - Filter by customer",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/testrail-execution-log-session2.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Sales By Customer Customer filter: no search icon, wrong multi-select label, and the typed text never shows in the field",
+  "type_changes": [],
+  "updated": "2026-08-06T03:57:28.761-0500"
+ },
+ "SV-8963": {
+  "created": "2026-08-06T03:57:30.211-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": false,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8963",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8608",
+    "name": "relates to",
+    "summary": "SBC - Story 10 - Sort the report",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8608",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8608",
+    "when": "2026-08-06T03:57:30.248-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "SBC - Story 10 - Sort the report",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/testrail-execution-log-session2.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Sales By Customer sorting: the Location column cannot be sorted, and blank values sort to the wrong end",
+  "type_changes": [],
+  "updated": "2026-08-06T03:57:31.433-0500"
+ },
+ "SV-8964": {
+  "created": "2026-08-06T03:57:32.685-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": false,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8964",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8613",
+    "name": "relates to",
+    "summary": "SBC - Story 15 - Download as PDF",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8613",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8613",
+    "when": "2026-08-06T03:57:32.713-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "SBC - Story 15 - Download as PDF",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/testrail-execution-log-session2.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Sales By Customer Expanded View PDF comes out on A3 paper instead of A4",
+  "type_changes": [],
+  "updated": "2026-08-06T03:57:33.644-0500"
+ },
+ "SV-8965": {
+  "created": "2026-08-06T03:57:34.816-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": false,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8965",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8617",
+    "name": "relates to",
+    "summary": "SBC - Story 20 - Visual conformance with the reports suite",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8617",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8617",
+    "when": "2026-08-06T03:57:34.843-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "SBC - Story 20 - Visual conformance with the reports suite",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/testrail-execution-log-session2.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Sales By Customer table uses the wrong row colours, too little side padding, and does not indent invoice rows",
+  "type_changes": [],
+  "updated": "2026-08-06T03:57:35.825-0500"
+ },
+ "SV-8966": {
+  "created": "2026-08-06T03:57:36.979-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": false,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8966",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8604",
+    "name": "relates to",
+    "summary": "SBC - Story 6 - Remember filters and view between visits",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8604",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8604",
+    "when": "2026-08-06T03:57:37.002-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "SBC - Story 6 - Remember filters and view between visits",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/testrail-execution-log-session2.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Sales By Customer remembered view keeps a location and a customer the user can no longer use, and loses the date range entirely",
+  "type_changes": [],
+  "updated": "2026-08-06T03:57:37.922-0500"
+ },
+ "SV-8967": {
+  "created": "2026-08-06T04:20:38.908-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": false,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8967",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8660",
+    "name": "relates to",
+    "summary": "WIP - Story 4 - Columns and Calculations",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8660",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8660",
+    "when": "2026-08-06T04:20:38.933-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "WIP - Story 4 - Columns and Calculations",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/testrail-execution-log-session2.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Work In Progress: the WO number is plain text even for a user who does have Work Order permission",
+  "type_changes": [],
+  "updated": "2026-08-06T04:20:39.978-0500"
+ },
+ "SV-8968": {
+  "created": "2026-08-06T04:20:41.223-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": false,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8968",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8663",
+    "name": "relates to",
+    "summary": "WIP - Story 7 - Filters",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8663",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8663",
+    "when": "2026-08-06T04:20:41.261-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "WIP - Story 7 - Filters",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/testrail-execution-log-session2.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Work In Progress Advisor, Customer and Asset filters reload from the server instead of narrowing on screen",
+  "type_changes": [],
+  "updated": "2026-08-06T04:20:42.337-0500"
+ },
+ "SV-8969": {
+  "created": "2026-08-06T04:20:43.378-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": false,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8969",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8663",
+    "name": "relates to",
+    "summary": "WIP - Story 7 - Filters",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8663",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8663",
+    "when": "2026-08-06T04:20:43.406-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "WIP - Story 7 - Filters",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/testrail-execution-log-session2.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Work In Progress filters show a Clear action before anything is selected, and the Advisor filter has no All advisors item",
+  "type_changes": [],
+  "updated": "2026-08-06T04:20:44.380-0500"
+ },
+ "SV-8970": {
+  "created": "2026-08-06T04:20:45.593-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": false,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8970",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8666",
+    "name": "relates to",
+    "summary": "WIP - Story 10 - Visual Conformance and Accessibility",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8666",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8666",
+    "when": "2026-08-06T04:20:45.626-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "WIP - Story 10 - Visual Conformance and Accessibility",
+  "parent_type": "Story",
+  "priority": "Low",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/testrail-execution-log-session2.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Work In Progress table is pale blue-grey throughout instead of the all-white table the description asks for",
+  "type_changes": [],
+  "updated": "2026-08-06T04:20:46.600-0500"
+ },
+ "SV-8972": {
+  "created": "2026-08-06T05:39:00.234-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": false,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8972",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8631",
+    "name": "relates to",
+    "summary": "SBR - Story 14 - PDF and CSV exports",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8631",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8631",
+    "when": "2026-08-06T05:39:00.261-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "SBR - Story 14 - PDF and CSV exports",
+  "parent_type": "Story",
+  "priority": "Medium",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED-SESSION3.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Sales By Representative Expanded spreadsheet puts Invoice # before Date and heads the column \"Invoice Status\"",
+  "type_changes": [],
+  "updated": "2026-08-06T05:39:01.683-0500"
+ },
+ "SV-8973": {
+  "created": "2026-08-06T05:39:02.881-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": false,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8973",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8633",
+    "name": "relates to",
+    "summary": "SBR - Story 16 - Loading, empty, and error states",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8633",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8633",
+    "when": "2026-08-06T05:39:02.915-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "SBR - Story 16 - Loading, empty, and error states",
+  "parent_type": "Story",
+  "priority": "Medium",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED-SESSION3.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Sales By Representative empty-state message uses different wording from the one written down",
+  "type_changes": [],
+  "updated": "2026-08-06T05:39:04.022-0500"
+ },
+ "SV-8974": {
+  "created": "2026-08-06T05:39:05.265-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": false,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8974",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8624",
+    "name": "relates to",
+    "summary": "SBR - Story 6 - Expand a rep to view their invoices",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8624",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8624",
+    "when": "2026-08-06T05:39:05.289-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "SBR - Story 6 - Expand a rep to view their invoices",
+  "parent_type": "Story",
+  "priority": "Medium",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED-SESSION3.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Sales By Representative: invoices on the same day are not ordered by invoice number",
+  "type_changes": [],
+  "updated": "2026-08-06T05:39:06.232-0500"
+ },
+ "SV-8975": {
+  "created": "2026-08-06T05:39:07.375-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": false,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8975",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8635",
+    "name": "relates to",
+    "summary": "SBR - Story 18 - Visual conformance and accessibility",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8635",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8635",
+    "when": "2026-08-06T05:39:07.401-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "SBR - Story 18 - Visual conformance and accessibility",
+  "parent_type": "Story",
+  "priority": "Medium",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED-SESSION3.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Sales By Representative: three icon-only buttons announce the wrong name to a screen reader",
+  "type_changes": [],
+  "updated": "2026-08-06T05:39:08.394-0500"
+ },
+ "SV-8976": {
+  "created": "2026-08-06T05:39:09.633-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": false,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8976",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8640",
+    "name": "relates to",
+    "summary": "SBR - Story 23 - Remember filters and view",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8640",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8640",
+    "when": "2026-08-06T05:39:09.660-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "SBR - Story 23 - Remember filters and view",
+  "parent_type": "Story",
+  "priority": "Medium",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED-SESSION3.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Sales By Representative: a saved date range that is no longer valid leaves the report empty",
+  "type_changes": [],
+  "updated": "2026-08-06T05:39:10.635-0500"
+ },
+ "SV-8977": {
+  "created": "2026-08-06T05:39:11.879-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": false,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8977",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8627",
+    "name": "relates to",
+    "summary": "SBR - Story 10 - Subtotal column and grand Totals indicator",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8627",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8627",
+    "when": "2026-08-06T05:39:11.905-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "SBR - Story 10 - Subtotal column and grand Totals indicator",
+  "parent_type": "Story",
+  "priority": "Medium",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED-SESSION3.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Sales By Representative: the heading row and the Totals row both scroll away instead of staying put",
+  "type_changes": [],
+  "updated": "2026-08-06T05:39:12.947-0500"
+ },
+ "SV-8978": {
+  "created": "2026-08-06T05:39:14.036-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": false,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8978",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8627",
+    "name": "relates to",
+    "summary": "SBR - Story 10 - Subtotal column and grand Totals indicator",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8627",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8627",
+    "when": "2026-08-06T05:39:14.059-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "SBR - Story 10 - Subtotal column and grand Totals indicator",
+  "parent_type": "Story",
+  "priority": "Medium",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED-SESSION3.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Sales By Representative on a phone has no separate totals bar under the table",
+  "type_changes": [],
+  "updated": "2026-08-06T05:39:14.941-0500"
+ },
+ "SV-8979": {
+  "created": "2026-08-06T05:39:16.052-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": false,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8979",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8634",
+    "name": "relates to",
+    "summary": "SBR - Story 17 - Mobile usability",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8634",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8634",
+    "when": "2026-08-06T05:39:16.073-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "SBR - Story 17 - Mobile usability",
+  "parent_type": "Story",
+  "priority": "Medium",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED-SESSION3.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Sales By Representative expand and collapse chevrons are half the required touch size",
+  "type_changes": [],
+  "updated": "2026-08-06T05:39:16.982-0500"
+ },
+ "SV-8980": {
+  "created": "2026-08-06T05:39:18.078-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": false,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8980",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8635",
+    "name": "relates to",
+    "summary": "SBR - Story 18 - Visual conformance and accessibility",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8635",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8635",
+    "when": "2026-08-06T05:39:18.112-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "SBR - Story 18 - Visual conformance and accessibility",
+  "parent_type": "Story",
+  "priority": "Medium",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED-SESSION3.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Sales By Representative table is the same pale grey as the page, and the title and Location filter are out of line",
+  "type_changes": [],
+  "updated": "2026-08-06T05:39:19.102-0500"
+ },
+ "SV-8981": {
+  "created": "2026-08-06T05:39:20.268-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": false,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8981",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8631",
+    "name": "relates to",
+    "summary": "SBR - Story 14 - PDF and CSV exports",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8631",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8631",
+    "when": "2026-08-06T05:39:20.288-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "SBR - Story 14 - PDF and CSV exports",
+  "parent_type": "Story",
+  "priority": "Medium",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED-SESSION3.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Sales By Representative Expanded View PDF is one flat table instead of a block per representative, and comes out on A3",
+  "type_changes": [],
+  "updated": "2026-08-06T05:39:21.263-0500"
+ },
+ "SV-8982": {
+  "created": "2026-08-06T05:39:22.280-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": false,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8982",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8631",
+    "name": "relates to",
+    "summary": "SBR - Story 14 - PDF and CSV exports",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8631",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8631",
+    "when": "2026-08-06T05:39:22.308-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "SBR - Story 14 - PDF and CSV exports",
+  "parent_type": "Story",
+  "priority": "Medium",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED-SESSION3.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Sales By Representative download file names have a date-range word added to them",
+  "type_changes": [],
+  "updated": "2026-08-06T05:39:23.413-0500"
+ },
+ "SV-8983": {
+  "created": "2026-08-06T05:39:24.495-0500",
+  "creator": "Bilal Muzamil",
+  "hierarchyLevel": -1,
+  "http": "200",
+  "in_ticket_list": false,
+  "issuetype": "Story Defect",
+  "issuetype_id": "10007",
+  "key": "SV-8983",
+  "links": [
+   {
+    "dir": "outward",
+    "itype": "Story",
+    "key": "SV-8632",
+    "name": "relates to",
+    "summary": "SBR - Story 15 - Sales Rep Assignments CSV export",
+    "type": "Relates"
+   }
+  ],
+  "parent": "SV-8632",
+  "parent_changes": [
+   {
+    "field": "IssueParentAssociation",
+    "from": null,
+    "to": "SV-8632",
+    "when": "2026-08-06T05:39:24.525-0500",
+    "who": "Bilal Muzamil"
+   }
+  ],
+  "parent_summary": "SBR - Story 15 - Sales Rep Assignments CSV export",
+  "parent_type": "Story",
+  "priority": "Medium",
+  "product_area": null,
+  "project": "Report Suite",
+  "record": "build/report-suite/full-viu-2026-08-06/FILED-SESSION3.md",
+  "reporter": "Bilal Muzamil",
+  "resolution": null,
+  "status": "Open",
+  "status_category": "To Do",
+  "subtask": true,
+  "summary": "Sales Rep Assignments spreadsheet does not start with the UTF-8 marker",
+  "type_changes": [],
+  "updated": "2026-08-06T05:39:25.492-0500"
+ }
+}
