@@ -1,4 +1,202 @@
 {
+ "30341": {
+  "anchor": "PV S3-R1a",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "pv-brakeclean",
+  "note": "BRAKECLEAN returns two inventory rows with both locations selected - Staging Heavy Duty - 9919 with On Hand 618, Min 144, Max 2000, and Staging Lethbridge - 4310 with On Hand 12, Min 0, Max 0. Each row carries only its own location figures and nothing is summed across locations.",
+  "verdict": "PASS"
+ },
+ "30342": {
+  "anchor": "PV S3-R1b",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "pv-sublet",
+  "note": "The special-order part SUBLET returns a SINGLE row whose Location reads \"Multiple\" and whose Units Sold, 44, is the sum across the selected locations. Its inventory-only columns - On Hand, Turns / Yr, Min and Max - are all null and render as an em dash.",
+  "verdict": "PASS"
+ },
+ "30343": {
+  "anchor": "PV S3-R2",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "pv-rows.json/b3a.json",
+  "note": "Rows load ranked by Demand descending over all 250 read - 416, 183, 172, 134, 110, 103, 94, 87 and so on - and the Demand header carries the descending sort state on load. Inventory and special-order rows are ranked in one list, and at the Demand value 11 the twelve inventory rows come before the single special-order row.",
+  "verdict": "PASS"
+ },
+ "30344": {
+  "anchor": "PV S3-R3",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b3c.json",
+  "note": "First click on Part # sorted ascending and the request carried sortBy=part_number&descending=false; the second click flipped to descending with descending=true. Each click re-fetched from the server and returned page 1. Null values are placed FIRST on ascending - the em-dash row led the ascending list - and last on descending.",
+  "verdict": "PASS"
+ },
+ "30345": {
+  "anchor": "PV S7",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b3a.json",
+  "note": "The header row is position:sticky and held its position exactly (top 150 before and after a 700px scroll). The Type column shows plain text, \"Inventory\" and \"Special Order\", with no badge or chip. Every column is left-aligned on screen, headers and cells alike, including the numbers and money - measured on all fifteen visible columns.",
+  "verdict": "PASS"
+ },
+ "30346": {
+  "anchor": "PV S7",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "b3a.json/b3b.json",
+  "note": "Units Sold and Demand each carry an always-on grey info icon (info_outline), and Turns / Yr gains its own once that column is switched on - it is hidden by default. The Units Sold text matches the required wording exactly: \"Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Sell Price.\" The Demand text matches exactly too. The Turns / Yr text reads \"How many times you sell through this part in a year. Higher is better.\"",
+  "verdict": "PASS"
+ },
+ "30348": {
+  "anchor": "PV S6",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "pv-rows.json",
+  "note": "Across 250 rows the only nulls are On Hand, Turns / Yr, Min and Max, and they occur on exactly the two special-order rows. Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Demand, Revenue and Margin are never null on any row.",
+  "verdict": "PASS"
+ },
+ "30359": {
+  "anchor": "PV S5",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "Not driven this pass: needs a controlled sequence - invoice a work order, then reverse it, then return a part - watching Units Sold after each step. Nothing was inferred from the data that happens to exist.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30360": {
+  "anchor": "PV S5",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "Not driven this pass: needs seeded special-order vendor requests including a reversed one. Nothing was inferred from the data that happens to exist.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30361": {
+  "anchor": "PV S5",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "Not driven this pass: needs a seeded part return, then a parts-sale credit, then a cancellation. Nothing was inferred from the data that happens to exist.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30362": {
+  "anchor": "PV S5",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "Not driven this pass: needs a return initiated in one window against a sale in another. Nothing was inferred from the data that happens to exist.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30363": {
+  "anchor": "PV S5",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "Not driven this pass: needs a seeded Service work order and a seeded Parts-type counter sale for the same part. Nothing was inferred from the data that happens to exist.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30364": {
+  "anchor": "PV S5",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "Not driven this pass: needs two invoicing events of different sizes plus a reversal, to show Demand counting once and not moving. Nothing was inferred from the data that happens to exist.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30365": {
+  "anchor": "PV S5-R6",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "pv-thisyear.csv/pv-rows.json",
+  "note": "The format is confirmed: Last Sale renders as \"54 days\" on screen and in the download, and it is a whole number of days on every one of the 250 rows. NOT verified: that it ignores the selected date range and is measured over all-time history, and that it is scoped to the selected locations - both need a part whose most recent sale falls outside the window, which was not seeded.",
+  "verdict": "PARTIAL"
+ },
+ "30366": {
+  "anchor": "PV S5-R8",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "pv-brakeclean",
+  "note": "On Hand, Min and Max are per-location and never summed - BRAKECLEAN shows 618/144/2000 at one location and 12/0/0 at the other. NOT driven: that Min and Max are strictly read-only with no edit control or slide-over, which needs a per-cell interaction pass.",
+  "verdict": "PARTIAL"
+ },
+ "30367": {
+  "anchor": "PV S5-R7",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "pv-turns",
+  "note": "The formula is confirmed exactly. Units Sold divided by window days times 365, over On Hand, reproduced to eight decimal places on five rows, and the divisor is the INCLUSIVE day count of the resolved range: 217 for This Year, which the export header confirms resolves to Jan 1 - Aug 5, and 31 for a custom 1-31 July range. On Hand of 0 renders 0.00 and special-order rows render an em dash, both correct. NOT produced: a negative Turns / Yr, because no row in any window tested has negative Units Sold. Separately, part 8WS-075 has a NEGATIVE On Hand of -24 with positive Units Sold, where the formula would give a negative result and the build renders 0 - the specification only excuses On Hand of exactly 0 and says nothing about negative On Hand, so this is a question for Chris Ward, not a defect.",
+  "verdict": "PARTIAL"
+ },
+ "30368": {
+  "anchor": "PV S5",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "pv-rows.json",
+  "note": "THE HOLD IS LIFTED - this part of the report IS built now. Every one of the 250 rows carries Revenue, Margin, Unit Cost, Sell Price and Margin %, and the formulas hold exactly: Margin over Revenue times 100 matches Margin % on all 250 rows with 0 mismatches, and Sell Price equals Revenue divided by billed units while Unit Cost equals (Revenue minus Margin) divided by billed units on all 250 rows carrying billed units, again 0 mismatches.",
+  "verdict": "PASS"
+ },
+ "30369": {
+  "anchor": "PV S5",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "Not driven this pass: needs a sale reversed after the fact, with every billed column read before and after. Nothing was inferred from the data that happens to exist.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30370": {
+  "anchor": "PV S5",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "pv-rows.json",
+  "note": "Needs rows in the three specific null-trigger states. Across 250 rows there is not a single null Unit Cost, Sell Price or Margin %, so none of the three combinations exists to read. Producing them needs seeded sales with zero or negative billed units and zero or negative revenue.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30371": {
+  "anchor": "PV S5-R5",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "pv-thisyear.csv/b3a.json",
+  "note": "Confirmed from live values on screen and in the download: Units Sold, On Hand and Turns / Yr show two decimals with thousands separators (\"512.00\", \"2,000\", \"1.39\"); Unit Cost, Sell Price, Revenue and Margin show currency with a dollar sign, two decimals and thousands separators (\"$4.79\", \"$4,332.11\"); Margin % shows one decimal with a trailing percent and no plus sign (\"37.7%\"); Demand is a whole number (\"416\"); Last Sale reads \"54 days\"; Min and Max are whole numbers. NOT confirmed: the negative forms, because no negative value of any of these appears in the data available.",
+  "verdict": "PARTIAL"
+ },
+ "30372": {
+  "anchor": "PV S3",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "parts scan",
+  "note": "Needs a part flagged as a core. 1200 inventory parts were scanned and not one carries the core flag, so neither the inventory nor the special-order core-exclusion can be exercised.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30374": {
+  "anchor": "PV S5",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "Not driven this pass: needs one sale whose stock movement and work-order dates fall in different windows. Nothing was inferred from the data that happens to exist.",
+  "verdict": "NOT OBSERVED"
+ },
  "30534": {
   "anchor": "IV S1-R1",
   "batch": 2,
@@ -529,5 +727,14 @@
   "evidence": "b2e.json/b1e.json",
   "note": "Driven and recorded; stays on hold because this is the very point Chris Ward has been asked about. Observed: the Location column sits between Vendor and Qty; every row names one location and none reads \"Multiple\"; the Location filter keeps a constant 160px width. But the column is STILL SHOWN when the scope is narrowed to a single location, and Location IS offered in the column-selection control - which matches the access-gate reading of the specification and contradicts the scope-gate reading in S7-R6. That is the open contradiction, so no verdict is asserted.",
   "verdict": "PARTIAL"
+ },
+ "38924": {
+  "anchor": "PV S5",
+  "batch": 3,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "Not driven this pass: needs a sale of a part-of-a-unit quantity; no fractional Units Sold exists in the data. Nothing was inferred from the data that happens to exist.",
+  "verdict": "NOT OBSERVED"
  }
 }

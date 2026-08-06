@@ -56,3 +56,33 @@ Three further Story Defects filed, same Rule-52 shape, every field read back:
 | [SV-8932](https://shopview.atlassian.net/browse/SV-8932) | SV-8679 | Inventory Value: long text never shortens, and headings announce no sort state |
 
 Still nothing created or altered in the application.
+
+## Update after batch 3 and the expect-fail block pass
+
+| Batch | Operation | Count | Verification |
+|---|---|---|---|
+| 3 (Parts Velocity) | `update_case` | 23 | HTTP 200, 30 fields compared each, 0 mismatches |
+| expect-fail blocks | `update_case` | 28 | HTTP 200, 30 fields compared each, 0 mismatches |
+| C30341 repair | `update_case` | 1 | HTTP 200, 30 fields compared, 0 mismatches |
+
+Running TestRail total: **111 `update_case`** over **99 distinct cases**. Still 0 add · 0 delete ·
+0 section · **0 run writes** · **0 results logged**.
+
+### A defect of our own, owned and repaired
+
+**C30341 was damaged by this pass and then repaired.** That case stores its text as raw HTML
+(`<ol>/<li>`, `<hr />`, `<p>AUTOMATION: READY</p>`). None of the writer's plain-text patterns
+matched that form, so instead of REPLACING the provenance line and the marker it **appended a
+second one of each**. The byte-check did not catch it because the write was faithful to the
+payload — the payload itself was wrong.
+
+Found by a census of all 476 cases, not by chance. Repaired in the same session: converted to
+plain numbered text, one provenance line, one marker, and **not one word of meaning changed** —
+the preconditions and steps were converted from the identical HTML and the expected-results
+wording is word-for-word what it was. A guard now makes `rebuild()` **refuse outright** on any
+case containing raw markup.
+
+**13 raw-markup cases remain** (of the 14 in the brief; C30341 was the fourteenth and is now
+plain text). They sit in Sales By Representative, Work In Progress and Technician Utilization,
+which this session did not reach. They carry no plain-text `AUTOMATION:` marker because their
+marker is wrapped in `<p>` tags.

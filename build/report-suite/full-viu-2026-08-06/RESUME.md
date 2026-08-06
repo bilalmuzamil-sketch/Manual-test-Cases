@@ -73,16 +73,58 @@ only **`cf_clearance`** had changed. So a 401 on this estate is more likely an e
 clearance** than a dead sign-in, and the right ask is a fresh clearance token, not a whole new
 sign-in. **This belongs in `build/APP-ACTIONS-PLAYBOOK.md` — not edited from this worker.**
 
-## Write ledger so far
-TestRail **23 `update_case`**, all HTTP 200 + byte-verified, 0 collateral. 0 add · 0 delete ·
-0 section · **0 run writes** · **0 results logged**. Jira **5 Story Defects created**, 0 edits to
-anyone else's ticket. Application **read-only**.
+## Write ledger
 
-## Proofs re-run after batch 1
-- Live 481 = pre-write 481, **case-id sets equal both directions**.
-- **Exactly 23 cases changed by CONTENT** and all 23 are ones we wrote (compared on title,
-  preconds, steps, expected, refs, section, type, priority, template, atmstatus, automation type —
-  **not** on `updated_on`).
-- **Foreign C38919–C38923 byte-identical**, including `updated_on`/`updated_by`.
-- **Run 359 untouched:** `include_all` still false, 476 tests, **535 results, 0 missing by ID,
-  0 with any real field changed, 0 echo changes, 0 new results.**
+TestRail **111 `update_case` over 99 distinct cases**, every one HTTP 200 + byte-verified,
+30 fields compared each, 0 mismatches, 0 collateral. 0 add · 0 delete · 0 section ·
+**0 run writes** · **0 results logged**. Jira **8 Story Defects created**, 0 edits to anyone
+else's ticket. Application **read-only** — nothing seeded, nothing to restore.
+
+## Marker census, live, over all 476
+
+| Marker | Count |
+|---|---|
+| `AUTOMATION: READY` | 390 |
+| `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` | 38 |
+| `AUTOMATION: HOLD - <reason>` | 35 |
+| no plain-text marker (raw HTML cases, see below) | 13 |
+
+**THE ARITHMETIC GATE IS NOT CLAIMED TO PASS AND MUST NOT BE.** 390 + 38 = 428, but **382 of
+the 476 have not been observed on this build at all** — those markers are inherited from earlier
+passes, not evidence from this one. The honest figure is: **94 cases carry a verdict established
+against `v3.5-16cf83f`**, and the rest do not.
+
+## Expect-fail three-outcome blocks
+
+**28 of the 38 expect-fail cases now carry the block** (symptom + the three outcomes), each
+symptom being one THIS session observed:
+
+- **SV-8818** (13 cases) — PDF fails only on a large view; proven by size, not by report:
+  1, 2 and 0-row views produced a PDF, the 5,657-row view returned HTTP 500.
+- **SV-8820** (4) — the as-of date lands one day late (range to 15 Jul reports 16 Jul).
+- **SV-8823** (3) — spreadsheet money as text and its own column order.
+- **SV-8926 / 8928 / 8929 / 8930 / 8931 / 8932** (8) — this session's own findings.
+
+**10 do NOT have the block, deliberately:** 9 on **SV-8907** and 1 on **SV-8908**, both Work In
+Progress. I could not reproduce the WIP export failure — the export takes a different parameter
+set and every datetime form I tried returned `"This value is not a valid datetime."`, which is my
+parameter error, not the defect. Writing a symptom I had not seen would have been the exact thing
+the block exists to prevent. **They should get the block during the Work In Progress batch.**
+
+## THE RAW-MARKUP CASES — 13 remain, and one lesson
+
+`C30341` was the 14th and is now repaired to plain numbered text. **It was damaged by this pass
+first**: the writer's plain-text patterns do not match the HTML form, so it appended a SECOND
+provenance line and a SECOND marker rather than replacing them. `rebuild()` now REFUSES on any
+case containing raw markup. **Convert to plain text first, then write.** The helper that did it
+is in the batch-3 section of `CHANGES-MADE.md`.
+
+Still raw: **C30392, C30451, C30456, C30457, C30460, C30487, C30490, C30491, C30493, C30519,
+C30522, C30526, C30528** — all in SBR / WIP / TU, none reached this session.
+
+## Nine cases that never had a build line
+
+`C30278, C38856, C43550, C43551, C43552, C43553, C43557, C43558, C43559` carry a provenance
+sentence 1 but **no "Last checked against build" line at all** — they are state-1 cases from
+earlier passes that were never live-verified. **Not touched by this session.** They need one when
+their report is driven.

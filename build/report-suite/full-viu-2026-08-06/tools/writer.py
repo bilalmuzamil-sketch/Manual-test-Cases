@@ -29,7 +29,19 @@ def split_expected(exp):
 
 
 def rebuild(exp, marker=None, known=None, body_edits=None):
-    """Rewrite an expected-results field: refresh sentence 2, set marker, apply edits."""
+    """Rewrite an expected-results field: refresh sentence 2, set marker, apply edits.
+
+    GUARD (learned the hard way on C30341, 2026-08-06): a handful of cases store their
+    expected results as RAW HTML - <ol>/<li> for the body, <hr /> for the separator and
+    <p>AUTOMATION: ...</p> for the marker. None of the plain-text patterns below match
+    that form, so this function silently APPENDED a second provenance line and a second
+    marker instead of replacing them. Refuse outright: convert the case to plain
+    numbered text first, then call this.
+    """
+    if '<li>' in exp or '<p>AUTOMATION' in exp or '<hr' in exp:
+        raise RuntimeError(
+            'REFUSING: this case stores raw HTML markup. Convert it to plain numbered '
+            'text first - rebuild() would append a duplicate provenance line and marker.')
     m = MARKER_RE.search(exp)
     head = exp[:m.start()].rstrip('\n') if m else exp.rstrip('\n')
     old_marker = m.group(0) if m else 'AUTOMATION: READY'
@@ -47,8 +59,11 @@ def rebuild(exp, marker=None, known=None, body_edits=None):
                 raise RuntimeError('body edit anchor not found: %r' % old[:70])
             body = body.replace(old, new)
 
-    # known-issue line goes at the end of the body, once
-    body = re.sub(r'\nKnown issue: .*(?:\n(?!\n).*)*', '', body).rstrip()
+    # the deviation block goes at the end of the body, exactly once.
+    # strip BOTH the old one-line form and the three-outcome block, so a re-run replaces.
+    body = re.sub(r'\nKnown issue: .*(?:\n(?!\n).*)*', '', body)
+    body = re.sub(r'\nWhat you should see today: .*(?:\n(?!\n).*)*', '', body)
+    body = body.rstrip()
     if known:
         body = body + '\n' + known
 
