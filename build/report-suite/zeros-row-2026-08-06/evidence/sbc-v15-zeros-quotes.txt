@@ -1,0 +1,5 @@
+* This report no longer uses the application's global search bar. Narrowing to a specific customer is done entirely with the multi-select Customer filter (Story 18), which offers search-as-you-type over customer names. The export-narrowing behavior that previously lived here (an export contains exactly the customers currently shown; an empty selection still downloads a headers-plus-zero-totals file) moved into Story 18 (S18-R7, S18-R10). The story number is retained as a placeholder so the later story numbers and every "See Story 20" design reference remain stable.
+
+- S18-R10: If an export (CSV or PDF) is triggered while the active filters match no customers — for example, no customer is selected — the export still downloads, containing the column headers and a totals row of zeros, with no data rows and no warning.
+
+- S18-N1: When no customer is selected (every customer cleared), the report shows the empty state (Story 17) and the totals row shows zeros.
