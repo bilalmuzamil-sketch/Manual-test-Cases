@@ -351,3 +351,19 @@ recorded with its BEFORE value.
 shop business hours on **Staging Heavy Duty - 9919** are **06:00–18:00 Mon–Fri** (previously OFF);
 **Ayesha Khan AK's Monday hours** are **10:00–16:00** (was 07:00–21:00); a **Pamill Paving shift on
 S-12876** was reassigned to **Jose Young** and not undone; two test shifts sit on Mon 2026-08-03.
+
+---
+
+## Batch 11 — 2026-08-06 session 3, the re-drive of the 25 (build `v3.5-7ec992f`)
+
+| # | What | BEFORE | AFTER | Why | Undone? |
+|---|---|---|---|---|---|
+| 8 | **Four overlapping 3-hour shifts seeded** on **Angela Roman** (Welder, `8b5df548…`) for **Thu 6 Aug 2026, 09:00**, all on work order **S-15875** line *Replace - Windshield button*. Ids `c88bad62…`, `d71d21bd…`, `b185a86a…`, `70ba671e…` | that row was empty that day | 3 visible lanes + a "+1 more" chip | C29999 needs a Day-view cell that exceeds the 3-lane cap, and no existing cell did | **No — left in place** (they are the evidence for C29999) |
+| 9 | The **start time of shift `c88bad62…` changed 15:00 → 08:07** | 15:00 | 08:07 | C30009 tests whether a non-quarter minute is accepted. It was, and it persisted | **No.** It is one of our own seeded shifts, so nothing pre-existing was touched. |
+| 10 | **"Adjust" clicked once** on that same seeded shift | start 08:07 | modal closed; not re-read | C30014 — to see what the action does | **No** — again, our own seeded shift only |
+| 11 | **An event created: "ZZAUTOTEST redrive event", Thu 6 Aug, 08:00–09:00**, on the SERVICE department row | did not exist | exists | C30016 needs a real create to observe the toast | **No — left in place** |
+| 12 | Sidebar filters applied and cleared (Unassigned, Approved) | none applied | none applied | C29946 | **Yes** — "Clear all" was used and the badge returned to "Filters" |
+| 13 | Sidebar search box typed into 8 times | empty | empty | C29939 | **Yes** — cleared, 18 cards restored |
+| 14 | Several drags attempted from the sidebar onto the grid | — | — | C29960, C29967 | **Nothing was created.** Every drop failed to register, and the picker never opened, so there is nothing to undo. Verified: no dialog left open. |
+
+**Nothing was deleted this batch either.** No pre-existing shift, event, work order, staff record, role or setting was modified — items 9 and 10 touch only shifts we created ourselves minutes earlier.
