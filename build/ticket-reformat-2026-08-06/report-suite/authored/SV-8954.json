@@ -1,0 +1,28 @@
+{
+ "description": "On Technician Utilization the per-row Location column disappears as soon as the location filter is narrowed to a single location, and there is no way to bring it back — Location is not offered in the Column Selection control at all.\n\nThe column is meant to depend on how many locations the user can reach, not on how many are currently chosen, and it is meant to be one of the columns the user can switch on and off.",
+ "steps": [
+  "Signed in as a user who can reach both locations, open Reports, then Technician Utilization. The Location column is there, leftmost, before Technician.",
+  "Open the Location filter and choose only Staging Heavy Duty - 9919.",
+  "Look at the table again, then open the Column Selection control and look for Location. This was seen with the date range This Year (1 January to 6 August 2026), which returns 29 technicians, active location Staging Heavy Duty - 9919, on an account that can also reach Staging Lethbridge - 4310."
+ ],
+ "current": "With one location chosen the headings become Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor — the Location column is gone.\n\nThe Column Selection control offers only Total Hours, WO Hours, Internal Hours, Utilization % and Est. Lost Labor. Location is not in the list in either state, so it can neither be switched off when present nor switched on when absent.\n\nThe user has not lost access to the second location — both remain in the filter, and re-selecting brings the column straight back. The column is absent rather than empty: no heading and no cell.",
+ "expected": "A user with access to more than one location keeps the Location column available whatever they have chosen in the filter, and can switch it on and off from the Column Selection control.",
+ "source": [
+  [
+   "spec",
+   "tu",
+   "S10-R4",
+   "The per-row Location column is one of the toggleable columns for a user with access to more than one location: it is shown by default and can be toggled on or off from the column selector (S9-R9). A user with access to only one location never sees it and it is not offered to them in the column selector."
+  ],
+  [
+   "spec",
+   "tu",
+   "S9-R9",
+   "The report shows a per-row Location column to any user with access to more than one location; it is shown by default and can be toggled on or off from the column selector, and a user with access to only one location never sees it."
+  ],
+  [
+   "note",
+   "One honest caveat on the first half: requirement S7-R13 of the same description refers in passing to \"more than one location in scope\", which could be read as what is currently chosen rather than what the user can reach. The second half is not ambiguous — S10-R4 asks plainly for the column to be in the Column Selection control."
+  ]
+ ]
+}

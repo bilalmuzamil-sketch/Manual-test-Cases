@@ -1,0 +1,31 @@
+{
+ "description": "None of the four Technician Utilization downloads contains the Summary row. Every file ends on the last technician.",
+ "steps": [
+  "Open Reports, then Technician Utilization, and set the date range to This Quarter, so there is only one technician and the files are short. That view returns the single technician Admin ShopView with 1.31 hours.",
+  "Note the Summary row at the bottom of the table on screen.",
+  "Open the three-dot menu and take all four downloads in turn.",
+  "Look at the last line of each file. This was also checked on the full This Year view. This was seen with the date range This Year (1 January to 6 August 2026), which returns 29 technicians, active location Staging Heavy Duty - 9919, on an account that can also reach Staging Lethbridge - 4310."
+ ],
+ "current": "Every file ends on the last technician row. The Summary row — which on screen reads Summary 15916.03 12843.23 3072.80 80.7% $462,687.13 for This Year — is in none of them.\n\nIt is not hiding on a page nobody looked at: the PDF's last page ends on the last technician above the footer, and the spreadsheet's last line is the last technician. On screen the Summary row is present and correct. Nothing was unticked when these files were taken.",
+ "expected": "All four downloads end with the Summary row, exactly as the screen does.",
+ "source": [
+  [
+   "spec",
+   "tu",
+   "S7-R5",
+   "The Summary PDF shows the technician rows and the Summary row."
+  ],
+  [
+   "spec",
+   "tu",
+   "S7-R6",
+   "The Expanded PDF shows the technician rows, each technician's per-day breakdown, and the Summary row."
+  ],
+  [
+   "spec",
+   "tu",
+   "S7-R7",
+   "The CSV file shows the technician rows and the Summary row. The CSV is always this summary-level content; it does not vary by the summary/expanded choice."
+  ]
+ ]
+}

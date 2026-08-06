@@ -1,0 +1,18 @@
+{
+ "description": "The arrow control that opens a technician's daily breakdown, and the one in the table heading that opens them all, do not tell a screen reader whether they are open or closed. Their names change correctly; the open or closed state itself is never reported.",
+ "steps": [
+  "Open Reports, then Technician Utilization, and set the date range to This Year.",
+  "Put a screen reader on the arrow control at the left of any technician row — Christian Pitts was used here — then open the row and listen again.",
+  "Do the same with the double-arrow control in the table heading. This was seen with the date range This Year (1 January to 6 August 2026), which returns 29 technicians, active location Staging Heavy Duty - 9919, on an account that can also reach Staging Lethbridge - 4310."
+ ],
+ "current": "The names are correct and do change: \"Expand Christian Pitts's daily breakdown\" when closed, \"Collapse Christian Pitts's daily breakdown\" when open, and \"Expand all technicians\" / \"Collapse all technicians\" on the heading control.\n\nNeither control carries the standard expanded-or-collapsed state, so a screen reader announces the name only. Both are ordinary focusable buttons, and every technician row behaves the same way.",
+ "expected": "Both controls report their expanded or collapsed state to assistive technology, as well as carrying the names they already have.",
+ "source": [
+  [
+   "spec",
+   "tu",
+   "S8-R12",
+   "The expand/collapse controls (per-row S4-R1 and the all-rows control S4-R4) are keyboard-focusable, toggle on Enter/Space, expose their expanded/collapsed state to assistive technology, and carry the verbatim accessible names defined in S4-R1 (per-row) and S4-R4 (all-rows)."
+  ]
+ ]
+}

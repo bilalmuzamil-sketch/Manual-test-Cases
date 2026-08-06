@@ -1,0 +1,29 @@
+{
+ "description": "When a Technician Utilization download starts, the message reads \"Success / Data exported successfully\" — generic wording that names neither the report nor the file type. When a download fails, no message appears at all: the user is left with no file and no explanation.",
+ "steps": [
+  "Open Reports, then Technician Utilization, and set the date range to This Quarter.",
+  "Open the three-dot menu, choose Summary (CSV), and read the message that appears.",
+  "Now set the date range to This Year and choose Expanded (PDF).",
+  "Wait about forty seconds and watch for any message. This was seen with the date range This Year (1 January to 6 August 2026), which returns 29 technicians, active location Staging Heavy Duty - 9919, on an account that can also reach Staging Lethbridge - 4310."
+ ],
+ "current": "The successful download showed \"Success / Data exported successfully.\", the same wording for all four options.\n\nThe failed download showed nothing. The server answered with an error after roughly half a minute, no file arrived, and no message of any kind was displayed. The screen was watched continuously for forty-five seconds afterwards, and no file was produced.\n\nFor triage: the reason the Expanded PDF fails on a large view is reported separately as SV-8818. This ticket is only about the messages. The same generic success wording on Parts Velocity is SV-8936.",
+ "expected": "A download that starts says \"Download started\". A download that fails says \"Failed to download report\".",
+ "source": [
+  [
+   "spec_note",
+   "tu",
+   "Story 7 under Error Handling",
+   "When a download starts, the user sees a success notification: \"Download started\"."
+  ],
+  [
+   "spec_note",
+   "tu",
+   "Story 7 under Error Handling",
+   "If a download fails, the user sees an error notification: \"Failed to download report\"."
+  ],
+  [
+   "note",
+   "Both wordings appear a second time in the notifications table in section 7 of the same description, where the trigger \"A download starts\" is paired with \"Download started\" and \"A download fails\" with \"Failed to download report\"."
+  ]
+ ]
+}

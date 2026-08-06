@@ -1,0 +1,28 @@
+{
+ "description": "Technician Utilization offers two spreadsheet downloads and they hold different things — the Expanded one carries a row for every day each technician worked. The spreadsheet is meant to be the same summary-level content whichever option is chosen.\n\nThe file names also differ from the ones written down.",
+ "steps": [
+  "Open Reports, then Technician Utilization, and set the date range to This Quarter so the files are short — that view returns the single technician Admin ShopView with 1.31 hours on 5 August 2026.",
+  "Open the three-dot menu and choose Summary (CSV), then Expanded (CSV). Also take the two PDFs.",
+  "Open both spreadsheets and compare them, and write down all four file names. This was seen with the date range This Year (1 January to 6 August 2026), which returns 29 technicians, active location Staging Heavy Duty - 9919, on an account that can also reach Staging Lethbridge - 4310."
+ ],
+ "current": "The Summary spreadsheet holds one technician row. The Expanded spreadsheet holds the same row plus a per-day row beneath it: Staging Lethbridge - 4310, 2026-08-05, 1.31, 1.31, 0.00, 100.0%, $0.00.\n\nThe four names given were technician-utilization-summary.csv, technician-utilization-expanded.csv, technician-utilization-summary.pdf and technician-utilization-expanded.pdf.\n\nA per-day breakdown is exactly what the Expanded PDF is meant to hold, and it does. Each file was fetched separately, so the names are the downloads' own.",
+ "expected": "Both spreadsheet options produce the same summary-level content — technician rows and the Summary row, with no per-day rows — and the files are named Technician-Utilization-Summary.pdf, Technician-Utilization-Expanded.pdf and technician-utilization.csv.",
+ "source": [
+  [
+   "spec",
+   "tu",
+   "S7-R7",
+   "The CSV file shows the technician rows and the Summary row. The CSV is always this summary-level content; it does not vary by the summary/expanded choice."
+  ],
+  [
+   "spec",
+   "tu",
+   "S7-R12",
+   "The downloaded files are named \"Technician-Utilization-Summary.pdf\", \"Technician-Utilization-Expanded.pdf\", and \"technician-utilization.csv\"."
+  ],
+  [
+   "note",
+   "One honest caveat: a second spreadsheet option exists at all because of the product owner's answer of 5 August 2026 (item T2-6, option B). That answer did not settle whether the second spreadsheet should hold per-day rows or the same summary content, nor what the files should be called, so that part may be a question for him rather than a fix."
+  ]
+ ]
+}

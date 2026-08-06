@@ -1,0 +1,18 @@
+{
+ "description": "The rows in a Technician Utilization download are in no recognisable order. Every download is meant to be ordered by technician name from A to Z.",
+ "steps": [
+  "Open Reports, then Technician Utilization, and set the date range to This Year.",
+  "Open the three-dot menu and choose Summary (CSV), then Summary (PDF).",
+  "Read the technician names in order down each file. This was seen with the date range This Year (1 January to 6 August 2026), which returns 29 technicians, active location Staging Heavy Duty - 9919, on an account that can also reach Staging Lethbridge - 4310."
+ ],
+ "current": "Both files begin Alexander Cohen, Brittany Anderson, Colleen Guerrero, Wesley Mcclure, Jacob Chung, William Johns, Judy Garcia, Andrew Wade, Monica Miller, Frank Hendrix, and end with Admin ShopView, Taylor Kelley, Margaret Garcia, Veronica Miller, Christopher Cobb. That is neither alphabetical nor the order on screen.\n\nThe on-screen table was in its default A to Z order when the files were taken, and the request for the file carries no sort instruction at all. The PDF has exactly the same order as the spreadsheet. The table's own request returns the technicians alphabetically.",
+ "expected": "Every download lists the technicians by name from A to Z, whatever the screen is sorted by.",
+ "source": [
+  [
+   "spec",
+   "tu",
+   "S7-R10a",
+   "Rows in every download are ordered by Technician name A→Z (the default order). The on-screen column sort (S2-R13) is applied client-side only and is not carried into the export."
+  ]
+ ]
+}
