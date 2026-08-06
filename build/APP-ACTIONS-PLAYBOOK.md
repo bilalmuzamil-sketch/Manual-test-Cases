@@ -186,6 +186,32 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   → probe the **`…api.`** host → on 401 ask for a fresh **`cf_clearance`** → on 409 check you are using
   **that branch's** `PHPSESSID` → only then consider the sign-in dead. **Never call `quick-login` to
   "be safe" if a sibling is live.**
+- **✅ THE POSITIVE TEST — HOW TO TELL A GENUINELY DEAD SHARED SIGN-IN FROM THE FOUR FALSE ALARMS
+  ABOVE (proven live 2026-08-06, Report Suite `sv8582`; the five traps were each ruled out first).**
+  The four traps tell you what a dead session is **not**; this is the signature of one that **is**.
+  **THE SIGNATURE — all three together:**
+  **(1) ALL THREE BRANCHES 401 TOGETHER ON A BYTE-IDENTICAL SHARED `sv_sso_session`.** Since
+  `sv_sso_session` + `cf_clearance` are the **shared** values and `PHPSESSID` is per-branch, a refusal
+  that is simultaneous across Reports, Filters and Schedule on the same shared token can only be the
+  shared token — **one branch failing alone is trap 4, not this.**
+  **(2) THE REFUSAL ARRIVES FROM nginx AS `application/json`** — `GET /api/auth/me` returns
+  **HTTP 401 `{"error":"sso_required"}`** as a **JSON body**, i.e. **the request reached the
+  application**. That is what rules `cf_clearance` out: a Cloudflare problem returns a **Cloudflare
+  challenge/HTML**, not the app's own JSON. **So trap 1 does NOT apply, and asking for a fresh
+  `cf_clearance` will not fix it.**
+  **(3) NOTHING RETURNS 409**, so it is not a `PHPSESSID` mismatch (trap 4's other half).
+  **⛔ `quick-login` IS NOT A RECOVERY ROUTE HERE — IT IS ITSELF SSO-GATED AND ANSWERS 401.**
+  Observed directly: `POST https://sv8582api.qa.shopview.com/api/quick-login` →
+  **HTTP 401 `{"error":"sso_required", …}`** (captured 2026-08-04 in
+  `build/report-suite/build-change-2026-08-04/BUILD-MOVED-2026-08-04.md`). **This is a different failure
+  from the §A 409-recovery recipe above:** that recipe repairs a session **burned by a `quick-login`
+  that got 403**, where the shared token is still good and only `PHPSESSID` needs swapping. When the
+  **shared** token is dead there is nothing to swap and no endpoint to swap it with.
+  **⇒ THE ONLY FIX IS A FRESH `sv_sso_session` FROM THE QA LEAD** — ask for **that value by name**,
+  not for "new cookies" and not for a `cf_clearance`. **Corroborating (not diagnostic): two other
+  candidate cookie files were tried and both 401'd, and a background probe re-tested every 90 s for a
+  whole session and never recovered** — useful confirmation, but the three-part signature is what
+  settles it, and a probe that never recovers is not by itself proof of cause.
 
 ## B. Environment / location
 - **QA-BRANCH SESSION TRAPS live in §A** (the five that produce a false "dead session": expired
