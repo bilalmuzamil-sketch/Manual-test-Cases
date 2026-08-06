@@ -1,0 +1,57 @@
+{
+ "bpWho": "Benjamin Peters",
+ "bpToggleBefore": "false",
+ "bpToggleAfter": "false",
+ "bpError": "Couldn't load this technician's hours, so they can't be edited right now. Close and reopen the dialog to try again.",
+ "bpEditorPresent": false,
+ "bpNet": [
+  {
+   "when": "2026-08-06T05:01:32.678Z",
+   "method": "GET",
+   "status": 200,
+   "url": "https://sv8685api.qa.shopview.com/api/staff/my-workplaces",
+   "reqBody": "",
+   "resBody": "{\"data\":{\"collection\":[{\"id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"name\":\"Staging Heavy Duty - 9919\",\"color\":\"#d66c00\",\"timezone\":\"America\\/Edmonton\",\"country_code\":\"CA\",\"telephone\":\"(403) 523 - 0488\",\"shop_id\":\"8685\",\"remit_to\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"shop_supplies_charge\":10.5,\"max_shop_supplies_charge\":350,\"min_shop_supplies_charge\":0,\"address_1\":\"9919 Shepard Road SE\",\"address_2\":null,\"city\":\"Calgary\",\"state_or_province\":\"Alberta\",\"postal_code\":\"T2C 4M5\",\"is_default\":0,\"shopSupplyPercentageEnabled\":false,\"has_terminal_readers\":true},{\"id\":\"f8a8b802-7780-4b16-bf10-343caeb616b2\",\"name\":\"Staging Lethbridge - 4310\",\"color\":\"#00a300\",\"timezone\":\"America\\/Edmonton\",\"country_code\":\"CA\",\"telephone\":\"(403) 327 - 3405\",\"shop_id\":\"8685\",\"remit_to\":\"f8a8b802-7780-4b16-bf10-343caeb616b2\",\"shop_supplies_charge\":10.5,\"max_shop_supplies_charge\":350,\"min_shop_supplies_charge\":0,\"address_1\":\"4310 9 Avenue North\",\"address_2\":null,\"city\":\"Lethbridge\",\"state_or_province\":\"Alberta\",\"postal_code\":\"T1H 6N4\",\"is_default\":0,\"shopSupplyPercentageEnabled\":false,\"has_terminal_readers\":false}]}}"
+  },
+  {
+   "when": "2026-08-06T05:01:35.846Z",
+   "method": "GET",
+   "status": 200,
+   "url": "https://sv8685api.qa.shopview.com/api/staff?pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=1000&pagination%5BsortBy%5D=first_name&pagination%5Bdescending%5D=false&search=",
+   "reqBody": "",
+   "resBody": "{\"data\":{\"collection\":[{\"id\":\"943b8bb8-a44d-4f2a-8209-d9a0960ac8bb\",\"email\":\"adam.stewart@staging.shopview.local\",\"first_name\":\"Adam\",\"last_name\":\"Stewart\",\"created_on\":\"2024-12-30 17:50:55\",\"confirmed_invitation_on\":\"2024-12-30 17:51:42\",\"avatar_url\":null,\"is_active\":false,\"role_label\":\"Technician\",\"staff_id\":\"78ecd235-490b-41d4-b5ca-9a90277edaca\",\"job_title\":\"HD Apprentice\",\"salary_type\":\"hourly\",\"salary\":50,\"billable\":1,\"clockable\":true,\"is_default\":1,\"departments\":[\"Staging Heavy Duty - 9919\\/Service\"],\"defaultWorkplace\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"defaultWorkplaceName\":\"Staging Heavy Duty - 9919\",\"salary_type_label\":\"Hourly\",\"workplace_id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"deletable\":false,\"role_id\":\"0a80a61f-957d-4ea9-9ece-5645802f5788\"},{\"id\":\"0eabf741-019e-4b02-84ce-66097c140b3a\",\"email\":\"admin@shopview.com\",\"first_name\":\"Admin\",\"last_name\":\"ShopView\",\"created_on\":\"2026-06-14 06:41:27\",\"confirmed_invitation_on\":\"2026-06-14 06:41:27\",\"avatar_url\":null,\"is_active\":true,\"role_label\":\"Admin\",\"staff_id\":\"ccbacb31-53f3-488e-9a7e-28f781761e62\",\"job_title\":null,\"salary_type\":null,\"salary\":null,\"billable\":1,\"clockable\":true,\"is_default\":0,\"departments\":[\"Staging He"
+  },
+  {
+   "when": "2026-08-06T05:01:43.938Z",
+   "method": "GET",
+   "status": 404,
+   "url": "https://sv8685api.qa.shopview.com/api/staff/11d2d65b-d8c5-48cf-b34b-382f039d2e12/working-hours",
+   "reqBody": "",
+   "resBody": "{\"errors\":[{\"error\":\"\\u0027Staff\\u0027 was not found.\"}]}"
+  },
+  {
+   "when": "2026-08-06T05:01:44.077Z",
+   "method": "GET",
+   "status": 200,
+   "url": "https://sv8685api.qa.shopview.com/api/staff/11d2d65b-d8c5-48cf-b34b-382f039d2e12/enrolled-workplaces",
+   "reqBody": "",
+   "resBody": "{\"data\":{\"collection\":[{\"id\":\"f8a8b802-7780-4b16-bf10-343caeb616b2\",\"name\":\"Staging Lethbridge - 4310\",\"color\":\"#00a300\",\"timezone\":\"America\\/Edmonton\",\"country_code\":\"CA\",\"telephone\":\"(403) 327 - 3405\",\"shop_id\":\"8685\",\"remit_to\":\"f8a8b802-7780-4b16-bf10-343caeb616b2\",\"shop_supplies_charge\":1050,\"max_shop_supplies_charge\":35000,\"min_shop_supplies_charge\":0,\"address_1\":\"4310 9 Avenue North\",\"address_2\":null,\"city\":\"Lethbridge\",\"state_or_province\":\"Alberta\",\"postal_code\":\"T1H 6N4\",\"is_default\":1,\"shopSupplyPercentageEnabled\":0,\"has_terminal_readers\":0}]}}"
+  },
+  {
+   "when": "2026-08-06T05:01:44.509Z",
+   "method": "GET",
+   "status": 200,
+   "url": "https://sv8685api.qa.shopview.com/api/staff/salaryTypes",
+   "reqBody": "",
+   "resBody": "{\"data\":{\"data\":[{\"value\":\"hourly\",\"label\":\"Hourly\"},{\"value\":\"salary\",\"label\":\"Salary\"}]}}"
+  },
+  {
+   "when": "2026-08-06T05:01:45.123Z",
+   "method": "GET",
+   "status": 404,
+   "url": "https://sv8685api.qa.shopview.com/api/staff/11d2d65b-d8c5-48cf-b34b-382f039d2e12/working-hours",
+   "reqBody": "",
+   "resBody": "{\"errors\":[{\"error\":\"\\u0027Staff\\u0027 was not found.\"}]}"
+  }
+ ]
+}

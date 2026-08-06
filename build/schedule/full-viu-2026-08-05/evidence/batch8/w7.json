@@ -1,0 +1,42 @@
+{
+ "who": "Ayesha Khan AK",
+ "before": {
+  "s": "07:00",
+  "e": "21:00"
+ },
+ "afterFill": "20:00",
+ "btnBox": {
+  "x": 1099.34375,
+  "y": 964.984375,
+  "width": 110.65625,
+  "height": 35.546875
+ },
+ "net": [
+  {
+   "m": "POST",
+   "url": "/api/staff/1e81b8a0-9a45-4f16-89e3-209bf240990a/change",
+   "body": "{\"first_name\":\"Ayesha\",\"last_name\":\"Khan AK\",\"email\":\"ayesha.khan+1@shopview.com\",\"role_id\":\"0a80a61f-957d-4ea9-9ece-5645802f5788\",\"workplace_id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"job_title\":\"ZZAUTOTEST title\",\"salary_type\":null,\"salary\":100,\"billable\":1,\"clockable\":true}"
+  },
+  {
+   "m": "PUT",
+   "url": "/api/staff/1e81b8a0-9a45-4f16-89e3-209bf240990a/working-hours",
+   "body": "{\"ranges\":[{\"dayOfWeek\":1,\"startMinute\":420,\"endMinute\":1200},{\"dayOfWeek\":2,\"startMinute\":420,\"endMinute\":1140},{\"dayOfWeek\":3,\"startMinute\":420,\"endMinute\":1140},{\"dayOfWeek\":4,\"startMinute\":420,\"endMinute\":1140},{\"dayOfWeek\":5,\"startMinute\":420,\"endMinute\":1140}]}"
+  },
+  {
+   "RES": 201,
+   "url": "/api/staff/1e81b8a0-9a45-4f16-89e3-209bf240990a/change",
+   "res": "{\"data\":{\"id\":\"1e81b8a0-9a45-4f16-89e3-209bf240990a\",\"name\":\"Ayesha Khan AK\",\"hasEmailUpdate\":false,\"clockableChanged\":false}}"
+  },
+  {
+   "RES": 200,
+   "url": "/api/staff/1e81b8a0-9a45-4f16-89e3-209bf240990a/working-hours",
+   "res": "{\"data\":{\"workingHours\":{\"ranges\":[{\"dayOfWeek\":1,\"startMinute\":420,\"endMinute\":1200},{\"dayOfWeek\":2,\"startMinute\":420,\"endMinute\":1140},{\"dayOfWeek\":3,\"startMinute\":420,\"endMinute\":1140},{\"dayOfWeek\":4,\"startMinute\":420,\"endMinute\":1140},{\"dayOfWeek\":5,\"startMinute\":420,\"endMinute\":1140}]}}}"
+  }
+ ],
+ "dialogOpen": false,
+ "who2": "Ayesha Khan AK",
+ "readback": {
+  "s": "07:00",
+  "e": "20:00"
+ }
+}
