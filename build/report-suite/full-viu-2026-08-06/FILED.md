@@ -163,3 +163,32 @@ two.**
 one-day-late PDF end date now reproduces on **Technician Utilization** and on **Sales By Customer**
 as well. The *"Start Date Range:"* mislabel is narrower — Parts Velocity and Technician Utilization
 have it, Sales By Customer prints *"Date Range:"* correctly. Reported for the QA lead's decision.
+
+---
+
+## SESSION 4 — 2026-08-06 — three Story Defects, priority **Medium**
+
+**Rule 53 changed today: what we file is now `Medium`, not `Low`.** All three below were filed at
+`Medium`. Tickets filed before 2026-08-06 are **not** retroactively re-prioritised.
+
+**Shape used on all three (Rule 52):** `issuetype` = **Story Defect** (10007) · `parent` = **the owning
+story**, which is itself a child of epic SV-8582 · `priority` = **Medium** · the owning story also linked
+**`relates to`** · **no Product Area** (the field does not exist on this type). Each carries a
+plain-language **source block** naming the WIP specification version 9 and the numbered requirement.
+
+**Duplicate-searched first** with six JQL queries (`align`, `Last Activity`, `muted` / `Estimates
+figure`, `Inv. Hrs`, `Totals row`, `Work In Progress`) plus the child lists of stories SV-8660, SV-8661
+and SV-8662. **SV-8661 and SV-8662 had no children at all**, so nothing existing covered these.
+
+| Key | Parent story | Priority | Summary | Field checks |
+|---|---|---|---|---|
+| [SV-8987](https://shopview.atlassian.net/browse/SV-8987) | SV-8660 | Medium | Work In Progress: the Last Activity column is left-aligned where the description asks for right-aligned | **11/11 PASS** |
+| [SV-8988](https://shopview.atlassian.net/browse/SV-8988) | SV-8661 | Medium | Work In Progress: the Estimates figure in the summary strip is not shown in a muted style | **11/11 PASS** |
+| [SV-8989](https://shopview.atlassian.net/browse/SV-8989) | SV-8660 | Medium | Work In Progress: Inv. Hrs shows two decimal places where the description asks for one | **11/11 PASS** |
+
+**0 tickets edited. 0 of anyone else's tickets touched** — in particular **SV-8960** (Nebojsa Glavinic),
+which contradicts S4-R4, was left exactly as found and escalated in `FINDINGS.md` instead.
+
+**Not filed, deliberately:** the five "Approved - Partially Completed" rows with no started signal (an
+innocent explanation could not be ruled out) and the **C30495 / S6-R3 Totals-row colouring** contradiction
+(it contradicts an already-verdicted case, so it is the QA lead's call, not a unilateral filing).

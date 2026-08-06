@@ -1,3 +1,110 @@
+# RESUME - Report Suite VIU, as at 2026-08-06 end of the FOURTH session
+
+> **⚠️ EVERYTHING BELOW THIS BANNER IS EARLIER SESSIONS' AND IS SUPERSEDED FOR THE COUNTS.** Session 4's
+> record is in this banner plus the SESSION 4 sections of `FINDINGS.md`,
+> `testrail-execution-log-session4.md`, `FILED.md`, `CHANGES-MADE.md`, `SOURCE-CURRENCY.md` and
+> **section G of `RECHECK-QUEUE.md`**.
+
+## THE STATE NOW, re-derived from live at the end of the session
+
+| | Count |
+|---|---:|
+| Live under group 4281 | **481** |
+| **Ours** | **476** (foreign C38919-C38923, Vladimir Tomovic - hands off, Rule 38) |
+| **Carrying a 6 August verdict** | **387** |
+| **STILL OUTSTANDING** | **89** |
+
+**387 + 89 = 476.** The gap was **124** when this session started, so **35 were closed**, all of them
+**Work In Progress**. Count by case id, never by line:
+`grep -oE 'C[0-9]{5}' REMAINING.txt | sort -u | wc -l`.
+
+## 🔴 THE BLOCKER — READ THIS FIRST
+
+**THE SIGNED-IN SESSION DIED AT ~11:37Z AND CANNOT BE RECOVERED FROM THE CONTAINER.** Every request on
+**all three** QA branches returns **HTTP 401 `sso_required`**; `sv8582api`, `sv8785api` and `sv8685api`
+all share **one `sv_sso_session`**, and it has expired estate-wide. `POST /api/quick-login {"key":"admin"}`
+— the documented recovery — **returns 401 itself**, because quick-login is SSO-gated too. This was
+diagnosed against every one of the playbook's five false-dead-session traps before being called a
+blocker: the cookie file is intact and one-line, the api host (not the SPA host) was probed, and the
+request **reaches the application** and gets an application-level JSON refusal, so `cf_clearance` is fine.
+
+**`switch-user` was never called and `quick-login {"key":"tech"}` was never called**, so this pass did not
+cause it. **What is needed: a fresh `sv_sso_session` for `.qa.shopview.com`, from the QA lead.**
+Nothing further can be observed until then.
+
+## THE EXACT NEXT ACTION, once a sign-in exists
+
+`REMAINING.txt` **section A** is the work list, **89 cases**, regenerated from live:
+
+| Report | Outstanding |
+|---|---:|
+| **Sales By Representative** | **45** |
+| Parts Velocity | 17 |
+| Sales By Customer | 14 |
+| Work In Progress | 10 |
+| Technician Utilization | 2 |
+| Inventory Value | 1 |
+
+**The eight Work In Progress cases are half-seeded and cheap to finish.** A work order already exists
+(`e40c1c15-63ba-4202-9cc9-358da3d5fe21`, Iibay Landscaping, Staging Heavy Duty - 9919, **no lines**), and
+the two fields those cases need are identified: **`input_time_estimate` ("Estimated Time") and
+`input_tech_time` ("Tech Time") in the New Line dialog**, reached by a **coordinate click** on
+`button_new_line` (a Quasar backdrop intercepts an ordinary Playwright click). What is not yet known is
+which further field `button_save_close` requires — it fired **no request** with description, labour rate,
+both times and Line Approved all set. Try picking a canned line via `select_line_canned_line` first.
+
+## What this session did
+
+**44 `update_case` over 40 distinct cases, every one HTTP 200, 30 fields compared each, 0 mismatches,
+0 collateral changes**, all three text fields on every payload. **0 add · 0 delete · 0 section · 0 run
+writes · 0 results logged.** The 432-case `refs` sweep was **not** run.
+
+**Work In Progress: 35 of its 45 outstanding cases closed** — **24 PASS · 5 DEVIATION · 6 HOLD**.
+
+**Three Story Defects filed at the new priority `Medium`, 11/11 field checks each:**
+[SV-8987](https://shopview.atlassian.net/browse/SV-8987) (Last Activity left-aligned, S4-R4) ·
+[SV-8988](https://shopview.atlassian.net/browse/SV-8988) (Estimates figure not muted, S5-R8) ·
+[SV-8989](https://shopview.atlassian.net/browse/SV-8989) (Inv. Hrs two decimals, S4-R23).
+
+**Nine provenance repairs.** The five the readiness pass named (**C30278**, **C38856**, **C43552**,
+**C43553**, **C43557** — and C30278 and C43557 each carried the claim **twice**, as reported), plus
+**C43551**, which **this session created and its own census caught**, plus **C43550/C43558/C43559**
+deduplicated. **Their build stamps were deliberately NOT refreshed** — those cases were not re-observed.
+
+**Three false defects killed by a control**, one of them already written into a case: **C30491's existing
+"Known issue" block claimed the Estimates figure was broken at $0.00 — it reads $0.00 only on the default
+This Week range, and equals the tab total to the cent over twelve months. The block was removed.**
+
+**The Q5 blocked-count in `QUESTIONS-FOR-CHRIS.md` corrected from sixteen to eight.**
+
+## 🔴 THE ARITHMETIC GATE IS NOT CLAIMED AND MUST NOT BE
+
+**Only 35 of the 476 cases carry a verdict established on the build now running.** The suite spans four
+markers — **35 on `v3.5-f77875c` · 133 on `v3.5-7168d14` · 223 on `v3.5-16cf83f` · 82 on
+`v3.4.1-3d03023` · 3 on none** — and that is stated per case in `REMAINING.txt` rather than averaged.
+
+## Two things needing the QA lead's decision, neither actioned
+
+1. **C30495** was verdicted PASS by an earlier session, but **S6-R3** requires the Totals row's Inv. Hrs
+   to carry the same green/red colouring as a row and **it carries none** on any of the four tabs. Outside
+   this session's list, so **not re-verdicted**.
+2. **[SV-8960](https://shopview.atlassian.net/browse/SV-8960)** (Nebojsa Glavinic) **contradicts S4-R4**:
+   it asks for Days Open to be left-aligned and treats Last Activity's left alignment as correct, when the
+   specification puts Days Open on the right (where the build already has it) and Last Activity is the one
+   genuinely wrong. **His ticket was not touched.** What source he worked from is **not established** —
+   his ticket cites none and he could not be asked. **For the QA lead to put to him.**
+
+## Outstanding, in the order it blocks work
+
+1. **A fresh `sv_sso_session` for `.qa.shopview.com`** — blocks **all 89** remaining cases. **QA lead.**
+2. **A second sign-in as a non-administrator** — blocks roughly 20 permission cases across six reports.
+3. **Chris Ward: 7 unanswered questions**, of which **Q5 (the Location column) holds 8 cases** and is
+   probably a five-minute edit to four requirements he has already decided.
+4. **The 432-case `refs` version sweep** — still not authorised, still not started.
+5. **The branch declared final** — it will not be, so the Rule-49 queue stays open by design (Rule 60).
+
+---
+
 # RESUME - Report Suite VIU, as at 2026-08-06 end of the THIRD session
 
 > **⚠️ THE NUMBERS BELOW THIS BANNER ARE THE SECOND SESSION'S AND ARE SUPERSEDED. The third session's

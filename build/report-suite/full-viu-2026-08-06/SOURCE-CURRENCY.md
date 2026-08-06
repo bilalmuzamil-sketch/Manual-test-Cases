@@ -107,3 +107,47 @@ were established.
 lines — held, **CURRENT**. Three new questions for him are raised in `QUESTIONS-FOR-CHRIS.md` in this
 folder; none of them changed a case's expectation, because an unanswered question may never do that
 (Rule 58).
+
+---
+
+## SESSION 4 — 2026-08-06, re-read live at 10:57:47Z
+
+| Source | Identifier | Version / last-updated | Checked | Verdict |
+|---|---|---|---|---|
+| SBC specification | Confluence 577634305 | **15** — 2026-08-05T17:53:06Z | 2026-08-06 10:57Z | **CURRENT** |
+| SBR specification | Confluence 585629698 | **17** — 2026-08-05T17:53:08Z | 2026-08-06 10:57Z | **CURRENT** |
+| Parts Velocity specification | Confluence 620888066 | **5** — 2026-08-05T13:21:40Z | 2026-08-06 10:57Z | **CURRENT** |
+| Technician Utilization specification | Confluence 641400833 | **6** — 2026-08-05T13:33:10Z | 2026-08-06 10:57Z | **CURRENT** |
+| WIP specification | Confluence 703660034 | **9** — 2026-08-05T17:54:07Z | 2026-08-06 10:57Z | **CURRENT** |
+| Inventory Value specification | Confluence 720142338 | **4** — 2026-08-05T13:33:13Z | 2026-08-06 10:57Z | **CURRENT** |
+| Epic + child stories | SV-8582 | **104 children** (fully paged `parent=SV-8582`) | 2026-08-06 11:41Z | **CURRENT** — and this **corrects our own record of 105**. An unpaged call returns 100 and under-reports |
+| Designs | — | none exist for this project | — | **N/A**, spec-only authoring |
+| Engineering tech plan | `build/report-suite/tech-plan-2026-07-29/` | 2026-07-29 | — | **CURRENT** |
+| Chris Ward's answers | the 2026-08-05 sheet | 2026-08-05 | — | **CURRENT**, with **7 questions unanswered** |
+| **The build** | `sv8582` QA branch | **`v3.5-f77875c`**, last-modified 2026-08-06 10:43:37 GMT | 10:55:54Z **and** 11:53:07Z, sha256 identical | **PARTIAL — and this is the material shortfall.** Only **35 of 476** cases carry a verdict established on this marker. 133 sit on `v3.5-7168d14`, 219 on `v3.5-16cf83f`, 85 on `v3.4.1-3d03023`, 4 on none. **The branch is NOT declared final** |
+| **The signed-in session** | shared `sv_sso_session` across all three QA branches | **DIED at ~11:37Z** | 11:39Z | **STALE — BLOCKING.** See below |
+
+### Rule 59 — sources re-read immediately before the writes began
+
+The six specification versions were re-read at **10:57:47Z** and the first write went out at **~11:45Z**;
+**no source moved between those two points**, and the build marker was confirmed byte-identical again at
+**11:53:07Z** after the writes. **Verdict of the second read: UNCHANGED.**
+
+### The session loss, diagnosed rather than assumed
+
+At ~11:37Z every request began returning **HTTP 401 `sso_required`**. Diagnosed against the playbook's
+five false-dead-session traps before concluding anything:
+
+- **Not trap 2** — probed `sv8582api.qa.shopview.com`, never the SPA host.
+- **Not trap 3** — the cookie file is one line, mode 600, unmodified since 10:25, and all three cookies
+  are present at their expected lengths.
+- **Not Cloudflare (trap 1's usual cause)** — the request **reaches the application** and gets an
+  application-level JSON `sso_required`, not a Cloudflare challenge, so `cf_clearance` is still good.
+- **It is the shared SSO session.** All three cookie sets carry the **same `sv_sso_session` and the same
+  `cf_clearance`** (sha-compared), and **all three branches now 401** — `sv8582api`, `sv8785api` and
+  `sv8685api` alike. So there is no newer shared token to borrow from a sibling set.
+- **The documented recovery does not work here.** `POST /api/quick-login {"key":"admin"}` — the key that
+  works on this estate — **returns HTTP 401 itself**, because quick-login is SSO-gated too.
+
+**This is not something this pass did:** `switch-user` was never called and `quick-login {"key":"tech"}`
+was never called. **Only the QA lead can clear it, with a fresh `sv_sso_session` for `.qa.shopview.com`.**

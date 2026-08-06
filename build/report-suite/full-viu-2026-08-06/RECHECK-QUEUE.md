@@ -324,3 +324,47 @@ That single point is **Q7 in `QUESTIONS-FOR-CHRIS.md`**, and it is **not** liste
 the case can be run and failed today regardless of the answer.
 
 **Trigger: Chris Ward answering Q7.** Not a deploy.
+
+---
+
+## SECTION G — SESSION 4, 2026-08-06, Work In Progress on build `v3.5-f77875c`
+
+**STATUS: OPEN.** The branch is **not declared final** and engineering have said it will not be before
+release, so under Rule 60 an open queue is this project's normal steady state and **every verdict below
+is PROVISIONAL**.
+
+**Build these 35 observations were made on: `v3.5-f77875c`** (last-modified Thu 06 Aug 2026 10:43:37 GMT,
+etag `829ed038…`, `index.html` sha256 `b0f05b6f…`, byte-identical at 10:55:54Z and 11:53:07Z).
+**This is recorded per row, not per pass** — the suite now spans four build markers and an average would
+hide that.
+
+### G.1 — What the automated suite now monitors by itself (Rule 61), so it is NOT a re-check task
+
+The 24 PASS and 5 EXPECT-FAIL cases below are automatable and each expect-fail case names its exact
+symptom with all three outcomes, so a shipped fix or a changed failure is reported by the next automated
+run at no cost. **They need no deploy-triggered re-observation.**
+
+| Case | Verdict | Build observed on | Ticket |
+|---|---|---|---|
+| C30457, C30458, C30459, C30460, C30462, C30473, C30482, C30484, C30485, C30486, C30490, C30501, C30502, C30503, C30504, C30506, C30507, C30508, C30509, C30520, C30521, C30522, C30525, C38916 | PASS (24) | `v3.5-f77875c` | — |
+| C30466 | DEVIATION | `v3.5-f77875c` | SV-8987 |
+| C30491 | DEVIATION | `v3.5-f77875c` | SV-8988 |
+| C30481 | DEVIATION | `v3.5-f77875c` | SV-8989 |
+| C30500 | DEVIATION | `v3.5-f77875c` | SV-8908 (carried forward, not re-verified) + SV-8968 (confirmed) |
+| C30511 | DEVIATION | `v3.5-f77875c` | SV-8907 |
+
+### G.2 — THE REAL WORK LIST: rows that need a human, each against the thing it is actually waiting on
+
+| Case | Waiting on | NOT a deploy trigger |
+|---|---|---|
+| C30467, C43551 | **Chris Ward's answer to Q5** — the WIP specification says the Location column two ways (S4-R3 vs S7-R13) | Re-check when he answers |
+| C30528, C30530, C30531, C30533 | **A way to read the nightly snapshot back.** Six candidate endpoints probed, all HTTP 404 | Re-check if a reader ships |
+| C30526, C30527 | **A second sign-in as a non-administrator** | Re-check when the login exists |
+| C30456, C30464, C30475, C30476, C30477, C30478, C30480, C38890 | **A seeded work order with known billed and clocked labour hours.** Half-done: the work order exists (`e40c1c15-63ba-4202-9cc9-358da3d5fe21`) and the two fields needed are identified as `input_time_estimate` and `input_tech_time` in the New Line dialog | Re-check when the session returns. **These 8 were NOT written, so they still carry their 4 August build stamp — correctly** |
+
+### G.3 — Two things for the QA lead, carried as queue rows because neither is ours to settle
+
+| Row | What it is |
+|---|---|
+| **C30495** | Verdicted **PASS** on `v3.5-7168d14` by an earlier session, but **S6-R3** requires the Totals row's Inv. Hrs to carry the same green/red colouring as a row and **it carries none** on all four tabs (`+246.84`, `+1434.65`, `+0.52`, `+173.50`, all positive, all black in light mode). **Outside this session's work list; not re-verdicted.** |
+| **The five APC rows** | Five of 116 "Approved - Partially Completed" rows have neither clocked time nor Parts Earned, where **S3-R4** requires one or the other. A part received at a $0.00 sell value would make all five correct, and that could not be separated before the session was lost. **Not filed.** |

@@ -237,3 +237,24 @@ Running TestRail total: **233 `update_case`** over **220 distinct cases**. Still
 widened and given the new source block in the same pass. **No other existing ticket was edited,
 commented on, transitioned or re-prioritised** — he is retrofitting the rest himself, in one pass, to
 avoid a collision.
+
+---
+
+## SESSION 4 — 2026-08-06 — changes made to the QA branch
+
+**One work order was created and left in place.** These branches are deleted when the feature reaches
+staging, so **no teardown is required** — but it is recorded here rather than glossed.
+
+| What | Detail |
+|---|---|
+| Work order created | `e40c1c15-63ba-4202-9cc9-358da3d5fe21`, customer **Iibay Landscaping**, vehicle `00052898-8ce9-4bf4-b0be-c3644db57f29` (2020 Ford Transit, VIN `86J8FAC1VALJ43SJY`), workplace **Staging Heavy Duty - 9919**, start date 2026-08-06, `is_vehicle_here: true`. Created via `POST /api/work-orders/create` → HTTP 201 |
+| Lines added to it | **None.** The New Line dialog was opened and filled but Save & Close fired no request, and the session was lost before the required field could be identified. **The work order has zero lines**, so it contributes $0.00 to every Work In Progress figure and sits in the Estimates tab |
+| Named `ZZAUTOTEST`? | **No — and that is a miss.** The line description was to be `ZZAUTOTEST labour 4h est 1h clocked`, but the line was never saved, and the work order itself carries no marker because the create endpoint takes no description. **It is identified by its id above.** |
+| Dark mode | Switched to **Dark** through the profile menu and **switched back to Light**, verified: `localStorage.mode` reads `"light"` and the body class is `body--light` |
+| Column selection / date range / filters | Changed repeatedly during the pass. These are **per-browser** settings held in `report_view:wip` in the throwaway browser profile, not server state, so nothing persisted for anyone else |
+| Roles, staff, settings, deactivations | **None. Nothing else was created, changed or deleted.** |
+
+**No impersonation.** `POST /api/switch-user` and `POST /api/quick-login {"key":"tech"}` were **never
+called** — both are proven to 403 on this branch and a failed attempt rotates the shared session that the
+Filters and Schedule workers depend on. One `quick-login {"key":"admin"}` **was** attempted, once, as the
+documented 401 recovery; it returned **HTTP 401 itself**, so it changed nothing.

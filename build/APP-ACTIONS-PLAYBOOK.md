@@ -2287,3 +2287,78 @@ then read `app-version` + `last-modified` + `etag`, and hash `index.html` — th
   `v3.5-7ec992f`** — filed **SV-8957**. It had been `button_sidebar_arm_<woId>` with `aria-pressed`.
   **Practical consequence for tooling: with the click route gone, drag-dependent scenarios cannot be
   driven headlessly at all** — 7 cases went to `HOLD` for exactly this reason. If it is restored, use it.
+
+## §Q — REPORT SUITE `sv8582`: Work In Progress + Quasar recipes (proven live 2026-08-06, build `v3.5-f77875c`)
+
+**WIP EXPORT NEEDS `columns=` — WITHOUT IT YOU GET A 400 THAT LOOKS LIKE A DEFECT.**
+`GET /api/reporting/reports/work-in-progress/export` returns
+**HTTP 400 `{"errors":[{"error":"At least one column is required."}]}`** if `columns` is missing. The real
+shape, taken off the product's own download menu with a request listener rather than guessed:
+```
+…/work-in-progress/export?format=csv|pdf&tab=<Tab>&from=<ISO>&to=<ISO>&locations=<id,id>
+  &columns=wo_number,status,customer,asset,location,advisor,days_open,earned,remaining,total
+  &sortBy=days_open&descending=true
+```
+Full column set: `wo_number,status,customer,asset,vin,location,advisor,days_open,last_activity,labor_earned,labor_remaining,parts_earned,parts_remaining,earned,remaining,inv_hours,total`.
+**WIP uses `from=`/`to=` with full ISO instants plus `tab=`, NOT the other five reports' `range=`.**
+Tabs: `Estimates` · `Completed` · `ApprovedPartiallyCompleted` · `ApprovedNotStarted`.
+The data response carries `collection`, `pagination`, **`tab_counts`** (all four at once), **`totals`** and
+**`summary`** (the seven-figure strip) — so **the whole strip and every tab total can be checked in one
+call**, money in **cents**.
+
+**WIP DATE-RANGE CAP, MEASURED:** a **366-day** span inclusive of both endpoints returns **200**; **367**
+returns **HTTP 400 `{"errors":[{"error":"Date range cannot be over one year."}]}`**. So the first and last
+days are both counted.
+
+**LOCATION SCOPING:** omitting `locations` returns the **active location only** — counts identical to
+passing that one id. An id the user cannot access, or a bogus uuid, is **silently ignored and falls back to
+the active location** (no error). Useful as a ready-made negative for "no inaccessible location leaks".
+
+**QUASAR: THREE THINGS THAT EACH COST A RUN.**
+1. **A dialog backdrop swallows Playwright clicks.** `page.click('[data-test-id="button_new_line"]')` times
+   out on `div.q-dialog__backdrop` even though the button is visible and enabled. **Fix: click the element
+   centre by coordinate** — `const r=el.getBoundingClientRect(); page.mouse.click(r.x+r.width/2, r.y+r.height/2)`.
+   Press `Escape` first to clear any dialog already open.
+2. **A type-ahead multi-select needs its own input, and needs a dispatched event.** Typing with
+   `page.keyboard.type` after clicking the control lands on the **page**, not the menu, so the list looks
+   unfiltered and reads as a broken filter. **Fix: find `input` inside the open `.q-menu` whose
+   `placeholder` starts with `Search`, set `.value`, then dispatch `new Event('input',{bubbles:true})`.**
+   Query the **last** `.q-menu` in the DOM — earlier ones linger. Placeholders here are `Search assets`,
+   `Search customers`.
+3. **The shared date-range calendar navigates by `aria-label`** — `Previous month`, `Next month`,
+   **`Previous year`**, **`Next year`**. Preset items are plain text inside `.q-menu`
+   (`Last 12 Months`, `This Year`, …). **Clicking day cells to build a custom range did NOT register** for
+   us — the readout stayed on the old range and Apply re-sent it, so a custom span is still best proven at
+   the data layer.
+
+**DARK MODE IS IN THE PROFILE MENU, NOT AN OS PREFERENCE.** `prefers-color-scheme: dark` does **not**
+switch this app — the body stays `body--light`. The toggle is `[data-test-id="profile_menu_button"]` →
+menu items **`Light`** / **`Dark`**; state persists in `localStorage.mode` (`"light"` / `"dark"`) and the
+body class becomes `body--dark`. Forcing the class by hand works for a style read but is **not** what a
+tester does — use the menu, and switch back afterwards.
+
+**WO LINE SEEDING — WHAT IS KNOWN AND WHAT IS NOT.** `POST /api/work-orders/create`
+`{company_id, vehicle_id, workplace_id, start_date, is_vehicle_here:true}` → **201
+`{data:{work_order_id}}`** (company only → 500; no company → 400 naming the field). `POST /api/work-orders/lines/create`
+with just `work_order_id` returns **`{"error":"Labor or fixed prices must be set."}`**, and
+`labor_hours`/`labor_rate`/`labor_price`/`hours`/`rate` in every combination tried do **not** satisfy it —
+**the field names are still unknown; learn them from the dialog's own request, do not guess.** The New Line
+dialog (`dialog_line`) holds `select_line_canned_line` ("What Are You Doing?"), `input_line_description`,
+`select_technician`, `select_labour_type` ("Labor Rate"), **`input_time_estimate` ("Estimated Time")**,
+**`input_tech_time` ("Tech Time")**, `checkbox_line_approved`, `button_save_add_line`, `button_save_close`.
+**`input_tech_time` is the clocked time** — so Estimated Time + Tech Time on one approved line is exactly
+the state the earned/remaining maths cases need. **Save & Close fired no request** with description, labour
+rate, both times and Line Approved set, so at least one more field is required; try
+`select_line_canned_line` first.
+
+**⚠️ CORRECTION TO THE 409 RECOVERY RECIPE ABOVE — IT HAS A LIMIT.** The recipe (call
+`quick-login {"key":"admin"}`, swap only the returned `PHPSESSID`) works when a **failed quick-login**
+rotated the per-branch session. **It does NOT work when the shared `sv_sso_session` itself has expired:
+`quick-login` is SSO-gated too and returns HTTP 401 `sso_required` as well.** How to tell the two apart in
+one step: **all three branch cookie sets carry the SAME `sv_sso_session` and `cf_clearance`** (only
+`PHPSESSID` is per-branch), so **if `sv8582api`, `sv8785api` AND `sv8685api` all 401 together, the shared
+token is gone and no self-service recovery exists — only the QA lead can supply a new one.** If only one
+branch fails, it is the per-branch session and the recipe applies. Distinguish an expired `cf_clearance`
+from an expired SSO session by the **shape of the refusal**: a Cloudflare block returns a challenge page,
+whereas an application-level JSON `{"error":"sso_required", …}` means the request **reached the app** and
+`cf_clearance` is still good.

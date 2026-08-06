@@ -1,17 +1,28 @@
-# REMAINING - Report Suite, regenerated from LIVE TestRail at the end of the THIRD session 2026-08-06
+# REMAINING - Report Suite, regenerated from LIVE TestRail at the end of the FOURTH session 2026-08-06
 # Count by case id, never by line:  grep -oE "C[0-9]{5}" REMAINING.txt | sort -u | wc -l
 #
-# Build now running: v3.5-7168d14 (index.html last-modified Thu 06 Aug 2026 08:32:37 GMT).
-# It has NOT moved since the second session; read byte-identical at 09:54:19Z, 10:31:45Z and 10:35:43Z.
+# Build now running: v3.5-f77875c (index.html last-modified Thu 06 Aug 2026 10:43:37 GMT, etag 829ed038...).
+# It moved from v3.5-7168d14 at 10:43:37Z, TWELVE MINUTES BEFORE session 4 began, and was byte-identical
+# at 10:55:54Z and 11:53:07Z, so nothing redeployed under that session.
 #
-# SECTION A = cases with NO 6 August verdict. THIS IS THE WORK LIST. Start with Work In Progress.
-# SECTION B = cases verdicted on 6 August. Under Rule 60 a redeploy does not invalidate an
-#             expectation, and under Rule 61 the automated suite reports a changed verdict by itself,
-#             so do NOT re-drive these first.
+# Verdicts now span FOUR build markers - stated rather than averaged:
+#   v3.5-16cf83f 8/6/2026    219
+#   v3.5-7168d14 8/6/2026    133
+#   v3.4.1-3d03023 8/4/2026  82
+#   v3.5-f77875c 8/6/2026    35
+#   v3.5-16cf83f 8/5/2026    4
+#   none none                3
 #
-====================================================================================================================
-= SECTION A - NO 6 AUGUST VERDICT - START HERE (124 cases)
-====================================================================================================================
+# SECTION A = cases with NO 6 August verdict. THIS IS THE WORK LIST.
+# SECTION B = cases verdicted on 6 August. Under Rule 60 a redeploy does not invalidate an expectation,
+#             and under Rule 61 the automated suite reports a changed verdict by itself, so do NOT
+#             re-drive these.
+#
+# NEXT: Sales By Representative (the largest block), then Parts Velocity, Sales By Customer,
+# Technician Utilization and Inventory Value. BLOCKED ON A FRESH SIGN-IN - see SOURCE-CURRENCY.md.
+======================================================================================================================
+= SECTION A - NO 6 AUGUST VERDICT - START HERE (89 cases)
+======================================================================================================================
 C30592	IV — Exports                              | Exports are generated server-side over the full filtered set         | v3.5-16cf83f 8/5/2026
 C38925	PV — API                                  | QuickBooks amount for a part-of-a-unit sale is exact and never infla | v3.4.1-3d03023 8/4/2026
 C30391	PV — API                                  | The back end serves report data and export on ordinary reports acces | v3.4.1-3d03023 8/4/2026
@@ -91,55 +102,20 @@ C30311	SBR — Work Order Sales Rep                | Selector offers only reps w
 C30313	SBR — Work Order Sales Rep                | The Sales Representative selector is read-only when Invoiced or Paid | v3.4.1-3d03023 8/4/2026
 C30442	TU — Location Filter                      | The Location filter is the rightmost multi-select; All Locations = s | v3.5-16cf83f 8/5/2026
 C38859	TU — Visual & Accessibility               | Column Selection: Technician always on, the other five toggleable, r | v3.5-16cf83f 8/5/2026
-C30530	WIP — API                                 | Captured Earned and Remaining use the same maths as the on-screen re | v3.4.1-3d03023 8/4/2026
-C30528	WIP — API                                 | Nightly snapshot records one row per then-open job per calendar date | v3.4.1-3d03023 8/4/2026
-C30531	WIP — API                                 | Nightly snapshot spans every location with no user location filter   | v3.4.1-3d03023 8/4/2026
-C30533	WIP — API                                 | Nightly snapshot: a job with nothing approved is captured at $0.00;  | v3.4.1-3d03023 8/4/2026
-C43551	WIP — Column Selection & Persistence      | A hand-made Location column choice is remembered like any other colu | none none
-C30509	WIP — Column Selection & Persistence      | A saved setting that is no longer valid falls back to its default    | v3.4.1-3d03023 8/4/2026
-C30506	WIP — Column Selection & Persistence      | Column Selection toggles columns; Total is not offered at all        | v3.5-16cf83f 8/5/2026
-C30508	WIP — Column Selection & Persistence      | Remembers the date range, filter selections, location, columns       | v3.4.1-3d03023 8/4/2026
-C30507	WIP — Column Selection & Persistence      | Toggling columns never reorders them (Total always last)             | v3.4.1-3d03023 8/4/2026
-C30467	WIP — Columns & Rows                      | First visit shows the default columns; the rest are in the column se | v3.4.1-3d03023 8/4/2026
-C30473	WIP — Columns & Rows                      | Last Activity shows Today; Xd ago; or an em-dash when there is none  | v3.4.1-3d03023 8/4/2026
-C30466	WIP — Columns & Rows                      | With all toggleable columns on, the fixed column order and alignment | v3.4.1-3d03023 8/4/2026
 C38890	WIP — Earned & Remaining                  | A technician still clocked in counts toward Labor Earned, capped at  | v3.4.1-3d03023 8/4/2026
-C30482	WIP — Earned & Remaining                  | An open estimate with no approved work shows $0.00 in every money co | v3.4.1-3d03023 8/4/2026
-C30481	WIP — Earned & Remaining                  | Inv. Hrs shows quoted minus worked hours; signed to one decimal      | v3.4.1-3d03023 8/4/2026
 C30475	WIP — Earned & Remaining                  | Labor Earned is the clocked share of each approved line's quoted val | v3.4.1-3d03023 8/4/2026
 C30476	WIP — Earned & Remaining                  | Labor Remaining is the approved labor's quoted value minus Labor Ear | v3.4.1-3d03023 8/4/2026
 C30480	WIP — Earned & Remaining                  | Lines that are not yet approved contribute nothing to any money figu | v3.4.1-3d03023 8/4/2026
 C30477	WIP — Earned & Remaining                  | Parts Earned is the sell value of approved-line parts already receiv | v3.4.1-3d03023 8/4/2026
 C30478	WIP — Earned & Remaining                  | Parts Remaining values the not-yet-received quantity at its sell pri | v3.4.1-3d03023 8/4/2026
-C30511	WIP — Exports                             | Downloads keep shown columns, honor filters, include the tab's Total | v3.4.1-3d03023 8/4/2026
-C30500	WIP — Filters                             | Asset filter shows Unit # and VIN and matches text against either on | v3.5-16cf83f 8/5/2026
-C30503	WIP — Filters                             | Location filter: rightmost multi-select with All locations, reloads  | v3.4.1-3d03023 8/4/2026
-C38916	WIP — Filters                             | The Location column is automatic and never reads Multiple on a work- | v3.4.1-3d03023 8/4/2026
-C30502	WIP — Filters                             | The date range filters on the WO's created date and reloads on chang | v3.5-16cf83f 8/5/2026
-C30501	WIP — Filters                             | The date range offers the presets plus Custom; This Week default; no | v3.4.1-3d03023 8/4/2026
-C30504	WIP — Filters                             | The location scope never includes an inaccessible location           | v3.4.1-3d03023 8/4/2026
 C30526	WIP — Permissions                         | Ordinary reports access covers opening and downloading Work In Progr | v3.4.1-3d03023 8/4/2026
 C30527	WIP — Permissions                         | Without reports access Work In Progress is absent from the navigatio | v3.4.1-3d03023 8/4/2026
-C30458	WIP — Scope & Loading                     | Each qualifying work order appears exactly once in exactly one tab   | v3.4.1-3d03023 8/4/2026
 C30456	WIP — Scope & Loading                     | Every open service WO at a selected location appears in the report   | v3.4.1-3d03023 8/4/2026
-C30457	WIP — Scope & Loading                     | Invoiced; Paid and part-sale work orders never appear                | v3.4.1-3d03023 8/4/2026
-C30460	WIP — Scope & Loading                     | No qualifying work orders: every tab shows the no-data message and n | v3.4.1-3d03023 8/4/2026
-C30459	WIP — Scope & Loading                     | While loading the standard indicator shows and old rows stay until d | v3.4.1-3d03023 8/4/2026
-C30484	WIP — Sorting                             | Clicking a header sorts ascending, clicking again toggles descending | v3.4.1-3d03023 8/4/2026
-C30485	WIP — Sorting                             | Columns sort by their underlying values; Asset sorts by the Unit #   | v3.4.1-3d03023 8/4/2026
-C30486	WIP — Sorting                             | Sorting reorders only the active tab's rows; Totals stays at the bot | v3.4.1-3d03023 8/4/2026
-C30490	WIP — Summary Strip                       | Each per-stage figure equals the matching tab's money total          | v3.4.1-3d03023 8/4/2026
-C30491	WIP — Summary Strip                       | The Estimates figure is the Estimates tab's total quoted value, show | v3.4.1-3d03023 8/4/2026
 C30464	WIP — Tab Placement                       | Approved started-boundary: time or part received vs neither decides  | v3.4.1-3d03023 8/4/2026
-C30462	WIP — Tab Placement                       | Status-to-tab mapping: Estimate, Complete, In Progress and Review wo | v3.4.1-3d03023 8/4/2026
-C30525	WIP — Visual & Accessibility              | In dark mode every table; strip; link and coloring stays legible     | v3.4.1-3d03023 8/4/2026
-C30521	WIP — Visual & Accessibility              | The Total column is bold and stays pinned right on sideways scroll   | v3.4.1-3d03023 8/4/2026
-C30522	WIP — Visual & Accessibility              | The Totals row stays visible while only the active tab's body scroll | v3.4.1-3d03023 8/4/2026
-C30520	WIP — Visual & Accessibility              | The summary strip is a bold band ruled top and bottom above the tabs | v3.4.1-3d03023 8/4/2026
 
-====================================================================================================================
-= SECTION B - VERDICTED 6 AUGUST (352 cases)
-====================================================================================================================
+======================================================================================================================
+= SECTION B - VERDICTED 6 AUGUST (387 cases)
+======================================================================================================================
 C30606	IV — API                                  | A recorded snapshot day equals what the live report showed that day  | v3.5-16cf83f 8/6/2026
 C30605	IV — API                                  | Nightly snapshot records one row per in-stock non-core part per loca | v3.5-16cf83f 8/6/2026
 C30607	IV — API                                  | Nightly snapshot: re-running the capture for a date replaces that da | v3.5-16cf83f 8/6/2026
@@ -459,17 +435,32 @@ C30423	TU — Technician Filter                    | Filter by Technician starts
 C30426	TU — Technician Filter                    | Previously deselected technicians stay deselected on the next visit  | v3.5-16cf83f 8/6/2026
 C30447	TU — Visual & Accessibility               | All-white table with no row shading; toolbar controls in the fixed o | v3.5-16cf83f 8/6/2026
 C30448	TU — Visual & Accessibility               | Dark mode keeps every report element legible                         | v3.5-16cf83f 8/6/2026
+C30530	WIP — API                                 | Captured Earned and Remaining use the same maths as the on-screen re | v3.5-f77875c 8/6/2026
+C30528	WIP — API                                 | Nightly snapshot records one row per then-open job per calendar date | v3.5-f77875c 8/6/2026
+C30531	WIP — API                                 | Nightly snapshot spans every location with no user location filter   | v3.5-f77875c 8/6/2026
+C30533	WIP — API                                 | Nightly snapshot: a job with nothing approved is captured at $0.00;  | v3.5-f77875c 8/6/2026
+C43551	WIP — Column Selection & Persistence      | A hand-made Location column choice is remembered like any other colu | v3.5-f77875c 8/6/2026
+C30509	WIP — Column Selection & Persistence      | A saved setting that is no longer valid falls back to its default    | v3.5-f77875c 8/6/2026
+C30506	WIP — Column Selection & Persistence      | Column Selection toggles columns; Total is not offered at all        | v3.5-f77875c 8/6/2026
+C30508	WIP — Column Selection & Persistence      | Remembers the date range, filter selections, location, columns       | v3.5-f77875c 8/6/2026
+C30507	WIP — Column Selection & Persistence      | Toggling columns never reorders them (Total always last)             | v3.5-f77875c 8/6/2026
 C30471	WIP — Columns & Rows                      | Customer shows the customer's company name                           | v3.5-7168d14 8/6/2026
 C30472	WIP — Columns & Rows                      | Days Open shows whole days since creation and reads 0 days / 1 days  | v3.5-7168d14 8/6/2026
+C30467	WIP — Columns & Rows                      | First visit shows the default columns; the rest are in the column se | v3.5-f77875c 8/6/2026
+C30473	WIP — Columns & Rows                      | Last Activity shows Today; Xd ago; or an em-dash when there is none  | v3.5-f77875c 8/6/2026
 C30469	WIP — Columns & Rows                      | Status shows as a color-coded badge whose label text is always prese | v3.5-7168d14 8/6/2026
 C30470	WIP — Columns & Rows                      | The Asset cell shows the Unit # in bold with the VIN underneath      | v3.5-7168d14 8/6/2026
 C30468	WIP — Columns & Rows                      | The WO # is a link that opens the WO in the same browser tab         | v3.5-7168d14 8/6/2026
 C43557	WIP — Columns & Rows                      | The WO # is plain text, not a link, without Work Order permission    | v3.5-7168d14 8/6/2026
+C30466	WIP — Columns & Rows                      | With all toggleable columns on, the fixed column order and alignment | v3.5-f77875c 8/6/2026
+C30482	WIP — Earned & Remaining                  | An open estimate with no approved work shows $0.00 in every money co | v3.5-f77875c 8/6/2026
 C30479	WIP — Earned & Remaining                  | Earned + Remaining make Total; not the WO's grand total              | v3.5-7168d14 8/6/2026
+C30481	WIP — Earned & Remaining                  | Inv. Hrs shows quoted minus worked hours; signed to one decimal      | v3.5-f77875c 8/6/2026
 C30474	WIP — Earned & Remaining                  | Money columns show US dollars to two decimals with thousands separat | v3.5-7168d14 8/6/2026
 C38918	WIP — Exports                             | An over-cap Work In Progress download is refused with the too-large  | v3.5-16cf83f 8/6/2026
 C30514	WIP — Exports                             | Days Open in a download is frozen at the moment the file is generate | v3.5-16cf83f 8/6/2026
 C30512	WIP — Exports                             | Downloaded money and Inv. Hrs values keep the on-screen formats      | v3.5-16cf83f 8/6/2026
+C30511	WIP — Exports                             | Downloads keep shown columns, honor filters, include the tab's Total | v3.5-f77875c 8/6/2026
 C30516	WIP — Exports                             | Export headers read "Unit" and "Branch" — documented limitation, do  | v3.5-16cf83f 8/6/2026
 C30518	WIP — Exports                             | Export notifications: success caption, "Empty export" warning        | v3.5-16cf83f 8/6/2026
 C30513	WIP — Exports                             | Inv. Hrs green/red coloring appears on screen and in the PDF; not th | v3.5-16cf83f 8/6/2026
@@ -477,13 +468,29 @@ C30517	WIP — Exports                             | The PDF shows the shop logo
 C30515	WIP — Exports                             | The downloaded files are named "wip-2-report.pdf" and "wip-2-report. | v3.5-16cf83f 8/6/2026
 C30510	WIP — Exports                             | Work In Progress: a three-dot menu holds Download (PDF) and Download | v3.5-16cf83f 8/6/2026
 C30505	WIP — Filters                             | Advisor, customer and asset filters AND together and recompute strip | v3.5-7168d14 8/6/2026
+C30500	WIP — Filters                             | Asset filter shows Unit # and VIN and matches text against either on | v3.5-f77875c 8/6/2026
 C30499	WIP — Filters                             | Customer filter is a type-ahead multi-select reading "All customers" | v3.5-7168d14 8/6/2026
+C30503	WIP — Filters                             | Location filter: rightmost multi-select with All locations, reloads  | v3.5-f77875c 8/6/2026
 C30498	WIP — Filters                             | The Advisor filter lists the advisors in the loaded jobs; screen onl | v3.5-7168d14 8/6/2026
+C38916	WIP — Filters                             | The Location column is automatic and never reads Multiple on a work- | v3.5-f77875c 8/6/2026
+C30502	WIP — Filters                             | The date range filters on the WO's created date and reloads on chang | v3.5-f77875c 8/6/2026
+C30501	WIP — Filters                             | The date range offers the presets plus Custom; This Week default; no | v3.5-f77875c 8/6/2026
+C30504	WIP — Filters                             | The location scope never includes an inaccessible location           | v3.5-f77875c 8/6/2026
+C30458	WIP — Scope & Loading                     | Each qualifying work order appears exactly once in exactly one tab   | v3.5-f77875c 8/6/2026
+C30457	WIP — Scope & Loading                     | Invoiced; Paid and part-sale work orders never appear                | v3.5-f77875c 8/6/2026
+C30460	WIP — Scope & Loading                     | No qualifying work orders: every tab shows the no-data message and n | v3.5-f77875c 8/6/2026
+C30459	WIP — Scope & Loading                     | While loading the standard indicator shows and old rows stay until d | v3.5-f77875c 8/6/2026
+C30484	WIP — Sorting                             | Clicking a header sorts ascending, clicking again toggles descending | v3.5-f77875c 8/6/2026
+C30485	WIP — Sorting                             | Columns sort by their underlying values; Asset sorts by the Unit #   | v3.5-f77875c 8/6/2026
+C30486	WIP — Sorting                             | Sorting reorders only the active tab's rows; Totals stays at the bot | v3.5-f77875c 8/6/2026
 C30483	WIP — Sorting                             | The initial sort is Days Open with the longest-open work order first | v3.5-7168d14 8/6/2026
+C30490	WIP — Summary Strip                       | Each per-stage figure equals the matching tab's money total          | v3.5-f77875c 8/6/2026
 C30493	WIP — Summary Strip                       | Each summary figure's information icon reveals its plain explanation | v3.5-7168d14 8/6/2026
+C30491	WIP — Summary Strip                       | The Estimates figure is the Estimates tab's total quoted value, show | v3.5-f77875c 8/6/2026
 C30487	WIP — Summary Strip                       | The summary strip shows seven figures in a fixed order as US dollars | v3.5-7168d14 8/6/2026
 C30488	WIP — Summary Strip                       | Total Earned is the hero figure and equals the started-stage figures | v3.5-7168d14 8/6/2026
 C30489	WIP — Summary Strip                       | Total Remaining equals Not Started plus Started — Remaining          | v3.5-7168d14 8/6/2026
+C30462	WIP — Tab Placement                       | Status-to-tab mapping: Estimate, Complete, In Progress and Review wo | v3.5-f77875c 8/6/2026
 C30452	WIP — Tabs                                | Four tabs in a fixed order with the partially-completed tab selected | v3.5-7168d14 8/6/2026
 C30455	WIP — Tabs                                | There is no Trend / over-time tab or chart                           | v3.5-7168d14 8/6/2026
 C30451	WIP — Tabs                                | Work In Progress appears in the reports navigation under the Perform | v3.5-7168d14 8/6/2026
@@ -491,4 +498,8 @@ C30494	WIP — Totals Row                          | Each tab has a Totals row p
 C30495	WIP — Totals Row                          | The Totals row sums each visible money column and the Inv. Hrs colum | v3.5-7168d14 8/6/2026
 C30524	WIP — Visual & Accessibility              | Each summary figure's info icon is keyboard-reachable and screen-rea | v3.5-7168d14 8/6/2026
 C30519	WIP — Visual & Accessibility              | Each tab uses an all-white table with no alternating row shading     | v3.5-7168d14 8/6/2026
+C30525	WIP — Visual & Accessibility              | In dark mode every table; strip; link and coloring stays legible     | v3.5-f77875c 8/6/2026
+C30521	WIP — Visual & Accessibility              | The Total column is bold and stays pinned right on sideways scroll   | v3.5-f77875c 8/6/2026
+C30522	WIP — Visual & Accessibility              | The Totals row stays visible while only the active tab's body scroll | v3.5-f77875c 8/6/2026
 C30523	WIP — Visual & Accessibility              | The WO # link is keyboard-focusable and opens the work order         | v3.5-7168d14 8/6/2026
+C30520	WIP — Visual & Accessibility              | The summary strip is a bold band ruled top and bottom above the tabs | v3.5-f77875c 8/6/2026
