@@ -174,3 +174,103 @@ refusal, which **cannot be produced here** — the biggest tab holds 65 work ord
 The Parts Velocity PDF prints its date-range heading one day late (SV-8937). **Work In Progress does
 not** — asked for 1–2 January 2020 it printed *"Jan 1, 2020 - Jan 2, 2020"*. So SV-8937 is specific to
 Parts Velocity, which is what that ticket says.
+
+---
+
+## Batch 7 — TECHNICIAN UTILIZATION, all 57 remaining cases driven live
+
+Build read again at **06:51:12Z**: `v3.5-16cf83f`, last-mod Wed, 05 Aug 2026 06:40:32 GMT, etag
+`177c59546701e7810b894492dabc1423`, `index.html` sha256 `67932a75…` — **byte-identical to the start
+of the session. No redeploy under this batch.** All six specs re-fetched live at the start of the
+batch: SBC **15** · SBR **17** · PV **5** · TU **6** · WIP **9** · IV **4** — **none moved.**
+
+**Technician Utilization is now finished.** All 61 of its live cases carry a verdict or a written
+not-observed reason: 57 were ours to drive, 3 were settled by the 5 August pass and 1 (C38919)
+belongs to Vladimir Tomovic and was not touched.
+
+| Verdict | Count |
+|---|---|
+| PASS | 26 |
+| DEVIATION | 19 |
+| PARTIAL | 5 |
+| NOT OBSERVED, with a reason | 7 |
+
+### The nineteen deviations, and the twelve tickets filed for them
+
+| Case | What the document requires | What the build does | Ticket |
+|---|---|---|---|
+| [C30394](https://shopview.testrail.io/index.php?/cases/view/30394) | S1-R3 / S9-R2 — opens on the user's active location | Opens on **All locations**; both locations returned on a genuine first visit. The date half is correct | [SV-8943](https://shopview.atlassian.net/browse/SV-8943) |
+| [C30430](https://shopview.testrail.io/index.php?/cases/view/30430) | S1-R9 — Total Hours equals Timesheet Activities to the cent | Andrew Wade **1080.44 vs 1080.64**; six of eight technicians differ by up to 0.25 h | [SV-8944](https://shopview.atlassian.net/browse/SV-8944) |
+| [C30410](https://shopview.testrail.io/index.php?/cases/view/30410) · [C30450](https://shopview.testrail.io/index.php?/cases/view/30450) | S2-R13 — "Sorting is applied on screen to the loaded rows (no reload)" | Every header click sends `pagination[sortBy]` to the server | [SV-8945](https://shopview.atlassian.net/browse/SV-8945) |
+| [C30424](https://shopview.testrail.io/index.php?/cases/view/30424) | S9-R3 — the technician filter is "on-screen only" | Ticking a technician sends `exclude_technicians=` to the server | [SV-8946](https://shopview.atlassian.net/browse/SV-8946) |
+| [C30423](https://shopview.testrail.io/index.php?/cases/view/30423) · [C30425](https://shopview.testrail.io/index.php?/cases/view/30425) | S5-R1 "Filter by Technician" · S5-R6 "Select all" | Reads **"Technician"** and **"All technicians"** | [SV-8947](https://shopview.atlassian.net/browse/SV-8947) |
+| [C30437](https://shopview.testrail.io/index.php?/cases/view/30437) · [C30440](https://shopview.testrail.io/index.php?/cases/view/30440) | S7-R8 / S7-N1 — downloads honour the technician filter; none selected = silent no-op | The export request carries **no technician parameter at all**; a deselected technician is still in the file, and a download with none selected still arrives with a success message | [SV-8948](https://shopview.atlassian.net/browse/SV-8948) |
+| [C30438](https://shopview.testrail.io/index.php?/cases/view/30438) | S7-R10a — every download ordered Technician A→Z | Both the spreadsheet and the PDF come out in no recognisable order | [SV-8949](https://shopview.atlassian.net/browse/SV-8949) |
+| [C30435](https://shopview.testrail.io/index.php?/cases/view/30435) | S7-R5 / S7-R6 / S7-R12 — Summary row in both PDFs; Title-Case names | **No Summary row in any of the four files**; names are lower-case | [SV-8950](https://shopview.atlassian.net/browse/SV-8950) |
+| [C30436](https://shopview.testrail.io/index.php?/cases/view/30436) · [C43552](https://shopview.testrail.io/index.php?/cases/view/43552) | S7-R7 — the spreadsheet is always summary-level, named `technician-utilization.csv` | Two spreadsheets; the **Expanded one holds a per-day row under every technician** | [SV-8951](https://shopview.atlassian.net/browse/SV-8951) |
+| [C30441](https://shopview.testrail.io/index.php?/cases/view/30441) | "Download started" / "Failed to download report" | Success reads **"Success / Data exported successfully."**; a failure shows **nothing at all** | [SV-8952](https://shopview.atlassian.net/browse/SV-8952) |
+| [C30418](https://shopview.testrail.io/index.php?/cases/view/30418) · [C30421](https://shopview.testrail.io/index.php?/cases/view/30421) | S8-R12 — the expand controls expose their open/closed state | Names are exactly right in both states; **no `aria-expanded` on either control** | [SV-8953](https://shopview.atlassian.net/browse/SV-8953) |
+| [C38915](https://shopview.testrail.io/index.php?/cases/view/38915) | S9-R9 / S10-R4 — the Location column follows what the user can REACH and is toggleable | It vanishes when a single location is chosen, and **Location is never offered in the Column Selection control** | [SV-8954](https://shopview.atlassian.net/browse/SV-8954) |
+| [C30434](https://shopview.testrail.io/index.php?/cases/view/30434) | S7-R2..R4a — "Download Summary (PDF)" etc. | "Summary (PDF)", "Summary (CSV)", "Expanded (PDF)", "Expanded (CSV)" | already **[SV-8881](https://shopview.atlassian.net/browse/SV-8881)** |
+
+**All 19 carry the Rule-61 three-outcome block**, and every symptom in it is one observed this batch.
+
+### Two Rule-57 repairs — cases that had been written to the build
+
+**[C30423](https://shopview.testrail.io/index.php?/cases/view/30423)** asserted a filter *"labeled
+'Technician'"* and **[C30425](https://shopview.testrail.io/index.php?/cases/view/30425)** asserted a
+control *"'All technicians'"*. Those are the build's words. **The specification names both plainly** —
+S5-R1 *"a filter labeled 'Filter by Technician'"* and S5-R6 *"a control labeled 'Select all'"* — so
+both were restored to the documented wording and became expect-fail. Nothing else in either case
+changed.
+
+### Four candidates DISPROVEN before anything was filed
+
+**(a) The Total Hours link is NOT colour-only.** It looked like a plain S6-R1 failure: no underline
+at rest and none on hover. Reading it against a neighbouring plain cell showed **font-weight 600
+against 400**, plus a pointer cursor, and on keyboard focus an underline *and* a 2px focus outline.
+S6-R1 asks for *"an underline (or equivalent non-color affordance)"* — weight qualifies. **PASS.**
+
+**(b) The Timesheet Activities drill-through is NOT broken.** The first read showed the staff filter
+displaying a raw identifier and *"There are no results for selected date range"*. That was a **stale
+read** — the page had not finished resolving the staff list after 8 s. Given longer it settles to
+*"Andrew Wade"* with a full Totals line. The same trap as the two sort false alarms.
+
+**(c) The Expanded PDF failure is ALREADY REPORTED.** It returns HTTP 500 after ~32 s on any view
+past roughly a thousand rows (874 rows succeeded in 23.6 s; 1,235 rows failed at 31.8 s) — a
+timeout, not the 10,000-row guard, which answers HTTP 400 with its own message. **[SV-8818](https://shopview.atlassian.net/browse/SV-8818)
+names this report explicitly.** No duplicate filed; only the *missing* failure message went into
+SV-8952.
+
+**(d) The Summary's 0.01 gap is the documented drift.** After deselecting one technician the Summary
+read 14984.33 where the displayed rows eye-sum to 14984.34. C30415 allows exactly that, and the
+figures reconcile to the raw seconds exactly.
+
+### One finding with no case of its own — and it widens an existing ticket
+
+The Technician Utilization PDF heading prints **"Start Date Range: Jan 1, 2026 - Aug 7, 2026"** for a
+range that ends on **6 August** — the same one-day-late end date and the same *"Start Date Range:"*
+label as **[SV-8937](https://shopview.atlassian.net/browse/SV-8937)**, which was filed saying it was
+specific to Parts Velocity. **It is not.** Reported here rather than filed, and **SV-8937 was not
+edited** — widening someone's ticket scope is the QA lead's call.
+
+### Proofs for batch 7
+
+- **57 `update_case`**, every one HTTP 200, re-GET and byte-compared, **30 fields each, 0 mismatches,
+  0 collateral**. All three text fields sent on every write.
+- **0 add · 0 delete · 0 section · 0 run writes · 0 results logged.**
+- **All 419 untouched cases proven byte-identical BY CONTENT** — every field including `updated_on`
+  and `updated_by`, 0 differences.
+- **Foreign C38919–C38923 proven byte-identical BY CONTENT.** Never touched.
+- **Run 359 proven untouched**: `include_all` still false, **476 tests**, test-id and case_id sets
+  equal **both directions**, **all 535 prior results present BY ID**, **0 new**, and **0 fields moved
+  on any of the 535 — not even the declared `case_title` / `case_refs` echoes**.
+- **Census over all 61 live TU cases: exactly one provenance line, one "Last checked against build"
+  line and one `AUTOMATION:` marker each; the marker is last; no raw markup; no stale build marker;
+  no barred phrase.** The only case failing the census is **C38919, which is Vladimir Tomovic's** and
+  is meant to have none. Run because the byte-check cannot catch a malformed payload — the C30341
+  lesson.
+- **C30392's raw `<ol>`/`<li>` markup converted to plain numbered text** in all three fields —
+  formatting only, not one word of meaning changed. **12 raw-markup cases remain**, all in Work In
+  Progress: C30451, C30456, C30457, C30460, C30487, C30490, C30491, C30493, C30519, C30522, C30526,
+  C30528.

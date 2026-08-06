@@ -77,3 +77,54 @@ no-ticket variant** (every deviation found so far has a ticket), and **10 carry 
 C30500, C30510, C30512–C30518 and C38918, the Work In Progress export set. Those 10 are deliberately
 blank: the failure has never been reproduced, and **a symptom nobody has seen must never be
 written**.
+
+## Batch 7 — twelve more Story Defects (Technician Utilization)
+
+| Key | Parent story | Summary |
+|---|---|---|
+| [SV-8943](https://shopview.atlassian.net/browse/SV-8943) | SV-8648 | Opens on All locations instead of the location the user is working in |
+| [SV-8944](https://shopview.atlassian.net/browse/SV-8944) | SV-8648 | Total hours do not match Timesheet Activities for the same technician, range and location |
+| [SV-8945](https://shopview.atlassian.net/browse/SV-8945) | SV-8649 | Sorting a column reloads the report from the server instead of reordering the rows on screen |
+| [SV-8946](https://shopview.atlassian.net/browse/SV-8946) | SV-8652 | The technician filter reloads the report from the server instead of hiding rows on screen |
+| [SV-8947](https://shopview.atlassian.net/browse/SV-8947) | SV-8652 | The technician filter and its select-all control are labelled differently from the specification |
+| [SV-8948](https://shopview.atlassian.net/browse/SV-8948) | SV-8654 | Downloads ignore the technician filter and include everybody |
+| [SV-8949](https://shopview.atlassian.net/browse/SV-8949) | SV-8654 | Downloads are not ordered by technician name A to Z |
+| [SV-8950](https://shopview.atlassian.net/browse/SV-8950) | SV-8654 | Downloads leave out the Summary row |
+| [SV-8951](https://shopview.atlassian.net/browse/SV-8951) | SV-8654 | The Expanded spreadsheet contains per-day rows and the file names differ from the specification |
+| [SV-8952](https://shopview.atlassian.net/browse/SV-8952) | SV-8654 | Download messages: the success wording is generic and a failed download says nothing at all |
+| [SV-8953](https://shopview.atlassian.net/browse/SV-8953) | SV-8655 | Expand and collapse controls do not tell assistive technology whether a row is open |
+| [SV-8954](https://shopview.atlassian.net/browse/SV-8954) | SV-8656 | The Location column disappears when one location is chosen, and cannot be turned on again |
+
+**Duplicate search run before filing, reported so it can be judged:**
+`parent in (SV-8648..SV-8656)` — **0 results**, so no Technician Utilization story carried a defect
+of its own before this batch; and `project=SV AND text ~ "Technician Utilization" ORDER BY created
+DESC` — 33 results, of which the relevant neighbours are **SV-8818** (the PDF timeout on five of the
+six reports, which names this report — so nothing was filed for the Expanded PDF failure),
+**SV-8881** (the download-menu wording on this report — so nothing was filed for that either, and
+C30434 points at SV-8881), **SV-8879** (the location chooser shown to a single-location user),
+**SV-8907**/**SV-8908** (Work In Progress), and the two historic ones **SV-6431** (Done) and
+**SV-5334** (obsolete) about the *previous* reports disagreeing with Timesheet Activities — both
+named inside SV-8944 so a triager can see the relationship.
+
+## Four more candidates DISPROVEN and not filed
+
+**(c) The Total Hours link is not colour-only** — it is font-weight 600 against 400, with a pointer
+cursor, and gains an underline and a 2px outline on keyboard focus. S6-R1 allows "an equivalent
+non-color affordance".
+
+**(d) The drill-through to Timesheet Activities is not broken** — the raw identifier and "no results"
+were a stale read at 8 s; the page settles to the technician's name and a full Totals line.
+
+**(e) The Expanded PDF server error is SV-8818**, already filed and already naming this report. It is
+a ~30-second timeout (874 rows succeed in 23.6 s, 1,235 rows fail at 31.8 s), not the 10,000-row
+guard, which answers HTTP 400 with its own message.
+
+**(f) The Summary's one-hundredth gap is the documented rounding drift** that C30415 allows; the
+figures reconcile to the raw seconds exactly.
+
+## One existing ticket whose scope this batch showed to be too narrow — NOT edited
+
+**[SV-8937](https://shopview.atlassian.net/browse/SV-8937)** says the one-day-late PDF end date and
+the *"Start Date Range:"* label are specific to Parts Velocity. **Technician Utilization does exactly
+the same thing** — asked for 1 Jan to 6 Aug 2026 it prints *"Start Date Range: Jan 1, 2026 - Aug 7,
+2026"*. Reported, not edited: widening someone's ticket is the QA lead's call.

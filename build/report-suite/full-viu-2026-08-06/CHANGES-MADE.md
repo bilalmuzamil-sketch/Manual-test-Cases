@@ -148,3 +148,49 @@ One further Story Defect filed, same Rule-52 shape, every field read back:
 Running TestRail total: **148 `update_case`** over **136 distinct cases**. Still 0 add · 0 delete ·
 0 section · **0 run writes** · **0 results logged**. **No further ticket filed** — SV-8907 already
 covers the export failure, so the finding went into the cases, not into Jira.
+
+## Update after batch 7 (Technician Utilization, 2026-08-06)
+
+**Application data: nothing created, deleted or altered.** Every observation this batch used the
+signed-in Admin session read-only — the report read endpoints, the per-day breakdown endpoint, the
+export endpoints, the Timesheet Activities read endpoint and the report page itself. No customer,
+work order, clock record, part, invoice, asset or organisation setting was written; no role was
+changed or reset; nobody was clocked in or out.
+
+The only writes anywhere were to **browser local storage inside a throwaway headless context**:
+the product's own saved-view key `report_view:technician-utilization`, which the product itself
+writes whenever a filter, sort or column selection changes, and which was removed twice by us to
+force a genuine first-visit state, and once had a `locations` key added to it in an attempt to test
+the defensive-restore path (the attempt failed — the real key is `locationIds` — so nothing was
+proven by it). That context is destroyed when the script ends; nothing persists on the server or in
+any real user's browser.
+
+| Batch | Operation | Count | Verification |
+|---|---|---|---|
+| 7 (Technician Utilization) | `update_case` | 57 | every one HTTP 200, re-GET, 30 fields compared, 0 mismatches, 0 collateral |
+
+Running TestRail total: **205 `update_case`** over **193 distinct cases**. Still 0 add · 0 delete ·
+0 section · **0 run writes** · **0 results logged**.
+
+Twelve Story Defects filed, all in the Rule-52 shape (issuetype 10007 · parent = the owning story ·
+priority Low · `relates to` link to the same story · no Product Area), every field read back —
+**11 checks each, all PASS**:
+
+| Key | Parent story | Summary |
+|---|---|---|
+| [SV-8943](https://shopview.atlassian.net/browse/SV-8943) | SV-8648 | Technician Utilization opens on All locations instead of the location the user is working in |
+| [SV-8944](https://shopview.atlassian.net/browse/SV-8944) | SV-8648 | Technician Utilization total hours do not match Timesheet Activities for the same technician, range and location |
+| [SV-8945](https://shopview.atlassian.net/browse/SV-8945) | SV-8649 | Sorting a Technician Utilization column reloads the report from the server instead of reordering the rows on screen |
+| [SV-8946](https://shopview.atlassian.net/browse/SV-8946) | SV-8652 | The Technician Utilization technician filter reloads the report from the server instead of hiding rows on screen |
+| [SV-8947](https://shopview.atlassian.net/browse/SV-8947) | SV-8652 | Technician Utilization technician filter and its select-all control are labelled differently from the specification |
+| [SV-8948](https://shopview.atlassian.net/browse/SV-8948) | SV-8654 | Technician Utilization downloads ignore the technician filter and include everybody |
+| [SV-8949](https://shopview.atlassian.net/browse/SV-8949) | SV-8654 | Technician Utilization downloads are not ordered by technician name A to Z |
+| [SV-8950](https://shopview.atlassian.net/browse/SV-8950) | SV-8654 | Technician Utilization downloads leave out the Summary row |
+| [SV-8951](https://shopview.atlassian.net/browse/SV-8951) | SV-8654 | The Technician Utilization Expanded spreadsheet contains per-day rows and the file names differ from the specification |
+| [SV-8952](https://shopview.atlassian.net/browse/SV-8952) | SV-8654 | Technician Utilization download messages: the success wording is generic and a failed download says nothing at all |
+| [SV-8953](https://shopview.atlassian.net/browse/SV-8953) | SV-8655 | Technician Utilization expand and collapse controls do not tell assistive technology whether a row is open |
+| [SV-8954](https://shopview.atlassian.net/browse/SV-8954) | SV-8656 | The Technician Utilization Location column disappears when one location is chosen, and cannot be turned on again |
+
+No existing ticket was edited, commented on, transitioned or re-prioritised — including
+**SV-8937**, whose stated scope this batch showed to be too narrow, and **SV-8818**, which already
+covers the Expanded PDF failure.

@@ -593,6 +593,517 @@
   "note": "NOT OBSERVED. Permission case - needs a second sign-in to prove the back end serves the report on ordinary reports access and refuses without it.",
   "verdict": "NOT OBSERVED"
  },
+ "30392": {
+  "anchor": "TU S1-R1",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Reports navigation PERFORMANCE group reads, in order: Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency, Work In Progress, Technician Utilization, Sales By Representative. The entry is labelled \"Technician Utilization\", sits below all four pre-existing anchor links, and opens /reports/technician-utilization. Raw <ol>/<li> markup converted to plain numbered text in the same write; wording unchanged.",
+  "verdict": "PASS"
+ },
+ "30393": {
+  "anchor": "TU S1-R2",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "This Month (1-6 Aug 2026) returns exactly one technician row, Admin ShopView. This Year returns 29. So 28 technicians who have clocked time in the year have no row in the month - only technicians with clocked time in the selected range appear, one row each.",
+  "verdict": "PASS"
+ },
+ "30394": {
+  "anchor": "TU S1-R3, S1-R6, S9-R2",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "With the report saved view removed from the browser, the date range defaulted correctly to This Month (asked the server for 2026-08-01 to 2026-08-06) but the Location filter read \"All locations\" and the second request carried BOTH locations, while the active location is Staging Heavy Duty - 9919.",
+  "ticket": "SV-8943",
+  "verdict": "DEVIATION"
+ },
+ "30395": {
+  "anchor": "TU S1-R4, S1-R5",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Each preset change reloaded the rows (This Year -> This Quarter -> This Year, row counts 29/1/29). A custom span of Jun 1 2025 to Aug 6 2026 showed \"Range: 432 days (max 366)\" and the Apply button was disabled (disabled=true, aria-disabled=true), so it cannot be applied.",
+  "verdict": "PASS"
+ },
+ "30396": {
+  "anchor": "TU S1-R10",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Existing rows were never emptied during a reload - the table held 32 rows continuously across 12 samples at 400 ms - and the toolbar stayed interactive. The loading indicator itself was NOT captured in that sampling window, so item 1 is not observed.",
+  "verdict": "PARTIAL"
+ },
+ "30397": {
+  "anchor": "TU S1-R7",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "No clock record crossing midnight and no second time zone were identified in the data on this environment, so the day-grouping and midnight-split behaviour could not be driven.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30398": {
+  "anchor": "TU S1-N1",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Needs a second sign-in as a user without reports access. There is one shared session on this estate and quick-login/switch-user would rotate it out from under a sibling worker.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30399": {
+  "anchor": "TU S1-N2, S3-N1, S5-N1",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Clearing every technician replaced the rows with exactly \"Empty bays, endless possibilities. Get Going!\" and the Summary row was hidden.",
+  "verdict": "PASS"
+ },
+ "30401": {
+  "anchor": "TU S2-R1..R5",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "With a single location selected the headings read exactly Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor. With both selected a Location column appears leftmost, already on. Hours render two decimals with no thousands separator (15916.03).",
+  "verdict": "PASS"
+ },
+ "30402": {
+  "anchor": "TU S2-R6, S2-R7",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Verified against the raw seconds behind the screen: Eric Ponce 3424897 s total / 2610392 s work-order = 76.2%, shown \"76.2%\"; Fernando Mercer 76.0%; Christian Pitts 3.4%. One decimal and a percent sign throughout.",
+  "verdict": "PASS"
+ },
+ "30403": {
+  "anchor": "TU S2-E1, S2-R7",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Daniel Padilla (0 work-order seconds, 3146930 internal) shows \"0.0%\" and Ruth Jackson likewise. No row exceeds 100.0% across all 29.",
+  "verdict": "PASS"
+ },
+ "30404": {
+  "anchor": "TU S2-R8, S2-R9",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Implied rates from the data are exactly $145.00/h at Staging Heavy Duty - 9919 (Christian Pitts 3241650 s -> $130,566.46) and $159.95/h at Staging Lethbridge - 4310 (Daniel Padilla 3146930 s -> $139,819.85). Dollars with two decimals and thousands commas.",
+  "verdict": "PASS"
+ },
+ "30405": {
+  "anchor": "TU S2-R10, S2-R11, S8-R4, S8-R6, S8-R7",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "The Est. Lost Labor column carries class report-col-pinned text-weight-bold on both header and cells. Its information icon is the only one in the header row and its tooltip reads exactly \"Internal hours valued at each location's default labor rate\".",
+  "verdict": "PASS"
+ },
+ "30406": {
+  "anchor": "TU S2-E2",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Zero internal hours shows \"$0.00\" - Andrew Wade, William Johns and 20 others. A location configured with a rate of exactly $0.00 does not exist on this environment, so item 2 could not be produced.",
+  "verdict": "PARTIAL"
+ },
+ "30407": {
+  "anchor": "TU S2-E3, S8-R11",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Both locations have a default labor rate ($145.00 and $159.95), so no row can show the em-dash state.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30408": {
+  "anchor": "TU S2-E4",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Same reason: no unrated location exists here, so a part-valued row cannot be produced.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30409": {
+  "anchor": "TU S2-R12, S8-R8, S8-R10",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "On load the rows run Admin ShopView -> William Johns alphabetically, the Technician header shows the ascending indicator and carries aria-sort=\"ascending\" while every other header carries none.",
+  "verdict": "PASS"
+ },
+ "30410": {
+  "anchor": "TU S2-R13, S2-R14",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "The cycle is correct - first click on Technician gives Z to A, the next A to Z, the next Z to A, with no third state, and all six columns sort. But item 4 fails: each click sends a request to the report data address carrying pagination[sortBy]=total_hours&pagination[descending]=false then =true, so the rows come from the server.",
+  "ticket": "SV-8945",
+  "verdict": "DEVIATION"
+ },
+ "30411": {
+  "anchor": "TU S2-R15",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "After changing the range to This Quarter the sort returned to Technician ascending (aria-sort ascending on Technician, none elsewhere), and it was Technician ascending again after a page reload.",
+  "verdict": "PASS"
+ },
+ "30412": {
+  "anchor": "TU S2-R16",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Under every sort tried the Summary row stayed last, and with Christian Pitts expanded his 104 day rows stayed beneath his own row in date order after sorting by Total Hours.",
+  "verdict": "PASS"
+ },
+ "30413": {
+  "anchor": "TU S2-R17",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "No em-dash rows exist on this environment. Ascending and descending by Est. Lost Labor were both driven and ordered correctly by value ($0.00 rows first ascending; Daniel Padilla first descending).",
+  "verdict": "NOT OBSERVED"
+ },
+ "30414": {
+  "anchor": "TU S3-R1, S3-R2, S3-R6, S3-R7",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "The last row carries class report-totals-row, its first cell reads exactly \"Summary\", its figures use the same formats as the rows and no cell carries a TOTAL: or AVG: prefix.",
+  "verdict": "PASS"
+ },
+ "30415": {
+  "anchor": "TU S3-R3",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Summary read 15916.03 / 12843.23 / 3072.80 against sums of the raw seconds of 15916.03 / 12843.23 / 3072.80 - exact. After deselecting Christian Pitts it recalculated to 14984.33, one hundredth from the eye-sum, which is the drift the case allows.",
+  "verdict": "PASS"
+ },
+ "30416": {
+  "anchor": "TU S3-R4",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Summary Utilization read 80.7%. The weighted rate from the raw seconds is 80.7%; the plain average of the 29 row percentages is 85.7%. So it is the weighted rate.",
+  "verdict": "PASS"
+ },
+ "30417": {
+  "anchor": "TU S3-R5",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Summary Est. Lost Labor read $462,687.13 against a sum of the underlying cents of $462,687.13 - exact. The em-dash contribution rules in items 2 and 3 cannot be produced here.",
+  "verdict": "PARTIAL"
+ },
+ "30418": {
+  "anchor": "TU S4-R1, S8-R12",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "The control exists and its accessible name is exactly \"Expand Christian Pitts's daily breakdown\" when closed and \"Collapse Christian Pitts's daily breakdown\" when open. It carries no aria-expanded in either state, so item 3 fails.",
+  "ticket": "SV-8953",
+  "verdict": "DEVIATION"
+ },
+ "30419": {
+  "anchor": "TU S4-R2",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Expanding Christian Pitts issued one request to /technician-utilization/<staff id>/daily and returned 104 day rows from 2026-01-05 onward in date order. Nothing else on the page reloaded.",
+  "verdict": "PASS"
+ },
+ "30420": {
+  "anchor": "TU S4-R3",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Day rows carry the same seven columns and formats. 2026-01-05 read 9.14 / 0.00 / 9.14 / 0.0% / $1,325.10; the underlying 32899 internal seconds at $145.00/h round to exactly $1,325.10.",
+  "verdict": "PASS"
+ },
+ "30421": {
+  "anchor": "TU S4-R4, S8-R12",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "The control is in the table header row, named \"Expand all technicians\" and then \"Collapse all technicians\", and expanded all 29 rows (1837 day rows) then collapsed them. It carries no aria-expanded, so item 4 fails.",
+  "ticket": "SV-8953",
+  "verdict": "DEVIATION"
+ },
+ "30422": {
+  "anchor": "TU S4-R5",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "All rows were collapsed after a range change and on a fresh visit. With all 29 expanded (1837 day rows), deselecting Admin ShopView left 1836 - only his own day rows went, every other row stayed expanded.",
+  "verdict": "PASS"
+ },
+ "30423": {
+  "anchor": "TU S5-R1, S5-R2",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Every technician is selected on a first visit and every row is shown. The filter is labelled \"Technician\", not \"Filter by Technician\" as the specification requires; the case had been written to the build's label and is restored to the specification wording in this pass.",
+  "ticket": "SV-8947",
+  "verdict": "DEVIATION"
+ },
+ "30424": {
+  "anchor": "TU S5-R3, S5-R4, S5-R5, S9-R3",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Deselecting Christian Pitts hid his row (29 -> 28) and the Summary recalculated correctly, and re-selecting restored both. But item 3 fails: the change sent a request carrying exclude_technicians=<his id> and the rows came back from the server.",
+  "ticket": "SV-8946",
+  "verdict": "DEVIATION"
+ },
+ "30425": {
+  "anchor": "TU S5-R6..R9",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "\"Clear all\" deselected the whole list; after a range change the cleared technician stayed deselected, and the saved view stores extra.deselectedTechnicianIds, which is the deselected-set model. The select-all control is labelled \"All technicians\" not \"Select all\". Item 4 (a technician appearing for the first time in a later range) could not be produced - every technician in the narrower range was already in the wider one.",
+  "ticket": "SV-8947",
+  "verdict": "PARTIAL"
+ },
+ "30426": {
+  "anchor": "TU S5-R10, S1-R8",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "After deselecting and reloading the page, the selection came back exactly as left, together with the saved date range (This Year) and location selection (All locations), and the sort reset to Technician ascending.",
+  "verdict": "PASS"
+ },
+ "30428": {
+  "anchor": "TU S6-R1, S8-R14",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "The value is a real <a>, focusable (tabindex 0), and distinguished by more than colour: font-weight 600 against 400 in ordinary cells, plus a pointer cursor; on keyboard focus it gains an underline and a 2px solid focus outline. The Summary row Total Hours is not a link.",
+  "verdict": "PASS"
+ },
+ "30429": {
+  "anchor": "TU S6-R2, S6-R3, S6-R4",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Clicking the link stayed in the same tab (one page before and after) and opened /reports/punch-clock-activities?range=custom&startDate=2026-01-01&endDate=2026-08-06&technicianId=<id>; once loaded the Filter By Staff read Andrew Wade and the range matched.",
+  "verdict": "PASS"
+ },
+ "30430": {
+  "anchor": "TU S1-R9",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Same range, single location Staging Heavy Duty - 9919, no open clock: Technician Utilization showed Andrew Wade 1080.44 and Timesheet Activities 1080.64. Six of the eight technicians compared disagreed by up to 0.25 h. His 604 individual records sum to 1080.62 once each is rounded, against 1080.4422 raw - accumulated per-record rounding.",
+  "ticket": "SV-8944",
+  "verdict": "DEVIATION"
+ },
+ "30431": {
+  "anchor": "TU S1-R9(a), S1-E1",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "No technician on this environment is clocked in, so an open record could not be observed.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30432": {
+  "anchor": "TU S6-R6, S1-R9(b)",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "The link href carries only range, startDate, endDate and technicianId - no location at all - so Timesheet Activities opens for the active shop.",
+  "verdict": "PASS"
+ },
+ "30433": {
+  "anchor": "TU S6-R5",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "A day row link reads /reports/punch-clock-activities?range=custom&startDate=2026-02-05&endDate=2026-02-05&technicianId=<id> - that technician, that single day.",
+  "verdict": "PASS"
+ },
+ "30434": {
+  "anchor": "TU S7-R1..R4a, S8-R2",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "The three-dot menu is leftmost with Column Selection immediately after it. The four items read \"Summary (PDF)\", \"Summary (CSV)\", \"Expanded (PDF)\", \"Expanded (CSV)\" - the word Download and the word View are both missing, against the specification wording. Sales By Customer carries the full wording, which is what makes this report the odd one.",
+  "ticket": "SV-8881",
+  "verdict": "DEVIATION"
+ },
+ "30435": {
+  "anchor": "TU S7-R5, S7-R6, S7-R12",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "The Expanded PDF does contain each technician's per-day breakdown. But neither PDF contains the Summary row - both end on the last technician above the footer - and the names are lower-case technician-utilization-summary.pdf and technician-utilization-expanded.pdf.",
+  "ticket": "SV-8950",
+  "verdict": "DEVIATION"
+ },
+ "30436": {
+  "anchor": "TU S7-R7, S7-R10, S7-R12",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Comma quoting is correct (\"$7,248.85\" is wrapped). But there are two spreadsheets, technician-utilization-summary.csv and technician-utilization-expanded.csv, the expanded one holds per-day rows, and neither holds the Summary row.",
+  "ticket": "SV-8951",
+  "verdict": "DEVIATION"
+ },
+ "30437": {
+  "anchor": "TU S7-R8, S7-R9, S7-R13, S9-R8",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Location, date range, the \"Locations: All locations\" line and the shown columns are all carried into the files correctly. The technician filter is not: with Andrew Wade unticked the spreadsheet still held all 29 technicians including him, and the export request carried no technician parameter at all.",
+  "ticket": "SV-8948",
+  "verdict": "DEVIATION"
+ },
+ "30438": {
+  "anchor": "TU S7-R10a",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Column order and number formats match the screen. Row order does not: both the spreadsheet and the PDF begin Alexander Cohen, Brittany Anderson, Colleen Guerrero, Wesley Mcclure, Jacob Chung and end Christopher Cobb, while the screen was in its default A to Z order.",
+  "ticket": "SV-8949",
+  "verdict": "DEVIATION"
+ },
+ "30439": {
+  "anchor": "TU S7-R11",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Both PDFs carry exactly one embedded image, the organisation logo; the spreadsheets carry none and are plain text with a UTF-8 byte-order mark. The no-logo branch cannot be produced here because this organisation has an uploaded logo, as the case already says.",
+  "verdict": "PASS"
+ },
+ "30440": {
+  "anchor": "TU S7-N1",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "With every technician cleared, choosing Summary (CSV) still downloaded a file - the full 29-technician file - and showed \"Success / Data exported successfully.\" The withdrawn \"no developer ticket yet\" wording is removed and replaced with the ticketed block.",
+  "ticket": "SV-8948",
+  "verdict": "DEVIATION"
+ },
+ "30441": {
+  "anchor": "TU Story 7 error handling",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "A successful download showed \"Success / Data exported successfully.\" and not \"Download started\". A failed download (Expanded PDF over This Year, server answered with an error after about 32 s) showed no message at all - the screen was watched for 45 s.",
+  "ticket": "SV-8952",
+  "verdict": "DEVIATION"
+ },
+ "30443": {
+  "anchor": "TU S9-R3, S9-R4, S9-R5",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Changing the location selection reloaded the report with locations=<ids> in the request. Each technician has one row whatever the selection, and the request never carried a location outside the two this user can reach.",
+  "verdict": "PASS"
+ },
+ "30444": {
+  "anchor": "TU S9-R6, S9-R7",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Deselecting every location by hand fell back to the active location: the filter label became \"Staging Heavy Duty - 9919\" and the request carried that one id, with no error. Item 1 (a saved location the user can no longer reach being dropped) was not produced - the saved-view key could not be corrupted convincingly enough to exercise it.",
+  "verdict": "PARTIAL"
+ },
+ "30446": {
+  "anchor": "TU S9-N1",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Needs a second sign-in as a single-location user; there is one shared session on this estate.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30447": {
+  "anchor": "TU S8-R1, S8-R2, S8-R3",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "No alternating row shading - header and the first three data rows all render the same background (rgb(249,250,251), a near-white). Toolbar order in the DOM is exactly three-dot menu, Column Selection, date-range picker, technician filter, location filter, and the expand-all control sits in the table header, not the toolbar.",
+  "verdict": "PASS"
+ },
+ "30448": {
+  "anchor": "TU S8-R9, S8-R13, S8-R14",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "In dark mode the page renders body--dark with background rgb(20,24,36), cells rgb(15,17,26) and white text; the information icon is rgb(165,173,186) and the Total Hours link rgb(34,118,218), both clearly visible. The link keeps its focus underline and 2px outline in both modes.",
+  "verdict": "PASS"
+ },
+ "30449": {
+  "anchor": "TU S4-R2, S4-R5",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "The first report payload carries no day rows. Expanding one technician issued exactly one request, to /technician-utilization/<staff id>/daily, and nothing else reloaded.",
+  "verdict": "PASS"
+ },
+ "30450": {
+  "anchor": "TU S1-R5, S9-R3, S2-R13",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Items 1 and 2 pass - date and location changes each trigger a fresh scoped load. Items 3 and 4 fail: the technician filter sends exclude_technicians=<id> to the server, and every column-header click sends pagination[sortBy].",
+  "ticket": "SV-8945",
+  "verdict": "DEVIATION"
+ },
  "30500": {
   "anchor": "WIP S3-R4",
   "batch": 6,
@@ -1205,6 +1716,16 @@
   "note": "Values are right - each inventory row carries its own location name and a merged special-order row reads \"Multiple\" - and the column appears only with more than one location in scope and is absent from the 20-entry picker. But it renders sixth, after Vendor, not leftmost before Type, on screen and in both downloads. Filed as SV-8938.",
   "verdict": "DEVIATION"
  },
+ "38915": {
+  "anchor": "TU S9-R9, S9-R10, S8-R15, S10-R4, S7-R13",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Leftmost before Technician and already on with both locations selected; a single-location technician shows that location name; the Summary row leaves it blank; the downloads carry it in the same leftmost position. But it disappears entirely when one location is chosen and it is never offered in the Column Selection control. \"Multiple\" could not be produced (no technician has hours at both locations) and the single-location user needs a second sign-in.",
+  "ticket": "SV-8954",
+  "verdict": "PARTIAL"
+ },
  "38917": {
   "anchor": "IV S7-R6/S3-R1",
   "batch": 2,
@@ -1240,5 +1761,15 @@
   "evidence": "-",
   "note": "NOT OBSERVED. Needs the same part-of-a-unit sale AND a QuickBooks-connected company to read the amount back.",
   "verdict": "NOT OBSERVED"
+ },
+ "43552": {
+  "anchor": "TU S7-R7",
+  "batch": 7,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "batch7",
+  "note": "Both spreadsheet options download a file and both quote comma values correctly. They are not the same content: the Expanded one adds a per-day row under each technician. Neither holds the Summary row. Names recorded, as the case asks: technician-utilization-summary.csv and technician-utilization-expanded.csv.",
+  "ticket": "SV-8951",
+  "verdict": "DEVIATION"
  }
 }
