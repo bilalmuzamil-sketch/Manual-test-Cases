@@ -1,0 +1,7301 @@
+{
+ "d1": [
+  {
+   "req_id": "\u00a71.2-L1",
+   "section": "1.2",
+   "req_text": "Reduce scheduling errors (double-bookings, weekend assignments, after-hours shifts) to near zero with automatic conflict detection.",
+   "n_candidates": 2,
+   "best": [
+    [
+     0.067,
+     29961,
+     "title",
+     "Scheduling a technician onto a line adds them to its labor roster"
+    ],
+    [
+     0.067,
+     29955,
+     "custom_preconds",
+     "2. A ZZAUTOTEST work order exists with exactly ONE approved line whose estimated hours fit within one working day of the target technician."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a71.2-L2",
+   "section": "1.2",
+   "req_text": "Give managers a single screen to see the full week's technician allocation at a glance.",
+   "n_candidates": 2,
+   "best": [
+    [
+     0.1,
+     29961,
+     "title",
+     "Scheduling a technician onto a line adds them to its labor roster"
+    ],
+    [
+     0.1,
+     29955,
+     "title",
+     "Dropping a single-line work order creates a shift with no scope picker"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a71.2-L3",
+   "section": "1.2",
+   "req_text": "Support multi-day \"spread\" scheduling for large jobs (engine rebuilds, frame work) that span 40 to 160+ hours across days and weeks.",
+   "n_candidates": 2,
+   "best": [
+    [
+     0.176,
+     29955,
+     "custom_preconds",
+     "2. A ZZAUTOTEST work order exists with exactly ONE approved line whose estimated hours fit within one working day of the target technician."
+    ],
+    [
+     0.059,
+     29961,
+     "title",
+     "Scheduling a technician onto a line adds them to its labor roster"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a71.2-L4",
+   "section": "1.2",
+   "req_text": "Keep the work order roster in sync, so scheduling a technician on the schedule automatically adds them to the line's labor roster.",
+   "n_candidates": 2,
+   "best": [
+    [
+     0.692,
+     29961,
+     "custom_expected",
+     "1. The technician now appears on that line's labor roster - the schedule and the work order stay in sync automatically."
+    ],
+    [
+     0.462,
+     29955,
+     "custom_expected",
+     "3. The technician is added to that line's labor roster on the work order."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a73-L5",
+   "section": "3",
+   "req_text": "The Schedule lives as a top-level nav item alongside Work Orders, Customers, Parts, and Reports. The screen is split into two regions.",
+   "n_candidates": 25,
+   "best": [
+    [
+     0.625,
+     29925,
+     "custom_expected",
+     "1. Schedule is listed as a top-level navigation item alongside Work Orders, Customers, Parts, and Reports."
+    ],
+    [
+     0.188,
+     29939,
+     "custom_steps",
+     "1. Click the 'Search work orders' field at the top of the list and type the number of one specific work order; note the results, then clear."
+    ],
+    [
+     0.188,
+     29936,
+     "custom_preconds",
+     "1. You are signed in on a desktop browser with Schedule: View and Work Orders: View."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a73.1-L6",
+   "section": "3.1",
+   "req_text": "Mini calendar. A month picker with week-highlight and a collapsible grid. Clicking a date navigates the main grid.",
+   "n_candidates": 17,
+   "best": [
+    [
+     0.583,
+     29932,
+     "title",
+     "Clicking a date in the mini calendar navigates the main grid to that date"
+    ],
+    [
+     0.25,
+     29934,
+     "title",
+     "A chevron toggle collapses and expands the mini calendar grid"
+    ],
+    [
+     0.167,
+     29936,
+     "custom_steps",
+     "1. Look at the work order list beneath the mini calendar."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a73.1-L7",
+   "section": "3.1",
+   "req_text": "Work order list. A flat, scrollable list of work order cards. Searchable and filterable (see \u00a75). There are no Assigned/Unassigned tabs; assignment is a filter.",
+   "n_candidates": 17,
+   "best": [
+    [
+     0.429,
+     29943,
+     "title",
+     "Assignment filter narrows the list to Assigned or Unassigned work orders"
+    ],
+    [
+     0.429,
+     29936,
+     "title",
+     "The sidebar is a flat list of work order cards with no tabs"
+    ],
+    [
+     0.286,
+     29939,
+     "custom_expected",
+     "1. Work-order-number search narrows the list to the card(s) whose work order number matches what you typed, and cards that do not match disappear."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a73.1-L8",
+   "section": "3.1",
+   "req_text": "Line drill-down. Clicking a work order replaces the list, in place, with that order's lines. Only approved work order lines are visible in the schedule sidebar; unapproved lines do not appear. Includes a back control, the WO id plus line count, a line search box, and \"All / Unscheduled\" filter chips with counts. Each line row is independently draggable (drag handle) and shows its title, estimated hours, and current technician roster (avatar stack plus count, with no cap). Lines with no technician assigned show a \"Needs techs\" badge so the manager can see at a glance which lines still require someone.",
+   "n_candidates": 17,
+   "best": [
+    [
+     0.184,
+     29951,
+     "custom_expected",
+     "2. The current technician roster is shown as an avatar stack plus a count; there is no cap on how many technicians a line can have."
+    ],
+    [
+     0.163,
+     29937,
+     "custom_preconds",
+     "2. A work order exists with a customer, a unit, at least one approved line with estimated hours, and a lead technician assigned."
+    ],
+    [
+     0.143,
+     29950,
+     "custom_expected",
+     "3. The line count in the drill-down header matches the number of APPROVED lines on the work order - a line that was never approved is neither listed nor counted."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a73.1-L9",
+   "section": "3.1",
+   "req_text": "Work order card anatomy. Each card shows, from top to bottom: WO number (in accent color, top left) and line count plus hours estimate (top right); customer name (bold); unit number; and a lead technician row (avatar plus name). A colored left border indicates the work order's status. All of these fields are visible on the card and are matched by the sidebar search.",
+   "n_candidates": 17,
+   "best": [
+    [
+     0.242,
+     29953,
+     "custom_expected",
+     "2. Typing the customer name returns no results - the line search matches line titles only (the list is already scoped to one work order, so customer/unit/WO fields are not searched)."
+    ],
+    [
+     0.242,
+     29937,
+     "title",
+     "Work order card anatomy, incl. the status-colored left border"
+    ],
+    [
+     0.212,
+     29939,
+     "title",
+     "'Search work orders' matches work order number, customer, unit, and technician"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a73.1-L10",
+   "section": "3.1",
+   "req_text": "Sidebar search (\"Search work orders\") matches against: WO number, customer name, unit number, and technician name. It filters the card list in real time as the user types.",
+   "n_candidates": 17,
+   "best": [
+    [
+     0.444,
+     29939,
+     "title",
+     "'Search work orders' matches work order number, customer, unit, and technician"
+    ],
+    [
+     0.389,
+     29953,
+     "custom_expected",
+     "2. Typing the customer name returns no results - the line search matches line titles only (the list is already scoped to one work order, so customer/unit/WO fields are not searched)."
+    ],
+    [
+     0.389,
+     29940,
+     "title",
+     "Sidebar search filters the card list in real time as you type"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a73.1-L11",
+   "section": "3.1",
+   "req_text": "Line search (\"Search lines\"), visible in the drill-down, matches against line title/name only (the list is already scoped to one work order, so customer/unit/WO fields would be redundant).",
+   "n_candidates": 17,
+   "best": [
+    [
+     0.684,
+     29953,
+     "custom_expected",
+     "2. Typing the customer name returns no results - the line search matches line titles only (the list is already scoped to one work order, so customer/unit/WO fields are not searched)."
+    ],
+    [
+     0.316,
+     29950,
+     "custom_expected",
+     "3. The line count in the drill-down header matches the number of APPROVED lines on the work order - a line that was never approved is neither listed nor counted."
+    ],
+    [
+     0.316,
+     29939,
+     "title",
+     "'Search work orders' matches work order number, customer, unit, and technician"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a73.2-L12",
+   "section": "3.2",
+   "req_text": "Day view. A 24-hour timeline per technician row with time-positioned blocks.",
+   "n_candidates": 11,
+   "best": [
+    [
+     0.667,
+     29927,
+     "custom_expected",
+     "1. Day: the grid shows a 24-hour timeline per technician row, with shifts positioned at their times."
+    ],
+    [
+     0.333,
+     38867,
+     "custom_preconds",
+     "1. This case runs around the Schedule rewrite release: before the release, note (or create) a handful of scheduled shifts and calendar events - including at least one future-dated one - with their technician, day, and time."
+    ],
+    [
+     0.222,
+     29975,
+     "title",
+     "Dragging an unassigned shift onto a technician row assigns it"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a73.2-L13",
+   "section": "3.2",
+   "req_text": "Week view. A 7-column grid Mon to Sun (Saturday and Sunday each toggleable) with stacked shift chips per cell.",
+   "n_candidates": 11,
+   "best": [
+    [
+     0.615,
+     29927,
+     "custom_expected",
+     "2. Week: the grid shows a 7-column Monday-to-Sunday layout with stacked shift chips per cell."
+    ],
+    [
+     0.308,
+     30051,
+     "custom_preconds",
+     "2. You are on the Schedule page in WEEK view with Saturday and Sunday ON (default) - 7 columns visible."
+    ],
+    [
+     0.154,
+     38867,
+     "custom_steps",
+     "2. Compare each noted shift and event against what the grid now shows."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a73.2-L14",
+   "section": "3.2",
+   "req_text": "Month view. A compact calendar with per-day capacity bars and shift chips.",
+   "n_candidates": 11,
+   "best": [
+    [
+     0.889,
+     29927,
+     "custom_expected",
+     "3. Month: the grid shows a compact calendar with per-day capacity bars and shift chips."
+    ],
+    [
+     0.222,
+     38867,
+     "custom_preconds",
+     "1. This case runs around the Schedule rewrite release: before the release, note (or create) a handful of scheduled shifts and calendar events - including at least one future-dated one - with their technician, day, and time."
+    ],
+    [
+     0.222,
+     29973,
+     "custom_expected",
+     "1. An unassigned shift is created in the Unassigned row for that day."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a73.2-L15",
+   "section": "3.2",
+   "req_text": "Grid grouping. Rows are grouped by department under collapsible group headers (e.g. SERVICE/PARTS, ADMINISTRATION), with the department's technicians listed beneath each header. This is the only grid grouping; because the department view already lists technicians, there is no separate technician-only view or Tech/Dept toggle.",
+   "n_candidates": 11,
+   "best": [
+    [
+     0.25,
+     29930,
+     "title",
+     "No Tech/Dept toggle - department grouping is the only grid grouping"
+    ],
+    [
+     0.25,
+     29928,
+     "title",
+     "Grid rows are grouped by department under group headers"
+    ],
+    [
+     0.208,
+     29929,
+     "custom_expected",
+     "1. Collapsing hides that department's technician rows (the group header stays visible)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a73.2-L16",
+   "section": "3.2",
+   "req_text": "Unassigned placeholder. An unassigned row sits within the grid (not a separate tray) and holds shifts that are not yet tied to a technician. Dragging a shift from this row down onto a technician assigns it. Unassigned shifts use the same three-line block anatomy as regular shifts (see \u00a74.4); they simply have no technician yet (see \u00a74.2).",
+   "n_candidates": 11,
+   "best": [
+    [
+     0.333,
+     29931,
+     "custom_expected",
+     "3. The unassigned shift uses the same block layout as regular shifts (customer, unit, line name / line count) - it simply has no technician."
+    ],
+    [
+     0.292,
+     29975,
+     "title",
+     "Dragging an unassigned shift onto a technician row assigns it"
+    ],
+    [
+     0.208,
+     29973,
+     "title",
+     "Dropping onto the Unassigned row creates a shift with no technician"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.1-L17",
+   "section": "4.1",
+   "req_text": "The primary interaction model. Users drag a work order card (or an individual line) from the sidebar and drop it onto a technician x day/time cell in the grid.",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.389,
+     43555,
+     "custom_expected",
+     "Please read before running this test: what should happen in MONTH view specifically has not been settled yet. The Schedule specification version 23 says that a work order is dragged from the sidebar onto a cell in the grid without naming which view, and the acceptance criterion of story SV-8688 names only Week view. The question has been put to the product owner on SV-8870 (https://shopview.atlassian.net/browse/SV-8870), together with the point that Month view invites the user to drag (\"Nothing is scheduled in this range. Drag a work order from the list to book it.\"). Until the product owner answers, treat a failure here as already reported under SV-8870 - mark it FAILED and link SV-8870; do not raise a new ticket."
+    ],
+    [
+     0.389,
+     29958,
+     "custom_steps",
+     "1. Drag the work order (or the large line) onto a technician's cell."
+    ],
+    [
+     0.333,
+     29959,
+     "custom_steps",
+     "1. Drag the work order onto a technician's cell."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.1-L18",
+   "section": "4.1",
+   "req_text": "Single-line work order",
+   "n_candidates": 9,
+   "best": [
+    [
+     1.0,
+     29955,
+     "title",
+     "Dropping a single-line work order creates a shift with no scope picker"
+    ],
+    [
+     0.75,
+     43555,
+     "custom_preconds",
+     "4. Use the right arrow next to the Today button to move to a month with nothing scheduled in it - on the test shop, November 2026 is empty. The grid then shows the line \"Nothing is scheduled in this range. Drag a work order from the list to book it.\""
+    ],
+    [
+     0.75,
+     29959,
+     "custom_preconds",
+     "2. A multi-line work order exists where one line's hours fit within the target technician's working day."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.1-L19",
+   "section": "4.1",
+   "req_text": "Creates a shift immediately, skipping the scope picker.",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.667,
+     29955,
+     "title",
+     "Dropping a single-line work order creates a shift with no scope picker"
+    ],
+    [
+     0.5,
+     43555,
+     "custom_expected",
+     "What was seen on the build checked: the card lifts and follows the mouse, but no day box shows as a drop target and releasing does nothing at all - no scope picker, no shift, no message. The same drag of the same work order in Week view does open the scope picker, so the difference is Month view itself."
+    ],
+    [
+     0.5,
+     29957,
+     "custom_expected",
+     "1. A single-line shift for exactly that line is created directly - no scope picker appears."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.1-L20",
+   "section": "4.1",
+   "req_text": "Multi-line work order",
+   "n_candidates": 9,
+   "best": [
+    [
+     1.0,
+     29959,
+     "custom_preconds",
+     "2. A multi-line work order exists where one line's hours fit within the target technician's working day."
+    ],
+    [
+     1.0,
+     29956,
+     "title",
+     "Dropping a multi-line work order on a technician cell opens the scope picker"
+    ],
+    [
+     0.75,
+     43555,
+     "custom_preconds",
+     "4. Use the right arrow next to the Today button to move to a month with nothing scheduled in it - on the test shop, November 2026 is empty. The grid then shows the line \"Nothing is scheduled in this range. Drag a work order from the list to book it.\""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.1-L21",
+   "section": "4.1",
+   "req_text": "Opens the scope picker to choose whole order, a single line, or several lines.",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.889,
+     43555,
+     "custom_expected",
+     "2. Releasing on the day box books the work order onto that day, exactly as dropping it does in Week view: because this work order has more than one line, the scope picker opens so you can choose the whole order, one line, or several lines."
+    ],
+    [
+     0.556,
+     29955,
+     "title",
+     "Dropping a single-line work order creates a shift with no scope picker"
+    ],
+    [
+     0.444,
+     29957,
+     "custom_expected",
+     "1. A single-line shift for exactly that line is created directly - no scope picker appears."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.1-L22",
+   "section": "4.1",
+   "req_text": "Specific line drag",
+   "n_candidates": 9,
+   "best": [
+    [
+     1.0,
+     29957,
+     "custom_steps",
+     "1. Using the line's drag handle, drag one specific line from the drill-down."
+    ],
+    [
+     0.667,
+     43555,
+     "custom_preconds",
+     "4. Use the right arrow next to the Today button to move to a month with nothing scheduled in it - on the test shop, November 2026 is empty. The grid then shows the line \"Nothing is scheduled in this range. Drag a work order from the list to book it.\""
+    ],
+    [
+     0.667,
+     29958,
+     "custom_steps",
+     "1. Drag the work order (or the large line) onto a technician's cell."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.1-L23",
+   "section": "4.1",
+   "req_text": "Dragging a line from the drill-down creates a single-line shift directly.",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.857,
+     29957,
+     "title",
+     "Dragging a line from the drill-down creates a single-line shift"
+    ],
+    [
+     0.571,
+     29955,
+     "title",
+     "Dropping a single-line work order creates a shift with no scope picker"
+    ],
+    [
+     0.429,
+     43555,
+     "title",
+     "Month view: dragging a work order onto a day creates a shift for that day"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.1-L24",
+   "section": "4.1",
+   "req_text": "Large job (exceeds the tech's daily hours)",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.5,
+     29958,
+     "title",
+     "A job over the technician's daily hours opens the spread step"
+    ],
+    [
+     0.167,
+     43555,
+     "custom_expected",
+     "3. After you confirm a scope, a shift appears in that day box, and its start time comes from the usual order of preference - the technician's own working hours first, otherwise the shop's business hours, otherwise 7:00 AM."
+    ],
+    [
+     0.167,
+     38868,
+     "custom_preconds",
+     "2. One work order has been spread across MANY days for a technician (e.g. a 2-week series - 10+ daily shifts)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.1-L25",
+   "section": "4.1",
+   "req_text": "After scope is chosen, opens the spread step to distribute hours across consecutive working days.",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.727,
+     29958,
+     "custom_expected",
+     "1. The spread step opens (step 2 of the same modal) to distribute the hours across consecutive working days."
+    ],
+    [
+     0.364,
+     43555,
+     "custom_expected",
+     "3. After you confirm a scope, a shift appears in that day box, and its start time comes from the usual order of preference - the technician's own working hours first, otherwise the shop's business hours, otherwise 7:00 AM."
+    ],
+    [
+     0.364,
+     29959,
+     "title",
+     "A scope that fits one working day skips the spread step"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.1-L26",
+   "section": "4.1",
+   "req_text": "The spread step is conditional: a scope that fits within one of the technician's working days skips it and creates a single shift.",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.5,
+     29959,
+     "title",
+     "A scope that fits one working day skips the spread step"
+    ],
+    [
+     0.357,
+     29958,
+     "custom_preconds",
+     "2. A ZZAUTOTEST work order exists whose chosen scope's estimated hours EXCEED one working day of the target technician (for example a 40h line for a tech with 8h days)."
+    ],
+    [
+     0.286,
+     43555,
+     "custom_expected",
+     "3. After you confirm a scope, a shift appears in that day box, and its start time comes from the usual order of preference - the technician's own working hours first, otherwise the shop's business hours, otherwise 7:00 AM."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.2-L27",
+   "section": "4.2",
+   "req_text": "Every shift has a start time. It is derived from a hierarchy:",
+   "n_candidates": 18,
+   "best": [
+    [
+     0.5,
+     43555,
+     "custom_expected",
+     "3. After you confirm a scope, a shift appears in that day box, and its start time comes from the usual order of preference - the technician's own working hours first, otherwise the shop's business hours, otherwise 7:00 AM."
+    ],
+    [
+     0.5,
+     38849,
+     "custom_steps",
+     "2. Schedule a shift for that technician and check start-time defaults / before-after-hours conflicts against the shop business hours."
+    ],
+    [
+     0.5,
+     38847,
+     "custom_expected",
+     "5. The saved shop business hours are used by the Schedule (start-time hierarchy, before/after-hours conflicts, business-hours shading)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.2-L28",
+   "section": "4.2",
+   "req_text": "The technician's configured working hours take precedence.",
+   "n_candidates": 18,
+   "best": [
+    [
+     0.667,
+     30025,
+     "custom_expected",
+     "1. The shift is flagged as a before-hours conflict, with a reason sentence in the spirit of 'Starts before working hours', measured against that technician's own configured working-day START time (not a fixed hour)."
+    ],
+    [
+     0.667,
+     29975,
+     "custom_preconds",
+     "3. The target technician has configured working hours that differ from the shop's business hours."
+    ],
+    [
+     0.667,
+     29970,
+     "custom_preconds",
+     "2. A technician exists with NO configured working hours, and the shop HAS business hours set (note the shop start time)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.2-L29",
+   "section": "4.2",
+   "req_text": "If those are not set, the shop's business hours are used.",
+   "n_candidates": 18,
+   "best": [
+    [
+     1.0,
+     38849,
+     "custom_preconds",
+     "1. The shop has business hours set for the shop."
+    ],
+    [
+     1.0,
+     38847,
+     "custom_steps",
+     "2. Turn the 'Set business hours for this shop' toggle ON."
+    ],
+    [
+     1.0,
+     29974,
+     "custom_preconds",
+     "2. The shop has business hours set (note the start time)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.2-L30",
+   "section": "4.2",
+   "req_text": "If neither is set, a general default of 7:00 AM to 7:00 PM applies.",
+   "n_candidates": 18,
+   "best": [
+    [
+     0.8,
+     29971,
+     "title",
+     "With neither technician hours nor business hours set, a 7:00 AM default applies"
+    ],
+    [
+     0.4,
+     38848,
+     "title",
+     "Edit Staff has a 'Set custom hours for this technician' toggle, off by default"
+    ],
+    [
+     0.4,
+     38847,
+     "custom_expected",
+     "1. Edit Location shows a toggle labelled 'Set business hours for this shop', and it is OFF by default (no business hours set)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.2-L31",
+   "section": "4.2",
+   "req_text": "In day view, the start time instead comes from where the shift is dropped on the timeline.",
+   "n_candidates": 18,
+   "best": [
+    [
+     0.556,
+     43555,
+     "custom_expected",
+     "3. After you confirm a scope, a shift appears in that day box, and its start time comes from the usual order of preference - the technician's own working hours first, otherwise the shop's business hours, otherwise 7:00 AM."
+    ],
+    [
+     0.556,
+     29972,
+     "title",
+     "In day view the start time comes from the drop position"
+    ],
+    [
+     0.444,
+     30025,
+     "custom_steps",
+     "1. In day view, drag the shift so it starts BEFORE the technician's working-day start (for example 6:00 AM)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.2-L32",
+   "section": "4.2",
+   "req_text": "Unassigned shifts are created by dropping a work order (or line) onto the grid's Unassigned placeholder row (an in-grid lane, not a separate tray). They follow the same start-time rules except technician hours (there is no technician yet), so they fall back to business hours or the default. When an unassigned shift is later dragged onto a technician row in the grid, that technician's hours apply.",
+   "n_candidates": 18,
+   "best": [
+    [
+     0.233,
+     43555,
+     "custom_expected",
+     "3. After you confirm a scope, a shift appears in that day box, and its start time comes from the usual order of preference - the technician's own working hours first, otherwise the shop's business hours, otherwise 7:00 AM."
+    ],
+    [
+     0.233,
+     29974,
+     "title",
+     "Unassigned shift start time uses business hours or the default"
+    ],
+    [
+     0.2,
+     38849,
+     "custom_steps",
+     "2. Schedule a shift for that technician and check start-time defaults / before-after-hours conflicts against the shop business hours."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.2-L33",
+   "section": "4.2",
+   "req_text": "Hours settings (tech and business hours). Working hours are defined in two places: a technician's custom schedule in Edit Staff Member, and the shop's business hours in Edit Location. Both use the same pattern:",
+   "n_candidates": 18,
+   "best": [
+    [
+     0.353,
+     38849,
+     "custom_expected",
+     "1. With no custom hours, the technician's working hours fall back to the shop business hours."
+    ],
+    [
+     0.353,
+     38848,
+     "custom_expected",
+     "1. Edit Staff Member shows a toggle labelled 'Set custom hours for this technician'."
+    ],
+    [
+     0.353,
+     29969,
+     "custom_preconds",
+     "2. A technician has configured working hours that DIFFER from the shop's business hours (for example tech 6:00 AM start vs shop 8:00 AM) - set this up first and restore after."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.2-L34",
+   "section": "4.2",
+   "req_text": "Behind a toggle, off by default. Each section sits behind a toggle (\"Set custom hours for this technician\" / \"Set business hours for this shop\"). The per-day editor appears only when the toggle is on. A technician with no custom hours inherits the shop's business hours (per the hierarchy above).",
+   "n_candidates": 18,
+   "best": [
+    [
+     0.467,
+     30025,
+     "custom_expected",
+     "3. Both the start and the end follow the hierarchy technician hours, then shop business hours, then the general default working day of 7:00 AM to 7:00 PM."
+    ],
+    [
+     0.4,
+     38849,
+     "title",
+     "A technician with no custom hours inherits the shop business hours"
+    ],
+    [
+     0.4,
+     38848,
+     "title",
+     "Edit Staff has a 'Set custom hours for this technician' toggle, off by default"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.2-L35",
+   "section": "4.2",
+   "req_text": "Per-day editor. One row per day (Mon\u2013Sun): day name, with From \u2192 To ranges on the right. Each day starts with a single range; \"Add hours\" appends more to support split shifts, each removable. Added ranges start empty so the user explicitly sets the times.",
+   "n_candidates": 18,
+   "best": [
+    [
+     0.308,
+     38850,
+     "title",
+     "'Add hours' appends a removable second range for split shifts, starting empty"
+    ],
+    [
+     0.192,
+     38851,
+     "custom_preconds",
+     "1. You are in the per-day working-hours editor with at least two ranges on one day."
+    ],
+    [
+     0.192,
+     38847,
+     "title",
+     "Business-hours toggle reveals a per-day (Mon-Sun) From-To editor"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.2-L36",
+   "section": "4.2",
+   "req_text": "Overlap validation. If a day's ranges overlap, the offending range is flagged in red with an inline message (\"These hours overlap. Adjust the times so they don't conflict.\") and Save is disabled until it is resolved. Incomplete rows (empty From/To) are ignored by the check.",
+   "n_candidates": 18,
+   "best": [
+    [
+     0.304,
+     38851,
+     "custom_expected",
+     "2. An inline message reads 'These hours overlap. Adjust the times so they don't conflict.'"
+    ],
+    [
+     0.174,
+     30025,
+     "custom_expected",
+     "1. The shift is flagged as a before-hours conflict, with a reason sentence in the spirit of 'Starts before working hours', measured against that technician's own configured working-day START time (not a fixed hour)."
+    ],
+    [
+     0.13,
+     38850,
+     "title",
+     "'Add hours' appends a removable second range for split shifts, starting empty"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.3-L37",
+   "section": "4.3",
+   "req_text": "When a multi-line work order is dropped, a popover anchored to the drop cell lets the manager choose what to schedule:",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.385,
+     29956,
+     "title",
+     "Dropping a multi-line work order on a technician cell opens the scope picker"
+    ],
+    [
+     0.308,
+     29965,
+     "custom_preconds",
+     "2. A multi-line work order exists; one line fits within the technician's day."
+    ],
+    [
+     0.308,
+     29964,
+     "custom_steps",
+     "2. Choose 'Schedule whole work order'."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.3-L38",
+   "section": "4.3",
+   "req_text": "\"Schedule whole work order\" is pinned at the top, visually distinct, and labeled with the line count and total hours. It assigns the technician to all lines and creates one whole-order shift.",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.474,
+     29964,
+     "title",
+     "'Schedule whole work order' assigns all lines and creates one shift"
+    ],
+    [
+     0.474,
+     29963,
+     "custom_expected",
+     "1. The 'Schedule whole work order' option sits pinned at the top of the picker and looks visually distinct from the line rows."
+    ],
+    [
+     0.316,
+     29967,
+     "custom_expected",
+     "3. A 'Select all' shortcut ticks every line, giving the same line count and hours as choosing the whole work order."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.3-L39",
+   "section": "4.3",
+   "req_text": "Individual line rows. Tapping a row is the fast path: it immediately creates a single-line shift with no confirmation step. Each row shows the line title, estimated hours, and current technician roster (avatar stack plus count).",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.304,
+     29965,
+     "title",
+     "Tapping a line row creates a single-line shift with no confirm step"
+    ],
+    [
+     0.304,
+     29963,
+     "custom_expected",
+     "5. Rows for lines that already have technicians show the current roster as an avatar stack plus count."
+    ],
+    [
+     0.261,
+     29961,
+     "custom_expected",
+     "2. The sidebar line row's avatar stack/count updates to include the technician."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.3-L40",
+   "section": "4.3",
+   "req_text": "\"Select multiple\" is an opt-in control that switches the line rows into checkboxes and shows a confirm bar with a running tally (\"Create shift \u00b7 2 lines \u00b7 6h\"), a \"Select all\" shortcut (equivalent to whole order), and Cancel (returns to the fast single-tap list).",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.28,
+     29967,
+     "custom_expected",
+     "4. A 'Cancel' control leaves tick-box mode and returns you to the ordinary single-tap line list, without creating anything and without closing the picker."
+    ],
+    [
+     0.28,
+     29956,
+     "custom_expected",
+     "2. It offers 'Schedule whole work order' at the top, the individual line rows beneath, and a 'Select multiple' control."
+    ],
+    [
+     0.16,
+     29965,
+     "title",
+     "Tapping a line row creates a single-line shift with no confirm step"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.3-L41",
+   "section": "4.3",
+   "req_text": "There is no technician cap and no swap flow. Scheduling a technician onto a line simply adds them to that line's roster.",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.636,
+     29961,
+     "title",
+     "Scheduling a technician onto a line adds them to its labor roster"
+    ],
+    [
+     0.182,
+     29967,
+     "custom_steps",
+     "1. Drag the work order onto a technician's cell."
+    ],
+    [
+     0.182,
+     29965,
+     "custom_preconds",
+     "2. A multi-line work order exists; one line fits within the technician's day."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.4-L42",
+   "section": "4.4",
+   "req_text": "Every shift block on the grid shows three lines of text (four when VIN is toggled on), with a default blue color (users can optionally assign a custom color per shift via the color picker in the detail modal, see \u00a710):",
+   "n_candidates": 10,
+   "best": [
+    [
+     0.273,
+     30045,
+     "custom_expected",
+     "1. 'VIN Number' off: no VIN line on the block (the block shows its three normal lines) - but the hover tooltip still shows the VIN, and the detail modal still shows the VIN."
+    ],
+    [
+     0.182,
+     30072,
+     "title",
+     "Shift modal color picker recolors that shift only, in matching tones"
+    ],
+    [
+     0.182,
+     29992,
+     "custom_expected",
+     "3. Each detail modal lists exactly which lines the shift covers."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.4-L43",
+   "section": "4.4",
+   "req_text": "Line 1: customer name, plus the conflict icon if the shift is conflicted.",
+   "n_candidates": 10,
+   "best": [
+    [
+     0.5,
+     29995,
+     "custom_expected",
+     "2. The conflicted block shows the conflict (warning) icon on its first line - and that is the only icon that ever appears on a block."
+    ],
+    [
+     0.5,
+     29991,
+     "title",
+     "A single-line shift block shows customer, unit number and line name"
+    ],
+    [
+     0.25,
+     30011,
+     "custom_preconds",
+     "2. A multi-line (subset) shift exists covering 2 of a work order's 4 lines."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.4-L44",
+   "section": "4.4",
+   "req_text": "Line 2: unit number.",
+   "n_candidates": 10,
+   "best": [
+    [
+     1.0,
+     29991,
+     "title",
+     "A single-line shift block shows customer, unit number and line name"
+    ],
+    [
+     0.667,
+     30045,
+     "custom_expected",
+     "1. 'VIN Number' off: no VIN line on the block (the block shows its three normal lines) - but the hover tooltip still shows the VIN, and the detail modal still shows the VIN."
+    ],
+    [
+     0.667,
+     30011,
+     "custom_expected",
+     "2. Exactly the 2 scheduled lines are listed (not all 4), each showing its line number, title, hours, and a status pill only."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.4-L45",
+   "section": "4.4",
+   "req_text": "Line 3 (optional): VIN number, visible only when the VIN toggle is on in Filter and Display (\u00a76). Shown in day and week views only; month view omits it due to space constraints.",
+   "n_candidates": 10,
+   "best": [
+    [
+     0.353,
+     30045,
+     "custom_expected",
+     "2. 'VIN Number' on: the VIN appears as an additional line on blocks in day and week views."
+    ],
+    [
+     0.176,
+     29991,
+     "custom_preconds",
+     "2. A single-line shift exists on the grid (VIN toggle off)."
+    ],
+    [
+     0.118,
+     30011,
+     "custom_expected",
+     "2. Exactly the 2 scheduled lines are listed (not all 4), each showing its line number, title, hours, and a status pill only."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.4-L46",
+   "section": "4.4",
+   "req_text": "Last line: the line name for a single-line shift, or \"N Lines\" when the shift covers more than one line.",
+   "n_candidates": 10,
+   "best": [
+    [
+     0.5,
+     30011,
+     "custom_expected",
+     "1. The 'Work Order Lines' section shows the line count and a scope summary of what the shift covers."
+    ],
+    [
+     0.5,
+     29992,
+     "custom_preconds",
+     "2. Two shifts exist for a 4-line work order: one whole-order shift (4 lines) and one 2-line subset shift."
+    ],
+    [
+     0.5,
+     29991,
+     "title",
+     "A single-line shift block shows customer, unit number and line name"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.4-L47",
+   "section": "4.4",
+   "req_text": "There is no work order number and no scope icons on the block; the conflict icon is the only icon. Whole-order and multi-line-subset shifts both read as \"N Lines\" on the block, and the detail modal spells out the exact scope.",
+   "n_candidates": 10,
+   "best": [
+    [
+     0.421,
+     29992,
+     "title",
+     "Whole-order and multi-line shifts both read 'N Lines' on the block"
+    ],
+    [
+     0.316,
+     30045,
+     "custom_expected",
+     "1. 'VIN Number' off: no VIN line on the block (the block shows its three normal lines) - but the hover tooltip still shows the VIN, and the detail modal still shows the VIN."
+    ],
+    [
+     0.316,
+     30011,
+     "custom_preconds",
+     "2. A multi-line (subset) shift exists covering 2 of a work order's 4 lines."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.5-L48",
+   "section": "4.5",
+   "req_text": "For jobs exceeding a technician's daily capacity, the spread step distributes the work across consecutive working days. It appears as step 2 of the same modal, with a header showing the chosen scope and a \"Change scope\" back-link.",
+   "n_candidates": 18,
+   "best": [
+    [
+     0.35,
+     29958,
+     "custom_expected",
+     "1. The spread step opens (step 2 of the same modal) to distribute the hours across consecutive working days."
+    ],
+    [
+     0.3,
+     38868,
+     "custom_preconds",
+     "2. One work order has been spread across MANY days for a technician (e.g. a 2-week series - 10+ daily shifts)."
+    ],
+    [
+     0.25,
+     29978,
+     "title",
+     "Spread step header shows the scope; 'Change scope' returns to the picker"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.5-L49",
+   "section": "4.5",
+   "req_text": "How much to schedule is set by a single selector that defaults to Full estimate (the most common choice). Most options apply on selection with no extra fields; only the custom ones reveal a control:Full estimate, 1 week, and 2 weeks apply immediately with nothing to fill in.",
+   "n_candidates": 18,
+   "best": [
+    [
+     0.333,
+     29979,
+     "custom_expected",
+     "3. 'Full estimate', '1 week', and '2 weeks' apply on selection with no extra fields - the modal stays to one line for these."
+    ],
+    [
+     0.125,
+     38863,
+     "custom_preconds",
+     "2. A work order line with a very large hours estimate exists (enough to fill more than 8 weeks of daily shifts - seed one if needed)."
+    ],
+    [
+     0.125,
+     29980,
+     "custom_expected",
+     "1. Choosing 'Until a date\u2026' reveals a single 'finish by' date field (this is the only custom control shown)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.5-L50",
+   "section": "4.5",
+   "req_text": "Until a date\u2026 reveals a single \"finish by\" date field.",
+   "n_candidates": 18,
+   "best": [
+    [
+     1.0,
+     29980,
+     "title",
+     "'Until a date\u2026' reveals a single finish-by date field"
+    ],
+    [
+     0.333,
+     38863,
+     "custom_steps",
+     "4. Now try an extreme spread that would create more than 120 daily shifts in one go (raise the hours or extend the finish-by date) and try to confirm."
+    ],
+    [
+     0.333,
+     29982,
+     "custom_steps",
+     "1. Read the start-date field's default."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.5-L51",
+   "section": "4.5",
+   "req_text": "Specific hours\u2026 reveals an hours stepper.This progressive disclosure (Google Calendar style) keeps the modal to one line in the common case and expands only for the custom options.",
+   "n_candidates": 18,
+   "best": [
+    [
+     0.222,
+     29981,
+     "title",
+     "'Specific hours\u2026' reveals an hours stepper"
+    ],
+    [
+     0.167,
+     38863,
+     "custom_preconds",
+     "2. A work order line with a very large hours estimate exists (enough to fill more than 8 weeks of daily shifts - seed one if needed)."
+    ],
+    [
+     0.167,
+     29979,
+     "custom_expected",
+     "2. The options include 'Full estimate', '1 week', '2 weeks', 'Until a date\u2026', and 'Specific hours\u2026'."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.5-L52",
+   "section": "4.5",
+   "req_text": "Start date. Defaults to the earliest working day. Adjusting it is how a second technician's series can be made sequential (starting after the first) rather than parallel.",
+   "n_candidates": 18,
+   "best": [
+    [
+     0.353,
+     29982,
+     "title",
+     "Start date defaults to the earliest working day and can be changed"
+    ],
+    [
+     0.294,
+     29983,
+     "custom_expected",
+     "4. The end date is a result of the daily distribution (for 40h at 8h/day starting Monday, the series ends on the fifth working day)."
+    ],
+    [
+     0.176,
+     38865,
+     "custom_expected",
+     "2. No shift in the series silently moves an hour earlier or later after the change date."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.5-L53",
+   "section": "4.5",
+   "req_text": "Uses the technician's own working hours. Automatically skips weekends when business hours are not set for them. Shop closures and public holidays are not skipped in V1..",
+   "n_candidates": 18,
+   "best": [
+    [
+     0.5,
+     29983,
+     "custom_expected",
+     "2. Weekends are skipped ONLY when the technician has no business hours set for them; if the tech has hours on a weekend day (e.g. Saturday hours) that day is NOT skipped."
+    ],
+    [
+     0.286,
+     30089,
+     "custom_expected",
+     "2. A shift CAN be placed on the shop closure day (only weekend days with no business hours are skipped)."
+    ],
+    [
+     0.286,
+     29984,
+     "custom_expected",
+     "3. Skipped days are struck through and show the reason they are skipped - in V1 the only skip reason is a weekend day with no working hours set."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.5-L54",
+   "section": "4.5",
+   "req_text": "Preview, collapsed by default: a one-line summary (\"20 shifts \u00b7 Jun 15 to Jul 13 \u00b7 skips weekends + 2 days\"), expandable to a week-by-week breakdown with skipped days struck through and their reasons.",
+   "n_candidates": 18,
+   "best": [
+    [
+     0.526,
+     29984,
+     "custom_expected",
+     "1. Collapsed: a one-line summary in the spirit of the spec's example '20 shifts \u00b7 Jun 15 to Jul 13 \u00b7 skips weekends + 2 days'."
+    ],
+    [
+     0.211,
+     38868,
+     "custom_preconds",
+     "2. One work order has been spread across MANY days for a technician (e.g. a 2-week series - 10+ daily shifts)."
+    ],
+    [
+     0.158,
+     38863,
+     "custom_preconds",
+     "2. A work order line with a very large hours estimate exists (enough to fill more than 8 weeks of daily shifts - seed one if needed)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.5-L55",
+   "section": "4.5",
+   "req_text": "Confirming creates a linked series of daily shifts.",
+   "n_candidates": 18,
+   "best": [
+    [
+     1.0,
+     29985,
+     "title",
+     "Confirming the spread creates a linked series of daily shifts"
+    ],
+    [
+     0.5,
+     38868,
+     "custom_preconds",
+     "2. One work order has been spread across MANY days for a technician (e.g. a 2-week series - 10+ daily shifts)."
+    ],
+    [
+     0.333,
+     38873,
+     "title",
+     "API - Series past 8 weeks returns 409 until acknowledged; over 120 shifts 422"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.5-L56",
+   "section": "4.5",
+   "req_text": "Each drop spreads the full estimate for that technician, independently. Dropping the same work order on a second technician spreads the full estimate again for them. There is no shared \"remaining\" counter across technicians and no splitting of a shift. Because progress is driven by clocked-in time, scheduled hours, the estimate, and actual hours are three separate quantities and are not forced to reconcile.",
+   "n_candidates": 18,
+   "best": [
+    [
+     0.258,
+     29986,
+     "custom_expected",
+     "2. There is no shared 'remaining hours' counter across technicians and no splitting of a shift."
+    ],
+    [
+     0.194,
+     30090,
+     "title",
+     "Scheduled, estimated and actual clocked hours are three separate numbers"
+    ],
+    [
+     0.129,
+     38869,
+     "custom_steps",
+     "1. Create a new work order and give it an appointment (a scheduled date/time) as part of the creation flow."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.6-L57",
+   "section": "4.6",
+   "req_text": "A series is a group of shifts created by the spread step; all shifts in a series share a series id. The series is a render-time grouping, not a special record. Underneath it is N individual daily shifts, each keeping its own day and hours, so capacity, overtime, and conflict logic all operate on the individual shifts unchanged.",
+   "n_candidates": 8,
+   "best": [
+    [
+     0.208,
+     29990,
+     "title",
+     "A series is just a grouping - capacity and conflicts use the daily shifts"
+    ],
+    [
+     0.167,
+     38868,
+     "custom_preconds",
+     "2. One work order has been spread across MANY days for a technician (e.g. a 2-week series - 10+ daily shifts)."
+    ],
+    [
+     0.167,
+     29985,
+     "title",
+     "Confirming the spread creates a linked series of daily shifts"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.6-L58",
+   "section": "4.6",
+   "req_text": "Shifts sharing a technician plus series id render as one connected banner:",
+   "n_candidates": 8,
+   "best": [
+    [
+     0.667,
+     29985,
+     "custom_expected",
+     "2. The shifts render as one connected banner (see the series-banner cases)."
+    ],
+    [
+     0.444,
+     38868,
+     "custom_preconds",
+     "2. One work order has been spread across MANY days for a technician (e.g. a 2-week series - 10+ daily shifts)."
+    ],
+    [
+     0.333,
+     29990,
+     "custom_preconds",
+     "2. A series exists for a technician; on one series day the technician also has a second, overlapping shift (set up with Edit permission)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.6-L59",
+   "section": "4.6",
+   "req_text": "Month view: a continuous bar wrapping across week rows, labeled once at the start (with the technician), with a faded \"continues\" label on later weeks, empty weekend columns (when business hours are not set for weekends).",
+   "n_candidates": 8,
+   "best": [
+    [
+     0.348,
+     29987,
+     "custom_expected",
+     "2. It is labeled once at the start (including the technician); later weeks show a faded 'continues'-style label instead of repeating the full label."
+    ],
+    [
+     0.13,
+     38868,
+     "custom_preconds",
+     "2. One work order has been spread across MANY days for a technician (e.g. a 2-week series - 10+ daily shifts)."
+    ],
+    [
+     0.087,
+     29990,
+     "custom_preconds",
+     "2. A series exists for a technician; on one series day the technician also has a second, overlapping shift (set up with Edit permission)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.6-L60",
+   "section": "4.6",
+   "req_text": "Week view: one banner spanning the working days of that week in the technician's row, with chevrons at the edges indicating continuation beyond the visible week, a \"week N of M\" cue.",
+   "n_candidates": 8,
+   "best": [
+    [
+     0.438,
+     29988,
+     "custom_expected",
+     "1. One banner spans the working days of that week in the technician's row."
+    ],
+    [
+     0.25,
+     38868,
+     "custom_preconds",
+     "2. One work order has been spread across MANY days for a technician (e.g. a 2-week series - 10+ daily shifts)."
+    ],
+    [
+     0.25,
+     29989,
+     "title",
+     "Day view shows the series day as one block with a multi-week cue"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.6-L61",
+   "section": "4.6",
+   "req_text": "Day view: that day's single time-positioned block with a \"part of an M-week job\" cue (only one day is visible, so there is no spanning bar).",
+   "n_candidates": 8,
+   "best": [
+    [
+     0.643,
+     29989,
+     "custom_expected",
+     "1. The day shows a single time-positioned block (no spanning bar - only one day is visible)."
+    ],
+    [
+     0.357,
+     29987,
+     "custom_expected",
+     "What you should see today: In Month view the bar for a multi-day job does not say whose it is. It reads, for example, 'Xiriver Apparel  24069  19 Lines  Part of a series' with no technician name anywhere on it. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8958"
+    ],
+    [
+     0.214,
+     29990,
+     "custom_expected",
+     "1. Each series day contributes its own daily hours to that day's capacity bar (the series is not counted as one lump)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.7-L62",
+   "section": "4.7",
+   "req_text": "Overlapping shifts for the same technician never visually collide:",
+   "n_candidates": 7,
+   "best": [
+    [
+     0.833,
+     29997,
+     "custom_expected",
+     "1. The two overlapping shifts render in separate stacked lanes - they never visually collide."
+    ],
+    [
+     0.5,
+     29999,
+     "custom_preconds",
+     "2. One technician has several overlapping shifts on the same day."
+    ],
+    [
+     0.5,
+     29998,
+     "custom_preconds",
+     "2. One technician has FIVE mutually overlapping shifts at the same time on the same day (seed ZZAUTOTEST work orders as needed)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.7-L63",
+   "section": "4.7",
+   "req_text": "Shifts whose time ranges do not intersect share a single lane, so sequential or back-to-back work keeps the row at normal height.",
+   "n_candidates": 7,
+   "best": [
+    [
+     0.286,
+     29997,
+     "custom_preconds",
+     "2. One technician has two shifts on the same day whose time ranges DO intersect (for example 9:00-12:00 and 10:00-13:00)."
+    ],
+    [
+     0.214,
+     38868,
+     "title",
+     "Dashboard shows one schedule row per work order even with many shifts"
+    ],
+    [
+     0.214,
+     29998,
+     "custom_preconds",
+     "2. One technician has FIVE mutually overlapping shifts at the same time on the same day (seed ZZAUTOTEST work orders as needed)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.7-L64",
+   "section": "4.7",
+   "req_text": "Shifts whose time ranges do intersect split into stacked lanes, and the row grows to fit.",
+   "n_candidates": 7,
+   "best": [
+    [
+     0.8,
+     29997,
+     "title",
+     "Shifts whose times intersect split into stacked lanes and the row grows to fit"
+    ],
+    [
+     0.2,
+     38868,
+     "title",
+     "Dashboard shows one schedule row per work order even with many shifts"
+    ],
+    [
+     0.2,
+     29998,
+     "title",
+     "Visible lanes cap at 3; extra overlapping shifts collapse into '+N more'"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.7-L65",
+   "section": "4.7",
+   "req_text": "Visible lanes are capped at 3. Additional overlapping shifts collapse into a \"+N more\" affordance that opens a popover listing the hidden shifts. This applies in day, week, and month views (week and month reach the overflow much sooner because cells are narrower).",
+   "n_candidates": 7,
+   "best": [
+    [
+     0.435,
+     29999,
+     "custom_expected",
+     "2. Week and month views reach the '+N more' overflow sooner than day view (their cells are narrower), but the same cap-and-overflow model applies."
+    ],
+    [
+     0.217,
+     29998,
+     "title",
+     "Visible lanes cap at 3; extra overlapping shifts collapse into '+N more'"
+    ],
+    [
+     0.13,
+     29997,
+     "custom_expected",
+     "1. The two overlapping shifts render in separate stacked lanes - they never visually collide."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.7-L66",
+   "section": "4.7",
+   "req_text": "Overlap on the same technician is a conflict (see \u00a74.11) and is flagged, so stacking reads as \"resolve me,\" not \"two normal jobs.\"",
+   "n_candidates": 7,
+   "best": [
+    [
+     0.545,
+     29997,
+     "custom_expected",
+     "3. The overlap is also flagged as a Double-booked conflict (stacking reads as 'resolve me')."
+    ],
+    [
+     0.182,
+     29996,
+     "custom_expected",
+     "4. No conflict is flagged for back-to-back (non-intersecting) shifts."
+    ],
+    [
+     0.091,
+     38872,
+     "title",
+     "API - Schedule reads need View; writes need Edit; deletes need Delete (403)"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.8-L67",
+   "section": "4.8",
+   "req_text": "Auto-scroll to business hours. On initial day-view load and when navigating to a new day, the timeline auto-scrolls so the working-day start sits at the left edge of the visible area (with a small 30 to 60 minute buffer before it). The start time comes from the same hierarchy shifts use: the earliest technician's configured start if tech hours are set, otherwise business hours, otherwise 7:00 AM. If technicians have different start times, the earliest one is used so no shifts are off-screen. The auto-scroll fires only on load or day navigation; if the user scrolls manually, their position is not overridden. The full 24-hour timeline remains intact and scrollable.",
+   "n_candidates": 10,
+   "best": [
+    [
+     0.306,
+     30001,
+     "custom_expected",
+     "1. On load and on each day navigation, the timeline is auto-scrolled so the working-day start sits at the left edge of the visible area, with a small buffer (roughly 30 to 60 minutes) before it."
+    ],
+    [
+     0.102,
+     30047,
+     "title",
+     "Business Hours toggle shades non-working hours in day view"
+    ],
+    [
+     0.102,
+     30005,
+     "custom_preconds",
+     "2. A shift exists on a technician's day-view timeline (note its start/end)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.8-L68",
+   "section": "4.8",
+   "req_text": "Sticky header bar. Date and time headers stick to the top of the viewport during vertical scroll, so the user always knows which time column they are looking at. This applies in both day and week views.",
+   "n_candidates": 10,
+   "best": [
+    [
+     0.5,
+     30003,
+     "custom_expected",
+     "1. In day view, the date/time header bar stays stuck to the top while the rows scroll beneath it - you always know which time column you are looking at."
+    ],
+    [
+     0.15,
+     30045,
+     "custom_expected",
+     "2. 'VIN Number' on: the VIN appears as an additional line on blocks in day and week views."
+    ],
+    [
+     0.1,
+     38872,
+     "custom_steps",
+     "1. As the user with NO Schedule permission, call GET /api/schedule/board?from=&to= for the current week."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.8-L69",
+   "section": "4.8",
+   "req_text": "Horizontal drag to move a shift's start time (snaps to 15-minute intervals).",
+   "n_candidates": 10,
+   "best": [
+    [
+     0.444,
+     30004,
+     "title",
+     "Dragging a shift sideways moves its start time in 15-minute steps"
+    ],
+    [
+     0.222,
+     30005,
+     "custom_preconds",
+     "2. A shift exists on a technician's day-view timeline (note its start/end)."
+    ],
+    [
+     0.111,
+     38872,
+     "custom_preconds",
+     "3. A shift id from the current location is known."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.8-L70",
+   "section": "4.8",
+   "req_text": "Edge resize. Drag the left or right edge to adjust duration.",
+   "n_candidates": 10,
+   "best": [
+    [
+     0.571,
+     30005,
+     "title",
+     "Dragging a shift's left or right edge resizes its duration"
+    ],
+    [
+     0.286,
+     30001,
+     "custom_expected",
+     "1. On load and on each day navigation, the timeline is auto-scrolled so the working-day start sits at the left edge of the visible area, with a small buffer (roughly 30 to 60 minutes) before it."
+    ],
+    [
+     0.143,
+     30045,
+     "custom_expected",
+     "What you should see today: Month view prints the VIN on shift blocks when the VIN switch is on. It should be left off in Month view because the blocks are small. Day and Week views are correct. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8941"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.8-L71",
+   "section": "4.8",
+   "req_text": "Lane stacking. Overlapping shifts split into parallel lanes per \u00a74.7.",
+   "n_candidates": 10,
+   "best": [
+    [
+     0.143,
+     38872,
+     "custom_steps",
+     "2. As the View-only user, call the same GET, then try POST /api/schedule/shifts (a minimal single-shift body) and PATCH /api/schedule/shifts/{id}."
+    ],
+    [
+     0.143,
+     38868,
+     "title",
+     "Dashboard shows one schedule row per work order even with many shifts"
+    ],
+    [
+     0.143,
+     30045,
+     "custom_steps",
+     "4. In day view, compare the height of the shift's lane with the toggle off and on."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.8-L72",
+   "section": "4.8",
+   "req_text": "Lane height with VIN. When the VIN toggle is on (\u00a79), lane heights in day view grow to accommodate the additional VIN line so block text is not clipped.",
+   "n_candidates": 10,
+   "best": [
+    [
+     0.643,
+     30045,
+     "custom_expected",
+     "4. In day view with the VIN on, the lane height grows to fit the extra VIN line and no block text is clipped or cut off."
+    ],
+    [
+     0.214,
+     30047,
+     "title",
+     "Business Hours toggle shades non-working hours in day view"
+    ],
+    [
+     0.214,
+     30006,
+     "title",
+     "A now line marks the current time on today's day view, with a label on hover"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.8-L73",
+   "section": "4.8",
+   "req_text": "Now line. A vertical indicator showing the current time, with a label on hover over the grid.",
+   "n_candidates": 10,
+   "best": [
+    [
+     0.625,
+     30006,
+     "title",
+     "A now line marks the current time on today's day view, with a label on hover"
+    ],
+    [
+     0.25,
+     30045,
+     "custom_expected",
+     "1. 'VIN Number' off: no VIN line on the block (the block shows its three normal lines) - but the hover tooltip still shows the VIN, and the detail modal still shows the VIN."
+    ],
+    [
+     0.25,
+     30003,
+     "title",
+     "Date and time headers stick to the top during vertical scroll"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.8-L74",
+   "section": "4.8",
+   "req_text": "Business-hours shading. An optional grey overlay outside working hours.",
+   "n_candidates": 10,
+   "best": [
+    [
+     0.625,
+     30047,
+     "custom_expected",
+     "1. With the toggle on, the hours OUTSIDE the working day are shaded with a grey overlay."
+    ],
+    [
+     0.25,
+     30001,
+     "custom_preconds",
+     "2. Technicians have configured start times; note the EARLIEST one (or the business-hours start / 7:00 AM if none)."
+    ],
+    [
+     0.125,
+     30004,
+     "custom_steps",
+     "1. Drag the shift block horizontally along the timeline and release at a position between clean quarter-hours."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.9-L75",
+   "section": "4.9",
+   "req_text": "Clicking a shift block opens a detail panel showing:",
+   "n_candidates": 12,
+   "best": [
+    [
+     0.6,
+     30008,
+     "title",
+     "Clicking a shift opens its detail modal, with VIN always visible"
+    ],
+    [
+     0.4,
+     30072,
+     "custom_expected",
+     "1. The shift's block re-renders in the chosen color."
+    ],
+    [
+     0.4,
+     30015,
+     "custom_preconds",
+     "2. A shift exists; its detail modal is open."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.9-L76",
+   "section": "4.9",
+   "req_text": "Customer name, unit number, VIN (always visible, below unit and asset), and work order id.",
+   "n_candidates": 12,
+   "best": [
+    [
+     0.8,
+     30008,
+     "custom_expected",
+     "2. It shows the customer name, unit number, the VIN (below unit and asset), and the work order id."
+    ],
+    [
+     0.3,
+     30013,
+     "custom_expected",
+     "4. Notes are kept per work order (the same note is visible from another shift of the same work order)."
+    ],
+    [
+     0.2,
+     38869,
+     "title",
+     "A work order created with an appointment shows up on the Schedule board"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.9-L77",
+   "section": "4.9",
+   "req_text": "Scheduled date and start/end time pickers (15-minute increments).",
+   "n_candidates": 12,
+   "best": [
+    [
+     1.0,
+     30009,
+     "title",
+     "Scheduled date and start/end time pickers work in 15-minute increments"
+    ],
+    [
+     0.375,
+     38869,
+     "custom_steps",
+     "1. Create a new work order and give it an appointment (a scheduled date/time) as part of the creation flow."
+    ],
+    [
+     0.125,
+     38868,
+     "custom_expected",
+     "1. The Dashboard shows that work order as ONE row (covering the whole scheduled span), not one row per daily shift."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.9-L78",
+   "section": "4.9",
+   "req_text": "Technician.",
+   "n_candidates": 12,
+   "best": [
+    [
+     1.0,
+     38868,
+     "custom_preconds",
+     "2. One work order has been spread across MANY days for a technician (e.g. a 2-week series - 10+ daily shifts)."
+    ],
+    [
+     1.0,
+     30015,
+     "custom_expected",
+     "2. There is no 'Reassign' action in the modal; reassignment is done by dragging a shift to another technician row (covered by its own case)."
+    ],
+    [
+     1.0,
+     30010,
+     "title",
+     "The modal shows the technician and time logged vs estimate progress"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.9-L79",
+   "section": "4.9",
+   "req_text": "Time logged vs estimate (progress).",
+   "n_candidates": 12,
+   "best": [
+    [
+     1.0,
+     30010,
+     "title",
+     "The modal shows the technician and time logged vs estimate progress"
+    ],
+    [
+     0.5,
+     30012,
+     "custom_expected",
+     "3. Dependent displays (progress vs estimate) reflect the new value."
+    ],
+    [
+     0.25,
+     38869,
+     "custom_steps",
+     "1. Create a new work order and give it an appointment (a scheduled date/time) as part of the creation flow."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.9-L80",
+   "section": "4.9",
+   "req_text": "Scope summary and the scheduled line(s) with labor/status figures.",
+   "n_candidates": 12,
+   "best": [
+    [
+     0.429,
+     30011,
+     "custom_expected",
+     "1. The 'Work Order Lines' section shows the line count and a scope summary of what the shift covers."
+    ],
+    [
+     0.143,
+     38872,
+     "custom_steps",
+     "3. As the View+Edit user, repeat the POST and PATCH, then try DELETE /api/schedule/shifts/{id}?scope=shift."
+    ],
+    [
+     0.143,
+     38869,
+     "custom_steps",
+     "1. Create a new work order and give it an appointment (a scheduled date/time) as part of the creation flow."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.9-L81",
+   "section": "4.9",
+   "req_text": "Estimated hours with inline edit.",
+   "n_candidates": 12,
+   "best": [
+    [
+     1.0,
+     30012,
+     "custom_steps",
+     "1. Edit the estimated hours inline (change the value)."
+    ],
+    [
+     0.5,
+     30010,
+     "custom_expected",
+     "2. A progress indication compares time logged against the estimate (logged hours vs estimated hours)."
+    ],
+    [
+     0.25,
+     38872,
+     "title",
+     "API - Schedule reads need View; writes need Edit; deletes need Delete (403)"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.9-L82",
+   "section": "4.9",
+   "req_text": "Color picker (see \u00a710).",
+   "n_candidates": 12,
+   "best": [
+    [
+     0.667,
+     30072,
+     "title",
+     "Shift modal color picker recolors that shift only, in matching tones"
+    ],
+    [
+     0.333,
+     30014,
+     "custom_expected",
+     "What you should see today: The clash warning appears but gives you no way to fix it. On a shift whose reason is 'Double-booked with ...', 'Extends past working hours' or 'Not a working day' there is no Adjust button - eight clashing shifts were checked and not one offered it. An Adjust button does exist for one other reason ('Starts before working hours'), so do not be surprised to see it there. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8852"
+    ],
+    [
+     0.333,
+     30011,
+     "custom_expected",
+     "Note for the tester: the absence of any money figure is CORRECT and is what this test expects. The product owner ruled on 22 July 2026 that no total in dollars is shown anywhere on the Schedule. If you see no money figure, pass this test."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.9-L83",
+   "section": "4.9",
+   "req_text": "Notes: add, edit, and delete per work order.",
+   "n_candidates": 12,
+   "best": [
+    [
+     0.5,
+     30013,
+     "title",
+     "Notes can be added, edited, and deleted per work order from the modal"
+    ],
+    [
+     0.333,
+     38872,
+     "title",
+     "API - Schedule reads need View; writes need Edit; deletes need Delete (403)"
+    ],
+    [
+     0.333,
+     38869,
+     "title",
+     "A work order created with an appointment shows up on the Schedule board"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.9-L84",
+   "section": "4.9",
+   "req_text": "A conflict banner with an \"Adjust\" action when the shift is conflicted.",
+   "n_candidates": 12,
+   "best": [
+    [
+     1.0,
+     30014,
+     "title",
+     "A conflicted shift's modal shows a conflict banner with an 'Adjust' action"
+    ],
+    [
+     0.333,
+     30015,
+     "title",
+     "Shift modal offers Delete only - there is no Reassign action"
+    ],
+    [
+     0.167,
+     38872,
+     "custom_preconds",
+     "3. A shift id from the current location is known."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.9-L85",
+   "section": "4.9",
+   "req_text": "Actions: Delete (series-aware, \u00a77)",
+   "n_candidates": 12,
+   "best": [
+    [
+     0.5,
+     30015,
+     "custom_steps",
+     "3. Click Delete on a series shift and read what it asks (cancel without deleting)."
+    ],
+    [
+     0.25,
+     38872,
+     "title",
+     "API - Schedule reads need View; writes need Edit; deletes need Delete (403)"
+    ],
+    [
+     0.25,
+     38868,
+     "custom_preconds",
+     "2. One work order has been spread across MANY days for a technician (e.g. a 2-week series - 10+ daily shifts)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.10-L86",
+   "section": "4.10",
+   "req_text": "Non-work-order time blocks (meetings, training, stand-ups) that occupy technician time:",
+   "n_candidates": 12,
+   "best": [
+    [
+     0.273,
+     38869,
+     "custom_steps",
+     "1. Create a new work order and give it an appointment (a scheduled date/time) as part of the creation flow."
+    ],
+    [
+     0.273,
+     38868,
+     "custom_preconds",
+     "2. One work order has been spread across MANY days for a technician (e.g. a 2-week series - 10+ daily shifts)."
+    ],
+    [
+     0.182,
+     38855,
+     "title",
+     "'New Work Order' in the cell menu points the user to the Work Orders tab"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.10-L87",
+   "section": "4.10",
+   "req_text": "Create via left-click on empty grid space, which opens a menu with 'Create event' and 'New work order'..",
+   "n_candidates": 12,
+   "best": [
+    [
+     0.667,
+     30016,
+     "title",
+     "Create an event via left-click 'Create Event' on empty grid space"
+    ],
+    [
+     0.583,
+     30018,
+     "custom_preconds",
+     "2. You are on the Schedule page with the event modal open (left-click empty grid space, then 'Create Event')."
+    ],
+    [
+     0.5,
+     38855,
+     "custom_preconds",
+     "2. The cell menu already shows 'Create Event' and 'New Work Order'."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.10-L88",
+   "section": "4.10",
+   "req_text": "Event modal: name, date, start/end time, all-day toggle, color category.",
+   "n_candidates": 12,
+   "best": [
+    [
+     0.909,
+     30018,
+     "custom_expected",
+     "1. The modal contains: name, date, start/end time, an all-day toggle, and a color category."
+    ],
+    [
+     0.273,
+     30615,
+     "custom_preconds",
+     "3. A technician has a shift and, on the same day/time, an event (create both, ZZAUTOTEST)."
+    ],
+    [
+     0.273,
+     30021,
+     "custom_expected",
+     "2. It has a small grey-filled rounded chip on the left containing a calendar icon, and two lines of text beside it: the event name, then the time range in secondary text."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.10-L89",
+   "section": "4.10",
+   "req_text": "Drag-and-drop to reassign between technicians or move between days.",
+   "n_candidates": 12,
+   "best": [
+    [
+     0.143,
+     38868,
+     "custom_preconds",
+     "2. One work order has been spread across MANY days for a technician (e.g. a 2-week series - 10+ daily shifts)."
+    ],
+    [
+     0.143,
+     30020,
+     "custom_steps",
+     "1. Drag the event block to a different technician's row."
+    ],
+    [
+     0.143,
+     30017,
+     "title",
+     "Day view event creation shows a live preview block you can drag to resize"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.10-L90",
+   "section": "4.10",
+   "req_text": "Day view shows a live preview block while creating, with drag-to-resize.",
+   "n_candidates": 12,
+   "best": [
+    [
+     0.875,
+     30017,
+     "title",
+     "Day view event creation shows a live preview block you can drag to resize"
+    ],
+    [
+     0.25,
+     30020,
+     "custom_steps",
+     "1. Drag the event block to a different technician's row."
+    ],
+    [
+     0.25,
+     30018,
+     "custom_expected",
+     "5. The event is created as an all-day block for that technician and day."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.10-L91",
+   "section": "4.10",
+   "req_text": "Event card anatomy. Event cards are styled to be structurally distinct from shift cards, so the two types are separable at a glance (not by color alone): a white/neutral card with a thin even border on all four sides and no colored left rail (the left rail is the shift's cue), a small grey-filled rounded chip on the left containing a calendar icon, and two lines of text beside it (event name, then the time range in secondary text). Shifts read as tinted color-filled blocks with a colored left rail; events read as quieter, white outlined cards.",
+   "n_candidates": 12,
+   "best": [
+    [
+     0.383,
+     30021,
+     "custom_expected",
+     "2. It has a small grey-filled rounded chip on the left containing a calendar icon, and two lines of text beside it: the event name, then the time range in secondary text."
+    ],
+    [
+     0.149,
+     30022,
+     "custom_expected",
+     "3. Choosing a color tints the card and the icon chip in matching tones, the same way a colored shift is tinted."
+    ],
+    [
+     0.085,
+     30018,
+     "custom_steps",
+     "2. Fill each: name, date, start and end time, and pick a color category. Save, then re-open the event."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.10-L92",
+   "section": "4.10",
+   "req_text": "Event color. The default event color is neutral/grey. Events use the same custom color palette as shifts (the shared color picker with editable labels, see \u00a710); choosing a color from the event modal tints the card and icon chip in the matching tones, the same way a colored shift is tinted.",
+   "n_candidates": 12,
+   "best": [
+    [
+     0.462,
+     30022,
+     "custom_expected",
+     "3. Choosing a color tints the card and the icon chip in matching tones, the same way a colored shift is tinted."
+    ],
+    [
+     0.192,
+     30073,
+     "custom_expected",
+     "3. Shifts and events share the same custom palette with the same labels."
+    ],
+    [
+     0.192,
+     30021,
+     "custom_expected",
+     "1. The event card is a white/neutral card with a thin, even border on all four sides and NO colored left rail (the left rail is the shift's cue)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.11-L93",
+   "section": "4.11",
+   "req_text": "The system continuously scans for scheduling issues and surfaces them in a toolbar pill:",
+   "n_candidates": 11,
+   "best": [
+    [
+     0.333,
+     30027,
+     "custom_expected",
+     "1. The pill shows the current number of scheduling issues."
+    ],
+    [
+     0.222,
+     30615,
+     "custom_steps",
+     "3. Look at the capacity bar again and check for any conflict on the block and in the toolbar conflict pill."
+    ],
+    [
+     0.222,
+     30023,
+     "custom_preconds",
+     "3. You are on the Schedule page; note the toolbar conflict pill's current count."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.11-L94",
+   "section": "4.11",
+   "req_text": "Double-booked",
+   "n_candidates": 11,
+   "best": [
+    [
+     1.0,
+     30615,
+     "custom_expected",
+     "2. The event does NOT create a double-booked or overlap conflict with the shift, and the toolbar conflict count does not increase because of it."
+    ],
+    [
+     1.0,
+     30027,
+     "custom_preconds",
+     "2. At least two conflicts of different types exist (for example one double-booked overlap and one Saturday shift - create them first)."
+    ],
+    [
+     1.0,
+     30023,
+     "title",
+     "Double-booked: two overlapping work orders on one technician are flagged"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.11-L95",
+   "section": "4.11",
+   "req_text": "Two different work orders overlap on the same technician at the same time.",
+   "n_candidates": 11,
+   "best": [
+    [
+     0.571,
+     30023,
+     "title",
+     "Double-booked: two overlapping work orders on one technician are flagged"
+    ],
+    [
+     0.429,
+     30027,
+     "custom_preconds",
+     "2. At least two conflicts of different types exist (for example one double-booked overlap and one Saturday shift - create them first)."
+    ],
+    [
+     0.429,
+     29997,
+     "custom_preconds",
+     "2. One technician has two shifts on the same day whose time ranges DO intersect (for example 9:00-12:00 and 10:00-13:00)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.11-L96",
+   "section": "4.11",
+   "req_text": "Weekend shift",
+   "n_candidates": 11,
+   "best": [
+    [
+     1.0,
+     30024,
+     "custom_expected",
+     "1. The shift is created but flagged as a conflict because the day is outside the technician's configured working days (the reason sentence reads in the spirit of 'Scheduled on a weekend (outside working days)' - it names the technician's own working days, not a fixed Monday-to-Friday window)."
+    ],
+    [
+     0.5,
+     38872,
+     "custom_preconds",
+     "3. A shift id from the current location is known."
+    ],
+    [
+     0.5,
+     38868,
+     "custom_expected",
+     "1. The Dashboard shows that work order as ONE row (covering the whole scheduled span), not one row per daily shift."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.11-L97",
+   "section": "4.11",
+   "req_text": "Shift scheduled on Saturday or Sunday (outside working days).",
+   "n_candidates": 11,
+   "best": [
+    [
+     0.714,
+     30024,
+     "custom_expected",
+     "1. The shift is created but flagged as a conflict because the day is outside the technician's configured working days (the reason sentence reads in the spirit of 'Scheduled on a weekend (outside working days)' - it names the technician's own working days, not a fixed Monday-to-Friday window)."
+    ],
+    [
+     0.286,
+     38868,
+     "custom_expected",
+     "1. The Dashboard shows that work order as ONE row (covering the whole scheduled span), not one row per daily shift."
+    ],
+    [
+     0.286,
+     30027,
+     "custom_preconds",
+     "2. At least two conflicts of different types exist (for example one double-booked overlap and one Saturday shift - create them first)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.11-L98",
+   "section": "4.11",
+   "req_text": "Before hours",
+   "n_candidates": 11,
+   "best": [
+    [
+     1.0,
+     30025,
+     "title",
+     "Before-hours and after-hours shifts are flagged against the tech's hours"
+    ],
+    [
+     0.5,
+     38868,
+     "custom_expected",
+     "2. Note for the tester: before this release the Dashboard duplicated such a work order once per scheduled day - showing one combined row now is the intended fix, do not report it as a missing-rows bug."
+    ],
+    [
+     0.5,
+     30615,
+     "title",
+     "An event's hours count toward the capacity bar but raise no conflict"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.11-L99",
+   "section": "4.11",
+   "req_text": "Shift starts before the working-day start.",
+   "n_candidates": 11,
+   "best": [
+    [
+     1.0,
+     30025,
+     "custom_steps",
+     "1. In day view, drag the shift so it starts BEFORE the technician's working-day start (for example 6:00 AM)."
+    ],
+    [
+     0.5,
+     30024,
+     "title",
+     "Working-day conflict: a shift outside the tech's working days is flagged"
+    ],
+    [
+     0.333,
+     38868,
+     "custom_expected",
+     "2. Note for the tester: before this release the Dashboard duplicated such a work order once per scheduled day - showing one combined row now is the intended fix, do not report it as a missing-rows bug."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.11-L100",
+   "section": "4.11",
+   "req_text": "After hours",
+   "n_candidates": 11,
+   "best": [
+    [
+     1.0,
+     30025,
+     "title",
+     "Before-hours and after-hours shifts are flagged against the tech's hours"
+    ],
+    [
+     0.5,
+     30615,
+     "title",
+     "An event's hours count toward the capacity bar but raise no conflict"
+    ],
+    [
+     0.5,
+     30029,
+     "custom_preconds",
+     "2. One technician is booked into OVERTIME on a day WITHOUT any conflict (more hours than their day, sequential non-overlapping shifts within working hours - use the technician's working window carefully, or observe the OT tag day)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.11-L101",
+   "section": "4.11",
+   "req_text": "Shift extends past the working-day end.",
+   "n_candidates": 11,
+   "best": [
+    [
+     1.0,
+     30025,
+     "custom_steps",
+     "3. Now drag the shift's right edge so it extends PAST the working-day end (for example to 7:00 PM)."
+    ],
+    [
+     0.5,
+     30024,
+     "title",
+     "Working-day conflict: a shift outside the tech's working days is flagged"
+    ],
+    [
+     0.333,
+     30615,
+     "custom_preconds",
+     "3. A technician has a shift and, on the same day/time, an event (create both, ZZAUTOTEST)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.11-L102",
+   "section": "4.11",
+   "req_text": "Conflicts appear as a warning icon on the affected block and are listed in a dropdown from the toolbar. Clicking a conflict navigates to the relevant technician and day. Red and other alarming styling is reserved for conflicts and genuine errors, never for overtime.",
+   "n_candidates": 11,
+   "best": [
+    [
+     0.318,
+     30028,
+     "title",
+     "Clicking a conflict in the dropdown navigates to the relevant technician and day"
+    ],
+    [
+     0.318,
+     30024,
+     "custom_expected",
+     "3. The warning icon appears on the block and the conflict is listed in the toolbar dropdown."
+    ],
+    [
+     0.273,
+     30029,
+     "title",
+     "Red styling is only for conflicts and errors, never for overtime"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.11-L103",
+   "section": "4.11",
+   "req_text": "Events are not conflict-checked for now: an event overlapping a shift (or another event) does not raise a conflict. Their time still counts toward capacity (see \u00a74.12).",
+   "n_candidates": 11,
+   "best": [
+    [
+     0.385,
+     30615,
+     "title",
+     "An event's hours count toward the capacity bar but raise no conflict"
+    ],
+    [
+     0.231,
+     30025,
+     "custom_expected",
+     "1. The shift is flagged as a before-hours conflict, with a reason sentence in the spirit of 'Starts before working hours', measured against that technician's own configured working-day START time (not a fixed hour)."
+    ],
+    [
+     0.154,
+     30029,
+     "custom_preconds",
+     "2. One technician is booked into OVERTIME on a day WITHOUT any conflict (more hours than their day, sequential non-overlapping shifts within working hours - use the technician's working window carefully, or observe the OT tag day)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.12-L104",
+   "section": "4.12",
+   "req_text": "When enabled in View Options, each day column header shows a capacity bar. Fill represents aggregate utilization; overtime is a separate per-technician signal, and the two are independent. Event time is included in the utilization total alongside shifts, so meetings and training consume capacity even though they are not conflict-checked (see \u00a74.11).",
+   "n_candidates": 10,
+   "best": [
+    [
+     0.281,
+     30030,
+     "custom_expected",
+     "1. Each day header shows a capacity bar; the blue fill represents total technician-hours booked - shift hours PLUS event hours - divided by total available (sum of all techs' working hours)."
+    ],
+    [
+     0.25,
+     30615,
+     "custom_expected",
+     "1. Adding the event DOES increase that day's capacity bar fill - the event's hours are counted alongside shift hours (a 2-hour meeting uses up 2 hours of the technician's available time)."
+    ],
+    [
+     0.156,
+     30032,
+     "custom_preconds",
+     "3. On one day, a single technician is booked beyond THEIR daily hours while the team's aggregate for that day remains UNDER total capacity (other techs lightly booked)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.12-L105",
+   "section": "4.12",
+   "req_text": "Blue fill: aggregate technician-hours booked (shifts plus events) divided by total available (the sum of all techs' working hours). Clamped at 100%. The track width equals capacity and is identical across all days, so bars stay comparable at a glance (no per-day rescaling).",
+   "n_candidates": 10,
+   "best": [
+    [
+     0.467,
+     30030,
+     "custom_expected",
+     "1. Each day header shows a capacity bar; the blue fill represents total technician-hours booked - shift hours PLUS event hours - divided by total available (sum of all techs' working hours)."
+    ],
+    [
+     0.267,
+     30032,
+     "custom_preconds",
+     "3. On one day, a single technician is booked beyond THEIR daily hours while the team's aggregate for that day remains UNDER total capacity (other techs lightly booked)."
+    ],
+    [
+     0.2,
+     30615,
+     "custom_expected",
+     "1. Adding the event DOES increase that day's capacity bar fill - the event's hours are counted alongside shift hours (a 2-hour meeting uses up 2 hours of the technician's available time)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.12-L106",
+   "section": "4.12",
+   "req_text": "Amber spill: when aggregate hours exceed capacity, an amber segment extends past the right edge of the track, with a tick at the 100% line.",
+   "n_candidates": 10,
+   "best": [
+    [
+     0.533,
+     30031,
+     "title",
+     "Over capacity, an amber spill extends past the track's right edge"
+    ],
+    [
+     0.2,
+     30032,
+     "custom_preconds",
+     "3. On one day, a single technician is booked beyond THEIR daily hours while the team's aggregate for that day remains UNDER total capacity (other techs lightly booked)."
+    ],
+    [
+     0.133,
+     30615,
+     "title",
+     "An event's hours count toward the capacity bar but raise no conflict"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.12-L107",
+   "section": "4.12",
+   "req_text": "\"OT\" tag: appears whenever any individual technician exceeds their own daily hours, even when the day's aggregate is under capacity. It is a text tag, not a color-only signal.",
+   "n_candidates": 10,
+   "best": [
+    [
+     0.429,
+     30032,
+     "title",
+     "'OT' text tag appears when one technician exceeds their own daily hours"
+    ],
+    [
+     0.286,
+     30615,
+     "custom_expected",
+     "1. Adding the event DOES increase that day's capacity bar fill - the event's hours are counted alongside shift hours (a 2-hour meeting uses up 2 hours of the technician's available time)."
+    ],
+    [
+     0.286,
+     30030,
+     "custom_expected",
+     "1. Each day header shows a capacity bar; the blue fill represents total technician-hours booked - shift hours PLUS event hours - divided by total available (sum of all techs' working hours)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.12-L108",
+   "section": "4.12",
+   "req_text": "Hover tooltip: a per-technician breakdown (assigned vs that tech's capacity), with overtime technicians highlighted in amber.",
+   "n_candidates": 10,
+   "best": [
+    [
+     0.455,
+     30033,
+     "custom_expected",
+     "1. A tooltip shows a per-technician breakdown: assigned hours vs that technician's capacity."
+    ],
+    [
+     0.273,
+     30032,
+     "custom_expected",
+     "3. Overtime (per-technician) and capacity (aggregate) are independent signals."
+    ],
+    [
+     0.182,
+     30615,
+     "custom_expected",
+     "1. Adding the event DOES increase that day's capacity bar fill - the event's hours are counted alongside shift hours (a 2-hour meeting uses up 2 hours of the technician's available time)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.13-L109",
+   "section": "4.13",
+   "req_text": "Hovering a block shows a quick peek without opening the modal.",
+   "n_candidates": 8,
+   "best": [
+    [
+     0.286,
+     30037,
+     "custom_steps",
+     "1. Move the mouse quickly across the block without stopping - watch for tooltips."
+    ],
+    [
+     0.143,
+     30038,
+     "custom_expected",
+     "1. When there is not enough room below, the tooltip opens ABOVE the block instead."
+    ],
+    [
+     0.143,
+     30034,
+     "custom_steps",
+     "1. Hover over the shift block and wait briefly for the tooltip."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.13-L110",
+   "section": "4.13",
+   "req_text": "Shift tooltip: customer name (plus the conflict icon if conflicted); unit, vehicle, and VIN; date and time range; technician; scope summary (\"N lines \u00b7 Xh\"); the individual line names as a short list capped at 3 with a \"+N more lines\" row (no line statuses); a time-logged progress bar (\"X / Yh\"); and the conflict reason in amber when conflicted.",
+   "n_candidates": 8,
+   "best": [
+    [
+     0.677,
+     30034,
+     "custom_expected",
+     "Known issue on the build tested: The tooltip listed ALL FIVE line names on the 5-line series shift with no \"+N more lines\" row. Spec 4.13: \"the individual line names as a short list capped at 3 with a '+N more lines' row\". Everything else matched: customer, unit and VIN, date and time range, technician, scope summary \"5 lines - 12h\" and the progress bar. VIN appears with the toggle off, per Branko 2026-07-31. It has been reported to the QA lead but has no developer ticket yet. Mark this test FAILED and note it in your run comment; do not raise a new ticket without asking the QA lead."
+    ],
+    [
+     0.194,
+     30036,
+     "custom_expected",
+     "What you should see today: The event's hover tooltip has no grey dot next to the event name. It shows the name, the date and time range and the technician, and no dot at all. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8893"
+    ],
+    [
+     0.194,
+     30035,
+     "title",
+     "A conflicted shift's tooltip shows the icon and reason in amber"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.13-L111",
+   "section": "4.13",
+   "req_text": "Event tooltip: event name (plus its grey category dot); date and time range; technician.",
+   "n_candidates": 8,
+   "best": [
+    [
+     0.818,
+     30036,
+     "custom_expected",
+     "What you should see today: The event's hover tooltip has no grey dot next to the event name. It shows the name, the date and time range and the technician, and no dot at all. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8893"
+    ],
+    [
+     0.545,
+     30034,
+     "custom_expected",
+     "1. The tooltip shows: the customer name; unit, vehicle, and VIN (the tooltip shows the VIN whenever the unit has one, regardless of the 'VIN Number' toggle); the date and time range; the technician; and a scope summary ('N lines \u00b7 Xh' style)."
+    ],
+    [
+     0.182,
+     38869,
+     "custom_steps",
+     "1. Create a new work order and give it an appointment (a scheduled date/time) as part of the creation flow."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a74.13-L112",
+   "section": "4.13",
+   "req_text": "Behavior: open after a roughly 300 to 500ms hover delay; dismiss on mouse-leave; read-only, so clicking the block still opens the full modal. Because the shift tooltip's height varies with the line list, it flips to open above the block when there is not room below and shifts horizontally to stay within the viewport, rather than being clipped.",
+   "n_candidates": 8,
+   "best": [
+    [
+     0.212,
+     30038,
+     "title",
+     "The tooltip flips or shifts to stay within the viewport - never clipped"
+    ],
+    [
+     0.212,
+     30037,
+     "title",
+     "Tooltips open after a hover delay, dismiss on mouse-leave, are read-only"
+    ],
+    [
+     0.152,
+     30034,
+     "title",
+     "Shift hover tooltip shows the full shift summary incl. up to 3 line names"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a75.1-L113",
+   "section": "5.1",
+   "req_text": "Filters live behind a \"Filter\" button (with an active-count badge); there are no assignment tabs. Applying a filter narrows the flat card list, and \"Clear all\" resets in one click.",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.316,
+     29942,
+     "custom_expected",
+     "2. Applying a filter narrows the flat card list."
+    ],
+    [
+     0.263,
+     29946,
+     "title",
+     "'Clear all' resets every applied sidebar filter in one click"
+    ],
+    [
+     0.263,
+     29936,
+     "custom_expected",
+     "3. There are no Assigned/Unassigned tabs - assignment is available only as a filter behind the 'Filter' button."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a75.1-L114",
+   "section": "5.1",
+   "req_text": "Assignment",
+   "n_candidates": 9,
+   "best": [
+    [
+     1.0,
+     29946,
+     "custom_preconds",
+     "2. You are on the Schedule page and have applied at least two filters (for example an Assignment and a Priority filter)."
+    ],
+    [
+     1.0,
+     29943,
+     "title",
+     "Assignment filter narrows the list to Assigned or Unassigned work orders"
+    ],
+    [
+     1.0,
+     29942,
+     "title",
+     "The 'Filters' button opens Assignment / Status / Priority filter groups"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a75.1-L115",
+   "section": "5.1",
+   "req_text": "Assigned, Unassigned",
+   "n_candidates": 9,
+   "best": [
+    [
+     1.0,
+     29943,
+     "title",
+     "Assignment filter narrows the list to Assigned or Unassigned work orders"
+    ],
+    [
+     1.0,
+     29942,
+     "custom_expected",
+     "1. The filter panel offers three groups: Assignment (Assigned, Unassigned), Status (the work order statuses supported in the app), and Priority (High, Medium, Low)."
+    ],
+    [
+     1.0,
+     29936,
+     "custom_steps",
+     "3. Look for any Assigned/Unassigned tabs above the list."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a75.1-L116",
+   "section": "5.1",
+   "req_text": "Status",
+   "n_candidates": 9,
+   "best": [
+    [
+     1.0,
+     29947,
+     "custom_steps",
+     "2. With the search still applied, open 'Filter' and choose one status."
+    ],
+    [
+     1.0,
+     29944,
+     "title",
+     "Status filter narrows the list to work orders in the chosen status(es)"
+    ],
+    [
+     1.0,
+     29942,
+     "title",
+     "The 'Filters' button opens Assignment / Status / Priority filter groups"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a75.1-L117",
+   "section": "5.1",
+   "req_text": "All work order statuses currently supported in the app",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.833,
+     29942,
+     "custom_expected",
+     "1. The filter panel offers three groups: Assignment (Assigned, Unassigned), Status (the work order statuses supported in the app), and Priority (High, Medium, Low)."
+    ],
+    [
+     0.667,
+     29944,
+     "custom_expected",
+     "1. The Status group lists the work order statuses the app supports."
+    ],
+    [
+     0.333,
+     38871,
+     "title",
+     "Work order form offers a Priority (High/Medium/Low) that drives the sidebar"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a75.1-L118",
+   "section": "5.1",
+   "req_text": "Priority",
+   "n_candidates": 9,
+   "best": [
+    [
+     1.0,
+     38871,
+     "title",
+     "Work order form offers a Priority (High/Medium/Low) that drives the sidebar"
+    ],
+    [
+     1.0,
+     29946,
+     "custom_preconds",
+     "2. You are on the Schedule page and have applied at least two filters (for example an Assignment and a Priority filter)."
+    ],
+    [
+     1.0,
+     29945,
+     "title",
+     "Priority filter offers High, Medium, Low and narrows the list accordingly"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a75.1-L119",
+   "section": "5.1",
+   "req_text": "High, Medium, Low",
+   "n_candidates": 9,
+   "best": [
+    [
+     1.0,
+     38871,
+     "title",
+     "Work order form offers a Priority (High/Medium/Low) that drives the sidebar"
+    ],
+    [
+     1.0,
+     29945,
+     "title",
+     "Priority filter offers High, Medium, Low and narrows the list accordingly"
+    ],
+    [
+     1.0,
+     29942,
+     "custom_expected",
+     "1. The filter panel offers three groups: Assignment (Assigned, Unassigned), Status (the work order statuses supported in the app), and Priority (High, Medium, Low)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a75.1-L120",
+   "section": "5.1",
+   "req_text": "Search and filter work together: the search field (see \u00a73.1) narrows by text match, and the filter button narrows by structured attributes. Both can be active at the same time.",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.429,
+     29947,
+     "title",
+     "Search and filter work together - both can be active at the same time"
+    ],
+    [
+     0.214,
+     29946,
+     "custom_expected",
+     "3. The active-count badge on the 'Filter' button disappears (or shows zero)."
+    ],
+    [
+     0.214,
+     29944,
+     "title",
+     "Status filter narrows the list to work orders in the chosen status(es)"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a75.1-L121",
+   "section": "5.1",
+   "req_text": "The line drill-down has its own filters: All and Unscheduled (lines with no shifts yet), plus a line-name search (see \u00a73.1).",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.364,
+     29954,
+     "custom_expected",
+     "2. Unscheduled lists only the lines that have no shifts yet, and its count matches."
+    ],
+    [
+     0.182,
+     29947,
+     "custom_steps",
+     "1. Type a customer name into 'Search work orders'."
+    ],
+    [
+     0.091,
+     29946,
+     "custom_preconds",
+     "2. You are on the Schedule page and have applied at least two filters (for example an Assignment and a Priority filter)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a75.2-L122",
+   "section": "5.2",
+   "req_text": "Month/year picker (grid of month buttons, year nav arrows).",
+   "n_candidates": 4,
+   "best": [
+    [
+     0.857,
+     29933,
+     "custom_expected",
+     "1. A picker opens showing a grid of month buttons plus arrows to step the year back and forward."
+    ],
+    [
+     0.286,
+     29932,
+     "custom_expected",
+     "1. The main grid navigates to show the clicked date (the containing day/week/month depending on the active view)."
+    ],
+    [
+     0.143,
+     29935,
+     "custom_preconds",
+     "3. The grid is on a date other than today (click a different date first)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a75.2-L123",
+   "section": "5.2",
+   "req_text": "Collapsible: a chevron toggle hides the calendar grid to maximize work order list space.",
+   "n_candidates": 4,
+   "best": [
+    [
+     0.545,
+     29934,
+     "custom_expected",
+     "1. The calendar grid collapses (hides), leaving more room for the work order list below."
+    ],
+    [
+     0.182,
+     29932,
+     "title",
+     "Clicking a date in the mini calendar navigates the main grid to that date"
+    ],
+    [
+     0.091,
+     29935,
+     "title",
+     "Mini calendar highlights the selected date, today, and the hovered week"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a75.2-L124",
+   "section": "5.2",
+   "req_text": "Selected date highlighted; today indicated; week row highlighted on hover.",
+   "n_candidates": 4,
+   "best": [
+    [
+     0.5,
+     29935,
+     "title",
+     "Mini calendar highlights the selected date, today, and the hovered week"
+    ],
+    [
+     0.375,
+     29932,
+     "custom_expected",
+     "3. The clicked date is highlighted as the selected date in the mini calendar."
+    ],
+    [
+     0.125,
+     29933,
+     "custom_expected",
+     "3. The main grid can then be navigated by clicking a date in the newly shown month."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a76-L125",
+   "section": "6",
+   "req_text": "Today button",
+   "n_candidates": 7,
+   "best": [
+    [
+     1.0,
+     30039,
+     "title",
+     "'Today' button jumps the grid to the current date"
+    ],
+    [
+     0.5,
+     30046,
+     "custom_expected",
+     "What you should see today: Business Hours starts switched ON in View Options when it should start switched off. The other five options in that menu do start in the right position. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8827"
+    ],
+    [
+     0.5,
+     30041,
+     "custom_expected",
+     "What you should see today: Searching in the grid removes the shifts that do not match instead of fading them. The non-matching blocks disappear from the grid entirely rather than staying visible and dimmed. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8874"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a76-L126",
+   "section": "6",
+   "req_text": "Jumps the grid to the current date.",
+   "n_candidates": 7,
+   "best": [
+    [
+     1.0,
+     30039,
+     "title",
+     "'Today' button jumps the grid to the current date"
+    ],
+    [
+     0.25,
+     30046,
+     "custom_steps",
+     "1. Open 'View Options' in the grid toolbar."
+    ],
+    [
+     0.25,
+     30042,
+     "custom_steps",
+     "1. Open the 'Filter & Display' dropdown in the grid toolbar."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a76-L127",
+   "section": "6",
+   "req_text": "Left/right arrows",
+   "n_candidates": 7,
+   "best": [
+    [
+     1.0,
+     30040,
+     "title",
+     "Left/right arrows step by day, week, or month to match the active range"
+    ],
+    [
+     0.333,
+     30046,
+     "custom_expected",
+     "What you should see today: Business Hours starts switched ON in View Options when it should start switched off. The other five options in that menu do start in the right position. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8827"
+    ],
+    [
+     0.0,
+     30042,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a76-L128",
+   "section": "6",
+   "req_text": "Navigate by day, week, or month depending on the active range.",
+   "n_candidates": 7,
+   "best": [
+    [
+     0.857,
+     30039,
+     "custom_expected",
+     "1. The grid jumps to the range containing the current date (today's day, this week, or this month depending on the active view)."
+    ],
+    [
+     0.714,
+     30040,
+     "title",
+     "Left/right arrows step by day, week, or month to match the active range"
+    ],
+    [
+     0.429,
+     29927,
+     "title",
+     "Day / Week / Month segmented control switches the grid between the three views"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a76-L129",
+   "section": "6",
+   "req_text": "Date label",
+   "n_candidates": 7,
+   "best": [
+    [
+     1.0,
+     30040,
+     "custom_steps",
+     "1. In week view, click the right arrow and read the date label."
+    ],
+    [
+     1.0,
+     30039,
+     "custom_steps",
+     "2. Look at the grid and the date label."
+    ],
+    [
+     0.0,
+     30046,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a76-L130",
+   "section": "6",
+   "req_text": "Shows the current range (e.g. \"Jul 14 to 20, 2026\").",
+   "n_candidates": 7,
+   "best": [
+    [
+     0.75,
+     30040,
+     "custom_expected",
+     "1. Week view: each arrow click moves one whole week; the label shows the week range (spec's example format: 'Jul 14 to 20, 2026')."
+    ],
+    [
+     0.5,
+     30039,
+     "custom_expected",
+     "1. The grid jumps to the range containing the current date (today's day, this week, or this month depending on the active view)."
+    ],
+    [
+     0.25,
+     30046,
+     "custom_preconds",
+     "3. At least one event and some shifts exist in the visible range, so capacity bars have fill."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a76-L131",
+   "section": "6",
+   "req_text": "Conflict pill",
+   "n_candidates": 7,
+   "best": [
+    [
+     1.0,
+     30027,
+     "title",
+     "The toolbar conflict pill shows the count and opens a list"
+    ],
+    [
+     0.0,
+     30046,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30042,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a76-L132",
+   "section": "6",
+   "req_text": "Shows the issue count; click opens the conflict detail dropdown.",
+   "n_candidates": 7,
+   "best": [
+    [
+     0.333,
+     30027,
+     "title",
+     "The toolbar conflict pill shows the count and opens a list"
+    ],
+    [
+     0.167,
+     30042,
+     "title",
+     "'Filter & Display' dropdown combines department toggles, My Shifts, and VIN"
+    ],
+    [
+     0.167,
+     30040,
+     "custom_steps",
+     "1. In week view, click the right arrow and read the date label."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a76-L133",
+   "section": "6",
+   "req_text": "Search",
+   "n_candidates": 7,
+   "best": [
+    [
+     1.0,
+     30041,
+     "title",
+     "Toolbar search highlights matching blocks and fades non-matching ones"
+    ],
+    [
+     0.0,
+     30046,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30042,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a76-L134",
+   "section": "6",
+   "req_text": "Filters grid blocks by matching against customer name, WO number, unit number, technician name, and line name.",
+   "n_candidates": 7,
+   "best": [
+    [
+     0.545,
+     30041,
+     "custom_expected",
+     "2. All five fields match: customer name, work order number, unit number, technician name, and line name."
+    ],
+    [
+     0.182,
+     30046,
+     "custom_expected",
+     "4. Events OFF: event blocks disappear from the grid while shifts remain; ON: the events reappear unchanged."
+    ],
+    [
+     0.182,
+     29927,
+     "custom_expected",
+     "1. Day: the grid shows a 24-hour timeline per technician row, with shifts positioned at their times."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a76-L135",
+   "section": "6",
+   "req_text": "Filter and Display",
+   "n_candidates": 7,
+   "best": [
+    [
+     1.0,
+     30042,
+     "title",
+     "'Filter & Display' dropdown combines department toggles, My Shifts, and VIN"
+    ],
+    [
+     0.0,
+     30046,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30041,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a76-L136",
+   "section": "6",
+   "req_text": "Dropdown (checkbox style) combining department visibility toggles, My Shifts, and VIN. Replaces the former \"Departments\" control.",
+   "n_candidates": 7,
+   "best": [
+    [
+     0.462,
+     30042,
+     "custom_expected",
+     "1. The dropdown is checkbox style and contains: a toggle per department, 'My Shifts', and 'VIN'."
+    ],
+    [
+     0.077,
+     30046,
+     "title",
+     "'View Options': six toggles with defaults; Capacity Bars and Events flip"
+    ],
+    [
+     0.077,
+     30041,
+     "custom_preconds",
+     "2. Several shifts exist on the visible range for different customers/orders/technicians."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a76-L137",
+   "section": "6",
+   "req_text": "View Options",
+   "n_candidates": 7,
+   "best": [
+    [
+     1.0,
+     30046,
+     "title",
+     "'View Options': six toggles with defaults; Capacity Bars and Events flip"
+    ],
+    [
+     0.5,
+     30041,
+     "custom_preconds",
+     "3. You are on the Schedule page in week view."
+    ],
+    [
+     0.5,
+     30040,
+     "custom_steps",
+     "1. In week view, click the right arrow and read the date label."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a76-L138",
+   "section": "6",
+   "req_text": "Toggles: Business hours, Capacity bars, Events, Tech hours, Saturday, Sunday.",
+   "n_candidates": 7,
+   "best": [
+    [
+     1.0,
+     30046,
+     "custom_expected",
+     "1. Six toggles are offered: Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday."
+    ],
+    [
+     0.222,
+     29927,
+     "custom_expected",
+     "3. Month: the grid shows a compact calendar with per-day capacity bars and shift chips."
+    ],
+    [
+     0.111,
+     30042,
+     "title",
+     "'Filter & Display' dropdown combines department toggles, My Shifts, and VIN"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a76-L139",
+   "section": "6",
+   "req_text": "Day / Week / Month",
+   "n_candidates": 7,
+   "best": [
+    [
+     1.0,
+     30040,
+     "title",
+     "Left/right arrows step by day, week, or month to match the active range"
+    ],
+    [
+     1.0,
+     30039,
+     "custom_expected",
+     "1. The grid jumps to the range containing the current date (today's day, this week, or this month depending on the active view)."
+    ],
+    [
+     1.0,
+     29927,
+     "title",
+     "Day / Week / Month segmented control switches the grid between the three views"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a76-L140",
+   "section": "6",
+   "req_text": "Segmented control to switch the grid range.",
+   "n_candidates": 7,
+   "best": [
+    [
+     0.6,
+     29927,
+     "title",
+     "Day / Week / Month segmented control switches the grid between the three views"
+    ],
+    [
+     0.4,
+     30039,
+     "custom_expected",
+     "1. The grid jumps to the range containing the current date (today's day, this week, or this month depending on the active view)."
+    ],
+    [
+     0.2,
+     30046,
+     "custom_preconds",
+     "3. At least one event and some shifts exist in the visible range, so capacity bars have fill."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a77-L141",
+   "section": "7",
+   "req_text": "Drag feedback. Drop-target cells highlight, and a ghost block shows the line name and hours.",
+   "n_candidates": 23,
+   "best": [
+    [
+     0.545,
+     29960,
+     "custom_expected",
+     "2. A ghost block follows the drag showing the line name and its hours."
+    ],
+    [
+     0.273,
+     30004,
+     "custom_steps",
+     "1. Drag the shift block horizontally along the timeline and release at a position between clean quarter-hours."
+    ],
+    [
+     0.273,
+     29961,
+     "custom_steps",
+     "3. Drag the SAME line onto a different technician's cell and create a second shift (drag the line from the sidebar again - do NOT drag the shift block you just created, that would move it instead)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a77-L142",
+   "section": "7",
+   "req_text": "Shift reassignment. Dragging a shift block from one technician row to another reassigns it: the target technician is added to the affected line's roster and the source technician is removed. A confirmation modal handles cross-tech moves.",
+   "n_candidates": 23,
+   "best": [
+    [
+     0.286,
+     43556,
+     "custom_expected",
+     "3. After you confirm, the block sits in the new technician's row, that technician is added to the work order line's technician list, and the previous one is taken off it."
+    ],
+    [
+     0.286,
+     30065,
+     "custom_expected",
+     "4. Undo after reassign: the shift returns to the original technician, and the line's roster is restored (original tech back on, target tech off)."
+    ],
+    [
+     0.286,
+     30052,
+     "title",
+     "Dragging a shift to another technician row reassigns it, with a confirm modal"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a77-L143",
+   "section": "7",
+   "req_text": "Left-click on empty grid space opens a menu with: Create event, New work order.",
+   "n_candidates": 23,
+   "best": [
+    [
+     1.0,
+     30054,
+     "title",
+     "Left-click empty grid space opens a menu: Create Event and New Work Order"
+    ],
+    [
+     0.636,
+     30016,
+     "title",
+     "Create an event via left-click 'Create Event' on empty grid space"
+    ],
+    [
+     0.545,
+     38855,
+     "custom_preconds",
+     "2. The cell menu already shows 'Create Event' and 'New Work Order'."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a77-L144",
+   "section": "7",
+   "req_text": "Toast notifications. Every create, delete, move, and reassign action produces a toast with an Undo option. The toast persists for 4 to 7 seconds, stays while the cursor is over it, and dismisses on mouse-leave.",
+   "n_candidates": 23,
+   "best": [
+    [
+     0.5,
+     30065,
+     "custom_expected",
+     "1. Each of the four actions (create, delete, move, reassign) produces a toast notification, and every toast offers an Undo option."
+    ],
+    [
+     0.278,
+     30064,
+     "custom_expected",
+     "1. Untouched, a toast that has an Undo action persists about 7 seconds; a toast without Undo persists about 4 seconds, before dismissing."
+    ],
+    [
+     0.222,
+     30020,
+     "custom_expected",
+     "3. Each move produces a toast with Undo."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a77-L145",
+   "section": "7",
+   "req_text": "Keyboard support. Global shortcuts work anywhere on the schedule page:Escape closes the topmost open modal or popover, following a defined stacking order (delete scope, reassign, spread, capacity, event modal, event view, line picker, shift detail, cell menu, calendar picker, customize, filters, search). Within the shift modal, Escape first dismisses any open sub-picker (color picker, time picker, note edit) before closing the modal itself.",
+   "n_candidates": 23,
+   "best": [
+    [
+     0.6,
+     30066,
+     "custom_expected",
+     "5. Escape works anywhere on the schedule page as a global shortcut, following the defined stacking order (delete scope, reassign, spread, capacity, event modal, event view, line picker, shift detail, cell menu, calendar picker, customize, filters, search)."
+    ],
+    [
+     0.133,
+     29955,
+     "title",
+     "Dropping a single-line work order creates a shift with no scope picker"
+    ],
+    [
+     0.111,
+     43556,
+     "custom_preconds",
+     "4. A repeating series of shifts exists on the week you are looking at. On the test shop, work order S-9379 (customer Xiriver Apparel, unit 16604, 11 Lines) has a series sitting on technician Jose Young; its blocks are labelled \"Part of a series\" or \"Week 1 of 2\". If none exists, make one first: drag a work order with several lines onto a technician, choose Schedule whole work order, and let it spread over several days."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a77-L146",
+   "section": "7",
+   "req_text": "Enter confirms the active confirmable dialog (delete scope, reassign, spread, event create/edit). It does not fire inside textareas, so multiline note editing still works normally.",
+   "n_candidates": 23,
+   "best": [
+    [
+     0.286,
+     30068,
+     "title",
+     "Enter confirms the active dialog, but not inside a note textarea"
+    ],
+    [
+     0.286,
+     30066,
+     "custom_expected",
+     "5. Escape works anywhere on the schedule page as a global shortcut, following the defined stacking order (delete scope, reassign, spread, capacity, event modal, event view, line picker, shift detail, cell menu, calendar picker, customize, filters, search)."
+    ],
+    [
+     0.143,
+     30065,
+     "title",
+     "Every create/delete/move/reassign toasts with Undo, and Undo restores"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a77-L147",
+   "section": "7",
+   "req_text": "Drag-and-drop has a click-to-arm alternative for users who cannot drag.",
+   "n_candidates": 23,
+   "best": [
+    [
+     0.5,
+     29962,
+     "title",
+     "A click-to-arm alternative exists for scheduling without dragging"
+    ],
+    [
+     0.333,
+     29960,
+     "custom_expected",
+     "What you should see today: Nothing highlights and nothing follows the cursor while you drag a line from the list on the left onto the grid. No cell lights up as a drop target, and the faint shape that does follow the cursor is empty - it does not show the line name or the hours. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8840"
+    ],
+    [
+     0.167,
+     43556,
+     "custom_preconds",
+     "4. A repeating series of shifts exists on the week you are looking at. On the test shop, work order S-9379 (customer Xiriver Apparel, unit 16604, 11 Lines) has a series sitting on technician Jose Young; its blocks are labelled \"Part of a series\" or \"Week 1 of 2\". If none exists, make one first: drag a work order with several lines onto a technician, choose Schedule whole work order, and let it spread over several days."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a77-L148",
+   "section": "7",
+   "req_text": "Series-aware deletion. Deleting a shift that belongs to a series asks for scope. This is routine, lightweight editing (undo toast, not the alarming destructive styling):This shift only: removes that day. The series keeps the gap (it is not auto-closed), and the hours return to the estimate's remaining.",
+   "n_candidates": 23,
+   "best": [
+    [
+     0.231,
+     30058,
+     "title",
+     "'This shift only' removes that day and the series keeps the gap"
+    ],
+    [
+     0.192,
+     30057,
+     "custom_expected",
+     "3. The prompt uses routine, lightweight styling - not alarming destructive styling."
+    ],
+    [
+     0.154,
+     38864,
+     "custom_steps",
+     "3. Recreate a shift, move it to another day, and again refresh while the toast shows, without clicking Undo."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a77-L149",
+   "section": "7",
+   "req_text": "This and everything after: removes from the clicked shift onward, keeping earlier shifts.",
+   "n_candidates": 23,
+   "best": [
+    [
+     0.667,
+     30059,
+     "title",
+     "'This and everything after' removes from the clicked shift onward"
+    ],
+    [
+     0.333,
+     38864,
+     "custom_expected",
+     "1. The delete took effect immediately: after the refresh the shift is gone even though Undo was never clicked - closing or refreshing does not cancel the action."
+    ],
+    [
+     0.333,
+     30057,
+     "custom_expected",
+     "1. A scope prompt appears with three options: this shift only, this and everything after, and the whole series."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a77-L150",
+   "section": "7",
+   "req_text": "The whole series: removes all of the series' shifts for that technician.",
+   "n_candidates": 23,
+   "best": [
+    [
+     1.0,
+     30060,
+     "title",
+     "'The whole series' removes all of the series' shifts for that technician"
+    ],
+    [
+     0.8,
+     43556,
+     "custom_preconds",
+     "4. A repeating series of shifts exists on the week you are looking at. On the test shop, work order S-9379 (customer Xiriver Apparel, unit 16604, 11 Lines) has a series sitting on technician Jose Young; its blocks are labelled \"Part of a series\" or \"Week 1 of 2\". If none exists, make one first: drag a work order with several lines onto a technician, choose Schedule whole work order, and let it spread over several days."
+    ],
+    [
+     0.6,
+     30057,
+     "custom_preconds",
+     "2. A series of at least 3 shifts exists for one technician."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a77-L151",
+   "section": "7",
+   "req_text": "The options adapt to position: on the first shift, \"this and after\" equals \"whole series\" (show two options); on the last shift, \"this and after\" equals \"this only\" (two options); only middle shifts show all three. Each option states its consequence in hours returned (\"returns 8h\" / \"returns 56h\").",
+   "n_candidates": 23,
+   "best": [
+    [
+     0.333,
+     30061,
+     "custom_expected",
+     "1. First shift: two options ('this and after' would equal 'whole series', so only two are shown)."
+    ],
+    [
+     0.333,
+     30057,
+     "custom_expected",
+     "2. Each option states its consequence in hours returned (spec's example format: 'returns 8h' / 'returns 56h')."
+    ],
+    [
+     0.19,
+     43556,
+     "custom_preconds",
+     "4. A repeating series of shifts exists on the week you are looking at. On the test shop, work order S-9379 (customer Xiriver Apparel, unit 16604, 11 Lines) has a series sitting on technician Jose Young; its blocks are labelled \"Part of a series\" or \"Week 1 of 2\". If none exists, make one first: drag a work order with several lines onto a technician, choose Schedule whole work order, and let it spread over several days."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a78.1-L152",
+   "section": "8.1",
+   "req_text": "Shift",
+   "n_candidates": 2,
+   "best": [
+    [
+     0.0,
+     30018,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     29951,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a78.1-L153",
+   "section": "8.1",
+   "req_text": "sid, woId, rowKey (tech), date, startHour, blockDuration, lines[], seriesId",
+   "n_candidates": 2,
+   "best": [
+    [
+     0.111,
+     30018,
+     "custom_steps",
+     "2. Fill each: name, date, start and end time, and pick a color category. Save, then re-open the event."
+    ],
+    [
+     0.111,
+     29951,
+     "custom_preconds",
+     "2. A work order exists whose approved lines have estimated hours; at least one line has several technicians on its roster."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a78.1-L154",
+   "section": "8.1",
+   "req_text": "Belongs to Work Order; assigned to Technician; optionally part of a Series",
+   "n_candidates": 2,
+   "best": [
+    [
+     0.25,
+     29951,
+     "custom_preconds",
+     "2. A work order exists whose approved lines have estimated hours; at least one line has several technicians on its roster."
+    ],
+    [
+     0.125,
+     30018,
+     "custom_expected",
+     "5. The event is created as an all-day block for that technician and day."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a78.1-L155",
+   "section": "8.1",
+   "req_text": "Event",
+   "n_candidates": 2,
+   "best": [
+    [
+     1.0,
+     30018,
+     "title",
+     "Event modal fields all save; the all-day toggle creates an all-day event"
+    ],
+    [
+     0.0,
+     29951,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a78.1-L156",
+   "section": "8.1",
+   "req_text": "eid, name, rowKey (tech), date, startHour, endHour, allDay, color",
+   "n_candidates": 2,
+   "best": [
+    [
+     0.333,
+     30018,
+     "custom_steps",
+     "2. Fill each: name, date, start and end time, and pick a color category. Save, then re-open the event."
+    ],
+    [
+     0.0,
+     29951,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a78.1-L157",
+   "section": "8.1",
+   "req_text": "Assigned to Technician",
+   "n_candidates": 2,
+   "best": [
+    [
+     0.5,
+     30018,
+     "custom_expected",
+     "5. The event is created as an all-day block for that technician and day."
+    ],
+    [
+     0.5,
+     29951,
+     "title",
+     "Line row shows title, hours, the technician roster and a drag handle"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a78.1-L158",
+   "section": "8.1",
+   "req_text": "Work Order",
+   "n_candidates": 2,
+   "best": [
+    [
+     1.0,
+     29951,
+     "custom_preconds",
+     "2. A work order exists whose approved lines have estimated hours; at least one line has several technicians on its roster."
+    ],
+    [
+     0.0,
+     30018,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a78.1-L159",
+   "section": "8.1",
+   "req_text": "id, customer, unit, asset, status, priority, hrs, color",
+   "n_candidates": 2,
+   "best": [
+    [
+     0.143,
+     30018,
+     "custom_steps",
+     "2. Fill each: name, date, start and end time, and pick a color category. Save, then re-open the event."
+    ],
+    [
+     0.0,
+     29951,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a78.1-L160",
+   "section": "8.1",
+   "req_text": "Has many Lines",
+   "n_candidates": 2,
+   "best": [
+    [
+     0.5,
+     29951,
+     "custom_preconds",
+     "2. A work order exists whose approved lines have estimated hours; at least one line has several technicians on its roster."
+    ],
+    [
+     0.0,
+     30018,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a78.1-L161",
+   "section": "8.1",
+   "req_text": "Line",
+   "n_candidates": 2,
+   "best": [
+    [
+     1.0,
+     29951,
+     "title",
+     "Line row shows title, hours, the technician roster and a drag handle"
+    ],
+    [
+     0.0,
+     30018,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a78.1-L162",
+   "section": "8.1",
+   "req_text": "num, title, status, est, actual, total, labor[]",
+   "n_candidates": 2,
+   "best": [
+    [
+     0.143,
+     29951,
+     "title",
+     "Line row shows title, hours, the technician roster and a drag handle"
+    ],
+    [
+     0.0,
+     30018,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a78.1-L163",
+   "section": "8.1",
+   "req_text": "Belongs to Work Order; has many Technicians via the labor roster (no cap)",
+   "n_candidates": 2,
+   "best": [
+    [
+     0.444,
+     29951,
+     "custom_preconds",
+     "2. A work order exists whose approved lines have estimated hours; at least one line has several technicians on its roster."
+    ],
+    [
+     0.0,
+     30018,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a78.1-L164",
+   "section": "8.1",
+   "req_text": "Technician",
+   "n_candidates": 2,
+   "best": [
+    [
+     1.0,
+     30018,
+     "custom_expected",
+     "5. The event is created as an all-day block for that technician and day."
+    ],
+    [
+     1.0,
+     29951,
+     "title",
+     "Line row shows title, hours, the technician roster and a drag handle"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a78.1-L165",
+   "section": "8.1",
+   "req_text": "key, name, role, dept, hours (working start/end plus working weekdays)",
+   "n_candidates": 2,
+   "best": [
+    [
+     0.3,
+     30018,
+     "custom_steps",
+     "2. Fill each: name, date, start and end time, and pick a color category. Save, then re-open the event."
+    ],
+    [
+     0.1,
+     29951,
+     "title",
+     "Line row shows title, hours, the technician roster and a drag handle"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a78.1-L166",
+   "section": "8.1",
+   "req_text": "Belongs to Department; has many Shifts and Events",
+   "n_candidates": 2,
+   "best": [
+    [
+     0.2,
+     29951,
+     "custom_expected",
+     "2. The current technician roster is shown as an avatar stack plus a count; there is no cap on how many technicians a line can have."
+    ],
+    [
+     0.0,
+     30018,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a78.1-L167",
+   "section": "8.1",
+   "req_text": "Department",
+   "n_candidates": 2,
+   "best": [
+    [
+     0.0,
+     30018,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     29951,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a78.1-L168",
+   "section": "8.1",
+   "req_text": "key, name",
+   "n_candidates": 2,
+   "best": [
+    [
+     0.5,
+     30018,
+     "custom_steps",
+     "2. Fill each: name, date, start and end time, and pick a color category. Save, then re-open the event."
+    ],
+    [
+     0.0,
+     29951,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a78.1-L169",
+   "section": "8.1",
+   "req_text": "Has many Technicians",
+   "n_candidates": 2,
+   "best": [
+    [
+     1.0,
+     29951,
+     "custom_expected",
+     "2. The current technician roster is shown as an avatar stack plus a count; there is no cap on how many technicians a line can have."
+    ],
+    [
+     0.0,
+     30018,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a78.1-L170",
+   "section": "8.1",
+   "req_text": "The Line's labor[] roster has no maximum; any number of technicians may be on a line. An unassigned shift has an empty or placeholder rowKey until it is moved onto a technician.",
+   "n_candidates": 2,
+   "best": [
+    [
+     0.267,
+     29951,
+     "custom_expected",
+     "2. The current technician roster is shown as an avatar stack plus a count; there is no cap on how many technicians a line can have."
+    ],
+    [
+     0.067,
+     30018,
+     "custom_preconds",
+     "2. You are on the Schedule page with the event modal open (left-click empty grid space, then 'Create Event')."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a78.2-L171",
+   "section": "8.2",
+   "req_text": "A series groups shifts created by the spread step; all shifts in a series share a seriesId. The series supports scoped deletion (this / this-and-after / whole) and renders as a connected banner in month, week, and day views. It is a grouping over ordinary daily shifts, not a distinct persisted entity beyond the shared id, and each daily shift carries its own hours for capacity math.",
+   "n_candidates": 2,
+   "best": [
+    [
+     0.152,
+     29990,
+     "title",
+     "A series is just a grouping - capacity and conflicts use the daily shifts"
+    ],
+    [
+     0.152,
+     29985,
+     "custom_expected",
+     "1. One daily shift is created per planned working day, together forming a linked series."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L172",
+   "section": "9",
+   "req_text": "Display settings are split across two toolbar controls:",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.286,
+     30042,
+     "custom_steps",
+     "1. Open the 'Filter & Display' dropdown in the grid toolbar."
+    ],
+    [
+     0.143,
+     30046,
+     "custom_steps",
+     "1. Open 'View Options' in the grid toolbar."
+    ],
+    [
+     0.143,
+     30045,
+     "custom_steps",
+     "2. Turn 'VIN Number' ON in 'Filter and Display'."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L173",
+   "section": "9",
+   "req_text": "Filter and Display dropdown (checkbox style, \u00a76):",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.6,
+     30042,
+     "title",
+     "'Filter & Display' dropdown combines department toggles, My Shifts, and VIN"
+    ],
+    [
+     0.4,
+     30045,
+     "custom_steps",
+     "2. Turn 'VIN Number' ON in 'Filter and Display'."
+    ],
+    [
+     0.4,
+     30044,
+     "custom_steps",
+     "1. In 'Filter and Display', turn ON 'My Shifts'."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L174",
+   "section": "9",
+   "req_text": "Department toggles",
+   "n_candidates": 9,
+   "best": [
+    [
+     1.0,
+     30043,
+     "title",
+     "Department toggles show or hide individual department groups in the grid"
+    ],
+    [
+     1.0,
+     30042,
+     "title",
+     "'Filter & Display' dropdown combines department toggles, My Shifts, and VIN"
+    ],
+    [
+     0.5,
+     30051,
+     "title",
+     "Saturday and Sunday toggles include or exclude the weekend columns"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L175",
+   "section": "9",
+   "req_text": "All on",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.0,
+     30051,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30050,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30047,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L176",
+   "section": "9",
+   "req_text": "Show or hide individual department groups in the grid.",
+   "n_candidates": 9,
+   "best": [
+    [
+     1.0,
+     30043,
+     "title",
+     "Department toggles show or hide individual department groups in the grid"
+    ],
+    [
+     0.2,
+     30051,
+     "custom_steps",
+     "1. Turn OFF Saturday in 'View Options'; look at the grid."
+    ],
+    [
+     0.2,
+     30046,
+     "custom_steps",
+     "1. Open 'View Options' in the grid toolbar."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L177",
+   "section": "9",
+   "req_text": "My Shifts",
+   "n_candidates": 9,
+   "best": [
+    [
+     1.0,
+     30046,
+     "custom_preconds",
+     "3. At least one event and some shifts exist in the visible range, so capacity bars have fill."
+    ],
+    [
+     1.0,
+     30044,
+     "title",
+     "'My Shifts' filters the grid to only the current user's shifts"
+    ],
+    [
+     1.0,
+     30042,
+     "title",
+     "'Filter & Display' dropdown combines department toggles, My Shifts, and VIN"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L178",
+   "section": "9",
+   "req_text": "Off",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.0,
+     30051,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30050,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30047,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L179",
+   "section": "9",
+   "req_text": "Filters the grid to show only shifts assigned to the current user. All other technician rows and their shifts are hidden. This is a personal convenience filter, not a permission boundary.",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.357,
+     30044,
+     "title",
+     "'My Shifts' filters the grid to only the current user's shifts"
+    ],
+    [
+     0.214,
+     30043,
+     "custom_expected",
+     "1. The turned-off department's group (header and technician rows) disappears from the grid."
+    ],
+    [
+     0.143,
+     30050,
+     "custom_steps",
+     "2. Look at the technician rows."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L180",
+   "section": "9",
+   "req_text": "VIN",
+   "n_candidates": 9,
+   "best": [
+    [
+     1.0,
+     30045,
+     "title",
+     "'VIN Number' toggle gates the block VIN only - tooltip and modal always show it"
+    ],
+    [
+     1.0,
+     30042,
+     "title",
+     "'Filter & Display' dropdown combines department toggles, My Shifts, and VIN"
+    ],
+    [
+     1.0,
+     30008,
+     "title",
+     "Clicking a shift opens its detail modal, with VIN always visible"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L181",
+   "section": "9",
+   "req_text": "Off",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.0,
+     30051,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30050,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30047,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L182",
+   "section": "9",
+   "req_text": "Shows the VIN number as an additional line on shift blocks (day and week views) and in hover tooltips. The VIN is always visible in the shift detail modal regardless of this toggle.",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.471,
+     30045,
+     "custom_expected",
+     "2. 'VIN Number' on: the VIN appears as an additional line on blocks in day and week views."
+    ],
+    [
+     0.353,
+     30008,
+     "title",
+     "Clicking a shift opens its detail modal, with VIN always visible"
+    ],
+    [
+     0.118,
+     30051,
+     "custom_preconds",
+     "2. You are on the Schedule page in WEEK view with Saturday and Sunday ON (default) - 7 columns visible."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L183",
+   "section": "9",
+   "req_text": "View Options popover:",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.667,
+     30051,
+     "custom_steps",
+     "1. Turn OFF Saturday in 'View Options'; look at the grid."
+    ],
+    [
+     0.667,
+     30050,
+     "custom_steps",
+     "1. Turn ON Tech Hours in 'View Options'."
+    ],
+    [
+     0.667,
+     30047,
+     "custom_steps",
+     "2. Turn ON Business Hours in 'View Options'."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L184",
+   "section": "9",
+   "req_text": "Business Hours",
+   "n_candidates": 9,
+   "best": [
+    [
+     1.0,
+     30047,
+     "title",
+     "Business Hours toggle shades non-working hours in day view"
+    ],
+    [
+     1.0,
+     30046,
+     "custom_expected",
+     "1. Six toggles are offered: Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday."
+    ],
+    [
+     0.5,
+     30050,
+     "title",
+     "Tech Hours toggle displays each technician's working hours next to their name"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L185",
+   "section": "9",
+   "req_text": "Off",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.0,
+     30051,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30050,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30047,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L186",
+   "section": "9",
+   "req_text": "Shades non-working hours in day view.",
+   "n_candidates": 9,
+   "best": [
+    [
+     1.0,
+     30047,
+     "title",
+     "Business Hours toggle shades non-working hours in day view"
+    ],
+    [
+     0.667,
+     30050,
+     "custom_expected",
+     "What you should see today: Turning on Tech Hours in View Options changes nothing you can see. None of the technician rows shows its working hours, on any day. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8851"
+    ],
+    [
+     0.333,
+     30046,
+     "custom_expected",
+     "What you should see today: Business Hours starts switched ON in View Options when it should start switched off. The other five options in that menu do start in the right position. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8827"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L187",
+   "section": "9",
+   "req_text": "Capacity Bars",
+   "n_candidates": 9,
+   "best": [
+    [
+     1.0,
+     30046,
+     "title",
+     "'View Options': six toggles with defaults; Capacity Bars and Events flip"
+    ],
+    [
+     0.0,
+     30051,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30050,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L188",
+   "section": "9",
+   "req_text": "On",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.0,
+     30051,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30050,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30047,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L189",
+   "section": "9",
+   "req_text": "Shows per-day capacity utilization bars in column headers.",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.833,
+     30046,
+     "custom_steps",
+     "3. Turn OFF Capacity Bars, look at the day column headers, then turn it back ON."
+    ],
+    [
+     0.167,
+     30051,
+     "custom_expected",
+     "1. Saturday off: the Saturday column is removed (6 columns remain)."
+    ],
+    [
+     0.167,
+     30050,
+     "custom_expected",
+     "What you should see today: Turning on Tech Hours in View Options changes nothing you can see. None of the technician rows shows its working hours, on any day. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8851"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L190",
+   "section": "9",
+   "req_text": "Events",
+   "n_candidates": 9,
+   "best": [
+    [
+     1.0,
+     30046,
+     "title",
+     "'View Options': six toggles with defaults; Capacity Bars and Events flip"
+    ],
+    [
+     0.0,
+     30051,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30050,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L191",
+   "section": "9",
+   "req_text": "On",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.0,
+     30051,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30050,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30047,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L192",
+   "section": "9",
+   "req_text": "Shows non-WO event blocks on the grid.",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.75,
+     30046,
+     "custom_expected",
+     "4. Events OFF: event blocks disappear from the grid while shifts remain; ON: the events reappear unchanged."
+    ],
+    [
+     0.25,
+     30051,
+     "custom_steps",
+     "1. Turn OFF Saturday in 'View Options'; look at the grid."
+    ],
+    [
+     0.25,
+     30047,
+     "title",
+     "Business Hours toggle shades non-working hours in day view"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L193",
+   "section": "9",
+   "req_text": "Tech Hours",
+   "n_candidates": 9,
+   "best": [
+    [
+     1.0,
+     30050,
+     "title",
+     "Tech Hours toggle displays each technician's working hours next to their name"
+    ],
+    [
+     1.0,
+     30046,
+     "custom_expected",
+     "1. Six toggles are offered: Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday."
+    ],
+    [
+     0.5,
+     30047,
+     "title",
+     "Business Hours toggle shades non-working hours in day view"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L194",
+   "section": "9",
+   "req_text": "Off",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.0,
+     30051,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30050,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30047,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L195",
+   "section": "9",
+   "req_text": "Displays each technician's working hours next to their name.",
+   "n_candidates": 9,
+   "best": [
+    [
+     1.0,
+     30050,
+     "title",
+     "Tech Hours toggle displays each technician's working hours next to their name"
+    ],
+    [
+     0.333,
+     30047,
+     "title",
+     "Business Hours toggle shades non-working hours in day view"
+    ],
+    [
+     0.167,
+     30046,
+     "custom_expected",
+     "1. Six toggles are offered: Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L196",
+   "section": "9",
+   "req_text": "Saturday",
+   "n_candidates": 9,
+   "best": [
+    [
+     1.0,
+     30051,
+     "title",
+     "Saturday and Sunday toggles include or exclude the weekend columns"
+    ],
+    [
+     1.0,
+     30046,
+     "custom_expected",
+     "1. Six toggles are offered: Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday."
+    ],
+    [
+     0.0,
+     30050,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L197",
+   "section": "9",
+   "req_text": "On",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.0,
+     30051,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30050,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30047,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L198",
+   "section": "9",
+   "req_text": "Includes the Saturday column.",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.667,
+     30051,
+     "custom_expected",
+     "1. Saturday off: the Saturday column is removed (6 columns remain)."
+    ],
+    [
+     0.333,
+     30046,
+     "custom_steps",
+     "3. Turn OFF Capacity Bars, look at the day column headers, then turn it back ON."
+    ],
+    [
+     0.0,
+     30050,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L199",
+   "section": "9",
+   "req_text": "Sunday",
+   "n_candidates": 9,
+   "best": [
+    [
+     1.0,
+     30051,
+     "title",
+     "Saturday and Sunday toggles include or exclude the weekend columns"
+    ],
+    [
+     1.0,
+     30046,
+     "custom_expected",
+     "1. Six toggles are offered: Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday."
+    ],
+    [
+     0.0,
+     30050,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L200",
+   "section": "9",
+   "req_text": "On",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.0,
+     30051,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30050,
+     "",
+     ""
+    ],
+    [
+     0.0,
+     30047,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a79-L201",
+   "section": "9",
+   "req_text": "Includes the Sunday column.",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.667,
+     30051,
+     "custom_expected",
+     "3. Both back on: the full Monday-to-Sunday 7-column week returns."
+    ],
+    [
+     0.333,
+     30046,
+     "custom_steps",
+     "3. Turn OFF Capacity Bars, look at the day column headers, then turn it back ON."
+    ],
+    [
+     0.0,
+     30050,
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a710-L202",
+   "section": "10",
+   "req_text": "Blue is the default color for all shifts, including long or multi-week jobs.",
+   "n_candidates": 4,
+   "best": [
+    [
+     1.0,
+     30071,
+     "title",
+     "Blue is the default color for all shifts, including long and multi-week jobs"
+    ],
+    [
+     0.333,
+     30072,
+     "custom_expected",
+     "3. The color is per SHIFT, not per work order - the other shift from the same work order keeps its own (default blue) color and does not change."
+    ],
+    [
+     0.222,
+     30022,
+     "title",
+     "Events default to grey; choosing a color tints the card and chip"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a710-L203",
+   "section": "10",
+   "req_text": "Grey is the default color for events.",
+   "n_candidates": 4,
+   "best": [
+    [
+     1.0,
+     30022,
+     "title",
+     "Events default to grey; choosing a color tints the card and chip"
+    ],
+    [
+     0.5,
+     30072,
+     "custom_steps",
+     "2. Choose a non-default color."
+    ],
+    [
+     0.5,
+     30071,
+     "title",
+     "Blue is the default color for all shifts, including long and multi-week jobs"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a710-L204",
+   "section": "10",
+   "req_text": "All other colors are optional and chosen by the user from the color picker in the shift or event detail modal, to distinguish shifts however the shop likes.",
+   "n_candidates": 4,
+   "best": [
+    [
+     0.267,
+     30073,
+     "custom_preconds",
+     "2. A shift's or event's color picker is open."
+    ],
+    [
+     0.267,
+     30072,
+     "title",
+     "Shift modal color picker recolors that shift only, in matching tones"
+    ],
+    [
+     0.2,
+     30022,
+     "custom_preconds",
+     "2. A newly created event exists with no color chosen."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a710-L205",
+   "section": "10",
+   "req_text": "Color labels are editable per shop.",
+   "n_candidates": 4,
+   "best": [
+    [
+     1.0,
+     30073,
+     "title",
+     "Color labels are editable per shop"
+    ],
+    [
+     0.75,
+     30022,
+     "custom_expected",
+     "2. The color picker offers the same custom color palette as shifts (shared picker with editable labels)."
+    ],
+    [
+     0.25,
+     30072,
+     "title",
+     "Shift modal color picker recolors that shift only, in matching tones"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a710-L206",
+   "section": "10",
+   "req_text": "Each color provides three tones: background fill, text color, and accent (left border). There are no fixed semantic meanings tied to specific colors beyond the two defaults above.",
+   "n_candidates": 4,
+   "best": [
+    [
+     0.526,
+     30072,
+     "custom_expected",
+     "2. The color provides three consistent tones: background fill, text color, and accent (left border)."
+    ],
+    [
+     0.105,
+     30022,
+     "custom_expected",
+     "3. Choosing a color tints the card and the icon chip in matching tones, the same way a colored shift is tinted."
+    ],
+    [
+     0.053,
+     30073,
+     "title",
+     "Color labels are editable per shop"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a711-L207",
+   "section": "11",
+   "req_text": "Performance. The grid must render smoothly with up to 15 technicians x 7 days x several shifts per cell. The sidebar work order list virtualizes at 50+ items, as does the line drill-down for orders with many lines.",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.35,
+     30087,
+     "title",
+     "The sidebar work order list and line drill-down stay smooth with 50+ items"
+    ],
+    [
+     0.2,
+     30088,
+     "title",
+     "The grid renders smoothly at full load - 15 technicians over 7 days"
+    ],
+    [
+     0.2,
+     29962,
+     "custom_steps",
+     "1. Instead of dragging, click (arm) the work order card or line in the sidebar."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a711-L208",
+   "section": "11",
+   "req_text": "Responsiveness. Minimum supported width is 960px (the grid scrolls horizontally below that), and the sidebar collapses on narrow viewports.",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.583,
+     30086,
+     "custom_expected",
+     "1. Below the 960px minimum supported width, the grid scrolls horizontally rather than breaking."
+    ],
+    [
+     0.167,
+     30088,
+     "custom_steps",
+     "1. Scroll the grid vertically and horizontally."
+    ],
+    [
+     0.083,
+     38866,
+     "custom_steps",
+     "2. Look over the Schedule grid: shift blocks, event cards, capacity bars, conflict styling, tooltips."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a711-L209",
+   "section": "11",
+   "req_text": "Accessibility. All interactive elements are keyboard-reachable; focus rings follow the design system; modals trap focus and close on Escape; drag-and-drop has a click-to-arm alternative. Overtime and conflict signals are not color-only (OT uses a text tag; the overflow uses shape).",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.259,
+     30070,
+     "title",
+     "Modals trap focus and all interactive elements are keyboard-reachable"
+    ],
+    [
+     0.111,
+     38866,
+     "custom_expected",
+     "3. Conflict and overtime cues remain distinguishable (they never rely on colour alone - text/icon still present)."
+    ],
+    [
+     0.111,
+     30032,
+     "custom_expected",
+     "2. The tag is text, not a color-only signal."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a711-L210",
+   "section": "11",
+   "req_text": "Undo. Every destructive action (delete, move, reassign) is undoable for 4 to 7 seconds via a toast that persists while hovered.",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.462,
+     30065,
+     "custom_expected",
+     "1. Each of the four actions (create, delete, move, reassign) produces a toast notification, and every toast offers an Undo option."
+    ],
+    [
+     0.385,
+     30064,
+     "custom_expected",
+     "1. Untouched, a toast that has an Undo action persists about 7 seconds; a toast without Undo persists about 4 seconds, before dismissing."
+    ],
+    [
+     0.077,
+     38866,
+     "custom_steps",
+     "3. Open each dialog/popover you can reach (shift detail, event form, spread step, delete scope, filters, view options)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a711-L211",
+   "section": "11",
+   "req_text": "Dark theme. The Schedule supports a user-selectable Light / Dark theme, chosen from the user menu and persisted per user. It is built on the design-system color tokens, so surfaces, borders, text, and accents remap automatically; elevation/shadow tokens also swap so depth reads correctly on dark surfaces.",
+   "n_candidates": 9,
+   "best": [
+    [
+     0.111,
+     38866,
+     "title",
+     "Schedule and all its dialogs display correctly in dark mode"
+    ],
+    [
+     0.074,
+     30032,
+     "custom_expected",
+     "2. The tag is text, not a color-only signal."
+    ],
+    [
+     0.037,
+     30088,
+     "custom_preconds",
+     "2. The schedule is loaded to roughly the spec's stated scale: around 15 technician rows across a week with several shifts per cell (seed ZZAUTOTEST shifts as needed)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a712-L212",
+   "section": "12",
+   "req_text": "A technician can have multiple shifts on the same day (different work orders); overlapping times render in parallel lanes with a 3-lane cap and \"+N more\" overflow (\u00a74.7).",
+   "n_candidates": 8,
+   "best": [
+    [
+     0.467,
+     29996,
+     "custom_expected",
+     "1. Both shifts are created and shown on the same day for the same technician - multiple same-day shifts from different work orders are allowed."
+    ],
+    [
+     0.2,
+     43556,
+     "custom_preconds",
+     "4. A repeating series of shifts exists on the week you are looking at. On the test shop, work order S-9379 (customer Xiriver Apparel, unit 16604, 11 Lines) has a series sitting on technician Jose Young; its blocks are labelled \"Part of a series\" or \"Week 1 of 2\". If none exists, make one first: drag a work order with several lines onto a technician, choose Schedule whole work order, and let it spread over several days."
+    ],
+    [
+     0.133,
+     30090,
+     "custom_preconds",
+     "2. A line has estimate 10h; a technician has 6h scheduled against it and some different amount of time actually clocked (seed what is possible)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a712-L213",
+   "section": "12",
+   "req_text": "Every shift has a start time, resolved from the hierarchy in \u00a74.2 or from the drop position in day view; unassigned shifts use the same rules minus technician hours until they are assigned.",
+   "n_candidates": 8,
+   "best": [
+    [
+     0.222,
+     43556,
+     "custom_expected",
+     "Why this test covers Week view only: the specification describes reassignment as dragging a shift from one technician row to another, and Month view has no technician rows at all - it is a calendar of day boxes. Whether reassignment should be possible in Month view is therefore part of the open question on SV-8867 and is deliberately not asserted here."
+    ],
+    [
+     0.222,
+     29996,
+     "custom_steps",
+     "2. Schedule a shift from work order 2 onto the SAME technician for the SAME day at a non-overlapping time (for example 10:00-12:00)."
+    ],
+    [
+     0.167,
+     30089,
+     "custom_expected",
+     "2. A shift CAN be placed on the shop closure day (only weekend days with no business hours are skipped)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a712-L214",
+   "section": "12",
+   "req_text": "Shop closures (holidays, inventory days) are defined at the shop level and block the spread step from placing shifts on those days.",
+   "n_candidates": 8,
+   "best": [
+    [
+     0.5,
+     30089,
+     "title",
+     "Shop closures do NOT block spread in V1 - shifts can land on closure days"
+    ],
+    [
+     0.417,
+     29983,
+     "custom_expected",
+     "3. Shop closures and public holidays are NOT skipped in V1 - shifts can be placed on those days."
+    ],
+    [
+     0.333,
+     43556,
+     "custom_preconds",
+     "4. A repeating series of shifts exists on the week you are looking at. On the test shop, work order S-9379 (customer Xiriver Apparel, unit 16604, 11 Lines) has a series sitting on technician Jose Young; its blocks are labelled \"Part of a series\" or \"Week 1 of 2\". If none exists, make one first: drag a work order with several lines onto a technician, choose Schedule whole work order, and let it spread over several days."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a712-L215",
+   "section": "12",
+   "req_text": "Dropping the same work order on multiple technicians creates independent series, each spreading the full estimate, so planned hours across technicians may exceed the estimate. This is expected, since clocked-in time drives progress.",
+   "n_candidates": 8,
+   "best": [
+    [
+     0.476,
+     29986,
+     "custom_expected",
+     "3. Planned hours across technicians may now exceed the estimate - this is expected and produces no error (progress is driven by clocked-in time)."
+    ],
+    [
+     0.143,
+     43556,
+     "custom_preconds",
+     "4. A repeating series of shifts exists on the week you are looking at. On the test shop, work order S-9379 (customer Xiriver Apparel, unit 16604, 11 Lines) has a series sitting on technician Jose Young; its blocks are labelled \"Part of a series\" or \"Week 1 of 2\". If none exists, make one first: drag a work order with several lines onto a technician, choose Schedule whole work order, and let it spread over several days."
+    ],
+    [
+     0.143,
+     30090,
+     "custom_preconds",
+     "2. A line has estimate 10h; a technician has 6h scheduled against it and some different amount of time actually clocked (seed what is possible)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a712-L216",
+   "section": "12",
+   "req_text": "Whole-order and multi-line-subset shifts both render as \"N Lines\" on the block; the detail modal and hover tooltip provide the specifics.",
+   "n_candidates": 8,
+   "best": [
+    [
+     0.467,
+     29992,
+     "title",
+     "Whole-order and multi-line shifts both read 'N Lines' on the block"
+    ],
+    [
+     0.267,
+     43556,
+     "custom_preconds",
+     "4. A repeating series of shifts exists on the week you are looking at. On the test shop, work order S-9379 (customer Xiriver Apparel, unit 16604, 11 Lines) has a series sitting on technician Jose Young; its blocks are labelled \"Part of a series\" or \"Week 1 of 2\". If none exists, make one first: drag a work order with several lines onto a technician, choose Schedule whole work order, and let it spread over several days."
+    ],
+    [
+     0.133,
+     30090,
+     "custom_steps",
+     "1. Open the shift's detail modal."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a712-L217",
+   "section": "12",
+   "req_text": "Dragging a shift between technicians reassigns it, adding the target technician to the affected line's roster and removing the source technician.",
+   "n_candidates": 8,
+   "best": [
+    [
+     0.385,
+     30052,
+     "custom_preconds",
+     "2. A shift exists on technician A; note the affected line's roster."
+    ],
+    [
+     0.231,
+     43556,
+     "custom_expected",
+     "Why this test covers Week view only: the specification describes reassignment as dragging a shift from one technician row to another, and Month view has no technician rows at all - it is a calendar of day boxes. Whether reassignment should be possible in Month view is therefore part of the open question on SV-8867 and is deliberately not asserted here."
+    ],
+    [
+     0.154,
+     30090,
+     "custom_preconds",
+     "2. A line has estimate 10h; a technician has 6h scheduled against it and some different amount of time actually clocked (seed what is possible)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a714-L218",
+   "section": "14",
+   "req_text": "The Schedule is a CRUD area in ShopView's custom roles and permissions system. Access is controlled by three independent permission levels (View, Edit, Delete), where Delete requires Edit and Edit requires View. The schedule also depends on permissions from other areas, particularly Work Orders.",
+   "n_candidates": 18,
+   "best": [
+    [
+     0.261,
+     38926,
+     "custom_steps",
+     "2. Take these roles one at a time - Technician, Parts Manager, Parts Tech, Office, Time Clock - use 'Reset To Template' so the role is back at its default, then read its Schedule permissions (View, Edit, Delete)."
+    ],
+    [
+     0.261,
+     38872,
+     "custom_preconds",
+     "2. Three test users exist: one with NO Schedule permission, one with Schedule: View only, one with Schedule: View + Edit (but not Delete)."
+    ],
+    [
+     0.217,
+     30614,
+     "custom_preconds",
+     "1. A test user's role has Schedule access but Work Orders: View OFF (assign a suitable role; restore after)."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a714.1-L219",
+   "section": "14.1",
+   "req_text": "Schedule: View. The user can see the schedule page, navigate between day/week/month views, use the mini calendar, search, filter, view all technicians' shifts and events, hover for tooltips, and open shift/event detail modals in read-only mode. All editing affordances (drag handles, drop targets, right-click context menu, resize handles, creation entry points, edit fields in modals, reassign and delete actions) are hidden or disabled. This is the experience for roles like Technician, Parts Manager, Parts Tech, Office, and Time Clock. When Schedule: View is OFF, the Schedule top-level nav item is hidden entirely.",
+   "n_candidates": 11,
+   "best": [
+    [
+     0.21,
+     38926,
+     "custom_steps",
+     "2. Take these roles one at a time - Technician, Parts Manager, Parts Tech, Office, Time Clock - use 'Reset To Template' so the role is back at its default, then read its Schedule permissions (View, Edit, Delete)."
+    ],
+    [
+     0.129,
+     30076,
+     "title",
+     "With Schedule: View OFF, the Schedule top-level nav item is hidden entirely"
+    ],
+    [
+     0.129,
+     30074,
+     "custom_expected",
+     "4. Tooltips show on hover, and the shift/event detail modals open in read-only mode."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a714.1-L220",
+   "section": "14.1",
+   "req_text": "Schedule: Edit (requires View). Unlocks all creation and modification interactions: drag-and-drop from the sidebar, the scope picker, the spread modal, shift and event creation (including via right-click context menu and day-view click-to-create), shift reassignment between technicians, edge-resize and horizontal drag in day view, and editing fields in the shift/event detail modals. This is the level for Service Manager, Senior Service Advisor, Service Advisor, and Foreman roles.",
+   "n_candidates": 11,
+   "best": [
+    [
+     0.19,
+     38926,
+     "custom_expected",
+     "2. Service Manager, Senior Service Advisor, Service Advisor and Foreman each have Schedule Edit turned ON (so they also have View)."
+    ],
+    [
+     0.19,
+     30077,
+     "custom_expected",
+     "2. Shift and event creation works, including via the menu opened by left-clicking empty grid space in both week and day view."
+    ],
+    [
+     0.119,
+     38872,
+     "custom_steps",
+     "3. As the View+Edit user, repeat the POST and PATCH, then try DELETE /api/schedule/shifts/{id}?scope=shift."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a714.1-L221",
+   "section": "14.1",
+   "req_text": "Schedule: Delete (requires Edit). Unlocks deleting shifts and events, including series-aware deletion with its three scopes (this shift / this and after / whole series). Without Delete, a user with Edit can create and modify but cannot remove shifts or events. The delete action and the trash icon are hidden.",
+   "n_candidates": 11,
+   "best": [
+    [
+     0.269,
+     30078,
+     "title",
+     "Edit without Delete: the user can create and modify but not remove"
+    ],
+    [
+     0.231,
+     38872,
+     "custom_steps",
+     "3. As the View+Edit user, repeat the POST and PATCH, then try DELETE /api/schedule/shifts/{id}?scope=shift."
+    ],
+    [
+     0.231,
+     30079,
+     "title",
+     "Schedule: Delete unlocks deleting shifts and events"
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a714.2-L222",
+   "section": "14.2",
+   "req_text": "The left panel sidebar displays work order data (customer, unit, lines, lead tech) and requires Work Orders: View to populate. If a user has Schedule access but Work Orders: View is OFF, the sidebar hides the work order list and line drill-down (the mini calendar remains available). The user can still view and interact with shifts already on the grid, but cannot drag new ones from the sidebar since the WO list is not visible.",
+   "n_candidates": 5,
+   "best": [
+    [
+     0.297,
+     30081,
+     "custom_expected",
+     "1. The sidebar hides the work order list and the line drill-down; the mini calendar remains available."
+    ],
+    [
+     0.27,
+     38874,
+     "custom_steps",
+     "2. As the user WITHOUT Work Orders: View, call GET /api/schedule/board and GET /api/schedule/shifts/{id} and read the work-order-derived fields (customer, unit, VIN, lines)."
+    ],
+    [
+     0.189,
+     30614,
+     "custom_expected",
+     "3. This extends the sidebar behavior (the work order list and drill-down are hidden) to the work-order data surfaced on the shifts themselves."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a714.3-L223",
+   "section": "14.3",
+   "req_text": "The schedule always shows all technicians' shifts and events for every user who has Schedule: View. There is no role-based restriction to \"own shifts only.\" This is intentional: the schedule is a shared coordination resource that service advisors and managers use to orchestrate work across the team. The \"My Shifts\" toggle in the Filter and Display dropdown (\u00a79) provides this as an optional personal convenience filter, not a security boundary.",
+   "n_candidates": 6,
+   "best": [
+    [
+     0.219,
+     30082,
+     "custom_expected",
+     "1. The user sees ALL technicians' shifts and events, not only their own - there is no role-based 'own shifts only' restriction."
+    ],
+    [
+     0.156,
+     38874,
+     "custom_steps",
+     "2. As the user WITHOUT Work Orders: View, call GET /api/schedule/board and GET /api/schedule/shifts/{id} and read the work-order-derived fields (customer, unit, VIN, lines)."
+    ],
+    [
+     0.125,
+     38872,
+     "custom_steps",
+     "2. As the View-only user, call the same GET, then try POST /api/schedule/shifts (a minimal single-shift body) and PATCH /api/schedule/shifts/{id}."
+    ]
+   ]
+  },
+  {
+   "req_id": "\u00a714.4-L224",
+   "section": "14.4",
+   "req_text": "Whether a user appears as a row in the schedule grid is controlled by their department assignment on their staff record, not by their role permission. Any staff member assigned to a department that is visible on the schedule appears as a technician row, regardless of their role. Similarly, the ability to clock into work order line tasks is controlled by the \"Time Clock\" setting on the staff record, not by the permission model.",
+   "n_candidates": 6,
+   "best": [
+    [
+     0.37,
+     30084,
+     "custom_expected",
+     "2. The Time-Clock-OFF staff member cannot - the ability is controlled by the staff-record setting, not by the Schedule permission tier."
+    ],
+    [
+     0.37,
+     30083,
+     "custom_expected",
+     "1. The department-assigned staff member appears as a technician row - row presence is controlled by the department on the staff record, NOT by role permission."
+    ],
+    [
+     0.296,
+     29928,
+     "custom_expected",
+     "3. Every staff member assigned to a visible department appears as a row, regardless of their role."
+    ]
+   ]
+  }
+ ],
+ "d2": [
+  {
+   "cid": 29925,
+   "internal_id": "SCH-NAV-01",
+   "anchors": [
+    "3",
+    "3.1",
+    "3.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29927,
+   "internal_id": "SCH-NAV-03",
+   "anchors": [
+    "3.2",
+    "6"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29928,
+   "internal_id": "SCH-NAV-04",
+   "anchors": [
+    "14.4",
+    "3.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29929,
+   "internal_id": "SCH-NAV-05",
+   "anchors": [
+    "3.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29930,
+   "internal_id": "SCH-NAV-06",
+   "anchors": [
+    "3.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29931,
+   "internal_id": "SCH-NAV-07",
+   "anchors": [
+    "3.2",
+    "4.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29932,
+   "internal_id": "SCH-MCAL-01",
+   "anchors": [
+    "3.1",
+    "5.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29933,
+   "internal_id": "SCH-MCAL-02",
+   "anchors": [
+    "5.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29934,
+   "internal_id": "SCH-MCAL-03",
+   "anchors": [
+    "3.1",
+    "5.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29935,
+   "internal_id": "SCH-MCAL-04",
+   "anchors": [
+    "5.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29936,
+   "internal_id": "SCH-WOL-01",
+   "anchors": [
+    "3.1",
+    "5.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29937,
+   "internal_id": "SCH-WOL-02",
+   "anchors": [
+    "3.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29939,
+   "internal_id": "SCH-WOL-04",
+   "anchors": [
+    "3.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29940,
+   "internal_id": "SCH-WOL-05",
+   "anchors": [
+    "3.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29941,
+   "internal_id": "SCH-WOL-06",
+   "anchors": [
+    "3.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29942,
+   "internal_id": "SCH-FILT-01",
+   "anchors": [
+    "5.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29943,
+   "internal_id": "SCH-FILT-02",
+   "anchors": [
+    "3.1",
+    "5.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29944,
+   "internal_id": "SCH-FILT-03",
+   "anchors": [
+    "5.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29945,
+   "internal_id": "SCH-FILT-04",
+   "anchors": [
+    "5.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29946,
+   "internal_id": "SCH-FILT-05",
+   "anchors": [
+    "5.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29947,
+   "internal_id": "SCH-FILT-06",
+   "anchors": [
+    "5.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29948,
+   "internal_id": "SCH-LINE-01",
+   "anchors": [
+    "3.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29950,
+   "internal_id": "SCH-LINE-03",
+   "anchors": [
+    "3.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29951,
+   "internal_id": "SCH-LINE-04",
+   "anchors": [
+    "3.1",
+    "8.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29952,
+   "internal_id": "SCH-LINE-05",
+   "anchors": [
+    "3.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29953,
+   "internal_id": "SCH-LINE-06",
+   "anchors": [
+    "3.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29954,
+   "internal_id": "SCH-LINE-07",
+   "anchors": [
+    "3.1",
+    "5.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29955,
+   "internal_id": "SCH-DND-01",
+   "anchors": [
+    "1.2",
+    "4.1",
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29956,
+   "internal_id": "SCH-DND-02",
+   "anchors": [
+    "4.1",
+    "4.3"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29957,
+   "internal_id": "SCH-DND-03",
+   "anchors": [
+    "4.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29958,
+   "internal_id": "SCH-DND-04",
+   "anchors": [
+    "4.1",
+    "4.5"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29959,
+   "internal_id": "SCH-DND-05",
+   "anchors": [
+    "4.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29960,
+   "internal_id": "SCH-DND-06",
+   "anchors": [
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29961,
+   "internal_id": "SCH-DND-07",
+   "anchors": [
+    "1.2",
+    "4.3",
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29962,
+   "internal_id": "SCH-DND-08",
+   "anchors": [
+    "11",
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29963,
+   "internal_id": "SCH-SCOPE-01",
+   "anchors": [
+    "4.3"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29964,
+   "internal_id": "SCH-SCOPE-02",
+   "anchors": [
+    "4.3",
+    "4.4"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29965,
+   "internal_id": "SCH-SCOPE-03",
+   "anchors": [
+    "4.3"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29967,
+   "internal_id": "SCH-SCOPE-05",
+   "anchors": [
+    "4.3"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29969,
+   "internal_id": "SCH-START-01",
+   "anchors": [
+    "4.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29970,
+   "internal_id": "SCH-START-02",
+   "anchors": [
+    "4.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29971,
+   "internal_id": "SCH-START-03",
+   "anchors": [
+    "4.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29972,
+   "internal_id": "SCH-START-04",
+   "anchors": [
+    "4.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29973,
+   "internal_id": "SCH-START-05",
+   "anchors": [
+    "3.2",
+    "4.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29974,
+   "internal_id": "SCH-START-06",
+   "anchors": [
+    "4.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29975,
+   "internal_id": "SCH-START-07",
+   "anchors": [
+    "3.2",
+    "4.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29978,
+   "internal_id": "SCH-SPREAD-02",
+   "anchors": [
+    "4.5"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29979,
+   "internal_id": "SCH-SPREAD-03",
+   "anchors": [
+    "4.5"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29980,
+   "internal_id": "SCH-SPREAD-04",
+   "anchors": [
+    "4.5"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29981,
+   "internal_id": "SCH-SPREAD-05",
+   "anchors": [
+    "4.5"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29982,
+   "internal_id": "SCH-SPREAD-06",
+   "anchors": [
+    "4.5"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29983,
+   "internal_id": "SCH-SPREAD-07",
+   "anchors": [
+    "12",
+    "4.5"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29984,
+   "internal_id": "SCH-SPREAD-08",
+   "anchors": [
+    "4.5"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29985,
+   "internal_id": "SCH-SPREAD-09",
+   "anchors": [
+    "4.5",
+    "4.6",
+    "8.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29986,
+   "internal_id": "SCH-SPREAD-10",
+   "anchors": [
+    "12",
+    "4.5"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29987,
+   "internal_id": "SCH-SER-01",
+   "anchors": [
+    "4.6"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29988,
+   "internal_id": "SCH-SER-02",
+   "anchors": [
+    "4.6"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29989,
+   "internal_id": "SCH-SER-03",
+   "anchors": [
+    "4.6"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29990,
+   "internal_id": "SCH-SER-04",
+   "anchors": [
+    "4.6",
+    "8.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29991,
+   "internal_id": "SCH-BLOCK-01",
+   "anchors": [
+    "4.4"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29992,
+   "internal_id": "SCH-BLOCK-02",
+   "anchors": [
+    "12",
+    "4.4"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29995,
+   "internal_id": "SCH-BLOCK-05",
+   "anchors": [
+    "4.4"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29996,
+   "internal_id": "SCH-LANE-01",
+   "anchors": [
+    "12",
+    "4.7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29997,
+   "internal_id": "SCH-LANE-02",
+   "anchors": [
+    "4.11",
+    "4.7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29998,
+   "internal_id": "SCH-LANE-03",
+   "anchors": [
+    "4.7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 29999,
+   "internal_id": "SCH-LANE-04",
+   "anchors": [
+    "4.7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30001,
+   "internal_id": "SCH-DAY-01",
+   "anchors": [
+    "4.8"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30003,
+   "internal_id": "SCH-DAY-03",
+   "anchors": [
+    "4.8"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30004,
+   "internal_id": "SCH-DAY-04",
+   "anchors": [
+    "4.8",
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30005,
+   "internal_id": "SCH-DAY-05",
+   "anchors": [
+    "4.8"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30006,
+   "internal_id": "SCH-DAY-06",
+   "anchors": [
+    "4.8"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30008,
+   "internal_id": "SCH-MODAL-01",
+   "anchors": [
+    "4.9",
+    "9"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30009,
+   "internal_id": "SCH-MODAL-02",
+   "anchors": [
+    "4.9"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30010,
+   "internal_id": "SCH-MODAL-03",
+   "anchors": [
+    "4.9"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30011,
+   "internal_id": "SCH-MODAL-04",
+   "anchors": [
+    "4.4",
+    "4.9"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30012,
+   "internal_id": "SCH-MODAL-05",
+   "anchors": [
+    "4.9"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30013,
+   "internal_id": "SCH-MODAL-06",
+   "anchors": [
+    "4.9"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30014,
+   "internal_id": "SCH-MODAL-07",
+   "anchors": [
+    "4.9"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30015,
+   "internal_id": "SCH-MODAL-08",
+   "anchors": [
+    "4.9",
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30016,
+   "internal_id": "SCH-EVT-01",
+   "anchors": [
+    "4.10",
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30017,
+   "internal_id": "SCH-EVT-02",
+   "anchors": [
+    "4.10"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30018,
+   "internal_id": "SCH-EVT-03",
+   "anchors": [
+    "4.10",
+    "8.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30020,
+   "internal_id": "SCH-EVT-05",
+   "anchors": [
+    "4.10",
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30021,
+   "internal_id": "SCH-EVT-06",
+   "anchors": [
+    "4.10"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30022,
+   "internal_id": "SCH-EVT-07",
+   "anchors": [
+    "10",
+    "4.10"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30023,
+   "internal_id": "SCH-CONF-01",
+   "anchors": [
+    "4.11"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30024,
+   "internal_id": "SCH-CONF-02",
+   "anchors": [
+    "4.11"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30025,
+   "internal_id": "SCH-CONF-03",
+   "anchors": [
+    "4.11",
+    "4.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30027,
+   "internal_id": "SCH-CONF-05",
+   "anchors": [
+    "4.11",
+    "6"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30028,
+   "internal_id": "SCH-CONF-06",
+   "anchors": [
+    "4.11"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30029,
+   "internal_id": "SCH-CONF-07",
+   "anchors": [
+    "4.11",
+    "4.12"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30030,
+   "internal_id": "SCH-CAP-01",
+   "anchors": [
+    "4.12"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30031,
+   "internal_id": "SCH-CAP-02",
+   "anchors": [
+    "4.12"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30032,
+   "internal_id": "SCH-CAP-03",
+   "anchors": [
+    "11",
+    "4.12"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30033,
+   "internal_id": "SCH-CAP-04",
+   "anchors": [
+    "4.12"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30034,
+   "internal_id": "SCH-TIP-01",
+   "anchors": [
+    "4.13"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30035,
+   "internal_id": "SCH-TIP-02",
+   "anchors": [
+    "4.13"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30036,
+   "internal_id": "SCH-TIP-03",
+   "anchors": [
+    "4.13"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30037,
+   "internal_id": "SCH-TIP-04",
+   "anchors": [
+    "4.13"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30038,
+   "internal_id": "SCH-TIP-05",
+   "anchors": [
+    "4.13"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30039,
+   "internal_id": "SCH-TOOL-01",
+   "anchors": [
+    "6"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30040,
+   "internal_id": "SCH-TOOL-02",
+   "anchors": [
+    "6"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30041,
+   "internal_id": "SCH-TOOL-03",
+   "anchors": [
+    "6"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30042,
+   "internal_id": "SCH-VIEW-01",
+   "anchors": [
+    "6",
+    "9"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30043,
+   "internal_id": "SCH-VIEW-02",
+   "anchors": [
+    "9"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30044,
+   "internal_id": "SCH-VIEW-03",
+   "anchors": [
+    "14.3",
+    "9"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30045,
+   "internal_id": "SCH-VIEW-04",
+   "anchors": [
+    "4.4",
+    "4.8",
+    "9"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30046,
+   "internal_id": "SCH-VIEW-05",
+   "anchors": [
+    "4.12",
+    "6",
+    "9"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30047,
+   "internal_id": "SCH-VIEW-06",
+   "anchors": [
+    "4.8",
+    "9"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30050,
+   "internal_id": "SCH-VIEW-09",
+   "anchors": [
+    "9"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30051,
+   "internal_id": "SCH-VIEW-10",
+   "anchors": [
+    "3.2",
+    "9"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30052,
+   "internal_id": "SCH-REAS-01",
+   "anchors": [
+    "12",
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30054,
+   "internal_id": "SCH-REAS-03",
+   "anchors": [
+    "14.1",
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30057,
+   "internal_id": "SCH-DEL-01",
+   "anchors": [
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30058,
+   "internal_id": "SCH-DEL-02",
+   "anchors": [
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30059,
+   "internal_id": "SCH-DEL-03",
+   "anchors": [
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30060,
+   "internal_id": "SCH-DEL-04",
+   "anchors": [
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30061,
+   "internal_id": "SCH-DEL-05",
+   "anchors": [
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30062,
+   "internal_id": "SCH-DEL-06",
+   "anchors": [
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30064,
+   "internal_id": "SCH-DEL-08",
+   "anchors": [
+    "11",
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30065,
+   "internal_id": "SCH-DEL-09",
+   "anchors": [
+    "11",
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30066,
+   "internal_id": "SCH-KEY-01",
+   "anchors": [
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30068,
+   "internal_id": "SCH-KEY-03",
+   "anchors": [
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30070,
+   "internal_id": "SCH-KEY-05",
+   "anchors": [
+    "11"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30071,
+   "internal_id": "SCH-COLOR-01",
+   "anchors": [
+    "10"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30072,
+   "internal_id": "SCH-COLOR-02",
+   "anchors": [
+    "10",
+    "4.4",
+    "4.9"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30073,
+   "internal_id": "SCH-COLOR-03",
+   "anchors": [
+    "10",
+    "4.10"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30074,
+   "internal_id": "SCH-PERM-01",
+   "anchors": [
+    "14.1",
+    "14.3"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30075,
+   "internal_id": "SCH-PERM-02",
+   "anchors": [
+    "14.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30076,
+   "internal_id": "SCH-PERM-03",
+   "anchors": [
+    "14.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30077,
+   "internal_id": "SCH-PERM-04",
+   "anchors": [
+    "14.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30078,
+   "internal_id": "SCH-PERM-05",
+   "anchors": [
+    "14.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30079,
+   "internal_id": "SCH-PERM-06",
+   "anchors": [
+    "14.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30080,
+   "internal_id": "SCH-PERM-07",
+   "anchors": [
+    "14"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30081,
+   "internal_id": "SCH-PERM-08",
+   "anchors": [
+    "14.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30082,
+   "internal_id": "SCH-PERM-09",
+   "anchors": [
+    "14.3"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30083,
+   "internal_id": "SCH-PERM-10",
+   "anchors": [
+    "14.4"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30084,
+   "internal_id": "SCH-PERM-11",
+   "anchors": [
+    "14.4"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30086,
+   "internal_id": "SCH-EDGE-02",
+   "anchors": [
+    "11"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30087,
+   "internal_id": "SCH-EDGE-03",
+   "anchors": [
+    "11"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30088,
+   "internal_id": "SCH-EDGE-04",
+   "anchors": [
+    "11"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30089,
+   "internal_id": "SCH-EDGE-05",
+   "anchors": [
+    "12",
+    "4.5"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30090,
+   "internal_id": "SCH-EDGE-06",
+   "anchors": [
+    "12",
+    "4.5"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30614,
+   "internal_id": "SCH-PERM-12",
+   "anchors": [
+    "14.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 30615,
+   "internal_id": "SCH-EVT-08",
+   "anchors": [
+    "4.10",
+    "4.11",
+    "4.12"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 38847,
+   "internal_id": "SCH-HRS-02",
+   "anchors": [
+    "4.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 38848,
+   "internal_id": "SCH-HRS-03",
+   "anchors": [
+    "4.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 38849,
+   "internal_id": "SCH-HRS-04",
+   "anchors": [
+    "4.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 38850,
+   "internal_id": "SCH-HRS-05",
+   "anchors": [
+    "4.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 38851,
+   "internal_id": "SCH-HRS-06",
+   "anchors": [
+    "4.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 38855,
+   "internal_id": "SCH-REAS-06",
+   "anchors": [
+    "4.10",
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 38863,
+   "internal_id": "SCH-SPREAD-11",
+   "anchors": [
+    "4.5"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 38864,
+   "internal_id": "SCH-DEL-10",
+   "anchors": [
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 38865,
+   "internal_id": "SCH-EDGE-07",
+   "anchors": [
+    "4.5"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 38866,
+   "internal_id": "SCH-EDGE-08",
+   "anchors": [
+    "11"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 38867,
+   "internal_id": "SCH-REG-01",
+   "anchors": [
+    "3"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 38868,
+   "internal_id": "SCH-REG-02",
+   "anchors": [
+    "4"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 38869,
+   "internal_id": "SCH-REG-03",
+   "anchors": [
+    "4"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 38870,
+   "internal_id": "SCH-REG-04",
+   "anchors": [
+    "3"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 38871,
+   "internal_id": "SCH-REG-05",
+   "anchors": [
+    "5.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 38872,
+   "internal_id": "SCH-API-01",
+   "anchors": [
+    "14",
+    "4"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 38873,
+   "internal_id": "SCH-API-02",
+   "anchors": [
+    "4.5"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 38874,
+   "internal_id": "SCH-API-03",
+   "anchors": [
+    "14"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 38875,
+   "internal_id": "SCH-API-04",
+   "anchors": [],
+   "stale_anchors": [],
+   "no_anchor": true
+  },
+  {
+   "cid": 38926,
+   "internal_id": "SCH-PERM-13",
+   "anchors": [
+    "14.1"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 43554,
+   "internal_id": "SCH-NAV-08",
+   "anchors": [],
+   "stale_anchors": [],
+   "no_anchor": true
+  },
+  {
+   "cid": 43555,
+   "internal_id": "SCH-DND-09",
+   "anchors": [
+    "4.1",
+    "4.2"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  },
+  {
+   "cid": 43556,
+   "internal_id": "SCH-REAS-07",
+   "anchors": [
+    "12",
+    "7"
+   ],
+   "stale_anchors": [],
+   "no_anchor": false
+  }
+ ],
+ "spec_sections": [
+  "1",
+  "1.1",
+  "1.2",
+  "2",
+  "3",
+  "3.1",
+  "3.2",
+  "4",
+  "4.1",
+  "4.2",
+  "4.3",
+  "4.4",
+  "4.5",
+  "4.6",
+  "4.7",
+  "4.8",
+  "4.9",
+  "4.10",
+  "4.11",
+  "4.12",
+  "4.13",
+  "5",
+  "5.1",
+  "5.2",
+  "6",
+  "7",
+  "8",
+  "8.1",
+  "8.2",
+  "9",
+  "10",
+  "11",
+  "12",
+  "13",
+  "14",
+  "14.1",
+  "14.2",
+  "14.3",
+  "14.4",
+  "15"
+ ]
+}
