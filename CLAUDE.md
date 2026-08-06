@@ -3319,6 +3319,8 @@ deliver the 7-tab management report.
 52. **A defect ticket is filed as a `Story Defect` parented to the OWNING STORY — and because that story
     is itself a child of the epic, the defect STILL ROLLS UP TO THE EPIC (all projects; this SUPERSEDES
     the Bug-on-an-epic-parent convention of 2026-08-04, which is preserved below as dated history).**
+    **⚠️ THE ROLL-UP HALF OF THAT HEADLINE IS FACTUALLY WRONG — CORRECTED 2026-08-06 BELOW; THE REQUIRED
+    SHAPE IS UNCHANGED.**
     USER DIRECTIVE (2026-08-05, verbatim): *"Also, make sure that whenever you create a ticket it should
     be attached to the parent ticket as its epic and that ticket should be created as STORY DEFECT"*.
     **THE REQUIRED SHAPE — five things, and no ambiguity between them:** **`issuetype` = `Story Defect`
@@ -3331,6 +3333,32 @@ deliver the 7-tab management report.
     hierarchy, reached one level further down instead of directly. **A `Story Defect` CANNOT be parented
     to an Epic at all**, so a story parent is not a substitute for what he asked for; it is the only
     shape that delivers **both** halves of what he asked for.
+    **⚠️ FACTUAL CORRECTION 2026-08-06 — THE ROLL-UP CLAIM IMMEDIATELY ABOVE IS WRONG IN JIRA'S QUERY
+    MODEL. THE REQUIRED SHAPE IS UNCHANGED.** The two sentences above — the headline's *"because that
+    story is itself a child of the epic, the defect STILL ROLLS UP TO THE EPIC"* and *"the owning story
+    is itself a child of the epic, so a Story Defect under that story still hangs off the epic … the
+    epic remains the ticket's home in the hierarchy, reached one level further down instead of
+    directly"* — are **KEPT ABOVE AS THE CORRECTED CLAIM, NOT DELETED** (the same dated-history pattern
+    this rule already uses for the superseded Bug-on-an-epic convention and Rule 53 uses for `Low`),
+    because **a silently-erased wrong claim is how a future session re-derives the same mistake.**
+    **MEASURED LIVE 2026-08-06, BY QUERY** (`build/ticket-type-audit-2026-08-06/TYPE-AUDIT.md`, commit
+    `264cc25c`): **`parent = <epic>` returns 11 of our 14 `Bug`s and 0 of our 73 `Story Defect`s**, and
+    **`parentEpic` is no help — it returns only the epic itself**. So a Story Defect is reachable from
+    its epic **ONLY VIA A TWO-HOP JOIN (defect → story → epic), NEVER by the direct child query** — and
+    therefore **CONVERTING A `Bug` TO A `Story Defect` REMOVES IT FROM THE EPIC'S DIRECT CHILD LIST.**
+    **THE HONEST TRADE-OFF, BOTH SIDES, so this is not read as an argument to abandon the shape:** it
+    **GAINS** consistency with the project's overwhelming norm — **project SV holds 575 Story Defects,
+    367 under a Story and 0 under an Epic**, so our 11 epic-parented `Bug`s are the outliers — and it
+    **GAINS per-story visibility** (`parent = SV-8654` returns 5 Story Defects today, **with our
+    SV-8881 absent from them**; that absence is exactly what the shape buys back). It **COSTS** direct
+    epic-child visibility **and** the Product Area field. **So converting an existing `Bug` is a TIDY-UP
+    WITH A REAL COST, NOT A REPAIR.**
+    **WHAT IS UNCHANGED:** the required shape above — `Story Defect` · parent = the owning story · the
+    story also linked `relates to` · no Product Area · priority `Medium` — **is the QA LEAD'S OWN
+    INSTRUCTION AND STANDS UNTOUCHED.** Our live-verified finding **corrects a FACT in the reasoning; it
+    does NOT overrule a RULING** — Rule 33's precedence order draws exactly that line. **Whether to
+    convert the 8 existing `Bug`s the audit identified is HIS DECISION — currently put to him and
+    AWAITING HIS ANSWER.**
     **PROOF THAT AN EPIC PARENT IS IMPOSSIBLE, NOT MERELY UNCONVENTIONAL (all read live 2026-08-05):** a
     create with `issuetype:10007` + an Epic parent returns **HTTP 400
     `{"errorMessages":[],"errors":{"parent":"Please select valid parent issue.","parentId":"Please select
@@ -3387,7 +3415,10 @@ deliver the 7-tab management report.
     `issuetype:10007` + `parent` returns **HTTP 400 `{"pid":"Issues with this Issue Type must be created
     in the same project as the parent."}`** (a misleading message — the parent WAS in the same project),
     and `issuetype` alone returns **HTTP 400 `{"issuetype":"Issue type is a sub-task but parent issue key
-    or id not specified."}`** — an unwinnable pair. **The org's UI wizard does what the API refuses: it
+    or id not specified."}`** — an unwinnable pair. **RE-CONFIRMED LIVE 2026-08-06** — re-probed on
+    **SV-8881**: the same `PUT` still returns that identical HTTP 400 `pid` error, so conversion remains
+    **web-UI-wizard-only**; the probe was **proven harmless — all 59 fields byte-identical, `updated`
+    included.** **The org's UI wizard does what the API refuses: it
     converts the type AND atomically re-parents Epic→Story in ONE action** (changelog evidence,
     2026-08-05: **SV-8886** Mudassir Qamar 09:29:49, Bug→Story Defect **and** parent SV-8685→SV-8689 in
     one action · **SV-8849** Mudassir 09:15:03 →SV-8692 · **SV-8871** Ahtasham Amjad 04:51:42 →SV-8795 ·
