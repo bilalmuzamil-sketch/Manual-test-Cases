@@ -1,0 +1,18 @@
+# SV-8977 — Sales By Representative: the heading row and the Totals row both scroll away instead of staying put
+
+1. What happens now
+The written description asks for two rows to stay put while you scroll down a long report: the column heading row at the top, and the Totals row at the bottom.
+Neither does. Both scroll away with the data, so on a long list you lose sight of which column you are reading and of the totals.
+2. What should happen instead
+The column heading row should stay stuck to the top while you scroll down, and the Totals row should stay stuck to the bottom of the scrolling area.
+3. Branch / environment
+Application https://sv8582.qa.shopview.com, API host https://sv8582api.qa.shopview.com.
+Build marker (app-version meta tag) v3.5-7168d14, index.html last modified Thu 06 Aug 2026 08:32:37 GMT.
+Observed on 2026-08-06. Organisation Staging Foothills Group Inc. Signed in as admin@shopview.com (Admin ShopView).
+Test data named in full: sales representatives ZZAUTOTEST RepA (1 invoice, S-16244) and ZZAUTOTEST RepB (3 invoices, S-16243, S-16242, S-16241), plus Parth Fadadu (1 invoice, S-15826). Customers Aaborough Works, Aacastle Services, Aachester Partners, Aacrest Works, Beman Systems. Locations Staging Heavy Duty - 9919 and Staging Lethbridge - 4310.
+4. How bad is it
+Low. Everything reads correctly; it is harder to use on a long report.
+5. What we ruled out
+We checked the Subtotal column separately and it IS correct - it stays stuck to the right-hand edge when you scroll sideways, and it is bold on the heading row, on every representative row and on the Totals row. So the pinning code works in one direction and not the other. The Totals row is also correct in content: it reads "Totals", merges the four name columns, and every figure is the total across the whole filtered result.
+6. Where this expected behaviour comes from
+Where this expected behaviour comes from: the Sales By Representative report specification, version 17, requirement S10-R6, which says: "On screen, the column-header row is sticky to the top during vertical scroll". That is source type 2: the specification (PRD) in Confluence. The version number given is the Confluence page version, not the version written inside the page.

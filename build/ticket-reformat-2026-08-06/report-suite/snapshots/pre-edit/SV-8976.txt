@@ -1,0 +1,19 @@
+# SV-8976 — Sales By Representative: a saved date range that is no longer valid leaves the report empty
+
+1. What happens now
+The report remembers your filters in the browser. If the saved date range is one the report no longer recognises, it does not fall back to the normal default.
+Instead the date button reads "Select Date Range", no data is asked for at all, and the report sits there empty with the no-data message.
+The user has no way of telling that anything went wrong - it simply looks as though there is no sales activity.
+2. What should happen instead
+A saved value that is no longer valid should quietly fall back to that setting default - here, This Month - and the report should load normally.
+3. Branch / environment
+Application https://sv8582.qa.shopview.com, API host https://sv8582api.qa.shopview.com.
+Build marker (app-version meta tag) v3.5-7168d14, index.html last modified Thu 06 Aug 2026 08:32:37 GMT.
+Observed on 2026-08-06. Organisation Staging Foothills Group Inc. Signed in as admin@shopview.com (Admin ShopView).
+Test data named in full: sales representatives ZZAUTOTEST RepA (1 invoice, S-16244) and ZZAUTOTEST RepB (3 invoices, S-16243, S-16242, S-16241), plus Parth Fadadu (1 invoice, S-15826). Customers Aaborough Works, Aacastle Services, Aachester Partners, Aacrest Works, Beman Systems. Locations Staging Heavy Duty - 9919 and Staging Lethbridge - 4310.
+4. How bad is it
+Low, but misleading: an empty report reads as "no sales", not as "your saved setting was dropped".
+5. What we ruled out
+We checked that every OTHER saved setting does fall back correctly: an unknown sort column, an unknown column list, an unknown product type and an unknown invoice status all quietly revert to their defaults and are rewritten in the browser. It is the date range alone that does not. Nothing errors, so the "never causes an error" half of the requirement is met.
+6. Where this expected behaviour comes from
+Where this expected behaviour comes from: the Sales By Representative report specification, version 17, requirement S23-R3, which says: "Restoration is defensive: a remembered value that is no longer valid (a location the user can no longer access, a range or sort column that no longer exists, a hidden-but-sorted column) falls back to that setting's default rather than being sent to the server.". That is source type 2: the specification (PRD) in Confluence. The version number given is the Confluence page version, not the version written inside the page.

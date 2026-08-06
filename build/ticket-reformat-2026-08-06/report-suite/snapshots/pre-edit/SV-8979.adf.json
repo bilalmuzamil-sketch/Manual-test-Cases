@@ -1,0 +1,171 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "1. What happens now",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The expand and collapse chevrons in the table measure 22 by 22 pixels. The written description asks for at least 44 by 44 for the controls inside the table, which is the ordinary minimum for a finger."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "2. What should happen instead",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Each chevron should offer a touch target of at least 44 by 44 pixels, even if the arrow drawn inside it stays small."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "3. Branch / environment",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Application https://sv8582.qa.shopview.com, API host https://sv8582api.qa.shopview.com."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Build marker (app-version meta tag) v3.5-7168d14, index.html last modified Thu 06 Aug 2026 08:32:37 GMT."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Observed on 2026-08-06. Organisation Staging Foothills Group Inc. Signed in as admin@shopview.com (Admin ShopView)."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Test data named in full: sales representatives ZZAUTOTEST RepA (1 invoice, S-16244) and ZZAUTOTEST RepB (3 invoices, S-16243, S-16242, S-16241), plus Parth Fadadu (1 invoice, S-15826). Customers Aaborough Works, Aacastle Services, Aachester Partners, Aacrest Works, Beman Systems. Locations Staging Heavy Duty - 9919 and Staging Lethbridge - 4310."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "4. How bad is it",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Low, but it is felt on every use: a small target in a dense table is easy to miss and the next tap lands on the row instead."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "5. What we ruled out",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "We measured the other named controls in the same breath and they ARE correct - the three-dot download button is 44 by 44 and the Show Unassigned switch is 44 tall. So it is the chevrons specifically. We also confirmed the chevrons work on touch and by keyboard, so this is the size only."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "6. Where this expected behaviour comes from",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from: the Sales By Representative report specification, version 17, requirement S17-R6, which says: \"All interactive controls in the dense table (chevrons, toggles, the button, the dialog's X) present a touch target of at least 44x44 px.\". That is source type 2: the specification (PRD) in Confluence. The version number given is the Confluence page version, not the version written inside the page."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,203 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What happens now",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The Sales By Customer report offers two PDF downloads. The Summary one is A4 landscape, which is right. The Expanded View one comes out on A3 landscape - a sheet half again as wide."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Anyone printing it on ordinary office paper will get it shrunk down or cropped."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "How to see it",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Open Reports, then Sales By Customer. Open the download menu and choose Download Expanded View (PDF)."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Open the file and look at its page size. It measures 1190 by 842 points, which is A3. The Summary PDF from the same menu measures 842 by 595 points, which is A4."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What should happen instead",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Both PDFs should be A4 landscape."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What we tested it on",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "QA branch sv8582, build v3.5-16cf83f, on 6 August 2026. Date range 1 to 6 August 2026, Product Type Parts & Service, both locations. Both files downloaded from the report own download menu."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "How bad is it",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Low. The file opens and every figure in it is correct; it is the paper size that is wrong."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What we ruled out",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "This is not a one-off: the Summary PDF from the same menu, the same filters and the same moment is correctly A4, so it is specific to the Expanded View file. The footer, the heading block and the logo are all present and correct in both."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from: the Sales By Customer report specification, version 15, requirement S15-R7, which says: \"The PDF is A4 landscape with 25px margins on all sides, using the application's standard font.\"."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The same requirement covers both files: the specification says the header title reads the same for both versions and that only the file name tells them apart (S15-R13), so there is no separate paper size for the Expanded View."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "That is source type 2: the specification (PRD) in Confluence. The version number given is the Confluence page version, not the version written inside the page."
+    }
+   ]
+  }
+ ]
+}

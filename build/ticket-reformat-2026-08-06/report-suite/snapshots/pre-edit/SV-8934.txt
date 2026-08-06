@@ -1,0 +1,30 @@
+# SV-8934 — Parts Velocity PDF prints Description, Category and Vendor in full instead of shortening them to 18 characters
+
+### 1. What happens now
+When the Parts Velocity report is downloaded as a PDF, the long text columns are printed in full instead of being shortened. A description that runs to over a hundred characters is printed complete and simply wraps onto several lines inside its cell, which makes the rows very tall and the page hard to read.
+### 2. What should happen instead
+The written description asks for those three columns to be shortened in the PDF.
+Parts Velocity specification, version 5, requirement S6-R6: "The PDF is formatted for A3 landscape, titled Parts Velocity. In the PDF, Description, Category, and Vendor are truncated to 18 characters. Part # is not truncated. The CSV carries the full, untruncated Description / Category / Vendor values."
+### 3. How to see it
+1. Sign in as a user who can see reports and open Reports > Parts Velocity.
+2. In the report's own search box type 179.YK5005.
+3. Open the three-dot menu at the top of the report and choose Download (PDF).
+4. Open the downloaded file and look at the Description and Category columns.
+Exact test data this was seen with: part number 179.YK5005, description CLEVIS KIT MERITOR TYPE 5/8"Straight, 5/8in-18 Threads, 1/2in and 1/4in Pins, Pin C to C is 1-3/8in(E11430A, R810019) (117 characters), category HD-Air Brakes & Air Suspension (30 characters), vendor Iview Commercial, locations Staging Heavy Duty - 9919 and Staging Lethbridge - 4310, date range This Year.
+### 4. What was actually in the file
+The PDF row printed the whole description and the whole category:
+{noquote}
+Inventory 179.YK5005 CLEVIS KIT MERITOR TYPE 5/8"Straight, 5/8in-18 Threads, 1/2in and 1/4in Pins, Pin C to C is 1-3/8in(E11430A, R810019) HD-Air Brakes & Air Suspension Iview Commercial Staging Lethbridge - 4310 7.00 $5.18 $11.26 $78.82 $42.56 54.0% 8 72 days 43.00
+{noquote}
+Shortened to eighteen characters the description would have read CLEVIS KIT MERITOR and the category HD-Air Brakes & Ai.
+### 5. What was ruled out
+- It is not a reading problem in the file. A second, much shorter part was downloaded the same way and its description, Brake & Parts Cleaner (21 characters), was also printed in full - so nothing at all is being shortened, not just the very long one.
+- It is not the spreadsheet. The spreadsheet is supposed to carry the full text and it does. Only the PDF is wrong.
+- It is not the Part # column. Part # is correctly left alone, which is what the written description asks for.
+- It is not the page size. The PDF is correctly A3 landscape and correctly titled Parts Velocity, and the shop logo is printed.
+### 6. How often
+Every time. Three PDF downloads out of three, on three different searches.
+### 7. Where it was seen
+Reports > Parts Velocity, on the QA branch, build v3.5-16cf83f, on 6 August 2026.
+ 
+Where this expected behaviour comes from: the Parts Velocity report specification, version 5, requirement S6-R6, which says: "The PDF is formatted for A3 landscape, titled Parts Velocity. In the PDF, Description, Category, and Vendor are truncated to 18 characters. Part # is not truncated. The CSV carries the full, untruncated Description / Category / Vendor values."

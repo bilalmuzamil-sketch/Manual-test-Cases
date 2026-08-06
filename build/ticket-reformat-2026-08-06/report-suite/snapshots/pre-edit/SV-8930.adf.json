@@ -1,0 +1,536 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "1. What happens now"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "When nothing matches on the Inventory Value report, the user is shown a table with column headings and nothing underneath - no rows, and no message of any kind. There is nothing on the screen to tell them the report ran and found nothing, so it is impossible to tell \"no results\" apart from \"still loading\" or \"something broke\"."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "2. What should happen instead"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The report is meant to show the standard reports no-data message in the data area."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The Inventory Value description says so in three places and spells the words out:"
+    }
+   ]
+  },
+  {
+   "type": "bulletList",
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Requirement S1-N2: \"If no in-stock part exists for the selected location(s) on the resolved date, the report shows the no-data message (Story 12) instead of rows.\""
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Requirement S5-N1 and S7-N2 say the same for an out-of-range date and for a location with no stock."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "The message table at the end of the description gives the exact words: "
+        },
+        {
+         "type": "text",
+         "text": "\"Empty bays, endless possibilities. Get Going!\"",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " - \"The application's standard reports no-data label, shown in the data area; the totals row is hidden.\""
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "3. How to see it"
+    }
+   ]
+  },
+  {
+   "type": "orderedList",
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Sign in and open "
+        },
+        {
+         "type": "text",
+         "text": "Reports",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " > "
+        },
+        {
+         "type": "text",
+         "text": "Inventory Value",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": "."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Type "
+        },
+        {
+         "type": "text",
+         "text": "ZZZZNOMATCHZZZZ",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " into the "
+        },
+        {
+         "type": "text",
+         "text": "Search parts",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " box."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Wait for the table to reload and look at the data area."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Exact test data this was seen with:",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " search term "
+    },
+    {
+     "type": "text",
+     "text": "ZZZZNOMATCHZZZZ",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": ", which matches no part. Locations "
+    },
+    {
+     "type": "text",
+     "text": "Staging Heavy Duty - 9919",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " and "
+    },
+    {
+     "type": "text",
+     "text": "Staging Lethbridge - 4310",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": ", date range "
+    },
+    {
+     "type": "text",
+     "text": "This Month",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": ", 5,657 rows in scope before the search."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The same empty result can be reached two other ways, and both look the same: choose a date range entirely before nightly recording began (a range in January 2024 returns nothing), or combine two categories with a search term that none of their parts match."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "4. What was actually seen"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The table contained only its heading row:"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "{noquote}"
+    },
+    {
+     "type": "hardBreak"
+    },
+    {
+     "type": "text",
+     "text": "Part # | Description | Category | Vendor | Location | Qty | Unit Cost | Unit Sell | Margin | Margin % | Total Sell | Total Cost"
+    },
+    {
+     "type": "hardBreak"
+    },
+    {
+     "type": "text",
+     "text": "{noquote}"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The words \"Empty bays\" appear nowhere on the page. The totals row is correctly hidden - that half is right."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "5. What was ruled out"
+    }
+   ]
+  },
+  {
+   "type": "bulletList",
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "It is not a loading state.",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " The reload had finished and the server had returned its answer."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "It is not one route to empty.",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " A no-match search, an out-of-range date and a filter combination that matches nothing all behave the same way."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "It is not the totals row.",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " Hiding that is correct and it is hidden."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "6. How often"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Every time, by all three routes."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "7. Where it was seen"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Reports > Inventory Value, on the QA branch, build v3.5-16cf83f, on 6 August 2026."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": " "
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from: the Inventory Value report specification, version 4, which says three separate times that an empty result shows a message rather than a bare empty table."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Requirement S1-N2: \"If no in-stock part exists for the selected location(s) on the resolved date, the report shows the no-data message (Story 12) instead of rows.\""
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Requirement S5-N1: \"If there is no recorded day on or before the end of the selected range... the report shows the no-data message (Story 12) and no totals row.\""
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Requirement S7-N2: \"If the selected location(s) hold no in-stock parts on the resolved date, the report shows the no-data message (Story 12).\""
+    }
+   ]
+  }
+ ]
+}

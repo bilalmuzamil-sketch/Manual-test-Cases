@@ -1,0 +1,2529 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 2
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "1. Description"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "On the Work In Progress report, the "
+    },
+    {
+     "type": "text",
+     "text": "Asset",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " filter does not offer every asset that is on the report. Where two different vehicles happen to share the same unit number, the filter lists only one of them \u2014 and it shows that one's vehicle identification number against the shared unit number. The other vehicle is simply not in the list, so typing its vehicle identification number brings up nothing at all."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The filter is meant to let you type either the unit number or the vehicle identification number. For these vehicles the second half of that promise does not work, and a service manager searching for a truck by the number on its windscreen concludes the truck has no open work, when in fact it has."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "On today's test data six vehicles are affected across five shared unit numbers. The clearest one belongs to customer "
+    },
+    {
+     "type": "text",
+     "text": "Euwood Paving",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": ", which has two different trucks both numbered "
+    },
+    {
+     "type": "text",
+     "text": "854",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": "."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Why it matters quietly rather than loudly: the filter looks like it is working. You type a unit number, you get a result, and nothing tells you that a second vehicle with that same number exists and has been left out."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 2
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "2. Branch / Environment"
+    }
+   ]
+  },
+  {
+   "type": "bulletList",
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Branch tested: "
+        },
+        {
+         "type": "text",
+         "text": "https://sv8582.qa.shopview.com",
+         "marks": [
+          {
+           "type": "link",
+           "attrs": {
+            "href": "https://sv8582.qa.shopview.com/"
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "API host: "
+        },
+        {
+         "type": "text",
+         "text": "https://sv8582api.qa.shopview.com",
+         "marks": [
+          {
+           "type": "link",
+           "attrs": {
+            "href": "https://sv8582api.qa.shopview.com/"
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Build marker (page's app-version): "
+        },
+        {
+         "type": "text",
+         "text": "v3.5-16cf83f",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " \u2014 index.html last modified Wed, 05 Aug 2026 06:40:32 GMT, etag 177c59546701e7810b894492dabc1423"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Organisation: d55bc308-e61a-438d-b5f1-c7a73c89d49f"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Locations selected: "
+        },
+        {
+         "type": "text",
+         "text": "both",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " \u2014 "
+        },
+        {
+         "type": "text",
+         "text": "Staging Heavy Duty - 9919",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " (b3c8c820-f815-4cf1-8938-10956c5ee71a) and "
+        },
+        {
+         "type": "text",
+         "text": "Staging Lethbridge - 4310",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " (f8a8b802-7780-4b16-bf10-343caeb616b2)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Signed in as: admin@shopview.com (Administrator, 42 permissions)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Date range used: "
+        },
+        {
+         "type": "text",
+         "text": "1 September 2025",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " to "
+        },
+        {
+         "type": "text",
+         "text": "5 August 2026",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " (a wide range so all four tabs have rows)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Observed: 2026-08-05, about 18:45 UTC"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 2
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "3. Steps to reproduce"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "No data needs creating \u2014 the vehicles below already exist in the test data and are named exactly."
+    }
+   ]
+  },
+  {
+   "type": "orderedList",
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Sign in as a user who can see reports and open "
+        },
+        {
+         "type": "text",
+         "text": "Work In Progress",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": "."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Set the "
+        },
+        {
+         "type": "text",
+         "text": "Location",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " filter to include "
+        },
+        {
+         "type": "text",
+         "text": "both",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " "
+        },
+        {
+         "type": "text",
+         "text": "Staging Heavy Duty - 9919",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " and "
+        },
+        {
+         "type": "text",
+         "text": "Staging Lethbridge - 4310",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": "."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Set a custom date range of "
+        },
+        {
+         "type": "text",
+         "text": "1 September 2025",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " to "
+        },
+        {
+         "type": "text",
+         "text": "5 August 2026",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": ", so all four tabs have work orders in them."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Open the "
+        },
+        {
+         "type": "text",
+         "text": "Asset",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " filter and type "
+        },
+        {
+         "type": "text",
+         "text": "854",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": ". One option appears: unit "
+        },
+        {
+         "type": "text",
+         "text": "854",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " shown with vehicle identification number "
+        },
+        {
+         "type": "text",
+         "text": "5SHFE4730MB001604",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": "."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Now clear what you typed and type the full vehicle identification number "
+        },
+        {
+         "type": "text",
+         "text": "1HTKTSWK4RH442544",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": ". Nothing matches."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Check that this vehicle really is on the report: it is the asset on work orders "
+        },
+        {
+         "type": "text",
+         "text": "S8582-15742",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " (in the "
+        },
+        {
+         "type": "text",
+         "text": "Approved - Partially Completed",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " tab) and "
+        },
+        {
+         "type": "text",
+         "text": "S8582-11992",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " (in the "
+        },
+        {
+         "type": "text",
+         "text": "Estimates",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " tab), both for customer "
+        },
+        {
+         "type": "text",
+         "text": "Euwood Paving",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": ". The same customer's other truck, also unit "
+        },
+        {
+         "type": "text",
+         "text": "854",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " but with vehicle identification number "
+        },
+        {
+         "type": "text",
+         "text": "5SHFE4730MB001604",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": ", is on work orders "
+        },
+        {
+         "type": "text",
+         "text": "S8582-15743",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": ", "
+        },
+        {
+         "type": "text",
+         "text": "S8582-12623",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": ", "
+        },
+        {
+         "type": "text",
+         "text": "S8582-12086",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " and "
+        },
+        {
+         "type": "text",
+         "text": "S8582-11993",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": "."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Repeat with any of the other five affected numbers below and the same thing happens."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The exact assets affected, and the shared unit numbers that cause it:",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "table",
+   "attrs": {
+    "isNumberColumnEnabled": false,
+    "layout": "default"
+   },
+   "content": [
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Unit number",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Vehicle identification number the filter OFFERS",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Vehicle identification number the filter LEAVES OUT",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Work orders carrying the left-out vehicle",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Customer",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "854"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "5SHFE4730MB001604"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "1HTKTSWK4RH442544",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "S8582-15742, S8582-11992"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Euwood Paving"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "4"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "1NKDX4TX0CR955991"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "3HTMMAAP19N045446",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "S8582-15133"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Iowell Works"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "4"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "1NKDX4TX0CR955991"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "54DC4W1C2GS805134",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "S8582-15668"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Auline Consulting"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "1"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "5KJJALD1XEPFP2932"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "54DC4W1B9ES801599",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "S8582-15544"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Auline Consulting"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "80"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "1XKWDR9X2WJ949172"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "5KKPALDV3DPBY2035",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "S8582-14030"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Suman Solutions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "B104"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "(the option shows no vehicle identification number at all)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "5100036463",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "S8582-15391"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Kabridge Enterprises"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What was ruled out.",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " The two other filters on the same toolbar are complete, so this is specific to the Asset filter and not a general scope problem:"
+    }
+   ]
+  },
+  {
+   "type": "table",
+   "attrs": {
+    "isNumberColumnEnabled": false,
+    "layout": "default"
+   },
+   "content": [
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Filter",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Values the filter offers",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Distinct values actually on the report",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Match",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Advisor"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "15"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "15"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "exactly equal, both directions",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Customer"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "215"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "215"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "exactly equal, both directions",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Asset \u2014 by unit number"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "172"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "172"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "exactly equal, both directions",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Asset \u2014 by vehicle identification number"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "273"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "279"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "six missing",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "So the filter is not limited to the rows currently loaded \u2014 that part works correctly, and it works across all four tabs and both locations. The problem is only that the list is built one entry per unit number. Also ruled out: it is not the date range (the same six are missing on a narrower range), and it is not the "
+    },
+    {
+     "type": "text",
+     "text": "B104",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " case alone \u2014 that one has the additional oddity that its option carries no vehicle identification number even though the work order does."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 2
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "4. Expected behaviour"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Every asset that appears on the report should be offered in the Asset filter, and typing either identifier should find it. The Work In Progress specification, version 9, requires (S7-R4):"
+    }
+   ]
+  },
+  {
+   "type": "blockquote",
+   "content": [
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "The toolbar has an Asset filter, a searchable type-ahead multi-select listing the assets present across all open jobs in the current scope. Each option shows the unit number and the vehicle identification number, and the user's typed text matches against EITHER the unit number OR the vehicle identification number."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Two vehicles that share a unit number are still two assets present on the report, so both should be listed and both identification numbers should match."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "For non-vehicle assets, note that this field holds the unit's serial number rather than a true vehicle identification number \u2014 that is expected and is not what this ticket is about."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 2
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "5. Current behaviour"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The Asset filter offers one entry per unit number. Where two vehicles share a unit number only one is listed, the listed entry shows only that one's identification number, and the other vehicle's identification number matches nothing typed into the filter. Six vehicles are affected on the current test data."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 2
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "6. Images"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "No screenshot is attached, and the reason is stated rather than implied: this session could not open the application's screens at all. The application front end would not accept the browser session available to this run, and the one route that produces a signed-in browser could not be used because it would have reset a sign-in shared with two other testers working on other branches at the same time. What is written above was read directly from the data the Asset filter is built from, and the full response is saved with our evidence so the six missing vehicles can be confirmed without repeating the work."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 2
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "7. Technical details for developers"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The option list comes from its own endpoint, separate from the row data:"
+    }
+   ]
+  },
+  {
+   "type": "codeBlock",
+   "content": [
+    {
+     "type": "text",
+     "text": "GET /api/reporting/reports/work-in-progress/filters\n    ?from=2025-09-01T00:00:00.000Z&to=2026-08-05T23:59:59.000Z\n    &locations=b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2\n-> HTTP 200\n   {\"data\":{\"advisors\":[15 items],\"customers\":[215 items],\"assets\":[278 items]}}"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Each asset entry has the shape "
+    },
+    {
+     "type": "text",
+     "text": "{\"value\":\"854\",\"unit_number\":\"854\",\"vin\":\"5SHFE4730MB001604\"",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": "}, and "
+    },
+    {
+     "type": "text",
+     "text": "value",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " falls back to the identification number when there is no unit number (106 of the 278 entries are of that kind). Counting the 172 entries that do have a unit number: "
+    },
+    {
+     "type": "text",
+     "text": "no unit number appears twice",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": ", which is the defect \u2014 the list is keyed by unit number rather than by asset."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Compared against the complete row set fetched as "
+    },
+    {
+     "type": "text",
+     "text": "GET /api/reporting/reports/work-in-progress?...&tab=<each of the four>&pagination[rowsPerPage]=1000",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " \u2014 392 rows in total (Approved - Partially Completed 116, Approved - Not Started 39, Completed 31, Estimates 206):"
+    }
+   ]
+  },
+  {
+   "type": "table",
+   "attrs": {
+    "isNumberColumnEnabled": false,
+    "layout": "default"
+   },
+   "content": [
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Dimension",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "From the rows",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "From the filters endpoint",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "rows minus filters",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "filters minus rows",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "advisor"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "15"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "15"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "0"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "0"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "customer"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "215"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "215"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "0"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "0"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "unit_number"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "172"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "172"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "0"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "0"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "vin"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "279"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "273"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "6",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "0"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The six: 1HTKTSWK4RH442544, 3HTMMAAP19N045446, 54DC4W1B9ES801599, 54DC4W1C2GS805134, 5100036463, 5KKPALDV3DPBY2035."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Five unit numbers carry more than one identification number across the report: 854 (2), 4 (3), 1 (2), 80 (2), and B104 (a row with 5100036463 and a row with none, while the filter entry has none)."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "A re-runnable check is in our evidence as "
+    },
+    {
+     "type": "text",
+     "text": "tools/wip_probe.py",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": ", and the full response plus the 392 rows are saved as "
+    },
+    {
+     "type": "text",
+     "text": "evidence/wip-filter-options.json",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " and "
+    },
+    {
+     "type": "text",
+     "text": "evidence/wip-all-392-rows.json",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": "."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Specification: Work In Progress, Confluence page 703660034, version 9, Story 7 (S7-R4) \u2014 the \"across all open jobs in the current scope\" wording was added in version 9 on 2026-08-05."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": " "
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from: the Work In Progress report specification, version 9, requirement S7-R4, which says: \"The toolbar has an Asset filter, a searchable type-ahead multi-select listing the assets present across all open jobs in the current scope. Each option shows the unit number and the vehicle identification number, and the user's typed text matches against EITHER the unit number OR the vehicle identification number.\" Two different vehicles that share a unit number are two assets present in scope, so both belong in the list."
+    }
+   ]
+  }
+ ]
+}

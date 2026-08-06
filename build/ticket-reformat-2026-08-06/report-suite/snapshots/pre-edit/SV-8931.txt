@@ -1,0 +1,29 @@
+# SV-8931 — Inventory Value opens on All locations instead of the user's current location
+
+### 1. What happens now
+The first time somebody opens the Inventory Value report, the Location filter is already set to All locations - every location they can reach - rather than the one location they are currently working at.
+For a user at a single branch this means the report opens showing other branches' stock mixed in with their own, and every number in the totals row covers the whole company rather than their shop.
+### 2. What should happen instead
+The report should open on the location the user is currently working at, and let them widen it from there.
+- Inventory Value requirement S1-R3: "On the user's first visit (no saved settings), the report defaults to the current calendar month date range and the user's currently active location."
+- Inventory Value requirement S7-R2: "On a first visit (no saved selection), it defaults to the user's currently active location."
+The date-range half of S1-R3 is correct - it does open on This Month. It is only the location that is wrong.
+### 3. How to see it
+1. Open a browser window that has never opened this report before (a private window works).
+2. Sign in. Note which location is shown in the top bar - that is the active location.
+3. Open Reports > Inventory Value.
+4. Read the Location filter in the toolbar.
+Exact test data this was seen with: the signed-in user's active location was Staging Heavy Duty - 9919, and the account can also reach Staging Lethbridge - 4310.
+### 4. What was actually seen
+The Location filter read All locations, and the settings the page saved for itself on that first load listed both location identifiers, not just the active one. Rows from both locations were present in the table and the totals covered both.
+### 5. What was ruled out
+- It is not a leftover setting. This was a brand-new browser session with nothing stored for this report - the saved settings did not exist until the page created them, and it created them with both locations.
+- It is not the filter being broken. Changing the selection works correctly: unticking one location reloads the report scoped to the other.
+- It is not the date range. That part of the same requirement is correct.
+### 6. How often
+Every time, on every fresh browser.
+### 7. Where it was seen
+Reports > Inventory Value, on the QA branch, build v3.5-16cf83f, on 6 August 2026.
+ 
+Where this expected behaviour comes from: the Inventory Value report specification, version 4, requirement S1-R3, which says: "On the user's first visit (no saved settings — Story 8), the report defaults to the current calendar month date range and the user's currently active location."
+The same specification, requirement S7-R2, repeats it for the filter itself: "On a first visit (no saved selection — Story 8), it defaults to the user's currently active location."

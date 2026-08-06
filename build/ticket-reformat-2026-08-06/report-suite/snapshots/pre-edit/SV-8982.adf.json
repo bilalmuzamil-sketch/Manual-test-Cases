@@ -1,0 +1,189 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "1. What happens now",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "All four downloads should have fixed, predictable file names. Each one instead has the chosen date range added to the end."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "You get sales-by-representative-summary-this_month.csv rather than sales-by-representative-summary.csv, and the word changes with the range - this_year, last_week, or custom."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "All four files behave the same way: both spreadsheets and both PDFs."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "2. What should happen instead",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The four names should be exactly sales-by-representative-summary.pdf, sales-by-representative-expanded.pdf, sales-by-representative-summary.csv and sales-by-representative-expanded.csv."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "3. Branch / environment",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Application https://sv8582.qa.shopview.com, API host https://sv8582api.qa.shopview.com."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Build marker (app-version meta tag) v3.5-7168d14, index.html last modified Thu 06 Aug 2026 08:32:37 GMT."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Observed on 2026-08-06. Organisation Staging Foothills Group Inc. Signed in as admin@shopview.com (Admin ShopView)."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Test data named in full: sales representatives ZZAUTOTEST RepA (1 invoice, S-16244) and ZZAUTOTEST RepB (3 invoices, S-16243, S-16242, S-16241), plus Parth Fadadu (1 invoice, S-15826). Customers Aaborough Works, Aacastle Services, Aachester Partners, Aacrest Works, Beman Systems. Locations Staging Heavy Duty - 9919 and Staging Lethbridge - 4310."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "4. How bad is it",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Low, but it defeats the point of a fixed name: anything that picks the file up automatically, or any saved-file rule, will not find it."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "5. What we ruled out",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "We downloaded the same view three times with three different date ranges and read the name the browser was given each time, so the changing part is definitely the date range and not something else. The file contents were correct every time."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "6. Where this expected behaviour comes from",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from: the Sales By Representative report specification, version 17, requirement S14-R11, which says: \"PDF filenames are deterministic: sales-by-representative-summary.pdf and sales-by-representative-expanded.pdf.\". That is source type 2: the specification (PRD) in Confluence. The version number given is the Confluence page version, not the version written inside the page."
+    }
+   ]
+  }
+ ]
+}

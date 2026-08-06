@@ -1,0 +1,198 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "1. What happens now",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Three of the five icon-only controls give a screen-reader name that is not the one written down."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The three-dot download button announces \"Export report\" instead of \"Report actions\"."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The column button announces \"Column Selection\" instead of \"Show or hide columns\"."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The chevron at the top of the table announces \"Expand all representatives\" and \"Collapse all representatives\" instead of \"Expand all reps\" and \"Collapse all reps\"."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "2. What should happen instead",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Each should announce the name the written description gives it, word for word."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "3. Branch / environment",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Application https://sv8582.qa.shopview.com, API host https://sv8582api.qa.shopview.com."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Build marker (app-version meta tag) v3.5-7168d14, index.html last modified Thu 06 Aug 2026 08:32:37 GMT."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Observed on 2026-08-06. Organisation Staging Foothills Group Inc. Signed in as admin@shopview.com (Admin ShopView)."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Test data named in full: sales representatives ZZAUTOTEST RepA (1 invoice, S-16244) and ZZAUTOTEST RepB (3 invoices, S-16243, S-16242, S-16241), plus Parth Fadadu (1 invoice, S-15826). Customers Aaborough Works, Aacastle Services, Aachester Partners, Aacrest Works, Beman Systems. Locations Staging Heavy Duty - 9919 and Staging Lethbridge - 4310."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "4. How bad is it",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Low. Every control works, and a screen-reader user is told something sensible - just not the agreed wording, so it does not match the rest of the suite."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "5. What we ruled out",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "We checked all five before raising this. The per-row chevrons ARE correct - they announce \"Expand ZZAUTOTEST RepA\" and change to \"Collapse ZZAUTOTEST RepA\". We also confirmed the controls are properly keyboard operable, so this is the name only and not the behaviour."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "6. Where this expected behaviour comes from",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from: the Sales By Representative report specification, version 17, requirement S18-R9, which says: \"Every icon-only control has an accessible name: exports = \"Report actions\"; column selector = \"Show or hide columns\"; per-row chevron = \"Expand {rep name}\" / \"Collapse {rep name}\"; header chevron = \"Expand all reps\" / \"Collapse all reps\"; dialog X = \"Close\".\". That is source type 2: the specification (PRD) in Confluence. The version number given is the Confluence page version, not the version written inside the page."
+    }
+   ]
+  }
+ ]
+}

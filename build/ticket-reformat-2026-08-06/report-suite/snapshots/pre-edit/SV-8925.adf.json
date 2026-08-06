@@ -1,0 +1,715 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "1. What happens now"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "When the Sales By Customer or Sales By Representative report is downloaded as a spreadsheet, the numbers inside it arrive dressed up as text. Money comes out as "
+    },
+    {
+     "type": "text",
+     "text": "$1,979.40",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " with a dollar sign and a comma. Percentages come out as "
+    },
+    {
+     "type": "text",
+     "text": "100.0%",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " with a percent sign. Dates come out as "
+    },
+    {
+     "type": "text",
+     "text": "Jul 31 2026",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": "."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Because those cells are text and not numbers, a person who opens the file in Excel cannot add them up, sort them, or build a pivot table without cleaning every column first."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "2. What should happen instead"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Both written descriptions ask for plain numbers so the file can be re-used."
+    }
+   ]
+  },
+  {
+   "type": "bulletList",
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Sales By Customer, requirement S14-R9: \"The Margin % cell is a plain number to one decimal with no percent sign (for example, 64.7)\"."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Sales By Customer, requirement S14-R10: \"Dates export as mm-dd-yyyy - for example, 05-14-2026 - matching the ShopView-wide CSV date format.\""
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Sales By Customer, requirement S14-R11: \"Currency values export as plain numbers with no dollar sign and no thousands separators.\""
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Sales By Representative, requirement S14-R17: \"numeric columns are emitted as plain numbers for re-pivoting - no currency symbol, thousands separators, or parentheses\"."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "3. How to see it"
+    }
+   ]
+  },
+  {
+   "type": "orderedList",
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Sign in and open "
+        },
+        {
+         "type": "text",
+         "text": "Reports",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " > "
+        },
+        {
+         "type": "text",
+         "text": "Sales By Customer",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": "."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Set the date range to "
+        },
+        {
+         "type": "text",
+         "text": "Last Month",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " and select the location "
+        },
+        {
+         "type": "text",
+         "text": "Staging Heavy Duty - 9919",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": "."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Open the three-dot download menu and choose the summary spreadsheet download."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Open the downloaded file in a text editor or Excel."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Repeat the same steps on "
+        },
+        {
+         "type": "text",
+         "text": "Reports",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " > "
+        },
+        {
+         "type": "text",
+         "text": "Sales By Representative",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": "."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Exact test data this was seen with:",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " customer "
+    },
+    {
+     "type": "text",
+     "text": "Beman Systems",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": ", invoice "
+    },
+    {
+     "type": "text",
+     "text": "S-15826",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": ", sales representative "
+    },
+    {
+     "type": "text",
+     "text": "Parth Fadadu",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": ", location "
+    },
+    {
+     "type": "text",
+     "text": "Staging Heavy Duty - 9919",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": ", date range "
+    },
+    {
+     "type": "text",
+     "text": "Last Month",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " (1 - 31 July 2026). Both the summary and the expanded downloads behave the same way on both reports."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "4. What was actually in the file"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Sales By Customer, summary download:"
+    },
+    {
+     "type": "hardBreak"
+    },
+    {
+     "type": "text",
+     "text": "{noquote}"
+    },
+    {
+     "type": "hardBreak"
+    },
+    {
+     "type": "text",
+     "text": "\"Beman Systems\",0.0,\"$1,979.40\",\"$1,979.40\",\"$2,459.48\",\"$2,459.48\",$207.84,\"$4,438.88\",95.5%,\"$4,646.72\""
+    },
+    {
+     "type": "hardBreak"
+    },
+    {
+     "type": "text",
+     "text": "{noquote}"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Sales By Customer, expanded download - note the date cell:"
+    },
+    {
+     "type": "hardBreak"
+    },
+    {
+     "type": "text",
+     "text": "{noquote}"
+    },
+    {
+     "type": "hardBreak"
+    },
+    {
+     "type": "text",
+     "text": ",,P-126,\"Jul 31 2026\",0.0,$0.00,$0.00,$16.26,$16.26,$0.00,$16.26,100.0%,$16.26"
+    },
+    {
+     "type": "hardBreak"
+    },
+    {
+     "type": "text",
+     "text": "{noquote}"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Sales By Representative, expanded download:"
+    },
+    {
+     "type": "hardBreak"
+    },
+    {
+     "type": "text",
+     "text": "{noquote}"
+    },
+    {
+     "type": "hardBreak"
+    },
+    {
+     "type": "text",
+     "text": ",S-15826,\"Jul 31 2026\",\"Beman Systems\",Unpaid,0.0,0.0,0.0,\"$1,979.40\",\"$1,979.40\",\"$2,459.48\",\"$2,459.48\",\"$4,438.88\",100.0%,\"$4,438.88\""
+    },
+    {
+     "type": "hardBreak"
+    },
+    {
+     "type": "text",
+     "text": "{noquote}"
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "5. What was ruled out"
+    }
+   ]
+  },
+  {
+   "type": "bulletList",
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "It is not the date range.",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " The same formatting appears at Last Month, Last Quarter and Last Year."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "It is not one report only.",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " Both Sales By Customer and Sales By Representative do it."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "It is not one download only.",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " Both the summary and the expanded downloads do it."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "It is not the on-screen report.",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " On screen the money is correctly shown with dollar signs - that is what the screen is meant to do. The problem is only in the downloaded file."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "6. How often"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Every time. Four downloads out of four."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "7. Where it was seen"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Reports > Sales By Customer and Reports > Sales By Representative, on the QA branch, build v3.5-16cf83f, on 6 August 2026."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": " "
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from: both reports' own specifications, which ask for plain numbers so the file can be re-used."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "the Sales By Customer report specification, version 15, requirement S14-R9: \"The Margin % cell is a plain number to one decimal with no percent sign (for example, 64.7); it is empty when the row's Subtotal is zero or below.\""
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "the Sales By Customer report specification, version 15, requirement S14-R10: \"Dates export as mm-dd-yyyy \u2014 for example, 05-14-2026 \u2014 matching the ShopView-wide CSV date format.\""
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "the Sales By Customer report specification, version 15, requirement S14-R11: \"Currency values export as plain numbers with no dollar sign and no thousands separators.\""
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "the Sales By Representative report specification, version 17, requirement S14-R17: \"CSV cell formatting (both CSVs): numeric columns are emitted as plain numbers for re-pivoting \u2014 no currency symbol, thousands separators, or parentheses; a negative value uses a leading minus (-1234.56).\""
+    }
+   ]
+  }
+ ]
+}

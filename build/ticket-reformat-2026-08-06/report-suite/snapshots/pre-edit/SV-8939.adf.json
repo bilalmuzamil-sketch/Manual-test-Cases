@@ -1,0 +1,471 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "1. What happens now"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The Parts Velocity report opens with its Location filter set to "
+    },
+    {
+     "type": "text",
+     "text": "All locations",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": ", so the first thing a user sees is every location they have access to, mixed together. The written description asks it to open on the one location the user is actually working in."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "2. What should happen instead"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Parts Velocity specification, version 5, requirement S2-R9: \"The toolbar provides a Location multi-select filter as the rightmost control in the filter row... On a first visit it defaults to the user's currently active location (the location currently selected in the application's global location switcher).\""
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "3. How to see it"
+    }
+   ]
+  },
+  {
+   "type": "orderedList",
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Sign in as a user who has access to more than one location. Check the location shown beside your name at the top right - it reads "
+        },
+        {
+         "type": "text",
+         "text": "Staging Heavy Duty - 9919",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": "."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Open "
+        },
+        {
+         "type": "text",
+         "text": "Reports",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " > "
+        },
+        {
+         "type": "text",
+         "text": "Parts Velocity",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " for the first time in this browser."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Read the Location filter at the right-hand end of the filter row, and read the Location column in the table."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Exact test data this was seen with:",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " organisation "
+    },
+    {
+     "type": "text",
+     "text": "Staging Foothills Group Inc",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": "; the signed-in user's active location "
+    },
+    {
+     "type": "text",
+     "text": "Staging Heavy Duty - 9919",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": "; the other accessible location "
+    },
+    {
+     "type": "text",
+     "text": "Staging Lethbridge - 4310",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": ". This was a genuine first visit - the browser had no saved view for this report."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "4. What was actually shown"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The filter read "
+    },
+    {
+     "type": "text",
+     "text": "All locations",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": ", and the table returned rows from both locations - for example "
+    },
+    {
+     "type": "text",
+     "text": "BRAKECLEAN",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " appeared once for "
+    },
+    {
+     "type": "text",
+     "text": "Staging Heavy Duty - 9919",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " and again for "
+    },
+    {
+     "type": "text",
+     "text": "Staging Lethbridge - 4310",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": "."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "5. What was ruled out"
+    }
+   ]
+  },
+  {
+   "type": "bulletList",
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "It is not a remembered setting from an earlier visit.",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " The browser was brand new and held no saved view for this report; the very first request the page sent carried no location at all, and the second carried both."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "It is not the filter being broken.",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " Choosing a single location works correctly and narrows the report - it is only the starting value that is wrong."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "It is not a permissions question.",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " Both locations are ones this user is allowed to see."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Note for triage:",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " the same starting behaviour was reported on Inventory Value as "
+        },
+        {
+         "type": "inlineCard",
+         "attrs": {
+          "url": "https://shopview.atlassian.net/browse/SV-8931#icft=SV-8931"
+         }
+        },
+        {
+         "type": "text",
+         "text": ". This ticket is the Parts Velocity report, which has its own requirement wording."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "6. How often"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Every time. Seen on every fresh browser session opened during this test."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "7. Where it was seen"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Reports > Parts Velocity, on the QA branch, build v3.5-16cf83f, on 6 August 2026."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": " "
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from: the Parts Velocity report specification, version 5, requirement S2-R9, which says: \"The toolbar provides a Location multi-select filter as the rightmost control in the filter row, listing the locations the signed-in user has access to plus an \u201cAll Locations\u201d option. On a first visit it defaults to the user's currently active location (the location currently selected in the application's global location switcher).\""
+    }
+   ]
+  }
+ ]
+}

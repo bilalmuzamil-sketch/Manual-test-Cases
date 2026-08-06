@@ -1,0 +1,230 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What happens now",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "On the Sales By Customer report the Customer filter works, but three things about how it looks and reads are not what the written description asks for."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "One: the control has no magnifier (search) icon on it, so nothing tells the user it can be searched. The only icon on it is the drop-down arrow. The Location filter beside it does carry its own icons, so this is not a general styling choice."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Two: with two customers picked the closed control reads \"2 customers\". The written description asks for \"2 selected\"."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Three: while the user types a search, the closed control keeps reading \"All customers\" (or whatever the summary was). The typed text goes into a separate search box inside the open list, and never appears in the control itself."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "How to see it",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Open Reports, then Sales By Customer. Look at the Customer filter in the toolbar: there is no magnifier icon."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Open the Customer filter and type Aacrest, then tick Aacrest Works. Type Aacastle and tick Aacastle Services. Close the list. The control reads \"2 customers\"."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Open it again and type any text. Watch the closed control behind the list: it still shows the summary label, not what you typed."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What should happen instead",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The control should carry a magnifier icon, the two-or-more label should read \"2 selected\", and while the user is typing, the control should show the typed text in place of the summary label."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What we tested it on",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "QA branch sv8582, build v3.5-16cf83f, on 6 August 2026. Viewport 1680x1050, desktop Chrome. Test data: customers Aacrest Works and Aacastle Services, date range This Month, Product Type Parts & Service, both locations selected."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "How bad is it",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Low. The filter itself finds and applies the right customers; only its wording and its icon are wrong. The missing magnifier is the most likely one to matter, because nothing on screen tells a new user the list can be searched."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What we ruled out",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "We checked that the search itself is correct before raising this: typing matches anywhere inside a name (not only the start), the list is limited to customers with invoices in the chosen date range, and a ticked customer shows a checkmark. All of that is right."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from: the Sales By Customer report specification, version 15, requirement S18-R2, which says: \"The filter is a multi-select with server-backed type-ahead. The control carries a search (magnifier) icon marking it as searchable.\"."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from: the Sales By Customer report specification, version 15, requirement S18-R5, which says: \"The collapsed filter label reads \"All customers\" when the filter is in the all-customers state, \"None\" when the selection is an empty set, the customer's name when exactly one customer is selected, and \"N selected\" when more than one customer is selected. While the user is typing a search query in the filter, the field shows the query text instead of the summary label.\"."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "That is source type 2: the specification (PRD) in Confluence. The version number given is the Confluence page version, not the version written inside the page."
+    }
+   ]
+  }
+ ]
+}

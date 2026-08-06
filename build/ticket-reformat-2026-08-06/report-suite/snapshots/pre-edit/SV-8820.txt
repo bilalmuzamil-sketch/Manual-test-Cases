@@ -1,0 +1,79 @@
+# SV-8820 — Inventory Value reports the stock value for one day AFTER the date asked for
+
+## 1. Description
+The Inventory Value report lets you look at what your stock was worth as of a chosen date. Whatever date you choose, it answers with the day after it. Always exactly one day out.
+---
+## 3. Steps to reproduce
+No special data is needed.
+1. Open the Inventory Value report.
+2. Set a date range that ends yesterday — 3 August 2026 — and press Apply.
+3. Look at the "As of" line just under the report title. It reads 08/04/2026 — today — not the 3 August you asked for.
+4. Now set a range ending 31 July 2026 and press Apply. The "As of" line reads 08/01/2026.
+5. Try one more, ending 31 January 2026. It resolves to 02/01/2026.
+
+## 4. Expected behaviour
+The written requirement (Inventory Value specification, version 3) says three things, and the report breaks all three:
+"S5-R2: The report values inventory as of the end of the selected range."
+"S5-R4: Otherwise, the report replays the closest recorded day on or before the end of the selected range."
+"S5-R7: A Custom range lets the user pick a start and end date; the report values as of the picked end date (never a future date — it is capped at today)."
+S5-R4 is broken twice over: the day shown is not the end of the range, and it is not on or before it either — it is after it, which the requirement expressly forbids.
+(One thing does work correctly, worth saying so: asking for a date in the future is properly capped back to today.)
+---
+## 6. Images
+[IMAGE 22fd1dc5-c4f8-410b-998a-ec8c2dfcc60b]
+[IMAGE 80bf7126-7184-44b7-8a0c-1f269f4f8f16]
+
+---
+## 7. Technical details for developers
+### The exact request and the exact response field
+The resolved date is returned as data.as_of_date on the report payload (GET /api/reporting/reports/inventory-value, alongside collection, pagination and totals).
+```
+GET …/inventory-value?range=custom&start_date=2026-08-03&end_date=2026-08-03&locations=<HD>
+ -> 200   data.as_of_date = "2026-08-04"    asked 08-03  ✗   rows 5657  totals.total_cost 48554218
+
+GET …/inventory-value?range=custom&start_date=2026-07-01&end_date=2026-07-31&locations=<HD>
+ -> 200   data.as_of_date = "2026-08-01"    asked 07-31  ✗   rows 5657  totals.total_cost 48554966
+
+GET …/inventory-value?range=custom&start_date=2026-01-01&end_date=2026-01-31&locations=<HD>
+ -> 200   data.as_of_date = "2026-02-01"    asked 01-31  ✗   rows 0
+
+GET …/inventory-value?range=custom&start_date=2020-01-01&end_date=2020-01-31&locations=<HD>
+ -> 200   data.as_of_date = "2020-02-01"    asked 01-31  ✗   rows 0
+
+GET …/inventory-value?range=custom&start_date=2026-08-04&end_date=2026-08-04&locations=<HD>
+ -> 200   data.as_of_date = "2026-08-04"    asked 08-04  — shift MASKED (it lands on today)
+
+GET …/inventory-value?range=custom&start_date=2027-01-01&end_date=2027-01-31&locations=<HD>
+ -> 200   data.as_of_date = "2026-08-04"    future correctly capped to today   ✅
+
+GET …/inventory-value?locations=<HD>            (no range parameter at all)
+ -> 200   data.as_of_date = "2026-08-04"
+```
+Eight of eight date probes shifted by exactly one day, plus eleven more in a separate boundary run, every one echoing as_of_date 2026-08-04 for end_date=2026-08-04.
+### Two facts that pin down what it is and is not
+1. Stored history IS being served, correctly, and the shift sits on top of it. The 31 July request returned total_cost 48554966 ($485,549.66) where today's live figure is 48554218 ($485,542.18). Two different real numbers — so a snapshot lookup is genuinely happening; it is looking up the wrong day.
+2. The shift is applied outside the history window entirely. A 2020 request — years before any capture — still returns 2020-02-01. So this is arithmetic on the requested date, not a lookup that happens to land one day out.
+### Knock-on effect on S5-R5 / S5-R6
+S5-R6: "When the displayed day matches the date asked for (the common current-view case), the "As of" indicator is 1 shown."
+The indicator is always shown — on the default view (This Month, ending today, values representing today) the page renders As of 08/04/2026 immediately after the report title. And because the resolution can never land earlier than the requested date, the one condition the indicator exists for (S5-R5) cannot be produced at all.
+### It also reaches the exported file
+build/report-suite/viu-2026-08-03/batch-wip-iv/evidence/exports/iv__MULTI__wholelist__csv.head.txt, line 1, verbatim:
+```
+"As of: 2026-08-04"
+```
+…on an export whose requested end_date was 2026-08-04, so masked there; but the same metadata line carries the shifted value for any past date.
+### Possibly related — one line, not asserted
+Every report PDF prints its date-range header one day late as well: end_date=2026-08-04 printed as Date Range: Jun 1, 2026 – Aug 5, 2026, on all four PDFs of both Sales reports, while the data in those files correctly stops at 4 August. That suggests a shared timezone conversion, and it may be the same root cause — but we have not proven that and are not claiming it. Worth a glance while you are in the date handling. (Recorded at batch-sbc-sbr/ENV-DEFECTS.md §6.)
+### What is NOT established
+- Whether the shift is in date parsing, a timezone conversion, or the snapshot lookup itself.
+- Whether the Work In Progress nightly snapshot has the same shift — it cannot be checked, because no read route into the stored snapshot rows exists on this build (probes 404). Filed separately as an access request.
+- How the fault behaves against deeper history. This org has one to two days of captures.
+### Evidence files (in the QA repo)
+- build/report-suite/viu-2026-08-03/batch-wip-iv/evidence/api/api-wip-iv.json → iv.asOf — all eight probes with resolved dates, row counts and total-cost figures
+- build/report-suite/viu-2026-08-03/batch-wip-iv/evidence/api/iv-pdf-boundary.json — eleven more
+- build/report-suite/viu-2026-08-03/batch-wip-iv/VERDICTS.md line 2142
+- build/report-suite/viu-2026-08-03/batch-wip-iv/evidence/exports/iv__MULTI__wholelist__csv.head.txt
+ 
+Where this expected behaviour comes from: the Inventory Value report specification, version 4, requirement S5-R2, which says: "The report values inventory as of the end of the selected range."
+The same specification, requirement S5-R7, says of a custom range: "A Custom range lets the user pick a start and end date; the report values as of the picked end date (never a future date — it is capped at today)."
+And requirement S5-R4 gives the only permitted fallback, which is backwards and never forwards: "Otherwise, the report replays the closest recorded day on or before the end of the selected range." A day AFTER the date asked for is not an outcome the specification allows.

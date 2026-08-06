@@ -1,0 +1,27 @@
+# SV-8943 — Technician Utilization opens on All locations instead of the location the user is working in
+
+1. What happens now
+The Technician Utilization report opens with its Location filter set to All locations, so a user's first view mixes every location they can reach. The written description asks it to open on the one location the user is actually working in.
+2. What should happen instead
+Technician Utilization specification, version 6, requirement S1-R3: "On the user's first visit (no saved settings), the report defaults to the current calendar month (the date picker's 'This Month' preset) and the user's currently active location."
+The same specification, requirement S9-R2: "On a first visit (no saved selection), it defaults to the user's currently active location (the location currently selected in the application's global location switcher)."
+3. How to see it
+Sign in as a user who can reach more than one location. The location beside your name at the top right reads Staging Heavy Duty - 9919.
+In a browser with no saved settings for this report, open Reports > Technician Utilization.
+Read the Location filter at the right-hand end of the toolbar.
+Exact test data this was seen with: organisation Staging Foothills Group Inc; signed-in user Admin ShopView; active location Staging Heavy Duty - 9919; the other accessible location Staging Lethbridge - 4310; date range This Year (1 January 2026 to 6 August 2026), which returns 29 technicians. The browser held no saved view for this report when this was seen.
+4. What was actually shown
+The Location filter read All locations. The date range was correct - it read This Month and asked the server for 1 August 2026 to 6 August 2026 - so only the location half is wrong.
+The first request the page sent carried no location at all and the second carried both accessible locations.
+5. What was ruled out
+It is not a remembered setting. The report's saved view was removed from the browser before this was seen, and the behaviour was identical.
+It is not the filter being broken. Choosing a single location works and narrows the report correctly; only the starting value is wrong.
+It is not a permissions question. Both locations are ones this user is allowed to see.
+Note for triage: the same starting behaviour was reported on Inventory Value as SV-8931 and on Parts Velocity as SV-8939. This ticket is the Technician Utilization report, which has its own requirement wording.
+6. How often
+Every time. Seen on every fresh browser session opened during this test.
+7. Where it was seen
+Reports > Technician Utilization, on the QA branch, build v3.5-16cf83f, on 6 August 2026.
+ 
+Where this expected behaviour comes from: the Technician Utilization report specification, version 6, requirement S1-R3, which says: "On the user's first visit (no saved settings — §3), the report defaults to the current calendar month (the date picker's “This Month” preset) and the user's currently active location."
+The same specification, requirement S9-R2, says it again for the filter itself: "On a first visit (no saved selection — §3), it defaults to the user's currently active location (the location currently selected in the application's global location switcher)."

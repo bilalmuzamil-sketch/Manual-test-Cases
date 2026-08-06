@@ -1,0 +1,162 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What happens now",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "In the Work In Progress report, switch the Last Activity column on in Column Selection. Its heading and its values sit on the LEFT of the column."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Every other column in that group is on the right: Days Open, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs and Total are all right-aligned, exactly as asked. Last Activity is the only one that is not."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What should happen instead",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Requirement S4-R4 names the columns that are left-aligned and then covers all the rest in one sentence: \"WO #, Status, Customer, Asset, VIN, Location, and Advisor are left-aligned; every other column is right-aligned.\""
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Last Activity is not in that left-aligned list, so it should be right-aligned."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "How to see it",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Open Reports, then Work In Progress. Open Column Selection and switch Last Activity on. Look at where the values sit in that column, and compare with the Days Open column beside it."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What we tested it on",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "QA branch sv8582, build v3.5-f77875c, on 6 August 2026. Date range Last 12 Months, both locations (Staging Heavy Duty - 9919 and Staging Lethbridge - 4310)."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "How bad is it",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Low. It is a layout inconsistency only; the dates themselves are right (Today, then a number of days ago, then a dash when there is no activity)."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expectation comes from",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The Work In Progress report specification on Confluence, version 9 - the numbered requirement is named in each section below. The owning story is the parent of this ticket, and that story sits under epic SV-8582."
+    }
+   ]
+  }
+ ]
+}

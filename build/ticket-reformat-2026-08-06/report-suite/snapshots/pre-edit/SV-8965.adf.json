@@ -1,0 +1,257 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What happens now",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The Sales By Customer table does not look the way Story 20 describes it."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "One: the column headings, the customer rows and the totals row should all be white. They are all the pale blue-grey instead."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Two: the asset and invoice rows should be that pale blue-grey. They are a third, darker grey that appears nowhere in the description."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Three: the first and last cells should have 2rem (32 pixels) of padding on the outside edge. They have about 14 pixels."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Four: invoice rows should be indented one step further in than asset rows. They are not - an invoice number starts at the same distance from the left as a customer name."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "How to see it",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Open Reports, then Sales By Customer, choose This Year, and expand a customer and then one of its assets so all three kinds of row are on screen together."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The heading row, the customer rows and the totals row all read as rgb(249, 250, 251). The asset and invoice rows read as rgb(238, 241, 245). The outer cells measure 14.28 pixels of padding. The invoice number sits at the same left edge as the customer name above it."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What should happen instead",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Headings, customer rows and the totals row white; asset and invoice rows the pale blue-grey; 2rem of padding on the outer cells; invoice rows indented one step deeper than asset rows."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What we tested it on",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "QA branch sv8582, build v3.5-16cf83f, on 6 August 2026, light mode, 1680x1050. Customer Aaborough Works expanded down to invoice S-16244."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "How bad is it",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Low. Every number in the table is correct and the rows do still separate by shade, so the table is readable; it simply does not match the agreed look, and the missing indent makes an invoice row harder to tell apart from a customer row at a glance."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What we ruled out",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The rest of Story 20 is right and we checked it rather than assuming: the pinned Subtotal cell takes its own row colour instead of standing out as a strip, the table has no rounded corners, the totals row has its top border and bold text, and dark mode does darken every surface. Asset rows ARE indented one step; it is only the invoice rows that are not indented further."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from: the Sales By Customer report specification, version 15, requirement S20-R8, which says: \"Column-header cells and customer summary rows use the white surface (#ffffff), or the dark surface in dark mode.\"."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from: the Sales By Customer report specification, version 15, requirement S20-R9, which says: \"Asset rows and invoice rows use the blue-grey background (#f9fafb), or the dark background in dark mode.\"."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from: the Sales By Customer report specification, version 15, requirement S20-R10, which says: \"The totals row uses the white surface (#ffffff), or the dark surface in dark mode, with a top border and bold text.\"."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from: the Sales By Customer report specification, version 15, requirement S20-R12, which says: \"The leftmost cell (header, body, totals) has 2rem of left padding; the rightmost cell has 2rem of right padding.\"."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from: the Sales By Customer report specification, version 15, requirement S20-R14, which says: \"The three tree levels are shown by indentation: the customer row is at the base; asset rows are indented one level; invoice rows are indented one level deeper.\"."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "That is source type 2: the specification (PRD) in Confluence. The version number given is the Confluence page version, not the version written inside the page."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+# SV-8967 — Work In Progress: the WO number is plain text even for a user who does have Work Order permission
+
+What happens now
+On the Work In Progress report the WO number in the first column is plain black text. It is not a link, nothing happens when you click it, and there is no way to get from the report to the work order.
+This was checked signed in as an administrator who does hold Work Orders access, so it is not the permission rule doing its job - the whole table contains no links at all.
+How to see it
+Open Reports, then Work In Progress. Click any WO number, for example S8582-16256. Nothing happens and the address bar does not change.
+The cell is an ordinary piece of text: no underline, black, and the mouse pointer does not change to a hand over it.
+What should happen instead
+For a user who has Work Orders access the WO number should be a link that opens that work order in the same tab, so the user can look at the job and come back with the browser back button. A user WITHOUT Work Orders access should see it as plain text - which is what everyone sees today.
+What we tested it on
+QA branch sv8582, build v3.5-16cf83f, on 6 August 2026. Signed in as Admin ShopView, whose permissions include Work Orders View, Create & Edit and Delete. Date range This Week, both locations, on the Approved - Partially Completed tab.
+How bad is it
+Low, but it removes the one thing that makes the report actionable: a service manager reading it cannot jump to the job to do anything about it.
+What we ruled out
+We confirmed the user really does hold Work Orders access before raising this, and we clicked the number rather than only inspecting it. We also checked the rest of the row: every other cell is correct and the report data itself is right.
+Where this expected behaviour comes from
+Where this expected behaviour comes from: the Work In Progress report specification, version 9, requirement S4-R5, which says: "WO # is shown as a link that opens the work order in the same browser tab (the user returns via the browser's back navigation) only when the user has permission to access Work Orders. A user without Work Order permission sees the WO # as plain text, not a link.".
+This requirement was rewritten on 5 August 2026 to spell out both halves - the link for someone with permission, and plain text for someone without. The half that gives the link is the half that is missing.
+That is source type 2: the specification (PRD) in Confluence. The version number given is the Confluence page version, not the version written inside the page.

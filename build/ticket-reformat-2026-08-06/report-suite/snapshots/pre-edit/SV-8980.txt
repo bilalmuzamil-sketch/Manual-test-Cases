@@ -1,0 +1,18 @@
+# SV-8980 — Sales By Representative table is the same pale grey as the page, and the title and Location filter are out of line
+
+1. What happens now
+The table is not white. Every heading cell and every data row is the same pale grey as the page behind it, so the table does not read as a separate white card at all.
+Two things are also out of line with the table. The report title starts well to the left of the first column of data, and the Location filter stops short of the right-hand edge of the table.
+2. What should happen instead
+The heading cells and all body cells should be white, on the blue-grey page. The title left edge should line up with the leftmost data column, and the Location filter right edge with the rightmost data column.
+3. Branch / environment
+Application https://sv8582.qa.shopview.com, API host https://sv8582api.qa.shopview.com.
+Build marker (app-version meta tag) v3.5-7168d14, index.html last modified Thu 06 Aug 2026 08:32:37 GMT.
+Observed on 2026-08-06. Organisation Staging Foothills Group Inc. Signed in as admin@shopview.com (Admin ShopView).
+Test data named in full: sales representatives ZZAUTOTEST RepA (1 invoice, S-16244) and ZZAUTOTEST RepB (3 invoices, S-16243, S-16242, S-16241), plus Parth Fadadu (1 invoice, S-15826). Customers Aaborough Works, Aacastle Services, Aachester Partners, Aacrest Works, Beman Systems. Locations Staging Heavy Duty - 9919 and Staging Lethbridge - 4310.
+4. How bad is it
+Low. Nothing is unreadable; the report simply does not look like the rest of the suite, and the two misalignments are visible at a glance.
+5. What we ruled out
+Measured rather than eyeballed: the page and every table row report the same colour value, so this is not a faint tint. We checked the pinned Subtotal column too - it correctly matches its row rather than standing out as a strip, so that part of the description is met. The same wrong-colour problem has already been reported on two of the sister reports, so this looks shared rather than specific.
+6. Where this expected behaviour comes from
+Where this expected behaviour comes from: the Sales By Representative report specification, version 17, requirement S18-R7.4, which says: "Column-header cells and all body cells render on white (dark equivalents in dark mode); the grand Totals indicator also renders on the white/dark card surface with a thin top border.". That is source type 2: the specification (PRD) in Confluence. The version number given is the Confluence page version, not the version written inside the page.

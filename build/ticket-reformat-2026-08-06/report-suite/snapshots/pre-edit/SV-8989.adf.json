@@ -1,0 +1,162 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What happens now",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Switch the Inv. Hrs column on in the Work In Progress report. Every value carries TWO decimal places - for example +0.50, +1.24, -0.81, -14.86 - and a zero reads 0.00."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The Totals row at the foot of each tab does the same: +246.84, +1434.65, +0.52, +173.50."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What should happen instead",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Requirement S4-R23 asks for \"a signed number with one decimal place (\\\"+2.0\\\", \\\"-14.0\\\", \\\"0.0\\\"). A zero value shows unsigned as \\\"0.0\\\" (never \\\"+0.0\\\" or blank).\""
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "So the same values should read +0.5, +1.2, -0.8, -14.9 and 0.0."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "How to see it",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Open Reports, then Work In Progress. Set the date range to Last 12 Months. Open Column Selection and switch Inv. Hrs on. Read any value in that column, and the Totals row at the bottom."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What we tested it on",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "QA branch sv8582, build v3.5-f77875c, on 6 August 2026. Date range Last 12 Months, both locations (Staging Heavy Duty - 9919 and Staging Lethbridge - 4310). Checked on all four tabs."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "How bad is it",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Low. The sign is right, the zero is correctly unsigned, and the arithmetic is right - it is the number of decimal places that differs. The green and red colouring of the values is also correct."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expectation comes from",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The Work In Progress report specification on Confluence, version 9 - the numbered requirement is named in each section below. The owning story is the parent of this ticket, and that story sits under epic SV-8582."
+    }
+   ]
+  }
+ ]
+}

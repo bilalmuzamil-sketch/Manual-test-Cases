@@ -1,0 +1,19 @@
+# SV-8981 — Sales By Representative Expanded View PDF is one flat table instead of a block per representative, and comes out on A3
+
+1. What happens now
+The Expanded View PDF is not built the way the description asks. It is a single flat table containing every representative and every invoice together.
+There is no page break between representatives, no per-representative totals row, and it ends with one grand Totals row that this file is specifically not supposed to have.
+It also comes out on A3 paper (1190 by 842 points) rather than A4. The Summary PDF from the same menu is A4 (842 by 595).
+2. What should happen instead
+One block per representative, a page break before each new representative after the first, the header strip repeated on each, and a totals row at the end of each block - with no grand totals row anywhere in the file. On A4.
+3. Branch / environment
+Application https://sv8582.qa.shopview.com, API host https://sv8582api.qa.shopview.com.
+Build marker (app-version meta tag) v3.5-7168d14, index.html last modified Thu 06 Aug 2026 08:32:37 GMT.
+Observed on 2026-08-06. Organisation Staging Foothills Group Inc. Signed in as admin@shopview.com (Admin ShopView).
+Test data named in full: sales representatives ZZAUTOTEST RepA (1 invoice, S-16244) and ZZAUTOTEST RepB (3 invoices, S-16243, S-16242, S-16241), plus Parth Fadadu (1 invoice, S-15826). Customers Aaborough Works, Aacastle Services, Aachester Partners, Aacrest Works, Beman Systems. Locations Staging Heavy Duty - 9919 and Staging Lethbridge - 4310.
+4. How bad is it
+Low. Every figure in the file is correct. It is unusable as a per-representative handout, which is what this download exists for, and it will shrink or crop on ordinary office paper.
+5. What we ruled out
+We compared it against the Summary PDF from the same menu and the same filters: the Summary is correctly A4, correctly one row per representative, and correctly ends with a grand totals row. The footer and the logo are present on both. So this is specific to the Expanded file. The paper size on the sister report has already been reported separately.
+6. Where this expected behaviour comes from
+Where this expected behaviour comes from: the Sales By Representative report specification, version 17, requirement S14-R6, which says: "Expanded View PDF - one page-block per rep, in the currently-active order, page break before each new rep after the first, each with the header strip, the rep's name, and a per-invoice table ... Each block ends with a per-rep totals row. There is no grand-totals row.". That is source type 2: the specification (PRD) in Confluence. The version number given is the Confluence page version, not the version written inside the page.

@@ -1,0 +1,35 @@
+# SV-8930 — Inventory Value shows an empty table with no message when nothing matches
+
+### 1. What happens now
+When nothing matches on the Inventory Value report, the user is shown a table with column headings and nothing underneath - no rows, and no message of any kind. There is nothing on the screen to tell them the report ran and found nothing, so it is impossible to tell "no results" apart from "still loading" or "something broke".
+### 2. What should happen instead
+The report is meant to show the standard reports no-data message in the data area.
+The Inventory Value description says so in three places and spells the words out:
+- Requirement S1-N2: "If no in-stock part exists for the selected location(s) on the resolved date, the report shows the no-data message (Story 12) instead of rows."
+- Requirement S5-N1 and S7-N2 say the same for an out-of-range date and for a location with no stock.
+- The message table at the end of the description gives the exact words: "Empty bays, endless possibilities. Get Going!" - "The application's standard reports no-data label, shown in the data area; the totals row is hidden."
+### 3. How to see it
+1. Sign in and open Reports > Inventory Value.
+2. Type ZZZZNOMATCHZZZZ into the Search parts box.
+3. Wait for the table to reload and look at the data area.
+Exact test data this was seen with: search term ZZZZNOMATCHZZZZ, which matches no part. Locations Staging Heavy Duty - 9919 and Staging Lethbridge - 4310, date range This Month, 5,657 rows in scope before the search.
+The same empty result can be reached two other ways, and both look the same: choose a date range entirely before nightly recording began (a range in January 2024 returns nothing), or combine two categories with a search term that none of their parts match.
+### 4. What was actually seen
+The table contained only its heading row:
+{noquote}
+Part # | Description | Category | Vendor | Location | Qty | Unit Cost | Unit Sell | Margin | Margin % | Total Sell | Total Cost
+{noquote}
+The words "Empty bays" appear nowhere on the page. The totals row is correctly hidden - that half is right.
+### 5. What was ruled out
+- It is not a loading state. The reload had finished and the server had returned its answer.
+- It is not one route to empty. A no-match search, an out-of-range date and a filter combination that matches nothing all behave the same way.
+- It is not the totals row. Hiding that is correct and it is hidden.
+### 6. How often
+Every time, by all three routes.
+### 7. Where it was seen
+Reports > Inventory Value, on the QA branch, build v3.5-16cf83f, on 6 August 2026.
+ 
+Where this expected behaviour comes from: the Inventory Value report specification, version 4, which says three separate times that an empty result shows a message rather than a bare empty table.
+Requirement S1-N2: "If no in-stock part exists for the selected location(s) on the resolved date, the report shows the no-data message (Story 12) instead of rows."
+Requirement S5-N1: "If there is no recorded day on or before the end of the selected range... the report shows the no-data message (Story 12) and no totals row."
+Requirement S7-N2: "If the selected location(s) hold no in-stock parts on the resolved date, the report shows the no-data message (Story 12)."

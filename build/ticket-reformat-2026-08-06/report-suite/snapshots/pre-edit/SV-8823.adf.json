@@ -1,0 +1,1680 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 2
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "1. Description"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Two things, both in the Inventory Value spreadsheet download."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "One \u2014 the money comes through as text, not numbers.",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " Every money column is written the way the screen shows it, with a dollar sign and comma separators. Spreadsheet software reads that as words rather than numbers."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Two \u2014 the file ignores which columns you chose, and puts them in a different order from the screen.",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " If you switch "
+    },
+    {
+     "type": "text",
+     "text": "Margin",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " or "
+    },
+    {
+     "type": "text",
+     "text": "Total Sell",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " off on screen, they still appear in the file. And the columns come out in a different order: "
+    },
+    {
+     "type": "text",
+     "text": "Total Cost",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " is ninth in the file but last on screen."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "On the money:",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " the person downloading this is almost always downloading it in order to do sums \u2014 total the shelf, sort by value, chart it, paste it into a stock valuation. Because the money columns arrive as text, "
+    },
+    {
+     "type": "text",
+     "text": "none of that works",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " until they clean every column by hand first. A total comes out as zero, or as an error, and it is not obvious why."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "On the columns:",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " someone who tidies the report down to the four columns they care about, then downloads it, gets all twelve back anyway. Their choice was silently ignored \u2014 no message, no explanation. And because the order differs from the screen, anyone who has built a template or a habit around the screen's layout finds the file does not match it."
+    }
+   ]
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 2
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "2. Branch / Environment"
+    }
+   ]
+  },
+  {
+   "type": "bulletList",
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Branch / environment tested:",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " QA branch "
+        },
+        {
+         "type": "text",
+         "text": "sv8582",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " \u2014 app "
+        },
+        {
+         "type": "text",
+         "text": "https://sv8582.qa.shopview.com",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": ", API "
+        },
+        {
+         "type": "text",
+         "text": "https://sv8582api.qa.shopview.com",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Build marker:",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " "
+        },
+        {
+         "type": "text",
+         "text": "v3.4.1-0ed4433",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Organisation:",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " "
+        },
+        {
+         "type": "text",
+         "text": "d55bc308-e61a-438d-b5f1-c7a73c89d49f",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Observed:",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " 2026-08-04"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Report affected:",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " Inventory Value (the spreadsheet download)"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 2
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "3. Steps to reproduce"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "No special data is needed."
+    }
+   ]
+  },
+  {
+   "type": "orderedList",
+   "attrs": {
+    "order": 1
+   },
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Open the "
+        },
+        {
+         "type": "text",
+         "text": "Inventory Value",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " report."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Open "
+        },
+        {
+         "type": "text",
+         "text": "Column Selection",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " and switch "
+        },
+        {
+         "type": "text",
+         "text": "Margin",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " and "
+        },
+        {
+         "type": "text",
+         "text": "Total Sell",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " "
+        },
+        {
+         "type": "text",
+         "text": "off",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": ". The screen loses those two columns, as it should."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Open the "
+        },
+        {
+         "type": "text",
+         "text": "three-dot",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " menu and choose "
+        },
+        {
+         "type": "text",
+         "text": "Download (CSV)",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": "."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Open the file in Excel, Numbers or Google Sheets."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "The two columns you switched off are still there",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " \u2014 the file has all twelve."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Look at the order: "
+        },
+        {
+         "type": "text",
+         "text": "Total Cost",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " sits ninth, not last, and "
+        },
+        {
+         "type": "text",
+         "text": "Margin %",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " is the final column. On screen, Total Cost is last."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Now select any money column and try to total it. "
+        },
+        {
+         "type": "text",
+         "text": "You get nothing usable",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": ", because the cells are text. You can confirm it directly: the cell reads "
+        },
+        {
+         "type": "text",
+         "text": "$11,176.88",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " including the dollar sign and comma, which is why the spreadsheet treats it as words."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "For comparison, take the "
+    },
+    {
+     "type": "text",
+     "text": "Download (PDF)",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " of the same view \u2014 that one is formatted correctly and is not part of this ticket."
+    }
+   ]
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 2
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "4. Expected behaviour"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Both are written requirements in the Inventory Value specification, version 3."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "On the money",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " \u2014 the Story 10 context note, verbatim:"
+    }
+   ]
+  },
+  {
+   "type": "blockquote",
+   "content": [
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "\"in the CSV, money values are written as "
+      },
+      {
+       "type": "text",
+       "text": "plain numbers with two decimals and no thousands separators",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": " (so they "
+      },
+      {
+       "type": "text",
+       "text": "parse cleanly in a spreadsheet",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": "); the PDF uses the same on-screen currency formatting with the '$' and thousands separators.\""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Note that the requirement anticipated this exact problem \u2014 \"so they parse cleanly in a spreadsheet\" is the reason it is written that way. "
+    },
+    {
+     "type": "text",
+     "text": "The PDF half is correct.",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " Only the spreadsheet breaches it."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "On the columns",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " \u2014 requirement S10-R3, verbatim:"
+    }
+   ]
+  },
+  {
+   "type": "blockquote",
+   "content": [
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "\"Both downloads include "
+      },
+      {
+       "type": "text",
+       "text": "only the columns currently shown",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": ", in the "
+      },
+      {
+       "type": "text",
+       "text": "same left-to-right order as the screen",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": ", with "
+      },
+      {
+       "type": "text",
+       "text": "Total Cost last",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": ".\""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "That is three separate promises in one sentence, and the file breaks all three."
+    }
+   ]
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 2
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "5. Current behaviour"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "On the money:",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " every money column in the spreadsheet arrives as text \u2014 written exactly as the screen shows it, with a dollar sign and comma separators \u2014 so spreadsheet software reads it as words. Totals come out as zero or as an error, and it is not obvious why. The person has to clean every money column by hand before they can do any arithmetic."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "On the columns:",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " the file ignores which columns you chose. Switch "
+    },
+    {
+     "type": "text",
+     "text": "Margin",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " or "
+    },
+    {
+     "type": "text",
+     "text": "Total Sell",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " off on screen and they still appear in the file. The order is different too: "
+    },
+    {
+     "type": "text",
+     "text": "Total Cost",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " is ninth in the file but last on screen."
+    }
+   ]
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 2
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "6. Images"
+    }
+   ]
+  },
+  {
+   "type": "mediaSingle",
+   "attrs": {
+    "layout": "center"
+   },
+   "content": [
+    {
+     "type": "media",
+     "attrs": {
+      "type": "file",
+      "id": "64865b81-3eee-47f9-879e-3db0c3493734",
+      "collection": "",
+      "height": 183,
+      "width": 900
+     }
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The Inventory Value report on screen. \u00010\u0001 \u2014 in the downloaded spreadsheet it is ninth, which is the ordering difference described above.",
+     "marks": [
+      {
+       "type": "em"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 2
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "7. Technical details for developers"
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Symptom 1 \u2014 money written with currency presentation"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Line 4 of the downloaded CSV, verbatim:"
+    }
+   ]
+  },
+  {
+   "type": "codeBlock",
+   "content": [
+    {
+     "type": "text",
+     "text": "R134A,Refrigerant,HD-Fluids,\u2014,786.55,$14.21,$21.86,\"$11,176.88\",\"$17,193.98\",\"$6,017.10\",35.0%"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Total Cost",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": ", "
+    },
+    {
+     "type": "text",
+     "text": "Total Sell",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " and "
+    },
+    {
+     "type": "text",
+     "text": "Margin",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " are quoted "
+    },
+    {
+     "type": "text",
+     "text": "because",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " they contain the thousands separator, so every one of them imports as text. Requirement asks for plain two-decimal numbers with no separators."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Symptom 2 \u2014 "
+    },
+    {
+     "type": "text",
+     "text": "columns=",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " ignored, and the file order differs from the screen"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Verbatim file header ("
+    },
+    {
+     "type": "text",
+     "text": "build/report-suite/viu-2026-08-03/batch-wip-iv/evidence/exports/iv__MULTI__wholelist__csv.head.txt",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": "):"
+    }
+   ]
+  },
+  {
+   "type": "codeBlock",
+   "content": [
+    {
+     "type": "text",
+     "text": "\"As of: 2026-08-04\"\n\"Locations: All locations\"\n\"Part #\",Description,Category,Vendor,Location,Qty,\"Unit Cost\",\"Unit Sell\",\"Total Cost\",\"Total Sell\",Margin,\"Margin %\"\nTotals,,,,,\"195,249.93\",,,\"$977,080.47\",\"$1,832,152.49\",\"$855,072.02\",46.7%"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Live on-screen header row, read from the rendered table:"
+    }
+   ]
+  },
+  {
+   "type": "codeBlock",
+   "content": [
+    {
+     "type": "text",
+     "text": "Part #, Description, Category, Vendor, Location, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost"
+    }
+   ]
+  },
+  {
+   "type": "table",
+   "attrs": {
+    "isNumberColumnEnabled": false,
+    "layout": "default"
+   },
+   "content": [
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Position of Total Cost"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Last column",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Screen"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "12th (last)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Total Cost"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "File"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "9th",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Margin %",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "And the ",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": "columns=",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " parameter is ignored entirely:",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "codeBlock",
+   "content": [
+    {
+     "type": "text",
+     "text": "GET /api/reporting/reports/inventory-value/export?...&format=csv&columns=part_number,description,qty\n -> 200, but the file still carries ALL eleven/twelve columns\n\nGET /api/reporting/reports/inventory-value/export?...&format=csv&columns=<a nonsense column name>\n -> 200, same full file, NO validation error"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "For contrast, the same parameter "
+    },
+    {
+     "type": "text",
+     "text": "is",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " enforced on the WIP export ("
+    },
+    {
+     "type": "text",
+     "text": "columns=\u2026,invoiced_hours",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " \u2192 "
+    },
+    {
+     "type": "text",
+     "text": "400 {\"error\":\"Invalid column \\\"invoiced_hours\\\".\"",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": "}), so the shared export contract clearly can honour and validate it \u2014 the Inventory Value writer just does not."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "pagination[sortBy]",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " / "
+    },
+    {
+     "type": "text",
+     "text": "[descending]",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " "
+    },
+    {
+     "type": "text",
+     "text": "are",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " honoured in the file (a sorted export starts at "
+    },
+    {
+     "type": "text",
+     "text": "02-507",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " instead of the default "
+    },
+    {
+     "type": "text",
+     "text": "W4707QP",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": "), and the date, location, category, vendor and search filters are all honoured \u2014 so this is specifically the column set and its order."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "A third, smaller observation in the same area \u2014 recorded, not part of the fix request"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "For part "
+    },
+    {
+     "type": "text",
+     "text": "W4707QP",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " the API returns "
+    },
+    {
+     "type": "text",
+     "text": "margin_pct: 56.05",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": "; "
+    },
+    {
+     "type": "text",
+     "text": "the screen renders ",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": "56.0%",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " (truncating) while "
+    },
+    {
+     "type": "text",
+     "text": "both the CSV and the PDF render ",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": "56.1%",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " (rounding). The same row therefore disagrees between screen and file by a tenth of a percent. Requirement S10-R7 asks only for \"one-decimal\", so neither is strictly non-compliant \u2014 but the two surfaces should presumably agree with each other. Flagged for a decision rather than asserted as a defect."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Evidence files (in the QA repo)"
+    }
+   ]
+  },
+  {
+   "type": "bulletList",
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "build/report-suite/viu-2026-08-03/batch-wip-iv/evidence/exports/iv__MULTI__wholelist__csv.head.txt",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " and "
+        },
+        {
+         "type": "text",
+         "text": "iv__SINGLE__searchnarrow__csv.head.txt",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "build/report-suite/viu-2026-08-03/batch-wip-iv/VERDICTS.md",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " lines 1838, 2672, 2692"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "build/report-suite/viu-2026-08-03/batch-wip-iv/STAGED-CHANGES.md",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " \u00a7B22, \u00a7B23"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": " "
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from: the Inventory Value report specification, version 4, requirement S10-R3, which says: \"Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last.\" That covers both halves of this ticket \u2014 which columns appear, and the order they appear in."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The same specification, requirement S10-R7, says: \"Money and Margin % use two-decimal and one-decimal formats respectively; an undefined Margin % shows \u201c\u2014\u201d.\" A number is asked for, not a dressed-up money string."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "One honest note: this ticket as filed quoted the Inventory Value description at version 3. That page is now at version 4 and both requirements carry over into it unchanged."
+    }
+   ]
+  }
+ ]
+}

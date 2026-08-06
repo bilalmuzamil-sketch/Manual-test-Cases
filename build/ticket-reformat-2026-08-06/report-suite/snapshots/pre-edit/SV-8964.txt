@@ -1,0 +1,20 @@
+# SV-8964 — Sales By Customer Expanded View PDF comes out on A3 paper instead of A4
+
+What happens now
+The Sales By Customer report offers two PDF downloads. The Summary one is A4 landscape, which is right. The Expanded View one comes out on A3 landscape - a sheet half again as wide.
+Anyone printing it on ordinary office paper will get it shrunk down or cropped.
+How to see it
+Open Reports, then Sales By Customer. Open the download menu and choose Download Expanded View (PDF).
+Open the file and look at its page size. It measures 1190 by 842 points, which is A3. The Summary PDF from the same menu measures 842 by 595 points, which is A4.
+What should happen instead
+Both PDFs should be A4 landscape.
+What we tested it on
+QA branch sv8582, build v3.5-16cf83f, on 6 August 2026. Date range 1 to 6 August 2026, Product Type Parts & Service, both locations. Both files downloaded from the report own download menu.
+How bad is it
+Low. The file opens and every figure in it is correct; it is the paper size that is wrong.
+What we ruled out
+This is not a one-off: the Summary PDF from the same menu, the same filters and the same moment is correctly A4, so it is specific to the Expanded View file. The footer, the heading block and the logo are all present and correct in both.
+Where this expected behaviour comes from
+Where this expected behaviour comes from: the Sales By Customer report specification, version 15, requirement S15-R7, which says: "The PDF is A4 landscape with 25px margins on all sides, using the application's standard font.".
+The same requirement covers both files: the specification says the header title reads the same for both versions and that only the file name tells them apart (S15-R13), so there is no separate paper size for the Expanded View.
+That is source type 2: the specification (PRD) in Confluence. The version number given is the Confluence page version, not the version written inside the page.

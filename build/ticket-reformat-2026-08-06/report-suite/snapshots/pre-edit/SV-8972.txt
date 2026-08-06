@@ -1,0 +1,20 @@
+# SV-8972 — Sales By Representative Expanded spreadsheet puts Invoice # before Date and heads the column "Invoice Status"
+
+1. What happens now
+The Sales By Representative report can be downloaded as an "Expanded View" spreadsheet, one line per invoice.
+Two things in its heading row are not what the written description asks for. The Invoice # column comes BEFORE the Date column instead of after it, and the status column is headed "Invoice Status" instead of "Status".
+Read from the file, the headings run: Representative, Invoice #, Date, Customer, Invoice Status, Location, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.
+The same two problems appear in the Expanded View PDF, which uses the same column list.
+2. What should happen instead
+The order should be Representative, Date, Invoice #, Customer, Status, then the money columns, with the Location column in the place it holds on screen.
+3. Branch / environment
+Application https://sv8582.qa.shopview.com, API host https://sv8582api.qa.shopview.com.
+Build marker (app-version meta tag) v3.5-7168d14, index.html last modified Thu 06 Aug 2026 08:32:37 GMT.
+Observed on 2026-08-06. Organisation Staging Foothills Group Inc. Signed in as admin@shopview.com (Admin ShopView).
+Test data named in full: sales representatives ZZAUTOTEST RepA (1 invoice, S-16244) and ZZAUTOTEST RepB (3 invoices, S-16243, S-16242, S-16241), plus Parth Fadadu (1 invoice, S-15826). Customers Aaborough Works, Aacastle Services, Aachester Partners, Aacrest Works, Beman Systems. Locations Staging Heavy Duty - 9919 and Staging Lethbridge - 4310.
+4. How bad is it
+Low. Every figure in the file is correct. Anyone who has built a spreadsheet formula or a template against these column positions will get the wrong column, and the heading does not match the screen.
+5. What we ruled out
+We checked the rest of the heading row before raising this: the Location column IS present and in the right place, the three hours columns ARE present, and the file does start with the UTF-8 marker. We also checked the Summary spreadsheet - its column order is correct, so this is specific to the Expanded file.
+6. Where this expected behaviour comes from
+Where this expected behaviour comes from: the Sales By Representative report specification, version 17, requirement S14-R16, which says: "Headers, in order: Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.". That is source type 2: the specification (PRD) in Confluence. The version number given is the Confluence page version, not the version written inside the page.

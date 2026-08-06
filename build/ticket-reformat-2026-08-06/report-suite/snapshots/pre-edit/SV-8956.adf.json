@@ -1,0 +1,248 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "1. What happens now",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "A Sales By Customer download is always called the same thing whatever period it covers, so two files taken for different date ranges are indistinguishable once they are saved."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "2. What should happen instead",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Sales By Customer specification, version 15, requires the file name to carry the period: the Summary file is named sales-by-customer-summary-{range} and the Expanded file sales-by-customer-expanded-{range}, where {range} is the period that was chosen (this_week, last_week, this_month, last_month, this_year, last_year, this_quarter, last_quarter)."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "3. How to see it",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Open Reports > Sales By Customer with the date range on This Month."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Open the three-dot menu, choose Download Summary (CSV), and note the file name."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Choose Download Expanded View (CSV) and note that one too."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Exact test data this was seen with: organisation Staging Foothills Group Inc; signed-in user Admin ShopView; active location Staging Heavy Duty - 9919; the other accessible location Staging Lethbridge - 4310; Product Type left at Parts & Service unless the step says otherwise."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "4. What was actually shown",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The two files were called sales-by-customer-summary.csv and sales-by-customer-expanded.csv - correct apart from the missing period. There is nothing in either name to say which range it covers."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The files themselves are right: each begins with a \"Date Range: Aug 1, 2026 - Aug 6, 2026\" line and a \"Locations: All locations\" line, so the information is in the file, just not in its name."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "5. What was ruled out",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "It is not the browser shortening the name - the name comes from the download itself."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "It is not a Summary-only or a spreadsheet-only problem; both spreadsheet options behave the same way."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "It is not the range being ignored - the file contents cover exactly the chosen range."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "6. How often",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Every time."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "7. Where it was seen",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Reports > Sales By Customer, on the QA branch, build v3.5-16cf83f, on 6 August 2026."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": " "
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from: the Sales By Customer report specification, version 15, requirement S14-R14, which says: \"The files are named for the report, the version, and the active date range: the Summary CSV is sales-by-customer-summary-{range}.csv and the Expanded CSV is sales-by-customer-expanded-{range}.csv. {range} uses this map from range label: Today \u2192 today; Yesterday \u2192 yesterday; This Week \u2192 this_week; Last Week \u2192 last_week; This Month \u2192 this_month; Last Month \u2192 last_month; This Year \u2192 this_year; Last Year \u2192 last_year; This Quarter \u2192 this_quarter; Last Quarter \u2192 last_quarter; Custom \u2192 custom.\""
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The same specification, requirement S15-R6, applies the same naming to the printable files: \"The files follow the same version-and-range naming as the CSV (S14-R14) with a .pdf extension.\""
+    }
+   ]
+  }
+ ]
+}

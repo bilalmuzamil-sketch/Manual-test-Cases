@@ -1,0 +1,257 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "1. What happens now",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Technician Utilization offers two spreadsheet downloads and they are not the same. The Expanded one contains a row for every day each technician worked; the written description says the spreadsheet is always the summary-level content whichever option is chosen. The three file names also differ from the ones written down."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "2. What should happen instead",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Technician Utilization specification, version 6, requirement S7-R7: \"The CSV file shows the technician rows and the Summary row. The CSV is always this summary-level content; it does not vary by the summary/expanded choice.\""
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The same specification, requirement S7-R12: \"The downloaded files are named 'Technician-Utilization-Summary.pdf', 'Technician-Utilization-Expanded.pdf', and 'technician-utilization.csv'.\""
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "3. How to see it",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Open Reports > Technician Utilization and set the date range to This Quarter so the files are short."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Open the three-dot menu and choose Summary (CSV), then Expanded (CSV). Also take the two PDFs."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Open both spreadsheets and compare them, and write down the four file names."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Exact test data this was seen with: organisation Staging Foothills Group Inc; signed-in user Admin ShopView; active location Staging Heavy Duty - 9919; the other accessible location Staging Lethbridge - 4310; date range This Year (1 January 2026 to 6 August 2026), which returns 29 technicians. This Quarter returns the single technician Admin ShopView with 1.31 hours on 5 August 2026."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "4. What was actually shown",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The Summary spreadsheet holds one technician row. The Expanded spreadsheet holds the same technician row plus a per-day row beneath it - \"Staging Lethbridge - 4310, 2026-08-05, 1.31, 1.31, 0.00, 100.0%, $0.00\"."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The four names given were technician-utilization-summary.csv, technician-utilization-expanded.csv, technician-utilization-summary.pdf and technician-utilization-expanded.pdf. The description asks for two Title-Case PDF names and a single lower-case spreadsheet name, technician-utilization.csv."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "5. What was ruled out",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "It is not the expanded view being wrong in itself - a per-day breakdown is exactly what the Expanded PDF is meant to hold, and it does."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "It is not a naming clash caused by taking two files in a row. Each was fetched separately and the name came from the download itself."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Note for triage: a second spreadsheet option exists at all because of the product owner's answer of 5 August 2026 (item T2-6, option B). What that answer did not settle is whether the second spreadsheet should hold the per-day rows or the same summary content, and what the two files should be called. That part may be a question for the product owner rather than a fix."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "6. How often",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Every time."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "7. Where it was seen",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Reports > Technician Utilization, on the QA branch, build v3.5-16cf83f, on 6 August 2026."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": " "
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from: the Technician Utilization report specification, version 6, requirement S7-R7, which says what the spreadsheet holds: \"The CSV file shows the technician rows and the Summary row. The CSV is always this summary-level content; it does not vary by the summary/expanded choice.\" Per-day rows are not part of that."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The same specification, requirement S7-R12, names the files: \"The downloaded files are named \u201cTechnician-Utilization-Summary.pdf\u201d, \u201cTechnician-Utilization-Expanded.pdf\u201d, and \u201ctechnician-utilization.csv\u201d.\""
+    }
+   ]
+  }
+ ]
+}

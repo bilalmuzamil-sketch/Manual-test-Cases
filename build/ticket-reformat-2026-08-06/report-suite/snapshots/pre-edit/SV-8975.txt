@@ -1,0 +1,20 @@
+# SV-8975 — Sales By Representative: three icon-only buttons announce the wrong name to a screen reader
+
+1. What happens now
+Three of the five icon-only controls give a screen-reader name that is not the one written down.
+The three-dot download button announces "Export report" instead of "Report actions".
+The column button announces "Column Selection" instead of "Show or hide columns".
+The chevron at the top of the table announces "Expand all representatives" and "Collapse all representatives" instead of "Expand all reps" and "Collapse all reps".
+2. What should happen instead
+Each should announce the name the written description gives it, word for word.
+3. Branch / environment
+Application https://sv8582.qa.shopview.com, API host https://sv8582api.qa.shopview.com.
+Build marker (app-version meta tag) v3.5-7168d14, index.html last modified Thu 06 Aug 2026 08:32:37 GMT.
+Observed on 2026-08-06. Organisation Staging Foothills Group Inc. Signed in as admin@shopview.com (Admin ShopView).
+Test data named in full: sales representatives ZZAUTOTEST RepA (1 invoice, S-16244) and ZZAUTOTEST RepB (3 invoices, S-16243, S-16242, S-16241), plus Parth Fadadu (1 invoice, S-15826). Customers Aaborough Works, Aacastle Services, Aachester Partners, Aacrest Works, Beman Systems. Locations Staging Heavy Duty - 9919 and Staging Lethbridge - 4310.
+4. How bad is it
+Low. Every control works, and a screen-reader user is told something sensible - just not the agreed wording, so it does not match the rest of the suite.
+5. What we ruled out
+We checked all five before raising this. The per-row chevrons ARE correct - they announce "Expand ZZAUTOTEST RepA" and change to "Collapse ZZAUTOTEST RepA". We also confirmed the controls are properly keyboard operable, so this is the name only and not the behaviour.
+6. Where this expected behaviour comes from
+Where this expected behaviour comes from: the Sales By Representative report specification, version 17, requirement S18-R9, which says: "Every icon-only control has an accessible name: exports = "Report actions"; column selector = "Show or hide columns"; per-row chevron = "Expand {rep name}" / "Collapse {rep name}"; header chevron = "Expand all reps" / "Collapse all reps"; dialog X = "Close".". That is source type 2: the specification (PRD) in Confluence. The version number given is the Confluence page version, not the version written inside the page.

@@ -1,0 +1,248 @@
+{
+ "type": "doc",
+ "version": 1,
+ "content": [
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What happens now",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The Sales By Customer report remembers the filters a user left behind. If one of those remembered choices is no longer a real choice, the report should quietly drop it and fall back to the normal default. Two of the four do not."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "A remembered location that no longer exists is kept: the Location filter comes back reading \"1 selected\" for something the user cannot see or name."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "A remembered customer that no longer exists is kept the same way: the Customer filter reads \"1 selected\"."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "A remembered date range that is no longer a valid choice is not replaced by the normal default either. The date control comes back reading \"Select Date Range\" and the report shows no rows at all, so the user is left on an empty report with no obvious reason why."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Product Type and the chosen columns do fall back correctly."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "How to see it",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Open Reports, then Sales By Customer, so the remembered view is created. Then make the remembered view hold a location id and a customer id that do not exist, and a date range value that is not one of the offered ranges."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Reload the report. The date control reads \"Select Date Range\", the table is empty, and Location and Customer each read \"1 selected\". Product Type has gone back to Parts & Service and every column is showing again."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What should happen instead",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Anything remembered that is no longer valid should be dropped and the report should fall back to that filter default - This Month for the date range, All locations, and all customers."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What we tested it on",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "QA branch sv8582, build v3.5-16cf83f, on 6 August 2026. The remembered view is held in the browser under the name report_view:sales-by-customer."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "How bad is it",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Low. Nothing is lost and the user can put the filters right by hand. The date range one is the least pleasant, because the report looks broken - completely empty - rather than simply filtered."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "What we ruled out",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "We first checked that remembering works at all, and it does: date range, Product Type, locations, sort and the chosen columns are all restored exactly. We also confirmed each report keeps its own separate remembered view, so nothing here spills between reports."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from: the Sales By Customer report specification, version 15, requirement S6-R5, which says: \"On restore, any saved value that is no longer valid is discarded, and that setting uses its default instead.\"."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from: the Sales By Customer report specification, version 15, requirement S6-R6, which says: \"A saved value is treated as no longer valid when it is an unknown date range, a location the user no longer has access to, a sort column that no longer exists, or a column set that does not match the current columns.\"."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Where this expected behaviour comes from: the Sales By Customer report specification, version 15, requirement S18-R9, which says: \"in a subset selection, a selected customer that is no longer present is dropped from the selection and must be re-selected to appear.\"."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Note on scope: S6-R6 lists the date range and the location, so those two are squarely covered. The customer half rests on S18-R9 instead, which is the requirement that says a selected customer no longer present is dropped from the selection."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "That is source type 2: the specification (PRD) in Confluence. The version number given is the Confluence page version, not the version written inside the page."
+    }
+   ]
+  }
+ ]
+}

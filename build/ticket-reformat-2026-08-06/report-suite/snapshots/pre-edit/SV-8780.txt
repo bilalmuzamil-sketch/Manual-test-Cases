@@ -1,0 +1,10 @@
+# SV-8780 — SBC report gated by its own permission
+
+
+Right now the new Sales By Customer report can only be opened by someone given a special permission just for that one report. Every other report opens for anyone who already has normal reports access.
+You've said all reports should just open with normal reports access. Should we make Sales By Customer work the same way as the others?
+Note: the written spec currently says the opposite — that this report needs its own dedicated permission (SBC spec, Story 1, S1-R2, v12, 29 Jul):
+"The report is gated by a dedicated Sales By Customer report View permission — it is not tied to a generic 'all reports' permission."
+Kindly Confirm.
+- ( ) Yes — open it with normal reports access, like the others (we'll fix the build and update the spec)
+- ( ) No — keep its own separate permission (we'll leave it as is)

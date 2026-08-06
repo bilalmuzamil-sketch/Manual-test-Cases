@@ -1,0 +1,16 @@
+# SV-8988 — Work In Progress: the Estimates figure in the summary strip is not shown in a muted style
+
+What happens now
+In the summary strip across the top of the Work In Progress report, the ESTIMATES figure looks exactly like the other figures. Its label and its amount use the same grey label and the same dark value colour as NOT STARTED, STARTED - EARNED, STARTED - REMAINING and READY TO INVOICE, at the same size and the same weight.
+Nothing about it is toned down, so a reader cannot tell by looking that it is the one figure that is deliberately left out of the two headline totals.
+What should happen instead
+Requirement S5-R8 says the Estimates figure "is the total quoted value of the jobs in the 'Estimates' tab, and is shown in a muted style."
+It should be visibly quieter than the figures that do count toward the totals.
+How to see it
+Open Reports, then Work In Progress, and set the date range to Last 12 Months so there are estimates to show. Compare the ESTIMATES figure at the right-hand end of the strip with NOT STARTED or READY TO INVOICE. They are styled identically.
+What we tested it on
+QA branch sv8582, build v3.5-f77875c, on 6 August 2026. Date range Last 12 Months, both locations (Staging Heavy Duty - 9919 and Staging Lethbridge - 4310). The Estimates figure read $527,356.34 alongside NOT STARTED $31,172.38 and READY TO INVOICE $56,494.23.
+How bad is it
+Low. The amount itself is correct - it matches the Estimates tab's own total exactly - and it is correctly left out of Total Earned and Total Remaining. Only the styling differs.
+Where this expectation comes from
+The Work In Progress report specification on Confluence, version 9 - the numbered requirement is named in each section below. The owning story is the parent of this ticket, and that story sits under epic SV-8582.

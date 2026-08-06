@@ -1,0 +1,46 @@
+# SV-8925 — Sales By Customer and Sales By Representative spreadsheets export money, percentages and dates as text instead of plain numbers
+
+### 1. What happens now
+When the Sales By Customer or Sales By Representative report is downloaded as a spreadsheet, the numbers inside it arrive dressed up as text. Money comes out as $1,979.40 with a dollar sign and a comma. Percentages come out as 100.0% with a percent sign. Dates come out as Jul 31 2026.
+Because those cells are text and not numbers, a person who opens the file in Excel cannot add them up, sort them, or build a pivot table without cleaning every column first.
+### 2. What should happen instead
+Both written descriptions ask for plain numbers so the file can be re-used.
+- Sales By Customer, requirement S14-R9: "The Margin % cell is a plain number to one decimal with no percent sign (for example, 64.7)".
+- Sales By Customer, requirement S14-R10: "Dates export as mm-dd-yyyy - for example, 05-14-2026 - matching the ShopView-wide CSV date format."
+- Sales By Customer, requirement S14-R11: "Currency values export as plain numbers with no dollar sign and no thousands separators."
+- Sales By Representative, requirement S14-R17: "numeric columns are emitted as plain numbers for re-pivoting - no currency symbol, thousands separators, or parentheses".
+### 3. How to see it
+1. Sign in and open Reports > Sales By Customer.
+2. Set the date range to Last Month and select the location Staging Heavy Duty - 9919.
+3. Open the three-dot download menu and choose the summary spreadsheet download.
+4. Open the downloaded file in a text editor or Excel.
+5. Repeat the same steps on Reports > Sales By Representative.
+Exact test data this was seen with: customer Beman Systems, invoice S-15826, sales representative Parth Fadadu, location Staging Heavy Duty - 9919, date range Last Month (1 - 31 July 2026). Both the summary and the expanded downloads behave the same way on both reports.
+### 4. What was actually in the file
+Sales By Customer, summary download:
+{noquote}
+"Beman Systems",0.0,"$1,979.40","$1,979.40","$2,459.48","$2,459.48",$207.84,"$4,438.88",95.5%,"$4,646.72"
+{noquote}
+Sales By Customer, expanded download - note the date cell:
+{noquote}
+,,P-126,"Jul 31 2026",0.0,$0.00,$0.00,$16.26,$16.26,$0.00,$16.26,100.0%,$16.26
+{noquote}
+Sales By Representative, expanded download:
+{noquote}
+,S-15826,"Jul 31 2026","Beman Systems",Unpaid,0.0,0.0,0.0,"$1,979.40","$1,979.40","$2,459.48","$2,459.48","$4,438.88",100.0%,"$4,438.88"
+{noquote}
+### 5. What was ruled out
+- It is not the date range. The same formatting appears at Last Month, Last Quarter and Last Year.
+- It is not one report only. Both Sales By Customer and Sales By Representative do it.
+- It is not one download only. Both the summary and the expanded downloads do it.
+- It is not the on-screen report. On screen the money is correctly shown with dollar signs - that is what the screen is meant to do. The problem is only in the downloaded file.
+### 6. How often
+Every time. Four downloads out of four.
+### 7. Where it was seen
+Reports > Sales By Customer and Reports > Sales By Representative, on the QA branch, build v3.5-16cf83f, on 6 August 2026.
+ 
+Where this expected behaviour comes from: both reports' own specifications, which ask for plain numbers so the file can be re-used.
+the Sales By Customer report specification, version 15, requirement S14-R9: "The Margin % cell is a plain number to one decimal with no percent sign (for example, 64.7); it is empty when the row's Subtotal is zero or below."
+the Sales By Customer report specification, version 15, requirement S14-R10: "Dates export as mm-dd-yyyy — for example, 05-14-2026 — matching the ShopView-wide CSV date format."
+the Sales By Customer report specification, version 15, requirement S14-R11: "Currency values export as plain numbers with no dollar sign and no thousands separators."
+the Sales By Representative report specification, version 17, requirement S14-R17: "CSV cell formatting (both CSVs): numeric columns are emitted as plain numbers for re-pivoting — no currency symbol, thousands separators, or parentheses; a negative value uses a leading minus (-1234.56)."

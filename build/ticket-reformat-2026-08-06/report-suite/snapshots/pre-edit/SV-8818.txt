@@ -1,0 +1,119 @@
+# SV-8818 — PDF download fails with a server error on a medium-sized report view, on 5 of the 6 reports
+
+When you ask a report for a PDF and the view has more than a few hundred lines in it, no file arrives. Instead you get an error message saying something went wrong. Asking for the spreadsheet version of exactly the same view works perfectly, and takes about a second.
+This happens on five of the six new reports: Parts Velocity, Technician Utilization, Inventory Value, Sales By Customer and Sales By Representative.
+---
+## Steps to reproduce
+No special data is needed — the existing test data is already big enough, which is part of the problem.
+1. Sign in as any user who can see reports, and open Parts Velocity.
+2. Set the date range to This Year and pick a single location.
+3. Open the three-dot menu and choose Download (PDF).
+4. After about half a minute, no file arrives and an error appears.
+5. On that same view choose Download (CSV). The spreadsheet arrives in about a second,
+To see it on the other reports: Inventory Value with no filters at all fails the same way, and Sales By Customer / Sales By Representative fail on the Expanded PDF when you pick a 12-month range across both locations.
+If you want a smaller view for comparison, narrow the search box further — that is the only setup needed in either direction.
+
+[IMAGE 4aec0119-0131-4ead-a82d-b460af9b6309]
+---
+## 4. Expected behaviour
+The written requirement (Inventory Value specification, version 3) says a download that is too large should be refused gracefully with a clear message, not fail:
+"To keep a single-shot export renderable, an export is capped at a maximum of 10,000 rows in the filtered set. When the current filtered set exceeds the cap, neither the PDF nor the CSV is produced; instead the user sees the message: 'This report is too large to export. Narrow the date range or filters, then try again.'"
+And if a download does fail for another reason, the same specification says the user should get a clear message naming the report and the format — not a generic error:
+"If a download fails, the user sees an error notification: 'Failed to export inventory value report (pdf)' or 'Failed to export inventory value report (csv)'."
+So: either the PDF should succeed at these ordinary sizes, or the safety net should catch it and explain itself. At the moment neither happens.
+---
+## 5. Current behaviour
+You get no file. After about half a minute an error message appears saying something went wrong, and nothing is downloaded.
+The spreadsheet version of the very same view downloads normally, in about a second, with all the data in it — so the information itself is fine and only the PDF is failing.
+The polite "too large, narrow your filters" message never appears, because the view is nowhere near large enough to trigger it. From the user's side there is no way to tell how big is too big: a view that downloads fine can be made to fail simply by switching more columns on.
+---
+---
+## 7. Technical details for developers
+### The failing request, and a passing one beside it
+```
+# PASS — 344 rows, all 20 columns, 31 pages
+GET /api/reporting/reports/parts-velocity/export?range=this_year&type=both&format=pdf&search=GA
+ -> 200  application/pdf; charset=UTF-8   308,824 bytes   27,358 ms
+    x-request-id 207aa593-aedb-4f51-b03d-f5829343febe
+
+# FAIL — 449 rows, all 20 columns
+GET /api/reporting/reports/parts-velocity/export?range=this_year&type=both&format=pdf&search=HO
+ -> 500  application/problem+json   173 bytes   33,260 ms
+    x-request-id e583742c-a980-4ce3-86a2-7baee1c47519
+    server: nginx/1.30.4
+    {"errors":[{"error":"An error occurred. We're sorry for this inconvenience, please try again a bit later later."},
+               {"requestId":"e583742c-a980-4ce3-86a2-7baee1c47519"}]}
+
+# PASS — THE SAME 449 ROWS, only two columns
+GET /api/reporting/reports/parts-velocity/export?range=this_year&type=both&format=pdf&search=HO
+    &columns=part_number,description
+ -> 200  application/pdf   213,370 bytes   8,032 ms
+    x-request-id a74f14eb-b3ca-4a68-afe9-5de89a3495a7
+
+# Inventory Value, whole list, one location, 5,657 rows — PDF vs CSV, same scope
+GET /api/reporting/reports/inventory-value/export?range=custom&start_date=2026-08-01
+    &end_date=2026-08-04&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&format=pdf
+ -> 500   34,877 ms   x-request-id d6e2a808-631d-4aba-be09-1d25125fd9dc
+...&format=csv
+ -> 200  text/csv   724,109 bytes   2,426 ms   x-request-id 8c6d3848-a126-4271-91af-93954e1512af
+```
+### Full probe data — Parts Velocity
+Rows | Columns | Result | Elapsed | request id
+13 | all | 200 (2 pages) | 3.5 s | ed33b3c8-2c40-4392-b65e-1fa4d3de245b
+41 | all | 200 (6 pages) | 7.8 s | beed12a8-ef34-47d7-971d-8ee81413b02b
+321 | all | 200 (24 pages) | 23.4 s | 7c05f5b3-ee5c-47bd-83ac-0c3c19e6329c
+344 | all | 200 (31 pages, 308,830 B) | 37.9 s | bf010de0-3326-4ca3-827a-a01a24bc08f1
+344 | all | 200 (byte-identical) | 55.4 s | 440a5831-ca94-4b71-bade-334f3e946498
+344 | all | 200 (308,824 B) | 27.4 s | 207aa593-aedb-4f51-b03d-f5829343febe
+449 | all | 500 | 39.1 s | 36af28ab-0a4e-456d-8be5-ba1e33837d0b
+449 | all | 500 | 36.0 s | 767a0020-a8ac-4452-8ae3-bb654a4594c1
+449 | all | 500 | 33.3 s | e583742c-a980-4ce3-86a2-7baee1c47519
+449 | 2 | 200 (213,370 B) | 8.0 s | a74f14eb-b3ca-4a68-afe9-5de89a3495a7
+475 | all | 500 | 63.1 s | f144cde6-9d8a-4ada-876c-68bb2fb8c4f8
+724 | all | 500 | 35.1 s | 6c76fffb-1c5f-4c8a-80cb-ca84061dd6fd
+1,079 | all | 500 | 63.1 s | 1ffab647-4f67-422f-8c4e-cefd0003c487
+1,241 | all | 500 | 45.6 s | 1f6ec1cd-458f-4144-822f-ef27c5772267
+3,238 | all | 500 | 69.2 s | 7bbf9c85-c871-44ef-b618-adb202d573cd
+3,238 | 2 | 500 | 33.2 s | fdc5da7b-4a9c-4e39-b967-1d7ca393715a
+This Year, both locations = 10,064 rows | all | 400 "This report is too large to export…" | 1.9 s | 092e41eb-e8df-4d55-a488-ef3be360bb27
+Every CSV in the same series returned 200 in 0.15–5.1 s, including the full 6,219-row list.
+### Full probe data — Inventory Value
+Rows | Result | Elapsed
+1 · 11 · 149 · 269 · 276 · 320 · 396 · 408 · 411 · 532 | 200 | 18–29 s
+538 | 200 then 500 | 25.1 s / 31.5 s
+578 | 200 then 500 | 25.4 s / 32.2 s
+648 · 725 · 793 · 896 · 1,339 · 3,872 · 4,416 · 4,811 · 5,154 · 5,657 · 9,275 | 500 | 31–33 s
+5,657 | 500 | 34.9 s
+5,657 (CSV, identical scope) | 200, 724,109 B | 2.4 s
+Sample request ids: dde055bf-d63b-4053-94c2-9ddd2f024e9c (648 rows, 500, 31.5 s), 0e35d99b-965b-43a4-a621-2d324692e3bd (538 rows, 200, 25.1 s), dfaec4f6-2dd0-4127-bb28-794b3f860946 (578 rows, 500, 32.2 s), 5309d12c-8710-4a5d-8de9-9a3964e7727a (3,872), c0758b2f-8687-459a-970e-07fe8818b5ad (5,657), 8cab25cb-07b1-42ee-a8f9-8de8d4f061d9 (9,275).
+### The other three reports
+- Sales By Customer — 12-month, two-location Expanded PDF → 500, request id ffca8e2c-f6ae-4477-9216-16083355a3e5. The Expanded CSV of the same scope → 200, 5,746 data lines. A 2-month Expanded PDF renders fine at 49 pages.
+- Sales By Representative — same scope, showUnassigned=1, Expanded PDF → 500, request id 139bcca5-44a4-41a6-8255-e4d7b4a1ef30. Expanded CSV → 200, 3,555 data lines.
+- Technician Utilization — This-Year Expanded PDF → 500 after 32.8 s, request id 87142301-9ebe-4330-9f3d-c23c91837800. Its Summary PDF returns in 1.95 s.
+### What is ESTABLISHED
+1. PDF only. Every CSV of every failing scope succeeded, and fast (0.8–5.1 s).
+2. Well below the 10,000-row guard, so the graceful refusal never runs. The guard itself does work where reachable — 10,064 rows returns HTTP 400 with the specified message.
+3. Not row count alone. The same 449 rows, same filters, same range, one request apart: *500 with 20 columns, 200 with 2 columns.*
+4. Application-level 500, not a gateway timeout — application/problem+json, the app's own message, an x-request-id, passed through nginx/1.30.4. A proxy timeout would be a 502/504 with HTML.
+5. Throughput for identical work varies widely — the same 344-row/31-page PDF took *27.4 s, 37.9 s and 55.4 s*, byte-identical output.
+6. Deterministic outside a narrow band. Inventory Value is reliable to ~532 rows, unstable at 538–578 (each went both ways), and always fails from 648.
+### What is NOT established — please do not read a cause into the above
+We do not know the mechanism, and we are deliberately not asserting one. Two readings each fit part of the data and cannot be separated from outside the server:
+- A ~30–33 s limit somewhere in the render path. Fits every Inventory Value failure (31–33 s) and all three of the most recent failures (33.2 s, 33.3 s, 34.9 s). Cannot explain the 55.4 s success or the 63.1 s and 69.2 s failures.
+- A resource ceiling (memory, page count) rather than time. Fits the 55.4 s success and the two-columns rescue. Does not explain why so many failures cluster tightly at 31–35 s.
+Established fact 5 (variable throughput) partly reconciles them — a fixed limit on one stage plus a variable stage would produce both patterns — but that is a hypothesis, not a finding.
+One look at the server log for any request id above should settle it. That is the ask.
+### Evidence files (in the QA repo)
+- build/report-suite/viu-2026-08-03/batch-pv-tu/evidence/pv/exports/exports-log.jsonl — 29 probes, each with query string, status, byte count, elapsed ms and request id
+- build/report-suite/viu-2026-08-03/batch-wip-iv/evidence/api/iv-pdf-boundary.json and pdfprobe.json
+- build/report-suite/viu-2026-08-03/batch-sbc-sbr/evidence/export-guards.md §3
+- build/report-suite/defect-pack-2026-08-04/probe/pdf500-mechanism-probe.json — the columns A/B
+- Successful PDFs kept for comparison: batch-pv-tu/evidence/pv/exports/*.pdf
+ 
+Where this expected behaviour comes from: the report specifications, each in its own words. None of them allows a download to end in a server error; each one says a download either produces a file or explains itself.
+the Inventory Value report specification, version 4, requirement S10-R12, which says: "Export size guardrail. To keep a single-shot export renderable, an export is capped at a maximum of 10,000 rows in the filtered set. When the current filtered set exceeds the cap, neither the PDF nor the CSV is produced; instead the user sees the message: “This report is too large to export. Narrow the date range or filters, then try again.”" The views in this ticket are far below that cap, so the download should simply have worked.
+the Inventory Value report specification, version 4, requirement S10-R14, which says: "If a download fails, the user sees an error notification: “Failed to export inventory value report (pdf)” or “Failed to export inventory value report (csv)”."
+the Sales By Customer report specification, version 15, requirement S15-R25, which caps each PDF at 10,000 data rows in the same way.
+the Parts Velocity report specification, version 5, requirement S6-N1, which says: "If an export fails, an error toast is shown."
+the Technician Utilization report specification, version 6, Story 7 under Error Handling, which says: "If a download fails, the user sees an error notification: “Failed to download report”."
+Two honest caveats. First, this ticket as filed quoted the Inventory Value description at version 3; that page is now at version 4 and both requirements above carry over into it unchanged. Second, the Parts Velocity, Technician Utilization and Work In Progress descriptions carry no export size cap of their own, so for those three the source is the failure-message requirement rather than a cap.

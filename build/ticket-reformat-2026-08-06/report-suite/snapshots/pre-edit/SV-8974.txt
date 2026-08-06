@@ -1,0 +1,20 @@
+# SV-8974 — Sales By Representative: invoices on the same day are not ordered by invoice number
+
+1. What happens now
+When you expand a representative, the invoices underneath are listed newest first, which is right.
+But when several invoices fall on the SAME DAY, they come out in the order they happened to be created rather than by invoice number, so the numbers appear in no order at all.
+Read from the report, on 12 June 2026 the rows run: S-15487, P-117, P-113, S-15750, S-15646, S-15828, S-15812.
+The same thing happens on a small representative: ZZAUTOTEST RepB has three invoices all dated 04 August 2026 and they come out S-16243, S-16242, S-16241 - counting downwards, where they should count upwards.
+2. What should happen instead
+Invoices sharing a date should be listed by invoice number counting UPWARDS by the number after the P or S - so on 12 June 2026: P-113, P-117, S-15487, S-15646, S-15750, S-15812, S-15828. Where the day and the number both match, the P (parts) invoice comes before the S (service) one.
+3. Branch / environment
+Application https://sv8582.qa.shopview.com, API host https://sv8582api.qa.shopview.com.
+Build marker (app-version meta tag) v3.5-7168d14, index.html last modified Thu 06 Aug 2026 08:32:37 GMT.
+Observed on 2026-08-06. Organisation Staging Foothills Group Inc. Signed in as admin@shopview.com (Admin ShopView).
+Test data named in full: sales representatives ZZAUTOTEST RepA (1 invoice, S-16244) and ZZAUTOTEST RepB (3 invoices, S-16243, S-16242, S-16241), plus Parth Fadadu (1 invoice, S-15826). Customers Aaborough Works, Aacastle Services, Aachester Partners, Aacrest Works, Beman Systems. Locations Staging Heavy Duty - 9919 and Staging Lethbridge - 4310.
+4. How bad is it
+Low. Every figure is correct; it is the order within a single day. It matters most where a day holds many invoices, because there is then no way to find one by its number.
+5. What we ruled out
+We checked the main sort first and it is correct: across days the report does run newest first - 06 August, then 04 August, 31 July, 12 June, 11 June, 10 June. We proved the same-day problem on a large set (849 invoice lines) as well as a small one, so it is not a quirk of one representative.
+6. Where this expected behaviour comes from
+Where this expected behaviour comes from: the Sales By Representative report specification, version 17, requirement S6-R9, which says: "invoice detail rows are ordered by invoice date descending (newest first), tie-broken by invoice number ascending by the numeric portion after the P/S prefix (numeric, not lexical - so S999 precedes S1000); if both the date and the numeric portion tie (e.g., P100 and S100 on the same day), P (Parts) sorts before S (Service).". That is source type 2: the specification (PRD) in Confluence. The version number given is the Confluence page version, not the version written inside the page.
