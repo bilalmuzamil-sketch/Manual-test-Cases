@@ -1,0 +1,164 @@
+{
+ "beforeHeads": [
+  "keyboard_double_arrow_down",
+  "Customer",
+  "Date",
+  "Location",
+  "Inv. Hrs",
+  "Labor Invoiced",
+  "Labor Margin",
+  "Parts Invoiced",
+  "Parts Margin",
+  "Shop Supplies",
+  "Margin",
+  "Margin %",
+  "Subtotal"
+ ],
+ "colTooltip": {
+  "title": null,
+  "aria": "Column Selection"
+ },
+ "afterToggle": {
+  "heads": [
+   "keyboard_double_arrow_down",
+   "Customer",
+   "Date",
+   "Location",
+   "Inv. Hrs",
+   "Labor Invoiced",
+   "Labor Margin",
+   "Parts Invoiced",
+   "Parts Margin",
+   "Margin",
+   "Margin %",
+   "Subtotal"
+  ],
+  "reqs": 0,
+  "cells": [
+   1
+  ]
+ },
+ "storage": [
+  {
+   "k": "report_view:sales-by-customer",
+   "v": "{\"version\":\"1\",\"view\":{\"dateRange\":\"this-month\",\"locationIds\":[\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"f8a8b802-7780-4b16-bf10-343caeb616b2\"],\"sortBy\":\"customer\",\"descending\":false,\"columns\":[\"date\",\"inv_hrs\",\"labor_invoiced\",\"labor_margin\",\"parts_invoiced\",\"parts_margin\",\"margin\",\"margin_pct\"]},\"extra\":{\"productType\":\"all\",\"customerAll\":true,\"customerIds\":[]}}"
+  }
+ ],
+ "afterReload": {
+  "heads": [
+   "keyboard_double_arrow_down",
+   "Customer",
+   "Date",
+   "Location",
+   "Inv. Hrs",
+   "Labor Invoiced",
+   "Labor Margin",
+   "Parts Invoiced",
+   "Parts Margin",
+   "Margin",
+   "Margin %",
+   "Subtotal"
+  ],
+  "url": "https://sv8582api.qa.shopview.com/api/reporting/reports/sales-by-customer?range=custom&start_date=2026-08-01&end_date=2026-08-06&productType=all&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer&pagination%5Bdescending%5D=false",
+  "trig": "This Month expand_more"
+ },
+ "restoredHeads": [
+  "keyboard_double_arrow_down",
+  "Customer",
+  "Date",
+  "Location",
+  "Inv. Hrs",
+  "Labor Invoiced",
+  "Labor Margin",
+  "Parts Invoiced",
+  "Parts Margin",
+  "Shop Supplies",
+  "Margin",
+  "Margin %",
+  "Subtotal"
+ ],
+ "lastWeek": {
+  "n": 3
+ },
+ "emptyBody": " | ",
+ "toolbarStillLive": [
+  {
+   "id": "date-range-selector_sbc_trigger",
+   "present": true,
+   "disabled": false
+  },
+  {
+   "id": "select_sbc_product_type",
+   "present": true,
+   "disabled": false
+  },
+  {
+   "id": "select_sbc_customer_filter",
+   "present": true,
+   "disabled": false
+  },
+  {
+   "id": "button_column_selection",
+   "present": true,
+   "disabled": false
+  },
+  {
+   "id": "btn_dropdown_sbc_export",
+   "present": true,
+   "disabled": false
+  }
+ ],
+ "totalsInEmpty": " | Totals |  |  | 0.0 | $1,979.40 | $1,979.40 | $2,475.74 | $2,475.74 | $207.84 | $4,455.14 | 95.5% | $4,662.98",
+ "surfaces": [
+  {
+   "cls": "",
+   "bg": "rgb(249, 250, 251)"
+  },
+  {
+   "cls": "q-tr sbc-row--customer",
+   "bg": "rgb(249, 250, 251)",
+   "c1": "Aaborough Works(1)"
+  },
+  {
+   "cls": "q-tr sbc-row--asset q-virtual-scroll--with-prev",
+   "bg": "rgb(238, 241, 245)",
+   "c1": "local_shipping86J8FAC1VALJ"
+  },
+  {
+   "cls": "q-tr sbc-row--customer",
+   "bg": "rgb(249, 250, 251)",
+   "c1": "Aacastle Services(2)"
+  },
+  {
+   "cls": "q-tr sbc-row--asset q-virtual-scroll--with-prev",
+   "bg": "rgb(238, 241, 245)",
+   "c1": "local_shipping86J8FAC1VALJ"
+  },
+  {
+   "cls": "q-tr sbc-row--customer",
+   "bg": "rgb(249, 250, 251)",
+   "c1": "Aachester Partners(1)"
+  },
+  {
+   "cls": "q-tr sbc-row--asset q-virtual-scroll--with-prev",
+   "bg": "rgb(238, 241, 245)",
+   "c1": "local_shipping86J8FAC1VALJ"
+  },
+  {
+   "cls": "q-tr sbc-row--customer",
+   "bg": "rgb(249, 250, 251)",
+   "c1": "Aacrest Works(3)"
+  },
+  {
+   "cls": "q-tr sbc-row--asset q-virtual-scroll--with-prev",
+   "bg": "rgb(238, 241, 245)",
+   "c1": "local_shipping31UPV8H0JC1X"
+  }
+ ],
+ "headerBg": {
+  "head": "rgba(0, 0, 0, 0)",
+  "headTh": "rgb(249, 250, 251)",
+  "totals": "rgb(249, 250, 251)",
+  "totalsTd": "rgb(249, 250, 251)"
+ }
+}

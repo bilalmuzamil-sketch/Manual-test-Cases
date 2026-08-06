@@ -1,0 +1,52 @@
+{
+ "sumCsv": {
+  "r": {
+   "ok": true
+  },
+  "toast": [],
+  "reqs": [
+   {
+    "ph": "req",
+    "u": "https://sv8582api.qa.shopview.com/api/reporting/reports/sales-by-customer/export?variant=summary&format=csv&range=custom&start_date=2026-08-01&end_date=2026-08-06&productType=all&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer&pagination%5Bdescending%5D=false"
+   },
+   {
+    "ph": "res",
+    "st": 200,
+    "u": "https://sv8582api.qa.shopview.com/api/reporting/reports/sales-by-customer/export?variant=summary&format=csv&range=custom&start_date=2026-08-01&end_date=2026-08-06&productType=all&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer&pagination%5Bdescending%5D=false"
+   }
+  ]
+ },
+ "expPdf": {
+  "r": {
+   "ok": true
+  },
+  "toast": [],
+  "reqs": [
+   {
+    "ph": "req",
+    "u": "https://sv8582api.qa.shopview.com/api/reporting/reports/sales-by-customer/export?variant=expanded&format=pdf&range=custom&start_date=2026-08-01&end_date=2026-08-06&productType=all&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer&pagination%5Bdescending%5D=false"
+   },
+   {
+    "ph": "res",
+    "st": 200,
+    "u": "https://sv8582api.qa.shopview.com/api/reporting/reports/sales-by-customer/export?variant=expanded&format=pdf&range=custom&start_date=2026-08-01&end_date=2026-08-06&productType=all&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer&pagination%5Bdescending%5D=false"
+   }
+  ]
+ },
+ "downloads": [
+  {
+   "sug": "sales-by-customer-summary.csv",
+   "url": "blob:https://sv8582.qa.shopview.com/5fd85f21-a555-4e1e-821d-fc02d9e28a6c"
+  },
+  {
+   "sug": "sales-by-customer-expanded.pdf",
+   "url": "blob:https://sv8582.qa.shopview.com/520b7746-0a80-41a5-9361-217791c11709"
+  }
+ ],
+ "menuHtml": [
+  "<div data-v-931e5d6a=\"\" class=\"q-item q-item-type row no-wrap q-item--clickable q-link cursor-pointer q-focusable q-hoverable action-item\" role=\"listitem\" tabindex=\"0\" data-test-id=\"action_sbc_export_summary_pdf\"><div class=\"q-focus-helper\" tabindex=\"-1\"></div",
+  "<div data-v-931e5d6a=\"\" class=\"q-item q-item-type row no-wrap q-item--clickable q-link cursor-pointer q-focusable q-hoverable action-item\" role=\"listitem\" tabindex=\"0\" data-test-id=\"action_sbc_export_expanded_pdf\"><div class=\"q-focus-helper\" tabindex=\"-1\"></di",
+  "<div data-v-931e5d6a=\"\" class=\"q-item q-item-type row no-wrap q-item--clickable q-link cursor-pointer q-focusable q-hoverable action-item\" role=\"listitem\" tabindex=\"0\" data-test-id=\"action_sbc_export_summary_csv\"><div class=\"q-focus-helper\" tabindex=\"-1\"></div",
+  "<div data-v-931e5d6a=\"\" class=\"q-item q-item-type row no-wrap q-item--clickable q-link cursor-pointer q-focusable q-hoverable action-item\" role=\"listitem\" tabindex=\"0\" data-test-id=\"action_sbc_export_expanded_csv\"><div class=\"q-focus-helper\" tabindex=\"-1\"></di"
+ ]
+}
