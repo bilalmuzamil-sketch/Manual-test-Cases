@@ -1,5 +1,23 @@
 # Branko's 2026-08-05 questions live in ONE COMBINED FILE — not here
 
+> ## ⚠️ SUPERSEDED 2026-08-06 — DO NOT SEND THE 2026-08-05 WORKBOOK
+>
+> **Send this instead:**
+> `build/filters/questions-2026-08-06/Questions-for-Branko-Cicovic_Filters-and-Schedule_2026-08-06.xlsx`
+> (**tab 4 is QA-only and must not be forwarded**).
+>
+> The 2026-08-05 sheet was **never sent** (register row C4). All 13 of its items were carried forward into
+> the 2026-08-06 workbook — imported from the 2026-08-05 generator so the wording cannot drift — and 4 new
+> items were added, making **17 items** holding **17 of our tests**. Rule 55 wants one sheet, not a drip of
+> separate asks, and two unsent sheets to the same person is that drip.
+>
+> **Nothing was deleted, and `gen_branko_sheet.py` is still a live dependency** of the newer generator.
+> Full note: `build/branko-questions-2026-08-05/SUPERSEDED.md`.
+>
+> **Also now known to be wrong in the old sheet:** SV-8876 is **not Branko's to answer** — read live
+> 2026-08-06 it is **Done**, closed by **Ahtasham Amjad himself** on 5 August. The half that *is* still his
+> is Filters item 5 on the new sheet.
+
 **The deliverable is:**
 
 - `build/branko-questions-2026-08-05/Questions-for-Branko-Cicovic_Schedule-and-Filters_2026-08-05.xlsx` — **the version to send**
