@@ -264,3 +264,21 @@ Baseline after batch 7 is byte-for-byte the baseline before it: **22 lanes, 18 t
 
 Navigation left the grid on whatever week the last check used; that is transient view state
 which resets on reload.
+
+---
+
+## 2026-08-06 session (build `v3.5-7ec992f`) — batch 7b
+
+Teardown is not required (QA lead, 2026-08-05). Every change is listed with its BEFORE value.
+
+| # | Object | On-screen name | What was done | When (UTC) | BEFORE |
+|---|---|---|---|---|---|
+| 1 | Shift, work order S-9379 | Xiriver Apparel · 16604 · "Service - Wheels off single or tandem axle", Sun 2 Aug 2026 | Colour set to **Violet** via the shift window's colour picker | 2026-08-06 ~04:30Z | **Blue** (read from the colour button before the click) |
+| 2 | Shift, work order S-9379 | Xiriver Apparel · 16604 · "Repair - Frame rail", Wed | Colour set to **Teal** | 2026-08-06 ~04:40Z | **Amber** (pre-existing, not set by us) |
+| 3 | Shop colour palette | Colour label "Pink" | Renamed to "ZZAUTOTEST Rush", then **restored to "Pink"** and read back | 2026-08-06 ~04:50Z | **Pink** — restored, no net change |
+| 4 | New shift `a139ed96-4a20-4a05-9118-35ea5c806992` | Pamill Paving · 713 (work order S-12876) on **Margaret Garcia**, Mon 10 Aug 2026 08:00, 2h | **Created** (seed for the default-colour test) | 2026-08-06 ~05:05Z | did not exist |
+| 5 | New series `2b3a3536-065b-48db-a7f6-673b98750f26` — **10 shifts**, 11–20 Aug 2026 | Pamill Paving · 713 (work order S-12876) on **Margaret Garcia**, 8h/day | **Created** (seed for the multi-week default-colour test) | 2026-08-06 ~05:05Z | did not exist |
+| 6 | Shift, work order S-12876 | Pamill Paving · 713 · "Replace - Rear ramp handles", Mon 3 Aug 2026 | **Reassigned to Jose Young** by drag, confirmed with the Enter key (toast "Shift reassigned.") | 2026-08-06 ~05:30Z | was on the technician row directly above Jose Young's; **not undone** |
+| 7 | Note on shift, work order S-9379 | Xiriver Apparel · 16604 · "Service - Wheels off…" | Two-line note added: "ZZAUTOTEST line one" / "ZZAUTOTEST line two" | 2026-08-06 ~05:45Z | the shift had no note |
+
+An earlier drag of the same S-12876 shift onto Jose Young (row 2) was **cancelled with Escape and made no change** — recorded here only so the two drags are not mistaken for two reassignments.
