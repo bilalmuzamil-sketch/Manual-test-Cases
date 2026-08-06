@@ -1,0 +1,128 @@
+[
+ {
+  "check": "1  re-GET HTTP",
+  "result": "PASS",
+  "got": "200",
+  "expected": "200"
+ },
+ {
+  "check": "2  key",
+  "result": "PASS",
+  "got": "SV-8991",
+  "expected": "SV-8991"
+ },
+ {
+  "check": "3  issuetype name",
+  "result": "PASS",
+  "got": "Story Defect",
+  "expected": "Story Defect"
+ },
+ {
+  "check": "4  issuetype id",
+  "result": "PASS",
+  "got": "10007",
+  "expected": "10007"
+ },
+ {
+  "check": "5  subtask / hierarchyLevel",
+  "result": "PASS",
+  "got": "True / -1",
+  "expected": "True / -1"
+ },
+ {
+  "check": "6  parent = owning story",
+  "result": "PASS",
+  "got": "SV-8616",
+  "expected": "SV-8616"
+ },
+ {
+  "check": "7  parent is a Story at level 0",
+  "result": "PASS",
+  "got": "Story",
+  "expected": "Story"
+ },
+ {
+  "check": "8  priority",
+  "result": "PASS",
+  "got": "Medium",
+  "expected": "Medium (Rule 53 as amended 2026-08-06)"
+ },
+ {
+  "check": "9  status",
+  "result": "PASS",
+  "got": "Open",
+  "expected": "Open"
+ },
+ {
+  "check": "10 project",
+  "result": "PASS",
+  "got": "SV",
+  "expected": "SV"
+ },
+ {
+  "check": "11 summary byte-equal",
+  "result": "PASS",
+  "got": "'Sales By Customer drops the Totals line entirely when nothing matches, on screen and in t",
+  "expected": "the intended string"
+ },
+ {
+  "check": "12 description ADF byte-equal",
+  "result": "PASS",
+  "got": "8326 chars",
+  "expected": "8326 chars"
+ },
+ {
+  "check": "13 relates-to link on the owning story",
+  "result": "PASS",
+  "got": "[('Relates', 'SV-8616')]",
+  "expected": "[('Relates', 'SV-8616')]"
+ },
+ {
+  "check": "14 Product Area not set (absent on this type)",
+  "result": "PASS",
+  "got": "None",
+  "expected": "None"
+ },
+ {
+  "check": "15 Severity left unset (mirrors the 29 peers)",
+  "result": "PASS",
+  "got": "None",
+  "expected": "None"
+ },
+ {
+  "check": "16 labels empty",
+  "result": "PASS",
+  "got": "[]",
+  "expected": "[]"
+ },
+ {
+  "check": "17 screenshot attached at the right size",
+  "result": "PASS",
+  "got": "[('sbc-empty-state.png', 99358)]",
+  "expected": "[('sbc-empty-state.png', 99358)]"
+ },
+ {
+  "check": "18 source block present, exactly one heading + 2 citations",
+  "result": "PASS",
+  "got": "3",
+  "expected": "3 (the heading and the two requirement citations)"
+ },
+ {
+  "check": "19 no internal case IDs or TestRail links",
+  "result": "PASS",
+  "got": "none found",
+  "expected": "none"
+ },
+ {
+  "check": "20 no provisional / not-final disclaimer",
+  "result": "PASS",
+  "got": "none found",
+  "expected": "none"
+ },
+ {
+  "check": "21 both requirement anchors quoted",
+  "result": "PASS",
+  "got": "S18-N1 and S18-R10 both present",
+  "expected": "both"
+ }
+]
