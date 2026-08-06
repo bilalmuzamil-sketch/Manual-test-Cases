@@ -76,3 +76,21 @@ The 7 cases marked `AUTOMATION: HOLD - not re-checked against the current build`
 **not re-observe** this session, so no ticket was raised for any of them. That is deliberate: filing a
 defect we have not seen on the current build would be exactly the inference Rule 12 forbids, and under
 this new rule it would also have no honest source line to close with.
+
+---
+
+## CONFIRMED by the QA lead — it applies to EVERY ticket, with no exception
+
+His words: *"Yes this source block MUST exist for every ticket you created."* So it is not limited to new
+tickets in principle — but **the retrofit of the four already filed is being done by a separate worker in
+one pass right now, and that pass is explicitly skipping SV-8923 because it has no legitimate source.**
+Nothing here touches any of them.
+
+**A story is a perfectly good source.** All three types are equal in standing; what matters is that the
+reference is precise enough for a developer to check without asking us — which is why the spreadsheet form
+needs the **tab name and the row number**, not just the link.
+
+**And the hard one, which is the whole point:** if no document supports the expectation, **do not invent
+one**. Say the specification is silent, say what the expectation actually rests on, and **reconsider whether
+it should be filed at all rather than asked** (Rule 57). **That is precisely how SV-8923 became a false
+defect** — an expectation was acted on without checking that its stated precondition was even met.
