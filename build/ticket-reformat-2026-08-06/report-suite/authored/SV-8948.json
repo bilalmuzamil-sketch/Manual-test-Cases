@@ -1,0 +1,25 @@
+{
+ "description": "Every Technician Utilization download contains all technicians, whatever is ticked in the technician filter. Unticking someone does not remove them from the file, and choosing a download with nobody ticked still produces a full file and a success message.",
+ "steps": [
+  "Open Reports, then Technician Utilization, and set the date range to This Year.",
+  "Open the technician filter and untick one technician — Andrew Wade was used here. The toolbar then reads 28 technicians and his row disappears from the table.",
+  "Open the three-dot menu, choose Summary (CSV), open the file and search for Andrew Wade.",
+  "Now untick everybody with \"Clear all\" — the table shows the empty message — and choose Summary (CSV) again. This was seen with the date range This Year (1 January to 6 August 2026), which returns 29 technicians, active location Staging Heavy Duty - 9919, on an account that can also reach Staging Lethbridge - 4310."
+ ],
+ "current": "With Andrew Wade unticked, the spreadsheet still held 29 technician rows including his, at 1080.44 hours. The request the page sent for the file carried the dates and the locations but nothing at all about the technician filter.\n\nWith every technician unticked, the download still arrived — the same full 29-row file — with a success message reading \"Success / Data exported successfully.\"\n\nThe filter is not failing on screen: the row really does disappear and the Summary really does recalculate. The location and the date range are carried into the download correctly. It happens on both the spreadsheet and the PDF.",
+ "expected": "A download contains only the technicians currently ticked in the filter. With no technician ticked, choosing a download does nothing at all — no file and no message.",
+ "source": [
+  [
+   "spec",
+   "tu",
+   "S7-R8",
+   "Every download includes only the technicians that are currently selected in the technician filter, and covers the location(s) currently selected in the location filter."
+  ],
+  [
+   "spec",
+   "tu",
+   "S7-N1",
+   "If no technician is selected, choosing a download option does nothing: no file downloads and no message appears."
+  ]
+ ]
+}

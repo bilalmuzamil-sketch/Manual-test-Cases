@@ -1,98 +1,123 @@
 [
  {
-  "ticket": "SV-8934",
-  "kind": "spec",
-  "spec": "pv",
-  "anchor": "S6-R6",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "The PDF is formatted for A3 landscape, titled Parts Velocity. In the PDF, Descri"
- },
- {
-  "ticket": "SV-8935",
-  "kind": "spec",
-  "spec": "pv",
-  "anchor": "S6-R8",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "Last Sale renders as N days (e.g. 42 days) in the PDF; the CSV renders the raw i"
- },
- {
-  "ticket": "SV-8936",
-  "kind": "spec",
-  "spec": "pv",
-  "anchor": "S6-R9",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "On a successful download, a success toast reads \"Velocity report exported (CSV)\""
- },
- {
-  "ticket": "SV-8937",
-  "kind": "spec",
-  "spec": "sbc",
-  "anchor": "S15-R11",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "The header date range shows the start and end dates in the format \"Mon D, YYYY,\""
- },
- {
-  "ticket": "SV-8937",
-  "kind": "spec",
-  "spec": "pv",
-  "anchor": "S6-R2",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "Both exports reflect the date range, type, category, vendor, bin location, locat"
- },
- {
-  "ticket": "SV-8937",
+  "ticket": "SV-8943",
   "kind": "spec",
   "spec": "tu",
-  "anchor": "S7-R9",
+  "anchor": "S1-R3",
   "anchor_found": true,
   "quote_found": true,
   "verdict": "PASS",
-  "quote_head": "Every download covers the date range that is currently active on the report."
+  "quote_head": "On the user's first visit (no saved settings \u2014 \u00a73), the report defaults to the c"
  },
  {
-  "ticket": "SV-8937",
+  "ticket": "SV-8943",
+  "kind": "spec",
+  "spec": "tu",
+  "anchor": "S9-R2",
+  "anchor_found": true,
+  "quote_found": true,
+  "verdict": "PASS",
+  "quote_head": "On a first visit (no saved selection \u2014 \u00a73), it defaults to the user's currently "
+ },
+ {
+  "ticket": "SV-8944",
+  "kind": "spec",
+  "spec": "tu",
+  "anchor": "S1-R9",
+  "anchor_found": true,
+  "quote_found": true,
+  "verdict": "PASS",
+  "quote_head": "Reconciliation guarantee (scope). For the same date range and the same single lo"
+ },
+ {
+  "ticket": "SV-8944",
   "kind": "note",
   "verdict": "n/a (not a spec quote)",
-  "detail": "One honest caveat about the label: none of the three descriptions writ"
+  "detail": "The same description explains why that is achievable: the Timesheet Ac"
  },
  {
-  "ticket": "SV-8938",
+  "ticket": "SV-8945",
   "kind": "spec",
-  "spec": "pv",
+  "spec": "tu",
+  "anchor": "S7-R10a",
+  "anchor_found": true,
+  "quote_found": true,
+  "verdict": "PASS",
+  "quote_head": "Rows in every download are ordered by Technician name A\u2192Z (the default order). T"
+ },
+ {
+  "ticket": "SV-8945",
+  "kind": "note",
+  "verdict": "n/a (not a spec quote)",
+  "detail": "Requirement S2-R13 in the same description sets out the sorting itself"
+ },
+ {
+  "ticket": "SV-8945",
+  "kind": "note-anchor",
+  "anchor": "S2-R13",
+  "found_in": [
+   "tu"
+  ],
+  "verdict": "PASS"
+ },
+ {
+  "ticket": "SV-8946",
+  "kind": "spec",
+  "spec": "tu",
+  "anchor": "S9-R3",
+  "anchor_found": true,
+  "quote_found": true,
+  "verdict": "PASS",
+  "quote_head": "Selecting one, several, or all locations reloads the report scoped to that set ("
+ },
+ {
+  "ticket": "SV-8946",
+  "kind": "spec",
+  "spec": "tu",
+  "anchor": "S4-R5",
+  "anchor_found": true,
+  "quote_found": true,
+  "verdict": "PASS",
+  "quote_head": "Expansion state is view-only and is not persisted: it resets (all collapsed) on "
+ },
+ {
+  "ticket": "SV-8947",
+  "kind": "spec",
+  "spec": "tu",
+  "anchor": "S5-R1",
+  "anchor_found": true,
+  "quote_found": true,
+  "verdict": "PASS",
+  "quote_head": "The toolbar has a filter labeled \"Filter by Technician\" where the user can selec"
+ },
+ {
+  "ticket": "SV-8947",
+  "kind": "spec",
+  "spec": "tu",
+  "anchor": "S5-R6",
+  "anchor_found": true,
+  "quote_found": true,
+  "verdict": "PASS",
+  "quote_head": "The filter has a control labeled \"Select all\" to select all technicians at once."
+ },
+ {
+  "ticket": "SV-8948",
+  "kind": "spec",
+  "spec": "tu",
   "anchor": "S7-R8",
   "anchor_found": true,
   "quote_found": true,
   "verdict": "PASS",
-  "quote_head": "When shown (S2-R12 / S3-R10), the per-row Location column renders as the leftmos"
+  "quote_head": "Every download includes only the technicians that are currently selected in the "
  },
  {
-  "ticket": "SV-8939",
+  "ticket": "SV-8948",
   "kind": "spec",
-  "spec": "pv",
-  "anchor": "S2-R9",
+  "spec": "tu",
+  "anchor": "S7-N1",
   "anchor_found": true,
   "quote_found": true,
   "verdict": "PASS",
-  "quote_head": "The toolbar provides a Location multi-select filter as the rightmost control in "
- },
- {
-  "ticket": "SV-8940",
-  "kind": "spec",
-  "spec": "pv",
-  "anchor": "S3-R7",
-  "anchor_found": true,
-  "quote_found": true,
-  "verdict": "PASS",
-  "quote_head": "The Description, Category, and Vendor columns truncate long text with an ellipsi"
+  "quote_head": "If no technician is selected, choosing a download option does nothing: no file d"
  }
 ]

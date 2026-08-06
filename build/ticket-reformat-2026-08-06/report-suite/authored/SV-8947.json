@@ -1,0 +1,24 @@
+{
+ "description": "The technician filter on Technician Utilization is labelled \"Technician\", and the control that selects everybody is labelled \"All technicians\". The written description asks for \"Filter by Technician\" and \"Select all\".",
+ "steps": [
+  "Open Reports, then Technician Utilization.",
+  "Read the label above the technician filter in the toolbar.",
+  "Open that filter and read the first two entries. This was seen with the date range This Year (1 January to 6 August 2026), which returns 29 technicians, active location Staging Heavy Duty - 9919, on an account that can also reach Staging Lethbridge - 4310."
+ ],
+ "current": "The toolbar label reads \"Technician\". The first entry in the list reads \"All technicians\" where \"Select all\" is asked for. The second entry, \"Clear all\", matches.\n\nBoth controls do exactly what they should, and there is room for the longer words — only the wording differs.\n\nFor triage: the download menu on this same report has a related wording difference, reported as SV-8881.",
+ "expected": "The filter is labelled \"Filter by Technician\" and its select-everybody control is labelled \"Select all\".",
+ "source": [
+  [
+   "spec",
+   "tu",
+   "S5-R1",
+   "The toolbar has a filter labeled \"Filter by Technician\" where the user can select more than one technician."
+  ],
+  [
+   "spec",
+   "tu",
+   "S5-R6",
+   "The filter has a control labeled \"Select all\" to select all technicians at once."
+  ]
+ ]
+}

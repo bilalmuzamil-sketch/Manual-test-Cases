@@ -1,0 +1,24 @@
+{
+ "description": "Technician Utilization opens with its Location filter set to All locations, so a user's first view mixes together every location they can reach. It is meant to open on the one location they are working in.",
+ "steps": [
+  "Sign in as a user who can reach more than one location, and note the location beside your name at the top right — here it read Staging Heavy Duty - 9919, on an account that can also reach Staging Lethbridge - 4310.",
+  "In a browser with no saved settings for this report, open Reports, then Technician Utilization.",
+  "Read the Location filter at the right-hand end of the toolbar."
+ ],
+ "current": "The Location filter reads All locations. The page's first request carried no location at all and the second carried both.\n\nThe date range half of the same requirement is correct — it reads This Month and asks the server for 1 to 6 August 2026. Choosing a single location works and narrows the report correctly, so only the starting value is wrong.\n\nFor triage: the same starting behaviour on Inventory Value is SV-8931 and on Parts Velocity SV-8939. This ticket is Technician Utilization, which has its own requirement wording.",
+ "expected": "On a first visit the Location filter is set to the user's currently active location — the one selected in the application's location switcher.",
+ "source": [
+  [
+   "spec",
+   "tu",
+   "S1-R3",
+   "On the user's first visit (no saved settings — §3), the report defaults to the current calendar month (the date picker's \"This Month\" preset) and the user's currently active location."
+  ],
+  [
+   "spec",
+   "tu",
+   "S9-R2",
+   "On a first visit (no saved selection — §3), it defaults to the user's currently active location (the location currently selected in the application's global location switcher)."
+  ]
+ ]
+}

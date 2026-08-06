@@ -1,0 +1,24 @@
+{
+ "description": "A technician's Total Hours on Technician Utilization does not agree with the same technician's total on the Timesheet Activities report, even for the same dates, the same single location and only finished clock records. The gap is small but real — up to a quarter of an hour on the technicians checked.",
+ "steps": [
+  "Open Reports, then Technician Utilization. Set the date range to This Year and choose the single location Staging Heavy Duty - 9919.",
+  "Find the row for Andrew Wade and write down his Total Hours.",
+  "Click that Total Hours figure. Timesheet Activities opens for the same technician and the same dates.",
+  "Wait for the page to finish loading — the staff name settles to Andrew Wade — and read the Totals line at the bottom.",
+  "The technicians compared here were Andrew Wade, Brittany Anderson, Colleen Guerrero, Fernando Mercer, Kellie Ayers, Angela Roman, Christian Pitts and Alyssa Randall."
+ ],
+ "current": "Technician Utilization showed Andrew Wade 1080.44 hours; Timesheet Activities showed 1080.64 for the same technician and dates — 0.20 hours apart.\n\nSix of the eight technicians compared disagreed: Andrew Wade +0.20, Fernando Mercer +0.25, Kellie Ayers +0.21, Brittany Anderson +0.16, Colleen Guerrero +0.05, Angela Roman −0.01, Christian Pitts −0.03. Alyssa Randall matched exactly at 744.51.\n\nFor the developer, from the underlying data: Timesheet Activities adds up each clock record after rounding it to two decimals, while Technician Utilization adds the raw times and rounds once at the end. Andrew Wade's 604 records total 1080.62 when each is rounded first, against 1080.4422 raw.\n\nIt is not an open clock — he has no clock records at all in August 2026, and the two readings were taken two seconds apart. It is not the multi-location difference the description allows: the report was scoped to the single location he works at, and his figure is the same whether one or both locations are selected.",
+ "expected": "For the same date range, the same single location and only finished clock records, a technician's Total Hours here equals the Timesheet Activities total for that technician exactly.",
+ "source": [
+  [
+   "spec",
+   "tu",
+   "S1-R9",
+   "Reconciliation guarantee (scope). For the same date range and the same single location, and counting closed clock records, this report's Total Hours for a technician equals the Timesheet Activities report's total for that technician to the cent."
+  ],
+  [
+   "note",
+   "The same description explains why that is achievable: the Timesheet Activities report is expected to round the same way this one does, round-half-up to two decimals, from the same clock data, and the to-the-cent reconciliation depends on that shared rounding."
+  ]
+ ]
+}

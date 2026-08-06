@@ -1,0 +1,22 @@
+{
+ "description": "Clicking a column heading on Technician Utilization sends a fresh request to the server and waits for new rows. The rows already on screen should simply be reordered, with no reload.",
+ "steps": [
+  "Open Reports, then Technician Utilization, and set the date range to This Year so there are plenty of rows.",
+  "Click the Total Hours heading once, then again.",
+  "Watch the table as you click. This was seen with the date range This Year (1 January to 6 August 2026), which returns 29 technicians, active location Staging Heavy Duty - 9919, on an account that can also reach Staging Lethbridge - 4310."
+ ],
+ "current": "The table briefly clears and refills on each click. Each click sends a new request to the report's data address carrying the sort, first ascending then descending, and the rows come back from the server rather than being reordered in the page.\n\nThe order itself is correct — the first click on Technician sorts Z to A, the next A to Z, with no third state — and it happened on every column tried: Technician, Total Hours and Est. Lost Labor. The date range and location selection were untouched between clicks.",
+ "expected": "Clicking a column heading reorders the rows already loaded, on screen, without asking the server again.",
+ "source": [
+  [
+   "spec",
+   "tu",
+   "S7-R10a",
+   "Rows in every download are ordered by Technician name A→Z (the default order). The on-screen column sort (S2-R13) is applied client-side only and is not carried into the export."
+  ],
+  [
+   "note",
+   "Requirement S2-R13 in the same description sets out the sorting itself: \"All six columns (Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor) are sortable by clicking the column header.\""
+  ]
+ ]
+}

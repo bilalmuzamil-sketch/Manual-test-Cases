@@ -1,0 +1,24 @@
+{
+ "description": "Ticking or unticking a technician in the Technician Utilization technician filter sends a fresh request to the server. This filter is meant to work on screen only — hiding rows and recalculating the Summary — unlike the location filter, which does reload.",
+ "steps": [
+  "Open Reports, then Technician Utilization, and set the date range to This Year.",
+  "Open the Technician filter and untick one technician — Christian Pitts was used here.",
+  "Watch the table as the tick comes off. This was seen with the date range This Year (1 January to 6 August 2026), which returns 29 technicians, active location Staging Heavy Duty - 9919, on an account that can also reach Staging Lethbridge - 4310."
+ ],
+ "current": "Unticking sends a new request to the report's data address carrying an exclusion list, and the rows come back from the server rather than being hidden in the page.\n\nThe outcome is right — the row count went from 29 to 28 and the Summary recalculated correctly, from 15916.03 / 12843.23 / 3072.80 / 80.7% / $462,687.13 to 14984.33 / 12811.99 / 2172.34 / 85.5% / $332,120.67. It is the reload that is wrong. The location selection was unchanged throughout.\n\nThis is not the same fault as the sorting reload, which is reported separately: that one happens on a column heading click, this one on a filter change.",
+ "expected": "Changing the technician filter hides and shows the rows already on screen and recalculates the Summary, without asking the server again. Only the location filter reloads the report.",
+ "source": [
+  [
+   "spec",
+   "tu",
+   "S9-R3",
+   "Selecting one, several, or all locations reloads the report scoped to that set (unlike the technician filter, which is on-screen only)."
+  ],
+  [
+   "spec",
+   "tu",
+   "S4-R5",
+   "Expansion state is view-only and is not persisted: it resets (all collapsed) on any data reload (date-range or location change) and on a fresh visit. Deselecting and re-selecting a technician in the technician filter (an on-screen operation) does not change the expansion state of the other rows."
+  ]
+ ]
+}
