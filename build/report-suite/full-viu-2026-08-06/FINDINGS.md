@@ -112,3 +112,65 @@ C38924/C38925 (part-of-a-unit quantities).
 estate and it is **shared with a sibling worker on the Schedule project**. `POST /api/quick-login`
 rotates `sv_sso_session` and would sign them out mid-run, and `POST /api/switch-user` would take the
 shared session with it. These are recorded **NOT OBSERVED** with that reason — not seeded around.
+
+## Batch 6 — THE WORK IN PROGRESS EXPORT, reproduced at last
+
+The previous pass could not reproduce this and said so honestly: every datetime form it tried was
+rejected as its own input error. **The reason is now clear — Work In Progress does not take the same
+date parameters as the other five reports.** They use `range=custom&start_date=&end_date=`; Work In
+Progress uses **`from=` and `to=` with full ISO instants**:
+
+```
+GET /api/reporting/reports/work-in-progress/export
+    ?format=csv|pdf &tab=<Tab> &from=2026-08-02T00:00:00.000Z &to=2026-08-06T23:59:59.999Z
+    &locations=<ids> &columns=<list> &sortBy=days_open &descending=true
+```
+
+That shape was **taken from the product's own download menu**, not guessed — a request listener was
+attached and the menu clicked, exactly as the brief directed.
+
+### The symptom, and the mechanism
+
+| Tab | Rows | CSV | PDF |
+|---|---|---|---|
+| Approved - Partially Completed | 4 | **HTTP 500** | **HTTP 500** |
+| Approved - Not Started | 4 | **HTTP 500** | **HTTP 500** |
+| Completed | 2 | **HTTP 500** | **HTTP 500** |
+| Estimates | 65 | **HTTP 500** | **HTTP 500** |
+| any tab, empty window (0 rows) | 0 | **HTTP 200**, real file | **HTTP 200**, real file |
+
+The error text, from the screen and from the response alike, is *"An error occurred. We're sorry for
+this inconvenience, please try again a bit later later."* — the doubled *"later later"* is in the
+product. **It is not a size problem**: two rows fail just as four and sixty-five do, so it is not the
+10,000-row guard. **It is presence of rows, exactly as [SV-8907](https://shopview.atlassian.net/browse/SV-8907)
+describes.** No new ticket was filed — SV-8907 already covers it.
+
+**Five cases now carry the Rule-61 block naming SV-8907** — C30510, C30512, C30513, C30514, C30518 —
+replacing the older one-line "Known issue" form.
+
+### Three cases were settled on the ONE path that works
+
+The empty-tab export produces a real file, and that file answers three cases outright:
+
+- **[C30515](https://shopview.testrail.io/index.php?/cases/view/30515) PASS** — `content-disposition`
+  returns `filename=wip-2-report.csv` and `filename=wip-2-report.pdf`, exactly, including the `-2-`.
+- **[C30516](https://shopview.testrail.io/index.php?/cases/view/30516) PASS** — both files head those
+  columns **Unit** and **Branch** while the screen reads Asset and Location: the documented v1
+  difference the case asserts, confirmed in the CSV *and* the PDF.
+- **[C30517](https://shopview.testrail.io/index.php?/cases/view/30517) PASS** — the PDF carries
+  exactly one embedded image (the shop logo); the CSV is plain text with none.
+
+### Two cases deliberately still carry no block
+
+**[C30500](https://shopview.testrail.io/index.php?/cases/view/30500)** points at SV-8908, the **Asset
+filter** rather than the export; its symptom was not driven, and an unobserved symptom must never be
+written. **[C38918](https://shopview.testrail.io/index.php?/cases/view/38918)** asserts the over-cap
+refusal, which **cannot be produced here** — the biggest tab holds 65 work orders against a cap near
+10,000, and the case says so itself. **That one is worth a decision: arguably it should be
+`AUTOMATION: HOLD`, not expect-fail.**
+
+### One thing checked and cleared
+
+The Parts Velocity PDF prints its date-range heading one day late (SV-8937). **Work In Progress does
+not** — asked for 1–2 January 2020 it printed *"Jan 1, 2020 - Jan 2, 2020"*. So SV-8937 is specific to
+Parts Velocity, which is what that ticket says.

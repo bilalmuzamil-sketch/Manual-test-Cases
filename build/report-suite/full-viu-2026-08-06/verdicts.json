@@ -593,6 +593,87 @@
   "note": "NOT OBSERVED. Permission case - needs a second sign-in to prove the back end serves the report on ordinary reports access and refuses without it.",
   "verdict": "NOT OBSERVED"
  },
+ "30500": {
+  "anchor": "WIP S3-R4",
+  "batch": 6,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "-",
+  "note": "SV-8908 is the Asset filter, not the export. Its symptom was not driven this session, so no Rule-61 block was written - a symptom nobody has seen must never be written.",
+  "verdict": "NOT OBSERVED"
+ },
+ "30510": {
+  "anchor": "WIP S6-R1",
+  "batch": 6,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "w2/wip-tabs",
+  "note": "SV-8907 REPRODUCED and the mechanism pinned. All four tabs with rows (4, 4, 2 and 65) return HTTP 500 on BOTH formats with \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\"; a tab with 0 rows returns HTTP 200 and a real file. Request shape captured from the product's own download menu: GET /api/reporting/reports/work-in-progress/export?format=&tab=&from=<ISO>&to=<ISO>&locations=&columns=&sortBy=&descending= The case now carries the Rule-61 three-outcome block naming SV-8907.",
+  "verdict": "DEVIATION"
+ },
+ "30512": {
+  "anchor": "WIP S6-R4",
+  "batch": 6,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "w2/wip-tabs",
+  "note": "SV-8907 REPRODUCED and the mechanism pinned. All four tabs with rows (4, 4, 2 and 65) return HTTP 500 on BOTH formats with \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\"; a tab with 0 rows returns HTTP 200 and a real file. Request shape captured from the product's own download menu: GET /api/reporting/reports/work-in-progress/export?format=&tab=&from=<ISO>&to=<ISO>&locations=&columns=&sortBy=&descending= The case now carries the Rule-61 three-outcome block naming SV-8907.",
+  "verdict": "DEVIATION"
+ },
+ "30513": {
+  "anchor": "WIP S6-R5",
+  "batch": 6,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "w2/wip-tabs",
+  "note": "SV-8907 REPRODUCED and the mechanism pinned. All four tabs with rows (4, 4, 2 and 65) return HTTP 500 on BOTH formats with \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\"; a tab with 0 rows returns HTTP 200 and a real file. Request shape captured from the product's own download menu: GET /api/reporting/reports/work-in-progress/export?format=&tab=&from=<ISO>&to=<ISO>&locations=&columns=&sortBy=&descending= The case now carries the Rule-61 three-outcome block naming SV-8907.",
+  "verdict": "DEVIATION"
+ },
+ "30514": {
+  "anchor": "WIP S6-R6",
+  "batch": 6,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "w2/wip-tabs",
+  "note": "SV-8907 REPRODUCED and the mechanism pinned. All four tabs with rows (4, 4, 2 and 65) return HTTP 500 on BOTH formats with \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\"; a tab with 0 rows returns HTTP 200 and a real file. Request shape captured from the product's own download menu: GET /api/reporting/reports/work-in-progress/export?format=&tab=&from=<ISO>&to=<ISO>&locations=&columns=&sortBy=&descending= The case now carries the Rule-61 three-outcome block naming SV-8907.",
+  "verdict": "DEVIATION"
+ },
+ "30515": {
+  "anchor": "WIP S6-R7",
+  "batch": 6,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "wip-empty",
+  "note": "Verified on the empty-tab path, the one that produces a file: content-disposition returns filename=wip-2-report.csv and filename=wip-2-report.pdf exactly, including the \"-2-\".",
+  "verdict": "PASS"
+ },
+ "30516": {
+  "anchor": "WIP S6-R8",
+  "batch": 6,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "wip-empty",
+  "note": "Verified on the empty-tab path in BOTH formats: the CSV header row reads \"WO #\",Status,Customer,Unit,Branch,Advisor,... and the PDF header row reads WO # Status Customer Unit Branch Advisor ..., while the screen reads Asset and Location. The documented v1 label difference is exactly as the case asserts.",
+  "verdict": "PASS"
+ },
+ "30517": {
+  "anchor": "WIP S6-R10",
+  "batch": 6,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "wip-empty",
+  "note": "Verified on the empty-tab path: the PDF carries exactly one embedded image (the shop logo, 175 KB file) and the CSV is plain text with no logo.",
+  "verdict": "PASS"
+ },
+ "30518": {
+  "anchor": "WIP S6-R9",
+  "batch": 6,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "w2/wip-tabs",
+  "note": "SV-8907 REPRODUCED and the mechanism pinned. All four tabs with rows (4, 4, 2 and 65) return HTTP 500 on BOTH formats with \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\"; a tab with 0 rows returns HTTP 200 and a real file. Request shape captured from the product's own download menu: GET /api/reporting/reports/work-in-progress/export?format=&tab=&from=<ISO>&to=<ISO>&locations=&columns=&sortBy=&descending= The case now carries the Rule-61 three-outcome block naming SV-8907.",
+  "verdict": "DEVIATION"
+ },
  "30534": {
   "anchor": "IV S1-R1",
   "batch": 2,
@@ -1132,6 +1213,15 @@
   "evidence": "b2e.json/b1e.json",
   "note": "Driven and recorded; stays on hold because this is the very point Chris Ward has been asked about. Observed: the Location column sits between Vendor and Qty; every row names one location and none reads \"Multiple\"; the Location filter keeps a constant 160px width. But the column is STILL SHOWN when the scope is narrowed to a single location, and Location IS offered in the column-selection control - which matches the access-gate reading of the specification and contradicts the scope-gate reading in S7-R6. That is the open contradiction, so no verdict is asserted.",
   "verdict": "PARTIAL"
+ },
+ "38918": {
+  "anchor": "WIP S6-R11",
+  "batch": 6,
+  "build": "v3.5-16cf83f",
+  "date": "2026-08-06",
+  "evidence": "wip-tabs",
+  "note": "The over-cap refusal cannot be produced here: the biggest single tab holds 65 work orders against a cap of about 10,000. The case says so itself. It still carries an EXPECT FAIL marker with no block, which is worth the QA lead deciding on - arguably it should be AUTOMATION: HOLD instead.",
+  "verdict": "NOT OBSERVED"
  },
  "38924": {
   "anchor": "PV S5-R1",

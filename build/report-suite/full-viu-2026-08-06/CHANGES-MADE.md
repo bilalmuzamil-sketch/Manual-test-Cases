@@ -136,3 +136,15 @@ One further Story Defect filed, same Rule-52 shape, every field read back:
 | Key | Parent story | Summary |
 |---|---|---|
 | [SV-8940](https://shopview.atlassian.net/browse/SV-8940) | SV-8643 | Parts Velocity never shortens long Description, Category or Vendor text, so the table runs far wider than the window |
+
+## Update after batch 6 (Work In Progress export, 2026-08-06)
+
+**Application data: still nothing created, deleted or altered.** Read-only throughout.
+
+| Batch | Operation | Count | Verification |
+|---|---|---|---|
+| 6 (WIP export) | `update_case` | 8 | every one HTTP 200, re-GET, 30 fields compared, 0 mismatches, 0 collateral |
+
+Running TestRail total: **148 `update_case`** over **136 distinct cases**. Still 0 add · 0 delete ·
+0 section · **0 run writes** · **0 results logged**. **No further ticket filed** — SV-8907 already
+covers the export failure, so the finding went into the cases, not into Jira.

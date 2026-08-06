@@ -99,19 +99,27 @@ established against `v3.5-16cf83f`; the other 351 carry markers inherited from e
   yet it is real, deliberate and in epic story SV-8591. The Parts Velocity default first-visit view
   cannot be exported at all because of it.
 
-## ⚠️ RULE CHANGE 2026-08-06 — NO MORE TICKETS
+## Ticket filing — the standing authorisation STANDS
 
-The QA lead withdrew the authorisation to file defects mid-session. **File nothing.** Every finding
-becomes a ready-to-file candidate in `FILED.md` under **CANDIDATES — AWAITING AUTHORISATION**, and
-a question to him. Keep the deep testing exactly as it is.
+A mid-session instruction to stop filing was **retracted by the QA lead the same hour**, verbatim:
+*"I take everything back which I said before... Do not take any action or change anything based on
+the above which I said to you earlier."* **It was never in force. No case text was ever written under
+it** — the live census confirms **0 cases carry a "no ticket yet" marker**, and that variant must not
+be used. Defects are filed as found, in the Rule-52 shape, after a duplicate search and after trying
+to disprove them. **Rule 51 is untouched: an API-only fault is never filed — it goes to `API-ASK.md`
+as an ask.**
 
-Where a deviation has **no ticket**, the marker is `AUTOMATION: READY - EXPECT FAIL (no ticket yet)`
-and the block reads:
+## Rule-61 block census, live over all 476
 
-    What you should see today: <symptom>. This does not match what the specification requires. It has been reported to the QA lead and a decision on raising a ticket is pending.
-    - If you see exactly that, mark this test FAILED.
-    - If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-    - If it PASSES, tell the QA lead - the behaviour may have been fixed.
+| Marker | Count |
+|---|---|
+| `AUTOMATION: READY` | 388 |
+| `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` | 42 |
+| `AUTOMATION: HOLD` | 33 |
+| no plain-text marker (the 13 raw-markup cases) | 13 |
 
-**Seven tickets (SV-8934–SV-8940) were filed before the message arrived** — see `FILED.md`. They
-have not been withdrawn; that is his call.
+**40 of the 42 expect-fail cases carry the ticketed Rule-61 three-outcome block. 0 carry a no-ticket
+variant.** The two without a block are **C30500** (SV-8908, the Asset filter — its symptom was not
+driven, and an unobserved symptom must never be written) and **C38918** (the over-cap refusal, which
+cannot be produced here: the biggest tab holds 65 work orders against a cap near 10,000). **C38918 is
+worth the QA lead's decision — arguably it should be `AUTOMATION: HOLD`, not expect-fail.**

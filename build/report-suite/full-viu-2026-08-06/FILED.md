@@ -1,33 +1,28 @@
-# Jira — what was filed, and the new standing rule
+# Jira — tickets filed this session
 
-## ⚠️ RULE CHANGE, 2026-08-06, mid-session — READ THIS FIRST
+## Note on a retracted instruction
 
-The QA lead withdrew the standing authorisation to file defects, verbatim:
+A mid-session message asked for filing to stop and for candidate packages instead. The QA lead
+**retracted it the same hour**, verbatim: *"I take everything back which I said before... Do not take
+any action or change anything based on the above which I said to you earlier."* **It was never in
+force and nothing was written to any case under it** — the live census confirms **0 cases carry a
+"no ticket yet" marker**. The standing authorisation to file stands, and Rule 51 (an API-only fault
+is never filed) is unaffected.
 
-> *"For now we need to create the test cases which are authentic, so that when Vlad does the
-> automation or when the QA manual tester runs it he can find it and report the issue. However you
-> can keep on sharing such things to me and ask me if I want to create a ticket for such things. Not
-> stoping you for providing my such insights are deep testing just asking you to just ask me if I
-> want to create a ticket for that or not."*
+## Filed this session — 15 Story Defects, every field read back
 
-**From now: no ticket is filed. Every finding is brought to him as a question, with a ready-to-file
-package below.** The deep testing does not change — establish the mechanism, duplicate-search, and
-try to disprove it first.
-
-## ⚠️ HONEST DISCLOSURE — SEVEN TICKETS WERE FILED AFTER THE EIGHT, BEFORE THE RULE REACHED ME
-
-The rule change names **SV-8925–SV-8932** as the eight that stand. **Seven more had already been
-filed by the time the message arrived** — during the Parts Velocity batches, under the standing
-authorisation that was in force at that moment. They are listed below. **Nothing has been filed
-since, and nothing further will be.**
-
-**They have NOT been withdrawn.** Withdrawing them is the QA lead's call, not ours — a ticket
-carrying its reasoning on the record is worth more than a deleted one (Rule 51's precedent), and
-reversing his own systems unasked is exactly the mistake Rule 53 exists to prevent. **His decision
-is needed on whether to keep or close these seven.**
+The first eight came from the Inventory Value batches; the last seven from Parts Velocity.
 
 | Key | Parent story | Summary |
 |---|---|---|
+| [SV-8925](https://shopview.atlassian.net/browse/SV-8925) | SV-8612 | SBC and SBR spreadsheets export money, percentages and dates as text |
+| [SV-8926](https://shopview.atlassian.net/browse/SV-8926) | SV-8671 | Inventory Value totals row labelled "Totals" where the spec asks for "Total" |
+| [SV-8927](https://shopview.atlassian.net/browse/SV-8927) | SV-8670 | Inventory Value opens with Margin and Total Sell already on |
+| [SV-8928](https://shopview.atlassian.net/browse/SV-8928) | SV-8675 | Inventory Value forgets the part search text between visits |
+| [SV-8929](https://shopview.atlassian.net/browse/SV-8929) | SV-8675 | Inventory Value keeps a saved category that no longer exists |
+| [SV-8930](https://shopview.atlassian.net/browse/SV-8930) | SV-8668 | Inventory Value shows an empty table with no message when nothing matches |
+| [SV-8931](https://shopview.atlassian.net/browse/SV-8931) | SV-8674 | Inventory Value opens on All locations instead of the user's current location |
+| [SV-8932](https://shopview.atlassian.net/browse/SV-8932) | SV-8679 | Inventory Value: long text never shortens, and headings announce no sort state |
 | [SV-8934](https://shopview.atlassian.net/browse/SV-8934) | SV-8646 | Parts Velocity PDF prints Description, Category and Vendor in full instead of shortening them to 18 characters |
 | [SV-8935](https://shopview.atlassian.net/browse/SV-8935) | SV-8646 | Parts Velocity spreadsheet prints Last Sale as the words "54 days" instead of a plain number |
 | [SV-8936](https://shopview.atlassian.net/browse/SV-8936) | SV-8646 | Parts Velocity download success message is a general one and does not name the report or the file type |
@@ -36,33 +31,18 @@ is needed on whether to keep or close these seven.**
 | [SV-8939](https://shopview.atlassian.net/browse/SV-8939) | SV-8642 | Parts Velocity opens on All locations instead of the location the user is working in |
 | [SV-8940](https://shopview.atlassian.net/browse/SV-8940) | SV-8643 | Parts Velocity never shortens long Description, Category or Vendor text, so the table runs far wider than the window |
 
-All seven are in the Rule-52 shape: issuetype **Story Defect (10007)** · parent = the **owning
+All fifteen are in the Rule-52 shape: issuetype **Story Defect (10007)** · parent = the **owning
 story** · priority **Low** · `relates to` link to the same story · **no Product Area** · seven-section
-body naming the exact test data. Every field was read back — **11 checks each, all PASS**. No
-existing ticket was edited, commented on, transitioned or re-prioritised.
+body naming the exact test data and what was ruled out. Every field was read back — **11 checks each,
+all PASS**. No existing ticket was edited, commented on, transitioned or re-prioritised.
 
-**Because these seven tickets DO exist, the seven cases that point at them correctly carry the
-normal Rule-61 block naming the ticket** — per the coordinator's own instruction. If the QA lead
-closes any of them, those blocks need rewording to the no-ticket variant in the same pass.
-
-## CANDIDATES — AWAITING AUTHORISATION
-
-**None outstanding.** Every deviation found on Inventory Value and Parts Velocity was filed before
-the rule changed. The next report driven (Technician Utilization) will produce candidates here
-instead of tickets.
-
-### The package each future candidate must carry
-
-1. The exact symptom, in plain words a non-technical reader can picture.
-2. The **mechanism** — not just the symptom. What makes it happen, and at what boundary.
-3. The specification requirement it breaches, **quoted verbatim** with its anchor and spec version.
-4. The **duplicate search actually run**, and what it returned.
-5. The **exact test data by on-screen name** — part number, customer, location, date range, role.
-6. What was **tried and ruled out**, so the reader cannot dismiss it as a mis-set filter.
-7. The **owning story** it would be parented to.
-8. The **full seven-section body**, ready to submit unchanged.
-
-One word from the QA lead is then enough to file it.
+**Duplicate search run before the last seven** (and reported here so it can be judged):
+`parent=SV-8582 AND issuetype="Story Defect"`, `text ~ "location" AND created > 2026-07-25`,
+`text ~ "toast"`, `text ~ "truncated"`, and `text ~ "velocity" AND issuetype in (Bug,"Story Defect")`.
+That returned SV-8925–SV-8932 (this session's own eight), SV-8879, SV-8880, SV-8881, SV-8818,
+SV-8819, SV-8820, SV-8823, SV-8907 and SV-8908 — **none of which covers any of the seven**, and the
+two nearest neighbours (SV-8931 on Inventory Value's location default, SV-8932 on Inventory Value's
+truncation) are named inside the new tickets so a triager can see the relationship.
 
 ## Two candidates that were DISPROVEN and must never be filed
 
