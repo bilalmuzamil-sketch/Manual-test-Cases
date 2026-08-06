@@ -1,0 +1,41 @@
+# SV-8932 — Inventory Value: long text never shortens with an ellipsis, and column headings announce no sort state
+# parent: SV-8679
+
+1. What happens now
+Two things on the Inventory Value report that the written description asks for are not there.
+One. Long text in the Description, Category and Vendor columns is never shortened. The column just keeps growing to fit the longest value and the whole table scrolls sideways instead, so on a narrow screen the user has to scroll a long way right to reach the numbers.
+Two. Somebody using a screen reader cannot tell which column the report is sorted by, or in which direction. The arrow is drawn on screen, but nothing is announced.
+2. What should happen instead
+Inventory Value requirement S12-R7: "Long text values (Description, Category, Vendor) are truncated with an ellipsis when they overflow their column, with the full value available on hover; the Part # is never truncated."
+
+Inventory Value requirement S12-R8: "Each sortable column header exposes its sort state to assistive technology, and the active sort direction is indicated visually."
+
+The visual half of S12-R8 is correct - the arrow is drawn and the active header is styled. It is only the announced half that is missing.
+3. How to see it
+The long text:
+Sign in and open Reports > Inventory Value.
+
+Make the browser window narrow, about 760 pixels wide.
+
+Find a row with a long description and look at the end of the text, then hover over it.
+
+The sort state:
+On the same report, click the Total Cost heading to sort by it.
+
+With an accessibility inspector or a screen reader, read what that heading announces.
+
+Exact test data this was seen with: the longest description in view was "SAE 50 SYNTHETIC TRANSMISSION FLUID BULK (122205) (PER LITER)" on part KL-TF4090, at 61 characters. Locations Staging Heavy Duty - 9919 and Staging Lethbridge - 4310, date range This Month.
+4. What was actually seen
+Long text: the Description cell is set to never wrap, to let text overflow visibly, and to clip rather than add an ellipsis. Measured on that cell, the visible width and the full content width were the same - 447 pixels each - which means the column had simply grown to fit rather than cutting the text off. There is no ellipsis, and the cell carries no hover text of any kind, so the "full value on hover" has nothing to attach to.
+Sort state: none of the twelve column headings carries a sort state for assistive technology, whether it is the sorted column or not. They also carry no heading role. Only the visual arrow and styling change.
+5. What was ruled out
+It is not the window size. The behaviour is the same at 760, 900 and 1680 pixels wide - the column always grows to fit rather than truncating.
+
+It is not one column. Description, Category and Vendor all behave the same way.
+
+The sorting itself works. Clicking a heading re-sorts correctly and the arrow updates. Only the announcement is missing.
+
+6. How often
+Every time.
+7. Where it was seen
+Reports > Inventory Value, on the QA branch, build v3.5-16cf83f, on 6 August 2026.

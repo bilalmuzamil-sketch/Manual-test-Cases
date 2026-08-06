@@ -1,0 +1,164 @@
+{
+ "SV-8818": [
+  "Where this expected behaviour comes from: the report specifications, each in its own words. None of them allows a download to end in a server error; each one says a download either produces a file or explains itself.",
+  "the Inventory Value report specification, version 4, requirement S10-R12, which says: \"Export size guardrail. To keep a single-shot export renderable, an export is capped at a maximum of 10,000 rows in the filtered set. When the current filtered set exceeds the cap, neither the PDF nor the CSV is produced; instead the user sees the message: \u201cThis report is too large to export. Narrow the date range or filters, then try again.\u201d\" The views in this ticket are far below that cap, so the download should simply have worked.",
+  "the Inventory Value report specification, version 4, requirement S10-R14, which says: \"If a download fails, the user sees an error notification: \u201cFailed to export inventory value report (pdf)\u201d or \u201cFailed to export inventory value report (csv)\u201d.\"",
+  "the Sales By Customer report specification, version 15, requirement S15-R25, which caps each PDF at 10,000 data rows in the same way.",
+  "the Parts Velocity report specification, version 5, requirement S6-N1, which says: \"If an export fails, an error toast is shown.\"",
+  "the Technician Utilization report specification, version 6, Story 7 under Error Handling, which says: \"If a download fails, the user sees an error notification: \u201cFailed to download report\u201d.\"",
+  "Two honest caveats. First, this ticket as filed quoted the Inventory Value description at version 3; that page is now at version 4 and both requirements above carry over into it unchanged. Second, the Parts Velocity, Technician Utilization and Work In Progress descriptions carry no export size cap of their own, so for those three the source is the failure-message requirement rather than a cap."
+ ],
+ "SV-8819": [
+  "Where this expected behaviour comes from: the Parts Velocity report specification, version 5, Story 5 (Metric Calculations). Its Definitions block says: \"Window \u2014 the whole-day span of the selected range, inclusive of both the start and end dates, with a floor of 1 day (so a single-day range such as Today has Window = 1). This is the divisor used to annualize Turns / Yr.\"",
+  "The same story gives the calculation itself, for Turns / Yr: \"(Units Sold \u00f7 Window days \u00d7 365) \u00f7 On Hand; renders 0.00 when On Hand is 0.\" So the divisor must count both the first and the last day of the chosen period.",
+  "One honest note: this ticket as filed quoted the Parts Velocity description at version 4. That page is now at version 5 and the Window definition and the formula are unchanged in it."
+ ],
+ "SV-8820": [
+  "Where this expected behaviour comes from: the Inventory Value report specification, version 4, requirement S5-R2, which says: \"The report values inventory as of the end of the selected range.\"",
+  "The same specification, requirement S5-R7, says of a custom range: \"A Custom range lets the user pick a start and end date; the report values as of the picked end date (never a future date \u2014 it is capped at today).\"",
+  "And requirement S5-R4 gives the only permitted fallback, which is backwards and never forwards: \"Otherwise, the report replays the closest recorded day on or before the end of the selected range.\" A day AFTER the date asked for is not an outcome the specification allows."
+ ],
+ "SV-8821": [
+  "Where this expected behaviour comes from: nothing written down. Stating that plainly rather than dressing it up.",
+  "We checked the six report specifications and the stories under this epic, and none of them says what answer the system should give when an invoice is requested for a work order that has no contact set. The expectation in this ticket rests on consistency with the answers the product already gives for other missing prerequisites \u2014 for example \"Work order is not complete.\" and \"Line can`t be completed with unfulfilled part requests.\" \u2014 and on the general principle that a missing piece of required information should produce a clear rejection rather than a server error. That is a reasonable expectation, but it is our reading and not a quoted requirement.",
+  "This ticket is already closed. It is recorded here so that the record is honest about what the expectation rested on."
+ ],
+ "SV-8822": [
+  "Where this expected behaviour comes from: nothing written down, and the ticket said so when it was filed.",
+  "No specification and no story under this epic says what answer the system should give when a customer is saved with a field it does not recognise. The expectation \u2014 a validation error explaining what is wrong, rather than a server error \u2014 is a general robustness expectation and not a quoted requirement.",
+  "This ticket has already been withdrawn, for a separate reason: the fault can only be reached by sending the save request directly in a shape the product's own screens never produce, so no customer and no manual tester can see it. It is recorded here so that the record is honest about what the expectation rested on."
+ ],
+ "SV-8823": [
+  "Where this expected behaviour comes from: the Inventory Value report specification, version 4, requirement S10-R3, which says: \"Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last.\" That covers both halves of this ticket \u2014 which columns appear, and the order they appear in.",
+  "The same specification, requirement S10-R7, says: \"Money and Margin % use two-decimal and one-decimal formats respectively; an undefined Margin % shows \u201c\u2014\u201d.\" A number is asked for, not a dressed-up money string.",
+  "One honest note: this ticket as filed quoted the Inventory Value description at version 3. That page is now at version 4 and both requirements carry over into it unchanged."
+ ],
+ "SV-8879": [
+  "Where this expected behaviour comes from: Chris Ward's answer in our questions spreadsheet \u2014 https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true \u2014 tab \"The product vs your write-up\", row 6 (question 1.0), where he answered: \"B) (answered in sheet: \"Urgent - Location column\")\".",
+  "Option B, as he read it, was written out in full in that row: \"Change the product to match your ruling - hide it. We raise it with engineering, and the four lines still need correcting because they say it stays.\"",
+  "This must be said plainly, because his answer differs from the written descriptions rather than agreeing with them. Four of the six specifications currently say the opposite \u2014 for example the Parts Velocity description says \"A user with access to only one location still sees the Location filter with a single selectable location; behavior is unchanged from single-location use.\" and the Technician Utilization and Inventory Value descriptions carry the same line. Chris Ward's answer of 5 August 2026 is the more recent decision and it is the one this ticket follows; he also accepted in that same answer that those four lines still need correcting."
+ ],
+ "SV-8880": [
+  "Where this expected behaviour comes from: Chris Ward's answer in our questions spreadsheet \u2014 https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true \u2014 tab \"The product vs your write-up\", row 9 (question 4.0), where he answered: \"A)\n\nFurther context -- on-screen should match download :).\".",
+  "Option A, as he read it, was: \"They are missing by mistake - add the four back. We raise it with engineering and your write-up stays exactly as it is.\"",
+  "His answer agrees with the written description, so nothing is being overridden here. the Sales By Representative report specification, version 17, requirement S14-R15, sets out the Summary spreadsheet's column list in full, and requirement S14-R20 adds the Location column to it whenever that column is on screen."
+ ],
+ "SV-8881": [
+  "Where this expected behaviour comes from: the Technician Utilization report specification, version 6, which writes each menu option out in full \u2014 requirement S7-R2: \"The menu has an option labeled \u201cDownload Summary (PDF)\u201d.\"; requirement S7-R3: \"The menu has an option labeled \u201cDownload Expanded View (PDF)\u201d.\"; requirement S7-R4: \"The menu has an option labeled \u201cDownload Summary (CSV)\u201d.\" Every one begins with the word Download.",
+  "Chris Ward confirmed the same thing on 5 August 2026 in our questions spreadsheet \u2014 https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true \u2014 tab \"The product vs your write-up\", row 11 (question 6.0), where he answered: \"B) is correct here. Consistency is key.\" Option B in that row was: \"Bring it into line with Sales By Customer and Sales By Representative - the longer \u201cDownload ...\u201d wording. We raise it with engineering.\"",
+  "One honest caveat, and it is only about how many options there should be, not their wording: the description names three options and the product ships four. His answer settles the wording and does not state the count, so the count is still his to confirm."
+ ],
+ "SV-8907": [
+  "Where this expected behaviour comes from: the Work In Progress report specification, version 9, Story 9, which describes a download that produces a file. Requirement S9-R1: \"The toolbar has a menu, opened from a three-dot button, holding the download options \u201cDownload (PDF)\u201d and \u201cDownload (CSV)\u201d.\" Requirement S9-R2: \"Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last.\" Requirement S9-R4: \"Both downloads include a Totals row matching the on-screen Totals row for the tab.\" And requirement S9-R9 even names the files: \"The downloaded files are named \u201cwip-2-report.pdf\u201d and \u201cwip-2-report.csv\u201d.\"",
+  "A specification that says what is inside the file and what the file is called is asking for a file to be produced. There is nothing to satisfy if the request ends in a server error.",
+  "One honest note: unlike the Inventory Value and Sales By Customer descriptions, the Work In Progress description sets no export size limit and gives no wording for a failed download, so a download that fails is not an outcome it contemplates at all."
+ ],
+ "SV-8908": [
+  "Where this expected behaviour comes from: the Work In Progress report specification, version 9, requirement S7-R4, which says: \"The toolbar has an Asset filter, a searchable type-ahead multi-select listing the assets present across all open jobs in the current scope. Each option shows the unit number and the vehicle identification number, and the user's typed text matches against EITHER the unit number OR the vehicle identification number.\" Two different vehicles that share a unit number are two assets present in scope, so both belong in the list."
+ ],
+ "SV-8925": [
+  "Where this expected behaviour comes from: both reports' own specifications, which ask for plain numbers so the file can be re-used.",
+  "the Sales By Customer report specification, version 15, requirement S14-R9: \"The Margin % cell is a plain number to one decimal with no percent sign (for example, 64.7); it is empty when the row's Subtotal is zero or below.\"",
+  "the Sales By Customer report specification, version 15, requirement S14-R10: \"Dates export as mm-dd-yyyy \u2014 for example, 05-14-2026 \u2014 matching the ShopView-wide CSV date format.\"",
+  "the Sales By Customer report specification, version 15, requirement S14-R11: \"Currency values export as plain numbers with no dollar sign and no thousands separators.\"",
+  "the Sales By Representative report specification, version 17, requirement S14-R17: \"CSV cell formatting (both CSVs): numeric columns are emitted as plain numbers for re-pivoting \u2014 no currency symbol, thousands separators, or parentheses; a negative value uses a leading minus (-1234.56).\""
+ ],
+ "SV-8926": [
+  "Where this expected behaviour comes from: the Inventory Value report specification, version 4, requirement S4-R1, which says: \"A totals row is shown at the bottom of the report, with the literal label \u201cTotal\u201d in the Part # column's cell.\" The word literal is the specification's own."
+ ],
+ "SV-8927": [
+  "Where this expected behaviour comes from: the Inventory Value report specification, version 4, requirement S3-R12, which lists what is on screen at the start: \"On first visit, the visible columns are: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin %, and Total Cost.\" Margin and Total Sell are not in that list.",
+  "The same specification, requirement S3-R13, says so directly: \"The Margin and Total Sell columns are hidden by default and can be turned on from the column-selection control (Story 8).\" And requirement S8-R3 repeats it: \"Every other column is available in the control; Margin and Total Sell are off by default, the rest on by default (S3-R12).\""
+ ],
+ "SV-8928": [
+  "Where this expected behaviour comes from: the Inventory Value report specification, version 4, requirement S8-R5, which says: \"The report remembers, in the user's browser, the selected date range, category selection, vendor selection, part search text, location selection, column selection, and sort, and restores them on the user's next visit.\" The part search text is named in that list."
+ ],
+ "SV-8929": [
+  "Where this expected behaviour comes from: the Inventory Value report specification, version 4, requirement S8-R6, which says: \"Restore is defensive: a saved value that is no longer valid falls back to that setting's default rather than breaking the view. A saved category or vendor no longer present in the data is dropped.\""
+ ],
+ "SV-8930": [
+  "Where this expected behaviour comes from: the Inventory Value report specification, version 4, which says three separate times that an empty result shows a message rather than a bare empty table.",
+  "Requirement S1-N2: \"If no in-stock part exists for the selected location(s) on the resolved date, the report shows the no-data message (Story 12) instead of rows.\"",
+  "Requirement S5-N1: \"If there is no recorded day on or before the end of the selected range... the report shows the no-data message (Story 12) and no totals row.\"",
+  "Requirement S7-N2: \"If the selected location(s) hold no in-stock parts on the resolved date, the report shows the no-data message (Story 12).\""
+ ],
+ "SV-8931": [
+  "Where this expected behaviour comes from: the Inventory Value report specification, version 4, requirement S1-R3, which says: \"On the user's first visit (no saved settings \u2014 Story 8), the report defaults to the current calendar month date range and the user's currently active location.\"",
+  "The same specification, requirement S7-R2, repeats it for the filter itself: \"On a first visit (no saved selection \u2014 Story 8), it defaults to the user's currently active location.\""
+ ],
+ "SV-8932": [
+  "Where this expected behaviour comes from: the Inventory Value report specification, version 4, requirement S12-R6, which covers the long text: \"Long text values (Description, Category, Vendor) are truncated with an ellipsis when they overflow their column, with the full value available on hover; the Part # is never truncated.\"",
+  "And requirement S12-R8, which covers the headings: \"Each sortable column header exposes its sort state to assistive technology, and the active sort direction is indicated visually.\""
+ ],
+ "SV-8934": [
+  "Where this expected behaviour comes from: the Parts Velocity report specification, version 5, requirement S6-R6, which says: \"The PDF is formatted for A3 landscape, titled Parts Velocity. In the PDF, Description, Category, and Vendor are truncated to 18 characters. Part # is not truncated. The CSV carries the full, untruncated Description / Category / Vendor values.\""
+ ],
+ "SV-8935": [
+  "Where this expected behaviour comes from: the Parts Velocity report specification, version 5, requirement S6-R8, which says: \"Last Sale renders as N days (e.g. 42 days) in the PDF; the CSV renders the raw integer.\" So the words belong in the printable file and a plain number belongs in the spreadsheet."
+ ],
+ "SV-8936": [
+  "Where this expected behaviour comes from: the Parts Velocity report specification, version 5, requirement S6-R9, which says: \"On a successful download, a success toast reads \u201cVelocity report exported (CSV)\u201d or \u201cVelocity report exported (PDF)\u201d.\" The wording names the report and the file type, which the general message does not."
+ ],
+ "SV-8938": [
+  "Where this expected behaviour comes from: the Parts Velocity report specification, version 5, requirement S7-R8, which says: \"When shown (S2-R12 / S3-R10), the per-row Location column renders as the leftmost column, before Type, using the suite's standard column treatment so its placement matches the same column on the other reports in the suite.\"",
+  "The same specification, requirement S2-R12, says when it is shown at all: \"When the Location filter (S2-R9) resolves to more than one location in scope, the table shows a per-row Location column identifying each row's location; when a single location is in scope the column is hidden.\""
+ ],
+ "SV-8939": [
+  "Where this expected behaviour comes from: the Parts Velocity report specification, version 5, requirement S2-R9, which says: \"The toolbar provides a Location multi-select filter as the rightmost control in the filter row, listing the locations the signed-in user has access to plus an \u201cAll Locations\u201d option. On a first visit it defaults to the user's currently active location (the location currently selected in the application's global location switcher).\""
+ ],
+ "SV-8940": [
+  "Where this expected behaviour comes from: the Parts Velocity report specification, version 5, requirement S3-R7, which says: \"The Description, Category, and Vendor columns truncate long text with an ellipsis on screen; the full value is available on native hover (browser tooltip) and is written in full to the CSV export (S6). Part # is never truncated (on screen or in any export).\""
+ ],
+ "SV-8943": [
+  "Where this expected behaviour comes from: the Technician Utilization report specification, version 6, requirement S1-R3, which says: \"On the user's first visit (no saved settings \u2014 \u00a73), the report defaults to the current calendar month (the date picker's \u201cThis Month\u201d preset) and the user's currently active location.\"",
+  "The same specification, requirement S9-R2, says it again for the filter itself: \"On a first visit (no saved selection \u2014 \u00a73), it defaults to the user's currently active location (the location currently selected in the application's global location switcher).\""
+ ],
+ "SV-8944": [
+  "Where this expected behaviour comes from: the Technician Utilization report specification, version 6, requirement S1-R9, which says: \"Reconciliation guarantee (scope). For the same date range and the same single location, and counting closed clock records, this report's Total Hours for a technician equals the Timesheet Activities report's total for that technician to the cent.\""
+ ],
+ "SV-8945": [
+  "Where this expected behaviour comes from: the Technician Utilization report specification, version 6, requirement S2-R13, which says: \"All six columns (Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor) are sortable by clicking the column header. Clicking a column that is not the active sort sorts it ascending; clicking the active sort column again toggles it to descending.\"",
+  "That the sort happens on screen rather than by asking the server again is stated in requirement S7-R10a: \"The on-screen column sort (S2-R13) is applied client-side only and is not carried into the export.\""
+ ],
+ "SV-8946": [
+  "Where this expected behaviour comes from: the Technician Utilization report specification, version 6, requirement S9-R3, which draws the distinction in its own words: \"Selecting one, several, or all locations reloads the report scoped to that set (unlike the technician filter, which is on-screen only).\"",
+  "The same specification, requirement S4-R5, depends on that being true: \"Expansion state is view-only and is not persisted: it resets (all collapsed) on any data reload (date-range or location change) and on a fresh visit. Deselecting and re-selecting a technician in the technician filter (an on-screen operation) does not change the expansion state of the other rows.\""
+ ],
+ "SV-8947": [
+  "Where this expected behaviour comes from: the Technician Utilization report specification, version 6, which writes the labels out in full \u2014 requirement S5-R1: \"The toolbar has a filter labeled \u201cFilter by Technician\u201d where the user can select more than one technician.\"; requirement S5-R6: \"The filter has a control labeled \u201cSelect all\u201d to select all technicians at once.\"; requirement S5-R7: \"The filter has a control labeled \u201cClear all\u201d to clear all technicians at once.\""
+ ],
+ "SV-8948": [
+  "Where this expected behaviour comes from: the Technician Utilization report specification, version 6, requirement S7-R8, which says: \"Every download includes only the technicians that are currently selected in the technician filter, and covers the location(s) currently selected in the location filter.\"",
+  "The same specification, requirement S7-N1, covers the empty case: \"If no technician is selected, choosing a download option does nothing: no file downloads and no message appears.\""
+ ],
+ "SV-8949": [
+  "Where this expected behaviour comes from: the Technician Utilization report specification, version 6, requirement S7-R10a, which says: \"Rows in every download are ordered by Technician name A\u2192Z (the default order). The on-screen column sort (S2-R13) is applied client-side only and is not carried into the export.\""
+ ],
+ "SV-8950": [
+  "Where this expected behaviour comes from: the Technician Utilization report specification, version 6, which names the Summary row in all three files \u2014 requirement S7-R5: \"The Summary PDF shows the technician rows and the Summary row.\"; requirement S7-R6: \"The Expanded PDF shows the technician rows, each technician's per-day breakdown, and the Summary row.\"; requirement S7-R7: \"The CSV file shows the technician rows and the Summary row.\""
+ ],
+ "SV-8951": [
+  "Where this expected behaviour comes from: the Technician Utilization report specification, version 6, requirement S7-R7, which says what the spreadsheet holds: \"The CSV file shows the technician rows and the Summary row. The CSV is always this summary-level content; it does not vary by the summary/expanded choice.\" Per-day rows are not part of that.",
+  "The same specification, requirement S7-R12, names the files: \"The downloaded files are named \u201cTechnician-Utilization-Summary.pdf\u201d, \u201cTechnician-Utilization-Expanded.pdf\u201d, and \u201ctechnician-utilization.csv\u201d.\""
+ ],
+ "SV-8952": [
+  "Where this expected behaviour comes from: the Technician Utilization report specification, version 6, Story 7 under Error Handling, which gives both wordings: \"When a download starts, the user sees a success notification: \u201cDownload started\u201d.\" and \"If a download fails, the user sees an error notification: \u201cFailed to download report\u201d.\"",
+  "The same two appear again in the notifications table in section 7 of that specification, where the trigger \"A download starts\" is paired with the message \"Download started\", and the trigger \"A download fails\" with the message \"Failed to download report\"."
+ ],
+ "SV-8953": [
+  "Where this expected behaviour comes from: the Technician Utilization report specification, version 6, requirement S4-R1, which says: \"Each technician row has a control to expand and collapse it. The control carries an accessible name reflecting its next action, scoped to that technician (\u201cExpand 's daily breakdown\u201d when the row is collapsed, \u201cCollapse 's daily breakdown\u201d when it is expanded).\"",
+  "Requirement S4-R4 asks for the same of the all-rows control, and requirement S8-R12 states the accessibility duty outright: \"The expand/collapse controls (per-row S4-R1 and the all-rows control S4-R4) are keyboard-focusable, toggle on Enter/Space, expose their expanded/collapsed state to assistive technology, and carry the verbatim accessible names defined in S4-R1 (per-row) and S4-R4 (all-rows).\""
+ ],
+ "SV-8954": [
+  "Where this expected behaviour comes from: the Technician Utilization report specification, version 6, requirement S10-R4, which says: \"The per-row Location column is one of the toggleable columns for a user with access to more than one location: it is shown by default and can be toggled on or off from the column selector (S9-R9). A user with access to only one location never sees it and it is not offered to them in the column selector.\"",
+  "The same specification, requirement S9-R9, repeats it: \"The report shows a per-row Location column to any user with access to more than one location; it is shown by default and can be toggled on or off from the column selector, and a user with access to only one location never sees it.\" A user who has more than one location must therefore be able to put the column back."
+ ],
+ "SV-8955": [
+  "Where this expected behaviour comes from: the Sales By Customer report specification, version 15, requirement S2-R6, which says: \"When the user changes the date range, the chosen value is written to the page link so the report can be shared or bookmarked at that range.\"",
+  "The same specification, requirement S9-R3, adds the Product Type: \"Before navigating, the active date range and Product Type are written to the page link so the report can be restored.\""
+ ],
+ "SV-8956": [
+  "Where this expected behaviour comes from: the Sales By Customer report specification, version 15, requirement S14-R14, which says: \"The files are named for the report, the version, and the active date range: the Summary CSV is sales-by-customer-summary-{range}.csv and the Expanded CSV is sales-by-customer-expanded-{range}.csv. {range} uses this map from range label: Today \u2192 today; Yesterday \u2192 yesterday; This Week \u2192 this_week; Last Week \u2192 last_week; This Month \u2192 this_month; Last Month \u2192 last_month; This Year \u2192 this_year; Last Year \u2192 last_year; This Quarter \u2192 this_quarter; Last Quarter \u2192 last_quarter; Custom \u2192 custom.\"",
+  "The same specification, requirement S15-R6, applies the same naming to the printable files: \"The files follow the same version-and-range naming as the CSV (S14-R14) with a .pdf extension.\""
+ ]
+}

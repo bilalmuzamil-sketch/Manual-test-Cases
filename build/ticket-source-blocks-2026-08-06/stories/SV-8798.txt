@@ -1,0 +1,69 @@
+# SV-8798 [Story] Page Search
+# parent: SV-8785
+
+Summary
+Every table in the application gets an inline search control that lets users type to narrow records instantly, working additively with filters. This replaces the old behavior where the global search silently filtered page content, giving users a dedicated, predictable search scoped strictly to the table they're looking at.
+Context
+The search control lives in the page toolbar alongside the filter toggle and primary CTA
+
+Search is delivered through the shared table component — it applies to every table in the app (list pages, detail page tables, dialog tables — 42 surfaces total)
+
+The query is session-scoped: it survives navigation within the tab but does not persist server-side or sync across devices
+
+Search and filters are additive (AND) but independently cleared
+
+Requirements
+A Search control is displayed in the page toolbar, positioned before icon-only actions and the primary CTA — (PRD: Story 13, S13-R1)
+
+Default state: low-emphasis text button with magnifier icon and "Search" label — (PRD: Story 13, S13-R2)
+
+On hover: grey/100 background fill — (PRD: Story 13, S13-R3)
+
+On click: expands in place into a 180px text input, growing leftward from its anchor — (PRD: Story 13, S13-R4)
+
+Expanded empty state: magnifier icon, text caret, "Type to search" placeholder — (PRD: Story 13, S13-R5)
+
+With text entered: grey/900 text, X-circle clear icon appears — (PRD: Story 13, S13-R6)
+
+Query applies as the user types, debounced at 300ms (Inventory: 350ms). No apply button or Enter required — (PRD: Story 13, S13-R7)
+
+Long queries: standard text input behavior with horizontal scroll — (PRD: Story 13, S13-R8)
+
+Search is scoped strictly to the current table — never returns results from another table, page, or module — (PRD: Story 13, S13-R9)
+
+Search and filters are additive (AND) — (PRD: Story 13, S13-R10)
+
+On pages with tabs, search applies within the active tab only — (PRD: Story 13, S13-R11)
+
+Results replace the table contents in place; no separate results view — (PRD: Story 13, S13-R12)
+
+X-circle clears the query and restores the filtered-but-unsearched state; "Clear filters" does not clear search and vice versa — (PRD: Story 13, S13-R13)
+
+Query retained for the browser tab session; survives sorting, pagination, and navigation — (PRD: Story 13, S13-R14)
+
+Blur with empty field collapses to default state; blur with query keeps field expanded — (PRD: Story 13, S13-R15)
+
+Mobile: same inline expansion, no modal or separate screen — (PRD: Story 13, S13-R16)
+
+Mobile: expanded field fills remaining action row width (162px on WO); all toolbar actions stay visible — (PRD: Story 13, S13-R17)
+
+Mobile: primary CTA uses natural hug width (144px) instead of stretching — (PRD: Story 13, S13-R18)
+
+Mobile: pages with 2+ icon-only actions collapse them into a "more" kebab — (PRD: Story 13, S13-R19)
+
+Every table in the app carries a search control via the shared table component — (PRD: Story 13, S13-R22)
+
+Each table searches the fields its existing search endpoint already covers — (PRD: Story 13, S13-R23)
+
+On pages with tabs, query scoping matches that page's filter scoping (WO tabs share one query; Reports/Parts tabs keep separate queries) — (PRD: Story 13, S13-R24)
+
+Query stored in browser tab session only, never server-side; does not sync across devices; two tabs keep independent queries — (PRD: Story 13, S13-R25)
+
+Out of Scope
+Hover-on-expanded, disabled, and loading states
+
+Per-table search field documentation (pending from engineering, S13-R23)
+
+Acceptance Criteria
+Given I'm on Work Orders, when I click the Search button, then it expands into a 180px text inputGiven I type "Smith", then the table narrows to matching records after 300ms debounceGiven I have filters active and type a query, then the query narrows within the filtered setGiven I click X-circle, then the query clears and the table returns to filtered-only stateGiven I clear filters, then the search query remains active — filters and search are independentGiven I'm on mobile, when I tap Search, then the field expands inline and the keyboard appearsGiven Inventory page, then the debounce is 350ms instead of 300msGiven I navigate away and return (same tab), then my search query is restoredGiven the tab session ends, then the query is not restored on next visitGiven I collapse the filter bar while searching, then the query continues to applyUI/UX
+Figma — Page Search Component

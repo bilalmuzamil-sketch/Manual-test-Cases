@@ -1,0 +1,30 @@
+# SV-8849 — A shift that is part of a multi-day series cannot be opened from the Week view
+# parent: SV-8692
+
+Description
+When a big job is spread across several days, the Week view draws it as one labelled block on the first day with small 'continues' markers on the following days. None of those blocks can be clicked open. Nothing happens at all - no shift window, no menu. That means from the Week view a planner cannot see the detail of a spread job, cannot change its colour, cannot add a note and, most importantly, cannot delete it. The same shift opens perfectly well from the Day view and the Month view, so the information exists - it is only the Week view that will not open it.
+Branch / Environment
+Branch tested: https://sv8685.qa.shopview.com/schedule · API host: https://sv8685api.qa.shopview.com · Build marker (meta app-version): v3.5-4873abe · index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 · Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f · Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) · Signed in as admin@shopview.com (Administrator) · Observed 2026-08-04, 16:00-19:00 UTC.
+Steps to reproduce
+Open the Schedule and pick the Week view.
+
+Type S-14527 into 'Search work orders' to find the Qispring Rentals work order (5 lines, 40.3h estimate).
+
+Drag the card onto technician Brittany Anderson's row on the Monday column.
+
+Choose 'Schedule whole work order' and then 'Create 4 shifts'.
+
+Back on the Week view, click the labelled Monday block that reads 'Qispring Rentals / 5 Lines / Part of a series'.
+
+Click each of the small 'continues' markers on Tuesday, Wednesday and Thursday.
+
+Now switch to the Day view for Monday and click the same block.
+
+Expected behaviour
+Clicking any part of a spread job in the Week view opens the shift window, exactly as clicking a single-day shift does, so the planner can see the detail, recolour it, add a note or delete it.
+Current behaviour
+In the Week view neither the labelled block nor any 'continues' marker responds to a click - no window opens. Right-clicking and double-clicking do nothing either. The very same shift opens normally from the Day view and the Month view.
+Images
+No screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.
+Technical details for developers
+Verified by clicking all nine .schedule-block elements in the week in turn: the four series blocks (one schedule_series_block plus three text_schedule_series_continues) returned no .q-dialog, while the four standalone shifts and the event all opened dialog_schedule_shift_detail. In Day and Month view the same series shift opens and the dialog correctly shows 'event_repeat / Part of a series - Shift 1 of 4'. Series id 1655435d-8826-4eb6-bc4a-6dc978bdfc01.

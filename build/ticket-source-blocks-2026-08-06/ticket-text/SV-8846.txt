@@ -1,0 +1,19 @@
+# SV-8846 — On a phone there is no Clear Filters button, so filters cannot all be cleared at once
+# parent: SV-8797
+
+Environment
+QA branch https://sv8785.qa.shopview.com/workorders
+Steps to Reproduce
+On a phone (or a browser window 390 pixels wide), open Work Orders on the All tab.
+
+Tap the Status button, then tap Paid. The list narrows to Paid work orders.
+
+Look for a "Clear Filters" button, both in the row of filter buttons and anywhere else on the page.
+
+Expected Result
+Just as on a desktop screen, once at least one filter is on, a "Clear Filters" button appears so the user can remove every filter in one tap.
+Current Result
+There is no Clear Filters button anywhere on the phone screen, even though the Status button is highlighted and reads "Status (1)" and the All Filters button reads "All Filters (1)". The only way to remove filters is to open each filter one at a time and use Clear Selection inside it. On the same account on a desktop screen, the Clear Filters button does appear.
+
+Technical detail
+On the phone layout no element with data-test-id="clear_filters" exists in the DOM while a filter is active, and no element anywhere on the page has text matching /clear/i. On desktop the same state renders that element in the filter bar. Specification reference S12-R2, which says "Clear filters" appears when a filter is active on mobile.

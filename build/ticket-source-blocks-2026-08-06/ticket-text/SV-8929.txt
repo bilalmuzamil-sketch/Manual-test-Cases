@@ -1,0 +1,36 @@
+# SV-8929 — Inventory Value keeps a saved category that no longer exists, so the report opens empty instead of dropping it
+# parent: SV-8675
+
+1. What happens now
+The Inventory Value report remembers the category and vendor a user picked. If one of those saved choices later stops existing in the data, the report keeps using it anyway. The result is a report that opens showing nothing, with no explanation, and no obvious way for the user to work out why - the filter that is emptying the report is one they cannot see any more.
+2. What should happen instead
+Inventory Value requirement S8-R6: "Restore is defensive: a saved value that is no longer valid falls back to that setting's default rather than breaking the view. A saved category or vendor no longer present in the data is dropped."
+So the stale choice should be quietly discarded on load and the report should open on its normal full list.
+3. How to see it
+Sign in and open Reports > Inventory Value.
+
+Choose a category in the Category filter, so the choice is saved.
+
+Make that saved choice no longer valid - the quickest reliable way is to change the stored category to one that does not exist in the data.
+
+Reload the report.
+
+Exact test data this was seen with: the saved category was replaced with the identifier 00000000-0000-4000-8000-000000000000, which matches no category in this organisation. Locations Staging Heavy Duty - 9919 and Staging Lethbridge - 4310, date range This Month, 5,657 rows in scope before the change.
+4. What was actually seen
+The report loaded without an error message, but:
+the stale category was not dropped - it was still there in the saved settings afterwards, unchanged;
+
+it was still being applied, so the table came back with no data rows at all, down from 5,657.
+
+The user is left looking at an empty report caused by a filter selection that no longer corresponds to anything.
+5. What was ruled out
+It is not a crash. The page renders and no error is shown - which is part of the problem, because nothing tells the user what happened.
+
+It is not the rest of the restoring. The date range, locations, columns and sort were all restored correctly in the same load, so the restore path itself is running.
+
+It is not a stale-cache effect. The saved settings were re-read after the load and the invalid identifier was still present.
+
+6. How often
+Every time.
+7. Where it was seen
+Reports > Inventory Value, on the QA branch, build v3.5-16cf83f, on 6 August 2026.

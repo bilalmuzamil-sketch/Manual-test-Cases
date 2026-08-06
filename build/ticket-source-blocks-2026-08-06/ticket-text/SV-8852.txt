@@ -1,0 +1,28 @@
+# SV-8852 — The shift window warns about a scheduling clash but gives no way to fix it
+# parent: SV-8697
+
+Description
+When a shift clashes - a double booking, a day the technician does not work, or hours outside their shift - the shift window shows a warning banner naming the reason. The banner is supposed to carry an action that takes the planner straight to fixing it. There is no such action. The planner is told there is a problem and then left to work out for themselves how to move the job.
+Branch / Environment
+Branch tested: https://sv8685.qa.shopview.com/schedule · API host: https://sv8685api.qa.shopview.com · Build marker (meta app-version): v3.5-4873abe · index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 · Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f · Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) · Signed in as admin@shopview.com (Administrator) · Observed 2026-08-04, 16:00-19:00 UTC.
+Steps to reproduce
+Open the Schedule and pick the Week view.
+
+Note that technician Ayesha Khan does not work Sundays (Edit Staff Member shows Saturday and Sunday as Not working).
+
+Type S-15855 into 'Search work orders' to find the Vuchester Retail work order, unit 10123073, line ' Service - Mobile service call made by George Donald 403-369-7067'.
+
+Drag that card onto Ayesha Khan's row on a Sunday column.
+
+The new block gets an amber warning triangle. Click the block to open the shift window.
+
+Read the warning banner and look for an action next to it.
+
+Expected behaviour
+The banner reads the clash reason and offers an action - an 'Adjust' button or link - that lets the planner correct the shift there and then.
+Current behaviour
+The banner reads 'Scheduling conflict / Not a working day' and offers nothing. The only controls in the whole window are the delete bin, the close X, the colour selector, Add Note and Open Work Order.
+Images
+No screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.
+Technical details for developers
+Enumerated every button inside dialog_schedule_shift_detail for a conflicted shift: button_shift_detail_delete, the close X, button_shift_detail_color, button_shift_detail_add_note, button_shift_detail_open_work_order. No adjust control exists under any test id or any label. Spec section 4.9: 'A conflict banner with an "Adjust" action when the shift is conflicted.'

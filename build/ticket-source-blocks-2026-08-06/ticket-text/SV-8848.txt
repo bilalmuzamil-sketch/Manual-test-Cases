@@ -1,0 +1,30 @@
+# SV-8848 — Every time on the Schedule is shown six hours later than the time it was scheduled for
+# parent: None
+
+Description
+When you schedule a technician for the morning, the Schedule shows the job in the afternoon. A one-hour job put on a technician's calendar for 9:00 in the morning appears on the board, in the pop-up summary and in the shift window as 3:00 in the afternoon. Every time on the page is shifted by six hours - the block position, the hover summary, the start and end times in the shift window, and the little 'now' marker in Day view. A twelve-hour day shift that should read 7:00 AM to 7:00 PM instead reads 1:00 PM to 1:00 AM and spills over into the next day on the Day view. This makes the Schedule unusable as a planning board: nobody can tell a technician when to start, and a morning job looks like an evening job.
+Branch / Environment
+Branch tested: https://sv8685.qa.shopview.com/schedule · API host: https://sv8685api.qa.shopview.com · Build marker (meta app-version): v3.5-4873abe · index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 · Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f · Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) · Signed in as admin@shopview.com (Administrator) · Observed 2026-08-04, 16:00-19:00 UTC.
+Steps to reproduce
+Open the Schedule and pick the Week view.
+
+Find the work order S-15855 Vuchester Retail, unit 10123073, line ' Service - Mobile service call made by George Donald 403-369-7067' in the left-hand list (type S-15855 into 'Search work orders').
+
+Drag that card onto the row for technician Ayesha Khan, on the Tuesday column.
+
+Note that Ayesha Khan's working hours in Edit Staff Member are Monday 7:00 AM to 9:00 PM and Tuesday to Friday 7:00 AM to 7:00 PM, so the job should start at 7:00 in the morning.
+
+Hover the new block and read the time range in the pop-up summary.
+
+Click the block and read the two time boxes in the shift window.
+
+Switch to the Day view for that date and look at where the block sits against the hour labels, and at the time printed on the 'now' marker.
+
+Expected behaviour
+The Schedule shows shop-local times. A job scheduled to start at 7:00 in the morning reads 7:00 AM everywhere - on the block, in the hover summary, in the shift window and in the Day view position. The 'now' marker matches the clock on the wall at the shop.
+Current behaviour
+Every time is six hours later than it should be. The 7:00 AM job reads 1:00 PM; a 9:00 AM job reads 3:00 PM; the 'now' marker read 4:11 PM while the shop clock read 10:11 AM. The date can roll over too: a 7:00 AM to 7:00 PM shift reads 1:00 PM to 1:00 AM and is drawn partly on the following day.
+Images
+No screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.
+Technical details for developers
+The write path converts shop-local to UTC correctly and the read path never converts back, so UTC is rendered as wall-clock. Evidence: shift cea79194-02d3-46d1-958b-a76f17ee1cec is stored startsAt 2026-08-02T16:01:00Z (= 10:01 local, America/Edmonton is UTC-6) and the tooltip reads 'Sun, Aug 2, 2026 - 4:01 PM - 5:13 PM'. Creating a shift with startTime '09:00' via POST /api/schedule/shifts stored 15:00Z and the modal's native input[type=time] value attribute is literally '15:00'. This is NOT a client-locale artefact: forcing the browser timezone to America/Edmonton (the workplace's own timezone from GET /api/staff/my-workplaces) produced the identical wrong value. Affected surfaces: schedule_shift_block text_schedule_block_time, the hover card, input_shift_detail_start_time / input_shift_detail_end_time, text_schedule_now_time, and Day-view horizontal positioning.

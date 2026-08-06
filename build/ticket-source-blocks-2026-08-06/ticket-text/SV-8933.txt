@@ -1,0 +1,82 @@
+# SV-8933 — Working hours cannot be opened for a staff member who belongs to another location
+# parent: SV-8699
+
+Description
+A staff member's working hours cannot be opened at all if that person belongs to a different location from the one you are currently working in. The Staff list shows everyone in the organisation, so you can find the person, open them, and switch on Set custom hours for this technician — and at that point the screen gives up with an error and switches the toggle back off. There is no way to reach their hours from the location you are in.
+It matters because the Schedule uses each technician's working hours for the start time of a new shift, for the before-hours and after-hours conflict warnings and for the capacity bars. A shop that runs two locations cannot set those hours for anyone outside whichever location they happen to be viewing, and the screen gives no hint that switching location is what is needed — it simply looks broken.
+This affects a substantial part of the staff list rather than one unlucky record: of the 161 people in the list, 63 cannot have their hours opened from the Heavy Duty location and 98 can.
+Branch / Environment
+Application: https://sv8685.qa.shopview.com
+
+API host: https://sv8685api.qa.shopview.com
+
+Build marker (<meta name="app-version">): v3.5-7ec992f
+
+index.html last-modified: Wed, 05 Aug 2026 22:49:36 GMT, etag e2a80a6ab5e0b47c29fd88af9db1e980
+
+Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f
+
+Location / workplace while reproducing: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton)
+
+Signed in as admin@shopview.com (Administrator)
+
+Observed: 2026-08-06, 05:0x UTC
+
+Steps to reproduce
+The exact test data is named below so that the result does not depend on which person is picked — the behaviour follows the person's location, not the person.
+Sign in as an Administrator and make sure the location selected at the top of the app is Staging Heavy Duty - 9919.
+
+Go to Administration and open the Staff list.
+
+Find Benjamin Peters. His record belongs to the other location, Staging Lethbridge - 4310, but he is listed here all the same.
+
+Open his record with the edit (pencil) icon on his row.
+
+Switch on Set custom hours for this technician.
+
+Now change the location at the top of the app to Staging Lethbridge - 4310, open the same person again and switch the same toggle on.
+
+For a direct contrast in the same sitting, repeat steps 3 to 5 with Ayesha Khan AK, who belongs to Staging Heavy Duty - 9919. Her hours open normally, which shows the editor itself is working.
+Expected behaviour
+Switching the toggle on should reveal the Monday-to-Sunday From/To editor and let the hours be set, for any staff member the Staff list offers.
+The Schedule specification describes the technician working-hours editor without any condition about which location the person is being viewed from:
+"Set custom hours for this technician" reveals a per-day (Mon-Sun) From/To editor for that technician.
+Governing requirement: Schedule specification, Confluence page 713031682, version 23, section 4.2 (Working Hours).
+If the hours genuinely are meant to be per-location, then the expected behaviour is that the screen says so — either by not offering the toggle, or by telling the user which location they need to switch to. What should not happen is an error that reads as a fault.
+Current behaviour
+The toggle flicks on and then immediately back to off, and this inline error appears: Couldn't load this technician's hours, so they can't be edited right now. Close and reopen the dialog to try again.
+
+Closing and reopening the dialog, as the message suggests, makes no difference. It fails the same way every time.
+
+No editor is ever shown, so the hours cannot be set at all from this location.
+
+Changing the location to Staging Lethbridge - 4310 and repeating the same steps on the same person works immediately: the editor appears and the hours can be edited.
+
+Changing the location back to Staging Heavy Duty - 9919 brings the failure back.
+
+Images
+No screenshot is attached. The visible symptom is a single line of error text quoted above, and the underlying cause is a server response rather than anything visual, so the request and response are given in full below instead — they show the cause where a picture of the dialog could not.
+Technical details for developers
+The dialog asks for the staff member's hours and is told the staff member does not exist:
+GET /api/staff/11d2d65b-d8c5-48cf-b34b-382f039d2e12/working-hours
+404  {"errors":[{"error":"'Staff' was not found."}]}
+The same id, on a neighbouring call made by the same dialog moments earlier, is found without difficulty:
+GET /api/staff/11d2d65b-d8c5-48cf-b34b-382f039d2e12/enrolled-workplaces
+200  { ... "name":"Staging Lethbridge - 4310" ... }
+So the record exists and the endpoint can see it; it is the working-hours lookup that appears to be filtered by the session's current workplace. Switching the session with POST /api/iam/change-location flips the result deterministically and reversibly:
+session on Heavy Duty - 9919: Benjamin Peters 404, Ayesha Khan AK 200
+
+session on Lethbridge - 4310: Benjamin Peters 200, Ayesha Khan AK 200
+
+session back on Heavy Duty - 9919: Benjamin Peters 404 again
+
+Scope was measured rather than estimated. Every staff record in the list was probed on its staff_id: 63 of 161 return 404 and 98 return 200. Technicians are the most affected group (34 of 54).
+One note that may save time: this endpoint takes the staff_id field, which is a different value from the id field on the same row of the staff list (for Ayesha Khan AK, id is 24e7590c-7f44-4121-964f-af495c72e2f4 while staff_id is 1e81b8a0-9a45-4f16-89e3-209bf240990a). Probing with the wrong one returns the same 404 for everybody.
+A duplicate search was run before filing. Five queries were used: every descendant of epic SV-8685 (68 issues), and project-wide text searches for "working hours", "custom hours", summary "hours", and "Staff was not found". The nearest reports are all different faults:
+SV-8887, SV-8890, SV-8891 and SV-8892 are all about the hours editor once it is open - minute granularity, overlap colouring, row alignment and end-before-start validation. This report is about the editor never opening.
+
+SV-8851 is the Tech Hours display switch on the Schedule board.
+
+SV-8827 is about that switch's default state.
+
+SV-8831 and SV-8922 are the opposite direction - somebody appearing on the Schedule grid who has no staff record for the location.

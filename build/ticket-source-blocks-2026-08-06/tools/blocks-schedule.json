@@ -1,0 +1,62 @@
+{
+ "SV-8848": [
+  "Where this expected behaviour comes from: the Schedule specification, version 23, section 4.2, which says: \"Every shift has a start time. It is derived from a hierarchy: The technician's configured working hours take precedence.\" The technician in the steps above has working hours of 7:00 AM to 7:00 PM, so a shift placed on her must read 7:00 AM, not 1:00 PM.",
+  "The same specification, section 4.8, says of the day view: \"Now line. A vertical indicator showing the current time, with a label on hover over the grid.\" The current time for a shop is the time on the shop's own clock.",
+  "One honest caveat, so nobody has to take our word for it: the specification nowhere writes down a rule about time zones, and it is silent on that point. What the two lines above do settle is that a shift's start time follows the technician's configured hours, and that the day view's marker shows the current time. The six-hour shift breaks both. If the product owner takes a different view of which clock the board should show, this belongs back with him as a question rather than with a developer."
+ ],
+ "SV-8849": [
+  "Where this expected behaviour comes from: the Schedule specification, version 23, section 4.9, which says: \"Clicking a shift block opens a detail panel showing:\" and then lists what the panel holds, including the scope summary, the notes and the Delete action. The specification draws no distinction between a single-day shift and one that belongs to a series, and no distinction between the day, week and month views."
+ ],
+ "SV-8850": [
+  "Where this expected behaviour comes from: the Schedule specification, version 23, section 4.7, which says: \"Visible lanes are capped at 3. Additional overlapping shifts collapse into a \u201c+N more\u201d affordance that opens a popover listing the hidden shifts. This applies in day, week, and month views (week and month reach the overflow much sooner because cells are narrower).\" Listing the hidden shifts is the whole purpose the specification gives that control."
+ ],
+ "SV-8851": [
+  "Where this expected behaviour comes from: the Schedule specification, version 23, section 9 (View options and customization). Its View Options table gives the Tech Hours option a default of Off and this effect: \"Displays each technician's working hours next to their name.\""
+ ],
+ "SV-8852": [
+  "Where this expected behaviour comes from: the Schedule specification, version 23, section 4.9, which lists among the things the shift detail panel shows: \"A conflict banner with an \u201cAdjust\u201d action when the shift is conflicted.\" The banner and the action are named together, so a banner on its own does not meet it."
+ ],
+ "SV-8853": [
+  "Where this expected behaviour comes from: the Schedule specification, version 23, section 7 (Interactions and micro-interactions), under \"Keyboard support. Global shortcuts work anywhere on the schedule page\". Both keys are written down separately.",
+  "On Escape: \"Escape closes the topmost open modal or popover, following a defined stacking order (delete scope, reassign, spread, capacity, event modal, event view, line picker, shift detail, cell menu, calendar picker, customize, filters, search).\"",
+  "On Enter: \"Enter confirms the active confirmable dialog (delete scope, reassign, spread, event create/edit). It does not fire inside textareas, so multiline note editing still works normally.\" The delete-scope and reassign windows are both named in that list."
+ ],
+ "SV-8854": [
+  "Where this expected behaviour comes from: the Schedule specification, version 23, section 14.2 (Work order sidebar dependency), which says: \"The left panel sidebar displays work order data (customer, unit, lines, lead tech) and requires Work Orders: View to populate. If a user has Schedule access but Work Orders: View is OFF, the sidebar hides the work order list and line drill-down (the mini calendar remains available). The user can still view and interact with shifts already on the grid, but cannot drag new ones from the sidebar since the WO list is not visible.\""
+ ],
+ "SV-8855": [
+  "Where this expected behaviour comes from: the Schedule specification, version 23, section 4.5 (Multi-day spread scheduling), which says: \"Start date. Defaults to the earliest working day. Adjusting it is how a second technician's series can be made sequential (starting after the first) rather than parallel.\" The second sentence names the exact thing that cannot be done today."
+ ],
+ "SV-8856": [
+  "Where this expected behaviour comes from: the Schedule specification, version 23, section 4.8 (Day view: timeline interactions), which says: \"Horizontal drag to move a shift's start time (snaps to 15-minute intervals).\""
+ ],
+ "SV-8857": [
+  "Where this expected behaviour comes from: the Schedule specification, version 23, section 5.1 (Work order filters), which says: \"Filters live behind a \u201cFilter\u201d button (with an active-count badge); there are no assignment tabs. Applying a filter narrows the flat card list, and \u201cClear all\u201d resets in one click.\" Both missing things \u2014 the count on the button and the one-click reset \u2014 are in that one sentence."
+ ],
+ "SV-8886": [
+  "Where this expected behaviour comes from: the Schedule specification, version 23, section 4.3 (Scope picker), which says: \"\u201cSelect multiple\u201d is an opt-in control that switches the line rows into checkboxes and shows a confirm bar with a running tally (\u201cCreate shift \u00b7 2 lines \u00b7 6h\u201d), a \u201cSelect all\u201d shortcut (equivalent to whole order), and Cancel (returns to the fast single-tap list).\""
+ ],
+ "SV-8924": [
+  "Where this expected behaviour comes from: the Schedule specification, version 23, section 3.2, which says of the unassigned row: \"Dragging a shift from this row down onto a technician assigns it.\" And section 4.2, which says: \"When an unassigned shift is later dragged onto a technician row in the grid, that technician's hours apply.\"",
+  "One honest caveat about what that source does and does not support. It supports the start time landing on the technician's own working hours. It does not say the start time must be left exactly as it was, so this ticket's wording is stricter than the written rule. Either way the result seen is wrong: the job moved to 1:00 in the morning, and the technician it was given to starts at 7:00 in the morning \u2014 so 1:00 AM is neither the time the job had nor that technician's hours."
+ ],
+ "SV-8933": [
+  "Where this expected behaviour comes from: the Schedule specification, version 23, section 4.2, under \"Hours settings (tech and business hours)\", which says: \"Behind a toggle, off by default. Each section sits behind a toggle (\u201cSet custom hours for this technician\u201d / \u201cSet business hours for this shop\u201d). The per-day editor appears only when the toggle is on.\" The same section then describes the per-day editor: \"One row per day (Mon\u2013Sun): day name, with From \u2192 To ranges on the right.\"",
+  "One honest caveat: the specification puts no condition on which location the staff member is being viewed from, and it does not say anywhere whether working hours are meant to be held per location. It is silent on that point. So what the source settles is that turning the toggle on must reveal the editor; it does not settle whether a person from another location should be reachable at all. If the answer is that hours really are per location, then the right outcome is not an error but a screen that says so \u2014 and that is a product owner's decision, not a developer's."
+ ],
+ "SV-8941": [
+  "Where this expected behaviour comes from: the Schedule specification, version 23, section 4.4 (Shift block anatomy and scope labeling), which says of the VIN line: \"Line 3 (optional): VIN number, visible only when the VIN toggle is on in Filter and Display (\u00a76). Shown in day and week views only; month view omits it due to space constraints.\""
+ ],
+ "SV-8942": [
+  "Where this expected behaviour comes from: the Schedule specification, version 23, section 11 (Non-functional requirements), which says under Responsiveness: \"Minimum supported width is 960px (the grid scrolls horizontally below that), and the sidebar collapses on narrow viewports.\" Both halves are in that one sentence: it is the grid that scrolls sideways, and the sidebar collapses."
+ ],
+ "SV-8957": [
+  "Where this expected behaviour comes from: the Schedule specification, version 23, section 11 (Non-functional requirements), which says under Accessibility: \"drag-and-drop has a click-to-arm alternative\". The same specification repeats it in section 7 (Interactions and micro-interactions): \"Drag-and-drop has a click-to-arm alternative for users who cannot drag.\""
+ ],
+ "SV-8958": [
+  "Where this expected behaviour comes from: the Schedule specification, version 23, section 4.6 (Linked series and banners), which says: \"Month view: a continuous bar wrapping across week rows, labeled once at the start (with the technician), with a faded \u201ccontinues\u201d label on later weeks, empty weekend columns (when business hours are not set for weekends).\" The words in brackets are the part that is missing."
+ ],
+ "SV-8959": [
+  "Where this expected behaviour comes from: the Schedule specification, version 23, section 4.13 (Hover tooltips), which sets out the order of the tooltip's contents beginning: \"Shift tooltip: customer name (plus the conflict icon if conflicted); unit, vehicle, and VIN; date and time range; technician; scope summary...\" and ending \"...and the conflict reason in amber when conflicted.\" So the reason at the bottom is correct; what is missing is the icon beside the customer name on the first line."
+ ]
+}

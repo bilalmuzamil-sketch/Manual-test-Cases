@@ -1,0 +1,19 @@
+# SV-8693 [Story] Overlap & Lane Stacking
+# parent: SV-8685
+
+Summary
+When multiple shifts overlap for the same technician, the grid splits them into stacked lanes so nothing is visually hidden — capped at 3 visible lanes with a "+N more" overflow for extreme cases.
+Context
+Overlap on the same technician is a conflict (flagged by the Conflict Detection story). This story handles the visual rendering of overlapping shifts so they're all visible without colliding.
+Requirements
+Shifts whose time ranges do not intersect share a single lane (row at normal height). — (PRD: §4.7)
+
+Shifts whose time ranges intersect split into stacked lanes; row grows to fit. — (PRD: §4.7)
+
+Visible lanes capped at 3. Additional shifts collapse into "+N more" affordance that opens a popover listing hidden shifts. Applies in day, week, and month views. — (PRD: §4.7)
+
+Week and month views reach the overflow sooner due to narrower cells. — (PRD: §4.7)
+
+Acceptance Criteria
+Given a technician has 2 non-overlapping shifts (8am–12pm and 1pm–5pm), when rendered in day view, then both share a single lane at normal height.Given a technician has 2 overlapping shifts (8am–12pm and 10am–2pm), when rendered, then 2 stacked lanes appear and the row grows.Given a technician has 5 overlapping shifts, when rendered, then 3 lanes are visible and a "+2 more" affordance appears.Given the user clicks "+2 more", when the popover opens, then the 2 hidden shifts are listed with their details.UI/UX
+Schedule Design

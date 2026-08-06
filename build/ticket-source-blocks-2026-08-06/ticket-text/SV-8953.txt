@@ -1,0 +1,22 @@
+# SV-8953 — Technician Utilization expand and collapse controls do not tell assistive technology whether a row is open
+# parent: SV-8655
+
+1. What happens now
+The arrow controls that open a technician's daily breakdown, and the one in the table heading that opens them all, do not report whether they are currently open or closed to a screen reader. Their names change, but the open/closed state itself is never exposed.
+2. What should happen instead
+Technician Utilization specification, version 6, requirement S8-R12: "The expand/collapse controls (per-row S4-R1 and the all-rows control S4-R4) are keyboard-focusable, toggle on Enter/Space, expose their expanded/collapsed state to assistive technology, and carry the verbatim accessible names defined in S4-R1 (per-row) and S4-R4 (all-rows)."
+3. How to see it
+Open Reports > Technician Utilization and set the date range to This Year.
+Put a screen reader on the arrow control at the left of any technician row, then open the row and listen again.
+Do the same with the double-arrow control in the table heading.
+Exact test data this was seen with: organisation Staging Foothills Group Inc; signed-in user Admin ShopView; active location Staging Heavy Duty - 9919; the other accessible location Staging Lethbridge - 4310; date range This Year (1 January 2026 to 6 August 2026), which returns 29 technicians. The technician used was Christian Pitts.
+4. What was actually shown
+The names are correct and do change: "Expand Christian Pitts's daily breakdown" when closed and "Collapse Christian Pitts's daily breakdown" when open, and "Expand all technicians" / "Collapse all technicians" on the heading control. But neither control carries the standard expanded/collapsed state, so a screen reader announces the name only and never the state.
+5. What was ruled out
+It is not the names being wrong - they match the written wording exactly, in both states, for both controls.
+It is not the controls being unreachable. Both are ordinary focusable buttons.
+It is not limited to one row. Every technician row behaves the same way, and so does the heading control.
+6. How often
+Every time, on every row.
+7. Where it was seen
+Reports > Technician Utilization, on the QA branch, build v3.5-16cf83f, on 6 August 2026.

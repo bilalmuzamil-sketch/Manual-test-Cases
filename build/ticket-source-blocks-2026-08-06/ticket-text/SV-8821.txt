@@ -1,0 +1,207 @@
+# SV-8821 — Creating an invoice from a completed work order fails with a server error
+# parent: SV-8582
+
+1. Description
+When you create an invoice from a completed work order, it works — provided the work order has a contact person on it. If it does not, the invoice cannot be created.
+This ticket was originally raised the wrong way round, and this description has been corrected. It first said that pressing Create Invoice on the work order's Finance tab fails with a server error. Re-testing on the same branch shows that is not what happens:
+On a work order that has no contact, the product does not let you press the button at all. The Finance tab is greyed out, and hovering it shows the reason: "Please select a contact for the asset". There is no Create Invoice button on screen to press.
+
+Once you pick a contact, the Finance tab becomes available, the Create Invoice button appears, and pressing it works — the invoice is created and the work order moves to Invoiced.
+
+So there is nothing here that a person using the product, or a manual tester, can run into. The product already stops them and tells them what to do.
+What is left is a back-end tidiness issue only. If the invoice request is sent straight to the back end for a work order with no contact — skipping the screen that would have stopped you — the back end answers with a general "something went wrong" server error instead of a clear message saying a contact is missing. Nobody can reach that by clicking the product.
+The original ticket also blamed the wrong thing. It implied the pre-set job ("canned line") chosen for the work order mattered. It does not. Eleven different pre-set jobs, covering every way they can be priced, all behaved identically. The only thing that matters is whether a contact is set.
+
+2. Branch / Environment
+Branch / environment tested: QA branch sv8582 — app https://sv8582.qa.shopview.com, API https://sv8582api.qa.shopview.com
+
+Build marker: v3.4.1-0ed4433 — read at the start and again at the end of the re-test, unchanged (last-modified: Mon, 03 Aug 2026 13:40:38 GMT, etag: 02091e9dc11f187d7739b4efa166ea21)
+
+Organisation: d55bc308-e61a-438d-b5f1-c7a73c89d49f — location Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a)
+
+Observed: first 2026-08-03/04; re-tested and corrected 2026-08-04
+
+Signed in as: admin@shopview.com (Administrator)
+
+3. Steps to reproduce
+Read this first: what is left of this issue cannot be reached from any screen in the product. The screen that would create the invoice is deliberately unavailable in exactly the situation that fails, so there are no clicking steps that end in the error. The steps below are therefore given in two parts: what a person does see, and (in section 7) the back-end call that produces the server error.
+Part A — what a person sees on screen (this is the correct, working behaviour)
+Go to Work Orders and press Create Work Order.
+
+In the New Work Order dialog choose Customer = Aaborough Works and Asset = the 2020 Ford Transit with VIN/Serial 86J8FAC1VALJ43SJY, then press Save. (Note: this dialog has no Contact field, so the new work order starts with no contact.)
+
+On the work order, press New Line and add the pre-set job named exactly HD CVIP air brake trailer single/tandem (a fixed-labour job priced at $350.00; any of the pre-set jobs behaves the same).
+
+Fill in the work order's Mileage (for example 123,456) and type anything into the line's Story, then set the line to Complete, then set the work order to Complete. Its total will read $406.09 (labour $350.00 + shop supplies $36.75 + GST $19.34).
+
+Look at the tabs across the top of the work order. Finance is greyed out. Hover over it: the product says "Please select a contact for the asset". Click it — nothing happens, and there is no Create Invoice button anywhere.
+
+Now, on the customer card on the left, open the Contact dropdown and choose Jeffrey Burns. A confirmation appears — "Would you like to change to the new contact for this asset permanently?" — press YES.
+
+The Finance tab is now available. Open it and press Create Invoice. It works — the invoice is created and the work order becomes Invoiced.
+
+Part B — the situation that produces the server error
+Do steps 1 to 5 above and stop there — leave the work order with no contact. Then have the invoice request sent to the back end directly, without going through the screen (see section 7). That is the only route to the error.
+Pre-set jobs that were tried, so nobody repeats the work. All of these behaved identically — the pre-set job makes no difference:
+Pre-set job (exact name)
+ | How it is priced
+ | Result with no contact
+ | Result with a contact
+ |
+HD CVIP air brake trailer single/tandem
+ | Fixed labour $350.00
+ | server error
+ | invoice created
+ |
+HD Wheels off air brake trailer tri-axle
+ | Fixed labour $150.00
+ | server error
+ | not retried
+ |
+Service - Perform Annual Inspection
+ | Fixed labour $400.00
+ | server error
+ | not retried
+ |
+CVIP Driving Force
+ | Fixed line total $300.00
+ | server error
+ | invoice created
+ |
+Wheels off Driving Force
+ | Fixed line total $100.00
+ | server error
+ | not retried
+ |
+HD - Quality Control Check Over
+ | Fixed line total $0.00
+ | server error
+ | not retried
+ |
+Champ X Service air filter
+ | Hourly, HD Fleet Rate
+ | server error
+ | invoice created
+ |
+Service - Adjust brakes
+ | Hourly, HD Door Rate
+ | server error
+ | invoice created
+ |
+Service - PDI
+ | Hourly, CP RAIL FLEET RATE
+ | server error
+ | not retried
+ |
+Service - Perform winterization inspection
+ | Hourly, Two Small Men with Big Hearts Rate
+ | server error
+ | not retried
+ |
+HD Misc Buffer
+ | Hourly, no time estimate
+ | server error
+ | not retried
+ |
+Pre-set jobs that bring parts with them cannot be used for this at all, and this is correct behaviour rather than a fault: the line refuses to be completed while its part requests are outstanding ("Line can`t be completed with unfulfilled part requests."), so the work order never reaches Complete and there is nothing to invoice. This applies to Service - Transmission service (Automatic), Champ X Service oil and fuel, Service - Perform LOF and inspection, Sublet - Tow and Replace - Tie rod. To use one of those, receive its parts first.
+
+4. Expected behaviour
+Two things, and only the second is outstanding.
+On screen: the work order's Finance tab should be unavailable while no contact is set, and should say why. This already happens correctly and is what the original ticket missed.
+In the back end: when an invoice is requested for a work order that has no contact, the answer should be a clear rejection naming the missing contact — the same shape of answer the product already gives for other missing prerequisites, for example "Work order is not complete." or "Line can`t be completed with unfulfilled part requests.". A general "something went wrong" server error is the wrong answer to a request that is simply missing a required piece of information.
+
+5. Current behaviour
+On screen: correct. With no contact the Finance tab is greyed out and reads "Please select a contact for the asset"; there is no Create Invoice button. After a contact is chosen the tab opens, the button appears, and pressing it creates the invoice.
+In the back end: an invoice request for a work order with no contact returns a general server error ("An error occurred. We're sorry for this inconvenience, please try again a bit later later.") rather than a clear message about the missing contact. The work order is left untouched.
+
+6. Images
+Two screenshots are attached and shown below.
+The first is the work order's tab strip with Finance greyed out and the product's own explanation on hover — this is the behaviour that stops anyone reaching the error from the screen:
+The second is the same work order after a contact was chosen: Finance is now open, and pressing Create Invoice produced the invoice:
+
+7. Technical details for developers
+The single discriminator, proven by holding everything else constant
+Same customer (Aaborough Works), same asset (00052898-8ce9-4bf4-b0be-c3644db57f29), same canned line (ce1f2549-24a9-485c-a849-267f8918d66e — HD CVIP air brake trailer single/tandem), same chain of calls, identical money on both (sub_total 386.75, total_cost 406.09). The only difference is whether the work order carries customer_id (the contact person).
+
+ | work order
+ | contact (customer_id)
+ | POST /api/invoices/create
+ | POST /api/work-orders/invoices/estimate
+ | after
+ |
+no contact
+ | S-16237 / 3a0250d2-5b4c-4628-bd3c-d588970bbda4
+ | null
+ | 500 6c492a5b-552a-49e0-84a1-95486072e191
+ | 500 d6bf7c27-8447-43ac-852d-3932c80effb0
+ | is_invoice_created: false, status stays Complete
+ |
+with contact
+ | S-16238 / c3914e04-e165-47ff-b48d-f8e0c9e5288d
+ | ecb3993a-fc41-4887-acc5-4c3d4fb97c9e
+ | 201 b1f4c9e7-61eb-4bd4-b31e-2491a1c52bd2
+ | 200 6865c44b-f003-42ab-9269-5f030924ae7e
+ | is_invoice_created: true, invoice_id set, status Invoiced
+ |
+Both endpoints fail together and succeed together. POST /api/work-orders/invoices/estimate is the invoice/estimate document renderer; the earlier version of this ticket described it as the UI's Create-Invoice route, which it is not.
+The same work order S-16237 was then invoiced successfully from the screen after one change — a contact was set — returning 201 (1c8e11ff-e09e-4055-81aa-a07085a61eb6).
+The failing call
+POST /api/invoices/create
+{"work_order_id":"3a0250d2-5b4c-4628-bd3c-d588970bbda4"}   // WO is Complete, customer_id = null
+-> HTTP 500
+{"errors":[{"error":"An error occurred. We're sorry for this inconvenience, please try again a bit later later."},
+           {"requestId":"6c492a5b-552a-49e0-84a1-95486072e191"}]}
+Request ids from the re-test, all with customer_id = null on the work order, one per canned line:
+7e737b53-7d9c-4810-8089-f27180a5c2ac   HD CVIP air brake trailer single/tandem
+15d42e63-560e-4ed2-a384-68c54cc60a0b   HD Wheels off air brake trailer tri-axle
+0a0ecaa2-9779-4d9a-8b46-a766117c63de   Service - Perform Annual Inspection
+81e6e3c1-c6ec-4a8f-9163-b6c8e91149dc   CVIP Driving Force              (fixed_line_total 300)
+56d79aa5-de16-4fb1-8bcd-ad2ce4ca43be   Wheels off Driving Force        (fixed_line_total 100)
+11da8552-f4c7-4b2a-9a0e-4d7201a407e7   HD - Quality Control Check Over (fixed_line_total 0)
+b4d610ac-d83c-46b1-a1f8-feeb443f8867   Champ X Service air filter
+1199cb9c-c94d-4817-b6b9-efa940b36dc0   Service - Adjust brakes
+3aa3f11b-dc4a-4461-86e8-01d349e84b4d   Service - PDI
+fc42b699-5ec9-43d1-8363-68745db12130   Service - Perform winterization inspection
+fb390515-742d-43b8-b5df-7b51fccdda36   HD Misc Buffer                  (time_estimate 0)
+Earlier request ids, same fault, from the original observation: 24dbd181-7ed7-489c-b1f2-ae7e878b0dbe, a7ab157a-dc44-48fb-8440-b7a92576645c, 8d0e2a06-7727-4c89-9b43-e719154ab327, 818265ba-7cc1-4dfc-8d58-2c5f5c470d9a, b7bf4a22-eff4-4b71-9c68-c0792be63a48.
+Why no user can reach it — the front end already guards it
+On a work order with customer_id = null, the Finance tab carries aria-disabled="true", the disabled class and opacity: 0.6 while every sibling tab is enabled; its tooltip reads "Please select a contact for the asset"; clicking it leaves the active tab as Lines (1); and the count of Create Invoice buttons in the DOM is 0. With a contact set, the same tab reads aria-disabled: null, has no tooltip, activates on click, and yields exactly 1 Create Invoice button, which returns 201.
+The product's Create Work Order dialog has only three inputs — Customer, Asset, Asset Here? — and no Contact field, so a work order created entirely through the product also starts with customer_id = null and hits the same guard. (This closes the gap the earlier version of this ticket flagged as unverified.) The contact is an attribute of the asset: the New Asset dialog makes Contact * a required field, which is why the tooltip says "for the asset"; assets created before that rule have none.
+Selecting a contact from the work order's customer card issues:
+POST /api/work-orders/change-contact
+{"work_order_id":"3a0250d2-…","vehicle_id":"00052898-…",
+ "contact_id":"ecb3993a-…","update_vehicle":true}
+-> 200
+The payload shape is NOT the cause
+The screen sends a much larger body than {{ {work_order_id} }}:
+POST /api/invoices/create
+{"invoice_number":"S2-16237","due_date":"2026-08-04T06:36:34+00:00","discount":0,"cost":"386.75",
+ "customer_id":"ecb3993a-fc41-4887-acc5-4c3d4fb97c9e","company_id":"7af75d7c-c9f8-4209-860a-e685e9bd7c1c",
+ "work_order_id":"3a0250d2-5b4c-4628-bd3c-d588970bbda4","work_place_id":"b3c8c820-…",
+ "work_order_part_cost":"0.00","work_order_labour_cost":"350.00","time_estimate":"0.00",
+ "include_declined":false,"created_on":"2026-08-04T06:36:34+00:00","tax":{…}}
+-> 201
+But the bare {{ {work_order_id} }} body also returns 201 once a contact exists, so the difference is not the payload. Note that the screen supplies customer_id = the contact id — the value the back end cannot resolve when no contact is set.
+The chain used to build the state, for a one-run reproduction
+1. POST /api/iam/change-location {workplace_id, workplace_timezone}                    -> 200
+   (do this first — later writes on a work order in another workplace return 201 and no-op)
+2. POST /api/work-orders/create
+   {company_id, vehicle_id, workplace_id, start_date, is_vehicle_here:true}            -> 201
+   (the id returns as data.work_order_id, not data.id; add customer_id:<contactId> to
+    create it WITH a contact — that is the only change needed to make step 7 succeed)
+3. POST /api/work-orders/{woId}/lines/create-from-canned-line
+   {canned_line_id, status:'authorized'}                                               -> 201 {line_id}
+4. POST /api/work-orders/change-mileage {work_order_id, mileage:'123456'}               -> 201
+   (mileage must be a STRING; a number returns 500)
+5. POST /api/work-orders/lines/change-story {line_id, tech_story, work_order_id}        -> 201
+6. POST /api/work-orders/lines/change-status {line_id, status:'complete'}               -> 200
+   POST /api/work-orders/change-status {id: woId, status:'complete'}                    -> 201
+7. POST /api/invoices/create {work_order_id}     -> 500 with no contact / 201 with one
+Two adjacent server errors of the same shape, recorded but not claimed to share a cause
+POST /api/work-orders/lines/create returns 500 once validation passes, rather than a 400. Request ids ecdf8b8d-c754-4282-9bd7-5df45ffade8c, 0b0f8bd9-8de7-44f6-828a-eb76235beaf3, e97df1d1-bf61-4cd0-ae50-9b467170fbfb, 07c300f0-a2db-40ae-8d44-0b94a7eabec5. The create-from-canned-line route above works.
+
+POST /api/work-orders/lines/change returns 500; the tech-story route POST /api/work-orders/lines/change-story returns 201.
+
+All three are the same pattern — a missing or unresolvable prerequisite producing a 500 instead of a validation message.
+Clean-up
+25 work orders were created during this re-test, each tagged ZZAUTOTEST in its tech story, and all were deleted and verified absent afterwards. One asset (2020 Ford Transit, VIN 86J8FAC1VALJ43SJY, customer Aaborough Works) now permanently carries contact Jeffrey Burns — its only contact — because the product's confirmation for choosing a contact writes it to the asset. That is recorded rather than reverted, since reverting would require clearing a field the product marks as required.

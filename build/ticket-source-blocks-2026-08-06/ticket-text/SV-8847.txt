@@ -1,0 +1,20 @@
+# SV-8847 — When only a page search is active the empty screen offers Clear Filters, which does not help
+# parent: SV-8785
+
+Environment
+QA branch https://sv8785.qa.shopview.com/workorders — API host sv8785api.qa.shopview.com — build marker <meta name="app-version"> = v3.4.2-4f8211c (index.html last-modified Mon, 03 Aug 2026 20:09:32 GMT) — observed 2026-08-04, org d55bc308-e61a-438d-b5f1-c7a73c89d49f, location "Staging Heavy Duty - 9919", signed in as an Administrator.
+Steps to Reproduce
+Open Work Orders on desktop, All tab, and use Clear Filters first so no filter is on.
+
+Click the "Search" button in the page toolbar and type text that matches nothing, for example: ZZQQNOMATCHXX
+
+Read the message in the empty table area and look at the link underneath it.
+
+Expected Result
+The empty screen tells the user that nothing matched their search and offers a way to clear the search. Where both a search and filters are on, it offers each of them separately, so clearing one does not clear the other.
+Current Result
+The message reads "No work orders match your filters" even though no filter is on, and the only link offered is "Clear Filters". Clicking it does nothing useful because there are no filters to clear: the search text stays and the screen stays empty. There is no way to clear the search from the empty screen.
+How often
+Every time.
+Technical detail
+The empty state renders one link only, data-test-id="empty_state_clear_filters", labelled "Clear Filters"; there is no clear-the-query counterpart. The toolbar copy of the same control (data-test-id="clear_filters") is hidden when no filter is active. Specification references S8-R4 and S8-R5.

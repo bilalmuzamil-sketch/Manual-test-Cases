@@ -1,0 +1,28 @@
+# SV-8855 — The spread window has no start date, so a second technician's run of days cannot be made to follow the first
+# parent: SV-8691
+
+Description
+When a big job is spread over several days, the spread window lets the planner choose how much to schedule and shows a preview - but it has no start date field. The run of days always begins on whichever day the job was dropped on, and there is no way to change it in the window. That removes the one way the planner was meant to have of making a second technician's run start AFTER the first one finishes instead of alongside it, which is how two technicians share a long job in sequence.
+Branch / Environment
+Branch tested: https://sv8685.qa.shopview.com/schedule · API host: https://sv8685api.qa.shopview.com · Build marker (meta app-version): v3.5-4873abe · index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 · Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f · Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) · Signed in as admin@shopview.com (Administrator) · Observed 2026-08-04, 16:00-19:00 UTC.
+Steps to reproduce
+Open the Schedule and pick the Week view.
+
+Type S-14527 into 'Search work orders' to find the Qispring Rentals work order (5 lines, 40.3h estimate).
+
+Drag the card onto technician Brittany Anderson's row on the Monday column and choose 'Schedule whole work order'.
+
+The spread window opens showing 'Brittany Anderson - Whole order - 40h 19m', a 'Schedule' choice reading 'Full estimate (40h 19m)', and a preview reading '4 shifts - 40h 19m / Aug 10 to Aug 13 - 12h/day, Mon-Thu'.
+
+Look for a start date field anywhere in the window.
+
+Try each of the other choices - 1 week, 2 weeks, 'Until a date...' and 'Specific hours...' - and look again.
+
+Expected behaviour
+The spread window carries a start date that defaults to the earliest working day and can be changed, so a planner can push a second technician's run to begin after the first one ends.
+Current behaviour
+There is no start date field in the window under any of the five choices. 'Until a date...' adds a 'Finish by' date and 'Specific hours...' adds an 'Hours per day' number, but neither lets the planner set where the run begins. The start is fixed by the cell the card was dropped on.
+Images
+No screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.
+Technical details for developers
+Enumerated every input inside the spread dialog for all five selector values: Full estimate -> 1 text input (the selector itself); 'Until a date...' -> that plus one input[type=date] labelled 'Finish by'; 'Specific hours...' -> that plus one input[type=number] labelled 'Hours per day' pre-filled 12. No date input for the start exists in any state. The POST body confirms it: startDate is taken from the drop cell (startDate '2026-08-10'). Spec section 4.5: 'Start date. Defaults to the earliest working day. Adjusting it is how a second technician's series can be made sequential (starting after the first) rather than parallel.'

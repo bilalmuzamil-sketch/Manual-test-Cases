@@ -1,0 +1,26 @@
+# SV-8854 — A user who is not allowed to see work orders can still read the whole work order list on the Schedule
+# parent: SV-8687
+
+Description
+A user who has been given the Schedule but deliberately NOT given Work Orders: View still sees the complete work order list down the left of the Schedule page - customer names, unit numbers, how many lines each job has, the hours estimate and the lead technician. That is exactly the work order information their permissions were set up to keep from them. The list is supposed to be hidden for these users. This is a customer-data exposure, not a cosmetic gap: the restriction can be bypassed simply by opening the Schedule.
+Branch / Environment
+Branch tested: https://sv8685.qa.shopview.com/schedule · API host: https://sv8685api.qa.shopview.com · Build marker (meta app-version): v3.5-4873abe · index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 · Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f · Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) · Signed in as admin@shopview.com (Administrator) · Observed 2026-08-04, 16:00-19:00 UTC.
+Steps to reproduce
+Go to Settings, then Roles & Permissions, and create a role that has Schedule: View switched ON and Work Orders: View switched OFF, with nothing else.
+
+Go to Settings, then Staff, open any active staff member and set their Role to that new role, then save.
+
+Sign in as that staff member.
+
+Open the Schedule.
+
+Read the left-hand panel.
+
+Expected behaviour
+The left-hand panel hides the work order list for this user. They can still see the calendar and everyone's shifts, but no customer names, unit numbers, line counts, hours or lead technicians.
+Current behaviour
+The full list is shown - 18 work order cards, each with the work order number, the customer name, the unit number, 'N lines - Xh Est.', the technician initials and the lead technician's name. Nothing is hidden.
+Images
+No screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.
+Technical details for developers
+Reproduced with a purpose-made role holding only scheduleView (fe_permissions came back as ['scheduleView','woFullViewMode'], workOrdersView absent). The page rendered 18 sidebar_work_order_card elements. The API leaks it too: GET /api/schedule/work-orders returned HTTP 200 with the full payload for that user, so this is not only a front-end gate. For contrast the tier enforcement itself is correct: the same user got 403 on POST /api/schedule/shifts, PATCH, DELETE and POST /api/schedule/events. Spec section 14.2: 'The left panel sidebar displays work order data (customer, unit, lines, lead tech) and requires Work Orders: View to populate. If a user has Schedule access but Work Orders: View is OFF, the sidebar hides the work order list'. The probe role was deleted and the staff member restored to Technician afterwards.

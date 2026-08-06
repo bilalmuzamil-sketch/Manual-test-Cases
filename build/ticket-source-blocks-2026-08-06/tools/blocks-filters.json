@@ -1,0 +1,35 @@
+{
+ "SV-8843": [
+  "Where this expected behaviour comes from: the Filters specification, version 18, requirement S1-R1, which says: \"The filter bar is displayed below the tab navigation row (All, Estimates, Completed, My Work Orders) by default\".",
+  "And requirement S1-R5, which says: \"When the user collapses the filter bar, the bar is hidden and the table expands to use the reclaimed vertical space\". Both halves of this ticket are covered: the row the bar sits on, and what collapsing it should free up."
+ ],
+ "SV-8844": [
+  "Where this expected behaviour comes from: the Filters specification, version 18, requirement S13-R7, which says: \"The query applies as the user types, debounced at 300ms. There is no apply or submit button and Enter is not required.\"",
+  "And requirement S13-R12, which says: \"Results replace the table contents in place. There is no separate results view or results page.\" Together those two mean that typing into the page search must narrow the list on the page itself."
+ ],
+ "SV-8845": [
+  "Where this expected behaviour comes from: the Filters specification, version 18, requirement S11-R2, which says: \"When a user opens a URL that contains filter state, the Work Orders page loads with those filters pre-applied and the table already filtered\".",
+  "That the same must hold on a phone comes from requirement S12-R2, which says: \"The filter chips behave like desktop with one exception (see S12-R5): tapping a chip opens its dropdown, selections update the chip appearance, and \u201cClear filters\u201d appears when active\". The one exception it names is about staging selections behind an Apply button, not about which records are listed."
+ ],
+ "SV-8846": [
+  "Where this expected behaviour comes from: the Filters specification, version 18, requirement S7-R3, which says: \"When at least one filter is active, a \u201cClear filters\u201d button appears in the filter bar to the right of all chips\".",
+  "That this applies on a phone as well comes from requirement S12-R2, which says: \"The filter chips behave like desktop with one exception (see S12-R5): tapping a chip opens its dropdown, selections update the chip appearance, and \u201cClear filters\u201d appears when active\", and from requirement S12-R6, which closes with: \"\u201cClear selection\u201d and \u201cClear filters\u201d behave as on desktop.\""
+ ],
+ "SV-8847": [
+  "Where this expected behaviour comes from: the Filters specification, version 18, and it takes three requirements, all of which the empty screen has to satisfy.",
+  "Requirement S8-R3: \"When the combination of active filters and any active search query produces no matching records, the table shows an empty state with a message indicating no results were found for the current filters and search\".",
+  "Requirement S8-R4: \"The empty state includes a prompt or link to clear filters and, where a search query is active, to clear the query\".",
+  "Requirement S8-R5: \"Where both a query and filters are active, each is cleared independently from the empty state. Clearing filters does not clear the query and clearing the query does not clear the filters, consistent with S13-R13\"."
+ ],
+ "SV-8871": [
+  "Where this expected behaviour comes from: the Filters specification, version 18, requirement S7-R1, which says: \"When a filter has one or more values selected, the chip changes to an active/highlighted visual state (blue pill) and displays the selected value(s)\". The last five words are the part that is missing.",
+  "And requirement S10-R1, which says: \"When the user navigates away from the Work Orders page (e.g., to a Work Order detail, then back), the filter selections and collapsed/expanded state are restored exactly as they were left\"."
+ ],
+ "SV-8912": [
+  "Where this expected behaviour comes from: the Filters specification, version 18, and three requirements settle it together.",
+  "Requirement S13-R16: \"Mobile uses the same inline expansion as desktop. There is no modal, no separate search screen, and no mobile-only state in the component. Tapping the collapsed control expands it in place within the action row, moves focus into the field and raises the keyboard\".",
+  "Requirement S13-R17: \"On mobile the expanded field fills the remaining width of the action row rather than taking the fixed 180px desktop width. On Work Orders that resolves to 162px. All other toolbar actions remain visible and in position throughout; nothing is hidden while searching\".",
+  "Requirement S13-R18: \"To create that room, the primary CTA on mobile uses its natural hug width instead of stretching to fill the row: \u201cNew Work Order\u201d is 144px, the same width it has on desktop, not 211px.\"",
+  "The same specification also keeps the page search and the application-wide search apart, in requirement S13-R9: \"Search is scoped strictly to the records in the current table. It never returns results from another table, another page, another module, or any content outside that table.\" So the global search cannot stand in for the page search."
+ ]
+}

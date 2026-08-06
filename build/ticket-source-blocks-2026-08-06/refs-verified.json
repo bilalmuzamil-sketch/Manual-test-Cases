@@ -1,0 +1,554 @@
+{
+ "SV-8820": {
+  "spec": "iv",
+  "version": "4",
+  "refs": {
+   "S5-R2": {
+    "status": "FOUND",
+    "text": "- S5-R2: The report values inventory as of the end of the selected range."
+   },
+   "S5-R4": {
+    "status": "FOUND",
+    "text": "- S5-R4: Otherwise, the report replays the closest recorded day on or before the end of the selected range."
+   },
+   "S5-R5": {
+    "status": "FOUND",
+    "text": "- S5-R5: When the displayed day is an earlier recorded day than the date the user asked for, the report shows an \"As of \" indicator naming the day actually shown."
+   },
+   "S5-R6": {
+    "status": "FOUND",
+    "text": "- S5-R6: When the displayed day matches the date asked for (the common current-view case), the \"As of\" indicator is not shown (the date control already communicates the date)."
+   },
+   "S5-R7": {
+    "status": "FOUND",
+    "text": "- S5-R7: A Custom range lets the user pick a start and end date; the report values as of the picked end date (never a future date \u2014 it is capped at today)."
+   }
+  }
+ },
+ "SV-8823": {
+  "spec": "iv",
+  "version": "4",
+  "refs": {
+   "S10-R3": {
+    "status": "FOUND",
+    "text": "- S10-R3: Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last."
+   },
+   "S10-R7": {
+    "status": "FOUND",
+    "text": "- S10-R7: Money and Margin % use two-decimal and one-decimal formats respectively; an undefined Margin % shows \"\u2014\"."
+   }
+  }
+ },
+ "SV-8845": {
+  "spec": "filters",
+  "version": "18",
+  "refs": {
+   "S11-R2": {
+    "status": "FOUND",
+    "text": "- S11-R2: When a user opens a URL that contains filter state, the Work Orders page loads with those filters pre-applied and the table already filtered"
+   }
+  }
+ },
+ "SV-8846": {
+  "spec": "filters",
+  "version": "18",
+  "refs": {
+   "S12-R2": {
+    "status": "FOUND",
+    "text": "- S12-R2: The filter chips behave like desktop with one exception (see S12-R5): tapping a chip opens its dropdown, selections update the chip appearance, and \"Clear filters\" appears when active"
+   }
+  }
+ },
+ "SV-8847": {
+  "spec": "filters",
+  "version": "18",
+  "refs": {
+   "S8-R4": {
+    "status": "FOUND",
+    "text": "- S8-R4: The empty state includes a prompt or link to clear filters and, where a search query is active, to clear the query"
+   },
+   "S8-R5": {
+    "status": "FOUND",
+    "text": "- S8-R5: Where both a query and filters are active, each is cleared independently from the empty state. Clearing filters does not clear the query and clearing the query does not clear the filters, consistent with S13-R13"
+   }
+  }
+ },
+ "SV-8871": {
+  "spec": "filters",
+  "version": "18",
+  "refs": {
+   "S10-R1": {
+    "status": "FOUND",
+    "text": "- S10-R1: When the user navigates away from the Work Orders page (e.g., to a Work Order detail, then back), the filter selections and collapsed/expanded state are restored exactly as they were left"
+   },
+   "S7-R1": {
+    "status": "FOUND",
+    "text": "- S7-R1: When a filter has one or more values selected, the chip changes to an active/highlighted visual state (blue pill) and displays the selected value(s)"
+   }
+  }
+ },
+ "SV-8880": {
+  "spec": "sbr",
+  "version": "17",
+  "refs": {
+   "S14-R15": {
+    "status": "FOUND",
+    "text": "- S14-R15: Summary CSV \u2014 file sales-by-representative-summary.csv, UTF-8 BOM, one header row + one row per rep in the current filtered view, in the currently-active order (S14-R2a). Headers, in order: Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. Generated server-side against the current filters and active sort (S14-R2a)."
+   },
+   "S14-R18": {
+    "status": "FOUND",
+    "text": "- S14-R18: # Invoices = the count of the rep's matching invoices in the current filtered view (same as the on-screen (N)). # Customers = the count of distinct customers across those matching invoices (de-duplicated across locations when several are selected)."
+   },
+   "S14-R20": {
+    "status": "FOUND",
+    "text": "- \nS14-R20: Location in exports. Whenever the Location column is shown on screen (S21-R7), it is included in all four exports in the same position it occupies on screen \u2014 Summary and Expanded, PDF and CSV: a Summary (rolled-up) row carries the rep's location, reading Multiple when that rep spans more than one location; an Expanded (per-invoice) row carries that invoice's own exact location. In addition, every export (each PDF and each CSV, Summary and Expanded) includes a \"Locations:\" line naming the location or locations the report is scoped to, or \"All locations\" when every location the user has access to is selected \u2014 matching the on-screen scope. In a PDF the \"Locations:\" line appears in the header strip; in a CSV it appears as a leading metadata line above the column-header row. In the shorter Summary download, which has no Date or Status column, the Location column appears immediately after the Representative name."
+   }
+  }
+ },
+ "SV-8881": {
+  "spec": "tu",
+  "version": "6",
+  "refs": {
+   "S15-R1": {
+    "status": "NOT-FOUND",
+    "text": null
+   },
+   "S15-R2": {
+    "status": "NOT-FOUND",
+    "text": null
+   },
+   "S7-R2": {
+    "status": "FOUND",
+    "text": "- S7-R2: The menu has an option labeled \"Download Summary (PDF)\"."
+   },
+   "S7-R3": {
+    "status": "FOUND",
+    "text": "- S7-R3: The menu has an option labeled \"Download Expanded View (PDF)\"."
+   },
+   "S7-R4": {
+    "status": "FOUND",
+    "text": "- S7-R4: The menu has an option labeled \"Download Summary (CSV)\"."
+   }
+  }
+ },
+ "SV-8907": {
+  "spec": "wip",
+  "version": "9",
+  "refs": {
+   "S9-R2": {
+    "status": "FOUND",
+    "text": "- S9-R2: Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last."
+   },
+   "S9-R3": {
+    "status": "FOUND",
+    "text": "- S9-R3: Both downloads honor the current date range and location filter, and include only the jobs left visible by the advisor, customer, and asset filters."
+   },
+   "S9-R4": {
+    "status": "FOUND",
+    "text": "- S9-R4: Both downloads include a Totals row matching the on-screen Totals row for the tab."
+   }
+  }
+ },
+ "SV-8908": {
+  "spec": "wip",
+  "version": "9",
+  "refs": {
+   "S7-R4": {
+    "status": "FOUND",
+    "text": "- S7-R4: The toolbar has an Asset filter, a searchable type-ahead multi-select listing the assets present across all open jobs in the current scope. Each option shows the unit number and the vehicle identification number, and the user's typed text matches against EITHER the unit number OR the vehicle identification number. Selecting one or more assets narrows the visible jobs on screen only (no reload)."
+   }
+  }
+ },
+ "SV-8912": {
+  "spec": "filters",
+  "version": "18",
+  "refs": {
+   "S13-R17": {
+    "status": "FOUND",
+    "text": "- S13-R17: On mobile the expanded field fills the remaining width of the action row rather than taking the fixed 180px desktop width. On Work Orders that resolves to 162px. All other toolbar actions remain visible and in position throughout; nothing is hidden while searching"
+   },
+   "S13-R18": {
+    "status": "FOUND",
+    "text": "- S13-R18: To create that room, the primary CTA on mobile uses its natural hug width instead of stretching to fill the row: \"New Work Order\" is 144px, the same width it has on desktop, not 211px. The action group is right-aligned as on desktop, so the free space sits to the left and the field expands into it"
+   }
+  }
+ },
+ "SV-8925": {
+  "spec": "sbc",
+  "version": "15",
+  "refs": {
+   "S14-R10": {
+    "status": "FOUND",
+    "text": "- S14-R10: Dates export as mm-dd-yyyy \u2014 for example, 05-14-2026 \u2014 matching the ShopView-wide CSV date format."
+   },
+   "S14-R11": {
+    "status": "FOUND",
+    "text": "- S14-R11: Currency values export as plain numbers with no dollar sign and no thousands separators."
+   },
+   "S14-R17": {
+    "status": "NOT-FOUND",
+    "text": null
+   },
+   "S14-R9": {
+    "status": "FOUND",
+    "text": "- S14-R9: The Margin % cell is a plain number to one decimal with no percent sign (for example, 64.7); it is empty when the row's Subtotal is zero or below."
+   }
+  }
+ },
+ "SV-8926": {
+  "spec": "iv",
+  "version": "4",
+  "refs": {
+   "S4-R1": {
+    "status": "FOUND",
+    "text": "- S4-R1: A totals row is shown at the bottom of the report, with the literal label \"Total\" in the Part # column's cell."
+   }
+  }
+ },
+ "SV-8927": {
+  "spec": "iv",
+  "version": "4",
+  "refs": {
+   "S3-R12": {
+    "status": "FOUND",
+    "text": "- S3-R12: On first visit, the visible columns are: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin %, and Total Cost."
+   },
+   "S3-R13": {
+    "status": "FOUND",
+    "text": "- S3-R13: The Margin and Total Sell columns are hidden by default and can be turned on from the column-selection control (Story 8)."
+   },
+   "S8-R3": {
+    "status": "FOUND",
+    "text": "- S8-R3: Every other column is available in the control; Margin and Total Sell are off by default, the rest on by default (S3-R12)."
+   }
+  }
+ },
+ "SV-8928": {
+  "spec": "iv",
+  "version": "4",
+  "refs": {
+   "S8-R5": {
+    "status": "FOUND",
+    "text": "- S8-R5: The report remembers, in the user's browser, the selected date range, category selection, vendor selection, part search text, location selection, column selection, and sort, and restores them on the user's next visit."
+   }
+  }
+ },
+ "SV-8929": {
+  "spec": "iv",
+  "version": "4",
+  "refs": {
+   "S8-R6": {
+    "status": "FOUND",
+    "text": "- S8-R6: Restore is defensive: a saved value that is no longer valid falls back to that setting's default rather than breaking the view. A saved category or vendor no longer present in the data is dropped."
+   }
+  }
+ },
+ "SV-8930": {
+  "spec": "iv",
+  "version": "4",
+  "refs": {
+   "S1-N2": {
+    "status": "FOUND",
+    "text": "- S1-N2: If no in-stock part exists for the selected location(s) on the resolved date, the report shows the no-data message (Story 12) instead of rows."
+   },
+   "S5-N1": {
+    "status": "FOUND",
+    "text": "- S5-N1: If there is no recorded day on or before the end of the selected range (for example, a past range entirely before nightly recording began, or a range whose only covered dates have been pruned by retention \u2014 Story 11), the report shows the no-data message (Story 12) and no totals row."
+   },
+   "S7-N2": {
+    "status": "FOUND",
+    "text": "- S7-N2: If the selected location(s) hold no in-stock parts on the resolved date, the report shows the no-data message (Story 12)."
+   }
+  }
+ },
+ "SV-8931": {
+  "spec": "iv",
+  "version": "4",
+  "refs": {
+   "S1-R3": {
+    "status": "FOUND",
+    "text": "- S1-R3: On the user's first visit (no saved settings \u2014 Story 8), the report defaults to the current calendar month date range and the user's currently active location."
+   },
+   "S7-R2": {
+    "status": "FOUND",
+    "text": "- S7-R2: On a first visit (no saved selection \u2014 Story 8), it defaults to the user's currently active location."
+   }
+  }
+ },
+ "SV-8932": {
+  "spec": "iv",
+  "version": "4",
+  "refs": {
+   "S12-R7": {
+    "status": "FOUND",
+    "text": "- S12-R7: The report supports dark mode; the page background, toolbar, cells, and the \"\u2014\" glyph all use dark-mode-legible colors."
+   },
+   "S12-R8": {
+    "status": "FOUND",
+    "text": "- S12-R8: Each sortable column header exposes its sort state to assistive technology, and the active sort direction is indicated visually."
+   }
+  }
+ },
+ "SV-8934": {
+  "spec": "pv",
+  "version": "5",
+  "refs": {
+   "S6-R6": {
+    "status": "FOUND",
+    "text": "- S6-R6: The PDF is formatted for A3 landscape, titled Parts Velocity. In the PDF, Description, Category, and Vendor are truncated to 18 characters. Part # is not truncated. The CSV carries the full, untruncated Description / Category / Vendor values."
+   }
+  }
+ },
+ "SV-8935": {
+  "spec": "pv",
+  "version": "5",
+  "refs": {
+   "S6-R8": {
+    "status": "FOUND",
+    "text": "- S6-R8: Last Sale renders as N days (e.g. 42 days) in the PDF; the CSV renders the raw integer."
+   }
+  }
+ },
+ "SV-8936": {
+  "spec": "pv",
+  "version": "5",
+  "refs": {
+   "S6-R9": {
+    "status": "FOUND",
+    "text": "- S6-R9: On a successful download, a success toast reads \"Velocity report exported (CSV)\" or \"Velocity report exported (PDF)\"."
+   }
+  }
+ },
+ "SV-8937": {
+  "spec": "pv",
+  "version": "5",
+  "refs": {
+   "S15-R11": {
+    "status": "NOT-FOUND",
+    "text": null
+   },
+   "S6-R2": {
+    "status": "FOUND",
+    "text": "- S6-R2: Both exports reflect the date range, type, category, vendor, bin location, location, and search active at the time of export."
+   },
+   "S7-R9": {
+    "status": "NOT-FOUND",
+    "text": null
+   }
+  }
+ },
+ "SV-8938": {
+  "spec": "pv",
+  "version": "5",
+  "refs": {
+   "S2-R12": {
+    "status": "FOUND",
+    "text": "- S2-R12: When the Location filter (S2-R9) resolves to more than one location in scope, the table shows a per-row Location column identifying each row's location; when a single location is in scope the column is hidden. Per-row values follow S3-R10."
+   },
+   "S3-R10": {
+    "status": "FOUND",
+    "text": "- S3-R10: When the per-row Location column is shown (more than one location in scope, S2-R12), each row's value follows the row model (S3-R1a): an inventory row \u2014 a per-location stock record \u2014 shows its own location's name; a merged special-order row, which aggregates across the selected locations, shows the literal Multiple. A drill-down/detail row shows the exact single location it belongs to. The column is auto-managed by the location scope (it is not one of the 20 columns in the picker, S4-R1, and is not user-toggleable) and is hidden entirely when a single location is in scope."
+   },
+   "S7-R8": {
+    "status": "FOUND",
+    "text": "- S7-R8: When shown (S2-R12 / S3-R10), the per-row Location column renders as the leftmost column, before Type, using the suite's standard column treatment so its placement matches the same column on the other reports in the suite. The Location filter control (S2-R9) keeps a constant width regardless of the selected label (a single location name, several, or \"All Locations\"), so the toolbar layout does not shift when the selection changes."
+   }
+  }
+ },
+ "SV-8939": {
+  "spec": "pv",
+  "version": "5",
+  "refs": {
+   "S2-R9": {
+    "status": "FOUND",
+    "text": "- S2-R9: The toolbar provides a Location multi-select filter as the rightmost control in the filter row, listing the locations the signed-in user has access to plus an \"All Locations\" option. On a first visit it defaults to the user's currently active location (the location currently selected in the application's global location switcher). Selecting one, several, or all locations reloads the data scoped to that set. Scoping is always constrained to the user's accessible locations \u2014 \"All Locations\" means all locations the user can access, never beyond; a location the user cannot access is never included. The location filter cascades through every metric like the other filters (S2-R7)."
+   }
+  }
+ },
+ "SV-8940": {
+  "spec": "pv",
+  "version": "5",
+  "refs": {
+   "S3-R7": {
+    "status": "FOUND",
+    "text": "- S3-R7: The Description, Category, and Vendor columns truncate long text with an ellipsis on screen; the full value is available on native hover (browser tooltip) and is written in full to the CSV export (S6). Part # is never truncated (on screen or in any export)."
+   }
+  }
+ },
+ "SV-8943": {
+  "spec": "tu",
+  "version": "6",
+  "refs": {
+   "S1-R3": {
+    "status": "FOUND",
+    "text": "- S1-R3: On the user's first visit (no saved settings \u2014 \u00a73), the report defaults to the current calendar month (the date picker's \"This Month\" preset) and the user's currently active location. Because a range never extends past \"now,\" the current-month default effectively shows the month to date."
+   },
+   "S9-R2": {
+    "status": "FOUND",
+    "text": "- S9-R2: On a first visit (no saved selection \u2014 \u00a73), it defaults to the user's currently active location (the location currently selected in the application's global location switcher)."
+   }
+  }
+ },
+ "SV-8944": {
+  "spec": "tu",
+  "version": "6",
+  "refs": {
+   "S1-R9": {
+    "status": "FOUND",
+    "text": "- S1-R9: Reconciliation guarantee (scope). For the same date range and the same single location, and counting closed clock records, this report's Total Hours for a technician equals the Timesheet Activities report's total for that technician to the cent. Two deliberate scope differences are not defects: (a) an open (not-yet-clocked-out) record is snapshotted at each report's own load instant, so two reports loaded at different moments can differ by the elapsed open time (S1-E1); (b) when multiple locations are selected here, the Total Hours drill-through opens Timesheet Activities for the active shop only and therefore reflects one location's portion, not the multi-location total (S6-R6)."
+   }
+  }
+ },
+ "SV-8945": {
+  "spec": "tu",
+  "version": "6",
+  "refs": {
+   "S2-R13": {
+    "status": "FOUND",
+    "text": "- S2-R13: All six columns (Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor) are sortable by clicking the column header. Clicking a column that is not the active sort sorts it ascending; clicking the active sort column again toggles it to descending. There is no third \"cleared\" state \u2014 clicking only ever toggles ascending\u2194descending. Because Technician-ascending is the active sort on load (S2-R12), the first click on the Technician header sorts it descending (Z\u2192A). Sorting is applied on screen to the loaded rows (no reload)."
+   }
+  }
+ },
+ "SV-8946": {
+  "spec": "tu",
+  "version": "6",
+  "refs": {
+   "S4-R5": {
+    "status": "FOUND",
+    "text": "- S4-R5: Expansion state is view-only and is not persisted: it resets (all collapsed) on any data reload (date-range or location change) and on a fresh visit. Deselecting and re-selecting a technician in the technician filter (an on-screen operation) does not change the expansion state of the other rows."
+   },
+   "S9-R3": {
+    "status": "FOUND",
+    "text": "- S9-R3: Selecting one, several, or all locations reloads the report scoped to that set (unlike the technician filter, which is on-screen only)."
+   }
+  }
+ },
+ "SV-8947": {
+  "spec": "tu",
+  "version": "6",
+  "refs": {
+   "S5-R1": {
+    "status": "FOUND",
+    "text": "- S5-R1: The toolbar has a filter labeled \"Filter by Technician\" where the user can select more than one technician."
+   },
+   "S5-R6": {
+    "status": "FOUND",
+    "text": "- S5-R6: The filter has a control labeled \"Select all\" to select all technicians at once."
+   },
+   "S5-R7": {
+    "status": "FOUND",
+    "text": "- S5-R7: The filter has a control labeled \"Clear all\" to clear all technicians at once. Clearing all sets every currently-listed technician to deselected."
+   }
+  }
+ },
+ "SV-8948": {
+  "spec": "tu",
+  "version": "6",
+  "refs": {
+   "S7-N1": {
+    "status": "FOUND",
+    "text": "- S7-N1: If no technician is selected, choosing a download option does nothing: no file downloads and no message appears."
+   },
+   "S7-R8": {
+    "status": "FOUND",
+    "text": "- S7-R8: Every download includes only the technicians that are currently selected in the technician filter, and covers the location(s) currently selected in the location filter."
+   }
+  }
+ },
+ "SV-8949": {
+  "spec": "tu",
+  "version": "6",
+  "refs": {
+   "S7-R10a": {
+    "status": "FOUND",
+    "text": "- S7-R10a: Rows in every download are ordered by Technician name A\u2192Z (the default order). The on-screen column sort (S2-R13) is applied client-side only and is not carried into the export."
+   }
+  }
+ },
+ "SV-8950": {
+  "spec": "tu",
+  "version": "6",
+  "refs": {
+   "S7-R5": {
+    "status": "FOUND",
+    "text": "- S7-R5: The Summary PDF shows the technician rows and the Summary row."
+   },
+   "S7-R6": {
+    "status": "FOUND",
+    "text": "- S7-R6: The Expanded PDF shows the technician rows, each technician's per-day breakdown, and the Summary row."
+   },
+   "S7-R7": {
+    "status": "FOUND",
+    "text": "- S7-R7: The CSV file shows the technician rows and the Summary row. The CSV is always this summary-level content; it does not vary by the summary/expanded choice."
+   }
+  }
+ },
+ "SV-8951": {
+  "spec": "tu",
+  "version": "6",
+  "refs": {
+   "S7-R12": {
+    "status": "FOUND",
+    "text": "- S7-R12: The downloaded files are named \"Technician-Utilization-Summary.pdf\", \"Technician-Utilization-Expanded.pdf\", and \"technician-utilization.csv\". (The CSV filename is lower-case and the PDF filenames Title-Case, as shipped; the \"(PDF)\" menu labels likewise carry \"View\" on the expanded option only, matching the shipped strings.)"
+   },
+   "S7-R7": {
+    "status": "FOUND",
+    "text": "- S7-R7: The CSV file shows the technician rows and the Summary row. The CSV is always this summary-level content; it does not vary by the summary/expanded choice."
+   }
+  }
+ },
+ "SV-8953": {
+  "spec": "tu",
+  "version": "6",
+  "refs": {
+   "S4-R1": {
+    "status": "FOUND",
+    "text": "- S4-R1: Each technician row has a control to expand and collapse it. The control carries an accessible name reflecting its next action, scoped to that technician (\"Expand 's daily breakdown\" when the row is collapsed, \"Collapse 's daily breakdown\" when it is expanded)."
+   },
+   "S4-R4": {
+    "status": "FOUND",
+    "text": "- S4-R4: The report has a single control that expands or collapses all technician rows at once; if any row is collapsed it expands all rows, and only when every row is already expanded does it collapse all rows. The control lives in the table's header row (in the Technician column) \u2014 not in the toolbar action cluster (S8-R3) \u2014 and carries an accessible name reflecting its next action (\"Expand all technicians\" when it will expand, \"Collapse all technicians\" when every row is already expanded)."
+   },
+   "S8-R12": {
+    "status": "FOUND",
+    "text": "- S8-R12: The expand/collapse controls (per-row S4-R1 and the all-rows control S4-R4) are keyboard-focusable, toggle on Enter/Space, expose their expanded/collapsed state to assistive technology, and carry the verbatim accessible names defined in S4-R1 (per-row) and S4-R4 (all-rows)."
+   }
+  }
+ },
+ "SV-8954": {
+  "spec": "tu",
+  "version": "6",
+  "refs": {
+   "S10-R4": {
+    "status": "FOUND",
+    "text": "- S10-R4: The per-row Location column is one of the toggleable columns for a user with access to more than one location: it is shown by default and can be toggled on or off from the column selector (S9-R9). A user with access to only one location never sees it and it is not offered to them in the column selector."
+   },
+   "S7-R13": {
+    "status": "FOUND",
+    "text": "- S7-R13: Every download (both PDF views and the CSV) includes the per-row Location column whenever it is shown on screen (more than one location in scope \u2014 S9-R9), in its on-screen leftmost position. Every download also includes a \"Locations:\" line naming the location or locations the report is scoped to, or \"All locations\" when every location the user has access to is selected. In a PDF it appears in the header area; in the CSV it appears as a leading metadata line above the column-header row."
+   },
+   "S9-R9": {
+    "status": "FOUND",
+    "text": "- S9-R9: The report shows a per-row Location column to any user with access to more than one location; it is shown by default and can be toggled on or off from the column selector, and a user with access to only one location never sees it. This applies on screen and in every export (S7-R13)."
+   }
+  }
+ },
+ "SV-8955": {
+  "spec": "sbc",
+  "version": "15",
+  "refs": {
+   "S2-R6": {
+    "status": "FOUND",
+    "text": "- S2-R6: When the user changes the date range, the chosen value is written to the page link so the report can be shared or bookmarked at that range."
+   },
+   "S3-R7": {
+    "status": "FOUND",
+    "text": "- S3-R7: The chosen Product Type is reflected in the CSV export, the PDF export, and the PDF's filter summary line."
+   },
+   "S9-R3": {
+    "status": "FOUND",
+    "text": "- S9-R3: Before navigating, the active date range and Product Type are written to the page link so the report can be restored."
+   }
+  }
+ }
+}

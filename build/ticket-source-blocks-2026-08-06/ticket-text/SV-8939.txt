@@ -1,0 +1,30 @@
+# SV-8939 — Parts Velocity opens on All locations instead of the location the user is working in
+# parent: SV-8642
+
+1. What happens now
+The Parts Velocity report opens with its Location filter set to All locations, so the first thing a user sees is every location they have access to, mixed together. The written description asks it to open on the one location the user is actually working in.
+2. What should happen instead
+Parts Velocity specification, version 5, requirement S2-R9: "The toolbar provides a Location multi-select filter as the rightmost control in the filter row... On a first visit it defaults to the user's currently active location (the location currently selected in the application's global location switcher)."
+3. How to see it
+Sign in as a user who has access to more than one location. Check the location shown beside your name at the top right - it reads Staging Heavy Duty - 9919.
+
+Open Reports > Parts Velocity for the first time in this browser.
+
+Read the Location filter at the right-hand end of the filter row, and read the Location column in the table.
+
+Exact test data this was seen with: organisation Staging Foothills Group Inc; the signed-in user's active location Staging Heavy Duty - 9919; the other accessible location Staging Lethbridge - 4310. This was a genuine first visit - the browser had no saved view for this report.
+4. What was actually shown
+The filter read All locations, and the table returned rows from both locations - for example BRAKECLEAN appeared once for Staging Heavy Duty - 9919 and again for Staging Lethbridge - 4310.
+5. What was ruled out
+It is not a remembered setting from an earlier visit. The browser was brand new and held no saved view for this report; the very first request the page sent carried no location at all, and the second carried both.
+
+It is not the filter being broken. Choosing a single location works correctly and narrows the report - it is only the starting value that is wrong.
+
+It is not a permissions question. Both locations are ones this user is allowed to see.
+
+Note for triage: the same starting behaviour was reported on Inventory Value as . This ticket is the Parts Velocity report, which has its own requirement wording.
+
+6. How often
+Every time. Seen on every fresh browser session opened during this test.
+7. Where it was seen
+Reports > Parts Velocity, on the QA branch, build v3.5-16cf83f, on 6 August 2026.

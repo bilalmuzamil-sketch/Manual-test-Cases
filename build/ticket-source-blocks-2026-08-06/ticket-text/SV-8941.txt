@@ -1,0 +1,66 @@
+# SV-8941 — Month view shows the VIN on shift blocks although the spec says it is omitted there
+# parent: SV-8690
+
+Description
+The Schedule can show a unit's VIN on the shift blocks. That is useful in Day and Week view, where a block is wide enough to carry an extra line of text. In Month view the blocks are small, and the specification says the VIN is deliberately left off there so the block stays readable.
+Month view shows it anyway. The VIN is printed on the blocks alongside the customer, the unit number and the job, which crowds an already small block and pushes the job description out of sight.
+It matters because Month view is the planning view - it is where a service manager looks across four or five weeks at once - and the block text is what makes a job recognisable at a glance. A 17-character VIN takes the space the job description needed.
+Branch / Environment
+Application: https://sv8685.qa.shopview.com
+
+API host: https://sv8685api.qa.shopview.com
+
+Build marker (<meta name="app-version">): v3.5-7ec992f
+
+index.html last-modified: Wed, 05 Aug 2026 22:49:36 GMT, etag e2a80a6ab5e0b47c29fd88af9db1e980
+
+Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f
+
+Location / workplace: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton)
+
+Signed in as admin@shopview.com (Administrator)
+
+Observed: 2026-08-06, 06:0x UTC
+
+Steps to reproduce
+Sign in as an Administrator on the location Staging Heavy Duty - 9919 and open Schedule from the top navigation.
+
+Open the FILTER & DISPLAY dropdown in the toolbar and turn the VIN Number switch ON. (It is off by default, so this step is needed - the fault is about what Month view does when the switch is on.)
+
+Switch to Week view using the Day / Week / Month control and look at the blocks. The VIN appears - this part is correct.
+
+Now switch to Month view and look at the blocks.
+
+Switch to Day view and look again - the VIN appears there too, which is also correct.
+
+No special test data is needed beyond a unit that actually has a VIN recorded; the week of 2 to 8 August 2026 on this shop already contains several.
+Expected behaviour
+Month view blocks should not show the VIN at all, even with the switch on.
+Schedule specification, Confluence page 713031682, version 23, section 4.4, states it plainly:
+"Shown in day and week views only; month view omits it due to space constraints."
+Current behaviour
+With the VIN Number switch on, Month view prints the VIN on the blocks that have one.
+Month view: 11 of 67 blocks carry a full 17-character VIN.
+
+Week view: 29 of 55 blocks - correct
+
+Day view: 6 of 12 blocks - correct
+
+Examples read straight off the Month view blocks:
+Xiriver Apparel ~ 24069 ~ 3HSDZAPT9KN042164 ~ 19 Lines ~ Part of a series
+
+Xiriver Apparel ~ 16604 ~ 2H9U7A228VA048027 ~ Service - Wheels off single or tandem axle
+
+Pamill Paving ~ 713 ~ 3HAEUMMP1NL291283 ~ Replace - Rear ramp handles
+
+Not every block shows one, because not every unit has a VIN recorded - some carry a unit number such as 12-06696 instead. The fault is that any VIN appears in Month view at all.
+Images
+No screenshot is attached. The block text is quoted verbatim above, which shows the VIN more precisely than a picture of a small block would, and the check is a single glance at Month view with the switch on.
+Technical details for developers
+Counted by reading the rendered top-level block elements (.fc-timeline-event, .fc-daygrid-event) in each view and matching their text against a strict VIN pattern - exactly 17 characters from the VIN alphabet, containing at least one digit and at least one letter, so that unit numbers and job codes cannot be mistaken for a VIN.
+A first pass used a looser pattern and a selector that also matched nested child elements; it produced inflated and unreliable counts and was discarded. The figures above come from the corrected method, with the raw block text kept alongside each count.
+The same switch was confirmed to be doing its job elsewhere in the same sitting, so this is specific to Month view rather than the switch being ignored: with the switch off no block in any view carries a VIN, and with it on both Day and Week views show it as intended.
+A duplicate search was run before filing. Four queries were used: every descendant of epic SV-8685 (69 issues), and project-wide text searches for "VIN", summary "VIN", and "month view".
+SV-8835 is the closest and is NOT this: it reports the hover TOOLTIP showing the VIN while the toggle is OFF. This report is about the BLOCK in Month view while the toggle is ON - a different surface and the opposite switch position. (The tooltip behaviour SV-8835 describes was in fact ruled correct by the product owner on 31 July 2026.)
+
+SV-8865, SV-8867, SV-8870 and SV-8909 are all Month view faults but concern opening, reassigning, drag-creating and empty-cell clicking - none touches block text.

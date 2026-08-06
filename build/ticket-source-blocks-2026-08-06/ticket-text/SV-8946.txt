@@ -1,0 +1,24 @@
+# SV-8946 — The Technician Utilization technician filter reloads the report from the server instead of hiding rows on screen
+# parent: SV-8652
+
+1. What happens now
+Ticking or unticking a technician in the Technician Utilization technician filter sends a fresh request to the server. The written description says this filter should work on screen only - hiding and showing rows and recalculating the Summary - unlike the location filter, which does reload.
+2. What should happen instead
+Technician Utilization specification, version 6, requirement S9-R3: "Selecting one, several, or all locations reloads the report scoped to that set (unlike the technician filter, which is on-screen only)."
+The same specification, requirement S4-R5, calls deselecting and re-selecting a technician "an on-screen operation".
+3. How to see it
+Open Reports > Technician Utilization and set the date range to This Year.
+Open the Technician filter and untick one technician - Christian Pitts was used.
+Watch the table: it reloads rather than simply hiding the row.
+Exact test data this was seen with: organisation Staging Foothills Group Inc; signed-in user Admin ShopView; active location Staging Heavy Duty - 9919; the other accessible location Staging Lethbridge - 4310; date range This Year (1 January 2026 to 6 August 2026), which returns 29 technicians.
+4. What was actually shown
+Unticking Christian Pitts sent a new request to the report's own data address carrying an exclusion list with that technician in it, and the rows came back from the server. The row count went from 29 to 28 and the Summary recalculated correctly - the outcome is right, it is the reload that is not.
+The Summary moved from 15916.03 / 12843.23 / 3072.80 / 80.7% / $462,687.13 to 14984.33 / 12811.99 / 2172.34 / 85.5% / $332,120.67.
+5. What was ruled out
+It is not the filter being wrong. Hiding, showing and the Summary recalculation are all correct, and the deselected technicians are remembered exactly as described.
+It is not the location filter being confused with it. The location selection was unchanged throughout.
+It is not the same fault as the sorting reload, which is reported separately - that one happens on a column heading click, this one on a filter change.
+6. How often
+Every time, on every technician tried.
+7. Where it was seen
+Reports > Technician Utilization, on the QA branch, build v3.5-16cf83f, on 6 August 2026.

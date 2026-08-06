@@ -1,0 +1,38 @@
+# SV-8928 — Inventory Value forgets the part search text between visits, though it remembers every other setting
+# parent: SV-8675
+
+1. What happens now
+The Inventory Value report remembers most of what the user set - the date range, the locations, the columns and the sort all come back on the next visit. The one thing it forgets is the Search parts box. Whatever was typed there is gone, and the report comes back showing everything.
+2. What should happen instead
+Inventory Value requirement S8-R5: "The report remembers, in the user's browser, the selected date range, category selection, vendor selection, part search text, location selection, column selection, and sort, and restores them on the user's next visit."
+The part search text is named in that list alongside the settings that do come back.
+3. How to see it
+Sign in and open Reports > Inventory Value.
+
+Type refrigerant into the Search parts box and wait for the table to narrow.
+
+Also click the Part # header once, so the sort changes too.
+
+Navigate away to another screen, then come back to the report.
+
+Exact test data this was seen with: search term refrigerant, which matches the part R134A "Refrigerant" at both locations. Locations Staging Heavy Duty - 9919 and Staging Lethbridge - 4310, date range This Month.
+4. What was actually seen
+On returning to the report:
+the Search parts box was empty;
+
+the table was back to the full unfiltered list;
+
+but the sort had been remembered - it came back on Part # ascending, exactly as it was left.
+
+The saved view the report keeps in the browser holds the date range, the locations, the sort and the columns. There is no entry in it for the search text at all - it is never written, even while the search is active and filtering the table.
+5. What was ruled out
+The search itself works. Typing in the box sends a request and narrows the table correctly. The problem is only that it is not kept.
+
+It is not the sort or the columns. Those are remembered correctly, which shows the remembering mechanism is working - the search text is simply not part of what it stores.
+
+It is not a timing problem. The search had been applied and the table had already narrowed before navigating away.
+
+6. How often
+Every time.
+7. Where it was seen
+Reports > Inventory Value, on the QA branch, build v3.5-16cf83f, on 6 August 2026.

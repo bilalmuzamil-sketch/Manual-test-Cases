@@ -1,0 +1,23 @@
+# SV-8952 — Technician Utilization download messages: the success wording is generic and a failed download says nothing at all
+# parent: SV-8654
+
+1. What happens now
+When a Technician Utilization download starts, the message reads "Success / Data exported successfully." When a download fails, no message appears at all - the user is simply left with no file and no explanation.
+2. What should happen instead
+Technician Utilization specification, version 6, Story 7 error handling and the section 7 notifications table close both wordings: a download that starts shows "Download started", and a download that fails shows "Failed to download report".
+3. How to see it
+Open Reports > Technician Utilization and set the date range to This Quarter. Open the three-dot menu, choose Summary (CSV), and read the message that appears.
+Then set the date range to This Year and choose Expanded (PDF). Wait about forty seconds and watch for any message.
+Exact test data this was seen with: organisation Staging Foothills Group Inc; signed-in user Admin ShopView; active location Staging Heavy Duty - 9919; the other accessible location Staging Lethbridge - 4310; date range This Year (1 January 2026 to 6 August 2026), which returns 29 technicians.
+4. What was actually shown
+The successful download showed "Success / Data exported successfully." - the same generic wording for all four options, naming neither the report nor the file type.
+The failed download showed nothing. The server answered the request with an error after roughly half a minute, no file arrived, and no message of any kind was displayed.
+5. What was ruled out
+It is not a message that appeared and vanished before it could be read. The screen was checked continuously for forty-five seconds after the failure and no notification was ever present.
+It is not the download quietly succeeding. No file was produced.
+Note for triage: the underlying reason that Expanded PDF fails on a large view is already reported as SV-8818, which names this report. This ticket is only about the missing and generic messages.
+Note for triage: the same generic success wording was reported on Parts Velocity as SV-8936. This ticket is the Technician Utilization report, which has its own written wordings.
+6. How often
+Every time, for both the success and the failure message.
+7. Where it was seen
+Reports > Technician Utilization, on the QA branch, build v3.5-16cf83f, on 6 August 2026.

@@ -1,0 +1,30 @@
+# SV-8700 [Story] View Options, Color System & Display Customization
+# parent: SV-8685
+
+Summary
+Display controls that let each user customize their schedule view — department filtering, "My Shifts" mode, VIN visibility, capacity bars, business-hours shading, Saturday/Sunday columns, event visibility, and a shared color palette with editable labels.
+Context
+These controls sit in the toolbar (Filter & Display dropdown and View Options popover) and affect how the grid renders. Color applies to both shifts and events. Dark theme support follows design-system tokens.
+Requirements
+Filter & Display dropdown (checkbox style): department toggles (all on by default), My Shifts (off by default — filters grid to current user's shifts only, personal convenience not security), VIN (off by default — adds VIN line on shift blocks in day/week views). — (PRD: §9)
+
+View Options popover: Business Hours (off), Capacity Bars (on), Events (on), Tech Hours (off — shows working hours next to tech name), Saturday (on), Sunday (on). — (PRD: §9)
+
+Blue default for all shifts. Grey default for events. All other colors optional via the color picker in shift/event detail modal. — (PRD: §10)
+
+Color labels editable per shop. Each color provides three tones: background fill, text color, and accent (left border). No fixed semantic meanings beyond the two defaults. — (PRD: §10)
+
+Dark theme: built on design-system color tokens. Surfaces, borders, text, accents, and elevation/shadow tokens remap automatically. User-selectable from user menu, persisted per user. — (PRD: §11)
+
+Left-click on empty grid space opens a menu with: Create event, New work order. — (PRD: §4.10)
+
+Keyboard shortcuts: Escape closes topmost modal/popover (defined stacking order), Enter confirms active dialog (not in textareas). Drag-and-drop has click-to-arm alternative. — (PRD: §7)
+
+All interactive elements keyboard-reachable; focus rings follow design system; modals trap focus and close on Escape. — (PRD: §11)
+
+Out of Scope
+The "My Shifts" filter is personal convenience, not a permission boundary. There is no role-based "own shifts only" restriction.
+
+Acceptance Criteria
+Given the user opens Filter & Display, when they uncheck a department, then that department's rows and all its shifts disappear from the grid.Given "My Shifts" is turned on, when the grid updates, then only the current user's shifts are visible.Given VIN toggle is on, when viewing a shift block in week view, then the VIN line appears on the block.Given the user opens View Options and turns off Saturday, when viewing week view, then the Saturday column disappears.Given a shift's color is changed to red via the color picker, when saved, then the block renders with red background fill, appropriate text color, and red left border.Given dark theme is selected, when viewing the schedule, then all surfaces, text, and borders use dark-mode design tokens.Given the user left-clicks on empty grid space, when the menu appears, then "Create event" and "New work order" options are shown.Given a modal is open with a sub-picker (color picker), when Escape is pressed, then the sub-picker closes first; pressing Escape again closes the modal.UI/UX
+Schedule Design

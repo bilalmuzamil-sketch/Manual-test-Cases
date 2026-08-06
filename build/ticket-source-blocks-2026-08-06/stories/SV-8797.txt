@@ -1,0 +1,26 @@
+# SV-8797 [Story] Mobile Filter Bar
+# parent: SV-8785
+
+Summary
+Mobile users get the same filter capabilities as desktop, adapted for smaller screens with horizontally scrollable chips and mobile-appropriate dropdown overlays, ensuring filtering isn't a desktop-only feature.
+Context
+The user is accessing Work Orders on a mobile device
+
+The filter bar collapse toggle is not needed on mobile (bar is always visible)
+
+Page search is also available on mobile (Story 13)
+
+Requirements
+Filter chips are displayed in a horizontally scrollable row below the tab navigation — (PRD: Story 12, S12-R1)
+
+Chips behave identically to desktop: tapping opens the dropdown, selections update appearance, "Clear filters" appears when active — (PRD: Story 12, S12-R2)
+
+Filter dropdowns open as a bottom sheet or overlay appropriate for the mobile viewport — (PRD: Story 12, S12-R3)
+
+The filter bar collapse toggle is not shown on mobile; the filter bar is always visible — (PRD: Story 12, S12-R4)
+
+The page search control is shown on mobile and behaves as on desktop — (PRD: Story 12, S12-R5)
+
+Acceptance Criteria
+Given I'm on mobile, then filter chips are horizontally scrollable and all 5 are accessibleGiven I tap a chip on mobile, then a bottom sheet opens with the filter optionsGiven I select filters on mobile, then the table updates and chip appearance matches desktopGiven I'm on mobile, then there is no collapse/expand toggle for the filter barGiven no work orders match on mobile, then the same empty state as desktop is shownUI/UX
+Figma — Mobile Filter Bar

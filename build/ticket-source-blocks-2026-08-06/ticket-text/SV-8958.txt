@@ -1,0 +1,37 @@
+# SV-8958 — Schedule: Month view series bar does not name the technician it belongs to
+# parent: SV-8692
+
+What happens now
+In Month view a job spread over several days is drawn as one bar, but the bar does not say whose it is. It shows the customer, the unit, how many lines the job has and the words "Part of a series" - and no technician name anywhere.
+Why this matters
+Month view has no technician rows to read the name off, unlike Day and Week. So a planner looking at the month cannot tell who a job is booked to without opening it.
+How to see it
+Open the Schedule page and switch to Month view.
+
+Find a job that runs over several days - it will say "Part of a series".
+
+Read the bar from left to right.
+
+What you see
+The bar reads, for example, "Xiriver Apparel  24069  19 Lines  Part of a series" and another reads "Kastone Solutions  HE2-001  7 Lines  Part of a series".
+
+No technician name or initials appear on the bar at all.
+
+What should happen
+From the Schedule specification, section 4.6: "Month view: a continuous bar wrapping across week rows, labeled once at the start (with the technician)". The label at the start of the bar should include the technician.
+Exact test data used
+Location: Staging Heavy Duty - 9919. Build v3.5-7ec992f. Signed in as admin@shopview.com.
+
+Month view covering August 2026. Series bars seen: Xiriver Apparel unit 24069 (19 lines) and Kastone Solutions unit HE2-001 (7 lines).
+
+Six series entries were read in Month view; none carried a technician.
+
+Things checked and ruled out first
+Not a display setting - the VIN switch and the department filters were not the cause; the technician is simply not part of the bar's text.
+
+Not a Week-view problem - in Week view the technician is the row, so the name is available there. This is specific to Month view.
+
+Not the same as the missing chevrons and week counter reported in SV-8895; those were checked on this build and the chevron and the "Week 1 of 2" text are present.
+
+Where this came from
+Found while re-checking Schedule test case SCH-SER-01 (TestRail C29987) on 6 August 2026.

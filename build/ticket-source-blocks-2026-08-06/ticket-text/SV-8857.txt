@@ -1,0 +1,28 @@
+# SV-8857 — The Schedule sidebar filters have no 'Clear all' and the Filters button does not show how many are on
+# parent: SV-8687
+
+Description
+The work order filters on the left of the Schedule can be switched on one at a time but not switched off in one go - there is no 'Clear all'. There is also nothing on the Filters button to show that filters are currently applied or how many, so a planner can easily be looking at a filtered list and not realise it, and then has to hunt through three groups of tick boxes to undo it.
+Branch / Environment
+Branch tested: https://sv8685.qa.shopview.com/schedule · API host: https://sv8685api.qa.shopview.com · Build marker (meta app-version): v3.5-4873abe · index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 · Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f · Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) · Signed in as admin@shopview.com (Administrator) · Observed 2026-08-04, 16:00-19:00 UTC.
+Steps to reproduce
+Open the Schedule.
+
+Click 'Filters' in the left-hand panel.
+
+Tick 'Unassigned' under Assignment and 'Approved' under Status.
+
+Close the popover and note the work order list is now narrowed.
+
+Look at the Filters button for any badge or count showing that filters are on.
+
+Open the popover again and look for a 'Clear all' control.
+
+Expected behaviour
+The Filters button carries a small count of how many filters are applied, and the popover has a 'Clear all' that resets every filter in one click.
+Current behaviour
+There is no count on the button and no 'Clear all' anywhere in the popover. Each tick box has to be unticked individually.
+Images
+No screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.
+Technical details for developers
+Enumerated the popover's contents: heading 'FILTERS' then checkbox_sidebar_assignment_unassigned / _assigned, checkbox_sidebar_status_{estimate,approved,in_progress,declined,ready_for_review,complete,invoiced,paid} and checkbox_sidebar_priority_{high,medium,low}, each with its live count. No clear-all button and no badge element on button_sidebar_filters. Spec section 5.1: 'Filters live behind a "Filter" button (with an active-count badge); there are no assignment tabs. Applying a filter narrows the flat card list, and "Clear all" resets in one click.'

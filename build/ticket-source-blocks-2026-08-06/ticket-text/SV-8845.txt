@@ -1,0 +1,19 @@
+# SV-8845 — On a phone, a shared filter link shows the filters as on but lists the wrong work orders
+# parent: SV-8785
+
+Environment
+QA branch https://sv8785.qa.shopview.com/workorders
+Steps to Reproduce
+On a phone (or a browser window 390 pixels wide), sign in and open this address: https://sv8785.qa.shopview.com/workorders?status=declined&tab=all
+
+Look at the filter buttons above the list.
+
+Look at the status shown on the work order cards below them.
+
+Expected Result
+The page opens with the Declined filter already applied and the cards below show only Declined work orders, exactly as it does on a desktop screen.
+Current Result
+The filter buttons say filters are on — "All Filters (1)" and "Status (1)" are both highlighted in blue — but the cards listed are all Estimate work orders for the customer Aagate Landscaping, starting with S2-15017, S2-14846 and S2-13145.
+
+Technical detail
+With the URL above, the list request the phone sends is GET /api/work-orders?...&filters[0][field]=status&filters[0][value]=estimate&search=&showMyWorkOrders=0 — the value is "estimate", not the "declined" the URL asked for. The same happens with a second filter in the URL: the buttons read "All Filters (2)" / "Status (1)" / "Customer (1)" while the request is still status=estimate. Tapping the Status button then Paid sends filters[0][value]=paid correctly and the cards change to Paid, so the fault is specific to filter state arriving from the address bar. Specification reference S11-R2.

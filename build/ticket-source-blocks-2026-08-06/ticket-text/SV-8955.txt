@@ -1,0 +1,25 @@
+# SV-8955 — Sales By Customer never puts the date range or Product Type in the page link, so the report cannot be shared
+# parent: SV-8601
+
+1. What happens now
+Nothing a user chooses on Sales By Customer ever appears in the browser's address bar. The address stays at the plain report address whatever the date range, whatever the Product Type. So the report cannot be shared or bookmarked at a particular range - the person you send it to just gets their own saved view.
+2. What should happen instead
+Sales By Customer specification, version 15, requirement S2-R6: "When the user changes the date range, the chosen value is written to the page link so the report can be shared or bookmarked at that range."
+The same specification, requirement S3-R7 carries the Product Type into the exports, and requirement S9-R3: "Before navigating, the active date range and Product Type are written to the page link so the report can be restored."
+3. How to see it
+Open Reports > Sales By Customer and look at the browser address bar.
+Change the date range to Last Month and apply it. Watch the address bar for at least fifteen seconds.
+Change the Product Type to Service only. Watch the address bar again.
+Expand a customer, then an asset, and click an invoice number. Look at the address you came from.
+Exact test data this was seen with: organisation Staging Foothills Group Inc; signed-in user Admin ShopView; active location Staging Heavy Duty - 9919; the other accessible location Staging Lethbridge - 4310; Product Type left at Parts & Service unless the step says otherwise.
+4. What was actually shown
+The address stayed exactly /reports/sales-by-customer at every point - after the date change (sampled ten times over fifteen seconds), after the Product Type change, and at the moment of clicking through to an invoice.
+Everything else about those steps works: the report really does reload for the new range and the new Product Type, and coming back with the browser's back button restores Last Month and Service Only correctly and collapses the expanded rows.
+5. What was ruled out
+It is not a delayed write. The address was sampled ten times at 1.5-second intervals after the range was applied and never changed.
+It is not the setting failing to take effect - the request the page sent carried the new range and the new Product Type each time.
+It is not the saved view masking it. The saved view is a separate mechanism and it works; this is about the address bar, which stays bare.
+6. How often
+Every time, for every filter tried.
+7. Where it was seen
+Reports > Sales By Customer, on the QA branch, build v3.5-16cf83f, on 6 August 2026.

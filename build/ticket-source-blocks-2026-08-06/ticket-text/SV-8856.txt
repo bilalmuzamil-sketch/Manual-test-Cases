@@ -1,0 +1,26 @@
+# SV-8856 — Dragging a shift sideways in Day view jumps it a whole hour instead of a quarter of an hour
+# parent: SV-8694
+
+Description
+In the Day view a planner can drag a job left or right to change what time it starts. It is meant to move in quarter-hour steps so a job can start at, say, quarter past eight. In practice the smallest move it will make is a whole hour, so anything that does not start on the hour cannot be set by dragging.
+Branch / Environment
+Branch tested: https://sv8685.qa.shopview.com/schedule · API host: https://sv8685api.qa.shopview.com · Build marker (meta app-version): v3.5-4873abe · index.html last-modified Tue, 04 Aug 2026 14:47:39 GMT, etag 9b4b1fc776ebbfb04a9a0ca051d847f7 · Organisation d55bc308-e61a-438d-b5f1-c7a73c89d49f · Location: Staging Heavy Duty - 9919 (b3c8c820-f815-4cf1-8938-10956c5ee71a, timezone America/Edmonton) · Signed in as admin@shopview.com (Administrator) · Observed 2026-08-04, 16:00-19:00 UTC.
+Steps to reproduce
+Open the Schedule and pick the Day view for Tuesday Aug 4, 2026.
+
+Find any shift block on the grid - for example the Xiriver Apparel block, unit 16604, on Brittany Anderson's row.
+
+Note the start time in the block's hover summary.
+
+Press and hold the middle of the block and drag it a small distance to the right - about half of one hour column - then release.
+
+Read the new start time in the hover summary.
+
+Expected behaviour
+The start time moves in quarter-hour steps, so a small drag moves it 15 or 30 minutes, and a job can be set to start at 8:15 or 8:45.
+Current behaviour
+The start time jumps a whole hour. A drag of about half an hour's width moved the job a full hour, and no quarter-hour position can be reached by dragging.
+Images
+No screenshot is attached. The evidence for this ticket is a captured DOM/state reading rather than a visual difference; the exact values are in the technical section below.
+Technical details for developers
+A 24-pixel drag (approximately 31 minutes at the rendered zoom) issued PATCH /api/schedule/shifts/ebdd3e03-ab10-40f3-b820-4dd7e6192892 with startsAt '2026-08-04T14:00:00.000Z', i.e. exactly +60 minutes from 13:00:00Z. Spec section 4.8: 'Horizontal drag to move a shift's start time (snaps to 15-minute intervals).' Note this is a different surface from SV-8833, which is about the start/end pickers inside the shift window; both stem from 15-minute granularity not being applied, but the drag path and the picker path are separate. The shift moved during this test was put back to 13:00:00Z afterwards.

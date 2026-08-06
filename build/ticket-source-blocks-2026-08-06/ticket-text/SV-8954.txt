@@ -1,0 +1,24 @@
+# SV-8954 — The Technician Utilization Location column disappears when one location is chosen, and cannot be turned on again
+# parent: SV-8656
+
+1. What happens now
+The per-row Location column on Technician Utilization vanishes as soon as the user narrows the location filter to a single location, and there is no way to bring it back - the Location column is not offered in the Column Selection control at all. The written description ties the column to how many locations the user can reach, not to how many are currently chosen, and asks for it to be one of the columns the user can switch on and off.
+2. What should happen instead
+Technician Utilization specification, version 6, requirement S9-R9: "The report shows a per-row Location column to any user with access to more than one location; it is shown by default and can be toggled on or off from the column selector, and a user with access to only one location never sees it."
+The same specification, requirement S10-R4: "The per-row Location column is one of the toggleable columns for a user with access to more than one location: it is shown by default and can be toggled on or off from the column selector."
+3. How to see it
+Sign in as a user who can reach both locations and open Reports > Technician Utilization. The Location column is there, leftmost, before Technician.
+Open the Location filter and choose only Staging Heavy Duty - 9919.
+Look at the table again, then open the Column Selection control and look for Location.
+Exact test data this was seen with: organisation Staging Foothills Group Inc; signed-in user Admin ShopView; active location Staging Heavy Duty - 9919; the other accessible location Staging Lethbridge - 4310; date range This Year (1 January 2026 to 6 August 2026), which returns 29 technicians.
+4. What was actually shown
+With one location chosen the headings became Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor - the Location column was gone.
+The Column Selection control offers only Total Hours, WO Hours, Internal Hours, Utilization % and Est. Lost Labor. Location is not in the list in either state, so it can be neither switched off when it is there nor switched on when it is not.
+5. What was ruled out
+It is not the user losing access to the second location - both remain available in the filter and can be re-selected, which brings the column straight back.
+It is not the column simply being empty. It is absent: there is no such heading and no such cell.
+Note for triage: the specification is not perfectly consistent on the first half. Requirement S9-R9 ties the column to what the user can reach, but requirement S7-R13 refers in passing to "more than one location in scope", which could be read as what is currently chosen. The second half - the column missing from the Column Selection control - is not ambiguous: requirement S10-R4 asks for it plainly.
+6. How often
+Every time.
+7. Where it was seen
+Reports > Technician Utilization, on the QA branch, build v3.5-16cf83f, on 6 August 2026.
