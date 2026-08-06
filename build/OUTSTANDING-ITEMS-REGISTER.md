@@ -57,6 +57,27 @@ else owes).
 
 ---
 
+## ⚠️⚠️⚠️⚠️⚠️⚠️ NEWEST — 2026-08-06, THE ZEROS-ROW PASS. **ONE GO-AHEAD NEEDED, AND IT IS SMALL: the SCREEN half of a filed defect still cannot fail.**
+
+**One `update_case` (C30173) and one Jira create (SV-8991) this pass. No `add_case`, no `delete_case`,
+no section op, no run write, no result logged. Run 359 read only.**
+
+| Ref | What is needed | Category | Who owes it | **What it BLOCKS** | Since |
+|---|---|---|---|---|---|
+| **Z1** | **Authorisation for ONE `update_case` on [C30114](https://shopview.testrail.io/index.php?/cases/view/30114).** It is the **screen** half of the defect now filed as **[SV-8991](https://shopview.atlassian.net/browse/SV-8991)**, and it still carries a tester note claiming *"the written description does not say what the totals row should do when nothing matches"* — while its **own `refs` cite `S18-N1`**, which says *"the report shows the empty state (Story 17) and the totals row shows zeros"*. Needed in one write: restore the zeros assertion, replace the false note with the Rule-61 symptom and its three outcomes naming SV-8991, set `AUTOMATION: READY - EXPECT FAIL (SV-8991)`, and pin `refs` from the stale `v13` to `v15`. | **GO-AHEAD** | **the QA lead** | **The screen half of a filed defect cannot fail.** C30173 (the download half) was repaired under this pass's authorisation; C30114 was outside it. A case that cannot fail is not a test (Rule 57), so SV-8991 currently has a ticket and only half a test guarding it. | 2026-08-06 |
+| **Z2** | **A live re-check of one contradiction in our OWN evidence** — `full-viu-2026-08-06/evidence/2026-08-06-session2/sbc7.json` holds an empty table body beside a **fully populated, non-zero** totals row, which cannot be the same state as `sbc9.json`'s `afterClear: {"totals": null}`. Likeliest reading: two different empty states (empty **date range** vs empty **customer selection**), which would make a **stale non-zero totals row a SECOND, separate defect**. | **ACCESS** (needs the app) | us, once a sign-in exists | Nothing yet — it is **asserted nowhere** (Rule 12). It is a candidate defect we cannot confirm or dismiss: the harness script that produced the capture is not in the repository and the branch is unreachable. | 2026-08-06 |
+
+**Two things this pass CLEARED rather than raised:**
+
+- **The zeros-row question for Chris Ward is CLEARED and was never his to answer.** It was kept off the
+  2026-08-06 sheet as Q2 because its premise was false, and the live document proves it: SBC **v15**
+  states the requirement **three times** (`S18-R10`, `S18-N1`, and the Story 16 placeholder note). Filed as
+  **SV-8991** instead — Rule 7 forbids putting a bug in front of a product owner.
+- **`NO-SOURCE-DEFECTS.md` item 2 is CORRECTED** — it claimed no requirement covered this. Struck through
+  and dated rather than overwritten. Working: `build/report-suite/zeros-row-2026-08-06/SOURCE-VERIFICATION.md`.
+
+---
+
 ## ⚠️⚠️⚠️⚠️⚠️ NEWEST — 2026-08-06, THE CONSOLIDATION PASS. **FOUR QA-LEAD RULINGS ARRIVED. THREE OF THEM TAKE THE ITEM OFF HIS DESK AND PUT IT ON OURS — and all four are QUEUED BEHIND Report Suite's remaining 276 cases and Vlad's Filters gap table, on his own instruction.**
 
 **DOCUMENTATION ONLY this pass. No TestRail write, no Jira write, no app access, no case edit.**
