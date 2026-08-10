@@ -424,3 +424,19 @@ was changed while enumerating labor rates and is a per-session setting, not stor
 
 **Not done, and not claimed:** 208 of the 225 were **not** verdicted against this build, and the 28
 closed tickets behind 50 expect-fail cases were **not** re-checked.
+
+---
+
+## 2026-08-10 — build verification of the three handed-off reports
+
+**TestRail: 0 writes.** 0 `update_case` · 0 `add_case` · 0 `delete_case` · 0 section ops · 0 run writes ·
+0 results. Nothing was written because **no case was found to be wrong** — every candidate resolved to a
+build deviation, where Rule 57 requires the case to stand unchanged.
+
+**Jira: 0 writes.** Nothing created anywhere, per the standing hold.
+
+**Environment: nothing seeded, nothing changed, nothing to restore.** No customer, work order, role or
+setting was created or modified. The only state touched was the signed-in session's own browser
+`localStorage`, inside a throwaway headless browser.
+
+**Run 359 (Nebojsa's and Viktoria's): not touched.** No write of any kind was issued against it.

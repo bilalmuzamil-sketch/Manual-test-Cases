@@ -1083,3 +1083,59 @@ from the opposite direction.
 Vladimir Tomovic added **C43567…C43573**, one of which — **C43572**, *"Work In Progress appends pages
 on scroll while the server summary stays…"* — is in Work In Progress scope. **Not touched (Rule 38)**
 and proven byte-identical. Recorded as a reverse-coverage signal for an authorised pass.
+
+---
+
+# SESSION 2026-08-10 (build verification of the three handed-off reports)
+
+**Build `v3.5-4795eee`, read three times, byte-identical — it moved zero times.** Full record:
+`build/report-suite/build-verify-2026-08-10/BUILD-VERIFICATION-2026-08-10.md` and
+`LABEL-LAYER-2026-08-10.md`. **0 TestRail writes. Nothing filed anywhere** (the creation hold stands).
+
+## Build deviations found, written up and NOT filed
+
+Each has both texts quoted side by side in `LABEL-LAYER-2026-08-10.md`. All seven are cases where the
+case is right and the build differs, so the case keeps its expectation (Rule 57).
+
+1. **Sales By Customer download menu** — the build offers "Download Summary (PDF)", "Download Expanded
+   View (PDF)", "Download Summary (CSV)", "Download Expanded View (CSV)". **SBC S14-R1/R2 and S15-R1/R2
+   say the items read "Download (CSV)" and "Download (PDF)", and S16-R1 requires a "Print" item as the
+   third entry. There is no Print item at all.** Affects C30159, C30160, C30164, C30172, C30173, C30194.
+2. **Technician Utilization download menu** — same shape; **TU S7-R4 says "Download (CSV)"**. Already
+   noted inside C30434; also affects C30436.
+3. **Work In Progress tab capitalisation** — the build shows "Approved - Partially Completed" and
+   "Approved - Not Started"; **WIP S1-R2/S1-R3 write both in lower case.**
+4. **Sales By Customer customer search** — the build shows an input placeholder "Search customers"
+   (no ellipsis, not pinned); **S18-R2 requires a pinned "Search customers…" hint.**
+5. **No hover tooltips** — the expand-all chevron and the column selector expose accessible names
+   ("Expand all customers", "Column Selection") but **no tooltip at all**; **S8-R18 and S13-R2 require
+   tooltips reading "Expand all"/"Collapse all" and "Column Selection."**
+6. **Technician Utilization select-all control** reads **"All technicians"**; **S5-R6 says "Select all".**
+7. **Technician Utilization filter label** reads **"Filter By Technician"** (capital B); **S5-R1 says
+   "Filter by Technician".**
+
+## A false finding of my own, caught by its control — READ THIS BEFORE RE-CHECKING SV-8967
+
+The Work In Progress work-order number **rendered as a working, keyboard-focusable, navigating link** in
+my session, which would have meant SV-8967 was fixed and that C30468 / C30523 / C43557 were misleading
+testers. **It was an artefact of my own sign-in.** The shipped bundle guards the link with
+
+```js
+He = row => Ma().WorkOrders && row.workplace_id === De.value
+// Ma().WorkOrders = !!userHasDefaultWorkplace() && (canView||canEdit)('workOrders')
+```
+
+and `admin@shopview.com` has **`defaultWorkplace: null`**. I had seeded a default workplace to get past
+the app's no-location bounce, which is what turned the link on. **The three cases were not changed.**
+
+**Two conditions worth having on the record, neither of them in WIP S4-R5:** the link is withheld from any
+user with **no default workplace** regardless of permission, and **a row whose `workplace_id` is not the
+active location renders as plain text even for a fully permitted user** — so with several locations
+selected only the active location's rows are links.
+
+## One contradiction inside our own suite, needing the QA lead
+
+**C30452** asserts the Work In Progress tabs read "Approved - Partially Completed" (Title Case — what the
+**build** shows), while C30462, C30464, C30488, C30489 and C30490 assert the specification's lower case.
+They cannot both be right, and C30452 looks like a case written to the build. **Not changed** — moving it
+is an expectation change and therefore his call.
