@@ -2384,3 +2384,127 @@ requireVehicleIdentifier, vehicleIdentifier, autoPickInventoryParts, autoApprove
 requireVendorInvoiceNumber, requireReview}`. Write with `POST /api/organizations/settings/change`
 (full object). **Snapshot it to a file first and restore byte-for-byte** — these are org-wide and
 other testers share the org.
+
+---
+
+## §S — STAGING: the same seed, plus feature flags, reversal, and the controls that hide (proven 2026-08-10, SV-8768 plan)
+
+Staging is `app.staging.shopview.com` / `api.staging.shopview.com`. **You cannot re-login from the
+container** — staging redirects to Google SSO, so when the session dies you must ask for fresh
+`PHPSESSID` / `sv_sso_session` / `cf_clearance`. Budget your run around one session.
+
+### S.1 ⚠️ CORRECTION to §R.7b — the payment dialog must be LEFT OPEN, full stop
+
+§R.7b said dismissing the payment dialog with **Escape** rolls back invoice creation but the close
+**button** was fine. **It is not.** On staging, clicking `button_close_payment_dialog` in the same
+page session **also** rolls it back: `POST /api/invoices/create` returns **201**, and the work order
+stays at **Complete** with no invoice in the list. The only sequence that persists is:
+
+```js
+await p.mouse.click(cx, cy);        // button_create_invoice, by coordinate
+await p.waitForTimeout(9000);       // let the create call land
+await s.browser.close();            // dialog still OPEN — do not touch it
+```
+
+Verify afterwards with `GET /api/work-orders/view/{id}` — status must read **Invoiced**.
+
+### S.2 Feature flags — read, and set (the whole set, not a delta)
+
+```
+GET  /api/feature-flags                                   # every flag in the system: id + name
+GET  /api/organization/feature-flags?organization_id=…     # what THIS org has
+POST /api/organization/feature-flags
+     {organization_id, feature_flag_ids:[<global feature ids>]}   → 200
+```
+
+**Two traps.** (a) The per-org GET returns **join-row ids**, *not* feature ids — you cannot feed them
+back. Always resolve names against `/api/feature-flags` and send **those** ids. (b) The POST
+**replaces** the set, so include the flags the org already has or you will strip them. Snapshot first.
+
+Worth knowing: a staging org can be missing flags production has. On 2026-08-10 staging carried only
+`BillingPortal` + `Deposits` while production had 13 — so a "the panel is gone" check was passing for
+the wrong reason. **Read the flags before concluding a UI element is absent because of a code change.**
+
+### S.3 Workplace settings (shop supplies %) — `tax` must be an OBJECT
+
+```
+GET  /api/workplaces                       # full records, incl. shop_supplies_charge
+POST /api/workplaces/change
+     {id, workplace_id, name, address_1, address_2, city, state_or_province, postal_code,
+      country_code, telephone, timezone, color, shop_id, remit_to, remit_to_type,
+      shop_supplies_charge: 10, min_shop_supplies_charge, max_shop_supplies_charge,
+      shopSupplyPercentageEnabled, tax:{id,name}, another:false}     → 201
+```
+
+**`tax` as a bare id string returns HTTP 500.** It must be the `{id, name}` object. The UI path is
+Administration → Locations → the edit icon at the **far right of the row** (off-screen at 1600px —
+scroll or read the payload from the network, which is how this was captured).
+
+### S.4 Line status, including DECLINE
+
+`POST /api/work-orders/lines/change-status {line_id, work_order_id, status}` accepts `complete` but
+rejects every spelling of declined. The real call is the bulk one:
+
+```
+POST /api/work-orders/lines/change-lines
+     {workOrderId, lines:[<line_id>…], field:"status", value:"authorization_declined"}   → 201
+```
+
+Valid values seen in the UI submenu: `Authorization required`, **`Declined`** (`authorization_declined`),
+`Authorized`, `Complete`. UI path: tick the line's checkbox → `button_line_bulk_action` → **click**
+(not hover) "Set line status" → pick the status. Completing a line auto-completes the work order when
+it is the last one.
+
+### S.5 Parts on a work order
+
+```
+GET /api/work-orders/{id}/parts/list-requests-by-line?search=
+```
+returns `collection[].part_requests[]` with each request's `id`, `status`, `sell_price`, `quantity`.
+`POST /api/work-orders/parts/delete {part_id, work_order_id}` rejects a **part request** id with
+`{"part_id":"Not found"}` — the delete for a request is on the row's Action kebab
+(`button_part_request_action`), which sits **off-screen to the right** at 1600px.
+
+**Guard worth knowing:** `Line can't be completed with unfulfilled part requests.` A canned line that
+carries a part therefore blocks completion — and so blocks invoicing — until the part is received or
+the request removed.
+
+### S.6 Audit Log and the history snapshot
+
+The **Audit Log** is *not* a tab. It is under the **⋮** on the Lines tab
+(`button_work_order_nav_bar_menu`) → "Audit Log", and it opens a **Work Order Log** dialog listing
+Invoice created / Reviewed / Fee added / Line completed with amounts. `link_history_tab` exists in the
+DOM but is inside the overflow and clicking it does nothing.
+
+Rows for status events carry a **clock icon**; clicking it navigates to
+`…/workorders/{id}/finance?historyId=<uuid>` — the work order **as it was at that moment**. That is
+what the SV-8768 plan means by "open that history entry".
+
+The API twin is `GET /api/work-orders/{id}/history` (adjustment/audit rows, paginated).
+
+### S.7 Reversing an invoice
+
+Finance tab → `button_wo_invoice_menu` → menu is `["Reverse","Issue Credit"]` → click **Reverse** →
+confirm dialog `["close","Reverse","Cancel"]`. The work order returns to **Complete** and the
+processing fee drops back to its pre-invoice value. No API route for this was found
+(`/api/invoices/reverse|void|cancel` all 404).
+
+### S.8 Creating a line when the API refuses
+
+`POST /api/work-orders/lines/create` returns `{"error":"Labor or fixed prices must be set."}` for a
+bare canned-line id and **HTTP 500** when labour fields are added. Drive the dialog instead: it
+auto-opens on a zero-line work order, otherwise `button_new_line`. Fill
+`select_line_canned_line` by **typing a name and pressing Enter** (a free-text name is accepted —
+"No results" in the dropdown is fine), then the Labor Rate select, then `input_time_estimate` /
+`input_tech_time` (**hours**, not minutes). Save with **Save & Close** clicked by coordinate.
+
+⚠️ **Production's dialog differs**: it has no `input_line_description`, and `input_time_estimate` /
+`input_tech_time` carry **no data-test-id** — target them via `.q-field:has-text("Estimated Time") input`.
+Production's Enter-select fires `POST /api/work-orders/{id}/lines/create-from-canned-line`, which
+copies the canned line's **parts** too; fix the rate/time afterwards with `lines/change`.
+
+### S.9 Quasar clicks — the standing rule, restated because it cost time again
+
+`locator.click()` times out against Quasar menus and dialogs ("subtree intercepts pointer events").
+**Always** take `boundingBox()` and use `page.mouse.click(x + w/2, y + h/2)`. Submenus open on
+**click**, not hover.
