@@ -16,7 +16,7 @@ section 2 the moment a QuickBooks-connected organisation is available. Read this
 | 3 — no line can be added to an invoiced work order | ✅ done | SV-8813 comment **74892** |
 | 4 — re-invoicing after a void | ✅ done | SV-8813 comment **74892** |
 | 5 — editing a work order with an unpaid invoice | ✅ done | SV-8814 comment **74891** |
-| 6 — things that shouldn't have changed | ✅ 4 pass / 1 partial / 3 not covered | SV-8768 comment **74894** |
+| 6 — things that shouldn't have changed | ✅ 5 pass / 1 partial / 2 not covered | SV-8768 comment **74894** (updated — the CSV export now passes) |
 
 **Jira comments already posted — update these rather than adding duplicates where it makes sense:**
 
@@ -80,9 +80,14 @@ would post **$134.00**.
 Then repeat on a work order with **no fees** and confirm the QuickBooks output is unchanged.
 
 **Evidence required (QA lead's standing rule):** annotated before/after screenshots — the ShopView
-invoice beside the QuickBooks invoice, with the fee line boxed on both. Annotate with PIL; the
-generator is `/tmp/annot.py` in the old session, and the pattern is in the existing
-`ANN-SEC*.png` files under `evidence/`.
+invoice beside the QuickBooks invoice, with the fee line boxed on both. The generator is committed as
+`annotate.py` in this folder (PIL; feed it a JSON spec — see the existing `ANN-SEC*.png` for the
+pattern), with `capture-with-coordinates.mjs` to get the box coordinates.
+
+**Cross-check it against the CSV too.** The Customer Invoice export (Reports → Export Reports, playbook
+§S.10, or `GET /api/reporting/export/customer_invoice?report=customer_invoice&range=today`) gives the
+billed fee amount per invoice line in one call — QuickBooks, the invoice and that CSV should all agree
+to the cent.
 
 ---
 
@@ -171,7 +176,6 @@ every work order there is one we created and tagged.
   impersonating ends the only session we have.
 - **How the section-4 freeze was originally provoked** — a question for Nemanja; the Reverse action
   does not reproduce it on production.
-- **Where the Customer Invoice CSV export lives** — not found on this organisation.
 - **Not raised, observed on both builds:** any line edit on an invoiced work order carrying a part
   returns HTTP 500, and a line cannot be completed while a part request is unfulfilled. Neither is a
   regression from this branch. No ticket filed — the QA lead's call.

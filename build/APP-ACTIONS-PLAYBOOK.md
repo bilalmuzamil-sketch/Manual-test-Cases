@@ -2508,3 +2508,62 @@ copies the canned line's **parts** too; fix the rate/time afterwards with `lines
 `locator.click()` times out against Quasar menus and dialogs ("subtree intercepts pointer events").
 **Always** take `boundingBox()` and use `page.mouse.click(x + w/2, y + h/2)`. Submenus open on
 **click**, not hover.
+
+### S.10 The Customer Invoice CSV export — Reports → Export Reports
+
+**This is the "Customer Invoice CSV" the Fees & Discounts / invoicing plans keep referring to.**
+
+UI: `Reports` → **Export Reports**, at the **bottom of the ACCOUNTING group** in the left sidebar,
+below *IBS Batches* and *QB Unexported*. It opens an **Export Report** dialog with two selects:
+
+* `select_report_name` — Customer Contact · **Customer Invoice** · Customer Payment · Customer Credit
+  Memo · Vendor Contact · Vendor Bill · Vendor Bill Payment · Vendor Credit Memo · Payroll Timesheet ·
+  Journal Entry
+* `select_date_range` — Custom · Today · Yesterday · This Week · Last Week · This Month · Last Month
+
+⚠️ Option text comes back as `"check Customer Invoice"` — the Quasar tick icon renders as the word
+`check` inside `innerText`. **Strip a leading `check` before matching**, or every match fails silently.
+
+⚠️ The route `/reports/export-reports` **404s**. It is a dialog on whatever reports page you are on —
+click the sidebar item, don't navigate.
+
+API (same thing, no browser needed):
+
+```
+GET /api/reporting/export/customer_invoice?report=customer_invoice&range=today
+```
+
+`range` takes `today|yesterday|this_week|last_week|this_month|last_month|custom`. **The UI download
+gives raw CSV; the direct API call returns it JSON-wrapped as `{"data":["<csv text>"]}`** — unwrap
+`data[0]` before parsing.
+
+Columns: `InvoiceNo, Customer, InvoiceDate, DueDate, Terms, Location, Memo, Item(Product/Service),
+ItemDescription, ItemQuantity, ItemRate, ItemAmount, ItemTaxCode, ItemTaxAmount, "ShopView Products
+and Services"`. One row per invoice line; `Item(Product/Service)` is `Labour` / `Supplies` /
+`Inventory` / `Fee`. A non-taxable processing fee carries `ItemTaxCode = Exempt` and `0` tax. Declined
+lines do not appear at all.
+
+⚠️ **Date range is in the ORG's timezone.** On an Asia/Dubai org, invoices created in our afternoon
+land on the *next* calendar date, so they show under **Today** while ones from a few hours earlier
+show under **Yesterday**. Pull both before concluding a record is missing.
+
+### S.11 ⚠️ THE LESSON THAT COST THE MOST TODAY: never conclude "it does not exist" from a truncated read
+
+The Export Reports item above was declared **not found** for hours. The cause: a page-text dump was
+sliced to the first N characters and the slice ended at *IBS Batches* — two entries above it. Four
+follow-up probes then "confirmed" the absence, each of them looking somewhere it was never going to be.
+
+**The rule: an absence is a claim, and a claim needs the same rigour as a finding (Standing Rules
+12/17/50).** Before writing "there is no X":
+
+1. Print the **whole** container's text, never a slice — or grep the slice for what you expect and say
+   so if it is truncated.
+2. Enumerate the **full** nav/menu/DOM list (`[...document.querySelectorAll("[data-test-id]")]`,
+   or every `a`/`.q-item`), don't eyeball a screenshot that may be cut off at the viewport edge.
+3. Check the **feature flags** — a control can be absent because the org lacks the flag, not because
+   the build lacks the code (this bit us twice today: ShopCoach in §S.2, and here).
+4. Say **"not found"** with the exact places looked, never **"does not exist"**.
+
+Same failure mode, same day, different surface: the part-row Action kebab and the Locations edit icon
+were both "missing" because they sit **off-screen to the right at a 1600px viewport**. Scroll the
+container or read the network payload instead of trusting what rendered.
