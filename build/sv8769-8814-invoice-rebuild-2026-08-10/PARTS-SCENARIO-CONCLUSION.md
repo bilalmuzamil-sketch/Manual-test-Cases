@@ -13,6 +13,7 @@ that is true on production *and* staging. Four separate doors, three of them del
 | 2 | Edit the part's quantity/sell price on the invoiced work order | **400** | **400** | *"Part requests can't be modified once received."* |
 | 3 | **Add** a part to the invoiced work order | — | **400** | *"Part requests can`t be modified on completed line."* |
 | 4 | Edit the **labor** on the invoiced work order (`lines/change`) | **500** | **500** | *(server error, no message)* |
+| 5 | Add a **work-order fee** (the ⋮ menu's own action) | — | **409** | *"Adjustments cannot be changed on an invoiced or paid work order."* |
 
 **Door 1 is the important one.** The developer's own most-realistic trigger — *"Receive parts on an
 invoiced work order… invoicing while parts are still arriving is routine"* — is unreachable, because
@@ -22,6 +23,9 @@ parts still outstanding under this configuration.
 
 **Doors 2 and 3** are deliberate, sensible guards. Together they mean nothing about the parts on an
 invoiced work order can be changed at all.
+
+**Door 5** closes the last alternative: a work-order fee is the one other thing the UI still offers
+on an invoiced work order, and the API refuses it outright.
 
 **Door 4 is the only actual error** — and it is the one that matters for testing, because it means
 even the labor trigger dies before the rebuild listener can run.
@@ -38,6 +42,7 @@ clean one:
 | Production **S2-833** | **labor only** | **201** ✅ |
 | Staging **S-38** | labor + part | **500** |
 | Staging **S-39** (freshly seeded, clean, never touched) | labor + part | **500** |
+| Staging **S-41** (the QA lead's chosen work order, clean) | labor + part | **500** |
 
 **Same behaviour on both environments.** A trigger that errors identically on the fixed and the
 unfixed build cannot tell them apart — which is exactly why this scenario yields no verdict.
