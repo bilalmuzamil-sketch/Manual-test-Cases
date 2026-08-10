@@ -1,0 +1,2674 @@
+[
+ {
+  "offset": 0,
+  "tag": "p",
+  "section": null,
+  "section_title": null,
+  "class": "META",
+  "text": "ShopView \u00b7 Technician Scheduling Module"
+ },
+ {
+  "offset": 377,
+  "tag": "td",
+  "section": null,
+  "section_title": null,
+  "class": "META",
+  "text": "Status"
+ },
+ {
+  "offset": 467,
+  "tag": "td",
+  "section": null,
+  "section_title": null,
+  "class": "META",
+  "text": "Complete"
+ },
+ {
+  "offset": 578,
+  "tag": "td",
+  "section": null,
+  "section_title": null,
+  "class": "META",
+  "text": "Author"
+ },
+ {
+  "offset": 668,
+  "tag": "td",
+  "section": null,
+  "section_title": null,
+  "class": "META",
+  "text": "Product Team"
+ },
+ {
+  "offset": 783,
+  "tag": "td",
+  "section": null,
+  "section_title": null,
+  "class": "META",
+  "text": "Last Updated"
+ },
+ {
+  "offset": 879,
+  "tag": "td",
+  "section": null,
+  "section_title": null,
+  "class": "META",
+  "text": "July 15, 2026"
+ },
+ {
+  "offset": 995,
+  "tag": "td",
+  "section": null,
+  "section_title": null,
+  "class": "META",
+  "text": "Version"
+ },
+ {
+  "offset": 1086,
+  "tag": "td",
+  "section": null,
+  "section_title": null,
+  "class": "META",
+  "text": "1.0"
+ },
+ {
+  "offset": 1192,
+  "tag": "td",
+  "section": null,
+  "section_title": null,
+  "class": "META",
+  "text": "Stakeholders"
+ },
+ {
+  "offset": 1288,
+  "tag": "td",
+  "section": null,
+  "section_title": null,
+  "class": "META",
+  "text": "Engineering, Design, Shop Operations"
+ },
+ {
+  "offset": 1427,
+  "tag": "td",
+  "section": null,
+  "section_title": null,
+  "class": "META",
+  "text": "Design"
+ },
+ {
+  "offset": 1517,
+  "tag": "td",
+  "section": null,
+  "section_title": null,
+  "class": "META",
+  "text": "Schedule, Business and Tech hours settings"
+ },
+ {
+  "offset": 1893,
+  "tag": "td",
+  "section": null,
+  "section_title": null,
+  "class": "META",
+  "text": "Epic"
+ },
+ {
+  "offset": 1981,
+  "tag": "td",
+  "section": null,
+  "section_title": null,
+  "class": "META",
+  "text": "SV-8685267fb633-cc25-3f2d-8011-7f1e9199ad21System Jira"
+ },
+ {
+  "offset": 2449,
+  "tag": "h2",
+  "section": "1",
+  "section_title": "Overview",
+  "class": "HEAD",
+  "text": "1. Overview"
+ },
+ {
+  "offset": 2493,
+  "tag": "p",
+  "section": "1",
+  "section_title": "Overview",
+  "class": "NARR",
+  "text": "The Schedule module gives shop managers a visual calendar to assign technicians to work order lines across days and weeks. It replaces manual whiteboards and spreadsheets with a drag-and-drop interface that respects technician capacity, surfaces conflicts, and keeps the work order system of record in sync."
+ },
+ {
+  "offset": 2831,
+  "tag": "h3",
+  "section": "1.1",
+  "section_title": "Problem statement",
+  "class": "HEAD",
+  "text": "1.1 Problem statement"
+ },
+ {
+  "offset": 2885,
+  "tag": "p",
+  "section": "1.1",
+  "section_title": "Problem statement",
+  "class": "NARR",
+  "text": "Heavy-duty shops manage dozens of open work orders simultaneously, each with multiple repair lines requiring different technicians and hours. Without a dedicated scheduling tool, managers rely on memory, whiteboards, or ad-hoc spreadsheets, which leads to double-bookings, overtime surprises, and unbalanced workloads across the team."
+ },
+ {
+  "offset": 3250,
+  "tag": "h3",
+  "section": "1.2",
+  "section_title": "Goals",
+  "class": "HEAD",
+  "text": "1.2 Goals"
+ },
+ {
+  "offset": 3320,
+  "tag": "li",
+  "section": "1.2",
+  "section_title": "Goals",
+  "class": "REQ",
+  "text": "Reduce scheduling errors (double-bookings, weekend assignments, after-hours shifts) to near zero with automatic conflict detection."
+ },
+ {
+  "offset": 3515,
+  "tag": "li",
+  "section": "1.2",
+  "section_title": "Goals",
+  "class": "REQ",
+  "text": "Give managers a single screen to see the full week's technician allocation at a glance."
+ },
+ {
+  "offset": 3666,
+  "tag": "li",
+  "section": "1.2",
+  "section_title": "Goals",
+  "class": "REQ",
+  "text": "Support multi-day \"spread\" scheduling for large jobs (engine rebuilds, frame work) that span 40 to 160+ hours across days and weeks."
+ },
+ {
+  "offset": 3872,
+  "tag": "li",
+  "section": "1.2",
+  "section_title": "Goals",
+  "class": "REQ",
+  "text": "Keep the work order roster in sync, so scheduling a technician on the schedule automatically adds them to the line's labor roster."
+ },
+ {
+  "offset": 4101,
+  "tag": "h2",
+  "section": "2",
+  "section_title": "User personas",
+  "class": "HEAD",
+  "text": "2. User personas"
+ },
+ {
+  "offset": 4267,
+  "tag": "th",
+  "section": "2",
+  "section_title": "User personas",
+  "class": "TBLH",
+  "text": "Persona"
+ },
+ {
+  "offset": 4341,
+  "tag": "th",
+  "section": "2",
+  "section_title": "User personas",
+  "class": "TBLH",
+  "text": "Role"
+ },
+ {
+  "offset": 4412,
+  "tag": "th",
+  "section": "2",
+  "section_title": "User personas",
+  "class": "TBLH",
+  "text": "Key needs"
+ },
+ {
+  "offset": 4524,
+  "tag": "td",
+  "section": "2",
+  "section_title": "User personas",
+  "class": "NARR",
+  "text": "Service Manager"
+ },
+ {
+  "offset": 4606,
+  "tag": "td",
+  "section": "2",
+  "section_title": "User personas",
+  "class": "NARR",
+  "text": "Owns the daily schedule for 5 to 15 techs"
+ },
+ {
+  "offset": 4714,
+  "tag": "td",
+  "section": "2",
+  "section_title": "User personas",
+  "class": "NARR",
+  "text": "Drag-and-drop scheduling, capacity visibility, conflict alerts"
+ },
+ {
+  "offset": 4879,
+  "tag": "td",
+  "section": "2",
+  "section_title": "User personas",
+  "class": "NARR",
+  "text": "Service Advisor"
+ },
+ {
+  "offset": 4961,
+  "tag": "td",
+  "section": "2",
+  "section_title": "User personas",
+  "class": "NARR",
+  "text": "Creates work orders, communicates ETAs to customers"
+ },
+ {
+  "offset": 5079,
+  "tag": "td",
+  "section": "2",
+  "section_title": "User personas",
+  "class": "NARR",
+  "text": "See when their work orders are scheduled, which techs are assigned"
+ },
+ {
+  "offset": 5248,
+  "tag": "td",
+  "section": "2",
+  "section_title": "User personas",
+  "class": "NARR",
+  "text": "Shop Foreman"
+ },
+ {
+  "offset": 5327,
+  "tag": "td",
+  "section": "2",
+  "section_title": "User personas",
+  "class": "NARR",
+  "text": "Oversees floor execution"
+ },
+ {
+  "offset": 5418,
+  "tag": "td",
+  "section": "2",
+  "section_title": "User personas",
+  "class": "NARR",
+  "text": "Day view of who's doing what, department filtering"
+ },
+ {
+  "offset": 5571,
+  "tag": "td",
+  "section": "2",
+  "section_title": "User personas",
+  "class": "NARR",
+  "text": "Technician"
+ },
+ {
+  "offset": 5648,
+  "tag": "td",
+  "section": "2",
+  "section_title": "User personas",
+  "class": "NARR",
+  "text": "Performs the repair work on assigned lines"
+ },
+ {
+  "offset": 5757,
+  "tag": "td",
+  "section": "2",
+  "section_title": "User personas",
+  "class": "NARR",
+  "text": "A clear view of their own assigned shifts and what to work on next, plus their hours"
+ },
+ {
+  "offset": 5959,
+  "tag": "h2",
+  "section": "3",
+  "section_title": "Information architecture",
+  "class": "HEAD",
+  "text": "3. Information architecture"
+ },
+ {
+  "offset": 6019,
+  "tag": "p",
+  "section": "3",
+  "section_title": "Information architecture",
+  "class": "REQ",
+  "text": "The Schedule lives as a top-level nav item alongside Work Orders, Customers, Parts, and Reports. The screen is split into two regions."
+ },
+ {
+  "offset": 6184,
+  "tag": "h3",
+  "section": "3.1",
+  "section_title": "Left panel: work order sidebar",
+  "class": "HEAD",
+  "text": "3.1 Left panel: work order sidebar"
+ },
+ {
+  "offset": 6279,
+  "tag": "li",
+  "section": "3.1",
+  "section_title": "Left panel: work order sidebar",
+  "class": "REQ",
+  "text": "Mini calendar. A month picker with week-highlight and a collapsible grid. Clicking a date navigates the main grid."
+ },
+ {
+  "offset": 6474,
+  "tag": "li",
+  "section": "3.1",
+  "section_title": "Left panel: work order sidebar",
+  "class": "REQ",
+  "text": "Work order list. A flat, scrollable list of work order cards. Searchable and filterable (see \u00a75). There are no Assigned/Unassigned tabs; assignment is a filter."
+ },
+ {
+  "offset": 6720,
+  "tag": "li",
+  "section": "3.1",
+  "section_title": "Left panel: work order sidebar",
+  "class": "REQ",
+  "text": "Line drill-down. Clicking a work order replaces the list, in place, with that order's lines. Only approved work order lines are visible in the schedule sidebar; unapproved lines do not appear. Includes a back control, the WO id plus line count, a line search box, and \"All / Unscheduled\" filter chips with counts. Each line row is independently draggable (drag handle) and shows its title, estimated hours, and current technician roster (avatar stack plus count, with no cap). Lines with no technician assigned show a \"Needs techs\" badge so the manager can see at a glance which lines still require someone."
+ },
+ {
+  "offset": 7450,
+  "tag": "p",
+  "section": "3.1",
+  "section_title": "Left panel: work order sidebar",
+  "class": "REQ",
+  "text": "Work order card anatomy. Each card shows, from top to bottom: WO number (in accent color, top left) and line count plus hours estimate (top right); customer name (bold); unit number; and a lead technician row (avatar plus name). A colored left border indicates the work order's status. All of these fields are visible on the card and are matched by the sidebar search."
+ },
+ {
+  "offset": 7866,
+  "tag": "p",
+  "section": "3.1",
+  "section_title": "Left panel: work order sidebar",
+  "class": "REQ",
+  "text": "Sidebar search (\"Search work orders\") matches against: WO number, customer name, unit number, and technician name. It filters the card list in real time as the user types."
+ },
+ {
+  "offset": 8095,
+  "tag": "p",
+  "section": "3.1",
+  "section_title": "Left panel: work order sidebar",
+  "class": "REQ",
+  "text": "Line search (\"Search lines\"), visible in the drill-down, matches against line title/name only (the list is already scoped to one work order, so customer/unit/WO fields would be redundant)."
+ },
+ {
+  "offset": 8341,
+  "tag": "h3",
+  "section": "3.2",
+  "section_title": "Main area: schedule grid",
+  "class": "HEAD",
+  "text": "3.2 Main area: schedule grid"
+ },
+ {
+  "offset": 8430,
+  "tag": "li",
+  "section": "3.2",
+  "section_title": "Main area: schedule grid",
+  "class": "REQ",
+  "text": "Day view. A 24-hour timeline per technician row with time-positioned blocks."
+ },
+ {
+  "offset": 8587,
+  "tag": "li",
+  "section": "3.2",
+  "section_title": "Main area: schedule grid",
+  "class": "REQ",
+  "text": "Week view. A 7-column grid Mon to Sun (Saturday and Sunday each toggleable) with stacked shift chips per cell."
+ },
+ {
+  "offset": 8778,
+  "tag": "li",
+  "section": "3.2",
+  "section_title": "Main area: schedule grid",
+  "class": "REQ",
+  "text": "Month view. A compact calendar with per-day capacity bars and shift chips."
+ },
+ {
+  "offset": 8938,
+  "tag": "p",
+  "section": "3.2",
+  "section_title": "Main area: schedule grid",
+  "class": "REQ",
+  "text": "Grid grouping. Rows are grouped by department under collapsible group headers (e.g. SERVICE/PARTS, ADMINISTRATION), with the department's technicians listed beneath each header. This is the only grid grouping; because the department view already lists technicians, there is no separate technician-only view or Tech/Dept toggle."
+ },
+ {
+  "offset": 9313,
+  "tag": "p",
+  "section": "3.2",
+  "section_title": "Main area: schedule grid",
+  "class": "REQ",
+  "text": "Unassigned placeholder. An unassigned row sits within the grid (not a separate tray) and holds shifts that are not yet tied to a technician. Dragging a shift from this row down onto a technician assigns it. Unassigned shifts use the same three-line block anatomy as regular shifts (see \u00a74.4); they simply have no technician yet (see \u00a74.2)."
+ },
+ {
+  "offset": 9740,
+  "tag": "h2",
+  "section": "4",
+  "section_title": "Core features",
+  "class": "HEAD",
+  "text": "4. Core features"
+ },
+ {
+  "offset": 9789,
+  "tag": "h3",
+  "section": "4.1",
+  "section_title": "Drag-and-drop scheduling",
+  "class": "HEAD",
+  "text": "4.1 Drag-and-drop scheduling"
+ },
+ {
+  "offset": 9850,
+  "tag": "p",
+  "section": "4.1",
+  "section_title": "Drag-and-drop scheduling",
+  "class": "REQ",
+  "text": "The primary interaction model. Users drag a work order card (or an individual line) from the sidebar and drop it onto a technician x day/time cell in the grid."
+ },
+ {
+  "offset": 10157,
+  "tag": "th",
+  "section": "4.1",
+  "section_title": "Drag-and-drop scheduling",
+  "class": "TBLH",
+  "text": "Scenario"
+ },
+ {
+  "offset": 10232,
+  "tag": "th",
+  "section": "4.1",
+  "section_title": "Drag-and-drop scheduling",
+  "class": "TBLH",
+  "text": "Behavior"
+ },
+ {
+  "offset": 10343,
+  "tag": "td",
+  "section": "4.1",
+  "section_title": "Drag-and-drop scheduling",
+  "class": "REQ",
+  "text": "Single-line work order"
+ },
+ {
+  "offset": 10432,
+  "tag": "td",
+  "section": "4.1",
+  "section_title": "Drag-and-drop scheduling",
+  "class": "REQ",
+  "text": "Creates a shift immediately, skipping the scope picker."
+ },
+ {
+  "offset": 10590,
+  "tag": "td",
+  "section": "4.1",
+  "section_title": "Drag-and-drop scheduling",
+  "class": "REQ",
+  "text": "Multi-line work order"
+ },
+ {
+  "offset": 10678,
+  "tag": "td",
+  "section": "4.1",
+  "section_title": "Drag-and-drop scheduling",
+  "class": "REQ",
+  "text": "Opens the scope picker to choose whole order, a single line, or several lines."
+ },
+ {
+  "offset": 10859,
+  "tag": "td",
+  "section": "4.1",
+  "section_title": "Drag-and-drop scheduling",
+  "class": "REQ",
+  "text": "Specific line drag"
+ },
+ {
+  "offset": 10944,
+  "tag": "td",
+  "section": "4.1",
+  "section_title": "Drag-and-drop scheduling",
+  "class": "REQ",
+  "text": "Dragging a line from the drill-down creates a single-line shift directly."
+ },
+ {
+  "offset": 11120,
+  "tag": "td",
+  "section": "4.1",
+  "section_title": "Drag-and-drop scheduling",
+  "class": "REQ",
+  "text": "Large job (exceeds the tech's daily hours)"
+ },
+ {
+  "offset": 11229,
+  "tag": "td",
+  "section": "4.1",
+  "section_title": "Drag-and-drop scheduling",
+  "class": "REQ",
+  "text": "After scope is chosen, opens the spread step to distribute hours across consecutive working days."
+ },
+ {
+  "offset": 11414,
+  "tag": "p",
+  "section": "4.1",
+  "section_title": "Drag-and-drop scheduling",
+  "class": "REQ",
+  "text": "The spread step is conditional: a scope that fits within one of the technician's working days skips it and creates a single shift."
+ },
+ {
+  "offset": 11575,
+  "tag": "h3",
+  "section": "4.2",
+  "section_title": "Shift start times and unassigned shifts",
+  "class": "HEAD",
+  "text": "4.2 Shift start times and unassigned shifts"
+ },
+ {
+  "offset": 11651,
+  "tag": "p",
+  "section": "4.2",
+  "section_title": "Shift start times and unassigned shifts",
+  "class": "REQ",
+  "text": "Every shift has a start time. It is derived from a hierarchy:"
+ },
+ {
+  "offset": 11798,
+  "tag": "li",
+  "section": "4.2",
+  "section_title": "Shift start times and unassigned shifts",
+  "class": "REQ",
+  "text": "The technician's configured working hours take precedence."
+ },
+ {
+  "offset": 11920,
+  "tag": "li",
+  "section": "4.2",
+  "section_title": "Shift start times and unassigned shifts",
+  "class": "REQ",
+  "text": "If those are not set, the shop's business hours are used."
+ },
+ {
+  "offset": 12041,
+  "tag": "li",
+  "section": "4.2",
+  "section_title": "Shift start times and unassigned shifts",
+  "class": "REQ",
+  "text": "If neither is set, a general default of 7:00 AM to 7:00 PM applies."
+ },
+ {
+  "offset": 12177,
+  "tag": "p",
+  "section": "4.2",
+  "section_title": "Shift start times and unassigned shifts",
+  "class": "REQ",
+  "text": "In day view, the start time instead comes from where the shift is dropped on the timeline."
+ },
+ {
+  "offset": 12298,
+  "tag": "p",
+  "section": "4.2",
+  "section_title": "Shift start times and unassigned shifts",
+  "class": "REQ",
+  "text": "Unassigned shifts are created by dropping a work order (or line) onto the grid's Unassigned placeholder row (an in-grid lane, not a separate tray). They follow the same start-time rules except technician hours (there is no technician yet), so they fall back to business hours or the default. When an unassigned shift is later dragged onto a technician row in the grid, that technician's hours apply."
+ },
+ {
+  "offset": 12745,
+  "tag": "p",
+  "section": "4.2",
+  "section_title": "Shift start times and unassigned shifts",
+  "class": "REQ",
+  "text": "Hours settings (tech and business hours). Working hours are defined in two places: a technician's custom schedule in Edit Staff Member, and the shop's business hours in Edit Location. Both use the same pattern:"
+ },
+ {
+  "offset": 13055,
+  "tag": "li",
+  "section": "4.2",
+  "section_title": "Shift start times and unassigned shifts",
+  "class": "REQ",
+  "text": "Behind a toggle, off by default. Each section sits behind a toggle (\"Set custom hours for this technician\" / \"Set business hours for this shop\"). The per-day editor appears only when the toggle is on. A technician with no custom hours inherits the shop's business hours (per the hierarchy above)."
+ },
+ {
+  "offset": 13476,
+  "tag": "li",
+  "section": "4.2",
+  "section_title": "Shift start times and unassigned shifts",
+  "class": "REQ",
+  "text": "Per-day editor. One row per day (Mon\u2013Sun): day name, with From \u2192 To ranges on the right. Each day starts with a single range; \"Add hours\" appends more to support split shifts, each removable. Added ranges start empty so the user explicitly sets the times."
+ },
+ {
+  "offset": 13857,
+  "tag": "li",
+  "section": "4.2",
+  "section_title": "Shift start times and unassigned shifts",
+  "class": "REQ",
+  "text": "Overlap validation. If a day's ranges overlap, the offending range is flagged in red with an inline message (\"These hours overlap. Adjust the times so they don't conflict.\") and Save is disabled until it is resolved. Incomplete rows (empty From/To) are ignored by the check."
+ },
+ {
+  "offset": 14251,
+  "tag": "h3",
+  "section": "4.3",
+  "section_title": "Scope picker",
+  "class": "HEAD",
+  "text": "4.3 Scope picker"
+ },
+ {
+  "offset": 14300,
+  "tag": "p",
+  "section": "4.3",
+  "section_title": "Scope picker",
+  "class": "REQ",
+  "text": "When a multi-line work order is dropped, a popover anchored to the drop cell lets the manager choose what to schedule:"
+ },
+ {
+  "offset": 14477,
+  "tag": "li",
+  "section": "4.3",
+  "section_title": "Scope picker",
+  "class": "REQ",
+  "text": "\"Schedule whole work order\" is pinned at the top, visually distinct, and labeled with the line count and total hours. It assigns the technician to all lines and creates one whole-order shift."
+ },
+ {
+  "offset": 14759,
+  "tag": "li",
+  "section": "4.3",
+  "section_title": "Scope picker",
+  "class": "REQ",
+  "text": "Individual line rows. Tapping a row is the fast path: it immediately creates a single-line shift with no confirmation step. Each row shows the line title, estimated hours, and current technician roster (avatar stack plus count)."
+ },
+ {
+  "offset": 15068,
+  "tag": "li",
+  "section": "4.3",
+  "section_title": "Scope picker",
+  "class": "REQ",
+  "text": "\"Select multiple\" is an opt-in control that switches the line rows into checkboxes and shows a confirm bar with a running tally (\"Create shift \u00b7 2 lines \u00b7 6h\"), a \"Select all\" shortcut (equivalent to whole order), and Cancel (returns to the fast single-tap list)."
+ },
+ {
+  "offset": 15461,
+  "tag": "p",
+  "section": "4.3",
+  "section_title": "Scope picker",
+  "class": "REQ",
+  "text": "There is no technician cap and no swap flow. Scheduling a technician onto a line simply adds them to that line's roster."
+ },
+ {
+  "offset": 15612,
+  "tag": "h3",
+  "section": "4.4",
+  "section_title": "Shift block anatomy and scope labeling",
+  "class": "HEAD",
+  "text": "4.4 Shift block anatomy and scope labeling"
+ },
+ {
+  "offset": 15687,
+  "tag": "p",
+  "section": "4.4",
+  "section_title": "Shift block anatomy and scope labeling",
+  "class": "REQ",
+  "text": "Every shift block on the grid shows three lines of text (four when VIN is toggled on), with a default blue color (users can optionally assign a custom color per shift via the color picker in the detail modal, see \u00a710):"
+ },
+ {
+  "offset": 15969,
+  "tag": "li",
+  "section": "4.4",
+  "section_title": "Shift block anatomy and scope labeling",
+  "class": "REQ",
+  "text": "Line 1: customer name, plus the conflict icon if the shift is conflicted."
+ },
+ {
+  "offset": 16123,
+  "tag": "li",
+  "section": "4.4",
+  "section_title": "Shift block anatomy and scope labeling",
+  "class": "REQ",
+  "text": "Line 2: unit number."
+ },
+ {
+  "offset": 16224,
+  "tag": "li",
+  "section": "4.4",
+  "section_title": "Shift block anatomy and scope labeling",
+  "class": "REQ",
+  "text": "Line 3 (optional): VIN number, visible only when the VIN toggle is on in Filter and Display (\u00a76). Shown in day and week views only; month view omits it due to space constraints."
+ },
+ {
+  "offset": 16487,
+  "tag": "li",
+  "section": "4.4",
+  "section_title": "Shift block anatomy and scope labeling",
+  "class": "REQ",
+  "text": "Last line: the line name for a single-line shift, or \"N Lines\" when the shift covers more than one line."
+ },
+ {
+  "offset": 16687,
+  "tag": "p",
+  "section": "4.4",
+  "section_title": "Shift block anatomy and scope labeling",
+  "class": "REQ",
+  "text": "There is no work order number and no scope icons on the block; the conflict icon is the only icon. Whole-order and multi-line-subset shifts both read as \"N Lines\" on the block, and the detail modal spells out the exact scope."
+ },
+ {
+  "offset": 16953,
+  "tag": "h3",
+  "section": "4.5",
+  "section_title": "Multi-day spread scheduling",
+  "class": "HEAD",
+  "text": "4.5 Multi-day spread scheduling"
+ },
+ {
+  "offset": 17017,
+  "tag": "p",
+  "section": "4.5",
+  "section_title": "Multi-day spread scheduling",
+  "class": "REQ",
+  "text": "For jobs exceeding a technician's daily capacity, the spread step distributes the work across consecutive working days. It appears as step 2 of the same modal, with a header showing the chosen scope and a \"Change scope\" back-link."
+ },
+ {
+  "offset": 17316,
+  "tag": "li",
+  "section": "4.5",
+  "section_title": "Multi-day spread scheduling",
+  "class": "REQ",
+  "text": "How much to schedule is set by a single selector that defaults to Full estimate (the most common choice). Most options apply on selection with no extra fields; only the custom ones reveal a control:Full estimate, 1 week, and 2 weeks apply immediately with nothing to fill in."
+ },
+ {
+  "offset": 17827,
+  "tag": "li",
+  "section": "4.5",
+  "section_title": "Multi-day spread scheduling",
+  "class": "REQ",
+  "text": "Until a date\u2026 reveals a single \"finish by\" date field."
+ },
+ {
+  "offset": 17979,
+  "tag": "li",
+  "section": "4.5",
+  "section_title": "Multi-day spread scheduling",
+  "class": "REQ",
+  "text": "Specific hours\u2026 reveals an hours stepper.This progressive disclosure (Google Calendar style) keeps the modal to one line in the common case and expands only for the custom options."
+ },
+ {
+  "offset": 18263,
+  "tag": "li",
+  "section": "4.5",
+  "section_title": "Multi-day spread scheduling",
+  "class": "REQ",
+  "text": "Start date. Defaults to the earliest working day. Adjusting it is how a second technician's series can be made sequential (starting after the first) rather than parallel."
+ },
+ {
+  "offset": 18514,
+  "tag": "li",
+  "section": "4.5",
+  "section_title": "Multi-day spread scheduling",
+  "class": "REQ",
+  "text": "Uses the technician's own working hours. Automatically skips weekends when business hours are not set for them. Shop closures and public holidays are not skipped in V1.."
+ },
+ {
+  "offset": 18747,
+  "tag": "li",
+  "section": "4.5",
+  "section_title": "Multi-day spread scheduling",
+  "class": "REQ",
+  "text": "Preview, collapsed by default: a one-line summary (\"20 shifts \u00b7 Jun 15 to Jul 13 \u00b7 skips weekends + 2 days\"), expandable to a week-by-week breakdown with skipped days struck through and their reasons."
+ },
+ {
+  "offset": 19052,
+  "tag": "li",
+  "section": "4.5",
+  "section_title": "Multi-day spread scheduling",
+  "class": "REQ",
+  "text": "Confirming creates a linked series of daily shifts."
+ },
+ {
+  "offset": 19172,
+  "tag": "p",
+  "section": "4.5",
+  "section_title": "Multi-day spread scheduling",
+  "class": "REQ",
+  "text": "Each drop spreads the full estimate for that technician, independently. Dropping the same work order on a second technician spreads the full estimate again for them. There is no shared \"remaining\" counter across technicians and no splitting of a shift. Because progress is driven by clocked-in time, scheduled hours, the estimate, and actual hours are three separate quantities and are not forced to reconcile."
+ },
+ {
+  "offset": 19640,
+  "tag": "h3",
+  "section": "4.6",
+  "section_title": "Linked series and banners",
+  "class": "HEAD",
+  "text": "4.6 Linked series and banners"
+ },
+ {
+  "offset": 19702,
+  "tag": "p",
+  "section": "4.6",
+  "section_title": "Linked series and banners",
+  "class": "REQ",
+  "text": "A series is a group of shifts created by the spread step; all shifts in a series share a series id. The series is a render-time grouping, not a special record. Underneath it is N individual daily shifts, each keeping its own day and hours, so capacity, overtime, and conflict logic all operate on the individual shifts unchanged."
+ },
+ {
+  "offset": 20079,
+  "tag": "p",
+  "section": "4.6",
+  "section_title": "Linked series and banners",
+  "class": "REQ",
+  "text": "Shifts sharing a technician plus series id render as one connected banner:"
+ },
+ {
+  "offset": 20212,
+  "tag": "li",
+  "section": "4.6",
+  "section_title": "Linked series and banners",
+  "class": "REQ",
+  "text": "Month view: a continuous bar wrapping across week rows, labeled once at the start (with the technician), with a faded \"continues\" label on later weeks, empty weekend columns (when business hours are not set for weekends)."
+ },
+ {
+  "offset": 20524,
+  "tag": "li",
+  "section": "4.6",
+  "section_title": "Linked series and banners",
+  "class": "REQ",
+  "text": "Week view: one banner spanning the working days of that week in the technician's row, with chevrons at the edges indicating continuation beyond the visible week, a \"week N of M\" cue."
+ },
+ {
+  "offset": 20797,
+  "tag": "li",
+  "section": "4.6",
+  "section_title": "Linked series and banners",
+  "class": "REQ",
+  "text": "Day view: that day's single time-positioned block with a \"part of an M-week job\" cue (only one day is visible, so there is no spanning bar)."
+ },
+ {
+  "offset": 21033,
+  "tag": "h3",
+  "section": "4.7",
+  "section_title": "Overlap and lane stacking",
+  "class": "HEAD",
+  "text": "4.7 Overlap and lane stacking"
+ },
+ {
+  "offset": 21095,
+  "tag": "p",
+  "section": "4.7",
+  "section_title": "Overlap and lane stacking",
+  "class": "REQ",
+  "text": "Overlapping shifts for the same technician never visually collide:"
+ },
+ {
+  "offset": 21220,
+  "tag": "li",
+  "section": "4.7",
+  "section_title": "Overlap and lane stacking",
+  "class": "REQ",
+  "text": "Shifts whose time ranges do not intersect share a single lane, so sequential or back-to-back work keeps the row at normal height."
+ },
+ {
+  "offset": 21413,
+  "tag": "li",
+  "section": "4.7",
+  "section_title": "Overlap and lane stacking",
+  "class": "REQ",
+  "text": "Shifts whose time ranges do intersect split into stacked lanes, and the row grows to fit."
+ },
+ {
+  "offset": 21566,
+  "tag": "li",
+  "section": "4.7",
+  "section_title": "Overlap and lane stacking",
+  "class": "REQ",
+  "text": "Visible lanes are capped at 3. Additional overlapping shifts collapse into a \"+N more\" affordance that opens a popover listing the hidden shifts. This applies in day, week, and month views (week and month reach the overflow much sooner because cells are narrower)."
+ },
+ {
+  "offset": 21904,
+  "tag": "li",
+  "section": "4.7",
+  "section_title": "Overlap and lane stacking",
+  "class": "REQ",
+  "text": "Overlap on the same technician is a conflict (see \u00a74.11) and is flagged, so stacking reads as \"resolve me,\" not \"two normal jobs.\""
+ },
+ {
+  "offset": 22128,
+  "tag": "h3",
+  "section": "4.8",
+  "section_title": "Day view: timeline interactions",
+  "class": "HEAD",
+  "text": "4.8 Day view: timeline interactions"
+ },
+ {
+  "offset": 22224,
+  "tag": "li",
+  "section": "4.8",
+  "section_title": "Day view: timeline interactions",
+  "class": "REQ",
+  "text": "Auto-scroll to business hours. On initial day-view load and when navigating to a new day, the timeline auto-scrolls so the working-day start sits at the left edge of the visible area (with a small 30 to 60 minute buffer before it). The start time comes from the same hierarchy shifts use: the earliest technician's configured start if tech hours are set, otherwise business hours, otherwise 7:00 AM. If technicians have different start times, the earliest one is used so no shifts are off-screen. The auto-scroll fires only on load or day navigation; if the user scrolls manually, their position is not overridden. The full 24-hour timeline remains intact and scrollable."
+ },
+ {
+  "offset": 22976,
+  "tag": "li",
+  "section": "4.8",
+  "section_title": "Day view: timeline interactions",
+  "class": "REQ",
+  "text": "Sticky header bar. Date and time headers stick to the top of the viewport during vertical scroll, so the user always knows which time column they are looking at. This applies in both day and week views."
+ },
+ {
+  "offset": 23259,
+  "tag": "li",
+  "section": "4.8",
+  "section_title": "Day view: timeline interactions",
+  "class": "REQ",
+  "text": "Horizontal drag to move a shift's start time (snaps to 15-minute intervals)."
+ },
+ {
+  "offset": 23416,
+  "tag": "li",
+  "section": "4.8",
+  "section_title": "Day view: timeline interactions",
+  "class": "REQ",
+  "text": "Edge resize. Drag the left or right edge to adjust duration."
+ },
+ {
+  "offset": 23557,
+  "tag": "li",
+  "section": "4.8",
+  "section_title": "Day view: timeline interactions",
+  "class": "REQ",
+  "text": "Lane stacking. Overlapping shifts split into parallel lanes per \u00a74.7."
+ },
+ {
+  "offset": 23712,
+  "tag": "li",
+  "section": "4.8",
+  "section_title": "Day view: timeline interactions",
+  "class": "REQ",
+  "text": "Lane height with VIN. When the VIN toggle is on (\u00a79), lane heights in day view grow to accommodate the additional VIN line so block text is not clipped."
+ },
+ {
+  "offset": 23950,
+  "tag": "li",
+  "section": "4.8",
+  "section_title": "Day view: timeline interactions",
+  "class": "REQ",
+  "text": "Now line. A vertical indicator showing the current time, with a label on hover over the grid."
+ },
+ {
+  "offset": 24124,
+  "tag": "li",
+  "section": "4.8",
+  "section_title": "Day view: timeline interactions",
+  "class": "REQ",
+  "text": "Business-hours shading. An optional grey overlay outside working hours."
+ },
+ {
+  "offset": 24281,
+  "tag": "h3",
+  "section": "4.9",
+  "section_title": "Shift detail modal",
+  "class": "HEAD",
+  "text": "4.9 Shift detail modal"
+ },
+ {
+  "offset": 24336,
+  "tag": "p",
+  "section": "4.9",
+  "section_title": "Shift detail modal",
+  "class": "REQ",
+  "text": "Clicking a shift block opens a detail panel showing:"
+ },
+ {
+  "offset": 24447,
+  "tag": "li",
+  "section": "4.9",
+  "section_title": "Shift detail modal",
+  "class": "REQ",
+  "text": "Customer name, unit number, VIN (always visible, below unit and asset), and work order id."
+ },
+ {
+  "offset": 24601,
+  "tag": "li",
+  "section": "4.9",
+  "section_title": "Shift detail modal",
+  "class": "REQ",
+  "text": "Scheduled date and start/end time pickers (15-minute increments)."
+ },
+ {
+  "offset": 24730,
+  "tag": "li",
+  "section": "4.9",
+  "section_title": "Shift detail modal",
+  "class": "REQ",
+  "text": "Technician."
+ },
+ {
+  "offset": 24805,
+  "tag": "li",
+  "section": "4.9",
+  "section_title": "Shift detail modal",
+  "class": "REQ",
+  "text": "Time logged vs estimate (progress)."
+ },
+ {
+  "offset": 24904,
+  "tag": "li",
+  "section": "4.9",
+  "section_title": "Shift detail modal",
+  "class": "REQ",
+  "text": "Scope summary and the scheduled line(s) with labor/status figures."
+ },
+ {
+  "offset": 25034,
+  "tag": "li",
+  "section": "4.9",
+  "section_title": "Shift detail modal",
+  "class": "REQ",
+  "text": "Estimated hours with inline edit."
+ },
+ {
+  "offset": 25131,
+  "tag": "li",
+  "section": "4.9",
+  "section_title": "Shift detail modal",
+  "class": "REQ",
+  "text": "Color picker (see \u00a710)."
+ },
+ {
+  "offset": 25223,
+  "tag": "li",
+  "section": "4.9",
+  "section_title": "Shift detail modal",
+  "class": "REQ",
+  "text": "Notes: add, edit, and delete per work order."
+ },
+ {
+  "offset": 25331,
+  "tag": "li",
+  "section": "4.9",
+  "section_title": "Shift detail modal",
+  "class": "REQ",
+  "text": "A conflict banner with an \"Adjust\" action when the shift is conflicted."
+ },
+ {
+  "offset": 25476,
+  "tag": "li",
+  "section": "4.9",
+  "section_title": "Shift detail modal",
+  "class": "REQ",
+  "text": "Actions: Delete (series-aware, \u00a77)"
+ },
+ {
+  "offset": 25584,
+  "tag": "h3",
+  "section": "4.10",
+  "section_title": "Events",
+  "class": "HEAD",
+  "text": "4.10 Events"
+ },
+ {
+  "offset": 25628,
+  "tag": "p",
+  "section": "4.10",
+  "section_title": "Events",
+  "class": "REQ",
+  "text": "Non-work-order time blocks (meetings, training, stand-ups) that occupy technician time:"
+ },
+ {
+  "offset": 25774,
+  "tag": "li",
+  "section": "4.10",
+  "section_title": "Events",
+  "class": "REQ",
+  "text": "Create via left-click on empty grid space, which opens a menu with 'Create event' and 'New work order'.."
+ },
+ {
+  "offset": 25942,
+  "tag": "li",
+  "section": "4.10",
+  "section_title": "Events",
+  "class": "REQ",
+  "text": "Event modal: name, date, start/end time, all-day toggle, color category."
+ },
+ {
+  "offset": 26078,
+  "tag": "li",
+  "section": "4.10",
+  "section_title": "Events",
+  "class": "REQ",
+  "text": "Drag-and-drop to reassign between technicians or move between days."
+ },
+ {
+  "offset": 26209,
+  "tag": "li",
+  "section": "4.10",
+  "section_title": "Events",
+  "class": "REQ",
+  "text": "Day view shows a live preview block while creating, with drag-to-resize."
+ },
+ {
+  "offset": 26350,
+  "tag": "p",
+  "section": "4.10",
+  "section_title": "Events",
+  "class": "REQ",
+  "text": "Event card anatomy. Event cards are styled to be structurally distinct from shift cards, so the two types are separable at a glance (not by color alone): a white/neutral card with a thin even border on all four sides and no colored left rail (the left rail is the shift's cue), a small grey-filled rounded chip on the left containing a calendar icon, and two lines of text beside it (event name, then the time range in secondary text). Shifts read as tinted color-filled blocks with a colored left rail; events read as quieter, white outlined cards."
+ },
+ {
+  "offset": 26947,
+  "tag": "p",
+  "section": "4.10",
+  "section_title": "Events",
+  "class": "REQ",
+  "text": "Event color. The default event color is neutral/grey. Events use the same custom color palette as shifts (the shared color picker with editable labels, see \u00a710); choosing a color from the event modal tints the card and icon chip in the matching tones, the same way a colored shift is tinted."
+ },
+ {
+  "offset": 27291,
+  "tag": "h3",
+  "section": "4.11",
+  "section_title": "Conflict detection",
+  "class": "HEAD",
+  "text": "4.11 Conflict detection"
+ },
+ {
+  "offset": 27347,
+  "tag": "p",
+  "section": "4.11",
+  "section_title": "Conflict detection",
+  "class": "REQ",
+  "text": "The system continuously scans for scheduling issues and surfaces them in a toolbar pill:"
+ },
+ {
+  "offset": 27583,
+  "tag": "th",
+  "section": "4.11",
+  "section_title": "Conflict detection",
+  "class": "TBLH",
+  "text": "Conflict type"
+ },
+ {
+  "offset": 27663,
+  "tag": "th",
+  "section": "4.11",
+  "section_title": "Conflict detection",
+  "class": "TBLH",
+  "text": "Description"
+ },
+ {
+  "offset": 27777,
+  "tag": "td",
+  "section": "4.11",
+  "section_title": "Conflict detection",
+  "class": "REQ",
+  "text": "Double-booked"
+ },
+ {
+  "offset": 27857,
+  "tag": "td",
+  "section": "4.11",
+  "section_title": "Conflict detection",
+  "class": "REQ",
+  "text": "Two different work orders overlap on the same technician at the same time."
+ },
+ {
+  "offset": 28034,
+  "tag": "td",
+  "section": "4.11",
+  "section_title": "Conflict detection",
+  "class": "REQ",
+  "text": "Weekend shift"
+ },
+ {
+  "offset": 28114,
+  "tag": "td",
+  "section": "4.11",
+  "section_title": "Conflict detection",
+  "class": "REQ",
+  "text": "Shift scheduled on Saturday or Sunday (outside working days)."
+ },
+ {
+  "offset": 28278,
+  "tag": "td",
+  "section": "4.11",
+  "section_title": "Conflict detection",
+  "class": "REQ",
+  "text": "Before hours"
+ },
+ {
+  "offset": 28357,
+  "tag": "td",
+  "section": "4.11",
+  "section_title": "Conflict detection",
+  "class": "REQ",
+  "text": "Shift starts before the working-day start."
+ },
+ {
+  "offset": 28502,
+  "tag": "td",
+  "section": "4.11",
+  "section_title": "Conflict detection",
+  "class": "REQ",
+  "text": "After hours"
+ },
+ {
+  "offset": 28580,
+  "tag": "td",
+  "section": "4.11",
+  "section_title": "Conflict detection",
+  "class": "REQ",
+  "text": "Shift extends past the working-day end."
+ },
+ {
+  "offset": 28707,
+  "tag": "p",
+  "section": "4.11",
+  "section_title": "Conflict detection",
+  "class": "REQ",
+  "text": "Conflicts appear as a warning icon on the affected block and are listed in a dropdown from the toolbar. Clicking a conflict navigates to the relevant technician and day. Red and other alarming styling is reserved for conflicts and genuine errors, never for overtime."
+ },
+ {
+  "offset": 29004,
+  "tag": "p",
+  "section": "4.11",
+  "section_title": "Conflict detection",
+  "class": "REQ",
+  "text": "Events are not conflict-checked for now: an event overlapping a shift (or another event) does not raise a conflict. Their time still counts toward capacity (see \u00a74.12)."
+ },
+ {
+  "offset": 29208,
+  "tag": "h3",
+  "section": "4.12",
+  "section_title": "Capacity visualization",
+  "class": "HEAD",
+  "text": "4.12 Capacity visualization"
+ },
+ {
+  "offset": 29268,
+  "tag": "p",
+  "section": "4.12",
+  "section_title": "Capacity visualization",
+  "class": "REQ",
+  "text": "When enabled in View Options, each day column header shows a capacity bar. Fill represents aggregate utilization; overtime is a separate per-technician signal, and the two are independent. Event time is included in the utilization total alongside shifts, so meetings and training consume capacity even though they are not conflict-checked (see \u00a74.11)."
+ },
+ {
+  "offset": 29700,
+  "tag": "li",
+  "section": "4.12",
+  "section_title": "Capacity visualization",
+  "class": "REQ",
+  "text": "Blue fill: aggregate technician-hours booked (shifts plus events) divided by total available (the sum of all techs' working hours). Clamped at 100%. The track width equals capacity and is identical across all days, so bars stay comparable at a glance (no per-day rescaling)."
+ },
+ {
+  "offset": 30055,
+  "tag": "li",
+  "section": "4.12",
+  "section_title": "Capacity visualization",
+  "class": "REQ",
+  "text": "Amber spill: when aggregate hours exceed capacity, an amber segment extends past the right edge of the track, with a tick at the 100% line."
+ },
+ {
+  "offset": 30275,
+  "tag": "li",
+  "section": "4.12",
+  "section_title": "Capacity visualization",
+  "class": "REQ",
+  "text": "\"OT\" tag: appears whenever any individual technician exceeds their own daily hours, even when the day's aggregate is under capacity. It is a text tag, not a color-only signal."
+ },
+ {
+  "offset": 30541,
+  "tag": "li",
+  "section": "4.12",
+  "section_title": "Capacity visualization",
+  "class": "REQ",
+  "text": "Hover tooltip: a per-assigned technician breakdown (assigned vs that tech's capacity), with overtime technicians highlighted in amber."
+ },
+ {
+  "offset": 30761,
+  "tag": "h3",
+  "section": "4.13",
+  "section_title": "Hover tooltips (read-only)",
+  "class": "HEAD",
+  "text": "4.13 Hover tooltips (read-only)"
+ },
+ {
+  "offset": 30825,
+  "tag": "p",
+  "section": "4.13",
+  "section_title": "Hover tooltips (read-only)",
+  "class": "REQ",
+  "text": "Hovering a block shows a quick peek without opening the modal."
+ },
+ {
+  "offset": 30918,
+  "tag": "p",
+  "section": "4.13",
+  "section_title": "Hover tooltips (read-only)",
+  "class": "REQ",
+  "text": "Shift tooltip: customer name (plus the conflict icon if conflicted); unit, vehicle, and VIN; date and time range; technician; scope summary (\"N lines \u00b7 Xh\"); the individual line names as a short list capped at 3 with a \"+N more lines\" row (no line statuses); a time-logged progress bar (\"X / Yh\"); and the conflict reason in amber when conflicted."
+ },
+ {
+  "offset": 31350,
+  "tag": "p",
+  "section": "4.13",
+  "section_title": "Hover tooltips (read-only)",
+  "class": "REQ",
+  "text": "Event tooltip: event name (plus its grey category dot); date and time range; technician."
+ },
+ {
+  "offset": 31486,
+  "tag": "p",
+  "section": "4.13",
+  "section_title": "Hover tooltips (read-only)",
+  "class": "REQ",
+  "text": "Behavior: open after a roughly 300 to 500ms hover delay; dismiss on mouse-leave; read-only, so clicking the block still opens the full modal. Because the shift tooltip's height varies with the line list, it flips to open above the block when there is not room below and shifts horizontally to stay within the viewport, rather than being clipped."
+ },
+ {
+  "offset": 31892,
+  "tag": "h2",
+  "section": "5",
+  "section_title": "Sidebar features",
+  "class": "HEAD",
+  "text": "5. Sidebar features"
+ },
+ {
+  "offset": 31944,
+  "tag": "h3",
+  "section": "5.1",
+  "section_title": "Work order filters",
+  "class": "HEAD",
+  "text": "5.1 Work order filters"
+ },
+ {
+  "offset": 31999,
+  "tag": "p",
+  "section": "5.1",
+  "section_title": "Work order filters",
+  "class": "REQ",
+  "text": "Filters live behind a \"Filter\" button (with an active-count badge); there are no assignment tabs. Applying a filter narrows the flat card list, and \"Clear all\" resets in one click."
+ },
+ {
+  "offset": 32347,
+  "tag": "th",
+  "section": "5.1",
+  "section_title": "Work order filters",
+  "class": "TBLH",
+  "text": "Filter group"
+ },
+ {
+  "offset": 32426,
+  "tag": "th",
+  "section": "5.1",
+  "section_title": "Work order filters",
+  "class": "TBLH",
+  "text": "Options"
+ },
+ {
+  "offset": 32536,
+  "tag": "td",
+  "section": "5.1",
+  "section_title": "Work order filters",
+  "class": "REQ",
+  "text": "Assignment"
+ },
+ {
+  "offset": 32613,
+  "tag": "td",
+  "section": "5.1",
+  "section_title": "Work order filters",
+  "class": "REQ",
+  "text": "Assigned, Unassigned"
+ },
+ {
+  "offset": 32736,
+  "tag": "td",
+  "section": "5.1",
+  "section_title": "Work order filters",
+  "class": "REQ",
+  "text": "Status"
+ },
+ {
+  "offset": 32809,
+  "tag": "td",
+  "section": "5.1",
+  "section_title": "Work order filters",
+  "class": "REQ",
+  "text": "All work order statuses currently supported in the app"
+ },
+ {
+  "offset": 32966,
+  "tag": "td",
+  "section": "5.1",
+  "section_title": "Work order filters",
+  "class": "REQ",
+  "text": "Priority"
+ },
+ {
+  "offset": 33041,
+  "tag": "td",
+  "section": "5.1",
+  "section_title": "Work order filters",
+  "class": "REQ",
+  "text": "High, Medium, Low"
+ },
+ {
+  "offset": 33146,
+  "tag": "p",
+  "section": "5.1",
+  "section_title": "Work order filters",
+  "class": "REQ",
+  "text": "Search and filter work together: the search field (see \u00a73.1) narrows by text match, and the filter button narrows by structured attributes. Both can be active at the same time."
+ },
+ {
+  "offset": 33358,
+  "tag": "p",
+  "section": "5.1",
+  "section_title": "Work order filters",
+  "class": "REQ",
+  "text": "The line drill-down has its own filters: All and Unscheduled (lines with no shifts yet), plus a line-name search (see \u00a73.1)."
+ },
+ {
+  "offset": 33518,
+  "tag": "h3",
+  "section": "5.2",
+  "section_title": "Mini calendar",
+  "class": "HEAD",
+  "text": "5.2 Mini calendar"
+ },
+ {
+  "offset": 33596,
+  "tag": "li",
+  "section": "5.2",
+  "section_title": "Mini calendar",
+  "class": "REQ",
+  "text": "Month/year picker (grid of month buttons, year nav arrows)."
+ },
+ {
+  "offset": 33719,
+  "tag": "li",
+  "section": "5.2",
+  "section_title": "Mini calendar",
+  "class": "REQ",
+  "text": "Collapsible: a chevron toggle hides the calendar grid to maximize work order list space."
+ },
+ {
+  "offset": 33871,
+  "tag": "li",
+  "section": "5.2",
+  "section_title": "Mini calendar",
+  "class": "REQ",
+  "text": "Selected date highlighted; today indicated; week row highlighted on hover."
+ },
+ {
+  "offset": 34044,
+  "tag": "h2",
+  "section": "6",
+  "section_title": "Grid toolbar",
+  "class": "HEAD",
+  "text": "6. Grid toolbar"
+ },
+ {
+  "offset": 34209,
+  "tag": "th",
+  "section": "6",
+  "section_title": "Grid toolbar",
+  "class": "TBLH",
+  "text": "Control"
+ },
+ {
+  "offset": 34283,
+  "tag": "th",
+  "section": "6",
+  "section_title": "Grid toolbar",
+  "class": "TBLH",
+  "text": "Function"
+ },
+ {
+  "offset": 34394,
+  "tag": "td",
+  "section": "6",
+  "section_title": "Grid toolbar",
+  "class": "REQ",
+  "text": "Today button"
+ },
+ {
+  "offset": 34473,
+  "tag": "td",
+  "section": "6",
+  "section_title": "Grid toolbar",
+  "class": "REQ",
+  "text": "Jumps the grid to the current date."
+ },
+ {
+  "offset": 34611,
+  "tag": "td",
+  "section": "6",
+  "section_title": "Grid toolbar",
+  "class": "REQ",
+  "text": "Left/right arrows"
+ },
+ {
+  "offset": 34695,
+  "tag": "td",
+  "section": "6",
+  "section_title": "Grid toolbar",
+  "class": "REQ",
+  "text": "Navigate by day, week, or month depending on the active range."
+ },
+ {
+  "offset": 34860,
+  "tag": "td",
+  "section": "6",
+  "section_title": "Grid toolbar",
+  "class": "REQ",
+  "text": "Date label"
+ },
+ {
+  "offset": 34937,
+  "tag": "td",
+  "section": "6",
+  "section_title": "Grid toolbar",
+  "class": "REQ",
+  "text": "Shows the current range (e.g. \"Jul 14 to 20, 2026\")."
+ },
+ {
+  "offset": 35102,
+  "tag": "td",
+  "section": "6",
+  "section_title": "Grid toolbar",
+  "class": "REQ",
+  "text": "Conflict pill"
+ },
+ {
+  "offset": 35182,
+  "tag": "td",
+  "section": "6",
+  "section_title": "Grid toolbar",
+  "class": "REQ",
+  "text": "Shows the issue count; click opens the conflict detail dropdown."
+ },
+ {
+  "offset": 35349,
+  "tag": "td",
+  "section": "6",
+  "section_title": "Grid toolbar",
+  "class": "REQ",
+  "text": "Search"
+ },
+ {
+  "offset": 35422,
+  "tag": "td",
+  "section": "6",
+  "section_title": "Grid toolbar",
+  "class": "REQ",
+  "text": "Filters grid blocks by matching against customer name, WO number, unit number, technician name, and line name."
+ },
+ {
+  "offset": 35635,
+  "tag": "td",
+  "section": "6",
+  "section_title": "Grid toolbar",
+  "class": "REQ",
+  "text": "Filter and Display"
+ },
+ {
+  "offset": 35720,
+  "tag": "td",
+  "section": "6",
+  "section_title": "Grid toolbar",
+  "class": "REQ",
+  "text": "Dropdown (checkbox style) combining department visibility toggles, My Shifts, and VIN. Replaces the former \"Departments\" control."
+ },
+ {
+  "offset": 35962,
+  "tag": "td",
+  "section": "6",
+  "section_title": "Grid toolbar",
+  "class": "REQ",
+  "text": "View Options"
+ },
+ {
+  "offset": 36041,
+  "tag": "td",
+  "section": "6",
+  "section_title": "Grid toolbar",
+  "class": "REQ",
+  "text": "Toggles: Business hours, Capacity bars, Events, Tech hours, Saturday, Sunday."
+ },
+ {
+  "offset": 36221,
+  "tag": "td",
+  "section": "6",
+  "section_title": "Grid toolbar",
+  "class": "REQ",
+  "text": "Day / Week / Month"
+ },
+ {
+  "offset": 36306,
+  "tag": "td",
+  "section": "6",
+  "section_title": "Grid toolbar",
+  "class": "REQ",
+  "text": "Segmented control to switch the grid range."
+ },
+ {
+  "offset": 36467,
+  "tag": "h2",
+  "section": "7",
+  "section_title": "Interactions and micro-interactions",
+  "class": "HEAD",
+  "text": "7. Interactions and micro-interactions"
+ },
+ {
+  "offset": 36566,
+  "tag": "li",
+  "section": "7",
+  "section_title": "Interactions and micro-interactions",
+  "class": "REQ",
+  "text": "Drag feedback. Drop-target cells highlight, and a ghost block shows the line name and hours."
+ },
+ {
+  "offset": 36739,
+  "tag": "li",
+  "section": "7",
+  "section_title": "Interactions and micro-interactions",
+  "class": "REQ",
+  "text": "Shift reassignment. Dragging a shift block from one technician row to another reassigns it: the target technician is added to the affected line's roster and the source technician is removed. A confirmation modal handles cross-tech moves."
+ },
+ {
+  "offset": 37057,
+  "tag": "li",
+  "section": "7",
+  "section_title": "Interactions and micro-interactions",
+  "class": "REQ",
+  "text": "Left-click on empty grid space opens a menu with: Create event, New work order."
+ },
+ {
+  "offset": 37217,
+  "tag": "li",
+  "section": "7",
+  "section_title": "Interactions and micro-interactions",
+  "class": "REQ",
+  "text": "Toast notifications. Every create, delete, move, and reassign action produces a toast with an Undo option. The toast persists for 4 to 7 seconds, stays while the cursor is over it, and dismisses on mouse-leave."
+ },
+ {
+  "offset": 37508,
+  "tag": "li",
+  "section": "7",
+  "section_title": "Interactions and micro-interactions",
+  "class": "REQ",
+  "text": "Keyboard support. Global shortcuts work anywhere on the schedule page:Escape closes the topmost open modal or popover, following a defined stacking order (delete scope, reassign, spread, capacity, event modal, event view, line picker, shift detail, cell menu, calendar picker, customize, filters, search). Within the shift modal, Escape first dismisses any open sub-picker (color picker, time picker, note edit) before closing the modal itself."
+ },
+ {
+  "offset": 38137,
+  "tag": "li",
+  "section": "7",
+  "section_title": "Interactions and micro-interactions",
+  "class": "REQ",
+  "text": "Enter confirms the active confirmable dialog (delete scope, reassign, spread, event create/edit). It does not fire inside textareas, so multiline note editing still works normally."
+ },
+ {
+  "offset": 38398,
+  "tag": "li",
+  "section": "7",
+  "section_title": "Interactions and micro-interactions",
+  "class": "REQ",
+  "text": "Drag-and-drop has a click-to-arm alternative for users who cannot drag."
+ },
+ {
+  "offset": 38543,
+  "tag": "li",
+  "section": "7",
+  "section_title": "Interactions and micro-interactions",
+  "class": "REQ",
+  "text": "Series-aware deletion. Deleting a shift that belongs to a series asks for scope. This is routine, lightweight editing (undo toast, not the alarming destructive styling):This shift only: removes that day. The series keeps the gap (it is not auto-closed), and the hours return to the estimate's remaining."
+ },
+ {
+  "offset": 39031,
+  "tag": "li",
+  "section": "7",
+  "section_title": "Interactions and micro-interactions",
+  "class": "REQ",
+  "text": "This and everything after: removes from the clicked shift onward, keeping earlier shifts."
+ },
+ {
+  "offset": 39201,
+  "tag": "li",
+  "section": "7",
+  "section_title": "Interactions and micro-interactions",
+  "class": "REQ",
+  "text": "The whole series: removes all of the series' shifts for that technician."
+ },
+ {
+  "offset": 39354,
+  "tag": "li",
+  "section": "7",
+  "section_title": "Interactions and micro-interactions",
+  "class": "REQ",
+  "text": "The options adapt to position: on the first shift, \"this and after\" equals \"whole series\" (show two options); on the last shift, \"this and after\" equals \"this only\" (two options); only middle shifts show all three. Each option states its consequence in hours returned (\"returns 8h\" / \"returns 56h\")."
+ },
+ {
+  "offset": 39822,
+  "tag": "h2",
+  "section": "8",
+  "section_title": "Data model",
+  "class": "HEAD",
+  "text": "8. Data model"
+ },
+ {
+  "offset": 39868,
+  "tag": "h3",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "HEAD",
+  "text": "8.1 Key entities"
+ },
+ {
+  "offset": 40034,
+  "tag": "th",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "TBLH",
+  "text": "Entity"
+ },
+ {
+  "offset": 40107,
+  "tag": "th",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "TBLH",
+  "text": "Key fields"
+ },
+ {
+  "offset": 40184,
+  "tag": "th",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "TBLH",
+  "text": "Relationships"
+ },
+ {
+  "offset": 40300,
+  "tag": "td",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "REQ",
+  "text": "Shift"
+ },
+ {
+  "offset": 40372,
+  "tag": "td",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "REQ",
+  "text": "sid, woId, rowKey (tech), date, startHour, blockDuration, lines[], seriesId"
+ },
+ {
+  "offset": 40618,
+  "tag": "td",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "REQ",
+  "text": "Belongs to Work Order; assigned to Technician; optionally part of a Series"
+ },
+ {
+  "offset": 40795,
+  "tag": "td",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "REQ",
+  "text": "Event"
+ },
+ {
+  "offset": 40867,
+  "tag": "td",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "REQ",
+  "text": "eid, name, rowKey (tech), date, startHour, endHour, allDay, color"
+ },
+ {
+  "offset": 41103,
+  "tag": "td",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "REQ",
+  "text": "Assigned to Technician"
+ },
+ {
+  "offset": 41228,
+  "tag": "td",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "REQ",
+  "text": "Work Order"
+ },
+ {
+  "offset": 41305,
+  "tag": "td",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "REQ",
+  "text": "id, customer, unit, asset, status, priority, hrs, color"
+ },
+ {
+  "offset": 41531,
+  "tag": "td",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "REQ",
+  "text": "Has many Lines"
+ },
+ {
+  "offset": 41648,
+  "tag": "td",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "REQ",
+  "text": "Line"
+ },
+ {
+  "offset": 41719,
+  "tag": "td",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "REQ",
+  "text": "num, title, status, est, actual, total, labor[]"
+ },
+ {
+  "offset": 41924,
+  "tag": "td",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "REQ",
+  "text": "Belongs to Work Order; has many Technicians via the labor roster (no cap)"
+ },
+ {
+  "offset": 42100,
+  "tag": "td",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "REQ",
+  "text": "Technician"
+ },
+ {
+  "offset": 42177,
+  "tag": "td",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "REQ",
+  "text": "key, name, role, dept, hours (working start/end plus working weekdays)"
+ },
+ {
+  "offset": 42379,
+  "tag": "td",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "REQ",
+  "text": "Belongs to Department; has many Shifts and Events"
+ },
+ {
+  "offset": 42531,
+  "tag": "td",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "REQ",
+  "text": "Department"
+ },
+ {
+  "offset": 42608,
+  "tag": "td",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "REQ",
+  "text": "key, name"
+ },
+ {
+  "offset": 42710,
+  "tag": "td",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "REQ",
+  "text": "Has many Technicians"
+ },
+ {
+  "offset": 42818,
+  "tag": "p",
+  "section": "8.1",
+  "section_title": "Key entities",
+  "class": "REQ",
+  "text": "The Line's labor[] roster has no maximum; any number of technicians may be on a line. An unassigned shift has an empty or placeholder rowKey until it is moved onto a technician."
+ },
+ {
+  "offset": 43052,
+  "tag": "h3",
+  "section": "8.2",
+  "section_title": "Series",
+  "class": "HEAD",
+  "text": "8.2 Series"
+ },
+ {
+  "offset": 43095,
+  "tag": "p",
+  "section": "8.2",
+  "section_title": "Series",
+  "class": "REQ",
+  "text": "A series groups shifts created by the spread step; all shifts in a series share a seriesId. The series supports scoped deletion (this / this-and-after / whole) and renders as a connected banner in month, week, and day views. It is a grouping over ordinary daily shifts, not a distinct persisted entity beyond the shared id, and each daily shift carries its own hours for capacity math."
+ },
+ {
+  "offset": 43554,
+  "tag": "h2",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "HEAD",
+  "text": "9. View options and customization"
+ },
+ {
+  "offset": 43620,
+  "tag": "p",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Display settings are split across two toolbar controls:"
+ },
+ {
+  "offset": 43706,
+  "tag": "p",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Filter and Display dropdown (checkbox style, \u00a76):"
+ },
+ {
+  "offset": 43925,
+  "tag": "th",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "TBLH",
+  "text": "Option"
+ },
+ {
+  "offset": 43998,
+  "tag": "th",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "TBLH",
+  "text": "Default"
+ },
+ {
+  "offset": 44072,
+  "tag": "th",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "TBLH",
+  "text": "Effect"
+ },
+ {
+  "offset": 44181,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Department toggles"
+ },
+ {
+  "offset": 44266,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "All on"
+ },
+ {
+  "offset": 44339,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Show or hide individual department groups in the grid."
+ },
+ {
+  "offset": 44496,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "My Shifts"
+ },
+ {
+  "offset": 44572,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Off"
+ },
+ {
+  "offset": 44642,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Filters the grid to show only shifts assigned to the current user. All other technician rows and their shifts are hidden. This is a personal convenience filter, not a permission boundary."
+ },
+ {
+  "offset": 44932,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "VIN"
+ },
+ {
+  "offset": 45002,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Off"
+ },
+ {
+  "offset": 45072,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Shows the VIN number as an additional line on shift blocks (day and week views) and in hover tooltips. The VIN is always visible in the shift detail modal regardless of this toggle."
+ },
+ {
+  "offset": 45341,
+  "tag": "p",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "View Options popover:"
+ },
+ {
+  "offset": 45527,
+  "tag": "th",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "TBLH",
+  "text": "Option"
+ },
+ {
+  "offset": 45600,
+  "tag": "th",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "TBLH",
+  "text": "Default"
+ },
+ {
+  "offset": 45674,
+  "tag": "th",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "TBLH",
+  "text": "Effect"
+ },
+ {
+  "offset": 45783,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Business Hours"
+ },
+ {
+  "offset": 45864,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Off"
+ },
+ {
+  "offset": 45934,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Shades non-working hours in day view."
+ },
+ {
+  "offset": 46074,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Capacity Bars"
+ },
+ {
+  "offset": 46154,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "On"
+ },
+ {
+  "offset": 46223,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Shows per-day capacity utilization bars in column headers."
+ },
+ {
+  "offset": 46384,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Events"
+ },
+ {
+  "offset": 46457,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "On"
+ },
+ {
+  "offset": 46526,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Shows non-WO event blocks on the grid."
+ },
+ {
+  "offset": 46667,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Tech Hours"
+ },
+ {
+  "offset": 46744,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Off"
+ },
+ {
+  "offset": 46814,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Displays each technician's working hours next to their name."
+ },
+ {
+  "offset": 46977,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Saturday"
+ },
+ {
+  "offset": 47052,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "On"
+ },
+ {
+  "offset": 47121,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Includes the Saturday column."
+ },
+ {
+  "offset": 47253,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Sunday"
+ },
+ {
+  "offset": 47326,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "On"
+ },
+ {
+  "offset": 47395,
+  "tag": "td",
+  "section": "9",
+  "section_title": "View options and customization",
+  "class": "REQ",
+  "text": "Includes the Sunday column."
+ },
+ {
+  "offset": 47540,
+  "tag": "h2",
+  "section": "10",
+  "section_title": "Color system",
+  "class": "HEAD",
+  "text": "10. Color system"
+ },
+ {
+  "offset": 47617,
+  "tag": "li",
+  "section": "10",
+  "section_title": "Color system",
+  "class": "REQ",
+  "text": "Blue is the default color for all shifts, including long or multi-week jobs."
+ },
+ {
+  "offset": 47774,
+  "tag": "li",
+  "section": "10",
+  "section_title": "Color system",
+  "class": "REQ",
+  "text": "Grey is the default color for events."
+ },
+ {
+  "offset": 47892,
+  "tag": "li",
+  "section": "10",
+  "section_title": "Color system",
+  "class": "REQ",
+  "text": "All other colors are optional and chosen by the user from the color picker in the shift or event detail modal, to distinguish shifts however the shop likes."
+ },
+ {
+  "offset": 48112,
+  "tag": "li",
+  "section": "10",
+  "section_title": "Color system",
+  "class": "REQ",
+  "text": "Color labels are editable per shop."
+ },
+ {
+  "offset": 48216,
+  "tag": "p",
+  "section": "10",
+  "section_title": "Color system",
+  "class": "REQ",
+  "text": "Each color provides three tones: background fill, text color, and accent (left border). There are no fixed semantic meanings tied to specific colors beyond the two defaults above."
+ },
+ {
+  "offset": 48456,
+  "tag": "h2",
+  "section": "11",
+  "section_title": "Non-functional requirements",
+  "class": "HEAD",
+  "text": "11. Non-functional requirements"
+ },
+ {
+  "offset": 48548,
+  "tag": "li",
+  "section": "11",
+  "section_title": "Non-functional requirements",
+  "class": "REQ",
+  "text": "Performance. The grid must render smoothly with up to 15 technicians x 7 days x several shifts per cell. The sidebar work order list virtualizes at 50+ items, as does the line drill-down for orders with many lines."
+ },
+ {
+  "offset": 48843,
+  "tag": "li",
+  "section": "11",
+  "section_title": "Non-functional requirements",
+  "class": "REQ",
+  "text": "Responsiveness. Minimum supported width is 960px (the grid scrolls horizontally below that), and the sidebar collapses on narrow viewports."
+ },
+ {
+  "offset": 49063,
+  "tag": "li",
+  "section": "11",
+  "section_title": "Non-functional requirements",
+  "class": "REQ",
+  "text": "Accessibility. All interactive elements are keyboard-reachable; focus rings follow the design system; modals trap focus and close on Escape; drag-and-drop has a click-to-arm alternative. Overtime and conflict signals are not color-only (OT uses a text tag; the overflow uses shape)."
+ },
+ {
+  "offset": 49426,
+  "tag": "li",
+  "section": "11",
+  "section_title": "Non-functional requirements",
+  "class": "REQ",
+  "text": "Undo. Every destructive action (delete, move, reassign) is undoable for 4 to 7 seconds via a toast that persists while hovered."
+ },
+ {
+  "offset": 49634,
+  "tag": "li",
+  "section": "11",
+  "section_title": "Non-functional requirements",
+  "class": "REQ",
+  "text": "Dark theme. The Schedule supports a user-selectable Light / Dark theme, chosen from the user menu and persisted per user. It is built on the design-system color tokens, so surfaces, borders, text, and accents remap automatically; elevation/shadow tokens also swap so depth reads correctly on dark surfaces."
+ },
+ {
+  "offset": 50056,
+  "tag": "h2",
+  "section": "12",
+  "section_title": "Edge cases and constraints",
+  "class": "HEAD",
+  "text": "12. Edge cases and constraints"
+ },
+ {
+  "offset": 50147,
+  "tag": "li",
+  "section": "12",
+  "section_title": "Edge cases and constraints",
+  "class": "REQ",
+  "text": "A technician can have multiple shifts on the same day (different work orders); overlapping times render in parallel lanes with a 3-lane cap and \"+N more\" overflow (\u00a74.7)."
+ },
+ {
+  "offset": 50396,
+  "tag": "li",
+  "section": "12",
+  "section_title": "Edge cases and constraints",
+  "class": "REQ",
+  "text": "Every shift has a start time, resolved from the hierarchy in \u00a74.2 or from the drop position in day view; unassigned shifts use the same rules minus technician hours until they are assigned."
+ },
+ {
+  "offset": 50654,
+  "tag": "li",
+  "section": "12",
+  "section_title": "Edge cases and constraints",
+  "class": "REQ",
+  "text": "Shop closures (holidays, inventory days) are defined at the shop level and block the spread step from placing shifts on those days."
+ },
+ {
+  "offset": 50849,
+  "tag": "li",
+  "section": "12",
+  "section_title": "Edge cases and constraints",
+  "class": "REQ",
+  "text": "Dropping the same work order on multiple technicians creates independent series, each spreading the full estimate, so planned hours across technicians may exceed the estimate. This is expected, since clocked-in time drives progress."
+ },
+ {
+  "offset": 51145,
+  "tag": "li",
+  "section": "12",
+  "section_title": "Edge cases and constraints",
+  "class": "REQ",
+  "text": "Whole-order and multi-line-subset shifts both render as \"N Lines\" on the block; the detail modal and hover tooltip provide the specifics."
+ },
+ {
+  "offset": 51356,
+  "tag": "li",
+  "section": "12",
+  "section_title": "Edge cases and constraints",
+  "class": "REQ",
+  "text": "Dragging a shift between technicians reassigns it, adding the target technician to the affected line's roster and removing the source technician."
+ },
+ {
+  "offset": 51600,
+  "tag": "h2",
+  "section": "13",
+  "section_title": "Success metrics",
+  "class": "HEAD",
+  "text": "13. Success metrics"
+ },
+ {
+  "offset": 51769,
+  "tag": "th",
+  "section": "13",
+  "section_title": "Success metrics",
+  "class": "TBLH",
+  "text": "Metric"
+ },
+ {
+  "offset": 51842,
+  "tag": "th",
+  "section": "13",
+  "section_title": "Success metrics",
+  "class": "TBLH",
+  "text": "Target"
+ },
+ {
+  "offset": 51915,
+  "tag": "th",
+  "section": "13",
+  "section_title": "Success metrics",
+  "class": "TBLH",
+  "text": "Measurement"
+ },
+ {
+  "offset": 52029,
+  "tag": "td",
+  "section": "13",
+  "section_title": "Success metrics",
+  "class": "NARR",
+  "text": "Scheduling conflicts"
+ },
+ {
+  "offset": 52116,
+  "tag": "td",
+  "section": "13",
+  "section_title": "Success metrics",
+  "class": "NARR",
+  "text": "Under 5% of shifts"
+ },
+ {
+  "offset": 52201,
+  "tag": "td",
+  "section": "13",
+  "section_title": "Success metrics",
+  "class": "NARR",
+  "text": "Flagged shifts divided by total shifts per week"
+ },
+ {
+  "offset": 52351,
+  "tag": "td",
+  "section": "13",
+  "section_title": "Success metrics",
+  "class": "NARR",
+  "text": "Time to schedule"
+ },
+ {
+  "offset": 52434,
+  "tag": "td",
+  "section": "13",
+  "section_title": "Success metrics",
+  "class": "NARR",
+  "text": "Under 30s per shift"
+ },
+ {
+  "offset": 52520,
+  "tag": "td",
+  "section": "13",
+  "section_title": "Success metrics",
+  "class": "NARR",
+  "text": "Median time from drag start to shift creation"
+ },
+ {
+  "offset": 52668,
+  "tag": "td",
+  "section": "13",
+  "section_title": "Success metrics",
+  "class": "NARR",
+  "text": "Adoption"
+ },
+ {
+  "offset": 52743,
+  "tag": "td",
+  "section": "13",
+  "section_title": "Success metrics",
+  "class": "NARR",
+  "text": "80% of active shops"
+ },
+ {
+  "offset": 52829,
+  "tag": "td",
+  "section": "13",
+  "section_title": "Success metrics",
+  "class": "NARR",
+  "text": "Shops with at least 1 shift created per week, 90 days post-launch"
+ },
+ {
+  "offset": 52997,
+  "tag": "td",
+  "section": "13",
+  "section_title": "Success metrics",
+  "class": "NARR",
+  "text": "Undo usage"
+ },
+ {
+  "offset": 53074,
+  "tag": "td",
+  "section": "13",
+  "section_title": "Success metrics",
+  "class": "NARR",
+  "text": "Under 10% of actions"
+ },
+ {
+  "offset": 53161,
+  "tag": "td",
+  "section": "13",
+  "section_title": "Success metrics",
+  "class": "NARR",
+  "text": "Undo clicks divided by total scheduling actions"
+ },
+ {
+  "offset": 53326,
+  "tag": "h2",
+  "section": "14",
+  "section_title": "Roles and permissions",
+  "class": "HEAD",
+  "text": "14. Roles and permissions"
+ },
+ {
+  "offset": 53384,
+  "tag": "p",
+  "section": "14",
+  "section_title": "Roles and permissions",
+  "class": "REQ",
+  "text": "The Schedule is a CRUD area in ShopView's custom roles and permissions system. Access is controlled by three independent permission levels (View, Edit, Delete), where Delete requires Edit and Edit requires View. The schedule also depends on permissions from other areas, particularly Work Orders."
+ },
+ {
+  "offset": 53711,
+  "tag": "h3",
+  "section": "14.1",
+  "section_title": "Permission tiers",
+  "class": "HEAD",
+  "text": "14.1 Permission tiers"
+ },
+ {
+  "offset": 53765,
+  "tag": "p",
+  "section": "14.1",
+  "section_title": "Permission tiers",
+  "class": "REQ",
+  "text": "Schedule: View. The user can see the schedule page, navigate between day/week/month views, use the mini calendar, search, filter, view all technicians' shifts and events, hover for tooltips, and open shift/event detail modals in read-only mode. All editing affordances (drag handles, drop targets, right-click context menu, resize handles, creation entry points, edit fields in modals, reassign and delete actions) are hidden or disabled. This is the experience for roles like Technician, Parts Manager, Parts Tech, Office, and Time Clock. When Schedule: View is OFF, the Schedule top-level nav item is hidden entirely."
+ },
+ {
+  "offset": 54432,
+  "tag": "p",
+  "section": "14.1",
+  "section_title": "Permission tiers",
+  "class": "REQ",
+  "text": "Schedule: Edit (requires View). Unlocks all creation and modification interactions: drag-and-drop from the sidebar, the scope picker, the spread modal, shift and event creation (including via right-click context menu and day-view click-to-create), shift reassignment between technicians, edge-resize and horizontal drag in day view, and editing fields in the shift/event detail modals. This is the level for Service Manager, Senior Service Advisor, Service Advisor, and Foreman roles."
+ },
+ {
+  "offset": 54964,
+  "tag": "p",
+  "section": "14.1",
+  "section_title": "Permission tiers",
+  "class": "REQ",
+  "text": "Schedule: Delete (requires Edit). Unlocks deleting shifts and events, including series-aware deletion with its three scopes (this shift / this and after / whole series). Without Delete, a user with Edit can create and modify but cannot remove shifts or events. The delete action and the trash icon are hidden."
+ },
+ {
+  "offset": 55321,
+  "tag": "h3",
+  "section": "14.2",
+  "section_title": "Work order sidebar dependency",
+  "class": "HEAD",
+  "text": "14.2 Work order sidebar dependency"
+ },
+ {
+  "offset": 55388,
+  "tag": "p",
+  "section": "14.2",
+  "section_title": "Work order sidebar dependency",
+  "class": "REQ",
+  "text": "The left panel sidebar displays work order data (customer, unit, lines, lead tech) and requires Work Orders: View to populate. If a user has Schedule access but Work Orders: View is OFF, the sidebar hides the work order list and line drill-down (the mini calendar remains available). The user can still view and interact with shifts already on the grid, but cannot drag new ones from the sidebar since the WO list is not visible."
+ },
+ {
+  "offset": 55865,
+  "tag": "h3",
+  "section": "14.3",
+  "section_title": "No permission-level \"own only\" restriction",
+  "class": "HEAD",
+  "text": "14.3 No permission-level \"own only\" restriction"
+ },
+ {
+  "offset": 55955,
+  "tag": "p",
+  "section": "14.3",
+  "section_title": "No permission-level \"own only\" restriction",
+  "class": "REQ",
+  "text": "The schedule always shows all technicians' shifts and events for every user who has Schedule: View. There is no role-based restriction to \"own shifts only.\" This is intentional: the schedule is a shared coordination resource that service advisors and managers use to orchestrate work across the team. The \"My Shifts\" toggle in the Filter and Display dropdown (\u00a79) provides this as an optional personal convenience filter, not a security boundary."
+ },
+ {
+  "offset": 56457,
+  "tag": "h3",
+  "section": "14.4",
+  "section_title": "Technician grid rows are department-based",
+  "class": "HEAD",
+  "text": "14.4 Technician grid rows are department-based"
+ },
+ {
+  "offset": 56536,
+  "tag": "p",
+  "section": "14.4",
+  "section_title": "Technician grid rows are department-based",
+  "class": "REQ",
+  "text": "Whether a user appears as a row in the schedule grid is controlled by their department assignment on their staff record, not by their role permission. Any staff member assigned to a department that is visible on the schedule appears as a technician row, regardless of their role. Similarly, the ability to clock into work order line tasks is controlled by the \"Time Clock\" setting on the staff record, not by the permission model."
+ },
+ {
+  "offset": 57054,
+  "tag": "h2",
+  "section": "15",
+  "section_title": "Future considerations",
+  "class": "HEAD",
+  "text": "15. Future considerations"
+ },
+ {
+  "offset": 57140,
+  "tag": "li",
+  "section": "15",
+  "section_title": "Future considerations",
+  "class": "NARR",
+  "text": "Technician availability and PTO. Block out vacation, sick time, and training that are not Events, and have the spread step flow around them."
+ },
+ {
+  "offset": 57361,
+  "tag": "li",
+  "section": "15",
+  "section_title": "Future considerations",
+  "class": "NARR",
+  "text": "Auto-scheduling. Suggest optimal technician assignments based on skills, availability, and workload balance."
+ },
+ {
+  "offset": 57550,
+  "tag": "li",
+  "section": "15",
+  "section_title": "Future considerations",
+  "class": "NARR",
+  "text": "Recurring events. Repeating calendar blocks for stand-ups and safety meetings."
+ },
+ {
+  "offset": 57709,
+  "tag": "li",
+  "section": "15",
+  "section_title": "Future considerations",
+  "class": "NARR",
+  "text": "Skill matching. Warn when a technician is assigned to a line requiring certifications they do not hold."
+ },
+ {
+  "offset": 57893,
+  "tag": "li",
+  "section": "15",
+  "section_title": "Future considerations",
+  "class": "NARR",
+  "text": "Spread around existing bookings. Have the spread step automatically flow around days the technician is already booked (skipping them and extending the end date), rather than requiring the manager to handle conflicts manually."
+ },
+ {
+  "offset": 58199,
+  "tag": "li",
+  "section": "15",
+  "section_title": "Future considerations",
+  "class": "NARR",
+  "text": "Long-job cap. Past a certain length, instead of materializing every daily shift, represent a very long job as a single assignment span across a date range and let clock-ins fill the actuals, reducing board clutter and the number of shift records to manage."
+ }
+]

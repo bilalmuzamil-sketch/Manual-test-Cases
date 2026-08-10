@@ -1,0 +1,49 @@
+[
+ {
+  "tag": "insert",
+  "removed": [],
+  "added": [
+   "The panel can be collapsed and expanded from the grid toolbar (\u00a75.3), handing its width to the grid without losing panel state."
+  ]
+ },
+ {
+  "tag": "replace",
+  "removed": [
+   "Hover tooltip: a per-technician breakdown (assigned vs that tech's capacity), with overtime technicians highlighted in amber."
+  ],
+  "added": [
+   "Hover tooltip: a per-assigned technician breakdown (assigned vs that tech's capacity), with overtime technicians highlighted in amber."
+  ]
+ },
+ {
+  "tag": "insert",
+  "removed": [],
+  "added": [
+   "5.3 Panel collapse",
+   "An icon button collapses and expands the left panel. It is the first item in the grid toolbar, left of Today, sitting in the same left gutter as the grid's row labels and avatars so it reads as belonging to the panel it controls, and grouping with the date controls.",
+   "Control. A borderless panel-left icon in secondary text color. The icon does not change between states; the tooltip carries the meaning \u2014 \"Hide panel\" when open, \"Show panel\" when collapsed.",
+   "Behavior. The panel animates closed over a short width transition, its divider disappears so no seam remains, and the grid reflows into the reclaimed space.",
+   "State preservation. Contents are hidden rather than discarded. Calendar date, work-order scroll position, panel search text, drill-down state, and the selected work order all survive a collapse/expand cycle, and reopening returns to whichever panel mode was active.",
+   "Narrow viewports. Below the 960px minimum supported width (\u00a711) the panel auto-collapses. The toggle still works, so the user can expand it manually at any width; that manual choice holds until the next resize across the breakpoint.",
+   "Popovers and modals. Anything that positions itself clear of the panel falls back to a normal viewport margin while the panel is collapsed.",
+   "Persistence. Not persisted in the prototype. Session-scoped per user for build \u2014 this is a working-mode preference, not a saved view."
+  ]
+ },
+ {
+  "tag": "insert",
+  "removed": [],
+  "added": [
+   "Panel toggle",
+   "Collapses and expands the left work order panel (\u00a75.3)."
+  ]
+ },
+ {
+  "tag": "replace",
+  "removed": [
+   "Responsiveness. Minimum supported width is 960px (the grid scrolls horizontally below that), and the sidebar collapses on narrow viewports."
+  ],
+  "added": [
+   "Responsiveness. Minimum supported width is 960px (the grid scrolls horizontally below that), and the sidebar collapses on narrow viewports (\u00a75.3)."
+  ]
+ }
+]
