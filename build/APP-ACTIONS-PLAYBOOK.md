@@ -2349,6 +2349,19 @@ for the same reason. **Set a contact as a matter of course when seeding any WO y
 backdrop swallows clicks — close it (`button_close_dialog` + `Escape`) before touching the contact
 dropdown, and click the dropdown by **coordinate** (`page.mouse.click`) per the Quasar rule in §14d.
 
+### R.7a-bis SET THE CONTACT VIA THE API — and set it BEFORE completing
+The UI dropdown fires **`POST /api/work-orders/change-contact`**:
+```json
+{"work_order_id":"…","vehicle_id":"…","contact_id":"…","update_vehicle":false}
+```
+Use that directly and skip the UI entirely. Two traps if you do use the UI:
+- **Selecting a contact pops a Confirmation dialog** — *"Would you like to change to the new contact
+  for this asset permanently?"* with **NO / YES**. Until you answer, **nothing is saved and no
+  request is sent** — the field silently reverts and it looks like the click missed. **NO** applies
+  it to this work order only (`update_vehicle:false`); YES also changes the asset's default.
+- **The contact field is LOCKED once the work order is Complete.** Set it while the WO is still
+  editable, or you will be reseeding.
+
 ### R.7b Creating the invoice, and NOT paying it
 Clicking **Create Invoice** creates the invoice **and immediately opens a "New Customer Payment"
 dialog** listing the new invoice with its balance. **Close it** (`button_close_payment_dialog`) —
