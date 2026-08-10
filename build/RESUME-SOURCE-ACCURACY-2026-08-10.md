@@ -1,126 +1,74 @@
 # RESUME — Filters + Schedule source-accuracy pass
 
-> **Written 2026-08-10 after the QA lead stopped the pass for two hours.**
-> **Nothing was written to TestRail, and nothing was left half-done on disk** — see
-> "State when it stopped" below. This file is the pick-up point.
+> **UPDATED 2026-08-10 (late). THE PASS IS COMPLETE ON BOTH PROJECTS.**
+> The earlier body of this file described the job before it was run; it has been replaced with
+> the finished state. Deliverables:
+> **`build/filters/source-accuracy-2026-08-10/SOURCE-ACCURACY.md`** and
+> **`build/schedule/source-accuracy-2026-08-10/SOURCE-ACCURACY.md`**.
 
 ---
 
-## State when it stopped — nothing to salvage
+## Where it stands
 
-The worker's last output was *"Now let me build the writer with masked verification, and dry-run
-it first"*. It was **still building tooling** and had not started writing.
+| Project | Cases | Correctly sourced BEFORE | Correctly sourced NOW | Writes |
+|---|---:|---:|---:|---:|
+| **Filters** | 114 ours / 119 live | **10** | **114** | 108 |
+| **Schedule** | 168 ours / 168 live | **0** | **168** | 174 |
 
-**Checked, not assumed:**
+**282 `update_case`, every one HTTP 200, 30 fields compared each, 0 mismatches, 0 collateral.**
+**0 `add_case` · 0 `delete_case` · 0 section ops · 0 run writes · 0 results** — the creation hold
+was respected. Runs **352** (Ahtasham) and **357** (Ayesha) proven untouched by content. Ahtasham's
+**5 foreign cases** (C43576–C43580) proven byte-identical including `updated_on`/`updated_by`.
 
-- `build/filters/source-accuracy-2026-08-10/` — **does not exist**
-- `build/schedule/source-accuracy-2026-08-10/` — **does not exist**
-- **No oplog, no execution log, no dry-run output** anywhere in the repo or in the scratch dir
-- `git status` **clean**, nothing untracked, **no stash**, nothing unpushed
-- Last commit on the branch is `0db32aef`, the *finished* Report Suite pass
+**No build stamp was refreshed on any case, deliberately.** There was no sign-in for either branch
+and nothing was observed, so **the steps-and-labels half of the VIU stays unchecked on both
+projects.**
 
-**So: zero `update_case` calls, zero of anything else.** Every Filters and Schedule case is
-exactly as the previous passes left it. Start clean.
+## The sources, as at this pass
 
----
+| | Live version | Read from | Our cases had cited |
+|---|---:|---|---|
+| Filters, Confluence page 572030978 | **19** (2026-08-06) | `version.number` | v18 |
+| Schedule, Confluence page 713031682 | **27** (2026-08-07) | `version.number` | v23 |
 
-## The job
+Both pages' in-body "Version" fields lie (**1.6** and **1.0**). Always use `version.number`.
 
-Make **every Filters and Schedule case's source reference 100% accurate** — the same pass just
-completed for the three handed-off Report Suite reports, which took **225 cases from 13
-correctly-sourced to 225**.
+**Historical bodies are persisted** under each project's `source-accuracy-2026-08-10/tools/` recipe —
+re-fetch with `hist.py`. Filters v18+v19 and Schedule v23–v27 were all diffed requirement by
+requirement before any digit moved.
 
-This is a *source-reference* pass. It is not a re-VIU: the **steps-and-labels half stays
-unchecked** on both projects (no sign-in — see limits below), and the resume deliverable must
-say so plainly.
+## What is NOT done, and needs a ruling before anyone touches it
 
----
+1. **🔴 Schedule `§6` — Branko deleted a requirement in v24** and
+   [C30041](https://shopview.testrail.io/index.php?/cases/view/30041) still tests it with
+   `EXPECT FAIL (SV-8874)`. **SV-8874 may be a defect against a requirement that no longer exists.**
+   The case states the document history; the expectation was **not** rewritten to the build.
+2. **37 cases show raw `<ol>`/`<li>` markup to the tester** — 17 Filters, 20 Schedule. Listed by
+   C-id in both deliverables. **Postdates the 5 August audit that proved zero.** A ~37-write repair,
+   not attempted.
+3. **Filters C29600 and C29621 have no provenance line**, and both were last edited by someone else.
+   Not restored — that is a call for the QA lead.
+4. **Filters C38880's `AUTOMATION: HOLD` reason is false** — it says the behaviour is undocumented;
+   `S10-R4` documents it. Clearing a HOLD is a readiness claim, so it was left.
+5. **Schedule `§5.3 Panel collapse` is new in v27 and no case cites it** — a coverage gap. Authoring
+   is barred by the creation hold.
+6. **The shop-closures question has still never been sent.** `§4.5` and `§12` have contradicted each
+   other since v23 and v27 did not fix it. Three cases wait on it and **the blocker is us.**
 
-## The proven method to copy
+## The next document-side job, if the QA lead wants it
 
-**`build/report-suite/full-viu-2026-08-06/SOURCE-ACCURACY-2026-08-10.md`** (commit `0db32aef`).
+The **Filters requirement→case map**, started and stopped on 6 August —
+`build/filters/coverage-rederivation-2026-08-06/` holds the partial output and
+`build/filters/vlad-gap-review-2026-08-06/ROOT-CAUSE.md` explains why it matters.
+**Not started by this pass.**
 
-Its essential discipline, in the order it matters:
+## Two facts worth carrying forward
 
-1. **Do not just bump the version digits.** Fetch the **previous page version** and **diff it
-   requirement by requirement**, so the re-stamp is **provably nominal**.
-2. **Read by hand** any case whose requirement genuinely changed.
-3. Take the version from the API's **`version.number`** — **never** the in-body "Version" field
-   (the Rule-31(a) trap; Schedule's in-body field has read `1.0` for its whole life).
-4. **Quote-verify every anchor kept** — the anchor must actually say what the case says it says.
-5. **Sanity-check by hand any automated "this anchor does not exist" result.** That pass's first
-   extractor produced **8 false positives** because its pattern disallowed a bracket.
-
----
-
-## The scale
-
-| Project | Cases | Citing | Live | Gap |
-|---|---|---|---|---|
-| **Filters** | 114 | **105 cite spec v18** | **v19** | v19's **only** change is a new **`S1-R3`** (chips carry a leading type-icon) |
-| **Schedule** | 168 | **ALL cite v23** | **v27** | Mechanism known: **versions 17–26 carry ten consecutive empty version comments** |
-
-Both gaps look large and are mostly nominal — but "mostly" is what the requirement-by-requirement
-diff is for. Prove it; do not assume it.
-
-**Reuse, do not re-fetch:** `build/schedule/coverage-rederivation-2026-08-10/` already pulled the
-Schedule history — **all 27 versions examined and string-dated**
-(`evidence/string-dating-all-27-versions.json`), with **raw bodies persisted for v23–v27**
-(`evidence/raw-v23.xml` … `raw-v27.xml`) and a **v25→v27 diff** already computed.
-
----
-
-## The four classes to look for beyond the digits
-
-Found on the Report Suite; expect the same shapes here.
-
-1. **A reference saying a source is wrong** — after that source has since been corrected.
-2. **A case saying a question is open** — after it was answered.
-3. **A divergence note where nothing diverges.** Manufacturing a conflict is **itself a defect**
-   (Rule 56's honesty half). **Leave *genuine* divergence notes alone.**
-4. **A provenance line crediting the spec for something the spec does not say.**
-
-**Schedule has five known instances of class 4.** The sharpest is
-**[C38865](https://shopview.testrail.io/index.php?/cases/view/38865)**, which cites **§4.5 for
-daylight-saving behaviour** when ***daylight* and *clock change* appear zero times in all 27
-versions**.
-
----
-
-## Filters' own known items
-
-- **Two cases quote the build's *"Back To My Saved Filters"*** where spec **S11-R7** requires
-  ***"Back to my view"***. The spec wins (Rule 57 — the build supplies labels, never the
-  expectation, and here the label itself is what the spec pins).
-- **One case carries an unresolved contradiction** about whether **one report or six** had filter
-  bars on a given build. **Leave it stated** unless a document settles it.
-
----
-
-## The standing limits — read before doing anything
-
-- **The QA lead's hold: *"Do not create anything until my next order."*** So **no Jira ticket, no
-  `add_case`, no new artefact anywhere.** **`update_case` on existing cases continues** — that is
-  correction, not creation.
-- **Runs 352 (Ahtasham) and 357 (Ayesha) must be proven untouched by content** — snapshot before,
-  verify after, every prior result present **by ID** (Rules 34/47/50).
-- **Foreign cases are hands-off** (Rule 38): **Ahtasham has five in Filters**, **Vladimir Tomovic
-  twelve in the Report Suite**. Do not edit, and prove them byte-identical including
-  `updated_on` / `updated_by`.
-- **No sign-in for either branch, and none is needed** for this pass. Therefore **do not refresh
-  any build stamp**, and **state in the deliverable that the steps-and-labels half stays
-  unchecked**.
-- Verification is **exhaustive then exact** (Rule 50): every case, every field, byte-compared;
-  untouched fields proven byte-identical; **a mismatch stops the batch**.
-
----
-
-## What the QA lead is waiting on, in his order of value
-
-1. **A fresh `sv_sso_session` for Reports `sv8582`** — **the highest-value thing**. It alone
-   unblocks the **steps-and-labels check on all 225 cases** of the three handed-off reports.
-2. **Filters `sv8785`** sign-in — later.
-3. **Schedule `sv8685`** sign-in — later.
-
-**And his standing instruction: nothing goes to Chris or Branko until our own work is finished.**
-Questions **accumulate on the two ready sheets** and go out as **one batch**.
+- **`case_refs` on a run result is a stored snapshot, not a live mirror.** Touching a case makes the
+  echo catch up with the case's current `refs`, so it can move on results for cases whose `refs` you
+  never edited. It looks like damage and is not — proven on run 357, where 208 records moved while
+  **166 of 168 case `refs` were byte-identical**. Belongs in the playbook's §J; not written there,
+  since the playbook was out of this pass's scope.
+- **A masked-remainder check must mask BOTH the old and the new form of the token.** Mine failed
+  closed on the first attempt because it only matched the old form. The tool was fixed, not the
+  check relaxed — and that is the same class of error as the Report Suite pass's 8 false positives.
