@@ -4,6 +4,17 @@
 > That runbook holds the full, proven method; this file is a concise index +
 > durable memory. **No secrets in this repo — ever** (secrets live in `/tmp`).
 > - **COLD-RESUME ENTRY POINT (2026-08-06, weekly budget exhausted): read `build/RESUME-2026-08-06.md` FIRST** — the one thing needed first (a fresh `sv_sso_session`), where all three projects stand, what is waiting on the QA lead, and the UNCONFIRMED Filters lead on Vlad's row 8 to check before Branko's question sheet is sent.
+> - **🛑 ACTIVE HOLD — CREATE NOTHING (QA lead, 2026-08-10). NOT a standing rule; a TEMPORARY hold
+>   with a lift condition, layered on Standing Rule 62.** Verbatim: ***"Do not create anything until
+>   my next order."*** **Rule 62 says ASK FIRST; this ruling says THE ANSWER IS NO FOR NOW, and there
+>   is nothing to ask about until he lifts it.** Safe reading, encoded: **no Jira ticket · no new
+>   TestRail case (`add_case`) · no new artefact created in any external system of record.**
+>   **`update_case` on EXISTING cases CONTINUES** — that is **correction, not creation**, and it is
+>   what he authorised in requiring the three handed-off reports be *"100% authentic and VIU'd"*.
+>   **Where a worker cannot tell which side of the line something sits, it STOPS AND ASKS.**
+>   **LIFT CONDITION: his next order — a session reading this weeks from now must NOT treat it as
+>   standing law; check whether it has been lifted.** Full text at the tail of Standing Rule 62;
+>   register row **H1**.
 > - **PRE-FLIGHT — THE FIRST ACTION OF ANY PROJECT TASK (Standing Rules 31 + 32): ESTABLISH THE
 >   CURRENCY OF **ALL SOURCES** — not just the spec — BEFORE doing ANYTHING on a project (test cases,
 >   question sheets, reports, audits, TestRail pushes, reconciliations, bug work, or even answering a
@@ -3389,6 +3400,39 @@ deliver the 7-tab management report.
     final; it does NOT lower it, and Rule 60 may never be cited to close a queue with rows unverified.**
     **A row that flips to CHANGED is a finding in its own right** and is reported, not quietly
     corrected.
+    **⇒ AMENDMENT, 2026-08-10 — FINALITY CAN ARRIVE *PER REPORT*, AND THIS RULE DID NOT CONTEMPLATE A
+    PARTIAL ANSWER. THE FIRST FINALITY ANSWER THIS RULE HAS EVER HAD IS A PARTIAL ONE.**
+    **USER DIRECTIVE (2026-08-10, verbatim):** *"If you are referring to the Reports branch, they have
+    released just those reports which I mentioned in my previous comments so the branch is final for
+    those reports only, the remaining reports are yet to be handed of to the QA. Once all 6 reports are
+    handded of to the QA only then we can consider the branch as final."*
+    **SO FINALITY IS A PER-REPORT PROPERTY ON THE REPORT SUITE BRANCH, NOT A BRANCH-WIDE ONE:**
+    **· FINAL (handed off to QA): WORK IN PROGRESS · TECHNICIAN UTILIZATION · SALES BY CUSTOMER.**
+    Findings on these are **NO LONGER PROVISIONAL PENDING DEVELOPMENT** — **a deviation here is a real
+    defect in a finished feature.** **Rule-49 queue rows for these three MAY CLOSE as each case is
+    re-checked**, on the ordinary close condition (the row re-verified with fresh evidence — the bar is
+    not lowered, only the *"wait for the build to settle"* blocker is removed).
+    **· NOT FINAL: SALES BY REPRESENTATIVE · PARTS VELOCITY · INVENTORY VALUE.** **Unchanged** — still
+    provisional, queue rows **stay open**, awaiting hand-off to QA.
+    **· BRANCH-WIDE FINALITY REQUIRES ALL SIX**, in his own words: *"Once all 6 reports are handded of
+    to the QA only then we can consider the branch as final."*
+    **⚠️ THE HONEST CAVEAT — WRITE IT DOWN OR IT WILL BE MISREAD. "FINAL" MEANS HANDED OFF /
+    FEATURE-COMPLETE. IT DOES *NOT* MEAN "THE CODE WILL NEVER CHANGE."** The branch **can and will
+    redeploy** — not least **to fix the very defects we are reporting**. Therefore:
+    **· A REDEPLOY STILL INVALIDATES THE LABELS AND THE PASS/FAIL VERDICT (Rule 60, layers 1–2) EVEN ON
+    A FINAL REPORT.** The build marker on each case still has to be honest, and Rule 54 sentence 2 still
+    records when it was last checked.
+    **· WHAT FINALITY REMOVES IS A DIFFERENT DOUBT ENTIRELY: the ambiguity about whether a gap is an
+    UNFINISHED FEATURE or a DEFECT.** On those three it is a **defect**. That is the whole value of the
+    distinction — the previous passes could not tell the two apart, so every verdict carried a hedge,
+    and **on these three that hedge is now WRONG and keeping it would understate real findings.**
+    **THIS REFINES STANDING RULE 60, WHOSE HEADLINE SAYS THE BUILD WILL NEVER BE DECLARED FINAL — that
+    was TRUE WHEN WRITTEN (2026-08-05) and is now TRUE ONLY PER-REPORT.** Rule 60's own wording is kept
+    visible and dated rather than overwritten (the Rules 31/52/53 pattern), with a cross-reference at
+    its head. **Nothing in Rule 60's strategy is discarded** — the layer split is exactly what makes a
+    per-report finality answer usable at all.
+    Contemporaneous write-up:
+    `build/report-suite/full-viu-2026-08-06/RULINGS-2026-08-10-CREATION-HOLD-AND-FINALITY.md`.
     **RATIONALE, 2026-08-03:** the Report Suite got its first QA branch (`sv8582`,
     `v3.4.1-0ed4433`) and 475 cases were finally live-verifiable — but engineering said the branch is
     still being worked on. Without this rule the suite would have been stamped "VIU-Verified" against
@@ -4159,6 +4203,49 @@ deliver the 7-tab management report.
     PARTIAL — baseline `build/schedule/design-2026-07-27/`, ~48 labels pinned from it; a newer
     undated editable share link exists; re-ingestion authorised only if Sasha's design is final,
     which is not established."*
+    **⇒ AMENDMENT, 2026-08-10 — THE SOURCE LIST IS WIDENED AGAIN, AND IT IS DECLARED OPEN-ENDED.
+    IT WAS THREE (2026-08-05), THEN FIVE (2026-08-06); IT IS NOW SEVEN *AND EXPLICITLY NOT A CLOSED
+    LIST*.**
+    **USER DIRECTIVE (2026-08-10, verbatim, his typing preserved exactly as he wrote it because Rule
+    25 applies to his instructions as it does to a spec):** *"General rule for the test cases to keep
+    them current authentic and accurate that you need to ensure the test cases are correct as per the
+    Specs/Stories/Answer sheets/New design/new .md files/new claude designs and anything which is
+    provided to you and is latest if that conflicts with the older order and anything which in
+    srittem statement they share with us and is newer and the rest you know"*.
+    **MOST OF THIS RESTATES RULES 31, 32 AND 57 AND CHANGES NOTHING** — sources must be current
+    (31), the latest authoritative one wins on conflict (32), and expected behaviour comes from
+    documents (57). **THE PART THAT IS NEW, AND THE ONLY PART TO CAPTURE, IS THE EXPLICIT WIDENING OF
+    THE SOURCE LIST:**
+    **· (f) NEW `.md` FILES SHARED WITH US** — his words, *"new .md files"*: the **handover and
+    design-review documents**, e.g. today's `ed9bc33e-FIlters_HANDOVERAppWideFilterRedesign.md` and
+    `af54d7ba-Schedule_scheduledesignreview20260805.md`.
+    **· "NEW CLAUDE DESIGNS" — ALREADY COVERED by the 2026-08-06 amendment at (d1); his enumeration
+    CONFIRMS it** rather than adding anything.
+    **· (g) ANY WRITTEN STATEMENT SHARED WITH US, WHEN IT IS NEWER** — his words, *"anything which in
+    srittem statement they share with us and is newer"*: **including a message or a channel post.**
+    **⇒ SO THE LIST READS (a)–(g), AND EVERYWHERE THIS RULE OR ANOTHER RULE CITING IT SAYS
+    "(a)/(b)/(c)" OR "(a)–(e)", READ "(a)–(g)" FROM 2026-08-10 ONWARD.**
+    **🔑 THE SOURCE LIST IS OPEN-ENDED BY HIS INSTRUCTION — *"and anything which is provided to you
+    and is latest"*. A NEW DOCUMENT TYPE DOES NOT NEED A RULE AMENDMENT BEFORE IT COUNTS.** The
+    enumeration is illustrative, not exhaustive; the test is **is it provided to us, is it
+    authoritative, and is it the latest** — not **is its file extension already listed here.**
+    **🔴 WHAT THIS DOES NOT DO — SAID EXPLICITLY, BECAUSE HIS CLOSING PHRASE *"and the rest you know"*
+    INVITES A FUTURE SESSION TO FILL THE GAP FROM MEMORY, AND THE LAST TIME A GAP GOT FILLED FROM THE
+    BUILD IT COST 748 CASES:** **THE BUILD IS STILL NOT A SOURCE OF EXPECTED BEHAVIOUR.** Widening the
+    list of *documents* does not put the build on it, and *"the rest you know"* means **this rule's
+    core, Rule 32's latest-wins and Rule 58's hold-and-ask** — it does **not** mean *"use your
+    judgement about what the product should do"*. **Latest wins ON CONFLICT (Rule 32); the build is
+    never the thing that wins.**
+    **THE PRACTICAL DUTY THIS CREATES — A NEW DOCUMENT IS INGESTED, NOT SKIMMED.** When a new document
+    arrives it goes through **the Rule-31 currency check** (recorded in the SOURCE-CURRENCY block with
+    its identifier, date and CURRENT/STALE/PARTIAL verdict) **and a Rule-43 per-requirement
+    reconciliation** — one verdict row per requirement, both directions, totals reconciled. **A skim is
+    not an ingest.** **The evidence that this is not theoretical: today's two `.md` files EACH CHANGED
+    REAL VERDICTS**, and one of them exposed **[C38909](https://shopview.testrail.io/index.php?/cases/view/38909)**
+    asserting working filter buttons across nineteen report surfaces when **fourteen** of them had been
+    **forbidden, deferred, orphaned or never scoped** by engineering — a tester would have logged a long
+    row of Blocked results waiting for a build that was never coming. Evidence:
+    `build/filters/run-sync-and-c38909-2026-08-10/C38909-REPAIR.md`.
     **FROM THE BUILD WE TAKE EXACTLY TWO THINGS:** **(1)** the **exact on-screen labels and wording**,
     so the tester reads what they will actually see (Rule 9); and **(2)** the **PASS / FAIL /
     deviation VERDICT** (Rules 10/12/13). **Nothing else. Not the assertion, not the rule, not the
@@ -4315,6 +4402,24 @@ deliver the 7-tab management report.
     input, not noise).
 60. **THE BUILD WILL NEVER BE DECLARED FINAL — SEPARATE WHAT DEPENDS ON THE BUILD FROM WHAT DOES NOT
     (all projects).**
+    **⚠️ THE HEADLINE ABOVE WAS AMENDED 2026-08-10 — IT IS NOW TRUE ONLY *PER REPORT*. Read this
+    block before quoting "never declared final". The original wording and its 2026-08-05 directive
+    are kept below verbatim and dated, not overwritten (the Rules 31/52/53 pattern).**
+    **⇒ AMENDMENT, 2026-08-10 — THE FIRST FINALITY ANSWER WE HAVE EVER HAD, AND IT IS PARTIAL.** The
+    QA lead ruled that the Report Suite branch **is final for the three reports already handed off to
+    QA — WORK IN PROGRESS · TECHNICIAN UTILIZATION · SALES BY CUSTOMER** — and **not final for SALES BY
+    REPRESENTATIVE · PARTS VELOCITY · INVENTORY VALUE**, with branch-wide finality requiring all six.
+    **The verbatim directive and the full consequences are recorded at the tail of Standing Rule 49**,
+    which is where finality lives; they are cross-referenced here rather than duplicated.
+    **WHAT THIS DOES *NOT* CHANGE — AND IT IS THE PART THAT WILL BE MISREAD:** **"final" means HANDED
+    OFF / FEATURE-COMPLETE, NOT "the code will never change."** The branch can still redeploy, indeed
+    to fix the very defects we are reporting, so **A REDEPLOY STILL INVALIDATES LAYERS 1–2 (the
+    on-screen labels and the pass/fail verdict) EVEN ON A FINAL REPORT.** **Every layer distinction,
+    every practice (a)–(f), and the honesty clause below all stand unchanged.** What finality removes
+    is a different doubt: whether a gap is an **unfinished feature** or a **defect**. On those three it
+    is a defect.
+    **ORIGINAL DIRECTIVE AND WORDING (2026-08-05 — TRUE WHEN WRITTEN; now true only per-report, per
+    the amendment above; kept as the record):**
     USER DIRECTIVE (2026-08-05, verbatim): *"They are not declaring it as final - it is what it is now
     we have to work and strategize in a waqy that we do not fail and out test cases still stay current/
     runnable by the lay man and manual qa tester and they are all VIU's and all of those test cases are
@@ -4540,6 +4645,44 @@ deliver the 7-tab management report.
     miss), 48 (a held item quotes the ruling holding it — for these items, this one), 51 (**the
     API-ticket ask, now subsumed as a special case**), 52 (the shape, once permitted) and 53 (the
     priority, once permitted).
+    **🛑 ⇒ ACTIVE HOLD LAYERED ON TOP OF THIS RULE, 2026-08-10 — "CREATE NOTHING". THIS IS A
+    TEMPORARY HOLD WITH A LIFT CONDITION, NOT A NEW STANDING RULE, AND IT MUST NOT HARDEN INTO ONE.**
+    **USER DIRECTIVE (2026-08-10, verbatim), answering a request for permission to file five prepared
+    defects:** *"Do not create anything until my next order."*
+    **THE DISTINCTION FROM RULE 62, STATED PLAINLY BECAUSE IT IS THE WHOLE POINT: RULE 62 SAYS *ASK
+    FIRST*. THIS RULING SAYS *THE ANSWER IS NO FOR NOW* — and therefore THERE IS NOTHING TO ASK ABOUT
+    UNTIL HE LIFTS IT.** Under Rule 62 alone, a well-prepared finding is presented with an ask; under
+    this hold the ask itself is **premature**. The finding is still **prepared in full and written up**
+    (Rule 62's "we do the whole job and stop at the button") — it is simply **not put to him** as a
+    request until he gives the next order.
+    **SCOPE — STATED HONESTLY, INCLUDING WHERE THE BOUNDARY IS GENUINELY UNCERTAIN.** He was answering
+    a question about **Jira tickets**; his words are ***"anything"***. **The SAFE READING is therefore
+    the one encoded**, and it is deliberately the broader of the two:
+    **· NO Jira ticket, of any type, on any project.**
+    **· NO new TestRail case — `add_case` is barred.**
+    **· NO new artefact created in any external system of record.**
+    **WHAT EXPLICITLY CONTINUES: `update_case` ON CASES THAT ALREADY EXIST** — correcting wording,
+    re-verdicting, re-stamping the Rule-54 provenance line, repairing an automation marker. **That is
+    CORRECTION, NOT CREATION**, and it is precisely what he authorised when he required the three
+    handed-off reports be **"100% authentic and VIU'd"**. Comments, transitions and field corrections
+    on **existing** tickets remain governed by Rule 62's clause (3), unchanged.
+    **WHERE A FUTURE WORKER CANNOT TELL WHICH SIDE OF THE LINE SOMETHING SITS, IT STOPS AND ASKS —
+    it does NOT guess, and it does not resolve the ambiguity in favour of acting** (Rule 6's logic;
+    Rule 12 — never infer permission). A local file written into this repository is not an external
+    system of record and is not what he was addressing, but **anything that becomes visible to the
+    engineering organisation is.**
+    **⏳ LIFT CONDITION — "UNTIL MY NEXT ORDER".** This hold is **ACTIVE from 2026-08-10** and ends
+    **only when the QA lead says so**. **A SESSION READING THIS WEEKS FROM NOW MUST NOT TREAT IT AS
+    STANDING LAW**: check whether it has been lifted before concluding that creation is barred, and
+    do not quietly carry a spent hold forward (Rule 48's clause — never carry a stale ruling forward
+    without saying so). When it is lifted, **Rule 62 resumes as the governing rule**, unchanged and
+    undiminished — the hold suspends creation; it does not replace the permission requirement.
+    **WHAT IT BLOCKS TODAY, CONCRETELY:** the **five prepared Report Suite defects** stay prepared and
+    unfiled, and the cases sitting on `AUTOMATION: HOLD` **only because an expect-fail marker needs a
+    ticket number that does not yet exist** stay on `HOLD` — each becomes `READY - EXPECT FAIL` with
+    one edit once a ticket exists. Recorded in the **OUTSTANDING-ITEMS REGISTER** as row **H1** (Rule
+    36), with the five Rule-48 fields. Contemporaneous write-up:
+    `build/report-suite/full-viu-2026-08-06/RULINGS-2026-08-10-CREATION-HOLD-AND-FINALITY.md`.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
