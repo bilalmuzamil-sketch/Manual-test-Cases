@@ -3492,6 +3492,11 @@ deliver the 7-tab management report.
     exactly — its *durability* is what is limited, not its rigour).
 51. **NEVER file an API-related ticket without ASKING — every time, even inside an approved batch (all
     projects).**
+    **⚠️ SUBSUMED BY STANDING RULE 62 (2026-08-10) — ASKING IS NOW UNIVERSAL, NOT SPECIAL TO API
+    TICKETS: NO Jira ticket of ANY type may be created without the QA lead's explicit permission, asked
+    for and granted first. THIS RULE STANDS UNCHANGED — its reachability test still classifies a finding
+    and decides how to present it, and its withdrawal procedure still applies — but it is no longer the
+    exception to an otherwise-permitted filing; it is one instance of the general case. See Rule 62.**
     USER DIRECTIVE (2026-08-04, verbatim): *"do not create the tickets which are related to API , if
     there are any ASK me (ask again if I have previously given a go ahead for the API tickets with the
     Non API tickets) and create them ONLY if I ask you to create them"*.
@@ -4473,6 +4478,68 @@ deliver the 7-tab management report.
     note, and the marker still goes last), 57 (**its sibling — a closed ticket is not a spec change,
     and an open ticket is not proof of a live defect**) and 60 (**this is how layer 3, the build-fact
     markers, is monitored without re-observation**).
+62. **NO JIRA TICKET IS EVER CREATED WITHOUT THE QA LEAD'S EXPLICIT PERMISSION, ASKED FOR AND GRANTED
+    FIRST (all projects, every ticket type).**
+    USER DIRECTIVE (2026-08-10, verbatim): *"Just One NEW rule, DO NOT create the Tickets in Jira but
+    ask for my permission first."*
+    **THE RULE: no Jira ticket may be created without the QA lead's explicit permission, asked for and
+    granted first.** This is **unconditional** and covers **EVERY ticket type on EVERY project** — a
+    `Story Defect`, a `Bug`, a `Task`, a spec-defect ticket, a follow-up, anything. **We prepare the
+    ticket; we do not create it.**
+    **THE THREE WAYS THIS RULE COULD BE QUIETLY ERODED — each closed explicitly:**
+    **(1) A BATCH APPROVAL DOES NOT COVER A LATER TICKET. Permission is PER ASK.** *"You approved the
+    last six"* is **not** permission for a seventh, and an approval given for one pass does not carry
+    into the next. **Silence is not consent, and an earlier yes is not a standing yes.**
+    **(2) THE QUALITY OF THE FINDING IS NOT PERMISSION.** A defect being **real, sourced, live-verified,
+    duplicate-searched and obviously worth filing** has **no bearing whatever on the authorisation**.
+    *"It plainly needed a ticket"* is exactly the reasoning this rule exists to stop — **how good the
+    finding is, and whether we may file it, are two unrelated questions.**
+    **(3) EDITING AN EXISTING TICKET IS NOT CREATING ONE.** This rule governs **CREATION**. The
+    description rewrites he ordered on **2026-08-06** (the five-part shape — see the ticket bullet in
+    "Deliverable conventions the user likes") remain **permitted work**, as do comments, transitions and
+    field corrections he has authorised. **Where there is any doubt which side of the line an action
+    falls on, ASK** (Rule 6's logic — nothing enters a system of record unasked).
+    **WHAT WE STILL DO, IN FULL — THE FINDING IS NEVER LOST:** every finding is **written up in the
+    pass's findings file**, **logged in the OUTSTANDING-ITEMS REGISTER** (Rule 36), and **presented to
+    him WITH OUR RECOMMENDATION** — in plain layman words (Rule 7), with the evidence, the source it
+    deviates from quoted verbatim (Rule 25), the affected cases by internal ID + C-id + link (Rule 8),
+    and the **ready-to-file ticket text**. **We do the whole job of preparing the ticket and stop at the
+    button.** An unanswered ask is a **MISSING INPUT** (Rule 1) and stays **OUTSTANDING** until he
+    answers — never quietly dropped, and never re-decided by us.
+    **THIS STRENGTHENS STANDING RULE 51, WHICH IS NOW SUBSUMED AS A SPECIAL CASE.** Rule 51 (2026-08-04)
+    already required asking before filing an **API-related** ticket, and framed that as the exception to
+    an otherwise-permitted filing. **From 2026-08-10 the asking requirement is UNIVERSAL, so Rule 51's
+    requirement is no longer an exception — it is one instance of the general case.** **Rule 51 STANDS
+    and is NOT deleted:** its **reachability test** (*is the defect invisible to a user AND to a manual
+    tester, reachable only by calling an endpoint directly?*) remains the useful way to **classify** a
+    finding and decide **how to present it**, and its **withdrawal procedure** still governs an API
+    ticket he rules should be withdrawn. **What changed is only its scope of novelty: asking is no
+    longer special to API tickets.**
+    **SUPERSEDED FRAMING, DATED AND KEPT VISIBLE (the pattern of Rules 31/52/53):** before 2026-08-10 a
+    NON-API defect could be filed inside an approved batch without a fresh ask. **That is no longer true
+    of any ticket, of any type, on any project.**
+    **HOW A TICKET IS MADE ONCE PERMISSION IS GIVEN IS UNCHANGED — this rule is about WHETHER, not
+    HOW.** **Rule 52's shape** (`issuetype` = `Story Defect`, `parent` = the **owning story**, the story
+    also linked **`relates to`**) and **Rule 53's priority** (**`Medium`** since 2026-08-06, **`High`
+    still barred**) govern the filing exactly as before.
+    **RATIONALE, 2026-08-10:** ticket creation is the one thing we do that is **immediately visible to
+    the whole engineering organisation** and **cannot be cleanly undone** — a withdrawn ticket stays on
+    the record for good (Rule 51's own no-delete finding), so a ticket filed unasked costs the QA lead's
+    credibility, not merely ours. The preceding week supplies the evidence for why the **per-ask** clause
+    is the operative one: tickets were filed in **approved batches** across the Report Suite, Schedule
+    and Filters passes, and the approvals **ran ahead of themselves** — a pass reading *"file these"* as
+    licence for the next finding too, which is precisely how **SV-8822** came to be filed inside an
+    approved batch of six and then had to be withdrawn (Rule 51). **A ticket not filed is recoverable in
+    one minute; a ticket filed unasked is not recoverable at all.** Ties to Standing Rules 1 (never
+    proceed without the complete input set — an unanswered ask IS a missing input), 6 (nothing written to
+    a system of record without permission — **this is its Jira half; Jira is a real production system
+    exactly as TestRail is**), 7 (the ask is in plain layman words), 8 (name the affected cases with
+    their C-ids and links), 12 (observed, never inferred — **including never inferring permission**), 25
+    (cite verbatim the source the finding deviates from), 36 (an unanswered ask is an OUTSTANDING item
+    and belongs in the register), 46 (a deliberate non-filing is RECORDED, so it can never look like a
+    miss), 48 (a held item quotes the ruling holding it — for these items, this one), 51 (**the
+    API-ticket ask, now subsumed as a special case**), 52 (the shape, once permitted) and 53 (the
+    priority, once permitted).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
@@ -4728,6 +4795,14 @@ regression / bug-fix re-testing.
   changelog entry, so it is the QA lead's call. Tickets filed **before 2026-08-05** are `Bug`s on an epic
   parent and are **correct for their date**. Full field/type/conversion facts:
   `build/APP-ACTIONS-PLAYBOOK.md` § "Filing a defect ticket".
+  **⚠️ AND NOTHING IS CREATED UNTIL HE SAYS SO (Standing Rule 62, 2026-08-10 — QA lead, verbatim: *"Just
+  One NEW rule, DO NOT create the Tickets in Jira but ask for my permission first."*).** This shape
+  describes HOW a ticket is made **once permission is given**. No Jira ticket of any type may be created
+  without his explicit permission, asked for and granted first; permission is **PER ASK** (an earlier
+  batch approval never covers a later ticket), and a finding being real, sourced and obviously worth
+  filing is **not** permission. Write the finding up, log it in the outstanding register, and present it
+  with the recommendation and the ready-to-file text — then stop. **Editing an existing ticket is not
+  creating one** and remains permitted.
 - Test cases with FE-block/BE-allow behavior carry a plain tester-facing "Note for the
   tester: …expected, mark PASSED, don't raise a bug" line (per Standing Rule 24).
 - **Simple-format status updates (all chat updates + reports):** Give updates/status
