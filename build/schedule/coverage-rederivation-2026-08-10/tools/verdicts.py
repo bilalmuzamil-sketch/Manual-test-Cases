@@ -37,6 +37,16 @@ for aid in UNCOVERED_53:
                  "about other controls: C29929 department header, C29934 mini-calendar chevron, "
                  "C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.")
 
+# §5.3's narrow-viewport sentence restates §11's, which IS covered. Verdicting it
+# UNCOVERED with the rest of §5.3 would have inflated the gap by one and, worse,
+# implied nobody tests the 960px behaviour. Its two SIBLING assertions stay
+# UNCOVERED because they add promises §11 does not make.
+HAND["§5.3-L193.A1"] = ("COVERED", "",
+    "Restates §11 Responsiveness, which SCH-EDGE-02 = C30086 asserts verbatim: 'On narrow viewports "
+    "the sidebar collapses.' The two assertions after it - that the toggle still works at any width, "
+    "and that the manual choice holds until the next resize across the breakpoint - are NOT in §11 "
+    "and stay UNCOVERED.")
+
 HAND["§3.1-L44.A1"] = ("UNCOVERED", "OURS",
     "The §3.1 sentence pointing at the panel toggle is also new in v27. Same gap as §5.3, "
     "reached from the sidebar section instead of the toolbar section.")

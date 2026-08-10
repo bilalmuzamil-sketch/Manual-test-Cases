@@ -18,14 +18,14 @@
 
 | Verdict | Count |
 |---|---|
-| **COVERED** | **281** |
+| **COVERED** | **282** |
 | **PARTIAL** | **4** |
-| **UNCOVERED** | **20** |
+| **UNCOVERED** | **19** |
 | **BLOCKED** | **1** |
 | **NOT-INDEPENDENTLY-TESTABLE** | **91** |
 | **TOTAL ASSERTIONS** | **397** |
 
-281 + 4 + 20 + 1 + 91 = **397**. The arithmetic is stated because a coverage table whose parts do not sum is not a coverage table.
+282 + 4 + 19 + 1 + 91 = **397**. The arithmetic is stated because a coverage table whose parts do not sum is not a coverage table.
 
 Derived from **234 requirement lines** across **33 sections** of Confluence **version 27**, themselves extracted from **345 content lines** with **0 unaccounted** (`evidence/extract-v27.json`).
 
@@ -54,7 +54,7 @@ Derived from **234 requirement lines** across **33 sections** of Confluence **ve
 | §4.13 | Hover tooltips (read-only) | 10 | 9 | 0 | 0 | 0 | 1 |
 | §5.1 | Work order filters | 13 | 7 | 0 | 0 | 0 | 6 |
 | §5.2 | Mini calendar | 4 | 4 | 0 | 0 | 0 | 0 |
-| §5.3 | Panel collapse ⚠️ | 18 | 0 | 0 | 18 | 0 | 0 |
+| §5.3 | Panel collapse ⚠️ | 18 | 1 | 0 | 17 | 0 | 0 |
 | §6 | Grid toolbar ⚠️ | 20 | 10 | 0 | 1 | 0 | 9 |
 | §7 | Interactions and micro-interactions | 24 | 24 | 0 | 0 | 0 | 0 |
 | §8.1 | Key entities | 24 | 3 | 0 | 0 | 0 | 21 |
@@ -172,12 +172,6 @@ The capacity tooltip is covered, but the word that changed is not. Confluence v2
 ### `§5.3-L192.A4` — **UNCOVERED**
 
 > **Spec v27, verbatim:** *"reopening returns to whichever panel mode was active."*
-
-§5.3 Panel collapse is new in Confluence v27 (2026-08-07). No case in the suite covers the panel toggle. The five cases that mention collapsing are about other controls: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
-
-### `§5.3-L193.A1` — **UNCOVERED**
-
-> **Spec v27, verbatim:** *"Narrow viewports. Below the 960px minimum supported width (§11) the panel auto-collapses."*
 
 §5.3 Panel collapse is new in Confluence v27 (2026-08-07). No case in the suite covers the panel toggle. The five cases that mention collapsing are about other controls: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
 
@@ -591,7 +585,7 @@ Every COVERED row shows the requirement text and the covering case's own text si
 | `§5.3-L192.A2` | *"Calendar date, work-order scroll position, panel search text, drill-down state"* | UNCOVERED | — | **no case asserts this** |
 | `§5.3-L192.A3` | *"the selected work order all survive a collapse/expand cycle"* | UNCOVERED | — | **no case asserts this** |
 | `§5.3-L192.A4` | *"reopening returns to whichever panel mode was active."* | UNCOVERED | — | **no case asserts this** |
-| `§5.3-L193.A1` | *"Narrow viewports. Below the 960px minimum supported width (§11) the panel auto-collapses."* | UNCOVERED | — | **no case asserts this** |
+| `§5.3-L193.A1` | *"Narrow viewports. Below the 960px minimum supported width (§11) the panel auto-collapses."* | COVERED | — | Restates §11 Responsiveness, which SCH-EDGE-02 = C30086 asserts verbatim: 'On narrow viewports the sidebar collapses.' The two assertions after it - t |
 | `§5.3-L193.A2` | *"The toggle still works, so the user can expand it manually at any width"* | UNCOVERED | — | **no case asserts this** |
 | `§5.3-L193.A3` | *"that manual choice holds until the next resize across the breakpoint."* | UNCOVERED | — | **no case asserts this** |
 | `§5.3-L194.A1` | *"Popovers and modals. Anything that positions itself clear of the panel falls back to a normal viewport margin while the panel is collapsed."* | UNCOVERED | — | **no case asserts this** |

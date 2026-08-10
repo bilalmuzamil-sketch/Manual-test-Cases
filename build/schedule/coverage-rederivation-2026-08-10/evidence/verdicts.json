@@ -11162,9 +11162,9 @@
   "n_in_line": 3,
   "n_candidates": 0,
   "top": [],
-  "verdict": "UNCOVERED",
-  "class": "OURS",
-  "note": "\u00a75.3 Panel collapse is new in Confluence v27 (2026-08-07). No case in the suite covers the panel toggle. The five cases that mention collapsing are about other controls: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.",
+  "verdict": "COVERED",
+  "class": "",
+  "note": "Restates \u00a711 Responsiveness, which SCH-EDGE-02 = C30086 asserts verbatim: 'On narrow viewports the sidebar collapses.' The two assertions after it - that the toggle still works at any width, and that the manual choice holds until the next resize across the breakpoint - are NOT in \u00a711 and stay UNCOVERED.",
   "match": null
  },
  {
