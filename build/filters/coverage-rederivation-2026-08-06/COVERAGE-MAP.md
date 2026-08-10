@@ -12,6 +12,14 @@
 > **Re-derive this file, from scratch, whenever the spec is republished (Standing Rule 43).** Do not
 > patch it. The last map was patched instead of re-derived and that is the whole root cause.
 
+> **⚠️ MAINTENANCE NOTE, 2026-08-10.** The specification has **not** moved — it is still
+> Confluence **version 19**, so this derivation stands and was **not** re-derived. But the
+> source-accuracy pass of 2026-08-10 changed the wording of two cases quoted below, so **four
+> "says, verbatim" quotes were corrected in place to match live TestRail**: C38879 and C38896 now
+> say **'Back to my view'**, the label `S11-R7` pins, in place of the build's *'Back To My Saved
+> Filters'*. Nothing else in this file was touched, and no verdict changed.
+> See `build/filters/source-accuracy-2026-08-10/SOURCE-ACCURACY.md` §3.
+
 ---
 
 ## HOW TO READ IT, AND THE RULES IT HAS TO SATISFY
@@ -1094,9 +1102,9 @@ Full detail in `ORPHANS.md`.
 **VERDICT: COVERED**  
 **Case(s):** [C38879](https://shopview.testrail.io/index.php?/cases/view/38879), [C38896](https://shopview.testrail.io/index.php?/cases/view/38896)  
 > **[C38879](https://shopview.testrail.io/index.php?/cases/view/38879) says, verbatim:** *"It also empties the Search box and removes your typed text - the search is not something that gets saved, so there is nothing to bring back."*  
-> **[C38879](https://shopview.testrail.io/index.php?/cases/view/38879) says, verbatim:** *"Clicking 'Back To My Saved Filters' brings back your own saved filters and removes the filter part from the web address."*  
-> **[C38896](https://shopview.testrail.io/index.php?/cases/view/38896) says, verbatim:** *"On your own view there is no 'Back To My Saved Filters' option anywhere - it only belongs to a shared-link visit."*  
-> **[C38896](https://shopview.testrail.io/index.php?/cases/view/38896) says, verbatim:** *"When you open the shared link, 'Back To My Saved Filters' does appear."*  
+> **[C38879](https://shopview.testrail.io/index.php?/cases/view/38879) says, verbatim:** *"Clicking 'Back to my view' brings back your own saved filters and removes the filter part from the web address."*  
+> **[C38896](https://shopview.testrail.io/index.php?/cases/view/38896) says, verbatim:** *"On your own view there is no 'Back to my view' option anywhere - it only belongs to a shared-link visit."*  
+> **[C38896](https://shopview.testrail.io/index.php?/cases/view/38896) says, verbatim:** *"When you open the shared link, 'Back to my view' does appear."*  
 *Vlad's row 2. He looked at C38896 (the negative) and missed C38879, whose TITLE advertises S11-R6. Findability, not coverage.*  
 
 
@@ -1143,7 +1151,7 @@ Full detail in `ORPHANS.md`.
 **Assertion:** the whole requirement (single assertion)  
 **VERDICT: COVERED**  
 **Case(s):** [C38896](https://shopview.testrail.io/index.php?/cases/view/38896)  
-> **[C38896](https://shopview.testrail.io/index.php?/cases/view/38896) says, verbatim:** *"On your own view there is no 'Back To My Saved Filters' option anywhere - it only belongs to a shared-link visit."*  
+> **[C38896](https://shopview.testrail.io/index.php?/cases/view/38896) says, verbatim:** *"On your own view there is no 'Back to my view' option anywhere - it only belongs to a shared-link visit."*  
 > **[C38896](https://shopview.testrail.io/index.php?/cases/view/38896) says, verbatim:** *"After you click it and you are back on your own view, the option disappears again."*  
 
 
