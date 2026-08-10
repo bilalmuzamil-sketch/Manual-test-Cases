@@ -1016,3 +1016,70 @@ waiting.** Both facts are now written into the playbook.
    none**. **That is NOT recorded as a verdict here**, for a reason that matters: the measurement was taken
    on **`v3.5-16cf83f`**, and the build has since moved to **`v3.5-f77875c`**. **Re-measure the three
    elements on the current build; do not inherit the old numbers.**
+
+---
+
+# SESSION 2026-08-10 (source accuracy) — findings
+
+**Scope: the three handed-off reports, 225 cases, no sampling. Session dead throughout, so these are
+document findings, not build findings.**
+
+## F1 · A defect in the live specification: WIP v10 uses `S9-R11` twice
+
+Live Work In Progress v10 defines **two different requirements under the same number**: the
+10,000-row export cap (under Edge Cases) and the success-notification caption (under Error handling).
+In v9 only the second existed; the 2026-08-06 edit added the cap and re-used a number already in use.
+**Owed by Chris Ward: renumber one of them.** Our only affected case,
+[C30518](https://shopview.testrail.io/index.php?/cases/view/30518), now says in writing which one it
+rests on.
+
+## F2 · Four `refs` told a reader Chris still owed a spec edit he had already made
+
+[C30398](https://shopview.testrail.io/index.php?/cases/view/30398) ·
+[C30446](https://shopview.testrail.io/index.php?/cases/view/30446) ·
+[C38918](https://shopview.testrail.io/index.php?/cases/view/38918) ·
+[C30526](https://shopview.testrail.io/index.php?/cases/view/30526). Each named the specification while
+telling the reader the specification was wrong — and in every case the live body now says exactly what
+the ruling said. **This is the most damaging shape of stale source: a reader who checked would have
+found the opposite of what we told them.** All four corrected.
+
+## F3 · [C30511](https://shopview.testrail.io/index.php?/cases/view/30511) told testers a question was open that Chris has closed
+
+Its provenance said the specification contradicted itself about whether the Location column is
+toggleable, that Chris had been asked and *"has not answered, so neither reading is asserted here"*.
+**He answered by editing the document.** WIP v9 carried the contradicting sentence *"the user does not
+toggle it in the column selector"*; **v10 has removed it**, and all five statements in the document now
+agree on the access-gated, toggleable model. Corrected to the v10 position.
+
+## F4 · Five provenance lines hedged a difference that does not exist
+
+C30111 · C30167 · C30172 · C30442 · C38918 carried *"where the wording of that specification differs …
+which is the authority"* — a conditional naming no actual difference. **In all five the specification
+agrees with the case outright** (verified anchor by anchor against the live body). Rule 56 is explicit
+that a divergence sentence where nothing diverges manufactures a conflict and is itself a defect.
+Removed. **The five genuine divergence notes were left exactly as they are** — C43553 and the four WIP
+identifier cases each name the earlier source and what it said, which is the shape the rule asks for.
+
+## F5 · Two sources moved UP: a tech plan and an answer file became the specification
+
+[C38887](https://shopview.testrail.io/index.php?/cases/view/38887) rested on the engineering plan of
+2026-07-29 because the TU specification was silent on the export cap. **TU v7 added `S7-R14` on
+2026-08-06** with the cap and its verbatim message. Likewise
+[C38918](https://shopview.testrail.io/index.php?/cases/view/38918) rested on a PO answer file; **WIP
+v10 added `S9-R11`.** Both now cite the specification and say plainly where the expectation used to
+come from.
+
+## F6 · A false alarm of our own, recorded because the control is the point
+
+The first anchor extractor reported **8 Sales By Customer cases citing requirements that do not
+exist** — `S8-R7`…`S8-R11`, `S14-R5`, `S15-R5`, `S8-R14`. **Every one exists.** The specification
+writes those as `S8-R7 (asset label — primary):` and the pattern did not allow a parenthetical between
+the number and the colon. **The anchors were fine; the tool was wrong.** Had it been believed, it would
+have been reported as eight broken citations — the exact failure the QA lead warned about, arrived at
+from the opposite direction.
+
+## F7 · Foreign cases under group 4281 have grown from 5 to 12
+
+Vladimir Tomovic added **C43567…C43573**, one of which — **C43572**, *"Work In Progress appends pages
+on scroll while the server summary stays…"* — is in Work In Progress scope. **Not touched (Rule 38)**
+and proven byte-identical. Recorded as a reverse-coverage signal for an authorised pass.

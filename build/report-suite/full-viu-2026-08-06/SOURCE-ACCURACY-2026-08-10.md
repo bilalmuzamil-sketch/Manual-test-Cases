@@ -34,7 +34,10 @@ Out of scope but read in the same call, for the record: SBR **18** · PV **6** �
 
 ## 1 · THE HEADLINE
 
-| | Cases |
+**All figures below are the position FOUND at the start of the pass. §6 has the position now:
+225 of 225 cite a verified-correct source.**
+
+| Found at the start | Cases |
 |---|---:|
 | **Cited a spec version that is no longer live** (provenance line) | **212** |
 | Cited the live version already | 13 |
@@ -162,11 +165,85 @@ are left alone.
 
 ---
 
-## 6 · Per-case table
+## 6 · WHAT WAS WRITTEN — and the proof it did no damage
+
+**231 `update_case` over 220 distinct cases. Every one HTTP 200, 30 fields compared each,
+0 mismatches, 0 collateral changes.** All three text fields sent on every payload.
+**0 `add_case` · 0 `delete_case` · 0 section operations · 0 run writes · 0 results logged · nothing
+created anywhere**, per the standing hold.
+
+**The build-stamp sentence was deliberately NOT refreshed on any case.** Nothing was observed on the
+application this pass, so a new "last checked against" date would be a claim we cannot support
+(Rule 12). Every case still names the build it was genuinely last checked on. The write tool
+*refuses* the write if that sentence moves.
+
+**How the version re-stamp was proven safe, per case, before sending:** every span the substitution
+matched was masked out of **both** the before and after text, and the masked remainders had to be
+**byte-identical** — so nothing outside the version digits could move, and the checker fails closed.
+Payload shape was asserted before sending: exactly one provenance line, exactly one marker, marker
+last, no raw markup, no `refs` comma-entry over 248 characters.
+
+### Post-write census of all 225 — every case, every check
+
+| Check | Result |
+|---|---|
+| Provenance version equals the live Confluence version | **225 of 225** |
+| Anchor cited that does not exist in the live spec | **0** |
+| `refs` naming a stale spec version | **0** |
+| `refs` missing a Jira ticket, or missing a spec anchor | **0** |
+| Exactly one provenance line · one marker · marker last | **225 of 225** |
+| Raw HTML markup in tester-facing text | **0** |
+| Markers (unchanged by this pass) | READY **152** · READY - EXPECT FAIL **50** · HOLD **23** = 225 |
+
+### Run 359 — Nebojsa's and Viktoria's — PROVEN UNTOUCHED BY CONTENT
+
+`include_all` still false · **476 tests** · **535 results** · case_id **and** test_id sets equal in
+**both** directions · **all 535 prior results present BY ID** · **0 graded-field changes** ·
+**0 new results**.
+
+The **only** field that moved on any result is **`case_refs`, on 273 records across 194 cases — and
+every one of those 194 is in our write set, with none outside it.** That is the declared read-time
+echo of the case's own `refs`, the same class as the declared `case_title` echo, and it moved because
+we edited `refs`. No graded field moved on any of the 535.
+
+**Also proven byte-identical, including `updated_on`/`updated_by`:** the **5 in-scope cases we did not
+write** (C30467, C38912, C38915, C38916, C43551 — already current), **all 12 foreign cases** under
+group 4281, and **all 251 of our out-of-scope cases** on the other three reports.
+
+⚠️ **Foreign cases have grown from 5 to 12.** Vladimir Tomovic has added seven — C43567…C43573 —
+one of which, **C43572**, sits in Work In Progress scope. **Untouched (Rule 38), and flagged as a
+reverse-coverage signal for a later pass rather than acted on.**
+
+## 7 · Priority 2 — expected behaviour comes from a document, not the build
+
+Swept all 225 for the tells of a build-sourced expectation: the *"known and accepted / on purpose for
+now / do not raise this"* waiver wording, a provenance line opening *"as per the build tested on"*,
+and *"the specification is silent"*. **Zero hits on all three.** The 2026-08-05 project-wide
+correction holds on these three reports and nothing has regressed into them.
+
+**Three cases that DID rest on a non-specification source now rest on the specification**, because
+Chris wrote the requirement in — TU [C38887](https://shopview.testrail.io/index.php?/cases/view/38887)
+(was the engineering tech plan → now `S7-R14`), WIP
+[C38918](https://shopview.testrail.io/index.php?/cases/view/38918) (was a PO answer file → now
+`S9-R11`), and WIP [C30511](https://shopview.testrail.io/index.php?/cases/view/30511) (was *"neither
+reading is asserted"* → now `S7-R13`). Each says so in its own words, with the date.
+
+## 8 · Priority 3 — steps and labels
+
+**Raw HTML markup: 0 of 225**, verified across preconditions, steps and expected results. Nothing was
+re-observed on the application, because **the signed-in session is dead** — so no on-screen label,
+navigation path or test-data name was re-checked against the running build this pass. **That limit is
+real and is not being papered over:** priority 3 is the one of the three that a dead session genuinely
+blocks, and it is unfinished.
+
+## 9 · Per-case table
 
 The full 225-row table is **`SOURCE-ACCURACY-TABLE-2026-08-10.csv`** beside this file: per case —
-report · C-id · title · the source it cited before · the source it cites now · whether the anchor was
-quote-verified against the live body · and anything that could not be sourced.
+report · C-id · TestRail link · title · the source it cited before · the source it cites now · the
+`refs` version before and after · the requirements it now cites · whether the anchor was
+quote-verified against the live body · whether it changed this pass · and any note.
+
+Per-operation log: **`oplog-source-accuracy-2026-08-10.json`** (231 rows, one per write).
 
 ---
 

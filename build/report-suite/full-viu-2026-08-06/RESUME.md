@@ -1,3 +1,83 @@
+# RESUME — source accuracy on the three handed-off reports, 2026-08-10 (LATEST)
+
+**Read `SOURCE-ACCURACY-2026-08-10.md` first, then this file for the next action.**
+Everything below the next horizontal rule is earlier and is superseded for the counts.
+
+## The scope was re-set by the QA lead
+
+We are **no longer chasing pass/fail verdicts** — the manual tester does that. Our job is to make each
+case **correct, runnable and honestly sourced**, in this order: (1) the source reference is 100%
+accurate, (2) the expected behaviour comes from a document, (3) the steps and labels match the build.
+
+## Where it stands
+
+| | |
+|---|---|
+| **Cases citing a verified-correct source** | **225 of 225** (was 13) |
+| Anchors cited that do not exist in the live spec | **0**, before and after |
+| **Priority 2 — build-sourced expectations** | swept all 225, **0 hits** on all three tells |
+| **Priority 3 — steps and labels** | **UNFINISHED.** Raw markup is 0 of 225, but nothing was re-observed on the application |
+
+**Sources, live from Confluence `version.number`: SBC 16 · TU 7 · WIP 10.** (Out of scope, same call:
+SBR 18 · PV 6 · IV 5.)
+
+## The session was dead the whole pass
+
+`GET /api/auth/me` on `sv8582api` → **HTTP 401 `sso_required`** at 17:03Z and it never came back.
+**`quick-login` and `switch-user` were not called.** Build `v3.5-4795eee` read at the start and
+**byte-identical to the previous session's last reading, so it has not moved.**
+
+**Because nothing was observed, no build stamp was refreshed on any case.** Every case still names the
+build it was genuinely last checked on. `tools/restamp2.py` refuses the write if that sentence moves —
+keep that guard.
+
+## What was written
+
+**231 `update_case` over 220 cases, all HTTP 200, 30 fields each, 0 mismatches, 0 collateral.**
+0 add · 0 delete · 0 section · 0 run writes · 0 results · nothing created anywhere.
+**Run 359 proven untouched by content** (535 results present by ID, 0 graded-field changes, 0 new).
+
+## THE EXACT NEXT ACTION
+
+1. **Priority 3 needs a sign-in and nothing else.** With one, re-check on-screen labels, navigation
+   paths and the named test data on the 225 — that is the only one of the three priorities a dead
+   session actually blocks.
+2. **The expect-fail sweep still has 43 unchecked cases** (`evidence/expectfail-2026-08-10/ef.json`,
+   field `ticket`). De-prioritised by the QA lead, but a marker naming a ticket for a symptom that no
+   longer happens actively misleads a tester. **Three working drivers are committed** in that folder —
+   read `RESUME-EXPECTFAIL-2026-08-10.md` before re-deriving anything, especially the warning that a
+   synthetic `.click()` silently does nothing on this build.
+3. **Do not re-run the version re-stamp.** All 225 are current; a rerun is a no-op by design, but the
+   generator would blank id-map C-ids if the deliverables are regenerated.
+
+## Two things only Chris Ward can close
+
+1. 🔴 **WIP v10 numbers TWO different requirements `S9-R11`** — the export cap under Edge Cases and
+   the success notification under Error handling. One of them needs renumbering. Until then that
+   number addresses two requirements, and
+   [C30518](https://shopview.testrail.io/index.php?/cases/view/30518) carries a written caution saying
+   which one it means.
+2. **The cap message wording differs between reports** — SBC says *"This export is too large to
+   generate…"*, TU and WIP say *"This report is too large to export…"*. Both are quoted correctly in
+   their own cases; the inconsistency is in his documents.
+
+## Foreign cases have grown from 5 to 12
+
+Vladimir Tomovic added **C43567…C43573**, one of which (**C43572**) is in Work In Progress scope.
+**Untouched (Rule 38)** and proven byte-identical. It is a reverse-coverage signal worth a look, not
+a nuisance — but it needs authorisation, not initiative.
+
+## Outstanding
+
+1. **A fresh `sv_sso_session` for `.qa.shopview.com`** — blocks priority 3 entirely.
+2. **A second, non-administrator sign-in** — outstanding since 5 August; 3 held cases and ~20 further
+   observations.
+3. **Chris: renumber the duplicate `S9-R11`**, and reconcile the cap message wording.
+4. **Permission to file the defects** in `DEFECTS-FOR-PERMISSION.md`; three corrected cases sit on
+   `HOLD` that should read `READY - EXPECT FAIL` the moment a ticket exists to name.
+
+---
+
 # RESUME - Report Suite VIU, as at 2026-08-06 end of the SIXTH session
 
 > **⚠️ EVERYTHING BELOW THE NEXT HORIZONTAL RULE IS EARLIER SESSIONS' AND IS SUPERSEDED FOR THE COUNTS.**
