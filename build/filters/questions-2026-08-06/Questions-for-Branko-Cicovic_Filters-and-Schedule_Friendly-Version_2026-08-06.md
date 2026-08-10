@@ -243,11 +243,13 @@ Each one is a plain A or B. Four are Filters, four are Schedule.
 
 > A GENTLE STATUS ASK, not a new question - we know this is already with you and we are not chasing.
 >
-> Eight of our tests cover filter buttons on the Parts pages and the Reports pages. They were written from the designs back in July, and they are parked because that part of the product is not built yet and because your write-up for it has not arrived.
+> Eight of our tests cover filter buttons on the Parts pages and the Reports pages. They were written from the designs back in July, and they are parked because your write-up for them has not arrived.
 >
-> To be straight with you: the write-up on its own will not unpark them - the feature still has to be built before anybody can run them. What the write-up does is let us finish the tests properly instead of leaving them resting on a design alone.
+> A CORRECTION WE OWE YOU: an earlier draft of this question also told you the feature was not built yet. That was our mistake. An engineering handover we were given today says the filter buttons on the eight Parts pages ARE built, and so are the ones on six reports - Shop Billing Efficiency, My Timesheets, Timesheet Activities, Notes, Reminders and Sales Tax - all waiting on one final code review.
 >
-> Why we are asking: only so we can tell our own management honestly whether this is weeks away or months.
+> That same handover says several other reports are deliberately NOT being done in this piece of work. Our tests name a good many of those, which is a separate tidy-up on our side and not something you need to answer here.
+>
+> Why we are asking: so we can finish these tests against something you have written, rather than leaving them resting on a drawing alone - and so we can tell our own management honestly whether this is weeks away or months.
 
 **The question**
 
@@ -344,13 +346,15 @@ Each one is a plain A or B. Four are Filters, four are Schedule.
 
 **What happens now**
 
-> Nothing is stuck on this one and no test of ours is wrong today. We are asking so that we are not quietly relying on a note that disagrees with your own description.
+> Nothing is stuck on this one and no test of ours is wrong today. We are asking because two of your own documents now point in opposite directions.
 >
-> Your description says the day view keeps the WHOLE 24 HOURS there and scrollable, and simply scrolls itself so the start of the working day is on the left.
+> Your description says the day view keeps the WHOLE 24 HOURS there and scrollable, and simply scrolls itself so the start of the working day is on the left. That is still what it says today.
 >
-> A note on one of the design-review reports asks for something different: that the timeline show ONLY THE WORKING HOURS plus a little after them, with anything outside reached by scrolling. That note says it is tracked as a later improvement rather than for this release, which is why we have left our test alone.
+> The design review of 5 August asks for something different: that the timeline show ONLY THE WORKING HOURS plus a little after them, with anything outside reached by scrolling. That review lists it as IN SCOPE for this release, alongside the change that makes the day view open at the start of the working day.
 >
-> If the narrower version is meant for this release, your description needs changing first and then we will change the test to match.
+> A CORRECTION WE OWE YOU: an earlier draft of this question told you that the narrower version was only a later improvement. That was our mistake - the review puts it in this release. We would rather correct it than have you answer on the strength of it.
+>
+> So your description was last changed on 7 August, two days AFTER that review, and it still says the full 24 hours. Only you can say which of the two you meant to stand. If the narrower version is meant for this release, your description needs changing first and then we will change the test to match.
 
 **The question**
 
