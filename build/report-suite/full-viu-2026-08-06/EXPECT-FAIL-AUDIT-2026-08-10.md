@@ -102,3 +102,63 @@ exposed to assistive technology. The header control likewise reads `Expand all t
 
 Worth noting the contrast that shows this is a real omission and not a harness blind spot: the
 technician filter's own combobox input **does** carry `aria-expanded="false"` on the same page.
+
+---
+
+## Work In Progress — and the biggest single finding of the pass
+
+### SV-8907 has been fixed, and it was holding SIX cases
+
+Its symptom claims: *"Nothing downloads. Both Download (PDF) and Download (CSV) fail on every tab that
+has any work orders in it — no file arrives and a red message appears."*
+
+**Driven today on the `Approved - Partially Completed (1)` tab, which has a work order in it:**
+
+- **Download (CSV)** → `GET …/work-in-progress/export?format=csv&tab=ApprovedPartiallyCompleted…`
+  **HTTP 200**, file `wip-2-report.csv` (302 bytes) arrived.
+- **Download (PDF)** → **HTTP 200**, file `wip-2-report.pdf` (176,813 bytes) arrived.
+- The notification read **`Success — Data exported successfully.`** — not the red error.
+
+**The file is a real export, not an empty shell** (saved as `wip-export-PROOF.csv`):
+
+```
+"Date Range: Aug 8, 2026 - Aug 10, 2026"
+"Locations: Staging Lethbridge - 4310"
+"WO #",Status,Customer,Unit,Branch,Advisor,"Days Open",Earned,Remaining,Total
+S8582-16328,Approved,TestVT1,,"Staging Lethbridge - 4310","Admin ShopView","0 days",$479.85,$0.00,$479.85
+Totals,,,,,,,$479.85,$0.00,$479.85
+```
+
+The work order `S8582-16328` is there, the Totals row matches the screen to the cent, the
+`"Locations:"` line is present and the Location column is headed **`Branch`** exactly as C30511's item
+5 says it should be.
+
+**Only C30510 is flipped on this evidence.** The other five SV-8907 cases assert things the file does
+not by itself prove — money formats, the Inv. Hrs colour rule, Days Open being frozen at generation
+time, the Inv. Hrs export refusal, and the empty/error notification variants. **They are left alone
+until each is driven whole.** A shipped fix on one case is not a licence to flip its siblings.
+
+### SV-8967 still reproduces, exactly as described
+
+The WO # renders as `<span data-test-id="text_wip_wo_91361601-…">S8582-16328</span>`. The **whole
+table contains 0 anchors** and **0 cells with a pointer cursor**. Checked as an administrator who does
+hold Work Orders access. **C30468, C43557 and C30523 keep their markers.**
+
+---
+
+## TestRail writes — 3 so far
+
+`update_case` only. **Every write re-read and byte-compared: 30 fields each, 4 intended, 0 mismatches,
+0 collateral changes.**
+
+| Case | C-id | Was | Now | Why |
+|---|---|---|---|---|
+| TU-SORT-01 | [C30410](https://shopview.testrail.io/index.php?/cases/view/30410) | EXPECT FAIL (SV-8945) | **READY** | all five items pass |
+| TU-FILT-01 | [C30423](https://shopview.testrail.io/index.php?/cases/view/30423) | EXPECT FAIL (SV-8947) | **READY** | all three items pass |
+| WIP-EXP-01 | [C30510](https://shopview.testrail.io/index.php?/cases/view/30510) | EXPECT FAIL (SV-8907) | **READY** | both items pass |
+
+Each write also **removed the Rule-61 symptom block** (it described a failure that no longer happens),
+**re-stamped the provenance** to the build running now, and **corrected a stale specification
+version** — Technician Utilization **6 → 7**, Work In Progress **9 → 10**.
+
+**Nothing was created** — no `add_case`, no ticket, in line with the standing hold.
