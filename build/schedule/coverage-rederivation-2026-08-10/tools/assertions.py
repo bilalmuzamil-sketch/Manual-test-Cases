@@ -91,7 +91,7 @@ def main(extract, out_json):
             rows.append({"assertion_id": f"{line_id}.A{k}" if len(parts) > 1 else f"{line_id}.A1",
                          "line_id": line_id, "section": r["section"],
                          "section_title": r["section_title"],
-                         "line_text": r["text"], "assertion_text": a,
+                         "tag": r["tag"], "line_text": r["text"], "assertion_text": a,
                          "n_in_line": len(parts)})
     json.dump(rows, open(out_json, "w"), indent=1)
     print(f"requirement lines : {n}")
