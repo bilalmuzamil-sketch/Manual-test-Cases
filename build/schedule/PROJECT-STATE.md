@@ -1,5 +1,30 @@
 # Schedule — PROJECT STATE
 
+## §0-COVERAGE-MAP-2026-08-10 — the requirement → case map now EXISTS
+
+**Schedule had never had a requirement→case map. It has one now:
+`build/schedule/coverage-rederivation-2026-08-10/` — start at its `README.md`, then `COVERAGE-MAP.md`.**
+Built read-only against the LIVE spec, **Confluence v27** (2026-08-07), in both directions, at
+**assertion** granularity: **234 requirement lines → 397 assertions · 282 covered · 4 partial ·
+19 uncovered · 1 blocked · 91 not independently testable**, and **168 of 168 cases** examined the
+other way with **0 stale § anchors**.
+
+**Three things it found.** **(1)** Confluence **v27 added a whole new §5.3 "Panel collapse"** on
+7 August and **no case covers it** — 19 of the 19 uncovered assertions are that section and its two
+cross-references; two cases are written out ready in `GAPS.md`, **not authored**. **(2)** **v26
+changed one word** in §4.12 — *"a per-technician breakdown"* → *"a per-**assigned** technician
+breakdown"*, **with no version comment**, against wording that had stood since v1 — leaving
+**SCH-CAP-04 = [C30033](https://shopview.testrail.io/index.php?/cases/view/30033)** half-right;
+**invisible at line level, which is why the map is built per assertion.** **(3)** **All 168 cases are
+stamped "specification version 23"**, four versions behind, and **5 cases cite a source that does not
+support their assertion** (`ORPHANS.md` §2).
+
+**NOTHING WAS EXECUTED** — no TestRail write, no Jira write, no run write, no ticket (Rules 6 / 62).
+Five staged items sit in `PROPOSED-CHANGES.md`. **Run 357 is Ayesha's** and was read once, read-only
+(168 tests, 429 results, untouched). **No build was observed and none was needed** (Rule 57); the
+Rule-49 queue at `full-viu-2026-08-05/RECHECK-QUEUE.md` **stays OPEN** and the 5–6 August build
+verdicts remain **PROVISIONAL**.
+
 ## §0-FINISHED-AND-WRITTEN-2026-08-06 — READ THIS FIRST
 
 **The full live VIU pass is COMPLETE and all 168 cases are WRITTEN to TestRail.** This is the first
