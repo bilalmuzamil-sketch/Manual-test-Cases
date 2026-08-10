@@ -163,11 +163,48 @@ wants, and he did not name a heading for Sales By Customer.
 Reports menu and see which heading Sales By Customer sits under — and that would be the exact mistake
 that cost us 748 cases. **It goes back to him** (`FOLLOW-UP-QUESTIONS.md` Q1).
 
+---
+
+#### ⚠️ PROVENANCE INVESTIGATION, 2026-08-10 — item 3 above is resolved, and PART OF OUR QUESTION WAS FABRICATED
+
+The QA lead supplied the picture Chris meant: a screenshot of the live Reports page. It shows **no
+`SALES` heading** — "Sales" is a *report name* inside **PERFORMANCE**, which holds eight entries
+including Sales By Customer; **PARTS** holds three. All six specs were re-fetched live on 2026-08-10 and
+every claim in our question was traced. **The item was four claims, not one:**
+
+| Claim we put to Chris | Verdict |
+|---|---|
+| *"three under Performance, two under Parts"* | **THE SPECS SAY IT** — SBR `S1-R2`, TU `S1-R1`, WIP `S1-R1` → Performance (3); PV `S1-R1`, IV `S1-R1` → Parts (2). Not invented. |
+| *"Sales By Customer sits on its own under SALES"* | **OUR OWN LIVE CAPTURE** — `viu-2026-08-03/evidence/nav-map.json`, QA branch `sv8582`, build `v3.4.1-0ed4433`. Real, but a **build** fact, quoted five days stale with no environment named. |
+| *"None of the six written descriptions says which heading a report belongs under"* | **FABRICATED — our defect.** Five of six say it. |
+| *"the test records the heading and does not judge it"* | **FALSE — our defect.** C30096 hard-asserts the Performance group and the ordering. |
+
+**Rule 31 trap (c) ruled out:** the Performance/Parts wording was already in our own spec mirrors at
+`2902f366^`, the commit before the question sheet. The claim was **false when written**, not overtaken
+by a later spec edit.
+
+**Root cause.** A correct, narrow, single-report question (`chris-answers-2026-08-05/OUTSTANDING.md`
+item **T3-7**) was widened on 6 August into a claim about all six descriptions, and the premise needed
+to justify the widening was written without reading the five descriptions that contradict it — *while
+those five had been fetched live that same day*. **Rule 12** (never assert what you did not observe),
+**Rule 20** (a claim with no source is not authentic), **Rule 25** (quote the source you rely on) and
+**Rule 55** (verify every factual claim before it goes to a PO) **were all available and none was run
+on that sentence.** It is the only unsourced factual claim in the sheet, and it is the one Chris
+checked. **He was right that something was wrong; he was wrong about which thing.**
+
 **Affected case: SBC-NAV-01 = C30096** —
-https://shopview.testrail.io/index.php?/cases/view/30096. It is **`AUTOMATION: READY` and NOT on hold**;
-the 2026-08-06 pass had already repaired it to assert only what the specification asserts.
-**Recommendation: change nothing on it.** His answer does not let us strengthen it, and the honest state
-is the one it is already in.
+https://shopview.testrail.io/index.php?/cases/view/30096. **The line above claiming it is
+`AUTOMATION: READY`, not on hold, and "repaired to assert only what the specification asserts" is
+itself wrong on all three counts.** The local mirror shows `AUTOMATION: HOLD - waiting on an answer
+from the product owner`, and expected-result item 1 asserts *"listed in the Performance group … BELOW
+the pre-existing entries"* — an assertion the SBC specification does **not** support (its `refs` cite
+the PRD video of 2026-07-30). Live TestRail was **not readable this pass** (no credentials), so the
+live marker is **unverified** (Rule 12).
+
+**The assertion is correct** — it matches the QA lead's screenshot — so **no expectation changes.**
+The only gap is provenance: C30096 is the sole nav case with no specification anchor.
+**Recommendation, STAGED NOT WRITTEN (Rule 6):** on Chris's answer **A**, add the SBC `S1-R1` anchor to
+`refs` and lift the hold. One `update_case`. **Nothing written this pass.**
 
 ### Item 2.2 — Sales By Customer: an invoice the person is not allowed to open
 

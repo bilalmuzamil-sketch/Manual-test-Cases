@@ -16,40 +16,44 @@ forwarded**.
 
 ---
 
-## Q1 — REPORT SUITE · all six reports · where each report sits in the Reports menu
+## Q1 — REPORT SUITE · Sales By Customer · which heading it sits under in the Reports menu
+*(the "report access and navigation placement" story, SV-8600, under epic SV-8582)*
 
 **What happens now**
 
-> Thank you for the answer on this — the part about what you want is clear and we have taken it as the
-> rule: new reports go **below** the existing links in whatever group they join, nothing that people
-> already click on should move, and the **Parts** section is brand new with this work. We have checked
-> that last point and your descriptions agree with you, so that is settled.
+> **First, a correction from us, and an apology.** Our last sheet told you that none of the six
+> write-ups says which heading a report belongs under. **That was wrong.** Five of the six do say it,
+> in plain words: **Technician Utilization** and **Work In Progress** both say *"under the Performance
+> group"*, **Sales By Representative** says *"at the bottom of the Performance group"*, and **Parts
+> Velocity** and **Inventory Value** both say **Parts** — Parts Velocity even says it *"creates the
+> Parts section"*, which is exactly the point you made back to us. We should have read your own
+> write-ups before asking, and we are sorry. You were right to push back.
 >
-> What we still cannot act on is the other half. You said a **Sales** heading does not exist as far as
-> you know, and that our description of the current arrangement looked like a hallucination. We are not
-> going to argue with you from the product — if our description was wrong, we would rather correct our
-> records than quietly assume we were right.
+> **Your instruction is clear and we have taken it as the rule:** new reports go **below** the links
+> already in their heading, nothing people already click on should move, and the **Parts** section is
+> new with this work. That is how all six of our tests are already written, so nothing changes there.
 >
-> We also could not tell what "Picture is true on this" referred to. No picture was attached to the
-> question, so we do not know whether you were agreeing that the arrangement is real or referring to
-> something you were looking at.
->
-> Why we are asking: one of our tests records which heading **Sales By Customer** sits under. It is
-> written today so that it only claims what your description claims, which is honest but weak. We can
-> only make it a real test once we know the heading you expect.
+> **What is genuinely left is one report only.** **Sales By Customer** is the single one of the six
+> whose write-up does not name a heading — it says only that the report *"appears in the Reports
+> left-side navigation"*. Everything else on this topic is settled.
 
 **The question**
 
-> Under which heading should **Sales By Customer** appear in the Reports menu?
+> Sales By Customer sits under **Performance**, below the links already there — is that right?
 
 **Options**
 
-> A) There is no separate "Sales" heading — Sales By Customer should sit under **Performance**, below
-> the links already there.
+> A) Yes — **Performance**, below the existing links. *(If so, please add that line to the Sales By
+> Customer write-up so there is something to test against; the other five already have it.)*
 >
-> B) There should be a **Sales** heading, and Sales By Customer belongs under it.
->
-> C) Somewhere else — please say where.
+> B) No — it belongs somewhere else. Please say where.
+
+> *One more thing, for information only — no answer needed. Back on 3 August our test environment
+> showed Sales By Customer under a heading called "Sales". Nothing on the live screen shows that now,
+> and no write-up mentions such a heading, so we believe it was a temporary state of that test
+> environment rather than anything real. That is where our earlier description of a "Sales" heading
+> came from — it was a note about a test build, and we should not have put it to you as though it were
+> the product. We are not raising it as a problem.*
 
 **Your answer:** _______________________________________________
 
@@ -166,7 +170,7 @@ questions turn out to be our own records lagging.
 
 | Q | Cases it affects | Links | What each answer resolves |
 |---|---|---|---|
-| Q1 | SBC-NAV-01 **C30096** | https://shopview.testrail.io/index.php?/cases/view/30096 | Case is `AUTOMATION: READY` and **not** on hold. **A** or **B** lets it assert a named heading instead of merely recording one. **No change until he answers** — his answer C settled placement-order but not the heading. |
+| Q1 | SBC-NAV-01 **C30096** | https://shopview.testrail.io/index.php?/cases/view/30096 | **CORRECTED 2026-08-10.** The case does **not** "merely record" the heading — its expected result item 1 already **hard-asserts** *"listed in the Performance group … BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency)"*, and would fail a build that placed it elsewhere. That assertion **matches the QA lead's screenshot**, so **no change to the assertion is needed on any answer**. What C30096 actually lacks is a **specification anchor** — its `refs` cite the PRD video of 2026-07-30, because the SBC write-up names no group (the other five nav cases cite `S1-R1`/`S1-R2`). **A** closes that gap once Chris adds the line to the SBC write-up. Local mirror also shows `AUTOMATION: HOLD - waiting on an answer from the product owner`, **not** `READY` as this row previously stated — live TestRail was not readable this pass (no credentials), so the live marker is **unverified**. **Nothing written.** |
 | Q2 | SBR-EXP-01 **C30278** | https://shopview.testrail.io/index.php?/cases/view/30278 | Orientation is already settled (landscape, staged as P6). The caveat would add a **second** assertion about page fit. **Not written into the case** until answered. |
 | Q3 | No case is blocked | — | Documentation hygiene on Inventory Value v5 (S3-R1 + §4) and Sales By Representative v18 (§3 + §4). Both are non-handed-off reports. |
 | Q4 | SBC-PERM-04 **C30100** | https://shopview.testrail.io/index.php?/cases/view/30100 | C30100's premise is voided by his answer A. Whether the report should ever offer that journey is settled; **whether C30100 is re-scoped or retired is a QA-LEAD decision, not a PO one** — which is why the PO-facing question is only the documentation tidy-up. |
