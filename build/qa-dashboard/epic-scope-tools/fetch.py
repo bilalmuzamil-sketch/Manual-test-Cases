@@ -1,5 +1,5 @@
-import json, sys, time
-D="/tmp/claude-0/-home-user-Manual-test-Cases/e9089e60-af12-5f5c-8714-555eb5dbac06/scratchpad/dash"
+import json, os, sys, time
+D=os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0,D)
 import mcpcall as m
 CID="19fdd96d-a135-46c4-83e7-d2cc218a4e63"

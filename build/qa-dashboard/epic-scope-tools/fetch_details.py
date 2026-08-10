@@ -1,6 +1,6 @@
 import json, os, sys, time
 from datetime import datetime, timedelta
-D="/tmp/claude-0/-home-user-Manual-test-Cases/e9089e60-af12-5f5c-8714-555eb5dbac06/scratchpad/dash"
+D=os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0,D)
 import mcpcall as m
 CID="19fdd96d-a135-46c4-83e7-d2cc218a4e63"
@@ -15,12 +15,19 @@ UPD={r["key"]: r["fields"]["updated"] for r in rows}
 # Everything else contributes nothing, so a scheduled run skips it. Pass the snapshot date as
 # argv[1] to enable this; with no argument every issue is fetched (first/full build).
 FINISHED_STATUSES={"QA Complete","Ready for Production"}
+# finish-dates.json is committed and merged, so a finished ticket whose date is already recorded
+# never needs its changelog read again. Without this the fetch set grows forever as work
+# completes — it was 165 finished tickets by 10 Aug against 43 four days earlier.
+try: _known=set(json.load(open(D+"/finish-dates.json")))
+except Exception: _known=set()
 def _needed(r):
     if len(sys.argv)<2: return True
     since=(datetime.fromisoformat(sys.argv[1])-timedelta(days=2)).date().isoformat()
     fl=r["fields"]; st=fl["status"]
-    if st["name"] in FINISHED_STATUSES or st["statusCategory"]["name"]=="Done": return True
-    return (fl["updated"] or "")[:10] >= since
+    touched=(fl["updated"] or "")[:10] >= since
+    fin=st["name"] in FINISHED_STATUSES or st["statusCategory"]["name"]=="Done"
+    if fin and r["key"] not in _known: return True
+    return touched
 keys=[r["key"] for r in rows if _needed(r)]
 print("issues needing a changelog read: %d of %d"%(len(keys),len(rows)))
 # Incremental: a cached detail file records the issue's `updated` stamp it was fetched at, so an
