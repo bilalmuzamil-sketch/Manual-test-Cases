@@ -355,3 +355,31 @@ value or worked example that the default view cannot show.
 | [C30523](https://shopview.testrail.io/index.php?/cases/view/30523) | The WO # link is keyboard-focusable and opens the work order | 0 | all matched the build |
 | [C30524](https://shopview.testrail.io/index.php?/cases/view/30524) | Each summary figure's info icon is keyboard-reachable and scre | 1 | all matched the build |
 | [C30525](https://shopview.testrail.io/index.php?/cases/view/30525) | In dark mode every table; strip; link and coloring stays legib | 0 | all matched the build |
+---
+
+## 8 · Exports driven end to end — added after the table above
+
+All three reports' spreadsheet exports were **actually downloaded and opened**, not merely triggered
+(`tools/export.cjs`; files kept in `evidence/`). This closes the largest part of dimension 4.
+
+| Report | Menu item used | File that arrived | Bytes |
+|---|---|---|---:|
+| Work In Progress | `Download (CSV)` | **`wip-2-report.csv`** | 2,862 |
+| Technician Utilization | `Download Summary (CSV)` | **`Technician-Utilization-Summary.csv`** | 1,256 |
+| Sales By Customer | `Download Summary (CSV)` | **`sales-by-customer-summary-custom.csv`** | 914 |
+
+**Confirmed present in every file**, which settles several strings the on-screen sweep could not reach:
+a UTF-8 byte-order mark · a `"Date Range: Aug 1, 2026 - Aug 10, 2026"` first line · a
+`"Locations: Staging Heavy Duty - 9919"` second line · quoted headers · and on Sales By Customer a
+`Totals` row carrying values. The success toast reads exactly **"Success / Data exported successfully."**
+on all three, as C30440, C30441 and C30518 quote it. C30515's quoted filename **`wip-2-report.csv`** is
+exactly right.
+
+**One inaccuracy in a recorded observation, reported not fixed.**
+[C30436](https://shopview.testrail.io/index.php?/cases/view/30436)'s *"What you should see today"* block
+says the two spreadsheets are `technician-utilization-summary.csv` and `technician-utilization-expanded.csv`.
+The file that actually arrives is **`Technician-Utilization-Summary.csv`** — Title Case, not lower case.
+The block's substance is right (there are two files, and neither carries the Summary row — this one ends
+at "William Johns"); only the casing is wrong. **It was not edited**: that block tells the tester what to
+mark, so changing it is a judgement worth a nod rather than an unattended guess. The replacement is a
+one-line swap whenever authorised.
