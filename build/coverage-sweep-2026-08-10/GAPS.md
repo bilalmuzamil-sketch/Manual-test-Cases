@@ -13,17 +13,23 @@ it in the other.
 
 | Class | Meaning | Count |
 |---|---|---|
-| **A — OUR MISS** | A documented requirement, built or buildable, with no case. **This is the number that measures us.** | **9** |
+| **A — OUR MISS** | A documented requirement, built or buildable, with no case. **This is the number that measures us.** | **10** |
 | **B — DELIBERATELY UNBUILT** | Engineering decided not to build it. A test would fail a correct build. | **3** |
 | **C — NOT V1 / NOT YET A REQUIREMENT** | Fast-follow, Founder Mode, or an idea with no spec text yet. | **7** |
 | **D — BLOCKED / OPEN QUESTION** | Cannot be settled until someone answers. | **4** |
 | **E — NO CASE REQUIRED** | Obsolete, retired, or not a requirement carrier. | **16** |
 
-**The honest headline: 9 genuine misses across 758 cases and 127 stories.**
+**The honest headline: 10 genuine misses across 758 cases and 127 stories.**
+
+> **A note on that number, because it moved while this was being written.** The first draft said
+> nine. The arithmetic reconciliation at the end — checking that all 17 uncovered requirement
+> anchors across the six reports were each accounted for — found a tenth (**A10**) that the prose
+> write-up had dropped. **The reconciliation caught what the analysis missed**, which is the whole
+> argument for doing it, and it is recorded here rather than quietly corrected.
 
 ---
 
-# CLASS A — OUR MISSES (9)
+# CLASS A — OUR MISSES (10)
 
 ## A1 · Filters `S13-R25` (b) — a search does not follow you to another device
 **Story:** [SV-8798](https://shopview.atlassian.net/browse/SV-8798)
@@ -39,7 +45,7 @@ it in the other.
 and the search box came back empty. **Needs a second sign-in.**
 
 ## A2 · Filters `S13-R21` (b) — five search behaviours are desktop-only
-**Story:** [SV-8798](https://shopview.atlassian.net/browse/SV-8798) · **the largest of the nine**
+**Story:** [SV-8798](https://shopview.atlassian.net/browse/SV-8798) · **the largest of the ten**
 > **Spec v19, verbatim:** *"All query behaviour is identical across breakpoints: additive with
 > filters (S13-R10), tab scoping (S13-R11, S13-R24), clearing (S13-R13), retention (S13-R14) and the
 > four component states (S13-R2 to S13-R6)."*
@@ -65,7 +71,7 @@ retention on Work Orders.
 > navigation and click-and-drag selection behaving as in any text input.
 
 **Covered:** long queries scrolling, by [C38898](https://shopview.testrail.io/index.php?/cases/view/38898).
-**Not covered:** the keyboard/drag half. **Lowest value of the nine** — arguably framework behaviour
+**Not covered:** the keyboard/drag half. **Lowest value of the ten** — arguably framework behaviour
 rather than feature behaviour (Rule 28 would score it WEAK-KEEP). **Flagged, not recommended.**
 
 ## A5 · Schedule §5.3 — the panel collapse toggle
@@ -124,6 +130,23 @@ that spans two surfaces, verdicted on one (Standing Rule 40). It has recurred.
 **[C30283](https://shopview.testrail.io/index.php?/cases/view/30283)** covers `S14-R12`/`S14-R13`
 (the font stepping down and fixed column widths). **The all-zero / all-negative branch is not
 asserted.** Low value; flagged for completeness.
+
+## A10 · PV `S4-N1` — a saved view from an older format is discarded, not repaired
+**Story:** [SV-8644](https://shopview.atlassian.net/browse/SV-8644)
+> **PV v6, verbatim:** *"S4-N1: If a saved view predates the current version of the report's saved
+> format (its stored schema version does not match the current one), the system ignores the stale
+> view and loads the current defaults (This Year / Both / active location / 14-column set /
+> Demand-desc)."*
+
+**The nearest case is [C30355](https://shopview.testrail.io/index.php?/cases/view/30355)** — *"A
+saved value that is no longer valid falls back to that setting's default"* — which cites `S4-R6` and
+tests **one bad value inside an otherwise good view**. `S4-N1` is a different thing: **the whole
+saved view is thrown away** and every setting returns to its default. All eight PV cases mentioning
+saved views, formats or staleness were read; **none asserts it.**
+**Corroborated by the tech plan** (SV-8593 A5): the remembered view is *"schema-versioned, defensive
+restore"* — so the behaviour is real and built.
+**Proposed case:** seed a saved view carrying an old schema version, reload, and confirm **all five**
+defaults return together rather than one setting falling back.
 
 ---
 
@@ -243,8 +266,8 @@ existing defect [SV-8837](https://shopview.atlassian.net/browse/SV-8837) for the
 
 ## OUTSTANDING — what I need from you
 
-1. **Go-ahead to author the 9 Class-A cases** — or a subset. My recommendation: **author A1, A2, A3,
-   A5, A6, A7 and A8** (seven), **skip A4 and A9** as low value, and say so openly in the
+1. **Go-ahead to author the 10 Class-A cases** — or a subset. My recommendation: **author A1, A2,
+   A3, A5, A6, A7, A8 and A10** (eight), **skip A4 and A9** as low value, and say so openly in the
    decisions register rather than leaving them silently undone.
 2. **A ruling on B1 and B2** — should our cases stay scoped to what was built ("adopt-only-existing"),
    with the spec's wider wording raised to Branko as a spec defect? That is my recommendation.
