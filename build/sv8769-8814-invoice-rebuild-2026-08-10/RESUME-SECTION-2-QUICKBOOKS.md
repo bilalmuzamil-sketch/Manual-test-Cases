@@ -25,7 +25,7 @@ section 2 the moment a QuickBooks-connected organisation is available. Read this
 | [SV-8814](https://shopview.atlassian.net/browse/SV-8814) | `74891` — PASSED, closeable |
 | [SV-8813](https://shopview.atlassian.net/browse/SV-8813) | `74892` — PASSED, closeable |
 | [SV-8769](https://shopview.atlassian.net/browse/SV-8769) | `74893` — passed on all tested, **says QuickBooks outstanding** |
-| [SV-8768](https://shopview.atlassian.net/browse/SV-8768) | `74894` — master, **says QuickBooks outstanding** |
+| [SV-8768](https://shopview.atlassian.net/browse/SV-8768) | `74894` — master, **says QuickBooks outstanding**; `74902` — correction, the Customer Invoice CSV export exists and passes |
 
 The MCP tool takes `commentId` to edit in place: `addCommentToJiraIssue({issueIdOrKey, commentId, contentFormat:"adf", commentBody})`.
 
