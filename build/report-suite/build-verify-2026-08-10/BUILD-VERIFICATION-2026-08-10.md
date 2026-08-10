@@ -383,3 +383,44 @@ The block's substance is right (there are two files, and neither carries the Sum
 at "William Johns"); only the casing is wrong. **It was not edited**: that block tells the tester what to
 mark, so changing it is a judgement worth a nod rather than an unattended guess. The replacement is a
 one-line swap whenever authorised.
+
+---
+
+## 9 · Two genuine defects in ONE of our cases — found, reported, deliberately not written
+
+**[C30169](https://shopview.testrail.io/index.php?/cases/view/30169)** — *"Expanded CSV body: column set
+and order, the Customer → Asset → Invoice tree, blank dates and em-dash Margin %"* (Sales By Customer).
+
+**(a) Its step 2 cannot be performed.** It says *"Read the header row and compare it against the column
+list below"* — **and there is no list.** The expected result reads *"…in this exact order and with these
+labels — thirteen columns with a single location in scope"* and then never names them. A tester following
+this case stops at step 2.
+
+**(b) It is the ONE case of 225 with no automation marker.** Live census: `AUTOMATION: READY` **151** ·
+`HOLD` **23** · `READY - EXPECT FAIL` **50** = **224**, and C30169 has none. Every other convention holds
+— **225 of 225 carry exactly one provenance line**, and no case carries two markers.
+
+**Neither was written, and the reason for (a) matters.** The Expanded CSV really does carry thirteen
+columns — I downloaded it (`evidence/dl-sbcexp.csv`, `sales-by-customer-expanded-custom.csv`): *Customer,
+Asset, Invoice #, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop
+Supplies, Margin, Margin %, Subtotal*. **Typing that list into the case would be writing the build's
+behaviour into the expectation, which is the exact thing Standing Rule 57 forbids.** The specification's
+only enumeration is **S14-R6**, which lists **twelve** columns and has **no Asset column** — so the
+document cannot supply the missing list either, and the case's own citation points at **S14-R5**, which is
+about the file format rather than the columns.
+
+**This needs Chris Ward, not an edit:** the Sales By Customer specification does not enumerate the
+*Expanded* column set anywhere. Until it does, the honest state of C30169 is a case that cannot be run.
+
+**A marker for (b) is a one-word write** once (a) is settled — the case reads a downloaded CSV as text,
+which under the QA lead's own ruling is automatable and therefore `AUTOMATION: READY`.
+
+---
+
+## 10 · Verified twice, because case text can change without its timestamp moving
+
+Another worker traced, this same evening, that **TestRail can re-render a case's text fields later,
+leaving `updated_on` byte-identical** — so a single reading is not proof. The raw-markup census was
+therefore **re-run live at 23:34Z**, 45 minutes after the first and across that worker's write window:
+**still 0 of 225, and 0 carrying the CRLF signature.** Their 40-case repair touched Filters and Schedule
+cases only; **none of the 225 is in it.**
