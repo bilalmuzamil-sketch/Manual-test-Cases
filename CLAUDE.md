@@ -3869,6 +3869,19 @@ regression / bug-fix re-testing.
   **This repo is PUBLIC, so raw.githubusercontent.com returns 200** — verify with `curl` before
   posting. Comments are updatable via `commentId`, so a wrong post is corrected in place rather than
   duplicated. Canonical example: SV-8781 comment `74580`.
+- **REPLICATION MUST BE PROVEN BY SCREENSHOT — capture it AT THE MOMENT it reproduces (QA-lead
+  ruling 2026-08-10, verbatim: *"when you are able to replicate the issue, you must and must make the
+  screenshot which can prove that you were able to replicate the issue"*).** The instant a bug
+  reproduces, take the screenshot **before** touching anything else — the state that proves it is often
+  destroyed by the next click, the next API call, a redeploy, or a session expiring. The capture must
+  show the **wrong value itself** on screen (not a console log, not a JSON dump alone), with enough
+  surrounding context to identify **what** it is and **where** — the document/record identifier, the
+  screen, and where practical the environment. Where the proof is a **before → after** pair, capture
+  **both** sides; where the point is that something did **not** change, that is exactly when the pair is
+  mandatory. Annotate it (boxes/arrows/captions drawn ON the image) so a reader sees the defect without
+  being told where to look. An API-level measurement is **supporting** evidence and belongs in the
+  technical section — it never replaces the screenshot. **No replication may be reported as confirmed
+  without one** (Rule 12: a claim without the capture is an assertion, not evidence).
 - **A SEPARATE FINDING GETS ITS OWN TICKET — created, linked, and fully specified (QA-lead ruling
   2026-08-05):** when testing a ticket surfaces an issue that is **not** what that ticket is about
   (a pre-existing bug, an out-of-scope defect, a side observation), **CREATE THE NEW TICKET** — do not

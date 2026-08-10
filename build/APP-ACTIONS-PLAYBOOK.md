@@ -65,6 +65,7 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
 [I. UI automation (Quasar)](#i-ui-automation-quasar) ·
 [J. TestRail API](#j-testrail-api) ·
 [K. PRODUCTION access & fix-verification](#k-production-access--fix-verification-sv-8721-proven-2026-07-29) ·
+[R. PRODUCTION: work order → INVOICE seeding](#r--production-seed-a-work-order-all-the-way-to-an-invoice-proven-2026-08-10-sv-8769--sv-8814) ·
 [L. Git practice with parallel workers](#l-git-practice-with-parallel-workers) ·
 [M. Figma: extract ALL frames from a design link](#m-figma-extract-all-frames-from-a-design-link-proven-2026-07-31-filters) ·
 [Jira/Confluence access](#jiraconfluence-access)
@@ -2193,3 +2194,137 @@ kills the whole pipeline and can truncate a heredoc written later in the same ca
 **Cost of not knowing this: five cookie sets and roughly an hour.** Session cookies last ~24 h
 (`Max-Age=86400`), so **one live `PHPSESSID` is enough to work for a whole session** — provided
 nothing calls `quick-login`.
+
+## §R — PRODUCTION: seed a work order all the way to an INVOICE (proven 2026-08-10, SV-8769 / SV-8814)
+
+**Read this before doing anything WO→invoice on `app.shopview.com`.** Every line below was proven
+live on org `72b2cc90…` ("Bilal-Trucks"), workplace **Trucks Hill 2**
+`b617914c-16e9-4485-8e8b-193cd86aa416`, on 2026-08-10. It exists so the endpoint-guessing done that
+day never has to be repeated. **§K stays valid** — this extends it with the invoice path and
+corrects two of its notes.
+
+### R.0 The one-login rule (unchanged from §K, restated because it bites)
+`POST /api/login {username,password}` → 200 + a fresh `PHPSESSID`. **A second login kills the
+first**, so log in ONCE and reuse the cookie for API + browser + cleanup. The QA lead editing
+settings in his own browser ALSO kills our session — expect a re-login after any settings change he
+makes, and just re-run the login step.
+
+Reusable curl helper (secrets stay in `/tmp`, never committed):
+```bash
+# /tmp/<run>/api.sh  →  ./api.sh GET /api/taxes   |   ./api.sh POST /api/path '{"k":"v"}'
+curl -s -X "$M" "https://api.shopview.com$P" -x "$HTTPS_PROXY" \
+  -H 'Content-Type: application/json' -H 'Origin: https://app.shopview.com' \
+  -H "Cookie: $(cat sess.txt)" -d "$B" -w "\n__HTTP:%{http_code}"
+```
+
+### R.1 ⚠️ CORRECTION to §K — the browser needs the MITM BRIDGE on prod
+§K says Playwright can point straight at `$HTTPS_PROXY` on prod with no bridge. **On 2026-08-10 that
+gave `net::ERR_CONNECTION_RESET` on every navigation.** The fix is the same bridge used for staging
+(`staging-bridge.mjs`), plus `--ssl-version-max=tls1.2`. Try direct first; **fall back to the bridge
+rather than concluding prod is unreachable.**
+
+### R.2 ⚠️ The SPA localStorage seed — get `fe_permissions_wrapper` RIGHT or the app renders BLANK
+A **name array** (`['workOrdersView', …]`) makes the SPA die on boot with
+`TypeError: Cannot read properties of undefined (reading 'length')` and a **completely white page**
+— easy to misread as a proxy or auth failure. It is neither.
+Seed all three, and make the wrapper the **real payload**:
+```js
+localStorage.user                    = JSON.stringify({data: <login response .data>})
+localStorage.fe_permissions_wrapper  = JSON.stringify(<GET /api/auth/me/fe-permissions → .data>)   // the OBJECT
+localStorage.token                   = <login response .data.token>
+```
+`GET /api/auth/me/fe-permissions` → `.data` = `{fe_permissions[], view_mode, cross_toggles,
+template_id, template_slug, system_role}`. Fetch it; never reconstruct it.
+
+### R.3 Reference data endpoints
+| What | Call | Notes |
+|---|---|---|
+| Workplaces | `GET /api/staff/my-workplaces` | id + name + timezone |
+| Switch workplace | `POST /api/iam/change-location {workplace_id, workplace_timezone}` | → 200 |
+| Tax models | `GET /api/taxes` | `isDefault`, `rateTotal`, **`isEnabledLabor`** |
+| Labor rates | `GET /api/labour-types` | `name`, `labour_rate`, `id` |
+| Customers | `GET /api/customers?limit=N` | ⚠️ `GET /api/customers/{id}` → **404** |
+| Vehicles | `GET /api/vehicles?company_id={id}` | ⚠️ the `company_id` filter looks **IGNORED**; `GET /api/vehicles/{id}` → **404** |
+| Canned lines | `GET /api/work-orders/canned-lines` | carries `labour_type_id` / `labour_type_name` / `labour_rate` / `time_estimate` / `fixed_price` |
+| WO lines | `GET /api/work-orders/lines/{woId}` | the reliable per-WO read |
+
+**⚠️ THERE IS NO WORKING WO-DETAIL ENDPOINT.** `GET /api/work-orders/{id}`,
+`/api/work-orders/detail/{id}`, `/{id}/detail`, `/{id}/financial-info` are **all 404**. The WO list
+`GET /api/work-orders` returns `{data:{pagination, work_orders:[…]}}` but **its `ids[]` filter is
+IGNORED** and it pages at 100 — so you cannot look up one WO by id through it. **Read WO financials
+from the UI** (see R.6).
+
+### R.4 Tax comes from the CUSTOMER, not the org default
+The org default can be a 0% model while a specific customer carries a real one. **Pick the customer
+whose default tax is the rate you need** — that is the whole reason a test asks you to use one named
+customer. Confirm it landed by reading the Financial Info panel: the tax row is **labelled with the
+tax model's name** (e.g. `15 percent`), not the word "Tax".
+**A tax model needs `isEnabledLabor: true`** — a big percentage with labor off yields zero labor tax.
+
+### R.5 Seed sequence that works (each step's exact payload)
+```
+1. POST /api/work-orders/create
+     {company_id, vehicle_id, workplace_id, start_date, is_vehicle_here:true}      → 201 {work_order_id}
+2. POST /api/work-orders/{woId}/lines/create-from-canned-line
+     {canned_line_id, status:"authorized"}                                          → 201 {line_id}
+3. POST /api/work-orders/lines/change            ← ALSO the invoice-rebuild trigger
+     {line_id, work_order_id, tech_story, line_name, time_estimate, tech_time, labour_type_id}  → 201
+4. (UI) set WO mileage — see R.6
+5. POST /api/work-orders/lines/change-status {line_id, work_order_id, status:"complete"}   → 200
+6. POST /api/work-orders/change-status       {id,      status:"complete"}                  → 201
+```
+**Field-name traps that cost real time:**
+- line status uses **`line_id`**; WO status uses **`id`** (not `work_order_id`) — each returns
+  *"Missing required parameter"* / *"Work Order ID is missing."* for the other spelling.
+- `POST /api/work-orders/lines/create` **500s on prod** (§K already says use the canned-line route).
+  Its validator order is discoverable though: `work_order_id` → *"Labor or fixed prices must be
+  set."* → satisfied by `time_estimate` + `labour_type_id` → then *"Line name is missing."* →
+  the field is **`line_name`** (not `name`/`lineName`/`title`). It still 500s after that.
+- `POST /api/work-orders/change` (WO update, e.g. mileage) **500s** even with the full create-shaped
+  payload. Use the UI.
+
+**Completion preconditions, in the order the API enforces them** (each is a plain error string):
+1. *"Line can not be completed without a tech story"* → set `tech_story` via `lines/change`.
+2. *"Line can not be completed without a Work Order mileage"* → set mileage (R.6).
+3. *"Cannot complete work order with incomplete lines."* → complete every line first.
+4. `requireVehicleIdentifier: "vin"` → the vehicle needs a **17-character VIN** or the WO shows
+   **"Valid VIN Required"**. **Don't fight it — pick a vehicle that already has one**
+   (`[v for v in vehicles if len(v['vin'])==17]`); vehicle-edit endpoints 404.
+
+**Status vocabulary:** `complete` is valid. `completed` / `review` / `reviewed` / `pending_review`
+→ *"Wrong status name"*. `invoiced` → *"Work order status cannot be changed manually to invoiced."*
+(invoicing is its own action). After Complete: *"Complete work order cannot change its status
+again."* — so **get everything right BEFORE completing.**
+
+### R.6 Reading and writing what the API won't
+Boot the browser (R.1/R.2) and go to `/workorders/{id}/lines`.
+- **Financial Info** (the numbers that matter) — read the label/value pairs:
+  ```js
+  document.querySelectorAll('[data-test-id^="item_label_"]')  // key
+  document.querySelector(`[data-test-id="item_value_${k}"]`)  // value
+  ```
+  yields `Parts · Labor · Shop Supplies · Subtotal · <tax model name> · Total · Balance`.
+- **Mileage** — `[data-test-id="input_vehicle_mileage"]`: click → `fill('')` → `type()` → **Tab**
+  (the Tab is what saves it). Siblings: `input_vehicle_engine_hours`, `input_vehicle_license_plate`.
+
+### R.7 Invoicing
+**The Create Invoice button lives on the FINANCE tab: `/workorders/{id}/finance` →
+`[data-test-id="button_create_invoice"]`.** It is **not** on Lines, and **not** in the WO `⋮` menu
+(that menu is only: Audit Log · Timesheets · Add Work Order Fee / Discount · Delete Work Order).
+Other finance-tab controls: `button_download_invoice`, `button_send_email`, `button_print_invoice`,
+`button_invoice_settings`, `button_send_to_portal`.
+- **`/workorders/{id}/invoices` and `/financial` are 404 routes** — only `/finance` exists.
+- `POST /api/invoices/create` exists and takes **`work_order_id`**, but **500s**; use the button.
+- **The button is DISABLED with NO tooltip when the org requires review** (`requireReview: true` in
+  `GET /api/organizations/settings`). There is no API review transition — `review`/`reviewed` are
+  rejected status names and `/api/work-orders/review` is 404. **Ask for `requireReview` to be turned
+  off, or find the review action in the UI; do not burn time guessing endpoints.**
+- Harmless noise: the finance tab logs several **500s in the browser console** while still
+  rendering — not a symptom of your session.
+
+### R.8 Org settings (snapshot before touching)
+`GET /api/organizations/settings` → `{requireMileage, requireHours, requireTechStories,
+requireVehicleIdentifier, vehicleIdentifier, autoPickInventoryParts, autoApproveLines,
+requireVendorInvoiceNumber, requireReview}`. Write with `POST /api/organizations/settings/change`
+(full object). **Snapshot it to a file first and restore byte-for-byte** — these are org-wide and
+other testers share the org.
