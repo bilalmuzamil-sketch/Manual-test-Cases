@@ -1,0 +1,85 @@
+{
+ "report": "sales-by-customer",
+ "steps": [
+  {
+   "k": "colsel_button",
+   "v": {
+    "txt": "width_normal",
+    "aria": "Column Selection",
+    "title": null,
+    "html": "<button data-v-68e00a17=\"\" data-v-6a585c54=\"\" class=\"q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable\" tabindex=\"0\" type=\"button\" aria-label=\"Column Selection\" filled=\"true\" data-test-id=\"button_column_selection\" style=\"pad"
+   }
+  },
+  {
+   "k": "export_button",
+   "v": {
+    "txt": "more_horiz",
+    "aria": "Export report"
+   }
+  },
+  {
+   "k": "toolbar_labels",
+   "v": [
+    "Product Type\nParts & Service\narrow_drop_down",
+    "Product Type",
+    "Customer\nAll customers\narrow_drop_down",
+    "Customer",
+    "Location\nStaging Heavy Duty - 9919\nclose\narrow_drop_down",
+    "Location"
+   ]
+  },
+  {
+   "k": "click:select_sbc_product_type",
+   "v": true
+  },
+  {
+   "k": "product_type_options",
+   "v": [
+    {
+     "id": "option_sbc_product_type_all",
+     "txt": "check Parts & Service"
+    },
+    {
+     "id": "option_sbc_product_type_parts",
+     "txt": "check Parts only"
+    },
+    {
+     "id": "option_sbc_product_type_service",
+     "txt": "check Service only"
+    }
+   ]
+  },
+  {
+   "k": "page_header",
+   "v": "Sales By Customer\nmore_horiz\nwidth_normal\nThis Month\nexpand_more\nProduct Type\nParts & Service\narrow_drop_down\nCustomer\nAll customers\narrow_drop_down\nLocation\nStaging Heavy Duty - 9919\nclose\narrow_drop_down\nkeyboard_double_arrow_down\n\t\nCustomer\narrow_drop_up\n\t\nDate\narrow_drop_up\n\t\nInv. Hrs\narrow_drop_up\n\t\nLabor Invoiced\narrow_drop_up\n\t\nLabor Margin\narrow_drop_up\n\t\nParts Invoiced\narrow_drop_up\n\t\nPar"
+  },
+  {
+   "k": "doc_title",
+   "v": "Sales By Customer - Report | ShopView"
+  },
+  {
+   "k": "totals_row",
+   "v": "\tTotals\t\t+19.0\t$2,665.00\t$2,665.00\t$14,216.00\t$7,172.50\t$279.86\t$9,837.50\t58.3%\t$17,160.86"
+  },
+  {
+   "k": "expand_all_btn",
+   "v": {
+    "txt": "keyboard_double_arrow_down",
+    "aria": "Expand all customers",
+    "title": null
+   }
+  },
+  {
+   "k": "date_trigger",
+   "v": "This Month\nexpand_more"
+  }
+ ],
+ "api": [
+  "/api/reporting/individual-punch-clock/today?range=today -> 200",
+  "/api/reporting/individual-punch-clock/today?range=today -> 200",
+  "/api/reporting/reports/sales-by-customer?range=custom&start_date=2026-08-01&end_date=2026-08-10&productType=all&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer&pagination%5Bdescending%5D=false -> 200",
+  "/api/reporting/individual-punch-clock/today?range=today -> 200",
+  "/api/reporting/reports/sales-by-customer?range=custom&start_date=2026-08-01&end_date=2026-08-10&productType=all&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer&pagination%5Bdescending%5D=false -> 200",
+  "/api/reporting/individual-punch-clock/today?range=today -> 200"
+ ]
+}
