@@ -204,3 +204,84 @@ document, or rolled into another ticket if one is opened for this report.
 
 **5. Affected case.** WIP-TAB-01 [C30455](https://shopview.testrail.io/index.php?/cases/view/30455)
 *(title match only — not separately re-verified this pass)*.
+
+---
+
+# Defect 6 — Work In Progress: an export with no rows does nothing at all, silently
+
+**Found 2026-08-10 · build `v3.5-4795eee` · NOT FILED (creation hold — "Do not create anything until
+my next order")**
+
+**This one is new, and it was hiding behind a fixed defect.** The case that covers it
+(WIP-EXP-09 = [C30518](https://shopview.testrail.io/index.php?/cases/view/30518)) carries an
+expect-fail marker for **SV-8907**, which said *nothing downloads at all*. **SV-8907 is now fixed** —
+so the moment exports started working, this second, different failure became visible underneath it.
+It is exactly the outcome-(2) case Standing Rule 61 exists to catch.
+
+### Plain description
+
+On the Work In Progress report, choosing **Download (CSV)** or **Download (PDF)** on a tab that has
+**no work orders in it** does **nothing whatsoever** — no file, no message, no error. The user is
+given no indication that anything happened at all.
+
+### Steps, with the exact test data named
+
+1. Sign in as an administrator and open **Work In Progress** (`/reports/work-in-progress`).
+2. Location filter: **Staging Lethbridge - 4310**. Date range: the default **This Week**
+   (`Aug 8, 2026 - Aug 10, 2026` on the day this was observed).
+3. Click the tab **`Completed (0)`** — it must be a tab whose count in brackets is **(0)**. The data
+   area shows the word **Empty**.
+4. Click the three-dot button (`Export report`) in the toolbar. The menu opens showing
+   **Download (PDF)** and **Download (CSV)**.
+5. Click **Download (CSV)**.
+
+### Current behaviour
+
+**Nothing happens.** No file downloads, and **no notification of any kind appears**. Verified with the
+controls in place, because a click that silently misses looks identical to this:
+
+- the tab really had switched — `Completed (0)` carried `aria-selected="true"` and the table body held
+  **0 rows**;
+- the menu really was open — it read `"Download (PDF) Download (CSV)"`;
+- the option really was clickable — present, visible, and clicked;
+- **0** requests to `…/work-in-progress/export` were sent;
+- `document.querySelectorAll('.q-notification')` returned an **empty list**.
+
+For contrast, the same click on the populated `Approved - Partially Completed (1)` tab in the same
+session downloaded `wip-2-report.csv` and showed `Success — Data exported successfully.`
+
+### Expected behaviour, with the source quoted
+
+Work In Progress specification, **Confluence version 10**, Story 9 **Error Handling**, verbatim:
+
+> **S9-R12:** If a download yields no rows, the user sees a warning notification titled **"Empty
+> export"** with the caption **"Export didn't yield any results"**.
+
+Restated in §7 User Feedback Summary, verbatim:
+
+> | A download yields no rows | Title: "Empty export"; caption: "Export didn't yield any results" |
+> Warning notification. |
+
+**The specification is explicit and unambiguous, so no product decision is needed** — the build simply
+does not do it.
+
+### Why it matters
+
+A silent no-op is indistinguishable from a broken button. The user cannot tell whether the export
+failed, whether their click registered, or whether the report is still thinking.
+
+### Affected case
+
+**WIP-EXP-09 = [C30518](https://shopview.testrail.io/index.php?/cases/view/30518)** — its item 1
+(success caption) now **passes**; its item 2 (this) **fails**.
+
+### Evidence
+
+`evidence/expectfail-2026-08-10/wip-empty-export.png` · driver `wip7.mjs`.
+
+### Ready-to-file ticket (NOT created)
+
+- **Type** `Story Defect` · **Priority** `Medium` (Rule 53 — `High` barred)
+- **Parent** the owning story · also linked `relates to` (Rule 52)
+- **Summary:** Work In Progress — an export with no rows shows no "Empty export" warning
+- **Product Area:** Reports & Dashboards

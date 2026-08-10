@@ -1,4 +1,27 @@
-# RECHECK-QUEUE — Report Suite, opened 2026-08-06
+# Rule-49 re-check queue — Report Suite
+
+> ## PER-REPORT FINALITY, ruled by the QA lead 2026-08-10
+>
+> | Report | Handed off? | Queue rows |
+> |---|---|---|
+> | **Work In Progress** | **YES — final** | close as each case is re-checked on the current build |
+> | **Technician Utilization** | **YES — final** | close as each case is re-checked on the current build |
+> | **Sales By Customer** | **YES — final** | close as each case is re-checked on the current build |
+> | Sales By Representative | no | **stay OPEN — untouched** |
+> | Parts Velocity | no | **stay OPEN — untouched** |
+> | Inventory Value | no | **stay OPEN — untouched** |
+>
+> **A row for one of the three closes only when its case has actually been re-observed on the build
+> marker recorded against it** — finality is not a licence to close rows on paper (Rules 12/50).
+> **The deploy caveat still applies to all six:** a redeploy invalidates labels and verdicts
+> (Rule 60), so a closed row reopens if the build marker moves.
+>
+> **Closed so far on 2026-08-10 (build `v3.5-4795eee`):** C30410, C30423, C30510 (verdict changed to
+> pass, markers cleared) · C30424, C30418, C30468, C43557, C30523 (re-observed whole, still
+> failing exactly as described). **C30421 is NOT closed** — three of its four items were re-observed
+> but its item 2 (the expand-all rule when one row is left collapsed) was not driven, and a partly
+> observed case is not a re-checked case. **All other rows remain OPEN.**
+
 
 ## STATUS: **OPEN**
 

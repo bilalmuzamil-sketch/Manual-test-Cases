@@ -1,5 +1,25 @@
 # The three handed-off reports — status as at 2026-08-10
 
+> ## ⚠️ SUPERSEDED IN PART — read `EXPECT-FAIL-AUDIT-2026-08-10.md` alongside this file
+>
+> **The QA lead ruled on 2026-08-10 that the branch is FINAL FOR THESE THREE REPORTS ONLY:**
+> *"they have released just those reports which I mentioned… so the branch is final for those reports
+> only, the remaining reports are yet to be handed off to the QA."*
+>
+> **So findings on Work In Progress, Technician Utilization and Sales By Customer are DEFINITIVE, not
+> provisional.** A deviation on these three is a **real defect in a finished feature**, not an
+> observation against an unfinished one. Sales By Representative, Parts Velocity and Inventory Value
+> are unchanged — still not handed off, still provisional.
+>
+> **The honest limit on the word "final":** it means **handed off / feature-complete**, not "the code
+> will never change again". The branch can still redeploy — not least to fix the defects being
+> reported — so **a redeploy still invalidates the on-screen labels and the pass/fail verdict**
+> (Standing Rule 60, layers 1–2). What finality removes is a *different* doubt: whether a missing
+> control is an unfinished feature or a defect. On these three, it is a defect.
+>
+> **Also superseded here:** §3's statement that the 28 other closed tickets have not been re-checked,
+> and the marker census. The expect-fail audit began on 2026-08-10 — see that file for live counts.
+
 **Scope:** Work In Progress · Technician Utilization · Sales By Customer — the only three reports
 development has handed off. **225 cases, all ours** (Sales By Customer 87 · Technician Utilization 60
 · Work In Progress 78), counted live from TestRail with no sampling.
