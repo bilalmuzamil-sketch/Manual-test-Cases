@@ -3598,6 +3598,40 @@ deliver the 7-tab management report.
     last checked) and 57 (because expectations come from documents, a redeploy cannot invalidate them —
     that is the whole reason this strategy is possible).
 
+61. **WHEN THE ASKED-FOR SETUP DIVERGES FROM WHAT THE TICKET/SPEC ACTUALLY REQUIRES, SAY SO BEFORE
+    DOING IT — ask, don't just comply (all projects).**
+    USER DIRECTIVE (2026-08-10, verbatim): *"Yes always ask such questions."* — given in answer to my
+    own admission that I should have said *"neither ticket requires parts — SV-8814 needs taxed labor,
+    SV-8769 needs fees. Do you still want parts?"* and instead just did what was asked.
+    **THE RULE:** before building a test setup, a data shape, an environment state or a scope that the
+    governing document does **not** call for, **STATE THE DIVERGENCE IN ONE SENTENCE AND ASK.** Quote
+    what the ticket/spec actually specifies, say what has been asked for, and ask whether to proceed.
+    **Then do whatever the QA lead answers** — this is a question, not a refusal, and it costs one
+    sentence.
+    **WHY IT MATTERS (the failure it prevents):** silently complying looks obedient and is actually
+    the expensive choice. A setup the ticket never asked for can spend hours, hit product guards that
+    have nothing to do with the defect, and produce **no verdict at all** — while the reader of the
+    eventual report cannot tell whether the extra scope was requested or invented. It also inverts
+    the usual risk: the QA lead is asking for *more* realism, which sounds strictly safer, so nobody
+    challenges it.
+    **APPLIES TO:** test data that the repro steps do not mention · extra scope on an authoring or
+    audit pass · an environment/config different from the one the spec assumes · a stricter or looser
+    acceptance bar than the document states · any "while you're at it" addition.
+    **THE ONE-SENTENCE FORM:** *"<Document> specifies <X>; you've asked for <Y>. Want me to do <Y>
+    anyway, or stick to <X>?"*
+    **HONESTY CLAUSE:** this is **not** licence to argue with instructions or to re-litigate a
+    decision once made. Ask **once**, before starting; if the answer is "do it anyway", do it in full
+    and without further comment (Standing Rule: a reaffirmed instruction is a decision).
+    **RATIONALE, 2026-08-10:** SV-8769 / SV-8814 were tested with a **parts** work order at the QA
+    lead's request. **Neither ticket calls for parts** — SV-8814's own step 1 reads *"WO with taxed
+    labor and a PENDING invoice"*, and SV-8769's reads *"WO with taxed labor, a taxable whole-WO fee
+    and a %-of-grand-total PF"*. The parts configuration then hit **five separate backend guards**
+    (400/409) plus a **500**, and produced **no verdict either way**, while the labor-only run — the
+    exact shape SV-8814 specifies — had already proven the bug on production and the fix on staging.
+    Ties to Standing Rules 1 (never proceed without the complete/correct input set), 7 (plain
+    questions), 11 (ask which process), 12, 17, 22 (ask up front about what a task needs), 25 (cite
+    the document's own words) and 55 (an unclear or mismatched input goes back as a question).
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
