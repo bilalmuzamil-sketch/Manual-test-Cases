@@ -82,3 +82,32 @@ invoice, both `pending`. Earlier calls that returned 201 without persisting left
   the moment a valid trigger is agreed.
 - The staging session expired mid-run (HTTP 409), so staging needs fresh cookies.
 - The labor-only result from earlier today is unaffected and stands on its own evidence.
+
+---
+
+## ⛔ THE ACTUAL BLOCKER ON A PARTS WORK ORDER (isolated with a control, production)
+
+The QA lead pointed out — correctly — that this ticket only needs a work order that **contains**
+labor and parts; editing the part was never a requirement. I had over-complicated it. Re-run
+properly on **his own untouched work order S-754**, firing only the labor edit and touching nothing
+else, the result is:
+
+| Test | Work order | `POST /api/work-orders/lines/change` |
+|---|---|---|
+| Labor edit, 120 → 180 min | S-754 (**labor + parts**) | **500** |
+| Same call, no-op (identical values sent back) | S-754 (**labor + parts**) | **500** |
+| Description-only change | S-754 (**labor + parts**) | **500** |
+| **Control** — same call, same session, minutes apart | S2-833 (**labor only**) | **201** ✅ |
+
+**On production, ANY line edit on an invoiced work order that carries a part returns 500 — including
+an edit that changes nothing.** The identical call succeeds on a labor-only invoiced work order.
+
+**What this means for the ticket:** on a parts work order the rebuild listener never gets the chance
+to run, because the request dies first. So the parts scenario cannot demonstrate SV-8814 either way
+on production — not because the invoice fails to update, but because **the trigger itself cannot be
+fired**.
+
+This 500 is not something SV-8814 claims to fix, and it is not in the combined test plan. It may be
+a separate defect worth its own ticket — **not raised**, pending the QA lead's call.
+
+**The labor-only run remains the clean, valid demonstration** and is unaffected by any of this.
