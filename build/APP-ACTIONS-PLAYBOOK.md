@@ -2322,6 +2322,49 @@ Other finance-tab controls: `button_download_invoice`, `button_send_email`, `but
 - Harmless noise: the finance tab logs several **500s in the browser console** while still
   rendering — not a symptom of your session.
 
+### R.7a ⚠️ THE INVOICE BLOCKER THAT LOOKS LIKE A BROKEN BUTTON: a MISSING CUSTOMER CONTACT
+**A work order created through `POST /api/work-orders/create` has NO customer contact** — the create
+endpoint **silently ignores a `customer_id` you pass it** — and without a contact the whole invoice
+path dies:
+- `POST /api/work-orders/invoices/estimate` → **500**
+- `GET /api/invoices/{woId}/details?includeDeclined=0` → **500**
+- **`Create Invoice` renders DISABLED with NO tooltip** — it looks like a permission or status
+  problem and is neither.
+
+**How to prove it in one call rather than guessing for an hour:** run the estimate against a work
+order **you did not create**. Ours all returned 500 while every existing WO returned 200 — that
+contrast is the whole diagnosis. Then diff `GET /api/work-orders/view/{id}` between the two: the
+telling field is **`customer_id`** (the CONTACT, a person — not `company_id`), `None` on ours and set
+on theirs.
+
+**The fix:** set the contact in the UI — `[data-test-id="select_customer_contact"]` → pick any
+option. Contacts are **not** on a contacts endpoint (all 404); they arrive inside
+**`GET /api/customers/view/{companyId}?`** → `data.company.contacts[]`.
+
+**This is the SECOND time this trap has cost us time** — the same missing-contact condition is
+recorded in `CLAUDE.md` from SV-8821 (2026-08-04), where a defect was un-reproducible for the QA lead
+for the same reason. **Set a contact as a matter of course when seeding any WO you intend to invoice.**
+
+**Gotcha while setting it:** a freshly created WO **auto-opens the "create line" dialog**, whose
+backdrop swallows clicks — close it (`button_close_dialog` + `Escape`) before touching the contact
+dropdown, and click the dropdown by **coordinate** (`page.mouse.click`) per the Quasar rule in §14d.
+
+### R.7b Creating the invoice, and NOT paying it
+Clicking **Create Invoice** creates the invoice **and immediately opens a "New Customer Payment"
+dialog** listing the new invoice with its balance. **Close it** (`button_close_payment_dialog`) —
+do **not** press `button_make_payment` / `button_charge_account` — or the invoice stops being
+**pending** and every `UpdateTotalWhenWO*` listener stops firing (they all filter on
+`Status::PENDING`), which silently invalidates any rebuild test.
+Verify afterwards: WO status badge reads **Invoiced**, and the invoice keeps a non-zero Balance.
+
+### R.7c Reading the invoice document itself
+`GET /api/invoices/{woId}/details?includeDeclined=0` → `data.collection` with `sub_total_display`,
+`tax.amountTotal`, `total_balance`, `work_order.total_labor_price`.
+**⚠️ It does NOT always agree with the rendered invoice** — during a pending-invoice rebuild this
+endpoint returned the *live* subtotal while the **rendered invoice document still showed the old
+one**. **The rendered document is what the customer sees; screenshot THAT**, and treat the endpoint
+as a second opinion rather than the truth.
+
 ### R.8 Org settings (snapshot before touching)
 `GET /api/organizations/settings` → `{requireMileage, requireHours, requireTechStories,
 requireVehicleIdentifier, vehicleIdentifier, autoPickInventoryParts, autoApproveLines,
