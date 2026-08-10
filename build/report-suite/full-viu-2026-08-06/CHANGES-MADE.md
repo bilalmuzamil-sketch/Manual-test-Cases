@@ -402,3 +402,25 @@ quote.
 **`CLAUDE.md` and `build/OUTSTANDING-ITEMS-REGISTER.md` were NOT touched** — out of scope. Two stale
 figures in `CLAUDE.md` are **reported in `FINDINGS.md` instead**: the raw-markup count is now **0, not 12**,
 and the live marker census is **476 of 476, not 464 of 476**.
+
+---
+
+# 2026-08-10 — three handed-off reports, live pass on `v3.5-4795eee`
+
+**5 `update_case` writes, all byte-verified, 0 collateral.** Full detail in
+`testrail-execution-log-2026-08-10.md`; status in `THREE-REPORTS-STATUS.md`; the live finding in
+`THREE-REPORTS-LOCATION-FINDING-2026-08-10.md`; defects written up but **not filed** in
+`DEFECTS-FOR-PERMISSION.md`.
+
+- **C38912** SBC-LOC-04 — rewritten from the superseded scope model to the ratified access model (SBC v16 S4-R12).
+- **C38915** TU-LOC-06 — provenance re-stamped v6→**v7** and to this build; item 3 ("Multiple") confirmed observable here.
+- **C30467** WIP-COL-02 — Location removed from the off-by-default list; on by default for a multi-location user (WIP v10 S4-R3).
+- **C38916** WIP-FLT-09 — **was asserting the build's behaviour as the requirement**; rewritten to WIP v10, broken numbering ("3. 4.") repaired, marker READY → EXPECT FAIL.
+- **C43551** WIP-PERS-05 — false hold reason removed; the case cannot start on this build and now says so.
+
+**Nothing seeded, nothing created, nothing deleted.** No `ZZAUTOTEST` data was needed: every check
+was a read of existing data or a filter/column interaction that leaves no trace. The active workplace
+was changed while enumerating labor rates and is a per-session setting, not stored state.
+
+**Not done, and not claimed:** 208 of the 225 were **not** verdicted against this build, and the 28
+closed tickets behind 50 expect-fail cases were **not** re-checked.
