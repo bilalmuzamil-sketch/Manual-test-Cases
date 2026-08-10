@@ -525,6 +525,46 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   (`custom_mission`, `custom_goals`, `custom_steps_separated`, `custom_testrail_bdd_scenario`) are
   **null on all 753 of our cases**, so they cannot be damaged today — but if any project ever populates
   one, it joins the send-it-every-time list.
+- **⚠️ DECLARED NORMALISATION #2c — `case_refs` ON A RUN RESULT IS A STORED SNAPSHOT, NOT A LIVE
+  MIRROR (found 2026-08-10, Schedule).** Normalisation #2b called `case_refs` a read-time echo. It is
+  better described as a **snapshot that catches up when the case is next written**: on 2026-08-10 it
+  moved on **208 run-357 result records belonging to cases whose `refs` we never edited**, purely
+  because those cases were touched by an unrelated `custom_expected` write. So **do not use "its refs
+  did not change" to predict that `case_refs` will not move** — any `update_case` on a case can
+  refresh it across that case's whole result history. Treat it exactly as #2b says: a **derived**
+  field, never graded, never writable by us, and excluded from the untouched-run comparison alongside
+  `case_title`. Verify the run on the graded fields only.
+- **🛑 DECLARED HAZARD #5 — TESTRAIL RE-RENDERS A CASE'S TESTER TEXT INTO HTML *HOURS AFTER* YOUR
+  WRITE, WITHOUT MOVING `updated_on` OR `updated_by` — SO THE IMMEDIATE RE-GET BYTE-CHECK CANNOT SEE
+  IT (proven 2026-08-10, Filters + Schedule).** **This is NOT normalisation #3 and the mitigation for
+  #3 does not prevent it.** #3 fires *during* a partial write and wraps the omitted field in `<p>`
+  with `\r\n`. **This one fires later, on cases written with all three fields sent**, and produces a
+  **full rich-text render**: `<ol>`/`<li>` built out of numbered lines, plus `<p>`, `<br />`,
+  `<hr />` for `---`, `<a href>` around bare URLs and `&nbsp;`, with plain `\n`.
+  **THE PROOF, and it is the part that matters:** two committed **live** snapshots of the same 110
+  Filters cases, 2.5 hours apart with **no write in between** — `cases-POST.json` (commit `3e34d4ea`,
+  5 Aug 17:25) and `PRE-cases-110.json` (commit `a4f8b870`, 5 Aug 19:56) — differ on **10 cases, in
+  exactly `custom_preconds`, `custom_steps` and `custom_expected` and no other field**, while
+  **`updated_on` is byte-identical in both (`1785950271`) and `updated_by` is 3 in both**. Content
+  moved; the timestamp did not. **`updated_on` is therefore NOT a reliable change detector for case
+  text** — compare content, never timestamps (this is the concrete proof behind that standing
+  caution).
+  **WHAT TRIGGERS IT:** the run owners working the cases in the TestRail UI, not our writes. Run 357
+  has been graded exactly once ever — user 5, 10 Aug 21:17–21:31 UTC, 28 results — and **19 of the 20
+  Schedule cases found rendered had been graded inside that 14-minute window**, out of only 26 graded
+  in the whole 168-case suite. Two were already rendered earlier that day, so it is the tester
+  *working in* the case rather than the act of grading itself.
+  **WHY IT DEFEATS OUR VERIFICATION:** at re-GET time the text is still exactly what we sent, so every
+  pass since 5 August truthfully reported "0 raw markup" and every one of them was right at the moment
+  it looked. Tightening the write path cannot fix this.
+  **THE MITIGATION — a DEFERRED census, not a tighter write:** **(1) census raw markup across the whole
+  project at the START of every pass**, before any write, and treat a non-zero count as a finding to
+  repair rather than a surprise; **(2) never report "0 raw markup" as a durable state** — it is true
+  only of the moment it was measured; **(3) expect repaired cases to regress** once a tester next works
+  through them, and say so rather than implying the repair is permanent. **It matters because these
+  projects render that markup LITERALLY to the manual tester**, who then cannot follow the case.
+  Converter + evidence: `build/markup-regression-2026-08-10/` (`TRACE.md`, `demark.py`,
+  `exec_repair.py`); 40 cases repaired 2026-08-10, census afterwards **0 of 282**.
 - **🛑 DECLARED HAZARD #4 — EDITING A JIRA DESCRIPTION *DESTROYS* ANY PASTED IMAGE WHOSE MEDIA NODE
   YOU DO NOT CARRY INTO THE NEW BODY, AND THE DELETION IS NOT IN THE CHANGELOG (proven the hard way
   2026-08-06, Report Suite ticket reformat).** This one is in §J rather than the Jira section because
