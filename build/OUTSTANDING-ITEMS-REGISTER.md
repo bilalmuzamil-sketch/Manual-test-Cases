@@ -1,5 +1,7 @@
 # OUTSTANDING ITEMS REGISTER — everything we are waiting on, across every project
 
+> **PAUSED 2026-08-10 — the Filters + Schedule source-accuracy pass was stopped mid-build with no TestRail writes; resume from [`build/RESUME-SOURCE-ACCURACY-2026-08-10.md`](RESUME-SOURCE-ACCURACY-2026-08-10.md).**
+
 > **This is the single cross-project list of what is missing.** Governed by **Standing Rule 36**
 > ("Always remind the user of everything OUTSTANDING for each project").
 >
