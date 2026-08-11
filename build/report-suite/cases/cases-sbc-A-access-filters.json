@@ -308,7 +308,7 @@
   {
     "id": "SBC-TYPE-02",
     "area": "SBC — Product Type Filter",
-    "title": "Product Type: three options with Parts & Service default; S/P prefix filtering",
+    "title": "Product Type multi-select: both toggles on by default; S/P prefix filtering",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "the ordinary reports access (Reports section View).",
@@ -316,19 +316,14 @@
       "1. You are on the Sales By Customer report with no saved view (first visit or cleared browser storage), so the first-load default can be read.",
       "2. The date range contains at least one service invoice (number starting with S) and one parts invoice (number starting with P) — seed ZZAUTOTEST data if needed."
     ],
-    "steps": [
-      "1. Find the \"Product Type\" dropdown in the report toolbar; read its value before touching it, then open it and read the options in order.",
-      "2. Set Product Type to \"Service only,\" expand a customer down to invoice rows, and read the invoice numbers.",
-      "3. Set Product Type to \"Parts only\" and read the invoice numbers again.",
-      "4. Set Product Type back to \"Parts & Service.\""
-    ],
-    "expected": "1. The dropdown offers exactly three options, in this order: \"Parts & Service,\" \"Parts only,\" \"Service only\" — with \"Parts & Service\" selected by default on first load.\n2. Under \"Service only,\" every invoice shown has a number starting with S; parts invoices are gone and all counts/totals reflect only S invoices.\n3. Under \"Parts only,\" every invoice shown has a number starting with P; service invoices are gone and all counts/totals reflect only P invoices.\n4. With \"Parts & Service\" selected, no product-type filter is applied — both S and P invoices are included and counts/totals cover both.\n5. The whole invoice is classified by its number prefix — there is no per-line-item split.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
+    "steps": "1. Find the \"Product Type\" filter in the report toolbar; read its current selection before touching it, then open it and read the action rows and the toggle options in order.\n2. Select only \"Services\" (leave \"Parts\" unselected), expand a customer down to invoice rows, and read the invoice numbers.\n3. Select only \"Parts\" and read the invoice numbers again.\n4. Use \"All products\" to select both toggles again.",
+    "expected": "1. The \"Product Type\" filter in the toolbar is a multi-select, behaving like the Customer and Location filters. Opened, it pins two action rows at the top — \"All products\" and \"Clear all\" — above two toggle options: \"Parts\" and \"Services.\"\n2. On first load both toggles are selected, so all products are included and no product-type filter is applied.\n3. With only \"Services\" selected, every invoice shown has a number starting with S; parts invoices are gone and all counts/totals reflect only S invoices.\n4. With only \"Parts\" selected, every invoice shown has a number starting with P; service invoices are gone and all counts/totals reflect only P invoices.\n5. With both toggles selected again, no product-type filter is applied — both S and P invoices are included and counts/totals cover both.\n6. The whole invoice is classified by its number prefix — there is no per-line-item split.\nNote for the tester: the toggles read \"Parts\" and \"Services\", but the filter summary line printed in the exports uses the older wordings — \"Parts & Service\" with both toggles on, \"Service only\" with only Services on, and \"Parts only\" with only Parts on. That difference is expected and is not a fault.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
     "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
     "spec_ref": "SV-8602 (SBC spec v13 2026-07-31 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6 — S3-R2 CLOSES the list itself (\"exactly three options ... in this order\"); so the closed list IS the requirement)",
     "viu_status": "VIU-Pending",
     "notes": "Per-line-item classification is explicitly out of scope (§2) — a mixed invoice classified whole by prefix is expected behavior, not a defect. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-TYPE): absorbed SBC-TYPE-01, SBC-TYPE-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. COMPANION-VIDEO 2026-07-30 (C9, 05:10-05:42): P = parts order, S = service/work order confirmed; under Parts Sales real data shows P numbers ('These would all be P's') — the all-S parts-sales rows in the PO's local were a fake-data artifact. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed three-option list to SBC S3-R2 + spec version (Rule 42(b)). RULE 41: Re-verified whole against SBC spec v12 2026-07-29: title, preconditions 1-2, steps 1-4, expected 1-5, refs. S3-R2 verbatim L188: \"The dropdown offers exactly three options, in this order: \\\"Parts & Service,\\\" \\\"Parts only,\\\" \\\"Service only.\\\"\" S3-R3..R6 match expected 2-4; expected 5 (whole-invoice classification by prefix) matches S3-R5/R6. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8602 (SBC spec v16 2026-08-06 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6 — S3-R2 CLOSES the list itself (\"exactly three options ... in this order\"); so the closed list IS the requirement)",
+    "refs": "SV-8602 (SBC spec v17 2026-08-10 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6 — control redesigned from a single-select dropdown to a multi-select per SV-9074; S3-R2 CLOSES the list itself so the closed list IS the requirement)",
     "testrail_id": "C30107",
     "section_id": 4291
   },
@@ -684,5 +679,27 @@
     "refs": "SV-8603; SV-8612; SV-8613 (SBC spec v16 2026-08-06 S4-R12; S4-R12a; S4-R13; S20-R19 - access-gated toggleable Location column; \"Multiple\" on aggregating rows; the same column in every export)",
     "testrail_id": "C38912",
     "section_id": 4292
+  },
+  {
+    "id": "SBC-TYPE-04",
+    "area": "SBC — Product Type Filter",
+    "title": "Clear all leaves neither Product Type toggle on and shows the empty state",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the Sales By Customer report with a date range that normally returns rows, so you can tell an empty result from a genuinely empty range.",
+      "2. The Product Type filter is at its default with both toggles selected."
+    ],
+    "steps": "1. Open the \"Product Type\" filter and read the two action rows at the top.\n2. Choose \"Clear all\" and read the table body.\n3. Read the toolbar and check the filter still opens.\n4. Switch the \"Parts\" toggle back on and read the table body again.\n5. Choose \"All products\" and read the table body once more.",
+    "expected": "1. The filter pins two action rows at the top — \"All products\" and \"Clear all\" — above the \"Parts\" and \"Services\" toggles.\n2. After \"Clear all\" neither toggle is selected and the table body shows the empty-state message \"No sales data found for the selected filters.\"\n3. The empty state is shown in the table body only — the toolbar stays usable and the filter still opens.\n4. Switching \"Parts\" back on brings rows back straight away, limited to invoices whose number starts with P.\n5. \"All products\" selects both toggles again and the full set of rows returns.\nNote for the tester: an empty report here is the correct result of clearing both toggles, not a fault — it stays empty until you switch a toggle back on.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S3-R6a, S3-R2, S17-R1), read on 11 August 2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8602 (SBC spec v17 2026-08-10 Story 3 S3-R6a — new in v17: with neither toggle selected after \"Clear all\" the report shows the Story 17 empty state until a toggle is selected; S3-R2 pins the two action rows; S17-R1 gives the message)",
+    "viu_status": "VIU-Pending",
+    "notes": "Authored 2026-08-11 for SBC v17 S3-R6a, which is new in v17 and had no case.",
+    "api_related": false,
+    "refs": "SV-8602 (SBC spec v17 2026-08-10 Story 3 S3-R6a — new in v17: with neither toggle selected after \"Clear all\" the report shows the Story 17 empty state until a toggle is selected; S3-R2 pins the two action rows; S17-R1 gives the message)",
+    "testrail_id": "C43591",
+    "section_id": 4291
   }
 ]

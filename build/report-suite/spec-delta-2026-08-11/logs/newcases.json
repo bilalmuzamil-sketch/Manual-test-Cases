@@ -1,0 +1,42 @@
+[
+ {
+  "internal": "SBC-TYPE-04",
+  "cid": 43591,
+  "section": 4291,
+  "http": 200,
+  "atmstatus": 1,
+  "title": "Clear all leaves neither Product Type toggle on and shows the empty state",
+  "refs": "SV-8602 (SBC spec v17 2026-08-10 Story 3 S3-R6a \u2014 new in v17: with neither toggle selected after \"Clear all\" the report shows the Story 17 empty state until a toggle is selected; S3-R2 pins the two action rows; S17-R1 gives the message)",
+  "when": "2026-08-11T19:52:31.970355Z"
+ },
+ {
+  "internal": "WIP-CALC-11",
+  "cid": 43592,
+  "section": 4354,
+  "http": 200,
+  "atmstatus": 1,
+  "title": "A fixed-price line is valued at its fixed amount, not at picked parts or hours",
+  "refs": "SV-8660 (WIP spec v11 2026-08-10 \u00a73 Key Decisions \u2014 fixed-price lines are valued at the fixed amounts the customer is billed rather than underlying picked parts or an hourly derivation; added 2026-08-10 per SV-9028; SV-9035; SV-9040; SV-9044)",
+  "when": "2026-08-11T19:52:33.926672Z"
+ },
+ {
+  "internal": "WIP-CALC-12",
+  "cid": 43593,
+  "section": 4354,
+  "http": 200,
+  "atmstatus": 1,
+  "title": "A fixed-price line with no invoiced hours earns all at once when it is completed",
+  "refs": "SV-8660 (WIP spec v11 2026-08-10 \u00a73 Key Decisions \u2014 with no invoiced hours the full fixed amount stays in Remaining until the line is completed then moves entirely to Earned; a completed WO never leaves value in Remaining; per SV-9028; SV-9035)",
+  "when": "2026-08-11T19:52:36.150592Z"
+ },
+ {
+  "internal": "WIP-CALC-13",
+  "cid": 43594,
+  "section": 4354,
+  "http": 200,
+  "atmstatus": 1,
+  "title": "Core charges count in parts value and a core decision never moves the figures",
+  "refs": "SV-8660 (WIP spec v11 2026-08-10 \u00a73 Key Decisions \u2014 a core charge counts in Parts Remaining and Parts Earned at every stage; marking a returned core OK or Not OK never moves the report's figures; added 2026-08-10 per SV-9057; SV-9058)",
+  "when": "2026-08-11T19:52:38.343094Z"
+ }
+]

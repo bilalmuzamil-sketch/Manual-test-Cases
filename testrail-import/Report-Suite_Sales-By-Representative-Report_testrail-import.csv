@@ -176,7 +176,7 @@ Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ","SV-8638 (SBR spec S21-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S21-N1 ""still sees the filter"" note is stale; spec edit pending)",,
-The Location column shows only with more than one location; rep rows Multiple,SBR — Location Filter,Functional,High,"1. You are on the Sales By Representative report as a user with access to two or more locations.
+Location column: shown to any multi-location user; toggleable; rep rows Multiple,SBR — Location Filter,Functional,High,"1. You are on the Sales By Representative report as a user with access to two or more locations.
 2. One rep has invoices at a single location and another rep has invoices at two different locations.
 3. Show Unassigned is turned on and at least one unassigned invoice exists.","1. Select two or more locations and read the column headers.
 2. Read the Location cell on the single-location rep's summary row.
@@ -184,19 +184,21 @@ The Location column shows only with more than one location; rep rows Multiple,SB
 4. Expand that rep and read an invoice detail row's Location cell.
 5. Read the Location cell on the Unassigned summary row.
 6. Check that the pinned Subtotal column is still the rightmost column.
-7. Narrow to a single location and read the headers again.
-8. With more than one location still selected, download all four files from the ⋯ menu (Summary and Expanded View, PDF and CSV) and read the Location column in each one.","1. With more than one location in scope a Location column is shown, positioned immediately after the Status column and before Inv. Hrs.
+7. Narrow the selection to a single location and read the headers again.
+8. Open the column selector, switch Location off, read the headers again, then switch it back on.
+9. With more than one location still selected, download all four files from the ⋯ menu (Summary and Expanded View, PDF and CSV) and read the Location column in each one.","1. Because you have access to more than one location, a Location column is shown by default, positioned immediately after the Status column and before Inv. Hrs.
 2. A rep summary row whose invoices are all at one location shows that location's name.
 3. A rep summary row whose invoices span more than one location shows ""Multiple"".
 4. An invoice detail row shows that invoice's own exact location — never ""Multiple"".
 5. The Unassigned summary row follows the same rule as any rep summary row.
 6. The pinned Subtotal column is still rightmost — the Location column never displaces it.
-7. With only one location involved the Location column is not shown.
-8. All four downloads include the Location column in the same position it occupies on screen. In the Summary files a rep's row carries that rep's location and reads ""Multiple"" when the rep spans more than one location; in the Expanded View files each invoice row carries that invoice's own exact location.
-Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. For this report the two statements are that the column-selection dropdown holds the seven metric columns only, and that Location is one of the columns you can switch on and off there. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+7. Narrowing the selection to a single location does NOT hide the column; it stays on screen.
+8. Switching Location off in the column selector removes it; switching it back on restores it in the same position.
+9. Whenever the column is shown on screen, all four downloads include it in the same position. In the Summary files a rep's row carries that rep's location and reads ""Multiple"" when the rep spans more than one location; in the Expanded View files each invoice row carries that invoice's own exact location.
+Note for the tester: whether this column appears depends on how many locations your login can reach, not on how many you have currently selected. Someone who can reach only one location never sees it at all. If it stays on screen after you narrow to a single location, that is correct.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S21-R7, S21-R8, S18-R13, S14-R20), read on 11 August 2026. That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: its summary says it can be toggled there, while the requirement that governs the column says it appears only when the view spans more than one location and the dropdown holds the seven metric columns only. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S21-R7, S21-R8, S18-R13, S14-R20), read on 11 August 2026.
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
 AUTOMATION: READY","SV-8638; SV-8631 (SBR spec v15 2026-07-29 S21-R7; S21-R8; S18-R13; S14-R20 — per-row Location column; ""Multiple"" on a rep row spanning locations; position after Status; constant-width filter; S14-R20 = the same column in all four exports)",,
@@ -215,7 +217,7 @@ AUTOMATION: READY",SV-8623 (SBR spec v15 2026-07-29 Story 5 S5-R1; S5-R4; S5-N1;
 "Row layout: 12 columns in order, blanks in position, bold summary rows",SBR — Rep Rows & Tree,Functional,High,1. You are on the report with at least one rep expanded.,"1. Read the column headers left to right.
 2. Read a rep summary row cell by cell.
 3. Compare the font weight of a summary row and a detail row.
-4. Look for any cell whose content has shifted into a neighbouring column or wrapped; check the desktop Totals row's leading cells.","1. With a single location in scope the columns appear left to right: Date, Invoice, Customer, Status, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal (12 columns). When more than one location is in scope the automatic Location column is added immediately after Status, making 13.
+4. Look for any cell whose content has shifted into a neighbouring column or wrapped; check the desktop Totals row's leading cells.","1. With a single location in scope the columns appear left to right: Date, Invoice, Customer, Status, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal (12 columns). When the Location column is shown — it is shown by default to anyone whose login can reach more than one location — it sits immediately after Status, making 13.
 2. On a rep summary row the Date cell holds the chevron control followed by the rep's display name (""First Last""); the date value is intentionally blank.
 3. The Invoice, Customer, and Status cells are blank on summary rows; the metric cells carry the rep's totals across all matching invoices.
 4. Rep summary rows are bold (700) so they read as parent rows; detail rows use the default weight (400) — row type is distinguished by font weight, not background color.
@@ -302,7 +304,7 @@ AUTOMATION: READY - EXPECT FAIL (SV-8974)",SV-8624 (SBR spec v15 2026-07-29 Stor
 Status badge between Customer and Inv. Hrs; every detail row shows mapped text,SBR — Payment Status Badge,Functional,High,"1. Invoices exist covering paid, overpaid, prepaid (zero balance), prepaid (balance owed), partially paid, and unpaid.
 2. The owning rep is expanded.","1. Locate the Status column relative to its neighbours.
 2. Read the badge on each seeded invoice's detail row.
-3. Look at a badge's vertical position in its cell, read the Status cell on a rep summary row, and check the status is readable from the badge text alone.","1. The Status column sits immediately after the Customer column. With a single location in scope the next column to its right is Inv. Hrs; when more than one location is in scope the automatic Location column is inserted immediately after Status, so Inv. Hrs then follows Location.
+3. Look at a badge's vertical position in its cell, read the Status cell on a rep summary row, and check the status is readable from the badge text alone.","1. The Status column sits immediately after the Customer column. With a single location in scope the next column to its right is Inv. Hrs; when the Location column is shown it is inserted immediately after Status, so Inv. Hrs then follows Location.
 2. Every detail row renders a small colored badge reading ""Paid,"" ""Partially Paid,"" or ""Unpaid"" — badge rendering is unconditional on detail rows.
 3. The mapping is: paid → Paid; overpaid → Paid; prepaid with zero balance → Paid; prepaid with a balance owed → Partially Paid; partially_paid → Partially Paid; unpaid → Unpaid.
 4. Badges are vertically centered in their cells; on rep summary rows the Status cell is blank; the badge's text is the accessible label — status is never conveyed by color alone.
@@ -849,7 +851,7 @@ Summary PDF: one rolled-up row per rep with a recomputed grand totals row,SBR �
 2. Read the top of the first page, the column headers, one rep row, and the last row.
 3. Compare the totals row's Margin % against the child rows.","1. The PDF is A4 portrait, edge-to-edge, with a header strip on the first page showing the workplace name and address, the organization logo, the report title ""Sales By Representative,"" and the selected date range.
 2. There is one rolled-up row per rep, in the report's currently-active order; a toggled-off contributor's name carries the ""(Inactive)"" tag.
-3. With a single location in scope the columns are: Rep / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal. When more than one location is in scope a Location column is added immediately after the Representative name and before the money columns, and a rep who spans more than one location reads ""Multiple"".
+3. With a single location in scope the columns are: Rep / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal. When the Location column is shown on screen a Location column is added immediately after the Representative name and before the money columns, and a rep who spans more than one location reads ""Multiple"".
 4. Subtotal is bolded across the header, the body rows, and the grand totals row; Inv. Hrs keeps its green/red/default coloring.
 5. The grand totals row reads ""Totals"" in the Rep cell and aggregates every summary row in the document (including the Unassigned row when Show Unassigned is on); its Margin % is RECOMPUTED as total Margin ÷ total Subtotal (shown ""—"" when that Subtotal is zero or below), never the sum or average of the rows' percentages.
 
@@ -862,7 +864,7 @@ Expanded View PDF: one page-block per rep with its own totals; no grand,SBR — 
 2. Check how each rep's section starts and what its table contains.
 3. Read the last row of one rep's block and the end of the document.
 4. Compare the order of one rep's invoices against the on-screen expanded order.","1. There is one page-block per rep, in the report's currently-active order, with a page break before each new rep after the first.
-2. Each block shows the header strip (workplace name and address, organization logo, title ""Sales By Representative,"" the selected date range), the rep's name, and a per-invoice table with columns: Date / Invoice / Customer / Status / (Location, only when more than one location is in scope, carrying that invoice's own location) / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal.
+2. Each block shows the header strip (workplace name and address, organization logo, title ""Sales By Representative,"" the selected date range), the rep's name, and a per-invoice table with columns: Date / Invoice / Customer / Status / (Location, whenever that column is shown on screen, carrying that invoice's own location) / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal.
 3. The Status column renders the same colored badge as on screen, vertically centered.
 4. Invoices are ordered newest first (the same order as the on-screen expansion: invoice date descending, numeric invoice-number tie-break).
 5. Each block ends with a per-rep totals row — ""Totals"" in the Date cell; Invoice/Customer/Status blank; each metric aggregated; Margin % recomputed.
@@ -941,7 +943,7 @@ AUTOMATION: READY
 4. ""# Invoices"" equals the on-screen (N); ""# Customers"" counts distinct customers across those invoices (de-duplicated across locations when several are selected).
 5. The CSV has NO totals row.
 6. Note for the tester: the heading in this file reads simply ""Representative"". The product owner has confirmed that is correct and not slang, so do not fail the test for it.
-7. When more than one location is in scope the file also carries a Location column, immediately after the Representative name and before the money columns; a rep whose invoices span more than one location reads ""Multiple"".
+7. When the Location column is shown on screen the file also carries it, immediately after the Representative name and before the money columns; a rep whose invoices span more than one location reads ""Multiple"".
 What you should see today: the Summary spreadsheet arrives with only nine of the thirteen column headings - # Invoices, # Customers, Hrs Worked and Hrs Invoiced are all absent - and the file still ends with a Totals row that this version is not supposed to have. The Location column, the UTF-8 marker and the one-row-per-representative shape are all correct. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8880
 · If you see exactly that, mark this test FAILED and do not raise anything new.
 · If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
@@ -958,7 +960,7 @@ AUTOMATION: READY - EXPECT FAIL (SV-8880)",SV-8631 (SBR spec v15 2026-07-29 Stor
 2. With a single location in scope the headers, in order, are: Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.
 3. There is one header row plus one row per invoice, flattened across all reps in the report's currently-active order, for the current filtered view.
 4. Note for the tester: the heading in this file reads simply ""Representative"". The product owner has confirmed that is correct and not slang, so do not fail the test for it.
-5. When more than one location is in scope the file also carries a Location column immediately after Status — the position it holds on screen — and every row shows that invoice's own exact location, never ""Multiple"".
+5. When the Location column is shown on screen the file also carries it immediately after Status — the position it holds on screen — and every row shows that invoice's own exact location, never ""Multiple"".
 What you should see today: the Expanded spreadsheet puts Invoice # BEFORE Date instead of after it, and heads that column ""Invoice Status"" instead of ""Status"". Everything else in the heading row is right, including the Location column in its correct place after the status column. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8972
 · If you see exactly that, mark this test FAILED and do not raise anything new.
 · If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.

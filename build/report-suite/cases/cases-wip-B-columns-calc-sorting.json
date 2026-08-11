@@ -16,7 +16,7 @@
       "1. Read the column headers from left to right.",
       "2. Look at how the values in each column are aligned."
     ],
-    "expected": "1. The columns appear in this order: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total.\n2. WO #, Status, Customer, Asset, VIN, Location, and Advisor are left-aligned.\n3. Every other column (Days Open, Last Activity, and all money/number columns through Total) is right-aligned.\nWhat you should see today: the columns are in exactly the order listed and every left-aligned column is correct, but the Last Activity column sits on the LEFT when it should be on the right - it is the only one in the right-aligned group that is wrong. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8987\n· If you see exactly that, mark this test FAILED and do not raise anything new.\n· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R1, S4-R3, S4-R4), read on 11 August 2026, and it holds whichever way the one unsettled point about the Location column is decided. Chris Ward confirmed the column order on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8987)",
+    "expected": "1. The columns appear in this order: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total.\n2. WO #, Status, Customer, Asset, VIN, Location, and Advisor are left-aligned.\n3. Every other column (Days Open, Last Activity, and all money/number columns through Total) is right-aligned.\nWhat you should see today: the columns are in exactly the order listed and every left-aligned column is correct, but the Last Activity column sits on the LEFT when it should be on the right - it is the only one in the right-aligned group that is wrong. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8987\n· If you see exactly that, mark this test FAILED and do not raise anything new.\n· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R1, S4-R3, S4-R4), read on 11 August 2026. Chris Ward confirmed the column order on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8987)",
     "design_ref": "none — design not yet available (spec-only authoring)",
     "spec_ref": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R1; S4-R3; S4-R4 — the Location column is no longer in the column selector; it shows automatically when more than one location is in scope)",
     "viu_status": "VIU-Pending",
@@ -610,5 +610,74 @@
     "refs": "SV-8660 (WIP spec v10 2026-08-06 Story 4 S4-R5 — the negative half: a person without Work Order permission sees the WO # as plain text and not a link)",
     "testrail_id": "C43557",
     "section_id": 4353
+  },
+  {
+    "id": "WIP-CALC-11",
+    "area": "WIP — Earned & Remaining",
+    "title": "A fixed-price line is valued at its fixed amount, not at picked parts or hours",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. A ZZAUTOTEST open work order exists with an approved line priced as a fixed labor total — for example a fixed $500.00 — where the hourly rate multiplied by the quoted hours would give a different number.",
+      "3. A second ZZAUTOTEST open work order exists with an approved line carrying a fixed line total split into a labor portion and a parts portion, where the parts actually picked for it are worth a different amount."
+    ],
+    "steps": "1. Open the Work In Progress report and find the first work order's row.\n2. Read its Labor Earned, Labor Remaining and Total, and compare them against the line's fixed labor amount.\n3. Find the second work order's row and read its Parts Earned and Parts Remaining.\n4. Compare those against the fixed parts portion, and separately against the sell value of the parts actually picked for the line.",
+    "expected": "1. The first work order's money comes from the line's fixed labor amount — the figure the customer is billed — not from the quoted hours multiplied by an hourly rate.\n2. Labor Earned plus Labor Remaining for that line adds up to the fixed amount.\n3. The second work order's parts money comes from the fixed parts portion of the line total, not from the sell value of the parts picked against it.\n4. Parts Earned plus Parts Remaining for that line adds up to the fixed parts portion.\nNote for the tester: on a fixed-price line the customer pays the agreed figure whatever is actually picked or clocked, so the report is expected to show the agreed figure. A difference between the report and the underlying parts or hours is correct here, not a fault.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (the Key Decision on fixed-price valuation added on 2026-08-10 per SV-9028, SV-9035, SV-9040 and SV-9044), read on 11 August 2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8660 (WIP spec v11 2026-08-10 §3 Key Decisions — fixed-price lines are valued at the fixed amounts the customer is billed rather than underlying picked parts or an hourly derivation; added 2026-08-10 per SV-9028; SV-9035; SV-9040; SV-9044)",
+    "viu_status": "VIU-Pending",
+    "notes": "Authored 2026-08-11 for the WIP v11 §3 Key Decision on fixed-price valuation. NO WIP case mentioned fixed-price at all before this.",
+    "api_related": false,
+    "refs": "SV-8660 (WIP spec v11 2026-08-10 §3 Key Decisions — fixed-price lines are valued at the fixed amounts the customer is billed rather than underlying picked parts or an hourly derivation; added 2026-08-10 per SV-9028; SV-9035; SV-9040; SV-9044)",
+    "testrail_id": "C43592",
+    "section_id": 4354
+  },
+  {
+    "id": "WIP-CALC-12",
+    "area": "WIP — Earned & Remaining",
+    "title": "A fixed-price line with no invoiced hours earns all at once when it is completed",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. A ZZAUTOTEST open work order exists with an approved fixed-price line and NO invoiced hours recorded against it.",
+      "3. You are able to mark that line completed."
+    ],
+    "steps": "1. Open the Work In Progress report and read the work order's Earned, Remaining and Total.\n2. Mark the fixed-price line completed.\n3. Reload the Work In Progress report and read the same figures again.\n4. Check the work order's Remaining once every line on it is completed.",
+    "expected": "1. Before the line is completed the whole fixed amount sits in Remaining and Earned shows nothing for it — it does not creep up in stages.\n2. After the line is completed the whole fixed amount has moved to Earned and Remaining shows nothing for it.\n3. Total is unchanged throughout — the money moves between Earned and Remaining rather than appearing or disappearing.\n4. Once every line is completed the work order has no value left in Remaining.\nNote for the tester: this all-at-once move is expected when there are no invoiced hours to measure progress with. A fixed-price line that DOES have invoiced hours is shared between Earned and Remaining in proportion instead, and that is a different test.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (the Key Decision on fixed-price valuation added on 2026-08-10 per SV-9028, SV-9035, SV-9040 and SV-9044), read on 11 August 2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8660 (WIP spec v11 2026-08-10 §3 Key Decisions — with no invoiced hours the full fixed amount stays in Remaining until the line is completed then moves entirely to Earned; a completed WO never leaves value in Remaining; per SV-9028; SV-9035)",
+    "viu_status": "VIU-Pending",
+    "notes": "Authored 2026-08-11 for the WIP v11 §3 Key Decision on binary earning of a fixed-price line with no invoiced hours.",
+    "api_related": false,
+    "refs": "SV-8660 (WIP spec v11 2026-08-10 §3 Key Decisions — with no invoiced hours the full fixed amount stays in Remaining until the line is completed then moves entirely to Earned; a completed WO never leaves value in Remaining; per SV-9028; SV-9035)",
+    "testrail_id": "C43593",
+    "section_id": 4354
+  },
+  {
+    "id": "WIP-CALC-13",
+    "area": "WIP — Earned & Remaining",
+    "title": "Core charges count in parts value and a core decision never moves the figures",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. A ZZAUTOTEST open work order exists with an approved parts line for a part that carries a core charge, and the part has been received so its value has been earned.",
+      "3. The returned core is waiting to be marked OK or Not OK."
+    ],
+    "steps": "1. Open the Work In Progress report and write down the work order's Parts Earned, Parts Remaining, Earned, Remaining and Total.\n2. Mark the returned core OK.\n3. Reload the Work In Progress report and read the same five figures again.\n4. On a second work order in the same state, mark the returned core Not OK, reload and read the same five figures again.",
+    "expected": "1. The core charge is counted in the work order's parts money — Parts Earned once the part is received, and Parts Remaining while it is still outstanding.\n2. After marking the core OK all five figures are exactly as they were before.\n3. After marking the core Not OK all five figures are again exactly as they were before.\nNote for the tester: deciding a core is handled when the invoice is raised, which is outside this report, so this report is expected not to move at all. If a figure changes when you mark a core, that is a fault worth reporting.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (the Key Decision on core charges added on 2026-08-10 per SV-9057 and SV-9058), read on 11 August 2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8660 (WIP spec v11 2026-08-10 §3 Key Decisions — a core charge counts in Parts Remaining and Parts Earned at every stage; marking a returned core OK or Not OK never moves the report's figures; added 2026-08-10 per SV-9057; SV-9058)",
+    "viu_status": "VIU-Pending",
+    "notes": "Authored 2026-08-11 for the WIP v11 §3 Key Decision on core charges. C30478 covered Parts Remaining only; the OK/Not-OK invariance had no case.",
+    "api_related": false,
+    "refs": "SV-8660 (WIP spec v11 2026-08-10 §3 Key Decisions — a core charge counts in Parts Remaining and Parts Earned at every stage; marking a returned core OK or Not OK never moves the report's figures; added 2026-08-10 per SV-9057; SV-9058)",
+    "testrail_id": "C43594",
+    "section_id": 4354
   }
 ]

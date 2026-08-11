@@ -64,11 +64,13 @@ Each qualifying work order appears exactly once in exactly one tab,WIP — Scope
 3. Find the estimate with nothing approved and read its money columns.","1. Each qualifying work order appears exactly once, in exactly one tab.
 2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both showing ""$0.00"".
 
+Note for the tester: the written description now says two different things about how a work order is placed into a tab. The Story 2 and Story 3 requirements — the ones this test follows — place a whole work order in one tab according to its status. A newer Key Decisions section says placement follows each LINE's state instead, so a work order whose lines are in different states would show in more than one tab, each showing only that tab's share of its money. The product owner has been asked which is right and has not answered. Until he does: if you see a work order in more than one tab, do NOT raise a bug and do NOT fail this test for it — write down what you saw and carry on. The question is here: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/questions-2026-08-06/Questions-for-Chris-Ward_Report-Suite_2026-08-11.xlsx
+
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S2-R4), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S2-R4), read on 11 August 2026. That specification also carries a newer Key Decision, added in version 11, stating that buckets are keyed on line state rather than work-order status and that a work order with lines in several states appears in each matching tab. The two cannot both be true. Chris Ward has been asked which governs, so the requirement above is asserted unchanged and the newer reading is not asserted here.
 Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY",SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-R4; §3 Key Decisions (every open job is listed)),,
+AUTOMATION: HOLD - the specification states two different tab-placement rules (whole work order by status, or per line state) and the product owner has been asked which governs",SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-R4; §3 Key Decisions (every open job is listed)),,
 While loading the standard indicator shows and old rows stay until data,WIP — Scope & Loading,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Change the date range to a different preset and watch the data area while the report reloads.
 2. Change the location selection and watch the data area again.","1. While the report is loading, the data area shows the standard reports loading indicator.
@@ -100,22 +102,26 @@ AUTOMATION: READY",SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-N1; S2-N2; Story 6
 2. The Complete work order appears in the ""Completed"" tab and nowhere else.
 3. The In Progress and Review work orders appear in the ""Approved - Partially Completed"" tab and nowhere else.
 
+Note for the tester: the written description now says two different things about how a work order is placed into a tab. The Story 2 and Story 3 requirements — the ones this test follows — place a whole work order in one tab according to its status. A newer Key Decisions section says placement follows each LINE's state instead, so a work order whose lines are in different states would show in more than one tab, each showing only that tab's share of its money. The product owner has been asked which is right and has not answered. Until he does: if you see a work order in more than one tab, do NOT raise a bug and do NOT fail this test for it — write down what you saw and carry on. The question is here: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/questions-2026-08-06/Questions-for-Chris-Ward_Report-Suite_2026-08-11.xlsx
+
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S3-R1, S3-R2, S3-R3), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S3-R1, S3-R2, S3-R3), read on 11 August 2026. That specification also carries a newer Key Decision, added in version 11, stating that buckets are keyed on line state rather than work-order status and that a work order with lines in several states appears in each matching tab. The two cannot both be true. Chris Ward has been asked which governs, so the requirement above is asserted unchanged and the newer reading is not asserted here.
 Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY",SV-8659 (WIP spec v6 2026-07-29 Story 3 S3-R1; S3-R2; S3-R3),,
+AUTOMATION: HOLD - the specification states two different tab-placement rules (whole work order by status, or per line state) and the product owner has been asked which governs",SV-8659 (WIP spec v6 2026-07-29 Story 3 S3-R1; S3-R2; S3-R3),,
 Approved started-boundary: time or part received vs neither decides the tab,WIP — Tab Placement,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. Three ZZAUTOTEST service work orders in Approved status exist within the current date range and location: one where a technician has clocked time, one where a part has been received (and no time clocked), and one with neither.","1. Open the Work In Progress report.
 2. Look for each of the three Approved work orders in each tab.","1. The Approved work order with clocked labor time appears in the ""Approved - Partially Completed"" tab.
 2. The Approved work order with a received part (and no clocked time) also appears in the ""Approved - Partially Completed"" tab — either kind of started work counts.
 3. The Approved work order with no clocked time and no received part appears in the ""Approved - Not Started"" tab and nowhere else.
 
+Note for the tester: the written description now says two different things about how a work order is placed into a tab. The Story 2 and Story 3 requirements — the ones this test follows — place a whole work order in one tab according to its status. A newer Key Decisions section says placement follows each LINE's state instead, so a work order whose lines are in different states would show in more than one tab, each showing only that tab's share of its money. The product owner has been asked which is right and has not answered. Until he does: if you see a work order in more than one tab, do NOT raise a bug and do NOT fail this test for it — write down what you saw and carry on. The question is here: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/questions-2026-08-06/Questions-for-Chris-Ward_Report-Suite_2026-08-11.xlsx
+
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S3-R4), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S3-R4), read on 11 August 2026. That specification also carries a newer Key Decision, added in version 11, stating that buckets are keyed on line state rather than work-order status and that a work order with lines in several states appears in each matching tab. The two cannot both be true. Chris Ward has been asked which governs, so the requirement above is asserted unchanged and the newer reading is not asserted here.
 Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY",SV-8659 (WIP spec v6 2026-07-29 Story 3 S3-R4 (started + not-started branches + context note)),,
+AUTOMATION: HOLD - the specification states two different tab-placement rules (whole work order by status, or per line state) and the product owner has been asked which governs",SV-8659 (WIP spec v6 2026-07-29 Story 3 S3-R4 (started + not-started branches + context note)),,
 "With all toggleable columns on, the fixed column order and alignment hold",WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.
 3. Every toggleable column is turned on in the column-selection control.
@@ -129,7 +135,7 @@ What you should see today: the columns are in exactly the order listed and every
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R1, S4-R3, S4-R4), read on 11 August 2026, and it holds whichever way the one unsettled point about the Location column is decided. Chris Ward confirmed the column order on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R1, S4-R3, S4-R4), read on 11 August 2026. Chris Ward confirmed the column order on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026
 Last checked against build v3.5-f77875c on 8/6/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8987)",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R1; S4-R3; S4-R4 — the Location column is no longer in the column selector; it shows automatically when more than one location is in scope),,
@@ -382,6 +388,50 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-f77875c on 8/6/2026.
 
 AUTOMATION: READY",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R15; §4 Terminology (Earned) — spec silent on running clocks; tech-plan-2026-07-29 B1.2 open-clock policy),,
+"A fixed-price line is valued at its fixed amount, not at picked parts or hours",WIP — Earned & Remaining,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. A ZZAUTOTEST open work order exists with an approved line priced as a fixed labor total — for example a fixed $500.00 — where the hourly rate multiplied by the quoted hours would give a different number.
+3. A second ZZAUTOTEST open work order exists with an approved line carrying a fixed line total split into a labor portion and a parts portion, where the parts actually picked for it are worth a different amount.","1. Open the Work In Progress report and find the first work order's row.
+2. Read its Labor Earned, Labor Remaining and Total, and compare them against the line's fixed labor amount.
+3. Find the second work order's row and read its Parts Earned and Parts Remaining.
+4. Compare those against the fixed parts portion, and separately against the sell value of the parts actually picked for the line.","1. The first work order's money comes from the line's fixed labor amount — the figure the customer is billed — not from the quoted hours multiplied by an hourly rate.
+2. Labor Earned plus Labor Remaining for that line adds up to the fixed amount.
+3. The second work order's parts money comes from the fixed parts portion of the line total, not from the sell value of the parts picked against it.
+4. Parts Earned plus Parts Remaining for that line adds up to the fixed parts portion.
+Note for the tester: on a fixed-price line the customer pays the agreed figure whatever is actually picked or clocked, so the report is expected to show the agreed figure. A difference between the report and the underlying parts or hours is correct here, not a fault.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (the Key Decision on fixed-price valuation added on 2026-08-10 per SV-9028, SV-9035, SV-9040 and SV-9044), read on 11 August 2026.
+
+AUTOMATION: READY",SV-8660 (WIP spec v11 2026-08-10 §3 Key Decisions — fixed-price lines are valued at the fixed amounts the customer is billed rather than underlying picked parts or an hourly derivation; added 2026-08-10 per SV-9028; SV-9035; SV-9040; SV-9044),,
+A fixed-price line with no invoiced hours earns all at once when it is completed,WIP — Earned & Remaining,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. A ZZAUTOTEST open work order exists with an approved fixed-price line and NO invoiced hours recorded against it.
+3. You are able to mark that line completed.","1. Open the Work In Progress report and read the work order's Earned, Remaining and Total.
+2. Mark the fixed-price line completed.
+3. Reload the Work In Progress report and read the same figures again.
+4. Check the work order's Remaining once every line on it is completed.","1. Before the line is completed the whole fixed amount sits in Remaining and Earned shows nothing for it — it does not creep up in stages.
+2. After the line is completed the whole fixed amount has moved to Earned and Remaining shows nothing for it.
+3. Total is unchanged throughout — the money moves between Earned and Remaining rather than appearing or disappearing.
+4. Once every line is completed the work order has no value left in Remaining.
+Note for the tester: this all-at-once move is expected when there are no invoiced hours to measure progress with. A fixed-price line that DOES have invoiced hours is shared between Earned and Remaining in proportion instead, and that is a different test.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (the Key Decision on fixed-price valuation added on 2026-08-10 per SV-9028, SV-9035, SV-9040 and SV-9044), read on 11 August 2026.
+
+AUTOMATION: READY",SV-8660 (WIP spec v11 2026-08-10 §3 Key Decisions — with no invoiced hours the full fixed amount stays in Remaining until the line is completed then moves entirely to Earned; a completed WO never leaves value in Remaining; per SV-9028; SV-9035),,
+Core charges count in parts value and a core decision never moves the figures,WIP — Earned & Remaining,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. A ZZAUTOTEST open work order exists with an approved parts line for a part that carries a core charge, and the part has been received so its value has been earned.
+3. The returned core is waiting to be marked OK or Not OK.","1. Open the Work In Progress report and write down the work order's Parts Earned, Parts Remaining, Earned, Remaining and Total.
+2. Mark the returned core OK.
+3. Reload the Work In Progress report and read the same five figures again.
+4. On a second work order in the same state, mark the returned core Not OK, reload and read the same five figures again.","1. The core charge is counted in the work order's parts money — Parts Earned once the part is received, and Parts Remaining while it is still outstanding.
+2. After marking the core OK all five figures are exactly as they were before.
+3. After marking the core Not OK all five figures are again exactly as they were before.
+Note for the tester: deciding a core is handled when the invoice is raised, which is outside this report, so this report is expected not to move at all. If a figure changes when you mark a core, that is a fault worth reporting.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (the Key Decision on core charges added on 2026-08-10 per SV-9057 and SV-9058), read on 11 August 2026.
+
+AUTOMATION: READY",SV-8660 (WIP spec v11 2026-08-10 §3 Key Decisions — a core charge counts in Parts Remaining and Parts Earned at every stage; marking a returned core OK or Not OK never moves the report's figures; added 2026-08-10 per SV-9057; SV-9058),,
 The initial sort is Days Open with the longest-open work order first,WIP — Sorting,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A tab shows several work orders created on different dates.","1. Open the Work In Progress report without clicking any column header.
 2. Read the Days Open values from the top row down.","1. The rows are sorted by Days Open, longest-open first (descending).
@@ -881,7 +931,7 @@ What you should see today: Nothing downloads. Both Download (PDF) and Download (
 - If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R11, S9-R12, S9-R13), read on 11 August 2026. One caution for anyone checking the source: version 10 of that specification uses the number S9-R11 for two different requirements — one about a size limit on downloads, one about the success message. This test rests on the success-message one, under Error handling.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R11, S9-R12, S9-R13), read on 11 August 2026. One caution for anyone checking the source: version 11 of that specification uses the number S9-R11 for two different requirements — one about a size limit on downloads, one about the success message. This test rests on the success-message one, under Error handling.
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8907)",SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R11; S9-R12; S9-R13; §7 User Feedback Summary),,
