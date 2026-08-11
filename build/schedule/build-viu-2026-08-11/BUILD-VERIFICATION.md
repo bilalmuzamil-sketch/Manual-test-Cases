@@ -198,24 +198,24 @@ pass", which is no longer ours to answer.
 | | Count |
 |---|---|
 | Cases carrying **at least one quoted UI label** | **57** |
-| — labels **CONFIRMED correct** | **22** |
+| — labels **CONFIRMED correct** | **25** |
 | — **NEEDING A CORRECTION** | **12** |
-| — **PARTLY** checked (some labels on a surface still not reached) | **25** |
+| — **PARTLY** checked (some labels on a surface still not reached) | **22** |
 | Cases carrying **NO quoted UI label**, so nothing for a label diff to check | **117** |
 | **Total** | **174** |
 
-**22 + 12 + 25 = 59 verdict-slots across 57 cases** (two cases fall in two buckets). **57 + 117 = 174.**
+**25 + 12 + 22 = 59 slots across 57 cases** (two cases fall in two buckets). **57 + 117 = 174.**
 
-**SURFACES HARVESTED: 24** (15 on the Schedule page + 9 across admin and filtered states).
-**DISTINCT BUILD STRINGS CAPTURED: 1,144.** **Quoted labels swept across all 174 cases: 43.**
+**SURFACES HARVESTED: 34.** **DISTINCT BUILD STRINGS CAPTURED: 1,184.** Quoted labels swept across all
+174 cases: **43**.
 
-**Movement this round: partly-checked 26 → 25.** One closed by reaching a filter-active state; the rest
-are blocked by the two limits in §5 — **neither of which is a data problem**, so the widened
-seeding permission did not help and **nothing was seeded.**
+**Movement across the whole pass: partly-checked 26 → 25 → 22; confirmed 22 → 25.** Three closed by
+reaching the scope picker and its tick-box sub-state. **The staged-correction count is unchanged at 12**
+throughout — no new mismatch was found in the deeper surfaces, which is itself worth knowing.
 
-**What was NOT done, stated plainly:** no behaviour was verdicted; the 174 recorded pass/fail verdicts
-still rest on earlier builds (**90** on `v3.5-7ec992f`, **78** on `v3.5-d122eef` which no longer exists,
-**6** on `v3.5-af3a6e1`) and **this pass did not re-verdict them.**
+**What was NOT done:** no behaviour was verdicted; the 174 recorded pass/fail verdicts still rest on
+earlier builds (**90** `v3.5-7ec992f`, **78** `v3.5-d122eef` which no longer exists, **6**
+`v3.5-af3a6e1`) and **this pass did not re-verdict them.**
 
 ## 5 · WHAT IS STILL NEEDED
 

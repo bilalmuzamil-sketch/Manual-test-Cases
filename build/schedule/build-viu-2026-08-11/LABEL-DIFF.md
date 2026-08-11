@@ -171,6 +171,7 @@ producing 4 confident wrong rows is worth knowing about.**
 | **`N Lines`** on C29964, C29973, C29992, C30011 | **Deliberate placeholder wording.** C29964 spells it out: *"the block's last text line reads 'N Lines' (**with N = the line count**)"*. The build renders `8 Lines`, `4 Lines`, `2 Lines`. The cases are RIGHT — this is Rule 42 wording working as intended. |
 | **`View Day`** and **`New Shift`** on C30054 | The case asserts their **ABSENCE**: *"There is no 'View Day' item — it was removed"*. A string search cannot tell an assertion from a negation. |
 | **`ZZAUTOTEST note` / `ZZAUTOTEST stand-up` / `ZZAUTOTEST Rush`** | Our own throwaway **test-data names**, not build labels. Correctly absent. |
+| **`Cancel`** on C29967 | **Two reasons at once.** The case asserts its **ABSENCE** (a negation a string search cannot read), and the only build match is the lower-case **`cancel`** — a **Material-icon ligature**, i.e. icon glyph text, **not a button label**. **C29967's assertion is CORRECT and independently confirmed** (`FINDINGS.md` F13). |
 
 ### ✅ C30054 is fully correct AND now fully confirmed — all five points
 
