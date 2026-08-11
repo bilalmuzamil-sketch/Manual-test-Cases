@@ -1,20 +1,27 @@
-# Schedule build VIU (labels and wordings) — 2026-08-11, third attempt
+# Schedule build VIU (labels and wordings) — 2026-08-11
 
-## 🟢 THE GOOD NEWS FIRST — THE LOCATION BOUNCE IS GONE
+## 🟢 RESOLVED: BOTH BLOCKERS CLEARED, AND THE PASS RAN
 
-**The QA lead's fix worked.** `https://sv8685.qa.shopview.com/schedule` **no longer redirects to
-`/administration/locations`.** That blocker — the one that stopped the second attempt dead — is
-**cleared, and it is cleared by observation, not by assumption** (screenshot: `evidence/step0-landing.png`).
+The QA lead's location fix cleared the `/administration/locations` bounce, and his fresh sign-in
+cleared the dead session. **The Schedule page was reached on `v3.5-65d6500`, on
+`Staging Heavy Duty - 9919`, and 15 surfaces were harvested.**
 
-## 🔴 AND THE BAD NEWS — A DIFFERENT, NEWER BLOCKER, AND IT IS ALMOST CERTAINLY A SIDE EFFECT OF THAT SAME FIX
+**HIS FRESH SIGN-IN CORROBORATED OUR DIAGNOSIS EXACTLY: only `PHPSESSID` was new — `sv_sso_session`
+and `cf_clearance` came back byte-identical to the set that was 409ing.** That is the first time this
+workspace has proven the failure mode end to end: the **shared** token was alive all along and it was
+the **session record behind our own `PHPSESSID`** that his staff-record edits had invalidated. The
+409-versus-401 control (§2.3) called it correctly, and the ask we sent — a fresh sign-in, not a
+`cf_clearance` — was the right one.
 
-**`/schedule` now redirects to `/login?redirect=/schedule` — the sign-in page.** The held session is
-**dead**: every API read returns **HTTP 409 `{"errors":[{"error":"Session has expired."}]}`**.
+## THE HONEST HEADLINE ON COVERAGE
 
-**0 of 174 build-verified. 174 remain unverified.**
+**Labels were checked against this build for the 57 cases that assert a quoted UI label; 12 of them
+need a wording correction.** The other **117 cases assert no quoted label at all**, so there is nothing
+in them for a label diff to check. **No pass/fail behaviour verdict was reached, and none was sought** —
+the manual QA tester marks the cases (the QA lead's 2026-08-10 ruling, confirmed 2026-08-11).
 
-**0 TestRail writes · 0 Jira calls · 0 environment changes · `quick-login` and `switch-user` never
-called.**
+**0 TestRail writes · 0 Jira calls · 0 data seeded · 0 records modified · `quick-login` and
+`switch-user` never called.**
 
 ---
 
@@ -30,52 +37,50 @@ called.**
 | **Read at pass END** | **2026-08-11T13:20:42Z** |
 | **Moves under the pass** | **0** — version, last-modified, etag **and the sha256** identical at both reads |
 | **Location intended** | `Staging Heavy Duty - 9919` (`b3c8c820-f815-4cf1-8938-10956c5ee71a`, America/Edmonton) |
-| **Location CONFIRMED on screen** | ❌ **NO — and this is stated plainly rather than glossed** |
+| **Location CONFIRMED on screen** | ✅ **YES — the top-bar selector reads `Staging Heavy Duty - 9919`** (`evidence/schedule-page.png`), read BEFORE any observation. Corroborated in the data: the account's `defaultWorkplace` is `b3c8c820-…` / `Staging Heavy Duty - 9919`, and that workplace carries `is_default: 1`. |
 | **Account** | `admin@shopview.com` (Admin) |
 
-### 1.1 · WORKING HOURS — a precondition of this whole pass, REPORTED BY THE QA LEAD AND **NOT** VERIFIED BY US
+### 1.1 · WORKING HOURS — NOW OBSERVED LIVE, ALL SEVEN DAYS, AND SUNDAY IS ANSWERED
 
-The QA lead has **set working hours on `admin@shopview.com`**. As he reports them:
+Read live from `GET /api/staff/{staff_id}/working-hours` at **2026-08-11T13:33:23Z** for
+`admin@shopview.com` (staff `ccbacb31-…`). **This is an observation, not a report** — the earlier
+"NOT VERIFIED" position is discharged.
 
-| | |
-|---|---|
-| *"Set working hours for this technician"* | **ON** |
-| **Monday – Friday** | **7:00 AM – 7:00 PM** |
-| **Saturday** | **Not working** |
-| **Sunday** | **UNKNOWN — below the fold in his screenshot** |
+| Day | Stored | As minutes |
+|---|---|---|
+| **Monday** | **07:00 – 19:00** | 420 – 1140 |
+| **Tuesday** | **07:00 – 19:00** | 420 – 1140 |
+| **Wednesday** | **07:00 – 19:00** | 420 – 1140 |
+| **Thursday** | **07:00 – 19:00** | 420 – 1140 |
+| **Friday** | **07:00 – 19:00** | 420 – 1140 |
+| **Saturday** | **NOT WORKING** | no range stored |
+| **🟢 SUNDAY** | **NOT WORKING** | no range stored |
 
-**⚠️ EVERY ROW OF THAT TABLE IS HIS REPORT, NOT OUR OBSERVATION. WE COULD NOT READ IT LIVE.** The
-session is dead (§2), so no configuration could be fetched at all — the probe at **13:22:38Z** returned
-**409** on `/api/staff` exactly as on everything else. **Under Rule 12 that makes all of it NOT
-VERIFIED**, and it is recorded that way rather than restated as fact. **Sunday is doubly unknown:
-unconfirmed by him and unreadable by us.**
+**Sunday — the value neither of us had — is `not working`.** The endpoint stores **exactly five
+ranges**, `dayOfWeek` 1 to 5.
 
-**Reading it live is the FIRST action once there is a session**, before any hours-dependent
-observation is taken.
+**Why "absent = not working" is safe here rather than an inference:** the day-numbering convention does
+not need resolving, because **no range exists for 0, 6 OR 7**. Under ISO (1=Mon…7=Sun) *and* under the
+JavaScript convention (0=Sun…6=Sat), **both weekend days are absent either way.** The reading is
+convention-independent.
 
-**WHY THIS MATTERS MORE THAN IT LOOKS — AND WHY IT IS RECORDED BEFORE ANY OBSERVATION EXISTS.** These
-hours change what the conflict-detection, capacity-bar and Tech Hours cases should show. With
-07:00–19:00 Monday–Friday and Saturday off, a shift at **06:00**, at **20:00**, or **on a Saturday**
-should now raise the documented conflict; **previously no hours were configured at all**, so those
-paths could not fire. **A Schedule observation is only reproducible if the reader knows what hours
-were in force when it was taken** — which is why this sits beside the build marker and the location
-rather than in a footnote.
+**This matches the QA lead's report on all five weekdays and on Saturday, and settles the sixth.**
+Raw response: `evidence/working-hours-admin.json`.
 
-**AND IT IS EXACTLY THE TRAP THAT ALREADY COST US A TICKET.**
-[SV-8923](https://shopview.atlassian.net/browse/SV-8923) had to be **withdrawn as invalid** because it
-was raised against a shop with **no** business hours configured, when the source case's own
-precondition required them. **So the discipline for every hours-dependent case is: read the
-precondition the CASE states, check it against the configuration actually in force, and only then
-observe.** Where a case requires **different** hours from these, that is recorded **on that case's
-own record as a blocked observation with the reason** — the case is **not** reinterpreted to fit the
-environment, and the environment is **not** adjusted to fit the case (§3).
+**⚠️ ONE THING THIS DOES *NOT* ESTABLISH, AND IT MATTERS (see `FINDINGS.md` F7).** These are
+**`admin@shopview.com`'s** hours. The shifts the build flags as before/after-hours belong to **other
+technicians whose hours were not read**, and the build's message quotes **7:00 AM / 3:00 PM** — the
+3:00 PM boundary is **not** this account's 19:00. **That is NOT evidence of a defect**; a different
+technician's own hours would produce exactly that. Concluding otherwise would repeat the
+[SV-8923](https://shopview.atlassian.net/browse/SV-8923) mistake — a defect raised against a
+configuration nobody checked. **Recorded as the next action, not as a finding.**
 
-**On the location, the honest position:** the QA lead's instruction is to confirm the selector reads
-`Staging Heavy Duty - 9919` **before** taking any observation. **That confirmation could not be
-made — the application never got past the sign-in page, so there was no selector to read.** No
-`change-location` call was made either. **The reason that costs us nothing is that no observation of
-the product was taken at all**, so there is no reading in this pass that needs re-attributing to a
-different shop. **Nothing here may be read as "the location was verified".**
+**Nothing was changed:** the hours were read, not written.
+
+**On the location:** confirmed **on screen first, then in the data** — the selector was read before any
+observation, exactly as the QA lead's standing convention requires, and **every observation in this pass
+was taken on `Staging Heavy Duty - 9919`.** No `change-location` call was made and no workplace was
+switched, so nothing here needs re-attributing to a different shop.
 
 ---
 
@@ -185,47 +190,53 @@ genuinely gone.
 
 ---
 
-## 4 · THE HONEST SPLIT
+## 4 · THE HONEST SPLIT — labels, not verdicts
+
+**The unit is "were this case's asserted labels checked against `v3.5-65d6500`?"** — not "does this case
+pass", which is no longer ours to answer.
 
 | | Count |
 |---|---|
-| Cases build-verified for labels and wordings this pass | **0** |
-| Cases **not** verified | **174** |
-| Reason | **The application could not be signed into.** The session behind the supplied cookie set is invalidated (HTTP 409), so the product was never reached. |
+| Cases carrying **at least one quoted UI label** | **57** |
+| — of those, **labels CONFIRMED correct** | **22** |
+| — of those, **NEEDING A CORRECTION** | **12** |
+| — of those, **PARTLY checked** (some labels sit on a surface not reached) | **26** |
+| Cases carrying **NO quoted UI label**, so nothing for a label diff to check | **117** |
+| **Total** | **174** |
 
-**0 + 174 = 174.** No case was inferred, and no label was taken from the specification, from our own
-case text, or from a previous pass to pad that number (Rule 12).
+**22 + 12 + 26 = 60 verdict-slots across 57 cases** (three cases fall in two buckets, having some labels
+confirmed and others unreachable). **57 + 117 = 174.**
 
-**Unchanged from the previous pass, and still true:** no case's verdict rests on the build now
-running — the split is **90 on `v3.5-7ec992f` · 78 on `v3.5-d122eef` (which no longer exists) · 6 on
-`v3.5-af3a6e1`**.
+**Surfaces harvested: 15.** **Distinct build strings captured: 909.** **Quoted labels swept across all
+174 cases: 43**, of which **24 sit on surfaces not reached** — mostly behind the scope picker, which
+cannot be opened (§5).
 
----
+**What was NOT done, stated plainly:** no behaviour was verdicted; the 174 recorded pass/fail verdicts
+still rest on earlier builds (**90** on `v3.5-7ec992f`, **78** on `v3.5-d122eef` which no longer exists,
+**6** on `v3.5-af3a6e1`) and **this pass did not re-verdict them**. Steps and navigation were checked
+only where a surface was reached.
 
-## 5 · WHAT IS NEEDED — one thing, and there are two ways to give it
+## 5 · WHAT IS STILL NEEDED
 
-**A signed-in session on `sv8685` for the account he has just configured.** Either:
+**🔴 ONE BLOCKER, AND IT IS A TOOLING LIMIT RATHER THAN AN ACCESS PROBLEM: the scope picker and the
+spread dialog cannot be opened.** They open on a **drag**, and the **click-to-arm alternative has been
+removed** ([SV-8957](https://shopview.atlassian.net/browse/SV-8957)) — re-confirmed on the Schedule page
+this run: no arm test-id, no `aria-label` containing *"by click"*, no arm markup among 909 strings. Our
+tooling cannot complete an HTML5 drag on this grid. **10 cases sit behind it** (C29956, C29958, C29963,
+C29964, C29965, C29967, C29978, C29979, C29983, C29986).
 
-1. **A fresh cookie set** — sign in to `https://sv8685.qa.shopview.com` as `admin@shopview.com` and
-   send the three values (`PHPSESSID`, `sv_sso_session`, `cf_clearance`). **This is the clean route:
-   it disturbs no other worker.**
-   **⚠️ TIMING MATTERS, AND IT IS THE ONE THING THAT WILL WASTE THE SET: sign in AFTER all account
-   configuration is finished.** Each edit to that staff record kills the session that holds it, so a
-   set minted before the next change will already be dead when it reaches us (§2.4).
-2. **Or explicit authorisation for ONE `POST /api/quick-login {"key":"admin"}`** — the playbook's
-   recovery recipe, one call, and it would almost certainly restore access immediately. **But it
-   rotates the shared token and will sign out the sibling workers on the Filters and Report Suite
-   branches**, so it needs his go-ahead *and* a moment when no sibling is mid-write. **Not taken
-   unilaterally.**
+**Reachable, simply not yet visited** — the next session's work, no ask needed: the Working Hours
+settings page (`Add hours`, `Set business hours for this shop`, `Set custom hours for this technician`),
+the Custom Roles admin page (`Reset To Template`, `Time Clock`), a filter-active state (`Clear all`,
+`Needs techs`), and a seeded completed line (`Complete`).
 
-**Once past it, the remaining work is mechanical and roughly an hour.** The label check-list is
-already built and partitioned by the previous pass — **195 distinct strings** asserted across the 174
-cases (`build/schedule/build-verify-2026-08-11/evidence/labels.json`, `partition.json`) — the diff
-tool is written (`tools/diff_labels.py`), and this pass's harvest harness now **reaches and renders
-the SPA correctly** (`tools/step0_land.cjs`, proven by the screenshot). They have somewhere to land
-the moment there is a session.
-
----
+**For the QA lead:**
+1. **Nothing is needed to continue** — the session works and the environment is configured.
+2. **A decision is owed on the 12 staged corrections** (`LABEL-DIFF.md`) — they are pushable as-is, but
+   a sibling owns Schedule writes, so they wait for that pass to clear.
+3. **Two documentation defects to note, neither filed** (creation hold): the specification calls the cell
+   menu a **right-click** menu in §14.1 and §14.2 while §7 says left-click — **the build is left-click**,
+   so the spec is wrong twice; and `Adjust` (C30014) is **not in the shift modal under any wording**.
 
 ## 6 · PROOFS
 
@@ -234,8 +245,15 @@ the moment there is a session.
 - **TestRail: 0 writes, and 0 calls.** A sibling owns the Schedule write pass; its byte-verification
   baseline is untouched by us.
 - **Jira: 0 calls of any kind.** The ticket-creation hold (Rule 62) stands untouched.
-- **Environment: nothing created, seeded, modified or restored** — no data, no role, no setting, no
-  default workplace, and no `change-location` call. **There is nothing to restore.**
+- **Environment: NOTHING SEEDED, NOTHING MODIFIED, NOTHING TO RESTORE.** The QA lead widened the brief
+  to permit seeding, and **none was needed** — every surface this pass reached was reachable with the
+  data already present, read-only. **0 records created · 0 records edited · 0 `ZZAUTOTEST` artefacts
+  (none exist from this pass) · 0 settings changed · 0 roles changed · no `change-location` call · the
+  working hours and the default location were READ, never written.** In particular **no edit was made to
+  `admin@shopview.com`**, which is what would have killed the session again.
+- **The scope picker's confirm button was never pressed**, so no shift, event or series was created,
+  moved or deleted. The one interaction that could have written — a drag — is the very thing our tooling
+  cannot complete.
 - **`quick-login` / `switch-user`: never called.** No concurrent worker was signed out by us.
 - **Secrets: none committed.** Cookie values live in `/tmp` only; the evidence files carry cookie
   **names and 8-character prefixes at most**, and the staged diff was scanned for all five live
