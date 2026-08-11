@@ -18,10 +18,10 @@ import os
 import sys
 
 ROOT = "/home/user/Manual-test-Cases/build/report-suite"
-SNAP = f"{ROOT}/spec-delta-2026-08-11/snapshots"
+SNAP = f"{ROOT}/refs-pins-2026-08-11/snapshots"
 DRY = "--apply" not in sys.argv
 
-post = json.load(open(f"{SNAP}/cases-FINAL.json"))
+post = json.load(open(f"{SNAP}/cases-POST.json"))
 live = {c["id"]: c for c in post if c.get("created_by") == 3}
 
 idmap = {}
