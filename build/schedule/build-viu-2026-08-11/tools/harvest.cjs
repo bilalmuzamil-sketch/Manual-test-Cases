@@ -33,6 +33,21 @@ async function open(){
       await route.fulfill({status:r.status,headers:h,body:buf});
     }catch(e){ try{await route.abort();}catch(_){ } }
   });
+  // boot2 hydration (the documented pattern for this SPA — it authenticates from
+  // localStorage, not cookies). EVERY value below mirrors a LIVE read taken this
+  // run: /api/auth/me/fe-permissions, /api/staff and /api/staff/my-workplaces.
+  // Nothing is invented and the stale seed from the earlier pass is NOT reused.
+  const seed=JSON.parse(fs.readFileSync('/tmp/seed2.json','utf8'));
+  await ctx.addInitScript(sd=>{try{
+    localStorage.setItem('user',JSON.stringify(sd.user));
+    localStorage.setItem('fe_permissions_wrapper',JSON.stringify(sd.fp));
+    localStorage.setItem('token',sd.user.data.token);
+    localStorage.setItem('bookkeeping_enabled','false');
+    localStorage.setItem('location',JSON.stringify(sd.wp.id));
+    localStorage.setItem('timezone',sd.wp.tz);
+    localStorage.setItem('country_code',sd.wp.cc);
+    localStorage.setItem('current_shop_id',sd.wp.shop);
+  }catch(e){}}, seed);
   const page=await ctx.newPage();
   return {browser,ctx,page,apiLog};
 }
