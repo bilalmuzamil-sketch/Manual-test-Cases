@@ -1,6 +1,6 @@
 # Schedule build VIU (labels and wordings) — 2026-08-11
 
-## 🟢 RESOLVED: BOTH BLOCKERS CLEARED, AND THE PASS RAN
+## 🟢 RESOLVED: BOTH BLOCKERS CLEARED, THE PASS RAN, AND F7 IS SETTLED
 
 The QA lead's location fix cleared the `/administration/locations` bounce, and his fresh sign-in
 cleared the dead session. **The Schedule page was reached on `v3.5-65d6500`, on
@@ -198,45 +198,56 @@ pass", which is no longer ours to answer.
 | | Count |
 |---|---|
 | Cases carrying **at least one quoted UI label** | **57** |
-| — of those, **labels CONFIRMED correct** | **22** |
-| — of those, **NEEDING A CORRECTION** | **12** |
-| — of those, **PARTLY checked** (some labels sit on a surface not reached) | **26** |
+| — labels **CONFIRMED correct** | **22** |
+| — **NEEDING A CORRECTION** | **12** |
+| — **PARTLY** checked (some labels on a surface still not reached) | **25** |
 | Cases carrying **NO quoted UI label**, so nothing for a label diff to check | **117** |
 | **Total** | **174** |
 
-**22 + 12 + 26 = 60 verdict-slots across 57 cases** (three cases fall in two buckets, having some labels
-confirmed and others unreachable). **57 + 117 = 174.**
+**22 + 12 + 25 = 59 verdict-slots across 57 cases** (two cases fall in two buckets). **57 + 117 = 174.**
 
-**Surfaces harvested: 15.** **Distinct build strings captured: 909.** **Quoted labels swept across all
-174 cases: 43**, of which **24 sit on surfaces not reached** — mostly behind the scope picker, which
-cannot be opened (§5).
+**SURFACES HARVESTED: 24** (15 on the Schedule page + 9 across admin and filtered states).
+**DISTINCT BUILD STRINGS CAPTURED: 1,144.** **Quoted labels swept across all 174 cases: 43.**
+
+**Movement this round: partly-checked 26 → 25.** One closed by reaching a filter-active state; the rest
+are blocked by the two limits in §5 — **neither of which is a data problem**, so the widened
+seeding permission did not help and **nothing was seeded.**
 
 **What was NOT done, stated plainly:** no behaviour was verdicted; the 174 recorded pass/fail verdicts
 still rest on earlier builds (**90** on `v3.5-7ec992f`, **78** on `v3.5-d122eef` which no longer exists,
-**6** on `v3.5-af3a6e1`) and **this pass did not re-verdict them**. Steps and navigation were checked
-only where a surface was reached.
+**6** on `v3.5-af3a6e1`) and **this pass did not re-verdict them.**
 
 ## 5 · WHAT IS STILL NEEDED
 
-**🔴 ONE BLOCKER, AND IT IS A TOOLING LIMIT RATHER THAN AN ACCESS PROBLEM: the scope picker and the
-spread dialog cannot be opened.** They open on a **drag**, and the **click-to-arm alternative has been
-removed** ([SV-8957](https://shopview.atlassian.net/browse/SV-8957)) — re-confirmed on the Schedule page
-this run: no arm test-id, no `aria-label` containing *"by click"*, no arm markup among 909 strings. Our
-tooling cannot complete an HTML5 drag on this grid. **10 cases sit behind it** (C29956, C29958, C29963,
-C29964, C29965, C29967, C29978, C29979, C29983, C29986).
+**Two limits remain, and NEITHER is fixable by seeding** — which matters, because the QA lead widened
+the brief to permit seeding freely and **it is not the constraint.** Nothing was seeded.
 
-**Reachable, simply not yet visited** — the next session's work, no ask needed: the Working Hours
-settings page (`Add hours`, `Set business hours for this shop`, `Set custom hours for this technician`),
-the Custom Roles admin page (`Reset To Template`, `Time Clock`), a filter-active state (`Clear all`,
-`Needs techs`), and a seeded completed line (`Complete`).
+**🔴 LIMIT 1 — THE DRAG. A GENUINE TOOLING LIMIT, NOW MEASURED (see `FINDINGS.md` F11).** Six
+techniques were tried, including CDP `Input.dispatchDragEvent`, a synthesised `DragEvent` with a real
+`DataTransfer`, and slow multi-step pointer drags from both the card and the line-row handle. The grid is
+**FullCalendar `resourceTimeline`**; there is **no HTML5 drag source anywhere** (`draggable="true"` on 0
+elements) and **`data-schedule-drop` matches 0 elements**, so drop targets resolve through
+FullCalendar's internal hit-testing. **Instrumentation proves our input reached the application** —
+`pointerdown` ×2, `pointermove` ×51, `pointerup` ×2 — **and it still did not start a drag.**
+**10 cases stay NOT OBSERVED:** C29956, C29958, C29963, C29964, C29965, C29967, C29978, C29979,
+C29983, C29986. **No shift was POSTed to fake the picker.**
+
+**LIMIT 2 — four dialogs were not opened**, a click-targeting shortfall rather than an access or data
+problem: `Reset To Template` (Roles & Permissions), `Add hours` / `Set business hours for this shop` /
+`Set custom hours for this technician` (Staff and Locations). **The real routes are now recorded** —
+`/administration/roles-permissions` and `/administration/staff`; the ones we guessed
+(`/administration/roles`, `/administration/working-hours`) **do not exist** (`FINDINGS.md` F12). Next
+session's work, no ask needed.
 
 **For the QA lead:**
-1. **Nothing is needed to continue** — the session works and the environment is configured.
-2. **A decision is owed on the 12 staged corrections** (`LABEL-DIFF.md`) — they are pushable as-is, but
-   a sibling owns Schedule writes, so they wait for that pass to clear.
-3. **Two documentation defects to note, neither filed** (creation hold): the specification calls the cell
-   menu a **right-click** menu in §14.1 and §14.2 while §7 says left-click — **the build is left-click**,
-   so the spec is wrong twice; and `Adjust` (C30014) is **not in the shift modal under any wording**.
+1. **Nothing is needed to continue.** Session alive, environment configured and untouched.
+2. **A decision is owed on the 12 staged corrections** (`LABEL-DIFF.md`) — pushable as-is once the
+   sibling's Schedule write pass clears.
+3. **Three things worth your eye, none filed** (creation hold): the specification calls the cell menu a
+   **right-click** menu in §14.1/§14.2 while §7 says left-click and **the build is left-click**;
+   **`Adjust` is not in the shift modal under any wording** (C30014); and the build's conflict message
+   says **"business hours"** when the boundary it applies is demonstrably the **technician's own** hours
+   (F7) — mildly misleading, and a build-wording matter rather than a case error.
 
 ## 6 · PROOFS
 

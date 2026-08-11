@@ -117,36 +117,47 @@ writing to it).
 
 ---
 
-## F7 · Whose hours drive the before/after-hours flag is NOT established — raised, not answered
+## F7 · ✅ RESOLVED — the before/after-hours flag IS measured per technician. The build is CORRECT and C30025's claim is UPHELD
 
-**Observed, verbatim, in the `Schedule issues` panel:** `Starts before business hours (7:00 AM) ·
-Double-booked with Xamont Holdings` and `Extends past business hours (3:00 PM) · Double-booked with
-Kastone Solutions`.
+**This was left open last round because the flagged shifts belonged to technicians whose hours we had
+not read. They have now been read, and the answer is unambiguous: the build is right and our suspicion
+was wrong.**
 
-**Two things follow, and only the first is settled.**
+**The decisive source:** `GET /api/schedule/board?from=<ISO-Z>&to=<ISO-Z>` returns, in one payload,
+each shift's **`conflictReasons`** *and* **`workingWindows` per `staffId` per date** — so every conflict
+can be checked against **its own** technician's window without touching the UI.
 
-**(a) The WORDING is `business hours`, not `working hours`** — a label correction, staged as
-`LABEL-DIFF.md` §2.5.
+**Two technicians on the SAME board have DIFFERENT hours, and each message quotes ITS OWN technician's
+boundary. That is what settles it:**
 
-**(b) WHICH tier of the hierarchy drives the flag is an open question.** C30025 asserts the flag is
-measured against *"that technician's own configured working-day START/END time"*, with a hierarchy of
-technician hours → shop business hours → default. The message says **business hours** and quotes
-**7:00 AM / 3:00 PM**. The working hours we read live on `admin@shopview.com` are **07:00–19:00**, so
-the 3:00 PM boundary is **not** that account's end time.
+| Shift | Technician | That technician's hours | Shift, shop-local | Reason | UI quoted |
+|---|---|---|---|---|---|
+| Goport Energy | **Alicia Campbell** | **06:00 – 15:00** | Tue 08:15 → **18:00** | `after_hours` | **"(3:00 PM)"** = **her 15:00** ✅ |
+| Fuline Enterprises | **MQ Test Tech Qamar** | **07:00 – 19:00** | Tue **06:00** → 14:43 | `before_hours` | **"(7:00 AM)"** = **his 07:00** ✅ |
+| Xamont Holdings | MQ Test Tech Qamar | 07:00 – 19:00 | Tue **06:00** → 13:15 | `before_hours` | **"(7:00 AM)"** ✅ |
+| Brabay Maintenance | Mudassir Qamar | 06:00 – 15:00 | Mon 07:00 → **18:30** | `after_hours` | 3:00 PM boundary ✅ |
+| Zuline Builders | MQ Test Tech Qamar | 07:00 – 19:00 | Mon **05:00** → **00:00** | both | 7:00 AM / 7:00 PM ✅ |
 
-**🛑 THAT IS NOT EVIDENCE OF A DEFECT, AND IT IS IMPORTANT NOT TO REPORT IT AS ONE.** The flagged
-shifts belong to **other technicians** — Alicia Campbell, MQ Test Tech Qamar, MQ Test Tech No — **whose
-configured hours we did not read.** A 3:00 PM boundary is exactly what a *different* technician's own
-hours would produce. **Concluding "the build ignores technician hours" from this would be precisely the
-[SV-8923](https://shopview.atlassian.net/browse/SV-8923) mistake** — a defect raised against a
-configuration that was never checked.
+**Arithmetic checked in the shop's own timezone** (America/Edmonton, UTC−6 in August), and **every row
+holds in both directions** — each flagged shift genuinely breaches its own technician's window, and no
+unflagged shift does.
 
-**What would settle it:** read the working hours of the technicians who own the flagged shifts and
-compare each against its own message. **Not done. Recorded as the next action, not as a finding.**
+**Why it looked wrong before, stated plainly:** we compared a 3:00 PM boundary against
+**`admin@shopview.com`'s** 07:00–19:00. The 3:00 PM shift belongs to a technician configured
+**06:00–15:00**. **Refusing to call that a defect was the right call** — filing it would have been the
+[SV-8923](https://shopview.atlassian.net/browse/SV-8923) mistake exactly: a defect raised against a
+configuration nobody had checked.
 
-**Also observed, and useful context:** the panel header is **`Schedule issues`**; the toolbar pill reads
-**`6 conflicts`** in Day, **`37 conflicts`** in Week, **`122 conflicts`** in Month; and the reason
-sentences compose, e.g. `Starts before business hours (7:00 AM) · Double-booked with Fuline Enterprises`.
+**⚠️ ONE GENUINE OBSERVATION SURVIVES, AND IT IS THE BUILD'S OWN WORDING.** The message says
+**"business hours"** while the boundary is demonstrably the **technician's** configured window. **The
+label says business; the arithmetic is per-technician.** That is mildly misleading to a tester and is
+recorded for the QA lead — **a wording matter in the BUILD, not an error in our case.** **Nothing
+filed** (creation hold).
+
+**Confirmed a third independent way:** each block's own `aria-label` carries the same phrase — e.g.
+*"Shift (conflict: Starts before business hours, Double-booked): Xamont Holdings, 70061328, 4 Lines,
+opens shift details…"*. Evidence: `evidence/board.json` equivalent capture in
+`evidence/surfaces2-dump.json`, `evidence/working-hours-admin.json`.
 
 ---
 
@@ -185,6 +196,70 @@ adds nothing at all** — that surface captured **zero** new strings.
 
 **So C30054 is correct on all five of its points, and the SPECIFICATION is wrong in two places.** A
 documentation defect for the PO — **not a case change, and nothing filed.**
+
+---
+
+## F11 · 🔴 THE DRAG IS A GENUINE TOOLING LIMIT — six techniques, and the evidence shows exactly where it breaks
+
+**The 10 scope-picker cases stay NOT OBSERVED, and this is now a measured conclusion rather than an
+assumption.**
+
+**What the grid actually is:** **FullCalendar `resourceTimeline`** (75 `fc-*` classes,
+`fc-resourceTimelineDay-view`, `fc-resource-timeline`). The sidebar card is
+`sidebar-card--draggable` and carries **`data-schedule-drag="wo:<uuid>"`**.
+
+**The three facts that explain every failure:**
+1. **There is NO HTML5 drag anywhere** — `draggable="true"` on **0** elements, `fc-draggable` on **0**,
+   `window.FullCalendar` not exposed. So the app implements its **own pointer-based drag**.
+2. **`data-schedule-drop` matches 0 elements** while `data-schedule-drag` matches **21** — the app
+   declares drag **sources** in the DOM but resolves drop targets through FullCalendar's internal
+   hit-testing, not an attribute we can aim at.
+3. **Our synthetic input WAS delivered and the app still did not start a drag.** Instrumented with
+   capture-phase listeners, the application received **`pointerdown` ×2, `pointermove` ×51,
+   `pointerup` ×2, `mousedown`/`mousemove`/`mouseup` ×2/51/2**, beginning on
+   `sidebar_work_order_card` and passing over `schedule-lane__title` en route to a verified-empty
+   `fc-timeline-slot-lane` cell. **The pipeline is not the problem.**
+
+**Six techniques, all failed:**
+
+| | Technique | Outcome |
+|---|---|---|
+| **A** | CDP `Input.dispatchDragEvent` (`dragEnter`/`dragOver`/`drop`) + `setInterceptDrags` | No effect — **there is no HTML5 drag source for it to drive** |
+| **B** | `mouse.down` → 24 interpolated moves → `mouse.up` | Picker did not open |
+| **C** | Synthesised `DragEvent` with a real `DataTransfer` | All four events returned **`defaultPrevented: false`** — **no handler consumed them** |
+| **D** | The card's **drag handle**, 40 slow steps, with an 8 px overshoot to clear any `minDistance` | Picker did not open |
+| **E** | Same on the expanded card's **line row** | Selector error of ours; retried as F |
+| **F** | Line-row handle, 45 steps at 80 ms, targeting a **verified-empty** lane cell, fully instrumented | Picker did not open — **but every event proven delivered** |
+
+**Most likely cause, stated as a hypothesis rather than a finding:** the drag initiation requires
+something a synthetic pointer stream does not satisfy — a trusted-event check, or FullCalendar's own
+`Draggable` hit pipeline which we cannot register into from outside. **We did not prove the cause and do
+not claim to.**
+
+**🛑 WHAT WAS DELIBERATELY NOT DONE: no shift was POSTed to conjure the picker.** The picker's wording
+is precisely the behaviour those 10 cases assert, so producing it by another route would make our own
+setup the source of the observation (Rules 12/57). **The 10 cases remain honestly NOT OBSERVED:**
+C29956, C29958, C29963, C29964, C29965, C29967, C29978, C29979, C29983, C29986.
+
+**And note what would NOT fix it: seeding.** The QA lead widened the brief to permit seeding data
+freely, and **seeding is not the constraint here** — the work orders, lines and lanes all already
+exist. The constraint is the input mechanism.
+
+---
+
+## F12 · Two admin routes recorded so nobody guesses them again
+
+`/administration/working-hours` and `/administration/roles` are **not routes** — both render an empty
+shell. The real ones, reached by clicking the admin nav:
+
+- **`/administration/roles-permissions`** (Roles & Permissions)
+- **`/administration/staff`** (Staff)
+- `/administration/locations` and `/administration/settings` are correct as-is.
+
+`Reset To Template`, `Add hours`, `Set business hours for this shop` and `Set custom hours for this
+technician` live **inside dialogs on those pages** which this pass did not manage to open — a click-
+targeting shortfall, **not** an access or data problem. **`admin@shopview.com` was deliberately skipped
+when picking a staff row**, since editing it is what killed the session earlier.
 
 ---
 
