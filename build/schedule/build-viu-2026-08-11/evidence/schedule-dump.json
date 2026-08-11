@@ -1,0 +1,150 @@
+{
+  "dump": {
+    "url": "https://sv8685.qa.shopview.com/login?redirect=/schedule",
+    "title": "Login | ShopView",
+    "testids": [
+      {
+        "id": "button_night_mode_light",
+        "text": "light_mode\nLight",
+        "tag": "button",
+        "visible": true,
+        "pressed": null,
+        "label": null
+      },
+      {
+        "id": "button_night_mode_dark",
+        "text": "dark_mode\nDark",
+        "tag": "button",
+        "visible": true,
+        "pressed": null,
+        "label": null
+      },
+      {
+        "id": "login_email_input",
+        "text": "",
+        "tag": "input",
+        "visible": true,
+        "pressed": null,
+        "label": "Email"
+      },
+      {
+        "id": "login_password_input",
+        "text": "",
+        "tag": "input",
+        "visible": true,
+        "pressed": null,
+        "label": "Password"
+      },
+      {
+        "id": "login_password_visibility_toggle",
+        "text": "visibility",
+        "tag": "i",
+        "visible": true,
+        "pressed": null,
+        "label": null
+      },
+      {
+        "id": "login_submit_button",
+        "text": "Login",
+        "tag": "button",
+        "visible": true,
+        "pressed": null,
+        "label": "Login"
+      },
+      {
+        "id": "login_forgot_password_link",
+        "text": "Forgot password?",
+        "tag": "a",
+        "visible": true,
+        "pressed": null,
+        "label": null
+      },
+      {
+        "id": "quick_login_panel",
+        "text": "science\nDEV MODE — QUICK LOGIN\ninfo\nadmin_panel_settings\nAdmin\nschedule\nTech",
+        "tag": "div",
+        "visible": true,
+        "pressed": null,
+        "label": null
+      },
+      {
+        "id": "button_quick_login_admin",
+        "text": "admin_panel_settings\nAdmin",
+        "tag": "button",
+        "visible": true,
+        "pressed": null,
+        "label": "Quick login as Admin"
+      },
+      {
+        "id": "button_quick_login_tech",
+        "text": "schedule\nTech",
+        "tag": "button",
+        "visible": true,
+        "pressed": null,
+        "label": "Quick login as Tech"
+      }
+    ],
+    "texts": [
+      "light_mode",
+      "Light",
+      "dark_mode",
+      "Dark",
+      "Sign in to your account to continue",
+      "Email",
+      "Password",
+      "visibility",
+      "Login",
+      "Forgot password?",
+      "science",
+      "Dev Mode — Quick Login",
+      "info",
+      "admin_panel_settings",
+      "Admin",
+      "schedule",
+      "Tech",
+      "Privacy Policy",
+      "·",
+      "Terms of Use"
+    ],
+    "aria": [
+      "ShopView Logo",
+      "Email",
+      "Password",
+      "Login",
+      "Quick login as Admin",
+      "Quick login as Tech"
+    ],
+    "placeholders": [],
+    "headers": [],
+    "buttons": [
+      "light_mode\nLight",
+      "dark_mode\nDark",
+      "Login",
+      "Forgot password?",
+      "admin_panel_settings\nAdmin",
+      "schedule\nTech",
+      "Privacy Policy",
+      "Terms of Use"
+    ],
+    "body_text": "light_mode\nLight\ndark_mode\nDark\n\nSign in to your account to continue\n\nEmail\nPassword\nvisibility\nLogin\nForgot password?\nscience\nDEV MODE — QUICK LOGIN\ninfo\nadmin_panel_settings\nAdmin\nschedule\nTech\nPrivacy Policy · Terms of Use",
+    "arm": {
+      "testid_prefix": [],
+      "aria_by_click": [],
+      "any_aria_pressed": [],
+      "html_has_arm": false
+    }
+  },
+  "api": [
+    {
+      "m": "GET",
+      "s": 404,
+      "u": "/api/api/sso/check"
+    },
+    {
+      "m": "GET",
+      "s": 200,
+      "u": "/api/quick-login/users"
+    }
+  ],
+  "read_at_utc": "2026-08-11T13:34:23.739Z"
+}
