@@ -153,6 +153,25 @@
 >   break after, in exactly three forms: `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL
 >   (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`. A tool flag NEVER justifies HOLD — only a genuinely
 >   unobtainable thing (a real physical device, an external account we do not have) does.
+> - **⚠️ CHANGE A CASE TESTRAIL FLAGS AS AUTOMATED → TELL VLAD (Standing Rule 65, 2026-08-11). THIS
+>   ENDS EVERY PASS THAT WRITES TO CASES — UPDATES AS MUCH AS DELETIONS, not just Rule 64's deletion
+>   path.** QA lead, verbatim: ***"when we change any test case which has the testrail OWN automated
+>   marker we have to update Vlad who does the automation so that he can adjust accordingly his
+>   automation with our updates/delete of test cases."*** **The marker is TestRail's OWN field
+>   `custom_atmstatus` (3 = Automated) — NOT our `AUTOMATION:` text marker; the two disagree and the
+>   FIELD is the one that answers the question** (Rule 64, settled 2026-08-11).
+>   **SO: record `custom_atmstatus` in the execution log for every case a pass writes** (it is already
+>   in the snapshot the Rule-50 byte-check takes — and it must be captured AT WRITE TIME, because the
+>   flag moves both ways), **and end every pass report with an "AUTOMATED CASES CHANGED — FOR VLAD"
+>   section** — C-id + link, what changed in one plain phrase, and **whether it changes what an
+>   automated check should conclude**. **Say "none" where none; NEVER omit the section.**
+>   **⚠️ AND CHECK WHO SET THE FLAG BEFORE TRUSTING IT (`get_history_for_case`): on Report Suite and
+>   Filters Vlad set it by hand, but on SCHEDULE NOBODY EVER DID — all 31 come from our own `add_case`
+>   tooling hardcoding `3`, so they are NOT evidence anything is automated.** Baseline as at
+>   2026-08-11: **75 of our 764 cases are Automated; we had changed 73 of them since 6 August, 27 of
+>   those changes matter to automation and 46 do not — and only 8 of the 27 sit on cases Vlad marked.**
+>   Full list ready to forward + the method and its limits:
+>   `build/automated-cases-changed-2026-08-11/{FOR-VLAD,METHOD}.md`. Register row **V1**.
 > - **OUTSTANDING-ITEMS REGISTER (Standing Rule 36) — the single cross-project list of everything we
 >   are WAITING ON: build/OUTSTANDING-ITEMS-REGISTER.md. READ IT before writing any status report or
 >   management deliverable, and UPDATE IT the moment an item is raised or cleared. EVERY project
@@ -5028,14 +5047,34 @@ deliver the 7-tab management report.
     to us at all. **WHERE A CASE IS AUTOMATED, STOP AND RAISE IT WITH THE QA LEAD — DO NOT DELETE IT**,
     however unsourced it looks; **the sourcing problem is then a conversation with the automation
     engineer, not a deletion.**
-    **⏳ WHICH "AUTOMATED" MARKER HE MEANS IS NOT YET CONFIRMED, AND THE SAFE READING IS ENCODED —
-    CHECK BOTH:** **(i)** TestRail's **automation-status field** (`custom_atmstatus`, where **3 =
-    "Automated"** — recorded in Rule 38 as set on 16 of our cases and on the foreign automation cases),
-    and **(ii)** our own **`AUTOMATION:` marker** at the end of Expected Results (Rules 60/61). **IF
-    EITHER SAYS AUTOMATED, THE CASE IS TREATED AS AUTOMATED AND IS NOT DELETED.** **The clarification
-    is OUTSTANDING with him and is logged in the register** — and note the lesson already written into
-    the register's own honesty notes: **the safe reading is only safe when the ask goes with it**
-    (Rule 63).
+    **✅ WHICH "AUTOMATED" MARKER HE MEANS IS NOW SETTLED — IT IS TESTRAIL'S OWN FIELD,
+    `custom_atmstatus` (2026-08-11).** USER DIRECTIVE, verbatim: *"I was referring to testrail OWN
+    AUTOMATED marker, because when we change any test case which has the testrail OWN automated marker
+    we have to update Vlad who does the automation so that he can adjust accordingly his automation
+    with our updates/delete of test cases."* **So the deletion precondition is read off
+    `custom_atmstatus` (where `3` = Automated) — NOT off our own `AUTOMATION:` text marker at the end
+    of Expected Results (Rules 60/61), which is a DIFFERENT THING and answers a different question.**
+    **⚠️ SUPERSEDED READING, KEPT VISIBLE AND DATED (the Rules 31/52/53 pattern):** until 2026-08-11
+    this rule encoded the safe both-readings interpretation — *"CHECK BOTH … IF EITHER SAYS AUTOMATED,
+    THE CASE IS TREATED AS AUTOMATED AND IS NOT DELETED"* — while the clarification sat OUTSTANDING.
+    **That is no longer in force; his answer replaces it.**
+    **THE TWO GENUINELY DISAGREE, WHICH IS WHY THE ANSWER MATTERS:** measured live 2026-08-11,
+    **75 of our 764 cases** across the three active suites carry `custom_atmstatus = 3` (Filters 4 ·
+    Schedule 31 · Report Suite 40; 87 of 781 including other authors'), and
+    **[C29600](https://shopview.testrail.io/index.php?/cases/view/29600) carries the field while having
+    NO `AUTOMATION:` text marker at all.** **The field is the one that answers the question.**
+    **🔴 AND THE FIELD DOES NOT MEAN THE SAME THING ON EVERY PROJECT — ESTABLISHED FROM TESTRAIL'S OWN
+    HISTORY, 2026-08-11, AND IT MUST BE CHECKED BEFORE THE FIELD IS TRUSTED.** `get_history_for_case`
+    over all 75 shows **every deliberate setting was made by user 1 (Vladimir Tomovic)** — the 40
+    Report Suite cases on 2026-08-10, the 4 Filters cases on 5–8 August — **while all 31 Schedule cases
+    have NO history entry at all**, because our own `add_case` tooling hardcodes `custom_atmstatus: 3`
+    at creation (`build/schedule/panel-collapse-2026-08-11/tools/push.py`,
+    `exec_sync_epic_2026-07-27.py`, `exec_sync_2026-07-22.py`; corroborated exactly — every Schedule
+    case above id 30090 is `3`, every imported one is `1`). **So on Schedule the flag is an artefact of
+    our creation template and asserts nothing about automation**, whereas on Report Suite and Filters
+    it is Vlad's own hand. **Before relying on the field, check whether a PERSON set it** — the flag
+    also moves both ways (**C29600 went `1→3→1→3`; C38877 went `3→1→3`**). **Whether to correct the 31
+    Schedule flags is OUTSTANDING with the QA lead — changing them is a TestRail write (Rule 6).**
     **DELETION DISCIPLINE — `delete_case` IS IRREVERSIBLE, AND IRREVERSIBILITY RAISES THE BAR RATHER
     THAN LOWERING IT:**
     **· THE CANDIDATE LIST GOES TO THE QA LEAD BEFORE ANY DELETION IS EXECUTED.** **Rule 6 stands
@@ -5088,6 +5127,73 @@ deliver the 7-tab management report.
     fully, then stop at the button" shape this borrows) and 63 (where this ruling conflicts with a
     recorded rule, it is surfaced — which is why Rule 20's escalation is written down rather than
     applied silently).
+65. **CHANGE A CASE THAT TESTRAIL FLAGS AS AUTOMATED → TELL VLAD. Every pass that writes to cases
+    reports which Automated cases it touched and what changed — UPDATES AS MUCH AS DELETIONS (all
+    projects).**
+    USER DIRECTIVE (2026-08-11, verbatim, his typing preserved exactly as he wrote it because Rule 25
+    applies to his instructions as it does to a spec): *"I was referring to testrail OWN AUTOMATED
+    marker, because when we change any test case which has the testrail OWN automated marker we have to
+    update Vlad who does the automation so that he can adjust accordingly his automation with our
+    updates/delete of test cases."*
+    **THE DUTY, IN ONE SENTENCE: ANY change we make to a case TestRail flags as Automated — an UPDATE
+    as much as a DELETION — obliges us to report it, so the automation engineer can adjust his
+    automation.** His reason is the operative part and it is broader than deletion: *"so that he can
+    adjust accordingly his automation with our **updates/delete** of test cases."*
+    **⚠️ THIS IS NOT LIMITED TO RULE 64's DELETION PATH.** Rule 64 checks the Automated flag as a
+    **precondition of deleting**; **this rule is a standing obligation of EVERY pass that writes to
+    cases**, whatever the pass was chartered to do — a wording repair, a provenance re-stamp, a marker
+    change, a re-verdict, a new case. **A pass that only ever ran `update_case` still owes this
+    report.**
+    **WHICH MARKER: `custom_atmstatus` (3 = Automated) — TestRail's OWN field, NOT our `AUTOMATION:`
+    text marker** (Rule 64's settled reading; the two disagree, and the field is the one that answers
+    the question).
+    **WHAT EVERY PASS MUST DO — two mechanical things, both checkable:**
+    **(1) THE EXECUTION LOG RECORDS `custom_atmstatus` FOR EVERY CASE IT WRITES.** It is already in the
+    `get_case` body the pass snapshots for its Rule-50 byte-check, so this costs nothing — but it must
+    be **recorded at write time**, because the flag moves (proven: **C29600 went `1→3→1→3`**, C38877
+    `3→1→3`), so reading it afterwards can give a different answer from the truth at the moment of the
+    write.
+    **(2) EVERY PASS REPORT CARRIES AN "AUTOMATED CASES CHANGED — FOR VLAD" SECTION.** Per case:
+    **C-id + `https://shopview.testrail.io/index.php?/cases/view/<id>` link** (Rule 8) · **what changed,
+    in one plain phrase** (Rule 7 — no internal jargon; the QA lead forwards this) · and **whether the
+    change affects what an automated check would assert.** **SAY "none" WHERE NONE — NEVER OMIT THE
+    SECTION** (the Rule-36 pattern: the reader must be able to tell "clear" from "we forgot to look").
+    **THE LAST COLUMN IS THE ONE HE ACTUALLY NEEDS, AND IT IS OUR JUDGEMENT, NOT HIS.** A provenance
+    re-stamp or a spec-version correction changes **nothing** he automates; a **marker moving between
+    ready / expect-fail / hold**, a **changed assertion**, **changed steps** or a **new case** changes
+    what a run should conclude. **So report the full change alongside the verdict and let him overrule
+    us — we have never seen his scripts, and a rewording we call cosmetic can still break a check that
+    matches an exact string.** **BAND THE LIST so what matters is at the top**, and **be honest where
+    the call cannot be made.**
+    **CHECK WHETHER A PERSON ACTUALLY SET THE FLAG BEFORE REPORTING A CASE AS AUTOMATED.**
+    `get_history_for_case` shows who set `custom_atmstatus` and when. **On Schedule NOBODY EVER SET IT
+    — our own `add_case` tooling hardcodes `3`** (Rule 64), so those cases are **not** evidence that
+    anything is automated. **Reporting them to Vlad as his own would pad the list and cost it
+    credibility on the first reading** — separate them, and say why.
+    **THIS IS ABOUT *OUR* CASES THAT *HE* AUTOMATES — Rule 38 is untouched and still absolute:
+    HIS OWN cases stay hands-off**, not edited, not deleted, not counted in our tallies. The two rules
+    point in opposite directions on purpose: we never touch his cases, and we always tell him when we
+    touch ours that he depends on.
+    **IT IS A REPORT, NOT A WRITE.** We tell the QA lead, who tells Vlad. **Nothing about this rule
+    authorises editing a case, changing a flag, or opening a ticket** (Rules 6/62), and it is **never a
+    reason to skip a correction** — a case that should be fixed still gets fixed; the duty is to say so.
+    **RATIONALE, 2026-08-11 — the duty was discovered only after a week of changing cases without
+    tracking it.** The reconstruction (`build/automated-cases-changed-2026-08-11/`) found **73 of the
+    75 Automated cases changed since 6 August**, of which **27 affect what an automated check should
+    conclude and 46 do not** — and, tellingly, **only 8 of the 27 are on cases Vlad himself marked.**
+    Two of those eight (**C30510, C30515**) had gone from *expected to fail* to *expected to pass*
+    because SV-8907 was fixed: a suite still expecting failure would have reported a **false alarm on a
+    working build**, and nobody would have known why. **The cost of the report is a paragraph; the cost
+    of not sending it is someone else debugging our edit.** Ties to Standing Rules 6 (nothing written
+    without permission — this rule writes nothing), 7 (plain layman wording, because it is forwarded),
+    8 (every case named with its C-id and link), 12 (observed, never inferred — the flag and its history
+    are READ, never assumed), 17 (complete data in/out — every Automated case the pass touched, no
+    sampling), 20 (traceability), 34 and 47 (**the same downstream-effect discipline a run sync already
+    carries: a change here breaks something over there unless someone is told**), 36 (an unsent report is
+    an OUTSTANDING item), 38 (**his cases are hands-off; this is the mirror duty for ours**), 50 (the
+    flag is captured in the same snapshot the byte-check already takes), 60/61 (a marker move is exactly
+    what changes an automated run's conclusion) and 64 (**which settled which marker this means, and
+    where the flag cannot be trusted**).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
