@@ -1,0 +1,85 @@
+PRD: Filters
+Problem Statement
+Users managing large volumes of work orders need to quickly narrow down the list to a relevant subset: by status, customer, technician, advisor, or on-site asset status. Currently, the Work Orders page lacks a dedicated filter bar, forcing users to scroll through long lists or rely on the tab shortcuts (Estimates, Completed) as the only filtering mechanism. This makes day-to-day triage slower and increases the chance of missing urgent work orders. The existing page-level search (via global search) has known issues with special characters and lacks multi-criteria filtering.
+Goal
+Deliver a persistent, multi-criteria filter bar on Work Orders (and establish the pattern for Parts and Reports), a page-level search component on every table in the app, and remove the confusing global-search-filters-page behavior — enabling users to quickly narrow, share, and bookmark filtered views across devices.
+Scope
+Included
+Work Orders filter bar with 5 filters (Status, Customer, Lead Technician, Service Advisor, Asset on Site)
+
+Active chip appearance, clearing, and empty states
+
+Tab-aware behavior on Work Orders
+
+Server-side filter persistence across sessions and devices
+
+URL state for shareable/bookmarkable filtered views
+
+Mobile-responsive filter bar
+
+Page search component on every table (42 surfaces)
+
+Removal of global search page-filtering behavior app-wide
+
+Deferred
+Parts Filters per-view setup (chip configurations per Parts view) — separate epic
+
+Reports Filters per-report setup (date-range filter, per-report chips) — separate epic
+
+Hover-on-expanded, disabled, and loading states for search
+
+Per-table search field documentation (S13-R23, pending from engineering)
+
+Stories (ordered)
+Filter Bar Layout & Visibility — Display a collapsible filter bar with 5 chips below WO tab navigation
+
+Status Filter — Multi-select status dropdown with Imported exclusivity behavior
+
+Customer Filter — Searchable multi-select customer dropdown with tag chips
+
+Lead Technician Filter — Searchable multi-select technician dropdown
+
+Service Advisor Filter — Searchable multi-select advisor dropdown
+
+Asset on Site Filter — Single-select Yes/No dropdown
+
+Active Filter Chip Appearance — Blue pill active state, selected value display, collapsed indicator
+
+Clearing Filters & Empty State — Clear all/individual filters, no-results empty state with clear prompts
+
+Tab Behaviour with Active Filters — Status chip hidden on Estimates/Completed, filters persist across tabs
+
+Filter Persistence — Server-side per-user storage, cross-device sync, last-write-wins
+
+URL State & Shareable Links — Filter+search state in URL, runtime-only application, "Back to my view"
+
+Mobile Filter Bar — Horizontally scrollable chips, bottom sheet dropdowns, always-visible bar
+
+Page Search — Inline search on every table (42 surfaces), additive with filters, session-scoped
+
+Remove Page Filtering from Global Search — Remove global search page filtering from all 42 surfaces app-wide
+
+Key Decisions
+Asset on Site changed from toggle to dropdown for visual consistency
+
+No selection limit on multi-select filters
+
+"Clear filters" clears all; "Clear selection" within a dropdown clears only that filter
+
+Status filter hidden on Estimates and Completed tabs (redundant)
+
+Imported is exclusive — switches to imported records and disables other chips
+
+Filters persist server-side (cross-device, survives logout, last-write-wins)
+
+Search query is session-scoped (not persisted server-side)
+
+Shared links never overwrite saved state; "Back to my view" restores own state
+
+Page search is separate from filter bar, not a filter chip
+
+Global search stops filtering page content app-wide
+
+Related Issues
+SV-4913: Page Filter Improvements (bugs — special chars in search)
+
