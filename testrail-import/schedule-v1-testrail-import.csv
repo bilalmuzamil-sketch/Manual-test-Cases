@@ -248,8 +248,7 @@ Status filter narrows the list to work orders in the chosen status(es),Sidebar -
 3. Read the list.
 ","1. The Status group lists the work order statuses the app supports.
 2. Only work orders in the chosen status remain in the card list - no work order of any other status is shown.
-3. Choosing more than one status shows the work orders of all the chosen statuses together.
-4. The card left-border colours of the remaining cards are consistent with that status.
+3. The card left-border colours of the remaining cards are consistent with that status.
 
 Note for the tester: this shop's schedule list only holds work orders in two statuses, Approved and Review, so most of the other choices correctly come back empty. An empty list for a status no work order is in is the right answer, not a fault.
 
@@ -2166,7 +2165,7 @@ Schedule and all its dialogs display correctly in dark mode,Edge Cases and Respo
 4. Switching back to light mode restores the normal look with nothing stuck in dark colours.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§11), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per story SV-8700 (dark theme), read on 11 August 2026, story SV-8698 (overtime and conflict cues are not colour-only), read on 11 August 2026, and the Schedule specification version 27 (§11), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8700 (§11 Dark theme - the Schedule and its dialogs render readably in dark mode and revert on switching back) and SV-8698 (§11 accessibility - overtime and conflict cues are not colour-only) - spec v27 2026-08-07,,
