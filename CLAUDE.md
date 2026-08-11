@@ -15,6 +15,17 @@
 >   **LIFT CONDITION: his next order — a session reading this weeks from now must NOT treat it as
 >   standing law; check whether it has been lifted.** Full text at the tail of Standing Rule 62;
 >   register row **H1**.
+> - **⚖️ IF HIS INSTRUCTION CONTRADICTS A RECORDED RULE — STOP AND SAY SO *BEFORE* DOING THE WORK
+>   (Standing Rule 63, 2026-08-11).** Verbatim: ***"If I say something that contradicts with you r
+>   rules, please do tell me what I am saying VS what the rule and and ask me to tell you what to
+>   follow."*** State **(a)** his instruction in his own words, **(b)** the rule's text WITH ITS
+>   NUMBER, **(c)** an explicit ask which to follow — **before the work, never in the closing
+>   summary.** Neither silent path is allowed: not silently following him, not silently keeping the
+>   old rule. **A TIGHTENING IS NOT A CONFLICT** — the 2026-08-10 creation hold layers on Rule 62 and
+>   rightly needed no escalation. On confirmation the superseded text is **kept visible and dated**
+>   and his ruling is **cited** (Rules 32/33/48). **ALREADY LIVE: Rule 10's behaviour-verdict half is
+>   SUPERSEDED** — the manual QA tester marks passed/failed; we verify labels, steps and sources
+>   (confirmed 2026-08-11, ***"you are RIGHT"***; dated amendment at Standing Rule 10's tail).
 > - **PRE-FLIGHT — THE FIRST ACTION OF ANY PROJECT TASK (Standing Rules 31 + 32): ESTABLISH THE
 >   CURRENCY OF **ALL SOURCES** — not just the spec — BEFORE doing ANYTHING on a project (test cases,
 >   question sheets, reports, audits, TestRail pushes, reconciliations, bug work, or even answering a
@@ -2117,6 +2128,36 @@ deliver the 7-tab management report.
     directly observed live with evidence; otherwise it is **Blocked / NOT VERIFIED**
     with the reason stated. (See Standing Rule 12 — verified means observed, never
     inferred; it governs this step absolutely.)
+    **⇒ AMENDMENT, 2026-08-11 — THE BEHAVIOUR-VERDICT HALF OF THIS RULE IS SUPERSEDED BY THE QA
+    LEAD'S RULING; THE WORDING/LABEL HALF STANDS UNCHANGED. The superseded text above is KEPT
+    VISIBLE AND DATED, never deleted (the Rules 31/52/53 pattern), so a future session sees a
+    DELIBERATE OVERRIDE rather than a lapse.**
+    He instructed, verbatim (2026-08-10): *"let the manual QA tester verify those test cases and
+    mark those test cases are passed or failed"*, and **CONFIRMED the reading of it on 2026-08-11,
+    verbatim: *"you are RIGHT"***.
+    **WHAT WE STILL DO:** verify the **LABELS AND WORDINGS** against the build (Rule 9 and this
+    rule's wording half) · verify the **STEPS AND NAVIGATION** are followable by a layman tester ·
+    verify the **SOURCES** are 100% accurate.
+    **WHAT WE NO LONGER DO:** chase a **pass/fail BEHAVIOUR VERDICT** per case. **The MANUAL QA
+    TESTER observes the behaviour and marks the case passed or failed.**
+    **SO THE SENTENCES ABOVE — *"The behavior-verification step MUST be LIVE UI-OBSERVED with
+    evidence"* and *"A case is only VIU-Verified when its behavior was directly observed live with
+    evidence; otherwise it is Blocked / NOT VERIFIED"* — NO LONGER GOVERN THE BEHAVIOUR VERDICT.**
+    Under Rules 32/33 his ruling is the later authority and wins.
+    **🔴 TWO THINGS THIS DOES *NOT* DO, SPELLED OUT BECAUSE THEY ARE EASY TO BLUR:**
+    **(1) IT DOES NOT WEAKEN RULE 57.** Expected behaviour **STILL comes from the documents** — the
+    PRD, the epic's stories, the PO's answers, the design, Figma, a shared handover. **The build
+    still NEVER supplies an expectation.** What changed is only **WHO JUDGES whether the build meets
+    it**: the tester, not us.
+    **(2) IT DOES NOT WEAKEN RULE 12.** Anything we **DO** state as observed must still be
+    **genuinely observed with evidence**. **The ruling removes an OBLIGATION TO OBSERVE; it does not
+    licence claiming an observation we did not make.**
+    **AND IT DOES NOT SUPPRESS AN INCIDENTAL FINDING:** where we observe a deviation while checking
+    a label, we **still RECORD it with its evidence** in the pass's findings — we simply do not build
+    a verification programme around it, and **under the active creation hold we FILE nothing**
+    (Rule 62 and the hold at its tail).
+    **AUTHORITY:** his 2026-08-10 instruction as confirmed 2026-08-11; surfaced and put to him under
+    **Standing Rule 63**, and cited here per **Rule 48** (a ruling is a source and sources get cited).
 11. **ALWAYS ASK which process to run on a new/updated spec OR a VIU request (all
     projects):** Whenever the user provides a spec (new or updated) OR asks to VIU,
     ALWAYS ASK the user first whether they want (1)
@@ -4683,6 +4724,84 @@ deliver the 7-tab management report.
     one edit once a ticket exists. Recorded in the **OUTSTANDING-ITEMS REGISTER** as row **H1** (Rule
     36), with the five Rule-48 fields. Contemporaneous write-up:
     `build/report-suite/full-viu-2026-08-06/RULINGS-2026-08-10-CREATION-HOLD-AND-FINALITY.md`.
+63. **WHEN HIS INSTRUCTION CONFLICTS WITH A RECORDED RULE, STOP AND SURFACE THE CONFLICT BEFORE
+    ACTING — state both sides and ask which to follow (all projects).**
+    USER DIRECTIVE (2026-08-11, verbatim, his typing preserved exactly as he wrote it because Rule 25
+    applies to his instructions as it does to a spec): *"Please do not forget the rules, and If I say
+    something that contradicts with you r rules, please do tell me what I am saying VS what the rule
+    and and ask me to tell you what to follow."*
+    **THE RULE:** when the QA lead gives an instruction that **CONFLICTS WITH A RECORDED STANDING
+    RULE**, we **STOP AND SURFACE THE CONFLICT BEFORE ACTING**, stating **THREE** things:
+    **(a) WHAT HE HAS INSTRUCTED — in HIS OWN WORDS, quoted verbatim**;
+    **(b) WHAT THE RULE CURRENTLY REQUIRES — quoted, WITH ITS NUMBER**, so he can see the exact text
+    he would be overriding;
+    **(c) AN EXPLICIT ASK — which of the two should we follow?**
+    **NEITHER SILENT PATH IS AVAILABLE. We may NOT silently follow the new instruction, and we may
+    NOT silently keep following the old rule.** Both fail the same way: they leave him unaware either
+    that a rule he set has stopped being applied, or that an instruction he gave is not being
+    followed — and in both cases the choice was made for him.
+    **BEFORE THE WORK, NOT AFTER — this is the clause that actually erodes.** Discovering the conflict
+    mid-pass and mentioning it in the closing summary is **NOT compliance**: by then the work has
+    already been done one way, and the summary merely **reports a decision he was never given.**
+    **DISTINGUISH A CONFLICT FROM A TIGHTENING OR A LAYERING — NOT EVERY NEW INSTRUCTION CONTRADICTS,
+    AND ESCALATING THE ONES THAT DO NOT IS ITS OWN FAILURE** (it trains him to wave escalations
+    through, which costs us the real ones). A **TIGHTENING** narrows what a rule permits while leaving
+    its requirement intact; a **LAYERING** adds a condition on top. **Neither needs this escalation —
+    both are simply RECORDED.**
+    **WORKED EXAMPLE OF WHAT DOES *NOT* NEED ESCALATING:** his 2026-08-10 hold, *"Do not create
+    anything until my next order"*, sits on top of **Rule 62**, which requires that we **ASK FIRST**
+    before creating a Jira ticket. **It does not contradict Rule 62 — it ANSWERS the standing ask with
+    "no, for now".** Rule 62 still governs whether and how anything is created; the hold suspends
+    creation while it stands. **The two sit together cleanly**, which is exactly why the hold was
+    recorded at Rule 62's tail rather than raised as a conflict.
+    **WHERE HE CONFIRMS THE INSTRUCTION, IT BECOMES THE RULING** — under **Rules 32/33 the latest
+    authoritative ruling wins** — and **THREE things then follow, every time:**
+    **(i) THE SUPERSEDED RULE TEXT IS KEPT VISIBLE AND DATED, NEVER DELETED** (the pattern already
+    used by Rules 31, 52 and 53), because **a silently-erased requirement is how a future session
+    re-derives the very behaviour that was overridden**;
+    **(ii) HIS RULING IS CITED AS THE AUTHORITY** (**Rule 48** — a ruling is a source and sources get
+    cited), so a later reader sees a **DELIBERATE OVERRIDE rather than a lapse**;
+    **(iii) THE AMENDMENT SAYS WHAT IT DOES *NOT* TOUCH.** An override of one clause is not an
+    override of the rules around it, and **the neighbouring rules are the ones that get quietly
+    widened in the retelling.**
+    **WHERE HE DECLINES, THE RULE STANDS**, and the instruction is recorded as
+    considered-and-not-adopted — never left as an unexplained gap between what he said and what we did.
+    **SCOPE: THIS GOVERNS *HIS INSTRUCTIONS*.** A conflict between two **DOCUMENTS** — spec vs design
+    vs Figma vs a PO answer vs a tech plan — is already governed by **Rules 32, 33 and 57** and is
+    **NOT** what this rule is for.
+    **RATIONALE, 2026-08-11 — TWO LIVE EXAMPLES, AND NEITHER WAS SURFACED PROPERLY AT THE TIME. They
+    are recorded here as the evidence for the rule, not tidied out of it.**
+    **(1) THE MANUAL-TESTER RULING vs STANDING RULE 10.** On **2026-08-10** he instructed, verbatim:
+    *"let the manual QA tester verify those test cases and mark those test cases are passed or
+    failed"*. **Standing Rule 10 required at that moment that a case is only VIU-complete when its
+    behaviour is OBSERVED LIVE WITH EVIDENCE**, with anything unobserved marked **Blocked / NOT
+    VERIFIED**. **The work was re-scoped to match him WITHOUT ANYONE STATING THAT IT CHANGED WHAT RULE
+    10 REQUIRES** — precisely the silent-follow failure this rule forbids. **It has since been put to
+    him and CONFIRMED on 2026-08-11, verbatim: *"you are RIGHT"***, so it is a **RULING, not an
+    assumption**, and it is recorded as the dated amendment at the tail of **Standing Rule 10** — with
+    Rule 10's superseded text kept visible, and with the explicit note that it weakens **neither Rule
+    57** (expected behaviour still comes from the documents; only WHO JUDGES the build changed) **nor
+    Rule 12** (whatever we DO call observed must still be genuinely observed with evidence).
+    **(2) THE CREATION HOLD vs RULES 43 AND 47 — AN OPEN COST, RECORDED, NOT AN OBJECTION.** The
+    active hold (*"Do not create anything until my next order"*, at Rule 62's tail) sits against
+    **Rule 43**, under which **a requirement with no case is a visible hole to be closed**, and **Rule
+    47**, under which **the three active runs must contain EVERY active case**. **The concrete cost
+    today: Schedule's §5.3 "Panel collapse", new in spec v27, HAS NO CASE AND CANNOT GET ONE**, and
+    **any further gap found while the hold stands also stays open**. **This is a cost being RECORDED
+    so he can see it, NOT an argument against his hold** — but it **ACCRUES rather than pauses**, and
+    a cost that accrues silently is one nobody can weigh.
+    Ties to Standing Rules 1 (never proceed without the complete input set — an unresolved conflict IS
+    a missing input), 6 (nothing enters a system of record unasked), 7 (the ask is in plain layman
+    words), 12 (observed, never inferred — **including never inferring which of two instructions he
+    meant**), 25 (quote verbatim — his words as much as a spec's), 30 (its own outstanding tension
+    with Rule 57 is exactly the kind of thing this rule surfaces), 32 and 33 (the latest authoritative
+    ruling wins — **this rule is HOW that transition is made visible rather than silent**), 36 (an
+    unanswered which-do-I-follow ask is an OUTSTANDING item and belongs in the register), 43 and 47
+    (example 2's accruing cost), 46 (an undocumented deliberate decision is indistinguishable from a
+    miss), 48 (a ruling is a source and gets cited — this rule is what produces the ruling worth
+    citing), 55 (an unclear answer goes back to him rather than being interpreted), 57
+    (document-vs-document conflicts are ITS business, not this rule's) and 62 (whose 2026-08-10 hold
+    is this rule's worked example of a TIGHTENING, not a conflict).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
