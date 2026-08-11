@@ -532,6 +532,26 @@ EXTRA_NOTES = [
     "IT WAS NOT. Source: build/filters/c29600-sourcing-2026-08-11/FINDINGS.md; the accompanying "
     "TestRail recording fix is build/filters/c29600-fix-2026-08-11/.",
 
+    "⚠️ ADDED 2026-08-11 (SECOND ADDITION THAT DAY) - ONE MORE NEW ITEM, TAKING THE SHEET FROM 21 "
+    "TO 22: the SCHEDULE STATUS-FILTER MULTI-SELECT question, appended as item 9 of Section 2. WHY "
+    "SECTION 2 AND NOT SECTION 1: Section 1 is for questions that release tests stuck today, and "
+    "NOTHING OF OURS IS STUCK on this - C29944 still runs, it simply no longer asserts what happens "
+    "when two statuses are chosen. WHERE IT CAME FROM: build/schedule/followup-push-2026-08-11/ "
+    "removed C29944's expected item 3, 'Choosing more than one status shows the work orders of all "
+    "the chosen statuses together.', because NO source states it - §5.1 is silent in all 27 spec "
+    "versions, story SV-8687 is silent, and the case's own authoring note has always said 'Single vs "
+    "multi-select within a group is not pinned - confirm live'. The claim had been introduced by our "
+    "OWN 2026-08-05 repair pass, which is Rule 58's failure mode exactly. WHAT WE DID NOT DO: we did "
+    "not assert the opposite either - nothing now claims multi-select is absent, because that is "
+    "equally unsourced (Rules 25/42/57). THE HONEST COST, STATED ON THE QA TAB AND NOT HIDDEN: until "
+    "he answers, multi-status filtering on the Schedule work order list is UNCOVERED. DUPLICATE "
+    "CHECK RUN BEFORE ADDING IT (Rule 55): both markdown files, the README and EVERY XML part of "
+    "BOTH workbooks were searched for 29944, 'more than one status', 'multi-select', 'multiselect', "
+    "'multiple statuses', 'several statuses', 'Status group' and 'SCH-FILT' - ZERO hits in all of "
+    "them, so it duplicates nothing. Prose counts in the opening note and the section headings were "
+    "updated from 21 to 22 items and Section 2 from eight decisions to nine; the module docstring's "
+    "'eight ordinary decisions' is left as the record of what the 2026-08-06 reorder did.",
+
     "NOTHING WAS SENT TO BRANKO. The QA lead's standing instruction is that nothing goes to a PO "
     "until our own work is done, so this remains a DRAFT. No Jira issue was created or edited by "
     "the 2026-08-11 pass either - the creation hold at the tail of Standing Rule 62 stands.",
@@ -832,7 +852,7 @@ QA-only tab that must not be forwarded.*
 
 ---
 
-## Section 2 — Eight ordinary decisions, when you have a moment
+## Section 2 — Nine ordinary decisions, when you have a moment
 
 Each one is a plain A or B. Four are Filters, four are Schedule.
 

@@ -16,9 +16,9 @@ QA-only tab that must not be forwarded.*
 
 ---
 
-Hello Branko - this is everything we have open across TWO of your projects, FILTERS and SCHEDULE, gathered into one place so you can go through it in a single sitting instead of getting a trickle of separate messages. Twenty-one items; about twenty minutes if you go straight down the list. SHORT ANSWERS ARE PERFECT - a letter, or one line. Nothing here needs an essay.
+Hello Branko - this is everything we have open across TWO of your projects, FILTERS and SCHEDULE, gathered into one place so you can go through it in a single sitting instead of getting a trickle of separate messages. Twenty-two items; about twenty minutes if you go straight down the list. SHORT ANSWERS ARE PERFECT - a letter, or one line. Nothing here needs an essay.
 
-WHERE TO START. Section 1 is five questions that release tests which are stuck today - that is the part we are genuinely waiting on. Section 2 is eight ordinary decisions. Section 3 is seven things only the engineering plan describes, and nothing of ours is waiting on those, so they can keep for a quiet moment. Section 4 is one typo-level heads-up with nothing to decide.
+WHERE TO START. Section 1 is five questions that release tests which are stuck today - that is the part we are genuinely waiting on. Section 2 is nine ordinary decisions. Section 3 is seven things only the engineering plan describes, and nothing of ours is waiting on those, so they can keep for a quiet moment. Section 4 is one typo-level heads-up with nothing to decide.
 
 ONE OF THESE IS OUR OWN FAULT and we are sorry: question 2 in Section 1 was written on 22 July and we never actually sent it to you. Two tests have been parked ever since waiting for an answer you were never asked for.
 
@@ -165,7 +165,7 @@ Every question says which project it belongs to, because you look after Filters,
 
 ---
 
-## Section 2 — Eight ordinary decisions, when you have a moment
+## Section 2 — Nine ordinary decisions, when you have a moment
 
 Each one is a plain A or B. Four are Filters, four are Schedule.
 
@@ -367,6 +367,34 @@ Each one is a plain A or B. Four are Filters, four are Schedule.
 > A) Keep the full 24 hours, as your description says today - the narrower version is for later.
 >
 > B) Change it now to show only the working hours plus a little after them.
+>
+> C) Something else - please describe it.
+
+**Your answer:** _______________________________________________
+
+### 9. SCHEDULE - the technician calendar - the Status filter on the work order list, when you want more than one status at a time
+
+**What happens now**
+
+> Nothing is stuck on this one and no test of ours is wrong today. We are asking because we found one of our own tests claiming something your description does not say, and we have taken the claim out rather than leave it in.
+>
+> On the Schedule page there is a Filter panel, and one of its groups is Status. Your description lists what goes in that group - "all work order statuses currently supported in the app" - and it says that applying a filter narrows the list of work order cards.
+>
+> What it does not say, anywhere, is whether you can pick MORE THAN ONE status at the same time - for example Approved and Review together - and what the list should then show.
+>
+> Being straight with you about what we did: one of our tests had been claiming that choosing several statuses shows the work orders of all of them together. We could not find that in your description, in the story, in the design or in anything you have told us, so we have removed the claim. We have NOT replaced it with the opposite - we are not saying you can only pick one - because we do not know, and guessing either way would put words in your mouth.
+>
+> So the test now checks one status at a time, which is safe and true either way. If you tell us more than one is intended, we will add that back as a proper test and note that it came from you.
+
+**The question**
+
+> Can more than one status be chosen in the Status filter at the same time, and if so what should the list show?
+
+**Options**
+
+> A) YES - you can pick several statuses, and the list shows the work orders of ALL the chosen statuses together.
+>
+> B) NO - only one status at a time; picking another replaces the first.
 >
 > C) Something else - please describe it.
 
