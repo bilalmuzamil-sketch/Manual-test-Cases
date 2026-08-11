@@ -199,51 +199,63 @@ documentation defect for the PO — **not a case change, and nothing filed.**
 
 ---
 
-## F11 · 🔴 THE DRAG IS A GENUINE TOOLING LIMIT — six techniques, and the evidence shows exactly where it breaks
+## F11 · ✅ THE SCOPE PICKER OPENED — AND MY EARLIER "TOOLING LIMIT" CONCLUSION WAS WRONG. The drag works; I had been dragging a ONE-LINE order
 
-**The 10 scope-picker cases stay NOT OBSERVED, and this is now a measured conclusion rather than an
-assumption.**
+**This is a correction of my own finding, recorded in full rather than quietly replaced, because the
+mistake is instructive and it is exactly the class of error I had just warned about in F7.**
 
-**What the grid actually is:** **FullCalendar `resourceTimeline`** (75 `fc-*` classes,
-`fc-resourceTimelineDay-view`, `fc-resource-timeline`). The sidebar card is
-`sidebar-card--draggable` and carries **`data-schedule-drag="wo:<uuid>"`**.
+**WHAT I CONCLUDED, AND IT WAS WRONG:** after six failed techniques I wrote that the drag was a genuine
+tooling limit and that 10 cases could not be observed. **The evidence looked strong** — FullCalendar
+`resourceTimeline`, no HTML5 drag source anywhere, `data-schedule-drop` on 0 elements, and
+instrumentation proving `pointerdown` ×2 / `pointermove` ×51 / `pointerup` ×2 were delivered while
+nothing happened.
 
-**The three facts that explain every failure:**
-1. **There is NO HTML5 drag anywhere** — `draggable="true"` on **0** elements, `fc-draggable` on **0**,
-   `window.FullCalendar` not exposed. So the app implements its **own pointer-based drag**.
-2. **`data-schedule-drop` matches 0 elements** while `data-schedule-drag` matches **21** — the app
-   declares drag **sources** in the DOM but resolves drop targets through FullCalendar's internal
-   hit-testing, not an attribute we can aim at.
-3. **Our synthetic input WAS delivered and the app still did not start a drag.** Instrumented with
-   capture-phase listeners, the application received **`pointerdown` ×2, `pointermove` ×51,
-   `pointerup` ×2, `mousedown`/`mousemove`/`mouseup` ×2/51/2**, beginning on
-   `sidebar_work_order_card` and passing over `schedule-lane__title` en route to a verified-empty
-   `fc-timeline-slot-lane` cell. **The pipeline is not the problem.**
+**WHAT WAS ACTUALLY WRONG: THE PRECONDITION.** Every attempt dragged **S-12876 / Pamill Paving — a ONE
+LINE work order** (`1 line · 1h Est.`). **The scope picker exists to choose between a whole order and a
+subset of its lines, so for a single-line order there is nothing to choose and no picker is expected.**
+The build was behaving correctly the entire time.
 
-**Six techniques, all failed:**
+**PROOF THAT THE DRAG WORKS — and it was hiding in plain sight.** The failed attempts **did** create two
+shifts, both on **S-12876**, `staffId: null` (the Unassigned lane), 60 minutes each, at the exact
+coordinates targeted. **So the drag completed every time; only the picker was absent, correctly.** I
+found them by diffing the board at pass end, not by noticing at the time — which is the second lesson.
 
-| | Technique | Outcome |
+**RE-RUN WITH A MULTI-LINE ORDER AND IT OPENED IMMEDIATELY.** Dragging **S8685-13014 / Fuline
+Enterprises (6 lines)** onto an empty lane cell produced the picker on the first try
+(`evidence/drag4-multiline.png`, `evidence/drag4-multiline-dump.json`).
+
+**LABELS NOW CONFIRMED EXACT, observed live:**
+
+| Our cases assert | Build ships | Verdict |
 |---|---|---|
-| **A** | CDP `Input.dispatchDragEvent` (`dragEnter`/`dragOver`/`drop`) + `setInterceptDrags` | No effect — **there is no HTML5 drag source for it to drive** |
-| **B** | `mouse.down` → 24 interpolated moves → `mouse.up` | Picker did not open |
-| **C** | Synthesised `DragEvent` with a real `DataTransfer` | All four events returned **`defaultPrevented: false`** — **no handler consumed them** |
-| **D** | The card's **drag handle**, 40 slow steps, with an 8 px overshoot to clear any `minDistance` | Picker did not open |
-| **E** | Same on the expanded card's **line row** | Selector error of ours; retried as F |
-| **F** | Line-row handle, 45 steps at 80 ms, targeting a **verified-empty** lane cell, fully instrumented | Picker did not open — **but every event proven delivered** |
+| `Schedule whole work order` | **`Schedule whole work order`** | ✅ **EXACT** |
+| `Select multiple` | **`Select multiple`** | ✅ **EXACT** |
 
-**Most likely cause, stated as a hypothesis rather than a finding:** the drag initiation requires
-something a synthetic pointer stream does not satisfy — a trusted-event check, or FullCalendar's own
-`Draggable` hit pipeline which we cannot register into from outside. **We did not prove the cause and do
-not claim to.**
+**Also captured on that surface**, useful for the same family of cases: the header
+**`S8685-13014 · Fuline Enterprises`**, the drop context **`dropped on Service/Parts · Tue, Aug 11`**,
+the whole-order option's subtitle **`All 6 lines · 8.7h total`**, the alternative prompt
+**`or pick a line`**, the close control **`Close the line picker`**, per-line rows with **`Est. 0.7h`**
+style estimates, and the capacity readout
+**`Capacity 42% — 75h 56m scheduled of 182h, overtime`**.
 
-**🛑 WHAT WAS DELIBERATELY NOT DONE: no shift was POSTed to conjure the picker.** The picker's wording
-is precisely the behaviour those 10 cases assert, so producing it by another route would make our own
-setup the source of the observation (Rules 12/57). **The 10 cases remain honestly NOT OBSERVED:**
-C29956, C29958, C29963, C29964, C29965, C29967, C29978, C29979, C29983, C29986.
+**Still not observed: `Select all`, `Cancel`, `Change scope`, `Full estimate`** — these live in the
+**`Select multiple`** sub-state and the multi-day spread step, one level deeper than this pass reached.
+**They are reachable; the route is now known.**
 
-**And note what would NOT fix it: seeding.** The QA lead widened the brief to permit seeding data
-freely, and **seeding is not the constraint here** — the work orders, lines and lanes all already
-exist. The constraint is the input mechanism.
+**🧹 CLEANUP, STATED IN FULL.** The two accidental shifts were **deleted**
+(`DELETE /api/schedule/shifts/{id}` → **204** each) and the board **proven restored**: **11 shifts,
+id sets equal in both directions, 11 of 11 per-shift hashes identical, events 3, series 4, 0 unexpected
+records.** The multi-line run **opened the picker without confirming**, so it created nothing — verified
+the same way afterwards.
+
+**🛑 AND THE LINE WAS NOT CROSSED: no shift was ever POSTed to conjure the picker.** The picker was
+produced by a real drag on a real multi-line order. The two shifts were **unintended residue of a
+failed interaction**, not a fabricated outcome — and they were removed.
+
+**THE LESSON, and it is F7's lesson a second time in one session: check the case's OWN PRECONDITION
+before concluding the build or the tooling is at fault.** A single-line order cannot produce a
+multi-line chooser. I nearly recorded a build capability as unobservable because I had not read the
+precondition of the thing I was trying to observe.
 
 ---
 

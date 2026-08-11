@@ -222,15 +222,18 @@ still rest on earlier builds (**90** on `v3.5-7ec992f`, **78** on `v3.5-d122eef`
 **Two limits remain, and NEITHER is fixable by seeding** — which matters, because the QA lead widened
 the brief to permit seeding freely and **it is not the constraint.** Nothing was seeded.
 
-**🔴 LIMIT 1 — THE DRAG. A GENUINE TOOLING LIMIT, NOW MEASURED (see `FINDINGS.md` F11).** Six
-techniques were tried, including CDP `Input.dispatchDragEvent`, a synthesised `DragEvent` with a real
-`DataTransfer`, and slow multi-step pointer drags from both the card and the line-row handle. The grid is
-**FullCalendar `resourceTimeline`**; there is **no HTML5 drag source anywhere** (`draggable="true"` on 0
-elements) and **`data-schedule-drop` matches 0 elements**, so drop targets resolve through
-FullCalendar's internal hit-testing. **Instrumentation proves our input reached the application** —
-`pointerdown` ×2, `pointermove` ×51, `pointerup` ×2 — **and it still did not start a drag.**
-**10 cases stay NOT OBSERVED:** C29956, C29958, C29963, C29964, C29965, C29967, C29978, C29979,
-C29983, C29986. **No shift was POSTed to fake the picker.**
+**✅ LIMIT 1 IS GONE — AND IT WAS MY OWN ERROR, NOT A TOOLING LIMIT (see `FINDINGS.md` F11).** I
+reported the drag as unusable after six failed techniques. **It works.** Every attempt had dragged
+**S-12876, a ONE-LINE work order**, and the scope picker only exists to choose between a whole order and
+a subset — **so for a single-line order no picker is expected and the build was right all along.**
+Dragging **S8685-13014 (6 lines)** opened it on the first try, confirming **`Schedule whole work
+order`** and **`Select multiple`** as **EXACT**. **Still one level deeper and not yet observed:**
+`Select all`, `Cancel`, `Change scope`, `Full estimate` — inside the `Select multiple` sub-state and the
+spread step. **Reachable; the route is known.**
+
+**🧹 The failed attempts left two unintended shifts on S-12876. Both were deleted (204 each) and the
+board proven restored — 11 shifts, id sets equal both ways, 11 of 11 hashes identical, events 3,
+series 4.**
 
 **LIMIT 2 — four dialogs were not opened**, a click-targeting shortfall rather than an access or data
 problem: `Reset To Template` (Roles & Permissions), `Add hours` / `Set business hours for this shop` /
