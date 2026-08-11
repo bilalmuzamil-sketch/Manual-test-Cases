@@ -132,6 +132,18 @@
 >   **NONE of the three branches has been declared final — engineering has confirmed they will not be
 >   before release (Rule 60) — so an OPEN queue is the NORMAL STEADY STATE of an active project, a
 >   living work list rather than an embarrassment, and every verdict on all three stays PROVISIONAL.**
+>   **⚠️ CORRECTED 2026-08-11 — THAT SENTENCE IS NOW TRUE OF TWO BRANCHES, NOT THREE. THE REPORT SUITE
+>   BRANCH IS FINAL:** the QA lead confirmed *"note that ALL 6 reports have been handed off now."*,
+>   satisfying the condition he set on 2026-08-10, so **findings on all 476 Report Suite cases are NO
+>   LONGER PROVISIONAL pending development — a deviation there is a real defect in a finished feature
+>   — and its Rule-49 queue rows MAY CLOSE as each case is re-checked, on the ORDINARY close condition
+>   (the bar is not lowered).** **SCHEDULE (`sv8685`) AND FILTERS (`sv8785`) ARE UNCHANGED — not
+>   declared final, verdicts still PROVISIONAL, queues still the normal steady state.** **"Final"
+>   means HANDED OFF / feature-complete, NOT "the code will never change" — a redeploy still
+>   invalidates the labels and the pass/fail verdict (Rule 60, layers 1–2) even on a final report.**
+>   **HONEST CONSEQUENCE: only 225 of the 476 are build-verified; the other 251 (Sales By
+>   Representative 112 · Parts Velocity 71 · Inventory Value 68) are FINAL-BUT-NOT-BUILD-VERIFIED**,
+>   so this RAISES the outstanding work. Full text: the 2026-08-11 amendment at the tail of Rule 49.
 >   **AUTOMATION MARKERS are now on 100% of all three suites** (they were on 102/110 Filters and
 >   0/165 Schedule when this pointer was last written): **Filters 110/110** (81 READY · 14
 >   READY-EXPECT-FAIL · 15 HOLD) · **Schedule 168/168** (119 · 21 · 28) · **Report Suite 476/476 —
@@ -3508,6 +3520,10 @@ deliver the 7-tab management report.
     corrected.
     **⇒ AMENDMENT, 2026-08-10 — FINALITY CAN ARRIVE *PER REPORT*, AND THIS RULE DID NOT CONTEMPLATE A
     PARTIAL ANSWER. THE FIRST FINALITY ANSWER THIS RULE HAS EVER HAD IS A PARTIAL ONE.**
+    **⚠️ THE THREE-AND-THREE SPLIT BELOW WAS SUPERSEDED ON 2026-08-11 — ALL SIX REPORTS ARE NOW HANDED
+    OFF AND THE BRANCH IS FINAL. The block is kept verbatim and dated, not overwritten (the Rules
+    31/52/53 pattern), so the record shows WHEN each half became final rather than implying it always
+    was. Read the 2026-08-11 amendment immediately after it before quoting any of these lists.**
     **USER DIRECTIVE (2026-08-10, verbatim):** *"If you are referring to the Reports branch, they have
     released just those reports which I mentioned in my previous comments so the branch is final for
     those reports only, the remaining reports are yet to be handed of to the QA. Once all 6 reports are
@@ -3539,6 +3555,37 @@ deliver the 7-tab management report.
     per-report finality answer usable at all.
     Contemporaneous write-up:
     `build/report-suite/full-viu-2026-08-06/RULINGS-2026-08-10-CREATION-HOLD-AND-FINALITY.md`.
+    **⇒ AMENDMENT, 2026-08-11 — THE CONDITION HE SET ON 2026-08-10 IS NOW SATISFIED: ALL SIX REPORTS
+    ARE HANDED OFF, SO THE REPORT SUITE BRANCH IS FINAL. THIS SUPERSEDES THE THREE-AND-THREE SPLIT
+    ABOVE, WHICH IS KEPT VISIBLE AND DATED.**
+    **USER DIRECTIVE (2026-08-11, verbatim):** *"note that ALL 6 reports have been handed off now."*
+    **THAT SATISFIES THE CONDITION HE HIMSELF SET THE DAY BEFORE, in his own words:** *"Once all 6
+    reports are handded of to the QA only then we can consider the branch as final."*
+    **SO, AS OF 2026-08-11:**
+    **· FINAL (handed off to QA) — ALL SIX: WORK IN PROGRESS · TECHNICIAN UTILIZATION · SALES BY
+    CUSTOMER · SALES BY REPRESENTATIVE · PARTS VELOCITY · INVENTORY VALUE.** The three that were
+    already final became so on **2026-08-10**; the other three on **2026-08-11**.
+    **· THE BRANCH IS FINAL**, the condition having been met in full.
+    **· FINDINGS ON ALL 476 REPORT SUITE CASES ARE NO LONGER PROVISIONAL PENDING DEVELOPMENT — a
+    deviation is a REAL DEFECT IN A FINISHED FEATURE, on any of the six.**
+    **· RULE-49 QUEUE ROWS FOR THE REPORT SUITE MAY CLOSE as each case is re-checked**, on the
+    **ORDINARY CLOSE CONDITION** — the row re-verified with fresh evidence. **THE BAR IS NOT LOWERED**;
+    only the *"wait for the build to settle"* blocker is removed, and **Rule 60 may still never be
+    cited to close a queue with rows unverified.**
+    **⚠️ THE HONEST CAVEAT CARRIES FORWARD UNCHANGED AND MUST BE REPEATED, BECAUSE IT WILL OTHERWISE
+    BE MISREAD: "FINAL" MEANS HANDED OFF / FEATURE-COMPLETE. IT DOES *NOT* MEAN "THE CODE WILL NEVER
+    CHANGE."** The branch **can and will redeploy** — not least **to fix the very defects we are
+    reporting** — so **A REDEPLOY STILL INVALIDATES THE ON-SCREEN LABELS AND THE PASS/FAIL VERDICT
+    (Rule 60, layers 1–2) ON EVERY ONE OF THE SIX.** The build marker on each case still has to be
+    honest, and Rule 54 sentence 2 still records when it was last checked. **What finality removes is
+    a DIFFERENT doubt entirely: the ambiguity about whether a gap is an UNFINISHED FEATURE or a
+    DEFECT. On all six it is now a defect.**
+    **🔴 THE HONEST CONSEQUENCE — THIS RAISES THE OUTSTANDING WORK, IT DOES NOT LOWER IT. Only the
+    three previously-final reports are BUILD-VERIFIED — 225 of 476. THE OTHER 251 (SALES BY
+    REPRESENTATIVE 112 · PARTS VELOCITY 71 · INVENTORY VALUE 68) HAVE HAD SOURCE ACCURACY DONE AND NO
+    BUILD VERIFICATION AT ALL — and they are FINAL NOW, so their findings count for real.** Recorded
+    in `build/OUTSTANDING-ITEMS-REGISTER.md`. **The QA lead has sequenced the work Schedule → Filters
+    → Report Suite, so those 251 are QUEUED BEHIND THE OTHER TWO, not forgotten.**
     **RATIONALE, 2026-08-03:** the Report Suite got its first QA branch (`sv8582`,
     `v3.4.1-0ed4433`) and 475 cases were finally live-verifiable — but engineering said the branch is
     still being worked on. Without this rule the suite would have been stamped "VIU-Verified" against
@@ -4558,12 +4605,26 @@ deliver the 7-tab management report.
     **⚠️ THE HEADLINE ABOVE WAS AMENDED 2026-08-10 — IT IS NOW TRUE ONLY *PER REPORT*. Read this
     block before quoting "never declared final". The original wording and its 2026-08-05 directive
     are kept below verbatim and dated, not overwritten (the Rules 31/52/53 pattern).**
-    **⇒ AMENDMENT, 2026-08-10 — THE FIRST FINALITY ANSWER WE HAVE EVER HAD, AND IT IS PARTIAL.** The
+    **⚠️ AND IT MOVED AGAIN ON 2026-08-11 — THE REPORT SUITE BRANCH IS NOW FINAL FOR ALL SIX REPORTS,
+    SO THE HEADLINE IS FALSE OF THAT BRANCH OUTRIGHT. IT REMAINS TRUE OF SCHEDULE (`sv8685`) AND
+    FILTERS (`sv8785`), NEITHER OF WHICH HAS BEEN DECLARED FINAL.** See the 2026-08-11 amendment at
+    the tail of Standing Rule 49; the two blocks below are kept as the dated record of the "never
+    final" and "3 of 6" positions, not as the current state.
+    **⇒ AMENDMENT, 2026-08-10 — THE FIRST FINALITY ANSWER WE HAVE EVER HAD, AND IT IS PARTIAL.
+    ⚠️ SUPERSEDED 2026-08-11 — ALL SIX ARE NOW FINAL; kept verbatim and dated.** The
     QA lead ruled that the Report Suite branch **is final for the three reports already handed off to
     QA — WORK IN PROGRESS · TECHNICIAN UTILIZATION · SALES BY CUSTOMER** — and **not final for SALES BY
     REPRESENTATIVE · PARTS VELOCITY · INVENTORY VALUE**, with branch-wide finality requiring all six.
     **The verbatim directive and the full consequences are recorded at the tail of Standing Rule 49**,
     which is where finality lives; they are cross-referenced here rather than duplicated.
+    **⇒ AMENDMENT, 2026-08-11 — THE CONDITION IS MET: *"note that ALL 6 reports have been handed off
+    now."*** So **the Report Suite branch IS FINAL**, findings on **all 476** of its cases are **no
+    longer provisional pending development**, and its **Rule-49 queue rows MAY CLOSE on the ordinary
+    close condition — the bar is not lowered.** **EVERY LAYER DISTINCTION, EVERY PRACTICE (a)–(f) AND
+    THE HONESTY CLAUSE BELOW STAND UNCHANGED**, and **a redeploy still invalidates layers 1–2 on a
+    final report.** **THE HONEST CONSEQUENCE: only 225 of the 476 are build-verified; the other 251
+    are FINAL-BUT-NOT-BUILD-VERIFIED**, which raises the outstanding work rather than lowering it.
+    Full text and the per-report figures: the tail of **Standing Rule 49**.
     **WHAT THIS DOES *NOT* CHANGE — AND IT IS THE PART THAT WILL BE MISREAD:** **"final" means HANDED
     OFF / FEATURE-COMPLETE, NOT "the code will never change."** The branch can still redeploy, indeed
     to fix the very defects we are reporting, so **A REDEPLOY STILL INVALIDATES LAYERS 1–2 (the
