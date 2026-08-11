@@ -1,0 +1,1779 @@
+{
+ "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+ "id": "54708",
+ "self": "https://shopview.atlassian.net/rest/api/3/issue/54708",
+ "key": "SV-8686",
+ "changelog": {
+  "startAt": 0,
+  "maxResults": 14,
+  "total": 14,
+  "histories": [
+   {
+    "id": "141419",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32"
+     },
+     "displayName": "Ayesha Khan",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-06T20:02:57.009-0500",
+    "items": [
+     {
+      "field": "description",
+      "fieldtype": "jira",
+      "fieldId": "description",
+      "from": null,
+      "fromString": "h2. Summary\n\nProvides the core schedule screen \u2014 a visual calendar grid with day, week, and month views where technicians are listed as rows grouped by department, giving managers a single screen to see the full week's allocation at a glance.\n\nh2. Context\n\nThe Schedule is a top-level nav item. The grid is the main area (right side) of the screen. Technician rows are determined by department assignment on staff records. Departments appear as collapsible group headers. The left panel (sidebar) is covered in a separate story.\n\nh2. Requirements\n\n# Day view: a 24-hour timeline per technician row with time-positioned blocks. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Week view: a 7-column grid Mon\u2013Sun with stacked shift chips per cell. Saturday and Sunday are each independently toggleable. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Month view: a compact calendar with per-day capacity bars and shift chips. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Rows grouped by department under collapsible group headers with technicians listed beneath. No separate Tech/Dept toggle. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Unassigned placeholder row within the grid for shifts not yet tied to a technician. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Grid toolbar: Today button, left/right arrows, date label, conflict pill, search, Filter & Display, View Options, Day/Week/Month segmented control. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Grid search filters blocks by matching against customer name, WO number, unit number, technician name, and line name. Non-matching blocks fade; matching blocks highlight. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Minimum supported width is 960px; the grid scrolls horizontally below that. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# The grid must render smoothly with up to 15 technicians \u00d7 7 days \u00d7 several shifts per cell. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# Whether a user appears as a grid row is controlled by department assignment on their staff record, not by role permission. \u2014 ([PRD: \u00a714.4|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#14.4-Technician-grid-rows-are-department-based])\n\nh2. Acceptance Criteria\n\n* -Given the schedule page loads, when the user has Schedule: View permission, then the grid displays with day view as default showing all department-grouped technician rows.-\n* Given the user clicks Day/Week/Month segmented control, when Week is selected, then a 7-column Mon\u2013Sun grid renders with stacked shift chips.\n* -Given the user clicks the Today button, when the grid is navigated to a past or future date, then the grid jumps to the current date.-\n* -Given 15 technicians \u00d7 7 days with multiple shifts per cell, when the grid renders, then there is no visible lag or jank.-\n* -Given the user types in the grid search, when the query matches a customer name, then matching blocks highlight and non-matching blocks fade.-\n* -Given the viewport is below 960px, when the grid renders, then horizontal scrolling is enabled.-\n* -Given a department group header, when the user clicks the collapse control, then all technician rows under that department hide.-\n\nh2. UI/UX\n\n[Schedule Design|https://claude.ai/design/p/d3cdcf5c-83df-45ea-ba75-7ddedb5124b5?file=Schedule.dc.html&via=share]",
+      "to": null,
+      "toString": "h2. Summary\n\nProvides the core schedule screen \u2014 a visual calendar grid with day, week, and month views where technicians are listed as rows grouped by department, giving managers a single screen to see the full week's allocation at a glance.\n\nh2. Context\n\nThe Schedule is a top-level nav item. The grid is the main area (right side) of the screen. Technician rows are determined by department assignment on staff records. Departments appear as collapsible group headers. The left panel (sidebar) is covered in a separate story.\n\nh2. Requirements\n\n# Day view: a 24-hour timeline per technician row with time-positioned blocks. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Week view: a 7-column grid Mon\u2013Sun with stacked shift chips per cell. Saturday and Sunday are each independently toggleable. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Month view: a compact calendar with per-day capacity bars and shift chips. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Rows grouped by department under collapsible group headers with technicians listed beneath. No separate Tech/Dept toggle. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Unassigned placeholder row within the grid for shifts not yet tied to a technician. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Grid toolbar: Today button, left/right arrows, date label, conflict pill, search, Filter & Display, View Options, Day/Week/Month segmented control. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Grid search filters blocks by matching against customer name, WO number, unit number, technician name, and line name. Non-matching blocks fade; matching blocks highlight. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Minimum supported width is 960px; the grid scrolls horizontally below that. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# The grid must render smoothly with up to 15 technicians \u00d7 7 days \u00d7 several shifts per cell. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# Whether a user appears as a grid row is controlled by department assignment on their staff record, not by role permission. \u2014 ([PRD: \u00a714.4|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#14.4-Technician-grid-rows-are-department-based])\n\nh2. Acceptance Criteria\n\n* Given the schedule page loads, when the user has Schedule: View permission, then the grid displays with day view as default showing all department-grouped technician rows.\n* Given the user clicks Day/Week/Month segmented control, when Week is selected, then a 7-column Mon\u2013Sun grid renders with stacked shift chips.\n* -Given the user clicks the Today button, when the grid is navigated to a past or future date, then the grid jumps to the current date.-\n* -Given 15 technicians \u00d7 7 days with multiple shifts per cell, when the grid renders, then there is no visible lag or jank.-\n* -Given the user types in the grid search, when the query matches a customer name, then matching blocks highlight and non-matching blocks fade.-\n* -Given the viewport is below 960px, when the grid renders, then horizontal scrolling is enabled.-\n* -Given a department group header, when the user clicks the collapse control, then all technician rows under that department hide.-\n\nh2. UI/UX\n\n[Schedule Design|https://claude.ai/design/p/d3cdcf5c-83df-45ea-ba75-7ddedb5124b5?file=Schedule.dc.html&via=share]"
+     }
+    ]
+   },
+   {
+    "id": "141418",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32"
+     },
+     "displayName": "Ayesha Khan",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-06T20:02:37.686-0500",
+    "items": [
+     {
+      "field": "description",
+      "fieldtype": "jira",
+      "fieldId": "description",
+      "from": null,
+      "fromString": "h2. Summary\n\nProvides the core schedule screen \u2014 a visual calendar grid with day, week, and month views where technicians are listed as rows grouped by department, giving managers a single screen to see the full week's allocation at a glance.\n\nh2. Context\n\nThe Schedule is a top-level nav item. The grid is the main area (right side) of the screen. Technician rows are determined by department assignment on staff records. Departments appear as collapsible group headers. The left panel (sidebar) is covered in a separate story.\n\nh2. Requirements\n\n# Day view: a 24-hour timeline per technician row with time-positioned blocks. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Week view: a 7-column grid Mon\u2013Sun with stacked shift chips per cell. Saturday and Sunday are each independently toggleable. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Month view: a compact calendar with per-day capacity bars and shift chips. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Rows grouped by department under collapsible group headers with technicians listed beneath. No separate Tech/Dept toggle. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Unassigned placeholder row within the grid for shifts not yet tied to a technician. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Grid toolbar: Today button, left/right arrows, date label, conflict pill, search, Filter & Display, View Options, Day/Week/Month segmented control. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Grid search filters blocks by matching against customer name, WO number, unit number, technician name, and line name. Non-matching blocks fade; matching blocks highlight. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Minimum supported width is 960px; the grid scrolls horizontally below that. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# The grid must render smoothly with up to 15 technicians \u00d7 7 days \u00d7 several shifts per cell. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# Whether a user appears as a grid row is controlled by department assignment on their staff record, not by role permission. \u2014 ([PRD: \u00a714.4|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#14.4-Technician-grid-rows-are-department-based])\n\nh2. Acceptance Criteria\n\n* Given the schedule page loads, when the user has Schedule: View permission, then the grid displays with day view as default showing all department-grouped technician rows.\n* Given the user clicks Day/Week/Month segmented control, when Week is selected, then a 7-column Mon\u2013Sun grid renders with stacked shift chips.\n* -Given the user clicks the Today button, when the grid is navigated to a past or future date, then the grid jumps to the current date.-\n* -Given 15 technicians \u00d7 7 days with multiple shifts per cell, when the grid renders, then there is no visible lag or jank.-\n* -Given the user types in the grid search, when the query matches a customer name, then matching blocks highlight and non-matching blocks fade.-\n* -Given the viewport is below 960px, when the grid renders, then horizontal scrolling is enabled.-\n* -Given a department group header, when the user clicks the collapse control, then all technician rows under that department hide.-\n\nh2. UI/UX\n\n[Schedule Design|https://claude.ai/design/p/d3cdcf5c-83df-45ea-ba75-7ddedb5124b5?file=Schedule.dc.html&via=share]",
+      "to": null,
+      "toString": "h2. Summary\n\nProvides the core schedule screen \u2014 a visual calendar grid with day, week, and month views where technicians are listed as rows grouped by department, giving managers a single screen to see the full week's allocation at a glance.\n\nh2. Context\n\nThe Schedule is a top-level nav item. The grid is the main area (right side) of the screen. Technician rows are determined by department assignment on staff records. Departments appear as collapsible group headers. The left panel (sidebar) is covered in a separate story.\n\nh2. Requirements\n\n# Day view: a 24-hour timeline per technician row with time-positioned blocks. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Week view: a 7-column grid Mon\u2013Sun with stacked shift chips per cell. Saturday and Sunday are each independently toggleable. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Month view: a compact calendar with per-day capacity bars and shift chips. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Rows grouped by department under collapsible group headers with technicians listed beneath. No separate Tech/Dept toggle. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Unassigned placeholder row within the grid for shifts not yet tied to a technician. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Grid toolbar: Today button, left/right arrows, date label, conflict pill, search, Filter & Display, View Options, Day/Week/Month segmented control. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Grid search filters blocks by matching against customer name, WO number, unit number, technician name, and line name. Non-matching blocks fade; matching blocks highlight. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Minimum supported width is 960px; the grid scrolls horizontally below that. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# The grid must render smoothly with up to 15 technicians \u00d7 7 days \u00d7 several shifts per cell. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# Whether a user appears as a grid row is controlled by department assignment on their staff record, not by role permission. \u2014 ([PRD: \u00a714.4|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#14.4-Technician-grid-rows-are-department-based])\n\nh2. Acceptance Criteria\n\n* -Given the schedule page loads, when the user has Schedule: View permission, then the grid displays with day view as default showing all department-grouped technician rows.-\n* Given the user clicks Day/Week/Month segmented control, when Week is selected, then a 7-column Mon\u2013Sun grid renders with stacked shift chips.\n* -Given the user clicks the Today button, when the grid is navigated to a past or future date, then the grid jumps to the current date.-\n* -Given 15 technicians \u00d7 7 days with multiple shifts per cell, when the grid renders, then there is no visible lag or jank.-\n* -Given the user types in the grid search, when the query matches a customer name, then matching blocks highlight and non-matching blocks fade.-\n* -Given the viewport is below 960px, when the grid renders, then horizontal scrolling is enabled.-\n* -Given a department group header, when the user clicks the collapse control, then all technician rows under that department hide.-\n\nh2. UI/UX\n\n[Schedule Design|https://claude.ai/design/p/d3cdcf5c-83df-45ea-ba75-7ddedb5124b5?file=Schedule.dc.html&via=share]"
+     }
+    ]
+   },
+   {
+    "id": "140448",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "avatarUrls": {
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "active": true,
+     "timeZone": "Asia/Karachi",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-06T01:36:12.375-0500",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-8942",
+      "toString": "This work item relates to SV-8942"
+     }
+    ]
+   },
+   {
+    "id": "140239",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32"
+     },
+     "displayName": "Ayesha Khan",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-05T14:22:33.975-0500",
+    "items": [
+     {
+      "field": "description",
+      "fieldtype": "jira",
+      "fieldId": "description",
+      "from": null,
+      "fromString": "h2. Summary\n\nProvides the core schedule screen \u2014 a visual calendar grid with day, week, and month views where technicians are listed as rows grouped by department, giving managers a single screen to see the full week's allocation at a glance.\n\nh2. Context\n\nThe Schedule is a top-level nav item. The grid is the main area (right side) of the screen. Technician rows are determined by department assignment on staff records. Departments appear as collapsible group headers. The left panel (sidebar) is covered in a separate story.\n\nh2. Requirements\n\n# Day view: a 24-hour timeline per technician row with time-positioned blocks. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Week view: a 7-column grid Mon\u2013Sun with stacked shift chips per cell. Saturday and Sunday are each independently toggleable. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Month view: a compact calendar with per-day capacity bars and shift chips. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Rows grouped by department under collapsible group headers with technicians listed beneath. No separate Tech/Dept toggle. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Unassigned placeholder row within the grid for shifts not yet tied to a technician. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Grid toolbar: Today button, left/right arrows, date label, conflict pill, search, Filter & Display, View Options, Day/Week/Month segmented control. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Grid search filters blocks by matching against customer name, WO number, unit number, technician name, and line name. Non-matching blocks fade; matching blocks highlight. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Minimum supported width is 960px; the grid scrolls horizontally below that. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# The grid must render smoothly with up to 15 technicians \u00d7 7 days \u00d7 several shifts per cell. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# Whether a user appears as a grid row is controlled by department assignment on their staff record, not by role permission. \u2014 ([PRD: \u00a714.4|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#14.4-Technician-grid-rows-are-department-based])\n\nh2. Acceptance Criteria\n\n* Given the schedule page loads, when the user has Schedule: View permission, then the grid displays with day view as default showing all department-grouped technician rows.\n* Given the user clicks Day/Week/Month segmented control, when Week is selected, then a 7-column Mon\u2013Sun grid renders with stacked shift chips.\n* -Given the user clicks the Today button, when the grid is navigated to a past or future date, then the grid jumps to the current date.-\n* -Given 15 technicians \u00d7 7 days with multiple shifts per cell, when the grid renders, then there is no visible lag or jank.-\n* -Given the user types in the grid search, when the query matches a customer name, then matching blocks highlight and non-matching blocks fade.-\n* Given the viewport is below 960px, when the grid renders, then horizontal scrolling is enabled.\n* Given a department group header, when the user clicks the collapse control, then all technician rows under that department hide.\n\nh2. UI/UX\n\n[Schedule Design|https://claude.ai/design/p/d3cdcf5c-83df-45ea-ba75-7ddedb5124b5?file=Schedule.dc.html&via=share]",
+      "to": null,
+      "toString": "h2. Summary\n\nProvides the core schedule screen \u2014 a visual calendar grid with day, week, and month views where technicians are listed as rows grouped by department, giving managers a single screen to see the full week's allocation at a glance.\n\nh2. Context\n\nThe Schedule is a top-level nav item. The grid is the main area (right side) of the screen. Technician rows are determined by department assignment on staff records. Departments appear as collapsible group headers. The left panel (sidebar) is covered in a separate story.\n\nh2. Requirements\n\n# Day view: a 24-hour timeline per technician row with time-positioned blocks. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Week view: a 7-column grid Mon\u2013Sun with stacked shift chips per cell. Saturday and Sunday are each independently toggleable. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Month view: a compact calendar with per-day capacity bars and shift chips. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Rows grouped by department under collapsible group headers with technicians listed beneath. No separate Tech/Dept toggle. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Unassigned placeholder row within the grid for shifts not yet tied to a technician. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Grid toolbar: Today button, left/right arrows, date label, conflict pill, search, Filter & Display, View Options, Day/Week/Month segmented control. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Grid search filters blocks by matching against customer name, WO number, unit number, technician name, and line name. Non-matching blocks fade; matching blocks highlight. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Minimum supported width is 960px; the grid scrolls horizontally below that. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# The grid must render smoothly with up to 15 technicians \u00d7 7 days \u00d7 several shifts per cell. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# Whether a user appears as a grid row is controlled by department assignment on their staff record, not by role permission. \u2014 ([PRD: \u00a714.4|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#14.4-Technician-grid-rows-are-department-based])\n\nh2. Acceptance Criteria\n\n* Given the schedule page loads, when the user has Schedule: View permission, then the grid displays with day view as default showing all department-grouped technician rows.\n* Given the user clicks Day/Week/Month segmented control, when Week is selected, then a 7-column Mon\u2013Sun grid renders with stacked shift chips.\n* -Given the user clicks the Today button, when the grid is navigated to a past or future date, then the grid jumps to the current date.-\n* -Given 15 technicians \u00d7 7 days with multiple shifts per cell, when the grid renders, then there is no visible lag or jank.-\n* -Given the user types in the grid search, when the query matches a customer name, then matching blocks highlight and non-matching blocks fade.-\n* -Given the viewport is below 960px, when the grid renders, then horizontal scrolling is enabled.-\n* -Given a department group header, when the user clicks the collapse control, then all technician rows under that department hide.-\n\nh2. UI/UX\n\n[Schedule Design|https://claude.ai/design/p/d3cdcf5c-83df-45ea-ba75-7ddedb5124b5?file=Schedule.dc.html&via=share]"
+     }
+    ]
+   },
+   {
+    "id": "140238",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32"
+     },
+     "displayName": "Ayesha Khan",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-05T14:22:15.745-0500",
+    "items": [
+     {
+      "field": "description",
+      "fieldtype": "jira",
+      "fieldId": "description",
+      "from": null,
+      "fromString": "h2. Summary\n\nProvides the core schedule screen \u2014 a visual calendar grid with day, week, and month views where technicians are listed as rows grouped by department, giving managers a single screen to see the full week's allocation at a glance.\n\nh2. Context\n\nThe Schedule is a top-level nav item. The grid is the main area (right side) of the screen. Technician rows are determined by department assignment on staff records. Departments appear as collapsible group headers. The left panel (sidebar) is covered in a separate story.\n\nh2. Requirements\n\n# Day view: a 24-hour timeline per technician row with time-positioned blocks. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Week view: a 7-column grid Mon\u2013Sun with stacked shift chips per cell. Saturday and Sunday are each independently toggleable. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Month view: a compact calendar with per-day capacity bars and shift chips. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Rows grouped by department under collapsible group headers with technicians listed beneath. No separate Tech/Dept toggle. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Unassigned placeholder row within the grid for shifts not yet tied to a technician. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Grid toolbar: Today button, left/right arrows, date label, conflict pill, search, Filter & Display, View Options, Day/Week/Month segmented control. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Grid search filters blocks by matching against customer name, WO number, unit number, technician name, and line name. Non-matching blocks fade; matching blocks highlight. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Minimum supported width is 960px; the grid scrolls horizontally below that. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# The grid must render smoothly with up to 15 technicians \u00d7 7 days \u00d7 several shifts per cell. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# Whether a user appears as a grid row is controlled by department assignment on their staff record, not by role permission. \u2014 ([PRD: \u00a714.4|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#14.4-Technician-grid-rows-are-department-based])\n\nh2. Acceptance Criteria\n\n* Given the schedule page loads, when the user has Schedule: View permission, then the grid displays with day view as default showing all department-grouped technician rows.\n* Given the user clicks Day/Week/Month segmented control, when Week is selected, then a 7-column Mon\u2013Sun grid renders with stacked shift chips.\n* -Given the user clicks the Today button, when the grid is navigated to a past or future date, then the grid jumps to the current date.-\n* -Given 15 technicians \u00d7 7 days with multiple shifts per cell, when the grid renders, then there is no visible lag or jank.-\n* Given the user types in the grid search, when the query matches a customer name, then matching blocks highlight and non-matching blocks fade.\n* Given the viewport is below 960px, when the grid renders, then horizontal scrolling is enabled.\n* Given a department group header, when the user clicks the collapse control, then all technician rows under that department hide.\n\nh2. UI/UX\n\n[Schedule Design|https://claude.ai/design/p/d3cdcf5c-83df-45ea-ba75-7ddedb5124b5?file=Schedule.dc.html&via=share]",
+      "to": null,
+      "toString": "h2. Summary\n\nProvides the core schedule screen \u2014 a visual calendar grid with day, week, and month views where technicians are listed as rows grouped by department, giving managers a single screen to see the full week's allocation at a glance.\n\nh2. Context\n\nThe Schedule is a top-level nav item. The grid is the main area (right side) of the screen. Technician rows are determined by department assignment on staff records. Departments appear as collapsible group headers. The left panel (sidebar) is covered in a separate story.\n\nh2. Requirements\n\n# Day view: a 24-hour timeline per technician row with time-positioned blocks. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Week view: a 7-column grid Mon\u2013Sun with stacked shift chips per cell. Saturday and Sunday are each independently toggleable. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Month view: a compact calendar with per-day capacity bars and shift chips. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Rows grouped by department under collapsible group headers with technicians listed beneath. No separate Tech/Dept toggle. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Unassigned placeholder row within the grid for shifts not yet tied to a technician. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Grid toolbar: Today button, left/right arrows, date label, conflict pill, search, Filter & Display, View Options, Day/Week/Month segmented control. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Grid search filters blocks by matching against customer name, WO number, unit number, technician name, and line name. Non-matching blocks fade; matching blocks highlight. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Minimum supported width is 960px; the grid scrolls horizontally below that. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# The grid must render smoothly with up to 15 technicians \u00d7 7 days \u00d7 several shifts per cell. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# Whether a user appears as a grid row is controlled by department assignment on their staff record, not by role permission. \u2014 ([PRD: \u00a714.4|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#14.4-Technician-grid-rows-are-department-based])\n\nh2. Acceptance Criteria\n\n* Given the schedule page loads, when the user has Schedule: View permission, then the grid displays with day view as default showing all department-grouped technician rows.\n* Given the user clicks Day/Week/Month segmented control, when Week is selected, then a 7-column Mon\u2013Sun grid renders with stacked shift chips.\n* -Given the user clicks the Today button, when the grid is navigated to a past or future date, then the grid jumps to the current date.-\n* -Given 15 technicians \u00d7 7 days with multiple shifts per cell, when the grid renders, then there is no visible lag or jank.-\n* -Given the user types in the grid search, when the query matches a customer name, then matching blocks highlight and non-matching blocks fade.-\n* Given the viewport is below 960px, when the grid renders, then horizontal scrolling is enabled.\n* Given a department group header, when the user clicks the collapse control, then all technician rows under that department hide.\n\nh2. UI/UX\n\n[Schedule Design|https://claude.ai/design/p/d3cdcf5c-83df-45ea-ba75-7ddedb5124b5?file=Schedule.dc.html&via=share]"
+     }
+    ]
+   },
+   {
+    "id": "140237",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32"
+     },
+     "displayName": "Ayesha Khan",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-05T14:22:11.514-0500",
+    "items": [
+     {
+      "field": "description",
+      "fieldtype": "jira",
+      "fieldId": "description",
+      "from": null,
+      "fromString": "h2. Summary\n\nProvides the core schedule screen \u2014 a visual calendar grid with day, week, and month views where technicians are listed as rows grouped by department, giving managers a single screen to see the full week's allocation at a glance.\n\nh2. Context\n\nThe Schedule is a top-level nav item. The grid is the main area (right side) of the screen. Technician rows are determined by department assignment on staff records. Departments appear as collapsible group headers. The left panel (sidebar) is covered in a separate story.\n\nh2. Requirements\n\n# Day view: a 24-hour timeline per technician row with time-positioned blocks. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Week view: a 7-column grid Mon\u2013Sun with stacked shift chips per cell. Saturday and Sunday are each independently toggleable. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Month view: a compact calendar with per-day capacity bars and shift chips. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Rows grouped by department under collapsible group headers with technicians listed beneath. No separate Tech/Dept toggle. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Unassigned placeholder row within the grid for shifts not yet tied to a technician. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Grid toolbar: Today button, left/right arrows, date label, conflict pill, search, Filter & Display, View Options, Day/Week/Month segmented control. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Grid search filters blocks by matching against customer name, WO number, unit number, technician name, and line name. Non-matching blocks fade; matching blocks highlight. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Minimum supported width is 960px; the grid scrolls horizontally below that. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# The grid must render smoothly with up to 15 technicians \u00d7 7 days \u00d7 several shifts per cell. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# Whether a user appears as a grid row is controlled by department assignment on their staff record, not by role permission. \u2014 ([PRD: \u00a714.4|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#14.4-Technician-grid-rows-are-department-based])\n\nh2. Acceptance Criteria\n\n* Given the schedule page loads, when the user has Schedule: View permission, then the grid displays with day view as default showing all department-grouped technician rows.\n* Given the user clicks Day/Week/Month segmented control, when Week is selected, then a 7-column Mon\u2013Sun grid renders with stacked shift chips.\n* -Given the user clicks the Today button, when the grid is navigated to a past or future date, then the grid jumps to the current date.-\n* Given 15 technicians \u00d7 7 days with multiple shifts per cell, when the grid renders, then there is no visible lag or jank.\n* Given the user types in the grid search, when the query matches a customer name, then matching blocks highlight and non-matching blocks fade.\n* Given the viewport is below 960px, when the grid renders, then horizontal scrolling is enabled.\n* Given a department group header, when the user clicks the collapse control, then all technician rows under that department hide.\n\nh2. UI/UX\n\n[Schedule Design|https://claude.ai/design/p/d3cdcf5c-83df-45ea-ba75-7ddedb5124b5?file=Schedule.dc.html&via=share]",
+      "to": null,
+      "toString": "h2. Summary\n\nProvides the core schedule screen \u2014 a visual calendar grid with day, week, and month views where technicians are listed as rows grouped by department, giving managers a single screen to see the full week's allocation at a glance.\n\nh2. Context\n\nThe Schedule is a top-level nav item. The grid is the main area (right side) of the screen. Technician rows are determined by department assignment on staff records. Departments appear as collapsible group headers. The left panel (sidebar) is covered in a separate story.\n\nh2. Requirements\n\n# Day view: a 24-hour timeline per technician row with time-positioned blocks. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Week view: a 7-column grid Mon\u2013Sun with stacked shift chips per cell. Saturday and Sunday are each independently toggleable. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Month view: a compact calendar with per-day capacity bars and shift chips. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Rows grouped by department under collapsible group headers with technicians listed beneath. No separate Tech/Dept toggle. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Unassigned placeholder row within the grid for shifts not yet tied to a technician. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Grid toolbar: Today button, left/right arrows, date label, conflict pill, search, Filter & Display, View Options, Day/Week/Month segmented control. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Grid search filters blocks by matching against customer name, WO number, unit number, technician name, and line name. Non-matching blocks fade; matching blocks highlight. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Minimum supported width is 960px; the grid scrolls horizontally below that. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# The grid must render smoothly with up to 15 technicians \u00d7 7 days \u00d7 several shifts per cell. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# Whether a user appears as a grid row is controlled by department assignment on their staff record, not by role permission. \u2014 ([PRD: \u00a714.4|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#14.4-Technician-grid-rows-are-department-based])\n\nh2. Acceptance Criteria\n\n* Given the schedule page loads, when the user has Schedule: View permission, then the grid displays with day view as default showing all department-grouped technician rows.\n* Given the user clicks Day/Week/Month segmented control, when Week is selected, then a 7-column Mon\u2013Sun grid renders with stacked shift chips.\n* -Given the user clicks the Today button, when the grid is navigated to a past or future date, then the grid jumps to the current date.-\n* -Given 15 technicians \u00d7 7 days with multiple shifts per cell, when the grid renders, then there is no visible lag or jank.-\n* Given the user types in the grid search, when the query matches a customer name, then matching blocks highlight and non-matching blocks fade.\n* Given the viewport is below 960px, when the grid renders, then horizontal scrolling is enabled.\n* Given a department group header, when the user clicks the collapse control, then all technician rows under that department hide.\n\nh2. UI/UX\n\n[Schedule Design|https://claude.ai/design/p/d3cdcf5c-83df-45ea-ba75-7ddedb5124b5?file=Schedule.dc.html&via=share]"
+     }
+    ]
+   },
+   {
+    "id": "140234",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32"
+     },
+     "displayName": "Ayesha Khan",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-05T14:20:51.273-0500",
+    "items": [
+     {
+      "field": "status",
+      "fieldtype": "jira",
+      "fieldId": "status",
+      "from": "10350",
+      "fromString": "Ready for QA",
+      "to": "10006",
+      "toString": "TESTING QA"
+     }
+    ]
+   },
+   {
+    "id": "139679",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32"
+     },
+     "displayName": "Ayesha Khan",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-04T15:23:36.352-0500",
+    "items": [
+     {
+      "field": "description",
+      "fieldtype": "jira",
+      "fieldId": "description",
+      "from": null,
+      "fromString": "h2. Summary\n\nProvides the core schedule screen \u2014 a visual calendar grid with day, week, and month views where technicians are listed as rows grouped by department, giving managers a single screen to see the full week's allocation at a glance.\n\nh2. Context\n\nThe Schedule is a top-level nav item. The grid is the main area (right side) of the screen. Technician rows are determined by department assignment on staff records. Departments appear as collapsible group headers. The left panel (sidebar) is covered in a separate story.\n\nh2. Requirements\n\n# Day view: a 24-hour timeline per technician row with time-positioned blocks. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Week view: a 7-column grid Mon\u2013Sun with stacked shift chips per cell. Saturday and Sunday are each independently toggleable. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Month view: a compact calendar with per-day capacity bars and shift chips. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Rows grouped by department under collapsible group headers with technicians listed beneath. No separate Tech/Dept toggle. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Unassigned placeholder row within the grid for shifts not yet tied to a technician. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Grid toolbar: Today button, left/right arrows, date label, conflict pill, search, Filter & Display, View Options, Day/Week/Month segmented control. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Grid search filters blocks by matching against customer name, WO number, unit number, technician name, and line name. Non-matching blocks fade; matching blocks highlight. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Minimum supported width is 960px; the grid scrolls horizontally below that. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# The grid must render smoothly with up to 15 technicians \u00d7 7 days \u00d7 several shifts per cell. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# Whether a user appears as a grid row is controlled by department assignment on their staff record, not by role permission. \u2014 ([PRD: \u00a714.4|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#14.4-Technician-grid-rows-are-department-based])\n\nh2. Acceptance Criteria\n\n* Given the schedule page loads, when the user has Schedule: View permission, then the grid displays with day view as default showing all department-grouped technician rows.\n* Given the user clicks Day/Week/Month segmented control, when Week is selected, then a 7-column Mon\u2013Sun grid renders with stacked shift chips.\n* Given the user clicks the Today button, when the grid is navigated to a past or future date, then the grid jumps to the current date.\n* Given 15 technicians \u00d7 7 days with multiple shifts per cell, when the grid renders, then there is no visible lag or jank.\n* Given the user types in the grid search, when the query matches a customer name, then matching blocks highlight and non-matching blocks fade.\n* Given the viewport is below 960px, when the grid renders, then horizontal scrolling is enabled.\n* Given a department group header, when the user clicks the collapse control, then all technician rows under that department hide.\n\nh2. UI/UX\n\n[Schedule Design|https://claude.ai/design/p/d3cdcf5c-83df-45ea-ba75-7ddedb5124b5?file=Schedule.dc.html&via=share]",
+      "to": null,
+      "toString": "h2. Summary\n\nProvides the core schedule screen \u2014 a visual calendar grid with day, week, and month views where technicians are listed as rows grouped by department, giving managers a single screen to see the full week's allocation at a glance.\n\nh2. Context\n\nThe Schedule is a top-level nav item. The grid is the main area (right side) of the screen. Technician rows are determined by department assignment on staff records. Departments appear as collapsible group headers. The left panel (sidebar) is covered in a separate story.\n\nh2. Requirements\n\n# Day view: a 24-hour timeline per technician row with time-positioned blocks. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Week view: a 7-column grid Mon\u2013Sun with stacked shift chips per cell. Saturday and Sunday are each independently toggleable. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Month view: a compact calendar with per-day capacity bars and shift chips. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Rows grouped by department under collapsible group headers with technicians listed beneath. No separate Tech/Dept toggle. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Unassigned placeholder row within the grid for shifts not yet tied to a technician. \u2014 ([PRD: \u00a73.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])\n# Grid toolbar: Today button, left/right arrows, date label, conflict pill, search, Filter & Display, View Options, Day/Week/Month segmented control. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Grid search filters blocks by matching against customer name, WO number, unit number, technician name, and line name. Non-matching blocks fade; matching blocks highlight. \u2014 ([PRD: \u00a76|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])\n# Minimum supported width is 960px; the grid scrolls horizontally below that. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# The grid must render smoothly with up to 15 technicians \u00d7 7 days \u00d7 several shifts per cell. \u2014 ([PRD: \u00a711|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])\n# Whether a user appears as a grid row is controlled by department assignment on their staff record, not by role permission. \u2014 ([PRD: \u00a714.4|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#14.4-Technician-grid-rows-are-department-based])\n\nh2. Acceptance Criteria\n\n* Given the schedule page loads, when the user has Schedule: View permission, then the grid displays with day view as default showing all department-grouped technician rows.\n* Given the user clicks Day/Week/Month segmented control, when Week is selected, then a 7-column Mon\u2013Sun grid renders with stacked shift chips.\n* -Given the user clicks the Today button, when the grid is navigated to a past or future date, then the grid jumps to the current date.-\n* Given 15 technicians \u00d7 7 days with multiple shifts per cell, when the grid renders, then there is no visible lag or jank.\n* Given the user types in the grid search, when the query matches a customer name, then matching blocks highlight and non-matching blocks fade.\n* Given the viewport is below 960px, when the grid renders, then horizontal scrolling is enabled.\n* Given a department group header, when the user clicks the collapse control, then all technician rows under that department hide.\n\nh2. UI/UX\n\n[Schedule Design|https://claude.ai/design/p/d3cdcf5c-83df-45ea-ba75-7ddedb5124b5?file=Schedule.dc.html&via=share]"
+     }
+    ]
+   },
+   {
+    "id": "139616",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "avatarUrls": {
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "active": true,
+     "timeZone": "Asia/Karachi",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-04T12:18:53.637-0500",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-8853",
+      "toString": "This work item relates to SV-8853"
+     }
+    ]
+   },
+   {
+    "id": "139596",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "avatarUrls": {
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "active": true,
+     "timeZone": "Asia/Karachi",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-04T12:18:43.796-0500",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-8848",
+      "toString": "This work item relates to SV-8848"
+     }
+    ]
+   },
+   {
+    "id": "139486",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32"
+     },
+     "displayName": "Ayesha Khan",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-04T08:17:31.773-0500",
+    "items": [
+     {
+      "field": "QA Assignee",
+      "fieldtype": "custom",
+      "fieldId": "customfield_10385",
+      "from": null,
+      "fromString": null,
+      "to": "[712020:67f76d27-9119-4cb6-93c6-dbf94204abba]",
+      "toString": "[Ayesha Khan]"
+     }
+    ]
+   },
+   {
+    "id": "139428",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3Ab60d0335-ad52-459c-b20c-490448734cda",
+     "accountId": "712020:b60d0335-ad52-459c-b20c-490448734cda",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/32"
+     },
+     "displayName": "Stefan Vukovic",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-04T06:41:06.846-0500",
+    "items": [
+     {
+      "field": "status",
+      "fieldtype": "jira",
+      "fieldId": "status",
+      "from": "10004",
+      "fromString": "In Progress",
+      "to": "10350",
+      "toString": "Ready for QA"
+     }
+    ]
+   },
+   {
+    "id": "139135",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3Ab60d0335-ad52-459c-b20c-490448734cda",
+     "accountId": "712020:b60d0335-ad52-459c-b20c-490448734cda",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:b60d0335-ad52-459c-b20c-490448734cda/76254408-7a4d-4f0a-8930-b88e1f7c6a45/32"
+     },
+     "displayName": "Stefan Vukovic",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-08-03T07:24:49.411-0500",
+    "items": [
+     {
+      "field": "status",
+      "fieldtype": "jira",
+      "fieldId": "status",
+      "from": "10349",
+      "fromString": "Open",
+      "to": "10004",
+      "toString": "In Progress"
+     }
+    ]
+   },
+   {
+    "id": "137280",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+     "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+     },
+     "displayName": "Branko Cicovic",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-07-27T05:26:06.631-0500",
+    "items": [
+     {
+      "field": "IssueParentAssociation",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "54707",
+      "toString": "SV-8685"
+     }
+    ]
+   }
+  ]
+ },
+ "fields": {
+  "statuscategorychangedate": "2026-08-03T07:24:49.411-0500",
+  "issuetype": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+   "id": "10245",
+   "description": "Stories track functionality or features expressed as user goals.",
+   "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+   "name": "Story",
+   "subtask": false,
+   "avatarId": 10315,
+   "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+   "hierarchyLevel": 0
+  },
+  "parent": {
+   "id": "54707",
+   "key": "SV-8685",
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54707",
+   "fields": {
+    "summary": "Schedule \u2014 Technician Scheduling Module",
+    "status": {
+     "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+     "description": "",
+     "iconUrl": "https://shopview.atlassian.net/",
+     "name": "Open",
+     "id": "10349",
+     "statusCategory": {
+      "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+      "id": 2,
+      "key": "new",
+      "colorName": "blue-gray",
+      "name": "To Do"
+     }
+    },
+    "priority": {
+     "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+     "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+     "name": "Medium",
+     "id": "3"
+    },
+    "issuetype": {
+     "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10006",
+     "id": "10006",
+     "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+     "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+     "name": "Epic",
+     "subtask": false,
+     "avatarId": 10306,
+     "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+     "hierarchyLevel": 1
+    }
+   }
+  },
+  "timespent": null,
+  "project": {
+   "self": "https://shopview.atlassian.net/rest/api/3/project/10001",
+   "id": "10001",
+   "key": "SV",
+   "name": "ShopView",
+   "projectTypeKey": "software",
+   "simplified": true,
+   "avatarUrls": {
+    "48x48": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551",
+    "24x24": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=small",
+    "16x16": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=xsmall",
+    "32x32": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=medium"
+   }
+  },
+  "customfield_10351": null,
+  "customfield_10153": {
+   "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10123",
+   "value": "Schedule",
+   "id": "10123",
+   "color": "GREY"
+  },
+  "customfield_10352": null,
+  "fixVersions": [],
+  "aggregatetimespent": null,
+  "statusCategory": {
+   "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4",
+   "id": 4,
+   "key": "indeterminate",
+   "colorName": "yellow",
+   "name": "In Progress"
+  },
+  "resolution": null,
+  "resolutiondate": null,
+  "workratio": -1,
+  "issuerestriction": {
+   "issuerestrictions": {},
+   "shouldDisplay": true
+  },
+  "watches": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8686/watchers",
+   "watchCount": 1,
+   "isWatching": false
+  },
+  "lastViewed": null,
+  "created": "2026-07-27T05:26:06.606-0500",
+  "customfield_10021": null,
+  "customfield_10385": [
+   {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+    "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+    "avatarUrls": {
+     "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48",
+     "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+     "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+     "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32"
+    },
+    "displayName": "Ayesha Khan",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   }
+  ],
+  "priority": {
+   "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+   "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+   "name": "Medium",
+   "id": "3"
+  },
+  "labels": [],
+  "customfield_10016": null,
+  "customfield_10019": "0|i01tqp:",
+  "timeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "versions": [],
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "issuelinks": [
+   {
+    "id": "32060",
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/32060",
+    "type": {
+     "id": "10003",
+     "name": "Relates",
+     "inward": "relates to",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    },
+    "inwardIssue": {
+     "id": "54975",
+     "key": "SV-8848",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54975",
+     "fields": {
+      "summary": "Every time on the Schedule is shown six hours later than the time it was scheduled for",
+      "status": {
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10250",
+       "description": "",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "name": "OBSOLETE",
+       "id": "10250",
+       "statusCategory": {
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/3",
+        "id": 3,
+        "key": "done",
+        "colorName": "green",
+        "name": "Done"
+       }
+      },
+      "priority": {
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "name": "Medium",
+       "id": "3"
+      },
+      "issuetype": {
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+       "id": "10007",
+       "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+       "name": "Story Defect",
+       "subtask": true,
+       "avatarId": 10854,
+       "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+       "hierarchyLevel": -1
+      }
+     }
+    }
+   },
+   {
+    "id": "32065",
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/32065",
+    "type": {
+     "id": "10003",
+     "name": "Relates",
+     "inward": "relates to",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    },
+    "inwardIssue": {
+     "id": "54980",
+     "key": "SV-8853",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54980",
+     "fields": {
+      "summary": "The Escape and Enter keys do not work on the delete and reassign confirmation windows",
+      "status": {
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10250",
+       "description": "",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "name": "OBSOLETE",
+       "id": "10250",
+       "statusCategory": {
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/3",
+        "id": 3,
+        "key": "done",
+        "colorName": "green",
+        "name": "Done"
+       }
+      },
+      "priority": {
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/4",
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+       "name": "Low",
+       "id": "4"
+      },
+      "issuetype": {
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+       "id": "10007",
+       "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+       "name": "Story Defect",
+       "subtask": true,
+       "avatarId": 10854,
+       "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+       "hierarchyLevel": -1
+      }
+     }
+    }
+   },
+   {
+    "id": "32105",
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/32105",
+    "type": {
+     "id": "10003",
+     "name": "Relates",
+     "inward": "relates to",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    },
+    "inwardIssue": {
+     "id": "55077",
+     "key": "SV-8942",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/55077",
+     "fields": {
+      "summary": "Schedule: at 960px and below the whole page scrolls sideways and the work order panel never collapses",
+      "status": {
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10250",
+       "description": "",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "name": "OBSOLETE",
+       "id": "10250",
+       "statusCategory": {
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/3",
+        "id": 3,
+        "key": "done",
+        "colorName": "green",
+        "name": "Done"
+       }
+      },
+      "priority": {
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/4",
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+       "name": "Low",
+       "id": "4"
+      },
+      "issuetype": {
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+       "id": "10007",
+       "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+       "name": "Story Defect",
+       "subtask": true,
+       "avatarId": 10854,
+       "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+       "hierarchyLevel": -1
+      }
+     }
+    }
+   }
+  ],
+  "assignee": {
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+   "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+   "avatarUrls": {
+    "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+    "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+    "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+    "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+   },
+   "displayName": "Branko Cicovic",
+   "active": true,
+   "timeZone": "America/Bogota",
+   "accountType": "atlassian"
+  },
+  "updated": "2026-08-06T20:02:57.009-0500",
+  "status": {
+   "self": "https://shopview.atlassian.net/rest/api/3/status/10006",
+   "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+   "iconUrl": "https://shopview.atlassian.net/",
+   "name": "TESTING QA",
+   "id": "10006",
+   "statusCategory": {
+    "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4",
+    "id": 4,
+    "key": "indeterminate",
+    "colorName": "yellow",
+    "name": "In Progress"
+   }
+  },
+  "components": [],
+  "description": {
+   "type": "doc",
+   "version": 1,
+   "content": [
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Summary"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Provides the core schedule screen \u2014 a visual calendar grid with day, week, and month views where technicians are listed as rows grouped by department, giving managers a single screen to see the full week's allocation at a glance."
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Context"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "The Schedule is a top-level nav item. The grid is the main area (right side) of the screen. Technician rows are determined by department assignment on staff records. Departments appear as collapsible group headers. The left panel (sidebar) is covered in a separate story."
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Requirements"
+      }
+     ]
+    },
+    {
+     "type": "orderedList",
+     "attrs": {
+      "order": 1
+     },
+     "content": [
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Day view: a 24-hour timeline per technician row with time-positioned blocks. \u2014 ("
+          },
+          {
+           "type": "text",
+           "text": "PRD: \u00a73.2",
+           "marks": [
+            {
+             "type": "link",
+             "attrs": {
+              "href": "https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid"
+             }
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": ")"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Week view: a 7-column grid Mon\u2013Sun with stacked shift chips per cell. Saturday and Sunday are each independently toggleable. \u2014 ("
+          },
+          {
+           "type": "text",
+           "text": "PRD: \u00a73.2",
+           "marks": [
+            {
+             "type": "link",
+             "attrs": {
+              "href": "https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid"
+             }
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": ")"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Month view: a compact calendar with per-day capacity bars and shift chips. \u2014 ("
+          },
+          {
+           "type": "text",
+           "text": "PRD: \u00a73.2",
+           "marks": [
+            {
+             "type": "link",
+             "attrs": {
+              "href": "https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid"
+             }
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": ")"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Rows grouped by department under collapsible group headers with technicians listed beneath. No separate Tech/Dept toggle. \u2014 ("
+          },
+          {
+           "type": "text",
+           "text": "PRD: \u00a73.2",
+           "marks": [
+            {
+             "type": "link",
+             "attrs": {
+              "href": "https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid"
+             }
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": ")"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Unassigned placeholder row within the grid for shifts not yet tied to a technician. \u2014 ("
+          },
+          {
+           "type": "text",
+           "text": "PRD: \u00a73.2",
+           "marks": [
+            {
+             "type": "link",
+             "attrs": {
+              "href": "https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid"
+             }
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": ")"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Grid toolbar: Today button, left/right arrows, date label, conflict pill, search, Filter & Display, View Options, Day/Week/Month segmented control. \u2014 ("
+          },
+          {
+           "type": "text",
+           "text": "PRD: \u00a76",
+           "marks": [
+            {
+             "type": "link",
+             "attrs": {
+              "href": "https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar"
+             }
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": ")"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Grid search filters blocks by matching against customer name, WO number, unit number, technician name, and line name. Non-matching blocks fade; matching blocks highlight. \u2014 ("
+          },
+          {
+           "type": "text",
+           "text": "PRD: \u00a76",
+           "marks": [
+            {
+             "type": "link",
+             "attrs": {
+              "href": "https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar"
+             }
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": ")"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Minimum supported width is 960px; the grid scrolls horizontally below that. \u2014 ("
+          },
+          {
+           "type": "text",
+           "text": "PRD: \u00a711",
+           "marks": [
+            {
+             "type": "link",
+             "attrs": {
+              "href": "https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements"
+             }
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": ")"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "The grid must render smoothly with up to 15 technicians \u00d7 7 days \u00d7 several shifts per cell. \u2014 ("
+          },
+          {
+           "type": "text",
+           "text": "PRD: \u00a711",
+           "marks": [
+            {
+             "type": "link",
+             "attrs": {
+              "href": "https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements"
+             }
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": ")"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Whether a user appears as a grid row is controlled by department assignment on their staff record, not by role permission. \u2014 ("
+          },
+          {
+           "type": "text",
+           "text": "PRD: \u00a714.4",
+           "marks": [
+            {
+             "type": "link",
+             "attrs": {
+              "href": "https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#14.4-Technician-grid-rows-are-department-based"
+             }
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": ")"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Acceptance Criteria"
+      }
+     ]
+    },
+    {
+     "type": "taskList",
+     "content": [
+      {
+       "type": "taskItem",
+       "content": [
+        {
+         "type": "text",
+         "text": "Given the schedule page loads, when the user has Schedule: View permission, then the grid displays with day view as default showing all department-grouped technician rows."
+        }
+       ],
+       "attrs": {
+        "localId": "bb57c028-745f-41f8-b32b-f404c1a3a380",
+        "state": "TODO"
+       }
+      },
+      {
+       "type": "taskItem",
+       "content": [
+        {
+         "type": "text",
+         "text": "Given the user clicks Day/Week/Month segmented control, when Week is selected, then a 7-column Mon\u2013Sun grid renders with stacked shift chips."
+        }
+       ],
+       "attrs": {
+        "localId": "92f34cb9-18fa-4eea-ba45-7fcf3937c704",
+        "state": "TODO"
+       }
+      },
+      {
+       "type": "taskItem",
+       "content": [
+        {
+         "type": "text",
+         "text": "Given the user clicks the Today button, when the grid is navigated to a past or future date, then the grid jumps to the current date."
+        }
+       ],
+       "attrs": {
+        "localId": "50c45542-140c-4119-a6ca-93dc1a53ea33",
+        "state": "DONE"
+       }
+      },
+      {
+       "type": "taskItem",
+       "content": [
+        {
+         "type": "text",
+         "text": "Given 15 technicians \u00d7 7 days with multiple shifts per cell, when the grid renders, then there is no visible lag or jank."
+        }
+       ],
+       "attrs": {
+        "localId": "e2409839-a051-4a0d-91f9-dca6878c8d5d",
+        "state": "DONE"
+       }
+      },
+      {
+       "type": "taskItem",
+       "content": [
+        {
+         "type": "text",
+         "text": "Given the user types in the grid search, when the query matches a customer name, then matching blocks highlight and non-matching blocks fade."
+        }
+       ],
+       "attrs": {
+        "localId": "966364be-cfc2-4c3c-9e43-044e53e0701b",
+        "state": "DONE"
+       }
+      },
+      {
+       "type": "taskItem",
+       "content": [
+        {
+         "type": "text",
+         "text": "Given the viewport is below 960px, when the grid renders, then horizontal scrolling is enabled."
+        }
+       ],
+       "attrs": {
+        "localId": "1e8c205c-e7d0-4126-8cf8-215285465e12",
+        "state": "DONE"
+       }
+      },
+      {
+       "type": "taskItem",
+       "content": [
+        {
+         "type": "text",
+         "text": "Given a department group header, when the user clicks the collapse control, then all technician rows under that department hide."
+        }
+       ],
+       "attrs": {
+        "localId": "7df5a535-f5de-4d54-87dc-8bcc443031f9",
+        "state": "DONE"
+       }
+      }
+     ],
+     "attrs": {
+      "localId": "a263cb96-9fc4-47f7-a99f-5f3141ff963b"
+     }
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "UI/UX"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Schedule Design",
+       "marks": [
+        {
+         "type": "link",
+         "attrs": {
+          "href": "https://claude.ai/design/p/d3cdcf5c-83df-45ea-ba75-7ddedb5124b5?file=Schedule.dc.html&via=share"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "customfield_10252": null,
+  "timetracking": {},
+  "customfield_10015": null,
+  "security": null,
+  "attachment": [],
+  "aggregatetimeestimate": null,
+  "summary": "Schedule Grid Layout & Navigation",
+  "creator": {
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+   "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+   "avatarUrls": {
+    "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+    "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+    "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+    "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+   },
+   "displayName": "Branko Cicovic",
+   "active": true,
+   "timeZone": "America/Bogota",
+   "accountType": "atlassian"
+  },
+  "subtasks": [
+   {
+    "id": "54945",
+    "key": "SV-8826",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/54945",
+    "fields": {
+     "summary": "Schedule week view starts on Sunday instead of Monday",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10351",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "QA Complete",
+      "id": "10351",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4",
+       "id": 4,
+       "key": "indeterminate",
+       "colorName": "yellow",
+       "name": "In Progress"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+      "name": "Medium",
+      "id": "3"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+      "id": "10007",
+      "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+      "name": "Story Defect",
+      "subtask": true,
+      "avatarId": 10854,
+      "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+      "hierarchyLevel": -1
+     }
+    }
+   },
+   {
+    "id": "54950",
+    "key": "SV-8831",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/54950",
+    "fields": {
+     "summary": "Technician Jose Young appears on the Schedule grid but has no staff record",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10351",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "QA Complete",
+      "id": "10351",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4",
+       "id": 4,
+       "key": "indeterminate",
+       "colorName": "yellow",
+       "name": "In Progress"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+      "name": "Medium",
+      "id": "3"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+      "id": "10007",
+      "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+      "name": "Story Defect",
+      "subtask": true,
+      "avatarId": 10854,
+      "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+      "hierarchyLevel": -1
+     }
+    }
+   },
+   {
+    "id": "54975",
+    "key": "SV-8848",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/54975",
+    "fields": {
+     "summary": "Every time on the Schedule is shown six hours later than the time it was scheduled for",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10250",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "OBSOLETE",
+      "id": "10250",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/3",
+       "id": 3,
+       "key": "done",
+       "colorName": "green",
+       "name": "Done"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+      "name": "Medium",
+      "id": "3"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+      "id": "10007",
+      "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+      "name": "Story Defect",
+      "subtask": true,
+      "avatarId": 10854,
+      "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+      "hierarchyLevel": -1
+     }
+    }
+   },
+   {
+    "id": "54990",
+    "key": "SV-8863",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/54990",
+    "fields": {
+     "summary": "Schedule opens in Week view by default instead of Day view",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10351",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "QA Complete",
+      "id": "10351",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4",
+       "id": 4,
+       "key": "indeterminate",
+       "colorName": "yellow",
+       "name": "In Progress"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+      "name": "Medium",
+      "id": "3"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+      "id": "10007",
+      "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+      "name": "Story Defect",
+      "subtask": true,
+      "avatarId": 10854,
+      "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+      "hierarchyLevel": -1
+     }
+    }
+   },
+   {
+    "id": "55001",
+    "key": "SV-8874",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/55001",
+    "fields": {
+     "summary": "Grid search hides non-matching shifts instead of fading them",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10250",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "OBSOLETE",
+      "id": "10250",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/3",
+       "id": 3,
+       "key": "done",
+       "colorName": "green",
+       "name": "Done"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+      "name": "Medium",
+      "id": "3"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+      "id": "10007",
+      "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+      "name": "Story Defect",
+      "subtask": true,
+      "avatarId": 10854,
+      "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+      "hierarchyLevel": -1
+     }
+    }
+   },
+   {
+    "id": "55055",
+    "key": "SV-8922",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/55055",
+    "fields": {
+     "summary": "Schedule grid shows technicians who are not in Staff for this location",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10351",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "QA Complete",
+      "id": "10351",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4",
+       "id": 4,
+       "key": "indeterminate",
+       "colorName": "yellow",
+       "name": "In Progress"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/2",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/high_new.svg",
+      "name": "High",
+      "id": "2"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+      "id": "10007",
+      "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+      "name": "Story Defect",
+      "subtask": true,
+      "avatarId": 10854,
+      "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+      "hierarchyLevel": -1
+     }
+    }
+   },
+   {
+    "id": "55077",
+    "key": "SV-8942",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/55077",
+    "fields": {
+     "summary": "Schedule: at 960px and below the whole page scrolls sideways and the work order panel never collapses",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10250",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "OBSOLETE",
+      "id": "10250",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/3",
+       "id": 3,
+       "key": "done",
+       "colorName": "green",
+       "name": "Done"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/4",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+      "name": "Low",
+      "id": "4"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+      "id": "10007",
+      "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+      "name": "Story Defect",
+      "subtask": true,
+      "avatarId": 10854,
+      "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+      "hierarchyLevel": -1
+     }
+    }
+   },
+   {
+    "id": "55162",
+    "key": "SV-9026",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/55162",
+    "fields": {
+     "summary": "Technician avatar packs an initial per word for multi-word names (e.g., 4 initials)",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10351",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "QA Complete",
+      "id": "10351",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4",
+       "id": 4,
+       "key": "indeterminate",
+       "colorName": "yellow",
+       "name": "In Progress"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/4",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+      "name": "Low",
+      "id": "4"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+      "id": "10007",
+      "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+      "name": "Story Defect",
+      "subtask": true,
+      "avatarId": 10854,
+      "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+      "hierarchyLevel": -1
+     }
+    }
+   },
+   {
+    "id": "55197",
+    "key": "SV-9029",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/55197",
+    "fields": {
+     "summary": "Schedule API returns 500 instead of 400 for calendar-invalid dates",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10351",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "QA Complete",
+      "id": "10351",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4",
+       "id": 4,
+       "key": "indeterminate",
+       "colorName": "yellow",
+       "name": "In Progress"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/2",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/high_new.svg",
+      "name": "High",
+      "id": "2"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+      "id": "10007",
+      "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+      "name": "Story Defect",
+      "subtask": true,
+      "avatarId": 10854,
+      "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+      "hierarchyLevel": -1
+     }
+    }
+   },
+   {
+    "id": "55198",
+    "key": "SV-9030",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/55198",
+    "fields": {
+     "summary": "Schedule API accepts date component 00 and silently uses a different date",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10351",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "QA Complete",
+      "id": "10351",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4",
+       "id": 4,
+       "key": "indeterminate",
+       "colorName": "yellow",
+       "name": "In Progress"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+      "name": "Medium",
+      "id": "3"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+      "id": "10007",
+      "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+      "name": "Story Defect",
+      "subtask": true,
+      "avatarId": 10854,
+      "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+      "hierarchyLevel": -1
+     }
+    }
+   },
+   {
+    "id": "55204",
+    "key": "SV-9036",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/55204",
+    "fields": {
+     "summary": "Schedule board fails to load with RangeError when the workplace has no timezone configured",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10004",
+      "description": "This work item is being actively worked on at the moment by the assignee.",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "In Progress",
+      "id": "10004",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4",
+       "id": 4,
+       "key": "indeterminate",
+       "colorName": "yellow",
+       "name": "In Progress"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+      "name": "Medium",
+      "id": "3"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+      "id": "10007",
+      "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+      "name": "Story Defect",
+      "subtask": true,
+      "avatarId": 10854,
+      "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+      "hierarchyLevel": -1
+     }
+    }
+   },
+   {
+    "id": "55205",
+    "key": "SV-9037",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/55205",
+    "fields": {
+     "summary": "Switching to a location with no timezone silently keeps the previous shop's timezone",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10004",
+      "description": "This work item is being actively worked on at the moment by the assignee.",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "In Progress",
+      "id": "10004",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/4",
+       "id": 4,
+       "key": "indeterminate",
+       "colorName": "yellow",
+       "name": "In Progress"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+      "name": "Medium",
+      "id": "3"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10007",
+      "id": "10007",
+      "description": "Subtasks track small pieces of work that are part of a larger task. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10854?size=medium",
+      "name": "Story Defect",
+      "subtask": true,
+      "avatarId": 10854,
+      "entityId": "0900502c-ae66-465f-a9da-8322307b07ff",
+      "hierarchyLevel": -1
+     }
+    }
+   }
+  ],
+  "reporter": {
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+   "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+   "avatarUrls": {
+    "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+    "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+    "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+    "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+   },
+   "displayName": "Branko Cicovic",
+   "active": true,
+   "timeZone": "America/Bogota",
+   "accountType": "atlassian"
+  },
+  "customfield_10285": null,
+  "customfield_10044": null,
+  "aggregateprogress": {
+   "progress": 0,
+   "total": 0
+  },
+  "customfield_10000": "{repository={count=1, dataType=repository}, json={\"cachedValue\":{\"errors\":[],\"summary\":{\"repository\":{\"overall\":{\"count\":1,\"lastUpdated\":\"2026-08-06T14:48:59.000+0500\",\"dataType\":\"repository\"},\"byInstanceType\":{\"GitHub\":{\"count\":1,\"name\":\"GitHub\"},\"oAuth-com.github.integration.production\":{\"count\":1,\"name\":\"GitHub\"}}}}},\"isStale\":true}}",
+  "customfield_10001": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "environment": null,
+  "customfield_10318": null,
+  "duedate": null,
+  "customfield_10518": null,
+  "progress": {
+   "progress": 0,
+   "total": 0
+  },
+  "votes": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8686/votes",
+   "votes": 0,
+   "hasVoted": false
+  },
+  "comment": {
+   "comments": [],
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54708/comment",
+   "maxResults": 0,
+   "total": 0,
+   "startAt": 0
+  },
+  "worklog": {
+   "startAt": 0,
+   "maxResults": 20,
+   "total": 0,
+   "worklogs": []
+  }
+ }
+}

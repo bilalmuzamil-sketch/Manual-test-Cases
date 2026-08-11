@@ -1,0 +1,225 @@
+{
+ "fade": [
+  {
+   "id": 29987,
+   "title": "Month view: series banner wraps across weeks, labeled once, then 'continues'",
+   "section": "Linked Series and Banners",
+   "refs": "SV-8692 (\u00a74.6 (Month view))",
+   "context": "pping across the week rows. 2. It is labeled once at the start (including the technician); later weeks show a faded 'continues'-style label instead of repeating the full label. 3. Weekend columns inside the series are empty "
+  },
+  {
+   "id": 30041,
+   "title": "Toolbar search highlights matching blocks and fades non-matching ones",
+   "section": "Grid Toolbar",
+   "refs": "SV-8686 (\u00a76 (Search))",
+   "context": "Toolbar search highlights matching blocks and fades non-matching ones || 1. You are signed in on a desktop browser. 2. Several shifts exist on the visible range"
+  }
+ ],
+ "highlight": [
+  {
+   "id": 43554,
+   "title": "Schedule opens on Day view the first time you open it from the navigation",
+   "section": "Navigation and Layout",
+   "refs": "SV-8863 (SV-8686 acceptance criterion - grid displays with day view as default)",
+   "context": "elf. || 1. The Schedule page opens. 2. Of the three buttons Day, Week and Month, the one that is switched on (highlighted) is Day. 3. The grid shows the Day layout: a 24-hour timeline for each technician row, with shifts placed a"
+  },
+  {
+   "id": 29932,
+   "title": "Clicking a date in the mini calendar navigates the main grid to that date",
+   "section": "Sidebar - Mini Calendar",
+   "refs": "SV-8687 (\u00a73.1,\u00a75.2)",
+   "context": "nth depending on the active view). 2. The toolbar date label updates to the new range. 3. The clicked date is highlighted as the selected date in the mini calendar. --- This is the expected behaviour as per epic SV-8685 and the S"
+  },
+  {
+   "id": 29935,
+   "title": "Mini calendar highlights the selected date, today, and the hovered week",
+   "section": "Sidebar - Mini Calendar",
+   "refs": "SV-8687 (\u00a75.2)",
+   "context": "Mini calendar highlights the selected date, today, and the hovered week || 1. You are signed in on a desktop browser. 2. You are on t"
+  },
+  {
+   "id": 29960,
+   "title": "While dragging, target cells highlight and a ghost block follows",
+   "section": "Drag-and-Drop Scheduling",
+   "refs": "SV-8688 (\u00a77 (Drag feedback))",
+   "context": "While dragging, target cells highlight and a ghost block follows || 1. You are signed in on a desktop browser with Schedule: Edit. 2. A work order w"
+  },
+  {
+   "id": 30029,
+   "title": "Red styling is only for conflicts and errors, never for overtime",
+   "section": "Conflict Detection",
+   "refs": "SV-8697 (\u00a74.11 (styling rule),\u00a74.12)",
+   "context": "ve the OT tag day). 3. Capacity Bars are on. || 1. Look at the overtime signals for that day ('OT' tag, amber highlights). 2. Look at a conflicted shift for comparison. || 1. Overtime is signaled with the 'OT' text tag and amber "
+  },
+  {
+   "id": 30033,
+   "title": "Hovering a capacity bar shows a per-technician breakdown",
+   "section": "Capacity Bars",
+   "refs": "SV-8698 (\u00a74.12 (Hover tooltip))",
+   "context": "026, narrowed this from 'per-technician' to 'per-assigned technician'.) 2. The overtime technician's entry is highlighted in amber. 3. The numbers agree with the shifts actually on the grid. --- This is the expected behaviour as "
+  },
+  {
+   "id": 30041,
+   "title": "Toolbar search highlights matching blocks and fades non-matching ones",
+   "section": "Grid Toolbar",
+   "refs": "SV-8686 (\u00a76 (Search))",
+   "context": "Toolbar search highlights matching blocks and fades non-matching ones || 1. You are signed in on a desktop browser. 2. Several shifts "
+  }
+ ],
+ "non-matching": [
+  {
+   "id": 30041,
+   "title": "Toolbar search highlights matching blocks and fades non-matching ones",
+   "section": "Grid Toolbar",
+   "refs": "SV-8686 (\u00a76 (Search))",
+   "context": "Toolbar search highlights matching blocks and fades non-matching ones || 1. You are signed in on a desktop browser. 2. Several shifts exist on the visible range for different"
+  }
+ ],
+ "five-field search list": [
+  {
+   "id": 30041,
+   "title": "Toolbar search highlights matching blocks and fades non-matching ones",
+   "section": "Grid Toolbar",
+   "refs": "SV-8686 (\u00a76 (Search))",
+   "context": " Type a customer name into the toolbar search; look at the grid. 2. Clear, then search a work order number, a unit number, a technician name, and a line name in turn. 3. Clear the search. || 1. Blocks that match the search are highlighted; blocks tha"
+  }
+ ],
+ "restore/clearing": [
+  {
+   "id": 29928,
+   "title": "Grid rows are grouped by department under group headers",
+   "section": "Navigation and Layout",
+   "refs": "SV-8686 (\u00a73.2,\u00a714.4)",
+   "context": "browser. 2. Staff members are assigned to at least two different departments (adjust staff records if needed, restore after). 3. You are on the Schedule page in week view. || 1. Read the technician rows in the grid from top to"
+  },
+  {
+   "id": 29941,
+   "title": "Sidebar search with no matching work orders shows an empty list",
+   "section": "Sidebar - Work Order List and Search",
+   "refs": "SV-8687 (\u00a73.1 (derived - search behavior with no matches))",
+   "context": "ar the search. || 1. No work order cards are shown. 2. The app does not error; the sidebar remains usable. 3. Clearing the search restores the full list. --- This is the expected behaviour as per epic SV-8685 and the Schedule sp"
+  },
+  {
+   "id": 29948,
+   "title": "Work order card opens the line drill-down in place, with header and back control",
+   "section": "Sidebar - Line Drill-Down",
+   "refs": "SV-8687 (\u00a73.1 (Line drill-down))",
+   "context": "matches the number of approved lines. 4. A back control is shown to return to the card list. 5. Clicking back restores the work order card list. --- This is the expected behaviour as per epic SV-8685 and the Schedule specifica"
+  },
+  {
+   "id": 29969,
+   "title": "A shift's start time uses the technician's own working hours when set",
+   "section": "Shift Start Times and Unassigned Shifts",
+   "refs": "SV-8688 (\u00a74.2)",
+   "context": "IFFER from the shop's business hours (for example tech 6:00 AM start vs shop 8:00 AM) - set this up first and restore after. 3. A schedulable work order line exists. 4. You are on the Schedule page in week view. || 1. Drop the"
+  },
+  {
+   "id": 29971,
+   "title": "With neither technician hours nor business hours set, a 7:00 AM default applies",
+   "section": "Shift Start Times and Unassigned Shifts",
+   "refs": "SV-8688 (\u00a74.2)",
+   "context": "ith no configured hours AND the shop's business hours are not set (adjust settings if the environment allows; restore the settings byte-identical after). 3. A schedulable work order line exists. 4. You are on the Schedule page"
+  },
+  {
+   "id": 30004,
+   "title": "Dragging a shift sideways moves its start time in 15-minute steps",
+   "section": "Day View Timeline",
+   "refs": "SV-8694 (\u00a74.8 (Horizontal drag),\u00a77 (toast))",
+   "context": "tween clean quarter-hours. 2. Open the shift and read its new start time. 3. Undo via the toast if needed and restore the original time. || 1. The shift moves along the timeline as you drag. 2. The released start time snaps to"
+  },
+  {
+   "id": 30020,
+   "title": "Events can be dragged to another technician or another day",
+   "section": "Events",
+   "refs": "SV-8696 (\u00a74.10 (Drag-and-drop to reassign/move),\u00a77 (toast))",
+   "context": " 1. Drag the event block to a different technician's row. 2. Drag it to a different day. 3. Undo/move back to restore. || 1. Dropping on another technician reassigns the event to them. 2. Dropping on another day moves it to th"
+  },
+  {
+   "id": 30041,
+   "title": "Toolbar search highlights matching blocks and fades non-matching ones",
+   "section": "Grid Toolbar",
+   "refs": "SV-8686 (\u00a76 (Search))",
+   "context": ". 3. Matching blocks stay in place on the grid (search visually filters; it does not remove or rearrange). 4. Clearing the search restores all blocks to normal. --- This is the expected behaviour as per epic SV-8685 and the Sche"
+  },
+  {
+   "id": 30043,
+   "title": "Department toggles show or hide individual department groups in the grid",
+   "section": "Filter and Display and View Options",
+   "refs": "SV-8700 (\u00a79 (Department toggles))",
+   "context": "der and technician rows) disappears from the grid. 2. Other departments are unaffected. 3. Turning it back on restores the group. --- This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27"
+  },
+  {
+   "id": 30044,
+   "title": "'My Shifts' filters the grid to only the current user's shifts",
+   "section": "Filter and Display and View Options",
+   "refs": "SV-8700 (\u00a79 (My Shifts),\u00a714.3)",
+   "context": "ifts assigned to you remain visible; all other technician rows and their shifts are hidden. 2. Turning it off restores the full grid. 3. This is a personal convenience filter only - it does not change what you are permitted to"
+  },
+  {
+   "id": 30065,
+   "title": "Every create/delete/move/reassign toasts with Undo, and Undo restores",
+   "section": "Deletion, Series Scopes and Undo",
+   "refs": "SV-8688 (\u00a77 (Toast notifications),\u00a711 (Undo))",
+   "context": "Every create/delete/move/reassign toasts with Undo, and Undo restores || 1. You are signed in on a desktop browser with Schedule: Delete. 2. Schedulable lines exist and a shift "
+  },
+  {
+   "id": 30073,
+   "title": "Color labels are editable per shop",
+   "section": "Color System",
+   "refs": "SV-8700 (\u00a710 (Color labels are editable per shop),\u00a74.10 (shared picker))",
+   "context": "icker. 2. Rename it (for example to 'ZZAUTOTEST Rush'). 3. Open the picker again from another shift/event. 4. Restore the original label. || 1. Each color's label can be edited. 2. The renamed label shows for the whole shop - "
+  },
+  {
+   "id": 30074,
+   "title": "Schedule: View grants the full read-only experience across the whole page",
+   "section": "Permissions",
+   "refs": "SV-8685 [epic - cross-cutting,no single-story owner] (\u00a714.1 (Schedule: View),\u00a714.3)",
+   "context": "est user's role has Schedule: View but NOT Edit (assign a suitable system role or a purpose-made custom role; restore after). 2. Shifts and events exist on the grid, created by an Edit-capable user. 3. You are signed in AS tha"
+  },
+  {
+   "id": 30079,
+   "title": "Schedule: Delete unlocks deleting shifts and events",
+   "section": "Permissions",
+   "refs": "SV-8685 [epic - cross-cutting,no single-story owner] (\u00a714.1 (Schedule: Delete))",
+   "context": "its scopes (this shift / this and after / whole series). 3. Events can be deleted too. 4. Undo toasts appear (restore the items via Undo to clean up). --- This is the expected behaviour as per epic SV-8685 and the Schedule spe"
+  },
+  {
+   "id": 30083,
+   "title": "Grid rows are department-based, not role-based",
+   "section": "Permissions",
+   "refs": "SV-8686 (\u00a714.4)",
+   "context": "NON-technician role (for example Office) is assigned to a department that is visible on the schedule (set up; restore after). 2. Another staff member has NO department assignment. 3. You are signed in on a desktop browser, on "
+  },
+  {
+   "id": 30084,
+   "title": "Clocking into line tasks is gated by the staff 'Time Clock' setting",
+   "section": "Permissions",
+   "refs": "SV-8686 (\u00a714.4 (Time Clock setting))",
+   "context": "Two staff members exist: one with the 'Time Clock' setting ON on their staff record, one with it OFF (set up; restore after). 2. Both appear as schedule rows and have shifts on work order lines. || 1. As (or with) the Time-Clo"
+  },
+  {
+   "id": 30614,
+   "title": "With Work Orders: View OFF, work order details on shifts are hidden",
+   "section": "Permissions",
+   "refs": "SV-8687 (\u00a714.2 (Work Orders: View dependency))",
+   "context": "ts are hidden || 1. A test user's role has Schedule access but Work Orders: View OFF (assign a suitable role; restore after). 2. Shifts already exist on the grid, created by a fully-permissioned user, for units that have custo"
+  },
+  {
+   "id": 38866,
+   "title": "Schedule and all its dialogs display correctly in dark mode",
+   "section": "Edge Cases and Responsiveness",
+   "refs": "SV-8685 (\u00a711 (Dark theme - user-selectable Light / Dark,persisted per user))",
+   "context": " distinguishable (they never rely on colour alone - text/icon still present). 4. Switching back to light mode restores the normal look with nothing stuck in dark colours. --- This is the expected behaviour as per epic SV-8685 "
+  }
+ ],
+ "rearrange": [
+  {
+   "id": 30041,
+   "title": "Toolbar search highlights matching blocks and fades non-matching ones",
+   "section": "Grid Toolbar",
+   "refs": "SV-8686 (\u00a76 (Search))",
+   "context": ", and line name. 3. Matching blocks stay in place on the grid (search visually filters; it does not remove or rearrange). 4. Clearing the search restores all blocks to normal. --- This is the expected behaviour as per epic SV-86"
+  }
+ ],
+ "SV-8874": []
+}

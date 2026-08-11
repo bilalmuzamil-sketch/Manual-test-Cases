@@ -1,0 +1,34 @@
+h2. Summary
+
+Provides the core schedule screen — a visual calendar grid with day, week, and month views where technicians are listed as rows grouped by department, giving managers a single screen to see the full week's allocation at a glance.
+
+h2. Context
+
+The Schedule is a top-level nav item. The grid is the main area (right side) of the screen. Technician rows are determined by department assignment on staff records. Departments appear as collapsible group headers. The left panel (sidebar) is covered in a separate story.
+
+h2. Requirements
+
+# Day view: a 24-hour timeline per technician row with time-positioned blocks. — ([PRD: §3.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])
+# Week view: a 7-column grid Mon–Sun with stacked shift chips per cell. Saturday and Sunday are each independently toggleable. — ([PRD: §3.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])
+# Month view: a compact calendar with per-day capacity bars and shift chips. — ([PRD: §3.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])
+# Rows grouped by department under collapsible group headers with technicians listed beneath. No separate Tech/Dept toggle. — ([PRD: §3.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])
+# Unassigned placeholder row within the grid for shifts not yet tied to a technician. — ([PRD: §3.2|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#3.2-Main-area:-schedule-grid])
+# Grid toolbar: Today button, left/right arrows, date label, conflict pill, search, Filter & Display, View Options, Day/Week/Month segmented control. — ([PRD: §6|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])
+# Grid search filters blocks by matching against customer name, WO number, unit number, technician name, and line name. Non-matching blocks fade; matching blocks highlight. — ([PRD: §6|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#6.-Grid-toolbar])
+# Minimum supported width is 960px; the grid scrolls horizontally below that. — ([PRD: §11|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])
+# The grid must render smoothly with up to 15 technicians × 7 days × several shifts per cell. — ([PRD: §11|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#11.-Non-functional-requirements])
+# Whether a user appears as a grid row is controlled by department assignment on their staff record, not by role permission. — ([PRD: §14.4|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule#14.4-Technician-grid-rows-are-department-based])
+
+h2. Acceptance Criteria
+
+* Given the schedule page loads, when the user has Schedule: View permission, then the grid displays with day view as default showing all department-grouped technician rows.
+* Given the user clicks Day/Week/Month segmented control, when Week is selected, then a 7-column Mon–Sun grid renders with stacked shift chips.
+* -Given the user clicks the Today button, when the grid is navigated to a past or future date, then the grid jumps to the current date.-
+* -Given 15 technicians × 7 days with multiple shifts per cell, when the grid renders, then there is no visible lag or jank.-
+* -Given the user types in the grid search, when the query matches a customer name, then matching blocks highlight and non-matching blocks fade.-
+* -Given the viewport is below 960px, when the grid renders, then horizontal scrolling is enabled.-
+* -Given a department group header, when the user clicks the collapse control, then all technician rows under that department hide.-
+
+h2. UI/UX
+
+[Schedule Design|https://claude.ai/design/p/d3cdcf5c-83df-45ea-ba75-7ddedb5124b5?file=Schedule.dc.html&via=share]
