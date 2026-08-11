@@ -15,7 +15,7 @@
   "viu_status": "VIU-Blocked-NotBuilt",
   "notes": "Authored 2026-08-11 for the §5.3 coverage gap. Covers assertions §5.3-L189.A1/A2/A3, §5.3-L190.A1/A2/A3 and §6-L199.A2. NOT BUILT: proven three ways on build v3.5-af3a6e1 - (1) no control anywhere left of Today at six viewport widths from 1680 down to 600, (2) not in the View options or Filter and display menus and no keyboard route moved the panel, (3) the strings 'Hide panel', 'Show panel', 'panel-left' and 'Panel toggle' appear ZERO times in the shipped Schedule JavaScript chunk, while every control that IS built appears there. The near-miss to avoid: button_mini_calendar_collapse carries aria-label 'Hide the calendar' and sits in the same left strip - that is the mini calendar's own chevron (§5.2), already covered by SCH-MCAL-03 = C29934, not the panel toggle. Honest limit on expected item 4: the specification says 'a borderless panel-left icon in secondary text color'; 'secondary text color' is a design token, so the case asserts the observable form of it - no border or box, same muted grey as the sibling icon buttons in that row.",
   "api_related": false,
-  "testrail_case_id": null,
+  "testrail_case_id": 43582,
   "section_id": 4273
  },
  {
@@ -34,7 +34,7 @@
   "viu_status": "VIU-Blocked-NotBuilt",
   "notes": "Authored 2026-08-11. Covers §5.3-L191.A1 and §5.3-L191.A2, plus the width half of §3.1-L44.A1 ('handing its width to the grid'). NOT BUILT on v3.5-af3a6e1 - see SCH-PANEL-01's note for the three-way proof. Observation recorded for whoever builds it: today the panel's right edge is at x=287 and the grid starts at x=300, and a scan of that gap found NO separate divider element, so expected item 2 is written as the observable outcome (no leftover line or seam) rather than as a statement about a divider element that may not exist.",
   "api_related": false,
-  "testrail_case_id": null,
+  "testrail_case_id": 43583,
   "section_id": 4273
  },
  {
@@ -53,7 +53,7 @@
   "viu_status": "VIU-Blocked-NotBuilt",
   "notes": "Authored 2026-08-11. Covers §5.3-L192.A1/A2/A3/A4 and the state half of §3.1-L44.A1 ('without losing panel state'). The specification's 'whichever panel mode was active' means the work order list or the line drill-down, the two modes §3.1 defines; expected item 5 says that in plain words rather than using the word 'mode'. Build labels taken live from v3.5-af3a6e1: the search box placeholder is 'Search work orders' and the drill-down's back control is labelled 'Back to work orders'. NOT BUILT - see SCH-PANEL-01's note for the three-way proof.",
   "api_related": false,
-  "testrail_case_id": null,
+  "testrail_case_id": 43584,
   "section_id": 4273
  },
  {
@@ -72,7 +72,7 @@
   "viu_status": "VIU-Blocked-NotBuilt",
   "notes": "Authored 2026-08-11. Covers §5.3-L193.A2 and §5.3-L193.A3 ONLY. The first sentence of the same bullet - 'Below the 960px minimum supported width the panel auto-collapses' - restates §11 and is already covered by SCH-EDGE-02 = C30086, so it is deliberately NOT re-asserted here (Rule 45(e): no duplicate coverage). Filed in Edge Cases and Responsiveness rather than Grid Toolbar so it sits beside C30086, which covers the other half of the same bullet. Related known issue, recorded but NOT re-asserted: on v3.5-af3a6e1 the panel does not fold away on its own at any width - measured at 959, 900, 760 and 600 pixels on fresh page loads, the panel stayed 275 pixels wide and visible while the grid shrank instead. That is C30086's assertion and it is already ticketed as SV-8942, which C30086 names. NOT BUILT for the toggle half - see SCH-PANEL-01.",
   "api_related": false,
-  "testrail_case_id": null,
+  "testrail_case_id": 43585,
   "section_id": 4280
  },
  {
@@ -91,7 +91,7 @@
   "viu_status": "VIU-Blocked-NotBuilt",
   "notes": "Authored 2026-08-11. Covers §5.3-L194.A1. The specification's wording is 'Anything that positions itself clear of the panel falls back to a normal viewport margin while the panel is collapsed'; the case states that as the observable outcome a non-technical tester can check - the pop-up stops leaving the panel's space clear, and none of it ends up off screen. Kept as its own case rather than folded into SCH-PANEL-02 because the failure it catches is different: a dialog rendering half off screen is a separate reportable bug from the panel failing to close. NOT BUILT - see SCH-PANEL-01.",
   "api_related": false,
-  "testrail_case_id": null,
+  "testrail_case_id": 43586,
   "section_id": 4273
  },
  {
@@ -110,7 +110,7 @@
   "viu_status": "VIU-Blocked-NotBuilt",
   "notes": "Authored 2026-08-11. Covers §5.3-L195.A2 ('Session-scoped per user for build - this is a working-mode preference, not a saved view'). The sibling assertion §5.3-L195.A1 ('Persistence. Not persisted in the prototype.') is NOT covered by any case and is not a gap: it describes the PROTOTYPE's behaviour, not a requirement on the build, and the very next clause states the build requirement this case asserts. OPEN QUESTION, cited on the case itself per Rule 58: §5.3 says session-scoped, while item E12 of the 5 August design review asks for view settings stored per user so they survive across sessions. The ambiguity is NOT resolved from the build - the case follows the specification and says so. Already drafted as item S-2 of build/schedule/coverage-rederivation-2026-08-10/QUESTIONS-FOR-BRANKO.md, which has still not been sent. TWO reasons for HOLD, not one: the control is not built, AND step 4 needs a second sign-in on this estate, which we deliberately do not take because quick-login and switch-user rotate the shared session token and a sibling worker is live.",
   "api_related": false,
-  "testrail_case_id": null,
+  "testrail_case_id": 43587,
   "section_id": 4273
  }
 ]
