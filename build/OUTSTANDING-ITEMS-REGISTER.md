@@ -77,7 +77,18 @@ else owes).
 
 ---
 
-## 🛑 NEWEST — 2026-08-10, THE RULINGS PASS. **THREE QA-LEAD RULINGS. ONE OF THEM STOPS ALL CREATION UNTIL HE SAYS OTHERWISE, AND ONE GIVES US THE FIRST FINALITY ANSWER THIS PROJECT HAS EVER HAD — a PARTIAL one.**
+## 🆕 NEWEST — 2026-08-11, THE DATED-PROVENANCE PASS. **A NEW RULING CREATES A SWEEP WE OWE ACROSS EVERY PROJECT, AND IT IS NOT DONE.**
+
+**Standing Rule 54 was amended today: every source a case cites must also carry THE DATE WE READ IT.** His purpose, verbatim: *"…so that in future if someone changes the source of truth I can guard myself telling that the refrence taken from the source of truth was from the state of that source which was at this certain date."*
+
+| # | What is missing | Who owes it | **What it BLOCKS** | Since |
+|---|---|---|---|---|
+| **D1** | **THE READ-DATE SWEEP — every case stamped before 2026-08-11 names its sources WITHOUT a read-date.** The amended Rule 54 requires **one date per cited source** in the provenance line's sentence 1. **Only 2 cases carry it today — C30452 and C30434**, both written by this pass; **every other case across Report Suite, Schedule and Filters does not.** **The sweep is NOT started.** ⚠️ **It cannot be done by stamping today's date on everything** — Rule 54 as amended bars exactly that: the date must be the date that source was **actually re-read**, so the sweep has to **re-read the sources per project**, which makes it a real pass and not a text substitution. | **the QA lead** — it needs his go-ahead as a `update_case` pass over ~750 cases | **No suite may be described as compliant with the amended Rule 54 until it runs.** Until then his stated protection — being able to show a reference was taken from a source *as it stood on a given date* — **exists on 2 cases and nowhere else.** | **2026-08-11** |
+| **D2** | **A PO QUESTION FOR CHRIS WARD — does the Technician Utilization download menu have to list its four options in the SAME ORDER as Sales By Customer?** The TU specification (v7, read 2026-08-11) requires each of the four options to **exist** with an exact label (S7-R2, S7-R3, S7-R4, S7-R4a) and **pins no order at all** — it pins column order (S2-R1) but never menu order. The build lists them Summary (PDF), Summary (CSV), Expanded View (PDF), Expanded View (CSV); Sales By Customer runs Summary (PDF), Expanded View (PDF), Summary (CSV), Expanded View (CSV). **No source says which is right, so C30434 asserts neither** (Rule 57 — where no source speaks, the gap is a question, not an invented requirement). | **Chris Ward** | Nothing is blocked — **C30434 passes on the four labels**. What is blocked is any claim that the menu **order** is verified either way. | **2026-08-11** |
+
+---
+
+## 🛑 2026-08-10, THE RULINGS PASS. **THREE QA-LEAD RULINGS. ONE OF THEM STOPS ALL CREATION UNTIL HE SAYS OTHERWISE, AND ONE GIVES US THE FIRST FINALITY ANSWER THIS PROJECT HAS EVER HAD — a PARTIAL one.**
 
 **DOCUMENTATION ONLY this pass. No TestRail call, no Jira call, no app access, no test-case change, and — per the first ruling below — nothing created anywhere.**
 

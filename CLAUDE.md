@@ -3908,7 +3908,9 @@ deliver the 7-tab management report.
     invisible.
     **THE REQUIRED FORM — TWO SEPARATE SENTENCES THAT MUST NEVER BE MERGED. Merging them is precisely
     what caused the problem, so keep them as two sentences even when both are present.**
-    **SENTENCE 1 — THE SOURCE OF THE EXPECTATION. MANDATORY. NAMES ONLY DOCUMENTS.** The
+    **SENTENCE 1 — THE SOURCE OF THE EXPECTATION. MANDATORY. NAMES ONLY DOCUMENTS.**
+    **⚠️ AMENDED 2026-08-11 — SENTENCE 1 ALSO CARRIES THE DATE WE READ EACH SOURCE. Read the
+    AMENDMENT block below before copying any shape from this paragraph.** The
     **specification with its VERSION and the requirement anchor**, and/or the **epic and/or the owning
     story**, and/or the **PO's verified answer with its file link and date**, **and/or — from
     2026-08-06 — the DESIGN or FIGMA, now authoritative sources of expected behaviour (Rule 57, as
@@ -3937,6 +3939,51 @@ deliver the 7-tab management report.
     the Sales By Customer report specification version 13 (S4-R13). Last checked against build
     v3.5-16cf83f on 8/5/2026."* **Note what did NOT change between the two states: the SOURCE sentence
     is identical, because a live check does not alter where an expectation comes from.**
+    **⇒ AMENDMENT, 2026-08-11 — EVERY CITED SOURCE ALSO CARRIES THE DATE WE READ IT. THE TWO-SENTENCE
+    FORM AND EVERYTHING ABOVE ARE OTHERWISE UNCHANGED; THIS IS PURELY ADDITIVE.**
+    USER DIRECTIVE (2026-08-11, verbatim, his typing preserved exactly as he wrote it because Rule 25
+    applies to his instructions as it does to a spec): *"Do with the cases/or update them as per the
+    logic, if anyone sees those test cases they will bite me saying that it is not coming from specs/
+    tickets/answer sheet/Claud design/Figma or anything which the PO confirmed. I want nothing to bite
+    me like that. And every expected behavior as I mentioned before should have a reference in the test
+    cases in the same format as you are keeping that must tell the Manual QA guy or anyone who is
+    auditing those test cases that these are the sources of the expected behavior, make sure to mention
+    the date of the source when that source of truth was taken from each source, so that in future if
+    someone changes the source of truth I can guard myself telling that the refrence taken from the
+    source of truth was from the state of that source which was at this certain date."*
+    **HIS PURPOSE, STATED PLAINLY BECAUSE IT IS WHAT MAKES THE DATE LOAD-BEARING: THE READ-DATE IS
+    EVIDENTIARY.** A version number alone says what the source was *called*; **the read-date says WHEN
+    WE LOOKED.** So when a source later moves, he can show that the reference was taken from that
+    source **as it stood on a stated date** — and the case reads as **a record of a real reading**
+    rather than a claim that ages silently.
+    **WHAT CHANGES — SENTENCE 1 GAINS A READ-DATE PER SOURCE.** Shape: *"This is the expected
+    behaviour as per epic SV-8685 and the Schedule specification version 27, section 5.3, read on
+    11 August 2026."*
+    **WHERE A CASE CITES MORE THAN ONE SOURCE, EACH CARRIES ITS OWN DATE.** A spec and a PO answer are
+    **read at different times and move independently**, so a single shared date would misstate at
+    least one of them.
+    **SENTENCE 2 IS UNCHANGED.** *"Last checked against build … on …"* still names the build **only as
+    what the case was checked against, never as a source** (Rule 57). **The read-date does NOT attach
+    to the build** — the build line already carries its own date, and merging the two is the exact
+    error this rule spent 2026-08-05 undoing.
+    **THE DATE IS THE DATE *WE READ THAT SOURCE*, NOT TODAY'S DATE.** **NEVER back-fill a read-date
+    onto a case whose source was not actually re-read in that pass.** That is a **fabricated
+    observation** (Rule 12), and it **defeats the entire purpose**: the value of the date is
+    evidentiary, and **a date nobody stood behind protects nobody.** Where a pass re-reads the spec but
+    not the epic, **only the spec's date moves.**
+    **CONSEQUENCE, RECORDED HONESTLY RATHER THAN GLOSSED — THE EXISTING SUITES DO NOT CARRY
+    READ-DATES.** Every case stamped before 2026-08-11 names its sources without one, so **a sweep is
+    owed across all projects and it is NOT done.** It is logged in
+    `build/OUTSTANDING-ITEMS-REGISTER.md`; **until it runs, no pass may describe any suite as compliant
+    with this amendment.**
+    **TIES:** Rule 20 (`refs` carries the ticket + anchor in the metadata layer — this line is its
+    tester-visible twin, and the read-date belongs on both), Rule 31 (source currency — the read-date
+    is the currency check made **visible on the case**, and Rule 31's trap (c) still applies: a
+    read-date proves when we looked, never how old the requirement is), Rule 42 (a version-pinned
+    anchor connects a closed list to the requirement that invalidates it; the read-date pins **when**
+    that pin was taken), Rule 56 (a divergence disclosure carries its own dates on the same principle)
+    and Rule 57 (the read-date applies to **every** kind of source on its list — spec, story, PO
+    answer, design, Figma, shared `.md` file, written statement).
     **KEEP IT CURRENT — THIS IS THE OPERATIVE HALF.** The line is **RE-STAMPED whenever we re-check
     against the spec, the epic or the build**, and re-stamping is a **REQUIRED step** of every
     verification, reconciliation and spec-delta pass — **not an optional tidy**. **A stale date, a
@@ -4570,6 +4617,37 @@ deliver the 7-tab management report.
     **PREDICTION about the build's future state**, and **predictions go stale**. The obvious remedy —
     re-verifying every deviation on every redeploy — is **unwinnable**: the **Schedule QA branch
     redeployed FOUR TIMES IN TWO DAYS**.
+    **⇒ AMENDMENT, 2026-08-11 — AN EXPECT-FAIL MARKER NEEDS LIVE BACKING. NO BACKING, NO MARKER.
+    THIS ADDS A PRECONDITION FOR SETTING ONE; IT DOES NOT CHANGE THE SHAPE OF A LEGITIMATE ONE.**
+    USER DIRECTIVE (2026-08-11, verbatim, his typing preserved exactly as he wrote it): *"WHen there
+    is nothing to back 'Expect fail' then not set that marker. And let the manual QA tester simply
+    discover whether this test fails or passes and mark the test case accordingly in the tesrail"*
+    **THE PRECONDITION:** `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` may be set **ONLY where a LIVE
+    source actually backs it** — an **OPEN ticket describing the failure**, or an equivalent
+    **documented basis**. **No backing, no marker.**
+    **WHERE THE BACKING IS ABSENT, STALE, OR WAS NEVER ESTABLISHED, THE MARKER COMES OFF** and the case
+    carries plain **`AUTOMATION: READY`**. The manual tester then **DISCOVERS** whether it passes or
+    fails and records that in TestRail. **WE DO NOT PREDICT ON THE TESTER'S BEHALF.**
+    **A CLOSED OR OBSOLETE TICKET DOES NOT BACK THE MARKER.** This is concrete, not theoretical: **31
+    of the 33 tickets behind the Report Suite's expect-fail cases are closed**, several confirmed fixed
+    on **10 August** — so those markers are **telling a tester to ignore a failure that may no longer
+    exist**, which is the precise inverse of what the marker is for.
+    **WHAT IS UNCHANGED — THE THREE-OUTCOME INSTRUCTION STAYS** for markers that **ARE** properly
+    backed; it is what makes a live expect-fail an instruction rather than a prediction. **What changes
+    is the PRECONDITION for setting one at all.**
+    **AND THIS IS NOT A LICENCE TO GUESS THE OTHER WAY (Rules 12 + 57).** An unbacked expect-fail
+    **asserts a build fact nobody observed**, which **Rule 12** forbids; and a marker written from what
+    the build merely happens to do is **build-derived expectation through a side door**, which **Rule
+    57** forbids. **Removing an unbacked marker does not soften the case — it RESTORES the case's
+    ability to fail**, which is the whole point of holding an expectation.
+    **WORKED EXAMPLE, AND IT CUTS AGAINST OUR OWN RECENT WORK:** the six Schedule Panel collapse cases
+    **C43582–C43587** carry `AUTOMATION: HOLD - the panel collapse control is not in the build`. Under
+    this ruling that is **wrong on both counts** — the control's **absence is perfectly observable**, so
+    it is **not** a genuine `HOLD` (this rule already reserves `HOLD` for a **truly unobtainable**
+    thing), and **no ticket backs an expect-fail** either. **They should carry plain
+    `AUTOMATION: READY`**, and the tester runs them, fails them, and records it. **They were NOT
+    written by this pass** — a separate pass is taking the whole expect-fail population so the change
+    lands consistently across all three projects.
     **THE CORE RULE:** an `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` case MUST state, **in the
     TESTER-FACING Expected Results, THE EXACT OBSERVABLE SYMPTOM of the known failure**, and then what
     to do in **EACH of three outcomes**:
@@ -4866,6 +4944,12 @@ deliver the 7-tab management report.
     exactly the duty now written into Rule 62's tail (*"anything that stops you from creating/updating
     a test case You MUST let me know"*). **The sole surviving cost of the hold is the FIVE PREPARED
     JIRA DEFECTS, which stay unfiled.**
+    **⇒ AND THE PRACTICE ITSELF HAS NOW BEEN EXPLICITLY ENDORSED (2026-08-11).** Asked to confirm the
+    creation hold before raising a Jira ticket for an unbuilt control, he **confirmed the hold stands**
+    and answered, verbatim: ***"Good catch, be like this always."*** **So checking before acting is not
+    merely permitted — it is the behaviour he has asked for by name**, which settles the standing worry
+    that surfacing a conflict reads as obstruction. **The cost of a needless check is one sentence; the
+    cost of a silent assumption is a ticket he never approved.**
     Ties to Standing Rules 1 (never proceed without the complete input set — an unresolved conflict IS
     a missing input), 6 (nothing enters a system of record unasked), 7 (the ask is in plain layman
     words), 12 (observed, never inferred — **including never inferring which of two instructions he
