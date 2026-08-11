@@ -381,10 +381,12 @@ C43582–C43587. The sentence was copied from C43582 (which has eight *expected 
 six. **It is our own text confusing a tester, and it is the kind of thing a reviewer notices first.**
 Fix: 6 `update_case`, one sentence each. `DELIBERATE-DECISIONS.md` **D10**.
 
-**(b) 148 of 174 cases carry no Rule-54 read-on date.** The amendment of 2026-08-11 requires the date each
-source was read, per source; **26 of 174 have it.** Until the sweep runs, **no Schedule pass may describe
-the suite as compliant with that amendment** — and the three staged cases here do carry theirs, so the two
-states will coexist. Fix: 148 `update_case`. `DELIBERATE-DECISIONS.md` **D11**.
+**(b) ~~148 of 174 cases carry no Rule-54 read-on date.~~ ⚠️ FIXED WHILE THIS PASS WAS BEING WRITTEN —
+CORRECTED, NOT DELETED (Rule 59).** When the suite was read at **13:10Z, 26 of 174** carried a read-on
+date. **Re-read live at the end of the pass: 174 of 174 carry one.** A sibling worker's read-date sweep
+completed under us — the same class of event as a spec moving mid-pass, and the reason Rule 59 exists.
+**Nothing is owed on this any more**, and the three staged cases carry their read-on dates too, so the suite
+is now uniform rather than in two states. `DELIBERATE-DECISIONS.md` **D11**.
 
 **(c) `build/schedule/panel-collapse-2026-08-11/NEW-CASES.md` is stale against the cases it describes.**
 It states all six carry `AUTOMATION: HOLD - the panel collapse control is not in the build`; **live, all six

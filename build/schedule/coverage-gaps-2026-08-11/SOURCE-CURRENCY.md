@@ -148,7 +148,7 @@ rather than trusted it:**
 | `AUTOMATION: READY` | — | **146** |
 | `AUTOMATION: HOLD` | — | **28** |
 | `AUTOMATION: READY - EXPECT FAIL` | 21 | **0** — the Rule-61 amendment of 2026-08-11 |
-| Cases carrying a Rule-54 **read-on date** | 0 | **26 of 174** |
+| Cases carrying a Rule-54 **read-on date** | 0 | **26 of 174 at 13:10Z → 174 of 174 by 14:0xZ** — a sibling worker's read-date sweep **completed while this pass was being written**; see the correction note below |
 
 146 + 28 = **174** ✔. **Every one of the 174 was updated after 2026-08-10 12:00Z**, which is precisely
 why the 282 COVERED verdicts could not simply be carried forward — see `COVERAGE-REDERIVATION.md` §2 for
@@ -173,7 +173,12 @@ prove, only the absence of any write call. The client at
 3. **Confirm which design artefact is canonical for Schedule** — source D is PARTIAL and cannot be dated,
    and design is now an authoritative source of expected behaviour. **~48 of our labels rest on the
    prototype.**
-4. **A ruling on the read-on-date sweep.** Rule 54 as amended on 2026-08-11 requires a read-date per
-   source on every case. **148 of 174 do not carry one.** That is 148 writes and it is not this pass's.
+4. ~~**A ruling on the read-on-date sweep.** Rule 54 as amended on 2026-08-11 requires a read-date per
+   source on every case. **148 of 174 do not carry one.**~~ **⚠️ CLEARED DURING THIS PASS AND CORRECTED
+   RATHER THAN SILENTLY DROPPED (Rule 59): a sibling worker's read-date sweep finished while these files
+   were being written. Re-read live at the end of the pass: 174 of 174 now carry a read-on date, up from
+   26 of 174 when the suite was first read at 13:10Z.** The original figure is struck through rather than
+   erased, because a quietly-corrected wrong number is how the next reader stops trusting the right ones.
+   **Nothing is owed here any more.**
 5. **Whether a technical design carries PRD-level authority** — Rule 30 versus Rule 57(d3), still
    unanswered, and Schedule is the project where it bites (source E is PARTIAL and five cases rest on it).

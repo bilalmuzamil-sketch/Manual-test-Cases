@@ -10,12 +10,14 @@ public, we have a concession to make and not just an explanation.**
 
 | | HIGH | MEDIUM | LOW | Total |
 |---|---|---|---|---|
-| Entries | **2** | **4** | **6** | **12** |
+| Entries | **2** | **3** | **6** | **11 open + 1 closed during the pass** |
 
 **HIGH: D7** (the design baseline cannot be dated and ~48 labels rest on it) · **D12** (two cases held on a
 question we wrote five days ago and have not sent).
 **MEDIUM: D5** (staged labels unconfirmed against a build) · **D6** (no Rule-41 forensic diff of 174 bodies)
-· **D9** (no ticket for the unbuilt panel control) · **D11** (148 cases missing a Rule-54 read-on date).
+· **D9** (no ticket for the unbuilt panel control).
+**CLOSED DURING THE PASS, kept as a record: D11** (the 148 missing read-on dates — a sibling worker's sweep
+finished while these files were being written; **174 of 174 now carry one**).
 **LOW: D1 · D2 · D3 · D4 · D8 · D10.**
 
 ---
@@ -209,12 +211,18 @@ first.
 174 Schedule cases do, and fixing the rest is 148 separate edits that were not part of this job.
 
 **Evidence:** Rule 54 as amended 2026-08-11 — *"make sure to mention the date of the source when that
-source of truth was taken from each source"*. Measured live: **26 of 174** carry a read-on date.
+source of truth was taken from each source"*. Measured live at pass start, **13:10Z: 26 of 174** carried a
+read-on date.
 
-**Affected cases:** 148. **Closed by:** the QA lead authorising the sweep; it is in
-`build/OUTSTANDING-ITEMS-REGISTER.md`.
-**Risk: MEDIUM.** Until it runs, **no Schedule pass may describe the suite as compliant with that
-amendment**, and the three staged cases here do carry their read-on dates, so the two states will coexist.
+**⚠️ CLOSED WHILE THIS PASS WAS BEING WRITTEN, AND CORRECTED HERE RATHER THAN QUIETLY DELETED (Rule 59).**
+Re-read live at the end of the pass: **174 of 174 now carry a read-on date.** A sibling worker's read-date
+sweep completed under us — the same class of event as a spec moving mid-pass. **The original figure is kept
+above rather than erased**, because a silently-corrected wrong number is how a reader stops trusting the
+right ones.
+
+**Affected cases:** was 148, now **0**. **Closed by:** already done, by the sibling pass.
+**Risk: NONE — this entry is retained as a record, not as an open item.** The three staged cases carry
+their read-on dates too, so the suite is uniform rather than in two states.
 
 ---
 
