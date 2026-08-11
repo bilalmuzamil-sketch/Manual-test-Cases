@@ -29,7 +29,8 @@ build stamp for an observation that was never made.
 | `index.html` last-modified | **Tue 11 Aug 2026 09:33:33 GMT** |
 | etag | `3250d285ffcf50626363a578fe273071` |
 | sha256 of `index.html` | `9348ca09d6167375dc52bfc29bf3b9f8c4163dede2ea5ea62269b186c9cc5f6f` |
-| Read at | **2026-08-11T11:05:35Z** (once — the session died before it could be read again) |
+| Read at | **11:05:35Z** and **11:32:32Z** — **`index.html` byte-identical both times** (same sha256), so **the build did NOT move under this pass** |
+| **Times the marker moved during the pass** | **0** |
 
 **The brief's expected marker was `v3.5-af3a6e1`. It is not that.** The build moved, exactly as the
 brief warned it might.

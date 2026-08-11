@@ -27,10 +27,12 @@ and itself SSO-gated).
 ## The build
 
 **`v3.5-65d6500`** · last-mod **Tue 11 Aug 2026 09:33:33 GMT** · etag `3250d285ffcf50626363a578fe273071`
-· sha256 `9348ca09d6167375dc52bfc29bf3b9f8c4163dede2ea5ea62269b186c9cc5f6f` · read once at
-**11:05:35Z**. **It moved** — the brief expected `v3.5-af3a6e1`. **No case's verdict rests on the
-build now running** (90 on `v3.5-7ec992f`, 78 on `v3.5-d122eef` which no longer exists, 6 on
-`v3.5-af3a6e1`).
+· sha256 `9348ca09d6167375dc52bfc29bf3b9f8c4163dede2ea5ea62269b186c9cc5f6f` · read at **11:05:35Z** and
+**11:32:32Z**, **byte-identical both times — it did not move under the pass (0 moves)**.
+
+**But it HAD moved before the pass started** — the brief expected `v3.5-af3a6e1`. **No case's verdict
+rests on the build now running** (90 on `v3.5-7ec992f`, 78 on `v3.5-d122eef` which no longer exists,
+6 on `v3.5-af3a6e1`).
 
 ## The exact next actions, in order
 
