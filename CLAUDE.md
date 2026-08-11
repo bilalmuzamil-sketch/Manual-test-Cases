@@ -5598,6 +5598,26 @@ regression / bug-fix re-testing.
   and Backend API & Security in the Custom Roles execution scope (unless told
   otherwise).
 - **NEVER commit secrets** (cookies/tokens/keys/passwords) — `/tmp` only.
+  **🔴 THIS REPOSITORY IS PUBLIC** (`bilalmuzamil-sketch/Manual-test-Cases`,
+  `"private": false`) — everything pushed is world-readable immediately, which governs
+  what may be written to disk at all, not merely how tidy we are.
+  **A JWT IS A CREDENTIAL EVEN WHEN IT IS SHORT-LIVED AND NARROWLY SCOPED** — "it expires
+  in ten minutes" and "it only grants read access to one topic" describe the blast radius,
+  they do not license committing it; a signed token is also an offline oracle for
+  brute-forcing the signing key, and **that risk does not expire when the token does**.
+  **RUN `python3 build/testing-tools/scan_secrets.py --staged` BEFORE EVERY COMMIT**
+  (exits non-zero on a hit; `--selftest` proves it both ways). It flags **values, never
+  names**, so `'Basic ' + AUTH` and `"${CK.sv_sso_session}"` do not trip it.
+  **REDACT AT THE POINT OF CAPTURE** — keep the header/key name, replace only the value;
+  a pre-commit scan is the backstop, not the control. **Response BODIES leak credentials
+  as readily as request headers**: the 2026-08-11 incident (12 Mercure JWTs in 13 tracked
+  files, 8 of them public since 4 August) came from a capture storing the first 600 chars
+  of every JSON response, and there was **not one `Bearer` literal in the repo**.
+  **Redaction does NOT undo exposure** — tokens remain in git history, and on a public
+  repo anything pushed must be assumed already cloned; **only rotating the signing secret
+  revokes them, and that is the QA lead's call.** Full write-up:
+  `build/secret-redaction-2026-08-11/REPORT.md`; standing detail in
+  `build/APP-ACTIONS-PLAYBOOK.md` (header section).
 - Git identity: `noreply@anthropic.com` / `Claude`.
 - The **"Unverified" commit stop-hook is a known false alarm** (signing key not
   registered) — ignore it.

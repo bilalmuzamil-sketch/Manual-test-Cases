@@ -97,6 +97,62 @@ else owes).
 
 ---
 
+## 🆕 NEWEST — 2026-08-11 (latest), THE FILTERS RE-SYNC + SV-9041 PASS. **THE LOCAL FILTERS SOURCE WAS STALE ON ALL 114 CASES AND IS NOW FIXED. THE EPIC GAINED A CHILD CARRYING A PO RULING — AND FOR ONCE IT CONFIRMS OUR WORDING RATHER THAN BREAKING IT.**
+
+**What cleared, without needing you:** the Filters local case source was stale on **114 of 114**
+bodies (spec v18 provenance + missing read-dates + seven build-accurate label corrections).
+Regenerating any Filters deliverable would have reverted two completed live passes. **Re-synced from
+live, verified 0 of 114 differing, four counts set-equal both ways.** No ask attached — recorded so
+nobody re-opens it.
+
+**SV-9041 is applied.** Two cases repaired and byte-verified — **C29601** and **C43562**. Scope was
+re-derived exhaustively across all 114 cases: **two**, not the eight in the brief nor the three the
+killed pass planned.
+
+| Row | Item | Category | Who owes it | What it BLOCKS | Since |
+|---|---|---|---|---|---|
+| **F12** | **Send the Branko sheet with the new SV-9041 addendum** (`build/filters/questions-2026-08-06/ADDENDUM-2026-08-11_SV-9041-collapse-toggle.md`) — does the "toggle only when more than one filter" rule belong in the PRD, and does it cover **Parts and Reports** as well as Work Orders? | ANSWER | QA lead → Branko | **Nothing is blocked.** Both cases already follow the ticket, which is ~3 months newer than the spec requirement it qualifies. The ask settles whether the rule is **written down** and **how far it reaches** — the ticket says only "the page", while its own QA evidence is a Parts page | 2026-08-11 |
+| **F13** | **A real coverage gap left UNFILLED, by your own ruling:** no case drives SV-9041's negative limb — *on a page with exactly one filter, the toggle is absent and the filter bar is always shown*. **One case is written and ready to author** | HELD | QA lead | The negative limb is **accepted** by C43562 when a tester meets it, but nothing **drives** it | 2026-08-11 |
+| **F14** | **SV-8906** — *"Clarification Required: empty-state inconsistency across…"*, Task, **Board Backlog**, unanswered since 5 August. New to our written records | OTHER TEAM | Branko | Unknown until read — not analysed in this pass | 2026-08-05 |
+
+### F13 carries the five Rule-48 fields, because it is frozen by your own ruling
+
+1. **The ruling, verbatim:** *"Do not create anything until my next order."*
+2. **When and in what context:** 2026-08-10, answering a request for permission to file five prepared
+   Report Suite defects. Register row **H1**.
+3. **What it blocks here:** one new Filters case for SV-9041's single-filter negative — proposed
+   wording *"On a page whose filter bar has only one filter, no show/hide control is offered and the
+   filter bar stays on display"*, driven on **Parts → Part Sales**, the page in the ticket's own
+   evidence. Related cases: **FLT-COLL-01 = [C29601](https://shopview.testrail.io/index.php?/cases/view/29601)**
+   and **FLT-PR-PAR-01 = [C43562](https://shopview.testrail.io/index.php?/cases/view/43562)**.
+4. **Why the ruling was reasonable:** it is a blanket pause on creating anything in an external system
+   of record, and `add_case` sits squarely inside it. Nothing about this gap is urgent — the behaviour
+   is **built and passing**, so the missing case is a coverage completeness item, not a live risk.
+5. **What would unblock it:** your next order, from you.
+
+### 🔴 The epic moved, and one new child carries a Branko ruling — **it CONFIRMS our wording**
+
+**Epic SV-8785 now has 21 children, not 20** (verified two independent ways, sets equal, no paging
+remainder). **[SV-9076](https://shopview.atlassian.net/browse/SV-9076)**, closed **Done** on
+2026-08-10, carries Branko verbatim:
+
+> *"Let's not change header, it's not part of this feature and **create work order label can stay**"*
+
+**That supersedes S13-R18**, which calls the button *"New Work Order"*. **Our suite needs no change:**
+all three cases naming it — C29601, [C29629](https://shopview.testrail.io/index.php?/cases/view/29629),
+[C38898](https://shopview.testrail.io/index.php?/cases/view/38898) — already say *"Create Work
+Order"*, and **zero** say *"New Work Order"*. **It is deliberately NOT on the question sheet** — he has
+already answered it, and re-asking is what this register exists to prevent.
+
+### One thing this pass could NOT establish (Rule 12)
+
+**The designs were not re-fetched**, so if a design shows the toggle on a single-filter page, that
+PRD-vs-design mismatch would not have been seen. Since 2026-08-06 the design and Figma are
+**authoritative sources** (Rule 57 as amended), which is why **row F11's "confirm the canonical design
+artefact" ask now matters to Filters too**, not only Schedule.
+
+---
+
 ## 🆕 NEWEST — 2026-08-11 (later), THE SECOND FINALITY RULING. **ALL THREE BRANCHES ARE FINAL. AND WITH THE RELEASE ON THURSDAY, 433 CASES ARE FINAL BUT NOT BUILD-VERIFIED.**
 
 **DOCUMENTATION ONLY this pass. No TestRail call, no Jira call, no app access, no test-case change.**

@@ -16,6 +16,61 @@
 > attempts / dead-ends), per "Keeping this current" at the bottom. This is Standing
 > Rule 27 in `CLAUDE.md`. **NO SECRETS EVER** — cookie NAMES only, never values.
 
+> ## 🔴 THIS REPOSITORY IS **PUBLIC** — READ BEFORE WRITING ANYTHING TO DISK
+>
+> `bilalmuzamil-sketch/Manual-test-Cases` is `"private": false`. **Everything committed
+> here is world-readable the moment it is pushed**, and the default branch is the one a
+> visitor lands on. That fact changes what may be written to disk at all — it is not
+> merely a reason to be tidy.
+>
+> **PROVEN INCIDENT (2026-08-11).** **12 Mercure JWT bearer tokens** were found in **13
+> tracked files** (14 occurrences). Eight had been public **since 4 August**. Every
+> earlier secret scan passed, because the patterns looked for **cookie prefixes** and
+> **`eyJ` was not among them**.
+>
+> **THE REASONING THAT FAILED US, so it is not repeated:**
+> **A JWT IS A CREDENTIAL EVEN WHEN IT IS SHORT-LIVED AND NARROWLY SCOPED.**
+> *"It expires in ten minutes"* and *"it only grants read access to one topic"* are
+> statements about **blast radius**, not arguments for committing it. A signed token is
+> also an **offline oracle for brute-forcing the signing key**, and **that risk does not
+> expire when the token does.**
+>
+> **THE HARNESS CAUSE — and it was NOT an `Authorization` header.** The capture
+> (`build/schedule/build-viu-2026-08-11/tools/step9_staffdiag.cjs`) did
+> `body=JSON.stringify(j).slice(0,600)` — **the first 600 characters of EVERY JSON
+> response body** — and `/api/notifications/subscribe-token` exists purely to **return a
+> token**. There were **zero `Bearer` literals** in the repo, so a scan for request
+> headers would have found nothing. **Response bodies leak credentials just as readily as
+> request headers, and are far less watched.**
+>
+> **THE FIX — REDACT AT THE POINT OF CAPTURE, NOT BEFORE COMMIT.** Keep the header/key
+> name so the evidence stays diagnostically useful; replace only the value. A `scrub()`
+> helper doing exactly this is now in both `step9*_staffdiag.cjs` and is the pattern to
+> copy into any new capture harness.
+>
+> **THE SCANNER — `build/testing-tools/scan_secrets.py`.** Run it before every commit:
+> ```
+> python3 build/testing-tools/scan_secrets.py --staged     # exits non-zero on a hit
+> python3 build/testing-tools/scan_secrets.py --selftest    # proves it BOTH ways
+> ```
+> It covers JWTs, `Bearer`/`Basic` values, literal `Authorization` headers, `set-cookie`
+> and session-cookie **values**, the known cookie prefixes, `figd_` Figma tokens, private
+> keys, cloud/GitHub/Slack tokens, and literal password assignments. It deliberately
+> **distinguishes a reference from a value** — `'Basic ' + AUTH` and
+> `"${CK.sv_sso_session}"` do **not** trip it, because a scanner that cries wolf gets
+> switched off and then protects nothing.
+> **It ships with NO secret material**: this repo is public, so committing the real
+> passwords *even hashed* would publish a brute-forceable target. Run
+> `--build-fingerprints` to hash the real `/tmp` credentials **into `/tmp`**, where the
+> scanner picks them up automatically.
+> **A scanner that only ever passes proves nothing** — it is tested in both directions
+> (clean tree ⇒ exit 0; a real token recovered from git history ⇒ exit 1).
+>
+> **⚠️ REDACTION DOES NOT UNDO EXPOSURE.** Cleaning the files at HEAD leaves the tokens
+> **in git history**, and on a public repo anything pushed must be assumed already cloned,
+> forked and cached by third parties. **Rotation of the signing secret is the only control
+> that actually revokes them** — that is the QA lead's decision, not a worker's.
+
 **How to use this.** This is the durable "how to do X in ShopView" reference, mined
 from ~2.5 weeks of committed test artifacts (VIU runs, the by-role regression run,
 custom-roles run 312, and the bug-fix re-test). Each recipe gives the concrete

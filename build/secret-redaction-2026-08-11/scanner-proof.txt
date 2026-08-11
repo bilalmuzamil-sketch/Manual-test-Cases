@@ -1,0 +1,39 @@
+NOTE: the token planted in TEST 3 below is the PUBLIC jwt.io demo vector, not a real
+credential. Lines carrying it are marked `scan-secrets:allow` so this proof artifact
+does not itself trip the scanner.
+
+SCANNER PROOF — 2026-08-11T17:56:48Z
+================================================================
+
+### TEST 1 (NEGATIVE) — the cleaned tree must be CLEAN
+secret scan clean -- 11357 tracked files
+EXIT=0  [require 0]
+
+### TEST 2 (POSITIVE) — a REAL token recovered from git history must be CAUGHT
+SECRET SCAN FAILED -- 1 finding(s) in 1 path(s)
+
+  HIGH  /tmp/planted-real.json:117  [jwt]  near: eyJ0eXAiOiJKV1QiLCJhbGci...   scan-secrets:allow
+        A JSON Web Token (three base64url segments). This is the pattern that was missed on 4 August. A JWT is a credential even when short-lived.
+
+A JWT is a credential even when it is short-lived and narrowly scoped.
+Redact at the point of capture -- keep the header/key name, replace the value.
+EXIT=1  [require non-zero]
+
+### TEST 3 (POSITIVE) — a planted secret in the STAGED DIFF must be CAUGHT
+SECRET SCAN FAILED -- 2 finding(s) in diff /dev/fd/63
+
+  HIGH  planted2.txt:1  [jwt]  near: eyJhbGciOiJIUzI1NiJ9.eyJ...   scan-secrets:allow
+        A JSON Web Token (three base64url segments). This is the pattern that was missed on 4 August. A JWT is a credential even when short-lived.
+  HIGH  planted2.txt:1  [bearer_value]  near: Bearer eyJhbGciOiJIUzI1N...   scan-secrets:allow
+        An Authorization: Bearer header carrying an actual token value.
+
+A JWT is a credential even when it is short-lived and narrowly scoped.
+Redact at the point of capture -- keep the header/key name, replace the value.
+EXIT=1  [require non-zero]
+
+### TEST 4 — built-in selftest (6 positive controls, 15 negative controls, 2 fingerprint controls)
+  [PASS] known secret caught by hash
+  [PASS] unrelated value not caught
+
+SELFTEST: ALL PASSED
+EXIT=0  [require 0]

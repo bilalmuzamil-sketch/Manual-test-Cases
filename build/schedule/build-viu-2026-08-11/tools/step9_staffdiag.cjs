@@ -17,6 +17,23 @@ const log=[]; const say=(...a)=>{console.log(...a); log.push(a.join(' '));};
   await ctx.route('**/*', async (route)=>{
     const req=route.request(), url=req.url();
     if(!/qa\.shopview\.com/.test(url)) return route.abort();
+// SECURITY (added 2026-08-11): never write a credential to disk.
+// This capture wrote the first 600 characters of every JSON response body. One
+// endpoint, /api/notifications/subscribe-token, exists purely to RETURN a token,
+// so 12 Mercure JWTs were committed to a PUBLIC repository and sat there a week.
+// The fix is to redact AT THE POINT OF CAPTURE: keep the key so the evidence
+// stays diagnostically useful, replace the value so it is never written at all.
+const SCRUB_MARK='[REDACTED - credential removed at capture]';
+function scrub(s){
+  if(typeof s!=='string') return s;
+  return s
+    // any JWT, wherever it appears
+    .replace(/eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{6,}/g, SCRUB_MARK)
+    // "token": "...", "password": "...", etc - key kept, value replaced
+    .replace(/("(?:token|access_token|refresh_token|id_token|password|secret|apiKey|api_key|authorization)"\s*:\s*")[^"]{6,}/gi, '$1'+SCRUB_MARK)
+    // Bearer / Basic values in any captured header string
+    .replace(/((?:Bearer|Basic)\s+)[A-Za-z0-9._~+/=-]{16,}/g, '$1'+SCRUB_MARK);
+}
     const api=/\/api\//.test(url);
     try{
       const hdrs=Object.assign({},req.headers()); delete hdrs['host']; delete hdrs['content-length'];
@@ -30,9 +47,9 @@ const log=[]; const say=(...a)=>{console.log(...a); log.push(a.join(' '));};
         const ct=(h['content-type']||'');
         if(/json/.test(ct)){ try{ const j=JSON.parse(buf.toString('utf8'));
           const c=j&&j.data&&j.data.collection; if(Array.isArray(c)) count=c.length;
-          body=JSON.stringify(j).slice(0,600); }catch(e){ body='<unparseable>'; } }
+          body=scrub(JSON.stringify(j)).slice(0,600); }catch(e){ body='<unparseable>'; } }
         calls.push({m:req.method(),u:url.replace(/^https:\/\/[^/]+/,''),s:r.status,ct,collection_count:count,
-                    accept:req.headers()['accept'],body_head:body,post:req.postData()?req.postData().slice(0,300):null});
+                    accept:req.headers()['accept'],body_head:body,post:req.postData()?scrub(req.postData()).slice(0,300):null});
       }
       await route.fulfill({status:r.status,headers:h,body:buf});
     }catch(e){
