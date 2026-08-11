@@ -2400,7 +2400,21 @@ deliver the 7-tab management report.
     spec anchor is NOT authentic — flag it (missing-traceability) rather than leave it
     unsourced. **The repeatable method to find + backfill unsourced cases is
     build/MISSING-TRACEABILITY-PROCESS.md** (run it on demand or as a sub-step of any
-    spec-recheck/VIU pass). **TWO-SESSION KNOWLEDGE SHARING:** this workspace is worked
+    spec-recheck/VIU pass).
+    **⇒ ESCALATED 2026-08-11 BY STANDING RULE 64 — THE REMEDY IS NO LONGER "FLAG" ALONE.** The
+    sentence above — ***"A case with no ticket AND no spec anchor is NOT authentic — flag it
+    (missing-traceability) rather than leave it unsourced"*** — is **KEPT VISIBLE AND DATED, NOT
+    DELETED** (the Rules 31/52/53 pattern), because it remains the **FIRST** step and the one that
+    saves real coverage. **What changed is what happens AFTER the flag:** the QA lead ruled
+    (2026-08-11, verbatim) ***"there should not be a case for which we do not have a source … Otherwise
+    the case should be deleted, but before deleting the case check if that case has 'Automated'
+    marker"***. **So the remedy is now FLAG → SEARCH FOR THE SOURCE → and, only where the case
+    genuinely cannot be sourced from ANY document, DELETE — with the automation check first and the
+    QA lead's permission always.** **THE FLAG IS NOT OPTIONAL AND IT IS NOT A FORMALITY: most
+    "unsourced" cases are TRACEABILITY GAPS, not sourceless cases, and deleting one of those throws
+    away real coverage.** The full requirement, the three states, the automation precondition and the
+    deletion discipline are **Standing Rule 64** — read it before acting on this paragraph.
+    **TWO-SESSION KNOWLEDGE SHARING:** this workspace is worked
     by more than one Claude session in parallel; there is no live message bus between
     them, so **this CLAUDE.md + the build/*-PROCESS.md docs ARE the shared brain** — any
     session that learns/changes a durable rule MUST write it here so the other session
@@ -4962,6 +4976,118 @@ deliver the 7-tab management report.
     citing), 55 (an unclear answer goes back to him rather than being interpreted), 57
     (document-vs-document conflicts are ITS business, not this rule's) and 62 (whose 2026-08-10 hold
     is this rule's worked example of a TIGHTENING, not a conflict).
+64. **EVERY TEST CASE MUST HAVE A SOURCE — a case with NO source should not exist; but CHECK THE
+    AUTOMATION MARKER BEFORE DELETING, AND NEVER MISTAKE A MISSING *RECORD* FOR A MISSING *SOURCE*
+    (all projects).**
+    USER DIRECTIVE (2026-08-11, verbatim, his typing preserved exactly as he wrote it because Rule 25
+    applies to his instructions as it does to a spec): *"And there should not be a case for which we do
+    not have a source. A case should only exists IF there is a source for that. Otherwise the case
+    should be deleted, but before deleting the case check if that case has 'Automated' marker"*.
+    **THE REQUIREMENT, IN ONE SENTENCE: A TEST CASE EXISTS ONLY IF A DOCUMENT SOURCES IT — a case whose
+    expected behaviour rests on no document at all is a DELETION CANDIDATE, and no case may be created
+    or kept on the strength of nothing.**
+    **WHAT COUNTS AS A SOURCE IS STANDING RULE 57'S LIST, AND NOTHING ELSE:** **(a)** the **PRD /
+    Confluence specification** · **(b)** the **epic's stories** (description, acceptance criteria,
+    comments) · **(c)** the **PO's verified answers** · **(d)** the **DESIGN** (Claude design, Figma
+    design, or the technical design he shares) · **(e)** **FIGMA** · **(f)** a **shared `.md` file**
+    (handover, design review) · **(g)** any **newer written statement shared with us**, including a
+    message or channel post. **The list is OPEN-ENDED by his instruction** — a new document type does
+    not need a rule amendment before it counts. **AND THE BUILD IS STILL NOT ON IT (Rules 57/58): "the
+    build does it, so something must have said so" IS NOT A SOURCE**, and reaching for the build to
+    source a case is the exact door Rule 58 closed.
+    **🔴 THE DISTINCTION THAT MUST BE APPLIED EVERY TIME, OR THIS RULE WILL DESTROY GOOD COVERAGE.
+    "NO SOURCE" MEANS THREE DIFFERENT THINGS AND THEY HAVE OPPOSITE REMEDIES:**
+    **(a) THE CASE ASSERTS SOMETHING NO DOCUMENT SUPPORTS — genuinely unsourceable.** Nothing in
+    (a)–(g) says it; it was invented, inherited from a design-only detail, over-specified, or
+    reverse-engineered from a build. **⇒ DELETION CANDIDATE.** (Where only PART of a case is
+    unsupported, **Rule 25's repair still applies first: REMOVE the unsupported assertion or make it
+    scope-conditional (Rule 42) — deleting a whole case for one bad line is over-correction.**)
+    **(b) A SOURCE EXISTS BUT WAS NEVER RECORDED ON THE CASE — a TRACEABILITY GAP, NOT A SOURCELESS
+    CASE.** The requirement is in the spec, the story or an answer sheet; the case simply carries no
+    `refs` and no provenance line. **⇒ THE REMEDY IS TO FIND AND RECORD THE SOURCE**, per
+    **`build/MISSING-TRACEABILITY-PROCESS.md`** (Rule 20) — backfill `refs` and stamp the Rule-54
+    provenance line. **DELETING ONE OF THESE THROWS AWAY REAL COVERAGE**, and it is the single most
+    likely way this rule gets misapplied, because **(a) and (b) look identical from the case text
+    alone.**
+    **(c) THE SOURCE QUESTION IS OPEN WITH THE PO — HELD, NOT DELETED.** The case asserts something no
+    requirement currently settles, **and a question is out** (or is owed). Worked example: **FLT-COMBO
+    = [C29600](https://shopview.testrail.io/index.php?/cases/view/29600)**, which asserts how two
+    filters combine when **no requirement says how they combine**. **⇒ HOLD it pending the answer,
+    carry the open question on the case, and log it in the OUTSTANDING-ITEMS REGISTER (Rule 36) —
+    BECAUSE THE ANSWER MAY SOURCE IT.** Deleting a case the PO is about to source destroys coverage
+    **and** the question.
+    **⇒ A CASE MAY ONLY BE DELETED AFTER (b) AND (c) HAVE BEEN GENUINELY EXCLUDED — the sources
+    SEARCHED AND NAMED, not merely "we could not see one".** The candidate record must state **which
+    documents were searched, at which versions, and on what date** (Rules 31/50 — exhaustive first,
+    then exact). ***"No source found"* IS A MEASUREMENT ONLY IF THE SEARCH IS ON THE RECORD; otherwise
+    it is an assumption** (Rule 12).
+    **🛑 THE AUTOMATION CHECK IS A HARD PRECONDITION OF DELETION, IN HIS OWN WORDS: *"before deleting
+    the case check if that case has 'Automated' marker"*.** **WHY IT MATTERS:** an automated case is
+    one **an automation suite may already depend on**, so deleting it **breaks someone else's work**,
+    silently, in a system we do not own — and unlike a wrong test case, a broken suite is not visible
+    to us at all. **WHERE A CASE IS AUTOMATED, STOP AND RAISE IT WITH THE QA LEAD — DO NOT DELETE IT**,
+    however unsourced it looks; **the sourcing problem is then a conversation with the automation
+    engineer, not a deletion.**
+    **⏳ WHICH "AUTOMATED" MARKER HE MEANS IS NOT YET CONFIRMED, AND THE SAFE READING IS ENCODED —
+    CHECK BOTH:** **(i)** TestRail's **automation-status field** (`custom_atmstatus`, where **3 =
+    "Automated"** — recorded in Rule 38 as set on 16 of our cases and on the foreign automation cases),
+    and **(ii)** our own **`AUTOMATION:` marker** at the end of Expected Results (Rules 60/61). **IF
+    EITHER SAYS AUTOMATED, THE CASE IS TREATED AS AUTOMATED AND IS NOT DELETED.** **The clarification
+    is OUTSTANDING with him and is logged in the register** — and note the lesson already written into
+    the register's own honesty notes: **the safe reading is only safe when the ask goes with it**
+    (Rule 63).
+    **DELETION DISCIPLINE — `delete_case` IS IRREVERSIBLE, AND IRREVERSIBILITY RAISES THE BAR RATHER
+    THAN LOWERING IT:**
+    **· THE CANDIDATE LIST GOES TO THE QA LEAD BEFORE ANY DELETION IS EXECUTED.** **Rule 6 stands
+    absolutely — nothing is written to TestRail without his explicit permission**, and this ruling is
+    **not** a standing licence to delete. Each candidate is presented with its **internal ID + C-id +
+    link** (Rule 8), **what it asserts**, **which sources were searched and at which versions**, **its
+    automation status**, and **our recommendation** — the same "do the whole job and stop at the
+    button" shape Rule 62 requires of a ticket.
+    **· NEVER REUSE A RETIRED INTERNAL ID.** A resync once **OVERWROTE A RETIRED RECORD** because a new
+    case reused a retired ID (the `SBC-COL-03` incident, 2026-08-05 — renamed to `SBC-COL-04`), so
+    retired IDs are recorded as **never-reuse** and the deletion record keeps them.
+    **· A DELETION IS RECORDED, NOT JUST DONE** — the case body kept locally marked Retired, the id-map
+    decremented, the generators excluding it, the deliverables regenerated, and the **run re-checked**
+    (deleted cases drop out of runs automatically, but the before→after test count is logged — Rules
+    34/47).
+    **· FOREIGN CASES ARE NEVER DELETED BY US, WHATEVER THEIR SOURCING (Rule 38).** An unsourced case
+    written by another author is **reported to them and to the QA lead**, never removed.
+    **THIS ESCALATES STANDING RULE 20** — see the dated escalation note at Rule 20's tail. Rule 20's
+    remedy for an unsourced case was **FLAG**; it is now **FLAG, SEARCH, and — only where the case
+    genuinely cannot be sourced — DELETE**, with the automation check and his permission first.
+    **Rule 20's prior wording is kept visible and dated**, because it is still the correct FIRST move
+    and it is the half that protects coverage.
+    **CROSS-REFERENCES THAT MAKE THIS OPERABLE:** **Rule 54** is where a source is STATED on the case
+    (the provenance line, with the date each source was read), so **a case whose provenance line names
+    no document is exactly the population this rule sweeps** — and **Rule 57** is what counts as a
+    document. **A case that cannot be given a Rule-54 sentence 1 is, by definition, a candidate.**
+    **HONESTY CLAUSE:** this rule **REDUCES the suite deliberately, and that is the point** — but a
+    deletion made without the (b)/(c) exclusion is **indistinguishable from losing coverage**, and
+    nobody downstream will ever know what was removed. **When in doubt, HOLD and ASK; a case held one
+    day longer costs nothing, a case deleted wrongly cannot be recovered.**
+    **RATIONALE, 2026-08-11:** the end goal has always been **100% authentic test cases** (Rule 20),
+    and an unsourced case is the one thing that can never be made authentic — it cannot cite a
+    document, cannot survive a challenge from a reviewer or an automation engineer (Rules 39/44), and
+    cannot be re-derived when a spec moves (Rules 31/43). **It is also the exact residue of the failure
+    Rule 57 corrected**: expectations reverse-engineered from a build look sourced, read as our best
+    work, and have nothing behind them. Ties to Standing Rules 6 (nothing written to TestRail without
+    permission — **including a deletion**), 8 (every candidate named with its C-id and link), 12
+    (observed, never inferred — *"no source found"* must be a measurement), 17 (complete data in/out —
+    the sweep covers 100% of a suite, no sampling), 20 (**escalated by this rule; its prior wording
+    kept and dated**), 25 (quote the source, or state plainly that none exists — and remove an
+    unsupported assertion rather than substituting the build), 31 (source currency — a source that
+    moved is not an absent source), 36 (the sweep and the automation-marker clarification are
+    OUTSTANDING items), 38 (foreign cases are never deleted by us), 42 (scope-conditional wording is
+    often the right repair instead of deletion), 43 (a per-requirement re-derivation is what proves a
+    case has no requirement behind it), 46 (a deliberate deletion is RECORDED so it can never look like
+    a miss), 48 (a held candidate cites the ruling holding it), 50 (exhaustive then exact — the source
+    search is on the record), 54 (the provenance line is where the source is stated), 55 (an open
+    source question goes to the PO, not into a deletion), 57 (**what counts as a source**), 58 (an
+    ambiguous source is never resolved from the build — nor is an absent one), 62 (the "prepare it
+    fully, then stop at the button" shape this borrows) and 63 (where this ruling conflicts with a
+    recorded rule, it is surfaced — which is why Rule 20's escalation is written down rather than
+    applied silently).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
