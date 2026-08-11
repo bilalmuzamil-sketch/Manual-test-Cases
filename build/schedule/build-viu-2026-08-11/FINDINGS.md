@@ -98,12 +98,112 @@ environment is not adjusted.
 
 ---
 
+## F6 · The build renders these panels UPPERCASE via CSS — read the raw text nodes, never the screen
+
+`textContent` is immune to CSS `text-transform`; `innerText` is not. The Schedule toolbar panels are
+styled uppercase, so the screen (and any `innerText` dump) shows `FILTER & DISPLAY` and `VIEW OPTIONS`,
+while the shipped strings are **`Filter & display`** and **`View options`**.
+
+**This decided both of our internal label clashes, and a screenshot alone would have decided them
+wrongly** — twice. Recorded as a method fact: a label diff on this product reads the raw text nodes.
+
+**Second half of the same lesson, and the sharper one: prefer the VISIBLE string over the ACCESSIBLE
+NAME.** The toolbar button carries `aria-label="Filter and display options"`, on all 15 surfaces, so a
+containment check "finds" our `Filter and Display` wording in the build — in a string **no manual tester
+can ever see**. A diff that accepts the accessible name will certify the wrong label with confidence.
+
+**Not a defect. Nothing to file.** Playbook §A/§J candidate — flagged, not edited (a sibling may be
+writing to it).
+
+---
+
+## F7 · Whose hours drive the before/after-hours flag is NOT established — raised, not answered
+
+**Observed, verbatim, in the `Schedule issues` panel:** `Starts before business hours (7:00 AM) ·
+Double-booked with Xamont Holdings` and `Extends past business hours (3:00 PM) · Double-booked with
+Kastone Solutions`.
+
+**Two things follow, and only the first is settled.**
+
+**(a) The WORDING is `business hours`, not `working hours`** — a label correction, staged as
+`LABEL-DIFF.md` §2.5.
+
+**(b) WHICH tier of the hierarchy drives the flag is an open question.** C30025 asserts the flag is
+measured against *"that technician's own configured working-day START/END time"*, with a hierarchy of
+technician hours → shop business hours → default. The message says **business hours** and quotes
+**7:00 AM / 3:00 PM**. The working hours we read live on `admin@shopview.com` are **07:00–19:00**, so
+the 3:00 PM boundary is **not** that account's end time.
+
+**🛑 THAT IS NOT EVIDENCE OF A DEFECT, AND IT IS IMPORTANT NOT TO REPORT IT AS ONE.** The flagged
+shifts belong to **other technicians** — Alicia Campbell, MQ Test Tech Qamar, MQ Test Tech No — **whose
+configured hours we did not read.** A 3:00 PM boundary is exactly what a *different* technician's own
+hours would produce. **Concluding "the build ignores technician hours" from this would be precisely the
+[SV-8923](https://shopview.atlassian.net/browse/SV-8923) mistake** — a defect raised against a
+configuration that was never checked.
+
+**What would settle it:** read the working hours of the technicians who own the flagged shifts and
+compare each against its own message. **Not done. Recorded as the next action, not as a finding.**
+
+**Also observed, and useful context:** the panel header is **`Schedule issues`**; the toolbar pill reads
+**`6 conflicts`** in Day, **`37 conflicts`** in Week, **`122 conflicts`** in Month; and the reason
+sentences compose, e.g. `Starts before business hours (7:00 AM) · Double-booked with Fuline Enterprises`.
+
+---
+
+## F8 · `Adjust` is not in the shift modal under any wording — recorded, not filed
+
+**C30014** ([link](https://shopview.testrail.io/index.php?/cases/view/30014)) asserts the conflicted
+shift's modal *"offers an 'Adjust' action"* which *"leads to a way to resolve the conflict"*.
+
+**Observed:** a conflicted shift's modal **does** carry the conflict text (`Double-booked with Goport
+Energy`), so the banner half is right. But the modal's actions are **`Delete shift`**, **`Close shift
+details`**, **`Add Note`**, **`Edit estimated hours for <line>`**, **`Change colour`** and **`Open work
+order S-12876 in a new tab`**. **No `Adjust`, and no near-neighbour** across 909 harvested strings.
+
+**Under the re-scoped brief this is NOT ours to verdict** — the manual tester marks the case passed or
+failed. It is recorded here with its evidence so the tester is not left hunting a control that appears
+not to exist, and so the QA lead can see it. **The case KEEPS its documented expectation (Rule 57); it
+is not rewritten to match the build.** **Nothing filed** (creation hold, Rule 62).
+
+---
+
+## F9 · A closed enumeration in C30015 has gone stale — the Rule-42 time bomb, live
+
+`C30015` item 1 says the modal offers Delete and close *"and no other actions"*. The build offers four
+more (F8). **The case's actual point — that there is NO `Reassign` action — is CONFIRMED correct.**
+Repair is a scope-conditional rewrite of item 1, not a deletion of the assertion. Staged in
+`LABEL-DIFF.md` §2.6.
+
+---
+
+## F10 · The specification's right-click contradiction is settled by observation — the build is LEFT-click
+
+Our records already carried this as a spec defect: **§7 says the cell menu opens on left-click while
+§14.1 and §14.2 twice call it a right-click menu.** Observed: **left-click opens it** (headed
+`MQ Test Tech Qamar · Tue, Aug 11 · 21:15`, items `Create Event` and `New Work Order`); **right-click
+adds nothing at all** — that surface captured **zero** new strings.
+
+**So C30054 is correct on all five of its points, and the SPECIFICATION is wrong in two places.** A
+documentation defect for the PO — **not a case change, and nothing filed.**
+
+---
+
 ## Deviations observed against the documents
 
-**None — and that is a statement about how far this pass got, not about the product.** No page of the
-product was reached, so no behaviour and no label was compared with any document. **Every one of the
-174 cases' verdicts still rests on an earlier build** (90 on `v3.5-7ec992f`, 78 on `v3.5-d122eef`
-which no longer exists, 6 on `v3.5-af3a6e1`), **none on `v3.5-65d6500`.**
+**⚠️ THE PARAGRAPH THAT STOOD HERE IS SUPERSEDED AND IS KEPT DATED RATHER THAN DELETED.** It read:
+*"None — and that is a statement about how far this pass got, not about the product. No page of the
+product was reached…"*. **That was true at 13:28Z and false by 13:36Z**, when the fresh sign-in arrived
+and the Schedule page was reached.
+
+**What was observed, stated as labels-and-navigation only (the re-scoped brief):** 15 surfaces, 909
+distinct build strings, **12 cases needing a wording correction** (`LABEL-DIFF.md`), and the incidental
+observations F6–F10 above. **No pass/fail behaviour verdict was reached or claimed** — the manual QA
+tester marks the cases, per the QA lead's 2026-08-10 ruling confirmed 2026-08-11.
+
+**The 174 cases' recorded verdicts still rest on earlier builds** — 90 on `v3.5-7ec992f`, 78 on
+`v3.5-d122eef` (which no longer exists), 6 on `v3.5-af3a6e1` — and **this pass did not re-verdict
+them**, because verdicting is no longer our job. What it establishes is that **their LABELS are now
+checked against `v3.5-65d6500`** to the extent set out in `BUILD-VERIFICATION.md`.
 
 ## AUTOMATED CASES CHANGED — FOR VLAD
 
