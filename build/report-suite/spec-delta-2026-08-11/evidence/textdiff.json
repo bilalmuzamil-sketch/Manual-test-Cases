@@ -1,0 +1,365 @@
+{
+ "Sales By Customer": [
+  {
+   "op": "replace",
+   "owner_pinned": "S3-R1",
+   "owner_live": "S3-R1",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "dropdown",
+   "added": "filter",
+   "n_removed": 1,
+   "n_added": 1
+  },
+  {
+   "op": "insert",
+   "owner_pinned": "S3-R2",
+   "owner_live": "S3-R1",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "",
+   "added": "It is a multi-select, matching the behavior of the Customer and Location filters.",
+   "n_removed": 0,
+   "n_added": 13
+  },
+  {
+   "op": "replace",
+   "owner_pinned": "S3-R2",
+   "owner_live": "S3-R2",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "offers exactly three options, in this order: \"Parts & Service,\" \"Parts only,\" \"Service only.\"",
+   "added": "pins two action rows at the top - \"All products\" and \"Clear all\" - above two toggle options: \"Parts\" and \"Services.\"",
+   "n_removed": 14,
+   "n_added": 21
+  },
+  {
+   "op": "replace",
+   "owner_pinned": "S3-R3",
+   "owner_live": "S3-R3",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "\"Parts & Service\" is the default selection",
+   "added": "Both toggles are selected (all products)",
+   "n_removed": 7,
+   "n_added": 6
+  },
+  {
+   "op": "replace",
+   "owner_pinned": "S3-R4",
+   "owner_live": "S3-R4",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "\"Parts & Service\" is",
+   "added": "both toggles are",
+   "n_removed": 4,
+   "n_added": 3
+  },
+  {
+   "op": "replace",
+   "owner_pinned": "S3-R4",
+   "owner_live": "S3-R4",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "applied.",
+   "added": "applied; the exports' filter summary line reads \"Parts & Service.\"",
+   "n_removed": 1,
+   "n_added": 10
+  },
+  {
+   "op": "replace",
+   "owner_pinned": "S3-R5",
+   "owner_live": "S3-R5",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "\"Service only\"",
+   "added": "only \"Services\"",
+   "n_removed": 2,
+   "n_added": 2
+  },
+  {
+   "op": "replace",
+   "owner_pinned": "S3-R5",
+   "owner_live": "S3-R5",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "S.",
+   "added": "S; the exports' filter summary line reads \"Service only.\"",
+   "n_removed": 1,
+   "n_added": 9
+  },
+  {
+   "op": "replace",
+   "owner_pinned": "S3-R6",
+   "owner_live": "S3-R6",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "\"Parts only\"",
+   "added": "only \"Parts\"",
+   "n_removed": 2,
+   "n_added": 2
+  },
+  {
+   "op": "replace",
+   "owner_pinned": "S3-R6",
+   "owner_live": "S3-R6",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "P.",
+   "added": "P; the exports' filter summary line reads \"Parts only.\" S3-R6a: When neither toggle is selected (after \"Clear all\"), the report shows the empty-state message (Story 17) until a toggle is selected.",
+   "n_removed": 1,
+   "n_added": 31
+  },
+  {
+   "op": "insert",
+   "owner_pinned": null,
+   "owner_live": "S21-R6",
+   "heading_pinned": null,
+   "heading_live": "Terminology",
+   "removed": "",
+   "added": "2026-08-10 @chris / @claude Product Type changed from a single-select dropdown to a multi-select with pinned \"All products\" / \"Clear all\" rows and \"Parts\" / \"Services\" toggles, matching the Customer and Location filters (S3-R1 through S3-R6a); export filter-summary values unchanged via the selection mapping. Per SV-9074.",
+   "n_removed": 0,
+   "n_added": 46
+  }
+ ],
+ "Sales By Representative": [
+  {
+   "op": "replace",
+   "owner_pinned": "S21-R7",
+   "owner_live": "S21-R7",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "on the report only when the current view spans more than one location \u2014 i.e., when more than one location is in scope (several locations selected, or \"All Locations\" resolving",
+   "added": "to any user with access",
+   "n_removed": 30,
+   "n_added": 5
+  },
+  {
+   "op": "replace",
+   "owner_pinned": "S21-R7",
+   "owner_live": "S21-R7",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "accessible location). When the view is scoped to a single location",
+   "added": "location: it appears by default and can be toggled on or off from",
+   "n_removed": 11,
+   "n_added": 13
+  },
+  {
+   "op": "replace",
+   "owner_pinned": "S21-R7",
+   "owner_live": "S21-R7",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "is hidden ;",
+   "added": "selector, whatever",
+   "n_removed": 3,
+   "n_added": 2
+  },
+  {
+   "op": "insert",
+   "owner_pinned": "S21-R7",
+   "owner_live": "S21-R7",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "",
+   "added": "current location selection, and a user with access to only",
+   "n_removed": 0,
+   "n_added": 10
+  },
+  {
+   "op": "replace",
+   "owner_pinned": "S21-R7",
+   "owner_live": "S21-R7",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "is already unambiguous.",
+   "added": "never sees it.",
+   "n_removed": 3,
+   "n_added": 3
+  },
+  {
+   "op": "insert",
+   "owner_pinned": null,
+   "owner_live": "S23-N1",
+   "heading_pinned": null,
+   "heading_live": "Terminology",
+   "removed": "",
+   "added": "2026-08-06 @claude Section 3 tidy-ups (QA review workbook 2026-08-06): reworded the Location-column visibility to the access-gated, column-selector-toggleable rule, matching the decision note already in this spec. QA review workbook (2026-08-06).",
+   "n_removed": 0,
+   "n_added": 30
+  }
+ ],
+ "Parts Velocity": [
+  {
+   "op": "replace",
+   "owner_pinned": "S3-R10",
+   "owner_live": "S3-R10",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "auto-managed by the location scope (it",
+   "added": "available to any user with access to more than one location: it",
+   "n_removed": 6,
+   "n_added": 12
+  },
+  {
+   "op": "replace",
+   "owner_pinned": "S3-R10",
+   "owner_live": "S3-R10",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "not one of the 20 columns",
+   "added": "offered",
+   "n_removed": 6,
+   "n_added": 1
+  },
+  {
+   "op": "replace",
+   "owner_pinned": "S3-R10",
+   "owner_live": "S3-R10",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "picker, S4-R1,",
+   "added": "column picker (S4-R1), shown by default,",
+   "n_removed": 2,
+   "n_added": 6
+  },
+  {
+   "op": "replace",
+   "owner_pinned": "S3-R10",
+   "owner_live": "S3-R10",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "is not user-toggleable) and is hidden entirely when",
+   "added": "can be toggled on or off;",
+   "n_removed": 8,
+   "n_added": 6
+  },
+  {
+   "op": "replace",
+   "owner_pinned": "S3-R10",
+   "owner_live": "S3-R10",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "single",
+   "added": "user with access to only one",
+   "n_removed": 1,
+   "n_added": 6
+  },
+  {
+   "op": "replace",
+   "owner_pinned": "S3-R10",
+   "owner_live": "S3-R10",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "is in scope.",
+   "added": "never sees it.",
+   "n_removed": 3,
+   "n_added": 3
+  },
+  {
+   "op": "insert",
+   "owner_pinned": "S6-N1",
+   "owner_live": "S6-R12",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "",
+   "added": "S6-R12: An export is capped at a maximum of 10,000 rows in the current filtered set. When the filtered set exceeds the cap, neither the PDF nor the CSV is produced and the user is shown the message: \"This report is too large to export. Narrow the date range or filters, then try again.\"",
+   "n_removed": 0,
+   "n_added": 54
+  },
+  {
+   "op": "insert",
+   "owner_pinned": null,
+   "owner_live": "S7-R8",
+   "heading_pinned": null,
+   "heading_live": "Terminology",
+   "removed": "",
+   "added": "2026-08-06 @claude Section 3 tidy-ups (QA review workbook 2026-08-06): reworded the Location-column visibility to the access-gated, column-selector-toggleable rule; added the export size-cap requirement (10,000 rows) with the verbatim \"too large to export\" message.",
+   "n_removed": 0,
+   "n_added": 33
+  }
+ ],
+ "Technician Utilization": [],
+ "Work In Progress": [
+  {
+   "op": "insert",
+   "owner_pinned": null,
+   "owner_live": null,
+   "heading_pinned": null,
+   "heading_live": null,
+   "removed": "",
+   "added": "Buckets are keyed on line state, not work-order status. Every line''s value sits in exactly one bucket: an unapproved line counts in Estimates, an approved untouched line in Approved - not started, a started line in Approved - partially completed (split Earned/Remaining), and a completed not-invoiced line in Completed. The buckets are disjoint and always sum to the work order''s total quoted value; approving one line never removes another line''s value from the report. A work order carrying lines in more than one state appears in each matching tab, showing only that tab''s slice of its money; the status column still shows the work order''s true status. The Estimates tab count therefore reads \"work orders carrying unapproved value,\" and an unapproved line ages from the line''s creation date. (Per SV-9027.) Fixed-price lines are valued at their fixed amounts, and earn on completion. A line priced with a fixed labor total, or a fixed line total split into labor and part portions, is valued at those fixed amounts - the numbers the customer is billed - not at underlying picked parts or an hourly derivation. When progress cannot be derived (no invoiced hours), earning is binary: the full fixed amount stays in Remaining until the line is completed, then moves entirely to Earned. When invoiced hours exist, the derived-rate proration applies. A completed work order never leaves value stuck in Remaining. (Per SV-9028, SV-9035, SV-9040, SV-9044.) A core charge counts in parts value at every stage. The core charge is billed to the customer, so it is included in Parts Remaining and Parts Earned consistently across all tabs, including Estimates. Marking a returned core OK or Not OK never changes WIP figures - the core assessment is a credit event handled at invoicing, outside this report. (Per SV-9057, SV-9058.)",
+   "n_removed": 0,
+   "n_added": 298
+  },
+  {
+   "op": "insert",
+   "owner_pinned": null,
+   "owner_live": "S11-R7",
+   "heading_pinned": null,
+   "heading_live": "Terminology",
+   "removed": "",
+   "added": "2026-08-10 @chris / @claude Locked the QA-cycle decisions: line-state bucketing (a line's value always sits in exactly one bucket; unapproved lines stay in Estimates even on an approved WO; buckets sum to total quoted); fixed-price lines valued at their fixed amounts with binary earning on line completion; core charge included in parts value at every stage with core assessment never moving WIP figures. SV-9027, SV-9028, SV-9035, SV-9040, SV-9044, SV-9057, SV-9058.",
+   "n_removed": 0,
+   "n_added": 70
+  }
+ ],
+ "Inventory Value": [
+  {
+   "op": "replace",
+   "owner_pinned": "S7-R6",
+   "owner_live": "S7-R6",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "only when the current scope spans",
+   "added": "to any user with access to",
+   "n_removed": 6,
+   "n_added": 6
+  },
+  {
+   "op": "replace",
+   "owner_pinned": "S7-R6",
+   "owner_live": "S7-R6",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "location; when a single location is in scope the column is hidden. Its visibility follows the location scope automatically",
+   "added": "location: it appears by default",
+   "n_removed": 19,
+   "n_added": 5
+  },
+  {
+   "op": "replace",
+   "owner_pinned": "S7-R6",
+   "owner_live": "S7-R6",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "it is not one of the columns offered in",
+   "added": "can be toggled on or off from",
+   "n_removed": 9,
+   "n_added": 7
+  },
+  {
+   "op": "replace",
+   "owner_pinned": "S7-R6",
+   "owner_live": "S7-R6",
+   "heading_pinned": "Terminology",
+   "heading_live": "Terminology",
+   "removed": "8).",
+   "added": "8); a user with access to only one location never sees it.",
+   "n_removed": 1,
+   "n_added": 12
+  },
+  {
+   "op": "insert",
+   "owner_pinned": null,
+   "owner_live": "S12-R9",
+   "heading_pinned": null,
+   "heading_live": "Terminology",
+   "removed": "",
+   "added": "2026-08-06 @claude Section 3 tidy-ups (QA review workbook 2026-08-06): reworded the Location-column visibility to the access-gated, column-selector-toggleable rule, matching the decision note already in this spec. QA review workbook (2026-08-06).",
+   "n_removed": 0,
+   "n_added": 30
+  }
+ ]
+}

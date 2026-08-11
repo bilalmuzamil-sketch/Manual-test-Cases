@@ -1,0 +1,63 @@
+{
+ "S1-N1": {
+  "pinned": [
+   "S1-N1: A user without reports access does not see the report in navigation and cannot open it by direct link. Story 2: Filter by date range Set the time window the report covers. Design: See Story 20 Jira: TBD Prerequisites: User is on the Sales By Customer report. Requirements:",
+   "S1-N1 negative case). This reverses the 2026-07-07 change that introduced a dedicated permission \u2014 that permission was specced before Custom Roles (CRP) existed. Per Chris's ruling recorded 2026-07-28 and re-confirmed 2026-07-31 on the SV-8598 / SV-8780 permissions question sheet: reports are not hidden from normal reports access. Engineering (SV-8598) to drop the dedicated ROLE_SALES_BY_CUSTOMER_REPORT::VIEW atom, gate SBC endpoints on standard reports access, and confirm the atom does not linger in the Custom Roles matrix. 2026-08-05 @claude Applied Chris's decisions from the QA review workbook (2026-08-04): removed Print from the export requirement lines; corrected the logo fallback rule (the ShopView logo is a load-failure fallback, not a no-upload fallback); aligned the date picker to nine presets plus a custom calendar (no Today, Yesterday, or Custom item); updated the Location column to an access gate (any user with access to more than one location sees it by default and can toggle it in the column selector; single-location-access users never see it); specified the Location column position in the Summary download. 2026-08-05 @claude Applied the suite-wide link-permission rule (2026-08-05): an invoice number is rendered as a link only when the user has permission to open its target (work order or parts sale); otherwise it is shown as plain text. 2026-08-06 @claude Section 3 tidy-ups (QA review workbook 2026-08-06): reworded the Location-column visibility to the access-gated, column-selector-toggleable rule, matching the decision note already in this spec. QA review workbook (2026-08-06)."
+  ],
+  "live": [
+   "S1-N1: A user without reports access does not see the report in navigation and cannot open it by direct link. Story 2: Filter by date range Set the time window the report covers. Design: See Story 20 Jira: TBD Prerequisites: User is on the Sales By Customer report. Requirements:",
+   "S1-N1 negative case). This reverses the 2026-07-07 change that introduced a dedicated permission \u2014 that permission was specced before Custom Roles (CRP) existed. Per Chris's ruling recorded 2026-07-28 and re-confirmed 2026-07-31 on the SV-8598 / SV-8780 permissions question sheet: reports are not hidden from normal reports access. Engineering (SV-8598) to drop the dedicated ROLE_SALES_BY_CUSTOMER_REPORT::VIEW atom, gate SBC endpoints on standard reports access, and confirm the atom does not linger in the Custom Roles matrix. 2026-08-05 @claude Applied Chris's decisions from the QA review workbook (2026-08-04): removed Print from the export requirement lines; corrected the logo fallback rule (the ShopView logo is a load-failure fallback, not a no-upload fallback); aligned the date picker to nine presets plus a custom calendar (no Today, Yesterday, or Custom item); updated the Location column to an access gate (any user with access to more than one location sees it by default and can toggle it in the column selector; single-location-access users never see it); specified the Location column position in the Summary download. 2026-08-05 @claude Applied the suite-wide link-permission rule (2026-08-05): an invoice number is rendered as a link only when the user has permission to open its target (work order or parts sale); otherwise it is shown as plain text. 2026-08-06 @claude Section 3 tidy-ups (QA review workbook 2026-08-06): reworded the Location-column visibility to the access-gated, column-selector-toggleable rule, matching the decision note already in this spec. QA review workbook (2026-08-06). 2026-08-10 @chris / @claude Product Type changed from a single-select dropdown to a multi-select with pinned \"All products\" / \"Clear all\" rows and \"Parts\" / \"Services\" toggles, matching the Customer and Location filters ("
+  ]
+ },
+ "S3-R1": {
+  "pinned": [
+   "S3-R1: A \"Product Type\" dropdown is visible in the report toolbar."
+  ],
+  "live": [
+   "S3-R1: A \"Product Type\" filter is visible in the report toolbar. It is a multi-select, matching the behavior of the Customer and Location filters.",
+   "S3-R1 through"
+  ]
+ },
+ "S3-R2": {
+  "pinned": [
+   "S3-R2: The dropdown offers exactly three options, in this order: \"Parts & Service,\" \"Parts only,\" \"Service only.\""
+  ],
+  "live": [
+   "S3-R2: The dropdown pins two action rows at the top - \"All products\" and \"Clear all\" - above two toggle options: \"Parts\" and \"Services.\""
+  ]
+ },
+ "S3-R3": {
+  "pinned": [
+   "S3-R3: \"Parts & Service\" is the default selection on first load.",
+   "S3-R3), location ("
+  ],
+  "live": [
+   "S3-R3: Both toggles are selected (all products) on first load.",
+   "S3-R3), location ("
+  ]
+ },
+ "S3-R4": {
+  "pinned": [
+   "S3-R4: When \"Parts & Service\" is selected, no product-type filter is applied."
+  ],
+  "live": [
+   "S3-R4: When both toggles are selected, no product-type filter is applied; the exports' filter summary line reads \"Parts & Service.\""
+  ]
+ },
+ "S3-R5": {
+  "pinned": [
+   "S3-R5: When \"Service only\" is selected, the report includes only invoices whose number starts with S."
+  ],
+  "live": [
+   "S3-R5: When only \"Services\" is selected, the report includes only invoices whose number starts with S; the exports' filter summary line reads \"Service only.\""
+  ]
+ },
+ "S3-R6": {
+  "pinned": [
+   "S3-R6: When \"Parts only\" is selected, the report includes only invoices whose number starts with P."
+  ],
+  "live": [
+   "S3-R6: When only \"Parts\" is selected, the report includes only invoices whose number starts with P; the exports' filter summary line reads \"Parts only.\""
+  ]
+ }
+}
