@@ -448,6 +448,46 @@ faithful to their sources; it says nothing about whether the product meets them.
 
 ---
 
+# 7A · ⚠️ ADDENDUM — THE SUITE MOVED UNDER THIS PASS: 174 → 176. Recorded, dated, and re-checked.
+
+**Everything above is TRUE AS AT 2026-08-11 13:39Z, the moment this pass read the live suite.** At
+**13:56Z**, while these files were being written, a **sibling worker executed the coverage pass's staged
+pack**. Rule 59 says a source moving mid-pass is re-read rather than assumed away, so it was — and the
+re-read is recorded here **rather than by editing the numbers above**, so the record shows what was
+measured when.
+
+| | 13:39Z (the audit above) | **13:56Z (re-read)** |
+|---|---:|---:|
+| Schedule cases live | **174** | **176** |
+| `created_by` | {3} — 0 foreign | **{3} — 0 foreign** |
+| `custom_atmstatus` | all `1` | **all `1`** |
+
+**WHAT CHANGED — 2 cases added, 7 bodies edited, and NONE of it disturbs a verdict above:**
+
+| Change | Class | Basis |
+|---|---|---|
+| **[C29998](https://shopview.testrail.io/index.php?/cases/view/29998)** — one assertion **ADDED**: *"You can tell the '+2 more' is something to click without relying on its colour: it carries the count as words you can read, and it is drawn as its own distinct shape - a small chip, pill or button - not just a differently coloured patch of the lane."* | **LEGITIMATE SOURCE-DRIVEN — an addition, i.e. a strengthening** | v27 §11, verbatim: *"Overtime and conflict signals are not color-only (OT uses a text tag; **the overflow uses shape**)."* This closes the coverage gap the coverage pass staged as **S3**. |
+| **[C43588](https://shopview.testrail.io/index.php?/cases/view/43588)** *"Dark mode is chosen from the user menu and is remembered for you"* — **NEW** | **LEGITIMATE** | `refs: SV-8700 (§11 Dark theme - chosen from user menu and persisted per user - spec v27 2026-08-07)`; v27 §11: *"chosen from the user menu and persisted per user"*. Cites the **owning story**, not the epic — which is the Rule-20 correction the coverage pass asked for. |
+| **[C43589](https://shopview.testrail.io/index.php?/cases/view/43589)** *"In dark mode pop-up windows still look raised above the page"* — **NEW** | **LEGITIMATE** | v27 §11: *"elevation/shadow tokens also swap so **depth reads correctly on dark surfaces**."* |
+| **C43582–C43587** — the six §5.3 panel cases: **note text only, assertions byte-identical** | **LEGITIMATE — a defect fix** | The *"steps 1 to 8"* error is **REPAIRED**: the six now read **1 to 7 · 1 to 6 · 1 to 7 · 1 to 4 · 1 to 5 · 1 to 7**, matching their real step counts exactly. Verified live. |
+
+**SO THE CLASS COUNTS FOR THE 176-CASE SUITE ARE: UNCHANGED 169 · LEGITIMATE SOURCE-DRIVEN 6 ·
+LEGITIMATE LABEL WORK 0 · WEAKENED 0 live · BUILD-DERIVED 1 live.** The two new cases enter as
+UNCHANGED-by-construction (no history), and **C29998 moves from UNCHANGED to LEGITIMATE
+SOURCE-DRIVEN.** **The one live finding, C29944, is untouched by the sibling's push and stands.**
+
+**⚠️ AND ONE STAGED ITEM OF THIS PASS IS THEREBY DISCHARGED BEFORE IT WAS EVER PROPOSED: `R2` (the six
+panel cases' wrong step count) is FIXED.** It is kept in `STAGED-REPAIRS.md`, marked DISCHARGED with the
+evidence, rather than deleted — a repair that quietly vanishes from a staged list is indistinguishable
+from one nobody did.
+
+**A PROCESS NOTE, REPORTED NOT RESOLVED:** this pass's own files were **swept into three of that
+sibling's commits** (`dec83609`, `7c413026`, `5a310021`) rather than committed by it. Nothing was lost
+and nothing of theirs was disturbed, but it is exactly the shared-branch state the working rules say to
+report rather than tidy. Detail in `FINDINGS.md` §7.
+
+---
+
 # 8 · AUTOMATED CASES CHANGED — FOR VLAD (Standing Rule 65)
 
 **None.**
