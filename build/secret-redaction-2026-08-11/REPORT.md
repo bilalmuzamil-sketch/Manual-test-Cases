@@ -302,3 +302,36 @@ is now in the playbook header and in `CLAUDE.md`.
 3. **Should this repository be public at all?** — it holds the full QA corpus, internal Jira keys and
    staging endpoints. Not a worker's call; nothing was changed.
 4. **Sweep the remaining capture harnesses?** — two were fixed; the others have not been reviewed.
+
+---
+
+## 7. ⚠️ COMMIT-SCOPE INCIDENT — MY ERROR, RECORDED RATHER THAN TIDIED AWAY
+
+**The redaction commit `5775229d` contains 50 files, not the 21 this pass touched.** The other 29
+are a **live Filters worker's in-flight SV-9041 work**, which that worker staged into the **shared
+git index** in the seconds between my `git add` calls and my `git commit`.
+
+**The cause was mine.** I staged 21 explicit paths correctly, then built the commit's path list by
+**re-reading `git diff --cached --name-only` at commit time** instead of using my own list. By then
+the index held their files too, so `git commit -- <paths>` was handed *their* paths as well as mine
+and faithfully committed all 50.
+
+**What this did and did not do:**
+
+- **Nothing was lost, reverted, discarded or altered.** All 50 working-tree files are byte-identical
+  to their pre-commit state (verified by SHA-256, 50/50 unchanged, 0 changed, 0 missing). The other
+  worker's content is exactly as they wrote it — it is simply committed under my message.
+- **No fix was attempted, deliberately.** `git reflog` shows `5775229d … update by push`: **the
+  commit is already on `origin`.** Undoing it would require a **force-push onto a branch several
+  live sessions share**, which the standing rules forbid and which is far more dangerous than an
+  over-broad commit message.
+- **The only real damage is a misleading commit message** — it describes a credential redaction and
+  silently also carries a Filters pass.
+
+**The lesson, which is the same class of error as the leak itself:** *build the path list once, from
+your own explicit set, and never re-derive it from shared mutable state.* A shared index on a branch
+with concurrent workers is exactly that.
+
+**Nothing is owed to the Filters worker beyond awareness** — their files are committed and pushed
+intact, so their pass can continue unaffected. It is worth their knowing their work landed in
+someone else's commit.
