@@ -1,0 +1,63 @@
+[
+ {
+  "id": 17,
+  "is_active": true,
+  "is_system": false,
+  "type_id": 6,
+  "name": "atmstatus",
+  "system_name": "custom_atmstatus",
+  "label": "Automation status",
+  "description": "Automation status",
+  "configs": [
+   {
+    "context": {
+     "is_global": true,
+     "project_ids": [
+      1
+     ]
+    },
+    "options": {
+     "is_required": true,
+     "default_value": "1",
+     "items": "1, Not Automated\n2, Cannot be automated\n3, Automated\n4, Pending",
+     "format": "markdown"
+    },
+    "id": "c3973674-0f41-4d0d-8e76-cc10d9cc7a3d"
+   }
+  ],
+  "display_order": 6,
+  "include_all": true,
+  "i18n_custom_id": null,
+  "is_indexed": false,
+  "template_ids": []
+ },
+ {
+  "id": 14,
+  "is_active": true,
+  "is_system": false,
+  "type_id": 6,
+  "name": "automation_type",
+  "system_name": "custom_automation_type",
+  "label": "Automation Type",
+  "description": null,
+  "configs": [
+   {
+    "context": {
+     "is_global": true,
+     "project_ids": []
+    },
+    "options": {
+     "is_required": false,
+     "default_value": "0",
+     "items": "0, None\n1, Ranorex"
+    },
+    "id": "7a34a519-f458-40bb-af43-ed63baf874ee"
+   }
+  ],
+  "display_order": 5,
+  "include_all": true,
+  "i18n_custom_id": "fields_custom_automation_type",
+  "is_indexed": false,
+  "template_ids": []
+ }
+]

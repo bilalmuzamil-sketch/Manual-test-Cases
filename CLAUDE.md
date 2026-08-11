@@ -5481,8 +5481,22 @@ regression / bug-fix re-testing.
     Tomovic records what he has automated, and **Standing Rule 65 keys the whole tell-Vlad duty off
     it** — so a case born `3` corrupts the signal he and we both rely on. **31 Schedule cases were
     corrected `3 → 1` on 2026-08-11** (`build/automated-flag-and-c30041-2026-08-11/`).
+    **✅ THERE IS NOW ONE CANONICAL PLACE TO COPY THE PAYLOAD FROM, AND A GUARD (added 2026-08-11 —
+    the structural root cause was that NO shared `add_case` helper existed, so every pass wrote its
+    own and copied the previous one's `3`):**
+    **· `build/testing-tools/testrail_add_case.py` → `add_case_payload(...)`** — defaults
+    `custom_atmstatus` to **`1`**, **RAISES** if a caller passes `3`, and carries
+    `verify_created_case()` for the post-write check. **Python; there is a JS twin
+    `addCasePayload()` / `addCase()` in `build/testing-tools/testrail-api.mjs`.**
+    **· `build/testing-tools/check_add_case_payloads.py`** — **RUN IT BEFORE ANY PUSH THAT CREATES
+    CASES.** Exit 0 = clean, exit 1 = a new payload would flag a case Automated. It also **WARNS about
+    post-write VERIFIERS that treat `3` as the PASS condition** — those are the nastier hazard, because
+    they call a correctly-created case a failure and so push the next pass back towards `3`
+    (`build/report-suite/chris-newreqs-2026-08-05/tools/audit.py` is the live example).
     **⚠️ THE EXECUTED `add_case` SCRIPTS STILL CONTAIN `3` AND WERE DELIBERATELY NOT REWRITTEN** —
     they are the audit record of what was actually run, and editing them would make that record lie.
+    **All 19 are enumerated in the guard's own `KNOWN_EXECUTED` list, so it can tell an old audit
+    record apart from a NEW hazard and names them loudly on every run.**
     **DO NOT COPY AN `add_case` PAYLOAD FROM AN OLD SCRIPT; COPY IT FROM THIS LINE.** The full list of
     scripts carrying the old value is in
     `build/automated-flag-and-c30041-2026-08-11/FIELD-FACTS.md`.

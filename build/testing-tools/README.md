@@ -43,7 +43,29 @@ so keep all `staging-*.mjs` together in `/tmp/cln/`.
 | `staging-boot2.mjs` | SPA hydration/login for Chromium (Playwright): dev-login + hydrate localStorage, returns a live page. `SV_KEY=tech node staging-boot2.mjs /workorders` | `/tmp/cln/cookies.json`, `$HTTPS_PROXY` (read live), Playwright + Chromium at the paths in the file |
 | `staging-bridge.mjs` | FRESH local MITM bridge: accepts Chromium `CONNECT`, relays via Node `fetch` through the agent proxy. FALLBACK when boot2's direct proxy path fails. Prints `BRIDGE_LISTENING 127.0.0.1:<port>`. | `NODE_USE_ENV_PROXY=1`, `NODE_EXTRA_CA_CERTS=<agent CA bundle>`, `$HTTPS_PROXY` (read live) |
 | `staging-restore-tech.mjs` | Reset the Tech staff member back to the default "Time Clock" role after a permission run, then verify. `node staging-restore-tech.mjs` | `/tmp/cln/cookies.json` |
-| `testrail-api.mjs` | TestRail basic-auth helper: `get_projects`, `get_case`, `get_cases`, `get_run`, `add_result_for_case`, plus `raw <endpoint>`. `node testrail-api.mjs get_case 26482` | `/tmp/testrail/creds.json` |
+| `testrail-api.mjs` | TestRail basic-auth helper: `get_projects`, `get_case`, `get_cases`, `get_run`, `add_result_for_case`, plus `raw <endpoint>` — **and the canonical `addCasePayload()` / `addCase()` / `verifyCreatedCase()`**. `node testrail-api.mjs get_case 26482` | `/tmp/testrail/creds.json` |
+| `testrail_add_case.py` | **CANONICAL `add_case` payload builder (Python twin of the above).** `add_case_payload(...)` defaults `custom_atmstatus` to `1` ("Not Automated") and **raises** if a caller passes `3`. `python3 testrail_add_case.py` prints the payload and demonstrates the guard. | nothing (pure) |
+| `check_add_case_payloads.py` | **GUARD — run before any push that creates cases.** Scans the repo for `add_case` payloads that would flag a case `3` ("Automated"), and warns about post-write verifiers that treat `3` as the PASS condition. Exit 0 clean / 1 hazard. | nothing (pure) |
+
+### 🛑 `custom_atmstatus` — copy the payload from the helper, never from an old exec script
+
+`custom_atmstatus` is TestRail's **"Automation status"** dropdown (field id 17):
+`1` Not Automated · `2` Cannot be automated · `3` Automated · `4` Pending — `is_required: true`
+with `default_value: "1"` (read live from `get_case_fields` on project 1, 2026-08-11).
+
+**Every one-off push script in this repo used to send `3`**, because there was no shared helper and
+each pass copied the previous one. So every case we created by API landed in TestRail flagged
+**Automated when nobody had automated it**. That field is how the automation engineer records what he
+has actually automated, and **Standing Rule 65 keys the whole tell-Vlad duty off it** — so `1` is a
+statement of fact and `3` is a claim about somebody else's work.
+
+```sh
+python3 build/testing-tools/check_add_case_payloads.py   # before any create-cases push
+```
+
+The ~19 already-executed scripts that still contain `3` were **deliberately left byte-identical** as
+the audit record of what was run; the guard lists them by name every run so an old audit record is
+never mistaken for a live hazard — and never copied.
 
 ### Env / proxy notes (preserve these — they are load-bearing)
 
