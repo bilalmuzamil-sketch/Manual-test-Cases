@@ -139,6 +139,24 @@ C29998_OLD_REFS = "SV-8693 (§4.7)"
 C29998_NEW_REFS = ("SV-8693 (§4.7 lane cap and overflow + §11 the overflow uses "
                    "shape - spec v27 2026-08-07)")
 
+# THE PROVENANCE LINE MUST GAIN §11 TOO -- a THIRD departure from the staged manifest,
+# which said the provenance block was unchanged.
+#
+# The new expected item is sourced from §11 ("the overflow uses shape"), NOT from §4.7. If
+# `refs` names §11 and the tester-facing provenance line does not, the case ends up
+# asserting something no source it cites supports -- which is the exact Rule-54 honesty
+# defect that COVERAGE-REDERIVATION.md section 8 was written to report on five other cases.
+# Rule 54 outranks our own staged plan, so the anchor is extended.
+#
+# Sentence 2 is kept VERBATIM and is still true: the case as a whole was last checked
+# against v3.5-7ec992f on 8/6/2026. The new item has never been checked against any build,
+# and that is recorded in FINDINGS.md rather than being written into tester-facing text.
+C29998_OLD_PROV = ("and the Schedule specification version 27 (§4.7), read on "
+                   "11 August 2026.")
+C29998_NEW_PROV = ("and the Schedule specification version 27 (§4.7 Overlap and lane "
+                   "stacking and §11 Accessibility - the overflow uses shape), read on "
+                   "11 August 2026.")
+
 # ---------------------------------------------------------------------------
 # GROUP 4 — C38866, `refs` only.
 # ---------------------------------------------------------------------------

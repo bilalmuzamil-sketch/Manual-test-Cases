@@ -149,13 +149,17 @@ def main():
     if before.get("refs") != P.C29998_OLD_REFS:
         raise SystemExit(f"C29998 refs are {before.get('refs')!r}, not the expected "
                          f"{P.C29998_OLD_REFS!r} -- STOP")
+    if exp.count(P.C29998_OLD_PROV) != 1:
+        raise SystemExit("C29998: provenance anchor literal not found exactly once -- STOP")
     new_exp = exp.replace(P.C29998_OLD_ITEM4, P.C29998_NEW_ITEMS)
+    new_exp = new_exp.replace(P.C29998_OLD_PROV, P.C29998_NEW_PROV)
     payload = {"custom_preconds": before["custom_preconds"],
                "custom_steps": before["custom_steps"],
                "custom_expected": new_exp,
                "refs": P.C29998_NEW_REFS}
     st, line, b, a = tr.update_case_verified(29998, payload, "G3 update_case")
-    say(f"  C29998: item 4 inserted, old item 4 -> 5, refs +§11 | HTTP {st} | {line}")
+    say(f"  C29998: item 4 inserted, old item 4 -> 5, refs +§11, provenance anchor +§11 "
+        f"| HTTP {st} | {line}")
     ops.append(("G3", 29998, st, line, None))
 
     # ================================================== GROUP 4
