@@ -5406,6 +5406,43 @@ regression / bug-fix re-testing.
     `77b069d1-...` does **NOT** exist on staging — do not use it.
     org `d55bc308-...`.
   - Tech email `tech@shopview.com`.
+- **🏢 DEFAULT LOCATION FOR EVERY LIVE CHECK = `Staging Heavy Duty - 9919` (QA lead's standing
+  convention, 2026-08-11).** Verbatim: ***"Make sure to use Staging Heavy Duty Location for all
+  projects and change it only / When needed."*** Supplied with a screenshot of **Admin ShopView /
+  `admin@shopview.com`** whose location selector reads **`Staging Heavy Duty - 9919`**. **This is the
+  default on ALL THREE active projects (Filters · Schedule · Report Suite)** — id
+  `b3c8c820-f815-4cf1-8938-10956c5ee71a` (America/Edmonton), already recorded in the workplace list
+  in the next bullet. **CONFIRM the selector reads it BEFORE taking any observation.** **Switch away
+  ONLY where a case genuinely requires it — and where you do, SAY SO ON THE CASE'S OWN RECORD and
+  SWITCH BACK afterwards.**
+  **THE LEGITIMATE EXCEPTIONS, NAMED SO THAT "WHEN NEEDED" IS NOT A LOOPHOLE — exactly two are
+  known:** **(1)** a case that needs **MORE THAN ONE location in scope** — the Location column only
+  appears when a user can see several, which is the whole subject of a group of Report Suite cases;
+  **(2)** a case pinned to a **specific shop's data**, where the work order, technician or invoice
+  exists only there. **Anything else defaults to Heavy Duty.**
+  **WHY IT MATTERS — TWO REAL INCIDENTS, both this week, both already in our records:**
+  **(a) AN OBSERVATION TAKEN ON A DIFFERENT LOCATION IS NOT COMPARABLE WITH THE REST.**
+  `/api/labour-types` first appeared to show **four of the five locations with no default labor
+  rate** — which **would have released three held cases** and looked like a finding. **Switching the
+  active workplace and re-reading DISPROVED it:** the endpoint is **scoped to the ACTIVE WORKPLACE
+  ONLY**, every location has a rate, and the first reading was an artefact of where the session
+  happened to be standing. Source:
+  `build/report-suite/full-viu-2026-08-06/THREE-REPORTS-STATUS.md` §6.
+  **(b) NEVER SEED OR FAKE AROUND A LOCATION BOUNCE — REPORT THE BOUNCE.** A pass **seeded a default
+  workplace** to get past the app's `/no-location` redirect, then saw work-order-number **links**
+  working where an earlier, normally-signed-in session had faithfully seen plain text — **its own
+  setup had created the evidence** (the shipped guard withholds the link from any user whose
+  `defaultWorkplace` is null, and `admin@shopview.com`'s own staff record reads `null`). **It was
+  caught before the three cases were changed, so their expect-fail markers stand — but it was a near
+  miss.** Source:
+  `build/report-suite/build-verify-2026-08-10/BUILD-VERIFICATION-2026-08-10.md` §4.
+  **THIS IS THE LINE STANDING RULE 14 DRAWS: seeding the DATA a case needs is permitted and expected;
+  MANUFACTURING THE CONDITION UNDER TEST is not** — the latter makes our own setup, rather than the
+  build, the source of the result (Rules 12/57).
+  **⇒ PRACTICAL CONSEQUENCE: EVERY LIVE OBSERVATION MUST BE ATTRIBUTABLE TO A NAMED LOCATION AS WELL
+  AS A NAMED BUILD.** Record the **location alongside the build marker** in every verification
+  deliverable, exactly the way **Rule 54 sentence 2** records the build — an observation with no
+  location named is not reproducible by the next reader.
 - **SWITCH WORKPLACE/LOCATION (self-unblock — learned 2026-07-23, never ask the user again):**
   a session is scoped to ONE workplace; reading/writing a WO in another workplace returns
   400/no-data. Switch with **`POST /api/iam/change-location {workplace_id, workplace_timezone}`**

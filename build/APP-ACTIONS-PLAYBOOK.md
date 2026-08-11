@@ -239,6 +239,17 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   per §A), and **`/tmp` is ephemeral**, so on any resumed or newly-authorised VIU **ask the QA lead
   for a fresh set** rather than assuming a stored one is still good.
 - **Org ID (staging, shared):** `d55bc308-...` (shared across Custom Roles + Simple Flow + F&D staging).
+- **🏢 DEFAULT LOCATION = `Staging Heavy Duty - 9919` — CONFIRM IT BEFORE ANY OBSERVATION, ON ALL
+  THREE PROJECTS (QA lead's standing convention, 2026-08-11):** *"Make sure to use Staging Heavy Duty
+  Location for all projects and change it only / When needed."* Switch away **only** where a case
+  genuinely requires it (only two known exceptions: a case needing **several locations in scope**, or
+  one pinned to a **specific shop's data**), **say so on the case's own record, and switch back.**
+  **Record the location alongside the build marker in every verification deliverable.** **Two real
+  near-misses drove this: an endpoint scoped to the ACTIVE WORKPLACE ONLY nearly produced a false
+  finding, and a pass that SEEDED a default workplace to escape the `/no-location` bounce then
+  observed links its own setup had created — report the bounce, never engineer around it (Rule 14
+  permits seeding DATA, not manufacturing the condition under test).** *Full convention + both
+  incidents with sources: CLAUDE.md "Durable key facts".*
 - **Change active workplace/location (self-unblock — required before reading/writing a WO in a
   non-default workplace, else `work-orders/view/{id}` returns 400/no-data):**
   `POST /api/iam/change-location {workplace_id, workplace_timezone}` → 200. Helper:
