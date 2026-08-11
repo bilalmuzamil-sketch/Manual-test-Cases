@@ -791,6 +791,20 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
   "we did not touch it" proof — including the Rule-38 proof that a foreign case is untouched — must be a
   BYTE COMPARISON OF THE FIELD CONTENT against a pre-write snapshot committed before the first write.
   A timestamp is context, never evidence.**
+- **🛑 AND THE MIRROR IMAGE IS ALSO TRUE — A *FRESH* `updated_on` IS NOT PROOF A WRITE *LANDED*
+  (found 2026-08-11, Filters; the companion to the bullet above, and the more dangerous of the two).**
+  The bullet above is about a **frozen** timestamp hiding a change that happened. **This is the
+  opposite: a MOVED timestamp advertising a change that did NOT happen.** Three Filters cases —
+  **C29601 · C38882 · C43562** — carried **the current day's `updated_on`** while the write intended
+  for them had **never landed**: the timestamps came from a *different* pass (the read-date sweep) that
+  had legitimately touched the same cases hours earlier. A worker checking "did my write go through?"
+  by timestamp would have read **today's date on all three and concluded success**. **WHY THIS ONE IS
+  WORSE: the frozen-timestamp failure makes you re-check something that was fine; the fresh-timestamp
+  failure makes you STOP checking something that is broken** — and on a shared suite, where several
+  passes touch the same cases in a day, a fresh timestamp is the *expected* state and proves nothing at
+  all. **THE RULE IS THE SAME IN BOTH DIRECTIONS AND HAS NO EXCEPTIONS: VERIFY BY CONTENT.** Compare
+  the live field text against the **intended payload**, never against a clock. *(Recorded in
+  `build/RECOVERY-2026-08-11/STATE.md` §B pass 2.)*
 - **⚠️ THE WORK IN PROGRESS EXPORT TAKES DIFFERENT DATE PARAMETERS FROM THE OTHER FIVE REPORTS
   (proven live 2026-08-06, `v3.5-16cf83f`) — and getting it wrong makes a REAL HTTP 500 look like your
   own input error, which is exactly what blocked the finding for two passes.** The other five use
@@ -1021,6 +1035,25 @@ Terse entries; where the full detail already lives elsewhere in this playbook, t
   origin/<branch>` can report *"local == origin, all pushed"* while local is in fact **49 commits
   behind**. **Always `git fetch origin <branch>` FIRST**, then compare — and never conclude anything
   about what is or is not on the remote from an unfetched ref. *(2026-08-06)*
+- **🛑 THE SAME STALENESS BITES IN THE OTHER DIRECTION, AND IT IS FAR MORE DANGEROUS: THE LOCAL
+  CHECKOUT CAN BE WILDLY BEHIND WHILE `git status` REPORTS THE BRANCH *AHEAD* AND THE TREE CLEAN
+  (proven 2026-08-11 — 110 commits behind).** The bullet above is about mis-reading what is on the
+  remote. **This is about working from a tree that is out of date and not being told.** A recovery pass
+  found `git status` clean and `git rev-list` reporting the branch **1 commit AHEAD**; after
+  `git fetch` the true position was **110 BEHIND, 0 ahead**. **WHAT IT COST:** that pass concluded six
+  other passes' folders **did not exist**, that **nothing had been committed**, and that **all their
+  work was lost with the container** — **every one of those conclusions was false.** The folders, the
+  execution logs and the per-op records were all on the remote, invisible to a stale checkout.
+  **WHY IT MATTERS MORE THAN A WRONG STATUS REPORT: another session pushes to this same branch from a
+  different container, so a worker reading a stale tree WHILE WRITING TO LIVE TESTRAIL can re-do work
+  already done, "restore" text another pass deliberately changed, or regenerate deliverables from a
+  source 110 commits out of date** — each of which is a confident, well-evidenced, wrong answer.
+  **THE RULE: `git fetch origin <branch>` then `git merge --ff-only` as the FIRST ACTION of every pass,
+  before reading anything.** **A clean working tree proves nothing about currency**, and neither does
+  an ahead/behind count taken without a fetch. **If the fast-forward is refused, STOP and report** —
+  never force, never rebase, never `reset --hard`, because a sibling's unpushed-to-you commits are the
+  very thing at risk. *(2026-08-11; the mechanism behind the stale ref is still unexplained and may
+  recur in any container — see `build/RECOVERY-2026-08-11/STATE.md`.)*
 
 ## M. Figma: extract ALL frames from a design link (proven 2026-07-31, Filters)
 **Use when** the user hands over one or more `figma.com/design/<fileKey>/...?node-id=A-B` links and
