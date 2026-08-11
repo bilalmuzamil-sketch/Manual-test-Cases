@@ -1,0 +1,33 @@
+[
+ {
+  "cid": 38859,
+  "http": 200,
+  "verify": "C38859 C38859: 30 fields compared, 4 intended, 0 mismatch",
+  "atmstatus": 1,
+  "title_after": "Column Selection: Technician always on, the other five toggleable, remembered",
+  "build_line": "Last checked against build v3.5-16cf83f on 8/5/2026.",
+  "note": "PRE-EXISTING DEFECT, not caused by today's delta: asserted 'The Location column is never listed here', which TU v7 S10-R4/S9-R9 contradict outright. Item 3's closed five-toggle list made scope-conditional (Rule 42). A tester would have failed a conforming build.",
+  "fields": [
+   "custom_preconds",
+   "custom_steps",
+   "custom_expected",
+   "refs"
+  ],
+  "when": "2026-08-11T19:47:24.573031Z"
+ },
+ {
+  "cid": 30466,
+  "http": 200,
+  "verify": "C30466 C30466: 30 fields compared, 3 intended, 0 mismatch",
+  "atmstatus": 1,
+  "title_after": "With all toggleable columns on, the fixed column order and alignment hold",
+  "build_line": "Last checked against build v3.5-f77875c on 8/6/2026.",
+  "note": "WIP v11 S4-R3 SETTLED the Location column-selector point, so the 'whichever way it is decided' clause is stale. Assertion (column order) unchanged -- it held either way.",
+  "fields": [
+   "custom_preconds",
+   "custom_steps",
+   "custom_expected"
+  ],
+  "when": "2026-08-11T19:47:28.894921Z"
+ }
+]

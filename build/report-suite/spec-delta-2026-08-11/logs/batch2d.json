@@ -1,0 +1,35 @@
+[
+ {
+  "cid": 38914,
+  "http": 200,
+  "verify": "C38914 C38914: 30 fields compared, 5 intended, 0 mismatch",
+  "atmstatus": 1,
+  "title_after": "Location column: leftmost before Type; own location per row; Multiple on merged",
+  "build_line": "Last checked against build v3.5-16cf83f on 8/6/2026.",
+  "note": "PV v6 rewrote S3-R10 to access-gated+toggleable but left S2-R12/S4-R2/S4-R3 on the old scope-driven model. Contradiction NARROWED and re-worded, not resolved. EXPECT-FAIL for SV-8938 (column position) preserved -- that assertion is uncontested.",
+  "fields": [
+   "custom_preconds",
+   "custom_steps",
+   "custom_expected",
+   "title",
+   "refs"
+  ],
+  "when": "2026-08-11T19:42:59.900792Z"
+ },
+ {
+  "cid": 30352,
+  "http": 200,
+  "verify": "C30352 C30352: 30 fields compared, 4 intended, 0 mismatch",
+  "atmstatus": 3,
+  "title_after": "First visit shows exactly the 14 default columns in the specified order",
+  "build_line": "Last checked against build v3.5-16cf83f on 8/6/2026.",
+  "note": "Same PV contradiction. Trigger reworded from location SCOPE to location ACCESS on the uncontested half. atm=3 (Automated) -- reported under Rule 65.",
+  "fields": [
+   "custom_preconds",
+   "custom_steps",
+   "custom_expected",
+   "refs"
+  ],
+  "when": "2026-08-11T19:43:04.528986Z"
+ }
+]
