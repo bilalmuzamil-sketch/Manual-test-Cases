@@ -71,12 +71,13 @@ TAB5_NAME = "QA internal - not for Branko"
 HELLO = (
     "Hello Branko - this is everything we have open across TWO of your projects, FILTERS and "
     "SCHEDULE, gathered into one place so you can go through it in a single sitting instead of "
-    "getting a trickle of separate messages. Twenty items; about twenty minutes if you go straight "
+    "getting a trickle of separate messages. Twenty-one items; about twenty minutes if you go "
+    "straight "
     "down the list. SHORT ANSWERS ARE PERFECT - a letter, or one line. Nothing here needs an "
     "essay.\n\n"
     "WHERE TO START. Section 1 is five questions that release tests which are stuck today - that "
     "is the part we are genuinely waiting on. Section 2 is eight ordinary decisions. Section 3 is "
-    "six things only the engineering plan describes, and nothing of ours is waiting on those, so "
+    "seven things only the engineering plan describes, and nothing of ours is waiting on those, so "
     "they can keep for a quiet moment. Section 4 is one typo-level heads-up with nothing to "
     "decide.\n\n"
     "ONE OF THESE IS OUR OWN FAULT and we are sorry: question 2 in Section 1 was written on "
@@ -413,7 +414,46 @@ SEC2 = [
 ]
 
 # ================================================================= SECTION 3 + 4
-SEC3 = list(prior.PRIOR_SCHED_ENG)          # 6 items, carried over verbatim
+# ADDED 2026-08-11 - a FILTERS documentation gap, appended as item 7 of section 3.
+# It belongs here because section 3 is precisely "behaviours only the engineering plan
+# describes". It differs from the other six in one way, and the row says so plainly: the
+# other six are candidate coverage awaiting his word, whereas this one is ALREADY covered
+# by two of our tests (C29600 and C29632), correctly, because the engineering technical
+# design is an authoritative source under Standing Rule 57(d3). So it is framed as a
+# DOCUMENTATION GAP - his own technical design states the rule and his product description
+# does not - and not as a decision he has failed to make (Standing Rule 55).
+FILTERS_CROSS_FILTER_DOCGAP = (
+    "FILTERS - the Work Orders list - using two different filter buttons at the same time",
+
+    "NOTHING OF OURS IS STUCK ON THIS ONE and we are not asking you to make a decision. We are "
+    "asking you to write down in your own description something your engineers have already "
+    "written down in theirs.\n\n"
+    "The Work Orders list has five filter buttons: Status, Customer, Lead Technician, Service "
+    "Advisor and Asset on Site.\n\n"
+    "Your description says what each button does ON ITS OWN. For Status it says the list shows "
+    "work orders matching ANY of the statuses you tick. For Customer it says the list shows work "
+    "orders belonging to ANY of the customers you pick.\n\n"
+    "What it never says is what the list should show when someone uses TWO DIFFERENT BUTTONS AT "
+    "THE SAME TIME - for example ticking the status 'Estimate' and also picking the customer "
+    "'Smith'. We searched the whole of your current description and five earlier versions of it, "
+    "and the rule is not there in any of them.\n\n"
+    "Your engineers' own working notes DO state it: the buttons must narrow together, so the list "
+    "shows only the work orders that match both. That is also what the product does today, and it "
+    "is what two of our tests already check - so nothing is broken and nothing is waiting.\n\n"
+    "Why we are raising it anyway: a rule that lives only in an engineering note is one edit away "
+    "from being changed by accident, and nobody would notice. One sentence in your description "
+    "settles it for good.",
+
+    "When someone ticks a status AND also picks a customer, what should the list show?",
+
+    "A) ONLY the work orders that match BOTH - status 'Estimate' AND customer 'Smith'. (This is "
+    "what your engineers' notes say and what the product does today. If you pick A, please add a "
+    "sentence saying so to your description - nothing of ours needs to change.)\n\n"
+    "B) Something else - please describe it. (Then two of our tests are wrong and we will correct "
+    "them.)",
+)
+
+SEC3 = list(prior.PRIOR_SCHED_ENG) + [FILTERS_CROSS_FILTER_DOCGAP]   # 6 carried + 1 new
 SEC4 = [prior.PRIOR_FILTERS[2]]             # the pointer heads-up, carried over verbatim
 
 EXTRA_NOTES = [
@@ -436,7 +476,31 @@ EXTRA_NOTES = [
     "2026-08-06T11:48:47Z; the sentence is present in the live body (one occurrence). Sending it "
     "would have re-asked a question his own document answers - the exact embarrassment Rule 55 "
     "exists to prevent, and one this project has already had once. SO THE ROW IS OFF THE SHEET and "
-    "the sheet is 20 items, not 21.",
+    "the sheet is 20 items, not 21. [SUPERSEDED 2026-08-11 ON THE COUNT ONLY - the removal itself "
+    "stands and the reasoning above is unchanged; the sheet is 21 items again because a NEW item "
+    "was added on 2026-08-11. See the next note.]",
+
+    "⚠️ ADDED 2026-08-11 - ONE NEW ITEM, TAKING THE SHEET FROM 20 BACK TO 21: the FILTERS "
+    "CROSS-FILTER DOCUMENTATION GAP, appended as item 7 of Section 3. WHY IT IS IN SECTION 3: that "
+    "section is exactly \"behaviours only the engineering plan describes\", and this is one - the "
+    "rule that two DIFFERENT filter buttons narrow together is in the engineering technical design "
+    "and in no version of his product description. WHY IT IS FRAMED DIFFERENTLY FROM THE OTHER "
+    "SIX: the other six are candidate coverage awaiting his word, whereas this rule is already "
+    "correctly covered by C29600 and C29632, because the technical design is an authoritative "
+    "source under Standing Rule 57(d3). So it is put to him as a DOCUMENTATION GAP - his own "
+    "engineers state it, his own description does not - and expressly NOT as a decision he has "
+    "failed to make (Rule 55). NOTHING OF OURS IS BLOCKED ON IT and the row says so on its face, "
+    "so he is not misled into thinking it is urgent. DUPLICATE CHECK RUN BEFORE ADDING IT (Rule "
+    "55): both markdown files, the README and EVERY XML part of BOTH workbooks were searched for "
+    "29600, 29632, 'multi-criteria', 'matching both' and 'two different filter' - ZERO hits in "
+    "all of them, so it duplicates nothing. This also CORRECTS our own record: "
+    "build/unsourced-cases-2026-08-11/CANDIDATES.md states C29600 is already on Branko's sheet; "
+    "IT WAS NOT. Source: build/filters/c29600-sourcing-2026-08-11/FINDINGS.md; the accompanying "
+    "TestRail recording fix is build/filters/c29600-fix-2026-08-11/.",
+
+    "NOTHING WAS SENT TO BRANKO. The QA lead's standing instruction is that nothing goes to a PO "
+    "until our own work is done, so this remains a DRAFT. No Jira issue was created or edited by "
+    "the 2026-08-11 pass either - the creation hold at the tail of Standing Rule 62 stands.",
 
     "⚠️ CORRECTION OWED TO OUR OWN RECORD, FLAGGED NOT REWRITTEN. The earlier sheet's QA tab says "
     "of that item: \"Filters v19 section 4 and S11-R1 say nothing about the address format\". That "
@@ -508,8 +572,57 @@ def _sheet(wb, name, title, note, band, items, widths, first=False):
     return ws
 
 
+TR = "https://shopview.testrail.io/index.php?/cases/view/"
+
+# ADDED 2026-08-11 - QA-only mapping for the new section-3 item 7. Rule 8: internal ID +
+# C-id + link. NOT FOR BRANKO.
+QA_ROW_CROSS_FILTER = (
+    "Tab 3", "7",
+    "Filters - what the list should show when two DIFFERENT filter buttons are used at once "
+    "(for example status Estimate + customer Smith)",
+
+    "NEW 2026-08-11, from build/filters/c29600-sourcing-2026-08-11/FINDINGS.md. NOT a blocked "
+    "decision and NOT an undecided product question - a DOCUMENTATION GAP. The rule IS decided "
+    "and IS written down, in the engineering technical design; it is his own product description "
+    "that is silent. Framed to him accordingly (Rule 55).",
+
+    "NO case is held on this. TWO cases assert the rule and both are CORRECT as written - "
+    "FLT-COMBO-01 (C29600, AUTOMATION: READY, TestRail custom_atmstatus = 3 AUTOMATED) and "
+    "FLT-API-08 (C29632, AUTOMATION: READY, custom_atmstatus = 1). Both had their refs and "
+    "provenance corrected on 2026-08-11 to cite the technical design; NEITHER had any assertion, "
+    "step or expected outcome changed.",
+
+    " · ".join(f"C{i} {TR}{i}" for i in [29600, 29632]),
+
+    "VERIFIED 2026-08-11 against Filters Confluence page 572030978 at VERSION 19 (HTTP 200), and "
+    "against versions 4, 12, 17 and 18. The rule for combining two DIFFERENT filters is absent "
+    "from all five. Boolean 'AND' appears EXACTLY ONCE in the whole specification, at S13-R10 - "
+    "'Search and filters are additive (AND)' - which is search-versus-filters, not "
+    "filter-versus-filter. S2-R2 and S3-R6 give OR *within* one filter ('matching any of the "
+    "selected statuses' / 'belonging to any of the selected customers'). S8-R3, which C29600 and "
+    "C29632 used to cite for this, is the EMPTY-STATE requirement and does not define the "
+    "combination. All 14 epic stories (SV-8786 to SV-8799) were read live including comments: not "
+    "one acceptance criterion states the result of combining two different filters. THE RULE IS "
+    "STATED in the engineering technical design, build/filters/tech-plan-2026-07-29/"
+    "TechPlan-AppWide-Filter-Redesign.md - §1.8 verbatim '...return the right WOs and AND across "
+    "fields' (line 323) and §0.3 verbatim 'Same-field filters are grouped and OR'd ... repeated "
+    "eq on one field is a de-facto IN' (line 218). That document is UNDATED internally and "
+    "records 'Spec baseline: v1.3' (line 124), so it is a PARTIAL currency source.",
+
+    "A -> nothing of ours changes; he adds one sentence to his description and the two cases' "
+    "provenance is re-stamped to name it instead of the technical design. B -> both cases are "
+    "wrong on their headline assertion, both must be corrected, and VLAD MUST BE TOLD because "
+    "C29600 is flagged AUTOMATED in TestRail. Standing Rule 57's OPEN question - whether a "
+    "technical design carries PRD-level authority on product behaviour, or whether Rule 30's "
+    "'informs but never overrules' still holds - governs these two cases as well as the nine in "
+    "class C-3 of build/unsourced-cases-2026-08-11/CANDIDATES.md, so eleven in total. That "
+    "question is the QA lead's, not Branko's, and is NOT on this sheet.",
+)
+
+
 def _qa_rows():
-    """Imported mapping, with the removed URL item re-labelled rather than dropped."""
+    """Imported mapping, with the removed URL item re-labelled rather than dropped,
+    and the 2026-08-11 cross-filter row appended."""
     out = []
     for row in prior.QA_ROWS:
         row = list(row)
@@ -522,6 +635,7 @@ def _qa_rows():
                       "Asking it would re-ask a question his document answers (Rule 55). "
                       "ORIGINALLY: " + str(row[3]))
         out.append(row)
+    out.append(list(QA_ROW_CROSS_FILTER))
     return out
 
 
@@ -544,12 +658,15 @@ def write_xlsx():
            SEC2, w)
 
     _sheet(wb, TAB3_NAME,
-           "Section 3 - six things only the engineering plan describes",
-           "NOTHING OF OURS IS WAITING ON THIS TAB, so it can keep for a quiet moment. These six "
-           "behaviours appear only in the engineering plan and nowhere in your own document. We are "
-           "not going to turn an engineering note into something the product must do without your "
-           "word - so each is either a decision for you or an item we close as out of scope.",
-           "Section 3 of 4 - six engineering-plan-only items. No test is blocked by these.",
+           "Section 3 - seven things only the engineering plan describes",
+           "NOTHING OF OURS IS WAITING ON THIS TAB, so it can keep for a quiet moment. These "
+           "seven behaviours appear only in the engineering plan and nowhere in your own document. "
+           "For the first six we are not going to turn an engineering note into something the "
+           "product must do without your word - so each is either a decision for you or an item we "
+           "close as out of scope. The seventh is different and says so: it is already covered by "
+           "two of our tests and nothing is waiting on it - we are simply asking you to write the "
+           "rule into your own description as well.",
+           "Section 3 of 4 - seven engineering-plan-only items. No test is blocked by these.",
            SEC3, w)
 
     _sheet(wb, TAB4_NAME,
@@ -613,7 +730,9 @@ def write_md():
 `Questions-for-Branko-Cicovic_Filters-and-Schedule_2026-08-06.md`, reordered by what to do first and
 rewritten to read easily on a phone. **One item was removed on purpose** — the exact shape of the
 Reports page web address — because his own specification already states it verbatim; the reason and
-the live evidence are on the QA-only tab. The spreadsheet twin is
+the live evidence are on the QA-only tab. **One item was ADDED on 2026-08-11** — the Filters
+cross-filter documentation gap, as item 7 of Section 3 — so the sheet is now **21 items**. The
+spreadsheet twin is
 `Questions-for-Branko-Cicovic_Filters-and-Schedule_Friendly-Version_2026-08-06.xlsx`; it carries a
 QA-only tab that must not be forwarded.*
 
@@ -639,11 +758,13 @@ Each one is a plain A or B. Four are Filters, four are Schedule.
 
 ---
 
-## Section 3 — Six things only the engineering plan describes
+## Section 3 — Seven things only the engineering plan describes
 
-**Nothing of ours is waiting on this section**, so it can keep for a quiet moment. These six
-behaviours appear only in the engineering plan and nowhere in your own document, and we are not
-going to turn an engineering note into something the product must do without your word.
+**Nothing of ours is waiting on this section**, so it can keep for a quiet moment. These seven
+behaviours appear only in the engineering plan and nowhere in your own document. For the first six
+we are not going to turn an engineering note into something the product must do without your word.
+**The seventh is different and says so** — it is already covered by two of our tests and nothing is
+waiting on it; we are simply asking you to write the rule into your own description as well.
 
 {block(SEC3)}
 

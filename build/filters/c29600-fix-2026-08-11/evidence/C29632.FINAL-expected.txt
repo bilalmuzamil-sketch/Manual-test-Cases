@@ -1,0 +1,10 @@
+1. One request carries both filters together (both statuses and the customer).
+2. The response returns customer A's Estimate and Approved work orders only.
+3. Customer B's work orders are absent - the customer filter and status filter both restrict the result, while the two statuses combine as either-or.
+
+Note on where each part comes from: the "either-or" part of item 3 - that ticking two statuses shows work orders matching either of them - is stated in the product description. The part that says the customer filter and the status filter both restrict the result is not, and neither is the shape of the single request in item 1. Both of those come from the engineering technical design, which requires the filters to combine with "AND across fields" and sets out how the request is put together.
+
+---
+This is the expected behaviour as per epic SV-8785 and the Filters specification at Confluence version 19 (published 6 August 2026) (S2-R2, S3-R6), read on 11 August 2026, and as per the engineering technical design for the app-wide filter redesign (§0.3 and §1.8), read on 11 August 2026 - that document carries no version number of its own and records its own baseline as "Spec baseline: v1.3". Last checked against build v3.4.2-d00239b on 8/5/2026.
+
+AUTOMATION: READY

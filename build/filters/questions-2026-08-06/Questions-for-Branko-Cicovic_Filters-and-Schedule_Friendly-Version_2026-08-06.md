@@ -6,7 +6,9 @@
 `Questions-for-Branko-Cicovic_Filters-and-Schedule_2026-08-06.md`, reordered by what to do first and
 rewritten to read easily on a phone. **One item was removed on purpose** — the exact shape of the
 Reports page web address — because his own specification already states it verbatim; the reason and
-the live evidence are on the QA-only tab. The spreadsheet twin is
+the live evidence are on the QA-only tab. **One item was ADDED on 2026-08-11** — the Filters
+cross-filter documentation gap, as item 7 of Section 3 — so the sheet is now **21 items**. The
+spreadsheet twin is
 `Questions-for-Branko-Cicovic_Filters-and-Schedule_Friendly-Version_2026-08-06.xlsx`; it carries a
 QA-only tab that must not be forwarded.*
 
@@ -14,9 +16,9 @@ QA-only tab that must not be forwarded.*
 
 ---
 
-Hello Branko - this is everything we have open across TWO of your projects, FILTERS and SCHEDULE, gathered into one place so you can go through it in a single sitting instead of getting a trickle of separate messages. Twenty items; about twenty minutes if you go straight down the list. SHORT ANSWERS ARE PERFECT - a letter, or one line. Nothing here needs an essay.
+Hello Branko - this is everything we have open across TWO of your projects, FILTERS and SCHEDULE, gathered into one place so you can go through it in a single sitting instead of getting a trickle of separate messages. Twenty-one items; about twenty minutes if you go straight down the list. SHORT ANSWERS ARE PERFECT - a letter, or one line. Nothing here needs an essay.
 
-WHERE TO START. Section 1 is five questions that release tests which are stuck today - that is the part we are genuinely waiting on. Section 2 is eight ordinary decisions. Section 3 is six things only the engineering plan describes, and nothing of ours is waiting on those, so they can keep for a quiet moment. Section 4 is one typo-level heads-up with nothing to decide.
+WHERE TO START. Section 1 is five questions that release tests which are stuck today - that is the part we are genuinely waiting on. Section 2 is eight ordinary decisions. Section 3 is seven things only the engineering plan describes, and nothing of ours is waiting on those, so they can keep for a quiet moment. Section 4 is one typo-level heads-up with nothing to decide.
 
 ONE OF THESE IS OUR OWN FAULT and we are sorry: question 2 in Section 1 was written on 22 July and we never actually sent it to you. Two tests have been parked ever since waiting for an answer you were never asked for.
 
@@ -373,11 +375,13 @@ Each one is a plain A or B. Four are Filters, four are Schedule.
 
 ---
 
-## Section 3 — Six things only the engineering plan describes
+## Section 3 — Seven things only the engineering plan describes
 
-**Nothing of ours is waiting on this section**, so it can keep for a quiet moment. These six
-behaviours appear only in the engineering plan and nowhere in your own document, and we are not
-going to turn an engineering note into something the product must do without your word.
+**Nothing of ours is waiting on this section**, so it can keep for a quiet moment. These seven
+behaviours appear only in the engineering plan and nowhere in your own document. For the first six
+we are not going to turn an engineering note into something the product must do without your word.
+**The seventh is different and says so** — it is already covered by two of our tests and nothing is
+waiting on it; we are simply asking you to write the rule into your own description as well.
 
 ### 1. Schedule (the technician scheduling calendar) - shifts and events that already existed (under epic SV-8685)
 
@@ -516,6 +520,34 @@ going to turn an engineering note into something the product must do without you
 > B) YES, but at different numbers - please say what they should be.
 >
 > C) NO limit at all - a spread of any length just goes ahead. (Then we will delete the two tests.)
+
+**Your answer:** _______________________________________________
+
+### 7. FILTERS - the Work Orders list - using two different filter buttons at the same time
+
+**What happens now**
+
+> NOTHING OF OURS IS STUCK ON THIS ONE and we are not asking you to make a decision. We are asking you to write down in your own description something your engineers have already written down in theirs.
+>
+> The Work Orders list has five filter buttons: Status, Customer, Lead Technician, Service Advisor and Asset on Site.
+>
+> Your description says what each button does ON ITS OWN. For Status it says the list shows work orders matching ANY of the statuses you tick. For Customer it says the list shows work orders belonging to ANY of the customers you pick.
+>
+> What it never says is what the list should show when someone uses TWO DIFFERENT BUTTONS AT THE SAME TIME - for example ticking the status 'Estimate' and also picking the customer 'Smith'. We searched the whole of your current description and five earlier versions of it, and the rule is not there in any of them.
+>
+> Your engineers' own working notes DO state it: the buttons must narrow together, so the list shows only the work orders that match both. That is also what the product does today, and it is what two of our tests already check - so nothing is broken and nothing is waiting.
+>
+> Why we are raising it anyway: a rule that lives only in an engineering note is one edit away from being changed by accident, and nobody would notice. One sentence in your description settles it for good.
+
+**The question**
+
+> When someone ticks a status AND also picks a customer, what should the list show?
+
+**Options**
+
+> A) ONLY the work orders that match BOTH - status 'Estimate' AND customer 'Smith'. (This is what your engineers' notes say and what the product does today. If you pick A, please add a sentence saying so to your description - nothing of ours needs to change.)
+>
+> B) Something else - please describe it. (Then two of our tests are wrong and we will correct them.)
 
 **Your answer:** _______________________________________________
 
