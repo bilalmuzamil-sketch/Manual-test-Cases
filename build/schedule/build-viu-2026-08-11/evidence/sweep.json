@@ -1,5 +1,5 @@
 {
- "vocab": 1144,
+ "vocab": 1184,
  "labels": 43,
  "rows": [
   {
@@ -8,7 +8,10 @@
    "build": "View options",
    "surfaces": [
     "01-day-view",
+    "01-picker",
     "02-filter-display-menu",
+    "02-select-multiple",
+    "03-lines-ticked",
     "03-view-options-menu",
     "04-sidebar-filters",
     "05-conflicts",
@@ -23,7 +26,8 @@
     "14-week-view",
     "15-month-view",
     "20-filters-active",
-    "22-search-vuchester"
+    "22-search-vuchester",
+    "picker-multiline"
    ],
    "cases": {
     "30046": [
@@ -93,15 +97,9 @@
   {
    "label": "Filter",
    "verdict": "EXACT-IN-CONTEXT",
-   "build": "Filters",
+   "build": "FILTERS",
    "surfaces": [
-    "01-day-view",
-    "02-filter-display-menu",
-    "03-view-options-menu",
-    "04-sidebar-filters",
-    "05-conflicts",
-    "06-search-toggle",
-    "22-search-vuchester"
+    "04-sidebar-filters"
    ],
    "cases": {
     "29936": [
@@ -149,43 +147,6 @@
     "43556": [
      "custom_preconds",
      "custom_steps"
-    ]
-   }
-  },
-  {
-   "label": "Schedule whole work order",
-   "verdict": "NOT-ON-HARVESTED-SURFACES",
-   "build": null,
-   "surfaces": [],
-   "cases": {
-    "29956": [
-     "custom_expected"
-    ],
-    "29963": [
-     "custom_expected"
-    ],
-    "29964": [
-     "custom_steps",
-     "title"
-    ]
-   }
-  },
-  {
-   "label": "Select multiple",
-   "verdict": "NOT-ON-HARVESTED-SURFACES",
-   "build": null,
-   "surfaces": [],
-   "cases": {
-    "29956": [
-     "custom_expected"
-    ],
-    "29965": [
-     "custom_steps"
-    ],
-    "29967": [
-     "custom_expected",
-     "custom_steps",
-     "title"
     ]
    }
   },
@@ -485,7 +446,10 @@
    "build": "Search work orders",
    "surfaces": [
     "01-day-view",
+    "01-picker",
     "02-filter-display-menu",
+    "02-select-multiple",
+    "03-lines-ticked",
     "03-view-options-menu",
     "04-sidebar-filters",
     "05-conflicts",
@@ -505,6 +469,53 @@
     ],
     "29947": [
      "custom_steps"
+    ]
+   }
+  },
+  {
+   "label": "Schedule whole work order",
+   "verdict": "EXACT",
+   "build": "Schedule whole work order",
+   "surfaces": [
+    "01-picker",
+    "02-select-multiple",
+    "03-lines-ticked",
+    "picker-multiline"
+   ],
+   "cases": {
+    "29956": [
+     "custom_expected"
+    ],
+    "29963": [
+     "custom_expected"
+    ],
+    "29964": [
+     "custom_steps",
+     "title"
+    ]
+   }
+  },
+  {
+   "label": "Select multiple",
+   "verdict": "EXACT",
+   "build": "Select multiple",
+   "surfaces": [
+    "01-picker",
+    "02-select-multiple",
+    "03-lines-ticked",
+    "picker-multiline"
+   ],
+   "cases": {
+    "29956": [
+     "custom_expected"
+    ],
+    "29965": [
+     "custom_steps"
+    ],
+    "29967": [
+     "custom_expected",
+     "custom_steps",
+     "title"
     ]
    }
   },
@@ -558,7 +569,10 @@
    "build": "Today",
    "surfaces": [
     "01-day-view",
+    "01-picker",
     "02-filter-display-menu",
+    "02-select-multiple",
+    "03-lines-ticked",
     "03-view-options-menu",
     "04-sidebar-filters",
     "05-conflicts",
@@ -573,7 +587,8 @@
     "14-week-view",
     "15-month-view",
     "20-filters-active",
-    "22-search-vuchester"
+    "22-search-vuchester",
+    "picker-multiline"
    ],
    "cases": {
     "30006": [
@@ -591,7 +606,10 @@
    "build": "OT",
    "surfaces": [
     "01-day-view",
+    "01-picker",
     "02-filter-display-menu",
+    "02-select-multiple",
+    "03-lines-ticked",
     "03-view-options-menu",
     "04-sidebar-filters",
     "05-conflicts",
@@ -606,7 +624,8 @@
     "14-week-view",
     "15-month-view",
     "20-filters-active",
-    "22-search-vuchester"
+    "22-search-vuchester",
+    "picker-multiline"
    ],
    "cases": {
     "30029": [
@@ -643,13 +662,17 @@
    "build": "Vuchester Retail",
    "surfaces": [
     "01-day-view",
+    "01-picker",
     "02-filter-display-menu",
+    "02-select-multiple",
+    "03-lines-ticked",
     "03-view-options-menu",
     "04-sidebar-filters",
     "05-conflicts",
     "06-search-toggle",
     "15-month-view",
-    "22-search-vuchester"
+    "22-search-vuchester",
+    "picker-multiline"
    ],
    "cases": {
     "29939": [
@@ -663,12 +686,16 @@
    "build": "Filters",
    "surfaces": [
     "01-day-view",
+    "01-picker",
     "02-filter-display-menu",
+    "02-select-multiple",
+    "03-lines-ticked",
     "03-view-options-menu",
     "04-sidebar-filters",
     "05-conflicts",
     "06-search-toggle",
-    "22-search-vuchester"
+    "22-search-vuchester",
+    "picker-multiline"
    ],
    "cases": {
     "29942": [
@@ -705,6 +732,9 @@
    "verdict": "EXACT",
    "build": "Search lines",
    "surfaces": [
+    "01-picker",
+    "02-select-multiple",
+    "03-lines-ticked",
     "07-wo-card-expanded",
     "08-shift-tooltip",
     "09-shift-modal",
