@@ -144,6 +144,41 @@
 >   **HONEST CONSEQUENCE: only 225 of the 476 are build-verified; the other 251 (Sales By
 >   Representative 112 · Parts Velocity 71 · Inventory Value 68) are FINAL-BUT-NOT-BUILD-VERIFIED**,
 >   so this RAISES the outstanding work. Full text: the 2026-08-11 amendment at the tail of Rule 49.
+>   **⚠️⚠️ CORRECTED AGAIN, LATER ON 2026-08-11 — IT IS NOW TRUE OF *NO* BRANCH. ALL THREE ARE FINAL.**
+>   QA lead, verbatim: ***"The Branches are Final now."*** — plural, and given immediately after he
+>   confirmed all six reports were handed off, so it **extends finality to SCHEDULE (`sv8685`) and
+>   FILTERS (`sv8785`) as well as the Report Suite (`sv8582`).** **The block immediately above is kept
+>   verbatim and dated, not overwritten** (the Rules 31/52/53 pattern), so the record shows WHEN each
+>   branch became final: the Report Suite on 2026-08-11 earlier in the day, Schedule and Filters with
+>   this ruling. **CONSEQUENCES ON ALL THREE:** findings are **NO LONGER PROVISIONAL pending
+>   development** — a deviation on any of the three is a **real defect in a finished feature** — and
+>   **Rule-49 queue rows MAY CLOSE on every one of them**, on the **ORDINARY close condition** (the row
+>   re-verified with fresh evidence; **the bar is NOT lowered**, only the *"wait for the build to
+>   settle"* blocker is removed, and Rule 60 may still never be cited to close a queue with rows
+>   unverified). **⚠️ AND THE "NORMAL STEADY STATE" FRAMING AT THE HEAD OF THIS POINTER IS RETIRED** —
+>   an OPEN queue was described that way as a *consequence* of branches that were never declared
+>   final, and that premise is gone.
+>   **THE CAVEAT CARRIES FORWARD TO ALL THREE AND WILL OTHERWISE BE MISREAD: "final" means HANDED OFF /
+>   FEATURE-COMPLETE, NOT "the code will never change."** All three can still redeploy — not least to
+>   fix the very defects we are reporting — so **a redeploy still invalidates the on-screen labels and
+>   the pass/fail verdict (Rule 60, layers 1–2) on every one of them.** What finality removes is a
+>   different doubt: whether a gap is an **unfinished feature** or a **defect**. On all three it is now
+>   a defect.
+>   **🔴 THE HONEST CONSEQUENCE — THIS RAISES THE STAKES, IT CLOSES NOTHING OUT. ACROSS THE THREE
+>   PROJECTS 433 CASES ARE FINAL BUT NOT BUILD-VERIFIED, AND THE RELEASE IS THURSDAY:** **Schedule
+>   174** (build verification in progress; 0 of 174 observed — the session died 14 minutes in,
+>   `build/schedule/build-verify-2026-08-11/BUILD-VERIFICATION.md`) · **Filters 8** (blocked on the
+>   second non-administrator sign-in, outstanding since 5 August,
+>   `build/filters/build-verify-2026-08-11/RESUME.md`) · **Report Suite 251** (Sales By Representative
+>   112 · Parts Velocity 71 · Inventory Value 68 — source-accurate, never build-verified).
+>   **331 ARE build-verified** — Report Suite's first three reports (225) and Filters (106) — and
+>   **433 + 331 = 764 = the three suites in full (Schedule 174 + Filters 114 + Report Suite 476).**
+>   **⚠️ ARITHMETIC CORRECTION, RECORDED RATHER THAN QUIETLY FIXED: this ruling was first framed as
+>   "425 final but not build-verified / 339 build-verified". Those two totals DOUBLE-COUNT THE 8
+>   FILTERS CASES** — they appear as unverified in the first figure and as verified in the second
+>   (433 − 8 = 425; 331 + 8 = 339). **The component figures were right and only the sums were wrong**;
+>   each was re-derived from committed evidence and the corrected totals gate both ways. Full text: the
+>   later 2026-08-11 amendment at the tail of Rule 49.
 >   **AUTOMATION MARKERS are now on 100% of all three suites** (they were on 102/110 Filters and
 >   0/165 Schedule when this pointer was last written): **Filters 110/110** (81 READY · 14
 >   READY-EXPECT-FAIL · 15 HOLD) · **Schedule 168/168** (119 · 21 · 28) · **Report Suite 476/476 —
@@ -3586,6 +3621,59 @@ deliver the 7-tab management report.
     BUILD VERIFICATION AT ALL — and they are FINAL NOW, so their findings count for real.** Recorded
     in `build/OUTSTANDING-ITEMS-REGISTER.md`. **The QA lead has sequenced the work Schedule → Filters
     → Report Suite, so those 251 are QUEUED BEHIND THE OTHER TWO, not forgotten.**
+    **⇒ AMENDMENT, 2026-08-11 (LATER THE SAME DAY) — ALL THREE BRANCHES ARE FINAL, NOT JUST THE REPORT
+    SUITE. THIS EXTENDS THE AMENDMENT ABOVE TO SCHEDULE AND FILTERS; THAT BLOCK IS KEPT VERBATIM AND
+    DATED, NOT OVERWRITTEN (the Rules 31/52/53 pattern), SO THE RECORD SHOWS WHEN EACH BRANCH BECAME
+    FINAL.**
+    **USER DIRECTIVE (2026-08-11, verbatim):** *"The Branches are Final now."*
+    **THE WORD IS PLURAL, AND IT CAME IMMEDIATELY AFTER HE CONFIRMED ALL SIX REPORTS WERE HANDED OFF**
+    — which had already made the Report Suite branch final on its own. **So this ruling EXTENDS
+    finality to the other two.**
+    **SO, AS OF 2026-08-11 (later):**
+    **· FINAL — ALL THREE BRANCHES: SCHEDULE (`sv8685`) · FILTERS (`sv8785`) · REPORT SUITE
+    (`sv8582`).** The Report Suite became final earlier the same day (all six reports handed off);
+    **Schedule and Filters with this ruling.**
+    **· FINDINGS ON ALL THREE SUITES ARE NO LONGER PROVISIONAL PENDING DEVELOPMENT — a deviation is a
+    REAL DEFECT IN A FINISHED FEATURE, on any of them.**
+    **· RULE-49 QUEUE ROWS MAY CLOSE ON ALL THREE**, on the **ORDINARY CLOSE CONDITION** — the row
+    re-verified with fresh evidence. **THE BAR IS NOT LOWERED**; only the *"wait for the build to
+    settle"* blocker is removed, and **Rule 60 may still never be cited to close a queue with rows
+    unverified.**
+    **· ⚠️ AN OPEN QUEUE IS NO LONGER "THE NORMAL STEADY STATE OF AN ACTIVE PROJECT."** That framing —
+    written into this rule above, and kept there — was a **consequence** of branches that were never
+    declared final. **That premise is now gone on all three, so the framing is RETIRED**; an open queue
+    is once again a work list with an end.
+    **⚠️ THE HONEST CAVEAT CARRIES FORWARD TO ALL THREE AND MUST BE REPEATED: "FINAL" MEANS HANDED OFF
+    / FEATURE-COMPLETE. IT DOES *NOT* MEAN "THE CODE WILL NEVER CHANGE."** All three branches **can and
+    will redeploy** — not least **to fix the very defects we are reporting** — so **A REDEPLOY STILL
+    INVALIDATES THE ON-SCREEN LABELS AND THE PASS/FAIL VERDICT (Rule 60, layers 1–2) ON EVERY ONE OF
+    THEM.** The build marker on each case still has to be honest, and Rule 54 sentence 2 still records
+    when it was last checked. **What finality removes is a DIFFERENT doubt entirely: the ambiguity
+    about whether a gap is an UNFINISHED FEATURE or a DEFECT. On all three it is now a defect** — and
+    the evidence that this matters is already on the record: the Schedule branch redeployed to
+    `v3.5-65d6500` on the morning of 2026-08-11, so no Schedule verdict rests on the build running.
+    **🔴 THE HONEST CONSEQUENCE — THIS RAISES THE STAKES RATHER THAN CLOSING ANYTHING OUT. ACROSS THE
+    THREE PROJECTS 433 CASES ARE FINAL BUT NOT BUILD-VERIFIED, AND THE RELEASE IS THURSDAY:**
+    **· SCHEDULE 174** — build verification **in progress right now**; the last pass observed **0 of
+    174** because the session died 14 minutes in
+    (`build/schedule/build-verify-2026-08-11/BUILD-VERIFICATION.md`).
+    **· FILTERS 8** — blocked on the **second non-administrator sign-in**, outstanding **since 5
+    August** (`build/filters/build-verify-2026-08-11/RESUME.md`; the other 106 were checked against the
+    running build).
+    **· REPORT SUITE 251** — Sales By Representative 112 · Parts Velocity 71 · Inventory Value 68;
+    **source-accurate, never build-verified** (`build/report-suite/source-accuracy-remaining-2026-08-11/RESUME.md`).
+    **331 CASES ARE BUILD-VERIFIED** — Report Suite's first three reports (**225**) and Filters
+    (**106**) — and **the arithmetic gates both ways: 433 + 331 = 764 = Schedule 174 + Filters 114 +
+    Report Suite 476.**
+    **⚠️ ARITHMETIC CORRECTION, RECORDED RATHER THAN QUIETLY FIXED (Rule 50 — a figure that fails its
+    own gate is a finding):** this ruling was first framed as **"425 final but not build-verified /
+    339 build-verified"**. **Those totals DOUBLE-COUNT THE 8 FILTERS CASES** — the same 8 appear as
+    unverified in the first figure and as verified in the second (**433 − 8 = 425; 331 + 8 = 339**).
+    **The per-project components were RIGHT and only the sums were wrong**; each component was
+    re-derived from the committed evidence named above before the totals were restated.
+    Recorded in `build/OUTSTANDING-ITEMS-REGISTER.md`. **The QA lead's sequencing (Schedule → Filters
+    → Report Suite) is unchanged by this ruling** — what changed is that every one of the 433 now
+    counts for real.
     **RATIONALE, 2026-08-03:** the Report Suite got its first QA branch (`sv8582`,
     `v3.4.1-0ed4433`) and 475 cases were finally live-verifiable — but engineering said the branch is
     still being worked on. Without this rule the suite would have been stamped "VIU-Verified" against
@@ -4610,6 +4698,26 @@ deliver the 7-tab management report.
     FILTERS (`sv8785`), NEITHER OF WHICH HAS BEEN DECLARED FINAL.** See the 2026-08-11 amendment at
     the tail of Standing Rule 49; the two blocks below are kept as the dated record of the "never
     final" and "3 of 6" positions, not as the current state.
+    **🛑 ⚠️ AND IT MOVED ONCE MORE, LATER ON 2026-08-11 — THE HEADLINE ABOVE IS NOW FULLY SUPERSEDED
+    AND IS FALSE OF EVERY BRANCH. ALL THREE ARE FINAL.** QA lead, verbatim: ***"The Branches are Final
+    now."*** — plural, given immediately after he confirmed all six reports were handed off, so it
+    covers **SCHEDULE (`sv8685`) and FILTERS (`sv8785`) as well as the REPORT SUITE (`sv8582`).**
+    **THE HEADLINE AND EVERY BLOCK BELOW ARE KEPT VERBATIM AND DATED, NOT DELETED** (the Rules
+    31/52/53 pattern): they are the dated record of the "never final", "3 of 6" and "Report Suite
+    only" positions, and they show WHEN each branch became final.
+    **🔑 NOTHING IN THIS RULE'S STRATEGY IS DISCARDED — ONLY ITS HEADLINE PREMISE.** The layer split
+    (what depends on the build versus what does not), **every practice (a)–(f)** and **the honesty
+    clause** all **STAND UNCHANGED AND STILL GOVERN REDEPLOYS**, because *"final"* means **handed off
+    / feature-complete**, **not** *"the code will never change"*: all three branches can still
+    redeploy — not least to fix the very defects we are reporting — so **a redeploy still invalidates
+    layers 1–2 (the on-screen labels and the pass/fail verdict) on every one of them.** **What
+    finality removes is a different doubt: whether a gap is an UNFINISHED FEATURE or a DEFECT. On all
+    three it is now a defect.**
+    **THE HONEST CONSEQUENCE: 433 cases across the three projects are FINAL BUT NOT BUILD-VERIFIED**
+    (Schedule 174 · Filters 8 · Report Suite 251) against **331 that are** (Report Suite 225 · Filters
+    106), **with the release on Thursday** — so this **raises** the outstanding work rather than
+    lowering it. Full text, the per-project evidence paths and the arithmetic correction to the
+    first-stated "425 / 339": the later 2026-08-11 amendment at the tail of **Standing Rule 49**.
     **⇒ AMENDMENT, 2026-08-10 — THE FIRST FINALITY ANSWER WE HAVE EVER HAD, AND IT IS PARTIAL.
     ⚠️ SUPERSEDED 2026-08-11 — ALL SIX ARE NOW FINAL; kept verbatim and dated.** The
     QA lead ruled that the Report Suite branch **is final for the three reports already handed off to

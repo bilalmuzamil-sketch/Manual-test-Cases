@@ -36,6 +36,23 @@
 >
 > ## A fresh **`sv_sso_session`** for **`.qa.shopview.com`**.
 >
+> **⚠️ CORRECTED 2026-08-11 (later) — THIS ASK IS FAR BIGGER THAN IT WAS FRAMED. THE SUPERSEDED
+> WORDING IS KEPT VISIBLE IMMEDIATELY BELOW rather than overwritten, because the old framing
+> UNDERSTATES IT BADLY and a silently-corrected figure is how a stale number survives.**
+>
+> **THE REAL FIGURE: a working sign-in is the single largest lever on 433 CASES ACROSS THREE FINAL
+> BRANCHES, with the release on THURSDAY** — **Schedule 174** (build verification in progress; the
+> last pass observed **0 of 174**, the session died 14 minutes in) · **Filters 8** (needs the
+> **second, non-administrator** sign-in — a different ask, outstanding since 5 August) · **Report
+> Suite 251** (Sales By Representative 112 · Parts Velocity 71 · Inventory Value 68 — source-accurate,
+> **never build-verified**). **All three branches are now FINAL** (*"The Branches are Final now."*),
+> so a deviation on any of these is a **real defect in a finished feature**, not a maybe-unfinished
+> one. **331 cases ARE build-verified** (Report Suite 225 · Filters 106); **433 + 331 = 764**, the
+> three suites in full.
+>
+> *(Superseded wording, kept for the record — its "47 of the 73" predates today and describes the
+> Report Suite alone. Reproduced below exactly as it stood:)*
+>
 > **That single value unblocks 47 of the 73 remaining Report Suite cases** — nothing else is in the way
 > of those 47 — **and it is also what lets us re-check the on-screen labels and verdicts on all three
 > suites against builds that have moved SEVEN TIMES TODAY.** Under Rule 60 the labels and the
@@ -48,7 +65,8 @@
 > reaching the app and **`cf_clearance` is fine** (playbook §A trap 1 does **not** apply here).
 > **`quick-login` is not a way round it — it is itself SSO-gated and answers 401.**
 
-**Last updated:** 2026-08-11 — **THE REPORT SUITE BRANCH IS FINAL: ALL 6 REPORTS ARE NOW HANDED OFF.** QA lead, verbatim: *"note that ALL 6 reports have been handed off now."* — satisfying the condition he set on 2026-08-10. **Findings on all 476 Report Suite cases are no longer provisional pending development, and its Rule-49 queue rows may close on the ORDINARY close condition (the bar is not lowered).** *"Final"* means **handed off / feature-complete**, **not** *"the code will never change"* — **a redeploy still invalidates the labels and the pass/fail verdict (Rule 60, layers 1–2).** **⚠️ This RAISES the outstanding work: only 225 of 476 are build-verified; the other 251 (SBR 112 · PV 71 · IV 68) are FINAL-BUT-NOT-BUILD-VERIFIED — new row RS-F1, queued behind Schedule and Filters on his own sequencing.** **Schedule and Filters are unchanged.**
+**Last updated:** 2026-08-11 (later) — **ALL THREE BRANCHES ARE FINAL, NOT JUST THE REPORT SUITE.** QA lead, verbatim: *"The Branches are Final now."* — plural, immediately after confirming all six reports were handed off, so it **extends finality to Schedule (`sv8685`) and Filters (`sv8785`)**. **Findings on all three suites are no longer provisional pending development — a deviation is a real defect in a finished feature — and Rule-49 queue rows may close on all three, on the ORDINARY close condition (the bar is not lowered).** **An OPEN queue is no longer "the normal steady state"** — that framing was a consequence of branches never declared final, and the premise is gone. *"Final"* still means **handed off / feature-complete**, **not** *"the code will never change"* — **a redeploy still invalidates the labels and the pass/fail verdict (Rule 60, layers 1–2) on every one of them.** **⚠️ THIS RAISES THE STAKES: 433 cases across the three projects are FINAL BUT NOT BUILD-VERIFIED (Schedule 174 · Filters 8 · Report Suite 251) against 331 that are, and the release is THURSDAY — new row RS-F2, and the headline ask at the top of this file is corrected.**
+*(Prior header, kept for the record:)* **2026-08-11 — THE REPORT SUITE BRANCH IS FINAL: ALL 6 REPORTS ARE NOW HANDED OFF.** QA lead, verbatim: *"note that ALL 6 reports have been handed off now."* — satisfying the condition he set on 2026-08-10. **Findings on all 476 Report Suite cases are no longer provisional pending development, and its Rule-49 queue rows may close on the ORDINARY close condition (the bar is not lowered).** *"Final"* means **handed off / feature-complete**, **not** *"the code will never change"* — **a redeploy still invalidates the labels and the pass/fail verdict (Rule 60, layers 1–2).** **⚠️ This RAISES the outstanding work: only 225 of 476 are build-verified; the other 251 (SBR 112 · PV 71 · IV 68) are FINAL-BUT-NOT-BUILD-VERIFIED — new row RS-F1, queued behind Schedule and Filters on his own sequencing.** **Schedule and Filters are unchanged.**
 *(Prior header, kept for the record:)* **2026-08-11 — A NEW RULING: EVERY CASE MUST HAVE A SOURCE.** A case whose expected behaviour rests on **no document** should not exist and is a **deletion candidate** — but **the automation marker is checked first**, and **the candidate list comes to the QA lead before anything is deleted** (Rule 6 — `delete_case` is irreversible). Recorded as **Standing Rule 64**, which **escalates Standing Rule 20** from *flag* to *flag → search → delete-if-truly-unsourceable*. **Two new rows, S1 and S2.** **⚠️ The sweep must separate a genuinely unsourceable case from a mere TRACEABILITY GAP (a source exists, it was never recorded — find and record it) and from an OPEN PO QUESTION (held, because the answer may source it).**
 *(Prior header, kept for the record:)* **2026-08-11 — SCOPE CORRECTION: THE CREATION HOLD IS *JIRA TICKETS ONLY*.** The QA lead clarified that **creating and updating TEST CASES is our core work and was never in scope** — *"we are supposed to create the test cases"* — so **`add_case` and `update_case` are PERMITTED AND EXPECTED**, and only **Jira ticket creation** stays barred until his next order. **Row H1 amended; new standing duty H1a added** (*anything that stops us creating/updating a test case is escalated to him immediately*). **Schedule §5.3 "Panel collapse" is NOT blocked — it is outstanding authoring work.**
 *(Prior header, kept for the record — note its "nothing may be created anywhere" is the wording corrected above:)* **2026-08-10 — RULINGS PASS: three QA-lead rulings recorded. A CREATION HOLD is ACTIVE ("Do not create anything until my next order") — nothing may be created anywhere until he lifts it, though `update_case` on existing cases continues. The branch-finality question is ANSWERED PER REPORT (3 of 6 final). Four items moved to §7 Recently cleared, and one DATED reminder (SV-8954, due 2026-08-12) is now findable.** Read the section immediately below first. *(Prior header, kept for the record: "DOCUMENTATION-UPKEEP PASS: three owed rows added, four rows refreshed, four items cleared.")*
@@ -79,7 +97,35 @@ else owes).
 
 ---
 
-## 🆕 NEWEST — 2026-08-11, THE FINALITY RULING. **THE REPORT SUITE BRANCH IS FINAL — ALL SIX REPORTS, NOT THREE. AND IT RAISES THE OUTSTANDING WORK RATHER THAN LOWERING IT.**
+## 🆕 NEWEST — 2026-08-11 (later), THE SECOND FINALITY RULING. **ALL THREE BRANCHES ARE FINAL. AND WITH THE RELEASE ON THURSDAY, 433 CASES ARE FINAL BUT NOT BUILD-VERIFIED.**
+
+**DOCUMENTATION ONLY this pass. No TestRail call, no Jira call, no app access, no test-case change.**
+
+QA lead, verbatim: ***"The Branches are Final now."***
+
+**The word is PLURAL, and it came immediately after he confirmed all six reports were handed off** — which had already made the Report Suite branch final on its own (the section below). **So this ruling EXTENDS finality to SCHEDULE (`sv8685`) and FILTERS (`sv8785`) as well.**
+
+**WHAT IT CHANGES, on all three:** findings are **no longer provisional pending development** — a deviation is a **real defect in a finished feature** — and **Rule-49 queue rows may close on every one of them**, on the **ordinary close condition** (the row re-verified with fresh evidence; **the bar is not lowered**, only the *"wait for the build to settle"* blocker is removed). **And the "OPEN queue is the normal steady state" framing is RETIRED** — it was a consequence of branches that were never declared final, and that premise is gone. Recorded in **Standing Rule 49** (the later 2026-08-11 amendment), with **Standing Rule 60's headline now marked FULLY SUPERSEDED** — kept verbatim and dated, because **its strategy is untouched**: the layer split and practices (a)–(f) still govern redeploys.
+
+**⚠️ WHAT IT DOES *NOT* CHANGE, and it will be misread otherwise: *"final"* means HANDED OFF / FEATURE-COMPLETE, NOT *"the code will never change."*** All three can still redeploy — not least to fix the very defects we are reporting — so **a redeploy still invalidates the on-screen labels and the pass/fail verdict (Rule 60, layers 1–2) on every one of them.** The Schedule branch redeployed to `v3.5-65d6500` on the morning of 2026-08-11, which is exactly why this matters.
+
+### The row — four fields (Standing Rule 36)
+
+| # | What is missing | Who owes it | **What it BLOCKS** | Since |
+|---|---|---|---|---|
+| **RS-F2** | **BUILD VERIFICATION OF 433 CASES THAT ARE NOW FINAL, ACROSS ALL THREE PROJECTS — and the release is THURSDAY.** **SCHEDULE 174** — build verification **in progress right now**; the last pass observed **0 of 174**, the session having died 14 minutes in (`build/schedule/build-verify-2026-08-11/BUILD-VERIFICATION.md`). **FILTERS 8** — blocked on the **second, non-administrator sign-in**, outstanding **since 5 August**; the other 106 were checked against the running build (`build/filters/build-verify-2026-08-11/RESUME.md`). **REPORT SUITE 251** — SBR 112 · PV 71 · IV 68, **source-accurate and never build-verified** (`build/report-suite/source-accuracy-remaining-2026-08-11/RESUME.md`); this is row **RS-F1** widened, not a second copy of it. **331 cases ARE build-verified** (Report Suite 225 · Filters 106), and **433 + 331 = 764 = Schedule 174 + Filters 114 + Report Suite 476.** **⚠️ Like RS-F1, this is a CONSEQUENCE OF THE GOOD NEWS: finality did not create the shortfall, it made the shortfall COUNT.** | **us** (the verification) · **the QA lead** for a fresh **`sv_sso_session`** for `.qa.shopview.com`, **and separately the second non-administrator sign-in** for the Filters 8 — without which nothing can be observed at all | **Any claim that any of the three suites is build-verified.** 433 of 764 cases carry verdicts and automation markers **never checked against any build** — and they are now final, so their findings count for real: an `AUTOMATION: READY - EXPECT FAIL` on one of them asserts a build fact nobody has seen (Rule 12), and a genuine defect on one of them is currently **unreported, four days before release**. **NOT idle: the QA lead sequenced the work Schedule → Filters → Report Suite** (Rule 48 — his call, and the right one). | **2026-08-11** |
+
+### Honesty note — including an arithmetic correction to this ruling's own first framing
+
+**Nothing was verified live this pass** — no application, no TestRail, no Jira. The ruling is recorded from the QA lead's own words; every component figure was re-derived from the committed evidence named in the row.
+
+**⚠️ THE TOTALS WERE FIRST STATED AS "425 final but not build-verified / 339 build-verified" AND BOTH WERE WRONG — they DOUBLE-COUNT THE 8 FILTERS CASES**, which appear as unverified in the first figure and as verified in the second (**433 − 8 = 425; 331 + 8 = 339**). **The per-project components — Schedule 174, Filters 8 of 114, Report Suite 251 of 476 — were RIGHT; only the sums were not.** Recorded rather than quietly fixed, because a figure that fails its own gate is a finding (Rule 50), and the corrected totals now gate both ways against the three suites in full.
+
+**Whether any of the 433 actually passes on the build is UNKNOWN, and that is exactly what this row is for.**
+
+---
+
+## 2026-08-11 (earlier), THE FIRST FINALITY RULING. **THE REPORT SUITE BRANCH IS FINAL — ALL SIX REPORTS, NOT THREE. AND IT RAISES THE OUTSTANDING WORK RATHER THAN LOWERING IT.** *(Superseded in scope by the section above — all three branches are now final; kept verbatim and dated.)*
 
 **DOCUMENTATION ONLY this pass. No TestRail call, no Jira call, no app access, no test-case change.**
 
