@@ -1,5 +1,15 @@
 # Schedule — REQUIREMENT → CASE MAP, rebuilt from scratch — 2026-08-10
 
+> **UPDATED 2026-08-11 — the 19 uncovered assertions are now verdicted, and UNCOVERED is 0.**
+> Six cases were authored for §5.3 Panel collapse and its two cross-references and pushed as
+> **C43582–C43587**; 18 assertions moved UNCOVERED → COVERED and one
+> (`§5.3-L195.A1`, *"Not persisted in the prototype"*) → NOT-INDEPENDENTLY-TESTABLE, because it
+> describes the prototype rather than the build. The affected rows were **re-derived from the LIVE
+> case bodies**, not hand-written, and every COVERED verdict quotes both texts side by side
+> (Rule 45(e)). Totals reconcile three ways — headline, per-section and row-level all sum to 397.
+> **The suite is 174 cases.** Working papers: `build/schedule/panel-collapse-2026-08-11/`.
+> **The rest of this document is as it stood on 2026-08-10 and was not otherwise re-derived.**
+
 > **Schedule has never had a requirement→case map. This is the first one.** It is re-derived
 > from the LIVE spec body and the LIVE TestRail case bodies (Rule 43: matrices are re-derived,
 > never patched), in BOTH directions, at **assertion** granularity rather than line
@@ -18,14 +28,14 @@
 
 | Verdict | Count |
 |---|---|
-| **COVERED** | **282** |
+| **COVERED** | **300** |
 | **PARTIAL** | **4** |
-| **UNCOVERED** | **19** |
+| **UNCOVERED** | **0** |
 | **BLOCKED** | **1** |
-| **NOT-INDEPENDENTLY-TESTABLE** | **91** |
+| **NOT-INDEPENDENTLY-TESTABLE** | **92** |
 | **TOTAL ASSERTIONS** | **397** |
 
-282 + 4 + 19 + 1 + 91 = **397**. The arithmetic is stated because a coverage table whose parts do not sum is not a coverage table.
+300 + 4 + 0 + 1 + 92 = **397**. The arithmetic is stated because a coverage table whose parts do not sum is not a coverage table.
 
 Derived from **234 requirement lines** across **33 sections** of Confluence **version 27**, themselves extracted from **345 content lines** with **0 unaccounted** (`evidence/extract-v27.json`).
 
@@ -37,7 +47,7 @@ Derived from **234 requirement lines** across **33 sections** of Confluence **ve
 |---|---|---|---|---|---|---|---|
 | §1.2 | Goals | 4 | 0 | 0 | 0 | 0 | 4 |
 | §3 | Information architecture | 2 | 2 | 0 | 0 | 0 | 0 |
-| §3.1 | Left panel: work order sidebar ⚠️ | 20 | 18 | 0 | 1 | 0 | 1 |
+| §3.1 | Left panel: work order sidebar | 20 | 19 | 0 | 0 | 0 | 1 |
 | §3.2 | Main area: schedule grid | 10 | 10 | 0 | 0 | 0 | 0 |
 | §4.1 | Drag-and-drop scheduling | 11 | 6 | 0 | 0 | 0 | 5 |
 | §4.2 | Shift start times and unassigned shifts | 24 | 22 | 0 | 0 | 0 | 2 |
@@ -54,8 +64,8 @@ Derived from **234 requirement lines** across **33 sections** of Confluence **ve
 | §4.13 | Hover tooltips (read-only) | 10 | 9 | 0 | 0 | 0 | 1 |
 | §5.1 | Work order filters | 13 | 7 | 0 | 0 | 0 | 6 |
 | §5.2 | Mini calendar | 4 | 4 | 0 | 0 | 0 | 0 |
-| §5.3 | Panel collapse ⚠️ | 18 | 1 | 0 | 17 | 0 | 0 |
-| §6 | Grid toolbar ⚠️ | 20 | 10 | 0 | 1 | 0 | 9 |
+| §5.3 | Panel collapse | 18 | 17 | 0 | 0 | 0 | 1 |
+| §6 | Grid toolbar | 20 | 11 | 0 | 0 | 0 | 9 |
 | §7 | Interactions and micro-interactions | 24 | 24 | 0 | 0 | 0 | 0 |
 | §8.1 | Key entities | 24 | 3 | 0 | 0 | 0 | 21 |
 | §8.2 | Series | 5 | 5 | 0 | 0 | 0 | 0 |
@@ -83,7 +93,7 @@ Derived from **234 requirement lines** across **33 sections** of Confluence **ve
 
 ## The rows that are NOT plain COVERED — read these first
 
-### `§3.1-L44.A1` — **UNCOVERED**
+### `§3.1-L44.A1` — **RESOLVED 2026-08-11 — now COVERED**
 
 > **Spec v27, verbatim:** *"The panel can be collapsed and expanded from the grid toolbar (§5.3), handing its width to the grid without losing panel state."*
 
@@ -91,7 +101,7 @@ Derived from **234 requirement lines** across **33 sections** of Confluence **ve
 
 > **Its own text, verbatim:** *"The main area is the schedule grid showing technician rows, with a toolbar above it."*
 
-The §3.1 sentence pointing at the panel toggle is also new in v27. Same gap as §5.3, reached from the sidebar section instead of the toolbar section.
+**Was uncovered on 2026-08-10; covered since 2026-08-11 by SCH-PANEL-02 = [C43583](https://shopview.testrail.io/index.php?/cases/view/43583)** (the width half) **and SCH-PANEL-03 = [C43584](https://shopview.testrail.io/index.php?/cases/view/43584)** (the *without losing panel state* half). The §3.1 sentence pointing at the panel toggle is also new in v27 - the same gap as §5.3, reached from the sidebar section instead of the toolbar section.
 
 ### `§4.12-L165.A1` — **PARTIAL**
 
@@ -103,109 +113,109 @@ The §3.1 sentence pointing at the panel toggle is also new in v27. Same gap as 
 
 The capacity tooltip is covered, but the word that changed is not. Confluence v26 (2026-08-07T11:02Z) replaced 'a per-technician breakdown' - wording unchanged since v1 - with 'a per-ASSIGNED technician breakdown'. C30033 still says 'per-technician' in its title and in expected result 1. On a shop with 15 technicians of whom 3 are booked, the two readings produce visibly different tooltips. UNCOVERED PART: that only technicians who have an assignment that day appear in the breakdown.
 
-### `§5.3-L189.A1` — **UNCOVERED**
+### `§5.3-L189.A1` — **RESOLVED 2026-08-11 — now COVERED**
 
 > **Spec v27, verbatim:** *"An icon button collapses and expands the left panel."*
 
-§5.3 Panel collapse is new in Confluence v27 (2026-08-07). No case in the suite covers the panel toggle. The five cases that mention collapsing are about other controls: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
+**Was uncovered on 2026-08-10; covered since 2026-08-11.** §5.3 Panel collapse arrived in Confluence v27 (2026-08-07) and no case covered it. Six cases were authored for it and pushed as **C43582–C43587**; the covering case and its verbatim text are in the §5.3 table below. **The control itself is NOT BUILT** on `v3.5-af3a6e1`, so all six carry `AUTOMATION: HOLD` — a coverage gap and a build gap are different things, and this row is now closed on the first only. The five cases that mention *collapsing* remain other controls and were correctly excluded: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
 
-### `§5.3-L189.A2` — **UNCOVERED**
+### `§5.3-L189.A2` — **RESOLVED 2026-08-11 — now COVERED**
 
 > **Spec v27, verbatim:** *"It is the first item in the grid toolbar, left of Today, sitting in the same left gutter as the grid's row labels and avatars so it reads as belonging to the panel it controls"*
 
-§5.3 Panel collapse is new in Confluence v27 (2026-08-07). No case in the suite covers the panel toggle. The five cases that mention collapsing are about other controls: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
+**Was uncovered on 2026-08-10; covered since 2026-08-11.** §5.3 Panel collapse arrived in Confluence v27 (2026-08-07) and no case covered it. Six cases were authored for it and pushed as **C43582–C43587**; the covering case and its verbatim text are in the §5.3 table below. **The control itself is NOT BUILT** on `v3.5-af3a6e1`, so all six carry `AUTOMATION: HOLD` — a coverage gap and a build gap are different things, and this row is now closed on the first only. The five cases that mention *collapsing* remain other controls and were correctly excluded: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
 
-### `§5.3-L189.A3` — **UNCOVERED**
+### `§5.3-L189.A3` — **RESOLVED 2026-08-11 — now COVERED**
 
 > **Spec v27, verbatim:** *"grouping with the date controls."*
 
-§5.3 Panel collapse is new in Confluence v27 (2026-08-07). No case in the suite covers the panel toggle. The five cases that mention collapsing are about other controls: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
+**Was uncovered on 2026-08-10; covered since 2026-08-11.** §5.3 Panel collapse arrived in Confluence v27 (2026-08-07) and no case covered it. Six cases were authored for it and pushed as **C43582–C43587**; the covering case and its verbatim text are in the §5.3 table below. **The control itself is NOT BUILT** on `v3.5-af3a6e1`, so all six carry `AUTOMATION: HOLD` — a coverage gap and a build gap are different things, and this row is now closed on the first only. The five cases that mention *collapsing* remain other controls and were correctly excluded: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
 
-### `§5.3-L190.A1` — **UNCOVERED**
+### `§5.3-L190.A1` — **RESOLVED 2026-08-11 — now COVERED**
 
 > **Spec v27, verbatim:** *"Control. A borderless panel-left icon in secondary text color."*
 
-§5.3 Panel collapse is new in Confluence v27 (2026-08-07). No case in the suite covers the panel toggle. The five cases that mention collapsing are about other controls: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
+**Was uncovered on 2026-08-10; covered since 2026-08-11.** §5.3 Panel collapse arrived in Confluence v27 (2026-08-07) and no case covered it. Six cases were authored for it and pushed as **C43582–C43587**; the covering case and its verbatim text are in the §5.3 table below. **The control itself is NOT BUILT** on `v3.5-af3a6e1`, so all six carry `AUTOMATION: HOLD` — a coverage gap and a build gap are different things, and this row is now closed on the first only. The five cases that mention *collapsing* remain other controls and were correctly excluded: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
 
-### `§5.3-L190.A2` — **UNCOVERED**
+### `§5.3-L190.A2` — **RESOLVED 2026-08-11 — now COVERED**
 
 > **Spec v27, verbatim:** *"The icon does not change between states"*
 
-§5.3 Panel collapse is new in Confluence v27 (2026-08-07). No case in the suite covers the panel toggle. The five cases that mention collapsing are about other controls: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
+**Was uncovered on 2026-08-10; covered since 2026-08-11.** §5.3 Panel collapse arrived in Confluence v27 (2026-08-07) and no case covered it. Six cases were authored for it and pushed as **C43582–C43587**; the covering case and its verbatim text are in the §5.3 table below. **The control itself is NOT BUILT** on `v3.5-af3a6e1`, so all six carry `AUTOMATION: HOLD` — a coverage gap and a build gap are different things, and this row is now closed on the first only. The five cases that mention *collapsing* remain other controls and were correctly excluded: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
 
-### `§5.3-L190.A3` — **UNCOVERED**
+### `§5.3-L190.A3` — **RESOLVED 2026-08-11 — now COVERED**
 
 > **Spec v27, verbatim:** *"the tooltip carries the meaning — "Hide panel" when open, "Show panel" when collapsed."*
 
-§5.3 Panel collapse is new in Confluence v27 (2026-08-07). No case in the suite covers the panel toggle. The five cases that mention collapsing are about other controls: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
+**Was uncovered on 2026-08-10; covered since 2026-08-11.** §5.3 Panel collapse arrived in Confluence v27 (2026-08-07) and no case covered it. Six cases were authored for it and pushed as **C43582–C43587**; the covering case and its verbatim text are in the §5.3 table below. **The control itself is NOT BUILT** on `v3.5-af3a6e1`, so all six carry `AUTOMATION: HOLD` — a coverage gap and a build gap are different things, and this row is now closed on the first only. The five cases that mention *collapsing* remain other controls and were correctly excluded: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
 
-### `§5.3-L191.A1` — **UNCOVERED**
+### `§5.3-L191.A1` — **RESOLVED 2026-08-11 — now COVERED**
 
 > **Spec v27, verbatim:** *"Behavior. The panel animates closed over a short width transition, its divider disappears so no seam remains"*
 
-§5.3 Panel collapse is new in Confluence v27 (2026-08-07). No case in the suite covers the panel toggle. The five cases that mention collapsing are about other controls: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
+**Was uncovered on 2026-08-10; covered since 2026-08-11.** §5.3 Panel collapse arrived in Confluence v27 (2026-08-07) and no case covered it. Six cases were authored for it and pushed as **C43582–C43587**; the covering case and its verbatim text are in the §5.3 table below. **The control itself is NOT BUILT** on `v3.5-af3a6e1`, so all six carry `AUTOMATION: HOLD` — a coverage gap and a build gap are different things, and this row is now closed on the first only. The five cases that mention *collapsing* remain other controls and were correctly excluded: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
 
-### `§5.3-L191.A2` — **UNCOVERED**
+### `§5.3-L191.A2` — **RESOLVED 2026-08-11 — now COVERED**
 
 > **Spec v27, verbatim:** *"the grid reflows into the reclaimed space."*
 
-§5.3 Panel collapse is new in Confluence v27 (2026-08-07). No case in the suite covers the panel toggle. The five cases that mention collapsing are about other controls: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
+**Was uncovered on 2026-08-10; covered since 2026-08-11.** §5.3 Panel collapse arrived in Confluence v27 (2026-08-07) and no case covered it. Six cases were authored for it and pushed as **C43582–C43587**; the covering case and its verbatim text are in the §5.3 table below. **The control itself is NOT BUILT** on `v3.5-af3a6e1`, so all six carry `AUTOMATION: HOLD` — a coverage gap and a build gap are different things, and this row is now closed on the first only. The five cases that mention *collapsing* remain other controls and were correctly excluded: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
 
-### `§5.3-L192.A1` — **UNCOVERED**
+### `§5.3-L192.A1` — **RESOLVED 2026-08-11 — now COVERED**
 
 > **Spec v27, verbatim:** *"State preservation. Contents are hidden rather than discarded."*
 
-§5.3 Panel collapse is new in Confluence v27 (2026-08-07). No case in the suite covers the panel toggle. The five cases that mention collapsing are about other controls: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
+**Was uncovered on 2026-08-10; covered since 2026-08-11.** §5.3 Panel collapse arrived in Confluence v27 (2026-08-07) and no case covered it. Six cases were authored for it and pushed as **C43582–C43587**; the covering case and its verbatim text are in the §5.3 table below. **The control itself is NOT BUILT** on `v3.5-af3a6e1`, so all six carry `AUTOMATION: HOLD` — a coverage gap and a build gap are different things, and this row is now closed on the first only. The five cases that mention *collapsing* remain other controls and were correctly excluded: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
 
-### `§5.3-L192.A2` — **UNCOVERED**
+### `§5.3-L192.A2` — **RESOLVED 2026-08-11 — now COVERED**
 
 > **Spec v27, verbatim:** *"Calendar date, work-order scroll position, panel search text, drill-down state"*
 
-§5.3 Panel collapse is new in Confluence v27 (2026-08-07). No case in the suite covers the panel toggle. The five cases that mention collapsing are about other controls: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
+**Was uncovered on 2026-08-10; covered since 2026-08-11.** §5.3 Panel collapse arrived in Confluence v27 (2026-08-07) and no case covered it. Six cases were authored for it and pushed as **C43582–C43587**; the covering case and its verbatim text are in the §5.3 table below. **The control itself is NOT BUILT** on `v3.5-af3a6e1`, so all six carry `AUTOMATION: HOLD` — a coverage gap and a build gap are different things, and this row is now closed on the first only. The five cases that mention *collapsing* remain other controls and were correctly excluded: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
 
-### `§5.3-L192.A3` — **UNCOVERED**
+### `§5.3-L192.A3` — **RESOLVED 2026-08-11 — now COVERED**
 
 > **Spec v27, verbatim:** *"the selected work order all survive a collapse/expand cycle"*
 
-§5.3 Panel collapse is new in Confluence v27 (2026-08-07). No case in the suite covers the panel toggle. The five cases that mention collapsing are about other controls: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
+**Was uncovered on 2026-08-10; covered since 2026-08-11.** §5.3 Panel collapse arrived in Confluence v27 (2026-08-07) and no case covered it. Six cases were authored for it and pushed as **C43582–C43587**; the covering case and its verbatim text are in the §5.3 table below. **The control itself is NOT BUILT** on `v3.5-af3a6e1`, so all six carry `AUTOMATION: HOLD` — a coverage gap and a build gap are different things, and this row is now closed on the first only. The five cases that mention *collapsing* remain other controls and were correctly excluded: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
 
-### `§5.3-L192.A4` — **UNCOVERED**
+### `§5.3-L192.A4` — **RESOLVED 2026-08-11 — now COVERED**
 
 > **Spec v27, verbatim:** *"reopening returns to whichever panel mode was active."*
 
-§5.3 Panel collapse is new in Confluence v27 (2026-08-07). No case in the suite covers the panel toggle. The five cases that mention collapsing are about other controls: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
+**Was uncovered on 2026-08-10; covered since 2026-08-11.** §5.3 Panel collapse arrived in Confluence v27 (2026-08-07) and no case covered it. Six cases were authored for it and pushed as **C43582–C43587**; the covering case and its verbatim text are in the §5.3 table below. **The control itself is NOT BUILT** on `v3.5-af3a6e1`, so all six carry `AUTOMATION: HOLD` — a coverage gap and a build gap are different things, and this row is now closed on the first only. The five cases that mention *collapsing* remain other controls and were correctly excluded: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
 
-### `§5.3-L193.A2` — **UNCOVERED**
+### `§5.3-L193.A2` — **RESOLVED 2026-08-11 — now COVERED**
 
 > **Spec v27, verbatim:** *"The toggle still works, so the user can expand it manually at any width"*
 
-§5.3 Panel collapse is new in Confluence v27 (2026-08-07). No case in the suite covers the panel toggle. The five cases that mention collapsing are about other controls: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
+**Was uncovered on 2026-08-10; covered since 2026-08-11.** §5.3 Panel collapse arrived in Confluence v27 (2026-08-07) and no case covered it. Six cases were authored for it and pushed as **C43582–C43587**; the covering case and its verbatim text are in the §5.3 table below. **The control itself is NOT BUILT** on `v3.5-af3a6e1`, so all six carry `AUTOMATION: HOLD` — a coverage gap and a build gap are different things, and this row is now closed on the first only. The five cases that mention *collapsing* remain other controls and were correctly excluded: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
 
-### `§5.3-L193.A3` — **UNCOVERED**
+### `§5.3-L193.A3` — **RESOLVED 2026-08-11 — now COVERED**
 
 > **Spec v27, verbatim:** *"that manual choice holds until the next resize across the breakpoint."*
 
-§5.3 Panel collapse is new in Confluence v27 (2026-08-07). No case in the suite covers the panel toggle. The five cases that mention collapsing are about other controls: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
+**Was uncovered on 2026-08-10; covered since 2026-08-11.** §5.3 Panel collapse arrived in Confluence v27 (2026-08-07) and no case covered it. Six cases were authored for it and pushed as **C43582–C43587**; the covering case and its verbatim text are in the §5.3 table below. **The control itself is NOT BUILT** on `v3.5-af3a6e1`, so all six carry `AUTOMATION: HOLD` — a coverage gap and a build gap are different things, and this row is now closed on the first only. The five cases that mention *collapsing* remain other controls and were correctly excluded: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
 
-### `§5.3-L194.A1` — **UNCOVERED**
+### `§5.3-L194.A1` — **RESOLVED 2026-08-11 — now COVERED**
 
 > **Spec v27, verbatim:** *"Popovers and modals. Anything that positions itself clear of the panel falls back to a normal viewport margin while the panel is collapsed."*
 
-§5.3 Panel collapse is new in Confluence v27 (2026-08-07). No case in the suite covers the panel toggle. The five cases that mention collapsing are about other controls: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
+**Was uncovered on 2026-08-10; covered since 2026-08-11.** §5.3 Panel collapse arrived in Confluence v27 (2026-08-07) and no case covered it. Six cases were authored for it and pushed as **C43582–C43587**; the covering case and its verbatim text are in the §5.3 table below. **The control itself is NOT BUILT** on `v3.5-af3a6e1`, so all six carry `AUTOMATION: HOLD` — a coverage gap and a build gap are different things, and this row is now closed on the first only. The five cases that mention *collapsing* remain other controls and were correctly excluded: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
 
-### `§5.3-L195.A1` — **UNCOVERED**
+### `§5.3-L195.A1` — **NOT-INDEPENDENTLY-TESTABLE**
 
 > **Spec v27, verbatim:** *"Persistence. Not persisted in the prototype."*
 
-§5.3 Panel collapse is new in Confluence v27 (2026-08-07). No case in the suite covers the panel toggle. The five cases that mention collapsing are about other controls: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
+**Reclassified 2026-08-11, and deliberately NOT authored.** This sentence describes the PROTOTYPE's behaviour, not a requirement on the build, and the very next clause states the build requirement - which **SCH-PANEL-06 = [C43587](https://shopview.testrail.io/index.php?/cases/view/43587)** asserts. Writing a case against it would test a prototype nobody ships. Recorded as a deliberate non-authoring rather than left as a hole (Rule 46).
 
-### `§5.3-L195.A2` — **UNCOVERED**
+### `§5.3-L195.A2` — **RESOLVED 2026-08-11 — now COVERED**
 
 > **Spec v27, verbatim:** *"Session-scoped per user for build — this is a working-mode preference, not a saved view."*
 
-§5.3 Panel collapse is new in Confluence v27 (2026-08-07). No case in the suite covers the panel toggle. The five cases that mention collapsing are about other controls: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
+**Was uncovered on 2026-08-10; covered since 2026-08-11.** §5.3 Panel collapse arrived in Confluence v27 (2026-08-07) and no case covered it. Six cases were authored for it and pushed as **C43582–C43587**; the covering case and its verbatim text are in the §5.3 table below. **The control itself is NOT BUILT** on `v3.5-af3a6e1`, so all six carry `AUTOMATION: HOLD` — a coverage gap and a build gap are different things, and this row is now closed on the first only. The five cases that mention *collapsing* remain other controls and were correctly excluded: C29929 department header, C29934 mini-calendar chevron, C29984 spread preview, C29998 lane overflow, C30086 responsive auto-collapse.
 
-### `§6-L200.A1` — **UNCOVERED**
+### `§6-L200.A1` — **RESOLVED 2026-08-11 — now COVERED**
 
 > **Spec v27, verbatim:** *"Collapses and expands the left work order panel (§5.3)."*
 
@@ -278,7 +288,7 @@ Every COVERED row shows the requirement text and the covering case's own text si
 
 | Assertion | Requirement, verbatim | Verdict | Case | The case's own text, verbatim |
 |---|---|---|---|---|
-| `§3.1-L44.A1` | *"The panel can be collapsed and expanded from the grid toolbar (§5.3), handing its width to the grid without losing panel state."* | UNCOVERED | — | **no case asserts this** |
+| `§3.1-L44.A1` | *"The panel can be collapsed and expanded from the grid toolbar (§5.3), handing its width to the grid without losing panel state."* | COVERED | **SCH-PANEL-02 = [C43583](https://shopview.testrail.io/index.php?/cases/view/43583)** | *"3. The grid grows into the space the panel gave up and lays itself out again in the wider area, so you can see more of the grid than you could before."* |
 | `§3.1-L45.A1` | *"Mini calendar. A month picker with week-highlight and a collapsible grid."* | COVERED | **SCH-MCAL-01 = [C29932](https://shopview.testrail.io/index.php?/cases/view/29932)** | *"In the mini calendar, click a date in a different week from the one currently shown in the grid."* |
 | `§3.1-L45.A2` | *"Clicking a date navigates the main grid."* | COVERED | **SCH-MCAL-01 = [C29932](https://shopview.testrail.io/index.php?/cases/view/29932)** | *"Clicking a date in the mini calendar navigates the main grid to that date"* |
 | `§3.1-L46.A1` | *"Work order list. A flat, scrollable list of work order cards."* | COVERED | **SCH-WOL-01 = [C29936](https://shopview.testrail.io/index.php?/cases/view/29936)** | *"The sidebar is a flat list of work order cards with no tabs"* |
@@ -573,31 +583,31 @@ Every COVERED row shows the requirement text and the covering case's own text si
 
 | Assertion | Requirement, verbatim | Verdict | Case | The case's own text, verbatim |
 |---|---|---|---|---|
-| `§5.3-L189.A1` | *"An icon button collapses and expands the left panel."* | UNCOVERED | — | **no case asserts this** |
-| `§5.3-L189.A2` | *"It is the first item in the grid toolbar, left of Today, sitting in the same left gutter as the grid's row labels and avatars so it reads as belonging to the panel it controls"* | UNCOVERED | — | **no case asserts this** |
-| `§5.3-L189.A3` | *"grouping with the date controls."* | UNCOVERED | — | **no case asserts this** |
-| `§5.3-L190.A1` | *"Control. A borderless panel-left icon in secondary text color."* | UNCOVERED | — | **no case asserts this** |
-| `§5.3-L190.A2` | *"The icon does not change between states"* | UNCOVERED | — | **no case asserts this** |
-| `§5.3-L190.A3` | *"the tooltip carries the meaning — "Hide panel" when open, "Show panel" when collapsed."* | UNCOVERED | — | **no case asserts this** |
-| `§5.3-L191.A1` | *"Behavior. The panel animates closed over a short width transition, its divider disappears so no seam remains"* | UNCOVERED | — | **no case asserts this** |
-| `§5.3-L191.A2` | *"the grid reflows into the reclaimed space."* | UNCOVERED | — | **no case asserts this** |
-| `§5.3-L192.A1` | *"State preservation. Contents are hidden rather than discarded."* | UNCOVERED | — | **no case asserts this** |
-| `§5.3-L192.A2` | *"Calendar date, work-order scroll position, panel search text, drill-down state"* | UNCOVERED | — | **no case asserts this** |
-| `§5.3-L192.A3` | *"the selected work order all survive a collapse/expand cycle"* | UNCOVERED | — | **no case asserts this** |
-| `§5.3-L192.A4` | *"reopening returns to whichever panel mode was active."* | UNCOVERED | — | **no case asserts this** |
+| `§5.3-L189.A1` | *"An icon button collapses and expands the left panel."* | COVERED | **SCH-PANEL-01 = [C43582](https://shopview.testrail.io/index.php?/cases/view/43582)** | *"8. Clicking the button at step 4 hides the left panel, and clicking it again at step 7 shows it."* |
+| `§5.3-L189.A2` | *"It is the first item in the grid toolbar, left of Today, sitting in the same left gutter as the grid's row labels and avatars so it reads as belonging to the panel it controls"* | COVERED | **SCH-PANEL-01 = [C43582](https://shopview.testrail.io/index.php?/cases/view/43582)** | *"2. It sits above the grid's left-hand column - the one headed Department that carries the technician names and their small round profile pictures - so it reads as belonging to the panel it controls."* |
+| `§5.3-L189.A3` | *"grouping with the date controls."* | COVERED | **SCH-PANEL-01 = [C43582](https://shopview.testrail.io/index.php?/cases/view/43582)** | *"3. It sits together with the date controls: the Today button and the left and right arrows."* |
+| `§5.3-L190.A1` | *"Control. A borderless panel-left icon in secondary text color."* | COVERED | **SCH-PANEL-01 = [C43582](https://shopview.testrail.io/index.php?/cases/view/43582)** | *"4. The button shows a small picture only, with no border or box drawn around it, in the same muted grey as the other icon buttons in that row."* |
+| `§5.3-L190.A2` | *"The icon does not change between states"* | COVERED | **SCH-PANEL-01 = [C43582](https://shopview.testrail.io/index.php?/cases/view/43582)** | *"7. The picture on the button is exactly the same in both states - only the tooltip changes."* |
+| `§5.3-L190.A3` | *"the tooltip carries the meaning — "Hide panel" when open, "Show panel" when collapsed."* | COVERED | **SCH-PANEL-01 = [C43582](https://shopview.testrail.io/index.php?/cases/view/43582)** | *"5. While the left panel is showing, the tooltip reads: Hide panel"* |
+| `§5.3-L191.A1` | *"Behavior. The panel animates closed over a short width transition, its divider disappears so no seam remains"* | COVERED | **SCH-PANEL-02 = [C43583](https://shopview.testrail.io/index.php?/cases/view/43583)** | *"2. The dividing line between the panel and the grid goes away with it, leaving no leftover line, seam or empty strip where the panel used to be."* |
+| `§5.3-L191.A2` | *"the grid reflows into the reclaimed space."* | COVERED | **SCH-PANEL-02 = [C43583](https://shopview.testrail.io/index.php?/cases/view/43583)** | *"3. The grid grows into the space the panel gave up and lays itself out again in the wider area, so you can see more of the grid than you could before."* |
+| `§5.3-L192.A1` | *"State preservation. Contents are hidden rather than discarded."* | COVERED | **SCH-PANEL-03 = [C43584](https://shopview.testrail.io/index.php?/cases/view/43584)** | *"1. The panel comes back showing the same things you left in it. Nothing has been reset, cleared or reloaded from scratch - while it was hidden its contents were only out of sight, not thrown away."* |
+| `§5.3-L192.A2` | *"Calendar date, work-order scroll position, panel search text, drill-down state"* | COVERED | **SCH-PANEL-03 = [C43584](https://shopview.testrail.io/index.php?/cases/view/43584)** | *"3. The text you typed is still in the Search work orders box, and the list is still narrowed by it."* |
+| `§5.3-L192.A3` | *"the selected work order all survive a collapse/expand cycle"* | COVERED | **SCH-PANEL-03 = [C43584](https://shopview.testrail.io/index.php?/cases/view/43584)** | *"6. The work order you had opened is still the selected one."* |
+| `§5.3-L192.A4` | *"reopening returns to whichever panel mode was active."* | COVERED | **SCH-PANEL-03 = [C43584](https://shopview.testrail.io/index.php?/cases/view/43584)** | *"5. The panel comes back showing that work order's lines, not the full list of work orders - it returns to whichever of the two views was open when you hid it."* |
 | `§5.3-L193.A1` | *"Narrow viewports. Below the 960px minimum supported width (§11) the panel auto-collapses."* | COVERED | — | Restates §11 Responsiveness, which SCH-EDGE-02 = C30086 asserts verbatim: 'On narrow viewports the sidebar collapses.' The two assertions after it - t |
-| `§5.3-L193.A2` | *"The toggle still works, so the user can expand it manually at any width"* | UNCOVERED | — | **no case asserts this** |
-| `§5.3-L193.A3` | *"that manual choice holds until the next resize across the breakpoint."* | UNCOVERED | — | **no case asserts this** |
-| `§5.3-L194.A1` | *"Popovers and modals. Anything that positions itself clear of the panel falls back to a normal viewport margin while the panel is collapsed."* | UNCOVERED | — | **no case asserts this** |
-| `§5.3-L195.A1` | *"Persistence. Not persisted in the prototype."* | UNCOVERED | — | **no case asserts this** |
-| `§5.3-L195.A2` | *"Session-scoped per user for build — this is a working-mode preference, not a saved view."* | UNCOVERED | — | **no case asserts this** |
+| `§5.3-L193.A2` | *"The toggle still works, so the user can expand it manually at any width"* | COVERED | **SCH-PANEL-04 = [C43585](https://shopview.testrail.io/index.php?/cases/view/43585)** | *"1. The panel button still works on a narrow window: it is not hidden, greyed out or unresponsive below 960 pixels, and clicking it shows the left panel by hand even at that width."* |
+| `§5.3-L193.A3` | *"that manual choice holds until the next resize across the breakpoint."* | COVERED | **SCH-PANEL-04 = [C43585](https://shopview.testrail.io/index.php?/cases/view/43585)** | *"3. Your choice only stops applying when the window is resized back across the 960 pixel mark; at that point the page goes back to deciding for itself whether the panel is shown."* |
+| `§5.3-L194.A1` | *"Popovers and modals. Anything that positions itself clear of the panel falls back to a normal viewport margin while the panel is collapsed."* | COVERED | **SCH-PANEL-05 = [C43586](https://shopview.testrail.io/index.php?/cases/view/43586)** | *"1. With the panel hidden, the pop-up no longer keeps clear of the space the panel used to take up. It sits against the edge of the browser window with a normal margin instead."* |
+| `§5.3-L195.A1` | *"Persistence. Not persisted in the prototype."* | NOT-INDEPENDENTLY-TESTABLE | — | Describes the PROTOTYPE, not a requirement on the build - and the very next clause (`§5.3-L195.A2`) states the build requirement, which SCH-PANEL-06 = [C43587](https://shopview.testrail.io/index.php?/cases/view/43587) asserts. Recorded as a deliberate non-authoring rather than left as a hole (Rule 46). |
+| `§5.3-L195.A2` | *"Session-scoped per user for build — this is a working-mode preference, not a saved view."* | COVERED | **SCH-PANEL-06 = [C43587](https://shopview.testrail.io/index.php?/cases/view/43587)** | *"2. At step 6, after signing out and back in, the left panel is showing again. The choice is not carried over into a new sign-in: it is a working-mode preference for the session you are in, not a saved view setting."* |
 
 ### §6 Grid toolbar
 
 | Assertion | Requirement, verbatim | Verdict | Case | The case's own text, verbatim |
 |---|---|---|---|---|
 | `§6-L199.A1` | *"Panel toggle"* | NOT-INDEPENDENTLY-TESTABLE | — | A table label or default-value cell. The requirement is the whole row; its assertion is verdicted on the description cell beside it. |
-| `§6-L200.A1` | *"Collapses and expands the left work order panel (§5.3)."* | UNCOVERED | — | **no case asserts this** |
+| `§6-L200.A1` | *"Collapses and expands the left work order panel (§5.3)."* | COVERED | **SCH-PANEL-01 = [C43582](https://shopview.testrail.io/index.php?/cases/view/43582)** | *"8. Clicking the button at step 4 hides the left panel, and clicking it again at step 7 shows it."* |
 | `§6-L201.A1` | *"Today button"* | NOT-INDEPENDENTLY-TESTABLE | — | A table label or default-value cell. The requirement is the whole row; its assertion is verdicted on the description cell beside it. |
 | `§6-L202.A1` | *"Jumps the grid to the current date."* | COVERED | **SCH-TOOL-01 = [C30039](https://shopview.testrail.io/index.php?/cases/view/30039)** | *"'Today' button jumps the grid to the current date"* |
 | `§6-L203.A1` | *"Left/right arrows"* | NOT-INDEPENDENTLY-TESTABLE | — | A table label or default-value cell. The requirement is the whole row; its assertion is verdicted on the description cell beside it. |
@@ -1019,16 +1029,22 @@ Every COVERED row shows the requirement text and the covering case's own text si
 | **SCH-WOL-06 = [C29941](https://shopview.testrail.io/index.php?/cases/view/29941)** | Sidebar search with no matching work orders shows an empty list | §3.1 | no |
 
 ---
+| **SCH-PANEL-01 = [C43582](https://shopview.testrail.io/index.php?/cases/view/43582)** | Panel button sits left of Today and its tooltip names what it will do | §5.3, §6 |
+| **SCH-PANEL-02 = [C43583](https://shopview.testrail.io/index.php?/cases/view/43583)** | Panel button hides the left panel and the grid widens into the space | §3.1, §5.3 |
+| **SCH-PANEL-03 = [C43584](https://shopview.testrail.io/index.php?/cases/view/43584)** | What you had set up in the left panel survives hiding and showing it | §3.1, §5.3 |
+| **SCH-PANEL-04 = [C43585](https://shopview.testrail.io/index.php?/cases/view/43585)** | On a narrow window the panel button still works and your choice holds | §5.3, §11 |
+| **SCH-PANEL-05 = [C43586](https://shopview.testrail.io/index.php?/cases/view/43586)** | Menus and pop-up windows reposition when the left panel is hidden | §5.3 |
+| **SCH-PANEL-06 = [C43587](https://shopview.testrail.io/index.php?/cases/view/43587)** | Hiding the panel lasts for the rest of your sign-in but is not saved | §5.3 |
 
 ## Both totals, reconciled
 
 | | |
 |---|---|
 | Direction 1 — assertions verdicted | **397 of 397** |
-| Direction 2 — cases examined | **168 of 168** |
+| Direction 2 — cases examined | **174 of 174** |
 | Cases named as covering something in Direction 1 | **see below** |
-| — distinct cases named | **141** |
-| — cases NOT named by any assertion | **27** |
+| — distinct cases named | **147** |
+| — cases NOT named by any assertion | **27** (unchanged: all six new SCH-PANEL cases are named by Direction 1) |
 
 **The cases no assertion named.** This is NOT a list of useless cases — the matcher names one best case per assertion, so a case that is a strong second everywhere is never named. Each is listed so the reader can check rather than take it on trust:
 
