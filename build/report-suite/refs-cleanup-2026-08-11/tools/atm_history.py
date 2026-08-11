@@ -21,7 +21,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 def main():
     post = json.load(open(os.path.join(HERE, "..", "snapshots", "cases-POST.json")))
-    plan = {r["cid"] for r in json.load(open(os.path.join(HERE, "..", "logs", "plan-final.json")))}
+    plan = {r["cid"] for r in json.load(open(os.path.join(HERE, "..", "logs", "plan.json")))}
     auto = sorted(c["id"] for c in post
                   if c["created_by"] == 3 and c.get("custom_atmstatus") == 3)
     out = []

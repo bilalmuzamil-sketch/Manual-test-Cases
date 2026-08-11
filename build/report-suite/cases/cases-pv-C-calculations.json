@@ -443,7 +443,7 @@
     "viu_status": "VIU-Pending",
     "notes": "DRIVER SV-8589 (In Progress 2026-07-29) — Goal verbatim: 'Fix the live QuickBooks-corruption bug caused by inventory_changes.old_quantity/new_quantity being mapped integer while the domain types them float - fractional units are truncated at hydrate/persist'. Tests verbatim: 'fractional-quantity round-trip regression'. SV-8589 'Blocks: B3 (PV - Units Sold precision)'. VIU-confirm live: (a) whether the part-line quantity field actually accepts a fractional value and its exact on-screen label, (b) the exact On Hand column label and the column-picker label, (c) the fix is FORWARD-ONLY per the story ('historical truncation unreconstructible') so use a movement made AFTER the migration, never pre-migration history. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8589 (PV spec S5-R1 Units Sold net stock movement + S5-R5 two-decimal movement format; tech-plan-2026-07-29 Phase 0 / PR-1 D2; SV-8589 verbatim Tests: 'fractional-quantity round-trip regression')",
+    "refs": "SV-8589 (PV spec v6 2026-08-07 S5-R1 Units Sold net stock movement + S5-R5 two-decimal movement format; tech-plan-2026-07-29 Phase 0 / PR-1 D2; SV-8589 verbatim Tests: 'fractional-quantity round-trip regression')",
     "testrail_id": "C38924",
     "section_id": 4334
   }

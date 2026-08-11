@@ -13,7 +13,7 @@ import subprocess
 
 ROOT = "/home/user/Manual-test-Cases"
 RS = f"{ROOT}/build/report-suite"
-SNAP = f"{RS}/refs-pins-2026-08-11/snapshots"
+SNAP = f"{RS}/refs-cleanup-2026-08-11/snapshots"
 
 post = json.load(open(f"{SNAP}/cases-POST.json"))
 live = {c["id"]: c for c in post if c.get("created_by") == 3}

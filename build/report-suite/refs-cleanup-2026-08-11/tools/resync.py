@@ -18,7 +18,7 @@ import os
 import sys
 
 ROOT = "/home/user/Manual-test-Cases/build/report-suite"
-SNAP = f"{ROOT}/refs-pins-2026-08-11/snapshots"
+SNAP = f"{ROOT}/refs-cleanup-2026-08-11/snapshots"
 DRY = "--apply" not in sys.argv
 
 post = json.load(open(f"{SNAP}/cases-POST.json"))
