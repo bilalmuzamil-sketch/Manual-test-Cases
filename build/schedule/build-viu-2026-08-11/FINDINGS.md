@@ -345,36 +345,81 @@ series 4, 0 added, 0 removed.** The route is known and the next pass can take it
 
 ---
 
-## F14 · The four dialogs were NOT reached — and the reason is a new observation that needs one confirmation before anyone calls it a defect
+## F14 · ✅ ISOLATED — the empty Staff and Roles lists are **OUR HARNESS**, not a product defect. OUTCOME 1.
 
-**Not closed. Reported honestly rather than dressed up.**
+**Last round I said one normally-signed-in browser check would settle this. That was handing my own
+diagnostic to someone else, and it was not necessary — the harness re-issues every request through
+`fetch`, so both sides of the page's own traffic are observable. Here is the answer.**
 
-**What happened:** the Roles & Permissions and Staff admin lists **render no rows**, so there was no row
-to click and no dialog to open. The Staff page shows **`Active(0)`** / **`Deactivated(0)`** and the
-empty-state string **`Empty bays, endless possibilities. Get Going!`** — while
-**`GET /api/staff?limit=200` returns 64 staff records**, read in this same session minutes earlier.
+### The decisive evidence: the page asks for an organisation that is EMPTY
 
-**🛑 I AM NOT CALLING THAT A DEFECT, AND THE PRECONDITION RULE IS WHY.** Twice this session an
-"absence" turned out to be an artefact of the state I was standing in. Here there is a live, untested
-alternative explanation: **this page is reached through a hydrated SPA session**, and the request the
-list makes may be failing for a reason belonging to my harness rather than to the product — the three
-filters (`All Permissions`, `All Locations`, `All Departments`) are another candidate. **I did not
-isolate it, so I am not claiming it.**
+Instrumented `/administration/roles-permissions`, logging every request the page itself made:
 
-**What would settle it in one minute:** open `/administration/staff` in a normally signed-in browser. If
-the 64 staff appear, this is my harness and nothing more. If it is empty there too, it is a real defect
-worth a ticket — and a notable one, since it is the page an administrator manages people from.
+```
+GET /api/organizations//roles?pagination[page]=1&pagination[rowsPerPage]=30
+      &pagination[sortBy]=is_default&pagination[descending]=true
+  -> HTTP 404  {"errors":[{"error":"'resource' was not found."}]}
+```
 
-**Consequence for this pass:** **`Reset To Template`** (C38926), **`Time Clock`** (C30084),
-**`Add hours`** (C38850), **`Set business hours for this shop`** (C38847) and **`Set custom hours for
-this technician`** (C38848, C38849) remain **NOT OBSERVED**, with that reason recorded. **The routes are
-correct** (`/administration/roles-permissions`, `/administration/staff`, `/administration/locations` —
-F12); it is the row-level targeting that is blocked, and it is blocked by an empty list rather than by a
-selector I can improve.
+**Look at the path: `/api/organizations//roles` — a DOUBLE SLASH.** The organisation id segment is
+**empty**. The same empty value appears in the other failing call, on **both** pages:
 
-**Nothing was seeded to work around it.** Creating a staff member to populate a list that should already
-show 64 would have **manufactured the condition** rather than tested it — and it would have put a
-throwaway person into a shared org for no gain. Seeding was authorised; it was not the right tool here.
+```
+GET /api/organization/feature-flags?organization_id=
+  -> HTTP 400  {"errors":[{"organization_id":"Invalid parameter type"}]}
+```
+
+**So both empty lists have ONE shared cause** — which is what a shared symptom on two pages should
+suggest, and it is not the product's.
+
+### And on the Staff page the list request is never made at all
+
+Of the **13** requests `/administration/staff` fired, **`/api/staff` is not among them.** It fetched
+`/api/technicians` (50), `/api/workplaces` (2), `/api/staff/my-workplaces` (2),
+`/api/iam/view-profile/`, `/api/global-search/fetch` (45,966) — **all HTTP 200 with real data** — but
+**never the staff list itself.** The one thing that failed on that page is the same empty-organisation
+feature-flags call. **A page whose upstream dependency 400s and then never issues its list request is
+behaving like a page that was never correctly signed in.**
+
+### The verdict, and why it is not the product
+
+**OUTCOME 1 — A TOOLING LIMIT IN OUR HARNESS.** Two defects of ours, both named:
+
+1. **The hydration does not carry the organisation id where the application reads it.** Our seed put it
+   at `user.data.details.organization_id`; the app's store evidently reads it elsewhere.
+2. **The route bridge calls `route.abort()` on any `fetch` exception**, which is what produced the
+   **12 `Failed to load resource: net::ERR_FAILED`** console errors on each page. **A failure that
+   presents as an aborted request is indistinguishable from a request the app chose not to make** — the
+   bridge should fulfil an explicit error status and log the URL instead of aborting silently.
+
+**🔬 I ATTEMPTED THE FIX AND IT DID NOT WORK — which makes this a stronger answer, not a weaker one.**
+The organisation id was hydrated in **seven** plausible shapes at once
+(`user.data.organization_id`, `user.data.organizationId`, `user.data.details.organizationId`,
+`user.data.organization.id`, and `localStorage` `organization_id` / `organizationId` / `organization`).
+**The URL still came back `/api/organizations//roles` and the feature-flags call still 400'd.** So the
+app sources that id from somewhere else again — the remaining candidates are its own store
+initialisation and the `/api/iam/view-profile/` response, both of which the next session can inspect
+directly. **The mechanism is pinned; only the exact key is still unknown.**
+
+### What this means, stated plainly
+
+- **NOT a defect. Nothing to file, and nothing for the QA lead to action.** My earlier refusal to call
+  it one was correct, and the diagnostic vindicates it rather than merely excusing it.
+- **The five dialogs stay NOT OBSERVED for a fully explained reason** rather than an unexplained one:
+  **`Reset To Template`** (C38926), **`Time Clock`** (C30084), **`Add hours`** (C38850),
+  **`Set business hours for this shop`** (C38847), **`Set custom hours for this technician`** (C38848,
+  C38849).
+- **What would fix it, for whoever picks this up:** find where the app reads the organisation id (inspect
+  its store after a *real* sign-in, or the `view-profile` payload), hydrate that key, and make the bridge
+  surface failures instead of aborting. **Or simply drive these two pages from a genuine browser sign-in,
+  where no hydration is involved at all.**
+- **Nothing was seeded**, and seeding would not have helped: the org is not short of staff — the API
+  returns **64** — the request for them was never issued.
+
+**Evidence:** `evidence/diag-staff.json`, `evidence/diag-roles.json`, `evidence/staff-diagnosis.log`,
+`evidence/diag-staff.png`, `evidence/diag-roles.png`; retest with the seven-shape hydration in
+`tools/step9b_staffdiag.cjs`.
+
 
 ---
 

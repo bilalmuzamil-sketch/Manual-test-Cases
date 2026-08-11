@@ -1,0 +1,147 @@
+{
+ "route": "/administration/staff",
+ "dom": {
+  "rows": 2,
+  "empty": true,
+  "tabs": [
+   "Active(0)",
+   "Deactivated(0)"
+  ],
+  "body": "Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 AS DEV TOOLS info flag Feature Flags SETTINGS info Settings supervisor_account Staff verified_user Roles & Permissions location_on Locations apartment Departments attach_money Taxes SER"
+ },
+ "calls": [
+  {
+   "m": "GET",
+   "u": "/api/technicians",
+   "s": 200,
+   "ct": "application/json",
+   "collection_count": 50,
+   "accept": "application/json, text/plain, */*",
+   "body_head": "{\"data\":{\"collection\":[{\"id\":\"ccbacb31-53f3-488e-9a7e-28f781761e62\",\"user_id\":\"0eabf741-019e-4b02-84ce-66097c140b3a\",\"first_name\":\"Admin\",\"last_name\":\"ShopView\",\"name\":\"Admin ShopView\"},{\"id\":\"02b06910-a3ff-4057-81d2-3956d10f1236\",\"user_id\":\"5b7d54ab-f93f-4eaa-9983-bb004702de0d\",\"first_name\":\"Alexander\",\"last_name\":\"Cohen\",\"name\":\"Alexander Cohen\"},{\"id\":\"57378c17-8f19-42bd-90d3-4bb6c5e607e8\",\"user_id\":\"bbf1978c-57c6-4e02-8d00-383b3fff6800\",\"first_name\":\"Alicia\",\"last_name\":\"Campbell\",\"name\":\"Alicia Campbell\"},{\"id\":\"740249f3-6e80-4e64-a8af-f24bb1838f7e\",\"user_id\":\"5f0a54da-16ef-473b-84fb-6f00",
+   "post": null
+  },
+  {
+   "m": "GET",
+   "u": "/api/staff/my-workplaces",
+   "s": 200,
+   "ct": "application/json",
+   "collection_count": 2,
+   "accept": "application/json, text/plain, */*",
+   "body_head": "{\"data\":{\"collection\":[{\"id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"name\":\"Staging Heavy Duty - 9919\",\"color\":\"#d66c00\",\"timezone\":\"America/Edmonton\",\"country_code\":\"CA\",\"telephone\":\"(403) 523 - 0488\",\"shop_id\":\"8685\",\"remit_to\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"shop_supplies_charge\":10.5,\"max_shop_supplies_charge\":350,\"min_shop_supplies_charge\":0,\"address_1\":\"9919 Shepard Road SE\",\"address_2\":null,\"city\":\"Calgary\",\"state_or_province\":\"Alberta\",\"postal_code\":\"T2C 4M5\",\"is_default\":1,\"shopSupplyPercentageEnabled\":false,\"has_terminal_readers\":true},{\"id\":\"f8a8b802-7780-4b16-bf10-343caeb61",
+   "post": null
+  },
+  {
+   "m": "GET",
+   "u": "/api/technician-tasks/my-current-task",
+   "s": 200,
+   "ct": "application/json",
+   "collection_count": null,
+   "accept": "application/json, text/plain, */*",
+   "body_head": "{\"data\":{\"technician_task\":[]}}",
+   "post": null
+  },
+  {
+   "m": "GET",
+   "u": "/api/organization/feature-flags?organization_id=",
+   "s": 400,
+   "ct": "application/problem+json",
+   "collection_count": null,
+   "accept": "application/json, text/plain, */*",
+   "body_head": "{\"errors\":[{\"organization_id\":\"Invalid parameter type\"}]}",
+   "post": null
+  },
+  {
+   "m": "GET",
+   "u": "/api/workplaces/timezones",
+   "s": 200,
+   "ct": "application/json",
+   "collection_count": null,
+   "accept": "application/json, text/plain, */*",
+   "body_head": "{\"data\":[{\"name\":\"Africa/Abidjan\",\"offset\":0},{\"name\":\"Africa/Accra\",\"offset\":0},{\"name\":\"Africa/Addis_Ababa\",\"offset\":180},{\"name\":\"Africa/Algiers\",\"offset\":60},{\"name\":\"Africa/Asmara\",\"offset\":180},{\"name\":\"Africa/Bamako\",\"offset\":0},{\"name\":\"Africa/Bangui\",\"offset\":60},{\"name\":\"Africa/Banjul\",\"offset\":0},{\"name\":\"Africa/Bissau\",\"offset\":0},{\"name\":\"Africa/Blantyre\",\"offset\":120},{\"name\":\"Africa/Brazzaville\",\"offset\":60},{\"name\":\"Africa/Bujumbura\",\"offset\":120},{\"name\":\"Africa/Cairo\",\"offset\":180},{\"name\":\"Africa/Casablanca\",\"offset\":60},{\"name\":\"Africa/Ceuta\",\"offset\":120},{\"name\":\"Africa/C",
+   "post": null
+  },
+  {
+   "m": "GET",
+   "u": "/api/workplaces",
+   "s": 200,
+   "ct": "application/json",
+   "collection_count": 2,
+   "accept": "application/json, text/plain, */*",
+   "body_head": "{\"data\":{\"collection\":[{\"id\":\"f8a8b802-7780-4b16-bf10-343caeb616b2\",\"name\":\"Staging Lethbridge - 4310\",\"address_1\":\"4310 9 Avenue North\",\"address_2\":null,\"state_or_province\":\"Alberta\",\"postal_code\":\"T1H 6N4\",\"city\":\"Lethbridge\",\"telephone\":\"(403) 327 - 3405\",\"color\":\"#00a300\",\"tax\":{\"id\":\"819f3c25-5d9b-4bc6-9ddc-4e284ebe2f6b\",\"name\":\"GST\"},\"timezone\":\"America/Edmonton\",\"country_code\":\"CA\",\"organization_id\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\",\"shop_id\":\"8685\",\"remit_to\":\"f8a8b802-7780-4b16-bf10-343caeb616b2\",\"ibs_location_id\":null,\"shop_supplies_charge\":10.5,\"max_shop_supplies_charge\":350,\"m",
+   "post": null
+  },
+  {
+   "m": "GET",
+   "u": "/api/iam/view-profile/",
+   "s": 200,
+   "ct": "application/json",
+   "collection_count": null,
+   "accept": "application/json, text/plain, */*",
+   "body_head": "{\"data\":{\"user\":{\"first_name\":\"Admin\",\"email\":\"admin@shopview.com\",\"last_name\":\"ShopView\",\"job_title\":\"Admin\",\"confirmed_invitation_on\":\"2026-06-14 06:41:27\",\"role_id\":\"d7f80014-a279-42b4-a797-674da80c22ed\",\"avatar_url\":null,\"enrollments\":[{\"end_date\":null,\"start_date\":\"2026-08-11 13:19:14\",\"department_name\":\"Shop Time (Shop hand)\",\"workplace_name\":\"Staging Heavy Duty - 9919\"},{\"end_date\":null,\"start_date\":\"2026-08-11 13:19:30\",\"department_name\":\"Work order status\",\"workplace_name\":\"Staging Heavy Duty - 9919\"},{\"end_date\":null,\"start_date\":\"2026-08-11 13:19:24\",\"department_name\":\"Shop Time App",
+   "post": null
+  },
+  {
+   "m": "GET",
+   "u": "/api/reporting/individual-punch-clock/today?range=today",
+   "s": 200,
+   "ct": "application/json",
+   "collection_count": 0,
+   "accept": "application/json, text/plain, */*",
+   "body_head": "{\"data\":{\"collection\":[],\"pagination\":{\"sortBy\":null,\"descending\":false,\"page\":1,\"rowsPerPage\":100}}}",
+   "post": null
+  },
+  {
+   "m": "GET",
+   "u": "/api/notes?mention_id=0eabf741-019e-4b02-84ce-66097c140b3a&is_read=false",
+   "s": 200,
+   "ct": "application/json",
+   "collection_count": null,
+   "accept": "application/json, text/plain, */*",
+   "body_head": "{\"data\":{\"notes\":[],\"pagination\":{\"sortBy\":null,\"descending\":false,\"page\":1,\"rowsPerPage\":100}}}",
+   "post": null
+  },
+  {
+   "m": "GET",
+   "u": "/api/notifications/subscribe-token",
+   "s": 200,
+   "ct": "application/json",
+   "collection_count": null,
+   "accept": "application/json, text/plain, */*",
+   "body_head": "{\"data\":{\"token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtZXJjdXJlIjp7InN1YnNjcmliZSI6WyIvdXNlcnMvMGVhYmY3NDEtMDE5ZS00YjAyLTg0Y2UtNjYwOTdjMTQwYjNhL25vdGlmaWNhdGlvbnMiXX0sImV4cCI6MTc4NjQ1ODQ3OX0.Em57S_zs0Lr8mQuhhDGo-L2ESXZbY2HkUwyeoACG9_0\",\"hubUrl\":\"https://mercure.qa.shopview.com/.well-known/mercure\"}}",
+   "post": null
+  },
+  {
+   "m": "GET",
+   "u": "/api/reporting/individual-punch-clock/today?range=today",
+   "s": 200,
+   "ct": "application/json",
+   "collection_count": 0,
+   "accept": "application/json, text/plain, */*",
+   "body_head": "{\"data\":{\"collection\":[],\"pagination\":{\"sortBy\":null,\"descending\":false,\"page\":1,\"rowsPerPage\":100}}}",
+   "post": null
+  },
+  {
+   "m": "GET",
+   "u": "/api/global-search/fetch",
+   "s": 200,
+   "ct": "application/json",
+   "collection_count": 45966,
+   "accept": "application/json, text/plain, */*",
+   "body_head": "{\"data\":{\"collection\":[{\"id\":\"c74be862-ee85-4f73-ae60-c21ac88b4521\",\"label\":\"S8685-15888 Aadale Motors\",\"more_info\":\"06 Aug 2026\",\"type\":\"Work Order\",\"search\":\"Aadale Motors 15888s15888s868515888s8685-158888685-15888s-15888aadalemotorsdeclined\"},{\"id\":\"7dd2e0c4-75dc-473d-bdc3-ff8299c813cc\",\"label\":\"S8685-15887 Aadale Motors\",\"more_info\":\"04 Aug 2026\",\"type\":\"Work Order\",\"search\":\"Aadale Motors 15887s15887s868515887s8685-158878685-15887s-15887aadalemotorsdeclined\"},{\"id\":\"a93d34d7-faf0-4cb9-b29f-7c56bff097ec\",\"label\":\"S8685-15886 Aaford Plumbing\",\"more_info\":\"04 Aug 2026\",\"type\":\"Work Order\",\"s",
+   "post": null
+  }
+ ],
+ "js_errors": [
+  "console: Failed to load resource: net::ERR_FAILED",
+  "console: Failed to load resource: net::ERR_FAILED",
+  "console: Failed to load resource: net::ERR_FAILED",
+  "console: Failed to load resource: net::ERR_FAILED",
+  "console: Failed to load resource: net::ERR_FAILED",
+  "console: Failed to load resource: net::ERR_FAILED",
+  "console: Failed to load resource: net::ERR_FAILED",
+  "console: Failed to load resource: the server responded with a status of 400 (Bad Request)",
+  "Error: Organization ID not found",
+  "console: Failed to load resource: net::ERR_FAILED",
+  "console: Failed to load resource: net::ERR_FAILED"
+ ]
+}

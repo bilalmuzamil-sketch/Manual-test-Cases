@@ -235,15 +235,17 @@ spread step. **Reachable; the route is known.**
 board proven restored — 11 shifts, id sets equal both ways, 11 of 11 hashes identical, events 3,
 series 4.**
 
-**LIMIT 2 — the four dialogs are still unreached, and the reason CHANGED (see `FINDINGS.md` F14).** It
-is not click-targeting after all: the **Roles & Permissions and Staff admin lists render no rows at
-all** — Staff shows `Active(0)` / `Deactivated(0)` and `Empty bays, endless possibilities. Get Going!`
-**while `GET /api/staff` returns 64 records in the same session.** **I am not calling that a defect**
-(it may be an artefact of the hydrated-SPA harness, and I did not isolate it) but it is exactly what one
-normally-signed-in browser check would settle. So `Reset To Template`, `Time Clock`, `Add hours`,
-`Set business hours for this shop` and `Set custom hours for this technician` stay **NOT OBSERVED**, with
-the reason recorded. **Nothing was seeded to paper over it** — creating a staff member to populate a list
-that should already show 64 would have manufactured the condition rather than tested it.
+**LIMIT 2 — ISOLATED, AND IT IS OURS (`FINDINGS.md` F14).** The empty Staff and Roles lists are a
+**harness fault, not a product defect** — proven, not assumed. The roles page requests
+**`/api/organizations//roles`** with an **empty organisation id** (double slash → HTTP 404), and the same
+empty value 400s the feature-flags call on **both** pages; on the Staff page **`/api/staff` is never
+requested at all**, while every other call returns 200 with real data. **Our hydration does not carry the
+organisation id where the app reads it, and our bridge aborts on `fetch` errors** (12 × `net::ERR_FAILED`
+per page). **The fix was attempted — seven plausible hydration shapes — and did not work**, so the exact
+key is still unknown while the mechanism is pinned. **The five dialogs therefore stay NOT OBSERVED for a
+fully explained reason:** `Reset To Template`, `Time Clock`, `Add hours`,
+`Set business hours for this shop`, `Set custom hours for this technician`. **Nothing filed — there is
+nothing to file.**
 
 **✅ LIMIT 3 IS GONE — the `Select multiple` sub-state was reached, and it settled a question about our
 own ticket (`FINDINGS.md` F13).** `Select all` and `Cancel` are **absent from the entire DOM**, measured
