@@ -1,0 +1,142 @@
+{
+ "ops": [
+  {
+   "op": 1,
+   "case_id": 30042,
+   "http": 200,
+   "changed": [
+    "custom_expected",
+    "custom_steps",
+    "title"
+   ],
+   "verify": "op01 C30042: 30 fields compared, 4 intended, 0 mismatch"
+  },
+  {
+   "op": 2,
+   "case_id": 30046,
+   "http": 200,
+   "changed": [
+    "custom_expected",
+    "custom_steps",
+    "title"
+   ],
+   "verify": "op02 C30046: 30 fields compared, 4 intended, 0 mismatch"
+  },
+  {
+   "op": 3,
+   "case_id": 30047,
+   "http": 200,
+   "changed": [
+    "custom_steps"
+   ],
+   "verify": "op03 C30047: 30 fields compared, 3 intended, 0 mismatch"
+  },
+  {
+   "op": 4,
+   "case_id": 30050,
+   "http": 200,
+   "changed": [
+    "custom_steps"
+   ],
+   "verify": "op04 C30050: 30 fields compared, 3 intended, 0 mismatch"
+  },
+  {
+   "op": 5,
+   "case_id": 30051,
+   "http": 200,
+   "changed": [
+    "custom_expected",
+    "custom_steps",
+    "title"
+   ],
+   "verify": "op05 C30051: 30 fields compared, 4 intended, 0 mismatch"
+  },
+  {
+   "op": 6,
+   "case_id": 29930,
+   "http": 200,
+   "changed": [
+    "custom_expected"
+   ],
+   "verify": "op06 C29930: 30 fields compared, 3 intended, 0 mismatch"
+  },
+  {
+   "op": 7,
+   "case_id": 30043,
+   "http": 200,
+   "changed": [
+    "custom_steps"
+   ],
+   "verify": "op07 C30043: 30 fields compared, 3 intended, 0 mismatch"
+  },
+  {
+   "op": 8,
+   "case_id": 30044,
+   "http": 200,
+   "changed": [
+    "custom_steps"
+   ],
+   "verify": "op08 C30044: 30 fields compared, 3 intended, 0 mismatch"
+  },
+  {
+   "op": 9,
+   "case_id": 30045,
+   "http": 200,
+   "changed": [
+    "custom_steps"
+   ],
+   "verify": "op09 C30045: 30 fields compared, 3 intended, 0 mismatch"
+  },
+  {
+   "op": 10,
+   "case_id": 30082,
+   "http": 200,
+   "changed": [
+    "custom_steps"
+   ],
+   "verify": "op10 C30082: 30 fields compared, 3 intended, 0 mismatch"
+  },
+  {
+   "op": 11,
+   "case_id": 30025,
+   "http": 200,
+   "changed": [
+    "custom_expected"
+   ],
+   "verify": "op11 C30025: 30 fields compared, 3 intended, 0 mismatch"
+  },
+  {
+   "op": 12,
+   "case_id": 30015,
+   "http": 200,
+   "changed": [
+    "custom_expected"
+   ],
+   "verify": "op12 C30015: 30 fields compared, 3 intended, 0 mismatch"
+  }
+ ],
+ "spec_version": 27,
+ "spec_sha256": "4c51fb7239c84987b4bed33481448c1099911d4bb2a976ca9c7426c833485d4b",
+ "drift": [],
+ "log": [
+  "[2026-08-11T17:50:09Z] === LABEL EXECUTOR START ===",
+  "[2026-08-11T17:50:09Z] SOURCE RE-READ (write-start): Confluence 713031682 HTTP 200, version 27, when 2026-08-07T15:01:20.801Z, 43064 chars, sha256 4c51fb7239c84987b4bed33481448c1099911d4bb2a976ca9c7426c833485d4b",
+  "  verdict: UNCHANGED \u2014 v27, body sha256 identical to the committed mirror. Safe to write.",
+  "[2026-08-11T17:50:54Z] pre-write Schedule snapshot: 176 of 176 id-map cases read live and on disk",
+  "[2026-08-11T17:51:06Z] re-snapshotted 12 targets from live at write time",
+  "[2026-08-11T17:51:06Z] 12 payloads built; every exact-string anchor matched live",
+  "[2026-08-11T17:51:09Z] op01 C30042 HTTP 200 \u2014 op01 C30042: 30 fields compared, 4 intended, 0 mismatch \u2014 fields changed: custom_expected, custom_steps, title",
+  "[2026-08-11T17:51:13Z] op02 C30046 HTTP 200 \u2014 op02 C30046: 30 fields compared, 4 intended, 0 mismatch \u2014 fields changed: custom_expected, custom_steps, title",
+  "[2026-08-11T17:51:16Z] op03 C30047 HTTP 200 \u2014 op03 C30047: 30 fields compared, 3 intended, 0 mismatch \u2014 fields changed: custom_steps",
+  "[2026-08-11T17:51:19Z] op04 C30050 HTTP 200 \u2014 op04 C30050: 30 fields compared, 3 intended, 0 mismatch \u2014 fields changed: custom_steps",
+  "[2026-08-11T17:51:22Z] op05 C30051 HTTP 200 \u2014 op05 C30051: 30 fields compared, 4 intended, 0 mismatch \u2014 fields changed: custom_expected, custom_steps, title",
+  "[2026-08-11T17:51:24Z] op06 C29930 HTTP 200 \u2014 op06 C29930: 30 fields compared, 3 intended, 0 mismatch \u2014 fields changed: custom_expected",
+  "[2026-08-11T17:51:27Z] op07 C30043 HTTP 200 \u2014 op07 C30043: 30 fields compared, 3 intended, 0 mismatch \u2014 fields changed: custom_steps",
+  "[2026-08-11T17:51:30Z] op08 C30044 HTTP 200 \u2014 op08 C30044: 30 fields compared, 3 intended, 0 mismatch \u2014 fields changed: custom_steps",
+  "[2026-08-11T17:51:33Z] op09 C30045 HTTP 200 \u2014 op09 C30045: 30 fields compared, 3 intended, 0 mismatch \u2014 fields changed: custom_steps",
+  "[2026-08-11T17:51:36Z] op10 C30082 HTTP 200 \u2014 op10 C30082: 30 fields compared, 3 intended, 0 mismatch \u2014 fields changed: custom_steps",
+  "[2026-08-11T17:51:41Z] op11 C30025 HTTP 200 \u2014 op11 C30025: 30 fields compared, 3 intended, 0 mismatch \u2014 fields changed: custom_expected",
+  "[2026-08-11T17:51:45Z] op12 C30015 HTTP 200 \u2014 op12 C30015: 30 fields compared, 3 intended, 0 mismatch \u2014 fields changed: custom_expected",
+  "[2026-08-11T17:52:32Z] untouched-proof BY CONTENT: 164 non-target cases compared across 9 fields \u2014 0 differences"
+ ]
+}
