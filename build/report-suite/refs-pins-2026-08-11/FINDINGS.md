@@ -83,9 +83,10 @@ QA lead has ruled automatable; there is no unobtainable precondition, so `HOLD` 
 requires a named observable symptom that this pass has no session to observe.
 
 *A correction to the brief's arithmetic:* it says *"the live census reads 474 of 476, which is why
-the arithmetic gate is out by one." * The live figures are **479 of 480** — the suite grew to 480
+the arithmetic gate is out by one."* The live figures were **479 of 480** — the suite grew to 480
 when the spec-delta pass created four cases earlier today. The gate was out by one either way, and
-it is now closed: **480 of 480**.
+it is now closed, verified live after the writes: **480 markers on 480 cases, exactly one each —
+338 `READY` + 100 `READY - EXPECT FAIL` + 42 `HOLD`.**
 
 **(b) The provenance naming a specification with no version.** It read *"…and the Sales By
 Representative report specification (S22-R2, S22-R4, S14-R19), read on 11 August 2026."* All three
@@ -234,6 +235,29 @@ assertion-level claim is being made either way.**
 - **12 foreign cases** by Vladimir Tomovic (C38919–C38923, C43567–C43573) were **not touched** and
   are proven byte-identical by content including `updated_on`/`updated_by` — see
   `CHANGES-MADE.md`.
-- **Raw-markup census at pass start: 0 of 480**, recorded because playbook §J declared hazard #5
-  means that figure is true only of the moment it was measured — TestRail re-renders case text
-  hours later when a tester works in it, without moving `updated_on`.
+- **Raw-markup census: 0 of 480 at pass start AND 0 of 480 after all 343 writes.** Recorded with
+  the caveat that playbook §J declared hazard #5 makes that figure true only of the moments it was
+  measured — TestRail re-renders case text hours later when a tester works in it, *without* moving
+  `updated_on`. It is not a durable state and is not claimed as one.
+
+---
+
+## 11 · One process failure of ours, recorded because it nearly cost a batch
+
+The final batch was originally chained to start automatically when its predecessor finished, using
+`while pgrep -f "write.py 205 305"; do sleep 5; done`. **That loop never exits**: the wrapper
+shell's own command line *contains* the string it is grepping for, so `pgrep` matches the wrapper
+itself, forever. The batch sat waiting on a process that was already dead — and, worse, a
+`pgrep -f "write.py 305 343"` liveness check returned **true** for the same reason, so the wrapper
+looked healthy while doing nothing.
+
+**It was caught by re-establishing state from live rather than trusting the in-memory picture**,
+and the check that settled it was reading the cases themselves: all sampled cases in the final
+range **still carried their old `refs`**, proving the batch had not run at all — as opposed to
+having run and half-failed. The wrapper was killed, the batch was run directly, and it completed
+clean.
+
+**Nothing was written twice and nothing was skipped**, which the 343/343 content check afterwards
+confirms independently. **The transferable lesson: never use `pgrep -f` on a pattern that appears
+in the watching process's own command line, and never treat a liveness check as evidence of
+progress — check the work product.**

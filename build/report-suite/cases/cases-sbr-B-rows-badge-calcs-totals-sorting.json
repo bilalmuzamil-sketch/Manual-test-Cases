@@ -46,7 +46,7 @@
     "viu_status": "VIU-Pending",
     "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-ROWLAYOUT): absorbed SBR-ROW-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8623; SV-8638 (SBR spec v15 2026-07-29 Story 5 S5-R2; S5-R3; S5-R6; S5-R8; S5-R10; S5-N2; Story 6 S6-R4; Story 18 S18-R4; S18-R6a + Story 21 S21-R7 — plus the Location column after Status)",
+    "refs": "SV-8623; SV-8638 (SBR spec v18 2026-08-07 Story 5 S5-R2; S5-R3; S5-R6; S5-R8; S5-R10; S5-N2; Story 6 S6-R4; Story 18 S18-R4; S18-R6a + Story 21 S21-R7 — plus the Location column after Status)",
     "testrail_id": "C30218",
     "section_id": 4312
   },
@@ -246,7 +246,7 @@
     "viu_status": "VIU-Pending",
     "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-BADGE): absorbed SBR-BADGE-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. TECH-PLAN NOTE 2026-07-30: include the deposit-covered prepaid invoice from SBR-STAT-02's seeding — that badge reading \"Partially Paid\" instead of \"Paid\" is the known bug-prone failure (engineering plan B6.2). AUDIT 2026-07-31 (Rule 20 / Dimension 3): a spec anchor was removed from the tester-facing expected - the assertion is unchanged; the anchor stays in this case's References field where it belongs. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8625 (SBR spec v15 2026-07-29 Story 8 S8-R1; S8-R2; S8-R4; S8-R5; S8-R6; S8-N1; §3 payment-status mapping; Story 18 S18-R6)",
+    "refs": "SV-8625 (SBR spec v18 2026-08-07 Story 8 S8-R1; S8-R2; S8-R4; S8-R5; S8-R6; S8-N1; §3 payment-status mapping; Story 18 S18-R6)",
     "testrail_id": "C30226",
     "section_id": 4313
   },
@@ -640,7 +640,7 @@
     "viu_status": "VIU-Pending",
     "notes": "BUILD-DELTA: the change log notes the current handler uses a tiered sort — plain A→Z is the committed target. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R4; §3 Key Decisions)",
+    "refs": "SV-8628 (SBR spec v18 2026-08-07 Story 11 S11-R4; §3 Key Decisions)",
     "testrail_id": "C30242",
     "section_id": 4316
   },
@@ -666,7 +666,7 @@
     "viu_status": "VIU-Pending",
     "notes": "Server-side sorting is covered by SBR-API-02. KNOWN-LIMITATION ENCODING: no header path back to A→Z is by design. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R5; Story 23 S23-R5)",
+    "refs": "SV-8628 (SBR spec v18 2026-08-07 Story 11 S11-R5; Story 23 S23-R5)",
     "testrail_id": "C30243",
     "section_id": 4316
   },
@@ -690,7 +690,7 @@
     "viu_status": "VIU-Pending",
     "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R2; Story 22 S22-R4)",
+    "refs": "SV-8628 (SBR spec v18 2026-08-07 Story 11 S11-R2; Story 22 S22-R4)",
     "testrail_id": "C30244",
     "section_id": 4316
   },
@@ -714,7 +714,7 @@
     "viu_status": "VIU-Pending",
     "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R7)",
+    "refs": "SV-8628 (SBR spec v18 2026-08-07 Story 11 S11-R7)",
     "testrail_id": "C30245",
     "section_id": 4316
   },
@@ -761,7 +761,7 @@
     "viu_status": "VIU-Pending",
     "notes": "The spec defines hours worked as the WO's clocked hours but does not say what happens when a clock record changes AFTER invoicing; the engineering plan (Phase 4 FR-F7 + drift correction #3) rebuilds the worked-hours/labor-cost side on any NON-VOID invoice while leaving the billed sell values untouched. Confirm live. The same stored values feed Sales By Customer, so a failure would show there too — one case guards both (kept single on purpose, Rule 28). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8626 (SBR spec v15 2026-07-29 §3 (hours worked = technician clocked hours recorded against that work order); Story 9 S9-R2; tech-plan-2026-07-29 Phase 4 FR-F7 clock-change rebuild)",
+    "refs": "SV-8626 (SBR spec v18 2026-08-07 §3 (hours worked = technician clocked hours recorded against that work order); Story 9 S9-R2; tech-plan-2026-07-29 Phase 4 FR-F7 clock-change rebuild)",
     "testrail_id": "C38894",
     "section_id": 4314
   }

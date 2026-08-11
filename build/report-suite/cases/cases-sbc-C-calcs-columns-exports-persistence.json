@@ -20,7 +20,7 @@
     "viu_status": "VIU-Pending",
     "notes": "KNOWN-LIMITATION ENCODING: Margin excluding Shop Supplies while Subtotal includes them is by design (§4) — a Margin % that looks 'low' against Subtotal is expected, not a defect. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed financial-column list/order to SBC §2 + S7-R6 + spec version, and records that Location is NOT a financial column so the enumeration is unaffected by the automatic Location column (S4-R12 / S20-R19). RULE 41: Re-verified whole against SBC spec v12 2026-07-29: title, precondition 1, steps 1-3, expected 1-4, refs. §2 L38 verbatim: \"The report shows these financial columns, in this order: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, and Margin %.\"; S7-R6 L298 repeats the set and adds Subtotal; S11-R1 L463 pins Subtotal rightmost. SECOND FINDING: checked whether the automatic Location column could invalidate this list - it cannot; S20-R19 places Location with the IDENTIFIER columns immediately after Date, outside the financial block. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8605 (SBC spec v16 2026-08-06 §2; §4 Terminology; Story 7 S7-R6; Story 11 S11-R1 — §2/S7-R6 CLOSE the financial-column list and its order; Location is an identifier column not a financial one [S4-R12; S20-R19] so it never enters this list)",
+    "refs": "SV-8605 (SBC spec v17 2026-08-10 §2; §4 Terminology; Story 7 S7-R6; Story 11 S11-R1 — §2/S7-R6 CLOSE the financial-column list and its order; Location is an identifier column not a financial one [S4-R12; S20-R19] so it never enters this list)",
     "testrail_id": "C30149",
     "section_id": 4298
   },
@@ -45,7 +45,7 @@
     "viu_status": "VIU-Pending",
     "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8605 (SBC spec v16 2026-08-06 Story 7 S7-R11; S7-R12; S7-R13; S7-R14)",
+    "refs": "SV-8605 (SBC spec v17 2026-08-10 Story 7 S7-R11; S7-R12; S7-R13; S7-R14)",
     "testrail_id": "C30150",
     "section_id": 4298
   },
@@ -69,7 +69,7 @@
     "viu_status": "VIU-Pending",
     "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8610 (SBC spec v16 2026-08-06 Story 12 S12-R1; S12-R2; S12-R3; S12-R4; S12-R5; S12-R6)",
+    "refs": "SV-8610 (SBC spec v17 2026-08-10 Story 12 S12-R1; S12-R2; S12-R3; S12-R4; S12-R5; S12-R6)",
     "testrail_id": "C30151",
     "section_id": 4298
   },
@@ -93,7 +93,7 @@
     "viu_status": "VIU-Pending",
     "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8610 (SBC spec v16 2026-08-06 Story 12 S12-N1; S12-E1; S12-E2)",
+    "refs": "SV-8610 (SBC spec v17 2026-08-10 Story 12 S12-N1; S12-E1; S12-E2)",
     "testrail_id": "C30152",
     "section_id": 4298
   },
@@ -118,7 +118,7 @@
     "viu_status": "VIU-Pending",
     "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8606 (SBC spec v16 2026-08-06 Story 8 S8-R13)",
+    "refs": "SV-8606 (SBC spec v17 2026-08-10 Story 8 S8-R13)",
     "testrail_id": "C30153",
     "section_id": 4298
   },
@@ -143,7 +143,7 @@
     "viu_status": "VIU-Pending",
     "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8609 (SBC spec v16 2026-08-06 Story 11 S11-R1; S11-R2; S11-R3; S11-N1)",
+    "refs": "SV-8609 (SBC spec v17 2026-08-10 Story 11 S11-R1; S11-R2; S11-R3; S11-N1)",
     "testrail_id": "C30154",
     "section_id": 4298
   },
@@ -168,7 +168,7 @@
     "viu_status": "VIU-Pending",
     "notes": "Server-side computation is covered by SBC-API-04. BUILD-DELTA: server-computed totals are the 2026-07-16 committed target (spec ahead of code by design). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8616 (SBC spec v16 2026-08-06 Story 18 S18-R6)",
+    "refs": "SV-8616 (SBC spec v17 2026-08-10 Story 18 S18-R6)",
     "testrail_id": "C30155",
     "section_id": 4298
   },
@@ -193,7 +193,7 @@
     "viu_status": "VIU-Pending",
     "notes": "2026-08-03 verifier-fix [C/V-10]: Pins the closed nine-toggle list to SBC S13-R4 + spec version, and adds the plain tester line that Location is not in the panel because it appears automatically — otherwise a tester with two locations in scope could fail a correct build. RULE 41: Re-verified whole against SBC spec v12 2026-07-29: title, precondition 1, steps 1-3, expected 1-4, refs. S13-R4 verbatim L528: \"The nine toggleable columns are, in order: Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %.\" S13-R1/R2/R3/R7 match expected 1-4. SECOND FINDING: the panel list and the automatic Location column (S4-R12) can confuse a layman - plain line added. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8611 (SBC spec v16 2026-08-06 Story 13 S13-R1; S13-R2; S13-R3; S13-R4; S13-R7 — S13-R4 CLOSES the nine-toggle list and its order; Location is automatic and never a toggle [S4-R12; S4-R13])",
+    "refs": "SV-8611 (SBC spec v17 2026-08-10 Story 13 S13-R1; S13-R2; S13-R3; S13-R4; S13-R7 — S13-R4 CLOSES the nine-toggle list and its order; Location is automatic and never a toggle [S4-R12; S4-R13])",
     "testrail_id": "C30156",
     "section_id": 4299
   },
@@ -218,7 +218,7 @@
     "viu_status": "VIU-Pending",
     "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-COLBOUNDS): absorbed SBC-COL-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8611 (SBC spec v16 2026-08-06 Story 13 S13-R5; S13-R6; S13-N1)",
+    "refs": "SV-8611 (SBC spec v17 2026-08-10 Story 13 S13-R5; S13-R6; S13-N1)",
     "testrail_id": "C30157",
     "section_id": 4299
   },
@@ -270,7 +270,7 @@
     "viu_status": "VIU-Pending",
     "notes": "Authored 2026-08-05 from Chris Ward's answer T1-1 option C. NOT live-verified: the QA branch redeployed to v3.5-16cf83f on 2026-08-05 and the session could not be renewed.",
     "api_related": false,
-    "refs": "SV-8611 (SBC spec v16 2026-08-06 Story 13 S13-R4 with S4-R12; the never-offered rule itself comes from Chris Ward's answer T1-1 option C of 2026-08-05 and is in no specification)",
+    "refs": "SV-8611 (SBC spec v17 2026-08-10 Story 13 S13-R4 with S4-R12; the never-offered rule itself comes from Chris Ward's answer T1-1 option C of 2026-08-05 and is in no specification)",
     "testrail_id": "C43550",
     "section_id": 4299
   },
@@ -295,7 +295,7 @@
     "viu_status": "VIU-Pending",
     "notes": "MENU RESHAPED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): 'Menu items: Download Summary (PDF), Download Expanded View (PDF), Download Summary (CSV), Download Expanded View (CSV)' + 'The Print option is removed.' The four labels are now SPEC-STATED by the message (VIU-confirm hedge removed) - still to be sighted live at VIU per Rule 12. Menu ORDER as listed in the message; confirm in the build. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed four-item menu + its verbatim labels to SBC S14-R1/R2 + S15-R1/R2 + spec version. The refs previously carried only a message date, not a spec version. RULE 41: Re-verified whole against SBC spec v12 2026-07-29: title, precondition 1, steps 1-3, expected 1-3, refs. S14-R1 L556 + S14-R2 L557 + S15-R1 L607 + S15-R2 L608 close the four items and their verbatim labels; S20-R16 L774 pins the menu leftmost in the action area. \"Print\" absence is the Chris Ward 2026-07-29 ruling (newest-wins) and is retained. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8612; SV-8613 (SBC spec v16 2026-08-06 S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 — these CLOSE the four-item menu and its verbatim labels; menu reshaped + \"Print\" removed per Chris Ward 2026-07-29 [newest-wins])",
+    "refs": "SV-8612; SV-8613 (SBC spec v17 2026-08-10 S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 — these CLOSE the four-item menu and its verbatim labels; menu reshaped + \"Print\" removed per Chris Ward 2026-07-29 [newest-wins])",
     "testrail_id": "C30159",
     "section_id": 4300
   },
@@ -322,7 +322,7 @@
     "viu_status": "VIU-Pending",
     "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-EXPNAME): absorbed SBC-EXP-07. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. CHANGED by the SBC spec v12 2026-07-29 S14-R14 / S15-R6 (Summary and Expanded file names). SPEC-WATCH item 3 CLOSED — the Summary/Expanded split is now spec-ratified. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S14-R15 (plain comma-separated .csv; not .xlsx and not JSON) added — already asserted in expected 4. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8612; SV-8613 (SBC spec v16 2026-08-06 S14-R14; S14-R15; S15-R6 — file names now carry the Summary/Expanded version; the old flat sales-by-customer-{range} map is superseded)",
+    "refs": "SV-8612; SV-8613 (SBC spec v17 2026-08-10 S14-R14; S14-R15; S15-R6 — file names now carry the Summary/Expanded version; the old flat sales-by-customer-{range} map is superseded)",
     "testrail_id": "C30160",
     "section_id": 4300
   },
@@ -347,7 +347,7 @@
     "viu_status": "VIU-Pending",
     "notes": "RESHAPED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): exports split Summary/Expanded and the Expanded View is 'the full Customer -> Asset -> Invoice breakdown', so the old 'no asset layer by design' known-limitation note is STALE and removed. Column order + blank-cell rules kept from the current spec until the changelog lands - reconcile then. Locations: line = all-reports change, same message. RATIFIED + EXTENDED by the SBC spec v12 2026-07-29: S14-R5 gives the exact thirteen-column Expanded order (Asset added), S14-R6 the per-level row shape, S14-R7 the \"Parts Sales\" asset row, S14-R13 the \"Locations:\" line. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S14-R8 (plain customer names; no \"(N)\" count) added — already asserted in expected 5, anchor was missing. STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8612; SV-8603 (SBC spec v16 2026-08-06 Story 14 S14-R5; S14-R6; S14-R7; S14-R8; S14-R13 + Story 4 S4-R13 — Expanded CSV thirteen columns INCLUDING Asset; per-level blank-cell rules; plus the automatic Location column in every export)",
+    "refs": "SV-8612; SV-8603 (SBC spec v17 2026-08-10 Story 14 S14-R5; S14-R6; S14-R7; S14-R8; S14-R13 + Story 4 S4-R13 — Expanded CSV thirteen columns INCLUDING Asset; per-level blank-cell rules; plus the automatic Location column in every export)",
     "testrail_id": "C30161",
     "section_id": 4300
   },
@@ -371,7 +371,7 @@
     "viu_status": "VIU-Pending",
     "notes": "COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S14-R9 (Margin % plain to one decimal; empty when Subtotal <= 0) added — already asserted in expected 1; the citation was off by one. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8612 (SBC spec v16 2026-08-06 Story 14 S14-R9; S14-R10; S14-R11; S14-R12; S14-R13)",
+    "refs": "SV-8612 (SBC spec v17 2026-08-10 Story 14 S14-R9; S14-R10; S14-R11; S14-R12; S14-R13)",
     "testrail_id": "C30162",
     "section_id": 4300
   },
@@ -396,7 +396,7 @@
     "viu_status": "VIU-Pending",
     "notes": "Server-side generation is covered by SBC-API-05. COMPANION-VIDEO 2026-07-30 (C11, 07:09-08:06): confirmed — 'when I export, only those, the information on the page is going to show up on the exports. Important you see what that toggle does.' Exports carry exactly the page contents under the Customer selection. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8601 (SBC spec v16 2026-08-06 Story 2 S2-R7; Story 3 S3-R7; Story 4 S4-R10; Story 14 S14-R3; Story 15 S15-R3; Story 18 S18-R7)",
+    "refs": "SV-8601 (SBC spec v17 2026-08-10 Story 2 S2-R7; Story 3 S3-R7; Story 4 S4-R10; Story 14 S14-R3; Story 15 S15-R3; Story 18 S18-R7)",
     "testrail_id": "C30163",
     "section_id": 4300
   },
@@ -422,7 +422,7 @@
     "viu_status": "VIU-Pending",
     "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-EXPTOAST): absorbed SBC-EXP-12. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. CHANGED by the SBC spec v12 2026-07-29 (S14-E1/S15-E1 now read \"While a CSV/PDF download is in progress, THAT menu item shows a loading state\"). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8612; SV-8613 (SBC spec v16 2026-08-06 Story 14 S14-E1; S14-N1; Story 15 S15-E1; S15-N1; §7 — the loading state is now per menu item; four items)",
+    "refs": "SV-8612; SV-8613 (SBC spec v17 2026-08-10 Story 14 S14-E1; S14-N1; Story 15 S15-E1; S15-N1; §7 — the loading state is now per menu item; four items)",
     "testrail_id": "C30164",
     "section_id": 4300
   },
@@ -469,7 +469,7 @@
     "viu_status": "VIU-Pending",
     "notes": "FIX-WORDING repair 2026-07-28 (sense-check): the 25px margin is not measurable by eye — the observable pass criterion is A4 landscape + uniform margins + footer + page numbers; the exact 25px stays as an inspector-only check. STAGE-2B CONSISTENCY REPAIR 2026-07-31: S15-R7 (A4 landscape / 25px margins / standard font) and S15-R8 (footer) added — both already asserted in expected 1 and 2; the anchor sat on the sibling header case SBC-EXP-09 (C30167) instead. Found by the same-requirement-different-surface sweep. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8613 (SBC spec v16 2026-08-06 Story 15 S15-R5; S15-R6; S15-R7; S15-R8 — A4 landscape; 25px margins; standard font; footer label and page numbers)",
+    "refs": "SV-8613 (SBC spec v17 2026-08-10 Story 15 S15-R5; S15-R6; S15-R7; S15-R8 — A4 landscape; 25px margins; standard font; footer label and page numbers)",
     "testrail_id": "C30166",
     "section_id": 4300
   },
@@ -493,7 +493,7 @@
     "viu_status": "DEVIATION",
     "notes": "REVERSED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every PDF now carries a \"Locations:\" line (the old expected #4 asserted location is NOT shown - removed). KNOWN-LIMITATION ENCODING kept: the header uses \"Mon D, YYYY\" while body Date cells use \"Mon DD YYYY\" - intentional per the S15-R9 context note; do not file it as an inconsistency. LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. | 2026-08-03 verifier-fix [A/V-3]: Adds SBC S4-R13 (suite export rule) AND S15-R14 (the PDF-header \"Locations:\" line, the anchor that most directly governs this case) so a change to either re-surfaces C30167. Both verified verbatim in the current SBC mirror. RULE 41: Re-verified whole against SBC spec v12 2026-07-29 (spec-current-2026-07-31/Sales-By-Customer-Report-current.md): title, preconditions, steps, expected 1-4, refs, notes. S15-R7 (A4 landscape/25px), S15-R8..R11 and S15-R14 all resolve; expected 1-4 match them. SECOND FINDING: the precise governing anchor S15-R14 (\"The header shows a 'Locations:' line ... (S4-R13)\", L623) was never cited - added alongside S4-R13. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md | STATUS CORRECTED 2026-08-04 (final-push pass): the recorded VIU-Observed-PASS contradicted this case's own captured evidence, so the ledger status is DEVIATION. Local status only — no TestRail field carries it.",
     "api_related": false,
-    "refs": "SV-8613 (SBC spec v16 2026-08-06 Story 15 S15-R7; S15-R8; S15-R9; S15-R10; S15-R11; S15-R14 + Story 4 S4-R13 — PDF header block; S15-R14/S4-R13 = the \"Locations:\" line in every export [Chris Ward 2026-07-29; newest-wins])",
+    "refs": "SV-8613 (SBC spec v17 2026-08-10 Story 15 S15-R7; S15-R8; S15-R9; S15-R10; S15-R11; S15-R14 + Story 4 S4-R13 — PDF header block; S15-R14/S4-R13 = the \"Locations:\" line in every export [Chris Ward 2026-07-29; newest-wins])",
     "testrail_id": "C30167",
     "section_id": 4300
   },
@@ -518,7 +518,7 @@
     "viu_status": "VIU-Pending",
     "notes": "The no-logo-at-all state (step 3 of the fallback) may not be reachable if the bundled logo always exists — record what is observed. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S15-R16 (scales without distortion) S15-R17 (logo fallback order) and S15-R18 (no-logo layout) added - all three already asserted in expected 1-3; the existing S15-R12..R15 citations are kept. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8613 (SBC spec v16 2026-08-06 Story 15 S15-R12; S15-R13; S15-R14; S15-R15; S15-R16; S15-R17; S15-R18)",
+    "refs": "SV-8613 (SBC spec v17 2026-08-10 Story 15 S15-R12; S15-R13; S15-R14; S15-R15; S15-R16; S15-R17; S15-R18)",
     "testrail_id": "C30168",
     "section_id": 4300
   },
@@ -611,7 +611,7 @@
     "viu_status": "VIU-Pending",
     "notes": "Server-side enforcement is covered by SBC-API-05. BUILD-DELTA: the 10,000-row cap is the 2026-07-21 spec round — the current build may lack it at VIU. Video P25 (user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): the Print step/expectation was removed with the Print control (spec S16-R6 had capped Print too); title shortened to fit. Q2 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A 'great catch'): ONE message across all six reports — \"This report is too large to export. Narrow the date range or filters, then try again.\" The Sales By Customer spec text still carries the retired \"This export is too large to generate…\" wording; Chris's spec edit is pending. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S14-R16 (CSV cap) and S15-R25 (PDF cap) added - the pre-v12 S14-R14/S15-R22 citations are kept so no other requirement loses its anchor. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8612; SV-8613 (SBC spec v16 2026-08-06 S14-R16 CSV cap; S15-R25 PDF cap; S14-R14; S15-R22; §7 — Print leg REMOVED per kickoff video P25 31:14; user ruling 2026-07-28 video-overrides-spec)",
+    "refs": "SV-8612; SV-8613 (SBC spec v17 2026-08-10 S14-R16 CSV cap; S15-R25 PDF cap; S14-R14; S15-R22; §7 — Print leg REMOVED per kickoff video P25 31:14; user ruling 2026-07-28 video-overrides-spec)",
     "testrail_id": "C30172",
     "section_id": 4300
   },
@@ -632,7 +632,7 @@
     "viu_status": "VIU-Pending",
     "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8616 (SBC spec v16 2026-08-06 Story 18 S18-R10)",
+    "refs": "SV-8616 (SBC spec v17 2026-08-10 Story 18 S18-R10)",
     "testrail_id": "C30173",
     "section_id": 4300
   },
@@ -657,7 +657,7 @@
     "viu_status": "VIU-Pending",
     "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8604 (SBC spec v16 2026-08-06 Story 6 S6-R1; S6-R2; S6-R4; Story 2 S2-R8; Story 3 S3-R8; Story 4 S4-R11; Story 10 S10-R9; Story 13 S13-R8)",
+    "refs": "SV-8604 (SBC spec v17 2026-08-10 Story 6 S6-R1; S6-R2; S6-R4; Story 2 S2-R8; Story 3 S3-R8; Story 4 S4-R11; Story 10 S10-R9; Story 13 S13-R8)",
     "testrail_id": "C30174",
     "section_id": 4301
   },
@@ -682,7 +682,7 @@
     "viu_status": "VIU-Pending",
     "notes": "KNOWN-LIMITATION ENCODING per S6-R3 context note. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8604 (SBC spec v16 2026-08-06 Story 6 S6-R3; Story 8 S8-R22)",
+    "refs": "SV-8604 (SBC spec v17 2026-08-10 Story 6 S6-R3; Story 8 S8-R22)",
     "testrail_id": "C30175",
     "section_id": 4301
   },
@@ -707,7 +707,7 @@
     "viu_status": "VIU-Pending",
     "notes": "The other invalid-value classes (unknown range / removed sort column / column-set mismatch) generally require a build change to provoke — verify what is provocable and record the rest as not-provocable-with-reason. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8604 (SBC spec v16 2026-08-06 Story 6 S6-R5; S6-R6)",
+    "refs": "SV-8604 (SBC spec v17 2026-08-10 Story 6 S6-R5; S6-R6)",
     "testrail_id": "C30176",
     "section_id": 4301
   },
@@ -731,7 +731,7 @@
     "viu_status": "VIU-Pending",
     "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8604 (SBC spec v16 2026-08-06 Story 6 S6-R7)",
+    "refs": "SV-8604 (SBC spec v17 2026-08-10 Story 6 S6-R7)",
     "testrail_id": "C30177",
     "section_id": 4301
   },
@@ -757,7 +757,7 @@
     "viu_status": "VIU-Pending",
     "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-DEFAULTS): absorbed SBC-DATE-02, SBC-LOC-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8604 (SBC spec v16 2026-08-06 Story 6 S6-N1; Story 2 S2-R5; Story 4 S4-R4)",
+    "refs": "SV-8604 (SBC spec v17 2026-08-10 Story 6 S6-N1; Story 2 S2-R5; Story 4 S4-R4)",
     "testrail_id": "C30178",
     "section_id": 4301
   },
@@ -782,7 +782,7 @@
     "viu_status": "VIU-Pending",
     "notes": "KNOWN-LIMITATION ENCODING per the S2-R9 context note — do not file the ignored link as a defect. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8601 (SBC spec v16 2026-08-06 Story 2 S2-R9)",
+    "refs": "SV-8601 (SBC spec v17 2026-08-10 Story 2 S2-R9)",
     "testrail_id": "C30179",
     "section_id": 4301
   },
@@ -807,7 +807,7 @@
     "viu_status": "VIU-Pending",
     "notes": "BUILD-DELTA: the explicit all-customers flag is the 2026-07-21 committed target — the current build may store an id enumeration at VIU. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8616 (SBC spec v16 2026-08-06 Story 18 S18-R8)",
+    "refs": "SV-8616 (SBC spec v17 2026-08-10 Story 18 S18-R8)",
     "testrail_id": "C30180",
     "section_id": 4301
   },
@@ -832,7 +832,7 @@
     "viu_status": "VIU-Pending",
     "notes": "RATIFIED + EXTENDED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): 'Exports now come in Summary and Expanded versions, for both PDF and CSV (matching Sales By Rep). Summary = one row per customer; Expanded = the full Customer -> Asset -> Invoice breakdown.' Menu labels now spec-stated (VIU-confirm hedge removed) - still to be sighted live at VIU per Rule 12. Exact Summary column set pending the updated spec changelog. Added to TestRail 2026-07-28 as C38856; this reshape is LOCAL, awaiting push authorization. RATIFIED by the SBC spec v12 2026-07-29 (S14-R4 Summary columns). SPEC-WATCH item 3 CLOSED. STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | 2026-08-03 verifier-fix [B/V-2]: Expands the slash shorthand \"S14-R1/R2/R4\" and \"S15-R1/R2/R4/R5\" into full, greppable anchors. Before this change S14-R2, S14-R4, S15-R2, S15-R4 and S15-R5 were invisible to any anchor-based re-check — C38856 was the only case in the suite writing refs this way. RULE 41: Re-verified whole against SBC spec v12 2026-07-29: title, precondition 1, steps 1-3, expected 1-5, refs, notes. All eight anchors resolve (S14-R1 L556, S14-R2 L557, S14-R4, S15-R1 L607, S15-R2 L608, S15-R4, S15-R5, S4-R13 L231). Expected 5 is already scope-conditional (\"With a single location in scope ...\"), so no Rule-42 rewrite is needed. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8612; SV-8613; SV-8603 (SBC spec v16 2026-08-06 S14-R1; S14-R2; S14-R4; S15-R1; S15-R2; S15-R4; S15-R5; S4-R13 — the four-item Summary/Expanded menu; the Summary column list; the automatic Location column in every export)",
+    "refs": "SV-8612; SV-8613; SV-8603 (SBC spec v17 2026-08-10 S14-R1; S14-R2; S14-R4; S15-R1; S15-R2; S15-R4; S15-R5; S4-R13 — the four-item Summary/Expanded menu; the Summary column list; the automatic Location column in every export)",
     "testrail_id": "C38856",
     "section_id": 4300
   },
@@ -856,7 +856,7 @@
       "5. Put the organization's original logo back."
     ],
     "expected": "1. With a logo that loads, that logo is shown at the top right, sized to fit without being stretched.\n2. With a logo that is set but will not load, the built-in ShopView logo is shown in its place - not a blank space, not a broken-picture icon, and no error message.\n3. With no logo uploaded at all, NO logo is shown and the header text spreads out to fill the space.\n4. All six reports behave the same way.\n5. Note for the tester: step 2 is the difficult part. If you cannot get the organization into that state, mark this test Blocked and say so plainly - do not guess the answer.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. His words are: \"Use the company's own uploaded logo. If a logo is set but fails to load, fall back to the built-in ShopView logo. If no logo is uploaded, print no logo and let the text fill the space.\" This DIFFERS from the Sales By Customer report specification version 17 (S15-R17), read on 11 August 2026, which shows the built-in ShopView logo when no logo has been uploaded rather than when an uploaded one fails to load, and we have taken his newer decision as the one that prevails.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: HOLD - this organisation has a logo that loads correctly, so the set-but-will-not-load fallback cannot be produced",
-    "refs": "SV-8613 (SBC spec v16 2026-08-06 Story 15 S15-R17 and S15-R18 - the logo order and the no-logo layout; the set-but-fails-to-load step is Chris Ward's answer T3-4 option C of 2026-08-05 alone)",
+    "refs": "SV-8613 (SBC spec v17 2026-08-10 Story 15 S15-R17 and S15-R18 - the logo order and the no-logo layout; the set-but-fails-to-load step is Chris Ward's answer T3-4 option C of 2026-08-05 alone)",
     "spec_ref": "SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R17 and S15-R18 - the logo order and the no-logo layout; the set-but-fails-to-load step is Chris Ward's answer T3-4 option C of 2026-08-05 alone)",
     "testrail_id": "C43553",
     "section_id": 4300

@@ -1000,7 +1000,9 @@ The Unassigned row appears in both CSV downloads only when the toggle is on,SBR 
 ---
 Scope note: this case covers the CSV only. The same rule applies to both PDF downloads (the Summary PDF grand-totals row aggregates Unassigned; the Expanded PDF gets its own top page-block), but PDF body structure is not observable by the automation suite — see the Deferred PDF-visual cases.
 
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification (S22-R2, S22-R4, S14-R19), read on 11 August 2026.",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R19; Story 22 S22-R2; S22-R4),,
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S22-R2, S22-R4, S14-R19), read on 11 August 2026.
+
+AUTOMATION: READY",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R19; Story 22 S22-R2; S22-R4),,
 A failed download shows the canonical error toast,SBR — Exports,Negative,Medium,"1. You are on the report with data showing.
 2. You can force a download failure (for example, cut the network just after triggering the download) — if not forceable, mark this Blocked with the reason.
 3. To force the failure this test needs, use the browser's own developer tools: press F12, open the ""Network"" tab, and switch the throttling dropdown (it normally reads ""No throttling"") to ""Offline"" to cut the connection, or to ""Slow 3G"" to slow it down. There is nothing to install. Set it back to ""No throttling"" when you finish.","1. Trigger a PDF download and watch the menu action while the file is being generated.
