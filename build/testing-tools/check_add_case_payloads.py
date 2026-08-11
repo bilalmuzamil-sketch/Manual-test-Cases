@@ -92,6 +92,19 @@ KNOWN_VERIFIERS = {
     "build/testing-tools/check_add_case_payloads.py",
     "build/testing-tools/testrail_add_case.py",
 }
+
+# CORRECTED 2026-08-11 (Schedule follow-up push, item 4). These three were the live warning
+# this guard raised on 2026-08-11: each printed "atmstatus==3" as the thing to look for, which
+# would read a correctly-created case (1) as broken. Each now states 1 as the EXPECTED value
+# and keeps a `== 3` comparison ONLY to report the exception, which is a positive duty under
+# Standing Rule 65 (a case TestRail flags as Automated must be reported to Vlad when we change
+# it). So the comparison is legitimate here and is registered rather than removed — removing it
+# would delete the Rule-65 report along with the hazard.
+KNOWN_VERIFIERS |= {
+    "build/filters/read-dates-2026-08-11/tools/snap.py",
+    "build/schedule/read-dates-2026-08-11/tools/final_verify.py",
+    "build/schedule/read-dates-2026-08-11/tools/snap.py",
+}
 SKIP_DIRS = {".git", "__pycache__", "node_modules", ".venv"}
 EXTS = {".py", ".js", ".mjs", ".cjs", ".ts"}
 

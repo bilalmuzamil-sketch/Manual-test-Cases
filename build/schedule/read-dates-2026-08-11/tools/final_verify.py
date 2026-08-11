@@ -33,6 +33,10 @@ for cid,c in post.items():
     if 'as per the build tested on' in e: bad.append((cid,'barred'))
     if not e.rstrip().endswith(('AUTOMATION: READY',)) and 'AUTOMATION: HOLD' not in e and 'EXPECT FAIL' not in e: bad.append((cid,'marker-not-last'))
 print('invariant breaches:', bad)
-print('atmstatus==3 after:', [k for k,v in post.items() if v.get('custom_atmstatus')==3])
+# CORRECTED 2026-08-11: 1 ('Not Automated') is the EXPECTED value on a case we
+# created (testrail_add_case.py::verify_created_case); 3 is Vlad's own flag and is
+# the EXCEPTION to report (Rule 65), never the pass condition.
+print('atmstatus==1 after (expected on cases we created):', sum(1 for v in post.values() if v.get('custom_atmstatus')==1))
+print('atmstatus==3 after (Automated - TELL VLAD if we changed any, Rule 65):', [k for k,v in post.items() if v.get('custom_atmstatus')==3])
 print('created_by not 3:', [k for k,v in post.items() if v.get('created_by')!=3])
 print('verified at', dt.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'))

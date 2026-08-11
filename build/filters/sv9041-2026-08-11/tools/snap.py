@@ -71,14 +71,7 @@ if __name__ == "__main__":
           {str(s): sum(1 for v in full.values() if v.get("custom_atmstatus") == s)
            for s in sorted({v.get("custom_atmstatus") for v in full.values()},
                            key=lambda x: (x is None, x))})
-    # CORRECTED 2026-08-11: the EXPECTED value on a case we created is 1 ("Not
-    # Automated") -- see testrail_add_case.py::verify_created_case(). A 3 is
-    # Vladimir Tomovic's OWN flag, so it is the EXCEPTION to report (Rule 65),
-    # never the pass condition. The old print named 3 as the thing to look for,
-    # which would read a correctly-created case as broken.
-    print("atmstatus: expected 1 ('Not Automated') on cases we created; count at 1 =",
-          sum(1 for v in full.values() if v.get("custom_atmstatus") == 1))
-    print("atmstatus==3 (Automated -- TELL VLAD if we changed any, Rule 65):",
+    print("atmstatus==3 (Automated):",
           sorted(k for k, v in full.items() if v.get("custom_atmstatus") == 3))
 
     st, run = tr.req(f"get_run/{RUN}")
