@@ -1,5 +1,5 @@
 {
- "vocab": 909,
+ "vocab": 1144,
  "labels": 43,
  "rows": [
   {
@@ -21,7 +21,9 @@
     "12-cell-leftclick",
     "13-cell-rightclick",
     "14-week-view",
-    "15-month-view"
+    "15-month-view",
+    "20-filters-active",
+    "22-search-vuchester"
    ],
    "cases": {
     "30046": [
@@ -36,6 +38,19 @@
     ],
     "30051": [
      "custom_steps"
+    ]
+   }
+  },
+  {
+   "label": "Cancel",
+   "verdict": "CASE",
+   "build": "cancel",
+   "surfaces": [
+    "22-search-vuchester"
+   ],
+   "cases": {
+    "29967": [
+     "custom_expected"
     ]
    }
   },
@@ -78,9 +93,15 @@
   {
    "label": "Filter",
    "verdict": "EXACT-IN-CONTEXT",
-   "build": "FILTERS",
+   "build": "Filters",
    "surfaces": [
-    "04-sidebar-filters"
+    "01-day-view",
+    "02-filter-display-menu",
+    "03-view-options-menu",
+    "04-sidebar-filters",
+    "05-conflicts",
+    "06-search-toggle",
+    "22-search-vuchester"
    ],
    "cases": {
     "29936": [
@@ -271,17 +292,6 @@
     "29967": [
      "custom_expected",
      "custom_steps"
-    ]
-   }
-  },
-  {
-   "label": "Cancel",
-   "verdict": "NOT-ON-HARVESTED-SURFACES",
-   "build": null,
-   "surfaces": [],
-   "cases": {
-    "29967": [
-     "custom_expected"
     ]
    }
   },
@@ -479,7 +489,8 @@
     "03-view-options-menu",
     "04-sidebar-filters",
     "05-conflicts",
-    "06-search-toggle"
+    "06-search-toggle",
+    "22-search-vuchester"
    ],
    "cases": {
     "29939": [
@@ -560,7 +571,9 @@
     "12-cell-leftclick",
     "13-cell-rightclick",
     "14-week-view",
-    "15-month-view"
+    "15-month-view",
+    "20-filters-active",
+    "22-search-vuchester"
    ],
    "cases": {
     "30006": [
@@ -591,7 +604,9 @@
     "12-cell-leftclick",
     "13-cell-rightclick",
     "14-week-view",
-    "15-month-view"
+    "15-month-view",
+    "20-filters-active",
+    "22-search-vuchester"
    ],
    "cases": {
     "30029": [
@@ -633,7 +648,8 @@
     "04-sidebar-filters",
     "05-conflicts",
     "06-search-toggle",
-    "15-month-view"
+    "15-month-view",
+    "22-search-vuchester"
    ],
    "cases": {
     "29939": [
@@ -651,7 +667,8 @@
     "03-view-options-menu",
     "04-sidebar-filters",
     "05-conflicts",
-    "06-search-toggle"
+    "06-search-toggle",
+    "22-search-vuchester"
    ],
    "cases": {
     "29942": [
@@ -674,7 +691,8 @@
     "12-cell-leftclick",
     "13-cell-rightclick",
     "14-week-view",
-    "15-month-view"
+    "15-month-view",
+    "20-filters-active"
    ],
    "cases": {
     "29950": [
@@ -695,7 +713,8 @@
     "12-cell-leftclick",
     "13-cell-rightclick",
     "14-week-view",
-    "15-month-view"
+    "15-month-view",
+    "20-filters-active"
    ],
    "cases": {
     "29953": [
