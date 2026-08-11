@@ -68,8 +68,9 @@ if __name__ == "__main__":
     for k, v in sorted(by.items(), key=lambda x: -len(x[1])):
         print(f"   created_by={k}: {len(v)} cases {'' if k == 3 else v}")
     print("custom_atmstatus census:",
-          {s: sum(1 for v in full.values() if v.get("custom_atmstatus") == s)
-           for s in sorted({v.get("custom_atmstatus") for v in full.values()})})
+          {str(s): sum(1 for v in full.values() if v.get("custom_atmstatus") == s)
+           for s in sorted({v.get("custom_atmstatus") for v in full.values()},
+                           key=lambda x: (x is None, x))})
     print("atmstatus==3 (Automated):",
           sorted(k for k, v in full.items() if v.get("custom_atmstatus") == 3))
 

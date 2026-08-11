@@ -1,0 +1,736 @@
+{
+ "vocab": 909,
+ "labels": 43,
+ "rows": [
+  {
+   "label": "View Options",
+   "verdict": "CASE",
+   "build": "View options",
+   "surfaces": [
+    "01-day-view",
+    "02-filter-display-menu",
+    "03-view-options-menu",
+    "04-sidebar-filters",
+    "05-conflicts",
+    "06-search-toggle",
+    "07-wo-card-expanded",
+    "08-shift-tooltip",
+    "09-shift-modal",
+    "10-series-block",
+    "11-event-block",
+    "12-cell-leftclick",
+    "13-cell-rightclick",
+    "14-week-view",
+    "15-month-view"
+   ],
+   "cases": {
+    "30046": [
+     "custom_steps",
+     "title"
+    ],
+    "30047": [
+     "custom_steps"
+    ],
+    "30050": [
+     "custom_steps"
+    ],
+    "30051": [
+     "custom_steps"
+    ]
+   }
+  },
+  {
+   "label": "Filter & Display",
+   "verdict": "CASE",
+   "build": "Filter & display",
+   "surfaces": [
+    "02-filter-display-menu"
+   ],
+   "cases": {
+    "30042": [
+     "custom_steps",
+     "title"
+    ]
+   }
+  },
+  {
+   "label": "N Lines",
+   "verdict": "VARIANT",
+   "build": "8 Lines",
+   "surfaces": [
+    "14-week-view"
+   ],
+   "cases": {
+    "29964": [
+     "custom_expected"
+    ],
+    "29973": [
+     "custom_expected"
+    ],
+    "29992": [
+     "title"
+    ],
+    "30011": [
+     "custom_expected"
+    ]
+   }
+  },
+  {
+   "label": "Filter",
+   "verdict": "EXACT-IN-CONTEXT",
+   "build": "FILTERS",
+   "surfaces": [
+    "04-sidebar-filters"
+   ],
+   "cases": {
+    "29936": [
+     "custom_expected"
+    ],
+    "29943": [
+     "custom_steps"
+    ],
+    "29944": [
+     "custom_steps"
+    ],
+    "29945": [
+     "custom_steps"
+    ],
+    "29946": [
+     "custom_expected",
+     "custom_steps"
+    ],
+    "29947": [
+     "custom_steps"
+    ]
+   }
+  },
+  {
+   "label": "VIN",
+   "verdict": "EXACT-IN-CONTEXT",
+   "build": "VIN Number",
+   "surfaces": [
+    "02-filter-display-menu"
+   ],
+   "cases": {
+    "30042": [
+     "custom_expected"
+    ]
+   }
+  },
+  {
+   "label": "Part of a series",
+   "verdict": "EXACT-IN-CONTEXT",
+   "build": "Part of a series \u00b7 Shift 2 of 4",
+   "surfaces": [
+    "10-series-block"
+   ],
+   "cases": {
+    "43556": [
+     "custom_preconds",
+     "custom_steps"
+    ]
+   }
+  },
+  {
+   "label": "Schedule whole work order",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "29956": [
+     "custom_expected"
+    ],
+    "29963": [
+     "custom_expected"
+    ],
+    "29964": [
+     "custom_steps",
+     "title"
+    ]
+   }
+  },
+  {
+   "label": "Select multiple",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "29956": [
+     "custom_expected"
+    ],
+    "29965": [
+     "custom_steps"
+    ],
+    "29967": [
+     "custom_expected",
+     "custom_steps",
+     "title"
+    ]
+   }
+  },
+  {
+   "label": "Full estimate",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "29979": [
+     "custom_expected",
+     "custom_steps"
+    ],
+    "29983": [
+     "custom_steps"
+    ],
+    "29986": [
+     "custom_steps"
+    ]
+   }
+  },
+  {
+   "label": "Needs techs",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "29952": [
+     "custom_expected",
+     "title"
+    ],
+    "29961": [
+     "custom_expected"
+    ]
+   }
+  },
+  {
+   "label": "Change scope",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "29958": [
+     "custom_expected"
+    ],
+    "29978": [
+     "custom_expected",
+     "custom_steps",
+     "title"
+    ]
+   }
+  },
+  {
+   "label": "Andrew Wade",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "29939": [
+     "custom_expected"
+    ]
+   }
+  },
+  {
+   "label": "Clear all",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "29946": [
+     "custom_steps",
+     "title"
+    ]
+   }
+  },
+  {
+   "label": "Complete",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "29950": [
+     "custom_expected"
+    ]
+   }
+  },
+  {
+   "label": "All / Unscheduled",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "29954": [
+     "title"
+    ]
+   }
+  },
+  {
+   "label": "Select all",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "29967": [
+     "custom_expected",
+     "custom_steps"
+    ]
+   }
+  },
+  {
+   "label": "Cancel",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "29967": [
+     "custom_expected"
+    ]
+   }
+  },
+  {
+   "label": "ZZAUTOTEST note",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "30013": [
+     "custom_steps"
+    ]
+   }
+  },
+  {
+   "label": "Adjust",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "30014": [
+     "custom_expected",
+     "custom_steps",
+     "title"
+    ]
+   }
+  },
+  {
+   "label": "Reassign",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "30015": [
+     "custom_expected",
+     "custom_steps"
+    ]
+   }
+  },
+  {
+   "label": "ZZAUTOTEST stand-up",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "30016": [
+     "custom_steps"
+    ]
+   }
+  },
+  {
+   "label": "Starts before working hours",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "30025": [
+     "custom_expected"
+    ]
+   }
+  },
+  {
+   "label": "Extends past working hours",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "30025": [
+     "custom_expected"
+    ]
+   }
+  },
+  {
+   "label": "X / Yh",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "30034": [
+     "custom_expected"
+    ]
+   }
+  },
+  {
+   "label": "View Day",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "30054": [
+     "custom_expected"
+    ]
+   }
+  },
+  {
+   "label": "New Shift",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "30054": [
+     "custom_expected"
+    ]
+   }
+  },
+  {
+   "label": "ZZAUTOTEST Rush",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "30073": [
+     "custom_expected",
+     "custom_steps"
+    ]
+   }
+  },
+  {
+   "label": "Time Clock",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "30084": [
+     "custom_preconds",
+     "title"
+    ]
+   }
+  },
+  {
+   "label": "Reset To Template",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "38926": [
+     "custom_steps"
+    ]
+   }
+  },
+  {
+   "label": "Add hours",
+   "verdict": "NOT-ON-HARVESTED-SURFACES",
+   "build": null,
+   "surfaces": [],
+   "cases": {
+    "38850": [
+     "custom_expected",
+     "custom_steps",
+     "title"
+    ]
+   }
+  },
+  {
+   "label": "Create Event",
+   "verdict": "EXACT",
+   "build": "Create Event",
+   "surfaces": [
+    "12-cell-leftclick"
+   ],
+   "cases": {
+    "30016": [
+     "custom_expected",
+     "custom_steps",
+     "title"
+    ],
+    "30017": [
+     "custom_expected",
+     "custom_steps"
+    ],
+    "30018": [
+     "custom_preconds"
+    ],
+    "30054": [
+     "custom_expected"
+    ],
+    "30075": [
+     "custom_expected"
+    ],
+    "30077": [
+     "custom_steps"
+    ],
+    "38855": [
+     "custom_preconds"
+    ]
+   }
+  },
+  {
+   "label": "Search work orders",
+   "verdict": "EXACT",
+   "build": "Search work orders",
+   "surfaces": [
+    "01-day-view",
+    "02-filter-display-menu",
+    "03-view-options-menu",
+    "04-sidebar-filters",
+    "05-conflicts",
+    "06-search-toggle"
+   ],
+   "cases": {
+    "29939": [
+     "custom_steps",
+     "title"
+    ],
+    "29940": [
+     "custom_steps"
+    ],
+    "29941": [
+     "custom_steps"
+    ],
+    "29947": [
+     "custom_steps"
+    ]
+   }
+  },
+  {
+   "label": "My Shifts",
+   "verdict": "EXACT",
+   "build": "My Shifts",
+   "surfaces": [
+    "02-filter-display-menu"
+   ],
+   "cases": {
+    "30042": [
+     "custom_expected"
+    ],
+    "30044": [
+     "custom_expected",
+     "custom_steps",
+     "title"
+    ],
+    "30082": [
+     "custom_expected",
+     "custom_steps"
+    ]
+   }
+  },
+  {
+   "label": "New Work Order",
+   "verdict": "EXACT",
+   "build": "New Work Order",
+   "surfaces": [
+    "12-cell-leftclick"
+   ],
+   "cases": {
+    "30054": [
+     "custom_expected"
+    ],
+    "30075": [
+     "custom_expected"
+    ],
+    "38855": [
+     "custom_expected",
+     "custom_preconds",
+     "custom_steps",
+     "title"
+    ]
+   }
+  },
+  {
+   "label": "Today",
+   "verdict": "EXACT",
+   "build": "Today",
+   "surfaces": [
+    "01-day-view",
+    "02-filter-display-menu",
+    "03-view-options-menu",
+    "04-sidebar-filters",
+    "05-conflicts",
+    "06-search-toggle",
+    "07-wo-card-expanded",
+    "08-shift-tooltip",
+    "09-shift-modal",
+    "10-series-block",
+    "11-event-block",
+    "12-cell-leftclick",
+    "13-cell-rightclick",
+    "14-week-view",
+    "15-month-view"
+   ],
+   "cases": {
+    "30006": [
+     "custom_preconds"
+    ],
+    "30039": [
+     "custom_steps",
+     "title"
+    ]
+   }
+  },
+  {
+   "label": "OT",
+   "verdict": "EXACT",
+   "build": "OT",
+   "surfaces": [
+    "01-day-view",
+    "02-filter-display-menu",
+    "03-view-options-menu",
+    "04-sidebar-filters",
+    "05-conflicts",
+    "06-search-toggle",
+    "07-wo-card-expanded",
+    "08-shift-tooltip",
+    "09-shift-modal",
+    "10-series-block",
+    "11-event-block",
+    "12-cell-leftclick",
+    "13-cell-rightclick",
+    "14-week-view",
+    "15-month-view"
+   ],
+   "cases": {
+    "30029": [
+     "custom_expected",
+     "custom_steps"
+    ],
+    "30032": [
+     "custom_expected",
+     "title"
+    ]
+   }
+  },
+  {
+   "label": "VIN Number",
+   "verdict": "EXACT",
+   "build": "VIN Number",
+   "surfaces": [
+    "02-filter-display-menu"
+   ],
+   "cases": {
+    "30034": [
+     "custom_expected"
+    ],
+    "30045": [
+     "custom_expected",
+     "custom_steps",
+     "title"
+    ]
+   }
+  },
+  {
+   "label": "Vuchester Retail",
+   "verdict": "EXACT",
+   "build": "Vuchester Retail",
+   "surfaces": [
+    "01-day-view",
+    "02-filter-display-menu",
+    "03-view-options-menu",
+    "04-sidebar-filters",
+    "05-conflicts",
+    "06-search-toggle",
+    "15-month-view"
+   ],
+   "cases": {
+    "29939": [
+     "custom_expected"
+    ]
+   }
+  },
+  {
+   "label": "Filters",
+   "verdict": "EXACT",
+   "build": "Filters",
+   "surfaces": [
+    "01-day-view",
+    "02-filter-display-menu",
+    "03-view-options-menu",
+    "04-sidebar-filters",
+    "05-conflicts",
+    "06-search-toggle"
+   ],
+   "cases": {
+    "29942": [
+     "custom_expected",
+     "custom_steps",
+     "title"
+    ]
+   }
+  },
+  {
+   "label": "Authorized",
+   "verdict": "EXACT",
+   "build": "Authorized",
+   "surfaces": [
+    "07-wo-card-expanded",
+    "08-shift-tooltip",
+    "09-shift-modal",
+    "10-series-block",
+    "11-event-block",
+    "12-cell-leftclick",
+    "13-cell-rightclick",
+    "14-week-view",
+    "15-month-view"
+   ],
+   "cases": {
+    "29950": [
+     "custom_expected"
+    ]
+   }
+  },
+  {
+   "label": "Search lines",
+   "verdict": "EXACT",
+   "build": "Search lines",
+   "surfaces": [
+    "07-wo-card-expanded",
+    "08-shift-tooltip",
+    "09-shift-modal",
+    "10-series-block",
+    "11-event-block",
+    "12-cell-leftclick",
+    "13-cell-rightclick",
+    "14-week-view",
+    "15-month-view"
+   ],
+   "cases": {
+    "29953": [
+     "title"
+    ]
+   }
+  },
+  {
+   "label": "Work Order Lines",
+   "verdict": "EXACT",
+   "build": "Work Order Lines",
+   "surfaces": [
+    "09-shift-modal",
+    "10-series-block"
+   ],
+   "cases": {
+    "30011": [
+     "custom_expected"
+    ]
+   }
+  },
+  {
+   "label": "Week 1 of 2",
+   "verdict": "EXACT",
+   "build": "Week 1 of 2",
+   "surfaces": [
+    "14-week-view",
+    "15-month-view"
+   ],
+   "cases": {
+    "43556": [
+     "custom_preconds",
+     "custom_steps"
+    ]
+   }
+  }
+ ]
+}
