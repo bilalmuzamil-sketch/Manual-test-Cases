@@ -54,13 +54,55 @@ needed and none of them is obvious:
 
 Rebuild `/tmp/fv/user.json` with `tools/mkuser.py` if `/tmp` has been wiped.
 
-## Where the pass has got to
+## Deliverables
 
-See `BUILD-VERIFICATION.md` for the per-case ledger, `CLASSIFICATION.md` for every mismatch with both
-texts side by side, `FINDINGS.md` for behaviour deviations (**written up, not filed** — the
-ticket-creation hold stands), `testrail-execution-log.md` for writes, `FOR-VLAD.md` for changes to
-cases TestRail flags Automated.
+`BUILD-VERIFICATION.md` — the per-case ledger · `CLASSIFICATION.md` — every mismatch with both texts
+side by side and its class · `FINDINGS.md` — behaviour deviations, **written up, not filed** ·
+`testrail-execution-log.md` — the writes and the untouched-proofs · `FOR-VLAD.md` — changes to cases
+TestRail flags Automated.
 
-**STATUS: harness established, suite snapshotted, observation not yet begun.**
+## Where the pass got to
 
-_Last updated 2026-08-11T09:45Z._
+**98 of the 114 checked against the running build; 16 not.** Of the 98: **84 correct as written**,
+**8 corrected**, **6 carrying a recorded mismatch that must NOT be renamed** (the control our case
+names does not exist, so renaming would delete a coverage finding).
+
+**The 16 not checked, and what each needs:** 7 Persistence cases need a **second test login**
+(outstanding since 5 August) · 6 API cases were not driven · 3 Empty State cases need a filter
+combination that genuinely returns nothing, seeded on purpose.
+
+**Writes: 8 × `update_case`, all HTTP 200, 30 fields compared each, 0 mismatches, 0 collateral.**
+0 add / 0 delete / 0 section / 0 run writes / 0 results. **No Jira write of any kind** — the
+2026-08-10 creation hold stands. **Run 352 proven untouched BY CONTENT**: 473 of 473 results present
+by id, 0 field changes of any kind.
+
+**Raw markup: 0 of 114 before AND after** — re-censused after the writes, because TestRail re-renders
+hours later without moving `updated_on`.
+
+**The build did not move under the pass** — marker read three times, byte-identical each time.
+
+## If this has to be re-run
+
+Nothing is part-done. The remaining work, in the order it is worth doing:
+
+1. **The 16 unchecked** — the second login unblocks 7 of them in one sitting.
+2. **[C38891](https://shopview.testrail.io/index.php?/cases/view/38891)'s ~42 surface names.** Two are
+   already known wrong (`IBS Batch Transactions` → `IBS Batches`, `Sales Tax Invoices` →
+   `Sales Tax Collected`) and were deliberately **not** corrected in isolation — see the last section
+   of `CLASSIFICATION.md` for why. Walk all 42 and fix them together.
+3. **The six stale Parts/Reports hedges** (`FINDINGS.md` §2) — needs the QA lead's nod first.
+4. **A provenance re-stamp** across the 84 found-correct cases, if he wants their stamps to name
+   today's build. They were checked but not written, and `BUILD-VERIFICATION.md` says so plainly
+   rather than implying otherwise.
+
+## Environment state left behind
+
+**Nothing created, nothing deleted, no role touched, no data seeded.** One session-level change:
+`POST /api/iam/change-location` set the working location to **Staging Heavy Duty - 9919** so the
+Work Orders page would resolve at all.
+
+**Pre-existing filter state was found, not made, and was left exactly as found** — Parts Inventory
+carried `gridLocation=General Storage` + six `category` values + `supply=under-supplied`, and the
+Notes report carried an author and a mention. **None of it is ours.**
+
+_Last updated 2026-08-11T11:15Z._
