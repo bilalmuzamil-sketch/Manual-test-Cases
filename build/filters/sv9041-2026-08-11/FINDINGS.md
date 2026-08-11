@@ -47,17 +47,41 @@ the toolbar**.
 control that collapses the filter bar and use it"*), and finding no such control, would have marked
 the test **FAILED on a correct build**.
 
-## 4. A COVERAGE GAP REMAINS OPEN — and it is NOT filled, by instruction
+## 4. THE COVERAGE GAP IS NOW FILLED — **[C43590](https://shopview.testrail.io/index.php?/cases/view/43590)** created
 
-**No case drives SV-9041's negative limb**: *on a page with exactly one filter, the toggle is absent
-and the filter bar is always shown.* C43562 now **accepts** that state as a pass; nothing **seeks** it.
+**No case drove SV-9041's negative limb**: *on a page with exactly one filter, the toggle is absent
+and the filter bar is always shown.* C43562 now **accepts** that state as a pass, but nothing
+**sought** it.
 
-**`add_case` was not used.** The **active creation hold** (QA lead, 2026-08-10 — *"Do not create
-anything until my next order"*, register row **H1**) bars it explicitly. Recorded per Rule 46 so a
-deliberate omission cannot look like a miss.
+**⚠️ CORRECTION TO THIS PASS'S FIRST CONCLUSION, RECORDED RATHER THAN QUIETLY FIXED.** This pass
+initially declined to author the case, reading the QA lead's creation hold as barring `add_case`.
+**That was a misreading.** His ruling is verbatim: ***"Keep up the Jira ticket creation hold, but do
+not hold creating the test cases in Testrail."*** **The hold covers Jira tickets only.** Creating
+TestRail cases is the core of what he has asked for — *"We are supposed to create test cases and
+accurate ones… And anything that stops you from creating/updating a test case You MUST let me
+know."* The case was authored on that correction.
 
-**Ready to author the moment the hold lifts:** *"On a page whose filter bar has only one filter, no
-show/hide control is offered and the filter bar stays on display"* — driven on **Parts → Part Sales**.
+| | |
+|---|---|
+| Case | **C43590** — FLT-COLL-06 |
+| Title | *"One filter on a page: no collapse control and the filter bar stays shown"* (72 chars) |
+| Section | **4118 "Collapse and Expand"** |
+| `custom_atmstatus` | **1 — Not Automated** (never 3; that flag is Vladimir Tomovic's to set) |
+| Marker | **`AUTOMATION: READY`** — not EXPECT-FAIL: there is no live backing and Ahtasham QA'd the ticket **Passed** (Rule 61) |
+| Provenance | **Rule-54 sentence 1 only**, a read-date per cited source. **No sentence 2** — no build was opened, so a build date would be fabricated |
+| Verification | `add_case` HTTP 200, re-GET, **10 fields compared, 0 mismatches** |
+
+**Internal ID checked three ways** before use — `FLT-COLL-06` is **not** among the 150 local case
+bodies, **not** on the 36-entry retired list, and **not** in the id-map. (A sibling project once
+reused a retired ID and its resync overwrote the retired record.)
+
+**It is written scope-conditionally**, the same shape as C43562, and its precondition tells the
+tester to mark it **BLOCKED, not failed**, if no single-filter page can be reached — so a correct
+build never reads as a failure.
+
+**Run 352 is now one case short** and `include_all` is false. **`update_run` was NOT called** — the
+run is Ahtasham's and holds 473 graded results, and `update_run` REPLACES the selection. The full
+115-id union is staged in `STAGED-RUN-352-SYNC.md` for the QA lead.
 
 ## 5. NO DEFECT, AND NO `EXPECT FAIL` MARKER — the behaviour is built and working
 
@@ -119,7 +143,8 @@ and only the Tier-1 check surfaced it.
 | # | Item | Who owes it | What it blocks | Since |
 |---|---|---|---|---|
 | 1 | **Send the Branko sheet** with the new addendum item — does the >1-filter rule belong in the PRD, and does it cover Parts and Reports? | QA lead → Branko | Nothing blocked. It settles whether the rule is written down and how far it reaches | 2026-08-11 |
-| 2 | **Lift the creation hold**, or rule on the gap another way — one case is ready to author for the single-filter negative | QA lead | The negative limb is **accepted** but never **driven** | 2026-08-10 (hold) |
+| 2 | ~~Lift the creation hold so the single-filter negative can be authored~~ **✅ CLEARED 2026-08-11** — the hold is **Jira-only**; C43590 is created and verified | — | nothing | cleared same day |
+| 2b | **Authorise the run 352 sync** — the run is one case short (C43590) and `include_all` is false. Full 115-id union staged in `STAGED-RUN-352-SYNC.md`; **`update_run` NOT called** | QA lead | C43590 has no test in Ahtasham's run, so it cannot be executed there | 2026-08-11 |
 | 3 | **SV-8906** — empty-state clarification sits in **Board Backlog**, unanswered | Branko | Unknown until read; not analysed this pass | 2026-08-05 |
 | 4 | **Confirm the canonical Filters design artefact** so it can be re-fetched and diffed | QA lead / Branko | The design is authoritative since 2026-08-06 but our baseline is unverified | 2026-08-06 |
 | 5 | **Declare the branch final** (or confirm it will not be) | Engineering | All 114 Filters verdicts stay **PROVISIONAL**; Rule-49 queue stays open | standing |

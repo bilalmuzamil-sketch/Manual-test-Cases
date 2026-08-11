@@ -35,3 +35,20 @@ C29600, C29623 and C38877 — **do** appear in the Job-1 re-sync report as bodie
 was refreshed from live. That was a **local file operation only**: the re-sync pulled live text down
 into the repository's case source. **No TestRail write was made to any of them**, by this pass or by
 Job 1, which issued none at all.
+
+---
+
+## ADDENDUM — the case CREATED on 2026-08-11 is `custom_atmstatus = 1`
+
+**[C43590](https://shopview.testrail.io/index.php?/cases/view/43590) — FLT-COLL-06** was created with
+**`custom_atmstatus = 1` ("Not Automated")**, read back live on the post-create re-GET.
+
+**It is deliberately NOT 3.** `3` is TestRail's own **Automated** marker and it is **Vladimir
+Tomovic's to set**, never ours — a case we create has been automated by nobody, so `3` would both
+claim his work and pollute the signal Rule 65 reads. The payload came from the canonical builder
+`build/testing-tools/testrail_add_case.py`, which **raises** rather than letting `3` through, and the
+repo guard `check_add_case_payloads.py` was run **before** the create: **PASS, exit 0, 891 files
+scanned, 0 new payloads sending 3.**
+
+**So the Filters suite still holds exactly 4 Automated-flagged cases** — C29600, C29614, C29623,
+C38877 — and **none was touched by this pass**. There is nothing here Vlad needs to be told about.

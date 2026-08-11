@@ -125,18 +125,21 @@ findings file — but on the text it is **not in scope**, and it was **not touch
 
 ---
 
-## A COVERAGE GAP THAT REMAINS OPEN — recorded, not filled
+## THE COVERAGE GAP IS NOW CLOSED — C43590 authored
 
-**No case in the suite tests SV-9041's negative limb directly**: *on a page with exactly one filter,
-the toggle is absent and the filter bar is always shown.* C43562 now treats that state as a **PASS**
-when a tester happens upon it, but nothing **drives** it deliberately.
+**No case tested SV-9041's negative limb** — *on a page with exactly one filter, the toggle is absent
+and the filter bar is always shown.* C43562 now treats that state as a **PASS** when a tester happens
+upon it, but nothing **drove** it.
 
-**A new case was NOT authored, and that is not an oversight.** The **active creation hold** (QA lead,
-2026-08-10 — *"Do not create anything until my next order"*, register row H1) bars `add_case`
-explicitly. The gap is therefore **written up and put to the QA lead** (see `FINDINGS.md`), which is
-what Rule 46 requires of a deliberate non-authoring: an undocumented omission is indistinguishable
-from a miss.
+**[C43590](https://shopview.testrail.io/index.php?/cases/view/43590) — FLT-COLL-06** now does, in
+section **4118 "Collapse and Expand"**: *"One filter on a page: no collapse control and the filter
+bar stays shown"*, driven on **Parts → Part Sales**, the page in the ticket's own QA evidence.
 
-**Proposed when the hold lifts:** *"On a page whose filter bar has only one filter, no show/hide
-control is offered and the filter bar stays on display"* — driven on **Parts → Part Sales**, the page
-in the ticket's own evidence.
+**This pass first declined to author it**, misreading the QA lead's creation hold as covering
+`add_case`. **It does not** — his ruling is *"Keep up the Jira ticket creation hold, but do not hold
+creating the test cases in Testrail."* The correction is recorded rather than silently absorbed,
+because a wrong reading quietly fixed is how the same wrong reading returns.
+
+`custom_atmstatus = 1` (Not Automated) · `AUTOMATION: READY` · Rule-54 sentence 1 only, with a
+read-date per source and **no build date** · internal ID checked three ways · created and
+**byte-verified, 10 fields, 0 mismatches**.

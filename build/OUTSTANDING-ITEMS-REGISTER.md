@@ -112,23 +112,29 @@ killed pass planned.
 | Row | Item | Category | Who owes it | What it BLOCKS | Since |
 |---|---|---|---|---|---|
 | **F12** | **Send the Branko sheet with the new SV-9041 addendum** (`build/filters/questions-2026-08-06/ADDENDUM-2026-08-11_SV-9041-collapse-toggle.md`) — does the "toggle only when more than one filter" rule belong in the PRD, and does it cover **Parts and Reports** as well as Work Orders? | ANSWER | QA lead → Branko | **Nothing is blocked.** Both cases already follow the ticket, which is ~3 months newer than the spec requirement it qualifies. The ask settles whether the rule is **written down** and **how far it reaches** — the ticket says only "the page", while its own QA evidence is a Parts page | 2026-08-11 |
-| **F13** | **A real coverage gap left UNFILLED, by your own ruling:** no case drives SV-9041's negative limb — *on a page with exactly one filter, the toggle is absent and the filter bar is always shown*. **One case is written and ready to author** | HELD | QA lead | The negative limb is **accepted** by C43562 when a tester meets it, but nothing **drives** it | 2026-08-11 |
+| ~~**F13**~~ | ~~A real coverage gap left UNFILLED: no case drives SV-9041's negative limb~~ **✅ CLEARED THE SAME DAY — [C43590](https://shopview.testrail.io/index.php?/cases/view/43590) is created and byte-verified.** The row was raised on a **misreading of your creation hold**, corrected by you within the hour | — **closed** | — | **nothing** | raised and cleared 2026-08-11 |
+| **F15** | **Authorise the run 352 sync.** Creating C43590 left the run one case short — `include_all` is **false**, so it holds a frozen 114-case selection. **`update_run` was NOT called**; the full **115-id union** is staged in `build/filters/sv9041-2026-08-11/STAGED-RUN-352-SYNC.md` | GO-AHEAD | QA lead | **C43590 has no test in Ahtasham's run**, so it cannot be executed there. The run holds **473 graded results** and `update_run` REPLACES the selection, so this is not ours to run unasked | 2026-08-11 |
 | **F14** | **SV-8906** — *"Clarification Required: empty-state inconsistency across…"*, Task, **Board Backlog**, unanswered since 5 August. New to our written records | OTHER TEAM | Branko | Unknown until read — not analysed in this pass | 2026-08-05 |
 
-### F13 carries the five Rule-48 fields, because it is frozen by your own ruling
+### 🔴 A CORRECTION WE OWE — WE READ YOUR CREATION HOLD TOO WIDELY, AND IT COST A CASE MOST OF A DAY
 
-1. **The ruling, verbatim:** *"Do not create anything until my next order."*
-2. **When and in what context:** 2026-08-10, answering a request for permission to file five prepared
-   Report Suite defects. Register row **H1**.
-3. **What it blocks here:** one new Filters case for SV-9041's single-filter negative — proposed
-   wording *"On a page whose filter bar has only one filter, no show/hide control is offered and the
-   filter bar stays on display"*, driven on **Parts → Part Sales**, the page in the ticket's own
-   evidence. Related cases: **FLT-COLL-01 = [C29601](https://shopview.testrail.io/index.php?/cases/view/29601)**
-   and **FLT-PR-PAR-01 = [C43562](https://shopview.testrail.io/index.php?/cases/view/43562)**.
-4. **Why the ruling was reasonable:** it is a blanket pause on creating anything in an external system
-   of record, and `add_case` sits squarely inside it. Nothing about this gap is urgent — the behaviour
-   is **built and passing**, so the missing case is a coverage completeness item, not a live risk.
-5. **What would unblock it:** your next order, from you.
+**Row F13 above should never have existed.** This pass declined to author the SV-9041 case, recording
+it as blocked by your creation hold. **That was wrong.** Your ruling is verbatim:
+
+> ***"Keep up the Jira ticket creation hold, but do not hold creating the test cases in Testrail."***
+
+**The hold covers Jira tickets ONLY.** Creating TestRail cases is not merely permitted, it is the
+substance of what you asked for — *"We are supposed to create test cases and accurate ones… And
+anything that stops you from creating/updating a test case You MUST let me know."*
+
+**Recorded, not quietly deleted**, because a wrong reading that is silently fixed is a wrong reading
+that comes back. The case was authored on your correction the same day: **C43590**, section 4118,
+`custom_atmstatus = 1`, `AUTOMATION: READY`, byte-verified.
+
+**The generalisable lesson: when a hold's wording is broader than the question it answered, ASK —
+do not resolve the ambiguity by stopping.** Stopping felt like the cautious reading; it was simply a
+different way of getting it wrong, and it withheld coverage on a **final** branch with the release on
+**Thursday**.
 
 ### 🔴 The epic moved, and one new child carries a Branko ruling — **it CONFIRMS our wording**
 

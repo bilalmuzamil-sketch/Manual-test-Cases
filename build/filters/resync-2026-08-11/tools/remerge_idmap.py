@@ -10,6 +10,10 @@ import subprocess
 prev=subprocess.run(["git","show","HEAD:build/filters/testrail-id-map.csv"],
                     cwd="/home/user/Manual-test-Cases",capture_output=True,text=True).stdout
 pmap={r["internal_id"]:r for r in csv.DictReader(io.StringIO(prev))}
+# Cases created AFTER the committed id-map. Each entry is proven against live below.
+NEW_SINCE_HEAD = {"FLT-COLL-06": "C43590"}
+for iid, cid in NEW_SINCE_HEAD.items():
+    pmap.setdefault(iid, {"internal_id": iid, "testrail_case_id": cid})
 rows=list(csv.DictReader(open(f"{ROOT}/testrail-id-map.csv")))
 out=[]
 for r in rows:

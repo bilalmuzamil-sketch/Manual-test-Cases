@@ -150,3 +150,81 @@ independent re-check at 0, **import header sha256 `a45eae40ec73b8ac`, identical 
 
 **Ahtasham Amjad's 5 (C43576–C43580) were not read into our source, not counted as ours, and not
 written to.** No write of any kind was issued against them. **Ours 114 / live 119.**
+
+---
+
+# ADDENDUM — 2026-08-11 (later) — ONE `add_case`, on the QA lead's correction
+
+**The creation hold is JIRA-ONLY.** Verbatim: *"Keep up the Jira ticket creation hold, but do not
+hold creating the test cases in Testrail."* This pass's earlier refusal to author was a misreading
+and is corrected here rather than quietly.
+
+## OP 3 — `add_case/4118` → [C43590](https://shopview.testrail.io/index.php?/cases/view/43590) — FLT-COLL-06
+
+| | |
+|---|---|
+| Operation | `add_case/4118` (section **"Collapse and Expand"**) |
+| **HTTP** | **200** |
+| Created case | **C43590** |
+| Title | *"One filter on a page: no collapse control and the filter bar stays shown"* — **72 chars** (≤80) |
+| **`custom_atmstatus`** | **1 — "Not Automated"**, read back live |
+| `custom_automation_type` | 0 |
+| `refs` | **181 chars, 0 commas**, normalisation-stable |
+| **Fields compared on re-GET** | **10** |
+| **Mismatches** | **0** |
+| `verify_created_case()` | **PASS** |
+| `section_id` read back | 4118 (as intended) |
+| `created_by` | 3 (ours) |
+
+**Payload built by the canonical builder** `build/testing-tools/testrail_add_case.py`, which
+**raises** if anyone passes `custom_atmstatus = 3`. Nothing was copied from an older exec script.
+
+**Guard: `python3 build/testing-tools/check_add_case_payloads.py` → `PASS — 0 new add_case payloads
+send custom_atmstatus: 3 (891 files scanned)`, exit 0**, run *before* the create.
+
+### Pre-flight assertions, all enforced in code before the call
+
+- `custom_atmstatus == 1`
+- title ≤ 80 chars
+- every comma-separated `refs` entry ≤ 248 chars, and the value normalisation-stable
+- no `<p>`, `<li>`, `<ol>` or CRLF in any text field
+- exactly one `AUTOMATION:` marker, and it is the **last** thing in Expected Results
+- **`"Last checked against build"` absent** — Rule-54 **sentence 1 only**, because no build was opened
+
+### Internal ID checked THREE ways
+
+| Check | Result |
+|---|---|
+| Among the 150 local case bodies? | **No** |
+| On the 36-entry retired list? | **No** |
+| In the id-map? | **No** |
+
+**`FLT-COLL-01` … `FLT-COLL-05` were all taken**, so `FLT-COLL-06` is the first free ID — and it is
+free on all three registers, not merely absent from the active set. (A sibling project reused a
+retired ID and its resync overwrote the retired record.)
+
+## Post-create reconciliation — **115**
+
+| | Count |
+|---|---|
+| Live (ours, `created_by = 3`) | **115** |
+| Local active (151 bodies − 36 retired) | **115** |
+| id-map | **115** |
+| Import rows | **115** |
+
+Set-equal in **both** directions on every pair. Local re-synced from live → **0 of 115 differ**.
+Shredding guard **PASSED** plus an independent re-check at **0**. Import header sha256
+**`a45eae40ec73b8ac`**, identical to all six peers. id-map **0 blanks, refs 115/115**.
+
+**Live total is now 120: ours 115 + Ahtasham's 5.**
+
+## Run 352 — deliberately NOT synced
+
+`include_all` is **false**, so the run stayed at **114 tests** and is now one short: **C43590**.
+**`update_run` was never called.** The run is Ahtasham's and holds **473 graded results**, and
+`update_run` **REPLACES** the selection — a partial list would delete tests *and* their results. The
+**full 115-id union is staged** in `STAGED-RUN-352-SYNC.md` for the QA lead, with a re-snapshot
+instruction because the figures go stale.
+
+**Running totals for this pass: 2 `update_case` + 1 `add_case` · 0 `delete_case` · 0 section writes ·
+0 run writes · 0 results · 0 Jira calls.**
