@@ -7,8 +7,21 @@
 > - **🛑 ACTIVE HOLD — CREATE NOTHING (QA lead, 2026-08-10). NOT a standing rule; a TEMPORARY hold
 >   with a lift condition, layered on Standing Rule 62.** Verbatim: ***"Do not create anything until
 >   my next order."*** **Rule 62 says ASK FIRST; this ruling says THE ANSWER IS NO FOR NOW, and there
->   is nothing to ask about until he lifts it.** Safe reading, encoded: **no Jira ticket · no new
->   TestRail case (`add_case`) · no new artefact created in any external system of record.**
+>   is nothing to ask about until he lifts it.**
+>   **🔴 SCOPE CORRECTED 2026-08-11 — THE HOLD IS **JIRA TICKETS ONLY**. HE CLARIFIED; WE HAD READ IT
+>   TOO BROADLY.** Verbatim: ***"We are supposed to crfeate test cases and accurate ones … And
+>   anything that stops you from creating/updating a test case You MUST let me know, we are supposed
+>   to create the test cases."*** So: **`add_case` is PERMITTED AND EXPECTED**, and so is
+>   `update_case` — **authoring a case for an uncovered requirement is THE JOB, not a thing to seek
+>   permission for.** **Jira ticket creation REMAINS BARRED** until his next order (Rule 62 + the hold
+>   at its tail, unchanged in that respect).
+>   **⚠️ SUPERSEDED WORDING, KEPT VISIBLE AND DATED (the Rules 31/52/53 pattern):** the safe reading
+>   encoded on 2026-08-10 read *"no Jira ticket · **no new TestRail case (`add_case`)** · no new
+>   artefact created in any external system of record"*. **The `add_case` half was OUR
+>   over-broad reading of his words, not his instruction — this is a correction to how we RECORDED his
+>   ruling, not a reversal by him.**
+>   **NEW DUTY (his words): anything that STOPS us creating or updating a test case is REPORTED TO HIM
+>   IMMEDIATELY** — not parked in a gaps list (Rule 36 register + Rule 63 surface-before-acting).
 >   **`update_case` on EXISTING cases CONTINUES** — that is **correction, not creation**, and it is
 >   what he authorised in requiring the three handed-off reports be *"100% authentic and VIU'd"*.
 >   **Where a worker cannot tell which side of the line something sits, it STOPS AND ASKS.**
@@ -2158,6 +2171,25 @@ deliver the 7-tab management report.
     (Rule 62 and the hold at its tail).
     **AUTHORITY:** his 2026-08-10 instruction as confirmed 2026-08-11; surfaced and put to him under
     **Standing Rule 63**, and cited here per **Rule 48** (a ruling is a source and sources get cited).
+    **⇒ REMINDER REINFORCED, 2026-08-11 — "VIU" MEANS THE PROCESS *AND THE PROCESSES ATTACHED TO IT*,
+    NOT A WORDING SWEEP.** His words, verbatim: *"which are VIU'd with the process attached to the
+    VIU, remember I asked you to run a few processes with VIU whenever I ask you to run VIU. Dont
+    forget that."* **This adds no new requirement — it is a reminder that the attached processes are
+    part of what "VIU" already means, and they are the half that gets quietly dropped.** When he asks
+    for a VIU, **Standing Rule 11 still governs: ASK WHICH PROCESSES** — and the ones that hang off a
+    VIU pass are:
+    **· BUILD-ACCURATE WORDING + VIU** — `build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md`, this rule's
+    own method (Rule 9's labels/wording half).
+    **· TRACEABILITY BACKFILL (Rule 20)** — every case's `refs` carrying **BOTH** the Jira ticket key
+    **AND** the spec anchor in `<TICKET(S)> (<spec-anchor>)`; ticket-only is not acceptable — plus the
+    tester-facing **Rule-54 provenance line** stamped or re-stamped in the same push.
+    **· COVERAGE-MATRIX RE-DERIVATION (Rule 43)** — the requirement → case map **RE-DERIVED from the
+    current spec, never patched**, run in **BOTH directions**, one verdict row per requirement.
+    **· THE RUTHLESS USEFULNESS AUDIT (Rule 28)** — the **MANDATORY FINAL GATE** of every authoring
+    pass, scoring **100%** of the cases on all three dimensions.
+    **The full callable list, with trigger phrases and the deliverable each produces, is
+    `build/PROCESS-CATALOG.md` — read it to pick and name the processes rather than reconstructing
+    them from memory.**
 11. **ALWAYS ASK which process to run on a new/updated spec OR a VIU request (all
     projects):** Whenever the user provides a spec (new or updated) OR asks to VIU,
     ALWAYS ASK the user first whether they want (1)
@@ -4696,12 +4728,45 @@ deliver the 7-tab management report.
     this hold the ask itself is **premature**. The finding is still **prepared in full and written up**
     (Rule 62's "we do the whole job and stop at the button") — it is simply **not put to him** as a
     request until he gives the next order.
-    **SCOPE — STATED HONESTLY, INCLUDING WHERE THE BOUNDARY IS GENUINELY UNCERTAIN.** He was answering
-    a question about **Jira tickets**; his words are ***"anything"***. **The SAFE READING is therefore
-    the one encoded**, and it is deliberately the broader of the two:
-    **· NO Jira ticket, of any type, on any project.**
-    **· NO new TestRail case — `add_case` is barred.**
-    **· NO new artefact created in any external system of record.**
+    **🔴 SCOPE — CORRECTED 2026-08-11 BY THE QA LEAD. THE HOLD IS **JIRA TICKETS ONLY**. CREATING AND
+    UPDATING TEST CASES IS OUR CORE WORK AND WAS NEVER IN SCOPE.**
+    **USER DIRECTIVE (2026-08-11, verbatim, his typing preserved exactly as he wrote it because Rule
+    25 applies to his instructions as it does to a spec), answering the report that Schedule's new
+    "Panel collapse" section had no test case and could not get one while the hold stood:**
+    *"Schedule's new 'Panel collapse' section has no test case and can't get one while the hold
+    stands. WHY? We are supposed to crfeate test cases and accurate ones and also which are VIU'd with
+    the process attached to the VIU, remember I asked you to run a few processes with VIU whenever I
+    ask you to run VIU. Dont forget that. And anything that stops you from creating/updating a test
+    case You MUST let me know, we are supposed to create the test cases."*
+    **THE CORRECTED SCOPE, IN THREE LINES:**
+    **· NO Jira ticket, of any type, on any project — THIS HALF IS UNCHANGED and remains barred until
+    his next order.**
+    **· `add_case` IS PERMITTED AND EXPECTED. So is `update_case`.** **Authoring a case for an
+    uncovered requirement is THE JOB — it is not a thing to seek permission for**, and a coverage gap
+    is never a reason to wait.
+    **· NO new artefact created in any external system of record — unchanged, EXCEPT that TestRail
+    CASES are expressly carved out by the ruling above.**
+    **⚠️ THE SUPERSEDED WORDING, KEPT VISIBLE AND DATED, NEVER DELETED (the Rules 31/52/53 pattern).**
+    From 2026-08-10 until this correction this block read:
+    *"SCOPE — STATED HONESTLY, INCLUDING WHERE THE BOUNDARY IS GENUINELY UNCERTAIN. He was answering a
+    question about **Jira tickets**; his words are **"anything"**. The SAFE READING is therefore the
+    one encoded, and it is deliberately the broader of the two: · NO Jira ticket, of any type, on any
+    project. · **NO new TestRail case — `add_case` is barred.** · NO new artefact created in any
+    external system of record."*
+    **BE PRECISE ABOUT WHAT HAPPENED: HE CLARIFIED; WE HAD READ HIM TOO BROADLY.** The ambiguity was
+    flagged at the time and the broader branch taken — **the over-broad `add_case` bar was OUR
+    reading, not his instruction.** **This is a correction to how we RECORDED his ruling, NOT a
+    reversal by him**, and the record must show that plainly rather than let a future session read it
+    as him changing his mind.
+    **⇒ A NEW DUTY, IN HIS OWN WORDS: *"anything that stops you from creating/updating a test case You
+    MUST let me know"*.** **A blocker on authoring or correcting a test case is REPORTED TO HIM
+    IMMEDIATELY** — an access blocker, a missing source, a hold someone believes is in force, an
+    unanswered authorisation, a tooling failure. **It is NOT parked in a gaps list, a coverage matrix
+    or a findings file to be discovered later.** Log it in the **OUTSTANDING-ITEMS REGISTER** (Rule 36)
+    **and raise it with him in the same breath**; where the blocker is a rule or a ruling we believe is
+    in force, **surface it BEFORE the work rather than in the closing summary** (Rule 63). **The
+    evidence for why this duty exists is this very correction: a coverage gap sat unauthored for a day
+    because a hold was read too widely and the blockage was recorded rather than raised.**
     **WHAT EXPLICITLY CONTINUES: `update_case` ON CASES THAT ALREADY EXIST** — correcting wording,
     re-verdicting, re-stamping the Rule-54 provenance line, repairing an automation marker. **That is
     CORRECTION, NOT CREATION**, and it is precisely what he authorised when he required the three
@@ -4790,6 +4855,17 @@ deliver the 7-tab management report.
     **any further gap found while the hold stands also stays open**. **This is a cost being RECORDED
     so he can see it, NOT an argument against his hold** — but it **ACCRUES rather than pauses**, and
     a cost that accrues silently is one nobody can weigh.
+    **⚠️ CORRECTED 2026-08-11 — THE COST DESCRIBED IN EXAMPLE (2) NO LONGER EXISTS, AND THE EXAMPLE IS
+    KEPT ONLY AS THE RECORD OF WHAT WAS RAISED.** Told that Panel collapse *"can't get one while the
+    hold stands"*, he answered — verbatim — ***"WHY? We are supposed to crfeate test cases … we are
+    supposed to create the test cases."*** **The hold is JIRA TICKETS ONLY; `add_case` was never
+    barred by him**, so **§5.3 Panel collapse is now simply OUTSTANDING AUTHORING WORK, not blocked**,
+    and **Rules 43 and 47 are NOT in tension with the hold at all.** **This vindicates the rule while
+    correcting the example: recording the cost is what got it corrected within a day** — and had it
+    been RAISED rather than merely recorded, it would have been corrected sooner still, which is
+    exactly the duty now written into Rule 62's tail (*"anything that stops you from creating/updating
+    a test case You MUST let me know"*). **The sole surviving cost of the hold is the FIVE PREPARED
+    JIRA DEFECTS, which stay unfiled.**
     Ties to Standing Rules 1 (never proceed without the complete input set — an unresolved conflict IS
     a missing input), 6 (nothing enters a system of record unasked), 7 (the ask is in plain layman
     words), 12 (observed, never inferred — **including never inferring which of two instructions he
