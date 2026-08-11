@@ -548,6 +548,37 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
   be `&`, not `?` — `get_sections/1?suite_id=1` returns
   `HTTP 400 {"error":"Invalid characters in URI: [/api/v2/get_sections/1?suite_id]"}`. The same paging
   rule applies to `get_cases`, `get_tests` and `get_results_for_run`.
+- **⚠️ WHY THAT `&` RULE HOLDS FOR *EVERY* PARAMETER, NOT JUST `suite_id` — AND WHY IT IS THE REAL
+  CAUSE OF THE `getall()` / `trlib` PAGING BREAKAGE (recorded 2026-08-11, Schedule staged push).**
+  **TestRail joins EVERY parameter after the endpoint with `&`, NEVER `?`, because the whole
+  `/api/v2/...` path already sits INSIDE the `index.php` query string.** The base URL is
+  `{host}/index.php?/api/v2/{path}` — the `?` has already been spent on `/api/v2/...` itself, so a
+  second `?` anywhere in `path` is not a separator at all, it is an **illegal character inside a query
+  value**. Hence `get_cases/1?suite_id=1` fails with **`400 Invalid characters in URI`** for exactly
+  the same reason an appended `?limit=` does, and hence `get_cases/1&suite_id=1&limit=250&offset=0`
+  works with **four** parameters and only ampersands.
+  **PROVEN LIVE 2026-08-11, all three read-only:** `get_cases/1?suite_id=1` → **HTTP 400
+  `{"error":"Invalid characters in URI: [/api/v2/get_cases/1?suite_id]"}`** · the four-parameter
+  ampersand form → **HTTP 200** · a five-parameter form with `&section_id=` → **HTTP 200**. **And
+  TestRail corroborates it itself: the `_links.next` it hands back reads
+  `/api/v2/get_cases/1&suite_id=1&limit=2&offset=2` — ampersands throughout, no `?` anywhere.** So the
+  server's own pagination link is the canonical example of the form to build.
+  **THIS IS DEEPER THAN "it appends `?limit=` twice", which is how the fault has been described
+  before.** The paginators in `build/testrail-run-sync-2026-07-31/{run_sync_audit,sync_runs_EXECUTOR,
+  exec_run_sync_2026-07-31}.py` all carry the shape
+  `f"{path}{'&' if '?' in path or '/' in path else '?'}limit=250&offset={offset}".replace('?limit', '&limit')`
+  — a conditional that can emit `?` followed by a `.replace()` that patches it back to `&`. **It
+  happens to work, but only because the patch undoes the conditional**, so the moment anyone edits
+  either half, or adds a parameter, or reorders the string, the request 400s and the failure reads
+  like a permissions or paging problem rather than a URL problem.
+  **THE RULE TO CODE TO: build the path with `&` unconditionally and never write a `?` into it.**
+  `f"{path}&limit=250&offset={offset}"` needs no conditional and no `.replace()`. The clean
+  implementation is `/tmp/testrail/tr.py` (`get_cases` / `get_tests` / `get_results_for_run`), which
+  concatenates `&limit=250&offset=N` and has never hit the error.
+  **AND THE FAILURE IS SILENT IN THE OTHER DIRECTION**, which is why it is worth this much space:
+  forget the parameter and you get **250 rows and HTTP 200** (the truncation trap in the bullet above);
+  write it with `?` and you get **HTTP 400 with a message that names a URI nobody wrote by hand**.
+  Neither symptom points at the cause.
 - **Corroboration of DECLARED NORMALISATION #2 below, from a second project (Filters, 2026-08-05):**
   retitling **C29624** made **5 of run 352's 429 historical result records** read back with a different
   `case_title`, and `case_title` was **the only field that differed across all 429** — status, comment,
