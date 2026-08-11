@@ -5073,8 +5073,20 @@ deliver the 7-tab management report.
     case above id 30090 is `3`, every imported one is `1`). **So on Schedule the flag is an artefact of
     our creation template and asserts nothing about automation**, whereas on Report Suite and Filters
     it is Vlad's own hand. **Before relying on the field, check whether a PERSON set it** — the flag
-    also moves both ways (**C29600 went `1→3→1→3`; C38877 went `3→1→3`**). **Whether to correct the 31
-    Schedule flags is OUTSTANDING with the QA lead — changing them is a TestRail write (Rule 6).**
+    also moves both ways (**C29600 went `1→3→1→3`; C38877 went `3→1→3`**).
+    **✅ RESOLVED 2026-08-11 — THE 31 SCHEDULE FLAGS ARE CORRECTED.** (The line above read *"Whether to
+    correct the 31 Schedule flags is OUTSTANDING with the QA lead"*; that ask has been answered.) QA
+    lead, verbatim: *"Yeh wee need to fix everycase from all the three projects where we have
+    mistakengly done that."* All **31** were set **`3 → 1`**, every write byte-verified with **only
+    `custom_atmstatus` moved**; Schedule now reads **174/174 Not Automated**. **THE OTHER 44 WERE LEFT
+    ALONE AND THAT IS THE POINT OF THE METHOD:** who set the flag was established **per case from
+    `get_history_for_case`, never by subtraction** — **44 cases carry an `custom_atmstatus` history
+    event and every single one is user 1 (Vladimir Tomovic)**; the 31 carry **none**, while their
+    history is otherwise non-empty, so the `3` has stood since creation. Corroborated independently:
+    **every Schedule case above id 30090 (i.e. every one we added by `add_case`) was `3`, and all 143
+    imported ones were `1`** — two lines of evidence agreeing exactly. **The root cause is fixed at
+    source: see the `add_case` entry under "Durable key facts → TestRail".** Full record:
+    `build/automated-flag-and-c30041-2026-08-11/`.
     **DELETION DISCIPLINE — `delete_case` IS IRREVERSIBLE, AND IRREVERSIBILITY RAISES THE BAR RATHER
     THAN LOWERING IT:**
     **· THE CANDIDATE LIST GOES TO THE QA LEAD BEFORE ANY DELETION IS EXECUTED.** **Rule 6 stands
@@ -5244,7 +5256,30 @@ regression / bug-fix re-testing.
 - **TestRail:** project **1** / single suite **1 "Master"**; API v2, Basic auth.
   - Custom Roles - (Revised) = section **3527**; Combo+Breakage **3641–3645**;
     Digital Inspections **3646**; execution **run = 312**.
-  - `add_case` REQUIRES `custom_atmstatus:3` + `custom_automation_type:0`.
+  - **🛑 `add_case` MUST SEND `custom_atmstatus:1` (= "Not Automated") + `custom_automation_type:0`
+    — NEVER `3`. `3` MEANS "Automated" AND IS THE AUTOMATION ENGINEER'S FLAG TO SET, NOT OURS.**
+    **⚠️ SUPERSEDED WORDING, KEPT VISIBLE AND DATED (the Rules 31/52/53 pattern) — until 2026-08-11
+    this line read: *"`add_case` REQUIRES `custom_atmstatus:3` + `custom_automation_type:0`."* **THAT
+    WAS WRONG ON BOTH HALVES, and because every `add_case` script in this workspace copied it, it
+    silently marked as Automated every case we ever created by API.**
+    **THE FIELD, READ LIVE FROM `get_case_fields` 2026-08-11 (not inferred):** `custom_atmstatus`,
+    field id 17, label **"Automation status"**, a dropdown whose values are
+    **`1` Not Automated · `2` Cannot be automated · `3` Automated · `4` Pending**. It carries
+    `is_required: true` for project 1 **but also `default_value: "1"`** — so `3` was never required by
+    anything; **the required value, if one must be sent, is `1`.** Sending `1` explicitly satisfies the
+    required flag and states the truth, which is why it is the instruction rather than omitting the
+    field. (`custom_automation_type` is **not** required: `is_required: false`, `default_value: "0"`.)
+    **WHY IT MATTERS:** QA lead, 2026-08-11, verbatim — *"Are you adding 'Automated' to the test cases
+    when you create them? there ar etest cases which are being given the AUTOMATED testrail marker,
+    those are fine, but if you are adding that marker that is wrong."* The flag is how Vladimir
+    Tomovic records what he has automated, and **Standing Rule 65 keys the whole tell-Vlad duty off
+    it** — so a case born `3` corrupts the signal he and we both rely on. **31 Schedule cases were
+    corrected `3 → 1` on 2026-08-11** (`build/automated-flag-and-c30041-2026-08-11/`).
+    **⚠️ THE EXECUTED `add_case` SCRIPTS STILL CONTAIN `3` AND WERE DELIBERATELY NOT REWRITTEN** —
+    they are the audit record of what was actually run, and editing them would make that record lie.
+    **DO NOT COPY AN `add_case` PAYLOAD FROM AN OLD SCRIPT; COPY IT FROM THIS LINE.** The full list of
+    scripts carrying the old value is in
+    `build/automated-flag-and-c30041-2026-08-11/FIELD-FACTS.md`.
   - Result statuses: **1 Passed · 2 Blocked · 3 Untested · 4 Retest · 5 Failed**.
   - Scope structure lives in `build/custom-roles-run/run-plan.json`.
 
