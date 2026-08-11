@@ -65,3 +65,38 @@ Snapshots: `evidence/run357-tests-START.json`, `evidence/run357-results-START.js
 ## Jira
 
 **0 calls of any kind** — not a create, not an edit, not a read-for-filing. The creation hold stands.
+
+---
+
+## Attempt 2 — 2026-08-11
+
+**TestRail operations: 0 writes.** `update_case` was authorised and **deliberately not used**, because
+no build observation was possible (see `BUILD-VERIFICATION.md` §2) and a label correction with no live
+read would assert a wording nobody has seen (Rule 12).
+
+**Reads only:** `get_case` ×174, `get_run/357`, `get_tests/357`, `get_results_for_run/357`.
+
+### No-write proof — by content, never by timestamp
+
+| Check | Result |
+|---|---|
+| All 174 cases vs pass-start snapshot, every field, `updated_on`/`updated_by` included | **0 field differences** |
+| Run 357 `include_all` | **false** (unchanged) |
+| Run 357 tests | **174**; test-id and case-id sets **equal in BOTH directions** |
+| Run 357 results | **458**, all present **by ID** — **0 missing, 0 new, 0 field changes** |
+| Run 357 counters | **25 Passed / 0 Failed / 1 Blocked / 148 Untested** — unchanged |
+| `add_case` / `delete_case` / section ops / run writes / results | **0 of each** |
+
+Snapshots: `evidence/cases-174-{START,END}.json`, `evidence/run357-{run,tests,results}-START.json`,
+`evidence/run357-{tests,results}-END.json`.
+
+### Jira
+
+**0 calls of any kind.** The creation hold (Rule 62) stands untouched; nothing was prepared for filing
+because nothing was observed.
+
+### Gotcha hit during the proof
+
+`/tmp/trlib.py`'s `getall()` appends `?limit=…` to `index.php?/api/v2/…`, which already contains a
+`?` — every paginated call returned **HTTP 400** until pagination was switched to `&`. Unpaginated
+`get_case` was unaffected, which made it look like a partial API outage rather than our own bug.

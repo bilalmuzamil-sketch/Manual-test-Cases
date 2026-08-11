@@ -101,3 +101,56 @@ recorded exactly why (`build-verify-2026-08-10/RESUME.md`): seeding one **turns 
 account does not get**, and it produced a false "fixed" reading there. The correct route is the app's
 own `POST /api/iam/change-location` — attempted, and it returned 401 because the session had already
 died.
+
+---
+
+# Attempt 2 — 2026-08-11 (session alive, application unreachable)
+
+**No build finding was possible: the product was never reached.** Recorded here so the next pass does
+not re-derive it.
+
+## F-1 · The application redirects every route to `/administration/locations` (not a Schedule fault)
+
+**Observed live** on build `v3.5-65d6500`, signed in as `admin@shopview.com`, location
+`Staging Heavy Duty - 9919`. Five routes asked, five identical landings:
+`/schedule`, `/workorders`, `/customers`, `/reports`, `/parts` → **all** `/administration/locations`.
+
+**Cause, established rather than assumed:** the staff record for `admin@shopview.com` genuinely has
+**`default_workplace: null`** and **`workplace_id: null`**. Ruled out on evidence:
+
+- **not permissions** — `scheduleView`, `scheduleCreateAndEdit`, `scheduleDelete` all present
+  (42 perms, `view_mode: full`);
+- **not the session** — `/api/auth/me/fe-permissions` returned **HTTP 200** at pass start *and* pass
+  end;
+- **not the active workplace** — `POST /api/iam/change-location` returned **200**, the top bar read
+  `Staging Heavy Duty - 9919`, `localStorage.location` held the right id;
+- **not the chooser** — the app's **own top-bar location switcher** was opened and Heavy Duty picked
+  through the UI (`switcher opened: true`, `picked: true`); it still bounced, so the switcher sets the
+  session's active workplace but does not satisfy a guard that reads the staff record's default.
+
+**Is this a defect worth a ticket?** **Unknown, and deliberately not asserted.** It may be correct
+behaviour for an account with no default location — the Locations page is a plausible place to send
+someone who has never chosen one. Saying more would require observing what a *properly configured*
+account does, which is the very thing that is blocked. **No ticket prepared, and none could be filed
+anyway — the creation hold stands (Rule 62).**
+
+## F-2 · The click-to-arm reading from the first harvest is INVALID — recorded so it is not reused
+
+The first harvest reported `html_has_arm: false`, and that looks like an answer to the highest-value
+question in this pass (**7 cases** held on a drag, per **SV-8957**). **It is not.** It was measured on
+`/administration/locations`. **An absence measured on the wrong page is not an absence**, so the
+SV-8957 question remains **open and unanswered**.
+
+## F-3 · Nothing in `CLASSIFICATION.md` could advance
+
+Confirmed again from the documents: **the Schedule specification pins no label wording**, so all 85
+asserted strings are class A or C and **the build decides every one**. There is no document-only
+subset. The two internal clashes (`Filter & Display` vs `Filter and Display`; `VIN` vs `VIN Number`)
+**remain defects in our own suite** — at most one spelling of a control can be right — but which side
+is wrong still needs one live read.
+
+## Not a finding, but worth recording: a tooling fault of ours
+
+`/tmp/trlib.py`'s `getall()` builds `?limit=…` onto a URL (`index.php?/api/v2/…`) that already has a
+`?`, producing **HTTP 400** on every paginated call while unpaginated `get_case` works — which reads
+like a partial API outage rather than our bug. **Paginate with `&`.**

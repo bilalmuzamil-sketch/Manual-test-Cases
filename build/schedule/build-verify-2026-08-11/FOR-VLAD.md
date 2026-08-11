@@ -64,3 +64,15 @@ It is the first thing worth checking when a session lands.
 **Two of those strings are known to be inconsistent inside our own suite** and will affect any
 automation keyed on them: `Filter & Display` vs `Filter and Display`, and `VIN` vs `VIN Number`.
 Details in `CLASSIFICATION.md` §1.
+
+---
+
+## Attempt 2 — 2026-08-11
+
+**Nothing for Vlad this pass.**
+
+`custom_atmstatus` was censused live across all 174 cases: **`1` on all 174 — none is Automated.**
+So there is nothing he has set, and nothing of his was touched or changed. **None.**
+
+No case was written to at all this pass (0 `update_case`), and all 174 are proven byte-identical to
+the pass-start snapshot including `updated_on`/`updated_by`.

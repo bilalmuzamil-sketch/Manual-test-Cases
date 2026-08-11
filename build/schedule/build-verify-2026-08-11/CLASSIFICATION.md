@@ -19,8 +19,16 @@ examples at all** (0 hits for `e.g.` / `for example` / `such as` / `i.e.` across
 
 ## 🔴 STATUS OF THIS FILE
 
-**No build/case mismatch could be assessed, because the build was never observed** — the session died
-14 minutes in.
+**STILL UNADVANCED AFTER THE SECOND ATTEMPT, 2026-08-11 — for a different reason.** The session was
+**alive** this time (the token worked, HTTP 200 at pass start and pass end), but **the application
+redirects every route to `/administration/locations`**, so no page could be observed. Details and the
+five-route measurement: `BUILD-VERIFICATION.md` §2.
+
+**Nothing below has changed, and nothing was written to TestRail.** The two clashes in §1 remain
+defects in our own suite; which side is wrong still needs one live read.
+
+**No build/case mismatch could be assessed, because the build was never observed** — on the first
+attempt the session died 14 minutes in; on the second the product was unreachable.
 
 **And §2 establishes something that makes that blockage total rather than partial: the Schedule
 specification contains NO requirement that pins a label's wording, so there are ZERO class-B labels

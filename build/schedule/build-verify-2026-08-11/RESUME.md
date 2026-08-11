@@ -1,85 +1,96 @@
-# RESUME — Schedule build verification, 2026-08-11
+# RESUME — Schedule build verification, 2026-08-11 (second attempt)
 
 **Read `BUILD-VERIFICATION.md` first, then `CLASSIFICATION.md`.**
 
 ## Where it stands, in one line
 
-**0 of 174 build-verified. 174 remain unverified. 0 TestRail writes, 0 Jira calls.**
-The session died 14 minutes in, before the Schedule page loaded once.
+**0 of 174 build-verified. 174 remain unverified. 0 TestRail writes, 0 Jira calls, 0 env changes.**
+**The token WORKED this time.** A different blocker stopped the pass: **the application redirects
+every route to `/administration/locations`.**
 
-## 🔴 THE ONE THING NEEDED — and it is the only blocker
+## 🔴 THE ONE THING NEEDED — and it is NOT a fresh token
 
-**A fresh `sv_sso_session` for `.qa.shopview.com`.** Ask for **that value by name**.
+**A way into the app as a user with a `default_workplace`, on `Staging Heavy Duty - 9919`.** Either:
 
-**Do not ask for a fresh `cf_clearance` — it will not fix this, and that is proven, not assumed.**
-The three-part dead-shared-token signature from playbook §A was checked in full:
+1. **Set a default location on `admin@shopview.com`** (Staff admin → default location → Heavy Duty).
+   One field. **Not done by us** — it changes a shared account, and the QA lead's standing
+   instruction is *"If the app bounces you, report it rather than engineering around it."*
+2. **Or a named QA user that already has one, with a sign-in.**
 
-1. **All three branches 401 together** on the byte-identical shared token — `sv8685api` (Schedule),
-   `sv8785api` (Filters), `sv8582api` (Report Suite). One branch alone would be trap 4, not this.
-2. **The refusal is the application's own JSON from nginx** — `content-type: application/json`,
-   `server: nginx/1.30.4`, body `{"error":"sso_required",…}`. It **reached the application**, so
-   Cloudflare is not the problem (that returns an HTML challenge).
-3. **Nothing returns 409**, so it is not a per-branch `PHPSESSID` mismatch.
+**Do not ask for another `sv_sso_session`.** It was alive at pass start **and still returned HTTP 200
+at pass end**. `quick-login` / `switch-user` never called (barred).
 
-Polled 8× over ~2 minutes and again later — 401 every time. `quick-login` was **not** called (barred,
-and itself SSO-gated).
+### Why the obvious workarounds are already ruled out — measured, not assumed
 
-## The build
+- **Permissions are fine** — `scheduleView` + `scheduleCreateAndEdit` + `scheduleDelete` all present,
+  42 perms, `view_mode: full`. Not a permission bounce.
+- **It is app-wide, not Schedule's** — `/schedule`, `/workorders`, `/customers`, `/reports`, `/parts`
+  **all five** land on `/administration/locations`.
+- **The cause is the account** — `admin@shopview.com` genuinely has `default_workplace: null` and
+  `workplace_id: null` on its staff record.
+- **`change-location` is not enough** — returned HTTP 200, top bar read `Staging Heavy Duty - 9919`,
+  `localStorage.location` correct. Still bounced.
+- **The app's own top-bar switcher is not enough either** — opened it and picked Heavy Duty through
+  the UI (`switcher opened: true`, `picked: true`). Still bounced. It sets the session's active
+  workplace, not the staff record's default.
+- **In-app navigation is not enough** — clicking the `Schedule` nav item bounces too.
+
+## The build and the location
 
 **`v3.5-65d6500`** · last-mod **Tue 11 Aug 2026 09:33:33 GMT** · etag `3250d285ffcf50626363a578fe273071`
-· sha256 `9348ca09d6167375dc52bfc29bf3b9f8c4163dede2ea5ea62269b186c9cc5f6f` · read at **11:05:35Z** and
-**11:32:32Z**, **byte-identical both times — it did not move under the pass (0 moves)**.
-
-**But it HAD moved before the pass started** — the brief expected `v3.5-af3a6e1`. **No case's verdict
-rests on the build now running** (90 on `v3.5-7ec992f`, 78 on `v3.5-d122eef` which no longer exists,
-6 on `v3.5-af3a6e1`).
+· read at pass **start and end**, **byte-identical — 0 moves under the pass**.
+**Location: `Staging Heavy Duty - 9919`** throughout, per the QA lead's standing instruction. **No
+observation was taken on any other location** — and no observation of the product was taken at all.
 
 ## The exact next actions, in order
 
-1. **Boot and load `/schedule`.** Tools are built and ready: `tools/mkuser.py` then a script using
-   `tools/boot.cjs`. Run with `NODE_USE_ENV_PROXY=1` and allow **~7 minutes** — the first page load
-   is slow while `/tmp/assetcache` is cold.
-   **⚠️ Expect the `/administration/locations` bounce** — `admin@shopview.com` genuinely has
-   `default_workplace: null`. **Do NOT fake one into the seed** (it turns on behaviour the real
-   account does not get — it produced a false "fixed" reading on the Report Suite). Use the app's own
-   `POST /api/iam/change-location {workplace_id, workplace_timezone}` with
-   `b3c8c820-f815-4cf1-8938-10956c5ee71a` / `America/Edmonton`.
-2. **Check whether click-to-arm is back.** Highest-value single check: **7 cases** are held only
-   because a drag cannot be completed and the click alternative was removed (SV-8957). If it has
-   returned, all 7 become drivable. Look for `button_sidebar_arm_<woId>` / `aria-pressed`.
-3. **Run the label comparison — it is mechanical now.** `evidence/labels.json` holds all 195 mentions
-   of 85 distinct strings across 82 cases, tagged by field; `evidence/partition.json` splits them
-   **49 spec-exact / 9 capitalisation-differs / 27 absent-from-spec**. Harvest the page vocabulary,
-   diff, and classify with `CLASSIFICATION.md`'s A/B/C table.
-   **⚠️ Read `CLASSIFICATION.md` §2 before classifying anything: the Schedule specification pins NO
-   label wording, so there are ZERO class-B labels and the BUILD decides all 85.** Do not re-derive
-   the wrong test — "the string appears in a numbered requirement" is NOT pinning; only a requirement
-   that ARGUES for its own string pins it. Start with the 9 capitalisation rows (one page, one menu).
-4. **Settle the two internal clashes** (`CLASSIFICATION.md` §1) — `Filter & Display` vs
-   `Filter and Display`, and `VIN` vs `VIN Number`. Both are class A, so the build decides; both are
-   defects in our suite whichever way it falls.
-5. **Re-confirm the Panel collapse control is still absent** (C43582–C43587). Owed — their stamp names
-   `v3.5-af3a6e1`, which is superseded. **Do not turn their plain `READY` marker back into a
-   prediction; the note telling the tester to record what they find is correct and deliberate.**
-6. **Put the 7 class-B capitalisation rows to the QA lead** (`CLASSIFICATION.md` §2) — `Create Event`
-   / `New Work Order` in Expected Results against the spec's lower case. Left unchanged following the
-   Report Suite C30452 precedent, because moving them changes an expectation.
+1. **Get past the bounce** (above). Everything else is blocked behind it — there is no partial subset
+   that can be done first, because the specification pins no label wording, so **the build decides
+   all 85 asserted strings** (`CLASSIFICATION.md` §2).
+2. **Check click-to-arm FIRST** — `button_sidebar_arm_<woId>` / `aria-pressed` / `aria-label` containing
+   *"by click"*. **7 cases** unblock if it is back (SV-8957).
+   **⚠️ The first harvest's `html_has_arm: false` is INVALID — it was measured on
+   `/administration/locations`, not the Schedule page. Do not reuse it.**
+3. **Run the label diff — it is mechanical and already built.** `tools/harvest3.cjs` reaches and dumps
+   the page vocabulary; `tools/diff_labels.py` then classifies all 85 strings
+   EXACT / CASE / VARIANT / ABSENT against `evidence/distinct_labels.txt`. Start with the 9
+   capitalisation rows — one page, one menu.
+4. **Settle the two internal clashes** (`CLASSIFICATION.md` §1) — `Filter & Display` (C30042) vs
+   `Filter and Display` (5 cases), and `VIN` vs `VIN Number`. Both class A → the build decides; both
+   are defects in our suite whichever way it falls. `harvest3.cjs` already tries to open that toolbar
+   dropdown, which settles both in one screenshot.
+5. **Re-confirm the Panel collapse control is still absent** (C43582–C43587) — their stamp names the
+   superseded `v3.5-af3a6e1`. **Do not turn their plain `READY` marker back into a prediction.**
+6. **Put the 7 capitalisation rows to the QA lead** if the build shows lower case
+   (`CLASSIFICATION.md` §2) — but note the corrected test means that **if the build renders
+   `Create Event` / `New Work Order` in Title Case, our cases are already right and nothing changes.**
 
-## Hygiene already measured live — no need to redo
+## Hygiene — re-measured LIVE this pass
 
-**Raw markup 0 of 174** (all four fields, every case) · **174 markers, exactly one each** ·
-**174 provenance lines, exactly one each** · **174 build stamps** · **`custom_atmstatus = 1` on all
-174, none Automated** · markers **READY 146 · HOLD 28**, gate passes both ways (146 = 174 − 28).
+**Raw markup 0 of 174** · **174 markers, exactly one each** (`READY` 146 · `HOLD` 28; gate
+146 = 174 − 28 ✓) · **174 provenance lines, exactly once each** · **174 build stamps** ·
+**`custom_atmstatus` = 1 on all 174, none Automated.**
 
-**⚠️ Raw markup is never durable** — TestRail re-renders text into HTML hours after a write without
-moving `updated_on` (playbook §J hazard 5). **Re-census before and after any write.**
+**Re-census before AND after any write** — markup zero is never durable (TestRail re-renders text
+into HTML hours later without moving `updated_on`, playbook §J hazard 5).
+
+**Verdict/build split unchanged: 90 on `v3.5-7ec992f` · 78 on `v3.5-d122eef` (gone) · 6 on
+`v3.5-af3a6e1`. No case's verdict rests on the build now running.**
 
 ## Proofs held
 
-**All 174 cases byte-identical** start to end, `updated_on`/`updated_by` included — 0 fields changed.
-**Run 357 untouched by content**: 174 tests, 458 results all present by ID, 0 changed, 0 new,
-`include_all` still false, counters 25/0/1/148 unchanged. Snapshots in `evidence/`.
+**All 174 cases byte-identical** start to end, `updated_on`/`updated_by` included — **0 field diffs**.
+**Run 357 untouched BY CONTENT**: `include_all` false, 174 tests, test-id and case-id sets equal both
+directions, **458 results all present by ID, 0 missing, 0 new, 0 field changes**, counters unchanged
+25/0/1/148. Snapshots: `evidence/cases-174-{START,END}.json`, `evidence/run357-*-{START,END}.json`.
+
+## Tooling gotcha found (worth the playbook)
+
+`/tmp/trlib.py`'s `getall()` appends `?limit=…`, but the TestRail URL `index.php?/api/v2/…` **already
+contains a `?`** — so every paginated call double-`?`s and returns **HTTP 400**. `get_case` is
+unaffected (no pagination), which disguises it as a partial outage. **Paginate with `&`.**
 
 ## Nothing to restore
 
-Nothing seeded, created or modified anywhere — the application was never reached.
+Nothing seeded, created or modified anywhere — **no data, no role, no setting, and no default
+workplace.** `change-location` is session-scoped and leaves no residue. The product was never reached.
