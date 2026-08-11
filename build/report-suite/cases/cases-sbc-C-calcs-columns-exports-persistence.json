@@ -1,1184 +1,864 @@
 [
- {
-  "id": "SBC-CALC-01",
-  "area": "SBC — Totals & Calculations",
-  "title": "Financial columns run in the specified order with Subtotal and Margin rules",
-  "priority": "Critical",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. A ZZAUTOTEST invoice exists with known labor, parts, and shop-supply amounts and known costs, in the current range."
-  ],
-  "steps": [
-   "1. Read the column headers left to right.",
-   "2. Expand down to that invoice's detail row and read its values.",
-   "3. Recalculate Subtotal and Margin by hand from the known amounts."
-  ],
-  "expected": [
-   "1. The financial columns appear in this order: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin % — with Subtotal as the rightmost column.",
-   "2. Subtotal = Labor Invoiced + Parts Invoiced + Shop Supplies, before tax.",
-   "3. Labor Margin = Labor Invoiced minus labor cost; Parts Margin = Parts Invoiced minus parts cost.",
-   "4. Margin = Labor Margin + Parts Margin — it does NOT include any Shop Supplies amount (shop supplies add to Subtotal but add no profit to Margin).",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S7-R6, S11-R1, S4-R12, S20-R19).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8605 (SBC spec v13 2026-07-31 §2; §4 Terminology; Story 7 S7-R6; Story 11 S11-R1 — §2/S7-R6 CLOSE the financial-column list and its order; Location is an identifier column not a financial one [S4-R12; S20-R19] so it never enters this list)",
-  "viu_status": "VIU-Pending",
-  "notes": "KNOWN-LIMITATION ENCODING: Margin excluding Shop Supplies while Subtotal includes them is by design (§4) — a Margin % that looks 'low' against Subtotal is expected, not a defect. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed financial-column list/order to SBC §2 + S7-R6 + spec version, and records that Location is NOT a financial column so the enumeration is unaffected by the automatic Location column (S4-R12 / S20-R19). RULE 41: Re-verified whole against SBC spec v12 2026-07-29: title, precondition 1, steps 1-3, expected 1-4, refs. §2 L38 verbatim: \"The report shows these financial columns, in this order: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, and Margin %.\"; S7-R6 L298 repeats the set and adds Subtotal; S11-R1 L463 pins Subtotal rightmost. SECOND FINDING: checked whether the automatic Location column could invalidate this list - it cannot; S20-R19 places Location with the IDENTIFIER columns immediately after Date, outside the financial block. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8605 (SBC spec v13 2026-07-31 §2; §4 Terminology; Story 7 S7-R6; Story 11 S11-R1 — §2/S7-R6 CLOSE the financial-column list and its order; Location is an identifier column not a financial one [S4-R12; S20-R19] so it never enters this list)"
- },
- {
-  "id": "SBC-CALC-02",
-  "area": "SBC — Totals & Calculations",
-  "title": "Margin % is Margin over Subtotal to one decimal; em dash when Subtotal <= 0",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. Rows with a normal positive Subtotal exist, and (if seedable) one row whose Subtotal is zero or below."
-  ],
-  "steps": [
-   "1. Read Margin % on a customer row, an asset row, and an invoice row; recalculate one by hand (Margin ÷ Subtotal × 100).",
-   "2. Find (or seed) a row with Subtotal ≤ 0 and read its Margin % cell.",
-   "3. Look at the Margin % coloring."
-  ],
-  "expected": [
-   "1. Margin % shows the row's Margin divided by its Subtotal, times 100, to one decimal with a percent sign — for example, 64.7%.",
-   "2. When the row's Subtotal is zero or below, the Margin % cell shows an em dash (—).",
-   "3. Margin % is monochrome — no green or red coloring.",
-   "4. The same calculation and format apply to customer rows, asset rows, and invoice rows.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S7-R11, S7-R12, S7-R13, S7-R14).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8605 (SBC spec v13 2026-07-31 Story 7 S7-R11; S7-R12; S7-R13; S7-R14)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8605 (SBC spec v13 2026-07-31 Story 7 S7-R11; S7-R12; S7-R13; S7-R14)"
- },
- {
-  "id": "SBC-CALC-03",
-  "area": "SBC — Totals & Calculations",
-  "title": "Inv. Hrs heading is verbatim; value shows +green / -red / 0.0 on every row",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. Invoices exist where billed hours exceed worked hours, where worked exceeds billed, and where they are equal (seed ZZAUTOTEST work orders with clocked time)."
-  ],
-  "steps": [
-   "1. Read the column heading.",
-   "2. Read the Inv. Hrs value on rows for each of the three seeded situations, at customer, asset, and invoice level."
-  ],
-  "expected": [
-   "1. The column heading reads \"Inv. Hrs\" (including the period after \"Inv\").",
-   "2. The value is hours invoiced minus hours worked, rounded to one decimal.",
-   "3. A positive value shows a leading + sign in the application's standard positive (green) color — for example, +1.5.",
-   "4. A negative value shows a leading - sign in the standard negative (red) color — for example, -1.5.",
-   "5. A zero/break-even value shows 0.0 in the default text color.",
-   "6. The same calculation, label, format, and coloring apply on customer, asset, and invoice rows.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S12-R1, S12-R2, S12-R3, S12-R4, S12-R5, S12-R6).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8610 (SBC spec v13 2026-07-31 Story 12 S12-R1; S12-R2; S12-R3; S12-R4; S12-R5; S12-R6)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8610 (SBC spec v13 2026-07-31 Story 12 S12-R1; S12-R2; S12-R3; S12-R4; S12-R5; S12-R6)"
- },
- {
-  "id": "SBC-CALC-04",
-  "area": "SBC — Totals & Calculations",
-  "title": "Inv. Hrs is never blank: no-labor rows and near-zero values both show 0.0",
-  "priority": "Medium",
-  "type": "Negative",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. A parts-only invoice (no labor at all) exists in range; if possible also an invoice whose delta rounds to zero (for example +0.04)."
-  ],
-  "steps": [
-   "1. Read the Inv. Hrs cell on the parts-only invoice's rows (invoice, asset, customer).",
-   "2. If seeded, read the near-zero row's Inv. Hrs."
-  ],
-  "expected": [
-   "1. A customer, asset, or invoice with no labor shows 0.0 in the default color — never blank, \"N/A,\" an em dash, or omitted.",
-   "2. A value that rounds to 0.0 (for example +0.04) is shown as 0.0 in the default text color (not +0.0 in green).",
-   "3. A negative value shows a minus sign and one decimal — for example, -0.5.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S12-N1, S12-E1, S12-E2).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8610 (SBC spec v13 2026-07-31 Story 12 S12-N1; S12-E1; S12-E2)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8610 (SBC spec v13 2026-07-31 Story 12 S12-N1; S12-E1; S12-E2)"
- },
- {
-  "id": "SBC-CALC-05",
-  "area": "SBC — Totals & Calculations",
-  "title": "Invoice subtotals sum to their asset row and asset subtotals to the customer",
-  "priority": "Critical",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. A customer with two or more assets, each with two or more invoices, is in the current view (seed ZZAUTOTEST data)."
-  ],
-  "steps": [
-   "1. Expand the customer and every asset.",
-   "2. Sum the invoice-level values by hand for each column and compare with each asset row.",
-   "3. Sum the asset rows and compare with the customer row."
-  ],
-  "expected": [
-   "1. An asset's invoice subtotals sum exactly to that asset's row total.",
-   "2. A customer's asset subtotals sum exactly to the customer's row total.",
-   "3. This holds for every financial column, not only Subtotal.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-R13).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R13)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R13)"
- },
- {
-  "id": "SBC-CALC-06",
-  "area": "SBC — Totals & Calculations",
-  "title": "Subtotal is the rightmost column; pinned on scroll and bold everywhere",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the report with data, on a window narrow enough to force horizontal scrolling (or with all columns visible)."
-  ],
-  "steps": [
-   "1. Confirm the Subtotal column is the last column on the right.",
-   "2. Scroll the table sideways and watch the Subtotal column.",
-   "3. Inspect the font weight of the Subtotal header, a customer row, an asset row, an invoice row, and the totals row."
-  ],
-  "expected": [
-   "1. Subtotal is the rightmost column in the table.",
-   "2. It stays visible pinned at the right edge while the table scrolls horizontally.",
-   "3. Subtotal values are shown in bold on the header, on every customer, asset and invoice row, and on the totals row.",
-   "4. Check it still holds after two changes: narrow the date range so fewer rows match, then sort by a different column. Subtotal stays the rightmost column, stays pinned, and stays bold both times.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S11-R1, S11-R2, S11-R3, S11-N1).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8609 (SBC spec v13 2026-07-31 Story 11 S11-R1; S11-R2; S11-R3; S11-N1)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8609 (SBC spec v13 2026-07-31 Story 11 S11-R1; S11-R2; S11-R3; S11-N1)"
- },
- {
-  "id": "SBC-CALC-07",
-  "area": "SBC — Totals & Calculations",
-  "title": "The totals row covers the whole filtered set; not just the current page",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. Enough customers exist to span more than one page of results, with known amounts (seed ZZAUTOTEST data)."
-  ],
-  "steps": [
-   "1. Read the totals row on page 1.",
-   "2. Move to page 2 and read the totals row again.",
-   "3. Compare the totals against the sum over ALL matching customers (not just one page)."
-  ],
-  "expected": [
-   "1. The totals row is computed over the full set of customers matching the active filters (date range, Product Type, location, Customer filter).",
-   "2. The totals do not change when you move between pages — they never reflect only the visible page.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R6).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R6)",
-  "viu_status": "VIU-Pending",
-  "notes": "Server-side computation is covered by SBC-API-04. BUILD-DELTA: server-computed totals are the 2026-07-16 committed target (spec ahead of code by design). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R6)"
- },
- {
-  "id": "SBC-COL-01",
-  "area": "SBC — Column Selector",
-  "title": "Column selector is its own toolbar button with nine toggles all on",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the report with no saved column selection (first visit or cleared storage)."
-  ],
-  "steps": [
-   "1. Find the column selector button in the toolbar's action area, next to the overflow menu.",
-   "2. Hover it and read the tooltip.",
-   "3. Click it and read the toggle list top to bottom."
-  ],
-  "expected": [
-   "1. The column selector is a separate control next to the overflow menu — it is not an item inside the overflow menu.",
-   "2. Hovering it shows the tooltip \"Column Selection.\"",
-   "3. The panel lists nine toggles, in order: Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %.",
-   "4. With no saved selection, all nine toggleable columns default to visible.",
-   "5. Note for the tester: this panel lists nine toggles and no Location toggle. The specification is currently inconsistent on this one point - one requirement says a Location toggle should be here for anyone who can reach more than one branch, while the list of nine does not include it. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S13-R1, S13-R2, S13-R3, S13-R4, S13-R7, S4-R12, S4-R13). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: one requirement says it is shown by default and can be toggled there, and the list of toggleable columns in another does not include it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R1; S13-R2; S13-R3; S13-R4; S13-R7 — S13-R4 CLOSES the nine-toggle list and its order; Location is automatic and never a toggle [S4-R12; S4-R13])",
-  "viu_status": "VIU-Pending",
-  "notes": "2026-08-03 verifier-fix [C/V-10]: Pins the closed nine-toggle list to SBC S13-R4 + spec version, and adds the plain tester line that Location is not in the panel because it appears automatically — otherwise a tester with two locations in scope could fail a correct build. RULE 41: Re-verified whole against SBC spec v12 2026-07-29: title, precondition 1, steps 1-3, expected 1-4, refs. S13-R4 verbatim L528: \"The nine toggleable columns are, in order: Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %.\" S13-R1/R2/R3/R7 match expected 1-4. SECOND FINDING: the panel list and the automatic Location column (S4-R12) can confuse a layman - plain line added. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R1; S13-R2; S13-R3; S13-R4; S13-R7 — S13-R4 CLOSES the nine-toggle list and its order; Location is automatic and never a toggle [S4-R12; S4-R13])"
- },
- {
-  "id": "SBC-COL-02",
-  "area": "SBC — Column Selector",
-  "title": "Column toggles hide header+cells; Customer, Subtotal and chevron never in list",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the report with data and the column selector open."
-  ],
-  "steps": [
-   "1. Turn the \"Shop Supplies\" toggle off, then on again, watching the table.",
-   "2. Read the toggle list for Customer, Subtotal, or a chevron entry.",
-   "3. Turn all nine toggles off and read the table."
-  ],
-  "expected": [
-   "1. Turning a toggle off hides that column's header and all its body cells together; turning it on restores both together.",
-   "2. The Customer and Subtotal columns and the chevron control column do NOT appear in the toggle list and are always present.",
-   "3. All nine columns can be hidden — nothing blocks the last toggle; the table still renders the Customer and Subtotal columns and the totals row still shows its Subtotal.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S13-R5, S13-R6, S13-N1).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R5; S13-R6; S13-N1)",
-  "viu_status": "VIU-Pending",
-  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-COLBOUNDS): absorbed SBC-COL-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R5; S13-R6; S13-N1)"
- },
- {
-  "id": "SBC-COL-03",
-  "area": "SBC — Column Selector",
-  "title": "Hiding all nine toggleable columns is allowed and the table still shows Customer, Subtotal and the totals Subtotal",
-  "priority": "Medium",
-  "type": "Negative",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the report with data."
-  ],
-  "steps": [
-   "1. Open the column selector and turn all nine toggles off.",
-   "2. Read the table."
-  ],
-  "expected": [
-   "1. All nine columns can be hidden — nothing blocks the last toggle.",
-   "2. The table still renders the Customer and Subtotal columns.",
-   "3. The totals row still shows its Subtotal."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 13 S13-N1",
-  "viu_status": "Retired 2026-07-28 (merged into SBC-COL-02 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBC-COL-04",
-  "area": "SBC — Column Selector",
-  "title": "A one-location user never sees Location in the column-selection list",
-  "priority": "Medium",
-  "type": "Negative",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. You are signed in as a person who has access to exactly ONE location. Check this in administration under that person's location access, and put their access back as you found it when you finish.",
-   "3. This one test covers all six reports, so keep this same sign-in for the whole of it."
-  ],
-  "steps": [
-   "1. Open the Sales By Customer report and open the column-selection control (the toolbar button beside the overflow menu; hovering it reads \"Column Selection.\").",
-   "2. Read the whole list of switches from top to bottom and look for an entry called Location.",
-   "3. Do the same on Sales By Representative, then Parts Velocity, then Technician Utilization, then Work In Progress, then Inventory Value."
-  ],
-  "expected": [
-   "1. On every one of the six reports the column-selection list does NOT contain an entry called Location.",
-   "2. Nothing else about each list changes - only the Location entry is missing.",
-   "3. No Location column shows on the table either, because this person only ever has one location in view.",
-   "4. Note for the tester: this test is about someone who only has ACCESS to one location. That is a different person from someone who can reach several locations but has picked just one. Do not mix the two up - they are separate tests, and the second one is still waiting on an answer from the product owner.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S4-R12), which states that a user with access to a single location is never shown the Location column and that it never appears in their column selector; the Technician Utilization report specification version 6 (S10-R4) and the Work In Progress report specification version 9 (S4-R3) say the same, and on the other three reports the written description keeps the column out of that list for everyone, so the result is the same for all six. Chris Ward asked for this in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true",
-   "This has not yet been checked against a build.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R4 with S4-R12; the never-offered rule itself comes from Chris Ward's answer T1-1 option C of 2026-08-05 and is in no specification)",
-  "viu_status": "VIU-Pending",
-  "notes": "Authored 2026-08-05 from Chris Ward's answer T1-1 option C. NOT live-verified: the QA branch redeployed to v3.5-16cf83f on 2026-08-05 and the session could not be renewed.",
-  "api_related": false,
-  "refs": "SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R4 with S4-R12; the never-offered rule itself comes from Chris Ward's answer T1-1 option C of 2026-08-05 and is in no specification)"
- },
- {
-  "id": "SBC-EXP-01",
-  "area": "SBC — Exports",
-  "title": "The overflow menu holds exactly the four download items - no Print",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the Sales By Customer report."
-  ],
-  "steps": [
-   "1. Find the overflow menu in the toolbar's action area and note its position.",
-   "2. Open it and read the items in order.",
-   "3. Look around the toolbar for any separate always-visible export buttons."
-  ],
-  "expected": [
-   "1. The overflow (export) menu is the leftmost control in the toolbar's action area and is the application's standard overflow-menu control.",
-   "2. The menu items read, in order: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", \"Download Expanded View (CSV)\" - and there is NO \"Print\" item anywhere in the menu.",
-   "3. There are no separate always-visible export buttons - all exports live behind this one menu.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S14-R1, S14-R2, S15-R1, S15-R2, S20-R16).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 — these CLOSE the four-item menu and its verbatim labels; menu reshaped + \"Print\" removed per Chris Ward 2026-07-29 [newest-wins])",
-  "viu_status": "VIU-Pending",
-  "notes": "MENU RESHAPED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): 'Menu items: Download Summary (PDF), Download Expanded View (PDF), Download Summary (CSV), Download Expanded View (CSV)' + 'The Print option is removed.' The four labels are now SPEC-STATED by the message (VIU-confirm hedge removed) - still to be sighted live at VIU per Rule 12. Menu ORDER as listed in the message; confirm in the build. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed four-item menu + its verbatim labels to SBC S14-R1/R2 + S15-R1/R2 + spec version. The refs previously carried only a message date, not a spec version. RULE 41: Re-verified whole against SBC spec v12 2026-07-29: title, precondition 1, steps 1-3, expected 1-3, refs. S14-R1 L556 + S14-R2 L557 + S15-R1 L607 + S15-R2 L608 close the four items and their verbatim labels; S20-R16 L774 pins the menu leftmost in the action area. \"Print\" absence is the Chris Ward 2026-07-29 ruling (newest-wins) and is retained. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 — these CLOSE the four-item menu and its verbatim labels; menu reshaped + \"Print\" removed per Chris Ward 2026-07-29 [newest-wins])"
- },
- {
-  "id": "SBC-EXP-02",
-  "area": "SBC — Exports",
-  "title": "Download file names carry the version and the active date range",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the report with data."
-  ],
-  "steps": [
-   "1. Set the range to This Month, choose \"Download Summary (CSV)\" and note the downloaded file name.",
-   "2. Choose \"Download Expanded View (CSV)\" and note that file name.",
-   "3. Repeat both for at least Today, Last Quarter, and a Custom range.",
-   "4. Open a downloaded file in a text editor and in a spreadsheet.",
-   "5. Repeat steps 1-3 for \"Download Summary (PDF)\" and \"Download Expanded View (PDF)\"."
-  ],
-  "expected": [
-   "1. The Summary file name is sales-by-customer-summary-{range}.csv and the Expanded file name is sales-by-customer-expanded-{range}.csv — so the file says which version it is.",
-   "2. {range} follows the period you picked, using the nine periods the chooser actually offers: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. The written description gives the word for eight of them - this_week, last_week, this_month, last_month, this_year, last_year, this_quarter, last_quarter - so check the file against those. It does not give a word for Last 12 Months, so for that one record what you see rather than judging it right or wrong.",
-   "3. For a range you built yourself on the calendar the file name uses the word custom in place of a period name - for example sales-by-customer-summary-custom.csv.",
-   "4. The file is plain comma-separated text with a .csv extension that opens as rows and columns in a spreadsheet — not an .xlsx workbook and not a JSON file.",
-   "5. The two PDF downloads follow the same names with a .pdf extension — for example, sales-by-customer-summary-this_month.pdf and sales-by-customer-expanded-custom.pdf.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Sales By Customer report specification version 15 (S14-R14, S14-R15, S15-R6) says something different, his decision is the later word and is the authority.",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R14; S14-R15; S15-R6 — file names now carry the Summary/Expanded version; the old flat sales-by-customer-{range} map is superseded)",
-  "viu_status": "VIU-Pending",
-  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-EXPNAME): absorbed SBC-EXP-07. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. CHANGED by the SBC spec v12 2026-07-29 S14-R14 / S15-R6 (Summary and Expanded file names). SPEC-WATCH item 3 CLOSED — the Summary/Expanded split is now spec-ratified. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S14-R15 (plain comma-separated .csv; not .xlsx and not JSON) added — already asserted in expected 4. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R14; S14-R15; S15-R6 — file names now carry the Summary/Expanded version; the old flat sales-by-customer-{range} map is superseded)"
- },
- {
-  "id": "SBC-EXP-03",
-  "area": "SBC — Exports",
-  "title": "Expanded View CSV: column order, blank-cell rules, and the Locations line",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You have downloaded the CSV for a view with at least one customer with several invoices."
-  ],
-  "steps": [
-   "1. Read the header row.",
-   "2. Read a customer row and an invoice row.",
-   "3. Look for any asset-level rows."
-  ],
-  "expected": [
-   "1. With a single location in scope the Expanded View CSV has these thirteen columns in this exact order: Customer, Asset, Invoice #, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal. When more than one location is in scope the file also carries a Location column — immediately after Date, the position it holds on screen — making fourteen.",
-   "2. A customer row fills the Customer cell and leaves Asset, Invoice # and Date blank.",
-   "3. An asset row leaves Customer blank, fills Asset, and leaves Invoice # and Date blank.",
-   "4. An invoice row leaves Customer and Asset blank and fills Invoice # and Date.",
-   "5. Customer names are plain — the \"(N)\" invoice count is not included.",
-   "6. Work with no vehicle appears as an asset row named \"Parts Sales\".",
-   "7. The file carries a \"Locations:\" line naming the location or locations the report was scoped to, or \"All locations\" when every location you can access is selected — as a leading line above the column headers.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S14-R5, S14-R6, S14-R7, S14-R8, S14-R13, S4-R13).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8612; SV-8603 (SBC spec v13 2026-07-31 Story 14 S14-R5; S14-R6; S14-R7; S14-R8; S14-R13 + Story 4 S4-R13 — Expanded CSV thirteen columns INCLUDING Asset; per-level blank-cell rules; plus the automatic Location column in every export)",
-  "viu_status": "VIU-Pending",
-  "notes": "RESHAPED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): exports split Summary/Expanded and the Expanded View is 'the full Customer -> Asset -> Invoice breakdown', so the old 'no asset layer by design' known-limitation note is STALE and removed. Column order + blank-cell rules kept from the current spec until the changelog lands - reconcile then. Locations: line = all-reports change, same message. RATIFIED + EXTENDED by the SBC spec v12 2026-07-29: S14-R5 gives the exact thirteen-column Expanded order (Asset added), S14-R6 the per-level row shape, S14-R7 the \"Parts Sales\" asset row, S14-R13 the \"Locations:\" line. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S14-R8 (plain customer names; no \"(N)\" count) added — already asserted in expected 5, anchor was missing. STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8612; SV-8603 (SBC spec v13 2026-07-31 Story 14 S14-R5; S14-R6; S14-R7; S14-R8; S14-R13 + Story 4 S4-R13 — Expanded CSV thirteen columns INCLUDING Asset; per-level blank-cell rules; plus the automatic Location column in every export)"
- },
- {
-  "id": "SBC-EXP-04",
-  "area": "SBC — Exports",
-  "title": "CSV formats: Margin % plain; dates mm-dd-yyyy; currency plain; no color",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You have downloaded a CSV containing rows with real values, including (if seedable) a row whose Subtotal is zero or below."
-  ],
-  "steps": [
-   "1. Read a Margin % cell, a Date cell, and a currency cell in a text editor.",
-   "2. Check the row whose Subtotal is ≤ 0."
-  ],
-  "expected": [
-   "1. Margin % is a plain number to one decimal with no percent sign (for example, 64.7); it is EMPTY when the row's Subtotal is zero or below.",
-   "2. Dates export as mm-dd-yyyy — for example, 05-14-2026.",
-   "3. Currency values are plain numbers with no dollar sign and no thousands separators.",
-   "4. The CSV has no color; the signed Inv. Hrs value still conveys direction.",
-   "On this build the money in the spreadsheet file comes out as \"$224.92\" - with a dollar sign, and with a comma as well once the value passes a thousand - instead of the plain number described in point 3 above.",
-   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S14-R9, S14-R10, S14-R11, S14-R12, S14-R13).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY - EXPECT FAIL (SV-8823)",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8612 (SBC spec v13 2026-07-31 Story 14 S14-R9; S14-R10; S14-R11; S14-R12; S14-R13)",
-  "viu_status": "VIU-Pending",
-  "notes": "COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S14-R9 (Margin % plain to one decimal; empty when Subtotal <= 0) added — already asserted in expected 1; the citation was off by one. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8612 (SBC spec v13 2026-07-31 Story 14 S14-R9; S14-R10; S14-R11; S14-R12; S14-R13)"
- },
- {
-  "id": "SBC-EXP-05",
-  "area": "SBC — Exports",
-  "title": "CSV and PDF hold exactly the customers matching the active filters and sort",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. Data exists across two locations, both product types, and several customers."
-  ],
-  "steps": [
-   "1. Set a specific date range, Product Type \"Service only\", one location, a two-customer selection in the Customer filter, and a Subtotal sort.",
-   "2. Download the CSV and the PDF.",
-   "3. Compare each file's contents against the on-screen rows."
-  ],
-  "expected": [
-   "1. Each export contains exactly the customers matching the active filters — the selected customers, within the active date range, Product Type, and location — in the active sort order.",
-   "2. When every customer is selected, the export contains the full set of customers under those filters.",
-   "3. The chosen date range and Product Type are reflected in both exports.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S2-R7, S3-R7, S4-R10, S14-R3, S15-R3, S18-R7).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R7; Story 3 S3-R7; Story 4 S4-R10; Story 14 S14-R3; Story 15 S15-R3; Story 18 S18-R7)",
-  "viu_status": "VIU-Pending",
-  "notes": "Server-side generation is covered by SBC-API-05. COMPANION-VIDEO 2026-07-30 (C11, 07:09-08:06): confirmed — 'when I export, only those, the information on the page is going to show up on the exports. Important you see what that toggle does.' Exports carry exactly the page contents under the Customer selection. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R7; Story 3 S3-R7; Story 4 S4-R10; Story 14 S14-R3; Story 15 S15-R3; Story 18 S18-R7)"
- },
- {
-  "id": "SBC-EXP-06",
-  "area": "SBC — Exports",
-  "title": "Each download item shows a loading state and its own export-failed toast",
-  "priority": "Medium",
-  "type": "Negative",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the report with a large enough data set that a download takes a visible moment.",
-   "2. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
-  ],
-  "steps": [
-   "1. Choose \"Download Summary (CSV)\" and immediately look at that menu item.",
-   "2. To provoke a failure, disconnect the network (or use the browser's offline mode) and choose \"Download Summary (CSV)\" again.",
-   "3. Repeat both checks for \"Download Expanded View (CSV)\", \"Download Summary (PDF)\" and \"Download Expanded View (PDF)\"."
-  ],
-  "expected": [
-   "1. While a download is in progress, ONLY that menu item shows a loading state and is non-interactive; the other three items are unaffected.",
-   "2. If a CSV download fails, an error toast is shown: \"CSV export failed.\" (dismissed by the user).",
-   "3. If a PDF download fails, the toast reads \"PDF export failed.\" — identical behaviour, different wording.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S14-E1, S14-N1, S15-E1, S15-N1).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8612; SV-8613 (SBC spec v13 2026-07-31 Story 14 S14-E1; S14-N1; Story 15 S15-E1; S15-N1; §7 — the loading state is now per menu item; four items)",
-  "viu_status": "VIU-Pending",
-  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-EXPTOAST): absorbed SBC-EXP-12. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. CHANGED by the SBC spec v12 2026-07-29 (S14-E1/S15-E1 now read \"While a CSV/PDF download is in progress, THAT menu item shows a loading state\"). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8612; SV-8613 (SBC spec v13 2026-07-31 Story 14 S14-E1; S14-N1; Story 15 S15-E1; S15-N1; §7 — the loading state is now per menu item; four items)"
- },
- {
-  "id": "SBC-EXP-07",
-  "area": "SBC — Exports",
-  "title": "PDF download uses the same range-based filename map with a .pdf extension",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the report with data."
-  ],
-  "steps": [
-   "1. Set the range to This Month and choose \"Download (PDF)\"; note the filename.",
-   "2. Repeat for one other preset and a Custom range."
-  ],
-  "expected": [
-   "1. The file follows the same range-to-filename map as the CSV, with a .pdf extension — for example, sales-by-customer-this_month.pdf, sales-by-customer-custom.pdf."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 15 S15-R4",
-  "viu_status": "Retired 2026-07-28 (merged into SBC-EXP-02 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBC-EXP-08",
-  "area": "SBC — Exports",
-  "title": "PDF page: A4 landscape, uniform margins, ShopView footer and page numbers",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You have downloaded the PDF for a view with enough rows to span more than one page."
-  ],
-  "steps": [
-   "1. Open the PDF and check the page setup.",
-   "2. Read the footer on each page."
-  ],
-  "expected": [
-   "1. The PDF is A4 landscape using the application's standard font; the page margins look uniform on all sides. (The spec's exact 25px margin needs a PDF inspector — check the number only if you have one; otherwise uniform margins pass.)",
-   "2. The footer has a centered \"Software Powered by ShopView\" label and a right-aligned page number \"Page X of Y.\"",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S15-R5, S15-R6, S15-R7, S15-R8).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R5; S15-R6; S15-R7; S15-R8 — A4 landscape; 25px margins; standard font; footer label and page numbers)",
-  "viu_status": "VIU-Pending",
-  "notes": "FIX-WORDING repair 2026-07-28 (sense-check): the 25px margin is not measurable by eye — the observable pass criterion is A4 landscape + uniform margins + footer + page numbers; the exact 25px stays as an inspector-only check. STAGE-2B CONSISTENCY REPAIR 2026-07-31: S15-R7 (A4 landscape / 25px margins / standard font) and S15-R8 (footer) added — both already asserted in expected 1 and 2; the anchor sat on the sibling header case SBC-EXP-09 (C30167) instead. Found by the same-requirement-different-surface sweep. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R5; S15-R6; S15-R7; S15-R8 — A4 landscape; 25px margins; standard font; footer label and page numbers)"
- },
- {
-  "id": "SBC-EXP-09",
-  "area": "SBC — Exports",
-  "title": "PDF header: title, organization, date range, Product Type and Locations lines",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You have downloaded the PDF with a known date range, Product Type, and a specific location selected."
-  ],
-  "steps": [
-   "1. Read the header's text block top to bottom.",
-   "2. Look for any mention of the selected location."
-  ],
-  "expected": [
-   "1. The header is two columns: a text block on the left (70% width) and the organization logo on the right (30% width).",
-   "2. The text block shows the report title \"Sales By Customer Report\"; the organization name; the date range; and the filter summary line \"Product Type: {value}\" where value is \"Parts & Service,\" \"Parts only,\" or \"Service only.\"",
-   "3. The header date range shows start and end in the format \"Mon D, YYYY,\" joined by an em dash - for example, \"May 1, 2026 - May 31, 2026\" - and always shows both dates (every range is bounded).",
-   "4. The header also carries a \"Locations:\" line naming the location(s) the report was scoped to.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S15-R7, S15-R8, S15-R9, S15-R10, S15-R11, S15-R14, S4-R13); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R7; S15-R8; S15-R9; S15-R10; S15-R11; S15-R14 + Story 4 S4-R13 — PDF header block; S15-R14/S4-R13 = the \"Locations:\" line in every export [Chris Ward 2026-07-29; newest-wins])",
-  "viu_status": "DEVIATION",
-  "notes": "REVERSED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every PDF now carries a \"Locations:\" line (the old expected #4 asserted location is NOT shown - removed). KNOWN-LIMITATION ENCODING kept: the header uses \"Mon D, YYYY\" while body Date cells use \"Mon DD YYYY\" - intentional per the S15-R9 context note; do not file it as an inconsistency. LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. | 2026-08-03 verifier-fix [A/V-3]: Adds SBC S4-R13 (suite export rule) AND S15-R14 (the PDF-header \"Locations:\" line, the anchor that most directly governs this case) so a change to either re-surfaces C30167. Both verified verbatim in the current SBC mirror. RULE 41: Re-verified whole against SBC spec v12 2026-07-29 (spec-current-2026-07-31/Sales-By-Customer-Report-current.md): title, preconditions, steps, expected 1-4, refs, notes. S15-R7 (A4 landscape/25px), S15-R8..R11 and S15-R14 all resolve; expected 1-4 match them. SECOND FINDING: the precise governing anchor S15-R14 (\"The header shows a 'Locations:' line ... (S4-R13)\", L623) was never cited - added alongside S4-R13. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md | STATUS CORRECTED 2026-08-04 (final-push pass): the recorded VIU-Observed-PASS contradicted this case's own captured evidence, so the ledger status is DEVIATION. Local status only — no TestRail field carries it.",
-  "api_related": false,
-  "refs": "SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R7; S15-R8; S15-R9; S15-R10; S15-R11; S15-R14 + Story 4 S4-R13 — PDF header block; S15-R14/S4-R13 = the \"Locations:\" line in every export [Chris Ward 2026-07-29; newest-wins])"
- },
- {
-  "id": "SBC-EXP-10",
-  "area": "SBC — Exports",
-  "title": "PDF logo is embedded, scales without distortion",
-  "priority": "Low",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View); admin access to change the organization logo for seeding.",
-  "preconditions": [
-   "1. You can toggle the organization's uploaded logo on/off in administration (restore it afterwards)."
-  ],
-  "steps": [
-   "1. With an uploaded org logo, download the PDF and check the top-right.",
-   "2. Remove the uploaded logo, download again, and check.",
-   "3. Open a PDF while offline to confirm the logo still renders."
-  ],
-  "expected": [
-   "1. With an uploaded logo, that logo appears pinned to the top-right, scaled to fit its area without distortion.",
-   "2. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space.",
-   "3. When no logo is printed, the logo column is not rendered and the text column fills the full width.",
-   "4. The logo is embedded in the PDF (renders offline, not loaded from a network address).",
-   "Note for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true; where the Sales By Customer report specification version 15 (S15-R12, S15-R13, S15-R14, S15-R15, S15-R16, S15-R17, S15-R18) differs, his decision is the authority.",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026, which does not yet match it - that change is with the developers.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R12; S15-R13; S15-R14; S15-R15; S15-R16; S15-R17; S15-R18)",
-  "viu_status": "VIU-Pending",
-  "notes": "The no-logo-at-all state (step 3 of the fallback) may not be reachable if the bundled logo always exists — record what is observed. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S15-R16 (scales without distortion) S15-R17 (logo fallback order) and S15-R18 (no-logo layout) added - all three already asserted in expected 1-3; the existing S15-R12..R15 citations are kept. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R12; S15-R13; S15-R14; S15-R15; S15-R16; S15-R17; S15-R18)"
- },
- {
-  "id": "SBC-EXP-11",
-  "area": "SBC — Exports",
-  "title": "Expanded View PDF body matches the CSV's columns and on-screen rules",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You have downloaded the PDF for a view with positive and negative Inv. Hrs values and (if seedable) a Subtotal ≤ 0 row.",
-   "2. This test names exact colours or sizes. Use the browser's own developer tools: press F12, pick the element with the inspector, and read its colour or size from the \"Styles\" panel. There is nothing to install. If you cannot get a clear reading, mark this test Blocked rather than guessing."
-  ],
-  "steps": [
-   "1. Read the body table's columns and row structure.",
-   "2. Check a date cell, a customer row's Date cell, a Margin % dash, the Subtotal column weight, and the Inv. Hrs colors (use a color picker on the PDF if available)."
-  ],
-  "expected": [
-   "1. The Expanded View PDF's body table has the same columns, in the same order and with the same labels, as the Expanded View CSV — thirteen with a single location in scope, plus the Location column after Date when more than one location is in scope — including the Asset column — and shows the full Customer, then Asset, then Invoice breakdown, one block per customer.",
-   "2. Body dates show as \"Mon DD YYYY\" - for example, \"May 14 2026.\"",
-   "3. The Date cell is blank on customer rows and on asset rows, matching the screen.",
-   "4. Margin % shows an em dash when the row's Subtotal is zero or below.",
-   "5. The Subtotal column is bold - header, every row, and the totals row.",
-   "6. Inv. Hrs uses the same signs and coloring as on screen, with green rendered as #21ba45 and red as #c10015.",
-   "7. The PDF header title reads \"Sales By Customer Report\" on the Summary and Expanded versions alike — which version you have is told by the file name and the contents, not by a different title.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S15-R5, S15-R13, S15-R19, S15-R20, S15-R21, S15-R22, S15-R23, S15-R24, S4-R13).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8613; SV-8603 (SBC spec v13 2026-07-31 Story 15 S15-R5; S15-R13; S15-R19; S15-R20; S15-R21; S15-R22; S15-R23; S15-R24 + Story 4 S4-R13 — Expanded PDF body = the Expanded columns; plus the automatic Location column)",
-  "viu_status": "VIU-Pending",
-  "notes": "RESHAPED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) (Summary/Expanded split - this case covers the Expanded View PDF; the Summary PDF's one-row-per-customer shape is covered by SBC-EXP-16). Color extends to the PDF but never the CSV (S3 Key Decision) - unchanged. RATIFIED by the SBC spec v12 2026-07-29 (S15-R5 Expanded body \"one block per customer\", S15-R13 same header title for both versions, S15-R19 column labels match the CSV, S15-R21 Date blank on customer AND asset rows). STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8613; SV-8603 (SBC spec v13 2026-07-31 Story 15 S15-R5; S15-R13; S15-R19; S15-R20; S15-R21; S15-R22; S15-R23; S15-R24 + Story 4 S4-R13 — Expanded PDF body = the Expanded columns; plus the automatic Location column)"
- },
- {
-  "id": "SBC-EXP-12",
-  "area": "SBC — Exports",
-  "title": "PDF action shows a loading state while exporting and a PDF export failed toast on failure",
-  "priority": "Medium",
-  "type": "Negative",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the report with data."
-  ],
-  "steps": [
-   "1. Choose \"Download (PDF)\" and immediately look at the menu action.",
-   "2. Provoke a failure (offline mode) and choose \"Download (PDF)\" again."
-  ],
-  "expected": [
-   "1. While the export is in progress, the menu's PDF action shows a loading state and is non-interactive.",
-   "2. If the export fails, an error toast is shown: \"PDF export failed.\" (dismissed by the user)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 15 S15-E1; S15-N1; §7",
-  "viu_status": "Retired 2026-07-28 (merged into SBC-EXP-06 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBC-EXP-13",
-  "area": "SBC — Exports",
-  "title": "Print fetches the report PDF and opens the native print dialog in the current tab, disabled while the table is first loading",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the report with data fully loaded."
-  ],
-  "steps": [
-   "1. Open the overflow menu and choose \"Print\"; watch the action and the browser.",
-   "2. Cancel the print dialog and check the page behind it.",
-   "3. Reload the report and try to activate Print while the table is still in its initial loading state.",
-   "4. Provoke a failure (offline mode) and choose Print again."
-  ],
-  "expected": [
-   "1. Print fetches the report's PDF (same content as the PDF download) and then opens the browser's native print dialog in the current tab — no new browser tab is opened.",
-   "2. The page behind the print dialog is unchanged.",
-   "3. The Print action shows a loading state while the PDF is fetched and is non-interactive during that time.",
-   "4. Print is disabled while the report table is still in its initial loading state.",
-   "5. If the PDF request fails, an error toast is shown: \"PDF generation failed.\""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 16 S16-R3; S16-R3a; S16-R3b; S16-R3c; S16-R4; S16-R5; S16-N1; §7",
-  "viu_status": "Retired 2026-07-28 (video P25 Print removed from Sales By Customer; delete_case authorized 2026-07-28)",
-  "notes": "RETIRE-PROPOSED (P25, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)) — this case's ONLY purpose is the Print behavior, and the video removes Print from Sales By Customer entirely (31:14: 'print here, this should not exist. I'm going to make sure. That's cut out of the spec.'). OVERRIDDEN spec wording: Story 16 S16-R1..R6 / S16-N1 / §7 ('Print PDF fails'). NOT deleted — Rule 6: kept in TestRail (C30171) until the user explicitly authorizes delete_case; body left as authored for the record. Prior note: the distinct failure wording Print='PDF generation failed.' vs PDF download='PDF export failed.'",
-  "api_related": false
- },
- {
-  "id": "SBC-EXP-14",
-  "area": "SBC — Exports",
-  "title": "An export over 10,000 data rows is refused with the too-large toast",
-  "priority": "High",
-  "type": "Negative",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. A filter combination exists whose customer rows plus invoice rows exceed 10,000 (widest range, all locations, all customers). If the environment cannot reach 10,000 rows even fully widened, record the max reachable and mark Blocked-Env with reason."
-  ],
-  "steps": [
-   "1. With the over-cap filter set, choose \"Download (CSV)\".",
-   "2. Choose \"Download (PDF)\".",
-   "3. Narrow the filters below the cap and re-try one export."
-  ],
-  "expected": [
-   "1. For both CSV and PDF: no file is generated and no download starts.",
-   "2. An error toast is shown each time: \"This report is too large to export. Narrow the date range or filters, then try again.\" (dismissed by the user).",
-   "3. The cap counts customer rows plus invoice rows (not the header or totals row) against the active date range, Product Type, location, Customer filter, and sort.",
-   "4. Below the cap the export succeeds normally.",
-   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S14-R16, S15-R25, S14-R14, S15-R22); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY - EXPECT FAIL (SV-8818)",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R16 CSV cap; S15-R25 PDF cap; S14-R14; S15-R22; §7 — Print leg REMOVED per kickoff video P25 31:14; user ruling 2026-07-28 video-overrides-spec)",
-  "viu_status": "VIU-Pending",
-  "notes": "Server-side enforcement is covered by SBC-API-05. BUILD-DELTA: the 10,000-row cap is the 2026-07-21 spec round — the current build may lack it at VIU. Video P25 (user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): the Print step/expectation was removed with the Print control (spec S16-R6 had capped Print too); title shortened to fit. Q2 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A 'great catch'): ONE message across all six reports — \"This report is too large to export. Narrow the date range or filters, then try again.\" The Sales By Customer spec text still carries the retired \"This export is too large to generate…\" wording; Chris's spec edit is pending. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S14-R16 (CSV cap) and S15-R25 (PDF cap) added - the pre-v12 S14-R14/S15-R22 citations are kept so no other requirement loses its anchor. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R16 CSV cap; S15-R25 PDF cap; S14-R14; S15-R22; §7 — Print leg REMOVED per kickoff video P25 31:14; user ruling 2026-07-28 video-overrides-spec)"
- },
- {
-  "id": "SBC-EXP-15",
-  "area": "SBC — Exports",
-  "title": "A no-match export still downloads headers and a zero totals row",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. The Customer filter selection is empty (\"Clear all\") or the filters otherwise match no customers."
-  ],
-  "steps": [
-   "1. Choose \"Download (CSV)\" and open the file.",
-   "2. Choose \"Download (PDF)\" and open the file."
-  ],
-  "expected": [
-   "1. The export still downloads — no error and no warning is shown.",
-   "2. The file contains the column headers and a totals row of zeros, with no data rows.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R10).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R10)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R10)"
- },
- {
-  "id": "SBC-PERS-01",
-  "area": "SBC — Saved View & Persistence",
-  "title": "Filters; sort and visible columns are restored on the next visit",
-  "priority": "Critical",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the report in a browser you can revisit."
-  ],
-  "steps": [
-   "1. Set a non-default date range, Product Type, location selection, a two-customer Customer selection, a non-default sort, and hide one column.",
-   "2. Navigate away to another part of the application, then return to the report.",
-   "3. Watch the report as it loads."
-  ],
-  "expected": [
-   "1. The saved view is restored: the date range, the Product Type, the location selection, the Customer filter selection, the sort column and direction, and the visible columns.",
-   "2. On load, the report shows the restored view immediately — the default view is never shown first and then replaced.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S6-R1, S6-R2, S6-R4, S2-R8, S3-R8, S4-R11, S10-R9, S13-R8).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R1; S6-R2; S6-R4; Story 2 S2-R8; Story 3 S3-R8; Story 4 S4-R11; Story 10 S10-R9; Story 13 S13-R8)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R1; S6-R2; S6-R4; Story 2 S2-R8; Story 3 S3-R8; Story 4 S4-R11; Story 10 S10-R9; Story 13 S13-R8)"
- },
- {
-  "id": "SBC-PERS-02",
-  "area": "SBC — Saved View & Persistence",
-  "title": "Type-ahead search text, expansion state and scroll position are not saved",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the report with data."
-  ],
-  "steps": [
-   "1. Type a query in the Customer filter (without changing the selection), expand two customers, and scroll down the table.",
-   "2. Reload the browser page.",
-   "3. Check the Customer filter field, the rows, and the scroll position."
-  ],
-  "expected": [
-   "1. The type-ahead search text is gone (only the resulting customer selection is saved).",
-   "2. All rows are collapsed — reloading clears all expansion state.",
-   "3. The scroll position is not restored.",
-   "4. This is the specified behavior (expansion is treated as fresh each visit), not a defect.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S6-R3, S8-R22).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R3; Story 8 S8-R22)",
-  "viu_status": "VIU-Pending",
-  "notes": "KNOWN-LIMITATION ENCODING per S6-R3 context note. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R3; Story 8 S8-R22)"
- },
- {
-  "id": "SBC-PERS-03",
-  "area": "SBC — Saved View & Persistence",
-  "title": "A saved value that is no longer valid is dropped and falls back to default",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View); admin help to remove a location assignment for seeding.",
-  "preconditions": [
-   "1. You have a saved view that includes a specific location selection.",
-   "2. An administrator then removes your access to that location (restore afterwards)."
-  ],
-  "steps": [
-   "1. Return to the report after the access change.",
-   "2. Read the location filter and the report data."
-  ],
-  "expected": [
-   "1. The stale saved location is discarded and the location setting uses its default (your active location) instead.",
-   "2. No error appears and the report loads normally.",
-   "3. Per the spec, the same discard-to-default applies to an unknown date range, a sort column that no longer exists, or a column set that does not match the current columns.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S6-R5, S6-R6).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R5; S6-R6)",
-  "viu_status": "VIU-Pending",
-  "notes": "The other invalid-value classes (unknown range / removed sort column / column-set mismatch) generally require a build change to provoke — verify what is provocable and record the rest as not-provocable-with-reason. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R5; S6-R6)"
- },
- {
-  "id": "SBC-PERS-04",
-  "area": "SBC — Saved View & Persistence",
-  "title": "The saved view is specific to this report and does not affect any other report",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View) plus access to at least one other report in the suite.",
-  "preconditions": [
-   "1. You have set a distinctive saved view on Sales By Customer (for example Last Year + Parts only)."
-  ],
-  "steps": [
-   "1. Open another report in the Reports suite and read its filters.",
-   "2. Return to Sales By Customer."
-  ],
-  "expected": [
-   "1. The other report keeps its own defaults/saved view — the Sales By Customer settings do not leak into it.",
-   "2. Sales By Customer still restores its own saved view.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S6-R7).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R7)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R7)"
- },
- {
-  "id": "SBC-PERS-05",
-  "area": "SBC — Saved View & Persistence",
-  "title": "With no saved view every setting uses its own default",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. Clear the browser's site data for the application (or use a fresh browser profile).",
-   "2. You open the report by its plain address with no date range in the page link.",
-   "3. You are working in a known active location (check the application's location switcher)."
-  ],
-  "steps": [
-   "1. Open the Sales By Customer report.",
-   "2. Read every filter, the sort, and the visible columns."
-  ],
-  "expected": [
-   "1. Date range = This Month (nothing saved and no range in the page link).",
-   "2. Product Type = \"Parts & Service.\"",
-   "3. Location = the single location you are currently working in (your active location) — not all locations.",
-   "4. Customer filter = all customers selected (label \"All customers\").",
-   "5. Sort = Customer name ascending.",
-   "6. All nine toggleable columns visible.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S6-N1, S2-R5, S4-R4).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-N1; Story 2 S2-R5; Story 4 S4-R4)",
-  "viu_status": "VIU-Pending",
-  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-DEFAULTS): absorbed SBC-DATE-02, SBC-LOC-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-N1; Story 2 S2-R5; Story 4 S4-R4)"
- },
- {
-  "id": "SBC-PERS-06",
-  "area": "SBC — Saved View & Persistence",
-  "title": "When a saved view and a page-link range clash the saved view wins",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You have a saved view with a known date range (for example Last Month).",
-   "2. You have a page link carrying a DIFFERENT date range (for example This Year), captured earlier."
-  ],
-  "steps": [
-   "1. Open the report using the link with the different range.",
-   "2. Read the date range picker."
-  ],
-  "expected": [
-   "1. The saved view is applied (Last Month) and the link value is ignored.",
-   "2. This is intentional: a shared link restores the sender's range only for a recipient who has no saved range of their own.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S2-R9).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R9)",
-  "viu_status": "VIU-Pending",
-  "notes": "KNOWN-LIMITATION ENCODING per the S2-R9 context note — do not file the ignored link as a defect. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R9)"
- },
- {
-  "id": "SBC-PERS-07",
-  "area": "SBC — Saved View & Persistence",
-  "title": "Customer filter restore: all-customers stays all; an id set is intersected",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. Scenario A: leave the report in the all-customers state, then seed a NEW ZZAUTOTEST customer with an invoice in range.",
-   "2. Scenario B: leave the report with two specific customers selected, then remove one of those customers' matching data (or shift the range so one no longer matches)."
-  ],
-  "steps": [
-   "1. Scenario A: return to the report and check the filter state and rows.",
-   "2. Scenario B: return to the report and check the selection and rows."
-  ],
-  "expected": [
-   "1. Scenario A: the filter restores to the all-customers state and the report shows every present customer — including the customer that appeared since the state was saved.",
-   "2. Scenario B: still-present saved ids are re-selected; a saved id no longer present is dropped (a stale saved id never forces an empty view); a customer that appeared since the set was saved is NOT auto-selected.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R8).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R8)",
-  "viu_status": "VIU-Pending",
-  "notes": "BUILD-DELTA: the explicit all-customers flag is the 2026-07-21 committed target — the current build may store an id enumeration at VIU. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R8)"
- },
- {
-  "id": "SBC-EXP-16",
-  "area": "SBC — Exports",
-  "title": "Summary and Expanded View downloads exist for both PDF and CSV",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the Sales By Customer report with at least one customer and several invoices in the chosen date range."
-  ],
-  "steps": [
-   "1. Open the download (overflow) menu and read the four items.",
-   "2. Download the Summary version in both formats (Download Summary (PDF) and Download Summary (CSV)) and open the files.",
-   "3. Download the Expanded View version in both formats and compare against the Summary files."
-  ],
-  "expected": [
-   "1. The menu offers exactly four items: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", \"Download Expanded View (CSV)\".",
-   "2. Each Summary file gives ONE row per customer, without the asset or invoice detail rows.",
-   "3. Each Expanded View file contains the full Customer, then Asset, then Invoice breakdown.",
-   "4. All four files reflect exactly the filtered data shown on screen.",
-   "5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal — no Asset, Invoice # or Date columns. When more than one location is in scope a Location column is added immediately after the Customer name and before the money columns.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. the Sales By Customer report specification version 15 (S14-R1, S14-R2, S14-R4, S15-R1, S15-R2, S15-R4, S15-R5, S4-R13) is silent on this point, so his answers are the only basis for it.",
-   "This has not yet been checked against a build.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8612; SV-8613; SV-8603 (SBC spec v13 2026-07-31 S14-R1; S14-R2; S14-R4; S15-R1; S15-R2; S15-R4; S15-R5; S4-R13 — the four-item Summary/Expanded menu; the Summary column list; the automatic Location column in every export)",
-  "viu_status": "VIU-Pending",
-  "notes": "RATIFIED + EXTENDED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): 'Exports now come in Summary and Expanded versions, for both PDF and CSV (matching Sales By Rep). Summary = one row per customer; Expanded = the full Customer -> Asset -> Invoice breakdown.' Menu labels now spec-stated (VIU-confirm hedge removed) - still to be sighted live at VIU per Rule 12. Exact Summary column set pending the updated spec changelog. Added to TestRail 2026-07-28 as C38856; this reshape is LOCAL, awaiting push authorization. RATIFIED by the SBC spec v12 2026-07-29 (S14-R4 Summary columns). SPEC-WATCH item 3 CLOSED. STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | 2026-08-03 verifier-fix [B/V-2]: Expands the slash shorthand \"S14-R1/R2/R4\" and \"S15-R1/R2/R4/R5\" into full, greppable anchors. Before this change S14-R2, S14-R4, S15-R2, S15-R4 and S15-R5 were invisible to any anchor-based re-check — C38856 was the only case in the suite writing refs this way. RULE 41: Re-verified whole against SBC spec v12 2026-07-29: title, precondition 1, steps 1-3, expected 1-5, refs, notes. All eight anchors resolve (S14-R1 L556, S14-R2 L557, S14-R4, S15-R1 L607, S15-R2 L608, S15-R4, S15-R5, S4-R13 L231). Expected 5 is already scope-conditional (\"With a single location in scope ...\"), so no Rule-42 rewrite is needed. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8612; SV-8613; SV-8603 (SBC spec v13 2026-07-31 S14-R1; S14-R2; S14-R4; S15-R1; S15-R2; S15-R4; S15-R5; S4-R13 — the four-item Summary/Expanded menu; the Summary column list; the automatic Location column in every export)"
- },
- {
-  "id": "SBC-EXP-17",
-  "area": "SBC — Exports",
-  "title": "A logo that is set but will not load falls back to the ShopView logo",
-  "priority": "High",
-  "type": "Functional",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser and you can change the organization's uploaded logo in administration.",
-   "2. You will need the organization in a state where a logo IS set but the picture will not load - for example an uploaded logo whose file has since been removed or renamed. Ask a developer to help you produce that state if you cannot.",
-   "3. Write down the organization's original logo first, because you will put it back at the end.",
-   "4. This one test covers the printable download on all six reports, so do the setup once and check all six."
-  ],
-  "steps": [
-   "1. With a logo uploaded and loading normally, download the printable file from each of the six reports and look at the top right of the header.",
-   "2. Put the organization into the state where a logo is set but the picture will not load.",
-   "3. Download the printable file again from each of the six reports and look at the top right of the header.",
-   "4. Remove the uploaded logo altogether, download again from each of the six reports, and look at the top right of the header.",
-   "5. Put the organization's original logo back."
-  ],
-  "expected": [
-   "1. With a logo that loads, that logo is shown at the top right, sized to fit without being stretched.",
-   "2. With a logo that is set but will not load, the built-in ShopView logo is shown in its place - not a blank space, not a broken-picture icon, and no error message.",
-   "3. With no logo uploaded at all, NO logo is shown and the header text spreads out to fill the space.",
-   "4. All six reports behave the same way.",
-   "5. Note for the tester: step 2 is the difficult part. If you cannot get the organization into that state, mark this test Blocked and say so plainly - do not guess the answer.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. His words are: \"Use the company's own uploaded logo. If a logo is set but fails to load, fall back to the built-in ShopView logo. If no logo is uploaded, print no logo and let the text fill the space.\" This DIFFERS from the Sales By Customer report specification version 15 (S15-R17), which shows the built-in ShopView logo when no logo has been uploaded rather than when an uploaded one fails to load, and we have taken his newer decision as the one that prevails.",
-   "This has not yet been checked against a build.",
-   "",
-   "AUTOMATION: HOLD - nobody has run this test yet; it needs one live check of a logo that fails to load",
-   ""
-  ],
-  "refs": "SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R17 and S15-R18 - the logo order and the no-logo layout; the set-but-fails-to-load step is Chris Ward's answer T3-4 option C of 2026-08-05 alone)",
-  "spec_ref": "SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R17 and S15-R18 - the logo order and the no-logo layout; the set-but-fails-to-load step is Chris Ward's answer T3-4 option C of 2026-08-05 alone)"
- }
+  {
+    "id": "SBC-CALC-01",
+    "area": "SBC — Totals & Calculations",
+    "title": "Financial columns run in the specified order with Subtotal and Margin rules",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. A ZZAUTOTEST invoice exists with known labor, parts, and shop-supply amounts and known costs, in the current range."
+    ],
+    "steps": [
+      "1. Read the column headers left to right.",
+      "2. Expand down to that invoice's detail row and read its values.",
+      "3. Recalculate Subtotal and Margin by hand from the known amounts."
+    ],
+    "expected": "1. The financial columns appear in this order: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin % — with Subtotal as the rightmost column.\n2. Subtotal = Labor Invoiced + Parts Invoiced + Shop Supplies, before tax.\n3. Labor Margin = Labor Invoiced minus labor cost; Parts Margin = Parts Invoiced minus parts cost.\n4. Margin = Labor Margin + Parts Margin — it does NOT include any Shop Supplies amount (shop supplies add to Subtotal but add no profit to Margin).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S7-R6, S11-R1, S4-R12, S20-R19), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8605 (SBC spec v13 2026-07-31 §2; §4 Terminology; Story 7 S7-R6; Story 11 S11-R1 — §2/S7-R6 CLOSE the financial-column list and its order; Location is an identifier column not a financial one [S4-R12; S20-R19] so it never enters this list)",
+    "viu_status": "VIU-Pending",
+    "notes": "KNOWN-LIMITATION ENCODING: Margin excluding Shop Supplies while Subtotal includes them is by design (§4) — a Margin % that looks 'low' against Subtotal is expected, not a defect. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed financial-column list/order to SBC §2 + S7-R6 + spec version, and records that Location is NOT a financial column so the enumeration is unaffected by the automatic Location column (S4-R12 / S20-R19). RULE 41: Re-verified whole against SBC spec v12 2026-07-29: title, precondition 1, steps 1-3, expected 1-4, refs. §2 L38 verbatim: \"The report shows these financial columns, in this order: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, and Margin %.\"; S7-R6 L298 repeats the set and adds Subtotal; S11-R1 L463 pins Subtotal rightmost. SECOND FINDING: checked whether the automatic Location column could invalidate this list - it cannot; S20-R19 places Location with the IDENTIFIER columns immediately after Date, outside the financial block. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8605 (SBC spec v16 2026-08-06 §2; §4 Terminology; Story 7 S7-R6; Story 11 S11-R1 — §2/S7-R6 CLOSE the financial-column list and its order; Location is an identifier column not a financial one [S4-R12; S20-R19] so it never enters this list)",
+    "testrail_id": "C30149",
+    "section_id": 4298
+  },
+  {
+    "id": "SBC-CALC-02",
+    "area": "SBC — Totals & Calculations",
+    "title": "Margin % is Margin over Subtotal to one decimal; em dash when Subtotal <= 0",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. Rows with a normal positive Subtotal exist, and (if seedable) one row whose Subtotal is zero or below."
+    ],
+    "steps": [
+      "1. Read Margin % on a customer row, an asset row, and an invoice row; recalculate one by hand (Margin ÷ Subtotal × 100).",
+      "2. Find (or seed) a row with Subtotal ≤ 0 and read its Margin % cell.",
+      "3. Look at the Margin % coloring."
+    ],
+    "expected": "1. Margin % shows the row's Margin divided by its Subtotal, times 100, to one decimal with a percent sign — for example, 64.7%.\n2. When the row's Subtotal is zero or below, the Margin % cell shows an em dash (—).\n3. Margin % is monochrome — no green or red coloring.\n4. The same calculation and format apply to customer rows, asset rows, and invoice rows.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S7-R11, S7-R12, S7-R13, S7-R14), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8605 (SBC spec v13 2026-07-31 Story 7 S7-R11; S7-R12; S7-R13; S7-R14)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8605 (SBC spec v16 2026-08-06 Story 7 S7-R11; S7-R12; S7-R13; S7-R14)",
+    "testrail_id": "C30150",
+    "section_id": 4298
+  },
+  {
+    "id": "SBC-CALC-03",
+    "area": "SBC — Totals & Calculations",
+    "title": "Inv. Hrs heading is verbatim; value shows +green / -red / 0.0 on every row",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. Invoices exist where billed hours exceed worked hours, where worked exceeds billed, and where they are equal (seed ZZAUTOTEST work orders with clocked time)."
+    ],
+    "steps": [
+      "1. Read the column heading.",
+      "2. Read the Inv. Hrs value on rows for each of the three seeded situations, at customer, asset, and invoice level."
+    ],
+    "expected": "1. The column heading reads \"Inv. Hrs\" (including the period after \"Inv\").\n2. The value is hours invoiced minus hours worked, rounded to one decimal.\n3. A positive value shows a leading + sign in the application's standard positive (green) color — for example, +1.5.\n4. A negative value shows a leading - sign in the standard negative (red) color — for example, -1.5.\n5. A zero/break-even value shows 0.0 in the default text color.\n6. The same calculation, label, format, and coloring apply on customer, asset, and invoice rows.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S12-R1, S12-R2, S12-R3, S12-R4, S12-R5, S12-R6), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8610 (SBC spec v13 2026-07-31 Story 12 S12-R1; S12-R2; S12-R3; S12-R4; S12-R5; S12-R6)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8610 (SBC spec v16 2026-08-06 Story 12 S12-R1; S12-R2; S12-R3; S12-R4; S12-R5; S12-R6)",
+    "testrail_id": "C30151",
+    "section_id": 4298
+  },
+  {
+    "id": "SBC-CALC-04",
+    "area": "SBC — Totals & Calculations",
+    "title": "Inv. Hrs is never blank: no-labor rows and near-zero values both show 0.0",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. A parts-only invoice (no labor at all) exists in range; if possible also an invoice whose delta rounds to zero (for example +0.04)."
+    ],
+    "steps": [
+      "1. Read the Inv. Hrs cell on the parts-only invoice's rows (invoice, asset, customer).",
+      "2. If seeded, read the near-zero row's Inv. Hrs."
+    ],
+    "expected": "1. A customer, asset, or invoice with no labor shows 0.0 in the default color — never blank, \"N/A,\" an em dash, or omitted.\n2. A value that rounds to 0.0 (for example +0.04) is shown as 0.0 in the default text color (not +0.0 in green).\n3. A negative value shows a minus sign and one decimal — for example, -0.5.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S12-N1, S12-E1, S12-E2), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8610 (SBC spec v13 2026-07-31 Story 12 S12-N1; S12-E1; S12-E2)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8610 (SBC spec v16 2026-08-06 Story 12 S12-N1; S12-E1; S12-E2)",
+    "testrail_id": "C30152",
+    "section_id": 4298
+  },
+  {
+    "id": "SBC-CALC-05",
+    "area": "SBC — Totals & Calculations",
+    "title": "Invoice subtotals sum to their asset row and asset subtotals to the customer",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. A customer with two or more assets, each with two or more invoices, is in the current view (seed ZZAUTOTEST data)."
+    ],
+    "steps": [
+      "1. Expand the customer and every asset.",
+      "2. Sum the invoice-level values by hand for each column and compare with each asset row.",
+      "3. Sum the asset rows and compare with the customer row."
+    ],
+    "expected": "1. An asset's invoice subtotals sum exactly to that asset's row total.\n2. A customer's asset subtotals sum exactly to the customer's row total.\n3. This holds for every financial column, not only Subtotal.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S8-R13), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R13)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8606 (SBC spec v16 2026-08-06 Story 8 S8-R13)",
+    "testrail_id": "C30153",
+    "section_id": 4298
+  },
+  {
+    "id": "SBC-CALC-06",
+    "area": "SBC — Totals & Calculations",
+    "title": "Subtotal is the rightmost column; pinned on scroll and bold everywhere",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the report with data, on a window narrow enough to force horizontal scrolling (or with all columns visible)."
+    ],
+    "steps": [
+      "1. Confirm the Subtotal column is the last column on the right.",
+      "2. Scroll the table sideways and watch the Subtotal column.",
+      "3. Inspect the font weight of the Subtotal header, a customer row, an asset row, an invoice row, and the totals row."
+    ],
+    "expected": "1. Subtotal is the rightmost column in the table.\n2. It stays visible pinned at the right edge while the table scrolls horizontally.\n3. Subtotal values are shown in bold on the header, on every customer, asset and invoice row, and on the totals row.\n4. Check it still holds after two changes: narrow the date range so fewer rows match, then sort by a different column. Subtotal stays the rightmost column, stays pinned, and stays bold both times.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S11-R1, S11-R2, S11-R3, S11-N1), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8609 (SBC spec v13 2026-07-31 Story 11 S11-R1; S11-R2; S11-R3; S11-N1)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8609 (SBC spec v16 2026-08-06 Story 11 S11-R1; S11-R2; S11-R3; S11-N1)",
+    "testrail_id": "C30154",
+    "section_id": 4298
+  },
+  {
+    "id": "SBC-CALC-07",
+    "area": "SBC — Totals & Calculations",
+    "title": "The totals row covers the whole filtered set; not just the current page",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. Enough customers exist to span more than one page of results, with known amounts (seed ZZAUTOTEST data)."
+    ],
+    "steps": [
+      "1. Read the totals row on page 1.",
+      "2. Move to page 2 and read the totals row again.",
+      "3. Compare the totals against the sum over ALL matching customers (not just one page)."
+    ],
+    "expected": "1. The totals row is computed over the full set of customers matching the active filters (date range, Product Type, location, Customer filter).\n2. The totals do not change when you move between pages — they never reflect only the visible page.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R6), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R6)",
+    "viu_status": "VIU-Pending",
+    "notes": "Server-side computation is covered by SBC-API-04. BUILD-DELTA: server-computed totals are the 2026-07-16 committed target (spec ahead of code by design). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8616 (SBC spec v16 2026-08-06 Story 18 S18-R6)",
+    "testrail_id": "C30155",
+    "section_id": 4298
+  },
+  {
+    "id": "SBC-COL-01",
+    "area": "SBC — Column Selector",
+    "title": "Column selector is its own toolbar button with nine toggles all on",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the report with no saved column selection (first visit or cleared storage)."
+    ],
+    "steps": [
+      "1. Find the column selector button in the toolbar's action area, next to the overflow menu.",
+      "2. Hover it and read the tooltip.",
+      "3. Click it and read the toggle list top to bottom."
+    ],
+    "expected": "1. The column selector is a separate control next to the overflow menu — it is not an item inside the overflow menu.\n2. Hovering it shows the tooltip \"Column Selection.\"\n3. The panel lists nine toggles, in order: Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %.\n4. With no saved selection, all nine toggleable columns default to visible.\n5. Note for the tester: this panel lists nine toggles and no Location toggle. The specification is currently inconsistent on this one point - one requirement says a Location toggle should be here for anyone who can reach more than one branch, while the list of nine does not include it. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S13-R1, S13-R2, S13-R3, S13-R4, S13-R7, S4-R12, S4-R13), read on 11 August 2026. That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: one requirement says it is shown by default and can be toggled there, and the list of toggleable columns in another does not include it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R1; S13-R2; S13-R3; S13-R4; S13-R7 — S13-R4 CLOSES the nine-toggle list and its order; Location is automatic and never a toggle [S4-R12; S4-R13])",
+    "viu_status": "VIU-Pending",
+    "notes": "2026-08-03 verifier-fix [C/V-10]: Pins the closed nine-toggle list to SBC S13-R4 + spec version, and adds the plain tester line that Location is not in the panel because it appears automatically — otherwise a tester with two locations in scope could fail a correct build. RULE 41: Re-verified whole against SBC spec v12 2026-07-29: title, precondition 1, steps 1-3, expected 1-4, refs. S13-R4 verbatim L528: \"The nine toggleable columns are, in order: Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %.\" S13-R1/R2/R3/R7 match expected 1-4. SECOND FINDING: the panel list and the automatic Location column (S4-R12) can confuse a layman - plain line added. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8611 (SBC spec v16 2026-08-06 Story 13 S13-R1; S13-R2; S13-R3; S13-R4; S13-R7 — S13-R4 CLOSES the nine-toggle list and its order; Location is automatic and never a toggle [S4-R12; S4-R13])",
+    "testrail_id": "C30156",
+    "section_id": 4299
+  },
+  {
+    "id": "SBC-COL-02",
+    "area": "SBC — Column Selector",
+    "title": "Column toggles hide header+cells; Customer, Subtotal and chevron never in list",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the report with data and the column selector open."
+    ],
+    "steps": [
+      "1. Turn the \"Shop Supplies\" toggle off, then on again, watching the table.",
+      "2. Read the toggle list for Customer, Subtotal, or a chevron entry.",
+      "3. Turn all nine toggles off and read the table."
+    ],
+    "expected": "1. Turning a toggle off hides that column's header and all its body cells together; turning it on restores both together.\n2. The Customer and Subtotal columns and the chevron control column do NOT appear in the toggle list and are always present.\n3. All nine columns can be hidden — nothing blocks the last toggle; the table still renders the Customer and Subtotal columns and the totals row still shows its Subtotal.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S13-R5, S13-R6, S13-N1), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R5; S13-R6; S13-N1)",
+    "viu_status": "VIU-Pending",
+    "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-COLBOUNDS): absorbed SBC-COL-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8611 (SBC spec v16 2026-08-06 Story 13 S13-R5; S13-R6; S13-N1)",
+    "testrail_id": "C30157",
+    "section_id": 4299
+  },
+  {
+    "id": "SBC-COL-03",
+    "area": "SBC — Column Selector",
+    "title": "Hiding all nine toggleable columns is allowed and the table still shows Customer, Subtotal and the totals Subtotal",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the report with data."
+    ],
+    "steps": [
+      "1. Open the column selector and turn all nine toggles off.",
+      "2. Read the table."
+    ],
+    "expected": [
+      "1. All nine columns can be hidden — nothing blocks the last toggle.",
+      "2. The table still renders the Customer and Subtotal columns.",
+      "3. The totals row still shows its Subtotal."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbc-sales-by-customer.md Story 13 S13-N1",
+    "viu_status": "Retired 2026-07-28 (merged into SBC-COL-02 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SBC-COL-04",
+    "area": "SBC — Column Selector",
+    "title": "A one-location user never sees Location in the column-selection list",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. You are signed in as a person who has access to exactly ONE location. Check this in administration under that person's location access, and put their access back as you found it when you finish.",
+      "3. This one test covers all six reports, so keep this same sign-in for the whole of it."
+    ],
+    "steps": [
+      "1. Open the Sales By Customer report and open the column-selection control (the toolbar button beside the overflow menu; hovering it reads \"Column Selection.\").",
+      "2. Read the whole list of switches from top to bottom and look for an entry called Location.",
+      "3. Do the same on Sales By Representative, then Parts Velocity, then Technician Utilization, then Work In Progress, then Inventory Value."
+    ],
+    "expected": "1. On every one of the six reports the column-selection list does NOT contain an entry called Location.\n2. Nothing else about each list changes - only the Location entry is missing.\n3. No Location column shows on the table either, because this person only ever has one location in view.\n4. Note for the tester: this test is about someone who only has ACCESS to one location. That is a different person from someone who can reach several locations but has picked just one. Do not mix the two up - they are separate tests, and the second one is still waiting on an answer from the product owner.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S4-R12), read on 11 August 2026, which states that a user with access to a single location is never shown the Location column and that it never appears in their column selector; the Technician Utilization report specification version 7 (S10-R4), read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R3), read on 11 August 2026, say the same, and on the other three reports the written description keeps the column out of that list for everyone, so the result is the same for all six. Chris Ward asked for this in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026\nThis has not yet been checked against a build.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R4 with S4-R12; the never-offered rule itself comes from Chris Ward's answer T1-1 option C of 2026-08-05 and is in no specification)",
+    "viu_status": "VIU-Pending",
+    "notes": "Authored 2026-08-05 from Chris Ward's answer T1-1 option C. NOT live-verified: the QA branch redeployed to v3.5-16cf83f on 2026-08-05 and the session could not be renewed.",
+    "api_related": false,
+    "refs": "SV-8611 (SBC spec v16 2026-08-06 Story 13 S13-R4 with S4-R12; the never-offered rule itself comes from Chris Ward's answer T1-1 option C of 2026-08-05 and is in no specification)",
+    "testrail_id": "C43550",
+    "section_id": 4299
+  },
+  {
+    "id": "SBC-EXP-01",
+    "area": "SBC — Exports",
+    "title": "The overflow menu holds exactly the four download items - no Print",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the Sales By Customer report."
+    ],
+    "steps": [
+      "1. Find the overflow menu in the toolbar's action area and note its position.",
+      "2. Open it and read the items in order.",
+      "3. Look around the toolbar for any separate always-visible export buttons."
+    ],
+    "expected": "1. The overflow (export) menu is the leftmost control in the toolbar's action area and is the application's standard overflow-menu control.\n2. The menu items read, in order: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", \"Download Expanded View (CSV)\" - and there is NO \"Print\" item anywhere in the menu.\n3. There are no separate always-visible export buttons - all exports live behind this one menu.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S14-R1, S14-R2, S15-R1, S15-R2, S20-R16), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 — these CLOSE the four-item menu and its verbatim labels; menu reshaped + \"Print\" removed per Chris Ward 2026-07-29 [newest-wins])",
+    "viu_status": "VIU-Pending",
+    "notes": "MENU RESHAPED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): 'Menu items: Download Summary (PDF), Download Expanded View (PDF), Download Summary (CSV), Download Expanded View (CSV)' + 'The Print option is removed.' The four labels are now SPEC-STATED by the message (VIU-confirm hedge removed) - still to be sighted live at VIU per Rule 12. Menu ORDER as listed in the message; confirm in the build. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed four-item menu + its verbatim labels to SBC S14-R1/R2 + S15-R1/R2 + spec version. The refs previously carried only a message date, not a spec version. RULE 41: Re-verified whole against SBC spec v12 2026-07-29: title, precondition 1, steps 1-3, expected 1-3, refs. S14-R1 L556 + S14-R2 L557 + S15-R1 L607 + S15-R2 L608 close the four items and their verbatim labels; S20-R16 L774 pins the menu leftmost in the action area. \"Print\" absence is the Chris Ward 2026-07-29 ruling (newest-wins) and is retained. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8612; SV-8613 (SBC spec v16 2026-08-06 S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 — these CLOSE the four-item menu and its verbatim labels; menu reshaped + \"Print\" removed per Chris Ward 2026-07-29 [newest-wins])",
+    "testrail_id": "C30159",
+    "section_id": 4300
+  },
+  {
+    "id": "SBC-EXP-02",
+    "area": "SBC — Exports",
+    "title": "Download file names carry the version and the active date range",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the report with data."
+    ],
+    "steps": [
+      "1. Set the range to This Month, choose \"Download Summary (CSV)\" and note the downloaded file name.",
+      "2. Choose \"Download Expanded View (CSV)\" and note that file name.",
+      "3. Repeat both for at least Today, Last Quarter, and a Custom range.",
+      "4. Open a downloaded file in a text editor and in a spreadsheet.",
+      "5. Repeat steps 1-3 for \"Download Summary (PDF)\" and \"Download Expanded View (PDF)\"."
+    ],
+    "expected": "1. The Summary file name is sales-by-customer-summary-{range}.csv and the Expanded file name is sales-by-customer-expanded-{range}.csv — so the file says which version it is.\n2. {range} follows the period you picked, using the nine periods the chooser actually offers: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. The written description gives the word for eight of them - this_week, last_week, this_month, last_month, this_year, last_year, this_quarter, last_quarter - so check the file against those. It does not give a word for Last 12 Months, so for that one record what you see rather than judging it right or wrong.\n3. For a range you built yourself on the calendar the file name uses the word custom in place of a period name - for example sales-by-customer-summary-custom.csv.\n4. The file is plain comma-separated text with a .csv extension that opens as rows and columns in a spreadsheet — not an .xlsx workbook and not a JSON file.\n5. The two PDF downloads follow the same names with a .pdf extension — for example, sales-by-customer-summary-this_month.pdf and sales-by-customer-expanded-custom.pdf.\nWhat you should see today: the two spreadsheets come out as sales-by-customer-summary.csv and sales-by-customer-expanded.csv, with no period in either name. The files themselves do carry a \"Date Range:\" line, so the information is there, just not in the name. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8956\n· If you see exactly that, mark this test FAILED and do not raise anything new.\n· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. Where the Sales By Customer report specification version 17 (S14-R14, S14-R15, S15-R6), read on 11 August 2026, says something different, his decision is the later word and is the authority.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8956)",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R14; S14-R15; S15-R6 — file names now carry the Summary/Expanded version; the old flat sales-by-customer-{range} map is superseded)",
+    "viu_status": "VIU-Pending",
+    "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-EXPNAME): absorbed SBC-EXP-07. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. CHANGED by the SBC spec v12 2026-07-29 S14-R14 / S15-R6 (Summary and Expanded file names). SPEC-WATCH item 3 CLOSED — the Summary/Expanded split is now spec-ratified. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S14-R15 (plain comma-separated .csv; not .xlsx and not JSON) added — already asserted in expected 4. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8612; SV-8613 (SBC spec v16 2026-08-06 S14-R14; S14-R15; S15-R6 — file names now carry the Summary/Expanded version; the old flat sales-by-customer-{range} map is superseded)",
+    "testrail_id": "C30160",
+    "section_id": 4300
+  },
+  {
+    "id": "SBC-EXP-03",
+    "area": "SBC — Exports",
+    "title": "Expanded View CSV: column order, blank-cell rules, and the Locations line",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You have downloaded the CSV for a view with at least one customer with several invoices."
+    ],
+    "steps": [
+      "1. Read the header row.",
+      "2. Read a customer row and an invoice row.",
+      "3. Look for any asset-level rows."
+    ],
+    "expected": "1. With a single location in scope the Expanded View CSV has these thirteen columns in this exact order: Customer, Asset, Invoice #, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal. When more than one location is in scope the file also carries a Location column — immediately after Date, the position it holds on screen — making fourteen.\n2. A customer row fills the Customer cell and leaves Asset, Invoice # and Date blank.\n3. An asset row leaves Customer blank, fills Asset, and leaves Invoice # and Date blank.\n4. An invoice row leaves Customer and Asset blank and fills Invoice # and Date.\n5. Customer names are plain — the \"(N)\" invoice count is not included.\n6. Work with no vehicle appears as an asset row named \"Parts Sales\".\n7. The file carries a \"Locations:\" line naming the location or locations the report was scoped to, or \"All locations\" when every location you can access is selected — as a leading line above the column headers.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S14-R5, S14-R6, S14-R7, S14-R8, S14-R13, S4-R13), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8612; SV-8603 (SBC spec v13 2026-07-31 Story 14 S14-R5; S14-R6; S14-R7; S14-R8; S14-R13 + Story 4 S4-R13 — Expanded CSV thirteen columns INCLUDING Asset; per-level blank-cell rules; plus the automatic Location column in every export)",
+    "viu_status": "VIU-Pending",
+    "notes": "RESHAPED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): exports split Summary/Expanded and the Expanded View is 'the full Customer -> Asset -> Invoice breakdown', so the old 'no asset layer by design' known-limitation note is STALE and removed. Column order + blank-cell rules kept from the current spec until the changelog lands - reconcile then. Locations: line = all-reports change, same message. RATIFIED + EXTENDED by the SBC spec v12 2026-07-29: S14-R5 gives the exact thirteen-column Expanded order (Asset added), S14-R6 the per-level row shape, S14-R7 the \"Parts Sales\" asset row, S14-R13 the \"Locations:\" line. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S14-R8 (plain customer names; no \"(N)\" count) added — already asserted in expected 5, anchor was missing. STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8612; SV-8603 (SBC spec v16 2026-08-06 Story 14 S14-R5; S14-R6; S14-R7; S14-R8; S14-R13 + Story 4 S4-R13 — Expanded CSV thirteen columns INCLUDING Asset; per-level blank-cell rules; plus the automatic Location column in every export)",
+    "testrail_id": "C30161",
+    "section_id": 4300
+  },
+  {
+    "id": "SBC-EXP-04",
+    "area": "SBC — Exports",
+    "title": "CSV formats: Margin % plain; dates mm-dd-yyyy; currency plain; no color",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You have downloaded a CSV containing rows with real values, including (if seedable) a row whose Subtotal is zero or below."
+    ],
+    "steps": [
+      "1. Read a Margin % cell, a Date cell, and a currency cell in a text editor.",
+      "2. Check the row whose Subtotal is ≤ 0."
+    ],
+    "expected": "1. Margin % is a plain number to one decimal with no percent sign (for example, 64.7); it is EMPTY when the row's Subtotal is zero or below.\n2. Dates export as mm-dd-yyyy — for example, 05-14-2026.\n3. Currency values are plain numbers with no dollar sign and no thousands separators.\n4. The CSV has no color; the signed Inv. Hrs value still conveys direction.\nOn this build the money in the spreadsheet file comes out as \"$224.92\" - with a dollar sign, and with a comma as well once the value passes a thousand - instead of the plain number described in point 3 above.\nWhat you should see today: in the spreadsheet the money arrives as text with a dollar sign and thousands separators, such as $11,176.88, and the columns come out in the file's own fixed order - Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Total Cost, Total Sell, Margin, Margin % - which is not the order on screen, does not put Total Cost last, and leaves out the Location column even when it is showing on screen. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8823\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S14-R9, S14-R10, S14-R11, S14-R12, S14-R13), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8823)",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8612 (SBC spec v13 2026-07-31 Story 14 S14-R9; S14-R10; S14-R11; S14-R12; S14-R13)",
+    "viu_status": "VIU-Pending",
+    "notes": "COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S14-R9 (Margin % plain to one decimal; empty when Subtotal <= 0) added — already asserted in expected 1; the citation was off by one. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8612 (SBC spec v16 2026-08-06 Story 14 S14-R9; S14-R10; S14-R11; S14-R12; S14-R13)",
+    "testrail_id": "C30162",
+    "section_id": 4300
+  },
+  {
+    "id": "SBC-EXP-05",
+    "area": "SBC — Exports",
+    "title": "CSV and PDF hold exactly the customers matching the active filters and sort",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. Data exists across two locations, both product types, and several customers."
+    ],
+    "steps": [
+      "1. Set a specific date range, Product Type \"Service only\", one location, a two-customer selection in the Customer filter, and a Subtotal sort.",
+      "2. Download the CSV and the PDF.",
+      "3. Compare each file's contents against the on-screen rows."
+    ],
+    "expected": "1. Each export contains exactly the customers matching the active filters — the selected customers, within the active date range, Product Type, and location — in the active sort order.\n2. When every customer is selected, the export contains the full set of customers under those filters.\n3. The chosen date range and Product Type are reflected in both exports.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S2-R7, S3-R7, S4-R10, S14-R3, S15-R3, S18-R7), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R7; Story 3 S3-R7; Story 4 S4-R10; Story 14 S14-R3; Story 15 S15-R3; Story 18 S18-R7)",
+    "viu_status": "VIU-Pending",
+    "notes": "Server-side generation is covered by SBC-API-05. COMPANION-VIDEO 2026-07-30 (C11, 07:09-08:06): confirmed — 'when I export, only those, the information on the page is going to show up on the exports. Important you see what that toggle does.' Exports carry exactly the page contents under the Customer selection. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8601 (SBC spec v16 2026-08-06 Story 2 S2-R7; Story 3 S3-R7; Story 4 S4-R10; Story 14 S14-R3; Story 15 S15-R3; Story 18 S18-R7)",
+    "testrail_id": "C30163",
+    "section_id": 4300
+  },
+  {
+    "id": "SBC-EXP-06",
+    "area": "SBC — Exports",
+    "title": "Each download item shows a loading state and its own export-failed toast",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the report with a large enough data set that a download takes a visible moment.",
+      "2. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
+    ],
+    "steps": [
+      "1. Choose \"Download Summary (CSV)\" and immediately look at that menu item.",
+      "2. To provoke a failure, disconnect the network (or use the browser's offline mode) and choose \"Download Summary (CSV)\" again.",
+      "3. Repeat both checks for \"Download Expanded View (CSV)\", \"Download Summary (PDF)\" and \"Download Expanded View (PDF)\"."
+    ],
+    "expected": "1. While a download is in progress, ONLY that menu item shows a loading state and is non-interactive; the other three items are unaffected.\n2. If a CSV download fails, an error toast is shown: \"CSV export failed.\" (dismissed by the user).\n3. If a PDF download fails, the toast reads \"PDF export failed.\" — identical behaviour, different wording.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S14-E1, S14-N1, S15-E1, S15-N1), read on 11 August 2026.\nLast checked against build v3.4.1-3d03023 on 8/4/2026.\n\nAUTOMATION: READY\n",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8612; SV-8613 (SBC spec v13 2026-07-31 Story 14 S14-E1; S14-N1; Story 15 S15-E1; S15-N1; §7 — the loading state is now per menu item; four items)",
+    "viu_status": "VIU-Pending",
+    "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-EXPTOAST): absorbed SBC-EXP-12. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. CHANGED by the SBC spec v12 2026-07-29 (S14-E1/S15-E1 now read \"While a CSV/PDF download is in progress, THAT menu item shows a loading state\"). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8612; SV-8613 (SBC spec v16 2026-08-06 Story 14 S14-E1; S14-N1; Story 15 S15-E1; S15-N1; §7 — the loading state is now per menu item; four items)",
+    "testrail_id": "C30164",
+    "section_id": 4300
+  },
+  {
+    "id": "SBC-EXP-07",
+    "area": "SBC — Exports",
+    "title": "PDF download uses the same range-based filename map with a .pdf extension",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the report with data."
+    ],
+    "steps": [
+      "1. Set the range to This Month and choose \"Download (PDF)\"; note the filename.",
+      "2. Repeat for one other preset and a Custom range."
+    ],
+    "expected": [
+      "1. The file follows the same range-to-filename map as the CSV, with a .pdf extension — for example, sales-by-customer-this_month.pdf, sales-by-customer-custom.pdf."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbc-sales-by-customer.md Story 15 S15-R4",
+    "viu_status": "Retired 2026-07-28 (merged into SBC-EXP-02 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SBC-EXP-08",
+    "area": "SBC — Exports",
+    "title": "PDF page: A4 landscape, uniform margins, ShopView footer and page numbers",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You have downloaded the PDF for a view with enough rows to span more than one page."
+    ],
+    "steps": [
+      "1. Open the PDF and check the page setup.",
+      "2. Read the footer on each page."
+    ],
+    "expected": "1. The PDF is A4 landscape using the application's standard font; the page margins look uniform on all sides. (The spec's exact 25px margin needs a PDF inspector — check the number only if you have one; otherwise uniform margins pass.)\n2. The footer has a centered \"Software Powered by ShopView\" label and a right-aligned page number \"Page X of Y.\"\nWhat you should see today: the Expanded View PDF comes out on A3 paper (1190 by 842 points) instead of A4. The Summary PDF from the same menu is correctly A4. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8964\n· If you see exactly that, mark this test FAILED and do not raise anything new.\n· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S15-R5, S15-R6, S15-R7, S15-R8), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8964)",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R5; S15-R6; S15-R7; S15-R8 — A4 landscape; 25px margins; standard font; footer label and page numbers)",
+    "viu_status": "VIU-Pending",
+    "notes": "FIX-WORDING repair 2026-07-28 (sense-check): the 25px margin is not measurable by eye — the observable pass criterion is A4 landscape + uniform margins + footer + page numbers; the exact 25px stays as an inspector-only check. STAGE-2B CONSISTENCY REPAIR 2026-07-31: S15-R7 (A4 landscape / 25px margins / standard font) and S15-R8 (footer) added — both already asserted in expected 1 and 2; the anchor sat on the sibling header case SBC-EXP-09 (C30167) instead. Found by the same-requirement-different-surface sweep. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8613 (SBC spec v16 2026-08-06 Story 15 S15-R5; S15-R6; S15-R7; S15-R8 — A4 landscape; 25px margins; standard font; footer label and page numbers)",
+    "testrail_id": "C30166",
+    "section_id": 4300
+  },
+  {
+    "id": "SBC-EXP-09",
+    "area": "SBC — Exports",
+    "title": "PDF header: title, organization, date range, Product Type and Locations lines",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You have downloaded the PDF with a known date range, Product Type, and a specific location selected."
+    ],
+    "steps": [
+      "1. Read the header's text block top to bottom.",
+      "2. Look for any mention of the selected location."
+    ],
+    "expected": "1. The header is two columns: a text block on the left (70% width) and the organization logo on the right (30% width).\n2. The text block shows the report title \"Sales By Customer Report\"; the organization name; the date range; and the filter summary line \"Product Type: {value}\" where value is \"Parts & Service,\" \"Parts only,\" or \"Service only.\"\n3. The header date range shows start and end in the format \"Mon D, YYYY,\" joined by an em dash - for example, \"May 1, 2026 - May 31, 2026\" - and always shows both dates (every range is bounded).\n4. The header also carries a \"Locations:\" line naming the location(s) the report was scoped to.\nWhat you should see today: the heading date range shows an end date one day LATER than the range you asked for - ask for 1 to 6 August and the PDF heading reads \"Aug 1, 2026 - Aug 7, 2026\". Every other line of the heading is correct, and the spreadsheet for the same view prints the correct end date. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8937\n· If you see exactly that, mark this test FAILED and do not raise anything new.\n· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S15-R7, S15-R8, S15-R9, S15-R10, S15-R11, S15-R14, S4-R13), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8937)",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R7; S15-R8; S15-R9; S15-R10; S15-R11; S15-R14 + Story 4 S4-R13 — PDF header block; S15-R14/S4-R13 = the \"Locations:\" line in every export [Chris Ward 2026-07-29; newest-wins])",
+    "viu_status": "DEVIATION",
+    "notes": "REVERSED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every PDF now carries a \"Locations:\" line (the old expected #4 asserted location is NOT shown - removed). KNOWN-LIMITATION ENCODING kept: the header uses \"Mon D, YYYY\" while body Date cells use \"Mon DD YYYY\" - intentional per the S15-R9 context note; do not file it as an inconsistency. LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. | 2026-08-03 verifier-fix [A/V-3]: Adds SBC S4-R13 (suite export rule) AND S15-R14 (the PDF-header \"Locations:\" line, the anchor that most directly governs this case) so a change to either re-surfaces C30167. Both verified verbatim in the current SBC mirror. RULE 41: Re-verified whole against SBC spec v12 2026-07-29 (spec-current-2026-07-31/Sales-By-Customer-Report-current.md): title, preconditions, steps, expected 1-4, refs, notes. S15-R7 (A4 landscape/25px), S15-R8..R11 and S15-R14 all resolve; expected 1-4 match them. SECOND FINDING: the precise governing anchor S15-R14 (\"The header shows a 'Locations:' line ... (S4-R13)\", L623) was never cited - added alongside S4-R13. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md | STATUS CORRECTED 2026-08-04 (final-push pass): the recorded VIU-Observed-PASS contradicted this case's own captured evidence, so the ledger status is DEVIATION. Local status only — no TestRail field carries it.",
+    "api_related": false,
+    "refs": "SV-8613 (SBC spec v16 2026-08-06 Story 15 S15-R7; S15-R8; S15-R9; S15-R10; S15-R11; S15-R14 + Story 4 S4-R13 — PDF header block; S15-R14/S4-R13 = the \"Locations:\" line in every export [Chris Ward 2026-07-29; newest-wins])",
+    "testrail_id": "C30167",
+    "section_id": 4300
+  },
+  {
+    "id": "SBC-EXP-10",
+    "area": "SBC — Exports",
+    "title": "PDF logo is embedded, scales without distortion",
+    "priority": "Low",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View); admin access to change the organization logo for seeding.",
+    "preconditions": [
+      "1. You can toggle the organization's uploaded logo on/off in administration (restore it afterwards)."
+    ],
+    "steps": [
+      "1. With an uploaded org logo, download the PDF and check the top-right.",
+      "2. Remove the uploaded logo, download again, and check.",
+      "3. Open a PDF while offline to confirm the logo still renders."
+    ],
+    "expected": "1. With an uploaded logo, that logo appears pinned to the top-right, scaled to fit its area without distortion.\n2. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space.\n3. When no logo is printed, the logo column is not rendered and the text column fills the full width.\n4. The logo is embedded in the PDF (renders offline, not loaded from a network address).\nNote for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026; where the Sales By Customer report specification version 17 (S15-R12, S15-R13, S15-R14, S15-R15, S15-R16, S15-R17, S15-R18), read on 11 August 2026, differs, his decision is the authority.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R12; S15-R13; S15-R14; S15-R15; S15-R16; S15-R17; S15-R18)",
+    "viu_status": "VIU-Pending",
+    "notes": "The no-logo-at-all state (step 3 of the fallback) may not be reachable if the bundled logo always exists — record what is observed. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S15-R16 (scales without distortion) S15-R17 (logo fallback order) and S15-R18 (no-logo layout) added - all three already asserted in expected 1-3; the existing S15-R12..R15 citations are kept. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8613 (SBC spec v16 2026-08-06 Story 15 S15-R12; S15-R13; S15-R14; S15-R15; S15-R16; S15-R17; S15-R18)",
+    "testrail_id": "C30168",
+    "section_id": 4300
+  },
+  {
+    "id": "SBC-EXP-11",
+    "area": "SBC — Exports",
+    "title": "Expanded CSV body: column set and order, the Customer → Asset → Invoice tree, blank dates and em-dash Margin %",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": "1. You are on Sales By Customer with a view containing positive and negative Inv. Hrs values and, if seedable, a row whose Subtotal is zero or below.\n2. Nothing to install — this test reads a downloaded CSV as text.",
+    "steps": "1. Download \"Expanded View (CSV)\" from the ⋯ menu.\n2. Read the header row and compare it against the column list below.\n3. Walk the data rows for one customer: the customer row, its asset rows, and the invoice rows beneath them.\n4. Find a row whose Subtotal is zero or below and read its Margin % cell.",
+    "expected": "1. The Expanded CSV's header row carries the Expanded column set, in this exact order and with these labels — thirteen columns with a single location in scope, plus the Location column immediately after Date when more than one location is in scope.\n2. The body contains the full Customer → Asset → Invoice breakdown: one customer row, its asset rows beneath it, and each asset's invoice rows beneath that.\n3. The Date cell is empty on customer rows and on asset rows, and carries the invoice date only on invoice rows — matching the screen.\n4. Margin % is an em dash on any row whose Subtotal is zero or below.\n5. The file carries the \"Locations:\" metadata line above the header row.\n\n---\nScope note: this case covers the CSV only. The Expanded PDF renders the same data, but its page geometry, fonts, colours and bold weights are not observable by the automation suite (no PDF parser) — those assertions live in the PDF-visual cases, which are Deferred.\n\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification (S14-R5 Expanded contents; S4-R13 Locations line), read on 11 August 2026.",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8613; SV-8603 (SBC spec v13 2026-07-31 Story 15 S15-R5; S15-R13; S15-R19; S15-R20; S15-R21; S15-R22; S15-R23; S15-R24 + Story 4 S4-R13 — Expanded PDF body = the Expanded columns; plus the automatic Location column)",
+    "viu_status": "VIU-Pending",
+    "notes": "RESHAPED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) (Summary/Expanded split - this case covers the Expanded View PDF; the Summary PDF's one-row-per-customer shape is covered by SBC-EXP-16). Color extends to the PDF but never the CSV (S3 Key Decision) - unchanged. RATIFIED by the SBC spec v12 2026-07-29 (S15-R5 Expanded body \"one block per customer\", S15-R13 same header title for both versions, S15-R19 column labels match the CSV, S15-R21 Date blank on customer AND asset rows). STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8598 (SBC spec S14-R5; S4-R13 — Expanded CSV column set,Customer→Asset→Invoice tree,blank dates,em-dash Margin %; rescoped from PDF-visual 2026-08-10 because the suite has no PDF parser)",
+    "testrail_id": "C30169",
+    "section_id": 4300
+  },
+  {
+    "id": "SBC-EXP-12",
+    "area": "SBC — Exports",
+    "title": "PDF action shows a loading state while exporting and a PDF export failed toast on failure",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the report with data."
+    ],
+    "steps": [
+      "1. Choose \"Download (PDF)\" and immediately look at the menu action.",
+      "2. Provoke a failure (offline mode) and choose \"Download (PDF)\" again."
+    ],
+    "expected": [
+      "1. While the export is in progress, the menu's PDF action shows a loading state and is non-interactive.",
+      "2. If the export fails, an error toast is shown: \"PDF export failed.\" (dismissed by the user)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbc-sales-by-customer.md Story 15 S15-E1; S15-N1; §7",
+    "viu_status": "Retired 2026-07-28 (merged into SBC-EXP-06 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SBC-EXP-13",
+    "area": "SBC — Exports",
+    "title": "Print fetches the report PDF and opens the native print dialog in the current tab, disabled while the table is first loading",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the report with data fully loaded."
+    ],
+    "steps": [
+      "1. Open the overflow menu and choose \"Print\"; watch the action and the browser.",
+      "2. Cancel the print dialog and check the page behind it.",
+      "3. Reload the report and try to activate Print while the table is still in its initial loading state.",
+      "4. Provoke a failure (offline mode) and choose Print again."
+    ],
+    "expected": [
+      "1. Print fetches the report's PDF (same content as the PDF download) and then opens the browser's native print dialog in the current tab — no new browser tab is opened.",
+      "2. The page behind the print dialog is unchanged.",
+      "3. The Print action shows a loading state while the PDF is fetched and is non-interactive during that time.",
+      "4. Print is disabled while the report table is still in its initial loading state.",
+      "5. If the PDF request fails, an error toast is shown: \"PDF generation failed.\""
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbc-sales-by-customer.md Story 16 S16-R3; S16-R3a; S16-R3b; S16-R3c; S16-R4; S16-R5; S16-N1; §7",
+    "viu_status": "Retired 2026-07-28 (video P25 Print removed from Sales By Customer; delete_case authorized 2026-07-28)",
+    "notes": "RETIRE-PROPOSED (P25, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)) — this case's ONLY purpose is the Print behavior, and the video removes Print from Sales By Customer entirely (31:14: 'print here, this should not exist. I'm going to make sure. That's cut out of the spec.'). OVERRIDDEN spec wording: Story 16 S16-R1..R6 / S16-N1 / §7 ('Print PDF fails'). NOT deleted — Rule 6: kept in TestRail (C30171) until the user explicitly authorizes delete_case; body left as authored for the record. Prior note: the distinct failure wording Print='PDF generation failed.' vs PDF download='PDF export failed.'",
+    "api_related": false
+  },
+  {
+    "id": "SBC-EXP-14",
+    "area": "SBC — Exports",
+    "title": "An export over 10,000 data rows is refused with the too-large toast",
+    "priority": "High",
+    "type": "Negative",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. A filter combination exists whose customer rows plus invoice rows exceed 10,000 (widest range, all locations, all customers). If the environment cannot reach 10,000 rows even fully widened, record the max reachable and mark Blocked-Env with reason."
+    ],
+    "steps": "1. With the over-cap filter set, choose a CSV download - \"Download Summary (CSV)\" or \"Download Expanded View (CSV)\".\n2. Choose a PDF download - \"Download Summary (PDF)\" or \"Download Expanded View (PDF)\".\n3. Narrow the filters below the cap and re-try one export.",
+    "expected": "1. For both CSV and PDF: no file is generated and no download starts.\n2. An error toast is shown each time: \"This report is too large to export. Narrow the date range or filters, then try again.\" (dismissed by the user).\n3. The cap counts customer rows plus invoice rows (not the header or totals row) against the active date range, Product Type, location, Customer filter, and sort.\n4. Below the cap the export succeeds normally.\nWhat you should see today: the spreadsheet download works and produces a file, but the PDF download of the same view fails with a server error and no file arrives. It depends on how much is in the view, not on which report - filtered down to one or two rows the PDF downloads normally, and on a full unfiltered view of several thousand rows it fails every time. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8818\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S14-R16, S15-R25, S14-R14, S15-R22), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8818)",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R16 CSV cap; S15-R25 PDF cap; S14-R14; S15-R22; §7 — Print leg REMOVED per kickoff video P25 31:14; user ruling 2026-07-28 video-overrides-spec)",
+    "viu_status": "VIU-Pending",
+    "notes": "Server-side enforcement is covered by SBC-API-05. BUILD-DELTA: the 10,000-row cap is the 2026-07-21 spec round — the current build may lack it at VIU. Video P25 (user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): the Print step/expectation was removed with the Print control (spec S16-R6 had capped Print too); title shortened to fit. Q2 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A 'great catch'): ONE message across all six reports — \"This report is too large to export. Narrow the date range or filters, then try again.\" The Sales By Customer spec text still carries the retired \"This export is too large to generate…\" wording; Chris's spec edit is pending. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S14-R16 (CSV cap) and S15-R25 (PDF cap) added - the pre-v12 S14-R14/S15-R22 citations are kept so no other requirement loses its anchor. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8612; SV-8613 (SBC spec v16 2026-08-06 S14-R16 CSV cap; S15-R25 PDF cap; S14-R14; S15-R22; §7 — Print leg REMOVED per kickoff video P25 31:14; user ruling 2026-07-28 video-overrides-spec)",
+    "testrail_id": "C30172",
+    "section_id": 4300
+  },
+  {
+    "id": "SBC-EXP-15",
+    "area": "SBC — Exports",
+    "title": "A no-match export still downloads headers and a zero totals row",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. The Customer filter selection is empty (\"Clear all\") or the filters otherwise match no customers."
+    ],
+    "steps": "1. Choose a CSV download - \"Download Summary (CSV)\" or \"Download Expanded View (CSV)\" - and open the file.\n2. Choose a PDF download - \"Download Summary (PDF)\" or \"Download Expanded View (PDF)\" - and open the file.",
+    "expected": "1. The export still downloads — no error and no warning is shown.\n2. The file contains the column headers, a totals row of zeros, and no data rows.\n\nWhat you should see today: the file downloads with the column headings and nothing after them - there is no totals row at all, of zeros or otherwise. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8991.\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above - for example the download errors, or a totals row appears but the figures are not zeros - that is a NEW problem, so please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R10), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8991)\n",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R10)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8616 (SBC spec v16 2026-08-06 Story 18 S18-R10)",
+    "testrail_id": "C30173",
+    "section_id": 4300
+  },
+  {
+    "id": "SBC-PERS-01",
+    "area": "SBC — Saved View & Persistence",
+    "title": "Filters; sort and visible columns are restored on the next visit",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the report in a browser you can revisit."
+    ],
+    "steps": [
+      "1. Set a non-default date range, Product Type, location selection, a two-customer Customer selection, a non-default sort, and hide one column.",
+      "2. Navigate away to another part of the application, then return to the report.",
+      "3. Watch the report as it loads."
+    ],
+    "expected": "1. The saved view is restored: the date range, the Product Type, the location selection, the Customer filter selection, the sort column and direction, and the visible columns.\n2. On load, the report shows the restored view immediately — the default view is never shown first and then replaced.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S6-R1, S6-R2, S6-R4, S2-R8, S3-R8, S4-R11, S10-R9, S13-R8), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R1; S6-R2; S6-R4; Story 2 S2-R8; Story 3 S3-R8; Story 4 S4-R11; Story 10 S10-R9; Story 13 S13-R8)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8604 (SBC spec v16 2026-08-06 Story 6 S6-R1; S6-R2; S6-R4; Story 2 S2-R8; Story 3 S3-R8; Story 4 S4-R11; Story 10 S10-R9; Story 13 S13-R8)",
+    "testrail_id": "C30174",
+    "section_id": 4301
+  },
+  {
+    "id": "SBC-PERS-02",
+    "area": "SBC — Saved View & Persistence",
+    "title": "Type-ahead search text, expansion state and scroll position are not saved",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the report with data."
+    ],
+    "steps": [
+      "1. Type a query in the Customer filter (without changing the selection), expand two customers, and scroll down the table.",
+      "2. Reload the browser page.",
+      "3. Check the Customer filter field, the rows, and the scroll position."
+    ],
+    "expected": "1. The type-ahead search text is gone (only the resulting customer selection is saved).\n2. All rows are collapsed — reloading clears all expansion state.\n3. The scroll position is not restored.\n4. This is the specified behavior (expansion is treated as fresh each visit), not a defect.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S6-R3, S8-R22), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R3; Story 8 S8-R22)",
+    "viu_status": "VIU-Pending",
+    "notes": "KNOWN-LIMITATION ENCODING per S6-R3 context note. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8604 (SBC spec v16 2026-08-06 Story 6 S6-R3; Story 8 S8-R22)",
+    "testrail_id": "C30175",
+    "section_id": 4301
+  },
+  {
+    "id": "SBC-PERS-03",
+    "area": "SBC — Saved View & Persistence",
+    "title": "A saved value that is no longer valid is dropped and falls back to default",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View); admin help to remove a location assignment for seeding.",
+    "preconditions": [
+      "1. You have a saved view that includes a specific location selection.",
+      "2. An administrator then removes your access to that location (restore afterwards)."
+    ],
+    "steps": [
+      "1. Return to the report after the access change.",
+      "2. Read the location filter and the report data."
+    ],
+    "expected": "1. The stale saved location is discarded and the location setting uses its default (your active location) instead.\n2. No error appears and the report loads normally.\n3. Per the spec, the same discard-to-default applies to an unknown date range, a sort column that no longer exists, or a column set that does not match the current columns.\nWhat you should see today: a remembered location or customer that is no longer usable is kept rather than dropped (the filter reads \"1 selected\" for something with no name), and a remembered date range that is no longer valid leaves the date control reading \"Select Date Range\" with an empty report instead of going back to This Month. Product Type and the chosen columns do fall back correctly. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8966\n· If you see exactly that, mark this test FAILED and do not raise anything new.\n· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S6-R5, S6-R6), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8966)",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R5; S6-R6)",
+    "viu_status": "VIU-Pending",
+    "notes": "The other invalid-value classes (unknown range / removed sort column / column-set mismatch) generally require a build change to provoke — verify what is provocable and record the rest as not-provocable-with-reason. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8604 (SBC spec v16 2026-08-06 Story 6 S6-R5; S6-R6)",
+    "testrail_id": "C30176",
+    "section_id": 4301
+  },
+  {
+    "id": "SBC-PERS-04",
+    "area": "SBC — Saved View & Persistence",
+    "title": "The saved view is specific to this report and does not affect any other report",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View) plus access to at least one other report in the suite.",
+    "preconditions": [
+      "1. You have set a distinctive saved view on Sales By Customer (for example Last Year + Parts only)."
+    ],
+    "steps": [
+      "1. Open another report in the Reports suite and read its filters.",
+      "2. Return to Sales By Customer."
+    ],
+    "expected": "1. The other report keeps its own defaults/saved view — the Sales By Customer settings do not leak into it.\n2. Sales By Customer still restores its own saved view.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S6-R7), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R7)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8604 (SBC spec v16 2026-08-06 Story 6 S6-R7)",
+    "testrail_id": "C30177",
+    "section_id": 4301
+  },
+  {
+    "id": "SBC-PERS-05",
+    "area": "SBC — Saved View & Persistence",
+    "title": "With no saved view every setting uses its own default",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. Clear the browser's site data for the application (or use a fresh browser profile).",
+      "2. You open the report by its plain address with no date range in the page link.",
+      "3. You are working in a known active location (check the application's location switcher)."
+    ],
+    "steps": [
+      "1. Open the Sales By Customer report.",
+      "2. Read every filter, the sort, and the visible columns."
+    ],
+    "expected": "1. Date range = This Month (nothing saved and no range in the page link).\n2. Product Type = \"Parts & Service.\"\n3. Location = the single location you are currently working in (your active location) — not all locations.\n4. Customer filter = all customers selected (label \"All customers\").\n5. Sort = Customer name ascending.\n6. All nine toggleable columns visible.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S6-N1, S2-R5, S4-R4), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-N1; Story 2 S2-R5; Story 4 S4-R4)",
+    "viu_status": "VIU-Pending",
+    "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-DEFAULTS): absorbed SBC-DATE-02, SBC-LOC-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8604 (SBC spec v16 2026-08-06 Story 6 S6-N1; Story 2 S2-R5; Story 4 S4-R4)",
+    "testrail_id": "C30178",
+    "section_id": 4301
+  },
+  {
+    "id": "SBC-PERS-06",
+    "area": "SBC — Saved View & Persistence",
+    "title": "When a saved view and a page-link range clash the saved view wins",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You have a saved view with a known date range (for example Last Month).",
+      "2. You have a page link carrying a DIFFERENT date range (for example This Year), captured earlier."
+    ],
+    "steps": [
+      "1. Open the report using the link with the different range.",
+      "2. Read the date range picker."
+    ],
+    "expected": "1. The saved view is applied (Last Month) and the link value is ignored.\n2. This is intentional: a shared link restores the sender's range only for a recipient who has no saved range of their own.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S2-R9), read on 11 August 2026.\nLast checked against build v3.4.1-3d03023 on 8/4/2026.\n\nAUTOMATION: READY\n",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R9)",
+    "viu_status": "VIU-Pending",
+    "notes": "KNOWN-LIMITATION ENCODING per the S2-R9 context note — do not file the ignored link as a defect. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8601 (SBC spec v16 2026-08-06 Story 2 S2-R9)",
+    "testrail_id": "C30179",
+    "section_id": 4301
+  },
+  {
+    "id": "SBC-PERS-07",
+    "area": "SBC — Saved View & Persistence",
+    "title": "Customer filter restore: all-customers stays all; an id set is intersected",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. Scenario A: leave the report in the all-customers state, then seed a NEW ZZAUTOTEST customer with an invoice in range.",
+      "2. Scenario B: leave the report with two specific customers selected, then remove one of those customers' matching data (or shift the range so one no longer matches)."
+    ],
+    "steps": [
+      "1. Scenario A: return to the report and check the filter state and rows.",
+      "2. Scenario B: return to the report and check the selection and rows."
+    ],
+    "expected": "1. Scenario A: the filter restores to the all-customers state and the report shows every present customer — including the customer that appeared since the state was saved.\n2. Scenario B: still-present saved ids are re-selected; a saved id no longer present is dropped (a stale saved id never forces an empty view); a customer that appeared since the set was saved is NOT auto-selected.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R8), read on 11 August 2026.\nLast checked against build v3.4.1-3d03023 on 8/4/2026.\n\nAUTOMATION: READY\n",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R8)",
+    "viu_status": "VIU-Pending",
+    "notes": "BUILD-DELTA: the explicit all-customers flag is the 2026-07-21 committed target — the current build may store an id enumeration at VIU. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8616 (SBC spec v16 2026-08-06 Story 18 S18-R8)",
+    "testrail_id": "C30180",
+    "section_id": 4301
+  },
+  {
+    "id": "SBC-EXP-16",
+    "area": "SBC — Exports",
+    "title": "Summary and Expanded View downloads exist for both PDF and CSV",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the Sales By Customer report with at least one customer and several invoices in the chosen date range."
+    ],
+    "steps": [
+      "1. Open the download (overflow) menu and read the four items.",
+      "2. Download the Summary version in both formats (Download Summary (PDF) and Download Summary (CSV)) and open the files.",
+      "3. Download the Expanded View version in both formats and compare against the Summary files."
+    ],
+    "expected": "1. The menu offers exactly four items: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", \"Download Expanded View (CSV)\".\n2. Each Summary file gives ONE row per customer, without the asset or invoice detail rows.\n3. Each Expanded View file contains the full Customer, then Asset, then Invoice breakdown.\n4. All four files reflect exactly the filtered data shown on screen.\n5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal — no Asset, Invoice # or Date columns. When more than one location is in scope a Location column is added immediately after the Customer name and before the money columns.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. the Sales By Customer report specification version 17 (S14-R1, S14-R2, S14-R4, S15-R1, S15-R2, S15-R4, S15-R5, S4-R13) is silent on this point, so his answers are the only basis for it.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8612; SV-8613; SV-8603 (SBC spec v13 2026-07-31 S14-R1; S14-R2; S14-R4; S15-R1; S15-R2; S15-R4; S15-R5; S4-R13 — the four-item Summary/Expanded menu; the Summary column list; the automatic Location column in every export)",
+    "viu_status": "VIU-Pending",
+    "notes": "RATIFIED + EXTENDED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): 'Exports now come in Summary and Expanded versions, for both PDF and CSV (matching Sales By Rep). Summary = one row per customer; Expanded = the full Customer -> Asset -> Invoice breakdown.' Menu labels now spec-stated (VIU-confirm hedge removed) - still to be sighted live at VIU per Rule 12. Exact Summary column set pending the updated spec changelog. Added to TestRail 2026-07-28 as C38856; this reshape is LOCAL, awaiting push authorization. RATIFIED by the SBC spec v12 2026-07-29 (S14-R4 Summary columns). SPEC-WATCH item 3 CLOSED. STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | 2026-08-03 verifier-fix [B/V-2]: Expands the slash shorthand \"S14-R1/R2/R4\" and \"S15-R1/R2/R4/R5\" into full, greppable anchors. Before this change S14-R2, S14-R4, S15-R2, S15-R4 and S15-R5 were invisible to any anchor-based re-check — C38856 was the only case in the suite writing refs this way. RULE 41: Re-verified whole against SBC spec v12 2026-07-29: title, precondition 1, steps 1-3, expected 1-5, refs, notes. All eight anchors resolve (S14-R1 L556, S14-R2 L557, S14-R4, S15-R1 L607, S15-R2 L608, S15-R4, S15-R5, S4-R13 L231). Expected 5 is already scope-conditional (\"With a single location in scope ...\"), so no Rule-42 rewrite is needed. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8612; SV-8613; SV-8603 (SBC spec v16 2026-08-06 S14-R1; S14-R2; S14-R4; S15-R1; S15-R2; S15-R4; S15-R5; S4-R13 — the four-item Summary/Expanded menu; the Summary column list; the automatic Location column in every export)",
+    "testrail_id": "C38856",
+    "section_id": 4300
+  },
+  {
+    "id": "SBC-EXP-17",
+    "area": "SBC — Exports",
+    "title": "A logo that is set but will not load falls back to the ShopView logo",
+    "priority": "High",
+    "type": "Functional",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser and you can change the organization's uploaded logo in administration.",
+      "2. You will need the organization in a state where a logo IS set but the picture will not load - for example an uploaded logo whose file has since been removed or renamed. Ask a developer to help you produce that state if you cannot.",
+      "3. Write down the organization's original logo first, because you will put it back at the end.",
+      "4. This one test covers the printable download on all six reports, so do the setup once and check all six."
+    ],
+    "steps": [
+      "1. With a logo uploaded and loading normally, download the printable file from each of the six reports and look at the top right of the header.",
+      "2. Put the organization into the state where a logo is set but the picture will not load.",
+      "3. Download the printable file again from each of the six reports and look at the top right of the header.",
+      "4. Remove the uploaded logo altogether, download again from each of the six reports, and look at the top right of the header.",
+      "5. Put the organization's original logo back."
+    ],
+    "expected": "1. With a logo that loads, that logo is shown at the top right, sized to fit without being stretched.\n2. With a logo that is set but will not load, the built-in ShopView logo is shown in its place - not a blank space, not a broken-picture icon, and no error message.\n3. With no logo uploaded at all, NO logo is shown and the header text spreads out to fill the space.\n4. All six reports behave the same way.\n5. Note for the tester: step 2 is the difficult part. If you cannot get the organization into that state, mark this test Blocked and say so plainly - do not guess the answer.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. His words are: \"Use the company's own uploaded logo. If a logo is set but fails to load, fall back to the built-in ShopView logo. If no logo is uploaded, print no logo and let the text fill the space.\" This DIFFERS from the Sales By Customer report specification version 17 (S15-R17), read on 11 August 2026, which shows the built-in ShopView logo when no logo has been uploaded rather than when an uploaded one fails to load, and we have taken his newer decision as the one that prevails.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: HOLD - this organisation has a logo that loads correctly, so the set-but-will-not-load fallback cannot be produced",
+    "refs": "SV-8613 (SBC spec v16 2026-08-06 Story 15 S15-R17 and S15-R18 - the logo order and the no-logo layout; the set-but-fails-to-load step is Chris Ward's answer T3-4 option C of 2026-08-05 alone)",
+    "spec_ref": "SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R17 and S15-R18 - the logo order and the no-logo layout; the set-but-fails-to-load step is Chris Ward's answer T3-4 option C of 2026-08-05 alone)",
+    "testrail_id": "C43553",
+    "section_id": 4300
+  }
 ]

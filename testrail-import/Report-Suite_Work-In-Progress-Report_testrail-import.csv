@@ -8,47 +8,43 @@ Work In Progress appears in the reports navigation under the Performance group,W
 3. The browser page title is exactly ""Work In Progress - Report | ShopView"" — a plain hyphen with one space on each side.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S1-R1, S1-R5).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S1-R1, S1-R5), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R1; S1-R5 — S1-R5 CLOSES the page title verbatim; Performance group below the named anchor items per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03),,
+AUTOMATION: READY",SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R1; S1-R5 — S1-R5 CLOSES the page title verbatim; Performance group below the named anchor items per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03),,
 Four tabs in a fixed order with the partially-completed tab selected,WIP — Tabs,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You have not visited the report before in this browser (no saved active-tab setting).","1. Open the Work In Progress report.
 2. Read the tab labels from left to right.
-3. Look at which tab is selected when the report loads.","1. Four tabs are shown, labeled in this order: ""Approved - Partially Completed"", ""Approved - Not Started"", ""Completed"", and ""Estimates"" - each followed by its count in brackets, for example ""Completed (30)"".
-2. The ""Approved - Partially Completed"" tab is selected by default on load.
+3. Look at which tab is selected when the report loads.","1. Four tabs are shown, labeled in this order: ""Approved - partially completed"", ""Approved - not started"", ""Completed"", and ""Estimates"" - each followed by its count in brackets, for example ""Completed (30)"".
+2. The ""Approved - partially completed"" tab is selected by default on load.
 3. There is NO on-screen status filter — the four tabs take the place of a status filter (the tab a job lands in is derived from its status and whether any work has started).
 4. Each tab's count matches the number of work-order rows actually listed in that tab.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S1-R2, S1-R3, S1-R4).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and its story SV-8657, read on 11 August 2026, and the Work In Progress report specification version 11 (S1-R2, S1-R3, S1-R4), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter) — S1-R2 CLOSES the four tab labels and their order verbatim; so the closed list IS the requirement; Story 1 S1-R4),,
+AUTOMATION: READY",SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter) — S1-R2 CLOSES the four tab labels and their order verbatim; so the closed list IS the requirement; Story 1 S1-R4),,
 There is no Trend / over-time tab or chart,WIP — Tabs,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open.","1. Look through the report's tabs, toolbar, and menus for any trend, history, or over-time view.
 2. Confirm the report only shows the floor as it stands right now.","1. Only the four progress tabs exist — there is no Trend tab and no chart of work-in-progress dollars over time.
 2. No screen in the report reads or displays the nightly snapshot history.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S11-R7).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S11-R7), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8667 (WIP spec v6 2026-07-29 §2 Out of scope; §2 Known Limitations (v1); Story 11 S11-R7),,
+AUTOMATION: READY",SV-8667 (WIP spec v6 2026-07-29 §2 Out of scope; §2 Known Limitations (v1); Story 11 S11-R7),,
 Every open service WO at a selected location appears in the report,WIP — Scope & Loading,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. Five ZZAUTOTEST service work orders exist at your active location, created within the current date range — one in each status: Estimate, Approved, In Progress, Review, and Complete.","1. Open the Work In Progress report with the seeded work orders' creation dates inside the selected date range.
 2. Look through all four tabs for each of the five seeded work orders.","1. All five seeded work orders appear in the report — each one qualifies because it is a service work order, its status is one of Estimate, Approved, In Progress, Review, or Complete, and it belongs to a selected location.
 2. Each appears in the tab its status places it in (see the WIP — Tab Placement cases).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S2-R1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S2-R1), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-R1),,
+AUTOMATION: READY",SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-R1),,
 Invoiced; Paid and part-sale work orders never appear,WIP — Scope & Loading,Negative,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. ZZAUTOTEST work orders exist at your active location within the current date range: one Invoiced, one Paid, and one part-sale work order.","1. Open the Work In Progress report.
 2. Look for the Invoiced and Paid work orders and the part-sale work order in every tab.
@@ -58,11 +54,10 @@ Invoiced; Paid and part-sale work orders never appear,WIP — Scope & Loading,Ne
 3. No excluded work order's money is counted in any figure.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S2-R2, S2-R3).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S2-R2, S2-R3), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-R2; S2-R3),,
+AUTOMATION: READY",SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-R2; S2-R3),,
 Each qualifying work order appears exactly once in exactly one tab,WIP — Scope & Loading,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Several open ZZAUTOTEST service work orders exist within the current date range, including one open estimate with no approved line items at all.","1. Open the Work In Progress report.
 2. For each seeded work order, count how many times its work order number appears across all four tabs.
@@ -70,11 +65,10 @@ Each qualifying work order appears exactly once in exactly one tab,WIP — Scope
 2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both showing ""$0.00"".
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S2-R4).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S2-R4), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-R4; §3 Key Decisions (every open job is listed)),,
+AUTOMATION: READY",SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-R4; §3 Key Decisions (every open job is listed)),,
 While loading the standard indicator shows and old rows stay until data,WIP — Scope & Loading,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Change the date range to a different preset and watch the data area while the report reloads.
 2. Change the location selection and watch the data area again.","1. While the report is loading, the data area shows the standard reports loading indicator.
@@ -82,11 +76,10 @@ While loading the standard indicator shows and old rows stay until data,WIP — 
 3. Both a date-range change and a location change reload the report's rows.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S2-R5, S2-R6).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S2-R5, S2-R6), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-R5; S2-R6),,
+AUTOMATION: READY",SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-R5; S2-R6),,
 No qualifying work orders: every tab shows the no-data message and no Totals,WIP — Scope & Loading,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open.
 3. Separately, a state can be produced where some tabs have work orders but at least one tab (for example, Completed) has none.","1. Set the date range and location so that no open work order qualifies (for example, a Custom range over dates with no work orders created).
@@ -97,35 +90,32 @@ No qualifying work orders: every tab shows the no-data message and no Totals,WIP
 4. When only one tab is empty, that tab shows the no-data message, no Totals row, and a ""(0)"" count while the populated tabs still show their rows normally.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S2-N1, S2-N2, S6-N1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S2-N1, S2-N2, S6-N1), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-N1; S2-N2; Story 6 S6-N1; §7 User Feedback Summary),,
+AUTOMATION: READY",SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-N1; S2-N2; Story 6 S6-N1; §7 User Feedback Summary),,
 "Status-to-tab mapping: Estimate, Complete, In Progress and Review work orders",WIP — Tab Placement,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. Four ZZAUTOTEST service work orders exist within the current date range and location: one in Estimate status, one in Complete status, one in In Progress status, and one in Review status.","1. Open the Work In Progress report.
 2. Look for each seeded work order in each tab.","1. The Estimate work order appears in the ""Estimates"" tab and nowhere else.
 2. The Complete work order appears in the ""Completed"" tab and nowhere else.
-3. The In Progress and Review work orders appear in the ""Approved - partially completed"" tab and nowhere else.
+3. The In Progress and Review work orders appear in the ""Approved - Partially Completed"" tab and nowhere else.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S3-R1, S3-R2, S3-R3).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S3-R1, S3-R2, S3-R3), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8659 (WIP spec v6 2026-07-29 Story 3 S3-R1; S3-R2; S3-R3),,
+AUTOMATION: READY",SV-8659 (WIP spec v6 2026-07-29 Story 3 S3-R1; S3-R2; S3-R3),,
 Approved started-boundary: time or part received vs neither decides the tab,WIP — Tab Placement,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. Three ZZAUTOTEST service work orders in Approved status exist within the current date range and location: one where a technician has clocked time, one where a part has been received (and no time clocked), and one with neither.","1. Open the Work In Progress report.
-2. Look for each of the three Approved work orders in each tab.","1. The Approved work order with clocked labor time appears in the ""Approved - partially completed"" tab.
-2. The Approved work order with a received part (and no clocked time) also appears in the ""Approved - partially completed"" tab — either kind of started work counts.
-3. The Approved work order with no clocked time and no received part appears in the ""Approved - not started"" tab and nowhere else.
+2. Look for each of the three Approved work orders in each tab.","1. The Approved work order with clocked labor time appears in the ""Approved - Partially Completed"" tab.
+2. The Approved work order with a received part (and no clocked time) also appears in the ""Approved - Partially Completed"" tab — either kind of started work counts.
+3. The Approved work order with no clocked time and no received part appears in the ""Approved - Not Started"" tab and nowhere else.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S3-R4).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S3-R4), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8659 (WIP spec v6 2026-07-29 Story 3 S3-R4 (started + not-started branches + context note)),,
+AUTOMATION: READY",SV-8659 (WIP spec v6 2026-07-29 Story 3 S3-R4 (started + not-started branches + context note)),,
 "With all toggleable columns on, the fixed column order and alignment hold",WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.
 3. Every toggleable column is turned on in the column-selection control.
@@ -133,38 +123,50 @@ AUTOMATION: READY
 2. Look at how the values in each column are aligned.","1. The columns appear in this order: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total.
 2. WO #, Status, Customer, Asset, VIN, Location, and Advisor are left-aligned.
 3. Every other column (Days Open, Last Activity, and all money/number columns through Total) is right-aligned.
+What you should see today: the columns are in exactly the order listed and every left-aligned column is correct, but the Last Activity column sits on the LEFT when it should be on the right - it is the only one in the right-aligned group that is wrong. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8987
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R1, S4-R3, S4-R4), and it holds whichever way the one unsettled point about the Location column is decided. Chris Ward confirmed the column order on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R1, S4-R3, S4-R4), read on 11 August 2026, and it holds whichever way the one unsettled point about the Location column is decided. Chris Ward confirmed the column order on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R1; S4-R3; S4-R4 — the Location column is no longer in the column selector; it shows automatically when more than one location is in scope),,
-First visit shows the default columns; the rest are in the column selector,WIP — Columns & Rows,Functional,High,1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (use a fresh browser profile or clear the site's saved data).,"1. Open the Work In Progress report.
+AUTOMATION: READY - EXPECT FAIL (SV-8987)",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R1; S4-R3; S4-R4 — the Location column is no longer in the column selector; it shows automatically when more than one location is in scope),,
+First visit shows the default columns; the rest are in the column selector,WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (use a fresh browser profile or clear the site's saved data).
+2. You are signed in as a person who has access to more than one location.","1. Open the Work In Progress report.
 2. Read the visible column headers.
 3. Open the column-selection control and read which columns are offered and which are on.","1. The visible columns on first visit are: WO #, Status, Customer, Asset, Advisor, Days Open, Earned, Remaining, and Total.
-2. Every other column (VIN, Location, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Inv. Hrs) is available in the column-selection control and off by default. When it is on, the Location column sits between VIN and Advisor and names each job's location.
-3. Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. For this report the two statements sit in the same written description as it stands today. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+2. Every other column (VIN, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Inv. Hrs) is available in the column-selection control and off by default.
+3. The Location column is different from those: because the signed-in person has access to more than one location, it is offered in the column-selection control AND is already switched ON by default. When it is on it sits between VIN and Advisor and names each job's location.
+4. A person with access to only one location never sees the Location column and is not offered it in the column-selection control.
+
+What you should see today: the Location column behaves by how many locations are SELECTED, not by what the signed-in person can reach. With every location selected the column appears; narrow the Location filter to a single location and the column disappears, even though the person still has access to five locations. The column is also not listed in the column-selection control at all, so it cannot be switched on or off by hand. This was seen on all three handed-off reports.
+- If you see exactly that, mark this test FAILED and do not raise anything new - it is already written up for the QA lead.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so this note can be removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R2, S4-R3, S8-R3, S8-R4). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: one requirement says it is offered there and can be toggled on or off, while another requirement in the same document still says the user does not toggle it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R2, S4-R3, S8-R3, S8-R4), read on 11 August 2026. Chris Ward confirmed this same rule in his answers of 8/10/2026, in this file: build/report-suite/chris-answers-2026-08-10/ - his answer and the specification agree, so the earlier note saying the description contradicted itself no longer applies.
+Last checked against build v3.5-4795eee on 8/10/2026.
 
-AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked
-","SV-8660; SV-8664 (WIP spec v6 2026-07-29 Story 4 S4-R2; S4-R3 + Story 8 S8-R3; S8-R4 — S4-R3 verbatim: ""The Location column is not offered in the column selector; its visibility is automatic"")",,
+AUTOMATION: HOLD - the build does not follow the ratified Location rule; the defect is written up in DEFECTS-FOR-PERMISSION.md and needs the QA lead's permission before a ticket exists to point at","SV-8660; SV-8664 (WIP spec v6 2026-07-29 Story 4 S4-R2; S4-R3 + Story 8 S8-R3; S8-R4 — S4-R3 verbatim: ""The Location column is not offered in the column selector; its visibility is automatic"")",,
 The WO # is a link that opens the WO in the same browser tab,WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Click a row's WO # link.
 2. Confirm where the work order opens.
 3. Use the browser's back navigation.","1. For a person who has permission to open work orders, the WO # is shown as a link.
 2. Clicking it opens that work order in the SAME browser tab (not a new tab).
 3. The browser's back navigation returns you to the report.
+What you should see today: the WO number is plain black text with nothing to click, for every user - the whole table contains no links at all, and this was checked as an administrator who does hold Work Orders access. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8967
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R5).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R5), read on 11 August 2026.
+Last checked against build v3.5-4795eee on 8/10/2026.
 
-AUTOMATION: READY
-",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R5 (+ context note)),,
+AUTOMATION: READY - EXPECT FAIL (SV-8967)",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R5 (+ context note)),,
 Status shows as a color-coded badge whose label text is always present,WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows work orders in several statuses (Estimate, Approved, In progress, Review, Complete).","1. Read the Status column across rows in each tab.
 2. Compare each badge's color against the application's standard status colors used elsewhere.","1. Status is shown as a badge using the status's label: ""Estimate"", ""Approved"", ""In progress"", ""Review"", or ""Complete"".
@@ -172,11 +174,10 @@ Status shows as a color-coded badge whose label text is always present,WIP — C
 3. The label text is always present, so color is never the sole signal of the status.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R6, S10-R8).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R6, S10-R8), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-","SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R6 + Story 10 S10-R8 — S4-R6 CLOSES the five status labels verbatim (""Estimate"" ... ""Complete"") and the label-not-colour rule; so the closed list IS the requirement)",,
+AUTOMATION: READY","SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R6 + Story 10 S10-R8 — S4-R6 CLOSES the five status labels verbatim (""Estimate"" ... ""Complete"") and the label-not-colour rule; so the closed list IS the requirement)",,
 The Asset cell shows the Unit # in bold with the VIN underneath,WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows work orders including: one whose asset has a VIN recorded, one with no VIN but a Unit # recorded, and one with no VIN or Unit # but a plate recorded.","1. Read the Asset cell of the row whose asset has a VIN.
 2. Read the Asset cell of the row with no VIN, then the one with no VIN or Unit #.
@@ -187,22 +188,20 @@ The Asset cell shows the Unit # in bold with the VIN underneath,WIP — Columns 
 5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R7, S4-R8, S4-R10). Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R7, S4-R8, S4-R10), read on 11 August 2026. Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8660 (WIP spec Story 4 S4-R7; S4-R8; S4-R10 - identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate); by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's unit-number rule),,
+AUTOMATION: READY",SV-8660 (WIP spec Story 4 S4-R7; S4-R8; S4-R10 - identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate); by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's unit-number rule),,
 Customer shows the customer's company name,WIP — Columns & Rows,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows a work order with a customer that has a company name, and one with no customer name.","1. Read the Customer cell of the row whose customer has a company name.
 2. Read the Customer cell of the row with no customer name.","1. The Customer column shows the customer's company name.
 2. The cell is blank when no customer name exists.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R11).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R11), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R11),,
+AUTOMATION: READY",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R11),,
 Days Open shows whole days since creation and reads 0 days / 1 days,WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows a work order created today, one created exactly one day ago, and one created several days ago.","1. Read the Days Open cell of the work order created today.
 2. Read the Days Open cell of the one-day-old work order.
@@ -211,11 +210,10 @@ Days Open shows whole days since creation and reads 0 days / 1 days,WIP — Colu
 3. The value is NOT grammatically pluralized: ""1 days"" (not ""1 day"") is the correct, expected rendering.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R12).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R12), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R12; §2 Known Limitations (v1)),,
+AUTOMATION: READY",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R12; §2 Known Limitations (v1)),,
 Last Activity shows Today; Xd ago; or an em-dash when there is none,WIP — Columns & Rows,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Last Activity column is turned on in the column-selection control.
 3. The report shows a work order touched today, one last touched some days ago, and one with no recorded activity.","1. Read the Last Activity cell of the work order touched today.
@@ -225,11 +223,10 @@ Last Activity shows Today; Xd ago; or an em-dash when there is none,WIP — Colu
 3. A work order with no recorded activity shows ""—"".
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R13).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R13), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R13),,
+AUTOMATION: READY",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R13),,
 "The WO # is plain text, not a link, without Work Order permission",WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You need TWO sign-ins for this test: one person who can open work orders, and one person who can see reports but CANNOT open work orders. Ask whoever manages permissions to set the second one up for you, or set it up yourself in administration and put it back as you found it afterwards.
 3. The Work In Progress report has at least one work order showing. If a tab looks empty, widen the date range.","1. Sign in as the person who CAN open work orders, open the Work In Progress report, and look at the WO # in the first column.
@@ -242,13 +239,16 @@ AUTOMATION: READY
 4. Everything else about the row is the same for both people — the work order still appears, with its status, customer, asset and money values.
 5. The behaviour is the same on all four tabs.
 6. Note for the tester: the point of this test is that a person who cannot open a work order should never be given a link that leads nowhere. If you find a link that takes you to a page saying you are not allowed in, that is a failure — report it.
+What you should see today: the second half is right - a person without Work Orders access sees plain text - but so does a person WHO HAS that access, so the first half of this test cannot pass: the WO number is plain black text with nothing to click, for every user - the whole table contains no links at all, and this was checked as an administrator who does hold Work Orders access. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8967
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R5), which states that the WO # is shown as a link only when the user has permission to access Work Orders and that a user without Work Order permission sees the WO # as plain text and not a link.
-This has not yet been checked against a build.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R5), read on 11 August 2026, which states that the WO # is shown as a link only when the user has permission to access Work Orders and that a user without Work Order permission sees the WO # as plain text and not a link.
+Last checked against build v3.5-4795eee on 8/10/2026.
 
-AUTOMATION: HOLD - needs a second sign-in that can see reports but cannot open work orders; no such account exists on this test system yet
-",SV-8660 (WIP spec v9 2026-08-05 Story 4 S4-R5 — the negative half: a person without Work Order permission sees the WO # as plain text and not a link),,
+AUTOMATION: READY - EXPECT FAIL (SV-8967)",SV-8660 (WIP spec v9 2026-08-05 Story 4 S4-R5 — the negative half: a person without Work Order permission sees the WO # as plain text and not a link),,
 Money columns show US dollars to two decimals with thousands separators,WIP — Earned & Remaining,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. All money columns (Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Total) are turned on.
 3. The report shows rows with values over $1,000, a genuine zero value, and (if producible) a negative value.","1. Read a money value over one thousand dollars.
@@ -258,11 +258,10 @@ Money columns show US dollars to two decimals with thousands separators,WIP — 
 3. A genuine zero shows ""$0.00"".
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R14).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R14), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R14),,
+AUTOMATION: READY",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R14),,
 Labor Earned is the clocked share of each approved line's quoted value,WIP — Earned & Remaining,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Labor Earned column is turned on.
 3. A ZZAUTOTEST open work order exists with one approved labor line quoted at a known time and rate (for example 4.0 hours at $100/hour = $400 quoted), with exactly 1.0 hour clocked to it.
@@ -273,11 +272,10 @@ Labor Earned is the clocked share of each approved line's quoted value,WIP — E
 3. With several approved labor lines, Labor Earned is the sum of each line's capped earned share.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R15).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R15), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R15; §4 Terminology (Earned)),,
+AUTOMATION: READY",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R15; §4 Terminology (Earned)),,
 Labor Remaining is the approved labor's quoted value minus Labor Earned,WIP — Earned & Remaining,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Labor Earned and Labor Remaining columns are turned on.
 3. A ZZAUTOTEST open work order exists with approved labor of a known total quoted value and a known amount of time clocked (for example $400 quoted, $100 earned).","1. Open the Work In Progress report and find the seeded work order's row.
@@ -286,11 +284,10 @@ Labor Remaining is the approved labor's quoted value minus Labor Earned,WIP — 
 2. Labor Earned + Labor Remaining always equals the total quoted value of the approved labor.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R16).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R16), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R16),,
+AUTOMATION: READY",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R16),,
 Parts Earned is the sell value of approved-line parts already received,WIP — Earned & Remaining,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Parts Earned column is turned on.
 3. A ZZAUTOTEST open work order exists with an approved parts line of a known quantity and sell price, where part of the quantity has been received (for example 2 of 4 units at $50 sell each).","1. Open the Work In Progress report and find the seeded work order's row.
@@ -299,11 +296,10 @@ Parts Earned is the sell value of approved-line parts already received,WIP — E
 2. Parts not yet received contribute nothing to Parts Earned.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R17).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R17), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R17),,
+AUTOMATION: READY",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R17),,
 Parts Remaining values the not-yet-received quantity at its sell price,WIP — Earned & Remaining,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Parts Remaining column is turned on.
 3. A ZZAUTOTEST open work order exists with an approved parts line partly received (for example 2 of 4 units received, $50 sell each).
@@ -313,11 +309,10 @@ Parts Remaining values the not-yet-received quantity at its sell price,WIP — E
 2. For the core-charge part, Parts Remaining values the outstanding quantity at its sell price INCLUDING the core charge.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R18).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R18), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R18),,
+AUTOMATION: READY",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R18),,
 Earned + Remaining make Total; not the WO's grand total,WIP — Earned & Remaining,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. All money columns are turned on.
 3. A ZZAUTOTEST open work order exists with known approved labor (partly clocked) and approved parts (partly received), plus tax and/or a fee or discount on the work order so its stored grand total differs from the approved labor+parts sum.","1. Open the Work In Progress report and find the seeded work order's row.
@@ -330,11 +325,10 @@ Earned + Remaining make Total; not the WO's grand total,WIP — Earned & Remaini
 4. The Total is NOT the work order's stored grand total — it excludes tax, fees, discounts, and non-approved lines, so a difference from the work order's own grand total is EXPECTED, not a data error.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R19, S4-R20, S4-R21).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R19, S4-R20, S4-R21), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R19; S4-R20; S4-R21; §3 Key Decisions),,
+AUTOMATION: READY",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R19; S4-R20; S4-R21; §3 Key Decisions),,
 Lines that are not yet approved contribute nothing to any money figure,WIP — Earned & Remaining,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. A ZZAUTOTEST open work order exists with known approved lines and known report money values.","1. Note the work order's Earned, Remaining, and Total in the report.
 2. Add a new labor line and a new parts line to the work order WITHOUT approving them (leave them not authorized).
@@ -342,11 +336,10 @@ Lines that are not yet approved contribute nothing to any money figure,WIP — E
 2. Only approved lines (line status authorized or complete) contribute to the report's money — not-yet-approved lines contribute nothing.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R15).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R15), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8660 (WIP spec Story 4 S4-R15 verbatim 'summed across the work order's approved lines' + §2 Relationship to the work order; §4 Terminology Approved line),,
+AUTOMATION: READY",SV-8660 (WIP spec Story 4 S4-R15 verbatim 'summed across the work order's approved lines' + §2 Relationship to the work order; §4 Terminology Approved line),,
 Inv. Hrs shows quoted minus worked hours; signed to one decimal,WIP — Earned & Remaining,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inv. Hrs column is turned on.
 3. The report shows: a job under its labor estimate (fewer hours clocked than quoted), a job that has overrun its estimate (more hours clocked than quoted), and a job at exactly its quote.","1. Read the Inv. Hrs value of the under-estimate job.
@@ -354,13 +347,16 @@ Inv. Hrs shows quoted minus worked hours; signed to one decimal,WIP — Earned &
 3. Read the Inv. Hrs value of the exactly-on-quote job.","1. Inv. Hrs shows the quoted labor hours minus the worked (clocked) labor hours across the approved lines, as a signed number with one decimal place — for example ""+2.0"" or ""-14.0"".
 2. On screen it is colored green when positive and red when negative; the overrun job shows a negative red value, the under-estimate job a positive green value.
 3. A value of exactly zero shows unsigned as ""0.0"" (never ""+0.0"" or blank) in the default text color.
+What you should see today: the figure is the quoted hours minus the worked hours, correctly signed, coloured green or red, and a zero reads unsigned - but it carries TWO decimal places (for example +0.50, +1.24, -0.81) where one is asked for. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8989
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R23, S4-R24, S4-E2).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R23, S4-R24, S4-E2), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R23; S4-R24; S4-E2),,
+AUTOMATION: READY - EXPECT FAIL (SV-8989)",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R23; S4-R24; S4-E2),,
 An open estimate with no approved work shows $0.00 in every money column,WIP — Earned & Remaining,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. All money columns are turned on.
 3. A ZZAUTOTEST open estimate exists with no approved line items.","1. Open the Work In Progress report and open the Estimates tab.
@@ -368,11 +364,10 @@ An open estimate with no approved work shows $0.00 in every money column,WIP —
 2. The row still appears in the Estimates tab (it is not hidden for having no value).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-E1, S2-R4).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-E1, S2-R4), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-E1; Story 2 S2-R4),,
+AUTOMATION: READY",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-E1; Story 2 S2-R4),,
 "A technician still clocked in counts toward Labor Earned, capped at the quote",WIP — Earned & Remaining,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Labor Earned column is turned on.
 3. A ZZAUTOTEST open work order exists with one approved labor line quoted at a known time and rate (for example 2.0 hours at $100/hour = $200 quoted).
@@ -383,21 +378,19 @@ AUTOMATION: READY
 3. Labor Earned never exceeds the line's full quoted value, no matter how long the clock keeps running — the per-line cap still applies.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R15).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R15), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R15; §4 Terminology (Earned) — spec silent on running clocks; tech-plan-2026-07-29 B1.2 open-clock policy),,
+AUTOMATION: READY",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R15; §4 Terminology (Earned) — spec silent on running clocks; tech-plan-2026-07-29 B1.2 open-clock policy),,
 The initial sort is Days Open with the longest-open work order first,WIP — Sorting,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A tab shows several work orders created on different dates.","1. Open the Work In Progress report without clicking any column header.
 2. Read the Days Open values from the top row down.","1. The rows are sorted by Days Open, longest-open first (descending).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R25).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R25), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R25),,
+AUTOMATION: READY",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R25),,
 "Clicking a header sorts ascending, clicking again toggles descending",WIP — Sorting,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A tab shows several work orders with differing values.","1. Click the Customer column header and note the order.
 2. Click the Customer header again and note the order.
@@ -408,11 +401,10 @@ AUTOMATION: READY
 4. Only one column sorts at a time: clicking another header replaces the previous sort.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R26).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R26), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R26),,
+AUTOMATION: READY",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R26),,
 Columns sort by their underlying values; Asset sorts by the Unit #,WIP — Sorting,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A tab shows several work orders with a spread of money values (including values over $1,000), differing statuses, and differing asset identifiers (VIN, or Unit # / plate where the VIN is missing).","1. Sort by a money column (for example Total) and check the order of values like $900.00 vs $1,100.00.
 2. Sort by Days Open and check the order of the day counts.
@@ -425,11 +417,10 @@ Columns sort by their underlying values; Asset sorts by the Unit #,WIP — Sorti
 5. WO #, Customer, Asset, VIN, Location, and Advisor sort as text.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R9, S4-R27). Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R9, S4-R27), read on 11 August 2026. Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8660 (WIP spec Story 4 S4-R27; S4-R9 - Asset sort key RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's 'sorts by unit number' rule),,
+AUTOMATION: READY",SV-8660 (WIP spec Story 4 S4-R27; S4-R9 - Asset sort key RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's 'sorts by unit number' rule),,
 Sorting reorders only the active tab's rows; Totals stays at the bottom,WIP — Sorting,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. At least two tabs have several rows each.","1. In the active tab, sort by a column and note the new order.
 2. Check the position of the Totals row.
@@ -438,72 +429,69 @@ Sorting reorders only the active tab's rows; Totals stays at the bottom,WIP — 
 3. The other tab's order is not changed by the first tab's sort action.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R28).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R28), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R28),,
+AUTOMATION: READY",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R28),,
 The summary strip shows seven figures in a fixed order as US dollars,WIP — Summary Strip,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Read the summary strip across the top of the report, left to right.
 2. Read each figure's number format.","1. The strip shows seven figures, in this order: Total Earned, Total Remaining, Not Started, Started — Earned, Started — Remaining, Ready to Invoice, and Estimates.
 2. Every figure shows US-dollar currency with a leading ""$"", two decimals, and thousands separators.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S5-R1, S5-R10).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S5-R1, S5-R10), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R1; S5-R10 — S5-R1 CLOSES the seven figures and their order verbatim and S5-R10 closes the currency format; so the closed lists ARE the requirement),,
+AUTOMATION: READY",SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R1; S5-R10 — S5-R1 CLOSES the seven figures and their order verbatim and S5-R10 closes the currency format; so the closed lists ARE the requirement),,
 Total Earned is the hero figure and equals the started-stage figures summed,WIP — Summary Strip,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
-2. The report shows jobs in the ""Approved - partially completed"" tab and the ""Completed"" tab with non-zero earned values.","1. Look at how the Total Earned figure is styled compared to the other six figures.
+2. The report shows jobs in the ""Approved - Partially Completed"" tab and the ""Completed"" tab with non-zero earned values.","1. Look at how the Total Earned figure is styled compared to the other six figures.
 2. Add the Started — Earned figure to the Ready to Invoice figure.
 3. Compare the sum to Total Earned.","1. Total Earned is shown larger than the other figures and with a colored underline — it is the strip's hero figure.
 2. Total Earned equals Started — Earned plus Ready to Invoice, to the cent.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S5-R2).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S5-R2), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R2),,
+AUTOMATION: READY",SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R2),,
 Total Remaining equals Not Started plus Started — Remaining,WIP — Summary Strip,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
-2. The report shows jobs in the ""Approved - not started"" and ""Approved - partially completed"" tabs with non-zero remaining values.","1. Add the Not Started figure to the Started — Remaining figure.
+2. The report shows jobs in the ""Approved - Not Started"" and ""Approved - Partially Completed"" tabs with non-zero remaining values.","1. Add the Not Started figure to the Started — Remaining figure.
 2. Compare the sum to Total Remaining.","1. Total Remaining equals Not Started plus Started — Remaining, to the cent.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S5-R3).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S5-R3), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R3),,
+AUTOMATION: READY",SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R3),,
 Each per-stage figure equals the matching tab's money total,WIP — Summary Strip,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. All four tabs contain at least one job with non-zero money.
-3. The Earned and Remaining columns are visible.","1. In the ""Approved - not started"" tab, add up each job's Earned + Remaining (its approved value) and compare to the Not Started figure.
-2. In the ""Approved - partially completed"" tab, compare the tab's total Earned to the Started — Earned figure and the tab's total Remaining to the Started — Remaining figure.
-3. In the ""Completed"" tab, compare the tab's total Earned to the Ready to Invoice figure.","1. Not Started equals the total approved value (earned + remaining) of the jobs in the ""Approved - not started"" tab.
-2. Started — Earned equals the total Earned of the jobs in the ""Approved - partially completed"" tab, and Started — Remaining equals that tab's total Remaining.
+3. The Earned and Remaining columns are visible.","1. In the ""Approved - Not Started"" tab, add up each job's Earned + Remaining (its approved value) and compare to the Not Started figure.
+2. In the ""Approved - Partially Completed"" tab, compare the tab's total Earned to the Started — Earned figure and the tab's total Remaining to the Started — Remaining figure.
+3. In the ""Completed"" tab, compare the tab's total Earned to the Ready to Invoice figure.","1. Not Started equals the total approved value (earned + remaining) of the jobs in the ""Approved - Not Started"" tab.
+2. Started — Earned equals the total Earned of the jobs in the ""Approved - Partially Completed"" tab, and Started — Remaining equals that tab's total Remaining.
 3. Ready to Invoice equals the total Earned of the jobs in the ""Completed"" tab.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S5-R4, S5-R5, S5-R6, S5-R7).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S5-R4, S5-R5, S5-R6, S5-R7), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R4; S5-R5; S5-R6; S5-R7),,
+AUTOMATION: READY",SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R4; S5-R5; S5-R6; S5-R7),,
 "The Estimates figure is the Estimates tab's total quoted value, shown muted",WIP — Summary Strip,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Estimates tab contains at least one job with a non-zero quoted value.","1. Compare the Estimates figure to the total quoted value of the jobs in the Estimates tab.
 2. Look at how the Estimates figure is styled compared to the others.
 3. Check whether the Estimates amount is included in Total Earned or Total Remaining (their component sums should not contain it).","1. The Estimates figure equals the total quoted value of the jobs in the Estimates tab.
 2. It is shown in a muted style.
 3. The Estimates figure is excluded from Total Earned and from Total Remaining.
-Known issue: the product does not currently do this — on the build tested, the Estimates figure read $0.00 even though the Estimates tab held jobs, because the product is showing the approved value instead of the quoted value. That is a fault for a developer to fix, not a decision for the product owner. No developer ticket has been raised for it yet, so this test will fail until it is fixed — record what you see and leave the test as it is.
+What you should see today: the amount is right and it is correctly left out of Total Earned and Total Remaining, but the Estimates figure is NOT toned down - its label and its amount look exactly like every other figure in the strip. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8988
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S5-R8, S5-R9).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S5-R8, S5-R9), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R8; S5-R9),,
+AUTOMATION: READY - EXPECT FAIL (SV-8988)",SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R8; S5-R9),,
 Each summary figure's information icon reveals its plain explanation,WIP — Summary Strip,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with the summary strip visible.","1. Hover (or focus, or tap) the small information icon next to each of the seven summary figures, one at a time.
 2. Read each revealed explanation and compare it word-for-word to the expected text.","1. Total Earned — ""Work you have already done but have not billed yet — the money waiting to be collected.""
@@ -516,11 +504,10 @@ Each summary figure's information icon reveals its plain explanation,WIP — Sum
 8. Each explanation appears on hover, on keyboard focus, and on tap.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S5-R12).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S5-R12), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R12),,
+AUTOMATION: READY",SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R12),,
 "Each tab has a Totals row pinned to the bottom, labeled ""Totals""",WIP — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Each tab has at least one visible job.","1. In each tab, look at the bottom of the table.
 2. Read the Totals row's leftmost cell and its Total cell.
@@ -529,11 +516,10 @@ AUTOMATION: READY
 3. The Totals row uses the same number formats as the data rows.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S6-R1, S6-R4, S6-R5).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S6-R1, S6-R4, S6-R5), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8662 (WIP spec v6 2026-07-29 Story 6 S6-R1; S6-R4; S6-R5),,
+AUTOMATION: READY",SV-8662 (WIP spec v6 2026-07-29 Story 6 S6-R1; S6-R4; S6-R5),,
 The Totals row sums each visible money column and the Inv. Hrs column,WIP — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A tab shows several jobs with known money values.
 3. All money columns and the Inv. Hrs column are turned on.","1. Add up each money column (Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Total) across the tab's visible jobs.
@@ -544,11 +530,10 @@ The Totals row sums each visible money column and the Inv. Hrs column,WIP — To
 4. Note for the tester: the Inv. Hrs total can only be checked on screen. On this build a download that includes Inv. Hrs is refused, so do not try to verify this column from a file.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S6-R2, S6-R3).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S6-R2, S6-R3), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8662 (WIP spec v6 2026-07-29 Story 6 S6-R2; S6-R3),,
+AUTOMATION: READY",SV-8662 (WIP spec v6 2026-07-29 Story 6 S6-R2; S6-R3),,
 The Advisor filter lists the advisors in the loaded jobs; screen only,WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows jobs for at least two different advisors.","1. Open the Advisor filter in the toolbar and read its options.
 2. Select one advisor and watch the rows.
@@ -557,13 +542,16 @@ The Advisor filter lists the advisors in the loaded jobs; screen only,WIP — Fi
 2. Selecting one or more advisors narrows the visible jobs to those advisors instantly, on screen only — no reload and no loading indicator.
 3. With two advisors selected, jobs for either advisor are shown.
 4. Pick an advisor whose jobs sit a long way down the list — scroll to the bottom of a busy tab to find one — and confirm every one of that advisor's jobs is still shown. You must never end up with only the part of the list that had loaded when you opened the filter.
+What you should see today: ticking an advisor sends a fresh request to the server and the table is rebuilt from the answer, instead of simply hiding the rows on screen. The list of advisors itself is right - it covers the whole scope. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8968
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S7-R1), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8663 (WIP spec v9 2026-08-05 Story 7 S7-R1 — the option list covers every open job in the current scope and not only the loaded rows),,
+AUTOMATION: READY - EXPECT FAIL (SV-8968)",SV-8663 (WIP spec v9 2026-08-05 Story 7 S7-R1 — the option list covers every open job in the current scope and not only the loaded rows),,
 "Customer filter is a type-ahead multi-select reading ""All customers""",WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows jobs for at least two different customers.","1. Read the Customer filter's label before selecting anything, and check whether a Clear action is offered.
 2. Open the filter and type part of a customer's name to narrow the list.
@@ -574,13 +562,16 @@ AUTOMATION: READY
 3. Selecting customers narrows the visible jobs on screen only (no reload); a single ""Clear"" action appears once at least one customer is selected.
 4. Clear returns the filter to ""All customers"" and every job is shown again.
 5. Pick a customer whose jobs sit a long way down the list — scroll to the bottom of a busy tab to find one — and confirm every one of that customer's jobs is still shown. You must never end up with only the part of the list that had loaded when you opened the filter.
+What you should see today: the Clear action is offered before anything is selected - the list reads ""All customers"", ""Clear all"", then the customers, with nothing yet picked. Separately, ticking a customer reloads from the server instead of narrowing on screen, which is reported as SV-8968. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8969
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R2, S7-R3).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S7-R2, S7-R3), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8663 (WIP spec v9 2026-08-05 Story 7 S7-R2 and S7-R3 — the option list covers every open job in the current scope and not only the loaded rows),,
+AUTOMATION: READY - EXPECT FAIL (SV-8969)",SV-8663 (WIP spec v9 2026-08-05 Story 7 S7-R2 and S7-R3 — the option list covers every open job in the current scope and not only the loaded rows),,
 Asset filter shows Unit # and VIN and matches text against either one,WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows jobs for at least two assets whose VINs (and Unit #s or plates) you know.","1. Read the Asset filter's label before selecting anything.
 2. Open the filter and read how each option is presented.
@@ -591,26 +582,28 @@ Asset filter shows Unit # and VIN and matches text against either one,WIP — Fi
 3. Text you type matches against either the Unit # or the VIN - a match on either one brings the asset up.
 4. Selecting assets narrows the visible jobs on screen only (no reload); a single ""Clear"" action appears once at least one asset is selected and returns the filter to ""All assets"".
 5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8908
-That is about assets that share a Unit # with another asset: only one of them is offered, so typing the other one's VIN finds nothing. On today's test data six assets are affected. Everything else in this test works.
+What you should see today: TWO separate known problems, both already reported.
+· The filter reads ""All assets"", each option shows both the Unit # and the VIN, typing matches against EITHER of them, and a single Clear action appears once something is picked and returns it to ""All assets"" - all of that is right. But an asset that shares a Unit # with another asset is left out of the list, so typing the other one's VIN finds nothing. Six assets were affected on the test data when that was last checked. Reported as https://shopview.atlassian.net/browse/SV-8908
+· Picking an asset sends a fresh request to the server instead of simply narrowing the rows already on screen. Reported as https://shopview.atlassian.net/browse/SV-8968
+· If you see exactly those two things, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fixes have shipped: tell the QA lead so the tickets can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R4, S7-R5). Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S7-R4, S7-R5), read on 11 August 2026. Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8908)
-",SV-8663 (WIP spec v9 2026-08-05 Story 7 S7-R4 and S7-R5 — the option list covers every asset on every open job in the current scope; option text and match fields per Chris Ward answer 2026-07-29),,
+AUTOMATION: READY - EXPECT FAIL (SV-8908, SV-8968)",SV-8663 (WIP spec v9 2026-08-05 Story 7 S7-R4 and S7-R5 — the option list covers every asset on every open job in the current scope; option text and match fields per Chris Ward answer 2026-07-29),,
 The date range offers the presets plus Custom; This Week default; no All Time,WIP — Filters,Functional,Critical,1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh visit).,"1. Open the Work In Progress report and read the date-range control's current value.
 2. Open the date-range control and read every option offered.","1. On a fresh visit the date range defaults to ""This Week"".
 2. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no ""Today"", no ""Yesterday"" and no item called ""Custom"" - you build your own range on the calendar instead. There is no ""All Time"" option.
 3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports.
 
 ---
-This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Work In Progress report specification version 9 (S7-R6) says something different, his decision is the later word and is the authority.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. Where the Work In Progress report specification version 11 (S7-R6), read on 11 August 2026, says something different, his decision is the later word and is the authority.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R6; §3 Key Decisions (date range defaults to This Week)),,
+AUTOMATION: READY",SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R6; §3 Key Decisions (date range defaults to This Week)),,
 The date range filters on the WO's created date and reloads on change,WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Open work orders exist with created dates both inside and outside the current week.","1. With ""This Week"" selected, check which work orders are listed.
 2. Change the preset to ""This Month"" and watch the data area.
@@ -620,11 +613,10 @@ The date range filters on the WO's created date and reloads on change,WIP — Fi
 4. Note for the tester: the written description gives the limit as a 366-day span from start to end without saying whether the first and last days are counted, so the single changeover day is the one thing to record carefully. Check the last range that loads and the first that is refused, and write both down.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R7, S7-R8). That specification gives the limit as a 366-day span from start to end and does not say whether the first and last days are counted, so the exact changeover day is not written down anywhere and is the one thing the tester records.
-Last checked against build v3.5-16cf83f on 8/5/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S7-R7, S7-R8), read on 11 August 2026. That specification gives the limit as a 366-day span from start to end and does not say whether the first and last days are counted, so the exact changeover day is not written down anywhere and is the one thing the tester records.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R7; S7-R8),,
+AUTOMATION: READY",SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R7; S7-R8),,
 "Location filter: rightmost multi-select with All locations, reloads on change",WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
 2. This browser has never saved settings for this report (fresh visit).
 3. Open work orders exist at two different locations.","1. Open the Work In Progress report and read the Location filter's position and default value.
@@ -637,11 +629,10 @@ AUTOMATION: READY
 4. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's work orders.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R9, S7-R10). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S7-R9, S7-R10), read on 11 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8663 (WIP spec Story 7 S7-R9; S7-R10 + on-screen location-scope indicator; spec v6 2026-07-29; single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A),,
+AUTOMATION: READY",SV-8663 (WIP spec Story 7 S7-R9; S7-R10 + on-screen location-scope indicator; spec v6 2026-07-29; single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A),,
 The location scope never includes an inaccessible location,WIP — Filters,Negative,High,"1. You are signed in to the ShopView App on a desktop browser as a user who can access some, but not all, of the organization's locations.
 2. The Work In Progress report is open.","1. Open the Location filter and read the locations offered.
 2. Use ""Clear all"" so the selection resolves to no location, and watch what the report loads.
@@ -650,25 +641,27 @@ The location scope never includes an inaccessible location,WIP — Filters,Negat
 3. A saved selection that no longer resolves also falls back to the active location.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R11, S8-R8).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S7-R11, S8-R8), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R11; Story 8 S8-R8),,
+AUTOMATION: READY",SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R11; Story 8 S8-R8),,
 "Advisor, customer and asset filters AND together and recompute strip and Totals",WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows several jobs with a known mix of advisors, customers, and assets.","1. Select an advisor, then also a customer that advisor has a job for, then also an asset from one of those jobs — checking the rows after each step.
 2. Read the summary strip and the active tab's Totals row after the three selections.
 3. Change one selection so that NO job passes all three filters.","1. A job must pass all three filters to remain visible (the filters combine with AND).
 2. The summary strip and each tab's Totals row recompute immediately from the still-visible jobs after every advisor, customer, or asset change — on screen, with no page reload.
 3. When the combination leaves no visible jobs, every tab shows the no-data message ""Empty bays, endless possibilities. Get Going!"" and no Totals row.
+What you should see today: each filter change sends a fresh request to the server rather than recomputing on screen. The figures themselves are right - the Totals row and the summary strip do agree with what is left visible. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8968
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R12, S7-N1, S5-R11, S6-R6).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S7-R12, S7-N1, S5-R11, S6-R6), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R12; S7-N1; Story 5 S5-R11; Story 6 S6-R6; §3 Key Decisions),,
-The Location column is automatic and never reads Multiple on a work-order row,WIP — Filters,Functional,High,"1. You are signed in on a desktop browser as a user with access to at least two locations.
+AUTOMATION: READY - EXPECT FAIL (SV-8968)",SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R12; S7-N1; Story 5 S5-R11; Story 6 S6-R6; §3 Key Decisions),,
+Location column names each work order's location and never reads Multiple,WIP — Filters,Functional,High,"1. You are signed in on a desktop browser as a user with access to at least two locations.
 2. Open work orders exist at two different locations.
 3. The Work In Progress report is open.","1. Select two or more locations in the Location filter and read the column headers.
 2. Read the Location cell on rows from each of the two locations, on every tab.
@@ -676,20 +669,24 @@ The Location column is automatic and never reads Multiple on a work-order row,WI
 4. Open the column-selection control and look for Location in the list.
 5. Narrow to a single location and read the headers again.
 6. Download the tab as a CSV and a PDF and read the Location column's header in the files.
-7. Change the selection between one location, several, and ""All locations"", watching the filter control's width."," When it is on, the Location column sits between VIN and Advisor, left-aligned.
-1. Each row names its own work order's location.
-2. NO row ever shows ""Multiple"" — a work order belongs to exactly one location, and this report has no grouped or drill-down rows.
-3. 4. With only one location involved the Location column is not shown.
-5. In both downloads the column is headed ""Branch"" (a known naming difference from the screen — do not raise it as a bug).
-6. The Location filter control keeps the same width whichever label it shows — one location, several, or ""All locations"" — so the toolbar does not shift as you change the selection.
-Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. For this report the two statements sit in the same written description as it stands today. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+7. Change the selection between one location, several, and ""All locations"", watching the filter control's width.","1. Because the signed-in person can reach more than one location, the Location column is shown by default and sits between VIN and Advisor, left-aligned.
+2. Each row names its own work order's location.
+3. NO row ever shows ""Multiple"" - a work order belongs to exactly one location, and this report has no grouped or drill-down rows.
+4. Location is offered in the column-selection control and can be switched off and back on by hand.
+5. A person whose account can reach only one location never sees the Location column and is not offered it in the column-selection control. Narrowing the filter to one location does NOT remove it for someone who can reach several.
+6. In both downloads the column is headed ""Branch"" (a known naming difference from the screen - do not raise it as a bug).
+7. The Location filter control keeps the same width whichever label it shows - one location, several, or ""All locations"" - so the toolbar does not shift as you change the selection.
+
+What you should see today: the Location column is decided by how many locations are SELECTED, not by what the signed-in person can reach - narrow the Location filter to a single location and the column disappears even though the person can still reach five. Location is also never offered in the Column Selection control, so it cannot be switched on or off by hand. This is already reported - see https://shopview.atlassian.net/browse/SV-8954 - but note that ticket is currently closed as obsolete while the problem still happens, so the QA lead is deciding whether to reopen it.
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so this note can be removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R13, S7-R14, S4-R3, S9-E1, S10-R5a). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: one requirement says it is offered there and can be toggled on or off, while another requirement in the same document still says the user does not toggle it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S7-R13, S7-R14, S4-R3, S9-E1, S10-R5a), read on 11 August 2026. Chris Ward confirmed this same access-gated, switchable rule in his answers of 8/10/2026, in this file: build/report-suite/chris-answers-2026-08-10/ - his answer and the specification agree, so the earlier note saying the description contradicted itself no longer applies.
+Last checked against build v3.5-4795eee on 8/10/2026.
 
-AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked
-","SV-8663 (WIP spec v6 2026-07-29 S7-R13; S7-R14; S4-R3; S9-E1; S10-R5a; §4 Location (column) — automatic visibility; never ""Multiple""; export header ""Branch"")",,
+AUTOMATION: READY - EXPECT FAIL (SV-8954)","SV-8663 (WIP spec v6 2026-07-29 S7-R13; S7-R14; S4-R3; S9-E1; S10-R5a; §4 Location (column) — automatic visibility; never ""Multiple""; export header ""Branch"")",,
 Column Selection toggles columns; Total is not offered at all,WIP — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Hover the column-selection icon button in the toolbar and read its tooltip.
 2. Open the control and toggle a column off, then on again, watching the table.
@@ -698,11 +695,10 @@ Column Selection toggles columns; Total is not offered at all,WIP — Column Sel
 3. The Total column is always shown and cannot be turned off — it is not offered in the control at all.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S8-R1, S8-R2).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S8-R1, S8-R2), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: HOLD - this part of the report is not built yet
-",SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R1; S8-R2),,
+AUTOMATION: READY",SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R1; S8-R2),,
 Toggling columns never reorders them (Total always last),WIP — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows in at least two tabs.","1. Turn several optional columns on and off in different orders (for example, turn on Inv. Hrs, then VIN, then Location).
 2. Read the resulting column order after each change.
@@ -711,11 +707,10 @@ Toggling columns never reorders them (Total always last),WIP — Column Selectio
 3. The column selection applies to every tab at once — all four tabs show the same set of columns.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S8-R5, S8-R6, S4-R1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S8-R5, S8-R6, S4-R1), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R5; S8-R6; Story 4 S4-R1),,
+AUTOMATION: READY",SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R5; S8-R6; Story 4 S4-R1),,
 "Remembers the date range, filter selections, location, columns",WIP — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open.","1. Change the date range, select an advisor, a customer, and an asset, change the location selection, change the column selection, and switch to a different tab.
 2. Navigate away to another screen, then return to the report.
@@ -724,25 +719,23 @@ AUTOMATION: READY
 2. In a different browser the report shows the defaults instead — the settings are saved per browser, not on the user's account.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S8-R7).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S8-R7), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R7; §3 Key Decisions (context note: per-browser persistence)),,
+AUTOMATION: READY",SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R7; §3 Key Decisions (context note: per-browser persistence)),,
 A saved setting that is no longer valid falls back to its default,WIP — Column Selection & Persistence,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report has saved settings in this browser that can be made stale (for example, a saved advisor/customer/asset selection whose jobs no longer load, or a saved location you no longer access).","1. Make a saved value invalid (for example, remove your access to the saved location, or reload after the saved customer no longer appears in the loaded jobs).
 2. Open the Work In Progress report.","1. The report loads normally — the invalid saved value falls back to that setting's default rather than breaking the view.
 2. All other saved settings are still restored.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S8-R8).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S8-R8), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R8),,
+AUTOMATION: READY",SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R8),,
 A hand-made Location column choice is remembered like any other column,WIP — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are signed in as a person who has access to more than one location.
-3. The Work In Progress report is open with more than one location selected, so the Location column is showing.","1. Open the column-selection control and switch the Location column OFF by hand.
+3. The Work In Progress report is open and the Location column is showing.","1. Open the column-selection control and switch the Location column OFF by hand.
 2. Go to another screen, then come back to the report.
 3. Reload the browser page and look again.
 4. Switch Location back ON by hand, then reload the page once more.","1. After going away and coming back, Location is still switched OFF - your choice was remembered.
@@ -750,26 +743,27 @@ A hand-made Location column choice is remembered like any other column,WIP — C
 3. After switching it back ON and reloading, Location is switched ON.
 4. Everything else is remembered exactly as before - the other column choices, the date range, the filters and the tab you were on. Turning Location on or off changes nothing else.
 
----
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S8-R7), which says the report remembers the column selection in the user's browser and puts it back on the next visit. Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, is what makes Location a column you can switch on and off at all, and it does not say whether that choice is remembered - so this test applies the existing written rule about remembered column choices to the new switch.
-This has not yet been checked against a build.
+What you should see today: you cannot start this test, because the Location column is not listed in the column-selection control at all, so there is no switch to turn off in step 1. The column appears and disappears on its own depending on how many locations are selected in the Location filter. This is the same problem written up for the QA lead against the other Location tests.
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so this note can be removed.
 
-AUTOMATION: HOLD - waiting on an answer from the product owner
-",SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R7 - the report remembers the column selection in the browser; Location only became a switchable column in Chris Ward's answer T1-1 option C of 2026-08-05),,
+---
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S8-R7 - the report remembers the column selection in the user's browser, and S4-R3 - Location is one of the columns offered in that control for a person with access to more than one location), read on 11 August 2026. Chris Ward confirmed this same rule in his answers of 8/10/2026, in this file: build/report-suite/chris-answers-2026-08-10/ - his answer and the specification agree, so the earlier note saying the description contradicted itself no longer applies.
+Last checked against build v3.5-4795eee on 8/10/2026.
+
+AUTOMATION: HOLD - the build does not follow the ratified Location rule; the defect is written up in DEFECTS-FOR-PERMISSION.md and needs the QA lead's permission before a ticket exists to point at",SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R7 - the report remembers the column selection in the browser; Location only became a switchable column in Chris Ward's answer T1-1 option C of 2026-08-05),,
 Work In Progress: a three-dot menu holds Download (PDF) and Download (CSV),WIP — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Find and open the three-dot button in the toolbar.
 2. Read the menu options.
 3. Choose ""Download (PDF)"", then repeat with ""Download (CSV)"".","1. The menu holds the download options ""Download (PDF)"" and ""Download (CSV)"".
 2. Each option downloads a file of the current tab in the chosen format.
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907
-On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R1), read on 11 August 2026.
+Last checked against build v3.5-4795eee on 8/10/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8907)
-",SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R1),,
+AUTOMATION: READY",SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R1),,
 "Downloads keep shown columns, honor filters, include the tab's Totals row",WIP — Exports,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report is open with a non-default column selection (for example, Inv. Hrs on and Advisor off), a chosen date range and location, and an advisor/customer/asset filter applied that hides some rows.","1. Download the current tab as a CSV and open it.
 2. Compare its columns to the screen's visible columns and order.
@@ -780,15 +774,19 @@ AUTOMATION: READY - EXPECT FAIL (SV-8907)
 3. Both downloads include a Totals row matching the on-screen Totals row for the tab.
 4. Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to.
 5. Note for the tester: the file carries the Location column whenever it is showing on screen. In the file it is headed ""Branch"", not ""Location"".
+What you should see today: the download fails outright whenever the tab has any rows, so none of the checks below can be made from a real file; a tab with no rows does download, and that file does carry the right columns, the ""Locations:"" line and a Totals row. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8907
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
+
 ---
 Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. For this report the two statements sit in the same written description as it stands today. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R2, S9-R3, S9-R4, S9-R10a, S7-R13, S9-E1). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: one requirement says it is offered there and can be toggled on or off, while another requirement in the same document still says the user does not toggle it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R2, S9-R3, S9-R4, S9-R10a, S7-R13, S9-E1), read on 11 August 2026. Version 9 of that specification contradicted itself about whether the Location column can be switched on and off in the column-selection control, and this test used to say so. Chris Ward settled it in version 10 on 2026-08-06: S7-R13 now reads that the column is shown to anyone who can reach more than one location, appears by default, and can be toggled on or off from the column selector. The contradicting sentence has been removed from the written description, so there is no longer a question open on this point.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked
-","SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; the filters and the Totals row; S9-R10a = the ""Locations:"" line; S7-R13/S9-E1 = the automatic ""Branch"" column)",,
+AUTOMATION: READY - EXPECT FAIL (SV-8907)","SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; the filters and the Totals row; S9-R10a = the ""Locations:"" line; S7-R13/S9-E1 = the automatic ""Branch"" column)",,
 Downloaded money and Inv. Hrs values keep the on-screen formats,WIP — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current tab includes money values over $1,000 and, if producible, a negative value; the Inv. Hrs column is on.","1. Download the current tab as a CSV and open it in a plain-text editor.
 2. Read a money value over one thousand dollars and check its quoting.
@@ -797,56 +795,56 @@ Downloaded money and Inv. Hrs values keep the on-screen formats,WIP — Exports,
 5. Repeat the format checks in the PDF.","1. Money values use the same ""$1,234.56"" / ""-$1,234.56"" format as on screen; Inv. Hrs uses the same signed one-decimal format.
 2. In the CSV, a money value containing a comma (a thousands separator) is enclosed in double-quotes per standard CSV rules.
 3. A value without a comma is written unquoted.
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907
-On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.
+What you should see today: Nothing downloads. Both Download (PDF) and Download (CSV) fail on every tab that has any work orders in it - no file arrives and a red message appears reading ""An error occurred. We're sorry for this inconvenience, please try again a bit later later."" All four tabs behave the same way (Approved - Partially Completed, Approved - Not Started, Completed and Estimates). The one case that DOES produce a file is a tab with no rows at all, and that file holds nothing but its two heading lines and a zero Totals row. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8907
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R5, S9-R6).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R5, S9-R6), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8907)
-",SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R5; S9-R6),,
+AUTOMATION: READY - EXPECT FAIL (SV-8907)",SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R5; S9-R6),,
 Inv. Hrs green/red coloring appears on screen and in the PDF; not the CSV,WIP — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inv. Hrs column is on and the current tab includes positive and negative Inv. Hrs values.","1. Download the current tab as a PDF and look at the Inv. Hrs values' coloring.
 2. Download the current tab as a CSV and inspect the Inv. Hrs values.","1. In the PDF, Inv. Hrs keeps the green (positive) / red (negative) coloring.
 2. In the CSV, the Inv. Hrs column is monochrome — plain signed numbers with no color or markup.
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907
-On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.
+What you should see today: Nothing downloads. Both Download (PDF) and Download (CSV) fail on every tab that has any work orders in it - no file arrives and a red message appears reading ""An error occurred. We're sorry for this inconvenience, please try again a bit later later."" All four tabs behave the same way (Approved - Partially Completed, Approved - Not Started, Completed and Estimates). The one case that DOES produce a file is a tab with no rows at all, and that file holds nothing but its two heading lines and a zero Totals row. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8907
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R7).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R7), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8907)
-",SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R7),,
+AUTOMATION: READY - EXPECT FAIL (SV-8907)",SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R7),,
 Days Open in a download is frozen at the moment the file is generated,WIP — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current tab shows rows with known creation dates and the Days Open column visible.","1. Note a row's on-screen Days Open value.
 2. Download the current tab as a CSV and read the same row's Days Open.
 3. Compare the two values.","1. In the download, Days Open is the whole number of days as of the moment the file is generated.
 2. Because the screen computes Days Open live while the file freezes it at generation time, the file can legitimately show a day count one higher than the screen it was generated from — that difference is EXPECTED, not a defect.
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907
-On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.
+What you should see today: Nothing downloads. Both Download (PDF) and Download (CSV) fail on every tab that has any work orders in it - no file arrives and a red message appears reading ""An error occurred. We're sorry for this inconvenience, please try again a bit later later."" All four tabs behave the same way (Approved - Partially Completed, Approved - Not Started, Completed and Estimates). The one case that DOES produce a file is a tab with no rows at all, and that file holds nothing but its two heading lines and a zero Totals row. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8907
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R8).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R8), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8907)
-",SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R8; Story 4 context note (Days Open live vs frozen)),,
+AUTOMATION: READY - EXPECT FAIL (SV-8907)",SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R8; Story 4 context note (Days Open live vs frozen)),,
 "The downloaded files are named ""wip-2-report.pdf"" and ""wip-2-report.csv""",WIP — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Download the current tab as a PDF and read the saved file's name.
 2. Download the current tab as a CSV and read the saved file's name.","1. The PDF is named ""wip-2-report.pdf"".
 2. The CSV is named ""wip-2-report.csv"".
 3. These exact names (including the ""-2-"") are the specified current behavior.
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907
-On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R9).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R9), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8907)
-","SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R9 — S9-R9 CLOSES both file names verbatim including the ""-2-"" segment; so the exact strings ARE the requirement)",,
+AUTOMATION: READY","SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R9 — S9-R9 CLOSES both file names verbatim including the ""-2-"" segment; so the exact strings ARE the requirement)",,
 "Export headers read ""Unit"" and ""Branch"" — documented limitation, do not file",WIP — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Asset and Location columns are both turned on.","1. Read the two columns' headers on screen.
 2. Download the current tab as a CSV and read the same two columns' headers.
@@ -854,28 +852,22 @@ AUTOMATION: READY - EXPECT FAIL (SV-8907)
 2. In BOTH the PDF and the CSV, the same two columns are headed ""Unit"" and ""Branch"".
 3. This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior.
 4. The on-screen Asset cell leads with the Unit #, which is what the export header ""Unit"" already reflects - so no header change is expected here.
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907
-On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-E1). Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-E1), read on 11 August 2026. Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8907)
-",SV-8665 (WIP spec Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling; export header text unpinned),,
+AUTOMATION: READY",SV-8665 (WIP spec Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling; export header text unpinned),,
 The PDF shows the shop logo at the top when one is set,WIP — Exports,Functional,Low,"1. You are signed in to the ShopView App on a desktop browser.
 2. The shop has a logo set in its settings.","1. Download the current tab as a PDF and look at the top of the document.
 2. Download the current tab as a CSV and inspect the file.","1. The PDF shows the shop logo at the top.
 2. The CSV never includes a logo (plain data only).
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907
-On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R10).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R10), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8907)
-",SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R10),,
+AUTOMATION: READY",SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R10),,
 "Export notifications: success caption, ""Empty export"" warning",WIP — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report can be put in three states: rows present, no rows visible (filters leave nothing), and (if simulatable) a failing download, for example by disconnecting the network before the download.
 3. To force the failure this test needs, use the browser's own developer tools: press F12, open the ""Network"" tab, and switch the throttling dropdown (it normally reads ""No throttling"") to ""Offline"" to cut the connection, or to ""Slow 3G"" to slow it down. There is nothing to install. Set it back to ""No throttling"" when you finish.","1. With rows present, download the current tab and read the notification.
@@ -883,87 +875,89 @@ AUTOMATION: READY - EXPECT FAIL (SV-8907)
 3. If simulatable, force a download failure (for example, drop the network) and read the notification.","1. On a successful download, a success notification shows with the caption ""Data exported successfully.""
 2. When a download yields no rows, a warning notification shows titled ""Empty export"" with the caption ""Export didn't yield any results"".
 3. When a download fails, an error notification shows: ""An error occurred while exporting the report. Please try again.""
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907
-On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.
+What you should see today: Nothing downloads. Both Download (PDF) and Download (CSV) fail on every tab that has any work orders in it - no file arrives and a red message appears reading ""An error occurred. We're sorry for this inconvenience, please try again a bit later later."" All four tabs behave the same way (Approved - Partially Completed, Approved - Not Started, Completed and Estimates). The one case that DOES produce a file is a tab with no rows at all, and that file holds nothing but its two heading lines and a zero Totals row. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8907
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R11, S9-R12, S9-R13).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R11, S9-R12, S9-R13), read on 11 August 2026. One caution for anyone checking the source: version 10 of that specification uses the number S9-R11 for two different requirements — one about a size limit on downloads, one about the success message. This test rests on the success-message one, under Error handling.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8907)
-",SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R11; S9-R12; S9-R13; §7 User Feedback Summary),,
+AUTOMATION: READY - EXPECT FAIL (SV-8907)",SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R11; S9-R12; S9-R13; §7 User Feedback Summary),,
 An over-cap Work In Progress download is refused with the too-large message,WIP — Exports,Negative,Medium,"1. A filter combination exists whose work-order rows on one tab exceed 10,000 (widest date range, all locations, no advisor/customer/asset narrowing). If the environment cannot reach 10,000 rows even fully widened, record the maximum reachable and mark the case Blocked-Env with that reason.","1. With the over-cap filter set, download the tab as a CSV.
 2. Download the same tab as a PDF.
 3. Narrow the filters below the cap and download once more.","1. For both the CSV and the PDF: no file is generated and no download starts.
 2. An error toast is shown each time, reading exactly: ""This report is too large to export. Narrow the date range or filters, then try again."" (dismissed by the user).
 3. Below the cap the download works normally.
 4. Note for the tester: on this environment the biggest single tab holds about 114 work orders, so you cannot make this message appear here. Record that and move on.
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907
-On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.
+Why this test cannot be run here: the download has to be over the size limit before this message can appear, and no tab on this environment comes anywhere near it. On top of that, the Work In Progress download currently fails whenever the tab you are on has any rows in it at all - no file arrives and an error appears - which is a separate problem already reported here: https://shopview.atlassian.net/browse/SV-8907. So there is no way to reach the state this test is about. Leave the test as it is and move on.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (Story 9); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R11, the one under Edge Cases), read on 11 August 2026, which now states this row limit and its exact message in the specification itself. Until 2026-08-06 the specification was silent on it and the expectation rested on Chris Ward's answer of 2026-07-31 that the limit applies to all six reports; his written description now says the same, so there is no longer any difference between the two.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8907)
-",SV-8665 (WIP spec Story 9 — the 10; 000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line; his spec edit is pending),,
+AUTOMATION: HOLD - the over-size refusal cannot be produced on this environment; no tab comes near the size limit",SV-8665 (WIP spec Story 9 — the 10; 000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line; his spec edit is pending),,
 Each tab uses an all-white table with no alternating row shading,WIP — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with several rows in each tab.","1. Look at the column headers and the data cells in each tab.
 2. Compare the background of consecutive rows.","1. Each tab uses an all-white table: white column headers and white data cells.
 2. There is no alternating row shading (no zebra striping).
+What you should see today: the whole table - headings, data rows and the Totals row - is the pale blue-grey rather than white. There is correctly no alternating shading. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8970
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S10-R1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S10-R1), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R1),,
+AUTOMATION: READY - EXPECT FAIL (SV-8970)",SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R1),,
 The summary strip is a bold band ruled top and bottom above the tabs,WIP — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Look at where the summary strip sits relative to the four tabs.
 2. Look at how the strip is visually delineated.","1. The summary strip appears above the tabs.
 2. It is shown as a bold band delineated by a top and bottom rule — not as a row of separate cards.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S10-R2).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S10-R2), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R2),,
+AUTOMATION: READY",SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R2),,
 The Total column is bold and stays pinned right on sideways scroll,WIP — Visual & Accessibility,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Enough columns are turned on that the table scrolls horizontally.","1. Look at the Total column header and its cells.
 2. Scroll the rows sideways and watch the Total column.","1. The Total column header is bold and pinned to the far right, matching its cells.
 2. The Total column (header and cells, shown in bold) stays fixed to the right edge while the rest of the columns scroll underneath.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R22, S10-R3).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R22, S10-R3), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R22; Story 10 S10-R3),,
+AUTOMATION: READY",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R22; Story 10 S10-R3),,
 The Totals row stays visible while only the active tab's body scrolls,WIP — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A tab has more rows than fit on the screen.","1. Scroll the rows up and down and watch the Totals row.
 2. Look at the page for a second scrollbar outside the table.","1. The Totals row stays visible at the bottom while the rows scroll.
 2. The report fills the available height and only the active tab's table body scrolls — the page itself does not add a second scrollbar.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S10-R4, S10-R5).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S10-R4, S10-R5), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R4; S10-R5),,
+AUTOMATION: READY",SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R4; S10-R5),,
 The WO # link is keyboard-focusable and opens the work order,WIP — Visual & Accessibility,Accessibility,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Using only the keyboard (Tab key), move focus to a row's WO # link.
 2. Look for a visible focus indicator on the link.
 3. Press Enter to activate it.","1. The WO # link can receive keyboard focus.
 2. A visible focus indicator shows when it is focused.
 3. Activating it opens the work order (in the same browser tab).
+What you should see today: there is no WO number link to put keyboard focus on, because the WO number is plain text for everyone. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8967
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S10-R6).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S10-R6), read on 11 August 2026.
+Last checked against build v3.5-4795eee on 8/10/2026.
 
-AUTOMATION: READY
-",SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R6),,
+AUTOMATION: READY - EXPECT FAIL (SV-8967)",SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R6),,
 Each summary figure's info icon is keyboard-reachable and screen-read,WIP — Visual & Accessibility,Accessibility,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an ""Accessibility"" panel that shows the same names without you having to listen to anything.","1. Using only the keyboard, move focus to each summary figure's information icon.
 2. Check that the explanation is revealed on focus (not hover alone).
@@ -972,11 +966,10 @@ Each summary figure's info icon is keyboard-reachable and screen-read,WIP — Vi
 3. The explanation text is exposed to assistive technology.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S10-R7, S5-R12).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S10-R7, S5-R12), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R7; Story 5 S5-R12),,
+AUTOMATION: READY",SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R7; Story 5 S5-R12),,
 In dark mode every table; strip; link and coloring stays legible,WIP — Visual & Accessibility,Accessibility,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The application is switched to dark mode.
 3. The report shows rows including positive and negative Inv. Hrs values and a two-line asset cell.","1. Read the table headers and cells in dark mode.
@@ -984,11 +977,10 @@ In dark mode every table; strip; link and coloring stays legible,WIP — Visual 
 2. The table, the summary strip, the WO # link, the Inv. Hrs green/red coloring, and the two-line asset cell all use dark-mode-legible colors meeting contrast.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S10-R9).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S10-R9), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R9),,
+AUTOMATION: READY",SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R9),,
 Ordinary reports access covers opening and downloading Work In Progress,WIP — Permissions,Functional,Critical,"1. A test user exists whose role has the ordinary reports access (assign the Tech user a suitable role if needed; restore the original role afterward).
 2. You are signed in as that user on a desktop browser.","1. Open the reports navigation and find ""Work In Progress"".
 2. Open the report.
@@ -997,17 +989,16 @@ Ordinary reports access covers opening and downloading Work In Progress,WIP — 
 3. Note for the tester: the specification allows ONE ordinary reports access for all six of these new reports and no per-report permission. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (Story 1 Prerequisites).
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (Story 1 Prerequisites), read on 11 August 2026.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
-AUTOMATION: READY
-","SV-8657 (WIP spec Story 1 Prerequisites — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW""; the WIP prerequisite still names a Work In Progress reports permission — his spec edit owed)",,
+AUTOMATION: READY","SV-8657 (WIP spec Story 1 Prerequisites — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW""; the WIP prerequisite still names a Work In Progress reports permission — his spec edit owed)",,
 Without reports access Work In Progress is absent from the navigation,WIP — Permissions,Negative,Critical,"1. A test user exists whose role does NOT have reports access (assign the Tech user such a role; restore the original role afterward).
 2. You are signed in as that user on a desktop browser.","1. Open the reports navigation.
 2. Look for ""Work In Progress"" under the Performance group.","1. The report does not appear in the navigation for this user.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S1-N1).
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S1-N1), read on 11 August 2026.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -1021,15 +1012,14 @@ Nightly snapshot records one row per then-open job per calendar date,WIP — API
 2. The next day's capture adds a new row per open work order under the new date; a work order open on both days has one row for each date, never two rows for the same date.
 3. Re-running the capture for the SAME date replaces that date's rows — the day's existing rows are removed and re-recorded from current data, never duplicated.
 4. Each snapshot row captures, at minimum: the work order, its status, its Earned value, its Remaining value, the location and organization (copied from the work order), and the snapshot's calendar date.
----
+
 Note for the tester: you cannot check this one from any screen. These figures are written each night by a background process, and nothing in the report reads them back in this version. If you cannot see the figures anywhere, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S11-R1, S11-R2).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S11-R1, S11-R2), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R1; tech-plan-2026-07-29 B1.2 (idempotent re-run — WIP spec Story 11 is silent on re-runs); Story 11 S11-R2),,
+AUTOMATION: HOLD - the nightly capture is written by a background process and nothing in the product reads it back in this version",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R1; tech-plan-2026-07-29 B1.2 (idempotent re-run — WIP spec Story 11 is silent on re-runs); Story 11 S11-R2),,
 Captured Earned and Remaining use the same maths as the on-screen report,WIP — API,Functional,Critical,"1. An open ZZAUTOTEST work order with known approved labor (partly clocked) and approved parts (partly received) exists and is left UNCHANGED across the capture.
 2. You can read the on-screen report on the capture date and the stored snapshot row afterward.
 3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.
@@ -1037,15 +1027,15 @@ Captured Earned and Remaining use the same maths as the on-screen report,WIP —
 2. After the nightly capture, read the same work order's captured Earned and Remaining in the snapshot row.
 3. Compare the pairs.","1. The captured Earned equals the on-screen Earned and the captured Remaining equals the on-screen Remaining, to the cent — the snapshot uses the identical computation for both figures, so the two can never diverge for a given work order on the capture date.
 2. The captured dollar values are stored to the cent — no rounding to whole dollars and no lost cents.
+
 ---
 Note for the tester: you cannot check this one from any screen. These figures are written each night by a background process, and nothing in the report reads them back in this version. If you cannot see the figures anywhere, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S11-R3, S11-R5).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S11-R3, S11-R5), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R3; Story 11 S11-R5),,
+AUTOMATION: HOLD - the nightly capture is written by a background process and nothing in the product reads it back in this version",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R3; Story 11 S11-R5),,
 Nightly snapshot spans every location with no user location filter,WIP — API,Functional,High,"1. Open service work orders exist at two or more different locations.
 2. An Invoiced (or Paid/Declined) work order and a part-sale work order also exist.
 3. You can inspect the capture date's snapshot rows.
@@ -1054,26 +1044,26 @@ Nightly snapshot spans every location with no user location filter,WIP — API,F
 3. Look for the Invoiced/Paid/Declined work order and the part-sale work order.","1. The captured set uses the same service-type and open-status conditions as the report (service work orders in Estimate, Approved, In Progress, Review, or Complete).
 2. The capture spans every location — there is no user-selected-location filter.
 3. Invoiced, Paid, and Declined work orders and part-sale work orders are not captured.
+
 ---
 Note for the tester: you cannot check this one from any screen. These figures are written each night by a background process, and nothing in the report reads them back in this version. If you cannot see the figures anywhere, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S11-R4, S2-R1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S11-R4, S2-R1), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R4; Story 2 S2-R1 (first two conditions)),,
+AUTOMATION: HOLD - the nightly capture is written by a background process and nothing in the product reads it back in this version",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R4; Story 2 S2-R1 (first two conditions)),,
 Nightly snapshot: a job with nothing approved is captured at $0.00; not skipped,WIP — API,Functional,Medium,"1. An open ZZAUTOTEST estimate with no approved line items existed at capture time.
 2. You can inspect the capture date's snapshot rows.
 3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.","1. After the nightly capture, look for the nothing-approved work order among the date's snapshot rows.
 2. Read its captured Earned and Remaining values.","1. The work order IS captured (not skipped).
 2. Its Earned is $0.00 and its Remaining is $0.00, matching what the report shows on screen for a job with nothing approved.
+
 ---
 Note for the tester: you cannot check this one from any screen. These figures are written each night by a background process, and nothing in the report reads them back in this version. If you cannot see the figures anywhere, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S11-R6, S4-E1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S11-R6, S4-E1), read on 11 August 2026.
+Last checked against build v3.5-f77875c on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R6; Story 4 S4-E1),,
+AUTOMATION: HOLD - the nightly capture is written by a background process and nothing in the product reads it back in this version",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R6; Story 4 S4-E1),,

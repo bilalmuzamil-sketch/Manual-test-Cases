@@ -1,894 +1,688 @@
 [
- {
-  "id": "SBC-NAV-01",
-  "area": "SBC — Access & Navigation",
-  "title": "Sales By Customer listed under Performance, below existing links; titles correct",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View) (dedicated per S1-R2 — exact permission name in the roles screen is VIU-confirm).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. Your role has the ordinary reports access (the standard \"can this person see reports\" setting)."
-  ],
-  "steps": [
-   "1. Open the Reports area from the main navigation.",
-   "2. Find the Performance group and read its entries from top to bottom.",
-   "3. Click the \"Sales By Customer\" entry.",
-   "4. Read the page title at the top of the report and the browser tab's title."
-  ],
-  "expected": [
-   "1. \"Sales By Customer\" is listed in the Performance group of the Reports left-side navigation, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency) — the new reports are added below those items without moving them.",
-   "2. Clicking it opens the Sales By Customer report in the main content area.",
-   "3. The page title reads \"Sales By Customer.\"",
-   "4. The browser tab title reads \"Sales By Customer - Report | ShopView\".",
-   "5. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S1-R1, S1-R3, S1-R4).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: HOLD - waiting on an answer from the product owner",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8600 (SBC spec S1-R1; S1-R3; S1-R4 — Confluence 577634305 v-2026-07-31; Performance-group placement per the PRD video 2026-07-30; access = ordinary reports permission per Chris Ward 2026-07-31 Q4=A + SV-8598 sheet Q1=A)",
-  "viu_status": "VIU-Pending",
-  "notes": "COMPANION-VIDEO 2026-07-30 (C4, 01:18-02:05): the SBC spec names no navigation group; the video places SBC in the Performance section, below Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency ('add ... sales by customer ... below those items, rather than interrupting those items'). Order among the four NEW reports is not fixed. Exact rendering VIU-confirm. Spec ratification pending (SPEC-WATCH). Source: PRD companion video 2026-07-30 (chris-update-2026-07-29/companion-video-transcript-2026-07-30.md; Loom e4a3ad0191; authoritative, newest-wins). MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-NAV): absorbed SBC-NAV-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. Q4 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A, verbatim: \"the intention is to not hide these from normal reports access. These were specced before CRP was built\"): every report in the suite is gated by the ORDINARY reports permission; no report gets its own. THE BUILD DIFFERS — the engineering tech plan §B5.3 gates every Sales By Customer endpoint on a new dedicated atom ROLE_SALES_BY_CUSTOMER_REPORT::VIEW, and SBC spec S1-R2 still states the dedicated model. Dev change ticket + spec correction raised in chris-answers-2026-07-31/Q4-permission-dev-note-2026-07-31.md. Not live-verified (Rule 12). | 2026-08-03: refs re-pinned to the live SBC spec (Confluence 577634305, last updated 2026-07-31, read live 2026-08-03) — S1-R2/S1-N1 NOW AGREE with this case, so the old \"the spec still uses a dedicated permission\" clause was removed as factually false. Tester note extended for Chris Ward's chat ruling that an already-built permission is HIDDEN from the front end and left inert (still visible = reportable; inert = expected). Re-verified whole case end-to-end against that spec version (Standing Rule 41). Ticket keys kept out of the tester-facing text per Standing Rule 20. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8600 (SBC spec S1-R1; S1-R3; S1-R4 — Confluence 577634305 v-2026-07-31; Performance-group placement per the PRD video 2026-07-30; access = ordinary reports permission per Chris Ward 2026-07-31 Q4=A + SV-8598 sheet Q1=A)"
- },
- {
-  "id": "SBC-NAV-02",
-  "area": "SBC — Access & Navigation",
-  "title": "Page title and browser tab title read Sales By Customer",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are signed in with the Sales By Customer report View permission.",
-   "2. You have opened the Sales By Customer report."
-  ],
-  "steps": [
-   "1. Read the page title shown at the top of the report.",
-   "2. Read the browser tab's title."
-  ],
-  "expected": [
-   "1. The page title reads \"Sales By Customer.\"",
-   "2. The browser tab title reads \"Sales By Customer - Report | ShopView\"."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 1 S1-R3; S1-R4",
-  "viu_status": "Retired 2026-07-28 (merged into SBC-NAV-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBC-PERM-01",
-  "area": "SBC — Permissions",
-  "title": "Ordinary reports access opens Sales By Customer — no separate permission",
-  "priority": "Critical",
-  "type": "Functional",
-  "permissions_required": "A role holding ONLY the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. A test user exists whose role has the ordinary reports access (the standard \"can this person see reports\" setting) and NO report-specific permission (create a ZZAUTOTEST custom role if needed; restore afterwards).",
-   "2. You are signed in as that user."
-  ],
-  "steps": [
-   "1. Open the Reports area.",
-   "2. Click \"Sales By Customer\" in the left-side navigation."
-  ],
-  "expected": [
-   "1. The \"Sales By Customer\" entry is visible in the Reports navigation.",
-   "2. The report opens and shows its data.",
-   "3. Ordinary reports access alone is enough — this report does NOT need a permission of its own.",
-   "4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S1-R2).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8600 (SBC spec S1-R2 — Confluence 577634305 v-2026-07-31 — now reads \"gated by ordinary reports access; not by a report-specific permission\"; Chris Ward Q1=A; built atom hidden-and-inert per his ruling; SV-8780 Ready to Fix)",
-  "viu_status": "VIU-Pending",
-  "notes": "Exact permission name and where it sits in the role editor are VIU-confirm. Per Standing Rule 10, verify by actually logging in as the role and observing. Q4 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A, verbatim: \"the intention is to not hide these from normal reports access. These were specced before CRP was built\"): every report in the suite is gated by the ORDINARY reports permission; no report gets its own. THE BUILD DIFFERS — the engineering tech plan §B5.3 gates every Sales By Customer endpoint on a new dedicated atom ROLE_SALES_BY_CUSTOMER_REPORT::VIEW, and SBC spec S1-R2 still states the dedicated model. Dev change ticket + spec correction raised in chris-answers-2026-07-31/Q4-permission-dev-note-2026-07-31.md. Not live-verified (Rule 12). | 2026-08-03: refs re-pinned to the live SBC spec (Confluence 577634305, last updated 2026-07-31, read live 2026-08-03) — S1-R2/S1-N1 NOW AGREE with this case, so the old \"the spec still uses a dedicated permission\" clause was removed as factually false. Tester note extended for Chris Ward's chat ruling that an already-built permission is HIDDEN from the front end and left inert (still visible = reportable; inert = expected). Re-verified whole case end-to-end against that spec version (Standing Rule 41). Ticket keys kept out of the tester-facing text per Standing Rule 20. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8600 (SBC spec S1-R2 — Confluence 577634305 v-2026-07-31 — now reads \"gated by ordinary reports access; not by a report-specific permission\"; Chris Ward Q1=A; built atom hidden-and-inert per his ruling; SV-8780 Ready to Fix)"
- },
- {
-  "id": "SBC-PERM-02",
-  "area": "SBC — Permissions",
-  "title": "Without reports access, Sales By Customer is not listed and cannot open",
-  "priority": "Critical",
-  "type": "Negative",
-  "permissions_required": "A role WITHOUT the the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. A test user exists whose role does NOT have reports access (use/create a ZZAUTOTEST role; restore afterwards).",
-   "2. You know the report's direct page address (copy it from a permitted session first).",
-   "3. You are signed in as the unpermitted user."
-  ],
-  "steps": [
-   "1. Open the Reports area and look through the left-side navigation.",
-   "2. Paste the report's direct page address into the browser and try to open it."
-  ],
-  "expected": [
-   "1. \"Sales By Customer\" does not appear in the Reports navigation.",
-   "2. Opening the report by direct link does not show the report (the application blocks it with its standard access-denied handling).",
-   "3. The gate is the ordinary reports access — there is no separate Sales By Customer permission to remove.",
-   "4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S1-N1).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8600 (SBC spec S1-N1 — Confluence 577634305 v-2026-07-31 — now reads \"A user without reports access does not see the report in navigation and cannot open it by direct link\"; Chris Ward Q1=A; SV-8780 Ready to Fix)",
-  "viu_status": "VIU-Pending",
-  "notes": "The exact blocked-state behavior (redirect vs access-denied page) is not pinned by the spec — VIU-confirm and record it. Q4 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A, verbatim: \"the intention is to not hide these from normal reports access. These were specced before CRP was built\"): every report in the suite is gated by the ORDINARY reports permission; no report gets its own. THE BUILD DIFFERS — the engineering tech plan §B5.3 gates every Sales By Customer endpoint on a new dedicated atom ROLE_SALES_BY_CUSTOMER_REPORT::VIEW, and SBC spec S1-R2 still states the dedicated model. Dev change ticket + spec correction raised in chris-answers-2026-07-31/Q4-permission-dev-note-2026-07-31.md. Not live-verified (Rule 12). | 2026-08-03: refs re-pinned to the live SBC spec (Confluence 577634305, last updated 2026-07-31, read live 2026-08-03) — S1-R2/S1-N1 NOW AGREE with this case, so the old \"the spec still uses a dedicated permission\" clause was removed as factually false. Tester note extended for Chris Ward's chat ruling that an already-built permission is HIDDEN from the front end and left inert (still visible = reportable; inert = expected). Re-verified whole case end-to-end against that spec version (Standing Rule 41). Ticket keys kept out of the tester-facing text per Standing Rule 20. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8600 (SBC spec S1-N1 — Confluence 577634305 v-2026-07-31 — now reads \"A user without reports access does not see the report in navigation and cannot open it by direct link\"; Chris Ward Q1=A; SV-8780 Ready to Fix)"
- },
- {
-  "id": "SBC-PERM-03",
-  "area": "SBC — Permissions",
-  "title": "Opening an invoice you lack permission for shows access-denied; back works",
-  "priority": "Medium",
-  "type": "Negative",
-  "permissions_required": "the ordinary reports access (Reports section View), but WITHOUT permission to open the destination invoice (work order / part sale).",
-  "preconditions": [
-   "1. You are signed in as a user who can view the report but lacks permission to open the underlying invoice destination.",
-   "2. The report shows at least one customer; you have expanded down to an invoice detail row."
-  ],
-  "steps": [
-   "1. Click the invoice number link on a detail row.",
-   "2. Look at the destination page.",
-   "3. Press the browser back button."
-  ],
-  "expected": [
-   "1. The destination page shows the application's standard access-denied state.",
-   "2. Pressing back returns you to the Sales By Customer report.",
-   "3. Note for the tester: the written description now says two different things about this, so do not fail the test on what the invoice number LOOKS like. The part this test was written from says the person clicks the link and lands on a page telling them they are not allowed in. Another part, added on 5 August 2026, says that person is not given a link at all and simply sees the invoice number as ordinary plain text. Both are in the same description today. The product owner has been asked which he wants. Write down exactly what you saw — a link leading to a not-allowed page, or plain text with nothing to click — and carry on. The one thing that would be a real failure is that person actually SEEING the invoice they are not allowed to see.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S9-N2), which states that a user who lacks permission to open the destination invoice is shown the standard access-denied page and can press back to return to the report. The same version's S9-R1a, added on 5 August 2026, instead states that such a user is never given a link and sees the invoice number as plain text; the two have not been reconciled and the product owner has been asked which applies.",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: HOLD - waiting on one answer from the product owner about whether this person is given a link at all",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8607 (SBC spec v13 2026-07-31 Story 9 S9-N2)",
-  "viu_status": "VIU-Pending",
-  "notes": "Seed the role combination per Standing Rule 5 (a ZZAUTOTEST role with the report permission but without work-order view). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8607 (SBC spec v13 2026-07-31 Story 9 S9-N2)"
- },
- {
-  "id": "SBC-PERM-04",
-  "area": "SBC — Permissions",
-  "title": "Location access enforced: no data from a location the user cannot access",
-  "priority": "High",
-  "type": "Negative",
-  "permissions_required": "One administrator account and one non-administrator account assigned to only some locations.",
-  "preconditions": [
-   "1. The organization has at least two locations, each with invoices in the chosen date range (seed ZZAUTOTEST data if needed).",
-   "2. A non-administrator test user is assigned to only ONE of the locations.",
-   "3. An administrator account is also available."
-  ],
-  "steps": [
-   "1. Sign in as the administrator, open the report, and open the location filter — note the locations listed.",
-   "2. Sign in as the non-administrator, open the report, and open the location filter — note the locations listed.",
-   "3. As the non-administrator, attempt to request a location you are not assigned to by these routes: (a) edit the page link (URL) if the location selection is carried there, and open the edited link; (b) restore a saved view stored while an extra location was assigned (set that saved view up first if practical).",
-   "4. Check the report data."
-  ],
-  "expected": [
-   "1. The administrator's filter lists every location in the organization.",
-   "2. The non-administrator's filter lists only the locations assigned to them.",
-   "3. A requested location the user does not have access to is ignored — the report does NOT widen to the whole organization.",
-   "4. The report data never includes invoices from a location the user does not have access to.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S4-R7, S4-R8, S4-R9, S4-N1).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8603 (SBC spec v13 2026-07-31 Story 4 S4-R7; S4-R8; S4-R9; S4-N1)",
-  "viu_status": "VIU-Pending",
-  "notes": "How an inaccessible location could be 'requested' is not pinned by the spec — probe via the page link / restored saved view at VIU; the pass condition is that it is ignored, never widened. FIX-WORDING repair 2026-07-28 (sense-check): the probe routes are now named concretely (edited page link; stale saved view). The pass condition stays: an inaccessible location is ignored, never widened. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8603 (SBC spec v13 2026-07-31 Story 4 S4-R7; S4-R8; S4-R9; S4-N1)"
- },
- {
-  "id": "SBC-PERM-05",
-  "area": "SBC — Permissions",
-  "title": "No Sales By Customer permission is offered in the role permission editor",
-  "priority": "Critical",
-  "type": "Negative",
-  "permissions_required": "An administrator who can edit roles and their permissions.",
-  "preconditions": [
-   "1. You are signed in as an administrator who can edit roles and their permissions.",
-   "2. Create a throwaway custom role named starting with ZZAUTOTEST to work in, and delete it when you have finished."
-  ],
-  "steps": [
-   "1. Open the area where a role's permissions are switched on and off.",
-   "2. Read through the reports-related permissions from top to bottom.",
-   "3. Search the permission list for \"Sales By Customer\"."
-  ],
-  "expected": [
-   "1. There is NO \"Sales By Customer\" permission anywhere in the list for an administrator to switch on or off.",
-   "2. The only reports permission offered is the ordinary reports access, and that one covers all six of the new reports.",
-   "3. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S1-R2).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8598 (SBC spec S1-R2 — Confluence 577634305 v-2026-07-31 — \"there is no dedicated Sales By Customer View permission\"; Chris Ward Q1=A + his ruling to hide an already-built permission from the front end; SV-8780)",
-  "viu_status": "VIU-Pending",
-  "notes": "AUTHORED 2026-08-03 under the QA lead's narrow authorisation. Driver = Chris Ward's chat ruling, verbatim: \"if it's already built, we just hide the new permissions from FE (they can exist and not do anything for now -- no wasted time)\". Only the FE-hide half is observable, so it is the only half authored; the inert back-end atom has NO tester-facing behaviour and deliberately gets no case (Standing Rule 46). NOTE ON THE ID: the staged plan called this SBC-PERM-03, but SBC-PERM-03 (C30100) and SBC-PERM-04 (C30101) already exist — the next free id is SBC-PERM-05. The exact on-screen name of the ordinary reports permission is VIU-confirm; no QA branch exists so nothing here is live-observed (Standing Rules 12/22). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "refs": "SV-8598 (SBC spec S1-R2 — Confluence 577634305 v-2026-07-31 — \"there is no dedicated Sales By Customer View permission\"; Chris Ward Q1=A + his ruling to hide an already-built permission from the front end; SV-8780)"
- },
- {
-  "id": "SBC-DATE-01",
-  "area": "SBC — Date Range Filter",
-  "title": "Date range picker offers eleven options in the specified order",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the Sales By Customer report."
-  ],
-  "steps": [
-   "1. Find the date range picker in the report toolbar.",
-   "2. Open it and read the options from top to bottom."
-  ],
-  "expected": [
-   "1. A date range picker is visible in the report toolbar.",
-   "3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports.",
-   "3. There is no \"All Time\" option.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Sales By Customer report specification version 15 (S2-R1, S2-R2) says something different, his decision is the later word and is the authority.",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R1; S2-R2 — S2-R2 CLOSES the eleven-option list and its order itself; so the closed list IS the requirement; re-check this case whenever S2-R2 changes)",
-  "viu_status": "VIU-Pending",
-  "notes": "\"All Time\" was removed by the 2026-07-16 spec round — if the build still shows it, that is a build-behind-spec deviation, not a spec error. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed eleven-option list to SBC S2-R2 + spec version. The spec closes the list itself, so the enumeration stays (Rule 42(b)). RULE 41: Re-verified whole against SBC spec v12 2026-07-29: title, precondition 1, steps 1-2, expected 1-3, refs. S2-R2 verbatim L152: \"The picker offers eleven options, in this order: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.\" The case matches exactly. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R1; S2-R2 — S2-R2 CLOSES the eleven-option list and its order itself; so the closed list IS the requirement; re-check this case whenever S2-R2 changes)"
- },
- {
-  "id": "SBC-DATE-02",
-  "area": "SBC — Date Range Filter",
-  "title": "Date range defaults to This Month when nothing is saved and no range is in the page link",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. Your browser has no saved view for this report (first visit, or clear the browser's site data first).",
-   "2. You open the report by its plain address with no date range in the page link."
-  ],
-  "steps": [
-   "1. Open the Sales By Customer report.",
-   "2. Read the date range picker's current value."
-  ],
-  "expected": [
-   "1. The date range picker shows \"This Month.\""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 2 S2-R5",
-  "viu_status": "Retired 2026-07-28 (merged into SBC-PERS-05 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBC-DATE-03",
-  "area": "SBC — Date Range Filter",
-  "title": "Building a custom range on the calendar cannot exceed a 366-day span",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the Sales By Customer report."
-  ],
-  "steps": [
-   "1. Open the date range picker. A month calendar is shown inside it, which is how a custom start and end date are picked on this build.",
-   "2. Pick a start and end date less than 366 days apart on that calendar and apply.",
-   "3. Open the picker again and try to pick a start and end date MORE than 366 days apart."
-  ],
-  "expected": [
-   "1. The date range picker shows a month calendar inside it — that is how a custom start and end date are chosen. There is no separate \"Custom\" item to choose.",
-   "2. A range of 366 days or fewer applies normally.",
-   "3. A range wider than 366 days cannot be applied — the report prevents the selection rather than loading the wider range.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Sales By Customer report specification version 15 (S2-R3, S2-R4, S2-N2) says something different, his decision is the later word and is the authority.",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R3; S2-R4; S2-N2)",
-  "viu_status": "VIU-Pending",
-  "notes": "HOW the wider range is prevented (disabled dates vs a validation message) is not pinned — VIU-confirm the exact mechanism and any message wording. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R3; S2-R4; S2-N2)"
- },
- {
-  "id": "SBC-DATE-04",
-  "area": "SBC — Date Range Filter",
-  "title": "Changing the date range writes it into the page link for sharing",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the Sales By Customer report."
-  ],
-  "steps": [
-   "1. Change the date range (for example to \"Last Month\").",
-   "2. Look at the browser's address bar.",
-   "3. Copy the page link, open it in a fresh browser profile with no saved view for this report, and check the date range."
-  ],
-  "expected": [
-   "1. The chosen date range value is written into the page link.",
-   "2. Opening that link in a browser with no saved view for this report restores the sender's date range.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S2-R6, S2-R9).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R6; S2-R9 (context))",
-  "viu_status": "VIU-Pending",
-  "notes": "A recipient WITH a saved view of their own will see their saved range instead (S2-R9, covered by SBC-PERS-06) — that is intentional, not a defect. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R6; S2-R9 (context))"
- },
- {
-  "id": "SBC-TYPE-01",
-  "area": "SBC — Product Type Filter",
-  "title": "Product Type dropdown offers exactly three options with Parts & Service as the default",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the Sales By Customer report with no saved view (first visit or cleared browser storage)."
-  ],
-  "steps": [
-   "1. Find the \"Product Type\" dropdown in the report toolbar.",
-   "2. Read its current value before touching it.",
-   "3. Open it and read the options in order."
-  ],
-  "expected": [
-   "1. A \"Product Type\" dropdown is visible in the report toolbar.",
-   "2. The default selection on first load is \"Parts & Service.\"",
-   "3. It offers exactly three options, in this order: \"Parts & Service,\" \"Parts only,\" \"Service only.\""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 3 S3-R1; S3-R2; S3-R3",
-  "viu_status": "Retired 2026-07-28 (merged into SBC-TYPE-02 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBC-TYPE-02",
-  "area": "SBC — Product Type Filter",
-  "title": "Product Type: three options with Parts & Service default; S/P prefix filtering",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the Sales By Customer report with no saved view (first visit or cleared browser storage), so the first-load default can be read.",
-   "2. The date range contains at least one service invoice (number starting with S) and one parts invoice (number starting with P) — seed ZZAUTOTEST data if needed."
-  ],
-  "steps": [
-   "1. Find the \"Product Type\" dropdown in the report toolbar; read its value before touching it, then open it and read the options in order.",
-   "2. Set Product Type to \"Service only,\" expand a customer down to invoice rows, and read the invoice numbers.",
-   "3. Set Product Type to \"Parts only\" and read the invoice numbers again.",
-   "4. Set Product Type back to \"Parts & Service.\""
-  ],
-  "expected": [
-   "1. The dropdown offers exactly three options, in this order: \"Parts & Service,\" \"Parts only,\" \"Service only\" — with \"Parts & Service\" selected by default on first load.",
-   "2. Under \"Service only,\" every invoice shown has a number starting with S; parts invoices are gone and all counts/totals reflect only S invoices.",
-   "3. Under \"Parts only,\" every invoice shown has a number starting with P; service invoices are gone and all counts/totals reflect only P invoices.",
-   "4. With \"Parts & Service\" selected, no product-type filter is applied — both S and P invoices are included and counts/totals cover both.",
-   "5. The whole invoice is classified by its number prefix — there is no per-line-item split.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8602 (SBC spec v13 2026-07-31 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6 — S3-R2 CLOSES the list itself (\"exactly three options ... in this order\"); so the closed list IS the requirement)",
-  "viu_status": "VIU-Pending",
-  "notes": "Per-line-item classification is explicitly out of scope (§2) — a mixed invoice classified whole by prefix is expected behavior, not a defect. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-TYPE): absorbed SBC-TYPE-01, SBC-TYPE-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. COMPANION-VIDEO 2026-07-30 (C9, 05:10-05:42): P = parts order, S = service/work order confirmed; under Parts Sales real data shows P numbers ('These would all be P's') — the all-S parts-sales rows in the PO's local were a fake-data artifact. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed three-option list to SBC S3-R2 + spec version (Rule 42(b)). RULE 41: Re-verified whole against SBC spec v12 2026-07-29: title, preconditions 1-2, steps 1-4, expected 1-5, refs. S3-R2 verbatim L188: \"The dropdown offers exactly three options, in this order: \\\"Parts & Service,\\\" \\\"Parts only,\\\" \\\"Service only.\\\"\" S3-R3..R6 match expected 2-4; expected 5 (whole-invoice classification by prefix) matches S3-R5/R6. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8602 (SBC spec v13 2026-07-31 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6 — S3-R2 CLOSES the list itself (\"exactly three options ... in this order\"); so the closed list IS the requirement)"
- },
- {
-  "id": "SBC-TYPE-03",
-  "area": "SBC — Product Type Filter",
-  "title": "Parts & Service applies no product-type filter",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the Sales By Customer report with both S and P invoices in the date range."
-  ],
-  "steps": [
-   "1. Set Product Type to \"Parts only\" and note the visible customers/totals.",
-   "2. Set Product Type back to \"Parts & Service.\""
-  ],
-  "expected": [
-   "1. With \"Parts & Service\" selected, no product-type filter is applied — both S and P invoices are included again and counts/totals cover both."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 3 S3-R4",
-  "viu_status": "Retired 2026-07-28 (merged into SBC-TYPE-02 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBC-LOC-01",
-  "area": "SBC — Location Filter",
-  "title": "Location filter: rightmost, lists accessible locations, All locations on top",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View); user with access to at least two locations.",
-  "preconditions": [
-   "1. You are on the Sales By Customer report as a user with access to two or more locations."
-  ],
-  "steps": [
-   "1. Look at the report toolbar's filters from left to right.",
-   "2. Open the location filter and read its options.",
-   "3. Click the \"All locations\" option, then click it again.",
-   "4. Then sign in as a user with access to only ONE location, open the report and look for the Location filter again."
-  ],
-  "expected": [
-   "1. The location filter is the rightmost filter in the toolbar.",
-   "2. It lists the locations the signed-in user has access to.",
-   "3. An \"All locations\" option is pinned to the top.",
-   "4. Activating \"All locations\" selects every listed location at once; activating it again clears them all at once.",
-   "5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's data.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S4-R1, S4-R2, S4-R3). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8603 (SBC spec Story 4 S4-R1; S4-R2; S4-R3 + single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A; applied suite-wide)",
-  "viu_status": "VIU-Pending",
-  "notes": "Exact on-screen capitalisation of \"All locations\" is VIU-confirm. Q1 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): the Location filter is hidden for a one-location user. His ruling is suite-wide; Sales By Customer had no case for it, so the assertion is folded into this existing filter case rather than authored as a near-duplicate (Rule 28). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8603 (SBC spec Story 4 S4-R1; S4-R2; S4-R3 + single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A; applied suite-wide)"
- },
- {
-  "id": "SBC-LOC-02",
-  "area": "SBC — Location Filter",
-  "title": "Location filter defaults to the user's active location on first load",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View); user with access to at least two locations.",
-  "preconditions": [
-   "1. Your browser has no saved view for this report.",
-   "2. You are working in a known active location (check the application's location switcher)."
-  ],
-  "steps": [
-   "1. Open the Sales By Customer report.",
-   "2. Read the location filter's current selection."
-  ],
-  "expected": [
-   "1. The filter defaults to the single location you are currently working in (your active location) — not all locations."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 4 S4-R4",
-  "viu_status": "Retired 2026-07-28 (merged into SBC-PERS-05 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBC-LOC-03",
-  "area": "SBC — Location Filter",
-  "title": "Selecting locations scopes the data; All locations covers every accessible one",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View); user with access to at least two locations.",
-  "preconditions": [
-   "1. At least two accessible locations each have invoices in the chosen date range (seed ZZAUTOTEST data if needed).",
-   "2. You are on the Sales By Customer report."
-  ],
-  "steps": [
-   "1. Select only location A in the location filter and note the customers/totals.",
-   "2. Select locations A and B together and note the change.",
-   "3. Select \"All locations.\"",
-   "4. With \"All locations\" active, look at how the rows tell you which location they belong to."
-  ],
-  "expected": [
-   "1. With one or more locations selected, the report includes only data from those locations.",
-   "2. Adding a second location adds that location's invoices to the rows and totals.",
-   "3. With \"All locations,\" the report includes data from every location the user has access to.",
-   "4. With \"All locations\" active you can tell which location each row's data belongs to — a location label or marking is shown.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S4-R5, S4-R6); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8603 (SBC spec Story 4 S4-R5; S4-R6 — per-row location identifier in All-locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins]",
-  "viu_status": "VIU-Pending",
-  "notes": "VIDEO-AUTHORITATIVE ADD (P10, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 41:09-41:20: 'we'll need a way to define, we're looking at all locations... how do I know which is for shop A and which is for shop B? ... we should probably add that in there.' The current spec has NO per-row location label on this report (tree is Customer->Asset->Invoice, no Location column — only WIP has one). Exact control/label unpinned — VIU-confirm, do not invent (Rule 9). SCOPE-INDICATOR added 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) ('Each report now shows which location(s) it's scoped to... on screen') - distinct from the per-row location label (video P10), which stays. Spec anchor pending the updated spec changelog. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8603 (SBC spec Story 4 S4-R5; S4-R6 — per-row location identifier in All-locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins]"
- },
- {
-  "id": "SBC-CUST-01",
-  "area": "SBC — Customer Filter",
-  "title": "Customer filter sits between Product Type and Location, carries a search icon",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the Sales By Customer report with at least one customer in the current results."
-  ],
-  "steps": [
-   "1. Look at the toolbar filters from left to right.",
-   "2. Open the Customer filter without typing anything.",
-   "3. Read what the dropdown shows before any query is typed."
-  ],
-  "expected": [
-   "1. A Customer filter labeled \"Customer\" sits between the Product Type filter and the Location filter.",
-   "2. The control carries a search (magnifier) icon marking it as searchable.",
-   "3. Before typing, the dropdown shows the pinned all/clear control at the top and a \"Search customers…\" hint; individual customers are revealed by typing.",
-   "4. The hint yields to the typed query while you are searching.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R1, S18-R2).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R1; S18-R2)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R1; S18-R2)"
- },
- {
-  "id": "SBC-CUST-02",
-  "area": "SBC — Customer Filter",
-  "title": "Typing in the Customer filter lists matching customers by contains match",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the Sales By Customer report.",
-   "2. At least two customers with distinct names have invoices in the current date range/Product Type/location (seed ZZAUTOTEST customers if needed)."
-  ],
-  "steps": [
-   "1. Open the Customer filter and type a fragment from the MIDDLE of a customer's name, in different letter case (for example type \"corp\" for \"Acme Corp\").",
-   "2. Read the list of customers shown.",
-   "3. Click one listed customer to select it and look at its row in the dropdown."
-  ],
-  "expected": [
-   "1. As you type, customers whose names contain the typed text appear in the list — matching is case-insensitive and matches anywhere in the name (a \"contains\" match, not starts-with).",
-   "2. The list is scoped to the active date range, Product Type, and location.",
-   "3. A selected customer is shown with a checkmark.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R2).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R2)",
-  "viu_status": "VIU-Pending",
-  "notes": "The server-fetch aspect of the type-ahead is covered by SBC-API-03; this case verifies the visible matching behavior only. BUILD-DELTA: the server-backed type-ahead is the 2026-07-21 committed target (spec ahead of code by design) — the current build may still load a full client-side list at VIU. COMPANION-VIDEO 2026-07-30 (C11, 06:41-07:09): the multi-select's product intent is COMPARISON — 'I want to compare accurate aerodynamics versus Baxter Mining Corp. inside that same time zone'; selecting customers puts exactly those on the page. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R2)"
- },
- {
-  "id": "SBC-CUST-03",
-  "area": "SBC — Customer Filter",
-  "title": "Pinned control toggles All customers and Clear all; clearing shows empty state",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the Sales By Customer report with several customers in the current results."
-  ],
-  "steps": [
-   "1. Open the Customer filter while it is in the all-customers state and read the pinned control at the top of the dropdown.",
-   "2. Activate it (\"Clear all\") and read the table body, the totals row, and the filter's collapsed label.",
-   "3. Read the pinned control again and activate it once more."
-  ],
-  "expected": [
-   "1. In the all-customers state the pinned control reads \"Clear all\"; activating it clears the selection to an empty set.",
-   "2. When the filter is NOT in the all-customers state the pinned control reads \"All customers\"; activating it puts the filter back in the all-customers state.",
-   "3. The control is pinned to the top of the dropdown in both states.",
-   "4. After \"Clear all\": the report shows the empty-state message \"No sales data found for the selected filters.\", the totals row shows zeros, and the collapsed label reads \"None.\"",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R3, S18-N1, S17-E1).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R3; S18-N1; S17-E1)",
-  "viu_status": "VIU-Pending",
-  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-CLEARALL): absorbed SBC-CUST-07. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R3; S18-N1; S17-E1)"
- },
- {
-  "id": "SBC-CUST-04",
-  "area": "SBC — Customer Filter",
-  "title": "First load starts in the all-customers state and the report shows every customer",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. Your browser has no saved view for this report.",
-   "2. Several customers have invoices in the default date range.",
-   "3. A customer exists that has invoices ONLY in a wider date range than the current one (seed a ZZAUTOTEST invoice dated last month if needed)."
-  ],
-  "steps": [
-   "1. Open the Sales By Customer report.",
-   "2. Read the Customer filter's collapsed label.",
-   "3. Check the customer rows shown.",
-   "4. Widen the date range so the customer with no matching invoices now has one; re-check the label and the rows."
-  ],
-  "expected": [
-   "1. The Customer filter's collapsed label reads \"All customers.\"",
-   "2. The report shows every customer matching the other active filters.",
-   "3. The all-customers state is an explicit state — while it is active, any customer that appears later (new data) is included automatically.",
-   "4. After the filter change the filter stays in the all-customers state (label still \"All customers\") and every customer matching the new filters is included — including the newly-appearing one, with no manual re-selection.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R4, S18-R5, S18-R9, S18-E1).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R4; S18-R5; S18-R9; S18-E1)",
-  "viu_status": "VIU-Pending",
-  "notes": "The label deliberately does NOT use an \"N of M\" form (2026-07-21 change) — an \"N of M\" label at VIU is a build-behind-spec deviation. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-ALLCUST): absorbed SBC-CUST-08. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R4; S18-R5; S18-R9; S18-E1)"
- },
- {
-  "id": "SBC-CUST-05",
-  "area": "SBC — Customer Filter",
-  "title": "Collapsed label reads None, the customer's name, or N selected",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the Sales By Customer report with at least three customers in the current results."
-  ],
-  "steps": [
-   "1. Open the Customer filter and use \"Clear all\" to empty the selection; read the collapsed label.",
-   "2. Select exactly one customer; read the collapsed label.",
-   "3. Select a second and third customer; read the collapsed label.",
-   "4. Start typing a search query in the filter field and watch the field text, then clear the query or click away."
-  ],
-  "expected": [
-   "1. With an empty selection the collapsed label reads \"None.\"",
-   "2. With exactly one customer selected the label shows that customer's name.",
-   "3. With more than one selected the label reads \"N selected\" where N is the number of selected customers (for example \"3 selected\").",
-   "4. While typing, the field shows the query text instead of the summary label; the summary label returns when the query is cleared or the field loses focus.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R5).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R5)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R5)"
- },
- {
-  "id": "SBC-CUST-06",
-  "area": "SBC — Customer Filter",
-  "title": "Changing the customer selection narrows the table and refreshes the totals",
-  "priority": "Critical",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the Sales By Customer report with at least three customers in the current results."
-  ],
-  "steps": [
-   "1. Note the customers and the totals row values.",
-   "2. Open the Customer filter, clear all, and select exactly two customers.",
-   "3. Read the table rows and the totals row."
-  ],
-  "expected": [
-   "1. The report shows only the two selected customers.",
-   "2. The table refreshes as a fresh first page of results.",
-   "3. The totals row updates to cover only the selected customers' matching invoices.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R5, S18-R11).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R5; S18-R11)",
-  "viu_status": "VIU-Pending",
-  "notes": "Server-side application of the filter is covered by SBC-API-04. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R5; S18-R11)"
- },
- {
-  "id": "SBC-CUST-07",
-  "area": "SBC — Customer Filter",
-  "title": "Clearing every customer shows the empty state with a zero totals row",
-  "priority": "Medium",
-  "type": "Negative",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the Sales By Customer report with data on screen."
-  ],
-  "steps": [
-   "1. Open the Customer filter and activate \"Clear all\" so no customer is selected.",
-   "2. Read the table body and the totals row."
-  ],
-  "expected": [
-   "1. The report shows the empty-state message \"No sales data found for the selected filters.\"",
-   "2. The totals row shows zeros.",
-   "3. The Customer filter's collapsed label reads \"None.\""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-N1; S17-E1",
-  "viu_status": "Retired 2026-07-28 (merged into SBC-CUST-03 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBC-CUST-08",
-  "area": "SBC — Customer Filter",
-  "title": "In the all-customers state a filter change keeps every customer included, including newly-appearing ones",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the report in the all-customers state.",
-   "2. A customer exists that has invoices ONLY in a wider date range than the current one (seed a ZZAUTOTEST invoice dated last month if needed)."
-  ],
-  "steps": [
-   "1. With the current (narrow) date range, confirm that customer is not shown.",
-   "2. Widen the date range so that customer's invoice now matches.",
-   "3. Check the table and the Customer filter label."
-  ],
-  "expected": [
-   "1. The filter stays in the all-customers state (label still \"All customers\").",
-   "2. Every customer matching the new filters is included — including the newly-present customer, without any manual re-selection."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R4; S18-R9; S18-E1",
-  "viu_status": "Retired 2026-07-28 (merged into SBC-CUST-04 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-  "notes": "The explicit all-customers flag (rather than an enumeration of ids) is the 2026-07-21 committed target — BUILD-DELTA possible at VIU.",
-  "api_related": false
- },
- {
-  "id": "SBC-CUST-09",
-  "area": "SBC — Customer Filter",
-  "title": "A subset customer selection reconciles on a filter change; kept if present",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "the ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the report with three customers A, B, C where: A has invoices in both this month and last month; B has invoices only in this month; C has invoices only in last month (seed ZZAUTOTEST data as needed).",
-   "2. Date range is This Month; you have selected exactly customers A and B in the Customer filter."
-  ],
-  "steps": [
-   "1. Change the date range to Last Month.",
-   "2. Read the table rows and the Customer filter selection."
-  ],
-  "expected": [
-   "1. Customer A (still present in the new results) stays selected and is shown.",
-   "2. Customer B (no longer present) is dropped from the selection and not shown; it must be re-selected to appear if it later returns.",
-   "3. Customer C (newly present) is NOT auto-selected and is not shown.",
-   "4. The Customer filter selection itself is not cleared by the date change.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R9, S18-E1).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R9; S18-E1)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R9; S18-E1)"
- },
- {
-  "id": "SBC-LOC-04",
-  "area": "SBC — Location Filter",
-  "title": "The Location column shows only with more than one location; Multiple on totals",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "The ordinary reports access (Reports section View).",
-  "preconditions": [
-   "1. You are on the Sales By Customer report as a user with access to two or more locations.",
-   "2. At least one customer has invoices at two different locations, and at least one asset has invoices at two different locations."
-  ],
-  "steps": [
-   "1. Select two or more locations in the Location filter and read the column headers.",
-   "2. Read the Location cell on a customer row whose invoices are all at one location.",
-   "3. Read the Location cell on a customer row and an asset row whose invoices span two locations.",
-   "4. Expand to an invoice row and read its Location cell.",
-   "5. Open the column selector and look for Location in the list.",
-   "6. Narrow the Location filter to a single location and read the headers again.",
-   "7. With more than one location still selected, download all four files from the download menu (Summary and Expanded View, PDF and CSV) and read the columns in each one."
-  ],
-  "expected": [
-   "1. With more than one location in scope a Location column is shown, positioned immediately after the Date column.",
-   "2. A customer or asset row whose invoices are all at one location shows that location's name.",
-   "3. A customer or asset row whose invoices come from more than one location shows \"Multiple\".",
-   "4. An invoice row always shows its own exact location — never \"Multiple\".",
-   "5. If the signed-in person only has access to ONE location, no Location column is shown to them at all and Location is not offered in their column-selection list.",
-   "6. When the Location column is not shown, the surrounding columns close up with no gap.",
-   "7. Every one of the four downloads also contains the Location column, in the same position it holds on screen, showing the same values you just read: a location name on a row whose invoices are all at one location, \"Multiple\" on a row that aggregates more than one, and the invoice's own location on an invoice row.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S4-R12, S4-R12a, S4-R13, S20-R19). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: one requirement says it is shown by default and can be toggled there, and the list of toggleable columns in another does not include it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8603; SV-8612; SV-8613 (SBC spec v13 2026-07-31 S4-R12; S4-R12a; S4-R13; S20-R19 — per-row Location column with automatic visibility; \"Multiple\" on aggregating rows; S4-R13 = the same column in every export)",
-  "viu_status": "VIU-Pending",
-  "notes": "NEW 2026-07-31. The per-row Location column is a suite-wide addition in Chris Ward's 2026-07-29 spec changelog (SBC v12 change-log row: \"added a per-row Location column (shown when more than one location is in scope; 'Multiple' on aggregating rows, exact on invoice rows) plus a 'Locations:' export line\"). The suite had NO coverage of this column. The \"Locations:\" export line itself is already covered by SBC-EXP-03 and SBC-EXP-09. Exact on-screen header capitalisation is VIU-confirm. Not live-verified (Rule 12). COVERAGE RE-DERIVATION 2026-07-31: extended to close S4-R13's second half — \"When the Location column is shown on screen (more than one location in scope S4-R12) every export also includes that Location column.\" The \"Locations:\" line half was already covered by SBC-EXP-09 (C30167) and SBC-EXP-03 (C30161); the exported COLUMN was covered nowhere. Owning story for S4-R13 = SV-8603 (SBC Story 4); the export stories SV-8612/SV-8613 are cited because the observation happens in their files. Extended rather than authored as a new case (Rule 28) — same control, and this case already establishes the >1-location scope a new case would have to re-seed. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8603; SV-8612; SV-8613 (SBC spec v13 2026-07-31 S4-R12; S4-R12a; S4-R13; S20-R19 — per-row Location column with automatic visibility; \"Multiple\" on aggregating rows; S4-R13 = the same column in every export)"
- }
+  {
+    "id": "SBC-NAV-01",
+    "area": "SBC — Access & Navigation",
+    "title": "Sales By Customer listed under Performance, below existing links; titles correct",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View) (dedicated per S1-R2 — exact permission name in the roles screen is VIU-confirm).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Your role has the ordinary reports access (the standard \"can this person see reports\" setting)."
+    ],
+    "steps": [
+      "1. Open the Reports area from the main navigation.",
+      "2. Find the Performance group and read its entries from top to bottom.",
+      "3. Click the \"Sales By Customer\" entry.",
+      "4. Read the page title at the top of the report and the browser tab's title."
+    ],
+    "expected": "1. \"Sales By Customer\" is listed in the Reports left-side navigation and can be opened from there.\n1a. Note for the tester: the written description says only that it appears in the Reports navigation - it does not say WHICH group it belongs in. Write down the group heading you find it under and carry on; do not fail the test on the group name. The product owner has been asked to settle which group each of the six new reports belongs in.\n2. Clicking it opens the Sales By Customer report in the main content area.\n3. The page title reads \"Sales By Customer.\"\n4. The browser tab title reads \"Sales By Customer - Report | ShopView\".\n5. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S1-R1, S1-R3, S1-R4), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8600 (SBC spec S1-R1; S1-R3; S1-R4 — Confluence 577634305 v-2026-07-31; Performance-group placement per the PRD video 2026-07-30; access = ordinary reports permission per Chris Ward 2026-07-31 Q4=A + SV-8598 sheet Q1=A)",
+    "viu_status": "VIU-Pending",
+    "notes": "COMPANION-VIDEO 2026-07-30 (C4, 01:18-02:05): the SBC spec names no navigation group; the video places SBC in the Performance section, below Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency ('add ... sales by customer ... below those items, rather than interrupting those items'). Order among the four NEW reports is not fixed. Exact rendering VIU-confirm. Spec ratification pending (SPEC-WATCH). Source: PRD companion video 2026-07-30 (chris-update-2026-07-29/companion-video-transcript-2026-07-30.md; Loom e4a3ad0191; authoritative, newest-wins). MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-NAV): absorbed SBC-NAV-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. Q4 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A, verbatim: \"the intention is to not hide these from normal reports access. These were specced before CRP was built\"): every report in the suite is gated by the ORDINARY reports permission; no report gets its own. THE BUILD DIFFERS — the engineering tech plan §B5.3 gates every Sales By Customer endpoint on a new dedicated atom ROLE_SALES_BY_CUSTOMER_REPORT::VIEW, and SBC spec S1-R2 still states the dedicated model. Dev change ticket + spec correction raised in chris-answers-2026-07-31/Q4-permission-dev-note-2026-07-31.md. Not live-verified (Rule 12). | 2026-08-03: refs re-pinned to the live SBC spec (Confluence 577634305, last updated 2026-07-31, read live 2026-08-03) — S1-R2/S1-N1 NOW AGREE with this case, so the old \"the spec still uses a dedicated permission\" clause was removed as factually false. Tester note extended for Chris Ward's chat ruling that an already-built permission is HIDDEN from the front end and left inert (still visible = reportable; inert = expected). Re-verified whole case end-to-end against that spec version (Standing Rule 41). Ticket keys kept out of the tester-facing text per Standing Rule 20. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8600 (SBC spec S1-R1; S1-R3; S1-R4 — Confluence 577634305 v-2026-07-31; Performance-group placement per the PRD video 2026-07-30; access = ordinary reports permission per Chris Ward 2026-07-31 Q4=A + SV-8598 sheet Q1=A)",
+    "testrail_id": "C30096",
+    "section_id": 4288
+  },
+  {
+    "id": "SBC-NAV-02",
+    "area": "SBC — Access & Navigation",
+    "title": "Page title and browser tab title read Sales By Customer",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are signed in with the Sales By Customer report View permission.",
+      "2. You have opened the Sales By Customer report."
+    ],
+    "steps": [
+      "1. Read the page title shown at the top of the report.",
+      "2. Read the browser tab's title."
+    ],
+    "expected": [
+      "1. The page title reads \"Sales By Customer.\"",
+      "2. The browser tab title reads \"Sales By Customer - Report | ShopView\"."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbc-sales-by-customer.md Story 1 S1-R3; S1-R4",
+    "viu_status": "Retired 2026-07-28 (merged into SBC-NAV-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SBC-PERM-01",
+    "area": "SBC — Permissions",
+    "title": "Ordinary reports access opens Sales By Customer — no separate permission",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "A role holding ONLY the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. A test user exists whose role has the ordinary reports access (the standard \"can this person see reports\" setting) and NO report-specific permission (create a ZZAUTOTEST custom role if needed; restore afterwards).",
+      "2. You are signed in as that user."
+    ],
+    "steps": [
+      "1. Open the Reports area.",
+      "2. Click \"Sales By Customer\" in the left-side navigation."
+    ],
+    "expected": "1. The \"Sales By Customer\" entry is visible in the Reports navigation.\n2. The report opens and shows its data.\n3. Ordinary reports access alone is enough — this report does NOT need a permission of its own.\n4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S1-R2), read on 11 August 2026.\nLast checked against build v3.4.1-3d03023 on 8/4/2026.\n\nAUTOMATION: READY\n",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8600 (SBC spec S1-R2 — Confluence 577634305 v-2026-07-31 — now reads \"gated by ordinary reports access; not by a report-specific permission\"; Chris Ward Q1=A; built atom hidden-and-inert per his ruling; SV-8780 Ready to Fix)",
+    "viu_status": "VIU-Pending",
+    "notes": "Exact permission name and where it sits in the role editor are VIU-confirm. Per Standing Rule 10, verify by actually logging in as the role and observing. Q4 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A, verbatim: \"the intention is to not hide these from normal reports access. These were specced before CRP was built\"): every report in the suite is gated by the ORDINARY reports permission; no report gets its own. THE BUILD DIFFERS — the engineering tech plan §B5.3 gates every Sales By Customer endpoint on a new dedicated atom ROLE_SALES_BY_CUSTOMER_REPORT::VIEW, and SBC spec S1-R2 still states the dedicated model. Dev change ticket + spec correction raised in chris-answers-2026-07-31/Q4-permission-dev-note-2026-07-31.md. Not live-verified (Rule 12). | 2026-08-03: refs re-pinned to the live SBC spec (Confluence 577634305, last updated 2026-07-31, read live 2026-08-03) — S1-R2/S1-N1 NOW AGREE with this case, so the old \"the spec still uses a dedicated permission\" clause was removed as factually false. Tester note extended for Chris Ward's chat ruling that an already-built permission is HIDDEN from the front end and left inert (still visible = reportable; inert = expected). Re-verified whole case end-to-end against that spec version (Standing Rule 41). Ticket keys kept out of the tester-facing text per Standing Rule 20. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8600 (SBC spec S1-R2 — Confluence 577634305 v-2026-07-31 — now reads \"gated by ordinary reports access; not by a report-specific permission\"; Chris Ward Q1=A; built atom hidden-and-inert per his ruling; SV-8780 Ready to Fix)",
+    "testrail_id": "C30098",
+    "section_id": 4289
+  },
+  {
+    "id": "SBC-PERM-02",
+    "area": "SBC — Permissions",
+    "title": "Without reports access, Sales By Customer is not listed and cannot open",
+    "priority": "Critical",
+    "type": "Negative",
+    "permissions_required": "A role WITHOUT the the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. A test user exists whose role does NOT have reports access (use/create a ZZAUTOTEST role; restore afterwards).",
+      "2. You know the report's direct page address (copy it from a permitted session first).",
+      "3. You are signed in as the unpermitted user."
+    ],
+    "steps": [
+      "1. Open the Reports area and look through the left-side navigation.",
+      "2. Paste the report's direct page address into the browser and try to open it."
+    ],
+    "expected": "1. \"Sales By Customer\" does not appear in the Reports navigation.\n2. Opening the report by direct link does not show the report (the application blocks it with its standard access-denied handling).\n3. The gate is the ordinary reports access — there is no separate Sales By Customer permission to remove.\n4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S1-N1), read on 11 August 2026.\nLast checked against build v3.4.1-3d03023 on 8/4/2026.\n\nAUTOMATION: READY\n",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8600 (SBC spec S1-N1 — Confluence 577634305 v-2026-07-31 — now reads \"A user without reports access does not see the report in navigation and cannot open it by direct link\"; Chris Ward Q1=A; SV-8780 Ready to Fix)",
+    "viu_status": "VIU-Pending",
+    "notes": "The exact blocked-state behavior (redirect vs access-denied page) is not pinned by the spec — VIU-confirm and record it. Q4 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A, verbatim: \"the intention is to not hide these from normal reports access. These were specced before CRP was built\"): every report in the suite is gated by the ORDINARY reports permission; no report gets its own. THE BUILD DIFFERS — the engineering tech plan §B5.3 gates every Sales By Customer endpoint on a new dedicated atom ROLE_SALES_BY_CUSTOMER_REPORT::VIEW, and SBC spec S1-R2 still states the dedicated model. Dev change ticket + spec correction raised in chris-answers-2026-07-31/Q4-permission-dev-note-2026-07-31.md. Not live-verified (Rule 12). | 2026-08-03: refs re-pinned to the live SBC spec (Confluence 577634305, last updated 2026-07-31, read live 2026-08-03) — S1-R2/S1-N1 NOW AGREE with this case, so the old \"the spec still uses a dedicated permission\" clause was removed as factually false. Tester note extended for Chris Ward's chat ruling that an already-built permission is HIDDEN from the front end and left inert (still visible = reportable; inert = expected). Re-verified whole case end-to-end against that spec version (Standing Rule 41). Ticket keys kept out of the tester-facing text per Standing Rule 20. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8600 (SBC spec S1-N1 — Confluence 577634305 v-2026-07-31 — now reads \"A user without reports access does not see the report in navigation and cannot open it by direct link\"; Chris Ward Q1=A; SV-8780 Ready to Fix)",
+    "testrail_id": "C30099",
+    "section_id": 4289
+  },
+  {
+    "id": "SBC-PERM-03",
+    "area": "SBC — Permissions",
+    "title": "Opening an invoice you lack permission for shows access-denied; back works",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "the ordinary reports access (Reports section View), but WITHOUT permission to open the destination invoice (work order / part sale).",
+    "preconditions": [
+      "1. You are signed in as a user who can view the report but lacks permission to open the underlying invoice destination.",
+      "2. The report shows at least one customer; you have expanded down to an invoice detail row."
+    ],
+    "steps": [
+      "1. Click the invoice number link on a detail row.",
+      "2. Look at the destination page.",
+      "3. Press the browser back button."
+    ],
+    "expected": "1. The destination page shows the application's standard access-denied state.\n2. Pressing back returns you to the Sales By Customer report.\n3. Note for the tester: the written description now says two different things about this, so do not fail the test on what the invoice number LOOKS like. The part this test was written from says the person clicks the link and lands on a page telling them they are not allowed in. Another part, added on 5 August 2026, says that person is not given a link at all and simply sees the invoice number as ordinary plain text. Both are in the same description today. The product owner has been asked which he wants. Write down exactly what you saw — a link leading to a not-allowed page, or plain text with nothing to click — and carry on. The one thing that would be a real failure is that person actually SEEING the invoice they are not allowed to see.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S9-N2), read on 11 August 2026, which states that a user who lacks permission to open the destination invoice is shown the standard access-denied page and can press back to return to the report. The same version's S9-R1a, added on 5 August 2026, instead states that such a user is never given a link and sees the invoice number as plain text; the two have not been reconciled and the product owner has been asked which applies.\nLast checked against build v3.4.1-3d03023 on 8/4/2026.\n\nAUTOMATION: HOLD - waiting on one answer from the product owner about whether this person is given a link at all\n",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8607 (SBC spec v13 2026-07-31 Story 9 S9-N2)",
+    "viu_status": "VIU-Pending",
+    "notes": "Seed the role combination per Standing Rule 5 (a ZZAUTOTEST role with the report permission but without work-order view). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8607 (SBC spec v16 2026-08-06 Story 9 S9-N2)",
+    "testrail_id": "C30100",
+    "section_id": 4289
+  },
+  {
+    "id": "SBC-PERM-04",
+    "area": "SBC — Permissions",
+    "title": "Location access enforced: no data from a location the user cannot access",
+    "priority": "High",
+    "type": "Negative",
+    "permissions_required": "One administrator account and one non-administrator account assigned to only some locations.",
+    "preconditions": [
+      "1. The organization has at least two locations, each with invoices in the chosen date range (seed ZZAUTOTEST data if needed).",
+      "2. A non-administrator test user is assigned to only ONE of the locations.",
+      "3. An administrator account is also available."
+    ],
+    "steps": [
+      "1. Sign in as the administrator, open the report, and open the location filter — note the locations listed.",
+      "2. Sign in as the non-administrator, open the report, and open the location filter — note the locations listed.",
+      "3. As the non-administrator, attempt to request a location you are not assigned to by these routes: (a) edit the page link (URL) if the location selection is carried there, and open the edited link; (b) restore a saved view stored while an extra location was assigned (set that saved view up first if practical).",
+      "4. Check the report data."
+    ],
+    "expected": "1. The administrator's filter lists every location in the organization.\n2. The non-administrator's filter lists only the locations assigned to them.\n3. A requested location the user does not have access to is ignored — the report does NOT widen to the whole organization.\n4. The report data never includes invoices from a location the user does not have access to.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S4-R7, S4-R8, S4-R9, S4-N1), read on 11 August 2026.\nLast checked against build v3.4.1-3d03023 on 8/4/2026.\n\nAUTOMATION: READY\n",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8603 (SBC spec v13 2026-07-31 Story 4 S4-R7; S4-R8; S4-R9; S4-N1)",
+    "viu_status": "VIU-Pending",
+    "notes": "How an inaccessible location could be 'requested' is not pinned by the spec — probe via the page link / restored saved view at VIU; the pass condition is that it is ignored, never widened. FIX-WORDING repair 2026-07-28 (sense-check): the probe routes are now named concretely (edited page link; stale saved view). The pass condition stays: an inaccessible location is ignored, never widened. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8603 (SBC spec v16 2026-08-06 Story 4 S4-R7; S4-R8; S4-R9; S4-N1)",
+    "testrail_id": "C30101",
+    "section_id": 4289
+  },
+  {
+    "id": "SBC-PERM-05",
+    "area": "SBC — Permissions",
+    "title": "No Sales By Customer permission is offered in the role permission editor",
+    "priority": "Critical",
+    "type": "Negative",
+    "permissions_required": "An administrator who can edit roles and their permissions.",
+    "preconditions": [
+      "1. You are signed in as an administrator who can edit roles and their permissions.",
+      "2. Create a throwaway custom role named starting with ZZAUTOTEST to work in, and delete it when you have finished."
+    ],
+    "steps": [
+      "1. Open the area where a role's permissions are switched on and off.",
+      "2. Read through the reports-related permissions from top to bottom.",
+      "3. Search the permission list for \"Sales By Customer\"."
+    ],
+    "expected": "1. There is NO \"Sales By Customer\" permission anywhere in the list for an administrator to switch on or off.\n2. The only reports permission offered is the ordinary reports access, and that one covers all six of the new reports.\n3. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S1-R2), read on 11 August 2026.\nLast checked against build v3.4.1-3d03023 on 8/4/2026.\n\nAUTOMATION: READY\n",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8598 (SBC spec S1-R2 — Confluence 577634305 v-2026-07-31 — \"there is no dedicated Sales By Customer View permission\"; Chris Ward Q1=A + his ruling to hide an already-built permission from the front end; SV-8780)",
+    "viu_status": "VIU-Pending",
+    "notes": "AUTHORED 2026-08-03 under the QA lead's narrow authorisation. Driver = Chris Ward's chat ruling, verbatim: \"if it's already built, we just hide the new permissions from FE (they can exist and not do anything for now -- no wasted time)\". Only the FE-hide half is observable, so it is the only half authored; the inert back-end atom has NO tester-facing behaviour and deliberately gets no case (Standing Rule 46). NOTE ON THE ID: the staged plan called this SBC-PERM-03, but SBC-PERM-03 (C30100) and SBC-PERM-04 (C30101) already exist — the next free id is SBC-PERM-05. The exact on-screen name of the ordinary reports permission is VIU-confirm; no QA branch exists so nothing here is live-observed (Standing Rules 12/22). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "refs": "SV-8598 (SBC spec S1-R2 — Confluence 577634305 v-2026-07-31 — \"there is no dedicated Sales By Customer View permission\"; Chris Ward Q1=A + his ruling to hide an already-built permission from the front end; SV-8780)",
+    "testrail_id": "C39447",
+    "section_id": 4289
+  },
+  {
+    "id": "SBC-DATE-01",
+    "area": "SBC — Date Range Filter",
+    "title": "Date range picker offers nine periods in the specified order, no All Time",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the Sales By Customer report."
+    ],
+    "steps": [
+      "1. Find the date range picker in the report toolbar.",
+      "2. Open it and read the options from top to bottom."
+    ],
+    "expected": "1. A date range picker is visible in the report toolbar.\n3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports.\n3. There is no \"All Time\" option.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. Where the Sales By Customer report specification version 17 (S2-R1, S2-R2), read on 11 August 2026, says something different, his decision is the later word and is the authority.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R1; S2-R2 — S2-R2 CLOSES the eleven-option list and its order itself; so the closed list IS the requirement; re-check this case whenever S2-R2 changes)",
+    "viu_status": "VIU-Pending",
+    "notes": "\"All Time\" was removed by the 2026-07-16 spec round — if the build still shows it, that is a build-behind-spec deviation, not a spec error. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed eleven-option list to SBC S2-R2 + spec version. The spec closes the list itself, so the enumeration stays (Rule 42(b)). RULE 41: Re-verified whole against SBC spec v12 2026-07-29: title, precondition 1, steps 1-2, expected 1-3, refs. S2-R2 verbatim L152: \"The picker offers eleven options, in this order: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.\" The case matches exactly. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8601 (SBC spec v16 2026-08-06 Story 2 S2-R1; S2-R2 — S2-R2 CLOSES the eleven-option list and its order itself; so the closed list IS the requirement; re-check this case whenever S2-R2 changes)",
+    "testrail_id": "C30102",
+    "section_id": 4290
+  },
+  {
+    "id": "SBC-DATE-02",
+    "area": "SBC — Date Range Filter",
+    "title": "Date range defaults to This Month when nothing is saved and no range is in the page link",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. Your browser has no saved view for this report (first visit, or clear the browser's site data first).",
+      "2. You open the report by its plain address with no date range in the page link."
+    ],
+    "steps": [
+      "1. Open the Sales By Customer report.",
+      "2. Read the date range picker's current value."
+    ],
+    "expected": [
+      "1. The date range picker shows \"This Month.\""
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbc-sales-by-customer.md Story 2 S2-R5",
+    "viu_status": "Retired 2026-07-28 (merged into SBC-PERS-05 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SBC-DATE-03",
+    "area": "SBC — Date Range Filter",
+    "title": "Building a custom range on the calendar cannot exceed a 366-day span",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the Sales By Customer report."
+    ],
+    "steps": [
+      "1. Open the date range picker. A month calendar is shown inside it, which is how a custom start and end date are picked on this build.",
+      "2. Pick a start and end date less than 366 days apart on that calendar and apply.",
+      "3. Open the picker again and try to pick a start and end date MORE than 366 days apart."
+    ],
+    "expected": "1. The date range picker shows a month calendar inside it — that is how a custom start and end date are chosen. There is no separate \"Custom\" item to choose.\n2. A range of 366 days or fewer applies normally.\n3. A range wider than 366 days cannot be applied — the report prevents the selection rather than loading the wider range.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. Where the Sales By Customer report specification version 17 (S2-R3, S2-R4, S2-N2), read on 11 August 2026, says something different, his decision is the later word and is the authority.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: HOLD - the calendar cannot be driven past the 366-day span from this harness; the back end refuses a wider range but the on-screen prevention was not seen",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R3; S2-R4; S2-N2)",
+    "viu_status": "VIU-Pending",
+    "notes": "HOW the wider range is prevented (disabled dates vs a validation message) is not pinned — VIU-confirm the exact mechanism and any message wording. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8601 (SBC spec v16 2026-08-06 Story 2 S2-R3; S2-R4; S2-N2)",
+    "testrail_id": "C30104",
+    "section_id": 4290
+  },
+  {
+    "id": "SBC-DATE-04",
+    "area": "SBC — Date Range Filter",
+    "title": "Changing the date range writes it into the page link for sharing",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the Sales By Customer report."
+    ],
+    "steps": [
+      "1. Change the date range (for example to \"Last Month\").",
+      "2. Look at the browser's address bar.",
+      "3. Copy the page link, open it in a fresh browser profile with no saved view for this report, and check the date range."
+    ],
+    "expected": "1. The chosen date range value is written into the page link.\n2. Opening that link in a browser with no saved view for this report restores the sender's date range.\nWhat you should see today: the address bar never changes - it stays at the plain report address after the range is applied, so there is nothing to copy and share. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8955\n· If you see exactly that, mark this test FAILED and do not raise anything new.\n· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S2-R6, S2-R9), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8955)",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R6; S2-R9 (context))",
+    "viu_status": "VIU-Pending",
+    "notes": "A recipient WITH a saved view of their own will see their saved range instead (S2-R9, covered by SBC-PERS-06) — that is intentional, not a defect. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8601 (SBC spec v16 2026-08-06 Story 2 S2-R6; S2-R9 (context))",
+    "testrail_id": "C30105",
+    "section_id": 4290
+  },
+  {
+    "id": "SBC-TYPE-01",
+    "area": "SBC — Product Type Filter",
+    "title": "Product Type dropdown offers exactly three options with Parts & Service as the default",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the Sales By Customer report with no saved view (first visit or cleared browser storage)."
+    ],
+    "steps": [
+      "1. Find the \"Product Type\" dropdown in the report toolbar.",
+      "2. Read its current value before touching it.",
+      "3. Open it and read the options in order."
+    ],
+    "expected": [
+      "1. A \"Product Type\" dropdown is visible in the report toolbar.",
+      "2. The default selection on first load is \"Parts & Service.\"",
+      "3. It offers exactly three options, in this order: \"Parts & Service,\" \"Parts only,\" \"Service only.\""
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbc-sales-by-customer.md Story 3 S3-R1; S3-R2; S3-R3",
+    "viu_status": "Retired 2026-07-28 (merged into SBC-TYPE-02 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SBC-TYPE-02",
+    "area": "SBC — Product Type Filter",
+    "title": "Product Type: three options with Parts & Service default; S/P prefix filtering",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the Sales By Customer report with no saved view (first visit or cleared browser storage), so the first-load default can be read.",
+      "2. The date range contains at least one service invoice (number starting with S) and one parts invoice (number starting with P) — seed ZZAUTOTEST data if needed."
+    ],
+    "steps": [
+      "1. Find the \"Product Type\" dropdown in the report toolbar; read its value before touching it, then open it and read the options in order.",
+      "2. Set Product Type to \"Service only,\" expand a customer down to invoice rows, and read the invoice numbers.",
+      "3. Set Product Type to \"Parts only\" and read the invoice numbers again.",
+      "4. Set Product Type back to \"Parts & Service.\""
+    ],
+    "expected": "1. The dropdown offers exactly three options, in this order: \"Parts & Service,\" \"Parts only,\" \"Service only\" — with \"Parts & Service\" selected by default on first load.\n2. Under \"Service only,\" every invoice shown has a number starting with S; parts invoices are gone and all counts/totals reflect only S invoices.\n3. Under \"Parts only,\" every invoice shown has a number starting with P; service invoices are gone and all counts/totals reflect only P invoices.\n4. With \"Parts & Service\" selected, no product-type filter is applied — both S and P invoices are included and counts/totals cover both.\n5. The whole invoice is classified by its number prefix — there is no per-line-item split.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8602 (SBC spec v13 2026-07-31 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6 — S3-R2 CLOSES the list itself (\"exactly three options ... in this order\"); so the closed list IS the requirement)",
+    "viu_status": "VIU-Pending",
+    "notes": "Per-line-item classification is explicitly out of scope (§2) — a mixed invoice classified whole by prefix is expected behavior, not a defect. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-TYPE): absorbed SBC-TYPE-01, SBC-TYPE-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. COMPANION-VIDEO 2026-07-30 (C9, 05:10-05:42): P = parts order, S = service/work order confirmed; under Parts Sales real data shows P numbers ('These would all be P's') — the all-S parts-sales rows in the PO's local were a fake-data artifact. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed three-option list to SBC S3-R2 + spec version (Rule 42(b)). RULE 41: Re-verified whole against SBC spec v12 2026-07-29: title, preconditions 1-2, steps 1-4, expected 1-5, refs. S3-R2 verbatim L188: \"The dropdown offers exactly three options, in this order: \\\"Parts & Service,\\\" \\\"Parts only,\\\" \\\"Service only.\\\"\" S3-R3..R6 match expected 2-4; expected 5 (whole-invoice classification by prefix) matches S3-R5/R6. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8602 (SBC spec v16 2026-08-06 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6 — S3-R2 CLOSES the list itself (\"exactly three options ... in this order\"); so the closed list IS the requirement)",
+    "testrail_id": "C30107",
+    "section_id": 4291
+  },
+  {
+    "id": "SBC-TYPE-03",
+    "area": "SBC — Product Type Filter",
+    "title": "Parts & Service applies no product-type filter",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the Sales By Customer report with both S and P invoices in the date range."
+    ],
+    "steps": [
+      "1. Set Product Type to \"Parts only\" and note the visible customers/totals.",
+      "2. Set Product Type back to \"Parts & Service.\""
+    ],
+    "expected": [
+      "1. With \"Parts & Service\" selected, no product-type filter is applied — both S and P invoices are included again and counts/totals cover both."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbc-sales-by-customer.md Story 3 S3-R4",
+    "viu_status": "Retired 2026-07-28 (merged into SBC-TYPE-02 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SBC-LOC-01",
+    "area": "SBC — Location Filter",
+    "title": "Location filter: rightmost, lists accessible locations, All locations on top",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View); user with access to at least two locations.",
+    "preconditions": [
+      "1. You are on the Sales By Customer report as a user with access to two or more locations."
+    ],
+    "steps": [
+      "1. Look at the report toolbar's filters from left to right.",
+      "2. Open the location filter and read its options.",
+      "3. Click the \"All locations\" option, then click it again.",
+      "4. Then sign in as a user with access to only ONE location, open the report and look for the Location filter again."
+    ],
+    "expected": "1. The location filter is the rightmost filter in the toolbar.\n2. It lists the locations the signed-in user has access to.\n3. An \"All locations\" option is pinned to the top.\n4. Activating \"All locations\" selects every listed location at once; activating it again clears them all at once.\n5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's data.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S4-R1, S4-R2, S4-R3), read on 11 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026\nLast checked against build v3.4.1-3d03023 on 8/4/2026.\n\nAUTOMATION: READY\n",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8603 (SBC spec Story 4 S4-R1; S4-R2; S4-R3 + single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A; applied suite-wide)",
+    "viu_status": "VIU-Pending",
+    "notes": "Exact on-screen capitalisation of \"All locations\" is VIU-confirm. Q1 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): the Location filter is hidden for a one-location user. His ruling is suite-wide; Sales By Customer had no case for it, so the assertion is folded into this existing filter case rather than authored as a near-duplicate (Rule 28). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8603 (SBC spec Story 4 S4-R1; S4-R2; S4-R3 + single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A; applied suite-wide)",
+    "testrail_id": "C30109",
+    "section_id": 4292
+  },
+  {
+    "id": "SBC-LOC-02",
+    "area": "SBC — Location Filter",
+    "title": "Location filter defaults to the user's active location on first load",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View); user with access to at least two locations.",
+    "preconditions": [
+      "1. Your browser has no saved view for this report.",
+      "2. You are working in a known active location (check the application's location switcher)."
+    ],
+    "steps": [
+      "1. Open the Sales By Customer report.",
+      "2. Read the location filter's current selection."
+    ],
+    "expected": [
+      "1. The filter defaults to the single location you are currently working in (your active location) — not all locations."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbc-sales-by-customer.md Story 4 S4-R4",
+    "viu_status": "Retired 2026-07-28 (merged into SBC-PERS-05 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SBC-LOC-03",
+    "area": "SBC — Location Filter",
+    "title": "Selecting locations scopes the data; All locations covers every accessible one",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View); user with access to at least two locations.",
+    "preconditions": [
+      "1. At least two accessible locations each have invoices in the chosen date range (seed ZZAUTOTEST data if needed).",
+      "2. You are on the Sales By Customer report."
+    ],
+    "steps": [
+      "1. Select only location A in the location filter and note the customers/totals.",
+      "2. Select locations A and B together and note the change.",
+      "3. Select \"All locations.\"",
+      "4. With \"All locations\" active, look at how the rows tell you which location they belong to."
+    ],
+    "expected": "1. With one or more locations selected, the report includes only data from those locations.\n2. Adding a second location adds that location's invoices to the rows and totals.\n3. With \"All locations,\" the report includes data from every location the user has access to.\n4. With \"All locations\" active you can tell which location each row's data belongs to — a location label or marking is shown.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S4-R5, S4-R6), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8603 (SBC spec Story 4 S4-R5; S4-R6 — per-row location identifier in All-locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins]",
+    "viu_status": "VIU-Pending",
+    "notes": "VIDEO-AUTHORITATIVE ADD (P10, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 41:09-41:20: 'we'll need a way to define, we're looking at all locations... how do I know which is for shop A and which is for shop B? ... we should probably add that in there.' The current spec has NO per-row location label on this report (tree is Customer->Asset->Invoice, no Location column — only WIP has one). Exact control/label unpinned — VIU-confirm, do not invent (Rule 9). SCOPE-INDICATOR added 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) ('Each report now shows which location(s) it's scoped to... on screen') - distinct from the per-row location label (video P10), which stays. Spec anchor pending the updated spec changelog. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8603 (SBC spec Story 4 S4-R5; S4-R6 — per-row location identifier in All-locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins]",
+    "testrail_id": "C30111",
+    "section_id": 4292
+  },
+  {
+    "id": "SBC-CUST-01",
+    "area": "SBC — Customer Filter",
+    "title": "Customer filter sits between Product Type and Location, carries a search icon",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the Sales By Customer report with at least one customer in the current results."
+    ],
+    "steps": [
+      "1. Look at the toolbar filters from left to right.",
+      "2. Open the Customer filter without typing anything.",
+      "3. Read what the dropdown shows before any query is typed."
+    ],
+    "expected": "1. A Customer filter labeled \"Customer\" sits between the Product Type filter and the Location filter.\n2. The control carries a search (magnifier) icon marking it as searchable.\n3. Before typing, the dropdown shows the pinned all/clear control at the top and a \"Search customers…\" hint; individual customers are revealed by typing.\n4. The hint yields to the typed query while you are searching.\nWhat you should see today: the Customer filter has no magnifier icon on it - the only icon is the drop-down arrow. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8962\n· If you see exactly that, mark this test FAILED and do not raise anything new.\n· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R1, S18-R2), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8962)",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R1; S18-R2)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8616 (SBC spec v16 2026-08-06 Story 18 S18-R1; S18-R2)",
+    "testrail_id": "C30112",
+    "section_id": 4293
+  },
+  {
+    "id": "SBC-CUST-02",
+    "area": "SBC — Customer Filter",
+    "title": "Typing in the Customer filter lists matching customers by contains match",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the Sales By Customer report.",
+      "2. At least two customers with distinct names have invoices in the current date range/Product Type/location (seed ZZAUTOTEST customers if needed)."
+    ],
+    "steps": [
+      "1. Open the Customer filter and type a fragment from the MIDDLE of a customer's name, in different letter case (for example type \"corp\" for \"Acme Corp\").",
+      "2. Read the list of customers shown.",
+      "3. Click one listed customer to select it and look at its row in the dropdown."
+    ],
+    "expected": "1. As you type, customers whose names contain the typed text appear in the list — matching is case-insensitive and matches anywhere in the name (a \"contains\" match, not starts-with).\n2. The list is scoped to the active date range, Product Type, and location.\n3. A selected customer is shown with a checkmark.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R2), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R2)",
+    "viu_status": "VIU-Pending",
+    "notes": "The server-fetch aspect of the type-ahead is covered by SBC-API-03; this case verifies the visible matching behavior only. BUILD-DELTA: the server-backed type-ahead is the 2026-07-21 committed target (spec ahead of code by design) — the current build may still load a full client-side list at VIU. COMPANION-VIDEO 2026-07-30 (C11, 06:41-07:09): the multi-select's product intent is COMPARISON — 'I want to compare accurate aerodynamics versus Baxter Mining Corp. inside that same time zone'; selecting customers puts exactly those on the page. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8616 (SBC spec v16 2026-08-06 Story 18 S18-R2)",
+    "testrail_id": "C30113",
+    "section_id": 4293
+  },
+  {
+    "id": "SBC-CUST-03",
+    "area": "SBC — Customer Filter",
+    "title": "Pinned control toggles All customers and Clear all; clearing shows empty state",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the Sales By Customer report with several customers in the current results."
+    ],
+    "steps": [
+      "1. Open the Customer filter while it is in the all-customers state and read the pinned control at the top of the dropdown.",
+      "2. Activate it (\"Clear all\") and read the table body, the totals row, and the filter's collapsed label.",
+      "3. Read the pinned control again and activate it once more."
+    ],
+    "expected": "1. In the all-customers state the pinned control reads \"Clear all\"; activating it clears the selection to an empty set.\n2. When the filter is NOT in the all-customers state the pinned control reads \"All customers\"; activating it puts the filter back in the all-customers state.\n3. The control is pinned to the top of the dropdown in both states.\n4. After \"Clear all\": the report shows the empty-state message \"No sales data found for the selected filters.\" The collapsed label reads \"None\", and the totals row shows zeros.\n\nWhat you should see today: everything in item 4 happens except the totals row - the empty-state message appears and the collapsed label reads \"None\", but there is no totals row on the report at all, of zeros or otherwise. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8991.\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above - for example a totals row appears but the figures are not zeros, or the empty-state message or the \"None\" label is wrong, or the pinned control in items 1 to 3 does not behave as described - that is a NEW problem, so please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R3, S18-N1, S17-E1), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8991)\n",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R3; S18-N1; S17-E1)",
+    "viu_status": "VIU-Pending",
+    "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-CLEARALL): absorbed SBC-CUST-07. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8616 (SBC spec v16 2026-08-06 Story 18 S18-R3; S18-N1; S17-E1)",
+    "testrail_id": "C30114",
+    "section_id": 4293
+  },
+  {
+    "id": "SBC-CUST-04",
+    "area": "SBC — Customer Filter",
+    "title": "First load starts in the all-customers state and the report shows every customer",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. Your browser has no saved view for this report.",
+      "2. Several customers have invoices in the default date range.",
+      "3. A customer exists that has invoices ONLY in a wider date range than the current one (seed a ZZAUTOTEST invoice dated last month if needed)."
+    ],
+    "steps": [
+      "1. Open the Sales By Customer report.",
+      "2. Read the Customer filter's collapsed label.",
+      "3. Check the customer rows shown.",
+      "4. Widen the date range so the customer with no matching invoices now has one; re-check the label and the rows."
+    ],
+    "expected": "1. The Customer filter's collapsed label reads \"All customers.\"\n2. The report shows every customer matching the other active filters.\n3. The all-customers state is an explicit state — while it is active, any customer that appears later (new data) is included automatically.\n4. After the filter change the filter stays in the all-customers state (label still \"All customers\") and every customer matching the new filters is included — including the newly-appearing one, with no manual re-selection.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R4, S18-R5, S18-R9, S18-E1), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R4; S18-R5; S18-R9; S18-E1)",
+    "viu_status": "VIU-Pending",
+    "notes": "The label deliberately does NOT use an \"N of M\" form (2026-07-21 change) — an \"N of M\" label at VIU is a build-behind-spec deviation. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-ALLCUST): absorbed SBC-CUST-08. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8616 (SBC spec v16 2026-08-06 Story 18 S18-R4; S18-R5; S18-R9; S18-E1)",
+    "testrail_id": "C30115",
+    "section_id": 4293
+  },
+  {
+    "id": "SBC-CUST-05",
+    "area": "SBC — Customer Filter",
+    "title": "Collapsed label reads None, the customer's name, or N selected",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the Sales By Customer report with at least three customers in the current results."
+    ],
+    "steps": [
+      "1. Open the Customer filter and use \"Clear all\" to empty the selection; read the collapsed label.",
+      "2. Select exactly one customer; read the collapsed label.",
+      "3. Select a second and third customer; read the collapsed label.",
+      "4. Start typing a search query in the filter field and watch the field text, then clear the query or click away."
+    ],
+    "expected": "1. With an empty selection the collapsed label reads \"None.\"\n2. With exactly one customer selected the label shows that customer's name.\n3. With more than one selected the label reads \"N selected\" where N is the number of selected customers (for example \"3 selected\").\n4. While typing, the field shows the query text instead of the summary label; the summary label returns when the query is cleared or the field loses focus.\nWhat you should see today: with two customers picked the closed control reads \"2 customers\" instead of \"2 selected\", and while you type the closed control keeps showing the summary label instead of what you typed. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8962\n· If you see exactly that, mark this test FAILED and do not raise anything new.\n· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R5), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8962)",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R5)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8616 (SBC spec v16 2026-08-06 Story 18 S18-R5)",
+    "testrail_id": "C30116",
+    "section_id": 4293
+  },
+  {
+    "id": "SBC-CUST-06",
+    "area": "SBC — Customer Filter",
+    "title": "Changing the customer selection narrows the table and refreshes the totals",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the Sales By Customer report with at least three customers in the current results."
+    ],
+    "steps": [
+      "1. Note the customers and the totals row values.",
+      "2. Open the Customer filter, clear all, and select exactly two customers.",
+      "3. Read the table rows and the totals row."
+    ],
+    "expected": "1. The report shows only the two selected customers.\n2. The table refreshes as a fresh first page of results.\n3. The totals row updates to cover only the selected customers' matching invoices.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R5, S18-R11), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R5; S18-R11)",
+    "viu_status": "VIU-Pending",
+    "notes": "Server-side application of the filter is covered by SBC-API-04. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8616 (SBC spec v16 2026-08-06 Story 18 S18-R5; S18-R11)",
+    "testrail_id": "C30117",
+    "section_id": 4293
+  },
+  {
+    "id": "SBC-CUST-07",
+    "area": "SBC — Customer Filter",
+    "title": "Clearing every customer shows the empty state with a zero totals row",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the Sales By Customer report with data on screen."
+    ],
+    "steps": [
+      "1. Open the Customer filter and activate \"Clear all\" so no customer is selected.",
+      "2. Read the table body and the totals row."
+    ],
+    "expected": [
+      "1. The report shows the empty-state message \"No sales data found for the selected filters.\"",
+      "2. The totals row shows zeros.",
+      "3. The Customer filter's collapsed label reads \"None.\""
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-N1; S17-E1",
+    "viu_status": "Retired 2026-07-28 (merged into SBC-CUST-03 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SBC-CUST-08",
+    "area": "SBC — Customer Filter",
+    "title": "In the all-customers state a filter change keeps every customer included, including newly-appearing ones",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the report in the all-customers state.",
+      "2. A customer exists that has invoices ONLY in a wider date range than the current one (seed a ZZAUTOTEST invoice dated last month if needed)."
+    ],
+    "steps": [
+      "1. With the current (narrow) date range, confirm that customer is not shown.",
+      "2. Widen the date range so that customer's invoice now matches.",
+      "3. Check the table and the Customer filter label."
+    ],
+    "expected": [
+      "1. The filter stays in the all-customers state (label still \"All customers\").",
+      "2. Every customer matching the new filters is included — including the newly-present customer, without any manual re-selection."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R4; S18-R9; S18-E1",
+    "viu_status": "Retired 2026-07-28 (merged into SBC-CUST-04 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+    "notes": "The explicit all-customers flag (rather than an enumeration of ids) is the 2026-07-21 committed target — BUILD-DELTA possible at VIU.",
+    "api_related": false
+  },
+  {
+    "id": "SBC-CUST-09",
+    "area": "SBC — Customer Filter",
+    "title": "A subset customer selection reconciles on a filter change; kept if present",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the report with three customers A, B, C where: A has invoices in both this month and last month; B has invoices only in this month; C has invoices only in last month (seed ZZAUTOTEST data as needed).",
+      "2. Date range is This Month; you have selected exactly customers A and B in the Customer filter."
+    ],
+    "steps": [
+      "1. Change the date range to Last Month.",
+      "2. Read the table rows and the Customer filter selection."
+    ],
+    "expected": "1. Customer A (still present in the new results) stays selected and is shown.\n2. Customer B (no longer present) is dropped from the selection and not shown; it must be re-selected to appear if it later returns.\n3. Customer C (newly present) is NOT auto-selected and is not shown.\n4. The Customer filter selection itself is not cleared by the date change.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R9, S18-E1), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R9; S18-E1)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8616 (SBC spec v16 2026-08-06 Story 18 S18-R9; S18-E1)",
+    "testrail_id": "C30120",
+    "section_id": 4293
+  },
+  {
+    "id": "SBC-LOC-04",
+    "area": "SBC — Location Filter",
+    "title": "Location column: shown to any multi-location user, Multiple on aggregating rows",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "The ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are on the Sales By Customer report as a user with access to two or more locations.",
+      "2. At least one customer has invoices at two different locations, and at least one asset has invoices at two different locations."
+    ],
+    "steps": "1. With every location selected in the Location filter, read the column headers.\n2. Read the Location cell on a customer row whose invoices are all at one location.\n3. Read the Location cell on a customer row and an asset row whose invoices span two locations.\n4. Expand to an invoice row and read its Location cell.\n5. Open the column selector and look for Location in the list.\n6. Narrow the Location filter to a single location and read the headers again.\n7. With more than one location still selected, download all four files from the download menu (Summary and Expanded View, PDF and CSV) and read the columns in each one.",
+    "expected": "1. Because the signed-in person has access to more than one location, a Location column is shown by default, positioned immediately after the Date column.\n2. A customer or asset row whose invoices are all at one location shows that location's name.\n3. A customer or asset row whose invoices come from more than one location shows \"Multiple\".\n4. An invoice row always shows its own exact location - never \"Multiple\".\n5. Location is offered in the column-selection control and can be switched on and off by hand.\n6. Narrowing to a single location does NOT remove the column: what decides whether it is shown is how many locations the person can reach, not how many are currently selected.\n7. If the signed-in person only has access to ONE location, no Location column is shown to them at all and Location is not offered in their column-selection list.\n8. Every one of the four downloads also contains the Location column, in the same position it holds on screen, showing the same values you just read.\n\nWhat you should see today: the Location column behaves by how many locations are SELECTED, not by what the signed-in person can reach. With every location selected the column appears; narrow the Location filter to a single location and the column disappears, even though the person still has access to five locations. The column is also not listed in the column-selection control at all, so it cannot be switched on or off by hand. This was seen on all three handed-off reports.\n- If you see exactly that, mark this test FAILED and do not raise anything new - it is already written up for the QA lead.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so this note can be removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S4-R12, S4-R12a, S4-R13, S20-R19), read on 11 August 2026. Chris Ward confirmed this same rule in his answers of 8/10/2026, in this file: build/report-suite/chris-answers-2026-08-10/ - his answer and the specification agree, so the earlier note saying the description contradicted itself no longer applies.\nLast checked against build v3.5-4795eee on 8/10/2026.\n\nAUTOMATION: HOLD - the build does not follow the ratified Location rule; the defect is written up in DEFECTS-FOR-PERMISSION.md and needs the QA lead's permission before a ticket exists to point at",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8603; SV-8612; SV-8613 (SBC spec v13 2026-07-31 S4-R12; S4-R12a; S4-R13; S20-R19 — per-row Location column with automatic visibility; \"Multiple\" on aggregating rows; S4-R13 = the same column in every export)",
+    "viu_status": "VIU-Pending",
+    "notes": "NEW 2026-07-31. The per-row Location column is a suite-wide addition in Chris Ward's 2026-07-29 spec changelog (SBC v12 change-log row: \"added a per-row Location column (shown when more than one location is in scope; 'Multiple' on aggregating rows, exact on invoice rows) plus a 'Locations:' export line\"). The suite had NO coverage of this column. The \"Locations:\" export line itself is already covered by SBC-EXP-03 and SBC-EXP-09. Exact on-screen header capitalisation is VIU-confirm. Not live-verified (Rule 12). COVERAGE RE-DERIVATION 2026-07-31: extended to close S4-R13's second half — \"When the Location column is shown on screen (more than one location in scope S4-R12) every export also includes that Location column.\" The \"Locations:\" line half was already covered by SBC-EXP-09 (C30167) and SBC-EXP-03 (C30161); the exported COLUMN was covered nowhere. Owning story for S4-R13 = SV-8603 (SBC Story 4); the export stories SV-8612/SV-8613 are cited because the observation happens in their files. Extended rather than authored as a new case (Rule 28) — same control, and this case already establishes the >1-location scope a new case would have to re-seed. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8603; SV-8612; SV-8613 (SBC spec v16 2026-08-06 S4-R12; S4-R12a; S4-R13; S20-R19 - access-gated toggleable Location column; \"Multiple\" on aggregating rows; the same column in every export)",
+    "testrail_id": "C38912",
+    "section_id": 4292
+  }
 ]

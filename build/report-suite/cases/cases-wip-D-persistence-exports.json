@@ -1,544 +1,386 @@
 [
- {
-  "id": "WIP-PERS-01",
-  "area": "WIP — Column Selection & Persistence",
-  "title": "Column Selection toggles columns; Total is not offered at all",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. The Work In Progress report is open with rows loaded."
-  ],
-  "steps": [
-   "1. Hover the column-selection icon button in the toolbar and read its tooltip.",
-   "2. Open the control and toggle a column off, then on again, watching the table.",
-   "3. Look for the Total column in the control's list."
-  ],
-  "expected": [
-   "1. The icon button's tooltip reads \"Column Selection\".",
-   "2. Toggling a column off hides it from the table; toggling it on shows it again.",
-   "3. The Total column is always shown and cannot be turned off — it is not offered in the control at all.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S8-R1, S8-R2).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: HOLD - this part of the report is not built yet",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R1; S8-R2)",
-  "viu_status": "VIU-Pending",
-  "notes": "Tooltip text \"Column Selection\" is verbatim from the spec. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R1; S8-R2)"
- },
- {
-  "id": "WIP-PERS-02",
-  "area": "WIP — Column Selection & Persistence",
-  "title": "Toggling columns never reorders them (Total always last)",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. The Work In Progress report is open with rows in at least two tabs."
-  ],
-  "steps": [
-   "1. Turn several optional columns on and off in different orders (for example, turn on Inv. Hrs, then VIN, then Location).",
-   "2. Read the resulting column order after each change.",
-   "3. Switch to each of the other tabs and read their columns."
-  ],
-  "expected": [
-   "1. Whatever columns are shown, they always appear in the fixed left-to-right order (WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total) — the order you toggled them in never changes their position.",
-   "2. Total is always the last column.",
-   "3. The column selection applies to every tab at once — all four tabs show the same set of columns.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S8-R5, S8-R6, S4-R1).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R5; S8-R6; Story 4 S4-R1)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R5; S8-R6; Story 4 S4-R1)"
- },
- {
-  "id": "WIP-PERS-03",
-  "area": "WIP — Column Selection & Persistence",
-  "title": "Remembers the date range, filter selections, location, columns",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. The Work In Progress report is open."
-  ],
-  "steps": [
-   "1. Change the date range, select an advisor, a customer, and an asset, change the location selection, change the column selection, and switch to a different tab.",
-   "2. Navigate away to another screen, then return to the report.",
-   "3. Reload the browser page and check again.",
-   "4. If practical, open the report in a different browser (or private window) and read its settings."
-  ],
-  "expected": [
-   "1. On return and after a reload, the report restores the saved date range, advisor selection, customer selection, asset selection, location selection, column selection, and active tab.",
-   "2. In a different browser the report shows the defaults instead — the settings are saved per browser, not on the user's account.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S8-R7).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R7; §3 Key Decisions (context note: per-browser persistence))",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R7; §3 Key Decisions (context note: per-browser persistence))"
- },
- {
-  "id": "WIP-PERS-04",
-  "area": "WIP — Column Selection & Persistence",
-  "title": "A saved setting that is no longer valid falls back to its default",
-  "priority": "Medium",
-  "type": "Negative",
-  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. The report has saved settings in this browser that can be made stale (for example, a saved advisor/customer/asset selection whose jobs no longer load, or a saved location you no longer access)."
-  ],
-  "steps": [
-   "1. Make a saved value invalid (for example, remove your access to the saved location, or reload after the saved customer no longer appears in the loaded jobs).",
-   "2. Open the Work In Progress report."
-  ],
-  "expected": [
-   "1. The report loads normally — the invalid saved value falls back to that setting's default rather than breaking the view.",
-   "2. All other saved settings are still restored.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S8-R8).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R8)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R8)"
- },
- {
-  "id": "WIP-PERS-05",
-  "area": "WIP — Column Selection & Persistence",
-  "title": "A hand-made Location column choice is remembered like any other column",
-  "priority": "High",
-  "type": "Functional",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. You are signed in as a person who has access to more than one location.",
-   "3. The Work In Progress report is open with more than one location selected, so the Location column is showing."
-  ],
-  "steps": [
-   "1. Open the column-selection control and switch the Location column OFF by hand.",
-   "2. Go to another screen, then come back to the report.",
-   "3. Reload the browser page and look again.",
-   "4. Switch Location back ON by hand, then reload the page once more."
-  ],
-  "expected": [
-   "1. After going away and coming back, Location is still switched OFF - your choice was remembered.",
-   "2. After reloading the browser page, Location is still switched OFF.",
-   "3. After switching it back ON and reloading, Location is switched ON.",
-   "4. Everything else is remembered exactly as before - the other column choices, the date range, the filters and the tab you were on. Turning Location on or off changes nothing else.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S8-R7), which says the report remembers the column selection in the user's browser and puts it back on the next visit. Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, is what makes Location a column you can switch on and off at all, and it does not say whether that choice is remembered - so this test applies the existing written rule about remembered column choices to the new switch.",
-   "This has not yet been checked against a build.",
-   "",
-   "AUTOMATION: HOLD - waiting on an answer from the product owner",
-   ""
-  ],
-  "refs": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R7 - the report remembers the column selection in the browser; Location only became a switchable column in Chris Ward's answer T1-1 option C of 2026-08-05)",
-  "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R7 - the report remembers the column selection in the browser; Location only became a switchable column in Chris Ward's answer T1-1 option C of 2026-08-05)"
- },
- {
-  "id": "WIP-EXP-01",
-  "area": "WIP — Exports",
-  "title": "Work In Progress: a three-dot menu holds Download (PDF) and Download (CSV)",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite; the same permission covers downloads).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. The Work In Progress report is open with rows loaded."
-  ],
-  "steps": [
-   "1. Find and open the three-dot button in the toolbar.",
-   "2. Read the menu options.",
-   "3. Choose \"Download (PDF)\", then repeat with \"Download (CSV)\"."
-  ],
-  "expected": [
-   "1. The menu holds the download options \"Download (PDF)\" and \"Download (CSV)\".",
-   "2. Each option downloads a file of the current tab in the chosen format.",
-   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907",
-   "On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R1).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY - EXPECT FAIL (SV-8907)",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R1)",
-  "viu_status": "VIU-Pending",
-  "notes": "Menu option labels are verbatim from the spec. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R1)"
- },
- {
-  "id": "WIP-EXP-02",
-  "area": "WIP — Exports",
-  "title": "Downloads keep shown columns, honor filters, include the tab's Totals row",
-  "priority": "Critical",
-  "type": "Functional",
-  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. The report is open with a non-default column selection (for example, Inv. Hrs on and Advisor off), a chosen date range and location, and an advisor/customer/asset filter applied that hides some rows."
-  ],
-  "steps": [
-   "1. Download the current tab as a CSV and open it.",
-   "2. Compare its columns to the screen's visible columns and order.",
-   "3. Compare its rows to the jobs left visible by the filters.",
-   "4. Compare its Totals row to the on-screen Totals row.",
-   "5. Repeat the same checks in the PDF."
-  ],
-  "expected": [
-   "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last. One exception on this build: if you turn Inv. Hrs on, the download is refused - that column cannot be exported yet.",
-   "2. Both downloads honor the current date range and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.",
-   "3. Both downloads include a Totals row matching the on-screen Totals row for the tab.",
-   "4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to.",
-   "5. Note for the tester: the file carries the Location column whenever it is showing on screen. In the file it is headed \"Branch\", not \"Location\".",
-   "---",
-   "Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. For this report the two statements sit in the same written description as it stands today. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R2, S9-R3, S9-R4, S9-R10a, S7-R13, S9-E1). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: one requirement says it is offered there and can be toggled on or off, while another requirement in the same document still says the user does not toggle it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; the filters and the Totals row; S9-R10a = the \"Locations:\" line; S7-R13/S9-E1 = the automatic \"Branch\" column)",
-  "viu_status": "VIU-Pending",
-  "notes": "LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 109 chars; meaning unchanged; awaiting push authorization. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S9-R10a (the \"Locations:\" line in both downloads) added — asserted in expected 4. | 2026-08-03 verifier-fix [A/V-3]: The verifier asked for WIP S7-R13. Re-derived: the anchor that governs the export \"Locations:\" line is S9-R10a, which this case ALREADY cited - so the V-3 row was already half-satisfied. S7-R13 + S9-E1 are added because they govern the automatic Location column and its \"Branch\" export heading, which expected 1 needed a conditional for. Plain tester line added. RULE 41: Re-verified whole against WIP spec v6 2026-07-29: title, preconditions 1-2, steps 1-5, expected 1-4, refs, notes. S9-R2/R3/R4 and S9-R10a all resolve and match expected 1-4. SECOND FINDING (and a correction to the verifier): S7-R13 (L348) is the ON-SCREEN auto-visibility rule; the EXPORT rule is S9-R10a (L414) plus the \"Branch\" heading S9-E1 (L420). Expected 1's \"only the columns currently shown\" collided with the automatic Branch column — plain conditional line added. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; the filters and the Totals row; S9-R10a = the \"Locations:\" line; S7-R13/S9-E1 = the automatic \"Branch\" column)"
- },
- {
-  "id": "WIP-EXP-03",
-  "area": "WIP — Exports",
-  "title": "Downloaded money and Inv. Hrs values keep the on-screen formats",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. The current tab includes money values over $1,000 and, if producible, a negative value; the Inv. Hrs column is on."
-  ],
-  "steps": [
-   "1. Download the current tab as a CSV and open it in a plain-text editor.",
-   "2. Read a money value over one thousand dollars and check its quoting.",
-   "3. Read a money value under one thousand dollars and check it is unquoted.",
-   "4. Read the Inv. Hrs values.",
-   "5. Repeat the format checks in the PDF."
-  ],
-  "expected": [
-   "1. Money values use the same \"$1,234.56\" / \"-$1,234.56\" format as on screen; Inv. Hrs uses the same signed one-decimal format.",
-   "2. In the CSV, a money value containing a comma (a thousands separator) is enclosed in double-quotes per standard CSV rules.",
-   "3. A value without a comma is written unquoted.",
-   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907",
-   "On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R5, S9-R6).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY - EXPECT FAIL (SV-8907)",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R5; S9-R6)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R5; S9-R6)"
- },
- {
-  "id": "WIP-EXP-04",
-  "area": "WIP — Exports",
-  "title": "Inv. Hrs green/red coloring appears on screen and in the PDF; not the CSV",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. The Inv. Hrs column is on and the current tab includes positive and negative Inv. Hrs values."
-  ],
-  "steps": [
-   "1. Download the current tab as a PDF and look at the Inv. Hrs values' coloring.",
-   "2. Download the current tab as a CSV and inspect the Inv. Hrs values."
-  ],
-  "expected": [
-   "1. In the PDF, Inv. Hrs keeps the green (positive) / red (negative) coloring.",
-   "2. In the CSV, the Inv. Hrs column is monochrome — plain signed numbers with no color or markup.",
-   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907",
-   "On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R7).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY - EXPECT FAIL (SV-8907)",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R7)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R7)"
- },
- {
-  "id": "WIP-EXP-05",
-  "area": "WIP — Exports",
-  "title": "Days Open in a download is frozen at the moment the file is generated",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. The current tab shows rows with known creation dates and the Days Open column visible."
-  ],
-  "steps": [
-   "1. Note a row's on-screen Days Open value.",
-   "2. Download the current tab as a CSV and read the same row's Days Open.",
-   "3. Compare the two values."
-  ],
-  "expected": [
-   "1. In the download, Days Open is the whole number of days as of the moment the file is generated.",
-   "2. Because the screen computes Days Open live while the file freezes it at generation time, the file can legitimately show a day count one higher than the screen it was generated from — that difference is EXPECTED, not a defect.",
-   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907",
-   "On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R8).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY - EXPECT FAIL (SV-8907)",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R8; Story 4 context note (Days Open live vs frozen))",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R8; Story 4 context note (Days Open live vs frozen))"
- },
- {
-  "id": "WIP-EXP-06",
-  "area": "WIP — Exports",
-  "title": "The downloaded files are named \"wip-2-report.pdf\" and \"wip-2-report.csv\"",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. The Work In Progress report is open with rows loaded."
-  ],
-  "steps": [
-   "1. Download the current tab as a PDF and read the saved file's name.",
-   "2. Download the current tab as a CSV and read the saved file's name."
-  ],
-  "expected": [
-   "1. The PDF is named \"wip-2-report.pdf\".",
-   "2. The CSV is named \"wip-2-report.csv\".",
-   "3. These exact names (including the \"-2-\") are the specified current behavior.",
-   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907",
-   "On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R9).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY - EXPECT FAIL (SV-8907)",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R9 — S9-R9 CLOSES both file names verbatim including the \"-2-\" segment; so the exact strings ARE the requirement)",
-  "viu_status": "VIU-Pending",
-  "notes": "DOCUMENTED BEHAVIOR — DO NOT FILE. The \"wip-2-report.*\" filenames are the spec's stated names; do not file the unusual \"-2-\" as a defect. | 2026-08-03 verifier-fix [C/V-10]: Pins the two verbatim file names to WIP S9-R9 + spec version (Rule 42(b)). RULE 41: Re-verified whole against WIP spec v6 2026-07-29: title, preconditions 1-2, steps 1-2, expected 1-3, refs. S9-R9 verbatim L412: \"The downloaded files are named \\\"wip-2-report.pdf\\\" and \\\"wip-2-report.csv\\\".\" Expected 3 records that the \"-2-\" segment is the specified current behaviour. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R9 — S9-R9 CLOSES both file names verbatim including the \"-2-\" segment; so the exact strings ARE the requirement)"
- },
- {
-  "id": "WIP-EXP-07",
-  "area": "WIP — Exports",
-  "title": "Export headers read \"Unit\" and \"Branch\" — documented limitation, do not file",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. The Asset and Location columns are both turned on."
-  ],
-  "steps": [
-   "1. Read the two columns' headers on screen.",
-   "2. Download the current tab as a CSV and read the same two columns' headers.",
-   "3. Download the PDF and read them there too."
-  ],
-  "expected": [
-   "1. On screen the headers read \"Asset\" and \"Location\".",
-   "2. In BOTH the PDF and the CSV, the same two columns are headed \"Unit\" and \"Branch\".",
-   "3. This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior.",
-   "4. The on-screen Asset cell leads with the Unit #, which is what the export header \"Unit\" already reflects - so no header change is expected here.",
-   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907",
-   "On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-E1). Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY - EXPECT FAIL (SV-8907)",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8665 (WIP spec Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling; export header text unpinned)",
-  "viu_status": "VIU-Pending",
-  "notes": "DOCUMENTED LIMITATION - DO NOT FILE. The Unit/Branch export headers are a known v1 limitation, not a defect. Asset DATA re-ruled 2026-07-29 to the VIN chain per Chris Ward's answer A ('A is the correct answer'; chain = standard for all reports going forward), superseding the video P24 serial ruling (pre-edit body in chris-update-2026-07-29/backup/WIP-EXP-07.json); the spec's export header text (S9-E1 'Unit') predates both rulings - header text at export is unpinned, VIU-confirm. Title shortened to fit. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8665 (WIP spec Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling; export header text unpinned)"
- },
- {
-  "id": "WIP-EXP-08",
-  "area": "WIP — Exports",
-  "title": "The PDF shows the shop logo at the top when one is set",
-  "priority": "Low",
-  "type": "Functional",
-  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. The shop has a logo set in its settings."
-  ],
-  "steps": [
-   "1. Download the current tab as a PDF and look at the top of the document.",
-   "2. Download the current tab as a CSV and inspect the file."
-  ],
-  "expected": [
-   "1. The PDF shows the shop logo at the top.",
-   "2. The CSV never includes a logo (plain data only).",
-   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907",
-   "On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R10).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY - EXPECT FAIL (SV-8907)",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R10)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R10)"
- },
- {
-  "id": "WIP-EXP-09",
-  "area": "WIP — Exports",
-  "title": "Export notifications: success caption, \"Empty export\" warning",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. The report can be put in three states: rows present, no rows visible (filters leave nothing), and (if simulatable) a failing download, for example by disconnecting the network before the download.",
-   "3. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
-  ],
-  "steps": [
-   "1. With rows present, download the current tab and read the notification.",
-   "2. Filter the report until no rows are visible, download again, and read the notification.",
-   "3. If simulatable, force a download failure (for example, drop the network) and read the notification."
-  ],
-  "expected": [
-   "1. On a successful download, a success notification shows with the caption \"Data exported successfully.\"",
-   "2. When a download yields no rows, a warning notification shows titled \"Empty export\" with the caption \"Export didn't yield any results\".",
-   "3. When a download fails, an error notification shows: \"An error occurred while exporting the report. Please try again.\"",
-   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907",
-   "On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R11, S9-R12, S9-R13).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY - EXPECT FAIL (SV-8907)",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R11; S9-R12; S9-R13; §7 User Feedback Summary)",
-  "viu_status": "VIU-Pending",
-  "notes": "All three notification texts are verbatim from the spec/§7. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R11; S9-R12; S9-R13; §7 User Feedback Summary)"
- },
- {
-  "id": "WIP-EXP-10",
-  "area": "WIP — Exports",
-  "title": "An over-cap Work In Progress download is refused with the too-large message",
-  "priority": "Medium",
-  "type": "Negative",
-  "permissions_required": "A user with access to the Work In Progress reports permission.",
-  "preconditions": [
-   "1. A filter combination exists whose work-order rows on one tab exceed 10,000 (widest date range, all locations, no advisor/customer/asset narrowing). If the environment cannot reach 10,000 rows even fully widened, record the maximum reachable and mark the case Blocked-Env with that reason."
-  ],
-  "steps": [
-   "1. With the over-cap filter set, download the tab as a CSV.",
-   "2. Download the same tab as a PDF.",
-   "3. Narrow the filters below the cap and download once more."
-  ],
-  "expected": [
-   "1. For both the CSV and the PDF: no file is generated and no download starts.",
-   "2. An error toast is shown each time, reading exactly: \"This report is too large to export. Narrow the date range or filters, then try again.\" (dismissed by the user).",
-   "3. Below the cap the download works normally.",
-   "4. Note for the tester: on this environment the biggest single tab holds about 114 work orders, so you cannot make this message appear here. Record that and move on.",
-   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907",
-   "On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (Story 9); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY - EXPECT FAIL (SV-8907)",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8665 (WIP spec Story 9 — the 10; 000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line; his spec edit is pending)",
-  "viu_status": "VIU-Pending",
-  "notes": "NEW 2026-07-31. Q3 RULED 2026-07-31 (Chris Ward answer, option A, verbatim: \"this was not well thought out by me (the specs were written at different times)\"): the 10,000-row export cap applies to all six reports, including the three whose spec pages never mentioned it. Parts Velocity (PV-EXP-11 = C38885) and Technician Utilization (TU-EXP-09 = C38887) already had a cap case from the tech-plan pass; Work In Progress had none. The message is the one ruled suite-wide by his Q2 answer. The exact cap counting basis for a per-tab WIP download is not spelled out in the spec — confirm it live at VIU. Not live-verified (Rule 12). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8665 (WIP spec Story 9 — the 10; 000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line; his spec edit is pending)"
- }
+  {
+    "id": "WIP-PERS-01",
+    "area": "WIP — Column Selection & Persistence",
+    "title": "Column Selection toggles columns; Total is not offered at all",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Work In Progress report is open with rows loaded."
+    ],
+    "steps": [
+      "1. Hover the column-selection icon button in the toolbar and read its tooltip.",
+      "2. Open the control and toggle a column off, then on again, watching the table.",
+      "3. Look for the Total column in the control's list."
+    ],
+    "expected": "1. The icon button's tooltip reads \"Column Selection\".\n2. Toggling a column off hides it from the table; toggling it on shows it again.\n3. The Total column is always shown and cannot be turned off — it is not offered in the control at all.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S8-R1, S8-R2), read on 11 August 2026.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R1; S8-R2)",
+    "viu_status": "VIU-Pending",
+    "notes": "Tooltip text \"Column Selection\" is verbatim from the spec. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8664 (WIP spec v10 2026-08-06 Story 8 S8-R1; S8-R2)",
+    "testrail_id": "C30506",
+    "section_id": 4359
+  },
+  {
+    "id": "WIP-PERS-02",
+    "area": "WIP — Column Selection & Persistence",
+    "title": "Toggling columns never reorders them (Total always last)",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Work In Progress report is open with rows in at least two tabs."
+    ],
+    "steps": [
+      "1. Turn several optional columns on and off in different orders (for example, turn on Inv. Hrs, then VIN, then Location).",
+      "2. Read the resulting column order after each change.",
+      "3. Switch to each of the other tabs and read their columns."
+    ],
+    "expected": "1. Whatever columns are shown, they always appear in the fixed left-to-right order (WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total) — the order you toggled them in never changes their position.\n2. Total is always the last column.\n3. The column selection applies to every tab at once — all four tabs show the same set of columns.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S8-R5, S8-R6, S4-R1), read on 11 August 2026.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R5; S8-R6; Story 4 S4-R1)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8664 (WIP spec v10 2026-08-06 Story 8 S8-R5; S8-R6; Story 4 S4-R1)",
+    "testrail_id": "C30507",
+    "section_id": 4359
+  },
+  {
+    "id": "WIP-PERS-03",
+    "area": "WIP — Column Selection & Persistence",
+    "title": "Remembers the date range, filter selections, location, columns",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Work In Progress report is open."
+    ],
+    "steps": [
+      "1. Change the date range, select an advisor, a customer, and an asset, change the location selection, change the column selection, and switch to a different tab.",
+      "2. Navigate away to another screen, then return to the report.",
+      "3. Reload the browser page and check again.",
+      "4. If practical, open the report in a different browser (or private window) and read its settings."
+    ],
+    "expected": "1. On return and after a reload, the report restores the saved date range, advisor selection, customer selection, asset selection, location selection, column selection, and active tab.\n2. In a different browser the report shows the defaults instead — the settings are saved per browser, not on the user's account.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S8-R7), read on 11 August 2026.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R7; §3 Key Decisions (context note: per-browser persistence))",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8664 (WIP spec v10 2026-08-06 Story 8 S8-R7; §3 Key Decisions (context note: per-browser persistence))",
+    "testrail_id": "C30508",
+    "section_id": 4359
+  },
+  {
+    "id": "WIP-PERS-04",
+    "area": "WIP — Column Selection & Persistence",
+    "title": "A saved setting that is no longer valid falls back to its default",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The report has saved settings in this browser that can be made stale (for example, a saved advisor/customer/asset selection whose jobs no longer load, or a saved location you no longer access)."
+    ],
+    "steps": [
+      "1. Make a saved value invalid (for example, remove your access to the saved location, or reload after the saved customer no longer appears in the loaded jobs).",
+      "2. Open the Work In Progress report."
+    ],
+    "expected": "1. The report loads normally — the invalid saved value falls back to that setting's default rather than breaking the view.\n2. All other saved settings are still restored.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S8-R8), read on 11 August 2026.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R8)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8664 (WIP spec v10 2026-08-06 Story 8 S8-R8)",
+    "testrail_id": "C30509",
+    "section_id": 4359
+  },
+  {
+    "id": "WIP-PERS-05",
+    "area": "WIP — Column Selection & Persistence",
+    "title": "A hand-made Location column choice is remembered like any other column",
+    "priority": "High",
+    "type": "Functional",
+    "preconditions": "1. You are signed in to the ShopView App on a desktop browser.\n2. You are signed in as a person who has access to more than one location.\n3. The Work In Progress report is open and the Location column is showing.",
+    "steps": [
+      "1. Open the column-selection control and switch the Location column OFF by hand.",
+      "2. Go to another screen, then come back to the report.",
+      "3. Reload the browser page and look again.",
+      "4. Switch Location back ON by hand, then reload the page once more."
+    ],
+    "expected": "1. After going away and coming back, Location is still switched OFF - your choice was remembered.\n2. After reloading the browser page, Location is still switched OFF.\n3. After switching it back ON and reloading, Location is switched ON.\n4. Everything else is remembered exactly as before - the other column choices, the date range, the filters and the tab you were on. Turning Location on or off changes nothing else.\n\nWhat you should see today: you cannot start this test, because the Location column is not listed in the column-selection control at all, so there is no switch to turn off in step 1. The column appears and disappears on its own depending on how many locations are selected in the Location filter. This is the same problem written up for the QA lead against the other Location tests.\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so this note can be removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S8-R7 - the report remembers the column selection in the user's browser, and S4-R3 - Location is one of the columns offered in that control for a person with access to more than one location), read on 11 August 2026. Chris Ward confirmed this same rule in his answers of 8/10/2026, in this file: build/report-suite/chris-answers-2026-08-10/ - his answer and the specification agree, so the earlier note saying the description contradicted itself no longer applies.\nLast checked against build v3.5-4795eee on 8/10/2026.\n\nAUTOMATION: HOLD - the build does not follow the ratified Location rule; the defect is written up in DEFECTS-FOR-PERMISSION.md and needs the QA lead's permission before a ticket exists to point at",
+    "refs": "SV-8664 (WIP spec v10 2026-08-06 Story 8 S8-R7 - the report remembers the column selection in the browser; Story 4 S4-R3 - Location is a column-selector column for a multi-location-access user)",
+    "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R7 - the report remembers the column selection in the browser; Location only became a switchable column in Chris Ward's answer T1-1 option C of 2026-08-05)",
+    "testrail_id": "C43551",
+    "section_id": 4359
+  },
+  {
+    "id": "WIP-EXP-01",
+    "area": "WIP — Exports",
+    "title": "Work In Progress: a three-dot menu holds Download (PDF) and Download (CSV)",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite; the same permission covers downloads).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Work In Progress report is open with rows loaded."
+    ],
+    "steps": [
+      "1. Find and open the three-dot button in the toolbar.",
+      "2. Read the menu options.",
+      "3. Choose \"Download (PDF)\", then repeat with \"Download (CSV)\"."
+    ],
+    "expected": "1. The menu holds the download options \"Download (PDF)\" and \"Download (CSV)\".\n2. Each option downloads a file of the current tab in the chosen format.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R1), read on 11 August 2026.\nLast checked against build v3.5-4795eee on 8/10/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R1)",
+    "viu_status": "VIU-Pending",
+    "notes": "Menu option labels are verbatim from the spec. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8665 (WIP spec v10 2026-08-06 Story 9 S9-R1)",
+    "testrail_id": "C30510",
+    "section_id": 4360
+  },
+  {
+    "id": "WIP-EXP-02",
+    "area": "WIP — Exports",
+    "title": "Downloads keep shown columns, honor filters, include the tab's Totals row",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The report is open with a non-default column selection (for example, Inv. Hrs on and Advisor off), a chosen date range and location, and an advisor/customer/asset filter applied that hides some rows."
+    ],
+    "steps": [
+      "1. Download the current tab as a CSV and open it.",
+      "2. Compare its columns to the screen's visible columns and order.",
+      "3. Compare its rows to the jobs left visible by the filters.",
+      "4. Compare its Totals row to the on-screen Totals row.",
+      "5. Repeat the same checks in the PDF."
+    ],
+    "expected": "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last. One exception on this build: if you turn Inv. Hrs on, the download is refused - that column cannot be exported yet.\n2. Both downloads honor the current date range and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.\n3. Both downloads include a Totals row matching the on-screen Totals row for the tab.\n4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to.\n5. Note for the tester: the file carries the Location column whenever it is showing on screen. In the file it is headed \"Branch\", not \"Location\".\nWhat you should see today: the download fails outright whenever the tab has any rows, so none of the checks below can be made from a real file; a tab with no rows does download, and that file does carry the right columns, the \"Locations:\" line and a Totals row. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8907\n· If you see exactly that, mark this test FAILED and do not raise anything new.\n· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nNote for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. For this report the two statements sit in the same written description as it stands today. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R2, S9-R3, S9-R4, S9-R10a, S7-R13, S9-E1), read on 11 August 2026. Version 9 of that specification contradicted itself about whether the Location column can be switched on and off in the column-selection control, and this test used to say so. Chris Ward settled it in version 10 on 2026-08-06: S7-R13 now reads that the column is shown to anyone who can reach more than one location, appears by default, and can be toggled on or off from the column selector. The contradicting sentence has been removed from the written description, so there is no longer a question open on this point.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8907)",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; the filters and the Totals row; S9-R10a = the \"Locations:\" line; S7-R13/S9-E1 = the automatic \"Branch\" column)",
+    "viu_status": "VIU-Pending",
+    "notes": "LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 109 chars; meaning unchanged; awaiting push authorization. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S9-R10a (the \"Locations:\" line in both downloads) added — asserted in expected 4. | 2026-08-03 verifier-fix [A/V-3]: The verifier asked for WIP S7-R13. Re-derived: the anchor that governs the export \"Locations:\" line is S9-R10a, which this case ALREADY cited - so the V-3 row was already half-satisfied. S7-R13 + S9-E1 are added because they govern the automatic Location column and its \"Branch\" export heading, which expected 1 needed a conditional for. Plain tester line added. RULE 41: Re-verified whole against WIP spec v6 2026-07-29: title, preconditions 1-2, steps 1-5, expected 1-4, refs, notes. S9-R2/R3/R4 and S9-R10a all resolve and match expected 1-4. SECOND FINDING (and a correction to the verifier): S7-R13 (L348) is the ON-SCREEN auto-visibility rule; the EXPORT rule is S9-R10a (L414) plus the \"Branch\" heading S9-E1 (L420). Expected 1's \"only the columns currently shown\" collided with the automatic Branch column — plain conditional line added. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8665 (WIP spec v10 2026-08-06 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; the filters and the Totals row; S9-R10a = the \"Locations:\" line; S7-R13 rewritten in v10,resolving the v9 contradiction)",
+    "testrail_id": "C30511",
+    "section_id": 4360
+  },
+  {
+    "id": "WIP-EXP-03",
+    "area": "WIP — Exports",
+    "title": "Downloaded money and Inv. Hrs values keep the on-screen formats",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The current tab includes money values over $1,000 and, if producible, a negative value; the Inv. Hrs column is on."
+    ],
+    "steps": [
+      "1. Download the current tab as a CSV and open it in a plain-text editor.",
+      "2. Read a money value over one thousand dollars and check its quoting.",
+      "3. Read a money value under one thousand dollars and check it is unquoted.",
+      "4. Read the Inv. Hrs values.",
+      "5. Repeat the format checks in the PDF."
+    ],
+    "expected": "1. Money values use the same \"$1,234.56\" / \"-$1,234.56\" format as on screen; Inv. Hrs uses the same signed one-decimal format.\n2. In the CSV, a money value containing a comma (a thousands separator) is enclosed in double-quotes per standard CSV rules.\n3. A value without a comma is written unquoted.\nWhat you should see today: Nothing downloads. Both Download (PDF) and Download (CSV) fail on every tab that has any work orders in it - no file arrives and a red message appears reading \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\" All four tabs behave the same way (Approved - Partially Completed, Approved - Not Started, Completed and Estimates). The one case that DOES produce a file is a tab with no rows at all, and that file holds nothing but its two heading lines and a zero Totals row. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8907\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R5, S9-R6), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8907)",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R5; S9-R6)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8665 (WIP spec v10 2026-08-06 Story 9 S9-R5; S9-R6)",
+    "testrail_id": "C30512",
+    "section_id": 4360
+  },
+  {
+    "id": "WIP-EXP-04",
+    "area": "WIP — Exports",
+    "title": "Inv. Hrs green/red coloring appears on screen and in the PDF; not the CSV",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Inv. Hrs column is on and the current tab includes positive and negative Inv. Hrs values."
+    ],
+    "steps": [
+      "1. Download the current tab as a PDF and look at the Inv. Hrs values' coloring.",
+      "2. Download the current tab as a CSV and inspect the Inv. Hrs values."
+    ],
+    "expected": "1. In the PDF, Inv. Hrs keeps the green (positive) / red (negative) coloring.\n2. In the CSV, the Inv. Hrs column is monochrome — plain signed numbers with no color or markup.\nWhat you should see today: Nothing downloads. Both Download (PDF) and Download (CSV) fail on every tab that has any work orders in it - no file arrives and a red message appears reading \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\" All four tabs behave the same way (Approved - Partially Completed, Approved - Not Started, Completed and Estimates). The one case that DOES produce a file is a tab with no rows at all, and that file holds nothing but its two heading lines and a zero Totals row. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8907\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R7), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8907)",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R7)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8665 (WIP spec v10 2026-08-06 Story 9 S9-R7)",
+    "testrail_id": "C30513",
+    "section_id": 4360
+  },
+  {
+    "id": "WIP-EXP-05",
+    "area": "WIP — Exports",
+    "title": "Days Open in a download is frozen at the moment the file is generated",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The current tab shows rows with known creation dates and the Days Open column visible."
+    ],
+    "steps": [
+      "1. Note a row's on-screen Days Open value.",
+      "2. Download the current tab as a CSV and read the same row's Days Open.",
+      "3. Compare the two values."
+    ],
+    "expected": "1. In the download, Days Open is the whole number of days as of the moment the file is generated.\n2. Because the screen computes Days Open live while the file freezes it at generation time, the file can legitimately show a day count one higher than the screen it was generated from — that difference is EXPECTED, not a defect.\nWhat you should see today: Nothing downloads. Both Download (PDF) and Download (CSV) fail on every tab that has any work orders in it - no file arrives and a red message appears reading \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\" All four tabs behave the same way (Approved - Partially Completed, Approved - Not Started, Completed and Estimates). The one case that DOES produce a file is a tab with no rows at all, and that file holds nothing but its two heading lines and a zero Totals row. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8907\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R8), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8907)",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R8; Story 4 context note (Days Open live vs frozen))",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8665 (WIP spec v10 2026-08-06 Story 9 S9-R8; Story 4 context note (Days Open live vs frozen))",
+    "testrail_id": "C30514",
+    "section_id": 4360
+  },
+  {
+    "id": "WIP-EXP-06",
+    "area": "WIP — Exports",
+    "title": "The downloaded files are named \"wip-2-report.pdf\" and \"wip-2-report.csv\"",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Work In Progress report is open with rows loaded."
+    ],
+    "steps": [
+      "1. Download the current tab as a PDF and read the saved file's name.",
+      "2. Download the current tab as a CSV and read the saved file's name."
+    ],
+    "expected": "1. The PDF is named \"wip-2-report.pdf\".\n2. The CSV is named \"wip-2-report.csv\".\n3. These exact names (including the \"-2-\") are the specified current behavior.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R9), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R9 — S9-R9 CLOSES both file names verbatim including the \"-2-\" segment; so the exact strings ARE the requirement)",
+    "viu_status": "VIU-Pending",
+    "notes": "DOCUMENTED BEHAVIOR — DO NOT FILE. The \"wip-2-report.*\" filenames are the spec's stated names; do not file the unusual \"-2-\" as a defect. | 2026-08-03 verifier-fix [C/V-10]: Pins the two verbatim file names to WIP S9-R9 + spec version (Rule 42(b)). RULE 41: Re-verified whole against WIP spec v6 2026-07-29: title, preconditions 1-2, steps 1-2, expected 1-3, refs. S9-R9 verbatim L412: \"The downloaded files are named \\\"wip-2-report.pdf\\\" and \\\"wip-2-report.csv\\\".\" Expected 3 records that the \"-2-\" segment is the specified current behaviour. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8665 (WIP spec v10 2026-08-06 Story 9 S9-R9 — S9-R9 CLOSES both file names verbatim including the \"-2-\" segment; so the exact strings ARE the requirement)",
+    "testrail_id": "C30515",
+    "section_id": 4360
+  },
+  {
+    "id": "WIP-EXP-07",
+    "area": "WIP — Exports",
+    "title": "Export headers read \"Unit\" and \"Branch\" — documented limitation, do not file",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Asset and Location columns are both turned on."
+    ],
+    "steps": [
+      "1. Read the two columns' headers on screen.",
+      "2. Download the current tab as a CSV and read the same two columns' headers.",
+      "3. Download the PDF and read them there too."
+    ],
+    "expected": "1. On screen the headers read \"Asset\" and \"Location\".\n2. In BOTH the PDF and the CSV, the same two columns are headed \"Unit\" and \"Branch\".\n3. This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior.\n4. The on-screen Asset cell leads with the Unit #, which is what the export header \"Unit\" already reflects - so no header change is expected here.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-E1), read on 11 August 2026. Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8665 (WIP spec Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling; export header text unpinned)",
+    "viu_status": "VIU-Pending",
+    "notes": "DOCUMENTED LIMITATION - DO NOT FILE. The Unit/Branch export headers are a known v1 limitation, not a defect. Asset DATA re-ruled 2026-07-29 to the VIN chain per Chris Ward's answer A ('A is the correct answer'; chain = standard for all reports going forward), superseding the video P24 serial ruling (pre-edit body in chris-update-2026-07-29/backup/WIP-EXP-07.json); the spec's export header text (S9-E1 'Unit') predates both rulings - header text at export is unpinned, VIU-confirm. Title shortened to fit. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8665 (WIP spec Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling; export header text unpinned)",
+    "testrail_id": "C30516",
+    "section_id": 4360
+  },
+  {
+    "id": "WIP-EXP-08",
+    "area": "WIP — Exports",
+    "title": "The PDF shows the shop logo at the top when one is set",
+    "priority": "Low",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The shop has a logo set in its settings."
+    ],
+    "steps": [
+      "1. Download the current tab as a PDF and look at the top of the document.",
+      "2. Download the current tab as a CSV and inspect the file."
+    ],
+    "expected": "1. The PDF shows the shop logo at the top.\n2. The CSV never includes a logo (plain data only).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R10), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R10)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8665 (WIP spec v10 2026-08-06 Story 9 S9-R10)",
+    "testrail_id": "C30517",
+    "section_id": 4360
+  },
+  {
+    "id": "WIP-EXP-09",
+    "area": "WIP — Exports",
+    "title": "Export notifications: success caption, \"Empty export\" warning",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The report can be put in three states: rows present, no rows visible (filters leave nothing), and (if simulatable) a failing download, for example by disconnecting the network before the download.",
+      "3. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
+    ],
+    "steps": [
+      "1. With rows present, download the current tab and read the notification.",
+      "2. Filter the report until no rows are visible, download again, and read the notification.",
+      "3. If simulatable, force a download failure (for example, drop the network) and read the notification."
+    ],
+    "expected": "1. On a successful download, a success notification shows with the caption \"Data exported successfully.\"\n2. When a download yields no rows, a warning notification shows titled \"Empty export\" with the caption \"Export didn't yield any results\".\n3. When a download fails, an error notification shows: \"An error occurred while exporting the report. Please try again.\"\nWhat you should see today: Nothing downloads. Both Download (PDF) and Download (CSV) fail on every tab that has any work orders in it - no file arrives and a red message appears reading \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\" All four tabs behave the same way (Approved - Partially Completed, Approved - Not Started, Completed and Estimates). The one case that DOES produce a file is a tab with no rows at all, and that file holds nothing but its two heading lines and a zero Totals row. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8907\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R11, S9-R12, S9-R13), read on 11 August 2026. One caution for anyone checking the source: version 10 of that specification uses the number S9-R11 for two different requirements — one about a size limit on downloads, one about the success message. This test rests on the success-message one, under Error handling.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8907)",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R11; S9-R12; S9-R13; §7 User Feedback Summary)",
+    "viu_status": "VIU-Pending",
+    "notes": "All three notification texts are verbatim from the spec/§7. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8665 (WIP spec v10 2026-08-06 Story 9 S9-R11 under Error handling [v10 numbers S9-R11 TWICE - this is the notification one; the other is the export cap]; S9-R12; S9-R13; §7 User Feedback Summary)",
+    "testrail_id": "C30518",
+    "section_id": 4360
+  },
+  {
+    "id": "WIP-EXP-10",
+    "area": "WIP — Exports",
+    "title": "An over-cap Work In Progress download is refused with the too-large message",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "A user with access to the Work In Progress reports permission.",
+    "preconditions": [
+      "1. A filter combination exists whose work-order rows on one tab exceed 10,000 (widest date range, all locations, no advisor/customer/asset narrowing). If the environment cannot reach 10,000 rows even fully widened, record the maximum reachable and mark the case Blocked-Env with that reason."
+    ],
+    "steps": [
+      "1. With the over-cap filter set, download the tab as a CSV.",
+      "2. Download the same tab as a PDF.",
+      "3. Narrow the filters below the cap and download once more."
+    ],
+    "expected": "1. For both the CSV and the PDF: no file is generated and no download starts.\n2. An error toast is shown each time, reading exactly: \"This report is too large to export. Narrow the date range or filters, then try again.\" (dismissed by the user).\n3. Below the cap the download works normally.\n4. Note for the tester: on this environment the biggest single tab holds about 114 work orders, so you cannot make this message appear here. Record that and move on.\nWhy this test cannot be run here: the download has to be over the size limit before this message can appear, and no tab on this environment comes anywhere near it. On top of that, the Work In Progress download currently fails whenever the tab you are on has any rows in it at all - no file arrives and an error appears - which is a separate problem already reported here: https://shopview.atlassian.net/browse/SV-8907. So there is no way to reach the state this test is about. Leave the test as it is and move on.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R11, the one under Edge Cases), read on 11 August 2026, which now states this row limit and its exact message in the specification itself. Until 2026-08-06 the specification was silent on it and the expectation rested on Chris Ward's answer of 2026-07-31 that the limit applies to all six reports; his written description now says the same, so there is no longer any difference between the two.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: HOLD - the over-size refusal cannot be produced on this environment; no tab comes near the size limit",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8665 (WIP spec Story 9 — the 10; 000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line; his spec edit is pending)",
+    "viu_status": "VIU-Pending",
+    "notes": "NEW 2026-07-31. Q3 RULED 2026-07-31 (Chris Ward answer, option A, verbatim: \"this was not well thought out by me (the specs were written at different times)\"): the 10,000-row export cap applies to all six reports, including the three whose spec pages never mentioned it. Parts Velocity (PV-EXP-11 = C38885) and Technician Utilization (TU-EXP-09 = C38887) already had a cap case from the tech-plan pass; Work In Progress had none. The message is the one ruled suite-wide by his Q2 answer. The exact cap counting basis for a per-tab WIP download is not spelled out in the spec — confirm it live at VIU. Not live-verified (Rule 12). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8665 (WIP spec v10 2026-08-06 S9-R11 under Edge Cases — the 10;000-row export cap and its verbatim message are now IN the WIP spec; previously spec-silent and sourced from Chris Ward answer 2026-07-31 Q3=A; his spec edit is DONE)",
+    "testrail_id": "C38918",
+    "section_id": 4360
+  }
 ]

@@ -1,512 +1,395 @@
 [
- {
-  "id": "WIP-VIS-01",
-  "area": "WIP — Visual & Accessibility",
-  "title": "Each tab uses an all-white table with no alternating row shading",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. The Work In Progress report is open with several rows in each tab."
-  ],
-  "steps": [
-   "1. Look at the column headers and the data cells in each tab.",
-   "2. Compare the background of consecutive rows."
-  ],
-  "expected": [
-   "1. Each tab uses an all-white table: white column headers and white data cells.",
-   "2. There is no alternating row shading (no zebra striping).",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S10-R1).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R1)",
-  "viu_status": "VIU-Pending",
-  "notes": "COMPANION-VIDEO 2026-07-30 (C12, 08:06-08:51) VISUAL-VIU-CONFIRM: 'All reports are modeled after technician efficiency ... the most recently updated visual representation ... that won't hold forever ... ideally all six reports will look as close together as possible.' Use Technician Efficiency as the side-by-side styling reference at VIU (grain of salt — the reference may move); ignore the PO's local coloring drift (fake/local artifact). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R1)"
- },
- {
-  "id": "WIP-VIS-02",
-  "area": "WIP — Visual & Accessibility",
-  "title": "The summary strip is a bold band ruled top and bottom above the tabs",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. The Work In Progress report is open with rows loaded."
-  ],
-  "steps": [
-   "1. Look at where the summary strip sits relative to the four tabs.",
-   "2. Look at how the strip is visually delineated."
-  ],
-  "expected": [
-   "1. The summary strip appears above the tabs.",
-   "2. It is shown as a bold band delineated by a top and bottom rule — not as a row of separate cards.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S10-R2).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R2)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R2)"
- },
- {
-  "id": "WIP-VIS-03",
-  "area": "WIP — Visual & Accessibility",
-  "title": "The Total column is bold and stays pinned right on sideways scroll",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. Enough columns are turned on that the table scrolls horizontally."
-  ],
-  "steps": [
-   "1. Look at the Total column header and its cells.",
-   "2. Scroll the rows sideways and watch the Total column."
-  ],
-  "expected": [
-   "1. The Total column header is bold and pinned to the far right, matching its cells.",
-   "2. The Total column (header and cells, shown in bold) stays fixed to the right edge while the rest of the columns scroll underneath.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R22, S10-R3).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R22; Story 10 S10-R3)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R22; Story 10 S10-R3)"
- },
- {
-  "id": "WIP-VIS-04",
-  "area": "WIP — Visual & Accessibility",
-  "title": "The Totals row stays visible while only the active tab's body scrolls",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. A tab has more rows than fit on the screen."
-  ],
-  "steps": [
-   "1. Scroll the rows up and down and watch the Totals row.",
-   "2. Look at the page for a second scrollbar outside the table."
-  ],
-  "expected": [
-   "1. The Totals row stays visible at the bottom while the rows scroll.",
-   "2. The report fills the available height and only the active tab's table body scrolls — the page itself does not add a second scrollbar.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S10-R4, S10-R5).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R4; S10-R5)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R4; S10-R5)"
- },
- {
-  "id": "WIP-VIS-05",
-  "area": "WIP — Visual & Accessibility",
-  "title": "The WO # link is keyboard-focusable and opens the work order",
-  "priority": "Medium",
-  "type": "Accessibility",
-  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. The Work In Progress report is open with rows loaded."
-  ],
-  "steps": [
-   "1. Using only the keyboard (Tab key), move focus to a row's WO # link.",
-   "2. Look for a visible focus indicator on the link.",
-   "3. Press Enter to activate it."
-  ],
-  "expected": [
-   "1. The WO # link can receive keyboard focus.",
-   "2. A visible focus indicator shows when it is focused.",
-   "3. Activating it opens the work order (in the same browser tab).",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S10-R6).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R6)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R6)"
- },
- {
-  "id": "WIP-VIS-06",
-  "area": "WIP — Visual & Accessibility",
-  "title": "Each summary figure's info icon is keyboard-reachable and screen-read",
-  "priority": "Medium",
-  "type": "Accessibility",
-  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
-  ],
-  "steps": [
-   "1. Using only the keyboard, move focus to each summary figure's information icon.",
-   "2. Check that the explanation is revealed on focus (not hover alone).",
-   "3. With the screen reader or accessibility inspector, check that the explanation text is exposed to assistive technology."
-  ],
-  "expected": [
-   "1. Each information icon is reachable by keyboard focus.",
-   "2. Its explanation is revealed on focus, not by hover alone.",
-   "3. The explanation text is exposed to assistive technology.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S10-R7, S5-R12).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R7; Story 5 S5-R12)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R7; Story 5 S5-R12)"
- },
- {
-  "id": "WIP-VIS-07",
-  "area": "WIP — Visual & Accessibility",
-  "title": "In dark mode every table; strip; link and coloring stays legible",
-  "priority": "Medium",
-  "type": "Accessibility",
-  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. The application is switched to dark mode.",
-   "3. The report shows rows including positive and negative Inv. Hrs values and a two-line asset cell."
-  ],
-  "steps": [
-   "1. Read the table headers and cells in dark mode.",
-   "2. Read the summary strip, the WO # link, the Inv. Hrs colors, and the two-line asset cell (bold unit over muted VIN)."
-  ],
-  "expected": [
-   "1. The report supports dark mode.",
-   "2. The table, the summary strip, the WO # link, the Inv. Hrs green/red coloring, and the two-line asset cell all use dark-mode-legible colors meeting contrast.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S10-R9).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R9)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R9)"
- },
- {
-  "id": "WIP-PERM-01",
-  "area": "WIP — Permissions",
-  "title": "Ordinary reports access covers opening and downloading Work In Progress",
-  "priority": "Critical",
-  "type": "Functional",
-  "permissions_required": "A role with the permission that grants access to Work In Progress reports.",
-  "preconditions": [
-   "1. A test user exists whose role has the ordinary reports access (assign the Tech user a suitable role if needed; restore the original role afterward).",
-   "2. You are signed in as that user on a desktop browser."
-  ],
-  "steps": [
-   "1. Open the reports navigation and find \"Work In Progress\".",
-   "2. Open the report.",
-   "3. Download the current tab as a CSV."
-  ],
-  "expected": [
-   "1. The report is listed and opens normally.",
-   "2. The download works with the same permission — the specification allows the one ordinary reports access to cover the report and its downloads, with no new permission for it.",
-   "3. Note for the tester: the specification allows ONE ordinary reports access for all six of these new reports and no per-report permission. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (Story 1 Prerequisites).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8657 (WIP spec Story 1 Prerequisites — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\"; the WIP prerequisite still names a Work In Progress reports permission — his spec edit owed)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU-confirm WHICH existing reporting permission gates this report — the spec does not name it; capture the exact permission label live and tighten this case then. Do not invent a permission name. | 2026-08-03: reworded to the SINGLE ordinary reports permission. Driver = Chris Ward Q2=A (\"Collapse all report access into a single Reports permission\") + the QA lead's ruling 2026-08-03 verbatim \"Yes all the reports will be gated by ONE permission FOR NOW\". \"FOR NOW\" is deliberate — the model is modular and may expand, so a later expansion is a planned change, NOT a regression. re-verified whole against WIP spec v6 (Confluence 703660034; lastModified 2026-07-29; re-checked live 2026-08-03). The exact on-screen name of the reports permission is VIU-confirm (no QA branch). The report's own written description still names a per-area permission — Chris owes that edit. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8657 (WIP spec Story 1 Prerequisites — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\"; the WIP prerequisite still names a Work In Progress reports permission — his spec edit owed)"
- },
- {
-  "id": "WIP-PERM-02",
-  "area": "WIP — Permissions",
-  "title": "Without reports access Work In Progress is absent from the navigation",
-  "priority": "Critical",
-  "type": "Negative",
-  "permissions_required": "A role WITHOUT the permission that grants access to Work In Progress reports.",
-  "preconditions": [
-   "1. A test user exists whose role does NOT have reports access (assign the Tech user such a role; restore the original role afterward).",
-   "2. You are signed in as that user on a desktop browser."
-  ],
-  "steps": [
-   "1. Open the reports navigation.",
-   "2. Look for \"Work In Progress\" under the Performance group."
-  ],
-  "expected": [
-   "1. The report does not appear in the navigation for this user.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S1-N1).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8657 (WIP spec Story 1 S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\")",
-  "viu_status": "VIU-Pending",
-  "notes": "Per Standing Rule 10, verify live AS the role — never derive from role definitions. Also probe direct navigation to the report's URL at VIU and record the observed behavior (the spec pins only the navigation hiding). | 2026-08-03: reworded to the SINGLE ordinary reports permission. Driver = Chris Ward Q2=A (\"Collapse all report access into a single Reports permission\") + the QA lead's ruling 2026-08-03 verbatim \"Yes all the reports will be gated by ONE permission FOR NOW\". \"FOR NOW\" is deliberate — the model is modular and may expand, so a later expansion is a planned change, NOT a regression. re-verified whole against WIP spec v6 (Confluence 703660034; lastModified 2026-07-29; re-checked live 2026-08-03). The exact on-screen name of the reports permission is VIU-confirm (no QA branch). The report's own written description still names a per-area permission — Chris owes that edit. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": false,
-  "refs": "SV-8657 (WIP spec Story 1 S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\")"
- },
- {
-  "id": "WIP-API-01",
-  "area": "WIP — API",
-  "title": "Nightly snapshot records one row per then-open job per calendar date",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Backend/database (or dev-support) access to inspect the stored WIP snapshot rows — this is a backend capture behavior that runs without a signed-in user.",
-  "preconditions": [
-   "1. Open work orders exist across the organization on the capture date.",
-   "2. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers).",
-   "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
-  ],
-  "steps": [
-   "1. Note the set of open work orders before the nightly capture runs.",
-   "2. After the capture, inspect the stored snapshot rows for that calendar date.",
-   "3. Let the capture run again the next day and inspect again.",
-   "4. If a manual re-run of the capture is available, re-run it for the same date and inspect that date's rows again."
-  ],
-  "expected": [
-   "1. Once per day the system records one row per then-open work order — one row per work order per calendar date.",
-   "2. The next day's capture adds a new row per open work order under the new date; a work order open on both days has one row for each date, never two rows for the same date.",
-   "3. Re-running the capture for the SAME date replaces that date's rows — the day's existing rows are removed and re-recorded from current data, never duplicated.",
-   "4. Each snapshot row captures, at minimum: the work order, its status, its Earned value, its Remaining value, the location and organization (copied from the work order), and the snapshot's calendar date.",
-   "---",
-   "Note for the tester: you cannot check this one from any screen. These figures are written each night by a background process, and nothing in the report reads them back in this version. If you cannot see the figures anywhere, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S11-R1, S11-R2).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R1; tech-plan-2026-07-29 B1.2 (idempotent re-run — WIP spec Story 11 is silent on re-runs); Story 11 S11-R2)",
-  "viu_status": "VIU-Pending",
-  "notes": "The spec defines job behavior only — NO endpoint or table name is specified and none is invented here. VIU-confirm with dev how to trigger/inspect the capture (schedule time, storage, any manual re-run). TECH-PLAN EDIT 2026-07-30: re-run idempotency (delete-and-re-record per location/work order/date) comes from the engineering plan B1.2 — the WIP spec is silent on it (the IV spec's S11-R3 twin has it); confirm live and flag to Chris if the spec re-diff still lacks it. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": true,
-  "refs": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R1; tech-plan-2026-07-29 B1.2 (idempotent re-run — WIP spec Story 11 is silent on re-runs); Story 11 S11-R2)"
- },
- {
-  "id": "WIP-API-02",
-  "area": "WIP — API",
-  "title": "Each snapshot row captures the WO; status; money; location and the date",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Backend/database (or dev-support) access to inspect the stored WIP snapshot rows.",
-  "preconditions": [
-   "1. At least one open work order with known status, location, and organization existed when the nightly capture ran.",
-   "2. You can inspect that date's stored snapshot rows.",
-   "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
-  ],
-  "steps": [
-   "1. Find the seeded work order's snapshot row for the capture date.",
-   "2. Read each captured field and compare to the work order."
-  ],
-  "expected": [
-   "1. The snapshot row captures, at minimum: the work order, its status, its Earned value, its Remaining value, the location and organization (copied from the work order), and the snapshot's calendar date.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R2)."
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R2)",
-  "viu_status": "Retired - 2026-08-04 (merged into WIP-API-01 (C30528) under MG-WIP-SNAPSHOT-SHAPE; its unique assertions were folded into the survivor BEFORE deletion; C30529 deleted from TestRail; prev status VIU-Pending)",
-  "notes": "Generic backend wording — no schema/endpoint invented; confirm the concrete storage shape with dev at VIU. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md | RETIRED 2026-08-04 (QA-lead-authorised merge/cut): merged into WIP-API-01 (C30528) under MG-WIP-SNAPSHOT-SHAPE; its unique assertions were folded into the survivor BEFORE deletion; C30529 deleted from TestRail. delete_case C30529 returned HTTP 200 and the re-GET returned HTTP 400 = gone. Body kept locally for the record; row removed from testrail-id-map.csv (the mapping is preserved here and in the Step-1 count reconciliation). Prior viu_status was: VIU-Pending",
-  "api_related": true
- },
- {
-  "id": "WIP-API-03",
-  "area": "WIP — API",
-  "title": "Captured Earned and Remaining use the same maths as the on-screen report",
-  "priority": "Critical",
-  "type": "Functional",
-  "permissions_required": "Backend/database (or dev-support) access to inspect the stored WIP snapshot rows, plus the Work In Progress reports permission for the on-screen comparison.",
-  "preconditions": [
-   "1. An open ZZAUTOTEST work order with known approved labor (partly clocked) and approved parts (partly received) exists and is left UNCHANGED across the capture.",
-   "2. You can read the on-screen report on the capture date and the stored snapshot row afterward.",
-   "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.",
-   "4. The work order's Earned/Remaining include non-round cent values (for example $123.45), so lost cents would be visible."
-  ],
-  "steps": [
-   "1. On the capture date, note the work order's Earned and Remaining on the Work In Progress report.",
-   "2. After the nightly capture, read the same work order's captured Earned and Remaining in the snapshot row.",
-   "3. Compare the pairs."
-  ],
-  "expected": [
-   "1. The captured Earned equals the on-screen Earned and the captured Remaining equals the on-screen Remaining, to the cent — the snapshot uses the identical computation for both figures, so the two can never diverge for a given work order on the capture date.",
-   "2. The captured dollar values are stored to the cent — no rounding to whole dollars and no lost cents.",
-   "---",
-   "Note for the tester: you cannot check this one from any screen. These figures are written each night by a background process, and nothing in the report reads them back in this version. If you cannot see the figures anywhere, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S11-R3, S11-R5).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R3; Story 11 S11-R5)",
-  "viu_status": "VIU-Pending",
-  "notes": "AUDIT 2026-07-31 (Rule 20 / Dimension 3): a spec anchor was removed from the tester-facing expected - the assertion is unchanged; the anchor stays in this case's References field where it belongs. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": true,
-  "refs": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R3; Story 11 S11-R5)"
- },
- {
-  "id": "WIP-API-04",
-  "area": "WIP — API",
-  "title": "Nightly snapshot spans every location with no user location filter",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Backend/database (or dev-support) access to inspect the stored WIP snapshot rows.",
-  "preconditions": [
-   "1. Open service work orders exist at two or more different locations.",
-   "2. An Invoiced (or Paid/Declined) work order and a part-sale work order also exist.",
-   "3. You can inspect the capture date's snapshot rows.",
-   "4. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
-  ],
-  "steps": [
-   "1. After the nightly capture, list the snapshot rows for the date.",
-   "2. Check that open service work orders from EVERY location are present.",
-   "3. Look for the Invoiced/Paid/Declined work order and the part-sale work order."
-  ],
-  "expected": [
-   "1. The captured set uses the same service-type and open-status conditions as the report (service work orders in Estimate, Approved, In Progress, Review, or Complete).",
-   "2. The capture spans every location — there is no user-selected-location filter.",
-   "3. Invoiced, Paid, and Declined work orders and part-sale work orders are not captured.",
-   "---",
-   "Note for the tester: you cannot check this one from any screen. These figures are written each night by a background process, and nothing in the report reads them back in this version. If you cannot see the figures anywhere, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S11-R4, S2-R1).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R4; Story 2 S2-R1 (first two conditions))",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": true,
-  "refs": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R4; Story 2 S2-R1 (first two conditions))"
- },
- {
-  "id": "WIP-API-05",
-  "area": "WIP — API",
-  "title": "Nightly snapshot: captured dollar values are stored to the cent",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Backend/database (or dev-support) access to inspect the stored WIP snapshot rows.",
-  "preconditions": [
-   "1. An open work order whose Earned/Remaining include non-round cent values (for example $123.45) existed at capture time.",
-   "2. You can inspect the stored snapshot rows.",
-   "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
-  ],
-  "steps": [
-   "1. Read the captured Earned and Remaining values for the work order.",
-   "2. Compare their precision to the on-screen values."
-  ],
-  "expected": [
-   "1. Captured dollar values are stored to the cent — no rounding to whole dollars and no lost cents.",
-   "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R5)."
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R5)",
-  "viu_status": "Retired - 2026-08-04 (merged into WIP-API-03 (C30530) under MG-WIP-SNAPSHOT-PRECISION; its unique assertions were folded into the survivor BEFORE deletion; C30532 deleted from TestRail; prev status VIU-Pending)",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md | RETIRED 2026-08-04 (QA-lead-authorised merge/cut): merged into WIP-API-03 (C30530) under MG-WIP-SNAPSHOT-PRECISION; its unique assertions were folded into the survivor BEFORE deletion; C30532 deleted from TestRail. delete_case C30532 returned HTTP 200 and the re-GET returned HTTP 400 = gone. Body kept locally for the record; row removed from testrail-id-map.csv (the mapping is preserved here and in the Step-1 count reconciliation). Prior viu_status was: VIU-Pending",
-  "api_related": true
- },
- {
-  "id": "WIP-API-06",
-  "area": "WIP — API",
-  "title": "Nightly snapshot: a job with nothing approved is captured at $0.00; not skipped",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Backend/database (or dev-support) access to inspect the stored WIP snapshot rows.",
-  "preconditions": [
-   "1. An open ZZAUTOTEST estimate with no approved line items existed at capture time.",
-   "2. You can inspect the capture date's snapshot rows.",
-   "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
-  ],
-  "steps": [
-   "1. After the nightly capture, look for the nothing-approved work order among the date's snapshot rows.",
-   "2. Read its captured Earned and Remaining values."
-  ],
-  "expected": [
-   "1. The work order IS captured (not skipped).",
-   "2. Its Earned is $0.00 and its Remaining is $0.00, matching what the report shows on screen for a job with nothing approved.",
-   "---",
-   "Note for the tester: you cannot check this one from any screen. These figures are written each night by a background process, and nothing in the report reads them back in this version. If you cannot see the figures anywhere, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.",
-   "",
-   "---",
-   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S11-R6, S4-E1).",
-   "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
-   "",
-   "AUTOMATION: READY",
-   ""
-  ],
-  "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R6; Story 4 S4-E1)",
-  "viu_status": "VIU-Pending",
-  "notes": "AUDIT 2026-07-31 (Rule 20 / Dimension 3): a spec anchor was removed from the tester-facing expected - the assertion is unchanged; the anchor stays in this case's References field where it belongs. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-  "api_related": true,
-  "refs": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R6; Story 4 S4-E1)"
- }
+  {
+    "id": "WIP-VIS-01",
+    "area": "WIP — Visual & Accessibility",
+    "title": "Each tab uses an all-white table with no alternating row shading",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Work In Progress report is open with several rows in each tab."
+    ],
+    "steps": [
+      "1. Look at the column headers and the data cells in each tab.",
+      "2. Compare the background of consecutive rows."
+    ],
+    "expected": "1. Each tab uses an all-white table: white column headers and white data cells.\n2. There is no alternating row shading (no zebra striping).\nWhat you should see today: the whole table - headings, data rows and the Totals row - is the pale blue-grey rather than white. There is correctly no alternating shading. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8970\n· If you see exactly that, mark this test FAILED and do not raise anything new.\n· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S10-R1), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8970)",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R1)",
+    "viu_status": "VIU-Pending",
+    "notes": "COMPANION-VIDEO 2026-07-30 (C12, 08:06-08:51) VISUAL-VIU-CONFIRM: 'All reports are modeled after technician efficiency ... the most recently updated visual representation ... that won't hold forever ... ideally all six reports will look as close together as possible.' Use Technician Efficiency as the side-by-side styling reference at VIU (grain of salt — the reference may move); ignore the PO's local coloring drift (fake/local artifact). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8666 (WIP spec v10 2026-08-06 Story 10 S10-R1)",
+    "testrail_id": "C30519",
+    "section_id": 4361
+  },
+  {
+    "id": "WIP-VIS-02",
+    "area": "WIP — Visual & Accessibility",
+    "title": "The summary strip is a bold band ruled top and bottom above the tabs",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Work In Progress report is open with rows loaded."
+    ],
+    "steps": [
+      "1. Look at where the summary strip sits relative to the four tabs.",
+      "2. Look at how the strip is visually delineated."
+    ],
+    "expected": "1. The summary strip appears above the tabs.\n2. It is shown as a bold band delineated by a top and bottom rule — not as a row of separate cards.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S10-R2), read on 11 August 2026.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R2)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8666 (WIP spec v10 2026-08-06 Story 10 S10-R2)",
+    "testrail_id": "C30520",
+    "section_id": 4361
+  },
+  {
+    "id": "WIP-VIS-03",
+    "area": "WIP — Visual & Accessibility",
+    "title": "The Total column is bold and stays pinned right on sideways scroll",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Enough columns are turned on that the table scrolls horizontally."
+    ],
+    "steps": [
+      "1. Look at the Total column header and its cells.",
+      "2. Scroll the rows sideways and watch the Total column."
+    ],
+    "expected": "1. The Total column header is bold and pinned to the far right, matching its cells.\n2. The Total column (header and cells, shown in bold) stays fixed to the right edge while the rest of the columns scroll underneath.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R22, S10-R3), read on 11 August 2026.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R22; Story 10 S10-R3)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8660 (WIP spec v10 2026-08-06 Story 4 S4-R22; Story 10 S10-R3)",
+    "testrail_id": "C30521",
+    "section_id": 4361
+  },
+  {
+    "id": "WIP-VIS-04",
+    "area": "WIP — Visual & Accessibility",
+    "title": "The Totals row stays visible while only the active tab's body scrolls",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. A tab has more rows than fit on the screen."
+    ],
+    "steps": [
+      "1. Scroll the rows up and down and watch the Totals row.",
+      "2. Look at the page for a second scrollbar outside the table."
+    ],
+    "expected": "1. The Totals row stays visible at the bottom while the rows scroll.\n2. The report fills the available height and only the active tab's table body scrolls — the page itself does not add a second scrollbar.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S10-R4, S10-R5), read on 11 August 2026.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R4; S10-R5)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8666 (WIP spec v10 2026-08-06 Story 10 S10-R4; S10-R5)",
+    "testrail_id": "C30522",
+    "section_id": 4361
+  },
+  {
+    "id": "WIP-VIS-05",
+    "area": "WIP — Visual & Accessibility",
+    "title": "The WO # link is keyboard-focusable and opens the work order",
+    "priority": "Medium",
+    "type": "Accessibility",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Work In Progress report is open with rows loaded."
+    ],
+    "steps": [
+      "1. Using only the keyboard (Tab key), move focus to a row's WO # link.",
+      "2. Look for a visible focus indicator on the link.",
+      "3. Press Enter to activate it."
+    ],
+    "expected": "1. The WO # link can receive keyboard focus.\n2. A visible focus indicator shows when it is focused.\n3. Activating it opens the work order (in the same browser tab).\nWhat you should see today: there is no WO number link to put keyboard focus on, because the WO number is plain text for everyone. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8967\n· If you see exactly that, mark this test FAILED and do not raise anything new.\n· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S10-R6), read on 11 August 2026.\nLast checked against build v3.5-4795eee on 8/10/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8967)",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R6)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8666 (WIP spec v10 2026-08-06 Story 10 S10-R6)",
+    "testrail_id": "C30523",
+    "section_id": 4361
+  },
+  {
+    "id": "WIP-VIS-06",
+    "area": "WIP — Visual & Accessibility",
+    "title": "Each summary figure's info icon is keyboard-reachable and screen-read",
+    "priority": "Medium",
+    "type": "Accessibility",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+    ],
+    "steps": [
+      "1. Using only the keyboard, move focus to each summary figure's information icon.",
+      "2. Check that the explanation is revealed on focus (not hover alone).",
+      "3. With the screen reader or accessibility inspector, check that the explanation text is exposed to assistive technology."
+    ],
+    "expected": "1. Each information icon is reachable by keyboard focus.\n2. Its explanation is revealed on focus, not by hover alone.\n3. The explanation text is exposed to assistive technology.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S10-R7, S5-R12), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R7; Story 5 S5-R12)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8666 (WIP spec v10 2026-08-06 Story 10 S10-R7; Story 5 S5-R12)",
+    "testrail_id": "C30524",
+    "section_id": 4361
+  },
+  {
+    "id": "WIP-VIS-07",
+    "area": "WIP — Visual & Accessibility",
+    "title": "In dark mode every table; strip; link and coloring stays legible",
+    "priority": "Medium",
+    "type": "Accessibility",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The application is switched to dark mode.",
+      "3. The report shows rows including positive and negative Inv. Hrs values and a two-line asset cell."
+    ],
+    "steps": [
+      "1. Read the table headers and cells in dark mode.",
+      "2. Read the summary strip, the WO # link, the Inv. Hrs colors, and the two-line asset cell (bold unit over muted VIN)."
+    ],
+    "expected": "1. The report supports dark mode.\n2. The table, the summary strip, the WO # link, the Inv. Hrs green/red coloring, and the two-line asset cell all use dark-mode-legible colors meeting contrast.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S10-R9), read on 11 August 2026.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R9)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8666 (WIP spec v10 2026-08-06 Story 10 S10-R9)",
+    "testrail_id": "C30525",
+    "section_id": 4361
+  },
+  {
+    "id": "WIP-PERM-01",
+    "area": "WIP — Permissions",
+    "title": "Ordinary reports access covers opening and downloading Work In Progress",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports.",
+    "preconditions": [
+      "1. A test user exists whose role has the ordinary reports access (assign the Tech user a suitable role if needed; restore the original role afterward).",
+      "2. You are signed in as that user on a desktop browser."
+    ],
+    "steps": [
+      "1. Open the reports navigation and find \"Work In Progress\".",
+      "2. Open the report.",
+      "3. Download the current tab as a CSV."
+    ],
+    "expected": "1. The report is listed and opens normally.\n2. The download works with the same permission — the specification allows the one ordinary reports access to cover the report and its downloads, with no new permission for it.\n3. Note for the tester: the specification allows ONE ordinary reports access for all six of these new reports and no per-report permission. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (Story 1 Prerequisites), read on 11 August 2026.\nLast checked against build v3.4.1-3d03023 on 8/4/2026.\n\nAUTOMATION: READY",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8657 (WIP spec Story 1 Prerequisites — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\"; the WIP prerequisite still names a Work In Progress reports permission — his spec edit owed)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU-confirm WHICH existing reporting permission gates this report — the spec does not name it; capture the exact permission label live and tighten this case then. Do not invent a permission name. | 2026-08-03: reworded to the SINGLE ordinary reports permission. Driver = Chris Ward Q2=A (\"Collapse all report access into a single Reports permission\") + the QA lead's ruling 2026-08-03 verbatim \"Yes all the reports will be gated by ONE permission FOR NOW\". \"FOR NOW\" is deliberate — the model is modular and may expand, so a later expansion is a planned change, NOT a regression. re-verified whole against WIP spec v6 (Confluence 703660034; lastModified 2026-07-29; re-checked live 2026-08-03). The exact on-screen name of the reports permission is VIU-confirm (no QA branch). The report's own written description still names a per-area permission — Chris owes that edit. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8657 (WIP spec v10 2026-08-06 Story 1 Prerequisites — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\"; the WIP prerequisite now states this outright,so his spec edit is DONE)",
+    "testrail_id": "C30526",
+    "section_id": 4362
+  },
+  {
+    "id": "WIP-PERM-02",
+    "area": "WIP — Permissions",
+    "title": "Without reports access Work In Progress is absent from the navigation",
+    "priority": "Critical",
+    "type": "Negative",
+    "permissions_required": "A role WITHOUT the permission that grants access to Work In Progress reports.",
+    "preconditions": [
+      "1. A test user exists whose role does NOT have reports access (assign the Tech user such a role; restore the original role afterward).",
+      "2. You are signed in as that user on a desktop browser."
+    ],
+    "steps": [
+      "1. Open the reports navigation.",
+      "2. Look for \"Work In Progress\" under the Performance group."
+    ],
+    "expected": "1. The report does not appear in the navigation for this user.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S1-N1), read on 11 August 2026.\nLast checked against build v3.4.1-3d03023 on 8/4/2026.\n\nAUTOMATION: READY\n",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8657 (WIP spec Story 1 S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\")",
+    "viu_status": "VIU-Pending",
+    "notes": "Per Standing Rule 10, verify live AS the role — never derive from role definitions. Also probe direct navigation to the report's URL at VIU and record the observed behavior (the spec pins only the navigation hiding). | 2026-08-03: reworded to the SINGLE ordinary reports permission. Driver = Chris Ward Q2=A (\"Collapse all report access into a single Reports permission\") + the QA lead's ruling 2026-08-03 verbatim \"Yes all the reports will be gated by ONE permission FOR NOW\". \"FOR NOW\" is deliberate — the model is modular and may expand, so a later expansion is a planned change, NOT a regression. re-verified whole against WIP spec v6 (Confluence 703660034; lastModified 2026-07-29; re-checked live 2026-08-03). The exact on-screen name of the reports permission is VIU-confirm (no QA branch). The report's own written description still names a per-area permission — Chris owes that edit. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": false,
+    "refs": "SV-8657 (WIP spec Story 1 S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\")",
+    "testrail_id": "C30527",
+    "section_id": 4362
+  },
+  {
+    "id": "WIP-API-01",
+    "area": "WIP — API",
+    "title": "Nightly snapshot records one row per then-open job per calendar date",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Backend/database (or dev-support) access to inspect the stored WIP snapshot rows — this is a backend capture behavior that runs without a signed-in user.",
+    "preconditions": [
+      "1. Open work orders exist across the organization on the capture date.",
+      "2. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers).",
+      "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
+    ],
+    "steps": [
+      "1. Note the set of open work orders before the nightly capture runs.",
+      "2. After the capture, inspect the stored snapshot rows for that calendar date.",
+      "3. Let the capture run again the next day and inspect again.",
+      "4. If a manual re-run of the capture is available, re-run it for the same date and inspect that date's rows again."
+    ],
+    "expected": "1. Once per day the system records one row per then-open work order — one row per work order per calendar date.\n2. The next day's capture adds a new row per open work order under the new date; a work order open on both days has one row for each date, never two rows for the same date.\n3. Re-running the capture for the SAME date replaces that date's rows — the day's existing rows are removed and re-recorded from current data, never duplicated.\n4. Each snapshot row captures, at minimum: the work order, its status, its Earned value, its Remaining value, the location and organization (copied from the work order), and the snapshot's calendar date.\n\nNote for the tester: you cannot check this one from any screen. These figures are written each night by a background process, and nothing in the report reads them back in this version. If you cannot see the figures anywhere, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S11-R1, S11-R2), read on 11 August 2026.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: HOLD - the nightly capture is written by a background process and nothing in the product reads it back in this version",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R1; tech-plan-2026-07-29 B1.2 (idempotent re-run — WIP spec Story 11 is silent on re-runs); Story 11 S11-R2)",
+    "viu_status": "VIU-Pending",
+    "notes": "The spec defines job behavior only — NO endpoint or table name is specified and none is invented here. VIU-confirm with dev how to trigger/inspect the capture (schedule time, storage, any manual re-run). TECH-PLAN EDIT 2026-07-30: re-run idempotency (delete-and-re-record per location/work order/date) comes from the engineering plan B1.2 — the WIP spec is silent on it (the IV spec's S11-R3 twin has it); confirm live and flag to Chris if the spec re-diff still lacks it. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": true,
+    "refs": "SV-8667 (WIP spec v10 2026-08-06 Story 11 S11-R1; tech-plan-2026-07-29 B1.2 (idempotent re-run — WIP spec Story 11 is silent on re-runs); Story 11 S11-R2)",
+    "testrail_id": "C30528",
+    "section_id": 4363
+  },
+  {
+    "id": "WIP-API-02",
+    "area": "WIP — API",
+    "title": "Each snapshot row captures the WO; status; money; location and the date",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Backend/database (or dev-support) access to inspect the stored WIP snapshot rows.",
+    "preconditions": [
+      "1. At least one open work order with known status, location, and organization existed when the nightly capture ran.",
+      "2. You can inspect that date's stored snapshot rows.",
+      "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
+    ],
+    "steps": [
+      "1. Find the seeded work order's snapshot row for the capture date.",
+      "2. Read each captured field and compare to the work order."
+    ],
+    "expected": [
+      "1. The snapshot row captures, at minimum: the work order, its status, its Earned value, its Remaining value, the location and organization (copied from the work order), and the snapshot's calendar date.",
+      "---",
+      "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R2)."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R2)",
+    "viu_status": "Retired - 2026-08-04 (merged into WIP-API-01 (C30528) under MG-WIP-SNAPSHOT-SHAPE; its unique assertions were folded into the survivor BEFORE deletion; C30529 deleted from TestRail; prev status VIU-Pending)",
+    "notes": "Generic backend wording — no schema/endpoint invented; confirm the concrete storage shape with dev at VIU. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md | RETIRED 2026-08-04 (QA-lead-authorised merge/cut): merged into WIP-API-01 (C30528) under MG-WIP-SNAPSHOT-SHAPE; its unique assertions were folded into the survivor BEFORE deletion; C30529 deleted from TestRail. delete_case C30529 returned HTTP 200 and the re-GET returned HTTP 400 = gone. Body kept locally for the record; row removed from testrail-id-map.csv (the mapping is preserved here and in the Step-1 count reconciliation). Prior viu_status was: VIU-Pending",
+    "api_related": true
+  },
+  {
+    "id": "WIP-API-03",
+    "area": "WIP — API",
+    "title": "Captured Earned and Remaining use the same maths as the on-screen report",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "Backend/database (or dev-support) access to inspect the stored WIP snapshot rows, plus the Work In Progress reports permission for the on-screen comparison.",
+    "preconditions": [
+      "1. An open ZZAUTOTEST work order with known approved labor (partly clocked) and approved parts (partly received) exists and is left UNCHANGED across the capture.",
+      "2. You can read the on-screen report on the capture date and the stored snapshot row afterward.",
+      "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.",
+      "4. The work order's Earned/Remaining include non-round cent values (for example $123.45), so lost cents would be visible."
+    ],
+    "steps": [
+      "1. On the capture date, note the work order's Earned and Remaining on the Work In Progress report.",
+      "2. After the nightly capture, read the same work order's captured Earned and Remaining in the snapshot row.",
+      "3. Compare the pairs."
+    ],
+    "expected": "1. The captured Earned equals the on-screen Earned and the captured Remaining equals the on-screen Remaining, to the cent — the snapshot uses the identical computation for both figures, so the two can never diverge for a given work order on the capture date.\n2. The captured dollar values are stored to the cent — no rounding to whole dollars and no lost cents.\n\n---\nNote for the tester: you cannot check this one from any screen. These figures are written each night by a background process, and nothing in the report reads them back in this version. If you cannot see the figures anywhere, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S11-R3, S11-R5), read on 11 August 2026.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: HOLD - the nightly capture is written by a background process and nothing in the product reads it back in this version",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R3; Story 11 S11-R5)",
+    "viu_status": "VIU-Pending",
+    "notes": "AUDIT 2026-07-31 (Rule 20 / Dimension 3): a spec anchor was removed from the tester-facing expected - the assertion is unchanged; the anchor stays in this case's References field where it belongs. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": true,
+    "refs": "SV-8667 (WIP spec v10 2026-08-06 Story 11 S11-R3; Story 11 S11-R5)",
+    "testrail_id": "C30530",
+    "section_id": 4363
+  },
+  {
+    "id": "WIP-API-04",
+    "area": "WIP — API",
+    "title": "Nightly snapshot spans every location with no user location filter",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Backend/database (or dev-support) access to inspect the stored WIP snapshot rows.",
+    "preconditions": [
+      "1. Open service work orders exist at two or more different locations.",
+      "2. An Invoiced (or Paid/Declined) work order and a part-sale work order also exist.",
+      "3. You can inspect the capture date's snapshot rows.",
+      "4. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
+    ],
+    "steps": [
+      "1. After the nightly capture, list the snapshot rows for the date.",
+      "2. Check that open service work orders from EVERY location are present.",
+      "3. Look for the Invoiced/Paid/Declined work order and the part-sale work order."
+    ],
+    "expected": "1. The captured set uses the same service-type and open-status conditions as the report (service work orders in Estimate, Approved, In Progress, Review, or Complete).\n2. The capture spans every location — there is no user-selected-location filter.\n3. Invoiced, Paid, and Declined work orders and part-sale work orders are not captured.\n\n---\nNote for the tester: you cannot check this one from any screen. These figures are written each night by a background process, and nothing in the report reads them back in this version. If you cannot see the figures anywhere, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S11-R4, S2-R1), read on 11 August 2026.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: HOLD - the nightly capture is written by a background process and nothing in the product reads it back in this version",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R4; Story 2 S2-R1 (first two conditions))",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": true,
+    "refs": "SV-8667 (WIP spec v10 2026-08-06 Story 11 S11-R4; Story 2 S2-R1 (first two conditions))",
+    "testrail_id": "C30531",
+    "section_id": 4363
+  },
+  {
+    "id": "WIP-API-05",
+    "area": "WIP — API",
+    "title": "Nightly snapshot: captured dollar values are stored to the cent",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Backend/database (or dev-support) access to inspect the stored WIP snapshot rows.",
+    "preconditions": [
+      "1. An open work order whose Earned/Remaining include non-round cent values (for example $123.45) existed at capture time.",
+      "2. You can inspect the stored snapshot rows.",
+      "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
+    ],
+    "steps": [
+      "1. Read the captured Earned and Remaining values for the work order.",
+      "2. Compare their precision to the on-screen values."
+    ],
+    "expected": [
+      "1. Captured dollar values are stored to the cent — no rounding to whole dollars and no lost cents.",
+      "---",
+      "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R5)."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R5)",
+    "viu_status": "Retired - 2026-08-04 (merged into WIP-API-03 (C30530) under MG-WIP-SNAPSHOT-PRECISION; its unique assertions were folded into the survivor BEFORE deletion; C30532 deleted from TestRail; prev status VIU-Pending)",
+    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md | RETIRED 2026-08-04 (QA-lead-authorised merge/cut): merged into WIP-API-03 (C30530) under MG-WIP-SNAPSHOT-PRECISION; its unique assertions were folded into the survivor BEFORE deletion; C30532 deleted from TestRail. delete_case C30532 returned HTTP 200 and the re-GET returned HTTP 400 = gone. Body kept locally for the record; row removed from testrail-id-map.csv (the mapping is preserved here and in the Step-1 count reconciliation). Prior viu_status was: VIU-Pending",
+    "api_related": true
+  },
+  {
+    "id": "WIP-API-06",
+    "area": "WIP — API",
+    "title": "Nightly snapshot: a job with nothing approved is captured at $0.00; not skipped",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Backend/database (or dev-support) access to inspect the stored WIP snapshot rows.",
+    "preconditions": [
+      "1. An open ZZAUTOTEST estimate with no approved line items existed at capture time.",
+      "2. You can inspect the capture date's snapshot rows.",
+      "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
+    ],
+    "steps": [
+      "1. After the nightly capture, look for the nothing-approved work order among the date's snapshot rows.",
+      "2. Read its captured Earned and Remaining values."
+    ],
+    "expected": "1. The work order IS captured (not skipped).\n2. Its Earned is $0.00 and its Remaining is $0.00, matching what the report shows on screen for a job with nothing approved.\n\n---\nNote for the tester: you cannot check this one from any screen. These figures are written each night by a background process, and nothing in the report reads them back in this version. If you cannot see the figures anywhere, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S11-R6, S4-E1), read on 11 August 2026.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: HOLD - the nightly capture is written by a background process and nothing in the product reads it back in this version",
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R6; Story 4 S4-E1)",
+    "viu_status": "VIU-Pending",
+    "notes": "AUDIT 2026-07-31 (Rule 20 / Dimension 3): a spec anchor was removed from the tester-facing expected - the assertion is unchanged; the anchor stays in this case's References field where it belongs. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+    "api_related": true,
+    "refs": "SV-8667 (WIP spec v10 2026-08-06 Story 11 S11-R6; Story 4 S4-E1)",
+    "testrail_id": "C30533",
+    "section_id": 4363
+  }
 ]

@@ -6,11 +6,10 @@ Inventory Value appears in the reports navigation under the Parts group,IV — A
 2. Clicking it opens the Inventory Value report.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S1-R1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S1-R1), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-","SV-8668 (IV spec Story 1 S1-R1 — access = the one ordinary reports permission per Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW"")",,
+AUTOMATION: READY","SV-8668 (IV spec Story 1 S1-R1 — access = the one ordinary reports permission per Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW"")",,
 One row per in-stock part at the selected locations valued at the resolved date,IV — Access & Display,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. Several ZZAUTOTEST parts with positive on-hand quantity exist at your active location.","1. Open the Inventory Value report.
 2. Compare the rows shown to the in-stock parts at the selected location(s).
@@ -18,22 +17,24 @@ One row per in-stock part at the selected locations valued at the resolved date,
 2. The values are valued as of the resolved date (the current stock for a range reaching today, or the closest recorded nightly snapshot for an earlier date — see the IV — As-of Date & Snapshots cases).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S1-R2, S1-R6).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S1-R2, S1-R6), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8668 (IV spec v3 2026-07-29 Story 1 S1-R2; S1-R6),,
+AUTOMATION: READY",SV-8668 (IV spec v3 2026-07-29 Story 1 S1-R2; S1-R6),,
 First visit defaults to the current calendar month and the active location,IV — Access & Display,Functional,High,1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh browser profile or cleared site data).,"1. Open the Inventory Value report.
 2. Read the date-range control's value.
 3. Read the Location filter's selection.","1. The date range defaults to the current calendar month.
 2. The location defaults to the user's currently active location.
+What you should see today: on a brand-new browser the Location filter reads ""All locations"" and the report covers every location you can reach, instead of opening on the one location you are currently working at. The date range does open correctly on This Month. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8931
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S1-R3, S7-R2).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S1-R3, S7-R2), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8668 (IV spec v3 2026-07-29 Story 1 S1-R3; Story 7 S7-R2),,
+AUTOMATION: READY - EXPECT FAIL (SV-8931)",SV-8668 (IV spec v3 2026-07-29 Story 1 S1-R3; Story 7 S7-R2),,
 The report is server-paginated: one page of rows at a time,IV — Access & Display,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The selected location(s) hold more in-stock parts than fit on one page (seed ZZAUTOTEST parts if needed).","1. Open the Inventory Value report and scroll to the bottom of the rows, then keep scrolling so further rows load.
 2. Watch that new rows keep arriving as you scroll rather than all of them being present at once.
@@ -43,23 +44,25 @@ The report is server-paginated: one page of rows at a time,IV — Access & Displ
 3. Note for the tester: on the build tested there were no numbered page controls on the screen - the rows loaded as you scrolled. That is a difference from the specification, which asks for the reports suite's standard page controls. Record what you see and carry on.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S1-R8).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S1-R8), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8668 (IV spec v3 2026-07-29 Story 1 S1-R8; §2 Scale and data model),,
+AUTOMATION: READY",SV-8668 (IV spec v3 2026-07-29 Story 1 S1-R8; §2 Scale and data model),,
 "No qualifying parts, day or location: the no-data message shows and no totals",IV — Access & Display,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Three causes can be produced: (a) a location you can access holds no in-stock parts, (b) a past range ends entirely before nightly recording began (or its covered dates were pruned by retention), (c) the filters can be set so nothing qualifies.","1. Scope the report to the empty location and read the data area.
 2. Select a Custom range ending before nightly recording began and read the data area and the bottom of the report.
 3. Set the filters so nothing qualifies and re-read.","1. In every case the report shows the standard reports no-data message ""Empty bays, endless possibilities. Get Going!"" instead of rows.
 2. No totals row is shown in any of the cases.
+What you should see today: when nothing matches you get the column headings and nothing underneath - no rows and no message at all, where the words ""Empty bays, endless possibilities. Get Going!"" should appear. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8930
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S1-N2, S4-N1, S5-N1, S7-N2).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S1-N2, S4-N1, S5-N1, S7-N2), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8668 (IV spec v3 2026-07-29 Story 1 S1-N2; Story 4 S4-N1; Story 5 S5-N1; Story 7 S7-N2; Story 12; §7 User Feedback Summary),,
+AUTOMATION: READY - EXPECT FAIL (SV-8930)",SV-8668 (IV spec v3 2026-07-29 Story 1 S1-N2; Story 4 S4-N1; Story 5 S5-N1; Story 7 S7-N2; Story 12; §7 User Feedback Summary),,
 A part appears only if not a core charge and on-hand quantity is above zero,IV — Row Scope,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. ZZAUTOTEST parts exist at your active location: a normal part with positive on-hand quantity, a core-charge part with a positive quantity, a part with exactly zero on-hand quantity, and (if producible) one with a negative on-hand quantity.","1. Open the Inventory Value report scoped to the location.
 2. Look for the normal in-stock part.
@@ -70,22 +73,20 @@ A part appears only if not a core charge and on-hand quantity is above zero,IV �
 5. A part that has sat without movement for a long time still appears and is still counted — there is no dead-stock exclusion; how long stock has sat makes no difference.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S2-R1, S2-R2, S2-N1, S2-N2).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S2-R1, S2-R2, S2-N1, S2-N2), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8669 (IV spec v3 2026-07-29 Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions; Story 2 context note (no dead-stock exclusion)),,
+AUTOMATION: READY",SV-8669 (IV spec v3 2026-07-29 Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions; Story 2 context note (no dead-stock exclusion)),,
 A part stocked at two selected locations shows as two rows; never merged,IV — Row Scope,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
 2. The same ZZAUTOTEST part is in stock (positive quantity) at two of those locations.","1. Open the Inventory Value report and select both locations in the Location filter.
 2. Search for the part and count its rows.","1. The part appears twice — one row per location, each with that location's own quantity and values.
 2. The rows are NOT merged into one combined row; this is the documented v1 behavior.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S2-R3).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S2-R3), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8669 (IV spec v3 2026-07-29 Story 2 S2-R3; §2 Known Limitations (v1)),,
+AUTOMATION: READY",SV-8669 (IV spec v3 2026-07-29 Story 2 S2-R3; §2 Known Limitations (v1)),,
 Unit Sell uses the part's fixed sell price when one is set,IV — Valuation & Columns,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. A ZZAUTOTEST in-stock part exists with a known unit cost, a known FIXED sell price, and a category whose pricing-matrix markup would give a DIFFERENT figure.","1. Open the Inventory Value report and find the part's row.
 2. Read its Unit Sell value.
@@ -93,22 +94,20 @@ Unit Sell uses the part's fixed sell price when one is set,IV — Valuation & Co
 2. The pricing-matrix markup is NOT applied when a fixed sell price is set — the fixed price wins.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R5).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R5), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R5 (fixed-price branch); §3 Key Decisions (unit sell resolved like the parts list)),,
+AUTOMATION: READY",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R5 (fixed-price branch); §3 Key Decisions (unit sell resolved like the parts list)),,
 With no fixed sell price Unit Sell is the category's pricing-matrix markup,IV — Valuation & Columns,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. A ZZAUTOTEST in-stock part exists with a known unit cost, NO fixed sell price, and a category covered by the shop's pricing matrix with a known markup.","1. Open the Inventory Value report and find the part's row.
 2. Read its Unit Sell value.
 3. Compare it to the pricing-matrix markup applied to the part's cost for its category.","1. Unit Sell equals the shop's pricing-matrix markup on cost for that part's category (the same way the parts list resolves it).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R5).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R5), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R5 (matrix branch); §5 Assumptions),,
+AUTOMATION: READY",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R5 (matrix branch); §5 Assumptions),,
 "With no fixed sell price and no category, Unit Sell equals Unit Cost",IV — Valuation & Columns,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. A ZZAUTOTEST in-stock part exists with a known unit cost, NO fixed sell price, and NO category.
 3. The Margin and Total Sell columns are turned on.
@@ -119,11 +118,10 @@ AUTOMATION: READY
 3. Note for the tester: if no part without a category can be created or found, mark this test Blocked rather than Passed or Failed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R5).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R5), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R5 (no-category fallback) + context note; §5 Assumptions),,
+AUTOMATION: HOLD - a part cannot be saved without a category on this build, so the no-category path cannot be produced",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R5 (no-category fallback) + context note; §5 Assumptions),,
 Total Sell is quantity × Unit Sell and Total Cost is quantity × Unit Cost,IV — Valuation & Columns,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. A ZZAUTOTEST in-stock part exists with a known on-hand quantity (include a fractional quantity if possible), unit cost, and unit sell.
 3. The Total Sell column is turned on.","1. Open the Inventory Value report and find the part's row.
@@ -132,11 +130,10 @@ Total Sell is quantity × Unit Sell and Total Cost is quantity × Unit Cost,IV �
 2. Total Cost equals the part's on-hand quantity × Unit Cost, shown as US-dollar currency.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R6, S3-R7).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R6, S3-R7), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R6; S3-R7; §4 Terminology),,
+AUTOMATION: READY",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R6; S3-R7; §4 Terminology),,
 Margin is Total Sell minus Total Cost for the whole on-hand quantity,IV — Valuation & Columns,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A ZZAUTOTEST in-stock part exists with a quantity greater than 1 and different unit cost and unit sell values.
 3. The Margin and Total Sell columns are turned on.","1. Open the Inventory Value report and find the part's row.
@@ -145,11 +142,10 @@ Margin is Total Sell minus Total Cost for the whole on-hand quantity,IV — Valu
 2. Margin is the extended (total) margin, not the per-unit difference.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R8).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R8), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R8; §3 Key Decisions (extended margin); §4 Terminology),,
+AUTOMATION: READY",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R8; §3 Key Decisions (extended margin); §4 Terminology),,
 Margin % is Margin over Total Sell to one decimal; em-dash when Sell <= 0,IV — Valuation & Columns,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows: a part with a normal positive margin, a part whose Margin % computes negative (unit sell below unit cost), and — if producible — a part whose Total Sell is zero.","1. Read the normal part's Margin % and check it against Margin ÷ Total Sell × 100.
 2. Read the negative-margin part's Margin %.
@@ -158,25 +154,23 @@ Margin % is Margin over Total Sell to one decimal; em-dash when Sell <= 0,IV —
 3. Margin % shows ""—"" when Total Sell is zero or negative (the percentage is undefined).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R9, S3-E3).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R9, S3-E3), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R9; S3-E3),,
+AUTOMATION: READY",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R9; S3-E3),,
 With every column on they appear in the fixed order with the set alignment,IV — Valuation & Columns,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.
 3. Every column (including Margin and Total Sell) is turned on in the column-selection control.","1. Read the column headers from left to right.
 2. Look at how the values in each column are aligned.","1. With a single location in scope the columns appear in this order: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost.
 2. Part #, Description, Category, and Vendor are left-aligned.
-3. Every other column is right-aligned. When it is on, the Location column appears between Vendor and Qty, left-aligned.
+3. Every other column is right-aligned. When it is on, the Location column appears between Vendor and Qty, and it is right-aligned like the other non-identity columns.
 Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R1, S3-R2, S7-R6). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: version 4 added a summary saying it is toggleable, while the requirement that governs the column still says it is not one of the columns offered there. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R1, S3-R2, S7-R6), read on 11 August 2026. That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: version 4 added a summary saying it is toggleable, while the requirement that governs the column still says it is not one of the columns offered there. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked
-",SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R1; S3-R2 + Story 7 S7-R6 — fixed column order and alignment; plus the automatic Location column between Vendor and Qty on Hand),,
+AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked",SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R1; S3-R2 + Story 7 S7-R6 — fixed column order and alignment; plus the automatic Location column between Vendor and Qty on Hand),,
 Value formats: Qty to two decimals; money as US-dollar currency,IV — Valuation & Columns,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows a part with a fractional quantity (for example 2.50), one with values over $1,000, and (if producible) one with a negative money value.","1. Read the Qty cell of the fractional-quantity part.
 2. Read a money value over one thousand dollars (Unit Cost, Unit Sell, Total Sell, or Total Cost).
@@ -185,11 +179,10 @@ Value formats: Qty to two decimals; money as US-dollar currency,IV — Valuation
 3. Money values show a leading ""$"", two decimal places, and thousands separators (for example ""$1,234.56""); a negative value shows a leading minus before the ""$"" (""-$1,234.56""); a genuine zero shows ""$0.00"".
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R3, S3-R4, S3-R5, S3-R10).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R3, S3-R4, S3-R5, S3-R10), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R3; S3-R4; S3-R5 (display); S3-R10; §4 Terminology (On-hand quantity)),,
+AUTOMATION: READY",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R3; S3-R4; S3-R5 (display); S3-R10; §4 Terminology (On-hand quantity)),,
 Total Cost is bold and pinned far right; it stays put on sideways scroll,IV — Valuation & Columns,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Enough columns are turned on that the table scrolls horizontally.","1. Look at the Total Cost column header and its cells.
 2. Scroll the rows sideways and watch the Total Cost column.","1. The Total Cost column is pinned to the far right of the row and shown in bold — it is the report's headline column.
@@ -197,24 +190,23 @@ Total Cost is bold and pinned far right; it stays put on sideways scroll,IV — 
 3. It stays fixed to the right edge while the other columns scroll underneath.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R11, S12-R4).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R11, S12-R4), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R11; Story 12 S12-R4; §3 Key Decisions),,
+AUTOMATION: READY",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R11; Story 12 S12-R4; §3 Key Decisions),,
 On a first visit the default columns show and the rest stay available,IV — Valuation & Columns,Functional,High,1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh visit).,"1. Open the Inventory Value report and read the visible column headers.
 2. Open the column-selection control and read which columns are on and off.
 3. Turn Margin and Total Sell on and check they appear.","1. On first visit with a single location in scope the visible columns are: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin %, and Total Cost.
 2. The Margin and Total Sell columns are hidden by default.
 3. Both can be turned on from the column-selection control and then appear in their fixed positions. When it is on, the Location column shows between Vendor and Qty.
 Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8927
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R12, S3-R13, S8-R3, S7-R6). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: version 4 added a summary saying it is toggleable, while the requirement that governs the column still says it is not one of the columns offered there. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R12, S3-R13, S8-R3, S7-R6), read on 11 August 2026. That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: version 4 added a summary saying it is toggleable, while the requirement that governs the column still says it is not one of the columns offered there. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked
-",SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R12; S3-R13; Story 8 S8-R3 + Story 7 S7-R6 — first-visit default columns; plus the automatic Location column when more than one location is in scope),,
+AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked",SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R12; S3-R13; Story 8 S8-R3 + Story 7 S7-R6 — first-visit default columns; plus the automatic Location column when more than one location is in scope),,
 "Category and Vendor show their names; an em dash (""—"") when the part has none",IV — Valuation & Columns,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows a part with a category and a vendor, a part with no category, and a part with no vendor.","1. Read the Category and Vendor cells of the fully-populated part.
 2. Read the Category cell of the part with no category.
@@ -224,11 +216,10 @@ AUTOMATION: HOLD - the written description says two different things about the L
 4. Note for the tester: on this build a part cannot be saved without a category, so you will not find a part whose Category cell shows ""—"". Check the Vendor half only.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S3-R14, S3-E1, S3-E2).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R14, S3-E1, S3-E2), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R14; S3-E1; S3-E2),,
+AUTOMATION: READY",SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R14; S3-E1; S3-E2),,
 "Totals row: Total label, blank identity/per-unit cells, pinned bold Total Cost",IV — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded and all columns turned on.
 3. The page shows more rows than fit on the screen.","1. Look at the row at the bottom of the report.
@@ -240,13 +231,16 @@ AUTOMATION: READY
 4. The totals row stays visible at the bottom while the rows scroll.
 5. Note for the tester: if the label on screen reads ""Totals"" instead of ""Total"", mark this test Failed and report it — do not change the test.
 6. Sorting by any column reorders the data rows only — the totals row stays at the bottom.
+What you should see today: the row at the bottom of the report is labelled ""Totals"" in its Part # cell, where it should read ""Total"". Everything else about the row is correct. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8926
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S4-R1, S4-R4, S4-R5, S4-R6, S4-R7, S12-R5, S9-R4).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S4-R1, S4-R4, S4-R5, S4-R6, S4-R7, S12-R5, S9-R4), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5; Story 9 S9-R4),,
+AUTOMATION: READY - EXPECT FAIL (SV-8926)",SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5; Story 9 S9-R4),,
 "Totals row sums the FULL filtered set on the server, not just the visible page",IV — Totals Row,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current filtered set spans more than one page (more rows than one page shows).
 3. The Margin and Total Sell columns are turned on.
@@ -259,11 +253,10 @@ AUTOMATION: READY
 4. After each filter change the totals row recomputes on the server over the full filtered set, independent of which page is shown.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S4-R2, S4-R8, S6-R6).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S4-R2, S4-R8, S6-R6), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R2; S4-R8; Story 6 S6-R6; §2 Scale and data model; §4 Terminology (Filtered set)),,
+AUTOMATION: READY",SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R2; S4-R8; Story 6 S6-R6; §2 Scale and data model; §4 Terminology (Filtered set)),,
 Totals-row Margin % is recomputed from the totals; not an average of rows,IV — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The filtered set contains parts with clearly different Margin % values (so a recomputed figure differs from a simple average).
 3. The Margin and Total Sell columns are turned on.","1. Read the totals row's Margin, Total Sell, and Margin %.
@@ -273,36 +266,36 @@ Totals-row Margin % is recomputed from the totals; not an average of rows,IV —
 3. It shows ""—"" when the total Total Sell is zero or negative.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S4-R3).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S4-R3), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R3),,
+AUTOMATION: READY",SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R3),,
 Date range offers the standard presets plus Custom; no All Time option,IV — As-of Date & Snapshots,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open.","1. Open the date-range control in the toolbar.
 2. Read every option offered.","1. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no ""Today"", no ""Yesterday"" and no item called ""Custom"" - you build your own range on the calendar instead. There is no ""All Time"" option.
 2. Because the report is valued as of a single date, an All-Time period would be meaningless; its absence is the documented behaviour.
 
 ---
-This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Inventory Value report specification version 4 (S5-R1) says something different, his decision is the later word and is the authority.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. Where the Inventory Value report specification version 5 (S5-R1), read on 11 August 2026, says something different, his decision is the later word and is the authority.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R1; §2 Known Limitations (v1)),,
+AUTOMATION: READY",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R1; §2 Known Limitations (v1)),,
 The report values inventory as of the END of the selected range,IV — As-of Date & Snapshots,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. Nightly snapshots exist for past dates at the selected location (recording has been running).
 3. A part exists that was ALREADY in stock before the selected range started.","1. Select a past range (for example ""Last Month"").
 2. Check which date the displayed values represent.
 3. Look for the part that was stocked before the range started.","1. The report values inventory as of the END of the selected range.
 2. The date control is an ""as of"" anchor, not a created-date filter — narrowing it does not select ""parts added in that range""; it shows the whole shelf as it stood on that date, so the part stocked before the range still appears.
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820
+What you should see today: the report values the stock one day LATER than the date you asked for - ask for a range ending 15 July and it reports as of 16 July; ask for one ending 31 January and it reports as of 1 February. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8820
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S5-R2).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S5-R2), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8820)
-",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R2 (+ context note)),,
+AUTOMATION: READY - EXPECT FAIL (SV-8820)",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R2 (+ context note)),,
 A window reaching today with today not yet recorded values live stock,IV — As-of Date & Snapshots,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. Today's nightly snapshot has not yet been recorded (the normal daytime state).
 3. A ZZAUTOTEST part's on-hand quantity was changed TODAY (after last night's capture).","1. Select a range that reaches today (for example ""This Month"" or ""Today"").
@@ -310,37 +303,40 @@ A window reaching today with today not yet recorded values live stock,IV — As-
 2. The part's row reflects today's changed quantity (not yesterday's snapshot), proving the live fallback is in use.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S5-R3).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S5-R3), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R3; §3 Key Decisions (live fallback for today)),,
+AUTOMATION: READY",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R3; §3 Key Decisions (live fallback for today)),,
 For a past date the report replays the closest recorded day on or before it,IV — As-of Date & Snapshots,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. Nightly snapshots exist for past dates, and a ZZAUTOTEST part's quantity is known to have DIFFERED on a past recorded day from its quantity today.","1. Open the date range picker and use the month calendar inside it to set a range ending on the past recorded day, then apply.
 2. Find the part and read its quantity and values.
 3. Compare them to what the part held on that recorded day (not today).","1. The report replays the closest recorded day on or before the end of the selected range.
 2. The part's row shows the quantity and values recorded for that day, not today's live stock.
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820
+What you should see today: the report values the stock one day LATER than the date you asked for - ask for a range ending 15 July and it reports as of 16 July; ask for one ending 31 January and it reports as of 1 February. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8820
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S5-R4).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S5-R4), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8820)
-",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R4; §2 Relationship to nightly history),,
+AUTOMATION: READY - EXPECT FAIL (SV-8820)",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R4; §2 Relationship to nightly history),,
 """As of"" indicator names the day shown; hidden when it matches the ask",IV — As-of Date & Snapshots,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A past date exists that has NO snapshot of its own but has an earlier recorded day before it (for example, a gap day, or a date in the thinned monthly-retention band).","1. Select a Custom range ending on the gap date (a date with no snapshot of its own).
 2. Look for an ""As of"" indicator and read which day it names.
 3. Then select a range ending on a day that IS recorded (or today with live values) and look for the indicator again.","1. When the displayed day is an earlier recorded day than the date asked for, the report shows an ""As of"" indicator naming the day actually shown.
 2. When the displayed day matches the date asked for (the common current-view case), the ""As of"" indicator is not shown — the date control already communicates the date.
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820
+What you should see today: the report values the stock one day LATER than the date you asked for - ask for a range ending 15 July and it reports as of 16 July; ask for one ending 31 January and it reports as of 1 February. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8820
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S5-R5, S5-R6).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S5-R5, S5-R6), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8820)
-",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R5; S5-R6),,
+AUTOMATION: READY - EXPECT FAIL (SV-8820)",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R5; S5-R6),,
 A Custom range values stock as of the picked end date; capped at today,IV — As-of Date & Snapshots,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open.","1. Open the date-range control - a month calendar is shown inside it (there is no separate ""Custom"" item to choose).
 2. Pick a start and an end date in the past on that calendar and press Apply.
@@ -348,25 +344,26 @@ A Custom range values stock as of the picked end date; capped at today,IV — As
 4. Watch the data area when the range is applied.","1. A Custom range lets the user pick a start and end date, and the report values as of the picked end date.
 2. A future end date cannot be chosen — the end date is capped at today.
 3. Changing the date range reloads the report (the loading indicator shows and the rows re-fetch).
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820
+What you should see today: the report values the stock one day LATER than the date you asked for - ask for a range ending 15 July and it reports as of 16 July; ask for one ending 31 January and it reports as of 1 February. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8820
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S5-R7, S5-R8).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S5-R7, S5-R8), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8820)
-",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R7; S5-R8),,
+AUTOMATION: READY - EXPECT FAIL (SV-8820)",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R7; S5-R8),,
 History accrues forward only; a pre-first-recording date is not shown,IV — As-of Date & Snapshots,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The date nightly recording began at this organization is known.","1. Select a range ending before the first nightly recording.
 2. Read what the report shows.","1. The report shows the empty state — there is no way to reconstruct inventory value for a date before recording began, because there is no historical backfill.
 2. This forward-capture-only behavior is the documented v1 boundary, not a defect.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S5-E1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S5-E1), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-E1; §2 Known Limitations (v1); §2 Out of scope),,
+AUTOMATION: READY",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-E1; §2 Known Limitations (v1); §2 Out of scope),,
 A recorded day keeps its category and vendor names after a rename or delete,IV — As-of Date & Snapshots,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A recorded (overnight-captured) day exists that includes ZZAUTOTEST parts under a known category and a known vendor.","1. Rename that part category (and/or rename or delete the vendor) in administration.
 2. Set the report's date range so it shows the earlier recorded day (the ""As of"" indicator names that earlier date).
@@ -376,11 +373,10 @@ A recorded day keeps its category and vendor names after a rename or delete,IV �
 3. The live view (window reaching today) shows the NEW name for the renamed category.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S11-R2, S5-R4).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S11-R2, S5-R4), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R2; Story 5 S5-R4; tech-plan-2026-07-29 B4.1 — names stored with the recorded rows on purpose),,
+AUTOMATION: HOLD - needs a recorded earlier day plus the stored capture rows, which are not reachable from the application",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R2; Story 5 S5-R4; tech-plan-2026-07-29 B4.1 — names stored with the recorded rows on purpose),,
 Category and Vendor multi-selects reload the report to matching parts only,IV — Filters & Part Search,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. In-stock parts exist across at least two categories and two vendors.","1. Open the filter labeled ""Category"" and select one category; watch the data area.
 2. Add a second category to the selection.
@@ -389,11 +385,10 @@ Category and Vendor multi-selects reload the report to matching parts only,IV �
 3. Selecting one or more vendors reloads the report to show only parts supplied by the selected vendors.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S6-R1, S6-R2, S6-R3, S6-R4).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S6-R1, S6-R2, S6-R3, S6-R4), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R1; S6-R2; S6-R3; S6-R4),,
+AUTOMATION: READY",SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R1; S6-R2; S6-R3; S6-R4),,
 "Category, Vendor and part search are server-side; each change returns page 1",IV — Filters & Part Search,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The unfiltered result set is long enough to need scrolling, and matching parts for a category/vendor/search exist well down the list (beyond the first screenful).","1. Scroll well down the list, then select a Category and check whether the list has jumped back to the top and which rows are now listed.
 2. Repeat with a Vendor selection.
@@ -403,11 +398,10 @@ AUTOMATION: READY
 3. Every change — date range, location, Category, Vendor, part search, sort — reloads the rows from the server; while loading the standard reports loading indicator shows, and existing rows are replaced only when the new data returns.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S6-R5, S1-R4, S1-R5, S1-R7, S1-R8).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S6-R5, S1-R4, S1-R5, S1-R7, S1-R8), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R5; Story 1 S1-R4; S1-R5; S1-R7; S1-R8),,
+AUTOMATION: READY",SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R5; Story 1 S1-R4; S1-R5; S1-R7; S1-R8),,
 With no category or vendor selected all parts show,IV — Filters & Part Search,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report has been filtered by category, vendor, and a part search.","1. Clear the Category selection and check the rows.
 2. Clear the Vendor selection and check the rows.
@@ -416,11 +410,10 @@ With no category or vendor selected all parts show,IV — Filters & Part Search,
 3. With the part search empty, no search narrowing is applied.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S6-R7).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S6-R7), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R7),,
+AUTOMATION: READY",SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R7),,
 Part search matches part number or description on the server; case-insensitive,IV — Filters & Part Search,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. In-stock parts exist whose part numbers and descriptions you know (including a description containing a distinctive word).","1. Find the part search input in the report's own toolbar (not the application's global search bar).
 2. Type part of a part number and read the results.
@@ -431,11 +424,10 @@ Part search matches part number or description on the server; case-insensitive,I
 4. The search applies server-side (whole data set, first page returned); a no-match search shows the no-data message.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S6-R8, S6-R5).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S6-R8, S6-R5), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R8; S6-R5),,
+AUTOMATION: READY",SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R8; S6-R5),,
 "Date range, Location, Category, Vendor, and the part search combine with AND",IV — Filters & Part Search,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. In-stock parts exist with a known mix of categories and vendors, so a combined filter isolates a known subset.","1. Select a Category, then also a Vendor that only some of those category parts have.
 2. Add a part search matching only one of the remaining parts.
@@ -443,11 +435,10 @@ AUTOMATION: READY
 2. The totals row matches the combined filtered set after each step.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S6-R9).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S6-R9), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R9),,
+AUTOMATION: READY",SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R9),,
 The Location filter is a rightmost multi-select with an All locations toggle,IV — Location Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
 2. This browser has never saved settings for this report (fresh visit).","1. Open the Inventory Value report and find the filter labeled ""Location"".
 2. Read its position in the toolbar and its default selection.
@@ -455,13 +446,16 @@ The Location filter is a rightmost multi-select with an All locations toggle,IV 
 4. Select every accessible location (""All locations"") and look at how the rows tell you which location they belong to.","1. The toolbar has a location filter labeled ""Location"" — a multi-select and the rightmost filter — listing the locations the signed-in user has access to, with an ""All locations"" / ""Clear all"" toggle.
 2. On a first visit it defaults to the user's currently active location.
 3. With ""All locations"" active you can tell which location each row's stock belongs to — a location label or marking is shown.
+What you should see today: on a brand-new browser the Location filter reads ""All locations"" and the report covers every location you can reach, instead of opening on the one location you are currently working at. The date range does open correctly on This Month. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8931
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S7-R1, S7-R2, S12-R3); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S7-R1, S7-R2, S12-R3), read on 11 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026, which is the authority.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins)),,
+AUTOMATION: READY - EXPECT FAIL (SV-8931)",SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins)),,
 "Selecting one, several, or all locations reloads the report scoped to that set",IV — Location Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
 2. In-stock parts exist at both locations.","1. With one location selected, note the rows and totals.
 2. Add the second location and watch the data area.
@@ -469,33 +463,30 @@ AUTOMATION: READY
 2. With both locations selected, parts from both appear (one row per part per location) and the totals cover both.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S7-R3).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S7-R3), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R3 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)),,
+AUTOMATION: READY",SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R3 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)),,
 Scoping never includes an inaccessible location,IV — Location Filter,Negative,High,"1. You are signed in to the ShopView App on a desktop browser as a user who can access some, but not all, of the organization's locations.
 2. The Inventory Value report is open.","1. Open the Location filter and read the locations offered.
 2. Use ""Clear all"" so the selection resolves to no location, and watch what the report loads.","1. Only the locations the user has access to are offered — a location the user cannot access is never included in the scope.
 2. If the requested location set resolves to none the user can access, the report falls back to the user's currently active location.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S7-R4, S7-R5).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S7-R4, S7-R5), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R4; S7-R5),,
+AUTOMATION: READY",SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R4; S7-R5),,
 Inventory Value: the Location filter is hidden for a one-location user,IV — Location Filter,Functional,Medium,"1. A test user exists with access to exactly one location (create a fresh ZZAUTOTEST staff member if needed; clean up afterward).
 2. You are signed in as that user on a desktop browser.","1. Open the Inventory Value report and look for the Location filter in the toolbar.
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's stock.
 2. For the user with access to two or more locations the Location filter IS shown.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S7-N1). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S7-N1), read on 11 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-","SV-8674 (IV spec Story 7 S7-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S7-N1 ""still sees the filter"" note is stale; spec edit pending)",,
+AUTOMATION: HOLD - needs a second sign-in as a user with access to only one location","SV-8674 (IV spec Story 7 S7-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S7-N1 ""still sees the filter"" note is stale; spec edit pending)",,
 The Location column sits after Vendor and never reads Multiple,IV — Location Filter,Functional,High,"1. You are signed in on a desktop browser as a user with access to at least two locations.
 2. The same part is in stock at two of those locations.
 3. The Inventory Value report is open with rows loaded.","1. Turn Location on in the column-selection control, select two or more locations, and read the column headers from the left.
@@ -513,11 +504,10 @@ The Location column sits after Vendor and never reads Multiple,IV — Location F
 Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S7-R6, S7-R7, S3-R1, S12-R10, S10-R15). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: version 4 added a summary saying it is toggleable, while the requirement that governs the column still says it is not one of the columns offered there. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S7-R6, S7-R7, S3-R1, S12-R10, S10-R15), read on 11 August 2026. That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: version 4 added a summary saying it is toggleable, while the requirement that governs the column still says it is not one of the columns offered there. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked
-","SV-8674; SV-8677 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10; S10-R15 — Location column inserted between Vendor and Qty on Hand; automatic visibility; never ""Multiple""; S10-R15 = the same column in every export)",,
+AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked","SV-8674; SV-8677 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10; S10-R15 — Location column inserted between Vendor and Qty on Hand; automatic visibility; never ""Multiple""; S10-R15 = the same column in every export)",,
 Column Selection toggles columns; Total Cost cannot be turned off,IV — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.","1. Hover the column-selection icon button in the toolbar and read its tooltip.
 2. Open the control and toggle a column off, then on again, watching the table.
@@ -526,57 +516,60 @@ Column Selection toggles columns; Total Cost cannot be turned off,IV — Column 
 3. The Total Cost column is always shown and cannot be turned off.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S8-R1, S8-R2).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S8-R1, S8-R2), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R1; S8-R2),,
+AUTOMATION: READY",SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R1; S8-R2),,
 Toggling columns never reorders them,IV — Column Selection & Persistence,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.","1. Turn several columns on and off in different orders (for example, turn on Total Sell, then Margin).
 2. Read the resulting column order after each change.","1. Whatever columns are shown, they appear in the fixed left-to-right order - with Location, when it is turned on in the column-selection control, between Vendor and Qty (Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) - toggling visibility never reorders columns.
 2. Total Cost is always the last column.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S8-R4, S3-R1, S7-R6). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S8-R4, S3-R1, S7-R6), read on 11 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8675; SV-8674 (IV spec v3 2026-07-29 Story 8 S8-R4; Story 3 S3-R1 + Story 7 S7-R6 — toggling never reorders; plus the automatic Location column between Vendor and Qty on Hand),,
+AUTOMATION: READY",SV-8675; SV-8674 (IV spec v3 2026-07-29 Story 8 S8-R4; Story 3 S3-R1 + Story 7 S7-R6 — toggling never reorders; plus the automatic Location column between Vendor and Qty on Hand),,
 The report remembers all filters; columns and sort per browser,IV — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open.","1. Change the date range, select a category and a vendor, type a part search, change the location selection, change the column selection, and sort by a non-default column.
 2. Navigate away to another screen, then return to the report.
 3. Reload the browser page and check again.
 4. If practical, open the report in a different browser (or private window) and read its settings.","1. On return and after a reload, the report restores the saved date range, category selection, vendor selection, part search text, location selection, column selection, and sort.
 2. In a different browser the report shows the defaults instead — persistence is per browser, not tied to the user's account.
+What you should see today: after you type something in the Search parts box, leave the report and come back, the box is empty and the full list is back - even though the sort, the columns, the dates and the locations all came back correctly. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8928
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S8-R5, S9-R5).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S8-R5, S9-R5), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R5 (+ context note); Story 9 S9-R5),,
+AUTOMATION: READY - EXPECT FAIL (SV-8928)",SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R5 (+ context note); Story 9 S9-R5),,
 Defensive restore: a stale saved category or vendor is dropped on load,IV — Column Selection & Persistence,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report has saved settings in this browser, including a category or vendor selection that can be made stale (for example, the last in-stock part of a saved category is consumed so the category disappears from the data).","1. Make the saved category or vendor no longer present in the data.
 2. Open the Inventory Value report.","1. The report loads normally — the saved category or vendor that is no longer present in the data is dropped from the selection instead of breaking the view (the defensive-restore rule applied to the path these steps drive).
 2. All other saved settings are still restored.
+What you should see today: when a saved category no longer exists, the report opens with no rows at all and no explanation, instead of quietly dropping that category and showing the normal list. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8929
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S8-R6).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S8-R6), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R6),,
+AUTOMATION: READY - EXPECT FAIL (SV-8929)",SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R6),,
 Rows are sorted by Total Cost highest first on load and after any reload,IV — Sorting,Functional,High,"1. You are signed in to the ShopView App on a desktop browser that has no saved sort for this report (fresh visit).
 2. In-stock parts with a spread of Total Cost values exist, spanning more than one page.","1. Open the Inventory Value report without clicking any header.
 2. Read the Total Cost values from the top row down, across page 1 and page 2.","1. The rows are sorted by Total Cost, highest first (descending).
 2. The order holds across pages (page 2 continues below page 1's lowest value) — the server applies the default order over the full set.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S9-R1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S9-R1), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R1; §3 Key Decisions (Total Cost default sort)),,
+AUTOMATION: READY",SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R1; §3 Key Decisions (Total Cost default sort)),,
 Header clicks sort ascending then descending; no third state; page 1 returns,IV — Sorting,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The result set spans more than one page.","1. From page 2, click the Part # column header and note the order and the page shown.
 2. Click the same header again and note the order.
@@ -586,11 +579,10 @@ Header clicks sort ascending then descending; no third state; page 1 returns,IV 
 3. Only one column sorts at a time.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S9-R2).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S9-R2), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R2),,
+AUTOMATION: READY",SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R2),,
 Money and numeric columns sort by value; text columns sort as text,IV — Sorting,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. In-stock parts exist with money values over and under $1,000 and with text values in mixed letter cases.","1. Sort by Total Cost and check the order of values like $900.00 vs $1,100.00.
 2. Sort by Qty and check the numeric order.
@@ -598,23 +590,25 @@ Money and numeric columns sort by value; text columns sort as text,IV — Sortin
 2. Text columns (Part #, Description, Category, Vendor) sort as text, case-insensitively (""apple"" and ""Apple"" sort together).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S9-R3).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S9-R3), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R3),,
+AUTOMATION: READY",SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R3),,
 Inventory Value: a three-dot menu holds Download (PDF) and Download (CSV),IV — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.","1. Find and open the three-dot button in the toolbar.
 2. Read the menu options.
 3. Choose ""Download (PDF)"", then repeat with ""Download (CSV)"".","1. The menu holds an option labeled ""Download (PDF)"" and an option labeled ""Download (CSV)"".
 2. Each option downloads a file of the current view in the chosen format.
+What you should see today: the spreadsheet download works and produces a file, but the PDF download of the same view fails with a server error and no file arrives. It depends on how much is in the view, not on which report - filtered down to one or two rows the PDF downloads normally, and on a full unfiltered view of several thousand rows it fails every time. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8818
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R1, S10-R2).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S10-R1, S10-R2), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R1; S10-R2),,
+AUTOMATION: READY - EXPECT FAIL (SV-8818)",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R1; S10-R2),,
 "Downloads keep shown columns and order, honor filters, and include Totals",IV — Exports,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report is open with a non-default column selection, a Category or Vendor filter, a part search, and a non-default sort applied.","1. Download the current view as a CSV and open it.
 2. Compare its columns and their order to the screen.
@@ -627,28 +621,28 @@ AUTOMATION: READY
 5. Note for the tester: the files carry the Location column whenever it is showing on screen (it sits between Vendor and Qty).
 On this build the spreadsheet file ignores the columns you picked and puts them in a different order from the screen, so point 1 above will not match - record what you see and carry on.
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823
-Note for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: version 4 added a summary saying it is toggleable, while the requirement that governs the column still says it is not one of the columns offered there. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15), read on 11 August 2026. That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: version 4 added a summary saying it is toggleable, while the requirement that governs the column still says it is not one of the columns offered there. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked
-","SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the ""Locations:"" line and the automatic Location column)",,
+AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked","SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the ""Locations:"" line and the automatic Location column)",,
 Export number formats: money to 2 decimals; Margin % to 1 with em-dash,IV — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current view includes money values over $1,000 and, if producible, a part whose Margin % is undefined (""—"").","1. Download the CSV and open it in a plain-text editor; read the money and Margin % values.
 2. Download the PDF and read the same values.","1. Money uses two decimals and Margin % one decimal in both files; an undefined Margin % shows ""—"".
 2. In the CSV, money values are written as plain numbers with two decimals and NO thousands separators (so they parse cleanly in a spreadsheet).
 3. The PDF uses the same on-screen currency formatting with the ""$"" and thousands separators.
 On this build the money in the spreadsheet file comes out as ""$11,176.88"" - with a dollar sign and a comma - instead of the plain number described in point 2 above.
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823
+What you should see today: in the spreadsheet the money arrives as text with a dollar sign and thousands separators, such as $11,176.88, and the columns come out in the file's own fixed order - Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Total Cost, Total Sell, Margin, Margin % - which is not the order on screen, does not put Total Cost last, and leaves out the Location column even when it is showing on screen. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8823
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R7).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S10-R7), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8823)
-",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R7 (+ context note)),,
+AUTOMATION: READY - EXPECT FAIL (SV-8823)",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R7 (+ context note)),,
 PDF header shows report name; org; period and an as-of line; logo if set,IV — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The shop has a logo set in its settings.
 3. The report is open on a view whose displayed day is known (live today, or a recorded past day).","1. Download the PDF and read its header.
@@ -658,24 +652,30 @@ PDF header shows report name; org; period and an as-of line; logo if set,IV — 
 2. The PDF shows the shop logo at the top when one is set.
 3. The CSV never includes a logo.
 4. Note for the tester: the two files phrase the as-of line differently - the PDF reads ""As of 2026-08-04"", and in the spreadsheet it is one of the short summary lines that sit above the column headings, reading ""As of: 2026-08-04"" (with a colon). Both are correct; do not raise the difference, and do not count the summary lines - more of them may be added.
+What you should see today: the spreadsheet download works and produces a file, but the PDF download of the same view fails with a server error and no file arrives. It depends on how much is in the view, not on which report - filtered down to one or two rows the PDF downloads normally, and on a full unfiltered view of several thousand rows it fails every time. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8818
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Inventory Value report specification version 4 (S10-R8, S10-R9) says something different, his decision is the later word and is the authority.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. Where the Inventory Value report specification version 5 (S10-R8, S10-R9), read on 11 August 2026, says something different, his decision is the later word and is the authority.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R8; S10-R9),,
+AUTOMATION: READY - EXPECT FAIL (SV-8818)",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R8; S10-R9),,
 Downloaded files are named inventory-value-report.pdf and .csv,IV — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.","1. Download the current view as a PDF and read the saved file's name.
 2. Download the current view as a CSV and read the saved file's name.","1. The PDF is named ""inventory-value-report.pdf"".
 2. The CSV is named ""inventory-value-report.csv"".
+What you should see today: the spreadsheet download works and produces a file, but the PDF download of the same view fails with a server error and no file arrives. It depends on how much is in the view, not on which report - filtered down to one or two rows the PDF downloads normally, and on a full unfiltered view of several thousand rows it fails every time. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8818
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R10).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S10-R10), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R10 — S10-R10 CLOSES both file names verbatim; so the exact strings ARE the requirement),,
+AUTOMATION: READY - EXPECT FAIL (SV-8818)",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R10 — S10-R10 CLOSES both file names verbatim; so the exact strings ARE the requirement),,
 Exports are generated server-side over the full filtered set,IV — Exports,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current filtered set spans more than one page (but stays under the export row cap).","1. From page 1, without visiting the later pages, download the CSV.
 2. Count the file's data rows and look for parts you know sit on the later pages.
@@ -684,10 +684,10 @@ Exports are generated server-side over the full filtered set,IV — Exports,Func
 3. The export is generated server-side against the current filters, part search, and sort — it is not built from the rows currently in the browser.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R11).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S10-R11), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/5/2026.
 
-AUTOMATION: HOLD - this part of the report is not built yet
+AUTOMATION: READY
 ",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R11),,
 An over-cap set produces no file and shows the too-large-to-export message,IV — Exports,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A filter/location combination exists whose filtered set EXCEEDS the export row cap (seed ZZAUTOTEST parts in bulk if needed, or use the largest available data set).","1. Set the filters so the filtered set exceeds the export row cap.
@@ -696,14 +696,16 @@ An over-cap set produces no file and shows the too-large-to-export message,IV �
 2. The user sees the message: ""This report is too large to export. Narrow the date range or filters, then try again."" (a blocking notification; no file).
 3. After narrowing the filters below the cap, the download works again.
 4. Note for the tester: on this environment the biggest view you can build is about 9,275 rows, which is under the cap, so you cannot make this message appear here. If the PDF fails with a plain error instead, that is the separate timeout problem - see the Inventory Value export-notification case.
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818
+What you should see today: the spreadsheet download works and produces a file, but the PDF download of the same view fails with a server error and no file arrives. It depends on how much is in the view, not on which report - filtered down to one or two rows the PDF downloads normally, and on a full unfiltered view of several thousand rows it fails every time. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8818
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R12).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S10-R12), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8818)
-",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R12; §7 User Feedback Summary),,
+AUTOMATION: READY - EXPECT FAIL (SV-8818)",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R12; §7 User Feedback Summary),,
 Download notifications: verbatim success and failure texts per format,IV — Exports,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded (under the export cap).
 3. A download failure can be simulated (for example, disconnect the network just before requesting the download).","1. Download the PDF and the CSV normally and read each notification.
@@ -712,14 +714,16 @@ Download notifications: verbatim success and failure texts per format,IV — Exp
 2. Failure notifications read verbatim: ""Failed to export inventory value report (pdf)"" and ""Failed to export inventory value report (csv)"".
 3. The lower-case ""(pdf)""/""(csv)"" on failure vs the upper-case success ones is the documented spec wording — expected, not a bug.
 4. Note for the tester: on this build a PDF download of a large view fails with a plain error - ""An error occurred. We're sorry for this inconvenience, please try again a bit later later."" - after roughly half a minute. It is a timeout, not the too-large-to-export message. Narrow the view with the part search or a single location and the PDF works. The CSV of the same view always works and is quick. Record the failure; it is a known problem, not a mistake you made.
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818
+What you should see today: the spreadsheet download works and produces a file, but the PDF download of the same view fails with a server error and no file arrives. It depends on how much is in the view, not on which report - filtered down to one or two rows the PDF downloads normally, and on a full unfiltered view of several thousand rows it fails every time. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8818
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R13, S10-R14).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S10-R13, S10-R14), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8818)
-",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R13; S10-R14; §7 User Feedback Summary),,
+AUTOMATION: READY - EXPECT FAIL (SV-8818)",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R13; S10-R14; §7 User Feedback Summary),,
 A large Inventory Value PDF fails instead of being refused politely,IV — Exports,Functional,High,"1. You are signed in with ordinary reports access, on a desktop browser.
 2. The Inventory Value report is open and the whole list runs to several thousand rows.","1. Use the part search to narrow the list to a few hundred rows. Open the three-dot menu and choose the PDF download. Note how long it takes.
 2. Clear the search so the whole list is shown again. Choose the PDF download and wait up to a minute.
@@ -730,14 +734,16 @@ A large Inventory Value PDF fails instead of being refused politely,IV — Expor
 4. Once the view is narrowed the PDF works again.
 5. KNOWN PROBLEM at the time of writing: on the whole list the PDF did not download at all. After roughly half a minute a plain error appeared reading ""An error occurred. We're sorry for this inconvenience, please try again a bit later later."" If you still see that, mark this test Failed, note roughly how many rows were in the view, and refer to the reported problem — do not change the test.
 6. Note for the tester: the polite refusal message in item 2 is the correct behaviour. The plain error in item 5 is the problem being tracked. Tell the two apart by the wording.
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818
+What you should see today: the spreadsheet download works and produces a file, but the PDF download of the same view fails with a server error and no file arrives. It depends on how much is in the view, not on which report - filtered down to one or two rows the PDF downloads normally, and on a full unfiltered view of several thousand rows it fails every time. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8818
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S10-R11, S10-R12, S10-R14).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S10-R11, S10-R12, S10-R14), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8818)
-",SV-8677 (IV spec v3 2026-07-29 S10-R11; S10-R12; S10-R14 — the observed failure path is a roughly 30-second server-side timeout and not the S10-R12 row cap; observed on build v3.4.1-0ed4433),,
+AUTOMATION: READY - EXPECT FAIL (SV-8818)",SV-8677 (IV spec v3 2026-07-29 S10-R11; S10-R12; S10-R14 — the observed failure path is a roughly 30-second server-side timeout and not the S10-R12 row cap; observed on build v3.4.1-0ed4433),,
 All-white table with no row shading on the standard report backdrop,IV — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with several rows.","1. Look at the column headers and the data cells.
 2. Compare the background of consecutive rows.
@@ -745,35 +751,36 @@ All-white table with no row shading on the standard report backdrop,IV — Visua
 2. The table sits on the standard soft blue-grey report backdrop.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S12-R1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S12-R1), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R1),,
+AUTOMATION: READY",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R1),,
 Toolbar layout: menu leftmost then Column Selection; then the 5 filters,IV — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open.","1. Look at the toolbar's action cluster and read the order of its controls.
 2. Read the toolbar filters from left to right.","1. In the toolbar, the three-dot download menu sits leftmost in the action cluster, followed by the Column Selection control.
 2. The toolbar filters run, left to right: the date-range control, the part search, the Category filter, the Vendor filter, and the Location filter (rightmost).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S12-R2, S12-R3).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S12-R2, S12-R3), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R2; S12-R3),,
+AUTOMATION: READY",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R2; S12-R3),,
 Long Description; Category and Vendor truncate on hover; Part # never does,IV — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A ZZAUTOTEST part exists with a very long description (and, if possible, long category/vendor names) and a long part number.","1. Narrow the browser window (or turn on more columns) so the text columns overflow.
 2. Read the long Description, Category, and Vendor cells and hover each.
 3. Read the long Part # cell.","1. Long text values (Description, Category, Vendor) are truncated with an ellipsis when they overflow their column.
 2. The full value is available on hover.
 3. The Part # is never truncated.
+What you should see today: long text in Description, Category and Vendor is never shortened - the column just grows to fit and the table scrolls sideways, with no ""..."" and nothing shown on hover; and a screen reader is told nothing about which column the report is sorted by, although the arrow is drawn on screen. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8932
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S12-R6).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S12-R6), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R6),,
+AUTOMATION: READY - EXPECT FAIL (SV-8932)",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R6),,
 "In dark mode the page background, toolbar, cells; the ""—"" glyph remain legible",IV — Visual & Accessibility,Accessibility,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The application is switched to dark mode.
 3. The report shows rows including a part with an em-dash (""—"") Category or Vendor cell.","1. Read the page background, toolbar, and table cells in dark mode.
@@ -782,11 +789,10 @@ AUTOMATION: READY
 3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether everything is easy to read in dark mode, and only report it if something is hard to see. (The exact colour values behind this are design-token values the design and engineering team check with their own tooling, not by hand.)
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S12-R7).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S12-R7), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R7),,
+AUTOMATION: READY",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R7),,
 Each sortable header exposes its sort state and shows the direction,IV — Visual & Accessibility,Accessibility,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.
 3. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an ""Accessibility"" panel that shows the same names without you having to listen to anything.","1. Sort by a column and look at its header for a visual direction indicator.
@@ -794,24 +800,26 @@ Each sortable header exposes its sort state and shows the direction,IV — Visua
 3. Toggle the direction and check both again.","1. The active sort direction is indicated visually on the header.
 2. Each sortable column header exposes its sort state to assistive technology (for example, ascending/descending/none).
 3. The exposed state updates when the direction toggles.
+What you should see today: long text in Description, Category and Vendor is never shortened - the column just grows to fit and the table scrolls sideways, with no ""..."" and nothing shown on hover; and a screen reader is told nothing about which column the report is sorted by, although the arrow is drawn on screen. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8932
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S12-R8).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S12-R8), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R8),,
+AUTOMATION: READY - EXPECT FAIL (SV-8932)",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R8),,
 The icon-only download and Column Selection buttons carry accessible names,IV — Visual & Accessibility,Accessibility,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open.
 3. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an ""Accessibility"" panel that shows the same names without you having to listen to anything.","1. Inspect the three-dot download button's accessible name.
 2. Inspect the Column Selection button's accessible name.","1. Each icon-only control carries an accessible name exposed to assistive technology (it is not announced as an unnamed button).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S12-R9).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S12-R9), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R9),,
+AUTOMATION: READY",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R9),,
 A user with ordinary reports access can open Inventory Value,IV — Permissions,Functional,Critical,"1. A test user exists whose role has the ordinary reports access (assign the Tech user a suitable role if needed; restore the original role afterward).
 2. You are signed in as that user on a desktop browser.","1. Open the reports navigation and find ""Inventory Value"" under the Parts group.
 2. Open the report and confirm it loads rows.
@@ -820,21 +828,19 @@ A user with ordinary reports access can open Inventory Value,IV — Permissions,
 3. Note for the tester: the specification allows ONE ordinary reports access for all six of these new reports and no per-report permission. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (Story 1 Prerequisites).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (Story 1 Prerequisites), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-","SV-8668 (IV spec Story 1 Prerequisites — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW""; the IV prerequisite still names the inventory-reports permission — his spec edit owed)",,
+AUTOMATION: HOLD - needs a second sign-in as a user holding only the ordinary reports access","SV-8668 (IV spec Story 1 Prerequisites — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW""; the IV prerequisite still names the inventory-reports permission — his spec edit owed)",,
 Without reports access Inventory Value is absent from the navigation,IV — Permissions,Negative,Critical,"1. A test user exists whose role does NOT have reports access (assign the Tech user such a role; restore the original role afterward).
 2. You are signed in as that user on a desktop browser.","1. Open the reports navigation.
 2. Look for ""Inventory Value"" under the Parts group.","1. The report does not appear in the navigation for this user.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S1-N1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S1-N1), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-","SV-8668 (IV spec Story 1 S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW"")",,
+AUTOMATION: HOLD - needs a second sign-in as a user with no reports access","SV-8668 (IV spec Story 1 S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW"")",,
 Nightly snapshot records one row per in-stock non-core part per location,IV — API,Functional,High,"1. In-stock, non-core parts exist at two or more locations, including a part with non-round cent values.
 2. A location with NO in-stock parts also exists.
 3. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers).
@@ -845,11 +851,10 @@ Nightly snapshot records one row per in-stock non-core part per location,IV — 
 3. A location with no in-stock parts on the date simply has no rows for that date — this is valid, not an error.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S11-R1, S11-R4).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S11-R1, S11-R4), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R1; S11-R4),,
+AUTOMATION: HOLD - the nightly capture is a server-side job and its stored rows are not reachable from the application",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R1; S11-R4),,
 A recorded snapshot day equals what the live report showed that day,IV — API,Functional,Critical,"1. ZZAUTOTEST parts with known quantities, costs, and sell resolutions (fixed price, matrix markup, and no-category fallback) are in stock and left UNCHANGED across the capture.
 2. A core-charge part and a zero-quantity part also exist.
 3. You can read the live report on the capture date and the stored rows afterward.
@@ -861,11 +866,10 @@ A recorded snapshot day equals what the live report showed that day,IV — API,F
 3. A recorded day equals what the live report would have shown that day — the as-of view of the captured date matches the noted live values.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S11-R2).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S11-R2), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R2; §2 Relationship to nightly history),,
+AUTOMATION: HOLD - needs the stored nightly capture rows, which are not reachable from the application",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R2; §2 Relationship to nightly history),,
 Nightly snapshot: re-running the capture for a date replaces that date's rows,IV — API,Functional,High,"1. A capture has already run for the current date.
 2. The capture can be re-run for that date (arrange with the developers).
 3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.","1. Count the stored rows per location for the date.
@@ -878,11 +882,10 @@ Nightly snapshot: re-running the capture for a date replaces that date's rows,IV
 6. A past date's stored rows are unchanged by a current re-run.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S11-R3, S11-R5, S5-E1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S11-R3, S11-R5, S5-E1), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R3; Story 11 S11-R5; Story 5 S5-E1),,
+AUTOMATION: HOLD - the nightly capture job cannot be re-run or inspected from the application",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R3; Story 11 S11-R5; Story 5 S5-E1),,
 Snapshot retention: daily captures are kept for 0–13 months,IV — API,Functional,High,"1. Snapshot history exists (or is seeded/simulated with dev help) spanning both the 0–13-month band and the older-than-13-months band.
 2. The nightly capture (with its pruning) has run.
 3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.","1. Inspect the retained captures for dates within the last 13 months.
@@ -890,15 +893,15 @@ Snapshot retention: daily captures are kept for 0–13 months,IV — API,Functio
 3. Check when pruning runs relative to the nightly capture.","1. For ages 0–13 months (measured from the current date), every daily capture is kept — full daily per-part detail, covering the report's longest date preset (366 days / This Year / Last Year) entirely at daily resolution.
 2. For ages older than 13 months, only the last capture of each calendar month is retained; the other daily captures in that band are pruned.
 3. Pruning runs as part of, or alongside, the nightly capture.
+
 ---
 Note for the tester: this one needs records going back more than a year, and this test system only holds a few days of records so far. If there is nothing old enough to look at, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S11-R6).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S11-R6), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R6),,
+AUTOMATION: HOLD - retention pruning is a server-side job over stored history, not reachable from the application",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R6),,
 Thinned history still served by the closest-recorded-day rule,IV — API,Functional,High,"1. Thinned history exists (dates older than 13 months where only the monthly last-capture remains — dev-seeded if needed).
 2. The retained capture dates around the requested date are known.
 3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.","1. On the report, select a range ending on a pruned date between two retained monthly captures.
@@ -906,12 +909,12 @@ Thinned history still served by the closest-recorded-day rule,IV — API,Functio
 3. Select a range whose covering captures have ALL been pruned and no earlier retained capture remains.","1. The as-of resolution serves the thinned history unchanged: the report resolves to the nearest earlier retained capture (""closest recorded day on or before""), even when adjacent retained captures are up to a month apart.
 2. The ""As of"" indicator names the day actually shown.
 3. A requested date whose covering captures have all been pruned resolves to the nearest earlier retained capture, or shows the empty state if none remains.
+
 ---
 Note for the tester: this one needs records going back more than a year, and this test system only holds a few days of records so far. If there is nothing old enough to look at, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 4 (S11-E1, S11-R6, S5-R4, S5-R5, S5-N1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S11-E1, S11-R6, S5-R4, S5-R5, S5-N1), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-E1; S11-R6; Story 5 S5-R4; S5-R5; S5-N1),,
+AUTOMATION: HOLD - needs a thinned history that this organisation does not have and cannot be produced from the application",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-E1; S11-R6; Story 5 S5-R4; S5-R5; S5-N1),,

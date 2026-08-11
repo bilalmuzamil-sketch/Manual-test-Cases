@@ -3,18 +3,18 @@ Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
 2. Your role has the ordinary reports access (the standard ""can this person see reports"" setting).","1. Open the Reports area from the main navigation.
 2. Find the Performance group and read its entries from top to bottom.
 3. Click the ""Sales By Customer"" entry.
-4. Read the page title at the top of the report and the browser tab's title.","1. ""Sales By Customer"" is listed in the Performance group of the Reports left-side navigation, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency) — the new reports are added below those items without moving them.
+4. Read the page title at the top of the report and the browser tab's title.","1. ""Sales By Customer"" is listed in the Reports left-side navigation and can be opened from there.
+1a. Note for the tester: the written description says only that it appears in the Reports navigation - it does not say WHICH group it belongs in. Write down the group heading you find it under and carry on; do not fail the test on the group name. The product owner has been asked to settle which group each of the six new reports belongs in.
 2. Clicking it opens the Sales By Customer report in the main content area.
 3. The page title reads ""Sales By Customer.""
 4. The browser tab title reads ""Sales By Customer - Report | ShopView"".
 5. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a ""Sales By Customer"" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S1-R1, S1-R3, S1-R4).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S1-R1, S1-R3, S1-R4), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: HOLD - waiting on an answer from the product owner
-",SV-8600 (SBC spec S1-R1; S1-R3; S1-R4 — Confluence 577634305 v-2026-07-31; Performance-group placement per the PRD video 2026-07-30; access = ordinary reports permission per Chris Ward 2026-07-31 Q4=A + SV-8598 sheet Q1=A),,
+AUTOMATION: READY",SV-8600 (SBC spec S1-R1; S1-R3; S1-R4 — Confluence 577634305 v-2026-07-31; Performance-group placement per the PRD video 2026-07-30; access = ordinary reports permission per Chris Ward 2026-07-31 Q4=A + SV-8598 sheet Q1=A),,
 Ordinary reports access opens Sales By Customer — no separate permission,SBC — Permissions,Functional,Critical,"1. A test user exists whose role has the ordinary reports access (the standard ""can this person see reports"" setting) and NO report-specific permission (create a ZZAUTOTEST custom role if needed; restore afterwards).
 2. You are signed in as that user.","1. Open the Reports area.
 2. Click ""Sales By Customer"" in the left-side navigation.","1. The ""Sales By Customer"" entry is visible in the Reports navigation.
@@ -23,7 +23,7 @@ Ordinary reports access opens Sales By Customer — no separate permission,SBC �
 4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a ""Sales By Customer"" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S1-R2).
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S1-R2), read on 11 August 2026.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -37,7 +37,7 @@ AUTOMATION: READY
 4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a ""Sales By Customer"" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S1-N1).
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S1-N1), read on 11 August 2026.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -50,7 +50,7 @@ Opening an invoice you lack permission for shows access-denied; back works,SBC �
 3. Note for the tester: the written description now says two different things about this, so do not fail the test on what the invoice number LOOKS like. The part this test was written from says the person clicks the link and lands on a page telling them they are not allowed in. Another part, added on 5 August 2026, says that person is not given a link at all and simply sees the invoice number as ordinary plain text. Both are in the same description today. The product owner has been asked which he wants. Write down exactly what you saw — a link leading to a not-allowed page, or plain text with nothing to click — and carry on. The one thing that would be a real failure is that person actually SEEING the invoice they are not allowed to see.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S9-N2), which states that a user who lacks permission to open the destination invoice is shown the standard access-denied page and can press back to return to the report. The same version's S9-R1a, added on 5 August 2026, instead states that such a user is never given a link and sees the invoice number as plain text; the two have not been reconciled and the product owner has been asked which applies.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S9-N2), read on 11 August 2026, which states that a user who lacks permission to open the destination invoice is shown the standard access-denied page and can press back to return to the report. The same version's S9-R1a, added on 5 August 2026, instead states that such a user is never given a link and sees the invoice number as plain text; the two have not been reconciled and the product owner has been asked which applies.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: HOLD - waiting on one answer from the product owner about whether this person is given a link at all
@@ -66,7 +66,7 @@ Location access enforced: no data from a location the user cannot access,SBC —
 4. The report data never includes invoices from a location the user does not have access to.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S4-R7, S4-R8, S4-R9, S4-N1).
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S4-R7, S4-R8, S4-R9, S4-N1), read on 11 August 2026.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -79,22 +79,21 @@ No Sales By Customer permission is offered in the role permission editor,SBC —
 3. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a ""Sales By Customer"" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S1-R2).
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S1-R2), read on 11 August 2026.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ","SV-8598 (SBC spec S1-R2 — Confluence 577634305 v-2026-07-31 — ""there is no dedicated Sales By Customer View permission""; Chris Ward Q1=A + his ruling to hide an already-built permission from the front end; SV-8780)",,
-Date range picker offers eleven options in the specified order,SBC — Date Range Filter,Functional,High,1. You are on the Sales By Customer report.,"1. Find the date range picker in the report toolbar.
+"Date range picker offers nine periods in the specified order, no All Time",SBC — Date Range Filter,Functional,High,1. You are on the Sales By Customer report.,"1. Find the date range picker in the report toolbar.
 2. Open it and read the options from top to bottom.","1. A date range picker is visible in the report toolbar.
 3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports.
 3. There is no ""All Time"" option.
 
 ---
-This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Sales By Customer report specification version 15 (S2-R1, S2-R2) says something different, his decision is the later word and is the authority.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. Where the Sales By Customer report specification version 17 (S2-R1, S2-R2), read on 11 August 2026, says something different, his decision is the later word and is the authority.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R1; S2-R2 — S2-R2 CLOSES the eleven-option list and its order itself; so the closed list IS the requirement; re-check this case whenever S2-R2 changes),,
+AUTOMATION: READY",SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R1; S2-R2 — S2-R2 CLOSES the eleven-option list and its order itself; so the closed list IS the requirement; re-check this case whenever S2-R2 changes),,
 Building a custom range on the calendar cannot exceed a 366-day span,SBC — Date Range Filter,Functional,Medium,1. You are on the Sales By Customer report.,"1. Open the date range picker. A month calendar is shown inside it, which is how a custom start and end date are picked on this build.
 2. Pick a start and end date less than 366 days apart on that calendar and apply.
 3. Open the picker again and try to pick a start and end date MORE than 366 days apart.","1. The date range picker shows a month calendar inside it — that is how a custom start and end date are chosen. There is no separate ""Custom"" item to choose.
@@ -102,22 +101,24 @@ Building a custom range on the calendar cannot exceed a 366-day span,SBC — Dat
 3. A range wider than 366 days cannot be applied — the report prevents the selection rather than loading the wider range.
 
 ---
-This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Sales By Customer report specification version 15 (S2-R3, S2-R4, S2-N2) says something different, his decision is the later word and is the authority.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. Where the Sales By Customer report specification version 17 (S2-R3, S2-R4, S2-N2), read on 11 August 2026, says something different, his decision is the later word and is the authority.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R3; S2-R4; S2-N2),,
+AUTOMATION: HOLD - the calendar cannot be driven past the 366-day span from this harness; the back end refuses a wider range but the on-screen prevention was not seen",SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R3; S2-R4; S2-N2),,
 Changing the date range writes it into the page link for sharing,SBC — Date Range Filter,Functional,Medium,1. You are on the Sales By Customer report.,"1. Change the date range (for example to ""Last Month"").
 2. Look at the browser's address bar.
 3. Copy the page link, open it in a fresh browser profile with no saved view for this report, and check the date range.","1. The chosen date range value is written into the page link.
 2. Opening that link in a browser with no saved view for this report restores the sender's date range.
+What you should see today: the address bar never changes - it stays at the plain report address after the range is applied, so there is nothing to copy and share. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8955
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S2-R6, S2-R9).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S2-R6, S2-R9), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R6; S2-R9 (context)),,
+AUTOMATION: READY - EXPECT FAIL (SV-8955)",SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R6; S2-R9 (context)),,
 Product Type: three options with Parts & Service default; S/P prefix filtering,SBC — Product Type Filter,Functional,High,"1. You are on the Sales By Customer report with no saved view (first visit or cleared browser storage), so the first-load default can be read.
 2. The date range contains at least one service invoice (number starting with S) and one parts invoice (number starting with P) — seed ZZAUTOTEST data if needed.","1. Find the ""Product Type"" dropdown in the report toolbar; read its value before touching it, then open it and read the options in order.
 2. Set Product Type to ""Service only,"" expand a customer down to invoice rows, and read the invoice numbers.
@@ -129,11 +130,10 @@ Product Type: three options with Parts & Service default; S/P prefix filtering,S
 5. The whole invoice is classified by its number prefix — there is no per-line-item split.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-","SV-8602 (SBC spec v13 2026-07-31 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6 — S3-R2 CLOSES the list itself (""exactly three options ... in this order""); so the closed list IS the requirement)",,
+AUTOMATION: READY","SV-8602 (SBC spec v13 2026-07-31 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6 — S3-R2 CLOSES the list itself (""exactly three options ... in this order""); so the closed list IS the requirement)",,
 "Location filter: rightmost, lists accessible locations, All locations on top",SBC — Location Filter,Functional,High,1. You are on the Sales By Customer report as a user with access to two or more locations.,"1. Look at the report toolbar's filters from left to right.
 2. Open the location filter and read its options.
 3. Click the ""All locations"" option, then click it again.
@@ -144,7 +144,7 @@ AUTOMATION: READY
 5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's data.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S4-R1, S4-R2, S4-R3). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S4-R1, S4-R2, S4-R3), read on 11 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -159,45 +159,52 @@ Selecting locations scopes the data; All locations covers every accessible one,S
 4. With ""All locations"" active you can tell which location each row's data belongs to — a location label or marking is shown.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S4-R5, S4-R6); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S4-R5, S4-R6), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8603 (SBC spec Story 4 S4-R5; S4-R6 — per-row location identifier in All-locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins],,
-The Location column shows only with more than one location; Multiple on totals,SBC — Location Filter,Functional,High,"1. You are on the Sales By Customer report as a user with access to two or more locations.
-2. At least one customer has invoices at two different locations, and at least one asset has invoices at two different locations.","1. Select two or more locations in the Location filter and read the column headers.
+AUTOMATION: READY",SV-8603 (SBC spec Story 4 S4-R5; S4-R6 — per-row location identifier in All-locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins],,
+"Location column: shown to any multi-location user, Multiple on aggregating rows",SBC — Location Filter,Functional,High,"1. You are on the Sales By Customer report as a user with access to two or more locations.
+2. At least one customer has invoices at two different locations, and at least one asset has invoices at two different locations.","1. With every location selected in the Location filter, read the column headers.
 2. Read the Location cell on a customer row whose invoices are all at one location.
 3. Read the Location cell on a customer row and an asset row whose invoices span two locations.
 4. Expand to an invoice row and read its Location cell.
 5. Open the column selector and look for Location in the list.
 6. Narrow the Location filter to a single location and read the headers again.
-7. With more than one location still selected, download all four files from the download menu (Summary and Expanded View, PDF and CSV) and read the columns in each one.","1. With more than one location in scope a Location column is shown, positioned immediately after the Date column.
+7. With more than one location still selected, download all four files from the download menu (Summary and Expanded View, PDF and CSV) and read the columns in each one.","1. Because the signed-in person has access to more than one location, a Location column is shown by default, positioned immediately after the Date column.
 2. A customer or asset row whose invoices are all at one location shows that location's name.
 3. A customer or asset row whose invoices come from more than one location shows ""Multiple"".
-4. An invoice row always shows its own exact location — never ""Multiple"".
-5. If the signed-in person only has access to ONE location, no Location column is shown to them at all and Location is not offered in their column-selection list.
-6. When the Location column is not shown, the surrounding columns close up with no gap.
-7. Every one of the four downloads also contains the Location column, in the same position it holds on screen, showing the same values you just read: a location name on a row whose invoices are all at one location, ""Multiple"" on a row that aggregates more than one, and the invoice's own location on an invoice row.
+4. An invoice row always shows its own exact location - never ""Multiple"".
+5. Location is offered in the column-selection control and can be switched on and off by hand.
+6. Narrowing to a single location does NOT remove the column: what decides whether it is shown is how many locations the person can reach, not how many are currently selected.
+7. If the signed-in person only has access to ONE location, no Location column is shown to them at all and Location is not offered in their column-selection list.
+8. Every one of the four downloads also contains the Location column, in the same position it holds on screen, showing the same values you just read.
+
+What you should see today: the Location column behaves by how many locations are SELECTED, not by what the signed-in person can reach. With every location selected the column appears; narrow the Location filter to a single location and the column disappears, even though the person still has access to five locations. The column is also not listed in the column-selection control at all, so it cannot be switched on or off by hand. This was seen on all three handed-off reports.
+- If you see exactly that, mark this test FAILED and do not raise anything new - it is already written up for the QA lead.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so this note can be removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S4-R12, S4-R12a, S4-R13, S20-R19). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: one requirement says it is shown by default and can be toggled there, and the list of toggleable columns in another does not include it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S4-R12, S4-R12a, S4-R13, S20-R19), read on 11 August 2026. Chris Ward confirmed this same rule in his answers of 8/10/2026, in this file: build/report-suite/chris-answers-2026-08-10/ - his answer and the specification agree, so the earlier note saying the description contradicted itself no longer applies.
+Last checked against build v3.5-4795eee on 8/10/2026.
 
-AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked
-","SV-8603; SV-8612; SV-8613 (SBC spec v13 2026-07-31 S4-R12; S4-R12a; S4-R13; S20-R19 — per-row Location column with automatic visibility; ""Multiple"" on aggregating rows; S4-R13 = the same column in every export)",,
+AUTOMATION: HOLD - the build does not follow the ratified Location rule; the defect is written up in DEFECTS-FOR-PERMISSION.md and needs the QA lead's permission before a ticket exists to point at","SV-8603; SV-8612; SV-8613 (SBC spec v13 2026-07-31 S4-R12; S4-R12a; S4-R13; S20-R19 — per-row Location column with automatic visibility; ""Multiple"" on aggregating rows; S4-R13 = the same column in every export)",,
 "Customer filter sits between Product Type and Location, carries a search icon",SBC — Customer Filter,Functional,High,1. You are on the Sales By Customer report with at least one customer in the current results.,"1. Look at the toolbar filters from left to right.
 2. Open the Customer filter without typing anything.
 3. Read what the dropdown shows before any query is typed.","1. A Customer filter labeled ""Customer"" sits between the Product Type filter and the Location filter.
 2. The control carries a search (magnifier) icon marking it as searchable.
 3. Before typing, the dropdown shows the pinned all/clear control at the top and a ""Search customers…"" hint; individual customers are revealed by typing.
 4. The hint yields to the typed query while you are searching.
+What you should see today: the Customer filter has no magnifier icon on it - the only icon is the drop-down arrow. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8962
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R1, S18-R2).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R1, S18-R2), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R1; S18-R2),,
+AUTOMATION: READY - EXPECT FAIL (SV-8962)",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R1; S18-R2),,
 Typing in the Customer filter lists matching customers by contains match,SBC — Customer Filter,Functional,High,"1. You are on the Sales By Customer report.
 2. At least two customers with distinct names have invoices in the current date range/Product Type/location (seed ZZAUTOTEST customers if needed).","1. Open the Customer filter and type a fragment from the MIDDLE of a customer's name, in different letter case (for example type ""corp"" for ""Acme Corp"").
 2. Read the list of customers shown.
@@ -206,23 +213,27 @@ Typing in the Customer filter lists matching customers by contains match,SBC —
 3. A selected customer is shown with a checkmark.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R2).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R2), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R2),,
+AUTOMATION: READY",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R2),,
 Pinned control toggles All customers and Clear all; clearing shows empty state,SBC — Customer Filter,Functional,High,1. You are on the Sales By Customer report with several customers in the current results.,"1. Open the Customer filter while it is in the all-customers state and read the pinned control at the top of the dropdown.
 2. Activate it (""Clear all"") and read the table body, the totals row, and the filter's collapsed label.
 3. Read the pinned control again and activate it once more.","1. In the all-customers state the pinned control reads ""Clear all""; activating it clears the selection to an empty set.
 2. When the filter is NOT in the all-customers state the pinned control reads ""All customers""; activating it puts the filter back in the all-customers state.
 3. The control is pinned to the top of the dropdown in both states.
-4. After ""Clear all"": the report shows the empty-state message ""No sales data found for the selected filters."", the totals row shows zeros, and the collapsed label reads ""None.""
+4. After ""Clear all"": the report shows the empty-state message ""No sales data found for the selected filters."" The collapsed label reads ""None"", and the totals row shows zeros.
+
+What you should see today: everything in item 4 happens except the totals row - the empty-state message appears and the collapsed label reads ""None"", but there is no totals row on the report at all, of zeros or otherwise. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8991.
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above - for example a totals row appears but the figures are not zeros, or the empty-state message or the ""None"" label is wrong, or the pinned control in items 1 to 3 does not behave as described - that is a NEW problem, so please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R3, S18-N1, S17-E1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R3, S18-N1, S17-E1), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
+AUTOMATION: READY - EXPECT FAIL (SV-8991)
 ",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R3; S18-N1; S17-E1),,
 First load starts in the all-customers state and the report shows every customer,SBC — Customer Filter,Functional,High,"1. Your browser has no saved view for this report.
 2. Several customers have invoices in the default date range.
@@ -235,11 +246,10 @@ First load starts in the all-customers state and the report shows every customer
 4. After the filter change the filter stays in the all-customers state (label still ""All customers"") and every customer matching the new filters is included — including the newly-appearing one, with no manual re-selection.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R4, S18-R5, S18-R9, S18-E1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R4, S18-R5, S18-R9, S18-E1), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R4; S18-R5; S18-R9; S18-E1),,
+AUTOMATION: READY",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R4; S18-R5; S18-R9; S18-E1),,
 "Collapsed label reads None, the customer's name, or N selected",SBC — Customer Filter,Functional,Medium,1. You are on the Sales By Customer report with at least three customers in the current results.,"1. Open the Customer filter and use ""Clear all"" to empty the selection; read the collapsed label.
 2. Select exactly one customer; read the collapsed label.
 3. Select a second and third customer; read the collapsed label.
@@ -247,13 +257,16 @@ AUTOMATION: READY
 2. With exactly one customer selected the label shows that customer's name.
 3. With more than one selected the label reads ""N selected"" where N is the number of selected customers (for example ""3 selected"").
 4. While typing, the field shows the query text instead of the summary label; the summary label returns when the query is cleared or the field loses focus.
+What you should see today: with two customers picked the closed control reads ""2 customers"" instead of ""2 selected"", and while you type the closed control keeps showing the summary label instead of what you typed. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8962
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R5).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R5), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R5),,
+AUTOMATION: READY - EXPECT FAIL (SV-8962)",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R5),,
 Changing the customer selection narrows the table and refreshes the totals,SBC — Customer Filter,Functional,Critical,1. You are on the Sales By Customer report with at least three customers in the current results.,"1. Note the customers and the totals row values.
 2. Open the Customer filter, clear all, and select exactly two customers.
 3. Read the table rows and the totals row.","1. The report shows only the two selected customers.
@@ -261,11 +274,10 @@ Changing the customer selection narrows the table and refreshes the totals,SBC �
 3. The totals row updates to cover only the selected customers' matching invoices.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R5, S18-R11).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R5, S18-R11), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R5; S18-R11),,
+AUTOMATION: READY",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R5; S18-R11),,
 A subset customer selection reconciles on a filter change; kept if present,SBC — Customer Filter,Functional,Medium,"1. You are on the report with three customers A, B, C where: A has invoices in both this month and last month; B has invoices only in this month; C has invoices only in last month (seed ZZAUTOTEST data as needed).
 2. Date range is This Month; you have selected exactly customers A and B in the Customer filter.","1. Change the date range to Last Month.
 2. Read the table rows and the Customer filter selection.","1. Customer A (still present in the new results) stays selected and is shown.
@@ -274,11 +286,10 @@ A subset customer selection reconciles on a filter change; kept if present,SBC �
 4. The Customer filter selection itself is not cleared by the date change.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R9, S18-E1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R9, S18-E1), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R9; S18-E1),,
+AUTOMATION: READY",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R9; S18-E1),,
 Each customer gets one summary row with its invoice count in parentheses,SBC — Tree & Rows,Functional,Critical,"1. You are on the Sales By Customer report.
 2. A customer has a known number of matching invoices in the current date range (seed ZZAUTOTEST data so the count is predictable).","1. Find that customer's row at the top level of the table.
 2. Read the text at the start of the row.
@@ -289,21 +300,19 @@ Each customer gets one summary row with its invoice count in parentheses,SBC —
 5. Note for the tester: you do not need to measure anything and you do not need any tool for item 3. Just say whether the count looks the right size and is easy to read, and only report it if it looks obviously wrong. (The exact colour and weight behind this are design-token values the design and engineering team check with their own tooling.)
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S7-R1, S7-R2, S7-R3, S7-R4, S7-R5).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S7-R1, S7-R2, S7-R3, S7-R4, S7-R5), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8605 (SBC spec v13 2026-07-31 Story 7 S7-R1; S7-R2; S7-R3; S7-R4; S7-R5),,
+AUTOMATION: READY",SV-8605 (SBC spec v13 2026-07-31 Story 7 S7-R1; S7-R2; S7-R3; S7-R4; S7-R5),,
 A customer with no matching invoices in the current view is not shown,SBC — Tree & Rows,Negative,High,"1. A customer exists whose invoices all fall OUTSIDE the current date range (seed if needed).
 2. You are on the Sales By Customer report.","1. Set a date range that contains none of that customer's invoices.
 2. Look for the customer in the table.","1. The customer is not shown — there are no zero-value placeholder rows.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S7-N1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S7-N1), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8605 (SBC spec v13 2026-07-31 Story 7 S7-N1),,
+AUTOMATION: READY",SV-8605 (SBC spec v13 2026-07-31 Story 7 S7-N1),,
 Expanding a customer reveals asset rows; chevrons toggle and are independent,SBC — Tree & Rows,Functional,Critical,"1. A customer in the current view has invoices on at least two different vehicles (seed ZZAUTOTEST work orders on two assets if needed).
 2. At least two customers with assets are in the current view.","1. Click the chevron control on customer A's summary row and read the rows that appear beneath it.
 2. Expand one of customer A's assets, then expand customer B.
@@ -316,44 +325,40 @@ Expanding a customer reveals asset rows; chevrons toggle and are independent,SBC
 7. Collapsing customer A does not affect customer B's expansion; each asset's expansion state is likewise independent.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-R1, S8-R2, S8-R5, S8-R5a, S8-R5b, S8-R5c, S8-R15).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S8-R1, S8-R2, S8-R5, S8-R5a, S8-R5b, S8-R5c, S8-R15), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R1; S8-R2; S8-R5; S8-R5a; S8-R5b; S8-R5c; S8-R15),,
+AUTOMATION: READY",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R1; S8-R2; S8-R5; S8-R5a; S8-R5b; S8-R5c; S8-R15),,
 Expanding an asset reveals its invoice rows with number link and date,SBC — Tree & Rows,Functional,Critical,1. You have expanded a customer and can see its asset rows.,"1. Click the chevron on an asset row.
 2. Read the invoice detail rows that appear.","1. The invoice detail rows for that asset appear, indented one level deeper than the asset row.
 2. Each detail row shows the invoice number (as a link), the invoice date, and the per-invoice Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, and Subtotal.
 3. The invoice date shows in the format ""Mon DD YYYY"" — for example, May 14 2026.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-R4, S8-R12, S8-R12a, S20-R14).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S8-R4, S8-R12, S8-R12a, S20-R14), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R4; S8-R12; S8-R12a; Story 20 S20-R14),,
+AUTOMATION: READY",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R4; S8-R12; S8-R12a; Story 20 S20-R14),,
 Invoices group into one asset row per vehicle record,SBC — Tree & Rows,Functional,Medium,1. A customer has two or more invoices on the SAME vehicle record and at least one invoice on a different vehicle (seed ZZAUTOTEST data).,"1. Expand the customer.
 2. Count the asset rows and compare each asset's invoice count with the invoices you created.
 3. If the environment has an older invoice with no vehicle record linked (only a stored vehicle snapshot), check which asset row it lands under.","1. Invoices referencing the same vehicle record (same vehicle id) group into ONE asset row — no duplicate rows for the same vehicle.
 2. An older invoice with no vehicle id on file groups by the invoice's own stored vehicle snapshot instead.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-R3).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S8-R3), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R3),,
+AUTOMATION: READY",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R3),,
 Asset rows order A to Z with the Parts Sales bucket always last,SBC — Tree & Rows,Functional,High,1. A customer has invoices on at least two vehicles AND at least one no-vehicle invoice (counter/parts sale) in the current view (seed ZZAUTOTEST data).,"1. Expand the customer and read the asset rows top to bottom.
 2. Click a financial column header to change the table sort, and re-read the asset rows.","1. The customer's real asset rows are ordered A→Z by their label, case-insensitive.
 2. The no-vehicle work collects under a single row labeled ""Parts Sales,"" always sorted last among that customer's assets.
 3. Changing the column sort does not change the asset order — assets stay A→Z with ""Parts Sales"" last.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-R6, S8-R6a, S10-R6).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S8-R6, S8-R6a, S10-R6), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R6; S8-R6a; Story 10 S10-R6),,
+AUTOMATION: READY",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R6; S8-R6a; Story 10 S10-R6),,
 Header-row chevron expands or collapses every customer on the current page,SBC — Tree & Rows,Functional,Medium,1. Several customers are visible on the current page.,"1. Hover the chevron in the table header row and read the tooltip.
 2. Click it and watch the customer rows.
 3. Hover it again and read the tooltip, then click it again.","1. With at least one visible customer collapsed, the header chevron shows the ""expand"" icon and its tooltip reads ""Expand all.""
@@ -361,11 +366,10 @@ Header-row chevron expands or collapses every customer on the current page,SBC �
 3. With all visible customers expanded, the icon switches to ""collapse"" and the tooltip reads ""Collapse all""; clicking collapses them all.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-R16, S8-R17, S8-R18, S8-R19).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S8-R16, S8-R17, S8-R18, S8-R19), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R16; S8-R17; S8-R18; S8-R19),,
+AUTOMATION: READY",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R16; S8-R17; S8-R18; S8-R19),,
 Reload-causing changes collapse expansion; Customer filter typing does not,SBC — Tree & Rows,Functional,Medium,"1. You are on the report with at least one customer expanded down to invoice rows.
 2. Enough customers exist to fill more than one page of results (seed ZZAUTOTEST customers if needed).","1. With rows expanded, open the Customer filter and TYPE a search query (do not change the selection); watch the expanded rows.
 2. Now change the date range (or Product Type, location, Customer selection, or sort).
@@ -374,30 +378,27 @@ Reload-causing changes collapse expansion; Customer filter typing does not,SBC �
 3. While the re-fetch is in flight the table shows the standard loading state; when it clears, the page shows the first page of the newly ordered set — the customers on the page can change.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-R20, S8-R21, S10-R8a, S10-R8b, S10-R8c).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S8-R20, S8-R21, S10-R8a, S10-R8b, S10-R8c), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R20; S8-R21; Story 10 S10-R8a; S10-R8b; S10-R8c),,
+AUTOMATION: READY",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R20; S8-R21; Story 10 S10-R8a; S10-R8b; S10-R8c),,
 Edge: a single-invoice asset can still be expanded,SBC — Tree & Rows,Functional,Medium,1. Customer A has an asset with exactly one invoice; customer B has ONLY no-vehicle (counter/parts sale) invoices in the current view (seed ZZAUTOTEST data).,"1. Expand customer A and click the chevron of the single-invoice asset.
 2. Expand customer B and read its asset rows.","1. The single-invoice asset expands and shows exactly one invoice detail row.
 2. Customer B shows a single ""Parts Sales"" row and no vehicle rows.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-E1, S8-E2).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S8-E1, S8-E2), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-E1; S8-E2),,
+AUTOMATION: READY",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-E1; S8-E2),,
 A service (S) invoice with no vehicle also lands in the Parts Sales bucket,SBC — Tree & Rows,Functional,Medium,"1. A customer has an invoice whose number starts with S but whose work order has NO vehicle (seed a ZZAUTOTEST no-vehicle service work order and invoice it, if the app allows).","1. Expand that customer.
 2. Find which asset row the S invoice sits under.","1. The no-vehicle S invoice appears under that customer's ""Parts Sales"" row — the bucket collects work by the ABSENCE of a vehicle, not by the invoice-number prefix.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-E3).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S8-E3), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-E3),,
+AUTOMATION: HOLD - this organisation has no service invoice without a vehicle, so nothing lands in the Parts Sales bucket from the service side",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-E3),,
 Reversed and voided invoices are excluded from every row; count and total,SBC — Tree & Rows,Negative,Critical,"1. A customer has a known set of invoices in the current range, one of which you then reverse (or void) — seed ZZAUTOTEST data and note the totals before and after.","1. Note the customer's invoice count ""(N)"" and totals with all invoices normal.
 2. Reverse (or void) one of the invoices in the application.
 3. Re-open/refresh the report under ""Parts & Service"" and re-read the count, rows, and totals.
@@ -406,11 +407,10 @@ Reversed and voided invoices are excluded from every row; count and total,SBC �
 3. The customer/asset totals drop by exactly that invoice's amounts.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S7-R7, S7-N2).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S7-R7, S7-N2), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8605 (SBC spec v13 2026-07-31 Story 7 S7-R7; S7-N2; §3 Key Decisions),,
+AUTOMATION: HOLD - this organisation has no reversed or voided invoice inside the report date range",SV-8605 (SBC spec v13 2026-07-31 Story 7 S7-R7; S7-N2; §3 Key Decisions),,
 Every row type renders the same columns in the same order,SBC — Tree & Rows,Functional,Medium,1. You are on the report with a customer expanded down to invoice rows and the totals row visible.,"1. Compare the columns of a customer row, an asset row, an invoice row, and the totals row left to right.
 2. Look at the Date cell on the customer and asset rows.
 3. Look at a customer summary row and compare how heavy its text looks with the invoice rows beneath it.","1. Every row type — customer, asset, invoice, totals — renders the same columns in the same left-to-right order.
@@ -420,11 +420,10 @@ Every row type renders the same columns in the same order,SBC — Tree & Rows,Fu
 5. Note for the tester: you do not need to measure anything and you do not need any tool for item 4. Just say whether the summary row stands out from the invoice rows and whether its Subtotal looks the boldest, and only report it if it looks obviously wrong. (The exact weights behind this are design-token values the design and engineering team check with their own tooling.)
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S7-R8, S7-R9, S7-R10, S7-R15, S7-R16).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S7-R8, S7-R9, S7-R10, S7-R15, S7-R16), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8605 (SBC spec v13 2026-07-31 Story 7 S7-R8; S7-R9; S7-R10; S7-R15; S7-R16),,
+AUTOMATION: READY",SV-8605 (SBC spec v13 2026-07-31 Story 7 S7-R8; S7-R9; S7-R10; S7-R15; S7-R16),,
 "Asset identified by VIN, falling back to Unit #, then plate",SBC — Asset Labels,Functional,High,"1. One customer has ZZAUTOTEST assets with invoices in range: (a) one with a VIN recorded, (b) one with no VIN but a Unit # recorded, (c) one with no VIN or Unit # but a plate recorded, (d) one with no VIN, Unit #, or plate (blank the fields as far as the asset form allows).",1. Expand the customer and read each asset row's label.,"1. Asset (a) is identified by its VIN.
 2. Asset (b) (no VIN) is identified by its Unit # instead.
 3. Asset (c) (no VIN or Unit #) is identified by its plate instead.
@@ -432,33 +431,30 @@ AUTOMATION: READY
 5. Note whether the year/make/model text still appears anywhere in the row - the update says the VIN identifier REPLACES the year/make/model label; confirm the exact rendering in the build.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-R7, S8-R8, S8-R9, S8-R10). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S8-R7, S8-R8, S8-R9, S8-R10), read on 11 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8606 (SBC spec Story 8 S8-R7; S8-R8; S8-R9; S8-R10 - identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate); by Chris Ward msg 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's year/make/model rule),,
+AUTOMATION: READY",SV-8606 (SBC spec Story 8 S8-R7; S8-R8; S8-R9; S8-R10 - identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate); by Chris Ward msg 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's year/make/model rule),,
 Duplicate asset labels get stable (#1)/(#2) suffixes that survive reloads,SBC — Asset Labels,Functional,Medium,"1. One customer has TWO ZZAUTOTEST assets whose labels come out identical (same year/make/model and same identifier situation), each with an invoice in range.","1. Expand the customer and read the two asset labels.
 2. Note which asset carries "" (#1)"" and which "" (#2)"".
 3. Reload the page and expand again.","1. The duplicate labels are suffixed "" (#1)"" and "" (#2)"" (and so on for more duplicates).
 2. The numbering is fixed and repeatable — after a reload the same vehicle keeps the same number.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-R11).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S8-R11), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R11),,
+AUTOMATION: HOLD - no customer in this organisation has two assets that produce the same label, so the numbered suffix cannot appear",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R11),,
 The invoice number opens the invoice in the same browser tab,SBC — Invoice Links & Navigation,Functional,High,1. You have expanded an asset and can see at least one S invoice and (under another customer/asset if needed) one P invoice.,"1. Click a service (S) invoice number link and note where it opens.
 2. Go back, then click a parts (P) invoice number link and note where it opens.","1. Each invoice number on a detail row is a clickable link that opens in the SAME browser tab (no new tab).
 2. A service invoice opens the associated work order's Finance tab.
 3. A parts invoice opens the associated part sale's Part Requests tab.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S9-R1, S9-R2, S9-R2a, S9-R2b).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S9-R1, S9-R2, S9-R2a, S9-R2b), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8607 (SBC spec v13 2026-07-31 Story 9 S9-R1; S9-R2; S9-R2a; S9-R2b),,
+AUTOMATION: READY",SV-8607 (SBC spec v13 2026-07-31 Story 9 S9-R1; S9-R2; S9-R2a; S9-R2b),,
 Browser back from an invoice restores filters; sort and columns; rows shut,SBC — Invoice Links & Navigation,Functional,High,"1. You are on the report with non-default filters set (for example Last Month + Service only), a non-default sort, and one column hidden.
 2. You have expanded down to an invoice detail row.","1. Watch the browser address bar, then click an invoice number link.
 2. From the invoice page, press the browser back button.
@@ -467,11 +463,10 @@ Browser back from an invoice restores filters; sort and columns; rows shut,SBC �
 3. Expanded rows are shown collapsed again — expansion is not restored (this is the specified behavior, not a defect).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S9-R3, S9-R4).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S9-R3, S9-R4), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8607 (SBC spec v13 2026-07-31 Story 9 S9-R3; S9-R4),,
+AUTOMATION: READY",SV-8607 (SBC spec v13 2026-07-31 Story 9 S9-R3; S9-R4),,
 Customer name is plain text; the invoice link never turns visited-purple,SBC — Invoice Links & Navigation,Functional,Medium,1. You have expanded down to invoice detail rows and have already clicked at least one invoice link earlier in the session.,"1. Try clicking the customer NAME on a summary row.
 2. Look at an invoice number link at rest, on hover, and one you have already visited.","1. The customer name on the summary row is plain text, not a link.
 2. The invoice number link is shown in the application's primary color at rest, on hover, and after it has been clicked.
@@ -479,22 +474,20 @@ Customer name is plain text; the invoice link never turns visited-purple,SBC —
 4. The link never recolors to the browser's visited-link (purple) color.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S9-R5, S9-R6, S9-R7, S9-R8).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S9-R5, S9-R6, S9-R7, S9-R8), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8607 (SBC spec v13 2026-07-31 Story 9 S9-R5; S9-R6; S9-R7; S9-R8),,
+AUTOMATION: READY",SV-8607 (SBC spec v13 2026-07-31 Story 9 S9-R5; S9-R6; S9-R7; S9-R8),,
 An invoice deleted after load shows the not-found state and back returns,SBC — Invoice Links & Navigation,Negative,Medium,"1. The report is open with an invoice detail row visible.
 2. In another tab/session, that invoice is deleted or reversed AFTER the report loaded (do not refresh the report).","1. Back in the report (unrefreshed), click that invoice's number link.
 2. Read the destination page, then press the browser back button.","1. The destination page shows the application's standard ""not found"" state.
 2. Pressing back returns you to the report.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S9-N1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S9-N1), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8607 (SBC spec v13 2026-07-31 Story 9 S9-N1),,
+AUTOMATION: HOLD - deleting a real invoice while the report is open is not something to do on a shared environment",SV-8607 (SBC spec v13 2026-07-31 Story 9 S9-N1),,
 You cannot reach an invoice you have no permission to open,SBC — Invoice Links & Navigation,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You need TWO sign-ins: one person who can open work orders and part sales, and one person who can see reports but CANNOT open them. Ask whoever manages permissions to set the second one up, or set it up yourself in administration and put it back as you found it afterwards.
 3. On the Sales By Customer report you have expanded a customer and then an asset, so you can see the invoice rows underneath. You need one service invoice and one parts invoice — use a different customer for the second one if you have to.","1. Signed in as the person who CAN open them, click a service invoice's Invoice # and note where it takes you. Come back, then do the same for a parts invoice.
@@ -507,11 +500,10 @@ You cannot reach an invoice you have no permission to open,SBC — Invoice Links
 4. Note for the tester: what the Invoice # should LOOK like for that second person is an open question and you should not fail the test on it either way. The written description says two different things — in one place it says the number is shown as ordinary plain text with no link at all, and in another place it says the person clicks the link and lands on a page telling them they are not allowed in. The product owner has been asked which he wants. So write down exactly what you saw — plain text, or a link that leads to a not-allowed page — and carry on. Only report a failure if that person actually gets to SEE the work order or part sale.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15. Two parts of that description disagree: S9-R1a says the invoice number is rendered as a link only when the user has permission to open the target and that a user without that permission sees it as plain text, while S9-N2 says that a user who lacks permission to open the destination invoice is shown the standard access-denied page and can press back. This case therefore asserts only what both of them require — that the person cannot reach the invoice — and the product owner has been asked to settle the rest.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17, read on 11 August 2026. Two parts of that description disagree: S9-R1a says the invoice number is rendered as a link only when the user has permission to open the target and that a user without that permission sees it as plain text, while S9-N2 says that a user who lacks permission to open the destination invoice is shown the standard access-denied page and can press back. This case therefore asserts only what both of them require — that the person cannot reach the invoice — and the product owner has been asked to settle the rest.
 This has not yet been checked against a build.
 
-AUTOMATION: HOLD - waiting on one answer from the product owner about what the invoice number should look like, and it needs a second sign-in that cannot open work orders or part sales
-",SV-8607 (SBC spec v15 2026-08-05 Story 9 S9-R1a and S9-N2 — the two say different things about what the invoice number looks like; this case asserts only what both of them agree on),,
+AUTOMATION: HOLD - waiting on one answer from the product owner about what the invoice number should look like, and it needs a second sign-in that cannot open work orders or part sales",SV-8607 (SBC spec v15 2026-08-05 Story 9 S9-R1a and S9-N2 — the two say different things about what the invoice number looks like; this case asserts only what both of them agree on),,
 "All columns sortable except chevron; text alphabetical, numbers by value",SBC — Sorting,Functional,High,"1. Several customers with differing values are in the current view.
 2. A customer with multiple assets and invoices is in the view.","1. Click each column header in turn (Customer, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal) and watch the order change.
 2. Try clicking the chevron column's header position.
@@ -519,44 +511,48 @@ AUTOMATION: HOLD - waiting on one answer from the product owner about what the i
 4. Sort by Subtotal descending, expand a customer and an asset, and read the asset and invoice order.","1. Every column is sortable except the chevron column.
 2. Text columns sort alphabetically; numeric columns sort by value (not as text).
 3. Sorting reorders only the customer summary rows — asset rows keep their own order (A→Z with ""Parts Sales"" last) and invoice rows keep their order under their asset.
+What you should see today: every column heading sorts except Location, which has no sort arrow and does not respond when you click it. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8963
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S10-R1, S10-R2, S10-R6).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S10-R1, S10-R2, S10-R6), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8608 (SBC spec v13 2026-07-31 Story 10 S10-R1; S10-R2; S10-R6),,
+AUTOMATION: READY - EXPECT FAIL (SV-8963)",SV-8608 (SBC spec v13 2026-07-31 Story 10 S10-R1; S10-R2; S10-R6),,
 Default sort is Customer name ascending case-insensitive,SBC — Sorting,Functional,High,"1. No saved view exists (first visit or cleared storage).
 2. Customer names with mixed upper/lower-case first letters exist in the view (seed ZZAUTOTEST names like ""acme test"" and ""Best Test"").","1. Open the report and read the customer order.
 2. Click the Subtotal header and read the order again.","1. On first load, rows are ordered by Customer name, ascending, case-insensitive (a lower-case ""acme"" sorts by letter, not after all capitals).
 2. Clicking a column header replaces the default with that column's sort.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S10-R4, S10-R7).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S10-R4, S10-R7), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8608 (SBC spec v13 2026-07-31 Story 10 S10-R4; S10-R7),,
+AUTOMATION: READY",SV-8608 (SBC spec v13 2026-07-31 Story 10 S10-R4; S10-R7),,
 Missing values sort to the bottom ascending and to the top descending,SBC — Sorting,Functional,Medium,1. At least one customer row shows an em dash (—) in Margin % (Subtotal zero or below — seed a zero-subtotal case if possible) alongside rows with real Margin % values.,"1. Sort by Margin % ascending and note where the em-dash row lands.
 2. Sort by Margin % descending and note it again.","1. Ascending: the em-dash (missing) row sorts to the bottom.
 2. Descending: the em-dash row sorts to the top.
+What you should see today: sorting Margin % smallest-first puts the rows with a dash at the TOP, and largest-first puts them at the BOTTOM - the opposite way round. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8963
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S10-R3).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S10-R3), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8608 (SBC spec v13 2026-07-31 Story 10 S10-R3),,
+AUTOMATION: READY - EXPECT FAIL (SV-8963)",SV-8608 (SBC spec v13 2026-07-31 Story 10 S10-R3),,
 Sorting by Date orders customers by their most recent invoice date,SBC — Sorting,Functional,Medium,1. Two customers exist whose most recent invoice dates differ clearly (seed ZZAUTOTEST invoices on different dates).,"1. Click the Date column header.
 2. Compare the customer order with each customer's most recent invoice date (expand to check the invoice dates).","1. Customer rows order by each customer's most recent invoice date in the current view.
 2. The Date cells on customer rows stay blank — the sort still works.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S10-R5).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S10-R5), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8608 (SBC spec v13 2026-07-31 Story 10 S10-R5),,
+AUTOMATION: READY",SV-8608 (SBC spec v13 2026-07-31 Story 10 S10-R5),,
 Financial columns run in the specified order with Subtotal and Margin rules,SBC — Totals & Calculations,Functional,Critical,"1. A ZZAUTOTEST invoice exists with known labor, parts, and shop-supply amounts and known costs, in the current range.","1. Read the column headers left to right.
 2. Expand down to that invoice's detail row and read its values.
 3. Recalculate Subtotal and Margin by hand from the known amounts.","1. The financial columns appear in this order: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin % — with Subtotal as the rightmost column.
@@ -565,11 +561,10 @@ Financial columns run in the specified order with Subtotal and Margin rules,SBC 
 4. Margin = Labor Margin + Parts Margin — it does NOT include any Shop Supplies amount (shop supplies add to Subtotal but add no profit to Margin).
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S7-R6, S11-R1, S4-R12, S20-R19).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S7-R6, S11-R1, S4-R12, S20-R19), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8605 (SBC spec v13 2026-07-31 §2; §4 Terminology; Story 7 S7-R6; Story 11 S11-R1 — §2/S7-R6 CLOSE the financial-column list and its order; Location is an identifier column not a financial one [S4-R12; S20-R19] so it never enters this list),,
+AUTOMATION: READY",SV-8605 (SBC spec v13 2026-07-31 §2; §4 Terminology; Story 7 S7-R6; Story 11 S11-R1 — §2/S7-R6 CLOSE the financial-column list and its order; Location is an identifier column not a financial one [S4-R12; S20-R19] so it never enters this list),,
 Margin % is Margin over Subtotal to one decimal; em dash when Subtotal <= 0,SBC — Totals & Calculations,Functional,High,"1. Rows with a normal positive Subtotal exist, and (if seedable) one row whose Subtotal is zero or below.","1. Read Margin % on a customer row, an asset row, and an invoice row; recalculate one by hand (Margin ÷ Subtotal × 100).
 2. Find (or seed) a row with Subtotal ≤ 0 and read its Margin % cell.
 3. Look at the Margin % coloring.","1. Margin % shows the row's Margin divided by its Subtotal, times 100, to one decimal with a percent sign — for example, 64.7%.
@@ -578,11 +573,10 @@ Margin % is Margin over Subtotal to one decimal; em dash when Subtotal <= 0,SBC 
 4. The same calculation and format apply to customer rows, asset rows, and invoice rows.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S7-R11, S7-R12, S7-R13, S7-R14).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S7-R11, S7-R12, S7-R13, S7-R14), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8605 (SBC spec v13 2026-07-31 Story 7 S7-R11; S7-R12; S7-R13; S7-R14),,
+AUTOMATION: READY",SV-8605 (SBC spec v13 2026-07-31 Story 7 S7-R11; S7-R12; S7-R13; S7-R14),,
 Inv. Hrs heading is verbatim; value shows +green / -red / 0.0 on every row,SBC — Totals & Calculations,Functional,High,"1. Invoices exist where billed hours exceed worked hours, where worked exceeds billed, and where they are equal (seed ZZAUTOTEST work orders with clocked time).","1. Read the column heading.
 2. Read the Inv. Hrs value on rows for each of the three seeded situations, at customer, asset, and invoice level.","1. The column heading reads ""Inv. Hrs"" (including the period after ""Inv"").
 2. The value is hours invoiced minus hours worked, rounded to one decimal.
@@ -592,22 +586,20 @@ Inv. Hrs heading is verbatim; value shows +green / -red / 0.0 on every row,SBC �
 6. The same calculation, label, format, and coloring apply on customer, asset, and invoice rows.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S12-R1, S12-R2, S12-R3, S12-R4, S12-R5, S12-R6).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S12-R1, S12-R2, S12-R3, S12-R4, S12-R5, S12-R6), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8610 (SBC spec v13 2026-07-31 Story 12 S12-R1; S12-R2; S12-R3; S12-R4; S12-R5; S12-R6),,
+AUTOMATION: READY",SV-8610 (SBC spec v13 2026-07-31 Story 12 S12-R1; S12-R2; S12-R3; S12-R4; S12-R5; S12-R6),,
 Inv. Hrs is never blank: no-labor rows and near-zero values both show 0.0,SBC — Totals & Calculations,Negative,Medium,1. A parts-only invoice (no labor at all) exists in range; if possible also an invoice whose delta rounds to zero (for example +0.04).,"1. Read the Inv. Hrs cell on the parts-only invoice's rows (invoice, asset, customer).
 2. If seeded, read the near-zero row's Inv. Hrs.","1. A customer, asset, or invoice with no labor shows 0.0 in the default color — never blank, ""N/A,"" an em dash, or omitted.
 2. A value that rounds to 0.0 (for example +0.04) is shown as 0.0 in the default text color (not +0.0 in green).
 3. A negative value shows a minus sign and one decimal — for example, -0.5.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S12-N1, S12-E1, S12-E2).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S12-N1, S12-E1, S12-E2), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8610 (SBC spec v13 2026-07-31 Story 12 S12-N1; S12-E1; S12-E2),,
+AUTOMATION: READY",SV-8610 (SBC spec v13 2026-07-31 Story 12 S12-N1; S12-E1; S12-E2),,
 Invoice subtotals sum to their asset row and asset subtotals to the customer,SBC — Totals & Calculations,Functional,Critical,"1. A customer with two or more assets, each with two or more invoices, is in the current view (seed ZZAUTOTEST data).","1. Expand the customer and every asset.
 2. Sum the invoice-level values by hand for each column and compare with each asset row.
 3. Sum the asset rows and compare with the customer row.","1. An asset's invoice subtotals sum exactly to that asset's row total.
@@ -615,11 +607,10 @@ Invoice subtotals sum to their asset row and asset subtotals to the customer,SBC
 3. This holds for every financial column, not only Subtotal.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-R13).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S8-R13), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R13),,
+AUTOMATION: READY",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R13),,
 Subtotal is the rightmost column; pinned on scroll and bold everywhere,SBC — Totals & Calculations,Functional,High,"1. You are on the report with data, on a window narrow enough to force horizontal scrolling (or with all columns visible).","1. Confirm the Subtotal column is the last column on the right.
 2. Scroll the table sideways and watch the Subtotal column.
 3. Inspect the font weight of the Subtotal header, a customer row, an asset row, an invoice row, and the totals row.","1. Subtotal is the rightmost column in the table.
@@ -628,22 +619,20 @@ Subtotal is the rightmost column; pinned on scroll and bold everywhere,SBC — T
 4. Check it still holds after two changes: narrow the date range so fewer rows match, then sort by a different column. Subtotal stays the rightmost column, stays pinned, and stays bold both times.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S11-R1, S11-R2, S11-R3, S11-N1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S11-R1, S11-R2, S11-R3, S11-N1), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8609 (SBC spec v13 2026-07-31 Story 11 S11-R1; S11-R2; S11-R3; S11-N1),,
+AUTOMATION: READY",SV-8609 (SBC spec v13 2026-07-31 Story 11 S11-R1; S11-R2; S11-R3; S11-N1),,
 The totals row covers the whole filtered set; not just the current page,SBC — Totals & Calculations,Functional,High,"1. Enough customers exist to span more than one page of results, with known amounts (seed ZZAUTOTEST data).","1. Read the totals row on page 1.
 2. Move to page 2 and read the totals row again.
 3. Compare the totals against the sum over ALL matching customers (not just one page).","1. The totals row is computed over the full set of customers matching the active filters (date range, Product Type, location, Customer filter).
 2. The totals do not change when you move between pages — they never reflect only the visible page.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R6).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R6), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R6),,
+AUTOMATION: READY",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R6),,
 Column selector is its own toolbar button with nine toggles all on,SBC — Column Selector,Functional,High,1. You are on the report with no saved column selection (first visit or cleared storage).,"1. Find the column selector button in the toolbar's action area, next to the overflow menu.
 2. Hover it and read the tooltip.
 3. Click it and read the toggle list top to bottom.","1. The column selector is a separate control next to the overflow menu — it is not an item inside the overflow menu.
@@ -653,11 +642,10 @@ Column selector is its own toolbar button with nine toggles all on,SBC — Colum
 5. Note for the tester: this panel lists nine toggles and no Location toggle. The specification is currently inconsistent on this one point - one requirement says a Location toggle should be here for anyone who can reach more than one branch, while the list of nine does not include it. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S13-R1, S13-R2, S13-R3, S13-R4, S13-R7, S4-R12, S4-R13). That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: one requirement says it is shown by default and can be toggled there, and the list of toggleable columns in another does not include it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S13-R1, S13-R2, S13-R3, S13-R4, S13-R7, S4-R12, S4-R13), read on 11 August 2026. That specification is inconsistent about the one point of whether the Location column is offered in the column-selection control: one requirement says it is shown by default and can be toggled there, and the list of toggleable columns in another does not include it. Chris Ward has been asked which is right and has not answered, so neither reading is asserted here. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: HOLD - the written description says two different things about the Location column and the product owner has been asked
-",SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R1; S13-R2; S13-R3; S13-R4; S13-R7 — S13-R4 CLOSES the nine-toggle list and its order; Location is automatic and never a toggle [S4-R12; S4-R13]),,
+AUTOMATION: READY",SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R1; S13-R2; S13-R3; S13-R4; S13-R7 — S13-R4 CLOSES the nine-toggle list and its order; Location is automatic and never a toggle [S4-R12; S4-R13]),,
 "Column toggles hide header+cells; Customer, Subtotal and chevron never in list",SBC — Column Selector,Functional,High,1. You are on the report with data and the column selector open.,"1. Turn the ""Shop Supplies"" toggle off, then on again, watching the table.
 2. Read the toggle list for Customer, Subtotal, or a chevron entry.
 3. Turn all nine toggles off and read the table.","1. Turning a toggle off hides that column's header and all its body cells together; turning it on restores both together.
@@ -665,11 +653,10 @@ AUTOMATION: HOLD - the written description says two different things about the L
 3. All nine columns can be hidden — nothing blocks the last toggle; the table still renders the Customer and Subtotal columns and the totals row still shows its Subtotal.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S13-R5, S13-R6, S13-N1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S13-R5, S13-R6, S13-N1), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R5; S13-R6; S13-N1),,
+AUTOMATION: READY",SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R5; S13-R6; S13-N1),,
 A one-location user never sees Location in the column-selection list,SBC — Column Selector,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are signed in as a person who has access to exactly ONE location. Check this in administration under that person's location access, and put their access back as you found it when you finish.
 3. This one test covers all six reports, so keep this same sign-in for the whole of it.","1. Open the Sales By Customer report and open the column-selection control (the toolbar button beside the overflow menu; hovering it reads ""Column Selection."").
@@ -680,11 +667,10 @@ A one-location user never sees Location in the column-selection list,SBC — Col
 4. Note for the tester: this test is about someone who only has ACCESS to one location. That is a different person from someone who can reach several locations but has picked just one. Do not mix the two up - they are separate tests, and the second one is still waiting on an answer from the product owner.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S4-R12), which states that a user with access to a single location is never shown the Location column and that it never appears in their column selector; the Technician Utilization report specification version 6 (S10-R4) and the Work In Progress report specification version 9 (S4-R3) say the same, and on the other three reports the written description keeps the column out of that list for everyone, so the result is the same for all six. Chris Ward asked for this in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S4-R12), read on 11 August 2026, which states that a user with access to a single location is never shown the Location column and that it never appears in their column selector; the Technician Utilization report specification version 7 (S10-R4), read on 11 August 2026, and the Work In Progress report specification version 11 (S4-R3), read on 11 August 2026, say the same, and on the other three reports the written description keeps the column out of that list for everyone, so the result is the same for all six. Chris Ward asked for this in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026
 This has not yet been checked against a build.
 
-AUTOMATION: READY
-",SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R4 with S4-R12; the never-offered rule itself comes from Chris Ward's answer T1-1 option C of 2026-08-05 and is in no specification),,
+AUTOMATION: READY",SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R4 with S4-R12; the never-offered rule itself comes from Chris Ward's answer T1-1 option C of 2026-08-05 and is in no specification),,
 The overflow menu holds exactly the four download items - no Print,SBC — Exports,Functional,High,1. You are on the Sales By Customer report.,"1. Find the overflow menu in the toolbar's action area and note its position.
 2. Open it and read the items in order.
 3. Look around the toolbar for any separate always-visible export buttons.","1. The overflow (export) menu is the leftmost control in the toolbar's action area and is the application's standard overflow-menu control.
@@ -692,11 +678,10 @@ The overflow menu holds exactly the four download items - no Print,SBC — Expor
 3. There are no separate always-visible export buttons - all exports live behind this one menu.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S14-R1, S14-R2, S15-R1, S15-R2, S20-R16).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S14-R1, S14-R2, S15-R1, S15-R2, S20-R16), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-","SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 — these CLOSE the four-item menu and its verbatim labels; menu reshaped + ""Print"" removed per Chris Ward 2026-07-29 [newest-wins])",,
+AUTOMATION: READY","SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 — these CLOSE the four-item menu and its verbatim labels; menu reshaped + ""Print"" removed per Chris Ward 2026-07-29 [newest-wins])",,
 Download file names carry the version and the active date range,SBC — Exports,Functional,High,1. You are on the report with data.,"1. Set the range to This Month, choose ""Download Summary (CSV)"" and note the downloaded file name.
 2. Choose ""Download Expanded View (CSV)"" and note that file name.
 3. Repeat both for at least Today, Last Quarter, and a Custom range.
@@ -706,13 +691,16 @@ Download file names carry the version and the active date range,SBC — Exports,
 3. For a range you built yourself on the calendar the file name uses the word custom in place of a period name - for example sales-by-customer-summary-custom.csv.
 4. The file is plain comma-separated text with a .csv extension that opens as rows and columns in a spreadsheet — not an .xlsx workbook and not a JSON file.
 5. The two PDF downloads follow the same names with a .pdf extension — for example, sales-by-customer-summary-this_month.pdf and sales-by-customer-expanded-custom.pdf.
+What you should see today: the two spreadsheets come out as sales-by-customer-summary.csv and sales-by-customer-expanded.csv, with no period in either name. The files themselves do carry a ""Date Range:"" line, so the information is there, just not in the name. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8956
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. Where the Sales By Customer report specification version 15 (S14-R14, S14-R15, S15-R6) says something different, his decision is the later word and is the authority.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. Where the Sales By Customer report specification version 17 (S14-R14, S14-R15, S15-R6), read on 11 August 2026, says something different, his decision is the later word and is the authority.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R14; S14-R15; S15-R6 — file names now carry the Summary/Expanded version; the old flat sales-by-customer-{range} map is superseded),,
+AUTOMATION: READY - EXPECT FAIL (SV-8956)",SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R14; S14-R15; S15-R6 — file names now carry the Summary/Expanded version; the old flat sales-by-customer-{range} map is superseded),,
 "Expanded View CSV: column order, blank-cell rules, and the Locations line",SBC — Exports,Functional,High,1. You have downloaded the CSV for a view with at least one customer with several invoices.,"1. Read the header row.
 2. Read a customer row and an invoice row.
 3. Look for any asset-level rows.","1. With a single location in scope the Expanded View CSV has these thirteen columns in this exact order: Customer, Asset, Invoice #, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal. When more than one location is in scope the file also carries a Location column — immediately after Date, the position it holds on screen — making fourteen.
@@ -724,25 +712,26 @@ AUTOMATION: READY
 7. The file carries a ""Locations:"" line naming the location or locations the report was scoped to, or ""All locations"" when every location you can access is selected — as a leading line above the column headers.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S14-R5, S14-R6, S14-R7, S14-R8, S14-R13, S4-R13).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S14-R5, S14-R6, S14-R7, S14-R8, S14-R13, S4-R13), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8612; SV-8603 (SBC spec v13 2026-07-31 Story 14 S14-R5; S14-R6; S14-R7; S14-R8; S14-R13 + Story 4 S4-R13 — Expanded CSV thirteen columns INCLUDING Asset; per-level blank-cell rules; plus the automatic Location column in every export),,
+AUTOMATION: READY",SV-8612; SV-8603 (SBC spec v13 2026-07-31 Story 14 S14-R5; S14-R6; S14-R7; S14-R8; S14-R13 + Story 4 S4-R13 — Expanded CSV thirteen columns INCLUDING Asset; per-level blank-cell rules; plus the automatic Location column in every export),,
 CSV formats: Margin % plain; dates mm-dd-yyyy; currency plain; no color,SBC — Exports,Functional,Medium,"1. You have downloaded a CSV containing rows with real values, including (if seedable) a row whose Subtotal is zero or below.","1. Read a Margin % cell, a Date cell, and a currency cell in a text editor.
 2. Check the row whose Subtotal is ≤ 0.","1. Margin % is a plain number to one decimal with no percent sign (for example, 64.7); it is EMPTY when the row's Subtotal is zero or below.
 2. Dates export as mm-dd-yyyy — for example, 05-14-2026.
 3. Currency values are plain numbers with no dollar sign and no thousands separators.
 4. The CSV has no color; the signed Inv. Hrs value still conveys direction.
 On this build the money in the spreadsheet file comes out as ""$224.92"" - with a dollar sign, and with a comma as well once the value passes a thousand - instead of the plain number described in point 3 above.
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823
+What you should see today: in the spreadsheet the money arrives as text with a dollar sign and thousands separators, such as $11,176.88, and the columns come out in the file's own fixed order - Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Total Cost, Total Sell, Margin, Margin % - which is not the order on screen, does not put Total Cost last, and leaves out the Location column even when it is showing on screen. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8823
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S14-R9, S14-R10, S14-R11, S14-R12, S14-R13).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S14-R9, S14-R10, S14-R11, S14-R12, S14-R13), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8823)
-",SV-8612 (SBC spec v13 2026-07-31 Story 14 S14-R9; S14-R10; S14-R11; S14-R12; S14-R13),,
+AUTOMATION: READY - EXPECT FAIL (SV-8823)",SV-8612 (SBC spec v13 2026-07-31 Story 14 S14-R9; S14-R10; S14-R11; S14-R12; S14-R13),,
 CSV and PDF hold exactly the customers matching the active filters and sort,SBC — Exports,Functional,High,"1. Data exists across two locations, both product types, and several customers.","1. Set a specific date range, Product Type ""Service only"", one location, a two-customer selection in the Customer filter, and a Subtotal sort.
 2. Download the CSV and the PDF.
 3. Compare each file's contents against the on-screen rows.","1. Each export contains exactly the customers matching the active filters — the selected customers, within the active date range, Product Type, and location — in the active sort order.
@@ -750,11 +739,10 @@ CSV and PDF hold exactly the customers matching the active filters and sort,SBC 
 3. The chosen date range and Product Type are reflected in both exports.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S2-R7, S3-R7, S4-R10, S14-R3, S15-R3, S18-R7).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S2-R7, S3-R7, S4-R10, S14-R3, S15-R3, S18-R7), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R7; Story 3 S3-R7; Story 4 S4-R10; Story 14 S14-R3; Story 15 S15-R3; Story 18 S18-R7),,
+AUTOMATION: READY",SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R7; Story 3 S3-R7; Story 4 S4-R10; Story 14 S14-R3; Story 15 S15-R3; Story 18 S18-R7),,
 Each download item shows a loading state and its own export-failed toast,SBC — Exports,Negative,Medium,"1. You are on the report with a large enough data set that a download takes a visible moment.
 2. To force the failure this test needs, use the browser's own developer tools: press F12, open the ""Network"" tab, and switch the throttling dropdown (it normally reads ""No throttling"") to ""Offline"" to cut the connection, or to ""Slow 3G"" to slow it down. There is nothing to install. Set it back to ""No throttling"" when you finish.","1. Choose ""Download Summary (CSV)"" and immediately look at that menu item.
 2. To provoke a failure, disconnect the network (or use the browser's offline mode) and choose ""Download Summary (CSV)"" again.
@@ -763,7 +751,7 @@ Each download item shows a loading state and its own export-failed toast,SBC —
 3. If a PDF download fails, the toast reads ""PDF export failed."" — identical behaviour, different wording.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S14-E1, S14-N1, S15-E1, S15-N1).
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S14-E1, S14-N1, S15-E1, S15-N1), read on 11 August 2026.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -771,25 +759,31 @@ AUTOMATION: READY
 "PDF page: A4 landscape, uniform margins, ShopView footer and page numbers",SBC — Exports,Functional,Medium,1. You have downloaded the PDF for a view with enough rows to span more than one page.,"1. Open the PDF and check the page setup.
 2. Read the footer on each page.","1. The PDF is A4 landscape using the application's standard font; the page margins look uniform on all sides. (The spec's exact 25px margin needs a PDF inspector — check the number only if you have one; otherwise uniform margins pass.)
 2. The footer has a centered ""Software Powered by ShopView"" label and a right-aligned page number ""Page X of Y.""
+What you should see today: the Expanded View PDF comes out on A3 paper (1190 by 842 points) instead of A4. The Summary PDF from the same menu is correctly A4. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8964
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S15-R5, S15-R6, S15-R7, S15-R8).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S15-R5, S15-R6, S15-R7, S15-R8), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R5; S15-R6; S15-R7; S15-R8 — A4 landscape; 25px margins; standard font; footer label and page numbers),,
+AUTOMATION: READY - EXPECT FAIL (SV-8964)",SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R5; S15-R6; S15-R7; S15-R8 — A4 landscape; 25px margins; standard font; footer label and page numbers),,
 "PDF header: title, organization, date range, Product Type and Locations lines",SBC — Exports,Functional,Medium,"1. You have downloaded the PDF with a known date range, Product Type, and a specific location selected.","1. Read the header's text block top to bottom.
 2. Look for any mention of the selected location.","1. The header is two columns: a text block on the left (70% width) and the organization logo on the right (30% width).
 2. The text block shows the report title ""Sales By Customer Report""; the organization name; the date range; and the filter summary line ""Product Type: {value}"" where value is ""Parts & Service,"" ""Parts only,"" or ""Service only.""
 3. The header date range shows start and end in the format ""Mon D, YYYY,"" joined by an em dash - for example, ""May 1, 2026 - May 31, 2026"" - and always shows both dates (every range is bounded).
 4. The header also carries a ""Locations:"" line naming the location(s) the report was scoped to.
+What you should see today: the heading date range shows an end date one day LATER than the range you asked for - ask for 1 to 6 August and the PDF heading reads ""Aug 1, 2026 - Aug 7, 2026"". Every other line of the heading is correct, and the spreadsheet for the same view prints the correct end date. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8937
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S15-R7, S15-R8, S15-R9, S15-R10, S15-R11, S15-R14, S4-R13); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S15-R7, S15-R8, S15-R9, S15-R10, S15-R11, S15-R14, S4-R13), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-","SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R7; S15-R8; S15-R9; S15-R10; S15-R11; S15-R14 + Story 4 S4-R13 — PDF header block; S15-R14/S4-R13 = the ""Locations:"" line in every export [Chris Ward 2026-07-29; newest-wins])",,
+AUTOMATION: READY - EXPECT FAIL (SV-8937)","SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R7; S15-R8; S15-R9; S15-R10; S15-R11; S15-R14 + Story 4 S4-R13 — PDF header block; S15-R14/S4-R13 = the ""Locations:"" line in every export [Chris Ward 2026-07-29; newest-wins])",,
 "PDF logo is embedded, scales without distortion",SBC — Exports,Functional,Low,1. You can toggle the organization's uploaded logo on/off in administration (restore it afterwards).,"1. With an uploaded org logo, download the PDF and check the top-right.
 2. Remove the uploaded logo, download again, and check.
 3. Open a PDF while offline to confirm the logo still renders.","1. With an uploaded logo, that logo appears pinned to the top-right, scaled to fit its area without distortion.
@@ -799,50 +793,54 @@ AUTOMATION: READY
 Note for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers.
 
 ---
-This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true; where the Sales By Customer report specification version 15 (S15-R12, S15-R13, S15-R14, S15-R15, S15-R16, S15-R17, S15-R18) differs, his decision is the authority.
-Last checked against build v3.4.1-3d03023 on 8/4/2026, which does not yet match it - that change is with the developers.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026; where the Sales By Customer report specification version 17 (S15-R12, S15-R13, S15-R14, S15-R15, S15-R16, S15-R17, S15-R18), read on 11 August 2026, differs, his decision is the authority.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R12; S15-R13; S15-R14; S15-R15; S15-R16; S15-R17; S15-R18),,
-Expanded View PDF body matches the CSV's columns and on-screen rules,SBC — Exports,Functional,Medium,"1. You have downloaded the PDF for a view with positive and negative Inv. Hrs values and (if seedable) a Subtotal ≤ 0 row.
-2. This test names exact colours or sizes. Use the browser's own developer tools: press F12, pick the element with the inspector, and read its colour or size from the ""Styles"" panel. There is nothing to install. If you cannot get a clear reading, mark this test Blocked rather than guessing.","1. Read the body table's columns and row structure.
-2. Check a date cell, a customer row's Date cell, a Margin % dash, the Subtotal column weight, and the Inv. Hrs colors (use a color picker on the PDF if available).","1. The Expanded View PDF's body table has the same columns, in the same order and with the same labels, as the Expanded View CSV — thirteen with a single location in scope, plus the Location column after Date when more than one location is in scope — including the Asset column — and shows the full Customer, then Asset, then Invoice breakdown, one block per customer.
-2. Body dates show as ""Mon DD YYYY"" - for example, ""May 14 2026.""
-3. The Date cell is blank on customer rows and on asset rows, matching the screen.
-4. Margin % shows an em dash when the row's Subtotal is zero or below.
-5. The Subtotal column is bold - header, every row, and the totals row.
-6. Inv. Hrs uses the same signs and coloring as on screen, with green rendered as #21ba45 and red as #c10015.
-7. The PDF header title reads ""Sales By Customer Report"" on the Summary and Expanded versions alike — which version you have is told by the file name and the contents, not by a different title.
+AUTOMATION: READY",SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R12; S15-R13; S15-R14; S15-R15; S15-R16; S15-R17; S15-R18),,
+"Expanded CSV body: column set and order, the Customer → Asset → Invoice tree, blank dates and em-dash Margin %",SBC — Exports,Functional,Medium,"1. You are on Sales By Customer with a view containing positive and negative Inv. Hrs values and, if seedable, a row whose Subtotal is zero or below.
+2. Nothing to install — this test reads a downloaded CSV as text.","1. Download ""Expanded View (CSV)"" from the ⋯ menu.
+2. Read the header row and compare it against the column list below.
+3. Walk the data rows for one customer: the customer row, its asset rows, and the invoice rows beneath them.
+4. Find a row whose Subtotal is zero or below and read its Margin % cell.","1. The Expanded CSV's header row carries the Expanded column set, in this exact order and with these labels — thirteen columns with a single location in scope, plus the Location column immediately after Date when more than one location is in scope.
+2. The body contains the full Customer → Asset → Invoice breakdown: one customer row, its asset rows beneath it, and each asset's invoice rows beneath that.
+3. The Date cell is empty on customer rows and on asset rows, and carries the invoice date only on invoice rows — matching the screen.
+4. Margin % is an em dash on any row whose Subtotal is zero or below.
+5. The file carries the ""Locations:"" metadata line above the header row.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S15-R5, S15-R13, S15-R19, S15-R20, S15-R21, S15-R22, S15-R23, S15-R24, S4-R13).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+Scope note: this case covers the CSV only. The Expanded PDF renders the same data, but its page geometry, fonts, colours and bold weights are not observable by the automation suite (no PDF parser) — those assertions live in the PDF-visual cases, which are Deferred.
 
-AUTOMATION: READY
-",SV-8613; SV-8603 (SBC spec v13 2026-07-31 Story 15 S15-R5; S15-R13; S15-R19; S15-R20; S15-R21; S15-R22; S15-R23; S15-R24 + Story 4 S4-R13 — Expanded PDF body = the Expanded columns; plus the automatic Location column),,
-"An export over 10,000 data rows is refused with the too-large toast",SBC — Exports,Negative,High,"1. A filter combination exists whose customer rows plus invoice rows exceed 10,000 (widest range, all locations, all customers). If the environment cannot reach 10,000 rows even fully widened, record the max reachable and mark Blocked-Env with reason.","1. With the over-cap filter set, choose ""Download (CSV)"".
-2. Choose ""Download (PDF)"".
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification (S14-R5 Expanded contents; S4-R13 Locations line), read on 11 August 2026.",SV-8613; SV-8603 (SBC spec v13 2026-07-31 Story 15 S15-R5; S15-R13; S15-R19; S15-R20; S15-R21; S15-R22; S15-R23; S15-R24 + Story 4 S4-R13 — Expanded PDF body = the Expanded columns; plus the automatic Location column),,
+"An export over 10,000 data rows is refused with the too-large toast",SBC — Exports,Negative,High,"1. A filter combination exists whose customer rows plus invoice rows exceed 10,000 (widest range, all locations, all customers). If the environment cannot reach 10,000 rows even fully widened, record the max reachable and mark Blocked-Env with reason.","1. With the over-cap filter set, choose a CSV download - ""Download Summary (CSV)"" or ""Download Expanded View (CSV)"".
+2. Choose a PDF download - ""Download Summary (PDF)"" or ""Download Expanded View (PDF)"".
 3. Narrow the filters below the cap and re-try one export.","1. For both CSV and PDF: no file is generated and no download starts.
 2. An error toast is shown each time: ""This report is too large to export. Narrow the date range or filters, then try again."" (dismissed by the user).
 3. The cap counts customer rows plus invoice rows (not the header or totals row) against the active date range, Product Type, location, Customer filter, and sort.
 4. Below the cap the export succeeds normally.
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818
+What you should see today: the spreadsheet download works and produces a file, but the PDF download of the same view fails with a server error and no file arrives. It depends on how much is in the view, not on which report - filtered down to one or two rows the PDF downloads normally, and on a full unfiltered view of several thousand rows it fails every time. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8818
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S14-R16, S15-R25, S14-R14, S15-R22); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S14-R16, S15-R25, S14-R14, S15-R22), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8818)
-",SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R16 CSV cap; S15-R25 PDF cap; S14-R14; S15-R22; §7 — Print leg REMOVED per kickoff video P25 31:14; user ruling 2026-07-28 video-overrides-spec),,
-A no-match export still downloads headers and a zero totals row,SBC — Exports,Functional,Medium,"1. The Customer filter selection is empty (""Clear all"") or the filters otherwise match no customers.","1. Choose ""Download (CSV)"" and open the file.
-2. Choose ""Download (PDF)"" and open the file.","1. The export still downloads — no error and no warning is shown.
-2. The file contains the column headers and a totals row of zeros, with no data rows.
+AUTOMATION: READY - EXPECT FAIL (SV-8818)",SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R16 CSV cap; S15-R25 PDF cap; S14-R14; S15-R22; §7 — Print leg REMOVED per kickoff video P25 31:14; user ruling 2026-07-28 video-overrides-spec),,
+A no-match export still downloads headers and a zero totals row,SBC — Exports,Functional,Medium,"1. The Customer filter selection is empty (""Clear all"") or the filters otherwise match no customers.","1. Choose a CSV download - ""Download Summary (CSV)"" or ""Download Expanded View (CSV)"" - and open the file.
+2. Choose a PDF download - ""Download Summary (PDF)"" or ""Download Expanded View (PDF)"" - and open the file.","1. The export still downloads — no error and no warning is shown.
+2. The file contains the column headers, a totals row of zeros, and no data rows.
+
+What you should see today: the file downloads with the column headings and nothing after them - there is no totals row at all, of zeros or otherwise. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8991.
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above - for example the download errors, or a totals row appears but the figures are not zeros - that is a NEW problem, so please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R10).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R10), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
+AUTOMATION: READY - EXPECT FAIL (SV-8991)
 ",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R10),,
 Summary and Expanded View downloads exist for both PDF and CSV,SBC — Exports,Functional,Medium,1. You are on the Sales By Customer report with at least one customer and several invoices in the chosen date range.,"1. Open the download (overflow) menu and read the four items.
 2. Download the Summary version in both formats (Download Summary (PDF) and Download Summary (CSV)) and open the files.
@@ -853,11 +851,10 @@ Summary and Expanded View downloads exist for both PDF and CSV,SBC — Exports,F
 5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal — no Asset, Invoice # or Date columns. When more than one location is in scope a Location column is added immediately after the Customer name and before the money columns.
 
 ---
-This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. the Sales By Customer report specification version 15 (S14-R1, S14-R2, S14-R4, S15-R1, S15-R2, S15-R4, S15-R5, S4-R13) is silent on this point, so his answers are the only basis for it.
-This has not yet been checked against a build.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. the Sales By Customer report specification version 17 (S14-R1, S14-R2, S14-R4, S15-R1, S15-R2, S15-R4, S15-R5, S4-R13) is silent on this point, so his answers are the only basis for it.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8612; SV-8613; SV-8603 (SBC spec v13 2026-07-31 S14-R1; S14-R2; S14-R4; S15-R1; S15-R2; S15-R4; S15-R5; S4-R13 — the four-item Summary/Expanded menu; the Summary column list; the automatic Location column in every export),,
+AUTOMATION: READY",SV-8612; SV-8613; SV-8603 (SBC spec v13 2026-07-31 S14-R1; S14-R2; S14-R4; S15-R1; S15-R2; S15-R4; S15-R5; S4-R13 — the four-item Summary/Expanded menu; the Summary column list; the automatic Location column in every export),,
 A logo that is set but will not load falls back to the ShopView logo,SBC — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser and you can change the organization's uploaded logo in administration.
 2. You will need the organization in a state where a logo IS set but the picture will not load - for example an uploaded logo whose file has since been removed or renamed. Ask a developer to help you produce that state if you cannot.
 3. Write down the organization's original logo first, because you will put it back at the end.
@@ -872,22 +869,20 @@ A logo that is set but will not load falls back to the ShopView logo,SBC — Exp
 5. Note for the tester: step 2 is the difficult part. If you cannot get the organization into that state, mark this test Blocked and say so plainly - do not guess the answer.
 
 ---
-This is the expected behaviour as per epic SV-8582 and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. His words are: ""Use the company's own uploaded logo. If a logo is set but fails to load, fall back to the built-in ShopView logo. If no logo is uploaded, print no logo and let the text fill the space."" This DIFFERS from the Sales By Customer report specification version 15 (S15-R17), which shows the built-in ShopView logo when no logo has been uploaded rather than when an uploaded one fails to load, and we have taken his newer decision as the one that prevails.
-This has not yet been checked against a build.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. His words are: ""Use the company's own uploaded logo. If a logo is set but fails to load, fall back to the built-in ShopView logo. If no logo is uploaded, print no logo and let the text fill the space."" This DIFFERS from the Sales By Customer report specification version 17 (S15-R17), read on 11 August 2026, which shows the built-in ShopView logo when no logo has been uploaded rather than when an uploaded one fails to load, and we have taken his newer decision as the one that prevails.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: HOLD - nobody has run this test yet; it needs one live check of a logo that fails to load
-",SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R17 and S15-R18 - the logo order and the no-logo layout; the set-but-fails-to-load step is Chris Ward's answer T3-4 option C of 2026-08-05 alone),,
+AUTOMATION: HOLD - this organisation has a logo that loads correctly, so the set-but-will-not-load fallback cannot be produced",SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R17 and S15-R18 - the logo order and the no-logo layout; the set-but-fails-to-load step is Chris Ward's answer T3-4 option C of 2026-08-05 alone),,
 Filters; sort and visible columns are restored on the next visit,SBC — Saved View & Persistence,Functional,Critical,1. You are on the report in a browser you can revisit.,"1. Set a non-default date range, Product Type, location selection, a two-customer Customer selection, a non-default sort, and hide one column.
 2. Navigate away to another part of the application, then return to the report.
 3. Watch the report as it loads.","1. The saved view is restored: the date range, the Product Type, the location selection, the Customer filter selection, the sort column and direction, and the visible columns.
 2. On load, the report shows the restored view immediately — the default view is never shown first and then replaced.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S6-R1, S6-R2, S6-R4, S2-R8, S3-R8, S4-R11, S10-R9, S13-R8).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S6-R1, S6-R2, S6-R4, S2-R8, S3-R8, S4-R11, S10-R9, S13-R8), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R1; S6-R2; S6-R4; Story 2 S2-R8; Story 3 S3-R8; Story 4 S4-R11; Story 10 S10-R9; Story 13 S13-R8),,
+AUTOMATION: READY",SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R1; S6-R2; S6-R4; Story 2 S2-R8; Story 3 S3-R8; Story 4 S4-R11; Story 10 S10-R9; Story 13 S13-R8),,
 "Type-ahead search text, expansion state and scroll position are not saved",SBC — Saved View & Persistence,Functional,Medium,1. You are on the report with data.,"1. Type a query in the Customer filter (without changing the selection), expand two customers, and scroll down the table.
 2. Reload the browser page.
 3. Check the Customer filter field, the rows, and the scroll position.","1. The type-ahead search text is gone (only the resulting customer selection is saved).
@@ -896,33 +891,34 @@ AUTOMATION: READY
 4. This is the specified behavior (expansion is treated as fresh each visit), not a defect.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S6-R3, S8-R22).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S6-R3, S8-R22), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R3; Story 8 S8-R22),,
+AUTOMATION: READY",SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R3; Story 8 S8-R22),,
 A saved value that is no longer valid is dropped and falls back to default,SBC — Saved View & Persistence,Functional,Medium,"1. You have a saved view that includes a specific location selection.
 2. An administrator then removes your access to that location (restore afterwards).","1. Return to the report after the access change.
 2. Read the location filter and the report data.","1. The stale saved location is discarded and the location setting uses its default (your active location) instead.
 2. No error appears and the report loads normally.
 3. Per the spec, the same discard-to-default applies to an unknown date range, a sort column that no longer exists, or a column set that does not match the current columns.
+What you should see today: a remembered location or customer that is no longer usable is kept rather than dropped (the filter reads ""1 selected"" for something with no name), and a remembered date range that is no longer valid leaves the date control reading ""Select Date Range"" with an empty report instead of going back to This Month. Product Type and the chosen columns do fall back correctly. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8966
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S6-R5, S6-R6).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S6-R5, S6-R6), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R5; S6-R6),,
+AUTOMATION: READY - EXPECT FAIL (SV-8966)",SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R5; S6-R6),,
 The saved view is specific to this report and does not affect any other report,SBC — Saved View & Persistence,Functional,Medium,1. You have set a distinctive saved view on Sales By Customer (for example Last Year + Parts only).,"1. Open another report in the Reports suite and read its filters.
 2. Return to Sales By Customer.","1. The other report keeps its own defaults/saved view — the Sales By Customer settings do not leak into it.
 2. Sales By Customer still restores its own saved view.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S6-R7).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S6-R7), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R7),,
+AUTOMATION: READY",SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R7),,
 With no saved view every setting uses its own default,SBC — Saved View & Persistence,Functional,Medium,"1. Clear the browser's site data for the application (or use a fresh browser profile).
 2. You open the report by its plain address with no date range in the page link.
 3. You are working in a known active location (check the application's location switcher).","1. Open the Sales By Customer report.
@@ -934,18 +930,17 @@ With no saved view every setting uses its own default,SBC — Saved View & Persi
 6. All nine toggleable columns visible.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S6-N1, S2-R5, S4-R4).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S6-N1, S2-R5, S4-R4), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-N1; Story 2 S2-R5; Story 4 S4-R4),,
+AUTOMATION: READY",SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-N1; Story 2 S2-R5; Story 4 S4-R4),,
 When a saved view and a page-link range clash the saved view wins,SBC — Saved View & Persistence,Functional,Medium,"1. You have a saved view with a known date range (for example Last Month).
 2. You have a page link carrying a DIFFERENT date range (for example This Year), captured earlier.","1. Open the report using the link with the different range.
 2. Read the date range picker.","1. The saved view is applied (Last Month) and the link value is ignored.
 2. This is intentional: a shared link restores the sender's range only for a recipient who has no saved range of their own.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S2-R9).
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S2-R9), read on 11 August 2026.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -956,7 +951,7 @@ Customer filter restore: all-customers stays all; an id set is intersected,SBC �
 2. Scenario B: still-present saved ids are re-selected; a saved id no longer present is dropped (a stale saved id never forces an empty view); a customer that appeared since the set was saved is NOT auto-selected.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R8).
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R8), read on 11 August 2026.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
@@ -974,22 +969,20 @@ Empty state shows in the table body; toolbar interactive; kept selection returns
 6. While the table is still loading, the empty-state message is NOT shown (the loading state is shown instead); it appears only once loading has finished and there are zero customers.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S17-R1, S17-R2, S17-R3, S17-E1, S2-N1, S3-N1, S4-N2, S8-N1, S17-N1).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S17-R1, S17-R2, S17-R3, S17-E1, S2-N1, S3-N1, S4-N2, S8-N1, S17-N1), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8615 (SBC spec v13 2026-07-31 Story 17 S17-R1; S17-R2; S17-R3; S17-E1; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1; Story 17 S17-N1),,
+AUTOMATION: READY",SV-8615 (SBC spec v13 2026-07-31 Story 17 S17-R1; S17-R2; S17-R3; S17-E1; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1; Story 17 S17-N1),,
 A failed data fetch shows the error toast which fades after 5 seconds,SBC — Empty & Edge States,Negative,Medium,"1. You can interrupt the network (browser dev tools offline mode).
 2. To force the failure this test needs, use the browser's own developer tools: press F12, open the ""Network"" tab, and switch the throttling dropdown (it normally reads ""No throttling"") to ""Offline"" to cut the connection, or to ""Slow 3G"" to slow it down. There is nothing to install. Set it back to ""No throttling"" when you finish.","1. Go offline, then open the report (or change a filter to force a re-fetch).
 2. Read the toast and time how long it stays.","1. An error toast is shown: ""An error occurred while fetching the report data.""
 2. The toast auto-fades after 5 seconds.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (§7 User Feedback Summary).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (§7 User Feedback Summary), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8582 (SBC spec §7 User Feedback Summary — the data-fetch error toast; CROSS-CUTTING: the SBC spec carries no error-state story of its own so the epic key is used deliberately),,
+AUTOMATION: HOLD - a failing data fetch cannot be forced from the application",SV-8582 (SBC spec §7 User Feedback Summary — the data-fetch error toast; CROSS-CUTTING: the SBC spec carries no error-state story of its own so the epic key is used deliberately),,
 Page and toolbar match the suite theme in padding; surface and alignment,SBC — Visual Conformance,Functional,Medium,"1. You are on the report in light mode on a desktop browser, with some data showing.","1. Look at the page background behind the data area and at the toolbar strip above the table, including the space between its controls and the edges of the strip.
 2. Check whether the toolbar sits flush against the top of the page with no gap, and whether the table reaches the left and right edges next to the side navigation.
 3. Compare the left edge of the title and the right edge of the action cluster with the leftmost and rightmost columns of data.
@@ -1003,13 +996,16 @@ Page and toolbar match the suite theme in padding; surface and alignment,SBC —
 7. When there are too few rows to fill the screen, the blue-grey page background shows through below the table — there is no white strip left over.
 8. It all looks the same as the other reports in the suite: put another report side by side and nothing should look out of place.
 9. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether the spacing, the alignment and the dividing line look right and consistent with the other reports, and only report it if something looks obviously off. (The exact figures behind this — 32px/24px toolbar padding, a 1px header border, 2rem edge padding, a 24px arrow — are design-token values the design and engineering team check with their own tooling, not by hand.)
+What you should see today: the outer cells of the table have about 14 pixels of side padding instead of 2rem (32 pixels). This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8965
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S20-R1, S20-R2, S20-R3, S20-R4, S20-R5, S20-R6, S20-R7, S20-R12, S20-R13, S20-R15, S20-R17).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S20-R1, S20-R2, S20-R3, S20-R4, S20-R5, S20-R6, S20-R7, S20-R12, S20-R13, S20-R15, S20-R17), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8617 (SBC spec v13 2026-07-31 Story 20 S20-R1; S20-R2; S20-R3; S20-R4; S20-R5; S20-R6; S20-R7; S20-R12; S20-R13; S20-R15; S20-R17),,
+AUTOMATION: READY - EXPECT FAIL (SV-8965)",SV-8617 (SBC spec v13 2026-07-31 Story 20 S20-R1; S20-R2; S20-R3; S20-R4; S20-R5; S20-R6; S20-R7; S20-R12; S20-R13; S20-R15; S20-R17),,
 Row surfaces alternate by tree level; header and totals rows stay white,SBC — Visual Conformance,Functional,Medium,"1. You are on the report in light mode with a customer expanded down to invoice rows.
 2. This test names exact colours or sizes. Use the browser's own developer tools: press F12, pick the element with the inspector, and read its colour or size from the ""Styles"" panel. There is nothing to install. If you cannot get a clear reading, mark this test Blocked rather than guessing.","1. Inspect the background of the header cells, a customer row, an asset row, an invoice row, and the totals row.
 2. Check the pinned Subtotal cell's background on each row type.
@@ -1018,23 +1014,25 @@ Row surfaces alternate by tree level; header and totals rows stay white,SBC — 
 3. The totals row uses the white surface with a top border and bold text (white on purpose, matching Technician Efficiency).
 4. The pinned Subtotal cell on any row uses that row's own background — never a contrasting strip.
 5. The three tree levels show by indentation: customer at the base, asset rows one level in (chevron and vehicle icon sit in from the customer), invoice rows one level deeper.
+What you should see today: the column headings, the customer rows and the totals row are all the pale blue-grey instead of white; the asset and invoice rows are a third, darker grey; and invoice rows are not indented any deeper than customer rows. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8965
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S20-R8, S20-R9, S20-R10, S20-R11, S20-R14).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S20-R8, S20-R9, S20-R10, S20-R11, S20-R14), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8617 (SBC spec v13 2026-07-31 Story 20 S20-R8; S20-R9; S20-R10; S20-R11; S20-R14),,
+AUTOMATION: READY - EXPECT FAIL (SV-8965)",SV-8617 (SBC spec v13 2026-07-31 Story 20 S20-R8; S20-R9; S20-R10; S20-R11; S20-R14),,
 Dark mode darkens every surface while the PDF always renders light,SBC — Visual Conformance,Functional,Medium,1. You can switch the application to dark mode.,"1. Switch to dark mode and review the page background, toolbar, header cells, customer rows, asset/invoice rows, and totals row.
 2. While still in dark mode, download the PDF and open it.","1. In dark mode every visual rule applies with the dark equivalent of each color (dark background, dark surfaces).
 2. The PDF export always renders in light-mode colors regardless of the user's app mode.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S20-R18).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S20-R18), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8617 (SBC spec v13 2026-07-31 Story 20 S20-R18),,
+AUTOMATION: READY",SV-8617 (SBC spec v13 2026-07-31 Story 20 S20-R18),,
 On a phone every toolbar control works on touch; the toolbar splits in two,SBC — Mobile,Functional,Medium,1. You open the report on a phone-sized viewport (real device or browser device emulation).,"1. Try each toolbar control by touch: date range, Product Type, the Customer filter, location, the overflow menu, and the column selector.
 2. At a width below 1024px, look at the toolbar rows.
 3. Widen the window to 1024px or more and look again.","1. Every toolbar control is visible and works on touch.
@@ -1042,11 +1040,10 @@ On a phone every toolbar control works on touch; the toolbar splits in two,SBC �
 3. At 1024px and above the toolbar uses the desktop single-row layout.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S21-R1, S21-R2, S21-R3).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S21-R1, S21-R2, S21-R3), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8618 (SBC spec v13 2026-07-31 Story 21 S21-R1; S21-R2; S21-R3),,
+AUTOMATION: READY",SV-8618 (SBC spec v13 2026-07-31 Story 21 S21-R1; S21-R2; S21-R3),,
 On touch the table scrolls sideways with Subtotal pinned and chevrons work,SBC — Mobile,Functional,Medium,1. You are on the report on a phone-sized viewport with data.,"1. Swipe the table sideways to reach the far columns.
 2. Tap a customer chevron and an asset chevron.
 3. Tap an invoice number link.","1. The data table scrolls sideways to show all columns, and the pinned Subtotal column stays visible during that scroll.
@@ -1054,11 +1051,10 @@ On touch the table scrolls sideways with Subtotal pinned and chevrons work,SBC �
 3. The invoice number link opens the invoice in the same tab, the same as on desktop.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S21-R4, S21-R5, S21-R6).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S21-R4, S21-R5, S21-R6), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8618 (SBC spec v13 2026-07-31 Story 21 S21-R4; S21-R5; S21-R6),,
+AUTOMATION: READY",SV-8618 (SBC spec v13 2026-07-31 Story 21 S21-R4; S21-R5; S21-R6),,
 Asset and invoice rows are fetched on first expand; one call per customer,SBC — API,Functional,Medium,"1. You are on the report with several customers, with the browser's network activity panel open.
 2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Load the report and note the requests made for the summary rows.
 2. Expand one customer for the first time and watch the network panel.
@@ -1068,11 +1064,10 @@ Asset and invoice rows are fetched on first expand; one call per customer,SBC �
 3. Expand-all triggers at most one drill-down fetch per not-yet-expanded customer on the current page — a bounded number never exceeding the page size; it does not fetch customers beyond the current page or the whole result set.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S8-R14, S8-R16).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S8-R14, S8-R16), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R14; S8-R16),,
+AUTOMATION: READY",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R14; S8-R16),,
 Sorting is applied on the server and re-fetches the first page,SBC — API,Functional,Medium,"1. Enough customers exist to span more than one page; the browser's network panel is open.
 2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Click a column header and watch the network panel.
 2. Compare the returned first page with the previous page contents.
@@ -1082,10 +1077,10 @@ Sorting is applied on the server and re-fetches the first page,SBC — API,Funct
 4. A sort request naming a column the report does not offer is safely refused or ignored — never an error page or a crash; sorting works only on the report's own columns.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S10-R8, S10-R8b).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S10-R8, S10-R8b), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/5/2026.
 
-AUTOMATION: HOLD - this part of the report is not built yet
+AUTOMATION: READY
 ",SV-8608 (SBC spec v13 2026-07-31 Story 10 S10-R8; S10-R8b; tech-plan-2026-07-29 A2 (server sort whitelist)),,
 The Customer type-ahead queries the server instead of loading every name,SBC — API,Functional,Medium,"1. You are on the report with the browser's network panel open.
 2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Open the Customer filter WITHOUT typing and check whether a full customer list was downloaded.
@@ -1095,11 +1090,10 @@ The Customer type-ahead queries the server instead of loading every name,SBC —
 3. The all-customers state is stored as an explicit state (a flag), not an enumeration of the fetched ids.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R2, S18-R4).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R2, S18-R4), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R2; S18-R4),,
+AUTOMATION: READY",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R2; S18-R4),,
 Customer rows are server-paginated; the totals row is server-computed,SBC — API,Functional,Medium,"1. Enough customers exist to span more than one page; the browser's network panel is open.
 2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Load the report and inspect the summary-row response and the totals values.
 2. Change the Customer filter selection and watch the requests.
@@ -1108,23 +1102,24 @@ Customer rows are server-paginated; the totals row is server-computed,SBC — AP
 3. The totals are computed on the server over the full set of matching customers — they arrive with the data and do not change as you page.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S18-R6, S18-R11).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R6, S18-R11), read on 11 August 2026.
+Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY
-",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R6; S18-R11),,
+AUTOMATION: READY",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R6; S18-R11),,
 "Exports are server-generated and the 10,000-row cap is counted first",SBC — API,Functional,Medium,"1. The browser's network panel is open; an over-cap filter combination is available if the environment allows.
-2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Trigger ""Download (CSV)"" and ""Download (PDF)"" and observe where the file content comes from.
+2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Trigger a CSV download (""Download Summary (CSV)"" or ""Download Expanded View (CSV)"") and a PDF download (""Download Summary (PDF)"" or ""Download Expanded View (PDF)""), and observe where the file content comes from.
 2. If an over-cap set is available, trigger an export and observe the server's refusal.","1. The CSV and PDF are generated on the server from the active date range, Product Type, location, Customer filter, and sort — not assembled from the rows already loaded in the browser.
 2. Over the cap, the server does not generate the file (the request comes back as a refusal, not a file) and the browser starts no download — the count the cap checks is the count the file would contain, against the same filters and sort as the screen.
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818
+What you should see today: the spreadsheet download works and produces a file, but the PDF download of the same view fails with a server error and no file arrives. It depends on how much is in the view, not on which report - filtered down to one or two rows the PDF downloads normally, and on a full unfiltered view of several thousand rows it fails every time. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8818
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S14-R3, S14-R14, S15-R3, S15-R22).
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S14-R3, S14-R14, S15-R3, S15-R22), read on 11 August 2026.
+Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8818)
-",SV-8612 (SBC spec v13 2026-07-31 Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22),,
+AUTOMATION: READY - EXPECT FAIL (SV-8818)",SV-8612 (SBC spec v13 2026-07-31 Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22),,
 The back end serves SBC report data and export on ordinary reports access,SBC — API,Functional,High,"1. Two sign-ins are available: one user whose role has the ordinary reports access, and one whose role does not have it (for example a Foreman).
 2. You can see the requests the browser makes (the browser's network panel) so you can read the response code.
 3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Sign in as the user WHO HAS ordinary reports access and open Sales By Customer.
@@ -1139,7 +1134,7 @@ The back end serves SBC report data and export on ordinary reports access,SBC �
 5. Note for the tester: one single permission controls all four of these. If you find the report data refused but the export allowed (or the other way round), that is a failure — record both response codes.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S1-R2, S1-N1).
+This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S1-R2, S1-N1), read on 11 August 2026.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
