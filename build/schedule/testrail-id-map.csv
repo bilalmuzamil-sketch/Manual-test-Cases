@@ -66,7 +66,7 @@ SCH-BLOCK-02,29992,Whole-order and multi-line shifts both read 'N Lines' on the 
 SCH-BLOCK-05,29995,The conflict icon is the only icon on a shift block,Shift Block Anatomy,SV-8690 (§4.4)
 SCH-LANE-01,29996,"Non-overlapping same-day shifts share one lane, even from different orders",Overlap and Lane Stacking,"SV-8693 (§4.7,§12 (edge case))"
 SCH-LANE-02,29997,Shifts whose times intersect split into stacked lanes and the row grows to fit,Overlap and Lane Stacking,"SV-8693 (§4.7,§4.11)"
-SCH-LANE-03,29998,Visible lanes cap at 3; extra overlapping shifts collapse into '+N more',Overlap and Lane Stacking,SV-8693 (§4.7)
+SCH-LANE-03,29998,Visible lanes cap at 3; extra overlapping shifts collapse into '+N more',Overlap and Lane Stacking,SV-8693 (§4.7 lane cap and overflow + §11 the overflow uses shape - spec v27 2026-08-07)
 SCH-LANE-04,29999,"Lane stacking and the '+N more' overflow apply in day, week, and month views",Overlap and Lane Stacking,SV-8693 (§4.7)
 SCH-DAY-01,30001,Day view auto-scrolls to the working-day start; manual scrolling stands,Day View Timeline,SV-8694 (§4.8 (Auto-scroll to business hours))
 SCH-DAY-03,30003,Date and time headers stick to the top during vertical scroll,Day View Timeline,SV-8694 (§4.8 (Sticky header bar))
@@ -110,7 +110,7 @@ SCH-PANEL-05,43586,Menus and pop-up windows reposition when the left panel is hi
 SCH-PANEL-06,43587,Hiding the panel lasts for the rest of your sign-in but is not saved,Grid Toolbar,SV-8686 (§5.3 Panel collapse - Persistence; session-scoped per user for build)
 SCH-TOOL-01,30039,'Today' button jumps the grid to the current date,Grid Toolbar,SV-8686 (§6 (Today button))
 SCH-TOOL-02,30040,"Left/right arrows step by day, week, or month to match the active range",Grid Toolbar,"SV-8686 (§6 (Left/right arrows,Date label))"
-SCH-TOOL-03,30041,Toolbar search highlights matching blocks and fades non-matching ones,Grid Toolbar,SV-8686 (§6 (Search))
+SCH-TOOL-03,30041,"Toolbar search matches customer, work order, unit, technician and line names",Grid Toolbar,SV-8686 (§6 (Search) - spec v27 2026-08-07)
 SCH-VIEW-01,30042,"'Filter & Display' dropdown combines department toggles, My Shifts, and VIN",Filter and Display and View Options,"SV-8700 (§6,§9 (Filter and Display dropdown))"
 SCH-VIEW-02,30043,Department toggles show or hide individual department groups in the grid,Filter and Display and View Options,SV-8700 (§9 (Department toggles))
 SCH-VIEW-03,30044,'My Shifts' filters the grid to only the current user's shifts,Filter and Display and View Options,"SV-8700 (§9 (My Shifts),§14.3)"
@@ -162,7 +162,9 @@ SCH-EDGE-04,30088,The grid renders smoothly at full load - 15 technicians over 7
 SCH-EDGE-05,30089,Shop closures do NOT block spread in V1 - shifts can land on closure days,Edge Cases and Responsiveness,"SV-8691 (§12 (Shop closures),§4.5)"
 SCH-EDGE-06,30090,"Scheduled, estimated and actual clocked hours are three separate numbers",Edge Cases and Responsiveness,"SV-8691 (§4.5 (three separate quantities),§12)"
 SCH-EDGE-07,38865,A multi-week series keeps the same local start time across the clock change,Edge Cases and Responsiveness,SV-8691 (§4.5 + tech-plan D2 NFR-005 DST)
-SCH-EDGE-08,38866,Schedule and all its dialogs display correctly in dark mode,Edge Cases and Responsiveness,"SV-8685 (§11 (Dark theme - user-selectable Light / Dark,persisted per user))"
+SCH-EDGE-08,38866,Schedule and all its dialogs display correctly in dark mode,Edge Cases and Responsiveness,SV-8700 (§11 Dark theme - the Schedule and its dialogs render readably in dark mode and revert on switching back) and SV-8698 (§11 accessibility - overtime and conflict cues are not colour-only) - spec v27 2026-08-07
+SCH-EDGE-09,43588,Dark mode is chosen from the user menu and is remembered for you,Edge Cases and Responsiveness,SV-8700 (§11 Dark theme - chosen from user menu and persisted per user - spec v27 2026-08-07)
+SCH-EDGE-10,43589,In dark mode pop-up windows still look raised above the page,Edge Cases and Responsiveness,SV-8700 (§11 Dark theme - elevation and shadow swap so depth reads correctly - spec v27 2026-08-07)
 SCH-PANEL-04,43585,On a narrow window the panel button still works and your choice holds,Edge Cases and Responsiveness,SV-8686 (§5.3 Panel collapse - Narrow viewports; toggle works at any width and the manual choice holds until the next resize)
 SCH-REG-01,38867,Shifts and events created before the Schedule rewrite still appear after it,Cross-Module and Rewrite Regression,"SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan §3 FR-015 data migration)"
 SCH-REG-02,38868,Dashboard shows one schedule row per work order even with many shifts,Cross-Module and Rewrite Regression,"SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan §4 Dashboard FR-016)"

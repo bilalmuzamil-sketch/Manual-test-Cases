@@ -8,7 +8,7 @@ Schedule opens from the top-level navigation into a sidebar + grid layout,Naviga
 4. The main area is the schedule grid showing technician rows, with a toolbar above it.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§3, §3.1, §3.2). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3, §3.1, §3.2), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8686 (§3,§3.1,§3.2)",,
@@ -22,16 +22,10 @@ Day / Week / Month segmented control switches the grid between the three views,N
 2. Week: the grid shows a 7-column Monday-to-Sunday layout with stacked shift chips per cell.
 3. Month: the grid shows a compact calendar with per-day capacity bars and shift chips.
 4. The same shifts appear in all three views - each one drawn to suit that view: positioned on the hour line in Day, as a chip in the day column in Week, and as a compact chip in Month.
-
-What you should see today: Week view runs Sunday to Saturday. The seven columns read Sunday Aug 2, Monday Aug 3, and so on to Saturday Aug 8, instead of starting on Monday. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8826
-· If you see exactly that, mark this test FAILED and do not raise anything new.
-· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
-
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§3.2, §6). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.2, §6), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8826)
+AUTOMATION: READY
 ","SV-8686 (§3.2,§6)",,
 Grid rows are grouped by department under group headers,Navigation and Layout,Functional,High,"1. You are signed in on a desktop browser.
 2. Staff members are assigned to at least two different departments (adjust staff records if needed, restore after).
@@ -41,7 +35,7 @@ Grid rows are grouped by department under group headers,Navigation and Layout,Fu
 3. Every staff member assigned to a visible department appears as a row, regardless of their role.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§3.2, §14.4). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.2, §14.4), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8686 (§3.2,§14.4)",,
@@ -54,7 +48,7 @@ Collapsing a department header hides its technician rows,Navigation and Layout,F
 3. Other department groups are unaffected.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§3.2). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.2), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8686 (§3.2),,
@@ -63,7 +57,7 @@ No Tech/Dept toggle - department grouping is the only grid grouping,Navigation a
 2. Department visibility is controlled only through the department toggles in the 'Filter and Display' dropdown.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§3.2). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.2), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8686 (§3.2),,
@@ -75,7 +69,7 @@ AUTOMATION: READY
 3. The unassigned shift uses the same block layout as regular shifts (customer, unit, line name / line count) - it simply has no technician.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§3.2, §4.2). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.2, §4.2), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8686 (§3.2,§4.2)",,
@@ -86,16 +80,10 @@ Schedule opens on Day view the first time you open it from the navigation,Naviga
 3. Look at the grid itself.","1. The Schedule page opens.
 2. Of the three buttons Day, Week and Month, the one that is switched on (highlighted) is Day.
 3. The grid shows the Day layout: a 24-hour timeline for each technician row, with shifts placed at their times.
-
-What you should see today: The Schedule opens on Week view. Week is the highlighted button and the grid draws the seven-column week layout. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8863
-· If you see exactly that, mark this test FAILED and do not raise anything new.
-· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
-
 ---
-This is the expected behaviour as per epic SV-8685 and the acceptance criterion of its story SV-8686, which states that when the schedule page loads the grid displays with day view as default. The Schedule specification version 27 does not say which view the page opens on, so this expectation comes from the story rather than the specification. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the acceptance criterion of its story SV-8686, read on 11 August 2026, which states that when the schedule page loads the grid displays with day view as default. The Schedule specification version 27 does not say which view the page opens on, so this expectation comes from the story rather than the specification. Last checked against build v3.5-7ec992f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8863)
+AUTOMATION: READY
 ",SV-8863 (SV-8686 acceptance criterion - grid displays with day view as default),,
 Clicking a date in the mini calendar navigates the main grid to that date,Sidebar - Mini Calendar,Functional,High,"1. You are signed in on a desktop browser.
 2. You are on the Schedule page with the mini calendar visible in the left sidebar.","1. In the mini calendar, click a date in a different week from the one currently shown in the grid.
@@ -104,7 +92,7 @@ Clicking a date in the mini calendar navigates the main grid to that date,Sideba
 3. The clicked date is highlighted as the selected date in the mini calendar.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§3.1, §5.2). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.1, §5.2), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8687 (§3.1,§5.2)",,
@@ -118,7 +106,7 @@ Mini calendar month/year picker has month buttons and year arrows,Sidebar - Mini
 3. The main grid can then be navigated by clicking a date in the newly shown month.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§5.2). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§5.2), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8687 (§5.2),,
@@ -131,7 +119,7 @@ A chevron toggle collapses and expands the mini calendar grid,Sidebar - Mini Cal
 2. Clicking again expands the calendar grid back.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§3.1, §5.2). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.1, §5.2), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8687 (§3.1,§5.2)",,
@@ -145,7 +133,7 @@ AUTOMATION: READY
 3. Hovering a week row highlights that whole week row.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§5.2). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§5.2), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8687 (§5.2),,
@@ -158,7 +146,7 @@ The sidebar is a flat list of work order cards with no tabs,Sidebar - Work Order
 3. There are no Assigned/Unassigned tabs - assignment is available only as a filter behind the 'Filter' button.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§3.1, §5.1). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.1, §5.1), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8687 (§3.1,§5.1)",,
@@ -174,7 +162,7 @@ AUTOMATION: READY
 5. A colored left border whose color reflects the work order's status.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§3.1). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.1), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8687 (§3.1 (Work order card anatomy)),,
@@ -191,16 +179,10 @@ AUTOMATION: READY
 4. Technician-name search shows only cards where that technician is on the work order - and it must work when you type the technician's name the way the card shows it, first name and last name together (for example 'Andrew Wade').
 
 Note for the tester: searching the number exactly as the card shows it (for example S-15875) does work, and so does the bare number (15875). Searching the longer shop-prefixed form (for example S8685-15875) returns nothing; that is already raised as SV-8841 (https://shopview.atlassian.net/browse/SV-8841), so do not raise it again.
-
-What you should see today: Typing a technician's full name finds nothing. 'Andrew' on its own finds 14 work orders and 'Wade' on its own finds the same 14, but 'Andrew Wade' finds 0, and so do 'andrew wade' and 'Wade Andrew'. A full customer name such as 'Vuchester Retail' works, so it is not a problem with spaces. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8873
-· If you see exactly that, mark this test FAILED and do not raise anything new.
-· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
-
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§3.1). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.1), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8873)
+AUTOMATION: READY
 ","SV-8687 (§3.1 (Sidebar search,Work order card anatomy))",,
 Sidebar search filters the card list in real time as you type,Sidebar - Work Order List and Search,Functional,Medium,"1. You are signed in on a desktop browser.
 2. Several work orders exist.
@@ -212,7 +194,7 @@ Sidebar search filters the card list in real time as you type,Sidebar - Work Ord
 3. With very many work orders, the list may load further results in pages as you scroll - that is expected, not a fault.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§3.1). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.1), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8687 (§3.1 (Sidebar search)),,
@@ -226,7 +208,7 @@ Sidebar search with no matching work orders shows an empty list,Sidebar - Work O
 3. Clearing the search restores the full list.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§3.1). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.1), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8687 (§3.1 (derived - search behavior with no matches)),,
@@ -239,7 +221,7 @@ The 'Filters' button opens Assignment / Status / Priority filter groups,Sidebar 
 3. The 'Filters' button shows a badge with the number of active filters.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§5.1). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§5.1), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8687 (§5.1),,
@@ -254,7 +236,7 @@ Assignment filter narrows the list to Assigned or Unassigned work orders,Sidebar
 3. There are no Assigned/Unassigned tabs - this filter is the only assignment split.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§5.1, §3.1). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§5.1, §3.1), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8687 (§5.1,§3.1)",,
@@ -272,7 +254,7 @@ Status filter narrows the list to work orders in the chosen status(es),Sidebar -
 Note for the tester: this shop's schedule list only holds work orders in two statuses, Approved and Review, so most of the other choices correctly come back empty. An empty list for a status no work order is in is the right answer, not a fault.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§5.1). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§5.1), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8687 (§5.1),,
@@ -286,7 +268,7 @@ AUTOMATION: READY
 2. Only High-priority work orders remain in the list.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§5.1). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§5.1), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8687 (§5.1),,
@@ -299,7 +281,7 @@ AUTOMATION: READY
 3. The active-count badge on the 'Filter' button disappears (or shows zero).
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§5.1). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§5.1), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8687 (§5.1),,
@@ -313,7 +295,7 @@ Search and filter work together - both can be active at the same time,Sidebar - 
 2. Removing either the search text or the filter widens the list to the remaining condition.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§5.1). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§5.1), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8687 (§5.1),,
@@ -329,7 +311,7 @@ AUTOMATION: READY
 5. Clicking back restores the work order card list.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§3.1). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.1), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8687 (§3.1 (Line drill-down)),,
@@ -343,7 +325,7 @@ Only approved work order lines appear in the drill-down,Sidebar - Line Drill-Dow
 3. The line count in the drill-down header matches the number of APPROVED lines on the work order - a line that was never approved is neither listed nor counted.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§3.1). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.1), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8687 (§3.1 (Line drill-down - approved-only)),,
@@ -357,7 +339,7 @@ AUTOMATION: READY
 3. Each line row has its own drag handle, so it can be dragged independently onto the grid.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§3.1, §8.1). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.1, §8.1), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8687 (§3.1 (Line drill-down),§8.1 (Line labor roster - no cap))",,
@@ -371,7 +353,7 @@ Lines with no technician assigned show a 'Needs techs' badge,Sidebar - Line Dril
 3. After a technician is scheduled onto the badge-bearing line, the badge goes away.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§3.1). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.1), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8687 (§3.1 (Line drill-down - Needs techs badge)),,
@@ -385,7 +367,7 @@ AUTOMATION: READY
 2. Typing the customer name returns no results - the line search matches line titles only (the list is already scoped to one work order, so customer/unit/WO fields are not searched).
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§3.1). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.1), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8687 (§3.1 (Line search)),,
@@ -400,7 +382,7 @@ AUTOMATION: READY
 3. All lists every approved line, and its count matches the drill-down header's line count.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§3.1, §5.1). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.1, §5.1), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8687 (§3.1,§5.1 (drill-down filters))",,
@@ -413,7 +395,7 @@ Dropping a single-line work order creates a shift with no scope picker,Drag-and-
 4. A toast with an Undo option appears.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.1, §1.2, §7). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.1, §1.2, §7), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8688 (§4.1 (Single-line work order),§1.2 (roster sync),§7 (toast))",,
@@ -425,7 +407,7 @@ Dropping a multi-line work order on a technician cell opens the scope picker,Dra
 3. No shift is created until a scope is chosen.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.1, §4.3). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.1, §4.3), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8688 (§4.1 (Multi-line work order),§4.3)",,
@@ -438,7 +420,7 @@ Dragging a line from the drill-down creates a single-line shift,Drag-and-Drop Sc
 3. The technician is added to that line's roster only (not to the order's other lines).
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.1). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.1), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8688 (§4.1 (Specific line drag)),,
@@ -451,7 +433,7 @@ A job over the technician's daily hours opens the spread step,Drag-and-Drop Sche
 3. No shifts exist yet until the spread is confirmed.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.1, §4.5). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.1, §4.5), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8688 (§4.1 (Large job),§4.5)",,
@@ -462,7 +444,7 @@ A scope that fits one working day skips the spread step,Drag-and-Drop Scheduling
 2. The shift sits on the dropped day only.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.1). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.1), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8688 (§4.1 (spread step is conditional)),,
@@ -472,16 +454,10 @@ AUTOMATION: READY
 2. Watch the cell under the cursor and the dragged preview.","1. The cell currently under the cursor highlights as a drop target.
 2. A ghost block follows the drag showing the line name and its hours.
 3. Releasing outside any valid cell creates nothing.
-
-What you should see today: Nothing highlights and nothing follows the cursor while you drag a line from the list on the left onto the grid. No cell lights up as a drop target, and the faint shape that does follow the cursor is empty - it does not show the line name or the hours. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8840
-· If you see exactly that, mark this test FAILED and do not raise anything new.
-· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
-
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§7). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§7), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8840)
+AUTOMATION: READY
 ",SV-8688 (§7 (Drag feedback)),,
 Scheduling a technician onto a line adds them to its labor roster,Drag-and-Drop Scheduling,Functional,Critical,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A work order exists with an approved line where the target technician is NOT yet on the line's roster.
@@ -495,7 +471,7 @@ Scheduling a technician onto a line adds them to its labor roster,Drag-and-Drop 
 5. Nothing asks you to swap or replace the technician who was already there, and no limit is reached on how many technicians a line can have.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§1.2, §4.3, §7). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§1.2, §4.3, §7), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8688 (§1.2 Goals - roster sync · §4.3 roster add + no swap flow · §7; spec v27 2026-08-07),,
@@ -504,16 +480,10 @@ A click-to-arm alternative exists for scheduling without dragging,Drag-and-Drop 
 3. You are on the Schedule page.","1. Instead of dragging, click (arm) the work order card or line in the sidebar.
 2. Then click a technician cell in the grid.","1. The item can be placed onto a cell without holding a drag - clicking arms it, and clicking a cell places it.
 2. The result is the same as the equivalent drag-and-drop (scope picker / spread step rules apply the same way).
-
-What you should see today: There is no way to place a job by clicking. The work order card in the panel on the left has no button on it at all - not when you hover it, and not inside its line list - so dragging is the only way to schedule anything. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8957
-· If you see exactly that, mark this test FAILED and do not raise anything new.
-· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
-
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§7, §11). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§7, §11), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8957)
+AUTOMATION: READY
 ","SV-8688 (§7 (Keyboard support - click-to-arm),§11 (Accessibility))",,
 Month view: dragging a work order onto a day creates a shift for that day,Drag-and-Drop Scheduling,Functional,High,"1. You are signed in to the ShopView App on a desktop browser (window at least 960px wide).
 2. Your role has the Schedule: Edit permission.
@@ -531,7 +501,7 @@ Please read before running this test: what should happen in MONTH view specifica
 What was seen on the build checked: the card lifts and follows the mouse, but no day box shows as a drop target and releasing does nothing at all - no scope picker, no shift, no message. The same drag of the same work order in Week view does open the scope picker, so the difference is Month view itself.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.1, §4.2), which describe dragging a work order from the sidebar onto a cell in the grid and the order of preference for the start time. Neither that specification nor story SV-8688 says whether Month view accepts the drop, so that point is an open product-owner question rather than a settled requirement. Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.1, §4.2), read on 11 August 2026, which describe dragging a work order from the sidebar onto a cell in the grid and the order of preference for the start time. Neither that specification nor story SV-8688 says whether Month view accepts the drop, so that point is an open product-owner question rather than a settled requirement. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: HOLD - waiting on the product owner's answer, and the question has not been sent yet
 ",SV-8870 (§4.1 drag-and-drop scheduling + §4.2 start-time hierarchy),,
@@ -546,7 +516,7 @@ Scope picker contents: the pinned whole-order row and the line rows,Scope Picker
 5. Rows for lines that already have technicians show the current roster as an avatar stack plus count.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.3). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.3), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8689 (§4.3),,
@@ -559,7 +529,7 @@ AUTOMATION: READY
 3. The technician is added to the roster of every one of those lines.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.3, §4.4). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.3, §4.4), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8689 (§4.3,§4.4)",,
@@ -571,7 +541,7 @@ Tapping a line row creates a single-line shift with no confirm step,Scope Picker
 3. The block's last text line shows the line's name.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.3). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.3), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8689 (§4.3 (Individual line rows - fast path)),,
@@ -589,7 +559,7 @@ AUTOMATION: READY
 5. Confirming creates ONE shift covering exactly the ticked lines, and the technician is added to those lines' rosters only - not to the other lines.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.3). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.3), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: HOLD - not re-checked against the current build - it needs a drag that could not be completed
 ","SV-8689 (§4.3 (Select multiple,Select all shortcut,Cancel))",,
@@ -601,7 +571,7 @@ A shift's start time uses the technician's own working hours when set,Shift Star
 Known issue on the build tested: the time this test talks about is stored correctly but the Schedule SHOWS it six hours later than it should be, so a 7:00 AM start reads 1:00 PM on screen. That is already raised with the developers as SV-8848 (https://shopview.atlassian.net/browse/SV-8848). Check the value is right by the rule this test describes, and ignore the six-hour display shift - do not raise a new ticket for it.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.2). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.2), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8688 (§4.2),,
@@ -612,7 +582,7 @@ AUTOMATION: READY
 2. Read the created shift's start time.","1. The shift starts at the shop's business-hours start time.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.2). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.2), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8688 (§4.2),,
@@ -623,7 +593,7 @@ AUTOMATION: READY
 2. Read the created shift's start time.","1. The shift starts at 7:00 AM - the general default working day (7:00 AM to 7:00 PM) applies.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.2). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.2), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8688 (§4.2),,
@@ -636,7 +606,7 @@ In day view the start time comes from the drop position,Shift Start Times and Un
 Note for the tester: every time on the Schedule is currently shown six hours later than the time it was booked for. That is already reported as SV-8848 (https://shopview.atlassian.net/browse/SV-8848). Read the position on the timeline rather than the printed time, and do not raise it again.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.2). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.2), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8688 (§4.2 (day view drop position)),,
@@ -648,7 +618,7 @@ Dropping onto the Unassigned row creates a shift with no technician,Shift Start 
 3. The block uses the same anatomy as a regular shift (customer, unit, line name / 'N Lines').
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.2, §3.2). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.2, §3.2), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ","SV-8688 (§4.2 (Unassigned shifts),§3.2)",,
@@ -659,7 +629,7 @@ Unassigned shift start time uses business hours or the default,Shift Start Times
 2. Read the created shift's start time.","1. The unassigned shift starts at the shop's business-hours start (there is no technician whose hours could apply).
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.2). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.2), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8688 (§4.2),,
@@ -670,16 +640,10 @@ Dragging an unassigned shift onto a technician row assigns it,Shift Start Times 
 2. Check the shift and the line's roster.","1. The shift is now assigned to that technician (it leaves the Unassigned row and sits in the technician's row).
 2. The technician is added to the affected line's roster.
 3. The technician's own working hours now apply to the shift's timing.
-
-What you should see today: Giving an unassigned job to a technician quietly changes its saved start time to six hours earlier. A job booked for 7:00 in the morning is saved as 1:00 in the morning after it is assigned, with no warning. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8924
-· If you see exactly that, mark this test FAILED and do not raise anything new.
-· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
-
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§3.2, §4.2). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.2, §4.2), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8924)
+AUTOMATION: READY
 ","SV-8688 (§3.2 (Unassigned placeholder),§4.2)",,
 Spread step header shows the scope; 'Change scope' returns to the picker,Multi-Day Spread Scheduling,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A multi-line work order exists with a scope that exceeds the technician's daily hours.
@@ -695,7 +659,7 @@ Spread step header shows the scope; 'Change scope' returns to the picker,Multi-D
 5. Choosing a new scope updates the spread step's header and hours accordingly.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.5). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.5), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8691 (§4.5),,
@@ -708,7 +672,7 @@ How-much selector defaults to Full estimate; preset amounts apply at once,Multi-
 4. The preview summary updates to match each selection.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.5). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.5), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8691 (§4.5 (How much to schedule)),,
@@ -719,7 +683,7 @@ AUTOMATION: READY
 2. Picking a date updates the preview so the series ends by that date.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.5). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.5), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8691 (§4.5 (progressive disclosure)),,
@@ -729,7 +693,7 @@ AUTOMATION: READY
 2. The preview updates to spread exactly the entered hours across working days.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.5). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.5), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8691 (§4.5 (progressive disclosure)),,
@@ -742,7 +706,7 @@ Start date defaults to the earliest working day and can be changed,Multi-Day Spr
 3. B's series is created from the adjusted start date onward.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.5). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.5), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: HOLD - not re-checked against the current build - it needs a drag that could not be completed
 ",SV-8691 (§4.5 (Start date)),,
@@ -756,7 +720,7 @@ Spread uses the tech's working hours; skips weekends only when hours not set,Mul
 4. The end date is a result of the daily distribution (for 40h at 8h/day starting Monday, the series ends on the fifth working day).
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.5, §12). That specification describes this point in two different ways, so the behaviour above follows its first-release wording and a product owner decision is still awaited; the open question is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md. Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.5, §12), read on 11 August 2026. That specification describes this point in two different ways, so the behaviour above follows its first-release wording and a product owner decision is still awaited; the open question is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md, read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: HOLD - waiting on the product owner's answer, and the question has not been sent yet
 ","SV-8691 (§4.5,§12 (shop closures))",,
@@ -768,7 +732,7 @@ AUTOMATION: HOLD - waiting on the product owner's answer, and the question has n
 3. Skipped days are struck through and show the reason they are skipped - in V1 the only skip reason is a weekend day with no working hours set.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.5). That specification describes this point in two different ways, so the behaviour above follows its first-release wording and a product owner decision is still awaited; the open question is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md. Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.5), read on 11 August 2026. That specification describes this point in two different ways, so the behaviour above follows its first-release wording and a product owner decision is still awaited; the open question is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md, read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: HOLD - not re-checked against the current build - it needs a drag that could not be completed
 ",SV-8691 (§4.5 (Preview)),,
@@ -781,7 +745,7 @@ Confirming the spread creates a linked series of daily shifts,Multi-Day Spread S
 4. A toast with Undo appears.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.5, §4.6, §8.2). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.5, §4.6, §8.2), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: HOLD - not re-checked against the current build - it needs a drag that could not be completed
 ","SV-8691 (§4.5 (Confirming),§4.6,§8.2)",,
@@ -793,7 +757,7 @@ The same work order on a second technician spreads the full estimate again,Multi
 3. Planned hours across technicians may now exceed the estimate - this is expected and produces no error (progress is driven by clocked-in time).
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.5, §12). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.5, §12), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8691 (§4.5 (independent per-tech spread),§12)",,
@@ -808,7 +772,7 @@ Spread past 8 weeks asks to confirm; a series can never exceed 120 shifts,Multi-
 4. No half-created series is left behind after a refused attempt.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.5), with the specific limits above taken from the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md. Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.5), read on 11 August 2026, with the specific limits above taken from the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md, read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8691 (§4.5 + tech-plan D8 series caps),,
@@ -819,16 +783,10 @@ AUTOMATION: READY
 3. Look at the weekend columns inside the series.","1. The series renders as one continuous bar wrapping across the week rows.
 2. It is labeled once at the start (including the technician); later weeks show a faded 'continues'-style label instead of repeating the full label.
 3. Weekend columns inside the series are empty (no bar) when no business hours are set for those weekend days.
-
-What you should see today: In Month view the bar for a multi-day job does not say whose it is. It reads, for example, 'Xiriver Apparel  24069  19 Lines  Part of a series' with no technician name anywhere on it. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8958
-· If you see exactly that, mark this test FAILED and do not raise anything new.
-· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
-
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.6). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.6), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8958)
+AUTOMATION: READY
 ",SV-8692 (§4.6 (Month view)),,
 "Week view: series banner spans the week, with chevrons and 'week N of M'",Linked Series and Banners,Functional,High,"1. You are signed in on a desktop browser.
 2. A multi-week series exists for one technician; on one of its days the technician also has an unrelated booking.
@@ -839,7 +797,7 @@ AUTOMATION: READY - EXPECT FAIL (SV-8958)
 3. A 'week N of M' cue shows the position within the series.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.6). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.6), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8692 (§4.6 (Week view)),,
@@ -850,7 +808,7 @@ Day view shows the series day as one block with a multi-week cue,Linked Series a
 2. The block carries a cue in the spirit of 'part of an M-week job' indicating it belongs to a longer series.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.6). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.6), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8692 (§4.6 (Day view)),,
@@ -863,7 +821,7 @@ A series is just a grouping - capacity and conflicts use the daily shifts,Linked
 3. The detail modal shows that single day's shift (its own day and hours) while indicating it belongs to the series.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.6, §8.2). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.6, §8.2), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8692 (§4.6,§8.2)",,
@@ -875,7 +833,7 @@ AUTOMATION: READY
 4. No work order number appears on the block.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.4). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.4), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8690 (§4.4),,
@@ -888,7 +846,7 @@ Whole-order and multi-line shifts both read 'N Lines' on the block,Shift Block A
 3. Each detail modal lists exactly which lines the shift covers.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.4, §12). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.4, §12), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8690 (§4.4,§12)",,
@@ -900,7 +858,7 @@ The conflict icon is the only icon on a shift block,Shift Block Anatomy,Negative
 3. No scope icons distinguish whole-order from subset shifts.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.4). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.4), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8690 (§4.4),,
@@ -914,7 +872,7 @@ AUTOMATION: READY
 4. No conflict is flagged for back-to-back (non-intersecting) shifts.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.7, §12). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.7, §12), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8693 (§4.7,§12 (edge case))",,
@@ -925,7 +883,7 @@ Shifts whose times intersect split into stacked lanes and the row grows to fit,O
 3. The overlap is also flagged as a Double-booked conflict (stacking reads as 'resolve me').
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.7, §4.11). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.7, §4.11), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8693 (§4.7,§4.11)",,
@@ -935,13 +893,14 @@ Visible lanes cap at 3; extra overlapping shifts collapse into '+N more',Overlap
 2. Find and click the '+N more' affordance.","1. At most 3 lanes are visible.
 2. The remaining overlapping shifts collapse into a '+N more' affordance (here '+2 more').
 3. Clicking it opens a popover listing the hidden shifts.
-4. The hidden shifts can be opened from that popover.
+4. You can tell the '+2 more' is something to click without relying on its colour: it carries the count as words you can read, and it is drawn as its own distinct shape - a small chip, pill or button - not just a differently coloured patch of the lane.
+5. The hidden shifts can be opened from that popover.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.7). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.7 Overlap and lane stacking and §11 Accessibility - the overflow uses shape), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
-",SV-8693 (§4.7),,
+",SV-8693 (§4.7 lane cap and overflow + §11 the overflow uses shape - spec v27 2026-08-07),,
 "Lane stacking and the '+N more' overflow apply in day, week, and month views",Overlap and Lane Stacking,Functional,Medium,"1. You are signed in on a desktop browser.
 2. One technician has several overlapping shifts on the same day.
 3. You are on the Schedule page.","1. View the day in day view and note the stacking/overflow.
@@ -951,7 +910,7 @@ AUTOMATION: READY
 3. The overflow affordance opens the hidden-shifts popover in each view.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.7). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.7), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8693 (§4.7),,
@@ -965,16 +924,10 @@ Day view auto-scrolls to the working-day start; manual scrolling stands,Day View
 3. Your manual scroll position stays put - nothing jumps you back to the morning while you remain on the same day.
 4. The timeline is not stuck at the start - it remains a full 24-hour scrollable timeline (midnight to midnight).
 5. Only navigating to another day re-triggers the auto-scroll.
-
-What you should see today: Day view opens showing midnight at the left-hand edge instead of the start of the working day. The working day starts at 6:00 AM, but 12 AM sits at the left edge, and stepping to the next day leaves it at midnight again. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8837
-· If you see exactly that, mark this test FAILED and do not raise anything new.
-· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
-
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.8). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.8), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8837)
+AUTOMATION: READY
 ",SV-8694 (§4.8 (Auto-scroll to business hours)),,
 Date and time headers stick to the top during vertical scroll,Day View Timeline,Functional,Medium,"1. You are signed in on a desktop browser.
 2. Enough technician rows exist that the grid scrolls vertically.
@@ -984,7 +937,7 @@ Date and time headers stick to the top during vertical scroll,Day View Timeline,
 2. The same sticky-header behavior applies in week view.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.8). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.8), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8694 (§4.8 (Sticky header bar)),,
@@ -998,7 +951,7 @@ Dragging a shift sideways moves its start time in 15-minute steps,Day View Timel
 4. A toast with Undo appears for the move.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.8, §7). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.8, §7), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: HOLD - not re-checked against the current build - it needs a drag that could not be completed
 ","SV-8694 (§4.8 (Horizontal drag),§7 (toast))",,
@@ -1012,7 +965,7 @@ Dragging a shift's left or right edge resizes its duration,Day View Timeline,Fun
 4. The shift's duration on the grid matches the modal's start/end.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.8). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.8), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8694 (§4.8 (Edge resize)),,
@@ -1024,7 +977,7 @@ AUTOMATION: READY
 3. Hovering the now line while your pointer is over the grid shows a label (the current time).
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.8). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.8), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8694 (§4.8 (Now line)),,
@@ -1036,7 +989,7 @@ AUTOMATION: READY
 3. The VIN is visible here even though the grid's VIN toggle is off - the modal always shows it.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.9, §9). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.9, §9), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8695 (§4.9,§9 (VIN always in modal))",,
@@ -1048,16 +1001,10 @@ Scheduled date and start/end time pickers work in 15-minute increments,Shift Det
 2. Saving/applying the change updates the shift's times.
 3. Changing the date moves the shift to the chosen day.
 4. The grid block reflects the new date/times.
-
-What you should see today: The start and end time boxes accept any minute you like, not quarter hours. Typing 08:07 is accepted and it is still 08:07 after you click away. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8833
-· If you see exactly that, mark this test FAILED and do not raise anything new.
-· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
-
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.9). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.9), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8833)
+AUTOMATION: READY
 ",SV-8695 (§4.9),,
 The modal shows the technician and time logged vs estimate progress,Shift Detail Modal,Functional,Medium,"1. You are signed in on a desktop browser.
 2. A shift exists whose line has some clocked-in time logged against an estimate (seed by clocking a technician in/out if possible).
@@ -1065,16 +1012,10 @@ The modal shows the technician and time logged vs estimate progress,Shift Detail
 2. Read the time-logged vs estimate progress.","1. The assigned technician is shown.
 2. A progress indication compares time logged against the estimate (logged hours vs estimated hours).
 3. The numbers are consistent with the line's actual logged time and estimate.
-
-What you should see today: The time-logged figure shows as fully complete when nothing has been clocked. A shift created moments earlier, on a line nobody has ever clocked into, reads 'TIME LOGGED 1h / 1h' with a full bar. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8834
-· If you see exactly that, mark this test FAILED and do not raise anything new.
-· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
-
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.9). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.9), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8834)
+AUTOMATION: READY
 ",SV-8695 (§4.9),,
 The modal lists the scheduled line(s) with no money fields,Shift Detail Modal,Functional,High,"1. You are signed in on a desktop browser.
 2. A multi-line (subset) shift exists covering 2 of a work order's 4 lines.
@@ -1087,7 +1028,7 @@ The modal lists the scheduled line(s) with no money fields,Shift Detail Modal,Fu
 Note for the tester: the absence of any money figure is CORRECT and is what this test expects. The product owner ruled on 22 July 2026 that no total in dollars is shown anywhere on the Schedule. If you see no money figure, pass this test.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.9, §4.4). Version 23 of that specification asked for the lines to carry 'labor/total figures'. Version 25, published on 6 August 2026, changed that to 'labor/status figures', so the specification and this test now agree that no money figure is shown; the specification still asks for a labor figure, which this test does not expect, and on that one point the behaviour above follows the product owner's later decision of 22 July 2026, recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md. Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.9, §4.4), read on 11 August 2026. Version 23 of that specification asked for the lines to carry 'labor/total figures'. Version 25, published on 6 August 2026, changed that to 'labor/status figures', so the specification and this test now agree that no money figure is shown; the specification still asks for a labor figure, which this test does not expect, and on that one point the behaviour above follows the product owner's later decision of 22 July 2026, recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md, read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8695 (§4.9,§4.4)",,
@@ -1099,7 +1040,7 @@ Estimated hours can be edited inline in the modal,Shift Detail Modal,Functional,
 3. Dependent displays (progress vs estimate) reflect the new value.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.9). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.9), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8695 (§4.9 (Estimated hours with inline edit)),,
@@ -1112,7 +1053,7 @@ AUTOMATION: READY
 4. Notes are kept per work order (the same note is visible from another shift of the same work order).
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.9). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.9), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: HOLD - not re-checked against the current build - it needs a drag that could not be completed
 ","SV-8695 (§4.9 (Notes: add,edit,and delete per work order))",,
@@ -1124,16 +1065,10 @@ A conflicted shift's modal shows a conflict banner with an 'Adjust' action,Shift
 2. It offers an 'Adjust' action.
 3. 'Adjust' leads to a way to resolve the conflict (for example changing the shift's time).
 4. An unconflicted shift's modal shows no such banner.
-
-What you should see today: The clash warning appears but gives you no way to fix it. On a shift whose reason is 'Double-booked with ...', 'Extends past working hours' or 'Not a working day' there is no Adjust button - eight clashing shifts were checked and not one offered it. An Adjust button does exist for one other reason ('Starts before working hours'), so do not be surprised to see it there. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8852
-· If you see exactly that, mark this test FAILED and do not raise anything new.
-· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
-
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.9). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.9), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8852)
+AUTOMATION: READY
 ",SV-8695 (§4.9 (conflict banner + Adjust)),,
 Shift modal offers Delete only - there is no Reassign action,Shift Detail Modal,Functional,High,"1. You are signed in on a desktop browser with Schedule: Delete (which includes Edit and View).
 2. A shift exists; its detail modal is open.","1. Look at the modal's actions.
@@ -1143,7 +1078,7 @@ Shift modal offers Delete only - there is no Reassign action,Shift Detail Modal,
 3. Delete on a series member asks for a deletion scope (the full scope behavior has its own cases).
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.9, §7). That specification describes this point in two different ways, so the behaviour above follows its first-release wording and a product owner decision is still awaited; the open question is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md. Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.9, §7), read on 11 August 2026. That specification describes this point in two different ways, so the behaviour above follows its first-release wording and a product owner decision is still awaited; the open question is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md, read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8695 (§4.9 (Actions - Delete only; Reassign removed in Confluence v23),§7)",,
@@ -1156,7 +1091,7 @@ Create an event via left-click 'Create Event' on empty grid space,Events,Functio
 4. A toast with Undo appears.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.10, §7). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.10, §7), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ","SV-8696 (§4.10 (left-click menu on empty grid space),§7)",,
@@ -1168,7 +1103,7 @@ Day view event creation shows a live preview block you can drag to resize,Events
 3. Completing creates the event at the previewed time/duration.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.10). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.10), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8696 (§4.10 (left-click menu entry; day-view live preview,drag-to-resize))",,
@@ -1183,7 +1118,7 @@ Event modal fields all save; the all-day toggle creates an all-day event,Events,
 5. The event is created as an all-day block for that technician and day.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.10, §8.1). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.10, §8.1), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8696 (§4.10 (Event modal),§8.1 (Event allDay field))",,
@@ -1196,7 +1131,7 @@ Events can be dragged to another technician or another day,Events,Functional,Med
 3. Each move produces a toast with Undo.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.10, §7). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.10, §7), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: HOLD - not re-checked against the current build - it needs a drag that could not be completed
 ","SV-8696 (§4.10 (Drag-and-drop to reassign/move),§7 (toast))",,
@@ -1207,7 +1142,7 @@ Event cards look structurally distinct from shift cards,Events,Functional,Medium
 3. The shift reads as a tinted color-filled block with a colored left rail - the two types are separable at a glance, not by color alone.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.10). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.10), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8696 (§4.10 (Event card anatomy)),,
@@ -1220,7 +1155,7 @@ Events default to grey; choosing a color tints the card and chip,Events,Function
 3. Choosing a color tints the card and the icon chip in matching tones, the same way a colored shift is tinted.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.10, §10). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.10, §10), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8696 (§4.10 (Event color),§10)",,
@@ -1233,7 +1168,7 @@ An event's hours count toward the capacity bar but raise no conflict,Events,Func
 3. The two behave differently on purpose: an event uses up capacity, but it is never flagged as a conflict.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.10, §4.11, §4.12). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.10, §4.11, §4.12), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8696 (§4.10 (Events),§4.11 (events not conflict-checked),§4.12 (event time included in the utilization total))",,
@@ -1247,7 +1182,7 @@ Double-booked: two overlapping work orders on one technician are flagged,Conflic
 4. The conflict is listed in the pill's dropdown.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.11). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.11), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8697 (§4.11 (Double-booked)),,
@@ -1259,7 +1194,7 @@ Working-day conflict: a shift outside the tech's working days is flagged,Conflic
 3. The warning icon appears on the block and the conflict is listed in the toolbar dropdown.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.11). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.11), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8697 (§4.11 (Weekend shift)),,
@@ -1274,7 +1209,7 @@ Before-hours and after-hours shifts are flagged against the tech's hours,Conflic
 4. Warning icon on the block in each case; the conflict appears in the toolbar dropdown.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.11, §4.2). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.11, §4.2), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8697 (§4.11 (Before hours,After hours),§4.2 (working-hours hierarchy; 7:00 AM to 7:00 PM default))",,
@@ -1288,7 +1223,7 @@ The toolbar conflict pill shows the count and opens a list,Conflict Detection,Fu
 4. Resolving a conflict (for example moving the shift) reduces the count - detection is continuous.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.11, §6). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.11, §6), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8697 (§4.11,§6 (Conflict pill))",,
@@ -1299,7 +1234,7 @@ Clicking a conflict in the dropdown navigates to the relevant technician and day
 2. The conflicted shift is brought into view.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.11). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.11), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8697 (§4.11 (Clicking a conflict navigates)),,
@@ -1310,7 +1245,7 @@ AUTOMATION: READY
 2. Red/alarming styling appears only for conflicts and genuine errors.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.11, §4.12). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.11, §4.12), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8697 (§4.11 (styling rule),§4.12)",,
@@ -1324,7 +1259,7 @@ AUTOMATION: READY
 3. The track width is identical across all days (capacity is not rescaled per day), so bars are comparable at a glance.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.12). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.12), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8698 (§4.12 (Blue fill - aggregate booked = shifts plus events)),,
@@ -1334,7 +1269,7 @@ AUTOMATION: READY
 2. A tick marks the 100% line where the track ends.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.12). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.12), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8698 (§4.12 (Amber spill)),,
@@ -1345,7 +1280,7 @@ AUTOMATION: READY
 3. Overtime (per-technician) and capacity (aggregate) are independent signals.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.12, §11). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.12, §11), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ","SV-8698 (§4.12 (OT tag),§11 (not color-only))",,
@@ -1357,7 +1292,7 @@ Hovering a capacity bar shows a per-technician breakdown,Capacity Bars,Functiona
 3. The numbers agree with the shifts actually on the grid.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.12). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.12), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8698 (§4.12 (Hover tooltip)),,
@@ -1370,7 +1305,7 @@ Shift hover tooltip shows the full shift summary incl. up to 3 line names,Hover 
 Known issue on the build tested: The tooltip listed ALL FIVE line names on the 5-line series shift with no ""+N more lines"" row. Spec 4.13: ""the individual line names as a short list capped at 3 with a '+N more lines' row"". Everything else matched: customer, unit and VIN, date and time range, technician, scope summary ""5 lines - 12h"" and the progress bar. VIN appears with the toggle off, per Branko 2026-07-31. It has been reported to the QA lead but has no developer ticket yet. Mark this test FAILED and note it in your run comment; do not raise a new ticket without asking the QA lead.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.13). The behaviour above follows a later product owner decision dated 31 July 2026 rather than that specification's wording, and that decision is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.13), read on 11 August 2026. The behaviour above follows a later product owner decision dated 31 July 2026 rather than that specification's wording, and that decision is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md, read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8695 (§4.13 (Shift tooltip)),,
@@ -1378,32 +1313,20 @@ A conflicted shift's tooltip shows the icon and reason in amber,Hover Tooltips,F
 2. A conflicted shift exists (for example double-booked).
 3. You are on the Schedule page.",1. Hover the conflicted shift and read the tooltip.,"1. The customer name line includes the conflict icon.
 2. The conflict reason is shown in amber.
-
-What you should see today: The clash warning is at the bottom of the hover tooltip instead of next to the customer name. The first row is just the customer name with no warning mark; the warning only appears in the last row. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8959
-· If you see exactly that, mark this test FAILED and do not raise anything new.
-· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
-
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.13). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.13), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8959)
+AUTOMATION: READY
 ",SV-8695 (§4.13 (Shift tooltip - conflict)),,
 "Event hover tooltip shows name, grey category dot, time range and tech",Hover Tooltips,Functional,Medium,"1. You are signed in on a desktop browser.
 2. An event exists on a technician's day.
 3. You are on the Schedule page.",1. Hover the event card and read the tooltip.,"1. The tooltip shows the event name with its category dot (grey for a default event).
 2. The date and time range are shown.
 3. The technician is shown.
-
-What you should see today: The event's hover tooltip has no grey dot next to the event name. It shows the name, the date and time range and the technician, and no dot at all. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8893
-· If you see exactly that, mark this test FAILED and do not raise anything new.
-· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
-
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.13). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.13), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8893)
+AUTOMATION: READY
 ",SV-8695 (§4.13 (Event tooltip)),,
 "Tooltips open after a hover delay, dismiss on mouse-leave, are read-only",Hover Tooltips,Functional,Medium,"1. You are signed in on a desktop browser.
 2. A shift exists on the grid.
@@ -1416,7 +1339,7 @@ AUTOMATION: READY - EXPECT FAIL (SV-8893)
 4. Clicking the block opens the full detail modal as normal.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.13). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.13), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8695 (§4.13 (Behavior)),,
@@ -1428,7 +1351,7 @@ The tooltip flips or shifts to stay within the viewport - never clipped,Hover To
 3. No part of the tooltip is clipped off-screen.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.13). Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.13), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
 
 AUTOMATION: READY
 ",SV-8695 (§4.13 (flip/shift to stay in viewport)),,
@@ -1449,12 +1372,11 @@ Panel button sits left of Today and its tooltip names what it will do,Grid Toolb
 7. The picture on the button is exactly the same in both states - only the tooltip changes.
 8. Clicking the button at step 4 hides the left panel, and clicking it again at step 7 shows it.
 
-Not built yet. When this was checked on 11 August 2026 the Schedule toolbar had no panel button at all - the button furthest to the left above the grid is Today. Until that button exists this test cannot be run: mark it Blocked. If you do find a panel button, the feature has shipped - tell the QA lead so this note can be removed and the test run as written.
-
+Run this test as written and mark it on what you actually find. When it was last checked, on 11 August 2026, the Schedule toolbar had no panel button at all - the button furthest to the left above the grid was Today - so on that build steps 1 to 7 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
 ---
-This is the expected behaviour as per epic SV-8685, its story SV-8686, and the Schedule specification version 27 (§5.3 Panel collapse and §6 Grid toolbar). Last checked against build v3.5-af3a6e1 on 8/11/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, its story SV-8686, read on 11 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse and §6 Grid toolbar), read on 11 August 2026. Last checked against build v3.5-af3a6e1 on 8/11/2026.
 
-AUTOMATION: HOLD - the panel collapse control is not in the build
+AUTOMATION: READY
 ",SV-8686 (§5.3 Panel collapse - the control: position; borderless icon; tooltip wording. §6 Grid toolbar - Panel toggle row),,
 Panel button hides the left panel and the grid widens into the space,Grid Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser, with the window at least 960 pixels wide.
 2. Your role has the Schedule: View permission.
@@ -1468,12 +1390,11 @@ Panel button hides the left panel and the grid widens into the space,Grid Toolba
 3. The grid grows into the space the panel gave up and lays itself out again in the wider area, so you can see more of the grid than you could before.
 4. Clicking the button a second time brings the panel back to its normal width, and the grid goes back to the size it was at step 1.
 
-Not built yet. When this was checked on 11 August 2026 the Schedule toolbar had no panel button at all - the button furthest to the left above the grid is Today. Until that button exists this test cannot be run: mark it Blocked. If you do find a panel button, the feature has shipped - tell the QA lead so this note can be removed and the test run as written.
-
+Run this test as written and mark it on what you actually find. When it was last checked, on 11 August 2026, the Schedule toolbar had no panel button at all - the button furthest to the left above the grid was Today - so on that build steps 1 to 6 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
 ---
-This is the expected behaviour as per epic SV-8685, its story SV-8686, and the Schedule specification version 27 (§5.3 Panel collapse and §3.1 Left panel: work order sidebar). Last checked against build v3.5-af3a6e1 on 8/11/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, its story SV-8686, read on 11 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse and §3.1 Left panel: work order sidebar), read on 11 August 2026. Last checked against build v3.5-af3a6e1 on 8/11/2026.
 
-AUTOMATION: HOLD - the panel collapse control is not in the build
+AUTOMATION: READY
 ",SV-8686 (§5.3 Panel collapse - Behavior; §3.1 - collapsed from the grid toolbar handing its width to the grid),,
 What you had set up in the left panel survives hiding and showing it,Grid Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser, with the window at least 960 pixels wide.
 2. Your role has the Schedule: View permission.
@@ -1491,12 +1412,11 @@ What you had set up in the left panel survives hiding and showing it,Grid Toolba
 5. The panel comes back showing that work order's lines, not the full list of work orders - it returns to whichever of the two views was open when you hid it.
 6. The work order you had opened is still the selected one.
 
-Not built yet. When this was checked on 11 August 2026 the Schedule toolbar had no panel button at all - the button furthest to the left above the grid is Today. Until that button exists this test cannot be run: mark it Blocked. If you do find a panel button, the feature has shipped - tell the QA lead so this note can be removed and the test run as written.
-
+Run this test as written and mark it on what you actually find. When it was last checked, on 11 August 2026, the Schedule toolbar had no panel button at all - the button furthest to the left above the grid was Today - so on that build steps 1 to 7 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
 ---
-This is the expected behaviour as per epic SV-8685, its story SV-8686, and the Schedule specification version 27 (§5.3 Panel collapse and §3.1 Left panel: work order sidebar). Last checked against build v3.5-af3a6e1 on 8/11/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, its story SV-8686, read on 11 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse and §3.1 Left panel: work order sidebar), read on 11 August 2026. Last checked against build v3.5-af3a6e1 on 8/11/2026.
 
-AUTOMATION: HOLD - the panel collapse control is not in the build
+AUTOMATION: READY
 ",SV-8686 (§5.3 Panel collapse - State preservation; §3.1 - without losing panel state),,
 Menus and pop-up windows reposition when the left panel is hidden,Grid Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser, with the window at least 960 pixels wide.
 2. Your role has the Schedule: View permission.
@@ -1508,12 +1428,11 @@ Menus and pop-up windows reposition when the left panel is hidden,Grid Toolbar,F
 2. The whole pop-up is on screen: nothing is cut off at an edge, pushed outside the window, or left floating with a large empty gap beside it.
 3. The pop-up behaves normally otherwise - you can read it, use its buttons, and close it.
 
-Not built yet. When this was checked on 11 August 2026 the Schedule toolbar had no panel button at all - the button furthest to the left above the grid is Today. Until that button exists this test cannot be run: mark it Blocked. If you do find a panel button, the feature has shipped - tell the QA lead so this note can be removed and the test run as written.
-
+Run this test as written and mark it on what you actually find. When it was last checked, on 11 August 2026, the Schedule toolbar had no panel button at all - the button furthest to the left above the grid was Today - so on that build steps 1 to 5 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
 ---
-This is the expected behaviour as per epic SV-8685, its story SV-8686, and the Schedule specification version 27 (§5.3 Panel collapse, Popovers and modals). Last checked against build v3.5-af3a6e1 on 8/11/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, its story SV-8686, read on 11 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse, Popovers and modals), read on 11 August 2026. Last checked against build v3.5-af3a6e1 on 8/11/2026.
 
-AUTOMATION: HOLD - the panel collapse control is not in the build
+AUTOMATION: READY
 ",SV-8686 (§5.3 Panel collapse - Popovers and modals),,
 Hiding the panel lasts for the rest of your sign-in but is not saved,Grid Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser, with the window at least 960 pixels wide.
 2. Your role has the Schedule: View permission.
@@ -1531,12 +1450,11 @@ Hiding the panel lasts for the rest of your sign-in but is not saved,Grid Toolba
 
 Still to be confirmed, and it affects the second point above. The product owner's description of 7 August says this choice lasts only for the current sign-in. Separately, the design review of 5 August asks for the Schedule's view settings to be stored per user so they survive signing out and back in. Those are two different promises. The question has been put to the product owner and has not been answered yet, so the second point follows the written specification for now. If the answer is that it should survive signing out, the second point will change.
 
-Not built yet. When this was checked on 11 August 2026 the Schedule toolbar had no panel button at all - the button furthest to the left above the grid is Today. Until that button exists this test cannot be run: mark it Blocked. If you do find a panel button, the feature has shipped - tell the QA lead so this note can be removed and the test run as written.
-
+Run this test as written and mark it on what you actually find. When it was last checked, on 11 August 2026, the Schedule toolbar had no panel button at all - the button furthest to the left above the grid was Today - so on that build steps 1 to 7 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
 ---
-This is the expected behaviour as per epic SV-8685, its story SV-8686, and the Schedule specification version 27 (§5.3 Panel collapse, Persistence). Last checked against build v3.5-af3a6e1 on 8/11/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, its story SV-8686, read on 11 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse, Persistence), read on 11 August 2026. Last checked against build v3.5-af3a6e1 on 8/11/2026.
 
-AUTOMATION: HOLD - the panel collapse control is not in the build
+AUTOMATION: READY
 ",SV-8686 (§5.3 Panel collapse - Persistence; session-scoped per user for build),,
 'Today' button jumps the grid to the current date,Grid Toolbar,Functional,High,"1. You are signed in on a desktop browser.
 2. You are on the Schedule page, navigated several weeks away from today.","1. Click the 'Today' button in the grid toolbar.
@@ -1544,7 +1462,7 @@ AUTOMATION: HOLD - the panel collapse control is not in the build
 2. The date label updates accordingly.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§6). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§6), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8686 (§6 (Today button)),,
@@ -1557,29 +1475,23 @@ AUTOMATION: READY
 4. The label always matches what the grid displays.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§6). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§6), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ","SV-8686 (§6 (Left/right arrows,Date label))",,
-Toolbar search highlights matching blocks and fades non-matching ones,Grid Toolbar,Functional,High,"1. You are signed in on a desktop browser.
+"Toolbar search matches customer, work order, unit, technician and line names",Grid Toolbar,Functional,High,"1. You are signed in on a desktop browser.
 2. Several shifts exist on the visible range for different customers/orders/technicians.
-3. You are on the Schedule page in week view.","1. Type a customer name into the toolbar search; look at the grid.
-2. Clear, then search a work order number, a unit number, a technician name, and a line name in turn.
-3. Clear the search.","1. Blocks that match the search are highlighted; blocks that do not match fade.
-2. All five fields match: customer name, work order number, unit number, technician name, and line name.
-3. Matching blocks stay in place on the grid (search visually filters; it does not remove or rearrange).
-4. Clearing the search restores all blocks to normal.
-
-What you should see today: Searching in the grid removes the shifts that do not match instead of fading them. The non-matching blocks disappear from the grid entirely rather than staying visible and dimmed. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8874
-· If you see exactly that, mark this test FAILED and do not raise anything new.
-· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
-
+3. You are on the Schedule page in week view.","1. Type a customer name into the toolbar search, then look at the grid.
+2. Clear the search, then search a work order number, a unit number, a technician name and a line name in turn, looking at the grid after each one.","1. The toolbar search filters the blocks on the grid against what you typed.
+2. All five of these are matched against, so searching any one of them finds the blocks it belongs to: customer name, work order number, unit number, technician name, and line name.
+3. Note for the tester: the specification does not say what happens to the blocks that do NOT match - whether they stay on the grid faded out, or disappear until you clear the search. Do not pass or fail this test on that. Check only that searching each of the five things above finds the right blocks. What happens to the non-matching blocks is an open question with the product owner.
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§6). Points 1, 3 and 4 above come from version 23 of that specification, which said 'Non-matching blocks fade; matching blocks highlight'. Version 24, published on 6 August 2026, removed that sentence, and the live version now describes the search only as filtering the grid blocks. Point 2 (the five fields that are matched) is unchanged and still in the live version. The expectation above therefore still follows the older wording and needs the product owner to confirm which one stands. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§6, Search), read on 11 August 2026, which describes the search as filtering the grid blocks by matching against customer name, WO number, unit number, technician name, and line name.
+This case used to also expect matching blocks to highlight and non-matching blocks to fade. That sentence was in version 23 of the specification; version 24, published on 6 August 2026, deleted it, and it has not come back in versions 25, 26 or 27. Story SV-8686 does still ask for it, but that wording has not been touched since the story was created on 27 July 2026, so the specification's deletion is the newer decision and it is the one this case now follows.
+Last checked against build v3.5-7ec992f on 8/6/2026; the wording above was corrected on 11 August 2026 from the documents only, with no build opened.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8874)
-",SV-8686 (§6 (Search)),,
+AUTOMATION: READY
+",SV-8686 (§6 (Search) - spec v27 2026-08-07),,
 "'Filter & Display' dropdown combines department toggles, My Shifts, and VIN",Filter and Display and View Options,Functional,High,"1. You are signed in on a desktop browser.
 2. You are on the Schedule page.","1. Open the 'Filter & Display' dropdown in the grid toolbar.
 2. Read its contents and default states.","1. The dropdown is checkbox style and contains: a toggle per department, 'My Shifts', and 'VIN'.
@@ -1587,7 +1499,7 @@ AUTOMATION: READY - EXPECT FAIL (SV-8874)
 3. There is no separate departments-only control - this dropdown replaces it.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§6, §9). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§6, §9), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ","SV-8700 (§6,§9 (Filter and Display dropdown))",,
@@ -1600,7 +1512,7 @@ Department toggles show or hide individual department groups in the grid,Filter 
 3. Turning it back on restores the group.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§9). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§9), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8700 (§9 (Department toggles)),,
@@ -1614,7 +1526,7 @@ AUTOMATION: READY
 4. For a user who has no technician/staff record of their own, the 'My Shifts' option is not shown at all.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§9, §14.3). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§9, §14.3), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: HOLD - needs a second sign-in as a user with no staff record of their own
 ","SV-8700 (§9 (My Shifts),§14.3)",,
@@ -1630,16 +1542,10 @@ AUTOMATION: HOLD - needs a second sign-in as a user with no staff record of thei
 5. The 'VIN Number' toggle affects the block only - the tooltip and the modal always show the VIN when the unit has one.
 
 Note for the tester: the VIN staying visible in the hover summary and in the shift window while the VIN switch is off is CORRECT and is what this test expects. The product owner ruled on 31 July 2026 that the VIN is always visible on hover regardless of the switch. If you see it there, pass this test.
-
-What you should see today: Month view prints the VIN on shift blocks when the VIN switch is on. It should be left off in Month view because the blocks are small. Day and Week views are correct. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8941
-· If you see exactly that, mark this test FAILED and do not raise anything new.
-· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
-
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§9, §4.4, §4.8). The behaviour above follows a later product owner decision dated 31 July 2026 rather than that specification's wording, and that decision is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§9, §4.4, §4.8), read on 11 August 2026. The behaviour above follows a later product owner decision dated 31 July 2026 rather than that specification's wording, and that decision is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md, read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8941)
+AUTOMATION: READY
 ","SV-8700 (§9 (VIN),§4.4); SV-8690 (§4.4,§9 (VIN option)); SV-8694 (§4.8 (Lane height with VIN))",,
 'View Options': six toggles with defaults; Capacity Bars and Events flip,Filter and Display and View Options,Functional,High,"1. You are signed in on a desktop browser.
 2. You are on the Schedule page in week view with no view options changed yet (fresh state).
@@ -1650,16 +1556,10 @@ AUTOMATION: READY - EXPECT FAIL (SV-8941)
 2. Defaults: Business Hours OFF, Capacity Bars ON, Events ON, Tech Hours OFF, Saturday ON, Sunday ON.
 3. Capacity Bars OFF: the capacity bars disappear from the column headers; ON: they reappear with the same values.
 4. Events OFF: event blocks disappear from the grid while shifts remain; ON: the events reappear unchanged.
-
-What you should see today: Business Hours starts switched ON in View Options when it should start switched off. The other five options in that menu do start in the right position. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8827
-· If you see exactly that, mark this test FAILED and do not raise anything new.
-· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
-
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§6, §9, §4.12). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§6, §9, §4.12), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8827)
+AUTOMATION: READY
 ","SV-8700 (§6,§9 (View Options popover,Capacity Bars,Events),§4.12)",,
 Business Hours toggle shades non-working hours in day view,Filter and Display and View Options,Functional,Medium,"1. You are signed in on a desktop browser.
 2. The shop has working hours set.
@@ -1670,7 +1570,7 @@ Business Hours toggle shades non-working hours in day view,Filter and Display an
 3. Turning it off removes the shading.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§9, §4.8). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§9, §4.8), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ","SV-8700 (§9 (Business Hours),§4.8 (Business-hours shading))",,
@@ -1680,16 +1580,10 @@ Tech Hours toggle displays each technician's working hours next to their name,Fi
 2. Look at the technician rows.","1. Each technician's working hours are displayed next to their name in the row header.
 2. The hours match the technicians' configured hours.
 3. Turning it off hides the hours again.
-
-What you should see today: Turning on Tech Hours in View Options changes nothing you can see. None of the technician rows shows its working hours, on any day. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8851
-· If you see exactly that, mark this test FAILED and do not raise anything new.
-· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
-
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§9). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§9), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8851)
+AUTOMATION: READY
 ",SV-8700 (§9 (Tech Hours)),,
 Saturday and Sunday toggles include or exclude the weekend columns,Filter and Display and View Options,Functional,Medium,"1. You are signed in on a desktop browser.
 2. You are on the Schedule page in WEEK view with Saturday and Sunday ON (default) - 7 columns visible.","1. Turn OFF Saturday in 'View Options'; look at the grid.
@@ -1699,7 +1593,7 @@ Saturday and Sunday toggles include or exclude the weekend columns,Filter and Di
 3. Both back on: the full Monday-to-Sunday 7-column week returns.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§9, §3.2). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§9, §3.2), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ","SV-8700 (§9 (Saturday,Sunday),§3.2 (Week view))",,
@@ -1713,7 +1607,7 @@ AUTOMATION: READY
 4. A toast with Undo appears.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§7, §12). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§7, §12), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ","SV-8695 (§7 (Shift reassignment),§12)",,
@@ -1727,7 +1621,7 @@ Left-click empty grid space opens a menu: Create Event and New Work Order,Reassi
 5. This menu is opened by a normal left-click - right-clicking the cell does not open it.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§7, §14.1). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§7, §14.1), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ","SV-8700 (§7 (left-click menu on empty grid space; View Day and New Shift removed),§14.1 (creation via the cell menu))",,
@@ -1737,7 +1631,7 @@ AUTOMATION: READY
 2. Choosing it directs the user to create a work order (a toast / prompt pointing to the Work Orders tab).
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§7, §4.10). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§7, §4.10), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8700 (§7 / §4.10 New Work Order cell-menu shortcut),,
@@ -1753,16 +1647,10 @@ Week view: a shift that is part of a repeating series can be reassigned,Reassign
 3. After you confirm, the block sits in the new technician's row, that technician is added to the work order line's technician list, and the previous one is taken off it.
 
 Why this test covers Week view only: the specification describes reassignment as dragging a shift from one technician row to another, and Month view has no technician rows at all - it is a calendar of day boxes. Whether reassignment should be possible in Month view is therefore part of the open question on SV-8867 and is deliberately not asserted here.
-
-What you should see today: A shift that is part of a repeating series cannot be moved to another technician in Week or Month view - the block lifts, moves, and then springs back to where it was. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8867
-· If you see exactly that, mark this test FAILED and do not raise anything new.
-· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
-
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§7, §12): dragging a shift block from one technician row to another reassigns it and a confirmation handles cross-technician moves, and a series is a grouping over ordinary daily shifts rather than a different kind of thing, so an ordinary shift's behaviour applies to a series member too. Story SV-8692 covers series-aware deletion only and says nothing about reassignment. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§7, §12), read on 11 August 2026: dragging a shift block from one technician row to another reassigns it and a confirmation handles cross-technician moves, and a series is a grouping over ordinary daily shifts rather than a different kind of thing, so an ordinary shift's behaviour applies to a series member too. Story SV-8692 covers series-aware deletion only and says nothing about reassignment. Last checked against build v3.5-7ec992f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8867)
+AUTOMATION: READY
 ",SV-8867 (§7 shift reassignment + §12 series is a grouping over ordinary shifts),,
 Deleting a middle shift of a series offers all three scope options,"Deletion, Series Scopes and Undo",Functional,High,"1. You are signed in on a desktop browser with Schedule: Delete.
 2. A series of at least 3 shifts exists for one technician.
@@ -1772,7 +1660,7 @@ Deleting a middle shift of a series offers all three scope options,"Deletion, Se
 3. The prompt uses routine, lightweight styling - not alarming destructive styling.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§7). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§7), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8692 (§7 (Series-aware deletion)),,
@@ -1786,7 +1674,7 @@ AUTOMATION: READY
 4. An undo toast appears.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§7). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§7), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8692 (§7 (This shift only)),,
@@ -1798,7 +1686,7 @@ AUTOMATION: READY
 3. An undo toast appears.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§7). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§7), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8692 (§7 (This and everything after)),,
@@ -1810,7 +1698,7 @@ AUTOMATION: READY
 3. An undo toast appears.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§7). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§7), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8692 (§7 (The whole series - 'for that technician')),,
@@ -1824,7 +1712,7 @@ Scope options adapt: the first and last shift each show only two,"Deletion, Seri
 4. Cancelling leaves the series unchanged in every case.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§7). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§7), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8692 (§7 (options adapt to position)),,
@@ -1835,7 +1723,7 @@ Deleting a standalone (non-series) shift does not ask for a series scope,"Deleti
 2. The shift is deleted and an undo toast appears.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§7). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§7), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8692 (§7 (derived - scope prompt is for series shifts)),,
@@ -1847,7 +1735,7 @@ AUTOMATION: READY
 3. After the cursor leaves, it dismisses.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§7, §11). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§7, §11), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ","SV-8688 (§7 (Toast notifications),§11 (Undo))",,
@@ -1864,7 +1752,7 @@ AUTOMATION: READY
 5. Every destructive action is undoable within the toast's lifetime.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§7, §11). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§7, §11), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ","SV-8688 (§7 (Toast notifications),§11 (Undo))",,
@@ -1879,7 +1767,7 @@ AUTOMATION: READY
 4. Note for the tester: Undo works by performing a reversing action, not by holding the change back - a change surviving a refresh before Undo is expected, not a bug.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§7), which requires the toast and its Undo. That specification does not say how Undo works underneath, so the point above - that the action is already saved and Undo reverses it rather than holding it back - comes from the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§7), read on 11 August 2026, which requires the toast and its Undo. That specification does not say how Undo works underneath, so the point above - that the action is already saved and Undo reverses it rather than holding it back - comes from the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md, read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8688 (§7 toast/undo + tech-plan D10),,
@@ -1894,7 +1782,7 @@ AUTOMATION: READY
 5. Escape works anywhere on the schedule page as a global shortcut, following the defined stacking order (delete scope, reassign, spread, capacity, event modal, event view, line picker, shift detail, cell menu, calendar picker, customize, filters, search).
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§7). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§7), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ","SV-8700 (§7 (Keyboard support - Escape,including within the shift modal))",,
@@ -1910,7 +1798,7 @@ AUTOMATION: READY
 4. The multiline note can be completed and saved normally.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§7). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§7), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8700 (§7 (Keyboard support - Enter; Enter does not fire inside textareas)),,
@@ -1922,7 +1810,7 @@ Modals trap focus and all interactive elements are keyboard-reachable,Keyboard I
 3. On the page, toolbar and sidebar controls are reachable by keyboard.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§11). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§11), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8700 (§11 (Accessibility)),,
@@ -1933,7 +1821,7 @@ AUTOMATION: READY
 2. No special color is auto-applied to long jobs - blue is the default for ALL shifts.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§10). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§10), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8700 (§10),,
@@ -1948,7 +1836,7 @@ AUTOMATION: READY
 4. Colors carry no fixed meaning - they are free choice beyond the two defaults (blue shift / grey event).
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§10, §4.9, §4.4). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§10, §4.9, §4.4), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ","SV-8700 (§10,§4.9 (Color picker)); SV-8690 (§4.4,§10)",,
@@ -1961,7 +1849,7 @@ Color labels are editable per shop,Color System,Functional,Medium,"1. You are si
 3. Shifts and events share the same custom palette with the same labels.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§10, §4.10). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§10, §4.10), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ","SV-8700 (§10 (Color labels are editable per shop),§4.10 (shared picker))",,
@@ -1977,7 +1865,7 @@ Business-hours toggle reveals a per-day (Mon-Sun) From-To editor,Working Hours S
 5. The saved shop business hours are used by the Schedule (start-time hierarchy, before/after-hours conflicts, business-hours shading).
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.2). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.2), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ","SV-8699 (§4.2 Working Hours - business hours toggle,per-day From/To editor)",,
@@ -1989,7 +1877,7 @@ AUTOMATION: READY
 3. Turning it ON reveals a per-day working-hours editor for that technician.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.2). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.2), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8699 (§4.2 Working Hours - technician custom-hours toggle),,
@@ -1999,7 +1887,7 @@ A technician with no custom hours inherits the shop business hours,Working Hours
 2. Start-time defaults and before/after-hours conflict checks for that technician use the shop business hours.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.2). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.2), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8699 (§4.2 Working Hours - inherit shop hours when no custom hours),,
@@ -2010,7 +1898,7 @@ AUTOMATION: READY
 3. Each added range can be removed individually.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.2). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.2), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8699 (§4.2 Working Hours - Add hours split shifts),,
@@ -2024,7 +1912,7 @@ Overlapping hour ranges block Save; incomplete rows are ignored,Working Hours Se
 5. Save is not blocked by an incomplete row on its own (only genuine overlaps disable Save).
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.2). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.2), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8699 (§4.2 Working Hours - overlap validation; incomplete rows ignored by overlap check),,
@@ -2039,7 +1927,7 @@ Schedule: View grants the full read-only experience across the whole page,Permis
 4. Tooltips show on hover, and the shift/event detail modals open in read-only mode.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§14.1, §14.3). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§14.1, §14.3), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: HOLD - needs a second sign-in as a view-only user
 ","SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: View),§14.3)",,
@@ -2054,7 +1942,7 @@ View-only: every editing affordance is hidden or disabled,Permissions,Negative,C
 4. In the modal, edit fields are hidden or disabled, and the reassign and delete actions are absent.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§14.1). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§14.1), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: HOLD - needs a second sign-in as a view-only user
 ","SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: View - editing affordances hidden or disabled))",,
@@ -2064,7 +1952,7 @@ AUTOMATION: HOLD - needs a second sign-in as a view-only user
 2. The rest of the app works normally for the role.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§14.1). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§14.1), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: HOLD - needs a second sign-in as a user without the Schedule permission
 ","SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (When Schedule: View is OFF))",,
@@ -2080,7 +1968,7 @@ Schedule: Edit unlocks all creation and modification interactions,Permissions,Fu
 5. Modal fields are editable and save.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§14.1). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§14.1), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: HOLD - needs a second sign-in as an edit-without-delete user
 ","SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: Edit))",,
@@ -2093,7 +1981,7 @@ Edit without Delete: the user can create and modify but not remove,Permissions,N
 3. No path exists to remove shifts or events - while creating and modifying still work.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§14.1). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§14.1), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: HOLD - needs a second sign-in as an edit-without-delete user
 ","SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: Delete - without it))",,
@@ -2107,7 +1995,7 @@ Schedule: Delete unlocks deleting shifts and events,Permissions,Functional,High,
 4. Undo toasts appear (restore the items via Undo to clean up).
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§14.1). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§14.1), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: HOLD - needs a second sign-in as a delete-capable user
 ","SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: Delete))",,
@@ -2119,7 +2007,7 @@ AUTOMATION: HOLD - needs a second sign-in as a delete-capable user
 3. The three tiers can be enabled in dependency order, so each higher level always includes the ones beneath it (Delete includes Edit, and Edit includes View).
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§14). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§14), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ","SV-8685 [epic - cross-cutting,no single-story owner] (§14 (Delete requires Edit and Edit requires View))",,
@@ -2132,7 +2020,7 @@ Schedule without Work Orders: View - the sidebar hides the work order list,Permi
 3. New work orders cannot be dragged on - the WO list is simply not visible.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§14.2). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§14.2), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: HOLD - needs a second sign-in as a user who cannot see work orders
 ",SV-8687 (§14.2),,
@@ -2143,7 +2031,7 @@ No own-only restriction: a View user sees ALL technicians' shifts,Permissions,Fu
 2. 'My Shifts' exists only as an optional personal convenience filter (off by default), not a security boundary.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§14.3). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§14.3), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: HOLD - needs a second sign-in as a view-only technician
 ","SV-8685 [epic - cross-cutting,no single-story owner] (§14.3)",,
@@ -2154,7 +2042,7 @@ AUTOMATION: HOLD - needs a second sign-in as a view-only technician
 2. The staff member without a department does not appear as a row.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§14.4). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§14.4), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8686 (§14.4),,
@@ -2164,7 +2052,7 @@ Clocking into line tasks is gated by the staff 'Time Clock' setting,Permissions,
 2. The Time-Clock-OFF staff member cannot - the ability is controlled by the staff-record setting, not by the Schedule permission tier.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§14.4). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§14.4), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: HOLD - needs a second sign-in as each of the two staff members
 ",SV-8686 (§14.4 (Time Clock setting)),,
@@ -2177,7 +2065,7 @@ AUTOMATION: HOLD - needs a second sign-in as each of the two staff members
 3. This extends the sidebar behavior (the work order list and drill-down are hidden) to the work-order data surfaced on the shifts themselves.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§14.2). The behaviour above follows a later product owner decision dated 22 July 2026 rather than that specification's wording, and that decision is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§14.2), read on 11 August 2026. The behaviour above follows a later product owner decision dated 22 July 2026 rather than that specification's wording, and that decision is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md, read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: HOLD - needs a second sign-in as a user who cannot see work orders
 ",SV-8687 (§14.2 (Work Orders: View dependency)),,
@@ -2194,7 +2082,7 @@ Default roles start at the Schedule level the spec names (view-only vs edit),Per
 4. The user from step 5 can drag a work order onto the grid and create a shift.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§14.1). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§14.1), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: HOLD - needs a second sign-in as a holder of each permission level
 ",SV-8685 [epic - cross-cutting - no single-story owner] (§14.1 default role tiers - view-only role list + edit role list; spec v27 2026-08-07),,
@@ -2205,16 +2093,10 @@ Below 960px the grid scrolls sideways and the sidebar collapses,Edge Cases and R
 2. All days remain reachable by horizontal scroll.
 3. On narrow viewports the sidebar collapses.
 4. No content becomes permanently unreachable and nothing errors.
-
-What you should see today: The whole page slides sideways instead of just the grid, and the panel on the left never folds away. At 960 pixels wide - which is the narrowest width the Schedule is meant to support - the page is still 1030 pixels wide and the panel is still its full width. Narrowing further changes neither. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8942
-· If you see exactly that, mark this test FAILED and do not raise anything new.
-· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
-
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§11). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§11), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8942)
+AUTOMATION: READY
 ","SV-8686,SV-8687 (§11 (Responsiveness - grid scrolls horizontally below 960px; sidebar collapses))",,
 The sidebar work order list and line drill-down stay smooth with 50+ items,Edge Cases and Responsiveness,Functional,Low,"1. You are signed in on a desktop browser.
 2. 50 or more open work orders exist (seed ZZAUTOTEST orders if the environment lacks them), including one order with many approved lines.
@@ -2223,16 +2105,10 @@ The sidebar work order list and line drill-down stay smooth with 50+ items,Edge 
 3. Type in the search while the long list is shown.","1. Scrolling stays smooth with no long freezes or blank stretches that fail to fill in (the list virtualizes at 50+ items).
 2. The drill-down behaves the same with many lines.
 3. Search stays responsive on the long list.
-
-What you should see today: The list of work orders on the left does not scroll continuously. It shows 18 cards with a 'Load More' button at the bottom, even though 91 work orders exist. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8913
-· If you see exactly that, mark this test FAILED and do not raise anything new.
-· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
-
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§11). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§11), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8913)
+AUTOMATION: READY
 ",SV-8687 (§11 (Performance - sidebar list and line drill-down virtualize at 50+ items)),,
 The grid renders smoothly at full load - 15 technicians over 7 days,Edge Cases and Responsiveness,Functional,Low,"1. You are signed in on a desktop browser.
 2. The schedule is loaded to roughly the spec's stated scale: around 15 technician rows across a week with several shifts per cell (seed ZZAUTOTEST shifts as needed).
@@ -2243,7 +2119,7 @@ The grid renders smoothly at full load - 15 technicians over 7 days,Edge Cases a
 3. Tooltips and modals stay responsive.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§11). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§11), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8686 (§11 (Performance)),,
@@ -2256,7 +2132,7 @@ Shop closures do NOT block spread in V1 - shifts can land on closure days,Edge C
 3. The end date follows the normal daily distribution - no extra day is added for the closure.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§12, §4.5). That specification describes this point in two different ways, so the behaviour above follows its first-release wording and a product owner decision is still awaited; the open question is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§12, §4.5), read on 11 August 2026. That specification describes this point in two different ways, so the behaviour above follows its first-release wording and a product owner decision is still awaited; the open question is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md, read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: HOLD - waiting on the product owner's answer, and the shop-closure setting does not exist in the build
 ","SV-8691 (§12 (Shop closures),§4.5)",,
@@ -2266,7 +2142,7 @@ AUTOMATION: HOLD - waiting on the product owner's answer, and the shop-closure s
 2. Nothing forces them to match - no error, no auto-correction (progress is driven by clocked-in time).
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.5, §12). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.5, §12), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ","SV-8691 (§4.5 (three separate quantities),§12)",,
@@ -2275,16 +2151,10 @@ A multi-week series keeps the same local start time across the clock change,Edge
 3. A job large enough to spread across the clock-change date exists.","1. Spread the job across a window that includes the clock-change date (shifts before and after it).
 2. Open shifts from before the change and from after the change and read their start times.","1. Every shift in the series starts at the SAME local wall-clock time (e.g. 8:00 AM) on both sides of the clock change.
 2. No shift in the series silently moves an hour earlier or later after the change date.
-
-What you should see today: The start times on either side of the clock change do not read the same. The same job reads 12 PM before 1 November and 1 PM after it. The times are stored correctly underneath - it is the times shown on screen that are wrong, and every Schedule time is shown six hours late for the same reason. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8848
-· If you see exactly that, mark this test FAILED and do not raise anything new.
-· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
-
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.5), which covers spreading work across days. That specification says nothing about clock changes or daylight saving - those words do not appear in it at all - so the point above comes from the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.5), read on 11 August 2026, which covers spreading work across days. That specification says nothing about clock changes or daylight saving - those words do not appear in it at all - so the point above comes from the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md, read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8848)
+AUTOMATION: READY
 ",SV-8691 (§4.5 + tech-plan D2 NFR-005 DST),,
 Schedule and all its dialogs display correctly in dark mode,Edge Cases and Responsiveness,Accessibility,Low,"1. You are signed in on a desktop browser; the app's dark mode / theme toggle is available.
 2. The Schedule page has shifts, an event, a conflict, and capacity bars visible.","1. Switch the app to dark mode.
@@ -2296,10 +2166,48 @@ Schedule and all its dialogs display correctly in dark mode,Edge Cases and Respo
 4. Switching back to light mode restores the normal look with nothing stuck in dark colours.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§11). Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§11), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
-","SV-8685 (§11 (Dark theme - user-selectable Light / Dark,persisted per user))",,
+",SV-8700 (§11 Dark theme - the Schedule and its dialogs render readably in dark mode and revert on switching back) and SV-8698 (§11 accessibility - overtime and conflict cues are not colour-only) - spec v27 2026-08-07,,
+Dark mode is chosen from the user menu and is remembered for you,Edge Cases and Responsiveness,Accessibility,Low,"1. You are signed in to the ShopView App on a desktop browser.
+2. Your role has the Schedule: View permission.
+3. You know the password for the account you are signed in with, because this test signs out and back in.
+4. The app is currently in light mode.","1. Open the menu for your own account - the one under your name or profile picture at the top of the page - and look for the light / dark theme choice in it.
+2. Use that choice to switch the app to dark mode.
+3. Open the Schedule page and check it is in dark mode.
+4. Sign out of the ShopView App completely.
+5. Sign back in with the same account and open the Schedule page again.
+6. Check whether the Schedule is in light mode or dark mode.
+7. On a different computer, or in a private browsing window, sign in with the SAME account again and open the Schedule page.
+8. Check whether the Schedule is in light mode or dark mode there too.
+9. Switch back to light mode from the same menu when you have finished, so you leave the account as you found it.","1. The light / dark theme choice is in your own account menu at the top of the page. You do not have to go into a settings page to find it.
+2. Choosing dark mode switches the app to dark mode straight away, and the Schedule page opens in dark mode.
+3. At step 6, after signing out and signing back in, the Schedule is STILL in dark mode. Your choice was remembered.
+4. At step 8, on the other computer or in the private window, the Schedule is ALSO in dark mode. The choice is remembered against your account, not against the one browser you set it in.
+5. Switching back to light mode at step 9 works the same way and is remembered in the same way.
+
+---
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, its story SV-8700 (requirement 5), read on 11 August 2026, and the Schedule specification version 27 (§11 Dark theme), read on 11 August 2026.
+
+AUTOMATION: READY
+",SV-8700 (§11 Dark theme - chosen from user menu and persisted per user - spec v27 2026-08-07),,
+In dark mode pop-up windows still look raised above the page,Edge Cases and Responsiveness,Accessibility,Low,"1. You are signed in to the ShopView App on a desktop browser.
+2. Your role has the Schedule: View permission.
+3. The app is in dark mode.
+4. You are on the Schedule page in week view, with at least one shift in the grid.","1. Click a shift in the grid to open its details window, and look at where that window meets the page behind it.
+2. Close it, then open the View options menu from the row of buttons above the grid, and look at where that menu meets the page behind it.
+3. Rest your mouse pointer on a shift so its hover tooltip appears, and look at where the tooltip meets the page behind it.
+4. Switch the app to light mode and look at the same three things again, so you have something to compare against.","1. In dark mode each of the three - the shift details window, the View options menu and the hover tooltip - is clearly separated from the page behind it. You can tell where it ends and the page begins.
+2. The separation comes from the pop-up itself: it sits on a slightly different shade from the page behind it, or has a visible edge or soft shadow around it.
+3. None of the three blends into the page so that its edges cannot be made out, and none of them is missing that separation entirely while the light-mode version has it.
+4. Nothing you check is unreadable, and no text or icon disappears into the background.
+
+---
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, its story SV-8700 (requirement 5), read on 11 August 2026, and the Schedule specification version 27 (§11 Dark theme), read on 11 August 2026.
+
+AUTOMATION: READY
+",SV-8700 (§11 Dark theme - elevation and shadow swap so depth reads correctly - spec v27 2026-08-07),,
 On a narrow window the panel button still works and your choice holds,Edge Cases and Responsiveness,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. Your role has the Schedule: View permission.
 3. You are on the Schedule page.","1. Make the browser window narrower than 960 pixels wide. (The panel folding itself away on its own at that width is checked by a separate test - this test is about the button.)
@@ -2309,12 +2217,11 @@ On a narrow window the panel button still works and your choice holds,Edge Cases
 2. The panel stays as you set it while you keep working at that width - moving around the page does not undo your choice.
 3. Your choice only stops applying when the window is resized back across the 960 pixel mark; at that point the page goes back to deciding for itself whether the panel is shown.
 
-Not built yet. When this was checked on 11 August 2026 the Schedule toolbar had no panel button at all - the button furthest to the left above the grid is Today. Until that button exists this test cannot be run: mark it Blocked. If you do find a panel button, the feature has shipped - tell the QA lead so this note can be removed and the test run as written.
-
+Run this test as written and mark it on what you actually find. When it was last checked, on 11 August 2026, the Schedule toolbar had no panel button at all - the button furthest to the left above the grid was Today - so on that build steps 1 to 4 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
 ---
-This is the expected behaviour as per epic SV-8685, its story SV-8686, and the Schedule specification version 27 (§5.3 Panel collapse, Narrow viewports). Last checked against build v3.5-af3a6e1 on 8/11/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, its story SV-8686, read on 11 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse, Narrow viewports), read on 11 August 2026. Last checked against build v3.5-af3a6e1 on 8/11/2026.
 
-AUTOMATION: HOLD - the panel collapse control is not in the build
+AUTOMATION: READY
 ",SV-8686 (§5.3 Panel collapse - Narrow viewports; toggle works at any width and the manual choice holds until the next resize),,
 Shifts and events created before the Schedule rewrite still appear after it,Cross-Module and Rewrite Regression,Functional,Critical,"1. This case runs around the Schedule rewrite release: before the release, note (or create) a handful of scheduled shifts and calendar events - including at least one future-dated one - with their technician, day, and time.
 2. The release (which replaces the Schedule behind the scenes) has been deployed.","1. After the release, open the Schedule and navigate to the dates of the noted entries.
@@ -2324,7 +2231,7 @@ Shifts and events created before the Schedule rewrite still appear after it,Cros
 3. Their details open normally and are editable/deletable like any other entry.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md. No numbered requirement in the Schedule specification version 27 covers this point. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md, read on 11 August 2026. No numbered requirement in the Schedule specification version 27 covers this point. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: HOLD - cannot be run now - it needs shifts noted BEFORE the release, and the release is already deployed
 ","SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan §3 FR-015 data migration)",,
@@ -2336,7 +2243,7 @@ Dashboard shows one schedule row per work order even with many shifts,Cross-Modu
 3. Work orders with a single shift are unaffected.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md. No numbered requirement in the Schedule specification version 27 covers this point. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md, read on 11 August 2026. No numbered requirement in the Schedule specification version 27 covers this point. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: HOLD - the Dashboard section this test needs does not exist in the build
 ","SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan §4 Dashboard FR-016)",,
@@ -2348,7 +2255,7 @@ A work order created with an appointment shows up on the Schedule board,Cross-Mo
 3. It also appears in the Dashboard's schedule section for that day.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md. No numbered requirement in the Schedule specification version 27 covers this point. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md, read on 11 August 2026. No numbered requirement in the Schedule specification version 27 covers this point. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: HOLD - work order creation offers no appointment in the build
 ","SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan §4 WO-create AppointmentScheduler)",,
@@ -2361,7 +2268,7 @@ A multi-location technician's shift appears only on the work order's location,Cr
 3. Note for the tester: before the rewrite such a shift showed on EVERY location the technician was enrolled at - showing it only on the work order's location is the intended new behaviour, do not report the disappearance from other locations as a bug.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md. No numbered requirement in the Schedule specification version 27 covers this point. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md, read on 11 August 2026. No numbered requirement in the Schedule specification version 27 covers this point. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ","SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan §3 WO-primary location resolution)",,
@@ -2375,7 +2282,7 @@ Work order form offers a Priority (High/Medium/Low) that drives the sidebar,Cros
 4. A work order with no priority set simply shows none (it is not treated as an error).
 
 ---
-This is the expected behaviour as per epic SV-8685 and the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md. No numbered requirement in the Schedule specification version 27 covers this point. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md, read on 11 August 2026. No numbered requirement in the Schedule specification version 27 covers this point. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: HOLD - the Priority field this test needs does not exist in the build
 ",SV-8687 (§5.1 + tech-plan FR-P4 WO priority),,
@@ -2389,7 +2296,7 @@ API - Schedule reads need View; writes need Edit; deletes need Delete (403),API 
 4. Each refusal is a clean 403 response - never a server error.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§14), which sets the three permission levels. That specification does not describe what the server returns when a request is refused, so the refusal responses above come from the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§14), read on 11 August 2026, which sets the three permission levels. That specification does not describe what the server returns when a request is refused, so the refusal responses above come from the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md, read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: HOLD - needs three separate sign-ins, one per permission level
 ","SV-8685 [epic - cross-cutting,no single-story owner] (§14 + tech-plan §4 NFR-003 permissions)",,
@@ -2403,7 +2310,7 @@ API - Series past 8 weeks returns 409 until acknowledged; over 120 shifts 422,AP
 4. Refused calls leave no partial series behind.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§4.5), with the specific limits above taken from the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.5), read on 11 August 2026, with the specific limits above taken from the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md, read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ",SV-8691 (§4.5 + tech-plan D8 error cases),,
@@ -2415,7 +2322,7 @@ API - No pricing fields in Schedule responses; WO details need Work Orders View,
 3. Both calls still succeed (HTTP 200) - lacking Work Orders: View limits the content, it does not break the schedule read.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the Schedule specification version 27 (§14). The behaviour above follows a later product owner decision dated 22 July 2026 rather than that specification's wording, and that decision is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§14), read on 11 August 2026. The behaviour above follows a later product owner decision dated 22 July 2026 rather than that specification's wording, and that decision is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md, read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: HOLD - needs a second sign-in as a user who cannot see work orders
 ","SV-8685 [epic - cross-cutting,no single-story owner] (§14 + tech-plan D6/NFR-002 no pricing)",,
@@ -2428,7 +2335,7 @@ AUTOMATION: HOLD - needs a second sign-in as a user who cannot see work orders
 3. Location A's board contains only location A's shifts - nothing from location B leaks in.
 
 ---
-This is the expected behaviour as per epic SV-8685 and the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md. No numbered requirement in the Schedule specification version 27 covers this point. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md, read on 11 August 2026. No numbered requirement in the Schedule specification version 27 covers this point. Last checked against build v3.5-7ec992f on 8/6/2026.
 
 AUTOMATION: READY
 ","SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan NFR-001 location scoping)",,
