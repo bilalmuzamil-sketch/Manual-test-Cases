@@ -71,12 +71,12 @@ TAB5_NAME = "QA internal - not for Branko"
 HELLO = (
     "Hello Branko - this is everything we have open across TWO of your projects, FILTERS and "
     "SCHEDULE, gathered into one place so you can go through it in a single sitting instead of "
-    "getting a trickle of separate messages. Twenty-one items; about twenty minutes if you go "
+    "getting a trickle of separate messages. Twenty-two items; about twenty minutes if you go "
     "straight "
     "down the list. SHORT ANSWERS ARE PERFECT - a letter, or one line. Nothing here needs an "
     "essay.\n\n"
     "WHERE TO START. Section 1 is five questions that release tests which are stuck today - that "
-    "is the part we are genuinely waiting on. Section 2 is eight ordinary decisions. Section 3 is "
+    "is the part we are genuinely waiting on. Section 2 is nine ordinary decisions. Section 3 is "
     "seven things only the engineering plan describes, and nothing of ours is waiting on those, so "
     "they can keep for a quiet moment. Section 4 is one typo-level heads-up with nothing to "
     "decide.\n\n"
@@ -411,6 +411,40 @@ SEC2 = [
         "B) Change it now to show only the working hours plus a little after them.\n\n"
         "C) Something else - please describe it.",
     ),
+    # ADDED 2026-08-11 (Schedule follow-up push, item 1) - the Status filter multi-select
+    # question. It belongs in SECTION 2 rather than Section 1 because nothing of ours is
+    # BLOCKED: the test still runs, it simply no longer asserts what happens with two
+    # statuses chosen. Framed as an ordinary decision, not as a failure of his (Rule 55).
+    (
+        "SCHEDULE - the technician calendar - the Status filter on the work order list, when you "
+        "want more than one status at a time",
+
+        "Nothing is stuck on this one and no test of ours is wrong today. We are asking because we "
+        "found one of our own tests claiming something your description does not say, and we have "
+        "taken the claim out rather than leave it in.\n\n"
+        "On the Schedule page there is a Filter panel, and one of its groups is Status. Your "
+        "description lists what goes in that group - \"all work order statuses currently supported "
+        "in the app\" - and it says that applying a filter narrows the list of work order cards.\n\n"
+        "What it does not say, anywhere, is whether you can pick MORE THAN ONE status at the same "
+        "time - for example Approved and Review together - and what the list should then show.\n\n"
+        "Being straight with you about what we did: one of our tests had been claiming that "
+        "choosing several statuses shows the work orders of all of them together. We could not find "
+        "that in your description, in the story, in the design or in anything you have told us, so "
+        "we have removed the claim. We have NOT replaced it with the opposite - we are not saying "
+        "you can only pick one - because we do not know, and guessing either way would put words in "
+        "your mouth.\n\n"
+        "So the test now checks one status at a time, which is safe and true either way. If you "
+        "tell us more than one is intended, we will add that back as a proper test and note that it "
+        "came from you.",
+
+        "Can more than one status be chosen in the Status filter at the same time, and if so what "
+        "should the list show?",
+
+        "A) YES - you can pick several statuses, and the list shows the work orders of ALL the "
+        "chosen statuses together.\n\n"
+        "B) NO - only one status at a time; picking another replaces the first.\n\n"
+        "C) Something else - please describe it.",
+    ),
 ]
 
 # ================================================================= SECTION 3 + 4
@@ -462,7 +496,7 @@ EXTRA_NOTES = [
     "instruction: \"Give me the friendly and easy to read and understandable files for Chris and "
     "Branko.\" 20 of the 21 items are carried over with their substance unchanged. What changed: a "
     "short warm opening note, REORDERING BY WHAT TO DO FIRST (five items that release stuck tests, "
-    "then eight ordinary decisions, then the six engineering-plan-only items nothing is waiting on, "
+    "then nine ordinary decisions, then the six engineering-plan-only items nothing is waiting on, "
     "then one heads-up with nothing to decide) with the headings and tab names saying so, and "
     "shorter sentences. The six engineering-only items and the pointer heads-up are IMPORTED "
     "verbatim from gen_branko_sheet.py so their wording cannot drift.",
@@ -620,9 +654,56 @@ QA_ROW_CROSS_FILTER = (
 )
 
 
+# ADDED 2026-08-11 (Schedule follow-up push) - QA-only mapping for the new Section 2 item.
+# Rule 8: internal ID + C-id + link. NOT FOR BRANKO.
+QA_ROW_STATUS_MULTISELECT = (
+    "Tab 2", "9",
+    "Schedule - whether more than one status can be chosen in the Status filter, and what the "
+    "work order list should then show",
+
+    "NEW 2026-08-11, from build/schedule/followup-push-2026-08-11/. This is a COVERAGE GAP we "
+    "created by removing an unsourced assertion, not a blocked decision. Framed to him as an "
+    "ordinary decision, and it says on its face that nothing of ours is stuck (Rule 55).",
+
+    "NO case is held on this. ONE case is affected - SCH-FILT-03 (C29944, AUTOMATION: READY, "
+    "TestRail custom_atmstatus = 1 NOT AUTOMATED at write time) - and it is CORRECT as it now "
+    "stands. Its expected item 3, 'Choosing more than one status shows the work orders of all the "
+    "chosen statuses together.', was REMOVED on 2026-08-11 and item 4 renumbered to 3. Its steps, "
+    "preconditions, title, refs and provenance were NOT changed. The opposite was deliberately NOT "
+    "asserted either: nothing claims multi-select is absent, because that is equally unsourced "
+    "(Rules 25/42/57/58).",
+
+    " · ".join(f"C{i} {TR}{i}" for i in [29944]),
+
+    "VERIFIED LIVE 2026-08-11 before the removal. Schedule Confluence page 713031682 at VERSION 27 "
+    "(HTTP 200, published 2026-08-07T15:01:20.801Z, 43,064 chars, body sha256 4c51fb72...), read at "
+    "both the start and the end of the write window and byte-identical (Rule 59). §5.1 in full on "
+    "this point is only: 'Status | All work order statuses currently supported in the app'. The "
+    "words multi, multi-select, multiple, more than one, several, checkbox, one or more, combine, "
+    "at once and simultane- appear in §5.1 ZERO times, in NONE of the 27 versions. Whole-document "
+    "counts: 'multi-select' 0, 'multiple statuses' 0, 'more than one status' 0. The only 'Select "
+    "multiple' in the specification is §4.3, the SCOPE PICKER turning line rows into checkboxes - "
+    "a different feature. Story SV-8687 ('Work Order Sidebar & Mini Calendar', QA Complete) was "
+    "read live and independently: 'multi' 0, 'more than one' 0; its filter sentence is 'Filter "
+    "groups: Assignment (Assigned/Unassigned), Status (all WO statuses), Priority (High/Medium/"
+    "Low)'. The case's own authoring note has said since it was written: 'Single vs multi-select "
+    "within a group is not pinned - confirm live.' The claim was introduced by our own 2026-08-05 "
+    "repair pass, whose audit had scored the case clean minutes earlier - Rule 58's failure mode "
+    "exactly.",
+
+    "A -> the assertion goes BACK, with a step that selects two statuses, cited to his answer with "
+    "its date and file link (Rule 54), and the multi-status behaviour is covered again. B -> "
+    "nothing changes; C29944 is already correct, and we may add a small negative check that picking "
+    "a second status replaces the first. EITHER WAY VLAD NEED NOT BE TOLD for this case - C29944 is "
+    "custom_atmstatus = 1, not flagged AUTOMATED (Rule 65). UNTIL HE ANSWERS, multi-status "
+    "filtering on the Schedule work order list is UNCOVERED, and that is the honest cost of the "
+    "removal - recorded rather than hidden.",
+)
+
+
 def _qa_rows():
     """Imported mapping, with the removed URL item re-labelled rather than dropped,
-    and the 2026-08-11 cross-filter row appended."""
+    and the 2026-08-11 cross-filter + status-multiselect rows appended."""
     out = []
     for row in prior.QA_ROWS:
         row = list(row)
@@ -636,6 +717,7 @@ def _qa_rows():
                       "ORIGINALLY: " + str(row[3]))
         out.append(row)
     out.append(list(QA_ROW_CROSS_FILTER))
+    out.append(list(QA_ROW_STATUS_MULTISELECT))
     return out
 
 
@@ -650,7 +732,7 @@ def write_xlsx():
            SEC1, w, first=True)
 
     _sheet(wb, TAB2_NAME,
-           "Section 2 - eight ordinary decisions",
+           "Section 2 - nine ordinary decisions",
            "Eight decisions, each a plain A or B. Nothing here is urgent this week, but each one "
            "settles a difference between two of your own documents or between a document and the "
            "screen. Short answers are perfect.",
