@@ -1,5 +1,84 @@
 # Schedule — PROJECT STATE
 
+## §0-PANEL-COLLAPSE-2026-08-11 — §5.3 IS NOW COVERED, AND THE CONTROL IS NOT BUILT
+
+**Resume here: `build/schedule/panel-collapse-2026-08-11/`** — start at `NEW-CASES.md`, then
+`testrail-execution-log.md`, `SOURCE-CURRENCY.md`, `USEFULNESS-AUDIT.md`, `SURFACE-MATRIX.md`,
+`RECHECK-QUEUE.md`, `QUESTIONS-FOR-BRANKO.md`, `STAGED-RUN-357-SYNC.md`.
+
+**Six cases authored and pushed — [C43582](https://shopview.testrail.io/index.php?/cases/view/43582)–[C43587](https://shopview.testrail.io/index.php?/cases/view/43587).**
+`add_case` ×6, **every one HTTP 200 + byte-verified MATCH, 10 fields compared each, 0 mismatches,
+0 collateral changes.** **0 update · 0 delete · 0 section · 0 run write · 0 result logged · 0 Jira
+write.** **THE SUITE IS 174 CASES.**
+
+**THE COVERAGE GAP IS CLOSED: Schedule's UNCOVERED count goes 19 → 0.** 18 assertions moved
+UNCOVERED → COVERED and one — `§5.3-L195.A1`, *"Persistence. Not persisted in the prototype."* —
+→ NOT-INDEPENDENTLY-TESTABLE, because it describes the **prototype**, not the build, and the very next
+clause states the build requirement (C43587 asserts that). `COVERAGE-MAP.md` was **re-derived from the
+LIVE case bodies**, every COVERED verdict quoting **both texts side by side** (Rule 45(e)), and its
+**totals reconcile three ways — headline, per-section and row-level all sum to 397.**
+
+**🔴 THE CONTROL IS NOT BUILT, AND THAT IS A SEPARATE FINDING FROM THE COVERAGE ONE.** Proven three
+ways on **`v3.5-af3a6e1`** (last-mod Mon 10 Aug 2026 21:59:27 GMT, etag `0708dbc8bc1fe805e835a2f86d05abfb`,
+`index.html` byte-identical at 02:36Z and 03:27Z): **(1)** no control anywhere left of `Today` at six
+viewport widths (1680/1200/959/900/760/600) — `Today` is at x=325, the grid gutter starts at x=300,
+**nothing in between**; **(2)** not in the **View options** menu (`Business Hours · Tech Hours ·
+Capacity Planning · Events · Show Saturday · Show Sunday`), not in **Filter & Display** (`Service ·
+Work order status · Service/Parts · My Shifts · VIN Number`), and no keyboard route moved the panel;
+**(3) the decisive one — `Hide panel`, `Show panel`, `panel-left`, `Panel toggle`, `panelCollapse`,
+`collapsePanel` and `togglePanel` appear ZERO times in the shipped Schedule JavaScript chunk**, while
+every built control is found there. **So all six carry `AUTOMATION: HOLD - the panel collapse control
+is not in the build`, and each tells the tester to mark it Blocked and to speak up if the button ever
+appears** — self-monitoring, in the spirit of Rule 61 outcome 3.
+**NO TICKET WAS RAISED: the QA lead's 2026-08-10 creation hold covers Jira** (Rules 62/51). His
+2026-08-11 correction unblocked test cases only, and it is quoted in the execution log.
+
+**THE NEAR-MISS THAT WOULD HAVE PRODUCED A FALSE PASS:** `button_mini_calendar_collapse` carries
+aria-label **"Hide the calendar"**, sits in the same left strip and collapses something — but it is
+the **mini calendar's** own chevron (§5.2), already covered by
+**SCH-MCAL-03 = [C29934](https://shopview.testrail.io/index.php?/cases/view/29934)**.
+
+**OBSERVED IN PASSING, ALREADY KNOWN, DELIBERATELY NOT RE-REPORTED:** the panel does **not**
+auto-collapse below 960px — measured at 959/900/760/600 on fresh loads, it stayed **275px wide and
+visible** while the grid shrank, and the responsive logic *is* firing (the mobile menu appears). **That
+is C30086's assertion, already ticketed [SV-8942](https://shopview.atlassian.net/browse/SV-8942), and
+C30086 already carries an EXPECT-FAIL marker naming that exact symptom** — so the correct outcome was
+**Rule 61 outcome (1): raise nothing new.** *Rule 61 earned its keep: without that note this would have
+been written up as a fresh defect.*
+
+**MARKERS, read back live: 119 `READY` · 21 `READY - EXPECT FAIL` · 34 `HOLD` = 174. THE ARITHMETIC
+GATE PASSES BOTH WAYS: 119 + 21 = 140 = 174 − 34.** HOLD rose 28 → 34 (the six new cases);
+**ready-to-automate is unchanged at 140** — absent product is not a readiness shortfall.
+
+**PROOFS.** **Run 357 untouched by content** — `include_all` still false, 168 tests, test-id and
+case_id sets equal both directions, **all 458 result records present BY ID, 0 graded fields changed,
+0 new results**; counters unchanged. **The 168 pre-existing cases byte-identical, `updated_on` and
+`updated_by` included.** **0 foreign cases** (all 174 `created_by = 3`). **Raw markup 0 of 174, censused
+before and after.**
+
+**⚠️ THE LOCAL CASE SOURCE HAD BEEN STALE SINCE 2026-08-06 AND IS NOW RESYNCED.** That pass rewrote
+**all 168 expected fields** plus 20 preconditions, 20 steps and 2 `refs` in TestRail **without updating
+the local JSON**, so regenerating the import would have shipped 168 stale rows. Local and live are now
+byte-identical on all five text fields across all 174. **Shredding guard 0 of 174**; four counts
+**174/174/174/174 set-equal both directions**; id-map **0 blanks, refs 174/174**; import header sha256
+**identical to all five peers**.
+
+**⚠️ RUN 357 IS OUT OF DATE AND THE SYNC IS STAGED, NOT RUN.** `include_all` is false, so the six new
+cases are not in it. The **full 174-id union** is computed in `STAGED-RUN-357-SYNC.md` with the
+before/after checks; **run 357 is Ayesha's and the write awaits the QA lead** (Rules 6/34/47).
+
+**⚠️ Rule-49 queue OPEN — `panel-collapse-2026-08-11/RECHECK-QUEUE.md`, 6 rows.** The branch is not
+declared final, so all six verdicts are PROVISIONAL. **Their trigger is the feature shipping, not a
+redeploy** (Rule 61).
+
+**OUTSTANDING:** **(1)** a decision on the build gap — §5.3 was specified on 7 August and is unbuilt
+four days later; the ticket is ready to file the moment the hold lifts, at which point the six cases
+move to `READY - EXPECT FAIL` with one edit each. **(2)** **send the 6 August Branko sheet with item
+S-2 on it** — the session-scoped vs across-sessions conflict now cited on C43587; the blocker is us.
+**(3)** confirm which design artefact is canonical for Schedule.
+
+---
+
 ## §0-COVERAGE-MAP-2026-08-10 — the requirement → case map now EXISTS
 
 **Schedule had never had a requirement→case map. It has one now:
