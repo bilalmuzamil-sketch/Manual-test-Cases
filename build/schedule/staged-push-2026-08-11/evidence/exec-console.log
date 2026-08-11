@@ -1,0 +1,31 @@
+[2026-08-11T13:49:27Z] === EXECUTOR START ===
+[2026-08-11T13:49:28Z] SOURCE RE-READ (write-start): Confluence page 713031682 HTTP 200, version 27, when 2026-08-07T15:01:20.801Z, 43064 chars, sha256 4c51fb7239c84987b4bed33481448c1099911d4bb2a976ca9c7426c833485d4b
+  verdict: UNCHANGED -- v27, body sha256 identical to the mirror. Safe to write.
+[2026-08-11T13:49:28Z] pre-write snapshot: 174 live Schedule cases on disk
+[2026-08-11T13:49:35Z] custom_atmstatus AT WRITE TIME (Rule 65): C43582=1, C43583=1, C43584=1, C43585=1, C43586=1, C43587=1, C29998=1, C38866=1
+
+[2026-08-11T13:49:35Z] --- GROUP 1: six Panel collapse cases, our own defect ---
+  C43582: steps re-counted LIVE = 7 -> 'steps 1 to 7' | HTTP 200 | G1 update_case C43582: 30 fields compared, 3 intended, 0 mismatch
+  C43583: steps re-counted LIVE = 6 -> 'steps 1 to 6' | HTTP 200 | G1 update_case C43583: 30 fields compared, 3 intended, 0 mismatch
+  C43584: steps re-counted LIVE = 7 -> 'steps 1 to 7' | HTTP 200 | G1 update_case C43584: 30 fields compared, 3 intended, 0 mismatch
+  C43585: steps re-counted LIVE = 4 -> 'steps 1 to 4' | HTTP 200 | G1 update_case C43585: 30 fields compared, 3 intended, 0 mismatch
+  C43586: steps re-counted LIVE = 5 -> 'steps 1 to 5' | HTTP 200 | G1 update_case C43586: 30 fields compared, 3 intended, 0 mismatch
+  C43587: steps re-counted LIVE = 7 -> 'steps 1 to 7' | HTTP 200 | G1 update_case C43587: 30 fields compared, 3 intended, 0 mismatch
+
+[2026-08-11T13:49:53Z] --- GROUP 3: C29998 one expected item + refs ---
+  C29998: item 4 inserted, old item 4 -> 5, refs +§11, provenance anchor +§11 | HTTP 200 | G3 update_case C29998: 30 fields compared, 4 intended, 0 mismatch
+
+[2026-08-11T13:49:55Z] --- GROUP 4: C38866 refs only ---
+  C38866: refs SV-8685(epic) -> SV-8700 + SV-8698, comma removed, false persistence claim dropped | HTTP 200 | G4 update_case C38866: 30 fields compared, 4 intended, 0 mismatch
+
+[2026-08-11T13:49:58Z] --- GROUP 2: two new dark-theme cases ---
+  SCH-EDGE-09 = C43588 | add_case HTTP 200 | re-GET 30 fields compared, 10 intended, 0 mismatch | custom_atmstatus=1 | section 4280
+  SCH-EDGE-10 = C43589 | add_case HTTP 200 | re-GET 30 fields compared, 10 intended, 0 mismatch | custom_atmstatus=1 | section 4280
+
+[2026-08-11T13:50:05Z] --- POST-BATCH: whole-suite re-read + invariant census ---
+  live Schedule cases now: 176 (was 174, +2)
+  untouched cases proven byte-identical (all fields incl. updated_on/updated_by): 166 of 166 -- 0 moved
+  census of the 10 touched/created cases: exactly ONE provenance line each: True | exactly ONE automation marker each: True | raw markup: 0
+  whole-suite raw-markup census: 0 of 176 
+[2026-08-11T13:50:51Z] SOURCE RE-READ (write-end): Confluence page 713031682 HTTP 200, version 27, when 2026-08-07T15:01:20.801Z, 43064 chars, sha256 4c51fb7239c84987b4bed33481448c1099911d4bb2a976ca9c7426c833485d4b
+  spec at write end: v27, sha IDENTICAL
