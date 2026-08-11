@@ -122,10 +122,68 @@ exactly as found.
 
 ---
 
+## 6 · The empty state names only filters, and offers no way to clear the search
+
+**Observed live.** Three empty states were produced deliberately:
+
+| what was applied | message shown | actions offered |
+|---|---|---|
+| a filter **and** a search that match nothing | `No work orders match your filters` | **`Clear Filters`** only |
+| a search **alone** that matches nothing (no filter set) | `No work orders match your filters` | **`Clear Filters`** only |
+
+The empty-state control is `empty_state_clear_filters`, labelled **`Clear Filters`**. There is **no
+clear-the-search action anywhere in the empty state**, and the page-search clear (`page_search_clear`,
+a `cancel` icon) sits in the search box, not in the message.
+
+**Spec v19, verbatim, on all three counts:**
+
+- **S8-R3:** *"When the combination of active filters **and any active search query** produces no
+  matching records, the table shows an empty state with a message indicating no results were found
+  **for the current filters and search**"*
+- **S8-R4:** *"The empty state includes a prompt or link to clear filters **and, where a search query
+  is active, to clear the query**"*
+- **S8-R5:** *"Where both a query and filters are active, **each is cleared independently from the
+  empty state**"*
+
+**So there are three distinct gaps, not one:** the message never mentions the search; there is no
+action to clear the query; and with a search alone and no filters at all, the message still says
+*"your filters"* and offers to clear filters that are not set — which is actively misleading.
+
+**Affected:** [C29606](https://shopview.testrail.io/index.php?/cases/view/29606) (message wording),
+[C29607](https://shopview.testrail.io/index.php?/cases/view/29607) (the separate clear-the-search
+action), [C38897](https://shopview.testrail.io/index.php?/cases/view/38897) (all three).
+
+**Nothing was changed on these three cases.** They assert what S8-R3/R4/R5 require; the build differs;
+that is a deviation to record (Rule 57), and it is the single clearest candidate for a ticket in this
+pass.
+
+---
+
+## 7 · What the API cases found — all clean
+
+Driven directly, on the same build:
+
+- The list request is **`GET /api/work-orders?pagination[…]&filters[0][field]=status&filters[0][value]=estimate&filters[1][field]=…`** — the active
+  selections travel as server-side filter parameters, and the response is filtered by the backend.
+  **HTTP 200.**
+- **An unknown customer identifier** (`deadbeef-0000-…`) → **HTTP 200, no 5xx.**
+- **Malformed parameters** (`status=%%%notastatus`, `company_id=!!!`) → **HTTP 200**, and the page
+  loads with **no error and no broken layout**.
+- **A combination matching nothing** → **HTTP 200** with the empty state rendered from that response.
+
+**No server error was produced by anything this pass tried.** That is the finding —
+[C29633](https://shopview.testrail.io/index.php?/cases/view/29633) and
+[C29634](https://shopview.testrail.io/index.php?/cases/view/29634) both hold on the server side.
+C29634's existing Rule-61 symptom note — that the *page* does not ignore the broken value and the list
+comes back empty — remains the accurate description of the front-end half.
+
+---
+
 ## Outstanding — what I need from you
 
-1. **Permission to file.** Findings 2 and 3 are real product gaps against the design, and finding 2's
-   broken `/parts/deliveries` route is the sharpest of them. **Nothing will be filed until you say so**
+1. **Permission to file.** Findings 2, 3 and 6 are real product gaps against the specification and the
+   design. **Finding 6 (the empty state) is the clearest and the cheapest to fix**, and finding 2's
+   broken `/parts/deliveries` route is the most alarming. **Nothing will be filed until you say so**
    — the hold of 2026-08-10 is what is stopping it, and it was your instruction, not an oversight.
 2. **A second test login on this branch.** It has been outstanding since 5 August and it is the only
    thing blocking the 7 Persistence cases,

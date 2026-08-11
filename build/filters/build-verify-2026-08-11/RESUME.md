@@ -63,13 +63,12 @@ TestRail flags Automated.
 
 ## Where the pass got to
 
-**98 of the 114 checked against the running build; 16 not.** Of the 98: **84 correct as written**,
-**8 corrected**, **6 carrying a recorded mismatch that must NOT be renamed** (the control our case
+**106 of the 114 checked against the running build; 8 not.** Of the 106: **89 correct as written**,
+**8 corrected**, **9 carrying a recorded mismatch that must NOT be renamed** (the control our case
 names does not exist, so renaming would delete a coverage finding).
 
-**The 16 not checked, and what each needs:** 7 Persistence cases need a **second test login**
-(outstanding since 5 August) · 6 API cases were not driven · 3 Empty State cases need a filter
-combination that genuinely returns nothing, seeded on purpose.
+**The 8 not checked are 7 Persistence cases plus C38895, and they share ONE blocker: a second test
+login on this branch**, outstanding since 5 August. Nothing else is in the way of them.
 
 **Writes: 8 × `update_case`, all HTTP 200, 30 fields compared each, 0 mismatches, 0 collateral.**
 0 add / 0 delete / 0 section / 0 run writes / 0 results. **No Jira write of any kind** — the
@@ -85,13 +84,13 @@ hours later without moving `updated_on`.
 
 Nothing is part-done. The remaining work, in the order it is worth doing:
 
-1. **The 16 unchecked** — the second login unblocks 7 of them in one sitting.
+1. **The 8 unchecked** — the second login unblocks all 8 in one sitting.
 2. **[C38891](https://shopview.testrail.io/index.php?/cases/view/38891)'s ~42 surface names.** Two are
    already known wrong (`IBS Batch Transactions` → `IBS Batches`, `Sales Tax Invoices` →
    `Sales Tax Collected`) and were deliberately **not** corrected in isolation — see the last section
    of `CLASSIFICATION.md` for why. Walk all 42 and fix them together.
 3. **The six stale Parts/Reports hedges** (`FINDINGS.md` §2) — needs the QA lead's nod first.
-4. **A provenance re-stamp** across the 84 found-correct cases, if he wants their stamps to name
+4. **A provenance re-stamp** across the 89 found-correct cases, if he wants their stamps to name
    today's build. They were checked but not written, and `BUILD-VERIFICATION.md` says so plainly
    rather than implying otherwise.
 

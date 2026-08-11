@@ -1,22 +1,23 @@
 # Filters — build verification, per case
 
 **Build:** `v3.6-3e9dd6d` · `index.html` last-modified **Tue, 11 Aug 2026 07:45:44 GMT** · etag
-`b1b2623f07bec03883f57a0e17204431` · sha256 `fa01a52544d9fc96…`.
+`b1b2623f07bec03883f57a0e17204431` · sha256 `fa01a52544d9fc96…`. **Read three times across the pass
+and byte-identical each time — the build moved ZERO times under us**, though it had moved a whole
+minor version since the last recorded Filters marker (`v3.4.2-ef30acc`).
+
 **Suite: ours 114 / live total 119** (5 foreign by Ahtasham — untouched, Rule 38).
 
 ## The headline
 
 | | cases |
 |---|---|
-| **Checked against the running build** | **98** |
-| — of those, correct as written | 84 |
-| — of those, corrected this pass | 8 |
-| — of those, a mismatch recorded and **not** changed | 6 |
-| **NOT checked against the build** | **16** |
+| **Checked against the running build** | **106** |
+| — correct as written | 89 |
+| — corrected this pass | 8 |
+| — mismatch recorded, deliberately **not** changed | 9 |
+| **NOT checked against the build** | **8** |
 
-**16 is not a rounding error and is not hidden:** 7 Persistence cases need a second sign-in and a
-cross-session drive, 6 API cases were not driven, and 3 Empty State cases need a genuinely empty
-result set, which this pass did not produce. They are listed by name at the end.
+**The 8 are named at the end and 7 of them share one blocker: a second test login.**
 
 ## What "build-verified" means here
 
@@ -79,8 +80,8 @@ mean the case passed — a verdict is a separate thing, and this pass did not re
 | [C29603](https://shopview.testrail.io/index.php?/cases/view/29603) | Collapse and Expand | BUILD-VERIFIED | labels, path and named data confirmed |
 | [C29604](https://shopview.testrail.io/index.php?/cases/view/29604) | Collapse and Expand | BUILD-VERIFIED | labels, path and named data confirmed |
 | [C29605](https://shopview.testrail.io/index.php?/cases/view/29605) | Collapse and Expand | BUILD-VERIFIED | labels, path and named data confirmed |
-| [C29606](https://shopview.testrail.io/index.php?/cases/view/29606) | Empty State | NOT VERIFIED | screen not driven this pass |
-| [C29607](https://shopview.testrail.io/index.php?/cases/view/29607) | Empty State | NOT VERIFIED | screen not driven this pass |
+| [C29606](https://shopview.testrail.io/index.php?/cases/view/29606) | Empty State | CHECKED - MISMATCH RECORDED | empty state observed; message and control read off the build |
+| [C29607](https://shopview.testrail.io/index.php?/cases/view/29607) | Empty State | CHECKED - MISMATCH RECORDED | empty state observed; Clear Filters present, no clear-the-search action |
 | [C29608](https://shopview.testrail.io/index.php?/cases/view/29608) | Tab Behaviour | BUILD-VERIFIED | labels, path and named data confirmed |
 | [C29609](https://shopview.testrail.io/index.php?/cases/view/29609) | Tab Behaviour | BUILD-VERIFIED | labels, path and named data confirmed |
 | [C29610](https://shopview.testrail.io/index.php?/cases/view/29610) | Tab Behaviour | BUILD-VERIFIED | labels, path and named data confirmed |
@@ -104,11 +105,11 @@ mean the case passed — a verdict is a separate thing, and this pass did not re
 | [C29628](https://shopview.testrail.io/index.php?/cases/view/29628) | Mobile Filters | BUILD-VERIFIED | labels, path and named data confirmed |
 | [C29629](https://shopview.testrail.io/index.php?/cases/view/29629) | Mobile Filters | BUILD-VERIFIED | labels, path and named data confirmed |
 | [C29630](https://shopview.testrail.io/index.php?/cases/view/29630) | Mobile Filters | BUILD-VERIFIED | labels, path and named data confirmed |
-| [C29631](https://shopview.testrail.io/index.php?/cases/view/29631) | API — Work Orders List Filtering | NOT VERIFIED | screen not driven this pass |
-| [C29632](https://shopview.testrail.io/index.php?/cases/view/29632) | API — Work Orders List Filtering | NOT VERIFIED | screen not driven this pass |
-| [C29633](https://shopview.testrail.io/index.php?/cases/view/29633) | API — Work Orders List Filtering | NOT VERIFIED | screen not driven this pass |
-| [C29634](https://shopview.testrail.io/index.php?/cases/view/29634) | API — Work Orders List Filtering | NOT VERIFIED | screen not driven this pass |
-| [C29635](https://shopview.testrail.io/index.php?/cases/view/29635) | API — Work Orders List Filtering | NOT VERIFIED | screen not driven this pass |
+| [C29631](https://shopview.testrail.io/index.php?/cases/view/29631) | API — Work Orders List Filtering | BUILD-VERIFIED | list request captured: filters[N][field]/[value], HTTP 200 |
+| [C29632](https://shopview.testrail.io/index.php?/cases/view/29632) | API — Work Orders List Filtering | BUILD-VERIFIED | combined status+customer request captured, HTTP 200 |
+| [C29633](https://shopview.testrail.io/index.php?/cases/view/29633) | API — Work Orders List Filtering | BUILD-VERIFIED | unknown customer id -> HTTP 200, no 5xx |
+| [C29634](https://shopview.testrail.io/index.php?/cases/view/29634) | API — Work Orders List Filtering | BUILD-VERIFIED | malformed status/company -> HTTP 200, page loads with no error |
+| [C29635](https://shopview.testrail.io/index.php?/cases/view/29635) | API — Work Orders List Filtering | BUILD-VERIFIED | no-match combination -> HTTP 200 + empty state rendered |
 | [C38876](https://shopview.testrail.io/index.php?/cases/view/38876) | Tab Behaviour | BUILD-VERIFIED | labels, path and named data confirmed |
 | [C38877](https://shopview.testrail.io/index.php?/cases/view/38877) | Status Filter | BUILD-VERIFIED | labels, path and named data confirmed |
 | [C38878](https://shopview.testrail.io/index.php?/cases/view/38878) | Asset on Site Filter | BUILD-VERIFIED | labels, path and named data confirmed |
@@ -125,7 +126,7 @@ mean the case passed — a verdict is a separate thing, and this pass did not re
 | [C38893](https://shopview.testrail.io/index.php?/cases/view/38893) | Page Search Toolbar | BUILD-VERIFIED | labels, path and named data confirmed |
 | [C38895](https://shopview.testrail.io/index.php?/cases/view/38895) | API — Work Orders List Filtering | NOT VERIFIED | screen not driven this pass |
 | [C38896](https://shopview.testrail.io/index.php?/cases/view/38896) | URL State and Shareable Links | BUILD-VERIFIED | labels, path and named data confirmed |
-| [C38897](https://shopview.testrail.io/index.php?/cases/view/38897) | Empty State | NOT VERIFIED | screen not driven this pass |
+| [C38897](https://shopview.testrail.io/index.php?/cases/view/38897) | Empty State | CHECKED - MISMATCH RECORDED | empty state observed with filter+search; only one action offered |
 | [C38898](https://shopview.testrail.io/index.php?/cases/view/38898) | Page Search Toolbar | BUILD-VERIFIED | labels, path and named data confirmed |
 | [C38899](https://shopview.testrail.io/index.php?/cases/view/38899) | Page Search Toolbar | BUILD-VERIFIED | labels, path and named data confirmed |
 | [C38900](https://shopview.testrail.io/index.php?/cases/view/38900) | Page Search Toolbar | BUILD-VERIFIED | labels, path and named data confirmed |
@@ -149,7 +150,8 @@ mean the case passed — a verdict is a separate thing, and this pass did not re
 
 ## The 8 corrected, with what was wrong
 
-Every one is a **label**, and in every one the **assertion is untouched** (Rule 57).
+Every one is a **label**, and in every one the **assertion is untouched** (Rule 57). Full
+side-by-side with the governing requirement quoted: `CLASSIFICATION.md`.
 
 
 ### [C29595](https://shopview.testrail.io/index.php?/cases/view/29595) — HTTP 200, 30 fields compared, 3 intended, 0 mismatch
@@ -213,33 +215,33 @@ Each of the 8 also had its **Rule-54 sentence 2** moved from `v3.4.2-d00239b on 
 `v3.6-3e9dd6d on 8/11/2026`, because those 8 were genuinely observed today. **Sentence 1 was not
 touched on any of them** — a live check does not change where an expectation comes from.
 
-**The other 90 cases keep their old build stamp**, including the 84 found correct. That is
-deliberate: re-stamping a case is a write, and a write claiming today's build on 90 cases was more
-than this session could finish and verify. Their stamps are honest about when they were last
-*written*, and this document is the record of what was *checked* today.
+**The other 106 cases keep their old build stamp**, including the 89 found correct. That is
+deliberate: re-stamping is a write, and a write claiming today's build across ~98 cases was more than
+this session could finish and byte-verify. Their stamps are honest about when they were last
+*written*; **this document is the record of what was *checked* today.**
 
 ---
 
-## The 16 not checked, by name
+## The 8 not checked, by name
 
-- [C29606](https://shopview.testrail.io/index.php?/cases/view/29606) — Empty State — screen not driven this pass
-- [C29607](https://shopview.testrail.io/index.php?/cases/view/29607) — Empty State — screen not driven this pass
-- [C29613](https://shopview.testrail.io/index.php?/cases/view/29613) — Persistence — screen not driven this pass
-- [C29614](https://shopview.testrail.io/index.php?/cases/view/29614) — Persistence — screen not driven this pass
-- [C29615](https://shopview.testrail.io/index.php?/cases/view/29615) — Persistence — screen not driven this pass
-- [C29616](https://shopview.testrail.io/index.php?/cases/view/29616) — Persistence — screen not driven this pass
-- [C29631](https://shopview.testrail.io/index.php?/cases/view/29631) — API — Work Orders List Filtering — screen not driven this pass
-- [C29632](https://shopview.testrail.io/index.php?/cases/view/29632) — API — Work Orders List Filtering — screen not driven this pass
-- [C29633](https://shopview.testrail.io/index.php?/cases/view/29633) — API — Work Orders List Filtering — screen not driven this pass
-- [C29634](https://shopview.testrail.io/index.php?/cases/view/29634) — API — Work Orders List Filtering — screen not driven this pass
-- [C29635](https://shopview.testrail.io/index.php?/cases/view/29635) — API — Work Orders List Filtering — screen not driven this pass
-- [C38880](https://shopview.testrail.io/index.php?/cases/view/38880) — Persistence — screen not driven this pass
-- [C38881](https://shopview.testrail.io/index.php?/cases/view/38881) — Persistence — screen not driven this pass
-- [C38895](https://shopview.testrail.io/index.php?/cases/view/38895) — API — Work Orders List Filtering — screen not driven this pass
-- [C38897](https://shopview.testrail.io/index.php?/cases/view/38897) — Empty State — screen not driven this pass
-- [C43560](https://shopview.testrail.io/index.php?/cases/view/43560) — Persistence — screen not driven this pass
+- [C29613](https://shopview.testrail.io/index.php?/cases/view/29613) — Persistence
+- [C29614](https://shopview.testrail.io/index.php?/cases/view/29614) — Persistence
+- [C29615](https://shopview.testrail.io/index.php?/cases/view/29615) — Persistence
+- [C29616](https://shopview.testrail.io/index.php?/cases/view/29616) — Persistence
+- [C38880](https://shopview.testrail.io/index.php?/cases/view/38880) — Persistence
+- [C38881](https://shopview.testrail.io/index.php?/cases/view/38881) — Persistence
+- [C38895](https://shopview.testrail.io/index.php?/cases/view/38895) — API — Work Orders List Filtering
+- [C43560](https://shopview.testrail.io/index.php?/cases/view/43560) — Persistence
 
-**What each group needs:** the 7 Persistence cases need a **second test login** on this branch (one
-of them, C29615, has needed it since 5 August); the 6 API cases need the request/response driven
-directly; the 3 Empty State cases need a filter combination that genuinely returns nothing, seeded
-on purpose rather than stumbled into.
+**7 of the 8 are Persistence cases and they all need the same thing: a second test login on this
+branch**, so that "saved per user" and "user B does not see user A's filters" can actually be driven.
+That ask has been outstanding since 5 August. The eighth,
+[C38895](https://shopview.testrail.io/index.php?/cases/view/38895), needs it too — its per-user
+isolation step is the whole point of the case.
+
+**What WAS established about persistence without a second login**, and recorded rather than claimed as
+a verdict: the page reads and writes `GET /api/users/me/preferences/work-orders-list` (HTTP 200), and
+saved state was observed carrying over in the wild — the Parts Inventory page loaded with a bin
+location, six categories and a supply filter already applied, and the Notes report with an author and
+a mention already set. **None of that was created by this pass.** It is consistent with the feature
+working, but it is not the per-user isolation the cases assert, so the cases stay unverified.

@@ -1,0 +1,143 @@
+[
+ {
+  "cid": 29595,
+  "http": 200,
+  "verify": "update_case C29595: 30 fields compared, 3 intended, 0 mismatch",
+  "atmstatus": 1,
+  "edits": [
+   {
+    "field": "custom_expected",
+    "class": "C",
+    "why": "illustration only; S7-R1 pins no format, it requires 'displays the selected value(s)'",
+    "before": "The chip displays the selected value (for example 'Status: Estimate').",
+    "after": "The chip displays the selected value (on the build tested it reads 'Status : Estimate')."
+   }
+  ]
+ },
+ {
+  "cid": 29596,
+  "http": 200,
+  "verify": "update_case C29596: 30 fields compared, 3 intended, 0 mismatch",
+  "atmstatus": 1,
+  "edits": [
+   {
+    "field": "custom_expected",
+    "class": "C",
+    "why": "our case had paraphrased S7-R2's illustrative e.g. instead of its rule; the rule is 'first value followed by a count of additional selections', which is what the build does",
+    "before": "The chip lists the selected values starting with the first one and shortens the label when it gets too long (the design shows 'Status: Estimate, In progress, Approved...').",
+    "after": "The chip displays the FIRST selected value followed by a count of the additional selections - it does not spell out every value (on the build tested, ticking Estimate, In progress and Approved gives 'Status : Estimate, +2')."
+   }
+  ]
+ },
+ {
+  "cid": 29622,
+  "http": 200,
+  "verify": "update_case C29622: 30 fields compared, 3 intended, 0 mismatch",
+  "atmstatus": 1,
+  "edits": [
+   {
+    "field": "custom_expected",
+    "class": "C",
+    "why": "locator inside a behaviour assertion",
+    "before": "A sticky blue 'Apply filters' button",
+    "after": "A sticky blue 'Apply Filters' button"
+   }
+  ]
+ },
+ {
+  "cid": 29623,
+  "http": 200,
+  "verify": "update_case C29623: 30 fields compared, 3 intended, 0 mismatch",
+  "atmstatus": 3,
+  "edits": [
+   {
+    "field": "custom_steps",
+    "class": "A",
+    "why": "step direction",
+    "before": "Tap the 'Apply filters' button.",
+    "after": "Tap the 'Apply Filters' button."
+   },
+   {
+    "field": "custom_expected",
+    "class": "C",
+    "why": "locator inside a behaviour assertion",
+    "before": "After 'Apply filters' the sheet closes",
+    "after": "After 'Apply Filters' the sheet closes"
+   }
+  ]
+ },
+ {
+  "cid": 29624,
+  "http": 200,
+  "verify": "update_case C29624: 30 fields compared, 3 intended, 0 mismatch",
+  "atmstatus": 1,
+  "edits": [
+   {
+    "field": "custom_steps",
+    "class": "A",
+    "why": "step direction",
+    "before": "Tap the 'Apply filters' button inside the sheet",
+    "after": "Tap the 'Apply Filters' button inside the sheet"
+   },
+   {
+    "field": "custom_expected",
+    "class": "C",
+    "why": "locator inside a behaviour assertion",
+    "before": "An 'Apply filters' button is shown inside the sheet.",
+    "after": "An 'Apply Filters' button is shown inside the sheet."
+   }
+  ]
+ },
+ {
+  "cid": 29625,
+  "http": 200,
+  "verify": "update_case C29625: 30 fields compared, 3 intended, 0 mismatch",
+  "atmstatus": 1,
+  "edits": [
+   {
+    "field": "custom_steps",
+    "class": "A",
+    "why": "step direction",
+    "before": "then tap 'Apply filters'.",
+    "after": "then tap 'Apply Filters'."
+   },
+   {
+    "field": "custom_expected",
+    "class": "C",
+    "why": "locator inside a behaviour assertion",
+    "before": "After 'Apply filters' the list shows",
+    "after": "After 'Apply Filters' the list shows"
+   }
+  ]
+ },
+ {
+  "cid": 29626,
+  "http": 200,
+  "verify": "update_case C29626: 30 fields compared, 3 intended, 0 mismatch",
+  "atmstatus": 1,
+  "edits": [
+   {
+    "field": "custom_steps",
+    "class": "A",
+    "why": "step direction",
+    "before": "and tap 'Apply filters'.",
+    "after": "and tap 'Apply Filters'."
+   }
+  ]
+ },
+ {
+  "cid": 29627,
+  "http": 200,
+  "verify": "update_case C29627: 30 fields compared, 3 intended, 0 mismatch",
+  "atmstatus": 1,
+  "edits": [
+   {
+    "field": "custom_steps",
+    "class": "A",
+    "why": "step direction",
+    "before": "Choose Yes and tap 'Apply filters'.",
+    "after": "Choose Yes and tap 'Apply Filters'."
+   }
+  ]
+ }
+]
