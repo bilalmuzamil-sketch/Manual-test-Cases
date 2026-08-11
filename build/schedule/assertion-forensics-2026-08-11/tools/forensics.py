@@ -58,10 +58,27 @@ def strip_html(s):
     return s
 
 
+LI = re.compile(r"<\s*li\s*>(.*?)<\s*/\s*li\s*>", re.I | re.S)
+
+
 def body(expected):
-    """Return (assertions, notes) with provenance / marker / formatting removed."""
+    """Return (assertions, notes) with provenance / marker / formatting removed.
+
+    RAW-MARKUP CASES: 16-20 Schedule cases stored their expected results as raw
+    <ol><li> HTML that TestRail showed literally to the tester. Those <li> items
+    carry no leading "1." digits, so a naive reader files them as prose and every
+    later conversion to plain numbered text then reads as "assertions appeared from
+    nothing" - a pure formatting artefact, and exactly the noise this pass must
+    exclude. So <li> items are numbered here before anything else, making a
+    raw-markup body directly comparable with its plain-text successor.
+    """
     if not expected:
         return [], []
+    if LI.search(expected):
+        items = [strip_html(m.group(1)).strip() for m in LI.finditer(expected)]
+        rest = LI.sub("\n", expected)
+        numbered = "\n".join(f"{i+1}. {t}" for i, t in enumerate(items) if t.strip())
+        expected = numbered + "\n" + strip_html(rest)
     txt = strip_html(expected)
     # cut everything from the provenance separator onward when what follows is provenance
     lines = [l.rstrip() for l in txt.split("\n")]
