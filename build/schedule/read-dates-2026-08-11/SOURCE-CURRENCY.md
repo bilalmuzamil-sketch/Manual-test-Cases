@@ -44,11 +44,22 @@ carry 11 August.
 | Source named in the provenance line | Cases |
 |---|---|
 | epic **SV-8685** | **174 of 174** |
-| the **Schedule specification version 27** | **174 of 174** |
+| the **Schedule specification version 27** | ~~**174 of 174**~~ → **167** (corrected, see below) |
 | the **engineering technical plan** file | **11** |
 | **Branko's answers** file | **9** |
 | a **story** (SV-8686 ×8, SV-8688 ×1, SV-8692 ×1) | **10 mentions across 9 cases** |
 | a **design** or **Figma** | **0** |
+
+> **⚠️ CORRECTION TO THE ROW ABOVE, MADE BY THIS PASS AND KEPT VISIBLE RATHER THAN OVERWRITTEN.** The
+> specification figure was first written as **174 of 174**. That came from a loose substring match and
+> **it is wrong: the true figure is 167.** **Seven cases mention the specification only to say it does
+> NOT cover the point** — C38867, C38868, C38869, C38870, C38871 and C38875 (*"No numbered requirement
+> in the Schedule specification version 27 covers this point"*, whose source is the tech plan) and
+> C43554 (*"The Schedule specification version 27 does not say which view the page opens on"*, whose
+> source is story SV-8686's acceptance criterion). **A negative mention is not a citation**, and
+> stamping a read-date onto one would make the case read as though the specification supports an
+> expectation it explicitly does not. Those seven were **deliberately not stamped for the
+> specification**; full write-up in `FINDINGS.md` §3.
 
 **Cases already carrying at least one read-date before this pass: 26** — and **every one of those 26
 carried it on the specification only**, leaving the epic (and, where cited, the tech plan and the
