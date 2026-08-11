@@ -99,3 +99,28 @@ the closing parenthesis**, never inside the link. Checked on all 114 — 0 URLs 
 Reused from `build/schedule/read-dates-2026-08-11/tools/` rather than re-derived (Rule 27): `tr.py`
 (with its correct `&`-joined pagination), `jira_read.py`, `fetch_spec.py`, and the shape of
 `snap.py` / `write.py` / `final_verify.py`.
+
+## Deliverables NOT regenerated, deliberately — and the four counts checked anyway
+
+The **id-map and the import were not regenerated**, matching the Schedule read-date pass the same day.
+`gen_import.py` is known to **blank the id-map's C-ids and drop its `refs` column on every rerun**, and
+its `joinlines()` bug has twice produced an import with a newline between every character — so a rerun
+that gains nothing is a risk taken for nothing. A later pass regenerates them when new cases land.
+
+They were still **checked read-only**, and everything reconciles:
+
+| Count | Value |
+|---|---|
+| live cases under group 4110 that are ours | **114** |
+| `build/filters/testrail-id-map.csv` rows | **114**, **0 blank C-ids**, `refs` populated **114/114** |
+| `testrail-import/filters-v1-testrail-import.csv` data rows | **114** |
+| local case source (`build/filters/cases/*.json`) | **150 bodies − 36 retired = 114 active** |
+| live vs id-map, set equality | **equal in BOTH directions** (0 only-live, 0 only-id-map) |
+| shredding guard on the import | **0 shredded rows** |
+
+**Stated honestly: the import's and the local source's Expected Results text is now one phrase behind
+live** — they do not carry the read-dates. That is a known, deliberate drift of an interim artefact,
+not a defect in the cases.
+
+**The stamper is idempotent, and this was proven rather than asserted:** re-running `tools/stamp.py`
+over its own output changed **0 of 114** cases, so a future re-stamp cannot double-date a citation.
