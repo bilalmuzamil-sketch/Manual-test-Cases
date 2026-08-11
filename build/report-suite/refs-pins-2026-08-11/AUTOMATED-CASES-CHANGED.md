@@ -46,7 +46,8 @@
 Rule 65 requires this to be checked rather than assumed, because on the Schedule project nobody ever set the flag — our own `add_case` tooling hardcoded it — and reporting those cases as Vlad's own would pad the list and cost it credibility.
 
 - **26 of the 26** have a recorded change of `custom_atmstatus` in their TestRail history, so a person set the flag deliberately.
-- **0** have no recorded change — the flag has read Automated since the case was created.
+- **0** have no recorded change — none of these is a case whose flag was born Automated by our own tooling.
+- **All 40 Automated cases in the suite** (not just the 26 touched) were checked, and **every one was flipped from *Not Automated* to *Automated* by user id 1 — Vladimir Tomovic himself.** So this list is genuinely his own work, and nothing in it is padding.
 
 Per-case history: `logs/atm-history.json`.
 
