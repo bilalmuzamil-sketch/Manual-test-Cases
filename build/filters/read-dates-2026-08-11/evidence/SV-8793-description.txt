@@ -1,0 +1,21 @@
+Summary
+Users can clear all active filters at once or clear individual filter selections, and they see a helpful empty state when no records match, so they're never stuck on a blank screen without guidance.
+Context
+The user is on the Work Orders page
+
+One or more filters may be active, and/or a search query may be active (Story 13)
+
+Requirements
+"Clear filters" removes all active filter selections across all filters; all chips return to their default (inactive) state — (PRD: Story 8, S8-R1)
+
+Each filter dropdown includes a "Clear selection" action that removes only that filter's selections without affecting others — (PRD: Story 8, S8-R2)
+
+When filters and/or search produce no matching records, the table shows an empty state with a message indicating no results — (PRD: Story 8, S8-R3)
+
+The empty state includes prompts to clear filters and, where a search query is active, to clear the query — (PRD: Story 8, S8-R4)
+
+Clearing filters does not clear the search query, and clearing the search query does not clear filters — (PRD: Story 8, S8-R5)
+
+Acceptance Criteria
+Given I have Status and Customer filters active, when I click "Clear filters", then both chips return to default and the table shows all recordsGiven I have Status and Customer filters active, when I use "Clear selection" inside the Status dropdown, then only Status is cleared; Customer remainsGiven filters produce no results, then an empty state message appears with a link to clear filtersGiven both filters and a search query produce no results, then the empty state offers to clear each independentlyGiven no filters are active, then "Clear filters" is not visibleUI/UX
+Figma — Filter Bar Layout

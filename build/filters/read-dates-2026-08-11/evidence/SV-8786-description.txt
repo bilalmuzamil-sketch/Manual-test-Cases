@@ -1,0 +1,27 @@
+Summary
+Users get a visible filter bar on the Work Orders page so they can immediately access filtering without hunting through menus. The bar sits in a consistent location below the tab navigation and can be collapsed to reclaim vertical space.
+Context
+The user is on the Work Orders page and has access to it
+
+The filter bar is displayed by default on first visit
+
+The page toolbar already contains other controls (primary CTA, etc.)
+
+Requirements
+The filter bar is displayed below the tab navigation row (All, Estimates, Completed, My Work Orders) by default — (PRD: Story 1, S1-R1)
+
+The filter bar contains five filter chips in this order: Status, Customer, Lead Technician, Service Advisor, Asset on Site — (PRD: Story 1, S1-R2)
+
+Each chip displays the filter name and a chevron icon indicating it opens a dropdown — (PRD: Story 1, S1-R3)
+
+The page toolbar contains a toggle button that collapses and expands the filter bar — (PRD: Story 1, S1-R4)
+
+When collapsed, the bar is hidden and the table expands to use the reclaimed vertical space — (PRD: Story 1, S1-R5)
+
+When expanded, the bar reappears in its previous state with any active filters still shown — (PRD: Story 1, S1-R6)
+
+The collapsed/expanded state persists across navigation — (PRD: Story 1, S1-R7)
+
+Acceptance Criteria
+Given I'm on the Work Orders page, when the page loads, then I see a filter bar with 5 chips below the tab navigationGiven the filter bar is visible, when I click the collapse toggle in the toolbar, then the bar hides and the table takes the freed spaceGiven the filter bar is collapsed, when I click the toggle again, then the bar reappears with any active filters intactGiven I collapse the filter bar, when I navigate away and return, then the bar remains collapsedGiven the Estimates tab hides the Status chip, the filter bar still displays the remaining four chipsUI/UX
+Figma — Filter Bar Layout

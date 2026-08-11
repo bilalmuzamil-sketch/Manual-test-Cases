@@ -1,0 +1,27 @@
+Summary
+Filter selections are stored server-side against the user's account, so they survive logout, sync across devices, and are waiting exactly as the user left them — eliminating the daily pain of re-applying the same filters.
+Context
+The user has previously applied one or more filters
+
+Persistence applies uniformly to every view/tab that has filters, with no exceptions
+
+The search query is explicitly NOT covered — it is session-scoped (see Story 13)
+
+Requirements
+When the user navigates away from Work Orders and returns, filter selections and collapsed/expanded state are restored exactly — (PRD: Story 10, S10-R1)
+
+Filter selections are stored server-side against the user account; they survive logout, sync across devices, and use last-write-wins for conflicts — (PRD: Story 10, S10-R2)
+
+Filter selections are saved per user; one user's filters do not affect another user — (PRD: Story 10, S10-R3)
+
+Persistence applies uniformly to every view/tab with filters. Each Parts view and each Report tab keeps its own separate filter set, and each persists independently — (PRD: Story 10, S10-R4)
+
+The search query is not persisted server-side — (PRD: Story 10, S10-R5)
+
+Out of Scope
+Search query persistence (session-scoped only, see Story 13)
+
+Parts and Reports filter configuration (separate epic)
+
+Acceptance Criteria
+Given I set filters and navigate to a WO detail page, when I return to the list, then my filters are exactly as I left themGiven I set filters on Device A, when I log into Device B, then the same filters are appliedGiven two devices write different filter state, then the last write winsGiven I log out and log back in, then my filters are restoredGiven a previously selected filter value no longer exists, then the system silently ignores it

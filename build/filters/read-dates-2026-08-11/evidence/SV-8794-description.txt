@@ -1,0 +1,21 @@
+Summary
+Filters work correctly across all Work Orders tabs, hiding the Status chip where it would be redundant (Estimates, Completed) while keeping selections intact so switching tabs doesn't lose the user's filter state.
+Context
+The user is on the Work Orders page and may switch between All, Estimates, Completed, and My Work Orders tabs
+
+Estimates tab pre-filters by Estimate status; Completed tab pre-filters by Complete status
+
+Requirements
+On the All tab, all five filters are shown and active — (PRD: Story 9, S9-R1)
+
+On the Estimates tab, the Status chip is hidden; the remaining four filters apply on top of the Estimates pre-filter — (PRD: Story 9, S9-R2)
+
+On the Completed tab, the Status chip is hidden; the remaining four filters apply on top of the Completed pre-filter — (PRD: Story 9, S9-R3)
+
+On the My Work Orders tab, all five filters are shown and apply on top of the user-scoped result set — (PRD: Story 9, S9-R4)
+
+Filter selections are maintained when switching tabs; incompatible selections (e.g., Status on Estimates) are not applied but retained in memory so they reappear on the All tab — (PRD: Story 9, S9-R5)
+
+Acceptance Criteria
+Given I select "In Progress" status on the All tab, when I switch to Estimates, then the Status chip is hidden but my selection is retainedGiven I'm on Estimates with Customer filter set, when I switch back to All, then both Customer and my previous Status selection are activeGiven I'm on My Work Orders, when I apply filters, then they narrow within my assigned work orders onlyGiven a Status selection exists, when I switch to Completed, then the Status chip does not appear visuallyUI/UX
+Figma — Filter Bar Layout
