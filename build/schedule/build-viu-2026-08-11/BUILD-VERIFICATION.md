@@ -235,12 +235,23 @@ spread step. **Reachable; the route is known.**
 board proven restored — 11 shifts, id sets equal both ways, 11 of 11 hashes identical, events 3,
 series 4.**
 
-**LIMIT 2 — four dialogs were not opened**, a click-targeting shortfall rather than an access or data
-problem: `Reset To Template` (Roles & Permissions), `Add hours` / `Set business hours for this shop` /
-`Set custom hours for this technician` (Staff and Locations). **The real routes are now recorded** —
-`/administration/roles-permissions` and `/administration/staff`; the ones we guessed
-(`/administration/roles`, `/administration/working-hours`) **do not exist** (`FINDINGS.md` F12). Next
-session's work, no ask needed.
+**LIMIT 2 — the four dialogs are still unreached, and the reason CHANGED (see `FINDINGS.md` F14).** It
+is not click-targeting after all: the **Roles & Permissions and Staff admin lists render no rows at
+all** — Staff shows `Active(0)` / `Deactivated(0)` and `Empty bays, endless possibilities. Get Going!`
+**while `GET /api/staff` returns 64 records in the same session.** **I am not calling that a defect**
+(it may be an artefact of the hydrated-SPA harness, and I did not isolate it) but it is exactly what one
+normally-signed-in browser check would settle. So `Reset To Template`, `Time Clock`, `Add hours`,
+`Set business hours for this shop` and `Set custom hours for this technician` stay **NOT OBSERVED**, with
+the reason recorded. **Nothing was seeded to paper over it** — creating a staff member to populate a list
+that should already show 64 would have manufactured the condition rather than tested it.
+
+**✅ LIMIT 3 IS GONE — the `Select multiple` sub-state was reached, and it settled a question about our
+own ticket (`FINDINGS.md` F13).** `Select all` and `Cancel` are **absent from the entire DOM**, measured
+from a state that satisfies every §4.3 condition — 6-line order, picker open, `Select multiple` clicked,
+two lines ticked, and **the confirm bar present and rendering its tally `2 selected · 1.7h`**. **So
+SV-8886 is not a false defect, it is strengthened, and C29967's assertion is correct.** `Change scope`
+and `Full estimate` sit one step further on, past the confirm button, and were not pursued because
+reaching them means committing a real shift.
 
 **For the QA lead:**
 1. **Nothing is needed to continue.** Session alive, environment configured and untouched.

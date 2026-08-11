@@ -275,6 +275,109 @@ when picking a staff row**, since editing it is what killed the session earlier.
 
 ---
 
+## F13 · ✅ SV-8886 IS **NOT** A FALSE DEFECT — `Select all` and `Cancel` are genuinely absent, and C29967 is CORRECT
+
+**This was checked precisely because it COULD have been our second precondition error in one session.
+It is not. The absence is real, and it was measured from the state where those controls must appear.**
+
+### What makes this the right state to judge from — stated first, per the precondition rule
+
+The state was driven to satisfy every condition §4.3 attaches to those controls:
+
+1. A **MULTI-LINE** order — **S8685-13014 / Fuline Enterprises, 6 lines** (not the one-line order that produced my F11 mistake).
+2. The **scope picker open**, headed `S8685-13014 · Fuline Enterprises`, `dropped on Service/Parts · Tue, Aug 11`.
+3. **`Select multiple` actually clicked** — confirmed by the surface changing, not assumed from the click.
+4. **Two line checkboxes ticked** — 2 checkboxes found and clicked.
+5. **🔑 THE CONFIRM BAR IS PRESENT AND RENDERING** — it shows the tally **`2 selected · 1.7h`**.
+
+**Point 5 is the decisive one: the very bar that §4.3 says carries the tally, `Select all` and `Cancel`
+IS on screen and IS rendering its tally.** So this is unambiguously a state where the other two controls
+should appear. **An absence measured here is a real absence** — unlike the arm control measured on the
+Locations page, or the picker measured on a one-line order.
+
+### The measurement
+
+Searched **`document.documentElement.innerHTML`** — the entire DOM including hidden and off-screen
+nodes, which is stronger than a visibility test:
+
+| Label | In markup at all | Exact text nodes | Visible |
+|---|---|---|---|
+| **`Select all`** | **NO** | **0** | no |
+| **`Cancel`** | **NO** | **0** | no |
+| `Change scope` | NO | 0 | no |
+| `Full estimate` | NO | 0 | no |
+
+The only near neighbours of "Select" are **`Select multiple`** and the tally **`2 selected · 1.7h`**.
+
+### Consequences — all three, and none of them is a retraction
+
+- **SV-8886 STANDS and is STRENGTHENED**, by an independent observation on a *different* work order
+  (6 lines) from the one in its own steps (2 lines) — which corroborates its own claim that *"any work
+  order with two or more approved lines behaves the same way"*.
+- **C29967's assertion is CORRECT** and its verdict does **not** flip. The earlier forensic restoration
+  of that absence claim **restored a TRUE assertion** — worth stating, because the concern was that it
+  might have restored an incorrect one.
+- **The tally shape defect is corroborated too:** the bar reads **`2 selected · 1.7h`**, matching the
+  ticket's complaint that it is not the `Create shift - 2 lines - 6h` shape §4.3 specifies.
+
+### Why SV-8886 is NOT in the SV-8923 class, which is the question that was asked
+
+**SV-8923 was withdrawn because it was raised from a shop with no business hours configured — a
+precondition its own source case required.** SV-8886's own reproduction steps **do** enter the sub-state
+(step 5 *"Click 'Select multiple'"*, step 6 *"Tick one line"*) before reading the bottom bar. **It was
+measured from the correct state when it was filed, and our re-measurement agrees.**
+
+**Read live, not assumed:** SV-8886 is a `Story Defect`, parent **SV-8689 (Scope Picker)**, priority
+**Medium**, **status In Progress**, assigned to **Stefan Vukovic**, last updated 2026-08-11T07:30−0500.
+**Someone is already working on it.** **Nothing was filed, withdrawn, commented on or transitioned** —
+ticket changes are the QA lead's call and the creation hold is active.
+
+### Still unobserved, with the reason
+
+**`Change scope`** and **`Full estimate`** are **not in the picker or its tick-box sub-state at all**.
+They belong to the **multi-day spread step**, which is one level further on — **past the confirm button**.
+Reaching it means committing a real shift, and this pass deliberately escaped instead:
+**board verified 11 shifts, id sets equal both directions, 11 of 11 per-shift hashes identical, events 3,
+series 4, 0 added, 0 removed.** The route is known and the next pass can take it with cleanup planned.
+
+**Evidence:** `evidence/picker-substate.json`, `evidence/picker-substate.log`,
+`evidence/pick-01-picker.png`, `evidence/pick-02-select-multiple.png`, `evidence/pick-03-lines-ticked.png`.
+
+---
+
+## F14 · The four dialogs were NOT reached — and the reason is a new observation that needs one confirmation before anyone calls it a defect
+
+**Not closed. Reported honestly rather than dressed up.**
+
+**What happened:** the Roles & Permissions and Staff admin lists **render no rows**, so there was no row
+to click and no dialog to open. The Staff page shows **`Active(0)`** / **`Deactivated(0)`** and the
+empty-state string **`Empty bays, endless possibilities. Get Going!`** — while
+**`GET /api/staff?limit=200` returns 64 staff records**, read in this same session minutes earlier.
+
+**🛑 I AM NOT CALLING THAT A DEFECT, AND THE PRECONDITION RULE IS WHY.** Twice this session an
+"absence" turned out to be an artefact of the state I was standing in. Here there is a live, untested
+alternative explanation: **this page is reached through a hydrated SPA session**, and the request the
+list makes may be failing for a reason belonging to my harness rather than to the product — the three
+filters (`All Permissions`, `All Locations`, `All Departments`) are another candidate. **I did not
+isolate it, so I am not claiming it.**
+
+**What would settle it in one minute:** open `/administration/staff` in a normally signed-in browser. If
+the 64 staff appear, this is my harness and nothing more. If it is empty there too, it is a real defect
+worth a ticket — and a notable one, since it is the page an administrator manages people from.
+
+**Consequence for this pass:** **`Reset To Template`** (C38926), **`Time Clock`** (C30084),
+**`Add hours`** (C38850), **`Set business hours for this shop`** (C38847) and **`Set custom hours for
+this technician`** (C38848, C38849) remain **NOT OBSERVED**, with that reason recorded. **The routes are
+correct** (`/administration/roles-permissions`, `/administration/staff`, `/administration/locations` —
+F12); it is the row-level targeting that is blocked, and it is blocked by an empty list rather than by a
+selector I can improve.
+
+**Nothing was seeded to work around it.** Creating a staff member to populate a list that should already
+show 64 would have **manufactured the condition** rather than tested it — and it would have put a
+throwaway person into a shared org for no gain. Seeding was authorised; it was not the right tool here.
+
+---
+
 ## Deviations observed against the documents
 
 **⚠️ THE PARAGRAPH THAT STOOD HERE IS SUPERSEDED AND IS KEPT DATED RATHER THAN DELETED.** It read:
