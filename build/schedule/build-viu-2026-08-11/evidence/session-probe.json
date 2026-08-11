@@ -1,0 +1,99 @@
+{
+  "purpose": "Session and reachability probe for the Schedule build VIU, 2026-08-11 (third attempt).",
+  "cookie_set": "/tmp/qa-cookies/schedule-cookie-header.txt (secrets live in /tmp only; never committed)",
+  "cookie_shape_validated": {
+    "pairs": 3,
+    "names": [
+      "PHPSESSID",
+      "sv_sso_session",
+      "cf_clearance"
+    ],
+    "has_Cookie_prefix": false,
+    "single_line": true,
+    "note": "Header built with '; '.join \u2014 playbook \u00a7A trap 3 ruled out before any conclusion was drawn."
+  },
+  "api_host_probes": [
+    {
+      "utc": "2026-08-11T13:16:21Z",
+      "host": "sv8685api.qa.shopview.com",
+      "path": "/api/auth/me/fe-permissions",
+      "http": 409,
+      "body": "{\"errors\":[{\"error\":\"Session has expired.\"}]}"
+    },
+    {
+      "utc": "2026-08-11T13:17",
+      "host": "sv8685api.qa.shopview.com",
+      "path": "/api/auth/me/fe-permissions",
+      "http": 409,
+      "repeats": 3,
+      "note": "not transient"
+    },
+    {
+      "utc": "2026-08-11T13:17",
+      "host": "sv8685api.qa.shopview.com",
+      "path": "/api/staff/my-workplaces",
+      "http": 409
+    },
+    {
+      "utc": "2026-08-11T13:17",
+      "host": "sv8685api.qa.shopview.com",
+      "path": "/api/organizations/settings",
+      "http": 409
+    },
+    {
+      "utc": "2026-08-11T13:17",
+      "host": "sv8685api.qa.shopview.com",
+      "path": "/api/schedule/board",
+      "http": 409
+    },
+    {
+      "utc": "2026-08-11T13:18:46Z",
+      "host": "sv8685api.qa.shopview.com",
+      "path": "/api/auth/me/fe-permissions",
+      "http": 409,
+      "note": "re-probed AFTER the QA lead set the default location \u2014 unchanged"
+    }
+  ],
+  "cross_branch_probe_same_set": {
+    "sv8685api": 409,
+    "sv8785api": 409,
+    "sv8582api": 409,
+    "reading": "409 on all three, never 401 \u2014 so the SHARED sv_sso_session is NOT dead; the session record behind this PHPSESSID has been invalidated."
+  },
+  "older_reports_set_for_contrast": {
+    "sv8685api": 401,
+    "sv8785api": 401,
+    "sv8582api": 401,
+    "body": "{\"error\":\"sso_required\", ...}",
+    "reading": "That is what a genuinely dead shared token looks like. Ours does not look like that."
+  },
+  "refusal_provenance": {
+    "http": 409,
+    "content_type": "application/problem+json",
+    "server": "nginx/1.30.4",
+    "reading": "The app's own JSON error, so the request REACHED the application. Cloudflare would return an HTML challenge, so cf_clearance is ruled out."
+  },
+  "cf_clearance_sanity": {
+    "app_host_index_html": 200
+  },
+  "unauthenticated_endpoint_reachable": {
+    "path": "/api/quick-login/users",
+    "http": 200,
+    "note": "Observed passively in the browser run; NOT called by us. Confirms the estate is up."
+  },
+  "quick_login_called": false,
+  "switch_user_called": false,
+  "browser_landing": {
+    "asked_for": "https://sv8685.qa.shopview.com/schedule",
+    "landed_on": "https://sv8685.qa.shopview.com/login?redirect=/schedule",
+    "title": "Login | ShopView",
+    "navigations": [
+      "https://sv8685.qa.shopview.com/schedule",
+      "https://sv8685.qa.shopview.com/schedule",
+      "https://sv8685.qa.shopview.com/login?redirect=/schedule"
+    ],
+    "screenshot": "evidence/step0-landing.png",
+    "reading": "NOT /administration/locations. The location bounce is GONE. It is now the sign-in page."
+  },
+  "read_at_utc": "2026-08-11T13:20:24.490Z"
+}

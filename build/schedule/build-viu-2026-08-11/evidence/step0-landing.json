@@ -1,12 +1,25 @@
 {
   "asked_for": "https://sv8685.qa.shopview.com/schedule",
-  "landed_on": "about:blank",
-  "title": null,
-  "error": "Error: page.goto: net::ERR_CONNECTION_RESET at https://sv8685.qa.shopview.com/schedule\nCall log:\n\u001b[2m  - navigating to \"https://sv8685.qa.shopview.com/schedule\", waiting until \"domcontentloaded\"\u001b[22m\n",
+  "landed_on": "https://sv8685.qa.shopview.com/login?redirect=/schedule",
+  "title": "Login | ShopView",
+  "error": null,
   "navigations": [
-    "chrome-error://chromewebdata/"
+    "https://sv8685.qa.shopview.com/schedule",
+    "https://sv8685.qa.shopview.com/schedule",
+    "https://sv8685.qa.shopview.com/login?redirect=/schedule"
   ],
-  "api_calls": [],
-  "body_text_first_3000": "",
-  "read_at_utc": "2026-08-11T13:18:38.184Z"
+  "api_calls": [
+    {
+      "m": "GET",
+      "s": 404,
+      "u": "/api/api/sso/check"
+    },
+    {
+      "m": "GET",
+      "s": 200,
+      "u": "/api/quick-login/users"
+    }
+  ],
+  "body_text_first_4000": "light_mode\nLight\ndark_mode\nDark\n\nSign in to your account to continue\n\nEmail\nPassword\nvisibility\nLogin\nForgot password?\nscience\nDEV MODE — QUICK LOGIN\ninfo\nadmin_panel_settings\nAdmin\nschedule\nTech\nPrivacy Policy · Terms of Use",
+  "read_at_utc": "2026-08-11T13:20:24.490Z"
 }
