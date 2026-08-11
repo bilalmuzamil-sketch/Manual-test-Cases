@@ -206,13 +206,23 @@ shift them one day would have been churn on cases with nothing wrong with them.
 (Rule 57), and this pass changed no expectation, no step and no precondition — the single exception
 being C30288's missing marker and provenance version, both additive.
 
-The Rule-41 whole-case re-read of all 343 cases found **no case whose assertion no longer matches
-its requirement**. That is a genuinely expected result rather than a lucky one: the spec-delta pass
-finished about half an hour before this one, having just re-derived coverage against these same six
-live versions and repaired 24 cases. Had this pass found assertion-level drift, it would have been
-recorded here and left for that pass's owner rather than fixed across it.
+**What the Rule-41 re-read on all 343 cases actually checked — stated precisely, because the
+distinction matters.** Every field was re-read (title · preconditions · steps · expected results ·
+refs · section · type), and each case was checked for: every anchor it cites still existing in the
+live specification body it now names, raw markup, CRLF, title length, and exactly one automation
+marker. All 343 came back clean on every one of those: **0 orphaned anchors, 0 raw markup, 0 CRLF,
+0 titles over 80 characters, 0 missing markers.**
 
-Also clean across all 343: **0 raw markup**, **0 CRLF**, **0 titles over 80 characters**.
+**It was NOT a semantic re-derivation of each assertion against its requirement, and this pass does
+not claim one.** That is the spec-delta pass's job, and it finished about half an hour before this
+one having done exactly that against these same six live versions, verdicting 14 requirement deltas
+and repairing 24 cases. Re-doing it here would have cut across work that was already current, and
+**had this pass found assertion-level drift it would have been recorded in this file and left for
+that pass's owner rather than fixed unilaterally** — a version pin is not a licence to change an
+expectation.
+
+So the honest statement is: **nothing in the structural re-read flagged a case as wrong, and no
+assertion-level claim is being made either way.**
 
 ---
 
