@@ -225,10 +225,60 @@ def main():
 
     # ================================================== post-batch
     say(f"\n[{now()}] --- POST-BATCH: whole-suite re-read + invariant census ---")
+    new_ids = [c2 for _, c2 in created]
     post_all = {c["id"]: c for c in tr.get_cases(1, 1)
-                if c["id"] in pre_all or c["id"] in [c2 for _, c2 in created]}
+                if c["id"] in pre_all or c["id"] in new_ids}
     json.dump(sorted(post_all.values(), key=lambda c: c["id"]),
               open(f"{OUT}/POST-schedule-cases.json", "w"), indent=1, sort_keys=True)
+    say(f"  live Schedule cases now: {len(post_all)} (was {len(pre_all)}, +{len(new_ids)})")
+
+    # untouched-proof BY CONTENT, INCLUDING updated_on / updated_by (Rule 50; a timestamp
+    # is context, never evidence -- 14 Report Suite cases once changed text with the
+    # timestamp frozen, so content is compared as well, both ways)
+    written = set(targets)
+    moved = []
+    for cid, before in pre_all.items():
+        if cid in written:
+            continue
+        after = post_all.get(cid)
+        if after is None:
+            moved.append((cid, "DISAPPEARED"))
+            continue
+        d = [k for k in set(before) | set(after) if before.get(k) != after.get(k)]
+        if d:
+            moved.append((cid, d))
+    say(f"  untouched cases proven byte-identical (all fields incl. updated_on/updated_by): "
+        f"{len(pre_all) - len(written) - len(moved)} of {len(pre_all) - len(written)}"
+        + (f" -- MOVED: {moved}" if moved else " -- 0 moved"))
+
+    # invariant census on the TOUCHED cases (the C30341 lesson)
+    import re
+    MARK = re.compile(r"<(ol|li|p|br|hr|a |strong|em|div|span)", re.I)
+    cens = []
+    for cid in sorted(written | set(new_ids)):
+        c = post_all[cid]
+        e = c["custom_expected"] or ""
+        cens.append((cid,
+                     e.count("This is the expected behaviour as per"),
+                     len(re.findall(r"^AUTOMATION: ", e, re.M)),
+                     any(MARK.search(c.get(f) or "")
+                         for f in ("title", "custom_preconds", "custom_steps",
+                                   "custom_expected"))))
+    bad = [x for x in cens if x[1] != 1 or x[2] != 1 or x[3]]
+    say("  census of the %d touched/created cases: exactly ONE provenance line each: %s | "
+        "exactly ONE automation marker each: %s | raw markup: %d"
+        % (len(cens), all(x[1] == 1 for x in cens), all(x[2] == 1 for x in cens),
+           sum(1 for x in cens if x[3])))
+    if bad:
+        raise SystemExit(f"INVARIANT CENSUS FAILED: {bad}")
+
+    # whole-suite raw-markup census (playbook DECLARED HAZARD #5 -- deferred render)
+    allbad = [c["id"] for c in post_all.values()
+              if any(MARK.search(c.get(f) or "")
+                     for f in ("title", "custom_preconds", "custom_steps",
+                               "custom_expected"))]
+    say(f"  whole-suite raw-markup census: {len(allbad)} of {len(post_all)} "
+        f"{allbad if allbad else ''}")
     v_end, sha_end = source_recheck("write-end")
     say(f"  spec at write end: v{v_end}, sha {'IDENTICAL' if sha_end == EXPECT_SHA else 'MOVED'}")
     return created, ops, atm_at_write
