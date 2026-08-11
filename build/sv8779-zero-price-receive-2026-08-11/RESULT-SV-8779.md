@@ -117,3 +117,43 @@ same way, which is the complication described above.
 - Nothing was cleaned up on the QA branch, per the standing rule that per-ticket QA branches are
   disposable. On **production**, four `ZZAUTOTEST` work orders were created and left in place; they are
   in the disposable test organisation and none of them was invoiced or paid.
+
+---
+
+# CORRECTION AND RE-TEST — the QA lead's exact steps, on the right screen
+
+**My first pass used the wrong receive screen.** I received from the `/accept-delivery` page. The
+steps are: on the part's row press **Receive**, which opens the **Receive Parts** view
+(`/order/{orderId}?receive=1&…`) with an editable **Cost** and **Sell** column per row — the sell
+price is on that screen, which is the point. Re-tested there.
+
+**What the Receive Parts view shows:** the ordered part with **Sell = 0**, a Quantity Received box,
+an invoice number field, a tax field and a **Receive** button. Screenshot
+`RECEIVE-VIEW-sell-price-column-zero.png`.
+
+**The A/B, through the exact call that screen makes** (`POST /api/inventory/orders/receive-view` to
+build the payload, then `POST /api/inventory/orders/accept`), same purchase order, same session,
+seconds apart, only the sell price different:
+
+| | Part | Sell | Cost | Result |
+|---|---|---|---|---|
+| **A — the ticket** | ZZ-SPO-ZERO | **$0** | $0.01 | 🔴 **HTTP 500** · `c6bb7e02-f7f6-4476-92c7-807a47bd8b6f` |
+| **B — control** | ZZ-SV8779-ZERO | **$25** | $0 | 🔴 **HTTP 500** · `66061036-a226-4d91-b1ac-2cef0218e25c` |
+
+Both parts stayed at **Awaiting**; neither was received.
+
+**So the conclusion is unchanged, and now it rests on the correct screen:** on
+`sv8779.qa.shopview.com` build `v3.5-bda953b`, **a $0 part cannot be received — the ticket's symptom
+is not fixed** — and a priced part fails identically, so the failure is not $0-specific on this
+branch.
+
+**One thing I could not drive and am not claiming either way:** in the UI the row's selection
+checkbox would not tick under automation (clicked as the visible element, as the inner element, and
+via a direct DOM click), and the **Receive** button stays disabled while no row is selected. I cannot
+tell whether that is real product behaviour or my tooling failing on that component, so it is
+recorded as unknown rather than as a finding. The endpoint result above does not depend on it.
+
+**Also learned, worth keeping:** `POST /api/work-orders/part/change-request` rejects `cost: 0` with
+*"Cost is required"* — a cost above zero is required even when the **sell** price is zero. And the
+accept payload needs **`quantity_received`** and **`total`** on each item; without them the call
+returns *"Nothing to receive."*
