@@ -471,10 +471,19 @@ measured when.
 | **[C43589](https://shopview.testrail.io/index.php?/cases/view/43589)** *"In dark mode pop-up windows still look raised above the page"* — **NEW** | **LEGITIMATE** | v27 §11: *"elevation/shadow tokens also swap so **depth reads correctly on dark surfaces**."* |
 | **C43582–C43587** — the six §5.3 panel cases: **note text only, assertions byte-identical** | **LEGITIMATE — a defect fix** | The *"steps 1 to 8"* error is **REPAIRED**: the six now read **1 to 7 · 1 to 6 · 1 to 7 · 1 to 4 · 1 to 5 · 1 to 7**, matching their real step counts exactly. Verified live. |
 
-**SO THE CLASS COUNTS FOR THE 176-CASE SUITE ARE: UNCHANGED 169 · LEGITIMATE SOURCE-DRIVEN 6 ·
+**SO THE CLASS COUNTS FOR THE 176-CASE SUITE ARE: UNCHANGED 168 · LEGITIMATE SOURCE-DRIVEN 7 ·
 LEGITIMATE LABEL WORK 0 · WEAKENED 0 live · BUILD-DERIVED 1 live.** The two new cases enter as
-UNCHANGED-by-construction (no history), and **C29998 moves from UNCHANGED to LEGITIMATE
-SOURCE-DRIVEN.** **The one live finding, C29944, is untouched by the sibling's push and stands.**
+UNCHANGED-by-construction (no history), and **C29998 moves OUT of UNCHANGED into LEGITIMATE
+SOURCE-DRIVEN**, so: 167 + 2 − 1 = **168** unchanged, 6 + 1 = **7** source-driven, **1** build-derived.
+**The gate: 168 + 7 + 1 = 176 ✔.** **The one live finding, C29944, is untouched by the sibling's push and
+stands.**
+
+**⚠️ ARITHMETIC CORRECTION, RECORDED RATHER THAN QUIETLY FIXED (Rule 50 — a figure that fails its own gate
+is a finding).** This paragraph first read **"UNCHANGED 169 · LEGITIMATE SOURCE-DRIVEN 6"**. That summed to
+176 and was still **WRONG**: it added the two new cases to UNCHANGED but **forgot to move C29998 out of
+it**, which the very next sentence said had happened — so the text contradicted its own numbers. **The
+per-case classifications were right; only the roll-up was wrong**, and it was caught by re-deriving the
+split from the 174-case counts rather than by re-reading the prose.
 
 **⚠️ AND ONE STAGED ITEM OF THIS PASS IS THEREBY DISCHARGED BEFORE IT WAS EVER PROPOSED: `R2` (the six
 panel cases' wrong step count) is FIXED.** It is kept in `STAGED-REPAIRS.md`, marked DISCHARGED with the
