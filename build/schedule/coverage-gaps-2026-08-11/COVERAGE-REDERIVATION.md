@@ -97,7 +97,7 @@ there*; it cannot prove a rewrite did not **weaken an assertion while keeping it
 mode Rule 57 warns about, where steps are VIU'd correctly and the expectation quietly bends. Detecting
 that needs a per-case diff of the expectation body against its cited source across the intervening
 commits, which is a Rule-41 forensic pass over 174 cases and is **not what this pass was asked for**. It
-is recorded as an outstanding risk in `FINDINGS.md` §7 rather than left unsaid.
+is recorded as an outstanding risk in `DELIBERATE-DECISIONS.md` **D6** (risk MEDIUM) rather than left unsaid.
 
 ---
 
@@ -179,7 +179,7 @@ is now asserted, and the case even names the version that narrowed it.
 **The dating confirms the direction of the change is right (Rule 31 trap (c)):** `per-assigned technician`
 first appears at **v26, 2026-08-07T11:02:57Z**; the wording it replaced, `a per-technician breakdown`, was
 present in **v1 and every version to v25**. **So the new wording is genuinely the newer source and Rule 32
-points forwards.** Two honest riders in `FINDINGS.md` §4: **v26 carries no version comment**, so nothing
+points forwards.** Two honest riders, recorded in `DELIBERATE-DECISIONS.md` **D8**: **v26 carries no version comment**, so nothing
 announced it; and the 2026-08-10 pass recommended **holding this edit until Branko confirmed it was not a
 typo** — it was applied without that confirmation. The edit is **defensible under Rule 57** (the spec is
 the source and this is its current text), the residual risk is **LOW**, and the one-row question stands.
@@ -284,7 +284,7 @@ is already **Tab 2 Item 1.0** of the 6 August sheet and **needs no new question 
 | **Cases citing a § that no longer exists in v27** | **0** |
 | Cases with no § anchor at all | **2** — both deliberate, both declared on the case |
 | **Cases stamped with a stale specification version** | **0** — was 168 on 2026-08-10 |
-| Cases whose provenance names a source that does not support the assertion | **3** — was 5; **the three that mattered have been FIXED** since 2026-08-10, 2 mild ones remain, and **1 new one was found this pass** — see `FINDINGS.md` §6 |
+| Cases whose provenance names a source that does not support the assertion | **3** — was 5; **the three that mattered have been FIXED** since 2026-08-10, 2 mild ones remain, and **1 new one was found this pass** — see §8 below |
 | Requirement-bearing spec sections with **no** case anchored | **7** — §1, §1.1, §2, §5, §8, §13, §15 |
 
 **All 33 requirement-bearing sections of v27 now have at least one case anchored to them.** §5.3 has
@@ -334,3 +334,77 @@ GOAL **4** · **PROTOTYPE-STATEMENT 1** (new — §5.3-L195.A1).
 (Rule 12), and separately **the Rule-49 queue at `build/schedule/full-viu-2026-08-05/RECHECK-QUEUE.md` is
 OPEN** with **0 of 174 cases build-verified against the build now running** — the branch is final since
 2026-08-11, so those are real outstanding verifications, not hedges.
+
+---
+
+## 8 · DIRECTION 2 detail — provenance lines that name a source not supporting the assertion
+
+The 2026-08-10 pass found five cases whose tester-facing provenance named a source that did not support
+the assertion. That is worse than no provenance, because it manufactures false authority (Rule 54's
+honesty clause). **All five were re-read live today.**
+
+| Case | Status now, 2026-08-11 |
+|---|---|
+| **SCH-EDGE-07 = [C38865](https://shopview.testrail.io/index.php?/cases/view/38865)** | **FIXED.** Now says outright *"That specification says nothing about clock changes or daylight saving - those words do not appear in it at all - so the point above comes from the engineering technical plan"*, with the file link. |
+| **SCH-DEL-10 = [C38864](https://shopview.testrail.io/index.php?/cases/view/38864)** | **FIXED.** Names §7 for the toast and Undo, and the technical plan for the save-immediately half. |
+| **SCH-API-01 = [C38872](https://shopview.testrail.io/index.php?/cases/view/38872)** | **FIXED.** Names §14 for the permission tiers and the technical plan for the refusal responses. |
+| **SCH-WOL-06 = [C29941](https://shopview.testrail.io/index.php?/cases/view/29941)** | **still under-cites.** Its `refs` admit *"(derived - search behavior with no matches)"*; its provenance names §3.1 flatly. **Mild** — the derivation is sound. |
+| **SCH-DEL-06 = [C30062](https://shopview.testrail.io/index.php?/cases/view/30062)** | **still under-cites.** Same shape: the `refs` say *"derived"*, the provenance does not. **Mild.** |
+
+**So the three that mattered are fixed and two mild ones remain.** Recorded as cleared rather than quietly
+dropped.
+
+### NEW this pass, and it is the sharper kind
+
+**SCH-EDGE-08 = [C38866](https://shopview.testrail.io/index.php?/cases/view/38866) cites the EPIC when a
+story states its requirement almost verbatim.** Its provenance names *"epic SV-8685 and the Schedule
+specification version 27 (§11)"*, but **[SV-8700](https://shopview.atlassian.net/browse/SV-8700)
+requirement 5** reads: *"Dark theme: built on design-system color tokens. Surfaces, borders, text,
+accents, and elevation/shadow tokens remap automatically. **User-selectable from user menu, persisted per
+user.**"* **Rule 20 requires per-story precision**; the epic is reserved for a genuinely cross-cutting case
+with no single-story owner, and **this one has an owner**. The two staged cases cite **SV-8700**.
+
+**And a second, worse problem on the same case: its `refs` CLAIM an assertion its steps do not make.**
+`SV-8685 (§11 (Dark theme - user-selectable Light / Dark,persisted per user))` — while **its four steps
+never sign out and back in.** The case asserts **less than its own reference says it does**, which is
+precisely why `§11-L303.A1` is still a gap. `SCH-EDGE-09` closes the coverage; **correcting C38866's own
+`refs` and provenance is a separate write nobody has authorised and is deliberately NOT in the staged
+pack** (`NEW-CASES.md` §"what is NOT in the pack").
+
+---
+
+## 9 · Two defects in our own text, reported and NOT fixed — this pass makes no writes
+
+**(a) All six new panel cases tell the tester that "steps 1 to 8 cannot be carried out" — and five of them
+do not have eight steps.** Measured live: real step counts are **7 · 6 · 7 · 4 · 5 · 7** for
+C43582–C43587. The sentence was copied from C43582 (which has eight *expected results*, not steps) onto all
+six. **It is our own text confusing a tester, and it is the kind of thing a reviewer notices first.**
+Fix: 6 `update_case`, one sentence each. `DELIBERATE-DECISIONS.md` **D10**.
+
+**(b) 148 of 174 cases carry no Rule-54 read-on date.** The amendment of 2026-08-11 requires the date each
+source was read, per source; **26 of 174 have it.** Until the sweep runs, **no Schedule pass may describe
+the suite as compliant with that amendment** — and the three staged cases here do carry theirs, so the two
+states will coexist. Fix: 148 `update_case`. `DELIBERATE-DECISIONS.md` **D11**.
+
+**(c) `build/schedule/panel-collapse-2026-08-11/NEW-CASES.md` is stale against the cases it describes.**
+It states all six carry `AUTOMATION: HOLD - the panel collapse control is not in the build`; **live, all six
+carry `AUTOMATION: READY`** plus a run-as-written instruction, following the Rule-61 amendment made later
+the same day. **The cases are right and the document describing them is behind** — worth a one-line banner
+so the next reader is not misled.
+
+---
+
+## 10 · AUTOMATED CASES CHANGED — FOR VLAD (Standing Rule 65)
+
+**None.**
+
+**This pass changed no test case at all** — zero `add_case`, zero `update_case`, zero `delete_case` — and on
+today's live reading **all 174 Schedule cases carry `custom_atmstatus = 1`**, so **not one Schedule case is
+flagged Automated in TestRail** and there is nothing for Vlad to adjust from this pass either way.
+
+**The section is written even though the answer is "none", because omitting it is how a reader loses the
+ability to tell "clear" from "we forgot to look".**
+
+**⚠️ For whoever pushes the staged pack: capture `custom_atmstatus` AT WRITE TIME, not from this file.**
+The flag moves both ways — C29600 went `1 → 3 → 1 → 3` on another project — so a value read today is not
+evidence about a value tomorrow.

@@ -23,7 +23,7 @@
 | **B** | **The build** | `https://sv8685.qa.shopview.com` | **NOT OBSERVED THIS PASS** | — | **NOT APPLICABLE, deliberately and declared.** A coverage question is entirely document-side (Rule 57): the build supplies labels and the verdict, never the expectation. **No behaviour is claimed or implied anywhere in this pass** (Rule 12). `quick-login` and `switch-user` were **not called** — they rotate the shared session and siblings are live on this estate. |
 | **C** | **The epic and its child stories** | Jira epic **SV-8685** | **24 direct children**, verified two independent ways — `parent = SV-8685` → **24** and `"Epic Link" = SV-8685` → **24**, key sets equal, `hasNextPage` **false**, no paging remainder (Rule 37 Tier-1) | 2026-08-11 | **CURRENT.** The **15-story set is unchanged** since 2026-08-10. One status moved: **SV-8921 Open → OBSOLETE**. **No full re-read was performed and none was asked for** (Rule 37 Tier-2 is user-gated). |
 | **D** | **The designs** | Claude prototype `Schedule.dc.html` (Branko's Q0 artefact, ingested at `build/schedule/design-2026-07-27/`) · the live share link `claude.ai/design/p/d3cdcf5c-…?file=Schedule.dc.html&via=share` cited by SV-8915/8916/8917 · **and now by story SV-8700's own UI/UX field** | prototype: **no version, no date**; share link: **no version, no date, live and editable** | 2026-08-11 | **PARTIAL — and materially so.** Exact shortfall: **we cannot date the share link at all**, so Rule 32's latest-wins cannot be applied to it (Rule 57 follow-up (i)); we cannot tell whether it is the artefact we hold; and **~48 of our Schedule labels were pinned from the prototype**. Design is an authoritative source since 2026-08-06, which makes this **bigger** than it was, not smaller. **Not fetched this pass** — it is not needed for a requirement→case map, and fetching an undated artefact would not make it datable. |
-| **E** | **The engineering tech plan** | `build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md` | **2026-07-29**, as supplied | 2026-08-11 | **PARTIAL — no newer version supplied and no way to check for one.** It is a file we were given, not a source we can re-fetch, so "current" cannot be asserted (Rule 12). **Five cases rest on it** and five provenance lines still under-cite it (see `FINDINGS.md` §6). |
+| **E** | **The engineering tech plan** | `build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md` | **2026-07-29**, as supplied | 2026-08-11 | **PARTIAL — no newer version supplied and no way to check for one.** It is a file we were given, not a source we can re-fetch, so "current" cannot be asserted (Rule 12). **Five cases rest on it**; of the five provenance lines that under-cited it on 2026-08-10, **three are now fixed and two mild ones remain** (`COVERAGE-REDERIVATION.md` §8). |
 | **F** | **The two shared `.md` files** | `af54d7ba-Schedule_scheduledesignreview20260805.md` (Fabian / Sasha, **dated Aug 5 2026** in its own header) · `ed9bc33e-FIlters_HANDOVERAppWideFilterRedesign.md` (Filters — **not a Schedule source**) | design review: **Aug 5 2026** · handover: no version, no date | 2026-08-11 | **CURRENT as artefacts · PARTIAL as scope decisions.** Ingested 2026-08-10 at `build/handover-ingest-2026-08-10/` — 21 testable statements, one verdict row each. **Not re-ingested here; carried, and declared as carried.** Source (g) of Rule 57 since 2026-08-10. |
 | **G** | **PO / stakeholder answers and messages** | Branko's recorded answers · the **6 August question sheet** · SV-8915 (OBSOLETE) / SV-8916 (Blocked) / SV-8917 (TESTING QA) · the two clarification Tasks SV-8992 and SV-9020 | 6 August sheet **written and STILL NOT SENT** | 2026-08-11 | **CURRENT as a record — and the largest item in it has never left our hands.** `build/filters/questions-2026-08-06/` holds **20 items, 8 of them Schedule**. **The blocker is us, not Branko**, and three of our cases say so in their own automation markers. |
 
@@ -84,7 +84,7 @@ page's version number:**
    stood for 25 versions, so following it is Rule 32 pointing forwards, not backwards.
 3. **The shop-closure contradiction is NOT symmetrical, which nobody had established.** §12's sentence
    dates to **v1**; §4.5's *"not skipped in V1"* was **added at v22, twelve days later**, and Branko has
-   edited the page **five times since** without removing either. See `FINDINGS.md` §5 — it lowers the risk
+   edited the page **five times since** without removing either. See `COVERAGE-REDERIVATION.md` §5 — it lowers the risk
    on two held cases without resolving the question.
 
 **Versions 10, 12 and 14 are truncated partial saves** (7,314 / 8,632 / 5,918 chars against ~40,000 for
@@ -118,7 +118,7 @@ automatically. User-selectable from user menu, persisted per user."* — and its
 *"Given dark theme is selected, when viewing the schedule, then all surfaces, text, and borders use
 dark-mode design tokens."* **So the owning story for the dark-theme gaps is SV-8700, not the epic**, and
 the two staged cases cite it. Our existing dark-theme case C38866 cites only the epic; that is a
-provenance under-citation, recorded in `FINDINGS.md` §6.
+provenance under-citation, recorded in `COVERAGE-REDERIVATION.md` §8 and `DELIBERATE-DECISIONS.md`.
 
 ---
 
