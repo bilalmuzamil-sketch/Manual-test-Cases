@@ -20,10 +20,16 @@ examples at all** (0 hits for `e.g.` / `for example` / `such as` / `i.e.` across
 ## 🔴 STATUS OF THIS FILE
 
 **No build/case mismatch could be assessed, because the build was never observed** — the session died
-14 minutes in. **Classes A and C cannot be decided at all without a live read.**
+14 minutes in.
 
-What *is* below is everything decidable **from the documents alone**: mismatches inside our own suite,
-and mismatches between our cases and the specification. **Nothing here was written to TestRail.**
+**And §2 establishes something that makes that blockage total rather than partial: the Schedule
+specification contains NO requirement that pins a label's wording, so there are ZERO class-B labels
+in this suite. Every one of the 85 asserted strings is class A or C, and the build decides all of
+them.** There is no subset that could have been settled from the documents.
+
+What *is* below is therefore everything decidable **from the documents alone**: mismatches **inside
+our own suite** (real defects whichever way the build falls), and the rows worth checking first.
+**Nothing here was written to TestRail.**
 
 ---
 
@@ -56,7 +62,7 @@ something that does not exist under that name.**
 | **Our text** | **C30042** (expected): *"the dropdown … contains: a toggle per department, 'My Shifts', and **'VIN'**"*; *"Defaults: … **'VIN'** OFF."* |
 | **Our text** | **C30045** (title + steps + expected): *"**'VIN Number'** toggle gates the block VIN only"* · **C30034** (expected): *"regardless of the **'VIN Number'** toggle"* |
 | **The document** | **§9 View options** lists the toggle as **`VIN`** (bare). **§6**: *"combining department visibility toggles, My Shifts, and **VIN**."* — **§4.4 uses "VIN number" for the LINE CONTENT, not the toggle**: *"Line 3 (optional): **VIN number**, visible only when the **VIN** toggle is on…"* |
-| **Class** | **B candidate** for C30034/C30045 (both assert it in **Expected Results**, and §9 pins the toggle's name). |
+| **Class** | **C** for C30034/C30045 (Expected Results) and **A** for C30045's title/steps. **§9 does not PIN the name — it lists the toggle to identify it, which is a locator (see §2), so the build decides.** |
 | **Verdict** | **PENDING.** On the document, **C30042 matches the spec** and **C30034/C30045 do not**. But CLAUDE.md records a **design** pin — *"VIEW-04 'VIN Number' toggle = block-only"* from the 2026-07-22 design reconciliation — and since 2026-08-06 **the design is an authoritative source too (Rule 57 as amended)**. **So this is a PRD-vs-design divergence, which Rule 57 says is RAISED, not silently resolved.** Dating it needs the §9 text diffed across versions (Rule 31 trap (c)) — **not done, and not guessed.** |
 
 **Links:** [C30034](https://shopview.testrail.io/index.php?/cases/view/30034) ·
@@ -72,31 +78,63 @@ direction) → build decides. **Not changed.**
 
 ---
 
-## 2 · OUR CAPITALISATION vs THE SPECIFICATION — 9 strings, class-B candidates
+## 2 · OUR CAPITALISATION vs THE SPECIFICATION — 9 strings
 
-These are the **Report Suite C30452 shape**: our case asserts a capitalisation the document does not
-use. **Where the string sits in Expected Results and a requirement pins it, the spec governs and the
-case is the thing that is wrong.**
+### ⚠️ FIRST, A CORRECTION TO THIS FILE'S OWN EARLIER REASONING
 
-| Our text | The spec v27 text | § | Cases | Field | Class |
+These nine were initially written up as **class-B candidates**, on the test *"the string appears in a
+numbered requirement, therefore the requirement pins it."* **That test is wrong, and the sibling
+Filters pass has the right one** (`build/filters/build-verify-2026-08-11/CLASSIFICATION.md`):
+
+> **A requirement that NAMES a control in order to IDENTIFY it, while asserting something else, is a
+> LOCATOR — class A or C, and the build's wording wins. Only a requirement that ARGUES FOR its own
+> string pins it — class B.**
+
+Their worked contrast is the clearest statement of it: Filters **S12-R6** names an *"Apply filters"*
+button while asserting *deferred apply* → **locator**; **S11-R7** says *"The label is deliberately
+'my view' rather than 'my filters', since the action affects both filters and search"* → **pinned**.
+
+**Applied to Schedule, the result is clean and it changes the answer:**
+
+**Spec v27 was searched for any requirement that argues for a label's wording** — `deliberately`,
+`rather than`, `the label is`, `labelled`, `must read`, `reads exactly`, `wording`, `is called`,
+`named`. **Six passages matched, and NOT ONE of them defends a string.** They read *"labeled with the
+line count and total hours"* (§4.3), *"labeled once at the start"* (§4.6), *"hidden rather than
+discarded"* (§5.3) — all describing **behaviour or content**, never defending an exact wording.
+
+> ## 🔴 **THERE ARE ZERO CLASS-B LABELS IN THE SCHEDULE SUITE.**
+> **Every label mention in specification v27 is a locator, so all 85 asserted strings are class A or
+> class C and THE BUILD DECIDES EVERY ONE OF THEM.** No label dispute in this suite can be settled
+> from the documents — which means **all 85 need a live read, and none was possible this pass.**
+
+**The nine below are therefore class A or C, not B** — our capitalisation is unsupported by any
+pinning requirement, and if the build shows Title Case then **our cases are simply right and there is
+nothing to change**. Kept in the table because they are the fastest rows to check first.
+
+| Our text | The spec v27 text (a **locator** in every row) | § | Cases | Field | Class |
 |---|---|---|---|---|---|
-| `Create Event` | **`Create event`** — §4.10 *"opens a menu with 'Create event' and 'New work order'"*; §7 *"Create event, New work order"* | 4.10, 7 | **C30016, C30017, C30054, C30075** (expected) + C30018, C38855 (preconds), C30077 (steps) | mixed | **B** for the 4 in expected |
+| `Create Event` | **`Create event`** — §4.10 *"opens a menu with 'Create event' and 'New work order'"*; §7 *"Create event, New work order"* | 4.10, 7 | **C30016, C30017, C30054, C30075** (expected) + C30018, C38855 (preconds), C30077 (steps) | mixed | **C** (expected) / **A** (steps, preconds) |
 | `New Work Order` | **`New work order`** — same two passages | 4.10, 7 | **C30054, C30075, C38855** (expected) | expected | **B** |
-| `VIN Number` | **`VIN`** (the toggle) | 9, 4.4 | C30034, C30045 | expected | **B** — see 1.2 |
-| `2 Lines` | lower-case in §4.3 | 4.3 | C29992 | expected | **B** |
-| `Reassign` | §4.10 / §14.1 wording | 4.10, 14.1 | C30015 | expected | **B** |
-| `Work Order Lines` | §3.1 wording | 1, 3.1 | C30011 | expected | **B** |
+| `VIN Number` | **`VIN`** (the toggle) | 9, 4.4 | C30034, C30045 | expected | **C** — see 1.2 |
+| `2 Lines` | lower-case in §4.3 | 4.3 | C29992 | expected | **C** |
+| `Reassign` | §4.10 / §14.1 wording | 4.10, 14.1 | C30015 | expected | **C** |
+| `Work Order Lines` | §3.1 wording | 1, 3.1 | C30011 | expected | **C** |
 | `Part of a series` | §8.1 wording | 8.1 | C43556 | preconds/steps | **A** |
 | `how much to schedule` | §4.5 wording | 4.5 | C29979 | steps | **A** |
 | `this shift only` | §7 | 7 | C30058 | steps | **A** |
 
-**NOTHING IN THIS TABLE WAS CHANGED, and that is deliberate.** The direct precedent is Report Suite
-**C30452**, which asserted the build's Title Case against the specification's lower case, contradicted
-five sibling cases, and **was left alone** — *"moving it means changing an expectation, which is his
-call."* The same reasoning holds here, with one addition: **a class-B repair needs the build read to
-confirm the build is what differs**, and that read did not happen.
+**NOTHING IN THIS TABLE WAS CHANGED**, and under the corrected test the reason is simpler and
+firmer than the one first written here: **these are class A and C rows, so the build's wording wins —
+and the build was never read.** Changing them from the documents would have been asserting a
+capitalisation no requirement defends.
 
-**These 7 class-B rows are the single largest ready-to-execute item waiting on a session.**
+**Note how the corrected test flips the likely outcome.** Under the original (wrong) class-B reading,
+seven of our cases looked like defects to be corrected *to the spec's lower case*. Under the correct
+reading, **if the build renders `Create Event` and `New Work Order` in Title Case, our cases are
+already right and nothing needs to change at all.** That is a materially different answer, and it is
+why the test matters rather than being a technicality.
+
+**These nine are the fastest rows to check the moment a session lands** — one page, one menu.
 
 ---
 

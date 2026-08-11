@@ -112,9 +112,19 @@ Each of the 85 was then tested against **live spec v27** (`tools/spec_partition.
 
 | Partition | Strings | What it means for the build pass |
 |---|---:|---|
-| **Spec pins the wording exactly** | **49** | Our text matches the document byte-for-byte. If the build differs and the string is in Expected Results, that is **class B — the case STANDS and the build deviates.** |
-| **Spec has it, our capitalisation differs** | **9** | **Class-B candidate defects in OUR cases** — see `CLASSIFICATION.md`. |
-| **Absent from the spec entirely** | **27** | No document pins these, so **the build decides outright**. Every one needs a live read. |
+| **Spec has it, byte-for-byte** | **49** | Our text matches the document exactly. |
+| **Spec has it, our capitalisation differs** | **9** | The fastest rows to check first — see `CLASSIFICATION.md` §2. |
+| **Absent from the spec entirely** | **27** | No document mentions these at all. |
+
+**🔴 AND THE PARTITION TURNS OUT NOT TO CHANGE WHO DECIDES — a finding in its own right.** Spec v27
+was searched for any requirement that **argues for** a label's wording rather than merely naming it
+to identify it (`deliberately`, `rather than`, `the label is`, `must read`, `reads exactly`,
+`wording`). **Six passages matched and NONE defends a string.** So **every label mention in the
+specification is a LOCATOR, there are ZERO class-B labels in this suite, and the BUILD decides all
+85** — no label dispute here is settleable from documents. The class test is the sibling Filters
+pass's (`build/filters/build-verify-2026-08-11/CLASSIFICATION.md`), and applying it **corrected an
+earlier conclusion of this pass**: nine strings first written up as class-B defects are class A/C,
+which flips their likely answer from *"our cases are wrong"* to *"our cases may already be right."*
 
 **Honesty about that 27:** it is not 27 clean labels. **6 are test-data names** (`Vuchester Retail`,
 `Andrew Wade`, `zzzxq999`, `ZZAUTOTEST Rush`, `ZZAUTOTEST note`, `ZZAUTOTEST stand-up`) which need an

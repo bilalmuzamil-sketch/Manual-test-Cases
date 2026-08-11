@@ -51,6 +51,10 @@ rests on the build now running** (90 on `v3.5-7ec992f`, 78 on `v3.5-d122eef` whi
    of 85 distinct strings across 82 cases, tagged by field; `evidence/partition.json` splits them
    **49 spec-exact / 9 capitalisation-differs / 27 absent-from-spec**. Harvest the page vocabulary,
    diff, and classify with `CLASSIFICATION.md`'s A/B/C table.
+   **⚠️ Read `CLASSIFICATION.md` §2 before classifying anything: the Schedule specification pins NO
+   label wording, so there are ZERO class-B labels and the BUILD decides all 85.** Do not re-derive
+   the wrong test — "the string appears in a numbered requirement" is NOT pinning; only a requirement
+   that ARGUES for its own string pins it. Start with the 9 capitalisation rows (one page, one menu).
 4. **Settle the two internal clashes** (`CLASSIFICATION.md` §1) — `Filter & Display` vs
    `Filter and Display`, and `VIN` vs `VIN Number`. Both are class A, so the build decides; both are
    defects in our suite whichever way it falls.

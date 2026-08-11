@@ -32,12 +32,24 @@ against `VIN Number` (C30034, C30045). **At most one of each pair can be right**
 case sends the tester after a control that does not exist under that name. Both texts quoted side by
 side in `CLASSIFICATION.md` §1. **Needs a live read to settle (class A).**
 
-### F3 · Seven cases assert a capitalisation the specification does not use
+### F3 · The Schedule specification pins NO label wording at all — so the build decides all 85
 
-`Create Event` and `New Work Order` in the **Expected Results** of C30016, C30017, C30054, C30075 and
-C38855, against the spec's **`Create event`** / **`New work order`** in §4.10 and §7. **Class B — the
-document governs.** Left unchanged, following the Report Suite C30452 precedent. Full table in
-`CLASSIFICATION.md` §2.
+Searched v27 for any requirement that **argues for** a string (`deliberately`, `rather than`,
+`the label is`, `must read`, `reads exactly`, `wording`, `is called`, `named`). **Six passages
+matched and none defends a wording** — they say *"labeled with the line count and total hours"*
+(§4.3), *"labeled once at the start"* (§4.6), *"hidden rather than discarded"* (§5.3), which describe
+behaviour, not text.
+
+**So every label mention in the specification is a LOCATOR, there are ZERO class-B labels, and no
+label dispute in this suite can be settled from the documents.** All 85 need a live read.
+
+**This corrected an earlier conclusion of this very pass.** Nine strings — `Create Event` and
+`New Work Order` in the Expected Results of C30016, C30017, C30054, C30075 and C38855 among them —
+were first written up as class-B defects to be corrected *to the spec's lower case*. Under the
+correct test they are class A/C, which **flips the likely answer entirely: if the build renders Title
+Case, our cases are already right and nothing needs changing.** The better test comes from the
+sibling Filters pass (`build/filters/build-verify-2026-08-11/CLASSIFICATION.md`), whose S12-R6
+locator vs S11-R7 pinned contrast states it exactly. Full table in `CLASSIFICATION.md` §2.
 
 ### F4 · A PRD-vs-design divergence on the VIN toggle's name
 
