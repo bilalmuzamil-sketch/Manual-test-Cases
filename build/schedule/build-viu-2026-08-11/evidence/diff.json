@@ -1,28 +1,7 @@
 {
- "vocab_size": 371,
+ "vocab_size": 910,
  "testid_count": 103,
  "rows": [
-  {
-   "label": "Create Event",
-   "verdict": "ABSENT",
-   "build": null,
-   "cases": [
-    30016,
-    30017,
-    30018,
-    30054,
-    30075,
-    30077,
-    38855
-   ],
-   "fields": [
-    "custom_expected",
-    "custom_preconds",
-    "custom_steps",
-    "title"
-   ],
-   "placeholder": false
-  },
   {
    "label": "Schedule whole work order",
    "verdict": "ABSENT",
@@ -67,22 +46,6 @@
    "fields": [
     "custom_expected",
     "custom_steps"
-   ],
-   "placeholder": false
-  },
-  {
-   "label": "My Shifts",
-   "verdict": "ABSENT",
-   "build": null,
-   "cases": [
-    30042,
-    30044,
-    30082
-   ],
-   "fields": [
-    "custom_expected",
-    "custom_steps",
-    "title"
    ],
    "placeholder": false
   },
@@ -146,36 +109,6 @@
    "placeholder": true
   },
   {
-   "label": "+N more",
-   "verdict": "ABSENT",
-   "build": null,
-   "cases": [
-    29998,
-    29999
-   ],
-   "fields": [
-    "custom_expected",
-    "custom_steps",
-    "title"
-   ],
-   "placeholder": true
-  },
-  {
-   "label": "VIN Number",
-   "verdict": "ABSENT",
-   "build": null,
-   "cases": [
-    30034,
-    30045
-   ],
-   "fields": [
-    "custom_expected",
-    "custom_steps",
-    "title"
-   ],
-   "placeholder": false
-  },
-  {
    "label": "Set custom hours for this technician",
    "verdict": "ABSENT",
    "build": null,
@@ -229,18 +162,6 @@
    "placeholder": false
   },
   {
-   "label": "Authorized",
-   "verdict": "ABSENT",
-   "build": null,
-   "cases": [
-    29950
-   ],
-   "fields": [
-    "custom_expected"
-   ],
-   "placeholder": false
-  },
-  {
    "label": "Complete",
    "verdict": "ABSENT",
    "build": null,
@@ -249,18 +170,6 @@
    ],
    "fields": [
     "custom_expected"
-   ],
-   "placeholder": false
-  },
-  {
-   "label": "Search lines",
-   "verdict": "ABSENT",
-   "build": null,
-   "cases": [
-    29953
-   ],
-   "fields": [
-    "title"
    ],
    "placeholder": false
   },
@@ -439,18 +348,6 @@
    "placeholder": false
   },
   {
-   "label": "+2 more",
-   "verdict": "ABSENT",
-   "build": null,
-   "cases": [
-    29998
-   ],
-   "fields": [
-    "custom_expected"
-   ],
-   "placeholder": false
-  },
-  {
    "label": "ZZAUTOTEST note",
    "verdict": "ABSENT",
    "build": null,
@@ -537,18 +434,6 @@
    "placeholder": false
   },
   {
-   "label": "per-technician",
-   "verdict": "ABSENT",
-   "build": null,
-   "cases": [
-    30033
-   ],
-   "fields": [
-    "custom_expected"
-   ],
-   "placeholder": false
-  },
-  {
    "label": "per-assigned technician",
    "verdict": "ABSENT",
    "build": null,
@@ -559,18 +444,6 @@
     "custom_expected"
    ],
    "placeholder": false
-  },
-  {
-   "label": "N lines \u00b7 Xh",
-   "verdict": "ABSENT",
-   "build": null,
-   "cases": [
-    30034
-   ],
-   "fields": [
-    "custom_expected"
-   ],
-   "placeholder": true
   },
   {
    "label": "+N more lines",
@@ -633,19 +506,6 @@
    "placeholder": false
   },
   {
-   "label": "Filter & Display",
-   "verdict": "ABSENT",
-   "build": null,
-   "cases": [
-    30042
-   ],
-   "fields": [
-    "custom_steps",
-    "title"
-   ],
-   "placeholder": false
-  },
-  {
    "label": "View Day",
    "verdict": "ABSENT",
    "build": null,
@@ -666,19 +526,6 @@
    ],
    "fields": [
     "custom_expected"
-   ],
-   "placeholder": false
-  },
-  {
-   "label": "Part of a series",
-   "verdict": "ABSENT",
-   "build": null,
-   "cases": [
-    43556
-   ],
-   "fields": [
-    "custom_preconds",
-    "custom_steps"
    ],
    "placeholder": false
   },
@@ -894,7 +741,7 @@
   {
    "label": "N Lines",
    "verdict": "VARIANT",
-   "build": "7 Lines",
+   "build": "8 Lines",
    "cases": [
     29973,
     29992,
@@ -907,28 +754,26 @@
    "placeholder": true
   },
   {
-   "label": "New Work Order",
+   "label": "+N more",
    "verdict": "VARIANT",
-   "build": "Work Orders",
+   "build": "+9 more",
    "cases": [
-    30054,
-    30075,
-    38855
+    29998,
+    29999
    ],
    "fields": [
     "custom_expected",
-    "custom_preconds",
     "custom_steps",
     "title"
    ],
-   "placeholder": false
+   "placeholder": true
   },
   {
-   "label": "Work Order Lines",
+   "label": "per-technician",
    "verdict": "VARIANT",
-   "build": "Work Orders",
+   "build": "Technician",
    "cases": [
-    30011
+    30033
    ],
    "fields": [
     "custom_expected"
@@ -936,17 +781,16 @@
    "placeholder": false
   },
   {
-   "label": "Week 1 of 2",
+   "label": "N lines \u00b7 Xh",
    "verdict": "VARIANT",
-   "build": "Week 1 of 1",
+   "build": "7 lines \u00b7 9h",
    "cases": [
-    43556
+    30034
    ],
    "fields": [
-    "custom_preconds",
-    "custom_steps"
+    "custom_expected"
    ],
-   "placeholder": false
+   "placeholder": true
   },
   {
    "label": "View Options",
@@ -957,6 +801,19 @@
     30047,
     30050,
     30051
+   ],
+   "fields": [
+    "custom_steps",
+    "title"
+   ],
+   "placeholder": false
+  },
+  {
+   "label": "Filter & Display",
+   "verdict": "CASE",
+   "build": "FILTER & DISPLAY",
+   "cases": [
+    30042
    ],
    "fields": [
     "custom_steps",
@@ -1004,7 +861,7 @@
   {
    "label": "VIN",
    "verdict": "EXACT-IN-CONTEXT",
-   "build": "Pamill Paving",
+   "build": "VIN Number",
    "cases": [
     30042
    ],
@@ -1014,14 +871,48 @@
    "placeholder": false
   },
   {
+   "label": "Part of a series",
+   "verdict": "EXACT-IN-CONTEXT",
+   "build": "Part of a series \u00b7 Shift 2 of 4",
+   "cases": [
+    43556
+   ],
+   "fields": [
+    "custom_preconds",
+    "custom_steps"
+   ],
+   "placeholder": false
+  },
+  {
    "label": "/",
    "verdict": "EXACT-IN-CONTEXT",
-   "build": "Service/Parts",
+   "build": "0m / 1h",
    "cases": [
     30057
    ],
    "fields": [
     "custom_expected"
+   ],
+   "placeholder": false
+  },
+  {
+   "label": "Create Event",
+   "verdict": "EXACT",
+   "build": "Create Event",
+   "cases": [
+    30016,
+    30017,
+    30018,
+    30054,
+    30075,
+    30077,
+    38855
+   ],
+   "fields": [
+    "custom_expected",
+    "custom_preconds",
+    "custom_steps",
+    "title"
    ],
    "placeholder": false
   },
@@ -1036,6 +927,39 @@
     29947
    ],
    "fields": [
+    "custom_steps",
+    "title"
+   ],
+   "placeholder": false
+  },
+  {
+   "label": "My Shifts",
+   "verdict": "EXACT",
+   "build": "My Shifts",
+   "cases": [
+    30042,
+    30044,
+    30082
+   ],
+   "fields": [
+    "custom_expected",
+    "custom_steps",
+    "title"
+   ],
+   "placeholder": false
+  },
+  {
+   "label": "New Work Order",
+   "verdict": "EXACT",
+   "build": "New Work Order",
+   "cases": [
+    30054,
+    30075,
+    38855
+   ],
+   "fields": [
+    "custom_expected",
+    "custom_preconds",
     "custom_steps",
     "title"
    ],
@@ -1072,6 +996,21 @@
    "placeholder": false
   },
   {
+   "label": "VIN Number",
+   "verdict": "EXACT",
+   "build": "VIN Number",
+   "cases": [
+    30034,
+    30045
+   ],
+   "fields": [
+    "custom_expected",
+    "custom_steps",
+    "title"
+   ],
+   "placeholder": false
+  },
+  {
    "label": "Vuchester Retail",
    "verdict": "EXACT",
    "build": "Vuchester Retail",
@@ -1098,6 +1037,30 @@
    "placeholder": false
   },
   {
+   "label": "Authorized",
+   "verdict": "EXACT",
+   "build": "Authorized",
+   "cases": [
+    29950
+   ],
+   "fields": [
+    "custom_expected"
+   ],
+   "placeholder": false
+  },
+  {
+   "label": "Search lines",
+   "verdict": "EXACT",
+   "build": "Search lines",
+   "cases": [
+    29953
+   ],
+   "fields": [
+    "title"
+   ],
+   "placeholder": false
+  },
+  {
    "label": "4 Lines",
    "verdict": "EXACT",
    "build": "4 Lines",
@@ -1118,6 +1081,43 @@
    ],
    "fields": [
     "custom_expected"
+   ],
+   "placeholder": false
+  },
+  {
+   "label": "+2 more",
+   "verdict": "EXACT",
+   "build": "+2 more",
+   "cases": [
+    29998
+   ],
+   "fields": [
+    "custom_expected"
+   ],
+   "placeholder": false
+  },
+  {
+   "label": "Work Order Lines",
+   "verdict": "EXACT",
+   "build": "Work Order Lines",
+   "cases": [
+    30011
+   ],
+   "fields": [
+    "custom_expected"
+   ],
+   "placeholder": false
+  },
+  {
+   "label": "Week 1 of 2",
+   "verdict": "EXACT",
+   "build": "Week 1 of 2",
+   "cases": [
+    43556
+   ],
+   "fields": [
+    "custom_preconds",
+    "custom_steps"
    ],
    "placeholder": false
   }

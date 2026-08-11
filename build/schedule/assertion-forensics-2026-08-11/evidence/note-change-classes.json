@@ -1,0 +1,1538 @@
+{
+ "ADDED|Rule-61 symptom block": [
+  [
+   "29927",
+   "T3",
+   "T4",
+   "What you should see today: Week view runs Sunday to Saturday. The seven columns read Sunday Aug 2, Monday Aug 3, and so on to Saturday Aug 8, instead of starting on Monday. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8826"
+  ],
+  [
+   "43554",
+   "T3",
+   "T4",
+   "What you should see today: The Schedule opens on Week view. Week is the highlighted button and the grid draws the seven-column week layout. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8863"
+  ],
+  [
+   "29939",
+   "T3",
+   "T4",
+   "What you should see today: Typing a technician's full name finds nothing. 'Andrew' on its own finds 14 work orders and 'Wade' on its own finds the same 14, but 'Andrew Wade' finds 0, and so do 'andrew wade' and 'Wade Andrew'. A full customer name such as 'Vuchester Retail' works, so it is not a problem with spaces. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8873"
+  ],
+  [
+   "29960",
+   "T3",
+   "T4",
+   "What you should see today: Nothing highlights and nothing follows the cursor while you drag a line from the list on the left onto the grid. No cell lights up as a drop target, and the faint shape that does follow the cursor is empty - it does not show the line name or the hours. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8840"
+  ],
+  [
+   "29962",
+   "T3",
+   "T4",
+   "What you should see today: There is no way to place a job by clicking. The work order card in the panel on the left has no button on it at all - not when you hover it, and not inside its line list - so dragging is the only way to schedule anything. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8957"
+  ],
+  [
+   "29975",
+   "T3",
+   "T4",
+   "What you should see today: Giving an unassigned job to a technician quietly changes its saved start time to six hours earlier. A job booked for 7:00 in the morning is saved as 1:00 in the morning after it is assigned, with no warning. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8924"
+  ],
+  [
+   "29987",
+   "T3",
+   "T4",
+   "What you should see today: In Month view the bar for a multi-day job does not say whose it is. It reads, for example, 'Xiriver Apparel 24069 19 Lines Part of a series' with no technician name anywhere on it. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8958"
+  ],
+  [
+   "30001",
+   "T3",
+   "T4",
+   "What you should see today: Day view opens showing midnight at the left-hand edge instead of the start of the working day. The working day starts at 6:00 AM, but 12 AM sits at the left edge, and stepping to the next day leaves it at midnight again. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8837"
+  ],
+  [
+   "30009",
+   "T3",
+   "T4",
+   "What you should see today: The start and end time boxes accept any minute you like, not quarter hours. Typing 08:07 is accepted and it is still 08:07 after you click away. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8833"
+  ],
+  [
+   "30010",
+   "T3",
+   "T4",
+   "What you should see today: The time-logged figure shows as fully complete when nothing has been clocked. A shift created moments earlier, on a line nobody has ever clocked into, reads 'TIME LOGGED 1h / 1h' with a full bar. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8834"
+  ],
+  [
+   "30014",
+   "T3",
+   "T4",
+   "What you should see today: The clash warning appears but gives you no way to fix it. On a shift whose reason is 'Double-booked with ...', 'Extends past working hours' or 'Not a working day' there is no Adjust button - eight clashing shifts were checked and not one offered it. An Adjust button does exist for one other reason ('Starts before working hours'), so do not be surprised to see it there. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8852"
+  ],
+  [
+   "30035",
+   "T3",
+   "T4",
+   "What you should see today: The clash warning is at the bottom of the hover tooltip instead of next to the customer name. The first row is just the customer name with no warning mark; the warning only appears in the last row. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8959"
+  ],
+  [
+   "30036",
+   "T3",
+   "T4",
+   "What you should see today: The event's hover tooltip has no grey dot next to the event name. It shows the name, the date and time range and the technician, and no dot at all. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8893"
+  ],
+  [
+   "30041",
+   "T3",
+   "T4",
+   "What you should see today: Searching in the grid removes the shifts that do not match instead of fading them. The non-matching blocks disappear from the grid entirely rather than staying visible and dimmed. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8874"
+  ],
+  [
+   "30045",
+   "T3",
+   "T4",
+   "What you should see today: Month view prints the VIN on shift blocks when the VIN switch is on. It should be left off in Month view because the blocks are small. Day and Week views are correct. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8941"
+  ],
+  [
+   "30046",
+   "T3",
+   "T4",
+   "What you should see today: Business Hours starts switched ON in View Options when it should start switched off. The other five options in that menu do start in the right position. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8827"
+  ],
+  [
+   "30050",
+   "T3",
+   "T4",
+   "What you should see today: Turning on Tech Hours in View Options changes nothing you can see. None of the technician rows shows its working hours, on any day. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8851"
+  ],
+  [
+   "43556",
+   "T3",
+   "T4",
+   "What you should see today: A shift that is part of a repeating series cannot be moved to another technician in Week or Month view - the block lifts, moves, and then springs back to where it was. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8867"
+  ],
+  [
+   "30086",
+   "T3",
+   "T4",
+   "What you should see today: The whole page slides sideways instead of just the grid, and the panel on the left never folds away. At 960 pixels wide - which is the narrowest width the Schedule is meant to support - the page is still 1030 pixels wide and the panel is still its full width. Narrowing further changes neither. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8942"
+  ],
+  [
+   "30087",
+   "T3",
+   "T4",
+   "What you should see today: The list of work orders on the left does not scroll continuously. It shows 18 cards with a 'Load More' button at the bottom, even though 91 work orders exist. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8913"
+  ],
+  [
+   "38865",
+   "T3",
+   "T4",
+   "What you should see today: The start times on either side of the clock change do not read the same. The same job reads 12 PM before 1 November and 1 PM after it. The times are stored correctly underneath - it is the times shown on screen that are wrong, and every Schedule time is shown six hours late for the same reason. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8848"
+  ]
+ ],
+ "ADDED|OTHER \u2014 hand read": [
+  [
+   "29927",
+   "T3",
+   "T4",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "29927",
+   "T3",
+   "T4",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "29927",
+   "T3",
+   "T4",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "43554",
+   "T3",
+   "T4",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "43554",
+   "T3",
+   "T4",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "43554",
+   "T3",
+   "T4",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "29939",
+   "T3",
+   "T4",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "29939",
+   "T3",
+   "T4",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "29939",
+   "T3",
+   "T4",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "29960",
+   "T3",
+   "T4",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "29960",
+   "T3",
+   "T4",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "29960",
+   "T3",
+   "T4",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "29962",
+   "T3",
+   "T4",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "29962",
+   "T3",
+   "T4",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "29962",
+   "T3",
+   "T4",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "29970",
+   "T0",
+   "T1",
+   "This test cannot be run on the build tested: the shop has NO business hours set (the Edit Location toggle is off, and turning it on would change a shared setting for every other tester on this estate), so the middle rung of the section 4.2 hierarchy cannot be exercised without a change nobody has authorised. The rung above and below are both verified. Turning the toggle on was driven and then abandoned WITHOUT saving. Mark it BLOCKED - not failed - and say which of these you could not set up."
+  ],
+  [
+   "29975",
+   "T3",
+   "T4",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "29975",
+   "T3",
+   "T4",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "29975",
+   "T3",
+   "T4",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "29987",
+   "T3",
+   "T4",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "29987",
+   "T3",
+   "T4",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "29987",
+   "T3",
+   "T4",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30001",
+   "T3",
+   "T4",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30001",
+   "T3",
+   "T4",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30001",
+   "T3",
+   "T4",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30009",
+   "T3",
+   "T4",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30009",
+   "T3",
+   "T4",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30009",
+   "T3",
+   "T4",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30010",
+   "T3",
+   "T4",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30010",
+   "T3",
+   "T4",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30010",
+   "T3",
+   "T4",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30014",
+   "T3",
+   "T4",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30014",
+   "T3",
+   "T4",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30014",
+   "T3",
+   "T4",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30035",
+   "T3",
+   "T4",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30035",
+   "T3",
+   "T4",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30035",
+   "T3",
+   "T4",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30036",
+   "T3",
+   "T4",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30036",
+   "T3",
+   "T4",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30036",
+   "T3",
+   "T4",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30041",
+   "T3",
+   "T4",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30041",
+   "T3",
+   "T4",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30041",
+   "T3",
+   "T4",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30045",
+   "T3",
+   "T4",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30045",
+   "T3",
+   "T4",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30045",
+   "T3",
+   "T4",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30046",
+   "T3",
+   "T4",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30046",
+   "T3",
+   "T4",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30046",
+   "T3",
+   "T4",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30050",
+   "T3",
+   "T4",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30050",
+   "T3",
+   "T4",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30050",
+   "T3",
+   "T4",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "43556",
+   "T3",
+   "T4",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "43556",
+   "T3",
+   "T4",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "43556",
+   "T3",
+   "T4",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30086",
+   "T3",
+   "T4",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30086",
+   "T3",
+   "T4",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30086",
+   "T3",
+   "T4",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30087",
+   "T3",
+   "T4",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30087",
+   "T3",
+   "T4",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30087",
+   "T3",
+   "T4",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "38865",
+   "T0",
+   "T1",
+   "This test cannot be run on the build tested: the next Mountain-time clock change is 2026-11-01, outside any window the QA data covers, and the seeded clock cannot be moved on this estate. Worse, the finding is currently untestable in principle because every Schedule time renders in UTC (see the new time ticket) - so a clock-change test would measure the bug, not the requirement. Re-run once the timezone fix ships. Mark it BLOCKED - not failed - and say which of these you could not set up."
+  ],
+  [
+   "38865",
+   "T3",
+   "T4",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "38865",
+   "T3",
+   "T4",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "38865",
+   "T3",
+   "T4",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ]
+ ],
+ "REMOVED|Rule-61 symptom block": [
+  [
+   "29927",
+   "T4",
+   "T5",
+   "What you should see today: Week view runs Sunday to Saturday. The seven columns read Sunday Aug 2, Monday Aug 3, and so on to Saturday Aug 8, instead of starting on Monday. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8826"
+  ],
+  [
+   "43554",
+   "T4",
+   "T5",
+   "What you should see today: The Schedule opens on Week view. Week is the highlighted button and the grid draws the seven-column week layout. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8863"
+  ],
+  [
+   "29939",
+   "T4",
+   "T5",
+   "What you should see today: Typing a technician's full name finds nothing. 'Andrew' on its own finds 14 work orders and 'Wade' on its own finds the same 14, but 'Andrew Wade' finds 0, and so do 'andrew wade' and 'Wade Andrew'. A full customer name such as 'Vuchester Retail' works, so it is not a problem with spaces. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8873"
+  ],
+  [
+   "29960",
+   "T4",
+   "T5",
+   "What you should see today: Nothing highlights and nothing follows the cursor while you drag a line from the list on the left onto the grid. No cell lights up as a drop target, and the faint shape that does follow the cursor is empty - it does not show the line name or the hours. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8840"
+  ],
+  [
+   "29962",
+   "T4",
+   "T5",
+   "What you should see today: There is no way to place a job by clicking. The work order card in the panel on the left has no button on it at all - not when you hover it, and not inside its line list - so dragging is the only way to schedule anything. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8957"
+  ],
+  [
+   "29975",
+   "T4",
+   "T5",
+   "What you should see today: Giving an unassigned job to a technician quietly changes its saved start time to six hours earlier. A job booked for 7:00 in the morning is saved as 1:00 in the morning after it is assigned, with no warning. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8924"
+  ],
+  [
+   "29987",
+   "T4",
+   "T5",
+   "What you should see today: In Month view the bar for a multi-day job does not say whose it is. It reads, for example, 'Xiriver Apparel 24069 19 Lines Part of a series' with no technician name anywhere on it. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8958"
+  ],
+  [
+   "30001",
+   "T4",
+   "T5",
+   "What you should see today: Day view opens showing midnight at the left-hand edge instead of the start of the working day. The working day starts at 6:00 AM, but 12 AM sits at the left edge, and stepping to the next day leaves it at midnight again. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8837"
+  ],
+  [
+   "30009",
+   "T4",
+   "T5",
+   "What you should see today: The start and end time boxes accept any minute you like, not quarter hours. Typing 08:07 is accepted and it is still 08:07 after you click away. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8833"
+  ],
+  [
+   "30010",
+   "T4",
+   "T5",
+   "What you should see today: The time-logged figure shows as fully complete when nothing has been clocked. A shift created moments earlier, on a line nobody has ever clocked into, reads 'TIME LOGGED 1h / 1h' with a full bar. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8834"
+  ],
+  [
+   "30014",
+   "T4",
+   "T5",
+   "What you should see today: The clash warning appears but gives you no way to fix it. On a shift whose reason is 'Double-booked with ...', 'Extends past working hours' or 'Not a working day' there is no Adjust button - eight clashing shifts were checked and not one offered it. An Adjust button does exist for one other reason ('Starts before working hours'), so do not be surprised to see it there. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8852"
+  ],
+  [
+   "30035",
+   "T4",
+   "T5",
+   "What you should see today: The clash warning is at the bottom of the hover tooltip instead of next to the customer name. The first row is just the customer name with no warning mark; the warning only appears in the last row. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8959"
+  ],
+  [
+   "30036",
+   "T4",
+   "T5",
+   "What you should see today: The event's hover tooltip has no grey dot next to the event name. It shows the name, the date and time range and the technician, and no dot at all. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8893"
+  ],
+  [
+   "30041",
+   "T4",
+   "T5",
+   "What you should see today: Searching in the grid removes the shifts that do not match instead of fading them. The non-matching blocks disappear from the grid entirely rather than staying visible and dimmed. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8874"
+  ],
+  [
+   "30045",
+   "T4",
+   "T5",
+   "What you should see today: Month view prints the VIN on shift blocks when the VIN switch is on. It should be left off in Month view because the blocks are small. Day and Week views are correct. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8941"
+  ],
+  [
+   "30046",
+   "T4",
+   "T5",
+   "What you should see today: Business Hours starts switched ON in View Options when it should start switched off. The other five options in that menu do start in the right position. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8827"
+  ],
+  [
+   "30050",
+   "T4",
+   "T5",
+   "What you should see today: Turning on Tech Hours in View Options changes nothing you can see. None of the technician rows shows its working hours, on any day. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8851"
+  ],
+  [
+   "43556",
+   "T4",
+   "T5",
+   "What you should see today: A shift that is part of a repeating series cannot be moved to another technician in Week or Month view - the block lifts, moves, and then springs back to where it was. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8867"
+  ],
+  [
+   "30086",
+   "T4",
+   "T5",
+   "What you should see today: The whole page slides sideways instead of just the grid, and the panel on the left never folds away. At 960 pixels wide - which is the narrowest width the Schedule is meant to support - the page is still 1030 pixels wide and the panel is still its full width. Narrowing further changes neither. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8942"
+  ],
+  [
+   "30087",
+   "T4",
+   "T5",
+   "What you should see today: The list of work orders on the left does not scroll continuously. It shows 18 cards with a 'Load More' button at the bottom, even though 91 work orders exist. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8913"
+  ],
+  [
+   "38865",
+   "T4",
+   "T5",
+   "What you should see today: The start times on either side of the clock change do not read the same. The same job reads 12 PM before 1 November and 1 PM after it. The times are stored correctly underneath - it is the times shown on screen that are wrong, and every Schedule time is shown six hours late for the same reason. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8848"
+  ]
+ ],
+ "REMOVED|OTHER \u2014 hand read": [
+  [
+   "29927",
+   "T4",
+   "T5",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "29927",
+   "T4",
+   "T5",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "29927",
+   "T4",
+   "T5",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "43554",
+   "T4",
+   "T5",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "43554",
+   "T4",
+   "T5",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "43554",
+   "T4",
+   "T5",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "29939",
+   "T4",
+   "T5",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "29939",
+   "T4",
+   "T5",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "29939",
+   "T4",
+   "T5",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "29960",
+   "T4",
+   "T5",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "29960",
+   "T4",
+   "T5",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "29960",
+   "T4",
+   "T5",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "29962",
+   "T4",
+   "T5",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "29962",
+   "T4",
+   "T5",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "29962",
+   "T4",
+   "T5",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "29970",
+   "T3",
+   "T4",
+   "This test cannot be run on the build tested: the shop has NO business hours set (the Edit Location toggle is off, and turning it on would change a shared setting for every other tester on this estate), so the middle rung of the section 4.2 hierarchy cannot be exercised without a change nobody has authorised. The rung above and below are both verified. Turning the toggle on was driven and then abandoned WITHOUT saving. Mark it BLOCKED - not failed - and say which of these you could not set up."
+  ],
+  [
+   "29975",
+   "T4",
+   "T5",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "29975",
+   "T4",
+   "T5",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "29975",
+   "T4",
+   "T5",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "29987",
+   "T4",
+   "T5",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "29987",
+   "T4",
+   "T5",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "29987",
+   "T4",
+   "T5",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30001",
+   "T4",
+   "T5",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30001",
+   "T4",
+   "T5",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30001",
+   "T4",
+   "T5",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30009",
+   "T4",
+   "T5",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30009",
+   "T4",
+   "T5",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30009",
+   "T4",
+   "T5",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30010",
+   "T4",
+   "T5",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30010",
+   "T4",
+   "T5",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30010",
+   "T4",
+   "T5",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30014",
+   "T4",
+   "T5",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30014",
+   "T4",
+   "T5",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30014",
+   "T4",
+   "T5",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30035",
+   "T4",
+   "T5",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30035",
+   "T4",
+   "T5",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30035",
+   "T4",
+   "T5",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30036",
+   "T4",
+   "T5",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30036",
+   "T4",
+   "T5",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30036",
+   "T4",
+   "T5",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30041",
+   "T4",
+   "T5",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30041",
+   "T4",
+   "T5",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30041",
+   "T4",
+   "T5",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30045",
+   "T4",
+   "T5",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30045",
+   "T4",
+   "T5",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30045",
+   "T4",
+   "T5",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30046",
+   "T4",
+   "T5",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30046",
+   "T4",
+   "T5",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30046",
+   "T4",
+   "T5",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30050",
+   "T4",
+   "T5",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30050",
+   "T4",
+   "T5",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30050",
+   "T4",
+   "T5",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "43556",
+   "T4",
+   "T5",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "43556",
+   "T4",
+   "T5",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "43556",
+   "T4",
+   "T5",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30086",
+   "T4",
+   "T5",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30086",
+   "T4",
+   "T5",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30086",
+   "T4",
+   "T5",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "30087",
+   "T4",
+   "T5",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "30087",
+   "T4",
+   "T5",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "30087",
+   "T4",
+   "T5",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ],
+  [
+   "38865",
+   "T3",
+   "T4",
+   "This test cannot be run on the build tested: the next Mountain-time clock change is 2026-11-01, outside any window the QA data covers, and the seeded clock cannot be moved on this estate. Worse, the finding is currently untestable in principle because every Schedule time renders in UTC (see the new time ticket) - so a clock-change test would measure the bug, not the requirement. Re-run once the timezone fix ships. Mark it BLOCKED - not failed - and say which of these you could not set up."
+  ],
+  [
+   "38865",
+   "T4",
+   "T5",
+   "\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new."
+  ],
+  [
+   "38865",
+   "T4",
+   "T5",
+   "\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it."
+  ],
+  [
+   "38865",
+   "T4",
+   "T5",
+   "\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed."
+  ]
+ ],
+ "REMOVED|deviation-note (Known issue \u2026)": [
+  [
+   "43554",
+   "T3",
+   "T4",
+   "Known issue on the build checked: the Schedule opens on Week view instead - Week is the highlighted button and the grid draws the 7-column week layout. This is already raised with the developers as SV-8863 (https://shopview.atlassian.net/browse/SV-8863) and has been accepted for fixing. Until it is fixed this test will fail - mark it FAILED and link SV-8863; do not raise a new ticket."
+  ],
+  [
+   "29939",
+   "T3",
+   "T4",
+   "Known issue on the build tested: typing a technician's FULL name returns nothing at all. 'Andrew' on its own finds 12 work orders and 'Wade' on its own finds the same 12, but 'Andrew Wade' finds 0, and so do 'andrew wade' and 'Wade Andrew'. It is not a general problem with spaces - the full customer name 'Vuchester Retail' finds 21 work orders correctly. That is already raised with the developers as SV-8873 (https://shopview.atlassian.net/browse/SV-8873). Mark this test FAILED."
+  ],
+  [
+   "29946",
+   "T3",
+   "T4",
+   "Known issue on the build tested: The popover has no \"Clear all\" control: filters are cleared by unchecking each box, and the Filters button carries no active-count badge either. Spec 5.1: \"Filters live behind a 'Filter' button (with an active-count badge) ... and 'Clear all' resets in one click.\" This is already raised with the developers as SV-8857 (https://shopview.atlassian.net/browse/SV-8857). Mark this test FAILED and put the ticket number in your run comment; do not raise a new ticket for it."
+  ],
+  [
+   "29960",
+   "T3",
+   "T4",
+   "Known issue on the build tested: During a sidebar drag, .fc-highlight count was 0 and no ghost/mirror element carrying the line name existed. Spec 7: \"Drop-target cells highlight, and a ghost block shows the line name and hours.\" NOTE an intra-grid move DOES show a mirror (fc-event-mirror), so the gap is specific to dragging from the sidebar. This is already raised with the developers as SV-8840 (https://shopview.atlassian.net/browse/SV-8840). Until it is fixed this test will fail - mark it FAILED and link SV-8840; do not raise a new ticket."
+  ],
+  [
+   "29967",
+   "T3",
+   "T4",
+   "Known issue on the build tested: in tick-box mode the bottom bar reads '1 selected - 1h' and its confirm button reads 'Schedule'; there is NO 'Select all' button and NO 'Cancel' button anywhere in the picker - the only way out is the X in the corner, which closes the whole picker instead of returning you to the single-tap list. The 'All 2' chip higher up is the All / Unscheduled filter and does not tick anything. Specification 4.3 asks for \"a running tally (\"Create shift - 2 lines - 6h\"), a \"Select all\" shortcut (equivalent to whole order), and Cancel (returns to the fast single-tap list)\". That is already raised with the developers as SV-8886 (https://shopview.atlassian.net/browse/SV-8886). Mark this test FAILED."
+  ],
+  [
+   "29971",
+   "T3",
+   "T4",
+   "Known issue on the build tested: the time this test talks about is stored correctly but the Schedule SHOWS it six hours later than it should be, so a 7:00 AM start reads 1:00 PM on screen. That is already raised with the developers as SV-8848 (https://shopview.atlassian.net/browse/SV-8848). Check the value is right by the rule this test describes, and ignore the six-hour display shift - do not raise a new ticket for it."
+  ],
+  [
+   "29974",
+   "T3",
+   "T4",
+   "Known issue on the build tested: the time this test talks about is stored correctly but the Schedule SHOWS it six hours later than it should be, so a 7:00 AM start reads 1:00 PM on screen. That is already raised with the developers as SV-8848 (https://shopview.atlassian.net/browse/SV-8848). Check the value is right by the rule this test describes, and ignore the six-hour display shift - do not raise a new ticket for it."
+  ],
+  [
+   "29982",
+   "T3",
+   "T4",
+   "Known issue on the build tested: There is no Start date control in the spread step at all - the start comes solely from the cell the work order was dropped on and cannot be adjusted. Spec 4.5: \"Start date. Defaults to the earliest working day. Adjusting it is how a second technician's series can be made sequential (starting after the first) rather than parallel.\" Without it the sequential-series workflow the spec describes is impossible. This is already raised with the developers as SV-8855 (https://shopview.atlassian.net/browse/SV-8855). Mark this test FAILED and put the ticket number in your run comment; do not raise a new ticket for it."
+  ],
+  [
+   "29988",
+   "T3",
+   "T4",
+   "Known issue on the build tested: the Week view does draw one banner - the first day of the run carries the customer name, the line count and the words 'Part of a series', and each following day carries a small 'continues' marker - but there are no arrows at the edges of the banner and no 'week N of M' wording anywhere. Separately, none of those blocks can be clicked open in the Week view; that half is raised with the developers as SV-8849 (https://shopview.atlassian.net/browse/SV-8849). The missing arrows and the missing 'week N of M' have been reported to the QA lead and have no ticket yet. Mark this test FAILED, link SV-8849 and say in your comment which parts you saw; do not raise a new ticket."
+  ],
+  [
+   "29999",
+   "T3",
+   "T4",
+   "Known issue on the build tested: Lane stacking and the \"+N more\" link appear in day, week and month view - but clicking \"+1 more\" opens a popover headed with just the date (\"August 2, 2026\") whose body contains only the day cell and its capacity bar and lists NO shifts (0 schedule-block elements inside it). Spec 4.7: \"Additional overlapping shifts collapse into a '+N more' affordance that opens a popover listing the hidden shifts.\" The hidden shifts are unreachable. This is already raised with the developers as SV-8850 (https://shopview.atlassian.net/browse/SV-8850). Mark this test FAILED and put the ticket number in your run comment; do not raise a new ticket for it."
+  ],
+  [
+   "30001",
+   "T3",
+   "T4",
+   "Known issue on the build tested: Day view opens with the scroller at scrollLeft 3 and the first slot \"12 AM\", and it is still 3 after stepping a day. Spec 4.8: \"On initial day-view load and when navigating to a new day, the timeline auto-scrolls so the working-day start sits at the left edge of the visible area (with a small 30 to 60 minute buffer before it).\" This is already raised with the developers as SV-8837 (https://shopview.atlassian.net/browse/SV-8837). Until it is fixed this test will fail - mark it FAILED and link SV-8837; do not raise a new ticket."
+  ],
+  [
+   "30004",
+   "T3",
+   "T4",
+   "Known issue on the build tested: A 24px horizontal drag - about half an hour at this zoom - moved the shift a full hour instead of the half hour you dragged it. Spec 4.8: \"Horizontal drag to move a shift's start time (snaps to 15-minute intervals).\" This is already raised with the developers as SV-8856 (https://shopview.atlassian.net/browse/SV-8856). Mark this test FAILED and put the ticket number in your run comment; do not raise a new ticket for it."
+  ],
+  [
+   "30006",
+   "T3",
+   "T4",
+   "Known issue on the build tested: the time this test talks about is stored correctly but the Schedule SHOWS it six hours later than it should be, so a 7:00 AM start reads 1:00 PM on screen. That is already raised with the developers as SV-8848 (https://shopview.atlassian.net/browse/SV-8848). Check the value is right by the rule this test describes, and ignore the six-hour display shift - do not raise a new ticket for it."
+  ],
+  [
+   "30009",
+   "T3",
+   "T4",
+   "Known issue on the build tested: the start and end time boxes accept and offer EVERY minute, not quarter-hours - you can set 8:07 if you want to. This is already raised with the developers as SV-8833 (https://shopview.atlassian.net/browse/SV-8833). Until it is fixed this test will fail - mark it FAILED and link SV-8833; do not raise a new ticket. One thing in that ticket is NOT a fault: the little clock icon inside the box is simply how the browser draws a time box, so ignore that part."
+  ],
+  [
+   "30010",
+   "T1",
+   "T2",
+   "Known issue on the build tested: TECHNICIAN shows the avatar and name correctly. TIME LOGGED read \"40h 19m / 40h 19m\" with a full bar on a shift where nothing had been clocked (the work order reported 0 actual hours), and \"1h / 1h\" on another. Spec 4.9 asks for \"Time logged vs estimate (progress)\". It has been reported to the QA lead but has no developer ticket yet. Mark this test FAILED and note it in your run comment; do not raise a new ticket without asking the QA lead."
+  ],
+  [
+   "30010",
+   "T3",
+   "T4",
+   "Known issue on the build tested: TECHNICIAN shows the avatar and name correctly. TIME LOGGED read \"40h 19m / 40h 19m\" with a full bar on a shift where nothing had been clocked (the work order reported 0 actual hours), and \"1h / 1h\" on another. Spec 4.9 asks for \"Time logged vs estimate (progress)\". That is already raised with the developers as SV-8834 (https://shopview.atlassian.net/browse/SV-8834). Mark this test FAILED and note it in your run comment; do not raise a new ticket without asking the QA lead."
+  ],
+  [
+   "30012",
+   "T3",
+   "T4",
+   "Known issue on the build tested: No inline editor exists on the estimated hours: the scope chip \"Single line - 1h\" and the per-line hours are plain text with no click target, no edit affordance and no input. Spec 4.9: \"Estimated hours with inline edit.\" This is already raised with the developers as SV-8829 (https://shopview.atlassian.net/browse/SV-8829). Until it is fixed this test will fail - mark it FAILED and link SV-8829; do not raise a new ticket."
+  ],
+  [
+   "30014",
+   "T3",
+   "T4",
+   "Known issue on the build tested: The conflict banner renders - \"warning_amber / Scheduling conflict / Not a working day\" - but there is NO Adjust action: the modal's only controls are the delete bin, close, the colour selector, Add Note and Open Work Order. Spec 4.9: \"A conflict banner with an 'Adjust' action when the shift is conflicted.\" This is already raised with the developers as SV-8852 (https://shopview.atlassian.net/browse/SV-8852). Mark this test FAILED and put the ticket number in your run comment; do not raise a new ticket for it."
+  ],
+  [
+   "30041",
+   "T1",
+   "T2",
+   "Known issue on the build tested: Typing \"Pamill\" in the toolbar search left only the 6 matching blocks in the grid, each gaining schedule-block--match; the non-matching blocks were REMOVED from the page, not faded. Spec 6: \"Non-matching blocks fade; matching blocks highlight.\" Also worth knowing: the toolbar search field carries the placeholder \"Search work orders...\" - the same words as the sidebar search - which is easy to confuse. It has been reported to the QA lead but has no developer ticket yet. Mark this test FAILED and note it in your run comment; do not raise a new ticket without asking the QA lead."
+  ],
+  [
+   "30041",
+   "T3",
+   "T4",
+   "Known issue on the build tested: Typing \"Pamill\" in the toolbar search left only the 6 matching blocks in the grid, each gaining schedule-block--match; the non-matching blocks were REMOVED from the page, not faded. Spec 6: \"Non-matching blocks fade; matching blocks highlight.\" Also worth knowing: the toolbar search field carries the placeholder \"Search work orders...\" - the same words as the sidebar search - which is easy to confuse. That is already raised with the developers as SV-8874 (https://shopview.atlassian.net/browse/SV-8874). Mark this test FAILED and note it in your run comment; do not raise a new ticket without asking the QA lead."
+  ],
+  [
+   "30046",
+   "T3",
+   "T4",
+   "Known issue on the build tested: Observed defaults: Business Hours ON, Tech Hours OFF, Capacity Planning ON, Events ON, Show Saturday ON, Show Sunday ON. The spec 9 table requires Business Hours OFF. The other five match. The Business Hours half of this is already raised with the developers as SV-8827 (https://shopview.atlassian.net/browse/SV-8827); that same ticket also says Tech Hours starts ON, which it does not on this build. Mark this test FAILED and put the ticket number in your run comment; do not raise a new ticket for it."
+  ],
+  [
+   "30050",
+   "T3",
+   "T4",
+   "Known issue on the build tested: Toggling Tech Hours produced no observable change at all: the technician rows still show only initials, name and job title, and the shaded-cell count was identical before, during and after (2 / 2 / 2) - including for Ayesha Khan, the one technician who has custom hours. Spec 9: \"Tech Hours | Off | Displays each technician's working hours next to their name.\" This is already raised with the developers as SV-8851 (https://shopview.atlassian.net/browse/SV-8851). Mark this test FAILED and put the ticket number in your run comment; do not raise a new ticket for it."
+  ],
+  [
+   "43556",
+   "T3",
+   "T4",
+   "Known issue on the build checked: the block does lift and move while you drag it, but on release it jumps straight back to the technician it started on - no confirmation window and no toast. An ordinary shift that is not part of a series, dragged between the same two technician rows, does ask for confirmation (\"Move this shift to MQ Test Tech Qamar?\"), so the problem is specific to series blocks. This is already raised with the developers as SV-8867 (https://shopview.atlassian.net/browse/SV-8867). Until it is fixed this test will fail - mark it FAILED and link SV-8867; do not raise a new ticket."
+  ],
+  [
+   "30066",
+   "T3",
+   "T4",
+   "Known issue on the build tested: Escape closes the shift detail modal and both toolbar popovers, but does NOT close the \"Delete from this series?\" dialog (tried twice, once with focus moved inside it) and does NOT close the \"Reassign shift\" dialog. Spec 7 names both first in its stacking order: \"Escape closes the topmost open modal or popover, following a defined stacking order (delete scope, reassign, spread, ...)\". This is already raised with the developers as SV-8853 (https://shopview.atlassian.net/browse/SV-8853). Mark this test FAILED and put the ticket number in your run comment; do not raise a new ticket for it."
+  ],
+  [
+   "30068",
+   "T3",
+   "T4",
+   "Known issue on the build tested: Enter on the open \"Reassign shift\" dialog did nothing - the dialog stayed open and no toast appeared. Spec 7: \"Enter confirms the active confirmable dialog (delete scope, reassign, spread, event create/edit).\" The \"not inside a textarea\" half cannot be reached while Enter confirms nothing. This is already raised with the developers as SV-8853 (https://shopview.atlassian.net/browse/SV-8853). Mark this test FAILED and put the ticket number in your run comment; do not raise a new ticket for it."
+  ],
+  [
+   "30081",
+   "T3",
+   "T4",
+   "Known issue on the build tested: a user who has the Schedule but has NOT been given Work Orders: View still sees the whole work order list in the left-hand panel - 18 cards showing the customer name, the unit number, how many lines the job has, the hours estimate and the lead technician. It should be hidden for them. This is already raised with the developers as SV-8854 (https://shopview.atlassian.net/browse/SV-8854). Until it is fixed this test will fail - mark it FAILED and link SV-8854; do not raise a new ticket."
+  ],
+  [
+   "30086",
+   "T3",
+   "T4",
+   "Known issue on the build tested: At a 900px viewport the sidebar stays 288px wide and the whole page scrolls sideways (documentElement.scrollWidth 1041) rather than only the grid. Spec 11: \"Minimum supported width is 960px (the grid scrolls horizontally below that), and the sidebar collapses on narrow viewports.\" 900px is below the supported minimum, so this is a low-severity observation, not a release blocker. It has been reported to the QA lead but has no developer ticket yet. Mark this test FAILED and note it in your run comment; do not raise a new ticket without asking the QA lead."
+  ]
+ ],
+ "ADDED|tester guidance note": [
+  [
+   "29939",
+   "T0",
+   "T1",
+   "Note for the tester: searching the number exactly as the card shows it (for example S-9379) does work. Searching the longer shop-prefixed form (for example S8685-9379) returns nothing; that is already raised as SV-8841 (https://shopview.atlassian.net/browse/SV-8841) and is not part of this test."
+  ],
+  [
+   "29939",
+   "T1",
+   "T2",
+   "Note for the tester: searching the number exactly as the card shows it (for example S-15875) does work, and so does the bare number (15875). Searching the longer shop-prefixed form (for example S8685-15875) returns nothing; that is already raised as SV-8841 (https://shopview.atlassian.net/browse/SV-8841), so do not raise it again."
+  ],
+  [
+   "29944",
+   "T1",
+   "T2",
+   "Note for the tester: this shop's schedule list only holds work orders in two statuses, Approved and Review, so most of the other choices correctly come back empty. An empty list for a status no work order is in is the right answer, not a fault."
+  ],
+  [
+   "29972",
+   "T3",
+   "T4",
+   "Note for the tester: every time on the Schedule is currently shown six hours later than the time it was booked for. That is already reported as SV-8848 (https://shopview.atlassian.net/browse/SV-8848). Read the position on the timeline rather than the printed time, and do not raise it again."
+  ],
+  [
+   "30011",
+   "T0",
+   "T1",
+   "Note for the tester: the absence of any money figure is CORRECT and is what this test expects. The product owner ruled on 22 July 2026 that no total in dollars is shown anywhere on the Schedule. If you see no money figure, pass this test."
+  ],
+  [
+   "30045",
+   "T0",
+   "T1",
+   "Note for the tester: the VIN staying visible in the hover summary and in the shift window while the VIN switch is off is CORRECT and is what this test expects. The product owner ruled on 31 July 2026 that the VIN is always visible on hover regardless of the switch. If you see it there, pass this test."
+  ]
+ ],
+ "ADDED|deviation-note (Known issue \u2026)": [
+  [
+   "29939",
+   "T1",
+   "T2",
+   "Known issue on the build tested: typing a technician's FULL name returns nothing at all. 'Andrew' on its own finds 12 work orders and 'Wade' on its own finds the same 12, but 'Andrew Wade' finds 0, and so do 'andrew wade' and 'Wade Andrew'. It is not a general problem with spaces - the full customer name 'Vuchester Retail' finds 21 work orders correctly. That is already raised with the developers as SV-8873 (https://shopview.atlassian.net/browse/SV-8873). Mark this test FAILED."
+  ],
+  [
+   "29946",
+   "T0",
+   "T1",
+   "Known issue on the build tested: The popover has no \"Clear all\" control: filters are cleared by unchecking each box, and the Filters button carries no active-count badge either. Spec 5.1: \"Filters live behind a 'Filter' button (with an active-count badge) ... and 'Clear all' resets in one click.\" This is already raised with the developers as SV-8857 (https://shopview.atlassian.net/browse/SV-8857). Mark this test FAILED and put the ticket number in your run comment; do not raise a new ticket for it."
+  ],
+  [
+   "29960",
+   "T0",
+   "T1",
+   "Known issue on the build tested: During a sidebar drag, .fc-highlight count was 0 and no ghost/mirror element carrying the line name existed. Spec 7: \"Drop-target cells highlight, and a ghost block shows the line name and hours.\" NOTE an intra-grid move DOES show a mirror (fc-event-mirror), so the gap is specific to dragging from the sidebar. This is already raised with the developers as SV-8840 (https://shopview.atlassian.net/browse/SV-8840). Until it is fixed this test will fail - mark it FAILED and link SV-8840; do not raise a new ticket."
+  ],
+  [
+   "29967",
+   "T1",
+   "T2",
+   "Known issue on the build tested: in tick-box mode the bottom bar reads '1 selected - 1h' and its confirm button reads 'Schedule'; there is NO 'Select all' button and NO 'Cancel' button anywhere in the picker - the only way out is the X in the corner, which closes the whole picker instead of returning you to the single-tap list. The 'All 2' chip higher up is the All / Unscheduled filter and does not tick anything. Specification 4.3 asks for \"a running tally (\"Create shift - 2 lines - 6h\"), a \"Select all\" shortcut (equivalent to whole order), and Cancel (returns to the fast single-tap list)\". That is already raised with the developers as SV-8886 (https://shopview.atlassian.net/browse/SV-8886). Mark this test FAILED."
+  ],
+  [
+   "29969",
+   "T0",
+   "T1",
+   "Known issue on the build tested: the time this test talks about is stored correctly but the Schedule SHOWS it six hours later than it should be, so a 7:00 AM start reads 1:00 PM on screen. That is already raised with the developers as SV-8848 (https://shopview.atlassian.net/browse/SV-8848). Check the value is right by the rule this test describes, and ignore the six-hour display shift - do not raise a new ticket for it."
+  ],
+  [
+   "29971",
+   "T0",
+   "T1",
+   "Known issue on the build tested: the time this test talks about is stored correctly but the Schedule SHOWS it six hours later than it should be, so a 7:00 AM start reads 1:00 PM on screen. That is already raised with the developers as SV-8848 (https://shopview.atlassian.net/browse/SV-8848). Check the value is right by the rule this test describes, and ignore the six-hour display shift - do not raise a new ticket for it."
+  ],
+  [
+   "29974",
+   "T0",
+   "T1",
+   "Known issue on the build tested: the time this test talks about is stored correctly but the Schedule SHOWS it six hours later than it should be, so a 7:00 AM start reads 1:00 PM on screen. That is already raised with the developers as SV-8848 (https://shopview.atlassian.net/browse/SV-8848). Check the value is right by the rule this test describes, and ignore the six-hour display shift - do not raise a new ticket for it."
+  ],
+  [
+   "29982",
+   "T0",
+   "T1",
+   "Known issue on the build tested: There is no Start date control in the spread step at all - the start comes solely from the cell the work order was dropped on and cannot be adjusted. Spec 4.5: \"Start date. Defaults to the earliest working day. Adjusting it is how a second technician's series can be made sequential (starting after the first) rather than parallel.\" Without it the sequential-series workflow the spec describes is impossible. This is already raised with the developers as SV-8855 (https://shopview.atlassian.net/browse/SV-8855). Mark this test FAILED and put the ticket number in your run comment; do not raise a new ticket for it."
+  ],
+  [
+   "29988",
+   "T0",
+   "T1",
+   "Known issue on the build tested: the Week view does draw one banner - the first day of the run carries the customer name, the line count and the words 'Part of a series', and each following day carries a small 'continues' marker - but there are no arrows at the edges of the banner and no 'week N of M' wording anywhere. Separately, none of those blocks can be clicked open in the Week view; that half is raised with the developers as SV-8849 (https://shopview.atlassian.net/browse/SV-8849). The missing arrows and the missing 'week N of M' have been reported to the QA lead and have no ticket yet. Mark this test FAILED, link SV-8849 and say in your comment which parts you saw; do not raise a new ticket."
+  ],
+  [
+   "29999",
+   "T0",
+   "T1",
+   "Known issue on the build tested: Lane stacking and the \"+N more\" link appear in day, week and month view - but clicking \"+1 more\" opens a popover headed with just the date (\"August 2, 2026\") whose body contains only the day cell and its capacity bar and lists NO shifts (0 schedule-block elements inside it). Spec 4.7: \"Additional overlapping shifts collapse into a '+N more' affordance that opens a popover listing the hidden shifts.\" The hidden shifts are unreachable. This is already raised with the developers as SV-8850 (https://shopview.atlassian.net/browse/SV-8850). Mark this test FAILED and put the ticket number in your run comment; do not raise a new ticket for it."
+  ],
+  [
+   "30001",
+   "T0",
+   "T1",
+   "Known issue on the build tested: Day view opens with the scroller at scrollLeft 3 and the first slot \"12 AM\", and it is still 3 after stepping a day. Spec 4.8: \"On initial day-view load and when navigating to a new day, the timeline auto-scrolls so the working-day start sits at the left edge of the visible area (with a small 30 to 60 minute buffer before it).\" This is already raised with the developers as SV-8837 (https://shopview.atlassian.net/browse/SV-8837). Until it is fixed this test will fail - mark it FAILED and link SV-8837; do not raise a new ticket."
+  ],
+  [
+   "30004",
+   "T0",
+   "T1",
+   "Known issue on the build tested: A 24px horizontal drag - about half an hour at this zoom - moved the shift a full hour instead of the half hour you dragged it. Spec 4.8: \"Horizontal drag to move a shift's start time (snaps to 15-minute intervals).\" This is already raised with the developers as SV-8856 (https://shopview.atlassian.net/browse/SV-8856). Mark this test FAILED and put the ticket number in your run comment; do not raise a new ticket for it."
+  ],
+  [
+   "30006",
+   "T0",
+   "T1",
+   "Known issue on the build tested: the time this test talks about is stored correctly but the Schedule SHOWS it six hours later than it should be, so a 7:00 AM start reads 1:00 PM on screen. That is already raised with the developers as SV-8848 (https://shopview.atlassian.net/browse/SV-8848). Check the value is right by the rule this test describes, and ignore the six-hour display shift - do not raise a new ticket for it."
+  ],
+  [
+   "30009",
+   "T0",
+   "T1",
+   "Known issue on the build tested: the start and end time boxes accept and offer EVERY minute, not quarter-hours - you can set 8:07 if you want to. This is already raised with the developers as SV-8833 (https://shopview.atlassian.net/browse/SV-8833). Until it is fixed this test will fail - mark it FAILED and link SV-8833; do not raise a new ticket. One thing in that ticket is NOT a fault: the little clock icon inside the box is simply how the browser draws a time box, so ignore that part."
+  ],
+  [
+   "30010",
+   "T0",
+   "T1",
+   "Known issue on the build tested: TECHNICIAN shows the avatar and name correctly. TIME LOGGED read \"40h 19m / 40h 19m\" with a full bar on a shift where nothing had been clocked (the work order reported 0 actual hours), and \"1h / 1h\" on another. Spec 4.9 asks for \"Time logged vs estimate (progress)\". It has been reported to the QA lead but has no developer ticket yet. Mark this test FAILED and note it in your run comment; do not raise a new ticket without asking the QA lead."
+  ],
+  [
+   "30010",
+   "T1",
+   "T2",
+   "Known issue on the build tested: TECHNICIAN shows the avatar and name correctly. TIME LOGGED read \"40h 19m / 40h 19m\" with a full bar on a shift where nothing had been clocked (the work order reported 0 actual hours), and \"1h / 1h\" on another. Spec 4.9 asks for \"Time logged vs estimate (progress)\". That is already raised with the developers as SV-8834 (https://shopview.atlassian.net/browse/SV-8834). Mark this test FAILED and note it in your run comment; do not raise a new ticket without asking the QA lead."
+  ],
+  [
+   "30012",
+   "T0",
+   "T1",
+   "Known issue on the build tested: No inline editor exists on the estimated hours: the scope chip \"Single line - 1h\" and the per-line hours are plain text with no click target, no edit affordance and no input. Spec 4.9: \"Estimated hours with inline edit.\" This is already raised with the developers as SV-8829 (https://shopview.atlassian.net/browse/SV-8829). Until it is fixed this test will fail - mark it FAILED and link SV-8829; do not raise a new ticket."
+  ],
+  [
+   "30014",
+   "T0",
+   "T1",
+   "Known issue on the build tested: The conflict banner renders - \"warning_amber / Scheduling conflict / Not a working day\" - but there is NO Adjust action: the modal's only controls are the delete bin, close, the colour selector, Add Note and Open Work Order. Spec 4.9: \"A conflict banner with an 'Adjust' action when the shift is conflicted.\" This is already raised with the developers as SV-8852 (https://shopview.atlassian.net/browse/SV-8852). Mark this test FAILED and put the ticket number in your run comment; do not raise a new ticket for it."
+  ],
+  [
+   "30034",
+   "T0",
+   "T1",
+   "Known issue on the build tested: The tooltip listed ALL FIVE line names on the 5-line series shift with no \"+N more lines\" row. Spec 4.13: \"the individual line names as a short list capped at 3 with a '+N more lines' row\". Everything else matched: customer, unit and VIN, date and time range, technician, scope summary \"5 lines - 12h\" and the progress bar. VIN appears with the toggle off, per Branko 2026-07-31. It has been reported to the QA lead but has no developer ticket yet. Mark this test FAILED and note it in your run comment; do not raise a new ticket without asking the QA lead."
+  ],
+  [
+   "30041",
+   "T0",
+   "T1",
+   "Known issue on the build tested: Typing \"Pamill\" in the toolbar search left only the 6 matching blocks in the grid, each gaining schedule-block--match; the non-matching blocks were REMOVED from the page, not faded. Spec 6: \"Non-matching blocks fade; matching blocks highlight.\" Also worth knowing: the toolbar search field carries the placeholder \"Search work orders...\" - the same words as the sidebar search - which is easy to confuse. It has been reported to the QA lead but has no developer ticket yet. Mark this test FAILED and note it in your run comment; do not raise a new ticket without asking the QA lead."
+  ],
+  [
+   "30041",
+   "T1",
+   "T2",
+   "Known issue on the build tested: Typing \"Pamill\" in the toolbar search left only the 6 matching blocks in the grid, each gaining schedule-block--match; the non-matching blocks were REMOVED from the page, not faded. Spec 6: \"Non-matching blocks fade; matching blocks highlight.\" Also worth knowing: the toolbar search field carries the placeholder \"Search work orders...\" - the same words as the sidebar search - which is easy to confuse. That is already raised with the developers as SV-8874 (https://shopview.atlassian.net/browse/SV-8874). Mark this test FAILED and note it in your run comment; do not raise a new ticket without asking the QA lead."
+  ],
+  [
+   "30046",
+   "T0",
+   "T1",
+   "Known issue on the build tested: Observed defaults: Business Hours ON, Tech Hours OFF, Capacity Planning ON, Events ON, Show Saturday ON, Show Sunday ON. The spec 9 table requires Business Hours OFF. The other five match. The Business Hours half of this is already raised with the developers as SV-8827 (https://shopview.atlassian.net/browse/SV-8827); that same ticket also says Tech Hours starts ON, which it does not on this build. Mark this test FAILED and put the ticket number in your run comment; do not raise a new ticket for it."
+  ],
+  [
+   "30050",
+   "T0",
+   "T1",
+   "Known issue on the build tested: Toggling Tech Hours produced no observable change at all: the technician rows still show only initials, name and job title, and the shaded-cell count was identical before, during and after (2 / 2 / 2) - including for Ayesha Khan, the one technician who has custom hours. Spec 9: \"Tech Hours | Off | Displays each technician's working hours next to their name.\" This is already raised with the developers as SV-8851 (https://shopview.atlassian.net/browse/SV-8851). Mark this test FAILED and put the ticket number in your run comment; do not raise a new ticket for it."
+  ],
+  [
+   "30066",
+   "T0",
+   "T1",
+   "Known issue on the build tested: Escape closes the shift detail modal and both toolbar popovers, but does NOT close the \"Delete from this series?\" dialog (tried twice, once with focus moved inside it) and does NOT close the \"Reassign shift\" dialog. Spec 7 names both first in its stacking order: \"Escape closes the topmost open modal or popover, following a defined stacking order (delete scope, reassign, spread, ...)\". This is already raised with the developers as SV-8853 (https://shopview.atlassian.net/browse/SV-8853). Mark this test FAILED and put the ticket number in your run comment; do not raise a new ticket for it."
+  ],
+  [
+   "30068",
+   "T0",
+   "T1",
+   "Known issue on the build tested: Enter on the open \"Reassign shift\" dialog did nothing - the dialog stayed open and no toast appeared. Spec 7: \"Enter confirms the active confirmable dialog (delete scope, reassign, spread, event create/edit).\" The \"not inside a textarea\" half cannot be reached while Enter confirms nothing. This is already raised with the developers as SV-8853 (https://shopview.atlassian.net/browse/SV-8853). Mark this test FAILED and put the ticket number in your run comment; do not raise a new ticket for it."
+  ],
+  [
+   "30081",
+   "T0",
+   "T1",
+   "Known issue on the build tested: a user who has the Schedule but has NOT been given Work Orders: View still sees the whole work order list in the left-hand panel - 18 cards showing the customer name, the unit number, how many lines the job has, the hours estimate and the lead technician. It should be hidden for them. This is already raised with the developers as SV-8854 (https://shopview.atlassian.net/browse/SV-8854). Until it is fixed this test will fail - mark it FAILED and link SV-8854; do not raise a new ticket."
+  ],
+  [
+   "30086",
+   "T0",
+   "T1",
+   "Known issue on the build tested: At a 900px viewport the sidebar stays 288px wide and the whole page scrolls sideways (documentElement.scrollWidth 1041) rather than only the grid. Spec 11: \"Minimum supported width is 960px (the grid scrolls horizontally below that), and the sidebar collapses on narrow viewports.\" 900px is below the supported minimum, so this is a low-severity observation, not a release blocker. It has been reported to the QA lead but has no developer ticket yet. Mark this test FAILED and note it in your run comment; do not raise a new ticket without asking the QA lead."
+  ]
+ ],
+ "REMOVED|tester guidance note": [
+  [
+   "29939",
+   "T1",
+   "T2",
+   "Note for the tester: searching the number exactly as the card shows it (for example S-9379) does work. Searching the longer shop-prefixed form (for example S8685-9379) returns nothing; that is already raised as SV-8841 (https://shopview.atlassian.net/browse/SV-8841) and is not part of this test."
+  ]
+ ],
+ "ADDED|spec-quote / divergence disclosure": [
+  [
+   "29962",
+   "T0",
+   "T1",
+   "Not built on the build tested: Spec 11 requires \"drag-and-drop has a click-to-arm alternative\". This makes the drag-and-drop cases unautomatable without real pointer emulation. It has no developer ticket yet - report it to the QA lead rather than raising one yourself. Mark this test BLOCKED - not failed - because the feature it checks does not exist yet on this build."
+  ],
+  [
+   "29983",
+   "T0",
+   "T1",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The specification says this two different ways and no ruling exists yet, so mark this test BLOCKED - not failed - and leave it out of the automation suite. The open question and its evidence are recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/main/build/schedule/branko-answers-2026-07-31/answers-ingested.md"
+  ],
+  [
+   "29983",
+   "T1",
+   "T2",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The specification says this two different ways and no ruling exists yet, so mark this test BLOCKED - not failed - and leave it out of the automation suite. The open question and its evidence are recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md"
+  ],
+  [
+   "38863",
+   "T0",
+   "T1",
+   "Not built on the build tested: A 76h 36m spread produced 7 shifts with no warning and nothing asking you to confirm, and nothing on this build refuses or questions a very long series. The 8-week / 120-shift limits come from the engineering technical plan, not from the Schedule specification. It has no developer ticket yet - report it to the QA lead rather than raising one yourself. Mark this test BLOCKED - not failed - because the feature it checks does not exist yet on this build."
+  ],
+  [
+   "30017",
+   "T0",
+   "T1",
+   "Not built on the build tested: Spec 4.10: \"Day view shows a live preview block while creating, with drag-to-resize.\" It has no developer ticket yet - report it to the QA lead rather than raising one yourself. Mark this test BLOCKED - not failed - because the feature it checks does not exist yet on this build."
+  ],
+  [
+   "30041",
+   "T5",
+   "T6",
+   "This case used to also expect matching blocks to highlight and non-matching blocks to fade. That sentence was in version 23 of the specification; version 24, published on 6 August 2026, deleted it, and it has not come back in versions 25, 26 or 27. Story SV-8686 does still ask for it, but that wording has not been touched since the story was created on 27 July 2026, so the specification's deletion is the newer decision and it is the one this case now follows."
+  ],
+  [
+   "30089",
+   "T0",
+   "T1",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The specification says this two different ways and no ruling exists yet, so mark this test BLOCKED - not failed - and leave it out of the automation suite. The open question and its evidence are recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/main/build/schedule/branko-answers-2026-07-31/answers-ingested.md"
+  ],
+  [
+   "30089",
+   "T1",
+   "T2",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The specification says this two different ways and no ruling exists yet, so mark this test BLOCKED - not failed - and leave it out of the automation suite. The open question and its evidence are recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md"
+  ],
+  [
+   "38873",
+   "T0",
+   "T1",
+   "Not built on the build tested: No 409 and no 422 exists on this build. The 8-week / 120-shift caps are engineering-tech-plan text with no Schedule-specification requirement behind them. It has no developer ticket yet - report it to the QA lead rather than raising one yourself. Mark this test BLOCKED - not failed - because the feature it checks does not exist yet on this build."
+  ]
+ ],
+ "REMOVED|spec-quote / divergence disclosure": [
+  [
+   "29962",
+   "T1",
+   "T2",
+   "Not built on the build tested: Spec 11 requires \"drag-and-drop has a click-to-arm alternative\". This makes the drag-and-drop cases unautomatable without real pointer emulation. It has no developer ticket yet - report it to the QA lead rather than raising one yourself. Mark this test BLOCKED - not failed - because the feature it checks does not exist yet on this build."
+  ],
+  [
+   "29983",
+   "T1",
+   "T2",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The specification says this two different ways and no ruling exists yet, so mark this test BLOCKED - not failed - and leave it out of the automation suite. The open question and its evidence are recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/main/build/schedule/branko-answers-2026-07-31/answers-ingested.md"
+  ],
+  [
+   "29983",
+   "T3",
+   "T4",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The specification says this two different ways and no ruling exists yet, so mark this test BLOCKED - not failed - and leave it out of the automation suite. The open question and its evidence are recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md"
+  ],
+  [
+   "38863",
+   "T3",
+   "T4",
+   "Not built on the build tested: A 76h 36m spread produced 7 shifts with no warning and nothing asking you to confirm, and nothing on this build refuses or questions a very long series. The 8-week / 120-shift limits come from the engineering technical plan, not from the Schedule specification. It has no developer ticket yet - report it to the QA lead rather than raising one yourself. Mark this test BLOCKED - not failed - because the feature it checks does not exist yet on this build."
+  ],
+  [
+   "30017",
+   "T3",
+   "T4",
+   "Not built on the build tested: Spec 4.10: \"Day view shows a live preview block while creating, with drag-to-resize.\" It has no developer ticket yet - report it to the QA lead rather than raising one yourself. Mark this test BLOCKED - not failed - because the feature it checks does not exist yet on this build."
+  ],
+  [
+   "30089",
+   "T1",
+   "T2",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The specification says this two different ways and no ruling exists yet, so mark this test BLOCKED - not failed - and leave it out of the automation suite. The open question and its evidence are recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/main/build/schedule/branko-answers-2026-07-31/answers-ingested.md"
+  ],
+  [
+   "30089",
+   "T3",
+   "T4",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The specification says this two different ways and no ruling exists yet, so mark this test BLOCKED - not failed - and leave it out of the automation suite. The open question and its evidence are recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md"
+  ],
+  [
+   "38873",
+   "T3",
+   "T4",
+   "Not built on the build tested: No 409 and no 422 exists on this build. The 8-week / 120-shift caps are engineering-tech-plan text with no Schedule-specification requirement behind them. It has no developer ticket yet - report it to the QA lead rather than raising one yourself. Mark this test BLOCKED - not failed - because the feature it checks does not exist yet on this build."
+  ]
+ ],
+ "ADDED|expect-fail / ticket pointer": [
+  [
+   "43555",
+   "T4",
+   "T5",
+   "Please read before running this test: what should happen in MONTH view specifically has not been settled yet. The Schedule specification version 27 says that a work order is dragged from the sidebar onto a cell in the grid without naming which view, and the acceptance criterion of story SV-8688 names only Week view. The question has been put to the product owner on SV-8870 (https://shopview.atlassian.net/browse/SV-8870), together with the point that Month view invites the user to drag (\"Nothing is scheduled in this range. Drag a work order from the list to book it.\"). Until the product owner answers, treat a failure here as already reported under SV-8870 - mark it FAILED and link SV-8870; do not raise a new ticket."
+  ]
+ ],
+ "REMOVED|expect-fail / ticket pointer": [
+  [
+   "43555",
+   "T4",
+   "T5",
+   "Please read before running this test: what should happen in MONTH view specifically has not been settled yet. The Schedule specification version 23 says that a work order is dragged from the sidebar onto a cell in the grid without naming which view, and the acceptance criterion of story SV-8688 names only Week view. The question has been put to the product owner on SV-8870 (https://shopview.atlassian.net/browse/SV-8870), together with the point that Month view invites the user to drag (\"Nothing is scheduled in this range. Drag a work order from the list to book it.\"). Until the product owner answers, treat a failure here as already reported under SV-8870 - mark it FAILED and link SV-8870; do not raise a new ticket."
+  ]
+ ]
+}
