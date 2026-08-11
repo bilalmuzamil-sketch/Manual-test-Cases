@@ -535,8 +535,31 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
 - **Project 1 / single suite 1 "Master"**; API v2, Basic auth. Helper `testrail-api.mjs` reads creds
   from `/tmp/testrail/creds.json` (email + password-OR-key + host) — **never hard-code creds.** Calls
   hit `{host}/index.php?/api/v2/{path}`.
-- **`add_case` REQUIRES `custom_atmstatus:3` + `custom_automation_type:0`** (non-API cases). Place any
-  case with API content in a section whose title includes "API" (Rule 4).
+- **🛑 `add_case` MUST SEND `custom_atmstatus:1` (= "Not Automated") + `custom_automation_type:0`.
+  NEVER `3`. CORRECTED 2026-08-11 — the bullet that stood here said the opposite and was wrong on
+  both halves.** Place any case with API content in a section whose title includes "API" (Rule 4).
+  **⚠️ SUPERSEDED WORDING, KEPT VISIBLE AND DATED (the Rules 31/52/53 pattern) — until 2026-08-11
+  this bullet read: *"`add_case` REQUIRES `custom_atmstatus:3` + `custom_automation_type:0`
+  (non-API cases)."* **THAT IS THE INSTRUCTION THAT MADE EVERY API-CREATED CASE IN THIS WORKSPACE
+  CLAIM TO BE AUTOMATED**, because every `add_case` script copied it; it is left visible so nobody
+  re-derives it from an old script.
+  **THE FIELD, READ LIVE FROM `get_case_fields` 2026-08-11 (not inferred):** `custom_atmstatus`,
+  field id 17, label **"Automation status"**, dropdown values **`1` Not Automated · `2` Cannot be
+  automated · `3` Automated · `4` Pending**. It is `is_required: true` for project 1 **but its
+  `default_value` is `"1"`** — so `3` was never required by anything, and the required value, if one
+  must be sent, is **`1`**. (`custom_automation_type` is `is_required: false`, `default_value: "0"`.)
+  **WHY IT MATTERS: `3` is Vladimir Tomovic's OWN flag for what HE has automated**, and Standing
+  Rule 65 keys the whole tell-Vlad duty off it, so a case born `3` corrupts the signal he and we both
+  rely on. **31 Schedule cases were corrected `3 → 1` on 2026-08-11**
+  (`build/automated-flag-and-c30041-2026-08-11/`).
+  **USE THE CANONICAL HELPER, DO NOT HAND-ROLL THE PAYLOAD:**
+  **`build/testing-tools/testrail_add_case.py`** — `add_case_payload()` sets `1` and **raises** on
+  `3`; `verify_created_case()` does the Rule-50 byte-check on the created case.
+  **AND THE GUARD: `build/testing-tools/check_add_case_payloads.py`** fails any new payload carrying
+  `3` (run it before committing a pass that creates cases).
+  **⚠️ DO NOT COPY AN `add_case` PAYLOAD OUT OF AN EXECUTED PUSH SCRIPT.** The 19 already-executed
+  scripts still contain `3` **deliberately** — they are the audit record of what was actually run, and
+  rewriting them would make that record lie. Copy from this bullet or from the helper.
 - **Result statuses:** 1 Passed · 2 Blocked · 3 Untested · 4 Retest · 5 Failed.
 - **⚠️ `get_sections` NEEDS PAGING, AND IT FAILS SILENTLY IF YOU FORGET (proven live 2026-08-05,
   Filters).** This project now has **625 sections**. An unpaged `get_sections/1&suite_id=1` returns
