@@ -116,28 +116,48 @@ spirit of **'Extends past working hours'**"*.
 for, so the recommendation is to **swap the quoted examples to the build's own words while KEEPING the
 scope-conditional framing**: *"in the spirit of 'Starts before business hours'"*.
 
-**⚠️ AND A SEPARATE QUESTION IS RAISED, NOT ANSWERED — see `FINDINGS.md` F7.** The case says the flag
-is measured against *"that technician's own configured working-day START/END time"* with a hierarchy of
-technician hours → shop business hours → default. The build's message says **"business hours"** and
-quotes **7:00 AM / 3:00 PM**. **Which tier actually drives it is NOT established by this observation**,
-because the flagged shifts belong to other technicians whose hours we did not read. **Recorded as a
-question; nothing re-verdicted.** Also note the panel header is **`Schedule issues`**, and the toolbar
-pill reads **`6 conflicts`** (Day), **`37 conflicts`** (Week), **`122 conflicts`** (Month).
+**✅ AND THE QUESTION THAT WAS OPEN IS NOW SETTLED — THE BUILD IS CORRECT AND THE CASE'S HIERARCHY
+CLAIM IS UPHELD (`FINDINGS.md` F7).** The flag **is** measured against **each technician's own
+configured hours**, proven on one board where two technicians have **different** hours:
+**Alicia Campbell 06:00–15:00** → her over-running shift's message quotes **"(3:00 PM)"**;
+**MQ Test Tech Qamar 07:00–19:00** → his early shifts' messages quote **"(7:00 AM)"**. **So only the
+WORD needs changing, not the assertion.** Also observed: the panel header is **`Schedule issues`**, the
+toolbar pill reads **`6 conflicts`** (Day) / **`37 conflicts`** (Week) / **`122 conflicts`** (Month), and
+each block's own `aria-label` carries the same wording — e.g.
+*"Shift (conflict: Starts before business hours, Double-booked): Xamont Holdings, 70061328, 4 Lines…"* —
+**a third independent confirmation of `business hours`.**
 
-### 2.6 A closed enumeration the build now contradicts — C30015
+### 2.6 A closed enumeration the build now contradicts — C30015 (Rule 42)
 
-`custom_expected` item 1 reads: *"The modal offers a Delete action (a trash icon in the header) and a
-close (x) icon — **and no other actions**."*
+**Case:** SCH-MODAL-08 = **C30015** ([link](https://shopview.testrail.io/index.php?/cases/view/30015))
+**Field:** `custom_expected`, item 1.
 
-**Observed in the shift modal** (`evidence/surface-09-shift-modal.png`,
-`evidence/surface-10-series-block.png`): alongside `Delete shift` and `Close shift details` the modal
-also offers **`Add Note`**, **`Edit estimated hours for <line>`**, **`Change colour`** (`Colour: blue.
-Change colour`) and **`Open work order S-12876 in a new tab`**.
+**EXACT CURRENT WORDING:**
 
-**So "no other actions" is a closed enumeration that is now false** — precisely the Rule-42 time bomb.
-**The case's actual point is still correct and is confirmed: there is NO `Reassign` action in the
-modal.** Recommendation: **keep the `Reassign` assertion, rewrite item 1 scope-conditionally** rather
-than deleting it, and note this is a wording repair, not a change of expectation.
+> *"1. The modal offers a Delete action (a trash icon in the header) and a close (x) icon - and no other
+> actions."*
+
+**OBSERVED IN THE BUILD** (`evidence/surface-09-shift-modal.png`, `evidence/surface-10-series-block.png`):
+alongside **`Delete shift`** and **`Close shift details`**, the modal also offers **`Add Note`**,
+**`Edit estimated hours for <line>`**, **`Change colour`** (rendered `Colour: blue. Change colour`) and
+**`Open work order S-12876 in a new tab`**.
+
+**THE STAGED REPAIR — SCOPE-CONDITIONAL, PER RULE 42. NOT a new closed list.**
+
+> *"1. The modal offers a Delete action (a trash icon in the header) and a close (x) icon. **It offers no
+> way to move the shift to a different technician** — no Reassign action, under that or any other name.
+> Other editing controls may be present (for example notes, colour, or estimated hours); their presence
+> is not what this test checks."*
+
+**WHY IT IS WORDED THAT WAY, explicitly:** the temptation is to replace one closed list with another —
+*"the modal offers Delete, close, Add Note, Change colour, Edit estimated hours and Open work order"* —
+and **that would re-arm the very time bomb**, breaking again the next time a control is added. **The
+assertion the case exists to make is the ABSENCE of a reassignment path**, so the repair states that
+positively and stops enumerating what else happens to be there.
+
+**🛑 AND THE CASE'S ACTUAL POINT IS CONFIRMED CORRECT AND IS NOT WEAKENED: there is NO `Reassign`
+action in the modal** — searched across all 909 harvested strings, no match and no near neighbour.
+Item 2 (*"reassignment is done by dragging a shift to another technician row"*) **stands untouched.**
 
 ---
 
