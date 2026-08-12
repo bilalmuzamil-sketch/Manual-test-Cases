@@ -2230,14 +2230,56 @@ deliver the 7-tab management report.
    layer down.** A case whose steps were written by watching the build **ends up testing whatever the
    build happens to make easy**, and it will look impeccable while doing it.
    **· ✅ THIS:** the steps come from **what the case exists to test**; **every one is then VERIFIED
-   against the build** so that a manual tester can actually execute it. **Where a step cannot be
-   executed as written, it is CORRECTED to the MINIMUM that makes it executable — never a rewrite of
-   the case around what the build makes convenient, and never an invented step.**
+   against the build** so that a manual tester can actually execute it. ~~**Where a step cannot be
+   executed as written, it is CORRECTED to the MINIMUM that makes it executable**~~ — **never a
+   rewrite of the case around what the build makes convenient, and never an invented step.**
+   **⚠️ THE STRUCK CLAUSE IS CORRECTED BY THE THIRD STEP BELOW, ADDED LATER THE SAME DAY. It is kept
+   visible and struck, not deleted (the Rules 31/52/53 pattern), because it is WRONG AS A GENERAL
+   RULE: "correct it to the minimum that makes it executable" is right for a COSMETIC difference and
+   WRONG for a SUBSTANTIVE one — where the route or state the source requires DOES NOT EXIST on the
+   build, silently correcting the case ERASES A DEFECT SIGNAL.** See **THE THIRD STEP** immediately
+   below for the two categories and their different handling.
+   **⇒ AND THE FULL CHAIN HAS THREE STEPS, NOT TWO — HIS THIRD STATEMENT THE SAME DAY, verbatim:**
+   *"We have to make sure that we learn the steps of reproduction from the sources but when we are
+   writing steps of reproduction to execute any test case, those steps of reproduction should be
+   verified to be 'Runnable' on a build. If any step learned from the sources verified on the build
+   differs that can be raised to me. A tester should not find a step coming from mars (which does not
+   exist), so writing steps of reproduction and verifying them from the BUILD must never be confused
+   with taking the expected behaviors from the build, same goes for the preconditions, the
+   preconditions should be learned from the sources and verified on Build to see if that is really
+   possible to set as a precondition on the build or not. If any precondition learned from the
+   sources is not doable on the build should be raised to me. The sensitive part here is that we need
+   to make sure that the testers find a runnable test to execute."*
+   **🔗 THE CHAIN, AND ALL THREE LINKS ARE MANDATORY:**
+   **LEARNED FROM THE SOURCES → VERIFIED RUNNABLE ON THE BUILD → ANY DIVERGENCE RAISED TO THE QA
+   LEAD.** **Steps and preconditions ORIGINATE IN THE SOURCES** — that is the first link, and it is
+   what makes guard 2 below operative: the build never decides what a case does or what state it
+   needs. **The build's job is the second link only: proving it can actually be run.**
+   **🔴 THE THIRD STEP — TWO CATEGORIES OF DIVERGENCE, HANDLED DIFFERENTLY. GETTING THIS WRONG IS HOW
+   A DEFECT DISAPPEARS.**
+   **· (a) COSMETIC** — a renamed control, a moved menu item, a changed label, **the same route by a
+   slightly different path**. **CORRECT IT so the tester can run the case, and LOG IT.** No
+   escalation.
+   **· (b) SUBSTANTIVE** — **the route or the state the source describes DOES NOT EXIST on the build,
+   or cannot be set up at all.** **NEVER SILENTLY REWRITTEN.** It is **RECORDED AS A DIVERGENCE with
+   BOTH TEXTS QUOTED** (Rule 45(e)) **and the affected C-ids** (Rule 8), given **the smallest change
+   that stops a tester being stranded** — normally **`AUTOMATION: HOLD` with a plain reason and a
+   "mark BLOCKED, not failed" line** — **and RAISED TO THE QA LEAD** (his words: *"If any precondition
+   learned from the sources is not doable on the build should be raised to me"*), logged in the
+   **OUTSTANDING-ITEMS REGISTER** (Rule 36).
+   **🔑 THE TEST BETWEEN THEM, IN ONE QUESTION — this is what makes the category DECIDABLE rather
+   than a matter of taste: *WOULD A READER OF THE SOURCE RECOGNISE WHAT THE BUILD OFFERS AS THE SAME
+   THING?*** **If YES → cosmetic.** **If the source describes something the build simply DOES NOT
+   HAVE → substantive.**
+   **⚠️ AND WHY (b) MATTERS SO MUCH: A PRECONDITION THE SOURCES REQUIRE BUT THE BUILD CANNOT ACHIEVE
+   IS VERY OFTEN EVIDENCE THAT THE *BUILD* IS WRONG, NOT THE CASE.** Rewriting the case to match the
+   build in that situation does not fix a test — **it deletes the finding**, and nobody downstream can
+   tell it ever existed.
    **🔴 THE TWO-WAY SPLIT — READ BOTH HALVES TOGETHER, NEVER ONE ALONE:**
-   **· PRECONDITIONS · STEPS · NAVIGATION · LABELS → 100% VERIFIED AGAINST THE BUILD, and must be
-   EXECUTABLE EXACTLY AS WRITTEN.** The obligation is **VERIFICATION, not derivation**: *"steps of
-   reproduction MUST be verified from the build to 100% ensure that when manual tester would run the
-   test he will be able to run it."*
+   **· PRECONDITIONS · STEPS · NAVIGATION · LABELS → LEARNED FROM THE SOURCES, then 100% VERIFIED
+   AGAINST THE BUILD, and must be EXECUTABLE EXACTLY AS WRITTEN.** The obligation is **VERIFICATION,
+   not derivation**: *"steps of reproduction MUST be verified from the build to 100% ensure that when
+   manual tester would run the test he will be able to run it."*
    **· EXPECTED BEHAVIOUR → COMES ONLY FROM THE DOCUMENTS (Standing Rule 57), in his own words:
    *"YES the expected behavior should come from the sources rather than the build"*.**
    **· NEITHER MAY BE INVENTED — his words cover both halves in one breath: *"Steps of reproduction
@@ -2259,6 +2301,16 @@ deliver the 7-tab management report.
    out of the coverage.** Neither substitutes for the other, and **the second is the easier one to
    breach without noticing**, because the resulting case is genuinely runnable and reads as careful
    work.
+   **🔥 THE DANGEROUS EDGE — GUARD 2'S SHARPEST INSTANCE, AND IT IS NEW TODAY. NOW THAT CORRECTING
+   STEPS AGAINST THE BUILD IS *REQUIRED*, CATEGORY (b) IS THE NEW HIDING PLACE: A SUBSTANTIVE
+   DIVERGENCE QUIETLY "FIXED" INTO A RUNNABLE STEP LOOKS LIKE DILIGENT MAINTENANCE AND READS AS
+   CAREFUL WORK.** It is **the same shape as the failure that cost 748 cases on 5 August 2026, one
+   layer down** — and it is **harder to spot than that one was**, because the resulting case is
+   genuinely runnable, genuinely build-accurate, and passes every check except the one that matters:
+   **the source said something the build does not do, and now nothing anywhere records it.** **THE
+   DEFENCE IS THE CATEGORY QUESTION ABOVE, ASKED EVERY TIME A STEP IS CORRECTED** — never skipped
+   because the fix was obvious, and never resolved in favour of (a) because (b) is more work or the
+   release is close.
    **THE RUNNABILITY TEST — FIVE CHECKS, AND A REVIEWER MAY FAIL A CASE ON ANY ONE OF THEM:**
    **(1) IS THE PRECONDITION REACHABLE?** Does the required data state exist, or can it be seeded
    (Rule 14)? **If it is genuinely unreachable, that is an `AUTOMATION: HOLD` with a plain reason and
@@ -2275,6 +2327,12 @@ deliver the 7-tab management report.
    ALL** — *"then the manual tester can not test that test."* **A perfect expectation sitting behind
    an unrunnable precondition is worth NOTHING**, and it fails silently: the tester does not report a
    defect, they simply stop.
+   **🎯 HIS STATED GOAL, AND IT IS THE ONE-LINE TEST OF THE WHOLE AMENDMENT:** *"A tester should not
+   find a step coming from mars (which does not exist)"* and *"we need to make sure that the testers
+   find a runnable test to execute."*
+   **⇒ SO: NO CASE MAY SEND A TESTER TO SOMETHING THAT DOES NOT EXIST — it is either CORRECTED (a),
+   or CLEARLY MARKED NOT RUNNABLE WITH THE REASON AND RAISED (b). NEVER LEFT SILENTLY BROKEN, AND
+   NEVER QUIETLY REWRITTEN INTO SOMETHING THE SOURCES NEVER ASKED FOR.**
    **📊 THE REPORTING CONSEQUENCE — THE STANDARD IS 100%, AND THE COUNT IS STATED HONESTLY, NEVER
    ROUNDED UP.** His words are *"verified from the build to 100%"*, so: **a suite may be called
    runnable ONLY to the extent its steps have ACTUALLY been verified.** **AN UNVERIFIED STEP IS AN
@@ -2312,19 +2370,27 @@ deliver the 7-tab management report.
    CHALLENGED — and it is BOTH TRUE AND STRONGER THAN AN OVERCLAIM:** ***"Every case says what the
    documents require, and every case can actually be run on the build as written. Whether the build
    does what the documents require is the tester's call — and that is by design."***
-   Ties to Standing Rules 7 (plain layman wording), 10 (**"VIU" means this method end to end — and
-   its behaviour half is the tester's since 2026-08-11**), 12 (observed, never inferred — a
+   Ties to Standing Rules 7 (plain layman wording), 8 (a divergence names its cases with C-id +
+   link), 10 (**"VIU" means this method end to end — and its behaviour half is the tester's since
+   2026-08-11**), 12 (observed, never inferred — a
    runnability check is an OBSERVATION and must genuinely be made), 13 (live feature-by-feature), 14
-   (seed the state rather than declare blocked — check (1)'s first resort), 25 (**"matched to the
-   build" = VIU'd against the build: the route, never the assertion**), 41 (touch a case → the
+   (seed the state rather than declare blocked — check (1)'s first resort, **and if seeding genuinely
+   cannot achieve it, that is a category (b) divergence, not a blocker to shrug at**), 25
+   (**"matched to the build" = VIU'd against the build: the route, never the assertion**), 36 (**a
+   raised divergence is an OUTSTANDING item and belongs in the register**), 41 (touch a case → the
    whole-case re-read now includes all five checks), 42 (a scope-conditional expectation is still
-   worth nothing behind an unrunnable precondition), 49 (a runnability finding on a non-final build
+   worth nothing behind an unrunnable precondition), 45(e) (**a divergence quotes BOTH texts side by
+   side**), 46 (**a divergence recorded is a deliberate decision documented — one silently "fixed" is
+   indistinguishable from a miss**), 48 (**an item raised to the QA lead carries its five fields**),
+   49 (a runnability finding on a non-final build
    is still PROVISIONAL), 54 (sentence 2 records when the route was last checked; sentence 1 still
-   names documents only), 57 (**UNTOUCHED — the expectation comes from the documents, never the
+   names documents only), 55 (**a divergence is written for him in plain layman words**), 57
+   (**UNTOUCHED — the expectation comes from the documents, never the
    build**), 58 (an ambiguous source about a STEP is settled from the build; an ambiguous source
    about an EXPECTATION is held and asked), 60 (**layer 1 is hereby WIDENED from "labels and
-   navigation" to "preconditions, steps, navigation and labels"**) and 61 (a held case tells the
-   tester to mark BLOCKED, not failed).
+   navigation" to "preconditions, steps, navigation and labels"**), 61 (a held case tells the
+   tester to mark BLOCKED, not failed) and 62 (**raising a divergence is REPORTING, not filing — no
+   ticket is created without his permission, and the creation hold at Rule 62's tail is active**).
 10. **"VIU" = the full BUILD-ACCURATE-WORDING-VIU-PROCESS (all projects, default
     meaning):** When the user says **"VIU the test cases"** (or "do the VIU"), it
     means **run `build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md` END-TO-END** (this is
@@ -2424,6 +2490,16 @@ deliver the 7-tab management report.
     **AND THE COUNT IS HONEST: an unverified step is an unverified case**, so a VIU report states
     **how many cases had EVERY step verified, on which build marker** — never how many were looked
     at (Rule 9's reporting consequence).
+    **⚠️ THE CHAIN HAS THREE LINKS, AND A VIU PASS OWES ALL THREE: LEARNED FROM THE SOURCES →
+    VERIFIED RUNNABLE ON THE BUILD → ANY DIVERGENCE RAISED TO THE QA LEAD.** A step or precondition
+    the sources require that the build **does not have** is a **SUBSTANTIVE divergence**: it is
+    **never silently rewritten into something runnable** — it is recorded with both texts and the
+    C-ids, given `AUTOMATION: HOLD` plus a "mark BLOCKED, not failed" line, and **raised**. Only a
+    **COSMETIC** difference (a renamed control, a moved menu item — *would a reader of the source
+    recognise what the build offers as the same thing?*) is simply corrected and logged. **A VIU pass
+    therefore ships a `DIVERGENCES` deliverable**, and a pass that corrected steps but raised nothing
+    should be able to say why (Rule 9's dangerous edge). QA lead, verbatim: *"If any precondition
+    learned from the sources is not doable on the build should be raised to me."*
     **HOW A SUITE IN THIS STATE IS DESCRIBED (with this rule's 2026-08-11 behaviour-verdict
     amendment above): "source-verified and build-accurate in its preconditions, steps, navigation and
     labels — with the behaviour verdict belonging to the tester" — NEVER "VIU complete".** The plain

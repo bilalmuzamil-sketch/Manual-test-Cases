@@ -33,10 +33,17 @@ Deliver test cases a **new, non-technical manual tester** can run with zero prio
 > build then the manual tester can not test that test."*
 >
 > **🔑 THE BUILD IS THE CHECK, NEVER THE AUTHOR.** Steps come from **what the case exists to
-> test**; the build **confirms they can be run**. Where a step cannot be executed as written,
-> correct it to **the minimum that makes it executable** — **never rewrite the case around what
-> the build makes convenient, and never invent a step.** Writing steps by walking the build lets
-> the product choose our coverage: the suite ends up testing whatever was easiest to reach.
+> test**; the build **confirms they can be run**. **Never rewrite the case around what the build
+> makes convenient, and never invent a step.** Writing steps by walking the build lets the
+> product choose our coverage: the suite ends up testing whatever was easiest to reach.
+>
+> **🔗 THE CHAIN HAS THREE LINKS: LEARNED FROM THE SOURCES → VERIFIED RUNNABLE ON THE BUILD →
+> ANY DIVERGENCE RAISED TO THE QA LEAD.** A failing step is **COSMETIC** (correct it and log it)
+> or **SUBSTANTIVE** (the build does not have what the source describes → `AUTOMATION: HOLD`,
+> "mark BLOCKED, not failed", **and RAISE it**). **The deciding question: *would a reader of the
+> source recognise what the build offers as the same thing?*** Full table in **step (2a)**;
+> deliverable **`DIVERGENCES.md`**. QA lead, verbatim: *"If any precondition learned from the
+> sources is not doable on the build should be raised to me."*
 >
 > **🛑 AND THE EXPECTED BEHAVIOUR STILL COMES ONLY FROM THE DOCUMENTS (Standing Rule 57) —
 > restated intact, because "take the steps from the build" is exactly the clause that could be
@@ -117,9 +124,38 @@ Fail any one of these and the case is not runnable:
    report into being wrong, hours before release. **Both readings are needed — neither alone
    is "the label".**)*
 
-Where a step fails a check, **correct it to the MINIMUM that makes it executable.** Record
-per case whether **every** step was verified — **an unverified step is an unverified case**,
-and the pass reports **N of M with the build marker**, never a rounded-up total.
+**Where a step fails a check, FIRST DECIDE WHICH KIND OF DIVERGENCE IT IS — the two are
+handled differently, and getting this wrong is how a defect disappears:**
+
+**The question that decides it: *would a reader of the source recognise what the build
+offers as the same thing?***
+
+| | **(a) COSMETIC** — yes, it is recognisably the same | **(b) SUBSTANTIVE** — no, the source describes something the build does not have |
+|---|---|---|
+| Examples | renamed control · moved menu item · changed label · same route by a slightly different path | the route does not exist · the precondition's state cannot be set up at all, even with seeding (Standing Rule 14) |
+| Handling | **correct it** so the tester can run the case, **and log it** | **NEVER silently rewritten.** Record as a **DIVERGENCE** with **both texts quoted** (Rule 45(e)) + the **C-ids** (Rule 8); apply the **smallest change that stops a tester being stranded** — normally `AUTOMATION: HOLD` with a plain reason **and a "mark BLOCKED, not failed" line** |
+| Escalation | none | **RAISE IT TO THE QA LEAD** and log it in the **OUTSTANDING-ITEMS REGISTER** (Rule 36) |
+
+> **⚠️ A PRECONDITION THE SOURCES REQUIRE BUT THE BUILD CANNOT ACHIEVE IS VERY OFTEN EVIDENCE
+> THAT THE *BUILD* IS WRONG, NOT THE CASE.** Rewriting the case to match the build there does
+> not fix a test — **it deletes the finding.**
+>
+> **🔥 THIS IS THE DANGEROUS EDGE OF THE WHOLE PROCESS. Now that correcting steps is REQUIRED,
+> category (b) is the new hiding place: a substantive divergence quietly "fixed" into a runnable
+> step LOOKS LIKE DILIGENT MAINTENANCE and reads as careful work** — the same shape as the
+> failure that cost 748 cases on 5 August 2026, one layer down, and **harder to spot**, because
+> the resulting case is genuinely runnable and build-accurate. **Ask the category question every
+> time a step is corrected** — never skipped because the fix was obvious, never resolved in
+> favour of (a) because (b) is more work or the release is close.
+
+Record per case whether **every** step was verified — **an unverified step is an unverified
+case**, and the pass reports **N of M with the build marker**, never a rounded-up total.
+
+**QA lead's stated goal, and the one-line test of this step:** *"A tester should not find a step
+coming from mars (which does not exist)"* … *"we need to make sure that the testers find a
+runnable test to execute."* **No case may send a tester to something that does not exist —
+either corrected, or clearly marked not runnable with the reason. Never left silently broken,
+and never quietly rewritten into something the sources never asked for.**
 
 **(3) VIU the behavior — LIVE UI-OBSERVED, with evidence, never inferred.**
 Exercise the case **live in the UI** and capture evidence **that run** (a screenshot
@@ -292,6 +328,17 @@ Regenerate the interim artifacts from the updated cases:
   clickable TestRail Link** (`https://shopview.testrail.io/index.php?/cases/view/<id>`),
   sourced from the per-project `testrail-id-map.csv` (Standing Rule 8).
 
+- **`DIVERGENCES.md` — REQUIRED since 2026-08-12 (Standing Rule 9's third step).** Every case
+  where a **source-learned step or precondition did not hold on the build**, i.e. every
+  **category (b)** finding from step (2a). **Written for the QA LEAD, not for the repo:** plain
+  layman words (Rule 7), **both texts quoted side by side** — what the source says and what the
+  build actually offers (Rule 45(e)) — the **C-id + TestRail link** per case (Rule 8), what was
+  done to stop a tester being stranded, and **what is being asked of him**. Mirror each row into
+  the **OUTSTANDING-ITEMS REGISTER** (Rule 36) with Rule 48's five fields.
+  **If there are none, say so explicitly — never omit the file**, so "nothing diverged" is
+  distinguishable from "nobody checked". **Raising is REPORTING, not filing** — no Jira ticket is
+  created without the QA lead's permission (Rule 62, and the creation hold at its tail).
+
 **ALWAYS state the TestRail update status explicitly in the final result** (per user rule)
 — e.g. "all N cases pushed via update_case, 200/200, 0 errors" or "no TestRail write (not
 authorized)".
@@ -307,12 +354,15 @@ authorized)".
    assertion does NOT change — wording only**) → **VERIFY RUNNABILITY: the five checks on
    every case (step 2a) — precondition reachable · path exists · control where the step says
    · steps work in order · labels read from computed style** → VIU + set
-   `viu_status`/evidence/`fresh_run` → commit by pathspec → push via `update_case`
-   (GET→diff→update→200/200; skip no-ops; API-section rule) + audit log → report
+   `viu_status`/evidence/`fresh_run` → **classify every failed check COSMETIC (correct + log)
+   or SUBSTANTIVE (HOLD + "mark BLOCKED, not failed" + RAISE) — *would a reader of the source
+   recognise what the build offers as the same thing?*** → commit by pathspec → push via
+   `update_case` (GET→diff→update→200/200; skip no-ops; API-section rule) + audit log → report
    tester-ready **with the honest N-of-M: how many cases had EVERY step verified, on which
    build marker**.
 3. Leave real blockers blocked with precise reasons; note shared-tester limits.
-4. Regenerate import + Blockers Tracker + results workbook (keep Case ID + Link columns).
+4. Regenerate import + Blockers Tracker + results workbook (keep Case ID + Link columns)
+   **+ `DIVERGENCES.md` for the QA lead — or state explicitly that there were none**.
 5. **State the TestRail update status explicitly** in the final report.
 
 ## Self-seed to unblock — never stay blocked on data (Standing Rule 14)
