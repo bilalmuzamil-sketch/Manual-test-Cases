@@ -1,0 +1,159 @@
+{
+  "out": {
+    "columnMenu": {
+      "items": [
+        {
+          "txt": "WO #",
+          "checked": "true"
+        },
+        {
+          "txt": "Status",
+          "checked": "true"
+        },
+        {
+          "txt": "Customer",
+          "checked": "true"
+        },
+        {
+          "txt": "Asset",
+          "checked": "true"
+        },
+        {
+          "txt": "VIN",
+          "checked": "false"
+        },
+        {
+          "txt": "Advisor",
+          "checked": "true"
+        },
+        {
+          "txt": "Days Open",
+          "checked": "true"
+        },
+        {
+          "txt": "Last Activity",
+          "checked": "false"
+        },
+        {
+          "txt": "Labor Earned",
+          "checked": "false"
+        },
+        {
+          "txt": "Labor Remaining",
+          "checked": "false"
+        },
+        {
+          "txt": "Parts Earned",
+          "checked": "false"
+        },
+        {
+          "txt": "Parts Remaining",
+          "checked": "false"
+        },
+        {
+          "txt": "Earned",
+          "checked": "true"
+        },
+        {
+          "txt": "Remaining",
+          "checked": "true"
+        },
+        {
+          "txt": "Inv. Hrs",
+          "checked": "false"
+        }
+      ],
+      "raw": [
+        "WO #",
+        "Status",
+        "Customer",
+        "Asset",
+        "VIN",
+        "Advisor",
+        "Days Open",
+        "Last Activity",
+        "Labor Earned",
+        "Labor Remaining",
+        "Parts Earned",
+        "Parts Remaining",
+        "Earned",
+        "Remaining",
+        "Inv. Hrs"
+      ]
+    },
+    "invToggled": "clicked",
+    "headersAfter": [
+      "WO #arrow_drop_up",
+      "Statusarrow_drop_up",
+      "Customerarrow_drop_up",
+      "Assetarrow_drop_up",
+      "Advisorarrow_drop_up",
+      "arrow_drop_upDays Open",
+      "arrow_drop_upEarned",
+      "arrow_drop_upRemaining",
+      "arrow_drop_upTotal"
+    ],
+    "exp_action_wip_export_pdf": {
+      "dl": [
+        {
+          "name": "wip-2-report.pdf",
+          "size": 177684,
+          "saved": "/home/user/Manual-test-Cases/build/report-suite/build-viu-2026-08-12/evidence/ih-1786506362955-wip-2-report.pdf"
+        }
+      ],
+      "http": [
+        {
+          "s": 200,
+          "q": "format=pdf&tab=ApprovedPartiallyCompleted&from=2026-08-09T00:00:00.000Z&to=2026-08-12T23:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&columns=wo_number,status,customer,asset,advisor,days_open,earned,remaining,total&sortBy=days_open&descending=true",
+          "err": ""
+        }
+      ],
+      "notif": [
+        "Success\nData exported successfully."
+      ]
+    },
+    "exp_action_wip_export_csv": {
+      "dl": [
+        {
+          "name": "wip-2-report.csv",
+          "size": 1366,
+          "saved": "/home/user/Manual-test-Cases/build/report-suite/build-viu-2026-08-12/evidence/ih-1786506370124-wip-2-report.csv"
+        }
+      ],
+      "http": [
+        {
+          "s": 200,
+          "q": "format=csv&tab=ApprovedPartiallyCompleted&from=2026-08-09T00:00:00.000Z&to=2026-08-12T23:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&columns=wo_number,status,customer,asset,advisor,days_open,earned,remaining,total&sortBy=days_open&descending=true",
+          "err": ""
+        }
+      ],
+      "notif": [
+        "Success\nData exported successfully."
+      ]
+    }
+  },
+  "dls": [
+    {
+      "name": "wip-2-report.pdf",
+      "size": 177684,
+      "saved": "/home/user/Manual-test-Cases/build/report-suite/build-viu-2026-08-12/evidence/ih-1786506362955-wip-2-report.pdf"
+    },
+    {
+      "name": "wip-2-report.csv",
+      "size": 1366,
+      "saved": "/home/user/Manual-test-Cases/build/report-suite/build-viu-2026-08-12/evidence/ih-1786506370124-wip-2-report.csv"
+    }
+  ],
+  "resp": [
+    {
+      "s": 200,
+      "q": "format=pdf&tab=ApprovedPartiallyCompleted&from=2026-08-09T00:00:00.000Z&to=2026-08-12T23:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&columns=wo_number,status,customer,asset,advisor,days_open,earned,remaining,total&sortBy=days_open&descending=true",
+      "err": ""
+    },
+    {
+      "s": 200,
+      "q": "format=csv&tab=ApprovedPartiallyCompleted&from=2026-08-09T00:00:00.000Z&to=2026-08-12T23:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&columns=wo_number,status,customer,asset,advisor,days_open,earned,remaining,total&sortBy=days_open&descending=true",
+      "err": ""
+    }
+  ]
+}
