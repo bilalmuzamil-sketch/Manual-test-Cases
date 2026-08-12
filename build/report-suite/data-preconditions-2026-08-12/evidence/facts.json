@@ -1,0 +1,529 @@
+[
+ {
+  "id": "F1",
+  "desc": "Each of the six reports returns rows in a normal range",
+  "needed_by": "DATA_OPEN, all reports",
+  "verdict": "PRESENT",
+  "evidence": {
+   "sbc": 245,
+   "sbr": 3,
+   "pv": 6504,
+   "tu": 19,
+   "iv": 5814,
+   "wip": {
+    "Estimates": 136,
+    "Completed": 15,
+    "ApprovedPartiallyCompleted": 78,
+    "ApprovedNotStarted": 30
+   }
+  },
+  "control": "Control: the same call shape returns 0 for QB Location, so a non-zero here is real."
+ },
+ {
+  "id": "F2",
+  "desc": "The account reaches more than one location",
+  "needed_by": "multi-location cases, all reports",
+  "verdict": "PRESENT",
+  "evidence": {
+   "count": 6,
+   "names": [
+    "QB Location",
+    "3rd",
+    "L'Espace Tralala Yoga",
+    "Staging Heavy Duty - 9919",
+    "(New Location) Melissa Heiney, Counselling Therapy",
+    "Staging Lethbridge - 4310"
+   ]
+  },
+  "control": "Control: the endpoint returns a list; a single-location account would return 1."
+ },
+ {
+  "id": "F3",
+  "desc": "At least TWO locations each carry invoices in the same range",
+  "needed_by": "SBC 30101/30111, SBR 30215, WIP 30503/30531",
+  "verdict": "PRESENT",
+  "evidence": {
+   "heavy_duty_rows": 245,
+   "lethbridge_rows": 250
+  },
+  "control": "Control: the identical call for QB Location returns 0 rows, so these counts discriminate."
+ },
+ {
+  "id": "F4",
+  "desc": "Three or more customers with invoices",
+  "needed_by": "SBC 30112/30113/30114/30128",
+  "verdict": "PRESENT",
+  "evidence": {
+   "distinct_customers": 245,
+   "total": 245
+  },
+  "control": "Control: distinct names counted from rows actually read (245 read)."
+ },
+ {
+  "id": "F5",
+  "desc": "A customer whose invoices span TWO locations",
+  "needed_by": "SBC 38912, SBR 38913",
+  "verdict": "PRESENT",
+  "evidence": {
+   "customers_with_location_Multiple": 16,
+   "examples": [
+    "Auline Landscaping",
+    "Broborough Technology",
+    "Ceview Builders",
+    "Depark Paving"
+   ]
+  },
+  "control": "Control: the same query with ONE location returns zero \"Multiple\" rows."
+ },
+ {
+  "id": "F6",
+  "desc": "A row whose Subtotal is zero or below (em-dash Margin %)",
+  "needed_by": "SBC 30144/30150/30162, SBR 30233",
+  "verdict": "PRESENT",
+  "evidence": {
+   "rows_subtotal_le_0": 12,
+   "examples": [
+    [
+     "Beside Electrical",
+     0,
+     null
+    ],
+    [
+     "Cogate Electrical",
+     0,
+     null
+    ],
+    [
+     "Enmill Design",
+     0,
+     null
+    ],
+    [
+     "Fuline Enterprises",
+     0,
+     null
+    ]
+   ]
+  },
+  "control": "Control: 245 rows read and 233 had subtotal > 0, so the filter discriminates."
+ },
+ {
+  "id": "F7",
+  "desc": "Rows with NEGATIVE Inv. Hrs",
+  "needed_by": "SBC 30169/30525, SBR 30282, WIP 30513",
+  "verdict": "PRESENT",
+  "evidence": {
+   "negative": 79,
+   "positive": 123,
+   "examples": [
+    [
+     "Auhampton Systems",
+     -0.62
+    ],
+    [
+     "Bifield Rentals",
+     -1.06
+    ],
+    [
+     "Bivale Fabrication",
+     -0.4
+    ],
+    [
+     "Bocrest Beverages",
+     -4.43
+    ]
+   ]
+  },
+  "control": "Control: both signs counted; finding both proves the field is being read."
+ },
+ {
+  "id": "F8",
+  "desc": "Enough customers to span more than one page (>30)",
+  "needed_by": "SBC 30129/30155, VOLUME lines",
+  "verdict": "PRESENT",
+  "evidence": {
+   "rowsNumber": 245,
+   "rowsPerPage": 30,
+   "pages": 9
+  },
+  "control": "Control: rowsNumber comes from the server pagination block, not from len(rows)."
+ },
+ {
+  "id": "F9",
+  "desc": "A customer with two or more invoices",
+  "needed_by": "SBC 30121/30125/30153, SBR 30221",
+  "verdict": "PRESENT",
+  "evidence": {
+   "customers_with_2plus_invoices": 153,
+   "max_invoice_count": 106
+  },
+  "control": "Control: invoice_count read per row; 92 of 245 had exactly 1, so it discriminates."
+ },
+ {
+  "id": "F10",
+  "desc": "Two or more sales representatives on the report",
+  "needed_by": "SBR 30222/30241/30243/30245",
+  "verdict": "PRESENT",
+  "evidence": {
+   "reps": 4,
+   "names": [
+    "Admin ShopView",
+    "Parth Fadadu",
+    "SBR REP-MSPTR5KAMTZ",
+    "Viktoria Videnovic"
+   ]
+  },
+  "control": "Control: single-location call returns 3; two-location call should be >= that."
+ },
+ {
+  "id": "F11",
+  "desc": "An INACTIVE sales representative with invoices",
+  "needed_by": "SBR 30217/30219/30257/30258",
+  "verdict": "PRESENT",
+  "evidence": {
+   "inactive": 1,
+   "names": [
+    "SBR REP-MSPTR5KAMTZ"
+   ],
+   "active": 3
+  },
+  "control": "Control: both flags counted; finding both values proves the field is populated."
+ },
+ {
+  "id": "F12",
+  "desc": "An UNASSIGNED invoice row (Show Unassigned)",
+  "needed_by": "SBR 30223/30244/30261/30262/30264/30288",
+  "verdict": "PRESENT",
+  "evidence": {
+   "true": {
+    "rows": 5,
+    "unassigned": 1
+   },
+   "false": {
+    "rows": 4,
+    "unassigned": 0
+   }
+  },
+  "control": "Control: the flag is toggled BOTH ways; if the counts are identical the parameter is being ignored and the result is NOT evidence either way."
+ },
+ {
+  "id": "F13",
+  "desc": "A rep with invoices at TWO locations, and one at a single location",
+  "needed_by": "SBR 38913/30215",
+  "verdict": "PRESENT",
+  "evidence": {
+   "multi_location_reps": [
+    "Viktoria Videnovic"
+   ],
+   "single_location_reps": [
+    "Admin ShopView",
+    "Parth Fadadu",
+    "SBR REP-MSPTR5KAMTZ"
+   ],
+   "locations_seen": {
+    "Multiple": 2,
+    "Staging Heavy Duty - 9919": 3
+   }
+  },
+  "control": "Control: run over ALL SIX locations, not a chosen pair. The two-location subset returned 0 and that reading was WRONG -- recorded in PRECONDITIONS.md."
+ },
+ {
+  "id": "F14",
+  "desc": "Parts with sales activity in the window",
+  "needed_by": "PV 30325/30343",
+  "verdict": "PRESENT",
+  "evidence": {
+   "rows_read": 250,
+   "with_activity": 250,
+   "demand_min": 8,
+   "demand_max": 700,
+   "total": 10403
+  },
+  "control": "Control: the SAME query ascending returns 250 rows of demand 0, descending returns 250 of demand 8..700 -- so the probe demonstrably discriminates."
+ },
+ {
+  "id": "F15",
+  "desc": "BOTH inventory and Special Order rows present",
+  "needed_by": "PV 30328/30336/30344",
+  "verdict": "PRESENT",
+  "evidence": {
+   "inventory": 9933,
+   "special_order": 470,
+   "both": 10403,
+   "arithmetic_gate": "9933 + 470 = 10403 vs both=10403"
+  },
+  "control": "Control: each type queried explicitly AND the two sum to the \"both\" total, which is what rules out a silently-ignored type parameter."
+ },
+ {
+  "id": "F16",
+  "desc": "Parts with Min and Max set",
+  "needed_by": "PV 30378 (\"Min and Max are enabled\")",
+  "verdict": "PRESENT",
+  "evidence": {
+   "with_min": 247,
+   "with_max": 247,
+   "rows_read": 250
+  },
+  "control": "Control: counted as \"not None\"; if every row were None the count would be 0."
+ },
+ {
+  "id": "F17",
+  "desc": "Parts with different categories and different vendors",
+  "needed_by": "PV 30332/30334",
+  "verdict": "PRESENT",
+  "evidence": {
+   "distinct_categories": 27,
+   "distinct_vendors": 20,
+   "sample_categories": [
+    "HD-Fabrication & Building",
+    "HD-Drive Train",
+    "HD-Truck Accessories",
+    "HD-Filters",
+    "HD-Fasteners"
+   ],
+   "sample_vendors": [
+    null,
+    "Hocrest Supply",
+    "Enson Forestry",
+    "Zocrest Maintenance",
+    "Tepark Towing"
+   ]
+  },
+  "control": "Control: both counted from rows read; 1 would mean uniform data, 0 a broken read."
+ },
+ {
+  "id": "F18",
+  "desc": "A part with NO category, one with NO vendor",
+  "needed_by": "PV 30339",
+  "verdict": "PARTIAL",
+  "evidence": {
+   "no_category_NULL": 0,
+   "no_vendor": 180,
+   "rows_read": 500,
+   "note": "no NULL category exists; the build uses a category literally named \"Uncategorized\" instead. Whether that satisfies \"a part with NO category assigned\" is the tester's reading, not ours.",
+   "uncategorized_present": true
+  },
+  "control": "Control: sorted by category in BOTH directions so a null at either end would be seen; the vendor half of the same rows DOES find nulls, which proves the \"not set\" test works and the category result is a real fact about the data."
+ },
+ {
+  "id": "F19",
+  "desc": "The same part number stocked at TWO locations",
+  "needed_by": "PV 38914/30341, IV multi-location cases",
+  "verdict": "PRESENT",
+  "evidence": {
+   "hd_parts_read": 250,
+   "leth_parts_read": 250,
+   "shared_part_numbers": 5,
+   "examples": [
+    "N201-013BR",
+    "N2405-04-04",
+    "N244-025-013BR",
+    "N268-013BR",
+    "N64-16"
+   ]
+  },
+  "control": "Control: BOTH sides read non-zero part sets, so an empty intersection would be a real fact about stocking, not an empty read. NOTE: only the first 250 rows of 5814/3620 are compared, so a zero here is NOT conclusive -- see the verdict text."
+ },
+ {
+  "id": "F20",
+  "desc": "A technician who clocked time and one who clocked NONE in the range",
+  "needed_by": "TU 30393",
+  "verdict": "PRESENT",
+  "evidence": {
+   "techs_with_time_over_the_year": 39,
+   "techs_with_time_in_a_2_day_window": 1,
+   "therefore_zero_time_in_that_window": 38,
+   "technicians_offered_by_filter": 39
+  },
+  "control": "Control: the filter endpoint offers the same 39 as the wide report, so the report is not silently dropping anyone; the 2-day window is what creates the zero-time side, and it is a range the tester picks."
+ },
+ {
+  "id": "F21",
+  "desc": "A technician with internal hours but ZERO work-order hours",
+  "needed_by": "TU 30403",
+  "verdict": "PRESENT",
+  "evidence": {
+   "matches": 3,
+   "examples": [
+    [
+     "Jasmine Keith",
+     0,
+     3146940
+    ],
+    [
+     "Ruth Jackson",
+     0,
+     149724
+    ],
+    [
+     "Sean Barnes",
+     0,
+     68940
+    ]
+   ],
+   "rows_read": 39
+  },
+  "control": "Control: rows with wo_seconds>0 are the complement and are numerous, so the field is populated and a match is a real find."
+ },
+ {
+  "id": "F22",
+  "desc": "A technician whose WO% lands on a ROUNDING TIE (x.x5)",
+  "needed_by": "TU 30402",
+  "verdict": "PRESENT",
+  "evidence": {
+   "exact_ties": [
+    [
+     "Eric Ponce",
+     74.6747
+    ]
+   ],
+   "near_ties_within_a_hair": [],
+   "techs_evaluated": 39
+  },
+  "control": "Control: the percentage is recomputed from the raw seconds the API returns, so this is arithmetic on real data, not a guess. A tie is rare by nature -- ABSENT here means \"not currently present\", and it is seedable by clocking a chosen number of seconds."
+ },
+ {
+  "id": "F23",
+  "desc": "Technicians at two locations (for the multi-zone / per-location checks)",
+  "needed_by": "TU 30397/30404",
+  "verdict": "PRESENT",
+  "evidence": {
+   "locations_in_rows": {
+    "Staging Heavy Duty - 9919": 19,
+    "Staging Lethbridge - 4310": 20
+   },
+   "techs": 39
+  },
+  "control": "Control: two locations were explicitly selected; if only one appears that is a fact about where technicians clocked, not about the filter."
+ },
+ {
+  "id": "F24",
+  "desc": "The nightly capture has run for today (as_of date present)",
+  "needed_by": "IV 30563/30607/30609",
+  "verdict": "PRESENT",
+  "evidence": {
+   "as_of_date": "2026-08-12",
+   "rows": 250,
+   "total": 9434
+  },
+  "control": "Control: as_of_date is returned by the server in the response envelope."
+ },
+ {
+  "id": "F25",
+  "desc": "Inventory rows at two locations",
+  "needed_by": "IV multi-location cases",
+  "verdict": "PRESENT",
+  "evidence": {
+   "locations_in_first_250_rows": {
+    "Staging Heavy Duty - 9919": 104,
+    "Staging Lethbridge - 4310": 146
+   }
+  },
+  "control": "Control: sorted by total_cost, so the first page may be single-location by chance; the per-location counts in F3/API-FACTS are the authoritative answer."
+ },
+ {
+  "id": "F26",
+  "desc": "All FOUR Work In Progress tabs contain rows",
+  "needed_by": "WIP 30490/30494/30486/30507/30519",
+  "verdict": "PRESENT",
+  "evidence": {
+   "Estimates": 195,
+   "ApprovedNotStarted": 38,
+   "ApprovedPartiallyCompleted": 130,
+   "Completed": 33,
+   "tab_counts_from_server": {
+    "Estimates": 195,
+    "Completed": 33,
+    "ApprovedPartiallyCompleted": 130,
+    "ApprovedNotStarted": 38
+   }
+  },
+  "control": "Control: each tab is fetched separately AND the server tab_counts block is read; the two agreeing is what rules out a mis-set tab parameter."
+ },
+ {
+  "id": "F27",
+  "desc": "Work orders with a non-zero money value, and a zero one",
+  "needed_by": "WIP 30474/30490/30512",
+  "verdict": "PRESENT",
+  "evidence": {
+   "labor_earned_over_1000usd": 23,
+   "labor_earned_zero": 37,
+   "any_negative": 0,
+   "rows": 130
+  },
+  "control": "Control: three disjoint buckets counted over the same rows; they sum sensibly, so the field is being read."
+ },
+ {
+  "id": "F28",
+  "desc": "Work orders for two or more different ADVISORS",
+  "needed_by": "WIP 30498/30505",
+  "verdict": "PRESENT",
+  "evidence": {
+   "distinct_advisors": 14,
+   "examples": [
+    null,
+    "Jill Blake",
+    "Ryan Brown",
+    "Jennifer Johnston",
+    "Lauren Knight",
+    "Jamie Perkins"
+   ]
+  },
+  "control": "Control: counted from rows read; 1 would mean uniform data, 0 a broken read."
+ },
+ {
+  "id": "F29",
+  "desc": "Assets WITH a VIN and assets with NEITHER VIN nor Unit #",
+  "needed_by": "WIP 30470/30500, SBC 30134",
+  "verdict": "PRESENT",
+  "evidence": {
+   "vin": 387,
+   "unit_only": 5,
+   "neither": 4,
+   "rows": 396
+  },
+  "control": "Control: all four tabs aggregated so the sample is the whole report, not one tab. The three buckets are disjoint and sum to rows."
+ },
+ {
+  "id": "F30",
+  "desc": "Work orders at two different locations",
+  "needed_by": "WIP 30503/30531, IV/SBC location cases",
+  "verdict": "PRESENT",
+  "evidence": {
+   "locations_in_rows": {
+    "Staging Heavy Duty - 9919": 136,
+    "Staging Lethbridge - 4310": 59
+   },
+   "rows": 195
+  },
+  "control": "Control: per-location tab_counts (API-FACTS) show 136 and 59 estimates respectively, so both sides have data and a single value here would be a filter fault."
+ },
+ {
+  "id": "F31",
+  "desc": "Work orders in several STATUSES",
+  "needed_by": "WIP 30456/30462/30469",
+  "verdict": "PRESENT",
+  "evidence": {
+   "statuses": {
+    "estimate": 157,
+    "approved": 188,
+    "ready_for_review": 16,
+    "in_progress": 2,
+    "complete": 33
+   }
+  },
+  "control": "Control: aggregated across all four tabs, which is where different statuses live."
+ },
+ {
+  "id": "F32",
+  "desc": "A filter combination exceeding 10,000 rows (the export cap)",
+  "needed_by": "SBC 30172/30194, SBR 30290/30320, WIP 38918",
+  "verdict": "PRESENT",
+  "evidence": {
+   "parts_velocity_rows": 10403,
+   "inventory_value_rows": 9434,
+   "note": "SBC/SBR/WIP counts are far smaller; the cap is reachable on PV/IV only"
+  },
+  "control": "Control: rowsNumber is the server total, independent of rowsPerPage."
+ }
+]
