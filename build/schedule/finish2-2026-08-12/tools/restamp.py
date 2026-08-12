@@ -58,8 +58,13 @@ def build(case):
     cid = case["id"]; exp = case["custom_expected"] or ""
     new = exp; notes = []
     if RE_STAMP.search(exp):
-        if f"build {BUILD} on" in exp and cid not in TESTER_NOTE:
-            return None, "already names the running build"
+        # THE SKIP MUST BE "the work is already done", not "this case is exempt".
+        # The first version exempted the note-carrying cases outright, so a RESUME
+        # re-applied the note and C29929 came back with it twice.  A case is done when
+        # it names the running build AND (if it needs a note) already carries it.
+        note_done = cid not in TESTER_NOTE or TESTER_NOTE[cid].strip()[:40] in exp
+        if f"build {BUILD} on" in exp and note_done:
+            return None, "already names the running build" + ("" if cid not in TESTER_NOTE else " and already carries its note")
         # keep whatever terminator was there (a "." or nothing before a ";")
         new = RE_STAMP.sub(lambda m: NEW_SENT if m.group(1) == "." else NEW_SENT[:-1], new, count=1)
         notes.append("sentence 2 re-stamped")

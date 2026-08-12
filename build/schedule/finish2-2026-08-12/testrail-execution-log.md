@@ -8,7 +8,7 @@
 2026-08-10 ruling, verbatim: *"Do not create anything until my next order."*).
 `custom_atmstatus` was never sent. No role, staff record or setting was touched.
 
-**40 operations over 38 distinct cases**, every one **HTTP 200 and byte-verified**:
+**41 operations over 39 distinct cases**, every one **HTTP 200 and byte-verified**:
 30 fields compared each, 3 intended, **0 mismatches and 0 collateral changes**. All three text
 fields (`custom_preconds`, `custom_steps`, `custom_expected`) went on every payload, because
 TestRail re-renders any text field it is not sent.
@@ -75,6 +75,7 @@ present; that is written into the repair script so the next pass does not repeat
 | 39 | [C30086](https://shopview.testrail.io/index.php?/cases/view/30086) | 200 | sentence 2 re-stamped | update_case C30086: 30 fields compared, 3 intended, 0 mismatch |
 | 40 | [C43588](https://shopview.testrail.io/index.php?/cases/view/43588) | 200 | sentence 2 ADDED (case had none) | update_case C43588: 30 fields compared, 3 intended, 0 mismatch |
 | 41 | [C29929](https://shopview.testrail.io/index.php?/cases/view/29929) | 200 | REPAIR - the resume re-applied the tester note; the duplicate copy removed | update_case C29929: 30 fields compared, 3 intended, 0 mismatch |
+| 42 | [C38873](https://shopview.testrail.io/index.php?/cases/view/38873) | 200 | sentence 2 re-stamped | update_case C38873: 30 fields compared, 3 intended, 0 mismatch |
 
 ## Run 357 — proven untouched BY CONTENT, never by a timestamp
 
@@ -87,5 +88,8 @@ present; that is written into the repair script so the next pass does not repeat
 **`case_id` and `test_id` sets equal in BOTH directions.** All **529** prior result records present
 **by id** — **0 missing, 0 new**. **0 graded fields changed** and **0 derived/echo fields changed**,
 not even `case_title`, because no case was retitled.
+
+**Re-proved at the end of the pass**, after every write: `include_all` still False, 176 tests, **529
+results**, and the **test_id, case_id and result_id sets all equal the pre-write snapshot exactly**.
 
 Snapshot: `evidence/run357-PRE.json` (ids only — no result bodies are stored).

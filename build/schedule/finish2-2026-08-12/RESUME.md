@@ -10,10 +10,10 @@ read at **2026-08-12T07:11:17Z**. **Re-read it before trusting anything below.**
 |---|---|
 | Cases (group 4254) | **176**, all ours (`created_by = 3`), no foreign cases |
 | Markers | READY **141** · EXPECT-FAIL **4** · HOLD **31** · **gate closes both ways at 145** |
-| Build line naming the running build | **113 of 176** (was 76) |
-| **Preconditions and steps actually walked** | **87 of 176** — 54 this pass, 53 of them new |
-| Never walked by anybody | **89** (25 already on HOLD; **64 are the real remaining work**) |
-| TestRail writes | **40 operations over 38 cases**, all HTTP 200 + byte-verified, 30 fields each, 0 mismatches |
+| Build line naming the running build | **114 of 176** (was 76) |
+| **Preconditions and steps actually walked** | **88 of 176** — 55 this pass, 54 of them new |
+| Never walked by anybody | **88** (25 already on HOLD; **63 are the real remaining work**) |
+| TestRail writes | **41 operations over 39 cases**, all HTTP 200 + byte-verified, 30 fields each, 0 mismatches |
 | add / delete / section / run / result | **0** · Jira creates **0** · `custom_atmstatus` never sent |
 | Run 357 | **untouched, proven by content** — 176 tests, 529 results all present by id, 0 changes |
 
@@ -26,8 +26,8 @@ the three that collapsed) → `FINDINGS.md` → `RUNNABILITY.md` (case by case) 
 ## THE NEXT THING TO DO, IN ORDER
 
 1. **Keep walking the 64.** `evidence/remaining.json` holds the exact list and the per-area breakdown.
-   The cheapest wins are **Shift Start Times (7)**, **Events (4, one seeded event unblocks them)** and
-   **API — Schedule (2, drivable straight against the API host)**.
+   The cheapest wins are **Shift Start Times (7)** and **Events (4 — one seeded event unblocks them)**.
+   **The scheduling API is now mapped** (see the recipe below), so shifts can be seeded at will.
 2. **Ask for permission to raise the two Story Defects** — C29929 and C30050, written up ready to file.
 3. **The three permission users**, configured before their cookies are minted — ten cases.
 4. **C30086's sidebar half** — at 900 px the grid scrolls but the sidebar stays at its full 275 px.
@@ -55,9 +55,26 @@ node walk_b6.cjs                         # overlap, series, keyboard, events, re
 node walk_hard.cjs                       # the five results that needed a harder check
 python3 restamp.py                       # DRY RUN by default; --go executes
 python3 fix_29929.py                     # the duplicate-note repair (idempotent)
+python3 walk_api.py ; python3 walk_api2.py  # the two API cases, driven against the API host
 ```
 
 Every probe writes its result file **after every case** and prints its **non-GET call list at exit**.
+
+## THE SCHEDULING API, MAPPED THIS PASS — seed shifts with this instead of dragging
+
+`POST /api/schedule/shifts` needs **all five**:
+`line_ids` (**every line of the work order** — sending a subset returns *"Work order lines can only be
+scheduled together with their work order"*), `work_order_id`, `staff_id`, `spread_mode`
+(**`single` or `series`**), `start_date` (a **local date**, `2026-11-02`, not an instant) and
+**`total_minutes`** — that last name is the one worth writing down: `minutes`, `duration_minutes`,
+`scheduled_minutes`, `spread_minutes` and four others all return *"The scheduled minutes are required."*
+
+`GET /api/schedule/board?from=…&to=…` takes **UTC ISO-8601 instants** and **refuses a range over 62
+days** — walk it in 60-day windows and union the ids.
+
+Two server limits, both observed: a series over **56 days** returns **409** unless
+`acknowledgeLongSeries: true`; more than **120 shifts** returns **422** and the acknowledgement does
+**not** override it (64,800 minutes = 120 shifts, accepted; 65,000 = 422).
 
 ## TRAPS — READ BEFORE WRITING A PROBE
 

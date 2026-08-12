@@ -39,3 +39,29 @@ Edit Staff dialog was toggled and **Save was never pressed**, so no staff record
 
 **Roles, permissions and staff records were not touched at all** — a role edit invalidates every
 holder's session one way, which is how the Technician sign-in was lost yesterday.
+
+---
+
+## Addendum — the API cases, and the data they created
+
+**[C38873](https://shopview.testrail.io/index.php?/cases/view/38873) was driven against the API host
+and it created real shifts**, which is what the case is for. Recorded plainly rather than glossed:
+
+| Call | Result |
+|---|---|
+| a series past 8 weeks, **without** `acknowledgeLongSeries` | **HTTP 409**, nothing created |
+| the same **with** the acknowledgement | **HTTP 201** — **75 shifts** under one series id |
+| boundary probes at 50,000 / 60,000 / 64,800 minutes | **HTTP 201** — 93, 112 and **120** shifts |
+| 65,000 / 70,000 / 100,000 minutes | **HTTP 422**, nothing created |
+
+**So roughly 400 shifts were created, all dated November 2026 to mid-2027** — well outside the August
+window a tester will be looking at. **They were deliberately left in place**, on the QA lead's
+instruction that *"any data added in these branches is just the test data"* and that time should not be
+spent restoring it. **They are also genuinely useful**: several series cases need a series to look at.
+
+**The refused calls left nothing behind, and that is a measurement**: the board was walked in 60-day
+windows before and after, and the shift count moved by **exactly** the number the one accepted call
+created.
+
+**Nothing was created at location B** — the attempt is recorded under C38875 in `evidence/walk_api.json`.
+The session was switched to location B and **switched back to location A**, verified HTTP 200 both ways.

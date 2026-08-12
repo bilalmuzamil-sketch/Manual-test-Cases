@@ -1,0 +1,58 @@
+{
+ "38873": {
+  "steps": [
+   {
+    "step": "1 POST a spread whose window exceeds 8 weeks, WITHOUT acknowledgeLongSeries",
+    "seen": "HTTP 409 -- {\"errors\": [{\"error\": \"The series would span 103 days, beyond the 56-day limit. Resubmit with acknowledgeLongSeries to schedule it anyway.\"}]}"
+   },
+   {
+    "step": "2 the same POST with acknowledgeLongSeries=true",
+    "seen": "HTTP 201 -- 75 shifts created under one series id 6449753c-b607-449a-b9e0-47988c26a86b"
+   },
+   {
+    "step": "3 POST a spread that would materialise MORE than 120 shifts, WITH the acknowledgement",
+    "seen": "HTTP 400 -- {\"errors\": [{\"error\": \"The scheduled minutes are out of range.\"}]}"
+   },
+   {
+    "step": "4 check the board for leftovers after the refused calls",
+    "seen": "board 159 -> 234 shifts; 75 new, which is exactly the 75 the ACCEPTED call in step 2 created"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T08:07:06.223184Z"
+ },
+ "38875": {
+  "steps": [
+   {
+    "step": "0a switch the session to Staging Lethbridge - 4310 (location B)",
+    "seen": "POST /api/iam/change-location -> HTTP 200"
+   },
+   {
+    "step": "0b look for a technician at location B",
+    "seen": "the board's resources return THREE departments (Service, Work order status, Service/Parts) and EVERY ONE has an empty resource list -- there is no technician at location B at all, so no assigned shift can be created there"
+   },
+   {
+    "step": "0c look for a schedulable work order at location B",
+    "seen": "GET /api/work-orders?limit=20 returns 100 work orders at B, but GET /api/work-orders/{id} on one of them returns HTTP 404 while still scoped to B, and both /api/work-orders/{id}/lines and /api/work-orders/lines?work_order_id={id} return HTTP 404. So no line id could be obtained to schedule"
+   },
+   {
+    "step": "0d try an unassigned shift instead (no staff_id)",
+    "seen": "not reachable -- it still needs line_ids, and no line id could be read at B"
+   },
+   {
+    "step": "0e switch the session back to location A",
+    "seen": "POST /api/iam/change-location -> HTTP 200"
+   },
+   {
+    "step": "1-2 GET / PATCH a foreign shift id while scoped to location A",
+    "seen": "NOT DRIVEN. The case's precondition 2 requires 'a shift exists at location B', and one could not be made to exist: location B has no technicians and its work order details are unreadable. This is NOT evidence that cross-location scoping is broken, and it is not recorded as such"
+   },
+   {
+    "step": "3 read location A's board for the current week",
+    "seen": "HTTP 200; 52 shifts, all under the location-A scope"
+   }
+  ],
+  "verdict": "PARTIAL - precondition could not be met on this estate; self-seeding was attempted and is recorded",
+  "at": "2026-08-12T08:09:44.972195Z"
+ }
+}
