@@ -1,0 +1,166 @@
+{
+ "read_at_utc": "2026-08-12T16:01:13.648Z",
+ "cases": {
+  "29614": {
+   "case": "C29614",
+   "step": 6,
+   "route": "the case's own alternative: 'or a different browser profile'",
+   "baseline": [],
+   "baselineIsClean": true,
+   "profile1_set": {
+    "opened": true,
+    "picked": true,
+    "url": "https://sv8785.qa.shopview.com/workorders?status=declined&tab=all"
+   },
+   "profile1_chips": [
+    "Status : Declined keyboard_arrow_down",
+    "person Customer keyboard_arrow_down",
+    "build Lead Technician keyboard_arrow_down",
+    "headset_mic Service Advisor keyboard_arrow_down",
+    "local_shipping Asset on Site keyboard_arrow_down"
+   ],
+   "profile1_pref": {
+    "status": [
+     "declined"
+    ]
+   },
+   "profile1_saved": true,
+   "profile2_localStorageBefore": {
+    "keys": [
+     "fe_permissions_wrapper",
+     "location",
+     "user"
+    ]
+   },
+   "profile2_chips": [
+    "Status keyboard_arrow_down",
+    "person Customer keyboard_arrow_down",
+    "build Lead Technician keyboard_arrow_down",
+    "headset_mic Service Advisor keyboard_arrow_down",
+    "local_shipping Asset on Site keyboard_arrow_down"
+   ],
+   "profile2_url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+   "profile2_rows": {
+    "tbody": 33,
+    "cards": 0,
+    "emptyStateVisible": false
+   },
+   "profile2_pref": {
+    "status": [
+     "declined"
+    ]
+   },
+   "profile2_showsDeclined": false,
+   "consoleErrors": [
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: net::ERR_FAILED"
+   ],
+   "prefResetAfter": [],
+   "bridge_errors": 0
+  },
+  "43560": {
+   "case": "C43560",
+   "steps": "1-6",
+   "baseline": [],
+   "baselineIsClean": true,
+   "baselineUpdatedAt": "2026-08-12T16:01:33Z",
+   "bothStarted": {
+    "A": "https://sv8785.qa.shopview.com/workorders?tab=all",
+    "B": "https://sv8785.qa.shopview.com/workorders?tab=all"
+   },
+   "step1_A_setApproved": {
+    "opened": true,
+    "picked": true,
+    "url": "https://sv8785.qa.shopview.com/workorders?status=approved&tab=all"
+   },
+   "prefAfterStep1": {
+    "status": [
+     "approved"
+    ]
+   },
+   "step2_B_setEstimate": {
+    "opened": true,
+    "picked": true,
+    "url": "https://sv8785.qa.shopview.com/workorders?status=estimate&tab=all"
+   },
+   "step2_B_tickedBeforeClearing": [],
+   "step2_B_clearApproved": {
+    "unpicked": true,
+    "url": "https://sv8785.qa.shopview.com/workorders?status=estimate&status=approved&tab=all"
+   },
+   "prefAfterStep2": {
+    "status": [
+     "estimate",
+     "approved"
+    ]
+   },
+   "step4_A_afterReload": {
+    "chips": [
+     "Status keyboard_arrow_down",
+     "person Customer keyboard_arrow_down",
+     "build Lead Technician keyboard_arrow_down",
+     "headset_mic Service Advisor keyboard_arrow_down",
+     "local_shipping Asset on Site keyboard_arrow_down"
+    ],
+    "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+    "rows": {
+     "tbody": 33,
+     "cards": 0,
+     "emptyStateVisible": false
+    }
+   },
+   "step4_A_showsEstimateNotApproved": false,
+   "step5_A_pickedCustomer": true,
+   "step5_A_url": "https://sv8785.qa.shopview.com/workorders?company_id=bee84acf-d719-4268-8b9d-48b6be794392&tab=all",
+   "prefAfterStep5": {
+    "status": [
+     "estimate",
+     "approved"
+    ]
+   },
+   "step5_savedCustomer": false,
+   "step6_B_afterReload": {
+    "chips": [
+     "Status keyboard_arrow_down",
+     "person Customer keyboard_arrow_down",
+     "build Lead Technician keyboard_arrow_down",
+     "headset_mic Service Advisor keyboard_arrow_down",
+     "local_shipping Asset on Site keyboard_arrow_down"
+    ],
+    "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+    "rows": {
+     "tbody": 33,
+     "cards": 0,
+     "emptyStateVisible": false
+    }
+   },
+   "step6_B_showsCustomerFromA": false,
+   "step6_B_showsEstimate": false,
+   "step6_B_url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+   "step6_B_urlCarriesCustomer": false,
+   "consoleErrorsA": [
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: net::ERR_FAILED"
+   ],
+   "consoleErrorsB": [
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: net::ERR_FAILED"
+   ],
+   "api4xxA": [],
+   "api4xxB": [],
+   "errorTextOnScreen": null,
+   "prefResetAfter": [],
+   "bridge_errors_A": 0,
+   "bridge_errors_B": 0
+  }
+ }
+}

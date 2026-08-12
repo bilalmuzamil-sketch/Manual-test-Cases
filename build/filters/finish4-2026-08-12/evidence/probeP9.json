@@ -1,0 +1,108 @@
+{
+ "case": "C29614",
+ "step": 6,
+ "read_at_utc": "2026-08-12T16:05:05.813Z",
+ "p1_prefAfterClear": [],
+ "p1_picked": true,
+ "p1_url": "https://sv8785.qa.shopview.com/workorders?status=declined&tab=all",
+ "p1_chips": [
+  "Status : Declined keyboard_arrow_down"
+ ],
+ "p1_pref": {
+  "status": [
+   "declined"
+  ]
+ },
+ "p1_prefUpdatedAt": "2026-08-12T16:05:30Z",
+ "p1_saved": true,
+ "p1_prefApiCalls": [
+  {
+   "m": "GET",
+   "s": 200,
+   "u": "/api/users/me/preferences/work-orders-list"
+  },
+  {
+   "m": "GET",
+   "s": 200,
+   "u": "/api/users/me/preferences/work-orders-list"
+  },
+  {
+   "m": "PUT",
+   "s": 200,
+   "u": "/api/users/me/preferences/work-orders-list"
+  },
+  {
+   "m": "GET",
+   "s": 200,
+   "u": "/api/users/me/preferences/work-orders-list"
+  }
+ ],
+ "p2_localStorageBeforeNav": [
+  "fe_permissions_wrapper",
+  "location",
+  "user"
+ ],
+ "p2_samples": [
+  {
+   "atMs": 6000,
+   "waited": 6000,
+   "statusChip": "Status keyboard_arrow_down",
+   "url": "https://sv8785.qa.shopview.com/workorders?tab=all"
+  },
+  {
+   "atMs": 12000,
+   "waited": 6000,
+   "statusChip": "Status keyboard_arrow_down",
+   "url": "https://sv8785.qa.shopview.com/workorders?tab=all"
+  },
+  {
+   "atMs": 18000,
+   "waited": 6000,
+   "statusChip": "Status keyboard_arrow_down",
+   "url": "https://sv8785.qa.shopview.com/workorders?tab=all"
+  },
+  {
+   "atMs": 25000,
+   "waited": 7000,
+   "statusChip": "Status keyboard_arrow_down",
+   "url": "https://sv8785.qa.shopview.com/workorders?tab=all"
+  }
+ ],
+ "p2_prefApiCallsBySpa": [
+  {
+   "m": "GET",
+   "s": 200,
+   "u": "/api/users/me/preferences/work-orders-list"
+  }
+ ],
+ "p2_allApiPathsSample": [
+  "/api/api/sso/check",
+  "/api/work-orders/statuses",
+  "/api/organization/feature-flags",
+  "/api/users/me/preferences/work-orders-list",
+  "/api/staff/my-workplaces",
+  "/api/technician-tasks/my-current-task",
+  "/api/reporting/individual-punch-clock/today",
+  "/api/iam/view-profile/",
+  "/api/work-orders",
+  "/api/global-search/fetch"
+ ],
+ "p2_finalStatusChip": "Status keyboard_arrow_down",
+ "p2_restored": false,
+ "p2_url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+ "p2_rows": {
+  "tbody": 33,
+  "cards": 0,
+  "emptyStateVisible": false
+ },
+ "p2_prefReadByUs": {
+  "status": [
+   "declined"
+  ]
+ },
+ "p2_afterReloadStatusChip": "Status keyboard_arrow_down",
+ "p2_afterReloadUrl": "https://sv8785.qa.shopview.com/workorders?tab=all",
+ "p2_afterReloadRestored": false,
+ "p2_bridgeErrors": 0,
+ "p2_api4xx": []
+}
