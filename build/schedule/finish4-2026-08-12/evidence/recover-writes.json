@@ -1,0 +1,599 @@
+{
+ "read_at": "2026-08-12T09:59:37.283168Z",
+ "written_by_finish3": [
+  29955,
+  29957,
+  29959,
+  29960,
+  29961,
+  29964,
+  29967,
+  29969,
+  29970,
+  29972,
+  29973,
+  29974,
+  29975,
+  29979,
+  29980,
+  30024,
+  30052,
+  30062,
+  30064
+ ],
+ "rows": [
+  {
+   "cid": 29955,
+   "title": "Dropping a single-line work order creates a shift with no scope picker",
+   "landed": true,
+   "checks": [
+    {
+     "check": "stamp",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "one-stamp",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "one-marker",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "no-raw-markup",
+     "want": false,
+     "found": false
+    }
+   ]
+  },
+  {
+   "cid": 29957,
+   "title": "Dragging a line from the drill-down creates a single-line shift",
+   "landed": true,
+   "checks": [
+    {
+     "check": "stamp",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "one-stamp",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "one-marker",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "no-raw-markup",
+     "want": false,
+     "found": false
+    }
+   ]
+  },
+  {
+   "cid": 29959,
+   "title": "A scope that fits one working day skips the spread step",
+   "landed": true,
+   "checks": [
+    {
+     "check": "stamp",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "one-stamp",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "one-marker",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "no-raw-markup",
+     "want": false,
+     "found": false
+    }
+   ]
+  },
+  {
+   "cid": 29960,
+   "title": "While dragging, target cells highlight and a ghost block follows",
+   "landed": true,
+   "checks": [
+    {
+     "check": "stamp",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "one-stamp",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "one-marker",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "no-raw-markup",
+     "want": false,
+     "found": false
+    }
+   ]
+  },
+  {
+   "cid": 29961,
+   "title": "Scheduling a technician onto a line adds them to its labor roster",
+   "landed": true,
+   "checks": [
+    {
+     "check": "stamp",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "one-stamp",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "one-marker",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "no-raw-markup",
+     "want": false,
+     "found": false
+    }
+   ]
+  },
+  {
+   "cid": 29964,
+   "title": "'Schedule whole work order' assigns all lines and creates one shift",
+   "landed": true,
+   "checks": [
+    {
+     "check": "stamp",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "one-stamp",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "one-marker",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "no-raw-markup",
+     "want": false,
+     "found": false
+    }
+   ]
+  },
+  {
+   "cid": 29967,
+   "title": "'Select multiple' checkbox mode: running tally, Select all, and Cancel",
+   "landed": true,
+   "checks": [
+    {
+     "check": "stamp",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "all-scopecond",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "all27",
+     "want": "absent",
+     "found": true
+    },
+    {
+     "check": "one-stamp",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "one-marker",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "no-raw-markup",
+     "want": false,
+     "found": false
+    }
+   ]
+  },
+  {
+   "cid": 29969,
+   "title": "A shift's start time uses the technician's own working hours when set",
+   "landed": true,
+   "checks": [
+    {
+     "check": "stamp",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "one-stamp",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "one-marker",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "no-raw-markup",
+     "want": false,
+     "found": false
+    }
+   ]
+  },
+  {
+   "cid": 29970,
+   "title": "With no technician hours set, start time falls back to business hours",
+   "landed": true,
+   "checks": [
+    {
+     "check": "stamp",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "one-stamp",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "one-marker",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "no-raw-markup",
+     "want": false,
+     "found": false
+    }
+   ]
+  },
+  {
+   "cid": 29972,
+   "title": "In day view the start time comes from the drop position",
+   "landed": true,
+   "checks": [
+    {
+     "check": "stamp",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "one-stamp",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "one-marker",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "no-raw-markup",
+     "want": false,
+     "found": false
+    }
+   ]
+  },
+  {
+   "cid": 29973,
+   "title": "Dropping onto the Unassigned row creates a shift with no technician",
+   "landed": true,
+   "checks": [
+    {
+     "check": "stamp",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "unassigned-note",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "hold-marker",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "one-stamp",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "one-marker",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "no-raw-markup",
+     "want": false,
+     "found": false
+    }
+   ]
+  },
+  {
+   "cid": 29974,
+   "title": "Unassigned shift start time uses business hours or the default",
+   "landed": true,
+   "checks": [
+    {
+     "check": "stamp",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "unassigned-note",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "hold-marker",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "one-stamp",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "one-marker",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "no-raw-markup",
+     "want": false,
+     "found": false
+    }
+   ]
+  },
+  {
+   "cid": 29975,
+   "title": "Dragging an unassigned shift onto a technician row assigns it",
+   "landed": true,
+   "checks": [
+    {
+     "check": "stamp",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "unassigned-note",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "hold-marker",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "one-stamp",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "one-marker",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "no-raw-markup",
+     "want": false,
+     "found": false
+    }
+   ]
+  },
+  {
+   "cid": 29979,
+   "title": "How-much selector defaults to Full estimate; preset amounts apply at once",
+   "landed": true,
+   "checks": [
+    {
+     "check": "stamp",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "one-stamp",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "one-marker",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "no-raw-markup",
+     "want": false,
+     "found": false
+    }
+   ]
+  },
+  {
+   "cid": 29980,
+   "title": "'Until a date\u2026' reveals a single finish-by date field",
+   "landed": true,
+   "checks": [
+    {
+     "check": "stamp",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "sv9005-new",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "sv9005-stale",
+     "want": "absent",
+     "found": true
+    },
+    {
+     "check": "one-stamp",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "one-marker",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "no-raw-markup",
+     "want": false,
+     "found": false
+    }
+   ]
+  },
+  {
+   "cid": 30024,
+   "title": "Working-day conflict: a shift outside the tech's working days is flagged",
+   "landed": true,
+   "checks": [
+    {
+     "check": "stamp",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "one-stamp",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "one-marker",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "no-raw-markup",
+     "want": false,
+     "found": false
+    }
+   ]
+  },
+  {
+   "cid": 30052,
+   "title": "Dragging a shift to another technician row reassigns it, with a confirm modal",
+   "landed": true,
+   "checks": [
+    {
+     "check": "stamp",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "one-stamp",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "one-marker",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "no-raw-markup",
+     "want": false,
+     "found": false
+    }
+   ]
+  },
+  {
+   "cid": 30062,
+   "title": "Deleting a standalone (non-series) shift does not ask for a series scope",
+   "landed": true,
+   "checks": [
+    {
+     "check": "stamp",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "one-stamp",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "one-marker",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "no-raw-markup",
+     "want": false,
+     "found": false
+    }
+   ]
+  },
+  {
+   "cid": 30064,
+   "title": "Toast stays 4 to 7 seconds, stays while hovered, goes when the cursor leaves",
+   "landed": true,
+   "checks": [
+    {
+     "check": "stamp",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "toast-4to7",
+     "want": "present",
+     "found": true
+    },
+    {
+     "check": "toast-7s",
+     "want": "absent",
+     "found": true
+    },
+    {
+     "check": "one-stamp",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "one-marker",
+     "want": 1,
+     "found": 1
+    },
+    {
+     "check": "no-raw-markup",
+     "want": false,
+     "found": false
+    }
+   ]
+  }
+ ]
+}
