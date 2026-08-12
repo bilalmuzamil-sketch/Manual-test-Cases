@@ -1,0 +1,122 @@
+{
+  "build": "v3.6-3e9dd6d",
+  "started_utc": "2026-08-12T12:23:28.362Z",
+  "checks": {
+    "c38898_opened": {
+      "input": true,
+      "width": 180,
+      "inputWidth": 132,
+      "placeholder": "Type to search",
+      "focused": true,
+      "icons": [
+        "search"
+      ]
+    },
+    "c38898_toolbar_moved": {
+      "before": {
+        "page_search_toggle": 1272,
+        "toggle_filter_bar": 1395,
+        "button_column_selection": 1441,
+        "button_new_work_order": 1500
+      },
+      "after": {
+        "page_search_toggle": null,
+        "toggle_filter_bar": 1395,
+        "button_column_selection": 1441,
+        "button_new_work_order": 1500
+      },
+      "column_moved": 0,
+      "create_moved": 0
+    },
+    "c38898_typed_short": {
+      "value": "Iib",
+      "url": "https://sv8785.qa.shopview.com/workorders?tab=all&search=Iib",
+      "rows": 2,
+      "width": 180,
+      "clearPresent": true
+    },
+    "c38898_typed_long": {
+      "valueLen": 161,
+      "expectedLen": 161,
+      "valueMatches": true,
+      "width": 180,
+      "left": 1202,
+      "right": 1382,
+      "overflowsViewport": false,
+      "rows": 2
+    },
+    "c38898_toolbar_after_long": {
+      "toolbar": {
+        "page_search_toggle": null,
+        "toggle_filter_bar": 1395,
+        "button_column_selection": 1441,
+        "button_new_work_order": 1500
+      },
+      "column_moved_vs_before": 0
+    },
+    "c38900_step4": {
+      "allTab": {
+        "url": "https://sv8785.qa.shopview.com/workorders?tab=all&search=this+is+a+deliberately+very+long+search+sentence+typed+to+see+whether+the+box+grows+or+scrolls+or+pushes+the+toolbar+buttons+out+of+place+on+the+work+orders+page",
+        "rows": 2
+      },
+      "completed": {
+        "url": "https://sv8785.qa.shopview.com/workorders?tab=complete&search=this+is+a+deliberately+very+long+search+sentence+typed+to+see+whether+the+box+grows+or+scrolls+or+pushes+the+toolbar+buttons+out+of+place+on+the+work+orders+page",
+        "value": "this is a deliberately very long search sentence typed to see whether the box grows or scrolls or pushes the toolbar buttons out of place on the work orders page",
+        "rows": 2,
+        "clearPresent": true
+      },
+      "cleared": {
+        "url": "https://sv8785.qa.shopview.com/workorders?tab=complete",
+        "value": "",
+        "rows": 14
+      },
+      "backAll": {
+        "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+        "value": null,
+        "rows": 33
+      },
+      "api": [
+        {
+          "m": "GET",
+          "s": 200,
+          "u": "/api/work-orders?pagination%5BrowsPerPage%5D=30&pagination%5Bpage%5D=1&pagination%5BsortBy%5D=startDate&pagination%5Bdescending%5D=true&filters%5B0%5D%5Bfield%5D=status&filters%5B0%5D%5Bvalue%5D=complete&search=&showMyWorkOrders=0"
+        },
+        {
+          "m": "GET",
+          "s": 200,
+          "u": "/api/work-orders?pagination%5BrowsPerPage%5D=30&pagination%5Bpage%5D=1&pagination%5BsortBy%5D=startDate&pagination%5Bdescending%5D=true&search=&showMyWorkOrders=0"
+        },
+        {
+          "m": "PUT",
+          "s": 200,
+          "u": "/api/users/me/preferences/work-orders-list"
+        }
+      ]
+    },
+    "c38895_step1": {
+      "requests_after_filter_change": [
+        {
+          "m": "GET",
+          "s": 200,
+          "u": "/api/users/me/preferences/work-orders-list"
+        }
+      ],
+      "note": "filter applied by URL; the case says \"change a filter\" -- a chip click is exercised in the C38877 block below"
+    },
+    "c38877_menu_initial": {
+      "menu_open": true,
+      "optionCount": 0,
+      "options": [],
+      "menuText": "Estimate Approved In progress Review Complete Invoiced Paid Declined Imported Clear Selection"
+    }
+  },
+  "api_4xx5xx": [
+    {
+      "m": "GET",
+      "s": 404,
+      "u": "/api/api/sso/check"
+    }
+  ],
+  "bridge_errors": 0,
+  "finished_utc": "2026-08-12T12:25:22.752Z"
+}
