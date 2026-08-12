@@ -1,0 +1,110 @@
+{
+  "probe": "S6",
+  "at": "2026-08-12T18:17:10.523Z",
+  "build": "v3.7-20e801b",
+  "report": "/reports/punch-clock-activities",
+  "step4_report": {
+    "arrivedUrl": "https://sv8785.qa.shopview.com/reports/punch-clock-activities?range=custom&range=2026-07-01&range=2026-07-31&staffId=eba4be23-e3ae-4477-89c9-97b6701ed9e0",
+    "arrivedChips": [
+      {
+        "id": "filter_chip_range",
+        "domText": "calendar_today Date Range : Custom"
+      },
+      {
+        "id": "filter_chip_staffId",
+        "domText": "person Filter by Staff : Heather Carlson"
+      }
+    ],
+    "arrivedRows": 5,
+    "staffOptions": 2,
+    "setInProfile": "Heather Carlson check",
+    "sharedValue": "Johnny Olson",
+    "afterSetA": {
+      "url": "https://sv8785.qa.shopview.com/reports/punch-clock-activities?range=custom&range=2026-07-01&range=2026-07-31&staffId=eba4be23-e3ae-4477-89c9-97b6701ed9e0",
+      "chips": [
+        {
+          "id": "filter_chip_range",
+          "domText": "calendar_today Date Range : Custom"
+        },
+        {
+          "id": "filter_chip_staffId",
+          "domText": "person Filter by Staff : Heather Carlson"
+        }
+      ],
+      "rows": 5
+    },
+    "filterApplied": false,
+    "sharedUrl": "https://sv8785.qa.shopview.com/reports/punch-clock-activities?staffId=d6ce228e-da73-45c5-830a-50e915c0c3c2",
+    "shared": {
+      "landedOn": "https://sv8785.qa.shopview.com/reports/punch-clock-activities?staffId=d6ce228e-da73-45c5-830a-50e915c0c3c2",
+      "chips": [
+        {
+          "id": "filter_chip_range",
+          "domText": "calendar_today Date Range : This month"
+        },
+        {
+          "id": "filter_chip_staffId",
+          "domText": "person Filter by Staff"
+        }
+      ],
+      "rows": 2
+    },
+    "control_bare": {
+      "landedOn": "https://sv8785.qa.shopview.com/reports/punch-clock-activities?range=custom&range=2026-07-01&range=2026-07-31&staffId=eba4be23-e3ae-4477-89c9-97b6701ed9e0",
+      "chips": [
+        {
+          "id": "filter_chip_range",
+          "domText": "calendar_today Date Range : Custom"
+        },
+        {
+          "id": "filter_chip_staffId",
+          "domText": "person Filter by Staff : Heather Carlson"
+        }
+      ],
+      "rows": 5
+    },
+    "sharedChipText": "person Filter by Staff",
+    "controlChipText": "person Filter by Staff : Heather Carlson",
+    "detectorCanFail": true
+  },
+  "step5_report_phone": {
+    "viewport": "390x844",
+    "chipsRaw": [
+      {
+        "id": "filter_chip_range",
+        "text": "calendar_today Date Range : Custom keyboard_arrow_down",
+        "x": 6,
+        "y": 157,
+        "w": 207,
+        "visible": true
+      },
+      {
+        "id": "filter_chip_staffId",
+        "text": "person Filter by Staff : Heather Carlson keyboard_arrow_down",
+        "x": 227,
+        "y": 157,
+        "w": 266,
+        "visible": true
+      }
+    ],
+    "horizontallyScrollable": {
+      "tag": "DIV",
+      "scrollWidth": 619,
+      "clientWidth": 379
+    },
+    "toggleBar": true,
+    "openedChip": "filter_chip_staffId",
+    "opened": true,
+    "optionCount": 2,
+    "sheetShape": {
+      "cls": "q-menu q-position-engine scroll",
+      "x": 114,
+      "y": 190,
+      "w": 256,
+      "h": 185,
+      "hasApply": false
+    },
+    "appliedImmediately": false,
+    "urlAfter": "https://sv8785.qa.shopview.com/reports/punch-clock-activities?range=custom&range=2026-07-01&range=2026-07-31&staffId=eba4be23-e3ae-4477-89c9-97b6701ed9e0"
+  }
+}
