@@ -1,0 +1,90 @@
+{
+ "29962": {
+  "steps": [
+   {
+    "step": "precondition: a work order with an approved line, on the Schedule page",
+    "seen": "21 work order cards in the sidebar"
+   },
+   {
+    "step": "1 instead of dragging, click (arm) the work order card in the sidebar",
+    "seen": "clicked \"S8685-12876 1 line · 1h Est. Pamill Paving 713 AC Alicia Cam\"; after the click: {\"aria_pressed_true\":1,\"armed_cls\":0,\"popups\":[]}"
+   },
+   {
+    "step": "  hunted for the control three ways",
+    "seen": "test ids matching arm/click-to-schedule: [] ; aria-pressed elements on the page: 3 ; every control inside the card (hover fired first): [{\"tid\":\"sidebar_wo_status_582a8993-793d-4e6f-8dd0-abec5b4a3be0\",\"al\":null,\"t\":\"Approved\"}]"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T10:19:53.146Z"
+ },
+ "38849": {
+  "steps": [
+   {
+    "step": "precondition: the shop has business hours, and a technician has 'Set working hours for this technician' OFF",
+    "seen": "route Settings > Staff > the pencil on a technician's row: {\"ok\":true,\"row\":\"Admin ShopView admin@shopview.com Admin Admin 9 Departments Jun 14, 20\",\"tid\":\"staff_edit_button\",\"t\":\"edit_note\"}"
+   },
+   {
+    "step": "1 confirm the technician has no custom hours set",
+    "seen": "the working-hours control on that form: [{\"t\":\"Set working hours for this technician\",\"tid\":\"toggle_custom_working_hours\",\"tag\":\"DIV\"},{\"t\":\"Set working hours for this technician\",\"tid\":null,\"tag\":\"DIV\"}] ; form controls: [\"dialog_title\",\"button_close_dialog\",\"input_first_name\",\"input_last_name\",\"input_email\",\"select_salary_type\",\"input_salary\",\"input_job_title\",\"select_role\",\"button_view_role_permissions\",\"select_location\",\"select_billable\",\"toggle_time_clock\",\"toggle_custom_working_hours\",\"select_working_hours_start_monday_0\",\"select_working_hours_end_monday_0\",\"button_remove_working_hours_monday_0\",\"button_add_w"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T10:21:21.051Z"
+ },
+ "38850": {
+  "steps": [
+   {
+    "step": "precondition: the per-day working-hours editor, reached from Settings > Staff > the pencil > turn on the working-hours toggle",
+    "seen": "the route is reachable as written: {\"ok\":true,\"row\":\"Admin ShopView admin@shopview.com Admin Admin 9 Departments Jun 14, 20\",\"tid\":\"staff_edit_button\",\"t\":\"edit_note\"} ; the toggle the precondition names: [{\"t\":\"Set working hours for this technician\",\"tid\":\"toggle_custom_working_hours\",\"tag\":\"DIV\"},{\"t\":\"Set working hours for this technician\",\"tid\":null,\"tag\":\"DIV\"}]"
+   },
+   {
+    "step": "1-3 click 'Add Hours', read the new range, set then remove it",
+    "seen": "NOT driven - the editor only appears once the working-hours toggle is turned ON, and this pass deliberately changes no staff setting. The route to it is verified; the editor itself is not."
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T10:21:21.052Z"
+ },
+ "38851": {
+  "steps": [
+   {
+    "step": "precondition: the per-day working-hours editor with at least two ranges on one day",
+    "seen": "same route as C38850, verified reachable: {\"ok\":true,\"row\":\"Admin ShopView admin@shopview.com Admin Admin 9 Departments Jun 14, 20\",\"tid\":\"staff_edit_button\",\"t\":\"edit_note\"}"
+   },
+   {
+    "step": "1-4 overlapping ranges block Save; incomplete rows are ignored",
+    "seen": "NOT driven - same reason as C38850; it needs the working-hours toggle turned on and ranges entered."
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T10:21:21.052Z"
+ },
+ "38866": {
+  "steps": [
+   {
+    "step": "precondition: the app's dark mode / theme toggle is available",
+    "seen": "hunted for it: [{\"where\":\"header avatar candidates\",\"found\":[{\"tid\":\"profile_menu_button\",\"cls\":\"q-btn q-btn-item non-selectable no-outli\"},{\"tid\":null,\"cls\":\"q-avatar bg-secondary text-white q-chip-\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"},{\"tid\":null,\"cls\":\"q-avatar bg-primary schedule-avatar sche\"}]}] ; the menu it opens reads [\"AS Admin ShopView admin@shopview.com Edit Profile Change Location: Staging Heavy Duty - 9919 event_note My Timesheets co_present Customer Portal New open_in_new settings Settings logout Logout light_mode Light dark_mode Dark\"] ; dark/theme controls inside it: [{\"t\":\"light_mode\\nLight\\ndark_mode\\nDark\",\"tid\":null},{\"t\":\"light_mode\\nLight\\ndark_mode\\nDark\",\"tid\":null},{\"t\":\"light_mode\\nLight\\ndark_mode\\nDark\",\"tid\":null},{\"t\":\"dark_mode\\nDark\",\"tid\":\"button_night_mode_dark\"},{\"t\":\"dark_mode\\nDark\",\"tid\":null},{\"t\":\"dark_mode\",\"tid\":null},{\"t\":\"Dark\",\"tid\":null}]"
+   },
+   {
+    "step": "1-4 switch to dark mode, look over the grid and dialogs, switch back",
+    "seen": "the SURFACES were measured in probe F with body--dark applied directly: the shift dialog computes rgb(32,41,57) on a page of rgb(20,24,36) with a 16px/40px shadow. HONEST LIMIT: that state was applied by the harness, not by the product's own toggle."
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T10:21:36.055Z"
+ },
+ "43589": {
+  "steps": [
+   {
+    "step": "precondition: the app is in dark mode, week view, at least one shift",
+    "seen": "body--dark applied; shift e35d37ef present"
+   },
+   {
+    "step": "1 open a shift's details window and look at where it meets the page behind it",
+    "seen": "dialog background rgb(32, 41, 57) against page background rgb(20, 24, 36); box-shadow: rgba(0, 0, 0, 0.6) 0px 16px 40px 0px"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T10:20:00.141Z"
+ }
+}
