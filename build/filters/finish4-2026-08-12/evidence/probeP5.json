@@ -1,0 +1,227 @@
+{
+ "read_at_utc": "2026-08-12T15:49:59.867Z",
+ "cases": {
+  "29594": {
+   "case": "C29594",
+   "route": "precondition 3 second route: combine with another filter",
+   "serverReviewTotal": {
+    "http": 200,
+    "total": 1,
+    "capped": false,
+    "totalPrice": 57998,
+    "query": "pagination%5BrowsPerPage%5D=3000&pagination%5Bpage%5D=1&filters%5B0%5D%5Bfield%5D=status&filters%5B0%5D%5Bvalue%5D=ready_for_review&search=&showMyWorkOrders=0"
+   },
+   "serverReviewOnSite": {
+    "http": 200,
+    "total": 1,
+    "capped": false,
+    "totalPrice": 57998,
+    "query": "pagination%5BrowsPerPage%5D=3000&pagination%5Bpage%5D=1&filters%5B0%5D%5Bfield%5D=status&filters%5B0%5D%5Bvalue%5D=ready_for_review&filters%5B1%5D%5Bfield%5D=vehicleHere&filters%5B1%5D%5Bvalue%5D=1&search=&showMyWorkOrders=0"
+   },
+   "serverReviewOffSite": {
+    "http": 200,
+    "total": 0,
+    "capped": false,
+    "totalPrice": 0,
+    "query": "pagination%5BrowsPerPage%5D=3000&pagination%5Bpage%5D=1&filters%5B0%5D%5Bfield%5D=status&filters%5B0%5D%5Bvalue%5D=ready_for_review&filters%5B1%5D%5Bfield%5D=vehicleHere&filters%5B1%5D%5Bvalue%5D=0&search=&showMyWorkOrders=0"
+   },
+   "statusOptions": [
+    "filter_option_status_estimate",
+    "filter_option_status_approved",
+    "filter_option_status_in_progress",
+    "filter_option_status_ready_for_review",
+    "filter_option_status_complete",
+    "filter_option_status_invoiced",
+    "filter_option_status_paid",
+    "filter_option_status_declined",
+    "filter_option_status_imported"
+   ],
+   "pickedReview": true,
+   "urlAfterStatus": "https://sv8785.qa.shopview.com/workorders?status=ready_for_review&tab=all",
+   "rowsStatusOnly": {
+    "tbody": 4,
+    "cards": 0,
+    "emptyStateVisible": false
+   },
+   "pickedYesControl": false,
+   "controlUrl": "https://sv8785.qa.shopview.com/workorders?status=ready_for_review&tab=all",
+   "controlRows": {
+    "tbody": 4,
+    "cards": 0,
+    "emptyStateVisible": false
+   },
+   "pickedNo": false,
+   "emptyUrl": "https://sv8785.qa.shopview.com/workorders?status=ready_for_review&tab=all",
+   "emptyRows": {
+    "tbody": 4,
+    "cards": 0,
+    "emptyStateVisible": false
+   },
+   "emptyStateText": null,
+   "chips": [
+    {
+     "id": "filter_chip_status",
+     "text": "Status : Review keyboard_arrow_down",
+     "disabled": false,
+     "opacity": "1",
+     "background": "rgb(227, 242, 253)",
+     "x": 24
+    },
+    {
+     "id": "filter_chip_company_id",
+     "text": "person Customer keyboard_arrow_down",
+     "disabled": false,
+     "opacity": "1",
+     "background": "rgba(0, 0, 0, 0)",
+     "x": 208
+    },
+    {
+     "id": "filter_chip_tech_assigned_id",
+     "text": "build Lead Technician keyboard_arrow_down",
+     "disabled": false,
+     "opacity": "1",
+     "background": "rgba(0, 0, 0, 0)",
+     "x": 359
+    },
+    {
+     "id": "filter_chip_service_advisor_id",
+     "text": "headset_mic Service Advisor keyboard_arrow_down",
+     "disabled": false,
+     "opacity": "1",
+     "background": "rgba(0, 0, 0, 0)",
+     "x": 548
+    },
+    {
+     "id": "filter_chip_vehicleHere",
+     "text": "local_shipping Asset on Site keyboard_arrow_down",
+     "disabled": false,
+     "opacity": "1",
+     "background": "rgba(0, 0, 0, 0)",
+     "x": 732
+    }
+   ],
+   "consoleErrors": [
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: net::ERR_FAILED"
+   ],
+   "api_4xx5xx": [],
+   "prefAfter": [],
+   "bridge_errors": 0
+  },
+  "38886": {
+   "case": "C38886",
+   "steps": [
+    2,
+    5
+   ],
+   "search": {
+    "toggleFound": true,
+    "inputFound": true,
+    "typed": true,
+    "value": "Aagate"
+   },
+   "rowsSearched": {
+    "tbody": 33,
+    "cards": 0,
+    "emptyStateVisible": false
+   },
+   "urlSearched": "https://sv8785.qa.shopview.com/workorders?tab=all&search=Aagate",
+   "headers": [
+    "On Sitearrow_drop_up",
+    "Statusarrow_drop_up",
+    "Waiting On Partsarrow_drop_up",
+    "Numberarrow_drop_up",
+    "Customerarrow_drop_up",
+    "Assetarrow_drop_up",
+    "Unitarrow_drop_up",
+    "VIN/Serial #arrow_drop_up",
+    "Progress",
+    "Service Advisorarrow_drop_up",
+    "Lead Technicianarrow_drop_up",
+    "Clocked Inarrow_drop_up",
+    "Linesarrow_drop_up",
+    "Total Pricearrow_drop_up",
+    "Created Onarrow_drop_up"
+   ],
+   "sortTarget": {
+    "i": 1,
+    "text": "Statusarrow_drop_up",
+    "clickable": true
+   },
+   "afterSort": {
+    "url": "https://sv8785.qa.shopview.com/workorders?tab=all&search=Aagate",
+    "searchBoxValue": "Aagate",
+    "rows": {
+     "tbody": 33,
+     "cards": 0,
+     "emptyStateVisible": false
+    }
+   },
+   "pagerControls": [
+    {
+     "id": "page_search_input",
+     "text": "",
+     "aria": null
+    },
+    {
+     "id": "page_search_clear",
+     "text": "cancel",
+     "aria": null
+    }
+   ],
+   "nextPage": {
+    "found": false,
+    "disabled": null
+   },
+   "afterPaging": {
+    "url": "https://sv8785.qa.shopview.com/workorders?tab=all&search=Aagate",
+    "searchBoxValue": "Aagate",
+    "rows": {
+     "tbody": 33,
+     "cards": 0,
+     "emptyStateVisible": false
+    }
+   },
+   "prefHoldsSearchKey": false,
+   "prefValueFilters": [],
+   "prefUpdatedAt": "2026-08-12T15:51:54Z",
+   "bridge_errors": 0,
+   "step5_newBrowserProcess": {
+    "note": "separate chromium process and profile, same account cookie",
+    "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+    "searchBoxValue": null,
+    "searchInputPresentAtAll": false,
+    "rows": {
+     "tbody": 33,
+     "cards": 0,
+     "emptyStateVisible": false
+    }
+   }
+  },
+  "pref-ruleout": {
+   "what": "preference-save rule-out from a PROVEN-CLEAN baseline",
+   "case": "incidental to C29626",
+   "prefAtStart": [],
+   "prefUpdatedAtStart": "2026-08-12T15:47:07Z",
+   "baselineIsClean": true,
+   "sheetOpened": true,
+   "picked": true,
+   "applyClicked": true,
+   "urlAfterApply": "https://sv8785.qa.shopview.com/workorders?tech_assigned_id=b4f8b308-b0c5-4e5e-b734-d76175757be9&tab=all",
+   "prefAfterApply": {
+    "tech_assigned_id": [
+     "b4f8b308-b0c5-4e5e-b734-d76175757be9"
+    ]
+   },
+   "prefUpdatedAtAfter": "2026-08-12T15:50:30Z",
+   "updatedAtMoved": true,
+   "savedTheNewFilter": true,
+   "prefRestored": [],
+   "bridge_errors": 0
+  }
+ }
+}
