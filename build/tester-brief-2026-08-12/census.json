@@ -1,0 +1,6367 @@
+{
+ "Filters": {
+  "group": 4110,
+  "run": 352,
+  "total": 120,
+  "ready": 90,
+  "expect_fail": 7,
+  "hold": 18,
+  "no_marker": 5,
+  "run_tests": 115,
+  "in_suite_not_in_run": [
+   43576,
+   43577,
+   43578,
+   43579,
+   43580
+  ],
+  "in_run_not_in_suite": [],
+  "rows": [
+   {
+    "id": 29557,
+    "title": "Filter bar is shown below the tab row on the Work Orders page",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4111
+   },
+   {
+    "id": 29558,
+    "title": "Five filter chips appear in a fixed order with an icon, name and arrow",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4111
+   },
+   {
+    "id": 29559,
+    "title": "The filter bar still shows the other four chips on the Estimates tab",
+    "kind": "HOLD",
+    "marker": "HOLD - waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification",
+    "reason": "waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification",
+    "section_id": 4111
+   },
+   {
+    "id": 29560,
+    "title": "Status chip opens a checkbox list of all nine statuses plus Clear Selection",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4112
+   },
+   {
+    "id": 29561,
+    "title": "Ticking one status filters the table immediately, with no apply button",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4112
+   },
+   {
+    "id": 29562,
+    "title": "Ticking several statuses shows work orders matching any of them",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4112
+   },
+   {
+    "id": 29563,
+    "title": "Clear Selection in the Status dropdown unticks every status",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4112
+   },
+   {
+    "id": 29564,
+    "title": "Clicking outside the Status dropdown closes it and keeps the selections applied",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4112
+   },
+   {
+    "id": 29565,
+    "title": "Selecting statuses that no work order has shows the empty state",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4112
+   },
+   {
+    "id": 38877,
+    "title": "Imported works alone: picking it greys out the other filters",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4112
+   },
+   {
+    "id": 29566,
+    "title": "Customer chip opens a dropdown with a search field and a customer list",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4113
+   },
+   {
+    "id": 29567,
+    "title": "Typing in the customer search narrows the list to matching names",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4113
+   },
+   {
+    "id": 29568,
+    "title": "Selected customers show as removable tags and as ticks in the list",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4113
+   },
+   {
+    "id": 29569,
+    "title": "Clicking the x on a customer tag removes just that customer from the selection",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4113
+   },
+   {
+    "id": 29570,
+    "title": "The table shows only work orders belonging to any of the selected customers",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4113
+   },
+   {
+    "id": 29571,
+    "title": "Clear Selection in the Customer dropdown removes all selected customers",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4113
+   },
+   {
+    "id": 29572,
+    "title": "Clicking outside the Customer dropdown closes it and the selections remain",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4113
+   },
+   {
+    "id": 29573,
+    "title": "Customer search with no matching name shows a no-results message in the list",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4113
+   },
+   {
+    "id": 29574,
+    "title": "A customer with no work orders is still listed; picking them shows no rows",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4113
+   },
+   {
+    "id": 29575,
+    "title": "Lead Technician chip opens a dropdown with a search field and a list",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4114
+   },
+   {
+    "id": 29576,
+    "title": "Typing in the technician search narrows the list to matching names",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4114
+   },
+   {
+    "id": 29577,
+    "title": "Selecting technicians shows only work orders where they are the lead technician",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4114
+   },
+   {
+    "id": 29578,
+    "title": "Clear Selection in the Lead Technician dropdown removes all selected technicians",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4114
+   },
+   {
+    "id": 29579,
+    "title": "Clicking outside the Lead Technician dropdown closes it",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4114
+   },
+   {
+    "id": 29580,
+    "title": "Selecting a technician who leads no work orders shows the empty state",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4114
+   },
+   {
+    "id": 29581,
+    "title": "A deactivated technician does not appear in the Lead Technician filter list",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4114
+   },
+   {
+    "id": 29582,
+    "title": "Service Advisor chip opens a dropdown with a search field and a list",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4115
+   },
+   {
+    "id": 29583,
+    "title": "Typing in the advisor search narrows the list to matching names",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4115
+   },
+   {
+    "id": 29584,
+    "title": "Selecting advisors shows only work orders assigned to those advisors",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4115
+   },
+   {
+    "id": 29585,
+    "title": "Clear Selection in the Service Advisor dropdown removes all selected advisors",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4115
+   },
+   {
+    "id": 29586,
+    "title": "Clicking outside the Service Advisor dropdown closes it",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4115
+   },
+   {
+    "id": 29587,
+    "title": "Selecting an advisor with no assigned work orders shows the empty state",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4115
+   },
+   {
+    "id": 29588,
+    "title": "A deactivated advisor does not appear in the Service Advisor filter list",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4115
+   },
+   {
+    "id": 29589,
+    "title": "Asset on Site chip opens a dropdown with Yes and No plus Clear Selection",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4116
+   },
+   {
+    "id": 29590,
+    "title": "Choosing Yes shows only work orders whose asset is on site",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4116
+   },
+   {
+    "id": 29591,
+    "title": "Asset on Site is single-select: choosing the other option replaces the first",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4116
+   },
+   {
+    "id": 29592,
+    "title": "Clear Selection in the Asset on Site dropdown removes the filter",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4116
+   },
+   {
+    "id": 29593,
+    "title": "Clicking outside the Asset on Site dropdown closes it",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4116
+   },
+   {
+    "id": 29594,
+    "title": "An Asset on Site choice that matches no work orders shows the empty state",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4116
+   },
+   {
+    "id": 38878,
+    "title": "Choosing No shows only work orders whose asset is not on site",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4116
+   },
+   {
+    "id": 29595,
+    "title": "A chip with a selected value turns blue and shows the value",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4117
+   },
+   {
+    "id": 29596,
+    "title": "A chip with several values shows the first ones and shortens the rest",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4117
+   },
+   {
+    "id": 29597,
+    "title": "'Clear Filters' shows right of the chips only when a filter is active",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4117
+   },
+   {
+    "id": 29598,
+    "title": "'Clear Filters' removes every active filter and resets all chips",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4117
+   },
+   {
+    "id": 29599,
+    "title": "'Clear Selection' in one dropdown clears only that filter",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4117
+   },
+   {
+    "id": 29600,
+    "title": "Status and Customer filters together show only work orders matching both",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4117
+   },
+   {
+    "id": 29601,
+    "title": "The toolbar filter button collapses the bar and the table takes the space",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4118
+   },
+   {
+    "id": 29602,
+    "title": "Expanding the filter bar brings it back with active filters still shown",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4118
+   },
+   {
+    "id": 29603,
+    "title": "The filter bar's collapsed or expanded state is remembered on return",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4118
+   },
+   {
+    "id": 29604,
+    "title": "Collapsed filter button shows a blue indicator only when filters are active",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4118
+   },
+   {
+    "id": 29605,
+    "title": "Active filters keep filtering the table while the filter bar is collapsed",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4118
+   },
+   {
+    "id": 43590,
+    "title": "One filter on a page: no collapse control and the filter bar stays shown",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4118
+   },
+   {
+    "id": 29606,
+    "title": "A filter combination with no matches shows a no-results empty state",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4119
+   },
+   {
+    "id": 29607,
+    "title": "The filtered empty state offers a way to clear the filters",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4119
+   },
+   {
+    "id": 38897,
+    "title": "When filters and a search find nothing, each can be cleared on its own",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4119
+   },
+   {
+    "id": 29608,
+    "title": "The All tab shows all five filter chips, all working",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4120
+   },
+   {
+    "id": 29609,
+    "title": "Estimates tab: Status chip is greyed out and pre-filled; other four work",
+    "kind": "HOLD",
+    "marker": "HOLD - waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification",
+    "reason": "waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification",
+    "section_id": 4120
+   },
+   {
+    "id": 29610,
+    "title": "Completed tab: Status chip is greyed out and pre-filled; other four work",
+    "kind": "HOLD",
+    "marker": "HOLD - waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification",
+    "reason": "waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification",
+    "section_id": 4120
+   },
+   {
+    "id": 29611,
+    "title": "My Work Orders tab shows all five filters and they narrow that list",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4120
+   },
+   {
+    "id": 29612,
+    "title": "A Status choice is kept while you switch tabs and comes back on the All tab",
+    "kind": "HOLD",
+    "marker": "HOLD - waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification",
+    "reason": "waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification",
+    "section_id": 4120
+   },
+   {
+    "id": 38876,
+    "title": "First visit opens the Estimates tab; your last-used tab is remembered",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4120
+   },
+   {
+    "id": 29613,
+    "title": "Leaving the page and coming back restores the filters and the bar state",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4121
+   },
+   {
+    "id": 29614,
+    "title": "Filters are remembered permanently, even after closing the browser",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4121
+   },
+   {
+    "id": 29615,
+    "title": "Saved filters are per user: one user's filters do not appear for another user",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4121
+   },
+   {
+    "id": 29616,
+    "title": "A remembered filter value that was deleted is silently ignored",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8832)",
+    "reason": null,
+    "section_id": 4121
+   },
+   {
+    "id": 38880,
+    "title": "Each page and tab remembers its own filters separately",
+    "kind": "HOLD",
+    "marker": "HOLD - held for the QA lead's ruling only - the behaviour IS documented (S10-R4 says each Parts view and each Report tab keeps its own separate filter set and each persists independently), so the earlier reason that no source described it was wrong",
+    "reason": "held for the QA lead's ruling only - the behaviour IS documented (S10-R4 says each Parts view and each Report tab keeps its own separate filter set and each persists independently), so the earlier reason that no source described it was wrong",
+    "section_id": 4121
+   },
+   {
+    "id": 38881,
+    "title": "Filters saved before the redesign carry over after the update",
+    "kind": "HOLD",
+    "marker": "HOLD - cannot be run - it needs an account whose filters were saved before the redesign, and none exists",
+    "reason": "cannot be run - it needs an account whose filters were saved before the redesign, and none exists",
+    "section_id": 4121
+   },
+   {
+    "id": 43560,
+    "title": "When two devices set different filters, the last one saved wins",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4121
+   },
+   {
+    "id": 29617,
+    "title": "Applying filters updates the page URL to reflect the active filter state",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4122
+   },
+   {
+    "id": 29618,
+    "title": "Opening a shared URL or bookmark loads the page with those filters on",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4122
+   },
+   {
+    "id": 29619,
+    "title": "A URL with a deleted filter value loads and ignores that value",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8832)",
+    "reason": null,
+    "section_id": 4122
+   },
+   {
+    "id": 29620,
+    "title": "A broken filter URL loads the page with no filters and no error",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8832)",
+    "reason": null,
+    "section_id": 4122
+   },
+   {
+    "id": 38879,
+    "title": "Opening a shared link does not change your own saved filters",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4122
+   },
+   {
+    "id": 38896,
+    "title": "'Back to my view' is not shown when you are on your own view",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4122
+   },
+   {
+    "id": 29621,
+    "title": "Mobile: chips sit in a scrollable row below the tabs, starting All Filters",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4123
+   },
+   {
+    "id": 29622,
+    "title": "Mobile: All Filters opens a sheet of expandable rows with Apply filters",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4123
+   },
+   {
+    "id": 29623,
+    "title": "Mobile: tapping Apply filters applies the statuses and updates the count",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4123
+   },
+   {
+    "id": 29624,
+    "title": "Mobile: one chip opens its own sheet and applies only on Apply filters",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8875)",
+    "reason": null,
+    "section_id": 4123
+   },
+   {
+    "id": 29625,
+    "title": "Mobile Customer filter has search, multi-select and removable tags",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8875)",
+    "reason": null,
+    "section_id": 4123
+   },
+   {
+    "id": 29626,
+    "title": "Mobile Lead Technician and Service Advisor filters offer their search lists",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4123
+   },
+   {
+    "id": 29627,
+    "title": "The mobile Asset on Site filter offers Yes/No with Clear Selection in the sheet",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4123
+   },
+   {
+    "id": 29628,
+    "title": "Active chips and Clear Filters behave on mobile the same way as on desktop",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4123
+   },
+   {
+    "id": 29629,
+    "title": "Mobile has no collapse toggle: the filter chip row is always visible",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4123
+   },
+   {
+    "id": 29630,
+    "title": "Filters matching no work orders on mobile show the same empty state as desktop",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4123
+   },
+   {
+    "id": 43563,
+    "title": "On a phone, picking Imported works alone and disables the other filters",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4123
+   },
+   {
+    "id": 29631,
+    "title": "The work order list request carries the active filter selections",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4124
+   },
+   {
+    "id": 29632,
+    "title": "A combined multi-filter request returns only work orders matching all filters",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4124
+   },
+   {
+    "id": 29633,
+    "title": "A request with a deleted or unknown filter value gives no server error",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4124
+   },
+   {
+    "id": 29634,
+    "title": "A list request with malformed filter parameters does not produce a server error",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8832)",
+    "reason": null,
+    "section_id": 4124
+   },
+   {
+    "id": 29635,
+    "title": "A filter combination matching nothing returns an empty list, not an error",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4124
+   },
+   {
+    "id": 38895,
+    "title": "Saved-filters service round-trip: save, reload, and per-user isolation",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4124
+   },
+   {
+    "id": 38883,
+    "title": "Page toolbar Search expands in place and narrows the list as you type",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 5410
+   },
+   {
+    "id": 38884,
+    "title": "Page search combines with filters and is cleared separately",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 5410
+   },
+   {
+    "id": 38886,
+    "title": "Your typed search stays in this browser tab only and is never saved",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 5410
+   },
+   {
+    "id": 38888,
+    "title": "The search term is part of the shareable page link",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 5410
+   },
+   {
+    "id": 38889,
+    "title": "On mobile the search expands in the toolbar and buttons make room",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8912)",
+    "reason": null,
+    "section_id": 5410
+   },
+   {
+    "id": 38891,
+    "title": "Every list page keeps its own search box (Parts, Reports, detail tabs)",
+    "kind": "HOLD",
+    "marker": "HOLD - cannot be run yet - its own precondition needs the page-search rollout finished everywhere, and it is still part-way through",
+    "reason": "cannot be run yet - its own precondition needs the page-search rollout finished everywhere, and it is still part-way through",
+    "section_id": 5410
+   },
+   {
+    "id": 38893,
+    "title": "The top navigation search no longer filters page lists",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 5410
+   },
+   {
+    "id": 38898,
+    "title": "The Search box changes look as you hover over it, open it and type",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 5410
+   },
+   {
+    "id": 38899,
+    "title": "The list narrows shortly after you stop typing, with no button to press",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 5410
+   },
+   {
+    "id": 38900,
+    "title": "One search box serves all Work Orders tabs and searches the tab you are on",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 5410
+   },
+   {
+    "id": 38901,
+    "title": "Each Report tab and each Parts view keeps its own separate search",
+    "kind": "HOLD",
+    "marker": "HOLD - only half of it can be run - the report pages have no page search box yet, so the report-tab half cannot be tested",
+    "reason": "only half of it can be run - the report pages have no page search box yet, so the report-tab half cannot be tested",
+    "section_id": 5410
+   },
+   {
+    "id": 38902,
+    "title": "An old link carrying a top-search word no longer narrows the page list",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 5410
+   },
+   {
+    "id": 38903,
+    "title": "Collapsing the filter bar keeps an active search working",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 5410
+   },
+   {
+    "id": 43561,
+    "title": "On a phone, pages with two or more icon buttons collapse them into one menu",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 5410
+   },
+   {
+    "id": 38904,
+    "title": "Every Parts list page shows its designed filter buttons",
+    "kind": "HOLD",
+    "marker": "HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+    "reason": "waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+    "section_id": 5411
+   },
+   {
+    "id": 38905,
+    "title": "Part Type filter opens a Core / Non Core list with Clear Selection",
+    "kind": "HOLD",
+    "marker": "HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+    "reason": "waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+    "section_id": 5411
+   },
+   {
+    "id": 38906,
+    "title": "Choosing a Parts filter narrows the list on that page",
+    "kind": "HOLD",
+    "marker": "HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+    "reason": "waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+    "section_id": 5411
+   },
+   {
+    "id": 38907,
+    "title": "Parts filters support multiple choices and can be cleared",
+    "kind": "HOLD",
+    "marker": "HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+    "reason": "waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+    "section_id": 5411
+   },
+   {
+    "id": 38908,
+    "title": "Every filter a page had before is still available in the new filter bar",
+    "kind": "HOLD",
+    "marker": "HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+    "reason": "waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+    "section_id": 5411
+   },
+   {
+    "id": 43562,
+    "title": "Parts and Reports filters collapse, share and work on a phone as Work Orders do",
+    "kind": "HOLD",
+    "marker": "HOLD - the new filter bar has reached only some Parts views and one report tab, so most of this cannot be run yet",
+    "reason": "the new filter bar has reached only some Parts views and one report tab, so most of this cannot be run yet",
+    "section_id": 5411
+   },
+   {
+    "id": 38882,
+    "title": "Date range filter offers ready-made periods and a custom start/end range",
+    "kind": "HOLD",
+    "marker": "HOLD - waiting on Branko's Parts and Reports product write-up - the date range filter is built but no source states the periods it must offer",
+    "reason": "waiting on Branko's Parts and Reports product write-up - the date range filter is built but no source states the periods it must offer",
+    "section_id": 5412
+   },
+   {
+    "id": 38909,
+    "title": "Report filter bars appear on the reports this change covers",
+    "kind": "HOLD",
+    "marker": "HOLD - Branko's Parts and Reports write-up is still outstanding, so no product source states which filter buttons each report should show",
+    "reason": "Branko's Parts and Reports write-up is still outstanding, so no product source states which filter buttons each report should show",
+    "section_id": 5412
+   },
+   {
+    "id": 38910,
+    "title": "Choosing a Reports filter narrows the report results",
+    "kind": "HOLD",
+    "marker": "HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+    "reason": "waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+    "section_id": 5412
+   },
+   {
+    "id": 38911,
+    "title": "New Reports filter types behave correctly (Location, Transaction Type, etc.)",
+    "kind": "HOLD",
+    "marker": "HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+    "reason": "waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+    "section_id": 5412
+   },
+   {
+    "id": 43576,
+    "title": "Global search returns navigational results only and does not modify the current table",
+    "kind": "NONE",
+    "marker": null,
+    "reason": null,
+    "section_id": 6499
+   },
+   {
+    "id": 43577,
+    "title": "Global search no longer alters the record set on any surface (app-wide sweep)",
+    "kind": "NONE",
+    "marker": null,
+    "reason": null,
+    "section_id": 6499
+   },
+   {
+    "id": 43578,
+    "title": "Page-filtering code path is removed and stale URL / persisted terms no longer filter",
+    "kind": "NONE",
+    "marker": null,
+    "reason": null,
+    "section_id": 6499
+   },
+   {
+    "id": 43579,
+    "title": "Every affected surface still offers text narrowing via page search",
+    "kind": "NONE",
+    "marker": null,
+    "reason": null,
+    "section_id": 6499
+   },
+   {
+    "id": 43580,
+    "title": "Global-search filtering is not removed from a page before page search is available there",
+    "kind": "NONE",
+    "marker": null,
+    "reason": null,
+    "section_id": 6499
+   }
+  ]
+ },
+ "Schedule": {
+  "group": 4254,
+  "run": 357,
+  "total": 176,
+  "ready": 141,
+  "expect_fail": 4,
+  "hold": 31,
+  "no_marker": 0,
+  "run_tests": 176,
+  "in_suite_not_in_run": [],
+  "in_run_not_in_suite": [],
+  "rows": [
+   {
+    "id": 29925,
+    "title": "Schedule opens from the top-level navigation into a sidebar + grid layout",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4255
+   },
+   {
+    "id": 29927,
+    "title": "Day / Week / Month segmented control switches the grid between the three views",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4255
+   },
+   {
+    "id": 29928,
+    "title": "Grid rows are grouped by department under group headers",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4255
+   },
+   {
+    "id": 29929,
+    "title": "Collapsing a department header hides its technician rows",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4255
+   },
+   {
+    "id": 29930,
+    "title": "No Tech/Dept toggle - department grouping is the only grid grouping",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4255
+   },
+   {
+    "id": 29931,
+    "title": "An Unassigned row sits inside the grid, not in a separate tray",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4255
+   },
+   {
+    "id": 43554,
+    "title": "Schedule opens on Day view the first time you open it from the navigation",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4255
+   },
+   {
+    "id": 29932,
+    "title": "Clicking a date in the mini calendar navigates the main grid to that date",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4256
+   },
+   {
+    "id": 29933,
+    "title": "Mini calendar month/year picker has month buttons and year arrows",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4256
+   },
+   {
+    "id": 29934,
+    "title": "A chevron toggle collapses and expands the mini calendar grid",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4256
+   },
+   {
+    "id": 29935,
+    "title": "Mini calendar highlights the selected date, today, and the hovered week",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4256
+   },
+   {
+    "id": 29936,
+    "title": "The sidebar is a flat list of work order cards with no tabs",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4257
+   },
+   {
+    "id": 29937,
+    "title": "Work order card anatomy, incl. the status-colored left border",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4257
+   },
+   {
+    "id": 29939,
+    "title": "'Search work orders' matches work order number, customer, unit, and technician",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4257
+   },
+   {
+    "id": 29940,
+    "title": "Sidebar search filters the card list in real time as you type",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4257
+   },
+   {
+    "id": 29941,
+    "title": "Sidebar search with no matching work orders shows an empty list",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4257
+   },
+   {
+    "id": 29942,
+    "title": "The 'Filters' button opens Assignment / Status / Priority filter groups",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4258
+   },
+   {
+    "id": 29943,
+    "title": "Assignment filter narrows the list to Assigned or Unassigned work orders",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4258
+   },
+   {
+    "id": 29944,
+    "title": "Status filter narrows the list to work orders in the chosen status(es)",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4258
+   },
+   {
+    "id": 29945,
+    "title": "Priority filter offers High, Medium, Low and narrows the list accordingly",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4258
+   },
+   {
+    "id": 29946,
+    "title": "'Clear all' resets every applied sidebar filter in one click",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4258
+   },
+   {
+    "id": 29947,
+    "title": "Search and filter work together - both can be active at the same time",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4258
+   },
+   {
+    "id": 29948,
+    "title": "Work order card opens the line drill-down in place, with header and back control",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4259
+   },
+   {
+    "id": 29950,
+    "title": "Only approved work order lines appear in the drill-down",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4259
+   },
+   {
+    "id": 29951,
+    "title": "Line row shows title, hours, the technician roster and a drag handle",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4259
+   },
+   {
+    "id": 29952,
+    "title": "Lines with no technician assigned show a 'Needs techs' badge",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4259
+   },
+   {
+    "id": 29953,
+    "title": "'Search lines' matches the line title/name only",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4259
+   },
+   {
+    "id": 29954,
+    "title": "'All / Unscheduled' filter chips show counts and filter the line list",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4259
+   },
+   {
+    "id": 29955,
+    "title": "Dropping a single-line work order creates a shift with no scope picker",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4260
+   },
+   {
+    "id": 29956,
+    "title": "Dropping a multi-line work order on a technician cell opens the scope picker",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4260
+   },
+   {
+    "id": 29957,
+    "title": "Dragging a line from the drill-down creates a single-line shift",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4260
+   },
+   {
+    "id": 29958,
+    "title": "A job over the technician's daily hours opens the spread step",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4260
+   },
+   {
+    "id": 29959,
+    "title": "A scope that fits one working day skips the spread step",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4260
+   },
+   {
+    "id": 29960,
+    "title": "While dragging, target cells highlight and a ghost block follows",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4260
+   },
+   {
+    "id": 29961,
+    "title": "Scheduling a technician onto a line adds them to its labor roster",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4260
+   },
+   {
+    "id": 29962,
+    "title": "A click-to-arm alternative exists for scheduling without dragging",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8957)",
+    "reason": null,
+    "section_id": 4260
+   },
+   {
+    "id": 43555,
+    "title": "Month view: dragging a work order onto a day creates a shift for that day",
+    "kind": "HOLD",
+    "marker": "HOLD - waiting on the product owner's answer, and the question has not been sent yet",
+    "reason": "waiting on the product owner's answer, and the question has not been sent yet",
+    "section_id": 4260
+   },
+   {
+    "id": 29963,
+    "title": "Scope picker contents: the pinned whole-order row and the line rows",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4261
+   },
+   {
+    "id": 29964,
+    "title": "'Schedule whole work order' assigns all lines and creates one shift",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4261
+   },
+   {
+    "id": 29965,
+    "title": "Tapping a line row creates a single-line shift with no confirm step",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4261
+   },
+   {
+    "id": 29967,
+    "title": "'Select multiple' checkbox mode: running tally, Select all, and Cancel",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8886)",
+    "reason": null,
+    "section_id": 4261
+   },
+   {
+    "id": 29969,
+    "title": "A shift's start time uses the technician's own working hours when set",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4262
+   },
+   {
+    "id": 29970,
+    "title": "With no technician hours set, start time falls back to business hours",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4262
+   },
+   {
+    "id": 29971,
+    "title": "With neither technician hours nor business hours set, a 7:00 AM default applies",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4262
+   },
+   {
+    "id": 29972,
+    "title": "In day view the start time comes from the drop position",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4262
+   },
+   {
+    "id": 29973,
+    "title": "Dropping onto the Unassigned row creates a shift with no technician",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4262
+   },
+   {
+    "id": 29974,
+    "title": "Unassigned shift start time uses business hours or the default",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4262
+   },
+   {
+    "id": 29975,
+    "title": "Dragging an unassigned shift onto a technician row assigns it",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4262
+   },
+   {
+    "id": 29978,
+    "title": "Spread step header shows the scope; 'Change scope' returns to the picker",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4263
+   },
+   {
+    "id": 29979,
+    "title": "How-much selector defaults to Full estimate; preset amounts apply at once",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4263
+   },
+   {
+    "id": 29980,
+    "title": "'Until a date\u2026' reveals a single finish-by date field",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4263
+   },
+   {
+    "id": 29981,
+    "title": "'Specific hours\u2026' reveals an hours stepper",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4263
+   },
+   {
+    "id": 29982,
+    "title": "Start date defaults to the earliest working day and can be changed",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-9090)",
+    "reason": null,
+    "section_id": 4263
+   },
+   {
+    "id": 29983,
+    "title": "Spread uses the tech's working hours; skips weekends only when hours not set",
+    "kind": "HOLD",
+    "marker": "HOLD - waiting on the product owner's answer, and the question has not been sent yet",
+    "reason": "waiting on the product owner's answer, and the question has not been sent yet",
+    "section_id": 4263
+   },
+   {
+    "id": 29984,
+    "title": "Spread preview: one-line summary, expandable to a week-by-week breakdown",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-9006)",
+    "reason": null,
+    "section_id": 4263
+   },
+   {
+    "id": 29985,
+    "title": "Confirming the spread creates a linked series of daily shifts",
+    "kind": "HOLD",
+    "marker": "HOLD - an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker",
+    "reason": "an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker",
+    "section_id": 4263
+   },
+   {
+    "id": 29986,
+    "title": "The same work order on a second technician spreads the full estimate again",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4263
+   },
+   {
+    "id": 38863,
+    "title": "Spread past 8 weeks asks to confirm; a series can never exceed 120 shifts",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4263
+   },
+   {
+    "id": 29987,
+    "title": "Month view: series banner wraps across weeks, labeled once, then 'continues'",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4264
+   },
+   {
+    "id": 29988,
+    "title": "Week view: series banner spans the week, with chevrons and 'week N of M'",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4264
+   },
+   {
+    "id": 29989,
+    "title": "Day view shows the series day as one block with a multi-week cue",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4264
+   },
+   {
+    "id": 29990,
+    "title": "A series is just a grouping - capacity and conflicts use the daily shifts",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4264
+   },
+   {
+    "id": 29991,
+    "title": "A single-line shift block shows customer, unit number and line name",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4265
+   },
+   {
+    "id": 29992,
+    "title": "Whole-order and multi-line shifts both read 'N Lines' on the block",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4265
+   },
+   {
+    "id": 29995,
+    "title": "The conflict icon is the only icon on a shift block",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4265
+   },
+   {
+    "id": 29996,
+    "title": "Non-overlapping same-day shifts share one lane, even from different orders",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4266
+   },
+   {
+    "id": 29997,
+    "title": "Shifts whose times intersect split into stacked lanes and the row grows to fit",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4266
+   },
+   {
+    "id": 29998,
+    "title": "Visible lanes cap at 3; extra overlapping shifts collapse into '+N more'",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4266
+   },
+   {
+    "id": 29999,
+    "title": "Lane stacking and the '+N more' overflow apply in day, week, and month views",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4266
+   },
+   {
+    "id": 30001,
+    "title": "Day view auto-scrolls to the working-day start; manual scrolling stands",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4267
+   },
+   {
+    "id": 30003,
+    "title": "Date and time headers stick to the top during vertical scroll",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4267
+   },
+   {
+    "id": 30004,
+    "title": "Dragging a shift sideways moves its start time in 15-minute steps",
+    "kind": "HOLD",
+    "marker": "HOLD - an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker",
+    "reason": "an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker",
+    "section_id": 4267
+   },
+   {
+    "id": 30005,
+    "title": "Dragging a shift's left or right edge resizes its duration",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4267
+   },
+   {
+    "id": 30006,
+    "title": "A now line marks the current time on today's day view, with a label on hover",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4267
+   },
+   {
+    "id": 30008,
+    "title": "Clicking a shift opens its detail modal, with VIN always visible",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4268
+   },
+   {
+    "id": 30009,
+    "title": "Scheduled date and start/end time pickers work in 15-minute increments",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4268
+   },
+   {
+    "id": 30010,
+    "title": "The modal shows the technician and time logged vs estimate progress",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4268
+   },
+   {
+    "id": 30011,
+    "title": "The modal lists the scheduled line(s) with no money fields",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4268
+   },
+   {
+    "id": 30012,
+    "title": "Estimated hours can be edited inline in the modal",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4268
+   },
+   {
+    "id": 30013,
+    "title": "Notes can be added, edited, and deleted per work order from the modal",
+    "kind": "HOLD",
+    "marker": "HOLD - an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker",
+    "reason": "an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker",
+    "section_id": 4268
+   },
+   {
+    "id": 30014,
+    "title": "A conflicted shift's modal shows a conflict banner with an 'Adjust' action",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4268
+   },
+   {
+    "id": 30015,
+    "title": "Shift modal offers Delete only - there is no Reassign action",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4268
+   },
+   {
+    "id": 30016,
+    "title": "Create an event via left-click 'Create Event' on empty grid space",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4269
+   },
+   {
+    "id": 30017,
+    "title": "Day view event creation shows a live preview block you can drag to resize",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4269
+   },
+   {
+    "id": 30018,
+    "title": "Event modal fields all save; the all-day toggle creates an all-day event",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4269
+   },
+   {
+    "id": 30020,
+    "title": "Events can be dragged to another technician or another day",
+    "kind": "HOLD",
+    "marker": "HOLD - an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker",
+    "reason": "an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker",
+    "section_id": 4269
+   },
+   {
+    "id": 30021,
+    "title": "Event cards look structurally distinct from shift cards",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4269
+   },
+   {
+    "id": 30022,
+    "title": "Events default to grey; choosing a color tints the card and chip",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4269
+   },
+   {
+    "id": 30615,
+    "title": "An event's hours count toward the capacity bar but raise no conflict",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4269
+   },
+   {
+    "id": 30023,
+    "title": "Double-booked: two overlapping work orders on one technician are flagged",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4270
+   },
+   {
+    "id": 30024,
+    "title": "Working-day conflict: a shift outside the tech's working days is flagged",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4270
+   },
+   {
+    "id": 30025,
+    "title": "Before-hours and after-hours shifts are flagged against the tech's hours",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4270
+   },
+   {
+    "id": 30027,
+    "title": "The toolbar conflict pill shows the count and opens a list",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4270
+   },
+   {
+    "id": 30028,
+    "title": "Clicking a conflict in the dropdown navigates to the relevant technician and day",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4270
+   },
+   {
+    "id": 30029,
+    "title": "Red styling is only for conflicts and errors, never for overtime",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4270
+   },
+   {
+    "id": 30030,
+    "title": "Capacity bar fill = booked (shifts + events) vs available, clamped, equal tracks",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4271
+   },
+   {
+    "id": 30031,
+    "title": "Over capacity, an amber spill extends past the track's right edge",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4271
+   },
+   {
+    "id": 30032,
+    "title": "'OT' text tag appears when one technician exceeds their own daily hours",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4271
+   },
+   {
+    "id": 30033,
+    "title": "Hovering a capacity bar shows a per-technician breakdown",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4271
+   },
+   {
+    "id": 30034,
+    "title": "Shift hover tooltip shows the full shift summary incl. up to 3 line names",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4272
+   },
+   {
+    "id": 30035,
+    "title": "A conflicted shift's tooltip shows the icon and reason in amber",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4272
+   },
+   {
+    "id": 30036,
+    "title": "Event hover tooltip shows name, grey category dot, time range and tech",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4272
+   },
+   {
+    "id": 30037,
+    "title": "Tooltips open after a hover delay, dismiss on mouse-leave, are read-only",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4272
+   },
+   {
+    "id": 30038,
+    "title": "The tooltip flips or shifts to stay within the viewport - never clipped",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4272
+   },
+   {
+    "id": 30039,
+    "title": "'Today' button jumps the grid to the current date",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4273
+   },
+   {
+    "id": 30040,
+    "title": "Left/right arrows step by day, week, or month to match the active range",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4273
+   },
+   {
+    "id": 30041,
+    "title": "Toolbar search matches customer, work order, unit, technician and line names",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4273
+   },
+   {
+    "id": 43582,
+    "title": "Panel button sits left of Today and its tooltip names what it will do",
+    "kind": "HOLD",
+    "marker": "HOLD - the panel button does not exist in this build",
+    "reason": "the panel button does not exist in this build",
+    "section_id": 4273
+   },
+   {
+    "id": 43583,
+    "title": "Panel button hides the left panel and the grid widens into the space",
+    "kind": "HOLD",
+    "marker": "HOLD - the panel button does not exist in this build",
+    "reason": "the panel button does not exist in this build",
+    "section_id": 4273
+   },
+   {
+    "id": 43584,
+    "title": "What you had set up in the left panel survives hiding and showing it",
+    "kind": "HOLD",
+    "marker": "HOLD - the panel button does not exist in this build",
+    "reason": "the panel button does not exist in this build",
+    "section_id": 4273
+   },
+   {
+    "id": 43586,
+    "title": "Menus and pop-up windows reposition when the left panel is hidden",
+    "kind": "HOLD",
+    "marker": "HOLD - the panel button does not exist in this build",
+    "reason": "the panel button does not exist in this build",
+    "section_id": 4273
+   },
+   {
+    "id": 43587,
+    "title": "Hiding the panel lasts for the rest of your sign-in but is not saved",
+    "kind": "HOLD",
+    "marker": "HOLD - the panel button does not exist in this build",
+    "reason": "the panel button does not exist in this build",
+    "section_id": 4273
+   },
+   {
+    "id": 30042,
+    "title": "'Filter & display' dropdown: department toggles, 'My Shifts' and 'VIN Number'",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4274
+   },
+   {
+    "id": 30043,
+    "title": "Department toggles show or hide individual department groups in the grid",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4274
+   },
+   {
+    "id": 30044,
+    "title": "'My Shifts' filters the grid to only the current user's shifts",
+    "kind": "HOLD",
+    "marker": "HOLD - needs a second sign-in as a user with no staff record of their own",
+    "reason": "needs a second sign-in as a user with no staff record of their own",
+    "section_id": 4274
+   },
+   {
+    "id": 30045,
+    "title": "'VIN Number' toggle gates the block VIN only - tooltip and modal always show it",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4274
+   },
+   {
+    "id": 30046,
+    "title": "'View options': six toggles with defaults; Capacity Planning and Events flip",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4274
+   },
+   {
+    "id": 30047,
+    "title": "Business Hours toggle shades non-working hours in day view",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4274
+   },
+   {
+    "id": 30050,
+    "title": "Tech Hours toggle displays each technician's working hours next to their name",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4274
+   },
+   {
+    "id": 30051,
+    "title": "'Show Saturday' and 'Show Sunday' include or exclude the weekend columns",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4274
+   },
+   {
+    "id": 30052,
+    "title": "Dragging a shift to another technician row reassigns it, with a confirm modal",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4275
+   },
+   {
+    "id": 30054,
+    "title": "Left-click empty grid space opens a menu: Create Event and New Work Order",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4275
+   },
+   {
+    "id": 38855,
+    "title": "'New Work Order' in the cell menu points the user to the Work Orders tab",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4275
+   },
+   {
+    "id": 43556,
+    "title": "Week view: a shift that is part of a repeating series can be reassigned",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4275
+   },
+   {
+    "id": 30057,
+    "title": "Deleting a middle shift of a series offers all three scope options",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4276
+   },
+   {
+    "id": 30058,
+    "title": "'This shift only' removes that day and the series keeps the gap",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4276
+   },
+   {
+    "id": 30059,
+    "title": "'This and everything after' removes from the clicked shift onward",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4276
+   },
+   {
+    "id": 30060,
+    "title": "'The whole series' removes all of the series' shifts for that technician",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4276
+   },
+   {
+    "id": 30061,
+    "title": "Scope options adapt: the first and last shift each show only two",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4276
+   },
+   {
+    "id": 30062,
+    "title": "Deleting a standalone (non-series) shift does not ask for a series scope",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4276
+   },
+   {
+    "id": 30064,
+    "title": "Toast lasts ~7s with Undo (about 4s without); stays on hover, goes on leave",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4276
+   },
+   {
+    "id": 30065,
+    "title": "Every create/delete/move/reassign toasts with Undo, and Undo restores",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4276
+   },
+   {
+    "id": 38864,
+    "title": "Schedule actions save immediately - Undo reverses them, closing does not cancel",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4276
+   },
+   {
+    "id": 30066,
+    "title": "Escape closes the topmost open modal or popover, following the stacking order",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4277
+   },
+   {
+    "id": 30068,
+    "title": "Enter confirms the active dialog, but not inside a note textarea",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4277
+   },
+   {
+    "id": 30070,
+    "title": "Modals trap focus and all interactive elements are keyboard-reachable",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4277
+   },
+   {
+    "id": 30071,
+    "title": "Blue is the default color for all shifts, including long and multi-week jobs",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4278
+   },
+   {
+    "id": 30072,
+    "title": "Shift modal color picker recolors that shift only, in matching tones",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4278
+   },
+   {
+    "id": 30073,
+    "title": "Color labels are editable per shop",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4278
+   },
+   {
+    "id": 30074,
+    "title": "Schedule: View grants the full read-only experience across the whole page",
+    "kind": "HOLD",
+    "marker": "HOLD - needs a second sign-in as a view-only user",
+    "reason": "needs a second sign-in as a view-only user",
+    "section_id": 4279
+   },
+   {
+    "id": 30075,
+    "title": "View-only: every editing affordance is hidden or disabled",
+    "kind": "HOLD",
+    "marker": "HOLD - needs a second sign-in as a view-only user",
+    "reason": "needs a second sign-in as a view-only user",
+    "section_id": 4279
+   },
+   {
+    "id": 30076,
+    "title": "With Schedule: View OFF, the Schedule top-level nav item is hidden entirely",
+    "kind": "HOLD",
+    "marker": "HOLD - needs a second sign-in as a user without the Schedule permission",
+    "reason": "needs a second sign-in as a user without the Schedule permission",
+    "section_id": 4279
+   },
+   {
+    "id": 30077,
+    "title": "Schedule: Edit unlocks all creation and modification interactions",
+    "kind": "HOLD",
+    "marker": "HOLD - needs a second sign-in as an edit-without-delete user",
+    "reason": "needs a second sign-in as an edit-without-delete user",
+    "section_id": 4279
+   },
+   {
+    "id": 30078,
+    "title": "Edit without Delete: the user can create and modify but not remove",
+    "kind": "HOLD",
+    "marker": "HOLD - needs a second sign-in as an edit-without-delete user",
+    "reason": "needs a second sign-in as an edit-without-delete user",
+    "section_id": 4279
+   },
+   {
+    "id": 30079,
+    "title": "Schedule: Delete unlocks deleting shifts and events",
+    "kind": "HOLD",
+    "marker": "HOLD - needs a second sign-in as a delete-capable user",
+    "reason": "needs a second sign-in as a delete-capable user",
+    "section_id": 4279
+   },
+   {
+    "id": 30080,
+    "title": "Permission tiers nest: Delete requires Edit, Edit requires View",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4279
+   },
+   {
+    "id": 30081,
+    "title": "Schedule without Work Orders: View - the sidebar hides the work order list",
+    "kind": "HOLD",
+    "marker": "HOLD - needs a second sign-in as a user who cannot see work orders",
+    "reason": "needs a second sign-in as a user who cannot see work orders",
+    "section_id": 4279
+   },
+   {
+    "id": 30082,
+    "title": "No own-only restriction: a View user sees ALL technicians' shifts",
+    "kind": "HOLD",
+    "marker": "HOLD - needs a second sign-in as a view-only technician",
+    "reason": "needs a second sign-in as a view-only technician",
+    "section_id": 4279
+   },
+   {
+    "id": 30083,
+    "title": "Grid rows are department-based, not role-based",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4279
+   },
+   {
+    "id": 30084,
+    "title": "Clocking into line tasks is gated by the staff 'Time Clock' setting",
+    "kind": "HOLD",
+    "marker": "HOLD - needs a second sign-in as each of the two staff members",
+    "reason": "needs a second sign-in as each of the two staff members",
+    "section_id": 4279
+   },
+   {
+    "id": 30614,
+    "title": "With Work Orders: View OFF, work order details on shifts are hidden",
+    "kind": "HOLD",
+    "marker": "HOLD - needs a second sign-in as a user who cannot see work orders",
+    "reason": "needs a second sign-in as a user who cannot see work orders",
+    "section_id": 4279
+   },
+   {
+    "id": 38926,
+    "title": "Default roles start at the Schedule level the spec names (view-only vs edit)",
+    "kind": "HOLD",
+    "marker": "HOLD - needs a second sign-in as a holder of each permission level",
+    "reason": "needs a second sign-in as a holder of each permission level",
+    "section_id": 4279
+   },
+   {
+    "id": 30086,
+    "title": "Below 960px the grid scrolls sideways and the sidebar collapses",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4280
+   },
+   {
+    "id": 30087,
+    "title": "The sidebar work order list and line drill-down stay smooth with 50+ items",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4280
+   },
+   {
+    "id": 30088,
+    "title": "The grid renders smoothly at full load - 15 technicians over 7 days",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4280
+   },
+   {
+    "id": 30089,
+    "title": "Shop closures do NOT block spread in V1 - shifts can land on closure days",
+    "kind": "HOLD",
+    "marker": "HOLD - waiting on the product owner's answer, and the shop-closure setting does not exist in the build",
+    "reason": "waiting on the product owner's answer, and the shop-closure setting does not exist in the build",
+    "section_id": 4280
+   },
+   {
+    "id": 30090,
+    "title": "Scheduled, estimated and actual clocked hours are three separate numbers",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4280
+   },
+   {
+    "id": 38865,
+    "title": "A multi-week series keeps the same local start time across the clock change",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4280
+   },
+   {
+    "id": 38866,
+    "title": "Schedule and all its dialogs display correctly in dark mode",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4280
+   },
+   {
+    "id": 43585,
+    "title": "On a narrow window the panel button still works and your choice holds",
+    "kind": "HOLD",
+    "marker": "HOLD - the panel button does not exist in this build",
+    "reason": "the panel button does not exist in this build",
+    "section_id": 4280
+   },
+   {
+    "id": 43588,
+    "title": "Dark mode is chosen from the user menu and is remembered for you",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4280
+   },
+   {
+    "id": 43589,
+    "title": "In dark mode pop-up windows still look raised above the page",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4280
+   },
+   {
+    "id": 38847,
+    "title": "Business-hours toggle reveals a per-day (Mon-Sun) From-To editor",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 5405
+   },
+   {
+    "id": 38848,
+    "title": "Edit Staff has a 'Set working hours for this technician' toggle, off by default",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 5405
+   },
+   {
+    "id": 38849,
+    "title": "A technician with no custom hours inherits the shop business hours",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 5405
+   },
+   {
+    "id": 38850,
+    "title": "'Add Hours' appends a removable second range for split shifts, starting empty",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 5405
+   },
+   {
+    "id": 38851,
+    "title": "Overlapping hour ranges block Save; incomplete rows are ignored",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 5405
+   },
+   {
+    "id": 38867,
+    "title": "Shifts and events created before the Schedule rewrite still appear after it",
+    "kind": "HOLD",
+    "marker": "HOLD - cannot be run now - it needs shifts noted BEFORE the release, and the release is already deployed",
+    "reason": "cannot be run now - it needs shifts noted BEFORE the release, and the release is already deployed",
+    "section_id": 5408
+   },
+   {
+    "id": 38868,
+    "title": "Dashboard shows one schedule row per work order even with many shifts",
+    "kind": "HOLD",
+    "marker": "HOLD - the Dashboard section this test needs does not exist in the build",
+    "reason": "the Dashboard section this test needs does not exist in the build",
+    "section_id": 5408
+   },
+   {
+    "id": 38869,
+    "title": "A work order created with an appointment shows up on the Schedule board",
+    "kind": "HOLD",
+    "marker": "HOLD - work order creation offers no appointment in the build",
+    "reason": "work order creation offers no appointment in the build",
+    "section_id": 5408
+   },
+   {
+    "id": 38870,
+    "title": "A multi-location technician's shift appears only on the work order's location",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 5408
+   },
+   {
+    "id": 38871,
+    "title": "Work order form offers a Priority (High/Medium/Low) that drives the sidebar",
+    "kind": "HOLD",
+    "marker": "HOLD - the Priority field this test needs does not exist in the build",
+    "reason": "the Priority field this test needs does not exist in the build",
+    "section_id": 5408
+   },
+   {
+    "id": 38872,
+    "title": "API - Schedule reads need View; writes need Edit; deletes need Delete (403)",
+    "kind": "HOLD",
+    "marker": "HOLD - needs three separate sign-ins, one per permission level",
+    "reason": "needs three separate sign-ins, one per permission level",
+    "section_id": 5409
+   },
+   {
+    "id": 38873,
+    "title": "API - Series past 8 weeks returns 409 until acknowledged; over 120 shifts 422",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 5409
+   },
+   {
+    "id": 38874,
+    "title": "API - No pricing fields in Schedule responses; WO details need Work Orders View",
+    "kind": "HOLD",
+    "marker": "HOLD - needs a second sign-in as a user who cannot see work orders",
+    "reason": "needs a second sign-in as a user who cannot see work orders",
+    "section_id": 5409
+   },
+   {
+    "id": 38875,
+    "title": "API - A shift from another location returns 404, not another shop's data",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 5409
+   }
+  ]
+ },
+ "Report Suite": {
+  "group": 4281,
+  "run": 359,
+  "total": 492,
+  "ready": 343,
+  "expect_fail": 95,
+  "hold": 42,
+  "no_marker": 12,
+  "run_tests": 480,
+  "in_suite_not_in_run": [
+   38919,
+   38920,
+   38921,
+   38922,
+   38923,
+   43567,
+   43568,
+   43569,
+   43570,
+   43571,
+   43572,
+   43573
+  ],
+  "in_run_not_in_suite": [],
+  "rows": [
+   {
+    "id": 43569,
+    "title": "Report route permission gate for Sales By Customer / Sales By Representative / Inventory Value",
+    "kind": "NONE",
+    "marker": null,
+    "reason": null,
+    "section_id": 4281
+   },
+   {
+    "id": 43570,
+    "title": "Select all / Clear all filter encoding does not overflow the request line",
+    "kind": "NONE",
+    "marker": null,
+    "reason": null,
+    "section_id": 4281
+   },
+   {
+    "id": 43571,
+    "title": "Report drill-through cells render plain text when the viewer cannot open the target",
+    "kind": "NONE",
+    "marker": null,
+    "reason": null,
+    "section_id": 4281
+   },
+   {
+    "id": 30096,
+    "title": "Sales By Customer listed under Performance, below existing links; titles correct",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4288
+   },
+   {
+    "id": 30098,
+    "title": "Ordinary reports access opens Sales By Customer \u2014 no separate permission",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4289
+   },
+   {
+    "id": 30099,
+    "title": "Without reports access, Sales By Customer is not listed and cannot open",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4289
+   },
+   {
+    "id": 30100,
+    "title": "Opening an invoice you lack permission for shows access-denied; back works",
+    "kind": "HOLD",
+    "marker": "HOLD - waiting on one answer from the product owner about whether this person is given a link at all",
+    "reason": "waiting on one answer from the product owner about whether this person is given a link at all",
+    "section_id": 4289
+   },
+   {
+    "id": 30101,
+    "title": "Location access enforced: no data from a location the user cannot access",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4289
+   },
+   {
+    "id": 39447,
+    "title": "No Sales By Customer permission is offered in the role permission editor",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4289
+   },
+   {
+    "id": 30102,
+    "title": "Date range picker offers nine periods in the specified order, no All Time",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4290
+   },
+   {
+    "id": 30104,
+    "title": "Building a custom range on the calendar cannot exceed a 366-day span",
+    "kind": "HOLD",
+    "marker": "HOLD - the calendar cannot be driven past the 366-day span from this harness; the back end refuses a wider range but the on-screen prevention was not seen",
+    "reason": "the calendar cannot be driven past the 366-day span from this harness; the back end refuses a wider range but the on-screen prevention was not seen",
+    "section_id": 4290
+   },
+   {
+    "id": 30105,
+    "title": "Changing the date range writes it into the page link for sharing",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8955)",
+    "reason": null,
+    "section_id": 4290
+   },
+   {
+    "id": 30107,
+    "title": "Product Type multi-select: both toggles on by default; S/P prefix filtering",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4291
+   },
+   {
+    "id": 43591,
+    "title": "Clear all leaves neither Product Type toggle on and shows the empty state",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4291
+   },
+   {
+    "id": 30109,
+    "title": "Location filter: rightmost, lists accessible locations, All locations on top",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4292
+   },
+   {
+    "id": 30111,
+    "title": "Selecting locations scopes the data; All locations covers every accessible one",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4292
+   },
+   {
+    "id": 38912,
+    "title": "Location column: shown to any multi-location user, Multiple on aggregating rows",
+    "kind": "HOLD",
+    "marker": "HOLD - the build does not follow the ratified Location rule; the defect is written up in DEFECTS-FOR-PERMISSION.md and needs the QA lead's permission before a ticket exists to point at",
+    "reason": "the build does not follow the ratified Location rule; the defect is written up in DEFECTS-FOR-PERMISSION.md and needs the QA lead's permission before a ticket exists to point at",
+    "section_id": 4292
+   },
+   {
+    "id": 30112,
+    "title": "Customer filter sits between Product Type and Location, carries a search icon",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8962)",
+    "reason": null,
+    "section_id": 4293
+   },
+   {
+    "id": 30113,
+    "title": "Typing in the Customer filter lists matching customers by contains match",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4293
+   },
+   {
+    "id": 30114,
+    "title": "Pinned control toggles All customers and Clear all; clearing shows empty state",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8991)",
+    "reason": null,
+    "section_id": 4293
+   },
+   {
+    "id": 30115,
+    "title": "First load starts in the all-customers state and the report shows every customer",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4293
+   },
+   {
+    "id": 30116,
+    "title": "Collapsed label reads None, the customer's name, or N selected",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8962)",
+    "reason": null,
+    "section_id": 4293
+   },
+   {
+    "id": 30117,
+    "title": "Changing the customer selection narrows the table and refreshes the totals",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4293
+   },
+   {
+    "id": 30120,
+    "title": "A subset customer selection reconciles on a filter change; kept if present",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4293
+   },
+   {
+    "id": 30121,
+    "title": "Each customer gets one summary row with its invoice count in parentheses",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4294
+   },
+   {
+    "id": 30122,
+    "title": "A customer with no matching invoices in the current view is not shown",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4294
+   },
+   {
+    "id": 30123,
+    "title": "Expanding a customer reveals asset rows; chevrons toggle and are independent",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4294
+   },
+   {
+    "id": 30124,
+    "title": "Expanding an asset reveals its invoice rows with number link and date",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4294
+   },
+   {
+    "id": 30125,
+    "title": "Invoices group into one asset row per vehicle record",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4294
+   },
+   {
+    "id": 30126,
+    "title": "Asset rows order A to Z with the Parts Sales bucket always last",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4294
+   },
+   {
+    "id": 30128,
+    "title": "Header-row chevron expands or collapses every customer on the current page",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4294
+   },
+   {
+    "id": 30129,
+    "title": "Reload-causing changes collapse expansion; Customer filter typing does not",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4294
+   },
+   {
+    "id": 30130,
+    "title": "Edge: a single-invoice asset can still be expanded",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4294
+   },
+   {
+    "id": 30131,
+    "title": "A service (S) invoice with no vehicle also lands in the Parts Sales bucket",
+    "kind": "HOLD",
+    "marker": "HOLD - this organisation has no service invoice without a vehicle, so nothing lands in the Parts Sales bucket from the service side",
+    "reason": "this organisation has no service invoice without a vehicle, so nothing lands in the Parts Sales bucket from the service side",
+    "section_id": 4294
+   },
+   {
+    "id": 30132,
+    "title": "Reversed and voided invoices are excluded from every row; count and total",
+    "kind": "HOLD",
+    "marker": "HOLD - this organisation has no reversed or voided invoice inside the report date range",
+    "reason": "this organisation has no reversed or voided invoice inside the report date range",
+    "section_id": 4294
+   },
+   {
+    "id": 30133,
+    "title": "Every row type renders the same columns in the same order",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4294
+   },
+   {
+    "id": 30134,
+    "title": "Asset identified by VIN, falling back to Unit #, then plate",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4295
+   },
+   {
+    "id": 30137,
+    "title": "Duplicate asset labels get stable (#1)/(#2) suffixes that survive reloads",
+    "kind": "HOLD",
+    "marker": "HOLD - no customer in this organisation has two assets that produce the same label, so the numbered suffix cannot appear",
+    "reason": "no customer in this organisation has two assets that produce the same label, so the numbered suffix cannot appear",
+    "section_id": 4295
+   },
+   {
+    "id": 30138,
+    "title": "The invoice number opens the invoice in the same browser tab",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4296
+   },
+   {
+    "id": 30139,
+    "title": "Browser back from an invoice restores filters; sort and columns; rows shut",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4296
+   },
+   {
+    "id": 30140,
+    "title": "Customer name is plain text; the invoice link never turns visited-purple",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4296
+   },
+   {
+    "id": 30141,
+    "title": "An invoice deleted after load shows the not-found state and back returns",
+    "kind": "HOLD",
+    "marker": "HOLD - deleting a real invoice while the report is open is not something to do on a shared environment",
+    "reason": "deleting a real invoice while the report is open is not something to do on a shared environment",
+    "section_id": 4296
+   },
+   {
+    "id": 43558,
+    "title": "You cannot reach an invoice you have no permission to open",
+    "kind": "HOLD",
+    "marker": "HOLD - waiting on one answer from the product owner about what the invoice number should look like, and it needs a second sign-in that cannot open work orders or part sales",
+    "reason": "waiting on one answer from the product owner about what the invoice number should look like, and it needs a second sign-in that cannot open work orders or part sales",
+    "section_id": 4296
+   },
+   {
+    "id": 30142,
+    "title": "All columns sortable except chevron; text alphabetical, numbers by value",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8963)",
+    "reason": null,
+    "section_id": 4297
+   },
+   {
+    "id": 30143,
+    "title": "Default sort is Customer name ascending case-insensitive",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4297
+   },
+   {
+    "id": 30144,
+    "title": "Missing values sort to the bottom ascending and to the top descending",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8963)",
+    "reason": null,
+    "section_id": 4297
+   },
+   {
+    "id": 30145,
+    "title": "Sorting by Date orders customers by their most recent invoice date",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4297
+   },
+   {
+    "id": 30149,
+    "title": "Financial columns run in the specified order with Subtotal and Margin rules",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4298
+   },
+   {
+    "id": 30150,
+    "title": "Margin % is Margin over Subtotal to one decimal; em dash when Subtotal <= 0",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4298
+   },
+   {
+    "id": 30151,
+    "title": "Inv. Hrs heading is verbatim; value shows +green / -red / 0.0 on every row",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4298
+   },
+   {
+    "id": 30152,
+    "title": "Inv. Hrs is never blank: no-labor rows and near-zero values both show 0.0",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4298
+   },
+   {
+    "id": 30153,
+    "title": "Invoice subtotals sum to their asset row and asset subtotals to the customer",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4298
+   },
+   {
+    "id": 30154,
+    "title": "Subtotal is the rightmost column; pinned on scroll and bold everywhere",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4298
+   },
+   {
+    "id": 30155,
+    "title": "The totals row covers the whole filtered set; not just the current page",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4298
+   },
+   {
+    "id": 30156,
+    "title": "Column selector is its own toolbar button with nine toggles all on",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4299
+   },
+   {
+    "id": 30157,
+    "title": "Column toggles hide header+cells; Customer, Subtotal and chevron never in list",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4299
+   },
+   {
+    "id": 43550,
+    "title": "A one-location user never sees Location in the column-selection list",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4299
+   },
+   {
+    "id": 30159,
+    "title": "The overflow menu holds exactly the four download items - no Print",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4300
+   },
+   {
+    "id": 30160,
+    "title": "Download file names carry the version and the active date range",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8956)",
+    "reason": null,
+    "section_id": 4300
+   },
+   {
+    "id": 30161,
+    "title": "Expanded View CSV: column order, blank-cell rules, and the Locations line",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4300
+   },
+   {
+    "id": 30162,
+    "title": "CSV formats: Margin % plain; dates mm-dd-yyyy; currency plain; no color",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8823)",
+    "reason": null,
+    "section_id": 4300
+   },
+   {
+    "id": 30163,
+    "title": "CSV and PDF hold exactly the customers matching the active filters and sort",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4300
+   },
+   {
+    "id": 30164,
+    "title": "Each download item shows a loading state and its own export-failed toast",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4300
+   },
+   {
+    "id": 30166,
+    "title": "PDF page: A4 landscape, uniform margins, ShopView footer and page numbers",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8964)",
+    "reason": null,
+    "section_id": 4300
+   },
+   {
+    "id": 30167,
+    "title": "PDF header: title, organization, date range, Product Type and Locations lines",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8937)",
+    "reason": null,
+    "section_id": 4300
+   },
+   {
+    "id": 30168,
+    "title": "PDF logo is embedded, scales without distortion",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4300
+   },
+   {
+    "id": 30169,
+    "title": "Expanded CSV body: column set and order, Customer/Asset/Invoice tree, blanks",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4300
+   },
+   {
+    "id": 30172,
+    "title": "An export over 10,000 data rows is refused with the too-large toast",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8818)",
+    "reason": null,
+    "section_id": 4300
+   },
+   {
+    "id": 30173,
+    "title": "A no-match export still downloads headers and a zero totals row",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8991)",
+    "reason": null,
+    "section_id": 4300
+   },
+   {
+    "id": 38856,
+    "title": "Summary and Expanded View downloads exist for both PDF and CSV",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4300
+   },
+   {
+    "id": 43553,
+    "title": "A logo that is set but will not load falls back to the ShopView logo",
+    "kind": "HOLD",
+    "marker": "HOLD - this organisation has a logo that loads correctly, so the set-but-will-not-load fallback cannot be produced",
+    "reason": "this organisation has a logo that loads correctly, so the set-but-will-not-load fallback cannot be produced",
+    "section_id": 4300
+   },
+   {
+    "id": 30174,
+    "title": "Filters; sort and visible columns are restored on the next visit",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4301
+   },
+   {
+    "id": 30175,
+    "title": "Type-ahead search text, expansion state and scroll position are not saved",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4301
+   },
+   {
+    "id": 30176,
+    "title": "A saved value that is no longer valid is dropped and falls back to default",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8966)",
+    "reason": null,
+    "section_id": 4301
+   },
+   {
+    "id": 30177,
+    "title": "The saved view is specific to this report and does not affect any other report",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4301
+   },
+   {
+    "id": 30178,
+    "title": "With no saved view every setting uses its own default",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4301
+   },
+   {
+    "id": 30179,
+    "title": "When a saved view and a page-link range clash the saved view wins",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4301
+   },
+   {
+    "id": 30180,
+    "title": "Customer filter restore: all-customers stays all; an id set is intersected",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4301
+   },
+   {
+    "id": 30181,
+    "title": "Empty state shows in the table body; toolbar interactive; kept selection returns",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4302
+   },
+   {
+    "id": 30184,
+    "title": "A failed data fetch shows the error toast which fades after 5 seconds",
+    "kind": "HOLD",
+    "marker": "HOLD - a failing data fetch cannot be forced from the application",
+    "reason": "a failing data fetch cannot be forced from the application",
+    "section_id": 4302
+   },
+   {
+    "id": 30185,
+    "title": "Page and toolbar match the suite theme in padding; surface and alignment",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8965)",
+    "reason": null,
+    "section_id": 4303
+   },
+   {
+    "id": 30186,
+    "title": "Row surfaces alternate by tree level; header and totals rows stay white",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8965)",
+    "reason": null,
+    "section_id": 4303
+   },
+   {
+    "id": 30187,
+    "title": "Dark mode darkens every surface while the PDF always renders light",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4303
+   },
+   {
+    "id": 30188,
+    "title": "On a phone every toolbar control works on touch; the toolbar splits in two",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4304
+   },
+   {
+    "id": 30189,
+    "title": "On touch the table scrolls sideways with Subtotal pinned and chevrons work",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4304
+   },
+   {
+    "id": 30190,
+    "title": "Asset and invoice rows are fetched on first expand; one call per customer",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4305
+   },
+   {
+    "id": 30191,
+    "title": "Sorting is applied on the server and re-fetches the first page",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4305
+   },
+   {
+    "id": 30192,
+    "title": "The Customer type-ahead queries the server instead of loading every name",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4305
+   },
+   {
+    "id": 30193,
+    "title": "Customer rows are server-paginated; the totals row is server-computed",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4305
+   },
+   {
+    "id": 30194,
+    "title": "Exports are server-generated and the 10,000-row cap is counted first",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8818)",
+    "reason": null,
+    "section_id": 4305
+   },
+   {
+    "id": 43546,
+    "title": "The back end serves SBC report data and export on ordinary reports access",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4305
+   },
+   {
+    "id": 30195,
+    "title": "Sales By Representative under Performance, below existing links; titles correct",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4306
+   },
+   {
+    "id": 30197,
+    "title": "The nav entry fits the full Sales By Representative label; no truncation",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4306
+   },
+   {
+    "id": 30198,
+    "title": "Sales By Representative is visible to anyone who sees another Performance report",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4307
+   },
+   {
+    "id": 30199,
+    "title": "Without Reports access: no navigation, no export menu, no Export dialog",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4307
+   },
+   {
+    "id": 30200,
+    "title": "Without staff-administration access the deactivation flow is unreachable",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4307
+   },
+   {
+    "id": 30201,
+    "title": "Date range picker is in the toolbar and offers the standard presets plus Custom",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4308
+   },
+   {
+    "id": 30202,
+    "title": "A Custom range uses the date-picker and holds a 366-day maximum span",
+    "kind": "HOLD",
+    "marker": "HOLD - needs the calendar driven past a 366-day span, which this harness could not do",
+    "reason": "needs the calendar driven past a 366-day span, which this harness could not do",
+    "section_id": 4308
+   },
+   {
+    "id": 30204,
+    "title": "An invoice sits in the range by its own invoice date; endpoints included",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4308
+   },
+   {
+    "id": 30206,
+    "title": "Product Type: three options, Parts & Service default, each option filters right",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4309
+   },
+   {
+    "id": 30208,
+    "title": "Invoice Status offers exactly four options; All Statuses is the default",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4310
+   },
+   {
+    "id": 30209,
+    "title": "Status filtering matches on the mapped display value",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4310
+   },
+   {
+    "id": 30211,
+    "title": "Filters compose: a rep appears only with an invoice matching ALL active filters",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4310
+   },
+   {
+    "id": 30212,
+    "title": "Money columns always show invoiced amounts, never the outstanding balance",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4310
+   },
+   {
+    "id": 30213,
+    "title": "Location filter is the rightmost control with an All Locations option",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4311
+   },
+   {
+    "id": 30215,
+    "title": "Location selection cascades; an inaccessible location's data is never included",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4311
+   },
+   {
+    "id": 30216,
+    "title": "Sales By Representative: Location filter hidden for a one-location user",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4311
+   },
+   {
+    "id": 38913,
+    "title": "Location column: shown to any multi-location user; toggleable; rep rows Multiple",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4311
+   },
+   {
+    "id": 30217,
+    "title": "A rep row appears only when the rep has a matching non-reversed invoice",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4312
+   },
+   {
+    "id": 30218,
+    "title": "Row layout: 12 columns in order, blanks in position, bold summary rows",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-9001)",
+    "reason": null,
+    "section_id": 4312
+   },
+   {
+    "id": 30219,
+    "title": "A toggled-off or deleted contributor still appears; tagged (Inactive)",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4312
+   },
+   {
+    "id": 30221,
+    "title": "Expanding a rep loads its invoices on demand with a row-level spinner",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4312
+   },
+   {
+    "id": 30222,
+    "title": "The header chevron expands every visible rep and its glyph tracks state",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4312
+   },
+   {
+    "id": 30223,
+    "title": "Each invoice appears under exactly one rep or the Unassigned row",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4312
+   },
+   {
+    "id": 30224,
+    "title": "Expansion survives filter and sort changes within the session, resets on reload",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4312
+   },
+   {
+    "id": 30225,
+    "title": "Detail rows run newest first with a numeric invoice-number tie-break",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8974)",
+    "reason": null,
+    "section_id": 4312
+   },
+   {
+    "id": 30226,
+    "title": "Status badge between Customer and Inv. Hrs; every detail row shows mapped text",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4313
+   },
+   {
+    "id": 30227,
+    "title": "Badge colors use the canonical payment-status tokens in light and dark",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4313
+   },
+   {
+    "id": 30229,
+    "title": "Inv. Hrs is hours invoiced minus hours worked; half-up to one decimal",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8999)",
+    "reason": null,
+    "section_id": 4314
+   },
+   {
+    "id": 30230,
+    "title": "Inv. Hrs: +green, -red, 0.0 default on every row; rollups from unrounded deltas",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8999)",
+    "reason": null,
+    "section_id": 4314
+   },
+   {
+    "id": 30231,
+    "title": "No-labor-no-time invoices show 0.0; clocked-unbilled work shows negative",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8999)",
+    "reason": null,
+    "section_id": 4314
+   },
+   {
+    "id": 30233,
+    "title": "Margin % to one decimal; em dash when Subtotal <= 0; recomputed on rollups",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4314
+   },
+   {
+    "id": 30234,
+    "title": "Money columns use the standardized labels and definitions",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4314
+   },
+   {
+    "id": 30235,
+    "title": "Negative dollar values render in accounting parentheses; money columns only",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4314
+   },
+   {
+    "id": 30236,
+    "title": "Half-up rounding at each precision; totals may differ by one last-decimal unit",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4314
+   },
+   {
+    "id": 38894,
+    "title": "A clock-record edit after invoicing updates Inv. Hrs; billed money stays put",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8999)",
+    "reason": null,
+    "section_id": 4314
+   },
+   {
+    "id": 30237,
+    "title": "Subtotal: rightmost, pinned right, bold everywhere; header row sticky on scroll",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8977)",
+    "reason": null,
+    "section_id": 4315
+   },
+   {
+    "id": 30238,
+    "title": "Desktop Totals row merges the identifier columns and sticks to the bottom",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8977)",
+    "reason": null,
+    "section_id": 4315
+   },
+   {
+    "id": 30239,
+    "title": "Mobile shows a simplified totals bar below the table; Subtotal at right",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8978)",
+    "reason": null,
+    "section_id": 4315
+   },
+   {
+    "id": 30241,
+    "title": "All eight financial columns are sortable",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4316
+   },
+   {
+    "id": 30242,
+    "title": "Default order is plain A to Z by display name, case-insensitive",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4316
+   },
+   {
+    "id": 30243,
+    "title": "First header click sorts ascending; second descending; no third state",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4316
+   },
+   {
+    "id": 30244,
+    "title": "Sorting reorders rep rows only; Unassigned stays pinned on top",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4316
+   },
+   {
+    "id": 30245,
+    "title": "Ties keep the A to Z order and an em-dash Margin % sorts as zero",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4316
+   },
+   {
+    "id": 30247,
+    "title": "Detail-row invoice number and customer name links navigate in the current tab",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4317
+   },
+   {
+    "id": 30249,
+    "title": "Browser back from a drilldown restores expansion and scroll; no reload",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4317
+   },
+   {
+    "id": 30250,
+    "title": "Invoice links use theme-primary; customer links use the body color",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4317
+   },
+   {
+    "id": 30251,
+    "title": "An unavailable link destination shows the standard not-found state",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4317
+   },
+   {
+    "id": 43559,
+    "title": "Invoice # and customer name when you cannot open what they point at",
+    "kind": "HOLD",
+    "marker": "HOLD - waiting on one answer from the product owner about what these two values should look like, and it needs a second sign-in that cannot open work orders, part sales or customers",
+    "reason": "waiting on one answer from the product owner about what these two values should look like, and it needs a second sign-in that cannot open work orders, part sales or customers",
+    "section_id": 4317
+   },
+   {
+    "id": 30253,
+    "title": "Deactivate dialog: counted pluralized headline, reassurance, focus trap",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4318
+   },
+   {
+    "id": 30254,
+    "title": "Type-YES gate: auto-focus; case-insensitive match; Enter submits",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4318
+   },
+   {
+    "id": 30255,
+    "title": "Cancel and X dismiss the Deactivate dialog; Escape and clicking outside do not",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4318
+   },
+   {
+    "id": 30256,
+    "title": "Valid submit locks the dialog, then deactivates keeping assignments",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4318
+   },
+   {
+    "id": 30257,
+    "title": "After deactivation: toggle unchanged, CSV shows No, report credit intact",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4318
+   },
+   {
+    "id": 30258,
+    "title": "No dialog: toggle off, no assignments, already inactive, or reactivation",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4318
+   },
+   {
+    "id": 30259,
+    "title": "A deactivation failure shows the error toast and leaves the status alone",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4318
+   },
+   {
+    "id": 30260,
+    "title": "If the assignment pre-check fails, the warning dialog still opens",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4318
+   },
+   {
+    "id": 30261,
+    "title": "Show Unassigned sits between the column selector and the date picker, off",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4319
+   },
+   {
+    "id": 30262,
+    "title": "Show Unassigned adds one top-pinned Unassigned row that acts like a rep row",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4319
+   },
+   {
+    "id": 30264,
+    "title": "No empty Unassigned row is ever rendered",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4319
+   },
+   {
+    "id": 30265,
+    "title": "Column selector: seven metric toggles; five always-on columns cannot be hidden",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4320
+   },
+   {
+    "id": 30267,
+    "title": "Toggling a column applies at once to summary; detail and Totals rows",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4320
+   },
+   {
+    "id": 30268,
+    "title": "Column visibility never affects the exports",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4320
+   },
+   {
+    "id": 30269,
+    "title": "Hiding the active sort column keeps the sort",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4320
+   },
+   {
+    "id": 30271,
+    "title": "All filter and view settings are restored before the first data fetch",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4321
+   },
+   {
+    "id": 30272,
+    "title": "Expansion state and scroll position are not remembered and reset on reload",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4321
+   },
+   {
+    "id": 30273,
+    "title": "A stale saved value falls back to its default and never errors",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8976)",
+    "reason": null,
+    "section_id": 4321
+   },
+   {
+    "id": 30274,
+    "title": "First visit or cleared storage yields all defaults; no server-side profile",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4321
+   },
+   {
+    "id": 30275,
+    "title": "The A to Z default is its own saved value",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4321
+   },
+   {
+    "id": 30276,
+    "title": "The \u22ef overflow menu lists exactly four download actions",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4322
+   },
+   {
+    "id": 30277,
+    "title": "All four downloads respect filters, full result set, and active order",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8925)",
+    "reason": null,
+    "section_id": 4322
+   },
+   {
+    "id": 30278,
+    "title": "Summary PDF: one rolled-up row per rep with a recomputed grand totals row",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4322
+   },
+   {
+    "id": 30279,
+    "title": "Expanded View PDF: one page-block per rep with its own totals; no grand",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8981)",
+    "reason": null,
+    "section_id": 4322
+   },
+   {
+    "id": 30280,
+    "title": "Expanded View PDF truncates invoice numbers longer than 18 characters",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4322
+   },
+   {
+    "id": 30281,
+    "title": "PDF footer on every page, default-logo fallback, and deterministic PDF filenames",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8982)",
+    "reason": null,
+    "section_id": 4322
+   },
+   {
+    "id": 30282,
+    "title": "PDFs render negative dollars in accounting parentheses, keep the (Inactive) tag",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4322
+   },
+   {
+    "id": 30283,
+    "title": "PDF body font steps down as the longest dollar value grows; no overflow",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4322
+   },
+   {
+    "id": 30285,
+    "title": "Summary CSV: file name, UTF-8 BOM, verbatim headers, one row per rep",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8880)",
+    "reason": null,
+    "section_id": 4322
+   },
+   {
+    "id": 30286,
+    "title": "Expanded CSV: file name, verbatim headers, one row per invoice",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8972)",
+    "reason": null,
+    "section_id": 4322
+   },
+   {
+    "id": 30287,
+    "title": "CSV cells: plain numbers, signed Inv. Hrs, empty Margin %, (Inactive)",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8823)",
+    "reason": null,
+    "section_id": 4322
+   },
+   {
+    "id": 30288,
+    "title": "The Unassigned row appears in both CSV downloads only when the toggle is on",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4322
+   },
+   {
+    "id": 30289,
+    "title": "A failed download shows the canonical error toast",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4322
+   },
+   {
+    "id": 30290,
+    "title": "Over-cap Expanded View PDF is refused with the too-large message",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8818)",
+    "reason": null,
+    "section_id": 4322
+   },
+   {
+    "id": 30291,
+    "title": "An empty-data export still generates with zeroed Summary PDF totals",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4322
+   },
+   {
+    "id": 38923,
+    "title": "SBR Summary and Expanded CSV exports carry the Location column at its designated slot",
+    "kind": "NONE",
+    "marker": null,
+    "reason": null,
+    "section_id": 4322
+   },
+   {
+    "id": 30292,
+    "title": "Report Name dropdown lists Sales Representative Assignments at the bottom",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4323
+   },
+   {
+    "id": 30293,
+    "title": "Sales Representative Assignments CSV: file name, headers, success toast",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8983)",
+    "reason": null,
+    "section_id": 4323
+   },
+   {
+    "id": 30294,
+    "title": "Assignments CSV: one row per assigned customer, sorted customer then rep",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4323
+   },
+   {
+    "id": 30295,
+    "title": "\"Rep is active?\" tracks the staff-active status, not the toggle",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4323
+   },
+   {
+    "id": 30296,
+    "title": "A deleted rep record still exports one row from the stored name, marked No",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4323
+   },
+   {
+    "id": 30297,
+    "title": "Assignments export failure and nothing-to-export use the dialog's messages",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4323
+   },
+   {
+    "id": 30298,
+    "title": "Empty state: verbatim message, no grand Totals, toolbar stays interactive",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8973)",
+    "reason": null,
+    "section_id": 4324
+   },
+   {
+    "id": 30300,
+    "title": "Loading shows a centered spinner over the data area and hides the Totals",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4324
+   },
+   {
+    "id": 30301,
+    "title": "A load failure shows the inline could-not-load message with a Retry",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4324
+   },
+   {
+    "id": 30302,
+    "title": "On a phone every toolbar control works on touch",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4325
+   },
+   {
+    "id": 30303,
+    "title": "On a phone the table scrolls sideways with Subtotal pinned outside it",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4325
+   },
+   {
+    "id": 30304,
+    "title": "Touch targets are at least 44\u00d744 px and touch users get no hover-only tooltips",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8979)",
+    "reason": null,
+    "section_id": 4325
+   },
+   {
+    "id": 30305,
+    "title": "Layout: white toolbar; blue-grey page; separator; edge-to-edge white table",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8980)",
+    "reason": null,
+    "section_id": 4326
+   },
+   {
+    "id": 30306,
+    "title": "Dark mode: page, toolbar, table; Totals switch to dark equivalents",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4326
+   },
+   {
+    "id": 30307,
+    "title": "Every icon-only control carries its specified accessible name",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8975)",
+    "reason": null,
+    "section_id": 4326
+   },
+   {
+    "id": 30308,
+    "title": "Chevrons and sortable headers are keyboard-operable and expose their state",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4326
+   },
+   {
+    "id": 30309,
+    "title": "The subdued grey of the (N) count and (Inactive) tag meets WCAG AA contrast",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4326
+   },
+   {
+    "id": 30310,
+    "title": "Sales Representative selector shows on WO and Part Sale, not on imported",
+    "kind": "HOLD",
+    "marker": "HOLD - waiting on an answer from the product owner",
+    "reason": "waiting on an answer from the product owner",
+    "section_id": 4327
+   },
+   {
+    "id": 30311,
+    "title": "Selector offers only reps whose sales-representative toggle is on",
+    "kind": "HOLD",
+    "marker": "HOLD - this part of the report is not built yet",
+    "reason": "this part of the report is not built yet",
+    "section_id": 4327
+   },
+   {
+    "id": 30312,
+    "title": "A new WO opens with Sales Representative unassigned; a change saves at once",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4327
+   },
+   {
+    "id": 30313,
+    "title": "The Sales Representative selector is read-only when Invoiced or Paid",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4327
+   },
+   {
+    "id": 30314,
+    "title": "Invoice credit snapshot: WO rep, else customer rep, else unassigned",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4327
+   },
+   {
+    "id": 30315,
+    "title": "Customer record shows a \"Sales Representative\" row; \"Unassigned\" when none",
+    "kind": "HOLD",
+    "marker": "HOLD - waiting on an answer from the product owner",
+    "reason": "waiting on an answer from the product owner",
+    "section_id": 4327
+   },
+   {
+    "id": 30316,
+    "title": "A rep's invoice detail rows are fetched from the server only on the first expand",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4328
+   },
+   {
+    "id": 30317,
+    "title": "Sorting is performed server-side and returns the first page",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4328
+   },
+   {
+    "id": 30318,
+    "title": "Grand totals are server-computed over the full filtered set",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4328
+   },
+   {
+    "id": 30319,
+    "title": "All four exports are generated server-side against the active filters and sort",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4328
+   },
+   {
+    "id": 30320,
+    "title": "The Expanded View PDF's 10,000-row cap is enforced server-side BEFORE generation",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8818)",
+    "reason": null,
+    "section_id": 4328
+   },
+   {
+    "id": 30321,
+    "title": "Deactivating a rep first runs a server pre-check returning the count",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4328
+   },
+   {
+    "id": 30322,
+    "title": "Parts Velocity appears under a new Parts section in the Reports navigation",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4329
+   },
+   {
+    "id": 30323,
+    "title": "First visit: date range defaults to This Year and data is fetched automatically",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4329
+   },
+   {
+    "id": 30324,
+    "title": "A loading indicator shows and old rows are replaced only when data returns",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4329
+   },
+   {
+    "id": 30325,
+    "title": "A user with ordinary reports access can load the report and export it",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4330
+   },
+   {
+    "id": 30326,
+    "title": "Without the Manager or Office User role the report entry is not shown",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4330
+   },
+   {
+    "id": 30327,
+    "title": "Ordinary reports access alone opens Parts Velocity and its export",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4330
+   },
+   {
+    "id": 30328,
+    "title": "Type filter: single-select, first in row, three options, default Both; reloads",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4331
+   },
+   {
+    "id": 30330,
+    "title": "Date range selector offers exactly the eleven bounded options and no All Time",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4331
+   },
+   {
+    "id": 30331,
+    "title": "A Custom date range needs valid dates and rejects a span over 366 days",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4331
+   },
+   {
+    "id": 30332,
+    "title": "Category and Vendor multi-select filters limit the table to matching parts",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4331
+   },
+   {
+    "id": 30333,
+    "title": "Toolbar search matches part number or description, case-insensitively",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4331
+   },
+   {
+    "id": 30334,
+    "title": "All active filters combine with AND logic",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4331
+   },
+   {
+    "id": 30335,
+    "title": "The Bin multi-select limits the table to parts stocked in those bins",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4331
+   },
+   {
+    "id": 30336,
+    "title": "Bin filter excludes special-order rows; Bin plus that Type is empty by design",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4331
+   },
+   {
+    "id": 30337,
+    "title": "Location filter is rightmost, defaults to the active location, accessible-only",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8939)",
+    "reason": null,
+    "section_id": 4331
+   },
+   {
+    "id": 30338,
+    "title": "Empty state shows the standard no-data message when no parts match the filters",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4331
+   },
+   {
+    "id": 30339,
+    "title": "Parts with no category; vendor or bin are excluded when that filter is on",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4331
+   },
+   {
+    "id": 30340,
+    "title": "Parts Velocity: the Location filter is hidden for a one-location user",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4331
+   },
+   {
+    "id": 38914,
+    "title": "Location column: leftmost before Type; own location per row; Multiple on merged",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8938)",
+    "reason": null,
+    "section_id": 4331
+   },
+   {
+    "id": 43567,
+    "title": "Filter-panel search keeps keyboard focus across the QSelect No-results swap",
+    "kind": "NONE",
+    "marker": null,
+    "reason": null,
+    "section_id": 4331
+   },
+   {
+    "id": 30341,
+    "title": "A part stocked at two selected locations shows as two per-location rows",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4332
+   },
+   {
+    "id": 30342,
+    "title": "A Special Order part is one merged row summed across selected locations",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4332
+   },
+   {
+    "id": 30343,
+    "title": "Rows load ranked by Demand descending, indicator on the Demand header",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4332
+   },
+   {
+    "id": 30344,
+    "title": "A header click sorts ascending first, toggles, and places nulls by direction",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4332
+   },
+   {
+    "id": 30345,
+    "title": "Sticky header, all-left alignment on screen, and plain-text Type values",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4332
+   },
+   {
+    "id": 30346,
+    "title": "Info icons sit on Units Sold, Demand and Turns/Yr with descriptions",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4332
+   },
+   {
+    "id": 30347,
+    "title": "Description; Category and Vendor truncate on hover; Part # never does",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8940)",
+    "reason": null,
+    "section_id": 4332
+   },
+   {
+    "id": 30348,
+    "title": "Em-dash only in nullable fields; counts and Revenue/Margin are never null",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4332
+   },
+   {
+    "id": 30349,
+    "title": "An inventory part drops out only with no movement, no stock and no revenue",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4332
+   },
+   {
+    "id": 38920,
+    "title": "PV Location column is scope-governed \u2014 hidden at one location, Multiple on a merged special-order row",
+    "kind": "NONE",
+    "marker": null,
+    "reason": null,
+    "section_id": 4332
+   },
+   {
+    "id": 30351,
+    "title": "Column picker lists all 20 columns and never offers the internal cost",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4333
+   },
+   {
+    "id": 30352,
+    "title": "First visit shows exactly the 14 default columns in the specified order",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8938)",
+    "reason": null,
+    "section_id": 4333
+   },
+   {
+    "id": 30353,
+    "title": "A re-enabled column returns to its canonical slot, with no reload",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4333
+   },
+   {
+    "id": 30354,
+    "title": "Filters; columns and sort are remembered per browser before the first fetch",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4333
+   },
+   {
+    "id": 30355,
+    "title": "A saved value that is no longer valid falls back to that setting's default",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4333
+   },
+   {
+    "id": 30356,
+    "title": "A different user signing in on the same browser inherits the saved view",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4333
+   },
+   {
+    "id": 30358,
+    "title": "All 20 columns can be hidden; the empty selection is never restored",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4333
+   },
+   {
+    "id": 30359,
+    "title": "Units Sold for an inventory part is net stock movement",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4334
+   },
+   {
+    "id": 30360,
+    "title": "Special Order Units Sold = in-window request quantity, net of reversals",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4334
+   },
+   {
+    "id": 30361,
+    "title": "Units Returned counts initiated part returns and parts-sale credits",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4334
+   },
+   {
+    "id": 30362,
+    "title": "Units Returned is windowed by initiation date, ignores invoice status",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4334
+   },
+   {
+    "id": 30363,
+    "title": "Sold (WO) counts Service work orders, Sold (Parts Sale) counts Parts",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4334
+   },
+   {
+    "id": 30364,
+    "title": "Demand counts each transaction once; a reversal neither adds nor subtracts",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4334
+   },
+   {
+    "id": 30365,
+    "title": "Last Sale is whole days since the most recent sale over all-time history",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4334
+   },
+   {
+    "id": 30366,
+    "title": "On Hand shows the row's own location stock",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4334
+   },
+   {
+    "id": 30367,
+    "title": "Turns / Yr annualizes the sales rate, is 0.00 at zero stock, can be negative",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4334
+   },
+   {
+    "id": 30368,
+    "title": "Revenue, Margin, Unit Cost, Sell Price and Margin % use the billed formulas",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4334
+   },
+   {
+    "id": 30369,
+    "title": "A reversed or voided sale is excluded from every billed-line column",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4334
+   },
+   {
+    "id": 30370,
+    "title": "Unit Cost / Sell Price and Margin % use independent null triggers",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4334
+   },
+   {
+    "id": 30371,
+    "title": "Number formats match the spec per column; rounding is half away from zero",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4334
+   },
+   {
+    "id": 30372,
+    "title": "Core parts are excluded from both the inventory and special-order result sets",
+    "kind": "HOLD",
+    "marker": "HOLD - no part in this organisation carries the core flag, so core exclusion cannot be exercised",
+    "reason": "no part in this organisation carries the core flag, so core exclusion cannot be exercised",
+    "section_id": 4334
+   },
+   {
+    "id": 30373,
+    "title": "Movement and billed bases may differ; Sold (WO) + Sold (Parts Sale) = billed",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4334
+   },
+   {
+    "id": 30374,
+    "title": "Window anchors: movement uses the event date, billed uses the WO date",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4334
+   },
+   {
+    "id": 38924,
+    "title": "Units Sold keeps an exact part-of-a-unit quantity and is never rounded off",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4334
+   },
+   {
+    "id": 43568,
+    "title": "Manual Parts return counts toward Units Returned on Parts Velocity",
+    "kind": "NONE",
+    "marker": null,
+    "reason": null,
+    "section_id": 4334
+   },
+   {
+    "id": 30375,
+    "title": "The overflow button opens Download (PDF) then Download (CSV) in that order",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4335
+   },
+   {
+    "id": 30376,
+    "title": "Both exports reflect the filters and search active at the time of export",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4335
+   },
+   {
+    "id": 30377,
+    "title": "Exports include only the enabled columns, in the canonical on-screen order",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4335
+   },
+   {
+    "id": 30378,
+    "title": "Exports reflect the active sort, including Min/Max and null placement",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4335
+   },
+   {
+    "id": 30379,
+    "title": "PDF: filename, A3 landscape, title, text truncation, and the shop logo",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8934)",
+    "reason": null,
+    "section_id": 4335
+   },
+   {
+    "id": 30380,
+    "title": "CSV is named velocity-report.csv and holds full untruncated text values",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8935)",
+    "reason": null,
+    "section_id": 4335
+   },
+   {
+    "id": 30381,
+    "title": "Em-dash in both exports; Last Sale reads \"N days\" in the PDF",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4335
+   },
+   {
+    "id": 30382,
+    "title": "PDF export alignment: Type centered, text left, numeric and money right",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4335
+   },
+   {
+    "id": 30384,
+    "title": "Export toasts: exact success texts; server or fallback error text on failure",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8936)",
+    "reason": null,
+    "section_id": 4335
+   },
+   {
+    "id": 38885,
+    "title": "An over-cap Parts Velocity export is refused with the too-large message",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8818)",
+    "reason": null,
+    "section_id": 4335
+   },
+   {
+    "id": 43547,
+    "title": "A large PDF download fails outright while the CSV of the same view works",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8818)",
+    "reason": null,
+    "section_id": 4335
+   },
+   {
+    "id": 30385,
+    "title": "The report uses the standard two-tone layout",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4336
+   },
+   {
+    "id": 30386,
+    "title": "Toolbar and table detail styling matches the suite paddings and borders",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4336
+   },
+   {
+    "id": 30387,
+    "title": "Dark mode is supported and the grey info icon keeps 3:1 contrast in both",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4336
+   },
+   {
+    "id": 30388,
+    "title": "The report is server-paginated - the backend returns one page of rows at a time",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4337
+   },
+   {
+    "id": 30389,
+    "title": "Each filter or search change re-queries the server and returns page one",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4337
+   },
+   {
+    "id": 30390,
+    "title": "Header-click sorting re-queries the server; nulls first asc and last desc",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4337
+   },
+   {
+    "id": 30391,
+    "title": "The back end serves report data and export on ordinary reports access",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4337
+   },
+   {
+    "id": 38925,
+    "title": "QuickBooks amount for a part-of-a-unit sale is exact and never inflated",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4337
+   },
+   {
+    "id": 30392,
+    "title": "Technician Utilization sits under Performance, below existing report links",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4338
+   },
+   {
+    "id": 30393,
+    "title": "One row per technician who clocked time in the range at those locations",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4338
+   },
+   {
+    "id": 30394,
+    "title": "First visit defaults to the This Month preset and the user's active location",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8943)",
+    "reason": null,
+    "section_id": 4338
+   },
+   {
+    "id": 30395,
+    "title": "Changing the date range reloads the rows; a Custom range is capped at 366 days",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4338
+   },
+   {
+    "id": 30396,
+    "title": "The loading indicator shows on load and reload; rows swap only on data",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4338
+   },
+   {
+    "id": 30397,
+    "title": "All clock records are day-grouped and windowed in one report-level time zone",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4338
+   },
+   {
+    "id": 30398,
+    "title": "Without reports access Technician Utilization is hidden",
+    "kind": "HOLD",
+    "marker": "HOLD - needs a second sign-in as a user without reports access, and there is one shared sign-in on this environment",
+    "reason": "needs a second sign-in as a user without reports access, and there is one shared sign-in on this environment",
+    "section_id": 4338
+   },
+   {
+    "id": 30399,
+    "title": "Standard no-data message when no time in scope or all technicians cleared",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4338
+   },
+   {
+    "id": 30401,
+    "title": "Headers in fixed order; Total, WO and Internal Hours show clocked hours (2 dp)",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4339
+   },
+   {
+    "id": 30402,
+    "title": "Utilization % is WO hours over total hours from unrounded values",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4339
+   },
+   {
+    "id": 30403,
+    "title": "A technician with only internal hours shows 0.0% utilization",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4339
+   },
+   {
+    "id": 30404,
+    "title": "Est. Lost Labor values internal hours at each location's default rate",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4340
+   },
+   {
+    "id": 30405,
+    "title": "Est. Lost Labor, when shown, is pinned right and bold with the info icon",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4340
+   },
+   {
+    "id": 30406,
+    "title": "Zero internal hours - or a configured $0.00 rate - shows $0.00, never an em-dash",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4340
+   },
+   {
+    "id": 30407,
+    "title": "Internal hours with no default labor rate anywhere show an em-dash",
+    "kind": "HOLD",
+    "marker": "HOLD - no location on this environment is set up without a default labor rate, so the em-dash state cannot be produced",
+    "reason": "no location on this environment is set up without a default labor rate, so the em-dash state cannot be produced",
+    "section_id": 4340
+   },
+   {
+    "id": 30408,
+    "title": "Internal hours split across rated and unrated locations show a part value",
+    "kind": "HOLD",
+    "marker": "HOLD - no location on this environment is set up without a default labor rate, so a part-valued row cannot be produced",
+    "reason": "no location on this environment is set up without a default labor rate, so a part-valued row cannot be produced",
+    "section_id": 4340
+   },
+   {
+    "id": 30409,
+    "title": "On load rows sort by Technician A to Z with the ascending indicator",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4341
+   },
+   {
+    "id": 30410,
+    "title": "All six columns sort on screen: ascending first, toggling with no third state",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4341
+   },
+   {
+    "id": 30411,
+    "title": "A data reload resets the sort to Technician A to Z",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4341
+   },
+   {
+    "id": 30412,
+    "title": "Sorting reorders only the technician rows",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4341
+   },
+   {
+    "id": 30413,
+    "title": "Sorting Est. Lost Labor keeps em-dash rows last both ways; $0.00 sorts as 0",
+    "kind": "HOLD",
+    "marker": "HOLD - no technician on this environment has an em-dash in Est. Lost Labor, because both locations have a default labor rate",
+    "reason": "no technician on this environment has an em-dash in Est. Lost Labor, because both locations have a default labor rate",
+    "section_id": 4341
+   },
+   {
+    "id": 30414,
+    "title": "A pinned Summary row labeled Summary sits at the bottom, stays visible on scroll",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4342
+   },
+   {
+    "id": 30415,
+    "title": "Summary totals visible technicians from unrounded hours; 0.01 drift expected",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4342
+   },
+   {
+    "id": 30416,
+    "title": "Summary Utilization % is the weighted rate; not an average of the rows",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4342
+   },
+   {
+    "id": 30417,
+    "title": "Summary Est. Lost Labor sums rated contributions; em-dash only if all are",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4342
+   },
+   {
+    "id": 30418,
+    "title": "Each technician row has an accessible expand/collapse control",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8953)",
+    "reason": null,
+    "section_id": 4343
+   },
+   {
+    "id": 30419,
+    "title": "Expanding shows one row per clocked day in date order, loaded on demand",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4343
+   },
+   {
+    "id": 30420,
+    "title": "Day rows use the same columns and formats as the technician rows",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4343
+   },
+   {
+    "id": 30421,
+    "title": "One control in the table header expands or collapses all technician rows",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8953)",
+    "reason": null,
+    "section_id": 4343
+   },
+   {
+    "id": 30422,
+    "title": "Expansion state is view-only: it resets on any reload and fresh visit",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4343
+   },
+   {
+    "id": 30423,
+    "title": "Filter by Technician starts with every technician selected on a first visit",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4344
+   },
+   {
+    "id": 30424,
+    "title": "Deselecting a technician hides the row and recalculates the Summary",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8946)",
+    "reason": null,
+    "section_id": 4344
+   },
+   {
+    "id": 30425,
+    "title": "All technicians and Clear all controls set every technician on or off",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8947)",
+    "reason": null,
+    "section_id": 4344
+   },
+   {
+    "id": 30426,
+    "title": "Previously deselected technicians stay deselected on the next visit",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4344
+   },
+   {
+    "id": 30428,
+    "title": "Total Hours is a real link with a non-color affordance and keyboard access",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4345
+   },
+   {
+    "id": 30429,
+    "title": "The Total Hours link opens Timesheet Activities in the same tab",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4345
+   },
+   {
+    "id": 30430,
+    "title": "Same range, single location, closed records: Total Hours matches Timesheet",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8944)",
+    "reason": null,
+    "section_id": 4345
+   },
+   {
+    "id": 30431,
+    "title": "Reconcile exception (a): an open clock is snapshotted at each load instant",
+    "kind": "HOLD",
+    "marker": "HOLD - needs a technician clocked in at the moment of the test, and no technician on this environment is currently clocked in",
+    "reason": "needs a technician clocked in at the moment of the test, and no technician on this environment is currently clocked in",
+    "section_id": 4345
+   },
+   {
+    "id": 30432,
+    "title": "Reconciliation exception (b): the link passes no location",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4345
+   },
+   {
+    "id": 30433,
+    "title": "A day row's Total Hours links to that technician's single-day timesheet",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4345
+   },
+   {
+    "id": 30434,
+    "title": "Three-dot menu is leftmost, then Column Selection; four download options",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4346
+   },
+   {
+    "id": 30435,
+    "title": "The Summary PDF holds the technician rows plus the Summary",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8950)",
+    "reason": null,
+    "section_id": 4346
+   },
+   {
+    "id": 30436,
+    "title": "The CSV is always summary-level, quotes comma-containing values",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8951)",
+    "reason": null,
+    "section_id": 4346
+   },
+   {
+    "id": 30437,
+    "title": "Downloads cover only selected technicians, locations, and date range",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8948)",
+    "reason": null,
+    "section_id": 4346
+   },
+   {
+    "id": 30438,
+    "title": "Downloads always order rows Technician A to Z; the on-screen sort is ignored",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8949)",
+    "reason": null,
+    "section_id": 4346
+   },
+   {
+    "id": 30439,
+    "title": "PDF logo follows the uploaded logo; the spreadsheet never carries one",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4346
+   },
+   {
+    "id": 30440,
+    "title": "Choosing a download with no technician selected is a silent no-op",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8948)",
+    "reason": null,
+    "section_id": 4346
+   },
+   {
+    "id": 30441,
+    "title": "A starting download notifies; a failed one shows the failure message",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8952)",
+    "reason": null,
+    "section_id": 4346
+   },
+   {
+    "id": 38887,
+    "title": "An over-cap Technician Utilization export is refused with the too-large message",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8818)",
+    "reason": null,
+    "section_id": 4346
+   },
+   {
+    "id": 43552,
+    "title": "Both spreadsheet downloads hold the summary rows and no per-day rows",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8951)",
+    "reason": null,
+    "section_id": 4346
+   },
+   {
+    "id": 30442,
+    "title": "The Location filter is the rightmost multi-select; All Locations = select-all",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4347
+   },
+   {
+    "id": 30443,
+    "title": "Location changes reload with hours pooled into one row per technician",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4347
+   },
+   {
+    "id": 30444,
+    "title": "The saved location selection restores defensively; bad ones are dropped",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4347
+   },
+   {
+    "id": 30446,
+    "title": "Technician Utilization: Location filter hidden for a one-location user",
+    "kind": "HOLD",
+    "marker": "HOLD - needs a second sign-in as a user who can reach only one location, and there is one shared sign-in on this environment",
+    "reason": "needs a second sign-in as a user who can reach only one location, and there is one shared sign-in on this environment",
+    "section_id": 4347
+   },
+   {
+    "id": 38915,
+    "title": "Location column: leftmost for a multi-location user; Summary row blank",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8954)",
+    "reason": null,
+    "section_id": 4347
+   },
+   {
+    "id": 30447,
+    "title": "All-white table with no row shading; toolbar controls in the fixed order",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4348
+   },
+   {
+    "id": 30448,
+    "title": "Dark mode keeps every report element legible",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4348
+   },
+   {
+    "id": 38859,
+    "title": "Column Selection: Technician always on, the other five toggleable, remembered",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4348
+   },
+   {
+    "id": 38919,
+    "title": "TU column selector hides Est. Lost Labor, persists across reload, and the export mirrors it",
+    "kind": "NONE",
+    "marker": null,
+    "reason": null,
+    "section_id": 4348
+   },
+   {
+    "id": 30449,
+    "title": "The per-day breakdown is fetched only when a technician row is expanded",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4349
+   },
+   {
+    "id": 30450,
+    "title": "Date-range and location changes trigger a fresh server load",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8945)",
+    "reason": null,
+    "section_id": 4349
+   },
+   {
+    "id": 30451,
+    "title": "Work In Progress appears in the reports navigation under the Performance group",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4350
+   },
+   {
+    "id": 30452,
+    "title": "Four tabs in a fixed order with the partially-completed tab selected",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4350
+   },
+   {
+    "id": 30455,
+    "title": "There is no Trend / over-time tab or chart",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4350
+   },
+   {
+    "id": 30456,
+    "title": "Every open service WO at a selected location appears in the report",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4351
+   },
+   {
+    "id": 30457,
+    "title": "Invoiced; Paid and part-sale work orders never appear",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4351
+   },
+   {
+    "id": 30458,
+    "title": "Each qualifying work order appears exactly once in exactly one tab",
+    "kind": "HOLD",
+    "marker": "HOLD - the specification states two different tab-placement rules (whole work order by status, or per line state) and the product owner has been asked which governs",
+    "reason": "the specification states two different tab-placement rules (whole work order by status, or per line state) and the product owner has been asked which governs",
+    "section_id": 4351
+   },
+   {
+    "id": 30459,
+    "title": "While loading the standard indicator shows and old rows stay until data",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4351
+   },
+   {
+    "id": 30460,
+    "title": "No qualifying work orders: every tab shows the no-data message and no Totals",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4351
+   },
+   {
+    "id": 43572,
+    "title": "Work In Progress appends pages on scroll while the server summary stays constant",
+    "kind": "NONE",
+    "marker": null,
+    "reason": null,
+    "section_id": 4351
+   },
+   {
+    "id": 30462,
+    "title": "Status-to-tab mapping: Estimate, Complete, In Progress and Review work orders",
+    "kind": "HOLD",
+    "marker": "HOLD - the specification states two different tab-placement rules (whole work order by status, or per line state) and the product owner has been asked which governs",
+    "reason": "the specification states two different tab-placement rules (whole work order by status, or per line state) and the product owner has been asked which governs",
+    "section_id": 4352
+   },
+   {
+    "id": 30464,
+    "title": "Approved started-boundary: time or part received vs neither decides the tab",
+    "kind": "HOLD",
+    "marker": "HOLD - the specification states two different tab-placement rules (whole work order by status, or per line state) and the product owner has been asked which governs",
+    "reason": "the specification states two different tab-placement rules (whole work order by status, or per line state) and the product owner has been asked which governs",
+    "section_id": 4352
+   },
+   {
+    "id": 30466,
+    "title": "With all toggleable columns on, the fixed column order and alignment hold",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8987)",
+    "reason": null,
+    "section_id": 4353
+   },
+   {
+    "id": 30467,
+    "title": "First visit shows the default columns; the rest are in the column selector",
+    "kind": "HOLD",
+    "marker": "HOLD - the build does not follow the ratified Location rule; the defect is written up in DEFECTS-FOR-PERMISSION.md and needs the QA lead's permission before a ticket exists to point at",
+    "reason": "the build does not follow the ratified Location rule; the defect is written up in DEFECTS-FOR-PERMISSION.md and needs the QA lead's permission before a ticket exists to point at",
+    "section_id": 4353
+   },
+   {
+    "id": 30468,
+    "title": "The WO # is a link that opens the WO in the same browser tab",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8967)",
+    "reason": null,
+    "section_id": 4353
+   },
+   {
+    "id": 30469,
+    "title": "Status shows as a color-coded badge whose label text is always present",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4353
+   },
+   {
+    "id": 30470,
+    "title": "The Asset cell shows the Unit # in bold with the VIN underneath",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4353
+   },
+   {
+    "id": 30471,
+    "title": "Customer shows the customer's company name",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4353
+   },
+   {
+    "id": 30472,
+    "title": "Days Open shows whole days since creation and reads 0 days / 1 days",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4353
+   },
+   {
+    "id": 30473,
+    "title": "Last Activity shows Today; Xd ago; or an em-dash when there is none",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4353
+   },
+   {
+    "id": 43557,
+    "title": "The WO # is plain text, not a link, without Work Order permission",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8967)",
+    "reason": null,
+    "section_id": 4353
+   },
+   {
+    "id": 30474,
+    "title": "Money columns show US dollars to two decimals with thousands separators",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4354
+   },
+   {
+    "id": 30475,
+    "title": "Labor Earned is the clocked share of each approved line's quoted value",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4354
+   },
+   {
+    "id": 30476,
+    "title": "Labor Remaining is the approved labor's quoted value minus Labor Earned",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4354
+   },
+   {
+    "id": 30477,
+    "title": "Parts Earned is the sell value of approved-line parts already received",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4354
+   },
+   {
+    "id": 30478,
+    "title": "Parts Remaining values the not-yet-received quantity at its sell price",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4354
+   },
+   {
+    "id": 30479,
+    "title": "Earned + Remaining make Total; not the WO's grand total",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4354
+   },
+   {
+    "id": 30480,
+    "title": "Lines that are not yet approved contribute nothing to any money figure",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4354
+   },
+   {
+    "id": 30481,
+    "title": "Inv. Hrs shows quoted minus worked hours; signed to one decimal",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8989)",
+    "reason": null,
+    "section_id": 4354
+   },
+   {
+    "id": 30482,
+    "title": "An open estimate with no approved work shows $0.00 in every money column",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4354
+   },
+   {
+    "id": 38890,
+    "title": "A technician still clocked in counts toward Labor Earned, capped at the quote",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4354
+   },
+   {
+    "id": 43592,
+    "title": "A fixed-price line is valued at its fixed amount, not at picked parts or hours",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4354
+   },
+   {
+    "id": 43593,
+    "title": "A fixed-price line with no invoiced hours earns all at once when it is completed",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4354
+   },
+   {
+    "id": 43594,
+    "title": "Core charges count in parts value and a core decision never moves the figures",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4354
+   },
+   {
+    "id": 30483,
+    "title": "The initial sort is Days Open with the longest-open work order first",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4355
+   },
+   {
+    "id": 30484,
+    "title": "Clicking a header sorts ascending, clicking again toggles descending",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4355
+   },
+   {
+    "id": 30485,
+    "title": "Columns sort by their underlying values; Asset sorts by the Unit #",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4355
+   },
+   {
+    "id": 30486,
+    "title": "Sorting reorders only the active tab's rows; Totals stays at the bottom",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4355
+   },
+   {
+    "id": 30487,
+    "title": "The summary strip shows seven figures in a fixed order as US dollars",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4356
+   },
+   {
+    "id": 30488,
+    "title": "Total Earned is the hero figure and equals the started-stage figures summed",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4356
+   },
+   {
+    "id": 30489,
+    "title": "Total Remaining equals Not Started plus Started \u2014 Remaining",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4356
+   },
+   {
+    "id": 30490,
+    "title": "Each per-stage figure equals the matching tab's money total",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4356
+   },
+   {
+    "id": 30491,
+    "title": "The Estimates figure is the Estimates tab's total quoted value, shown muted",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8988)",
+    "reason": null,
+    "section_id": 4356
+   },
+   {
+    "id": 30493,
+    "title": "Each summary figure's information icon reveals its plain explanation",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4356
+   },
+   {
+    "id": 30494,
+    "title": "Each tab has a Totals row pinned to the bottom, labeled \"Totals\"",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4357
+   },
+   {
+    "id": 30495,
+    "title": "The Totals row sums each visible money column and the Inv. Hrs column",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4357
+   },
+   {
+    "id": 30498,
+    "title": "The Advisor filter lists the advisors in the loaded jobs; screen only",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8968)",
+    "reason": null,
+    "section_id": 4358
+   },
+   {
+    "id": 30499,
+    "title": "Customer filter is a type-ahead multi-select reading \"All customers\"",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8969)",
+    "reason": null,
+    "section_id": 4358
+   },
+   {
+    "id": 30500,
+    "title": "Asset filter shows Unit # and VIN and matches text against either one",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8908, SV-8968)",
+    "reason": null,
+    "section_id": 4358
+   },
+   {
+    "id": 30501,
+    "title": "The date range offers the presets plus Custom; This Week default; no All Time",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4358
+   },
+   {
+    "id": 30502,
+    "title": "The date range filters on the WO's created date and reloads on change",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4358
+   },
+   {
+    "id": 30503,
+    "title": "Location filter: rightmost multi-select with All locations, reloads on change",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4358
+   },
+   {
+    "id": 30504,
+    "title": "The location scope never includes an inaccessible location",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4358
+   },
+   {
+    "id": 30505,
+    "title": "Advisor, customer and asset filters AND together and recompute strip and Totals",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8968)",
+    "reason": null,
+    "section_id": 4358
+   },
+   {
+    "id": 38916,
+    "title": "Location column names each work order's location and never reads Multiple",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8954)",
+    "reason": null,
+    "section_id": 4358
+   },
+   {
+    "id": 30506,
+    "title": "Column Selection toggles columns; Total is not offered at all",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4359
+   },
+   {
+    "id": 30507,
+    "title": "Toggling columns never reorders them (Total always last)",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4359
+   },
+   {
+    "id": 30508,
+    "title": "Remembers the date range, filter selections, location, columns",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4359
+   },
+   {
+    "id": 30509,
+    "title": "A saved setting that is no longer valid falls back to its default",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4359
+   },
+   {
+    "id": 43551,
+    "title": "A hand-made Location column choice is remembered like any other column",
+    "kind": "HOLD",
+    "marker": "HOLD - the build does not follow the ratified Location rule; the defect is written up in DEFECTS-FOR-PERMISSION.md and needs the QA lead's permission before a ticket exists to point at",
+    "reason": "the build does not follow the ratified Location rule; the defect is written up in DEFECTS-FOR-PERMISSION.md and needs the QA lead's permission before a ticket exists to point at",
+    "section_id": 4359
+   },
+   {
+    "id": 30510,
+    "title": "Work In Progress: a three-dot menu holds Download (PDF) and Download (CSV)",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4360
+   },
+   {
+    "id": 30511,
+    "title": "Downloads keep shown columns, honor filters, include the tab's Totals row",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4360
+   },
+   {
+    "id": 30512,
+    "title": "Downloaded money and Inv. Hrs values keep the on-screen formats",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4360
+   },
+   {
+    "id": 30513,
+    "title": "Inv. Hrs green/red coloring appears on screen and in the PDF; not the CSV",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4360
+   },
+   {
+    "id": 30514,
+    "title": "Days Open in a download is frozen at the moment the file is generated",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4360
+   },
+   {
+    "id": 30515,
+    "title": "The downloaded files are named \"wip-2-report.pdf\" and \"wip-2-report.csv\"",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4360
+   },
+   {
+    "id": 30516,
+    "title": "Export headers read \"Unit\" and \"Branch\" \u2014 documented limitation, do not file",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4360
+   },
+   {
+    "id": 30517,
+    "title": "The PDF shows the shop logo at the top when one is set",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4360
+   },
+   {
+    "id": 30518,
+    "title": "Export notifications: success caption, \"Empty export\" warning",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4360
+   },
+   {
+    "id": 38918,
+    "title": "An over-cap Work In Progress download is refused with the too-large message",
+    "kind": "HOLD",
+    "marker": "HOLD - the over-size refusal cannot be produced on this environment; no tab comes near the size limit",
+    "reason": "the over-size refusal cannot be produced on this environment; no tab comes near the size limit",
+    "section_id": 4360
+   },
+   {
+    "id": 38922,
+    "title": "WIP CSV export gains the Locations line while its column semantics stay exactly as shipped",
+    "kind": "NONE",
+    "marker": null,
+    "reason": null,
+    "section_id": 4360
+   },
+   {
+    "id": 30519,
+    "title": "Each tab uses an all-white table with no alternating row shading",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8970)",
+    "reason": null,
+    "section_id": 4361
+   },
+   {
+    "id": 30520,
+    "title": "The summary strip is a bold band ruled top and bottom above the tabs",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4361
+   },
+   {
+    "id": 30521,
+    "title": "The Total column is bold and stays pinned right on sideways scroll",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4361
+   },
+   {
+    "id": 30522,
+    "title": "The Totals row stays visible while only the active tab's body scrolls",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4361
+   },
+   {
+    "id": 30523,
+    "title": "The WO # link is keyboard-focusable and opens the work order",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8967)",
+    "reason": null,
+    "section_id": 4361
+   },
+   {
+    "id": 30524,
+    "title": "Each summary figure's info icon is keyboard-reachable and screen-read",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4361
+   },
+   {
+    "id": 30525,
+    "title": "In dark mode every table; strip; link and coloring stays legible",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4361
+   },
+   {
+    "id": 30526,
+    "title": "Ordinary reports access covers opening and downloading Work In Progress",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4362
+   },
+   {
+    "id": 30527,
+    "title": "Without reports access Work In Progress is absent from the navigation",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4362
+   },
+   {
+    "id": 30528,
+    "title": "Nightly snapshot records one row per then-open job per calendar date",
+    "kind": "HOLD",
+    "marker": "HOLD - the nightly capture is written by a background process and nothing in the product reads it back in this version",
+    "reason": "the nightly capture is written by a background process and nothing in the product reads it back in this version",
+    "section_id": 4363
+   },
+   {
+    "id": 30530,
+    "title": "Captured Earned and Remaining use the same maths as the on-screen report",
+    "kind": "HOLD",
+    "marker": "HOLD - the nightly capture is written by a background process and nothing in the product reads it back in this version",
+    "reason": "the nightly capture is written by a background process and nothing in the product reads it back in this version",
+    "section_id": 4363
+   },
+   {
+    "id": 30531,
+    "title": "Nightly snapshot spans every location with no user location filter",
+    "kind": "HOLD",
+    "marker": "HOLD - the nightly capture is written by a background process and nothing in the product reads it back in this version",
+    "reason": "the nightly capture is written by a background process and nothing in the product reads it back in this version",
+    "section_id": 4363
+   },
+   {
+    "id": 30533,
+    "title": "Nightly snapshot: a job with nothing approved is captured at $0.00; not skipped",
+    "kind": "HOLD",
+    "marker": "HOLD - the nightly capture is written by a background process and nothing in the product reads it back in this version",
+    "reason": "the nightly capture is written by a background process and nothing in the product reads it back in this version",
+    "section_id": 4363
+   },
+   {
+    "id": 30534,
+    "title": "Inventory Value appears in the reports navigation under the Parts group",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4364
+   },
+   {
+    "id": 30535,
+    "title": "One row per in-stock part at the selected locations valued at the resolved date",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4364
+   },
+   {
+    "id": 30536,
+    "title": "First visit defaults to the current calendar month and the active location",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8931)",
+    "reason": null,
+    "section_id": 4364
+   },
+   {
+    "id": 30538,
+    "title": "The report is server-paginated: one page of rows at a time",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4364
+   },
+   {
+    "id": 30539,
+    "title": "No qualifying parts, day or location: the no-data message shows and no totals",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8930)",
+    "reason": null,
+    "section_id": 4364
+   },
+   {
+    "id": 30540,
+    "title": "A part appears only if not a core charge and on-hand quantity is above zero",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4365
+   },
+   {
+    "id": 30541,
+    "title": "A part stocked at two selected locations shows as two rows; never merged",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4365
+   },
+   {
+    "id": 30545,
+    "title": "Unit Sell uses the part's fixed sell price when one is set",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4366
+   },
+   {
+    "id": 30546,
+    "title": "With no fixed sell price Unit Sell is the category's pricing-matrix markup",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4366
+   },
+   {
+    "id": 30547,
+    "title": "With no fixed sell price and no category, Unit Sell equals Unit Cost",
+    "kind": "HOLD",
+    "marker": "HOLD - a part cannot be saved without a category on this build, so the no-category path cannot be produced",
+    "reason": "a part cannot be saved without a category on this build, so the no-category path cannot be produced",
+    "section_id": 4366
+   },
+   {
+    "id": 30548,
+    "title": "Total Sell is quantity \u00d7 Unit Sell and Total Cost is quantity \u00d7 Unit Cost",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4366
+   },
+   {
+    "id": 30549,
+    "title": "Margin is Total Sell minus Total Cost for the whole on-hand quantity",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4366
+   },
+   {
+    "id": 30550,
+    "title": "Margin % is Margin over Total Sell to one decimal; em-dash when Sell <= 0",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4366
+   },
+   {
+    "id": 30551,
+    "title": "With every column on they appear in the fixed order with the set alignment",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4366
+   },
+   {
+    "id": 30552,
+    "title": "Value formats: Qty to two decimals; money as US-dollar currency",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4366
+   },
+   {
+    "id": 30553,
+    "title": "Total Cost is bold and pinned far right; it stays put on sideways scroll",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4366
+   },
+   {
+    "id": 30554,
+    "title": "On a first visit the default columns show and the rest stay available",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4366
+   },
+   {
+    "id": 30555,
+    "title": "Category and Vendor show their names; an em dash (\"\u2014\") when the part has none",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4366
+   },
+   {
+    "id": 30556,
+    "title": "Totals row: Total label, blank identity/per-unit cells, pinned bold Total Cost",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8926)",
+    "reason": null,
+    "section_id": 4367
+   },
+   {
+    "id": 30557,
+    "title": "Totals row sums the FULL filtered set on the server, not just the visible page",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4367
+   },
+   {
+    "id": 30558,
+    "title": "Totals-row Margin % is recomputed from the totals; not an average of rows",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4367
+   },
+   {
+    "id": 30561,
+    "title": "Date range offers the standard presets plus Custom; no All Time option",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4368
+   },
+   {
+    "id": 30562,
+    "title": "The report values inventory as of the END of the selected range",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8820)",
+    "reason": null,
+    "section_id": 4368
+   },
+   {
+    "id": 30563,
+    "title": "A window reaching today with today not yet recorded values live stock",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4368
+   },
+   {
+    "id": 30564,
+    "title": "For a past date the report replays the closest recorded day on or before it",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8820)",
+    "reason": null,
+    "section_id": 4368
+   },
+   {
+    "id": 30565,
+    "title": "\"As of\" indicator names the day shown; hidden when it matches the ask",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8820)",
+    "reason": null,
+    "section_id": 4368
+   },
+   {
+    "id": 30566,
+    "title": "A Custom range values stock as of the picked end date; capped at today",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8820)",
+    "reason": null,
+    "section_id": 4368
+   },
+   {
+    "id": 30568,
+    "title": "History accrues forward only; a pre-first-recording date is not shown",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4368
+   },
+   {
+    "id": 38892,
+    "title": "A recorded day keeps its category and vendor names after a rename or delete",
+    "kind": "HOLD",
+    "marker": "HOLD - needs a recorded earlier day plus the stored capture rows, which are not reachable from the application",
+    "reason": "needs a recorded earlier day plus the stored capture rows, which are not reachable from the application",
+    "section_id": 4368
+   },
+   {
+    "id": 30569,
+    "title": "Category and Vendor multi-selects reload the report to matching parts only",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4369
+   },
+   {
+    "id": 30570,
+    "title": "Category, Vendor and part search are server-side; each change returns page 1",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4369
+   },
+   {
+    "id": 30571,
+    "title": "With no category or vendor selected all parts show",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4369
+   },
+   {
+    "id": 30572,
+    "title": "Part search matches part number or description on the server; case-insensitive",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4369
+   },
+   {
+    "id": 30573,
+    "title": "Date range, Location, Category, Vendor, and the part search combine with AND",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4369
+   },
+   {
+    "id": 30574,
+    "title": "The Location filter is a rightmost multi-select with an All locations toggle",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8931)",
+    "reason": null,
+    "section_id": 4370
+   },
+   {
+    "id": 30575,
+    "title": "Selecting one, several, or all locations reloads the report scoped to that set",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4370
+   },
+   {
+    "id": 30576,
+    "title": "Scoping never includes an inaccessible location",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4370
+   },
+   {
+    "id": 30577,
+    "title": "Inventory Value: the Location filter is hidden for a one-location user",
+    "kind": "HOLD",
+    "marker": "HOLD - needs a second sign-in as a user with access to only one location",
+    "reason": "needs a second sign-in as a user with access to only one location",
+    "section_id": 4370
+   },
+   {
+    "id": 38917,
+    "title": "Location column: shown to any multi-location user; toggleable; never Multiple",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4370
+   },
+   {
+    "id": 30579,
+    "title": "Column Selection toggles columns; Total Cost cannot be turned off",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4371
+   },
+   {
+    "id": 30580,
+    "title": "Toggling columns never reorders them",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4371
+   },
+   {
+    "id": 30581,
+    "title": "The report remembers all filters; columns and sort per browser",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8928)",
+    "reason": null,
+    "section_id": 4371
+   },
+   {
+    "id": 30582,
+    "title": "Defensive restore: a stale saved category or vendor is dropped on load",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8929)",
+    "reason": null,
+    "section_id": 4371
+   },
+   {
+    "id": 43573,
+    "title": "Remembered view restores Inventory Value category and vendor filters across a reload",
+    "kind": "NONE",
+    "marker": null,
+    "reason": null,
+    "section_id": 4371
+   },
+   {
+    "id": 30583,
+    "title": "Rows are sorted by Total Cost highest first on load and after any reload",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4372
+   },
+   {
+    "id": 30584,
+    "title": "Header clicks sort ascending then descending; no third state; page 1 returns",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4372
+   },
+   {
+    "id": 30585,
+    "title": "Money and numeric columns sort by value; text columns sort as text",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4372
+   },
+   {
+    "id": 30587,
+    "title": "Inventory Value: a three-dot menu holds Download (PDF) and Download (CSV)",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8818)",
+    "reason": null,
+    "section_id": 4373
+   },
+   {
+    "id": 30588,
+    "title": "Downloads keep shown columns and order, honor filters, and include Totals",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4373
+   },
+   {
+    "id": 30589,
+    "title": "Export number formats: money to 2 decimals; Margin % to 1 with em-dash",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8823)",
+    "reason": null,
+    "section_id": 4373
+   },
+   {
+    "id": 30590,
+    "title": "PDF header shows report name; org; period and an as-of line; logo if set",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8818)",
+    "reason": null,
+    "section_id": 4373
+   },
+   {
+    "id": 30591,
+    "title": "Downloaded files are named inventory-value-report.pdf and .csv",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8818)",
+    "reason": null,
+    "section_id": 4373
+   },
+   {
+    "id": 30592,
+    "title": "Exports are generated server-side over the full filtered set",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4373
+   },
+   {
+    "id": 30593,
+    "title": "An over-cap set produces no file and shows the too-large-to-export message",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8818)",
+    "reason": null,
+    "section_id": 4373
+   },
+   {
+    "id": 30595,
+    "title": "Download notifications: verbatim success and failure texts per format",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8818)",
+    "reason": null,
+    "section_id": 4373
+   },
+   {
+    "id": 38921,
+    "title": "IV CSV export carries the As of and Locations metadata lines above the header, plus a scope-conditional Location column",
+    "kind": "NONE",
+    "marker": null,
+    "reason": null,
+    "section_id": 4373
+   },
+   {
+    "id": 43548,
+    "title": "A large Inventory Value PDF fails instead of being refused politely",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8818)",
+    "reason": null,
+    "section_id": 4373
+   },
+   {
+    "id": 30596,
+    "title": "All-white table with no row shading on the standard report backdrop",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4374
+   },
+   {
+    "id": 30597,
+    "title": "Toolbar layout: menu leftmost then Column Selection; then the 5 filters",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4374
+   },
+   {
+    "id": 30599,
+    "title": "Long Description; Category and Vendor truncate on hover; Part # never does",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8932)",
+    "reason": null,
+    "section_id": 4374
+   },
+   {
+    "id": 30600,
+    "title": "In dark mode the page background, toolbar, cells; the \"\u2014\" glyph remain legible",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4374
+   },
+   {
+    "id": 30601,
+    "title": "Each sortable header exposes its sort state and shows the direction",
+    "kind": "EXPECT FAIL",
+    "marker": "READY - EXPECT FAIL (SV-8932)",
+    "reason": null,
+    "section_id": 4374
+   },
+   {
+    "id": 30602,
+    "title": "The icon-only download and Column Selection buttons carry accessible names",
+    "kind": "READY",
+    "marker": "READY",
+    "reason": null,
+    "section_id": 4374
+   },
+   {
+    "id": 30603,
+    "title": "A user with ordinary reports access can open Inventory Value",
+    "kind": "HOLD",
+    "marker": "HOLD - needs a second sign-in as a user holding only the ordinary reports access",
+    "reason": "needs a second sign-in as a user holding only the ordinary reports access",
+    "section_id": 4375
+   },
+   {
+    "id": 30604,
+    "title": "Without reports access Inventory Value is absent from the navigation",
+    "kind": "HOLD",
+    "marker": "HOLD - needs a second sign-in as a user with no reports access",
+    "reason": "needs a second sign-in as a user with no reports access",
+    "section_id": 4375
+   },
+   {
+    "id": 30605,
+    "title": "Nightly snapshot records one row per in-stock non-core part per location",
+    "kind": "HOLD",
+    "marker": "HOLD - the nightly capture is a server-side job and its stored rows are not reachable from the application",
+    "reason": "the nightly capture is a server-side job and its stored rows are not reachable from the application",
+    "section_id": 4376
+   },
+   {
+    "id": 30606,
+    "title": "A recorded snapshot day equals what the live report showed that day",
+    "kind": "HOLD",
+    "marker": "HOLD - needs the stored nightly capture rows, which are not reachable from the application",
+    "reason": "needs the stored nightly capture rows, which are not reachable from the application",
+    "section_id": 4376
+   },
+   {
+    "id": 30607,
+    "title": "Nightly snapshot: re-running the capture for a date replaces that date's rows",
+    "kind": "HOLD",
+    "marker": "HOLD - the nightly capture job cannot be re-run or inspected from the application",
+    "reason": "the nightly capture job cannot be re-run or inspected from the application",
+    "section_id": 4376
+   },
+   {
+    "id": 30609,
+    "title": "Snapshot retention: daily captures are kept for 0\u201313 months",
+    "kind": "HOLD",
+    "marker": "HOLD - retention pruning is a server-side job over stored history, not reachable from the application",
+    "reason": "retention pruning is a server-side job over stored history, not reachable from the application",
+    "section_id": 4376
+   },
+   {
+    "id": 30610,
+    "title": "Thinned history still served by the closest-recorded-day rule",
+    "kind": "HOLD",
+    "marker": "HOLD - needs a thinned history that this organisation does not have and cannot be produced from the application",
+    "reason": "needs a thinned history that this organisation does not have and cannot be produced from the application",
+    "section_id": 4376
+   }
+  ]
+ }
+}
