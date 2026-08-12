@@ -1,0 +1,30 @@
+{
+ "read_at_utc": "2026-08-12T11:07Z",
+ "source": "live API reads on sv8785api this session",
+ "organization": {
+  "id": "d55bc308-e61a-438d-b5f1-c7a73c89d49f",
+  "name": "Staging Foothills Group Inc",
+  "via": "GET /api/organizations"
+ },
+ "workplace_default": {
+  "id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "name": "Staging Heavy Duty - 9919",
+  "tz": "America/Edmonton",
+  "via": "GET /api/staff/my-workplaces"
+ },
+ "admin": {
+  "user_id": "0eabf741-019e-4b02-84ce-66097c140b3a",
+  "staff_id": "ccbacb31-53f3-488e-9a7e-28f781761e62",
+  "email": "admin@shopview.com",
+  "role": "Admin",
+  "defaultWorkplace_on_record": null,
+  "via": "GET /api/staff?limit=200"
+ },
+ "tech": {
+  "user_id": "02ea3b69-8750-4b7d-b070-a6b642c9cca7",
+  "email": "bilal.muzamil+filters@shopview.com",
+  "role": "Technician",
+  "via": "GET /api/staff?limit=200"
+ },
+ "note": "admin's own staff record carries defaultWorkplace=null; the harness seeds it in localStorage only, because the SPA blocks every request for a truthy user without one. Nothing asserted by this pass depends on that seed."
+}
