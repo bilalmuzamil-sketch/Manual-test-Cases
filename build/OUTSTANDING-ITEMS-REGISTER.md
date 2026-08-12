@@ -213,6 +213,39 @@ exposures exist across all ~491 commits (at least one confirmed; not swept exhau
 
 ---
 
+## 🆕🆕🆕 2026-08-12 (NEWEST), THE FILTERS RUNNABILITY FINISH. **10 OF THE 29 PRIORITY CASES DRIVEN END TO END, ONE PRECONDITION CORRECTED THAT WOULD HAVE COST A TEST TOMORROW, AND ONE REAL BUILD DEVIATION THAT NEEDS A TICKET THE MOMENT THE HOLD LIFTS.**
+
+Deliverables: **`build/filters/finish-2026-08-12/`** — read `COMPLETION-REPORT.md` (the Rule-67 table)
+first, then `RUNNABILITY.md` and `DIVERGENCES.md`.
+
+**Build `v3.6-3e9dd6d`, unmoved. 115 ours / 120 live. 1 `update_case`, byte-verified. 0 add · 0 delete ·
+0 run writes · 0 results · 0 Jira. Markers 90 READY + 7 EXPECT-FAIL + 18 HOLD; the gate closes both
+ways at 97.**
+
+**THE HONEST HEADLINE:** **10 of 29** priority cases had **every step** verified against the shipping
+build; **13 more** had their navigation path and every named control verified but not every step
+driven; **6** could not be walked. **The 13 are not folded into the 10** — an unverified step is an
+unverified case. Against the whole suite that is **10 of 115**, and **92 cases still name the 5 August
+build** because **no re-stamp campaign was run**: asserting a check nobody made is worth less than an
+honest stale stamp.
+
+**WHAT WAS FIXED:** [C43590](https://shopview.testrail.io/index.php?/cases/view/43590) sent the tester
+to **Parts → Part Sales** as the example of a page with exactly one filter button. That page now shows
+**no filter bar at all**, while **Reports → Technician Efficiency** shows exactly one and no collapse
+control. Corrected as cosmetic, and the escape hatch widened to cover zero-filter pages, which the old
+wording did not anticipate. **Without it a runnable case would have been marked BLOCKED tomorrow.**
+
+**ALSO WORTH KNOWING: run 352 was re-scoped and fully assigned to user 7 under our shared account
+between 09:09 and 11:07 UTC** — 115 → 120 tests, 473 → 635 results, of which 154 are assignment
+records. Somebody is preparing the run for the tester. Nothing of ours; recorded so a later reader
+does not attribute it to this pass.
+
+| id | What is missing | Who owes it | What it BLOCKS | Since |
+|---|---|---|---|---|
+| **F-TICKET-1** | **A defect ticket for [C38897](https://shopview.testrail.io/index.php?/cases/view/38897).** Spec v19 `S8-R4`/`S8-R5` require the no-results state to offer a way to clear the filters **and, when a search is active, a separate way to clear the search**. The build shows **`No work orders match your filters`** — filters only, even when only a search is active — and offers **`Clear Filters`** alone. Proven as an absence properly: the scanner was first run in a state where the search-clear control **is** present and saw it (`evidence/empty-state.json`). **The case was deliberately NOT edited** — under Rule 57 it keeps its documented expectation and the tester will fail it, which is correct; adding a hold would disarm a case that is working. **No expect-fail marker was added either, because Rule 61 as amended requires live backing and no ticket exists.** | **the QA lead** — the creation hold, re-stated 2026-08-12: *"However for now the Jira ticket creation is still on hold."* | Nothing today: the tester will fail it and be right to. But it is **the only unticketed real deviation this pass found**, and it will read as an unexplained failure in tomorrow's run. | **2026-08-12** |
+| **F-WALK-1** | **6 of the 29 priority cases still unwalked, and 86 of the 115 never examined at all.** The 6 are C29619, C38876, C38879, C43560 (ordinary work) plus **C29581 and C29588, whose preconditions need a staff record deactivated — barred on this branch, because such an edit destroys the session of every holder.** | another pass; **C29581/C29588 are ordinary work for a tester** | Coverage of the runnability check is **10 of 115**, not the suite. Stated plainly so nobody reads the walk as complete. | **2026-08-12** |
+| **F-CTRL-1** | **Two checks produced nothing because their own control failed** — C38877 step 3 and C43560. The Status-menu reader returned **0 options on a clean page** where it had earlier returned 10, so neither result can be believed in either direction. Recorded rather than reported, and the fragility is written into `RESUME.md`. | another pass | Nothing is wrong in the product as far as anyone knows; **the point is that we do not know**, and a check that cannot fail must never be reported as a finding. | **2026-08-12** |
+
 ## 🆕🆕 2026-08-12 (NEWEST), THE FILTERS BUILD-VIU PASS. **✅ F-BLOCK-1 IS CLEARED — THE QA LEAD SENT WORKING `sv8785` COOKIES AND THE 8-DAY BLOCKER IS GONE. C29615 AND C38895 BOTH PASS.**
 
 **✅ CLEARED SAME DAY — F-BLOCK-1.** He supplied two fresh `sv8785` `PHPSESSID` values; **both
