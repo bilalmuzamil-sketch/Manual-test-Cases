@@ -106,3 +106,42 @@ column-selection menus with each column's default on/off state — are in
   was not.
 - **Only the on-screen surface was swept.** PDF and CSV label surfaces were checked only for Work In
   Progress, via the files actually downloaded.
+
+---
+
+## LATE ADDITION — the nine date presets ARE established, and they settle a flagged contradiction
+
+The preset panel *was* reached on a second attempt (it sits beside the calendar; the first capture
+was truncated by the day numbers). **The build offers exactly nine, in this order, with no
+`All Time`:**
+
+`Last 12 Months` · `This Year` · `Last Year` · `This Quarter` · `Last Quarter` · `This Month` ·
+`Last Month` · `This Week` · `Last Week`
+
+Confirmed on **two** reports — Work In Progress and Sales By Customer — so it is the shared
+component, not a per-report list. This is **word-for-word Chris Ward's 8 August decision**, and
+**five of our six cases in this family name all nine and are therefore correct**:
+[C30160](https://shopview.testrail.io/index.php?/cases/view/30160) ·
+[C30201](https://shopview.testrail.io/index.php?/cases/view/30201) ·
+[C30330](https://shopview.testrail.io/index.php?/cases/view/30330) ·
+[C30501](https://shopview.testrail.io/index.php?/cases/view/30501) ·
+[C30561](https://shopview.testrail.io/index.php?/cases/view/30561).
+
+**That makes it 12 of 12 scored label classes matching exactly.**
+
+### 🔴 And it hardens yesterday's CONTRADICTION 2 into a one-line decision
+
+**[C30102](https://shopview.testrail.io/index.php?/cases/view/30102)** — *"Date range picker offers
+nine periods in the specified order, no All Time"* — **names 0 of the 9**, while all five of its
+siblings name all nine. Its expected result is numbered **1, 3, 3**: **item 2 was lost in an edit,
+and item 2 was the one that listed the periods.**
+
+So a tester opening it tomorrow finds a case whose **title promises a check its body does not
+contain** — on **Sales By Customer, one of the three FINAL reports**.
+
+**Deliberately NOT written by this pass.** Yesterday's quality gate examined it and recorded the
+decision to leave it for the QA lead as *"a copy-paste the QA lead can authorise in one line"*, and a
+recorded decision stands (Rule 33). **What this session adds is the evidence that makes that one line
+trivial to give:** the nine periods are now **live-confirmed on two reports**, in exactly the order
+five sibling cases already state, so the restore is a verbatim copy of a sentence we already hold —
+not authoring.
