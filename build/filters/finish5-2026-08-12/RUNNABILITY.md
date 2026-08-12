@@ -221,7 +221,7 @@ That distinction did not exist before today. It was the difference between *"23 
 
 ---
 
-## 4 · FIVE THINGS THAT LOOKED LIKE BUILD FAULTS AND WERE OUR OWN HARNESS
+## 4 · SIX THINGS THAT LOOKED LIKE BUILD FAULTS AND WERE OUR OWN HARNESS
 
 Recorded because the count matters more than the excuse — **more than forty-five false absences
 have been caught this way across these projects in two days**, and every one of these five would
