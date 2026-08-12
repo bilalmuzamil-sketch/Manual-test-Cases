@@ -31,6 +31,14 @@ def body(exp):
     return e.rsplit('\n---\n', 1)[0].strip() if '\n---\n' in e else e.strip()
 
 
+BUILDLINE = re.compile(r'[Ll]ast checked against build\s+([A-Za-z0-9._-]+)')
+
+
+def buildmark(exp):
+    m = BUILDLINE.search(norm(exp))
+    return m.group(1) if m else None
+
+
 def paged(path, key):
     out, off = [], 0
     while True:
@@ -64,7 +72,7 @@ for proj, slug in PRE.items():
     pre = json.load(open(f'{ROOT}/build/{slug}/read-dates-2026-08-11/snapshots/cases-PRE.json'))
     ids = desc(GROUPS[proj])
     live = {c['id']: c for c in cases if c.get('section_id') in ids and c.get('created_by') == 3}
-    mv, tt, bd, new = [], [], [], []
+    mv, tt, bd, new, bl = [], [], [], [], []
     for cid, lc in live.items():
         p = pre.get(str(cid))
         if not p:
@@ -72,6 +80,9 @@ for proj, slug in PRE.items():
         m0, m1 = marker(p.get('custom_expected')), marker(lc.get('custom_expected'))
         if m0 != m1:
             mv.append({'id': cid, 'from': m0, 'to': m1, 'title': lc['title']})
+        b0, b1 = buildmark(p.get('custom_expected')), buildmark(lc.get('custom_expected'))
+        if b0 != b1:
+            bl.append({'id': cid, 'from': b0, 'to': b1})
         if norm(p.get('title')) != norm(lc.get('title')):
             tt.append({'id': cid, 'from': p.get('title'), 'to': lc.get('title')})
         if body(p.get('custom_expected')) != body(lc.get('custom_expected')) \
@@ -79,13 +90,14 @@ for proj, slug in PRE.items():
            or norm(p.get('custom_preconds')) != norm(lc.get('custom_preconds')):
             bd.append(cid)
     res[proj] = {'marker_moved': mv, 'title_changed': tt, 'body_changed': sorted(bd),
-                 'created_after_snapshot': sorted(new)}
+                 'build_line_moved': bl, 'created_after_snapshot': sorted(new)}
     print(f'\n=== {proj}')
     print(f'  marker moved      : {len(mv)}')
     for x in mv:
         print(f'     C{x["id"]}  {x["from"]}  ->  {x["to"]}')
     print(f'  title changed     : {len(tt)}  {[x["id"] for x in tt]}')
     print(f'  steps/preconds/assertion changed : {len(bd)}  {res[proj]["body_changed"][:40]}')
+    print(f'  build stamp re-cut               : {len(bl)}')
     print(f'  created after the snapshot       : {len(new)}  {res[proj]["created_after_snapshot"]}')
 
 json.dump(res, open('/tmp/hand12/markerdiff.json', 'w'), indent=1)

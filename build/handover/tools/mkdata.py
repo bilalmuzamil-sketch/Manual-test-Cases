@@ -7,6 +7,8 @@ transcribed from today's committed pass folders — nothing invented, nothing pa
 import json, os
 
 HOLDS = json.load(open('/tmp/hand12/holds.json'))
+CENSUS = json.load(open('/tmp/hand12/census.json'))
+READ_AT = open('/tmp/hand12/readtime.txt').read().split('START')[-1].strip()
 OUT = '/home/user/Manual-test-Cases/build/handover/data.json'
 
 SCHED_ENV = ("Build v3.5-65d6500 on https://sv8685.qa.shopview.com. The build was read at the "
@@ -271,8 +273,15 @@ for proj in ('Filters', 'Schedule', 'Report Suite'):
             'result_by': r['graded_by'],
         })
 
-json.dump({'defects': defects, 'tickets': tickets, 'holds': holds},
+totals = {p: {'ours': CENSUS[p]['ours'], 'foreign': CENSUS[p]['foreign']} for p in CENSUS}
+signin = {p: sum(1 for h in holds if h['project'] == p
+                 and re.search(r'sign-in|login|needs a user|need a user|users? with|each of the two staff', h['reason'] or '', re.I))
+          for p in ('Filters', 'Schedule', 'Report Suite')}
+
+json.dump({'defects': defects, 'tickets': tickets, 'holds': holds,
+           'totals': totals, 'signin_blocked': signin, 'read_at': READ_AT},
           open(OUT, 'w'), indent=1)
+print('read_at:', READ_AT, '| totals:', totals, '| sign-in blocked:', signin)
 print('holds:', len(holds), '| passed:', sum(1 for h in holds if h['result'] == 'Passed'))
 print('defects:', len(defects), '| tickets:', len(tickets))
 print('written', OUT)

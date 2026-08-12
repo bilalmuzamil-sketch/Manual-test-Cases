@@ -281,24 +281,8 @@
    "project": "Schedule",
    "id": 30044,
    "title": "'My Shifts' filters the grid to only the current user's shifts",
-   "reason": "needs a second sign-in as a user with no staff record of their own",
+   "reason": "point 4 needs a user with no staff record of their own; points 1 to 3 are observed and pass",
    "result": "Failed",
-   "result_by": "Mudassir Qamar"
-  },
-  {
-   "project": "Schedule",
-   "id": 30074,
-   "title": "Schedule: View grants the full read-only experience across the whole page",
-   "reason": "needs a second sign-in as a view-only user",
-   "result": "Passed",
-   "result_by": "Mudassir Qamar"
-  },
-  {
-   "project": "Schedule",
-   "id": 30075,
-   "title": "View-only: every editing affordance is hidden or disabled",
-   "reason": "needs a second sign-in as a view-only user",
-   "result": "Passed",
    "result_by": "Mudassir Qamar"
   },
   {
@@ -338,14 +322,6 @@
    "id": 30081,
    "title": "Schedule without Work Orders: View - the sidebar hides the work order list",
    "reason": "needs a second sign-in as a user who cannot see work orders",
-   "result": "Passed",
-   "result_by": "Mudassir Qamar"
-  },
-  {
-   "project": "Schedule",
-   "id": 30082,
-   "title": "No own-only restriction: a View user sees ALL technicians' shifts",
-   "reason": "needs a second sign-in as a view-only technician",
    "result": "Passed",
    "result_by": "Mudassir Qamar"
   },
@@ -409,7 +385,7 @@
    "project": "Schedule",
    "id": 38872,
    "title": "API - Schedule reads need View; writes need Edit; deletes need Delete (403)",
-   "reason": "needs three separate sign-ins, one per permission level",
+   "reason": "points 1 and 3 need a user with no Schedule permission and a user with Schedule Edit but not Delete; point 2 is observed and passes",
    "result": null,
    "result_by": null
   },
@@ -417,7 +393,7 @@
    "project": "Schedule",
    "id": 38874,
    "title": "API - No pricing fields in Schedule responses; WO details need Work Orders View",
-   "reason": "needs a second sign-in as a user who cannot see work orders",
+   "reason": "point 2 needs a user without Work Orders View; point 1 is observed and passes",
    "result": null,
    "result_by": null
   },
@@ -821,5 +797,25 @@
    "result": null,
    "result_by": null
   }
- ]
+ ],
+ "totals": {
+  "Filters": {
+   "ours": 115,
+   "foreign": 5
+  },
+  "Schedule": {
+   "ours": 176,
+   "foreign": 0
+  },
+  "Report Suite": {
+   "ours": 480,
+   "foreign": 12
+  }
+ },
+ "signin_blocked": {
+  "Filters": 0,
+  "Schedule": 11,
+  "Report Suite": 7
+ },
+ "read_at": "2026-08-12T05:53:56Z"
 }

@@ -41,3 +41,40 @@ logs of every pass dated 11 or 12 August, and from TestRail's own `created_on` /
 **The two sets are equal in both directions — 771 = 771, with no member either set lacks.**
 
 `tools/` holds the derivation scripts and their raw output, so every figure can be re-derived.
+
+---
+
+## Status at hand-off — what is complete, and what is not
+
+**Both sheets are COMPLETE.** Every figure in them was derived live from TestRail in this
+pass; none is carried over from a document.
+
+**Snapshot time: 2026-08-12T05:53:56Z, and the time matters today.** Another worker was
+editing the same three suites while these sheets were written, and the numbers moved twice:
+
+| | earlier in the pass | at the snapshot |
+|---|---|---|
+| tests that cannot be run | 91 | **88** |
+| of those, already marked Passed | 16 | **13** |
+| Schedule tests waiting on a second sign-in | 14 | **11** |
+
+Three Schedule cases — C30074, C30075, C30082 — were checked and passed by that worker and
+came off the skip list. **Both figures were right for their minute.** The sheets carry the
+later one and say so on their face.
+
+## The one figure that is NOT fully live-derived
+
+The **defects** and **misleading tickets** on tabs 2 and 3 were transcribed from today's
+committed pass folders, not re-observed by this pass. The build markers **were** re-read
+live from each branch's `index.html`. **No Jira call was made at all**, so every ticket
+status quoted on tab 3 comes from those same committed records.
+
+## Known shortfalls, stated rather than hidden
+
+- **Screenshots exist but are not annotated.** Standing Rule 52's evidence bar requires
+  annotated images before filing. Each tab-2 row says so in its own words.
+- **The duplicate search was run for one of the three defects only** (the toast/Undo one).
+  The other two say so and ask the filer to run it.
+- **The concurrent worker's own pass has no committed execution log yet**, so its per-case
+  detail is not in the "What changed" wording on Vlad's Section B. The case list is still
+  complete, because it was derived from live TestRail rather than from the logs.

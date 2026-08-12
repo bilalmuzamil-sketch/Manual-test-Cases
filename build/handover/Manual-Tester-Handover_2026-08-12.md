@@ -10,13 +10,15 @@
 
 Release is tomorrow. This sheet is for you. It has three lists in it, one per tab, and this page explains what they are and the one rule that matters most. You do not need to know anything about how the tests were written to use it.
 
+Row 5 says exactly when these numbers were read, and why that matters today.
+
 ### 1. The one rule that matters most
 
 If a test says it cannot be run yet, mark it Blocked. Do not mark it Passed.
 
 Every test that cannot be run says so in its own words, at the very bottom of its Expected Results. If you open a test and it tells you it is waiting on something, that is the test telling you it cannot be judged today. Mark it Blocked and move on.
 
-*Why it matters:* This is not a formality. It has already happened. Checked in TestRail this morning: 16 tests that cannot currently be judged already have a Passed result recorded against them. A test nobody could run cannot have passed. Those 16 are listed on the last tab and marked, and they need changing to Blocked before anyone reads them as evidence that the feature works.
+*Why it matters:* This is not a formality. It has already happened. Read from TestRail as this sheet was written: 13 tests that cannot currently be judged already have a Passed result recorded against them. A test nobody could run cannot have passed. They are listed on the last tab and shaded, and they need changing to Blocked before anyone reads them as evidence that the feature works.
 
 ### 2. What is on each tab
 
@@ -24,7 +26,7 @@ Tab 2, "Problems found, not reported". Three real faults we found and confirmed.
 
 Tab 3, "Old tickets that mislead". Four tickets where what the ticket says and what the product actually does no longer match. Three say they are closed and the fault is still there. One is still open and the fault is gone.
 
-Tab 4, "Tests that cannot be run yet". All 91 of them, with one plain sentence each.
+Tab 4, "Tests that cannot be run yet". All 88 of them, with one plain sentence each.
 
 *Why it matters:* Tabs 2 and 3 are suggestions for a person to action. Nothing on them has been done for you, and nothing has been raised in Jira - we were asked to hold off on that.
 
@@ -43,14 +45,22 @@ The test says nothing special and it works -> Passed.
 ### 4. How many tests there are
 
 Filters: 97 to run, 18 to skip (115 in total).
-Schedule: 145 to run, 31 to skip (176 in total).
+Schedule: 148 to run, 28 to skip (176 in total).
 Report Suite: 438 to run, 42 to skip (480 in total).
 
-All three together: 680 to run, 91 to skip, 771 in total.
+All three together: 683 to run, 88 to skip, 771 in total.
 
 *Why it matters:* A few tests in Filters and the Report Suite were written by a colleague and are not counted above and not listed here. They are not ours to change and not yours to compare against this sheet: 5 in Filters, 12 in the Report Suite.
 
-### 5. One thing to know about dates on the tests
+### 5. When these numbers were taken
+
+Every count and every list here was read from TestRail at 2026-08-12T05:53:56Z.
+
+PLEASE NOTE THE TIME, because it matters today. Another member of the team was working on the same tests while this sheet was being written, and the numbers moved twice in the hour before it was finished: three Schedule tests came off the skip list because they were checked and passed. So treat this as a photograph taken at that minute, not a permanent count. If a test on the last tab no longer says it is waiting on something when you open it, believe the test, not this sheet.
+
+*Why it matters:* A count taken an hour earlier said 91 tests to skip and 16 of them wrongly marked Passed. It now says 88 and 13, because three Schedule tests were checked and passed while this was being written. Neither figure is wrong - they are different minutes.
+
+### 6. One thing to know about dates on the tests
 
 Near the bottom of every test there is a line saying which build it was last checked against. On most tests that build is older than the one you will be testing on today.
 
@@ -62,7 +72,7 @@ That does not make the test wrong. What a test expects comes from the written pr
 
 ## 2. Problems found, not reported
 
-THREE problems. All three are in Schedule. All three were seen with our own eyes on the build listed on each row, and no Jira ticket covers any of them.
+3 problems, all of them in Schedule. Every one was seen with our own eyes on the build named on its row, and no Jira ticket covers any of them.
 
 WHAT TO DO WITH THIS TAB: nothing, unless you want to. We were asked to hold off raising tickets, so these are written out in full in case you would rather raise them yourself. Everything you need is on the row. Use the last column to write down the ticket number if you do raise one.
 
@@ -225,7 +235,7 @@ Mark every test on this tab BLOCKED. Do not mark any of them Passed.
 
 Each row says in one plain sentence what the test is waiting on. The same sentence is on the test itself, at the bottom of its Expected Results.
 
-TWO THINGS TO LOOK AT FIRST. (1) The column 'Already has a result?' - 16 of these tests already say Passed in the test run. Those need changing to Blocked; they are the most useful thing on this tab. (2) 14 Schedule tests are all waiting on the same one thing - a second login that is not an administrator. One login would release all 14 at once.
+TWO THINGS TO LOOK AT FIRST. (1) The column 'Already has a result?' - 13 of these tests already say Passed in the test run, and they are shaded. Those need changing to Blocked; they are the most useful thing on this tab. (2) 11 Schedule tests are all waiting on the same one thing - a second login that is not an administrator. One login would release them all at once.
 
 The 'What it is waiting on' wording is quoted from the test itself, so it matches what you will read on the case. The only thing changed is that document reference codes have been spelled out as 'the written description'.
 
@@ -252,7 +262,7 @@ The 'What it is waiting on' wording is quoted from the test itself, so it matche
 | [C38911](https://shopview.testrail.io/index.php?/cases/view/38911) | New Reports filter types behave correctly (Location, Transaction Type, etc.) | waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do | — |
 | [C43562](https://shopview.testrail.io/index.php?/cases/view/43562) | Parts and Reports filters collapse, share and work on a phone as Work Orders do | the new filter bar has reached only some Parts views and one report tab, so most of this cannot be run yet | — |
 
-### Schedule — 31 tests to skip
+### Schedule — 28 tests to skip
 
 | Test | What the test covers | What it is waiting on | Already has a result? |
 |---|---|---|---|
@@ -261,15 +271,12 @@ The 'What it is waiting on' wording is quoted from the test itself, so it matche
 | [C30004](https://shopview.testrail.io/index.php?/cases/view/30004) | Dragging a shift sideways moves its start time in 15-minute steps | an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker | Passed ⚠️ |
 | [C30013](https://shopview.testrail.io/index.php?/cases/view/30013) | Notes can be added, edited, and deleted per work order from the modal | an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker | Passed ⚠️ |
 | [C30020](https://shopview.testrail.io/index.php?/cases/view/30020) | Events can be dragged to another technician or another day | an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker | Passed ⚠️ |
-| [C30044](https://shopview.testrail.io/index.php?/cases/view/30044) | 'My Shifts' filters the grid to only the current user's shifts | needs a second sign-in as a user with no staff record of their own | Failed |
-| [C30074](https://shopview.testrail.io/index.php?/cases/view/30074) | Schedule: View grants the full read-only experience across the whole page | needs a second sign-in as a view-only user | Passed ⚠️ |
-| [C30075](https://shopview.testrail.io/index.php?/cases/view/30075) | View-only: every editing affordance is hidden or disabled | needs a second sign-in as a view-only user | Passed ⚠️ |
+| [C30044](https://shopview.testrail.io/index.php?/cases/view/30044) | 'My Shifts' filters the grid to only the current user's shifts | point 4 needs a user with no staff record of their own; points 1 to 3 are observed and pass | Failed |
 | [C30076](https://shopview.testrail.io/index.php?/cases/view/30076) | With Schedule: View OFF, the Schedule top-level nav item is hidden entirely | needs a second sign-in as a user without the Schedule permission | Passed ⚠️ |
 | [C30077](https://shopview.testrail.io/index.php?/cases/view/30077) | Schedule: Edit unlocks all creation and modification interactions | needs a second sign-in as an edit-without-delete user | Passed ⚠️ |
 | [C30078](https://shopview.testrail.io/index.php?/cases/view/30078) | Edit without Delete: the user can create and modify but not remove | needs a second sign-in as an edit-without-delete user | Passed ⚠️ |
 | [C30079](https://shopview.testrail.io/index.php?/cases/view/30079) | Schedule: Delete unlocks deleting shifts and events | needs a second sign-in as a delete-capable user | Passed ⚠️ |
 | [C30081](https://shopview.testrail.io/index.php?/cases/view/30081) | Schedule without Work Orders: View - the sidebar hides the work order list | needs a second sign-in as a user who cannot see work orders | Passed ⚠️ |
-| [C30082](https://shopview.testrail.io/index.php?/cases/view/30082) | No own-only restriction: a View user sees ALL technicians' shifts | needs a second sign-in as a view-only technician | Passed ⚠️ |
 | [C30084](https://shopview.testrail.io/index.php?/cases/view/30084) | Clocking into line tasks is gated by the staff 'Time Clock' setting | needs a second sign-in as each of the two staff members | Untested |
 | [C30089](https://shopview.testrail.io/index.php?/cases/view/30089) | Shop closures do NOT block spread in V1 - shifts can land on closure days | waiting on the product owner's answer, and the shop-closure setting does not exist in the build | Untested |
 | [C30614](https://shopview.testrail.io/index.php?/cases/view/30614) | With Work Orders: View OFF, work order details on shifts are hidden | needs a second sign-in as a user who cannot see work orders | Blocked |
@@ -277,8 +284,8 @@ The 'What it is waiting on' wording is quoted from the test itself, so it matche
 | [C38868](https://shopview.testrail.io/index.php?/cases/view/38868) | Dashboard shows one schedule row per work order even with many shifts | the Dashboard section this test needs does not exist in the build | — |
 | [C38869](https://shopview.testrail.io/index.php?/cases/view/38869) | A work order created with an appointment shows up on the Schedule board | work order creation offers no appointment in the build | — |
 | [C38871](https://shopview.testrail.io/index.php?/cases/view/38871) | Work order form offers a Priority (High/Medium/Low) that drives the sidebar | the Priority field this test needs does not exist in the build | — |
-| [C38872](https://shopview.testrail.io/index.php?/cases/view/38872) | API - Schedule reads need View; writes need Edit; deletes need Delete (403) | needs three separate sign-ins, one per permission level | — |
-| [C38874](https://shopview.testrail.io/index.php?/cases/view/38874) | API - No pricing fields in Schedule responses; WO details need Work Orders View | needs a second sign-in as a user who cannot see work orders | — |
+| [C38872](https://shopview.testrail.io/index.php?/cases/view/38872) | API - Schedule reads need View; writes need Edit; deletes need Delete (403) | points 1 and 3 need a user with no Schedule permission and a user with Schedule Edit but not Delete; point 2 is observed and passes | — |
+| [C38874](https://shopview.testrail.io/index.php?/cases/view/38874) | API - No pricing fields in Schedule responses; WO details need Work Orders View | point 2 needs a user without Work Orders View; point 1 is observed and passes | — |
 | [C38926](https://shopview.testrail.io/index.php?/cases/view/38926) | Default roles start at the Schedule level the spec names (view-only vs edit) | needs a second sign-in as a holder of each permission level | — |
 | [C43555](https://shopview.testrail.io/index.php?/cases/view/43555) | Month view: dragging a work order onto a day creates a shift for that day | waiting on the product owner's answer, and the question has not been sent yet | — |
 | [C43582](https://shopview.testrail.io/index.php?/cases/view/43582) | Panel button sits left of Today and its tooltip names what it will do | the panel button does not exist in this build | — |
@@ -337,4 +344,4 @@ The 'What it is waiting on' wording is quoted from the test itself, so it matche
 
 ---
 
-*Every count and every list in this document was read from TestRail on 12 August 2026. If tests are added or changed after that, the counts move with them.*
+*Every count and every list here was read from TestRail at 2026-08-12T05:53:56Z. PLEASE NOTE THE TIME, because it matters today. Another member of the team was working on the same tests while this sheet was being written, and the numbers moved twice in the hour before it was finished: three Schedule tests came off the skip list because they were checked and passed. So treat this as a photograph taken at that minute, not a permanent count. If a test on the last tab no longer says it is waiting on something when you open it, believe the test, not this sheet.*

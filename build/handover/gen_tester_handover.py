@@ -28,6 +28,16 @@ from openpyxl.styles import Alignment, Font, PatternFill
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = json.load(open(os.path.join(HERE, 'data.json')))
+READ_AT = DATA['read_at']
+STAMP = (
+    f"Every count and every list here was read from TestRail at {READ_AT}.\n\n"
+    "PLEASE NOTE THE TIME, because it matters today. Another member of the team was working "
+    "on the same tests while this sheet was being written, and the numbers moved twice in the "
+    "hour before it was finished: three Schedule tests came off the skip list because they "
+    "were checked and passed. So treat this as a photograph taken at that minute, not a "
+    "permanent count. If a test on the last tab no longer says it is waiting on something "
+    "when you open it, believe the test, not this sheet."
+)
 XLSX = os.path.join(HERE, 'Manual-Tester-Handover_2026-08-12.xlsx')
 MD = os.path.join(HERE, 'Manual-Tester-Handover_2026-08-12.md')
 
@@ -50,12 +60,25 @@ def link(cid):
     return f"{TR}{cid}"
 
 
+# --- every count below is COMPUTED from the live snapshot, never typed in ---
+_H = DATA['holds']
+N_HOLD = len(_H)
+N_PASSED = sum(1 for h in _H if h['result'] == 'Passed')
+PER = {p: sum(1 for h in _H if h['project'] == p)
+       for p in ('Filters', 'Schedule', 'Report Suite')}
+TOTALS = DATA['totals']          # ours / foreign, per project
+N_TOTAL = sum(TOTALS[p]['ours'] for p in TOTALS)
+N_RUN = N_TOTAL - N_HOLD
+N_SIGNIN = DATA['signin_blocked']
+
+
 # ============================================================ TAB 1 — Read me first
 T1_TITLE = "Handover for the manual test team — 12 August 2026"
 T1_NOTE = (
-    "Release is tomorrow. This sheet is for you. It has three lists in it, one per tab, "
-    "and this page explains what they are and the one rule that matters most. "
-    "You do not need to know anything about how the tests were written to use it."
+    "Release is tomorrow. This sheet is for you. It has three lists in it, one per tab, and "
+    "this page explains what they are and the one rule that matters most. You do not need to "
+    "know anything about how the tests were written to use it.\n\n"
+    "Row 5 says exactly when these numbers were read, and why that matters today."
 )
 
 T1_ROWS = [
@@ -64,10 +87,10 @@ T1_ROWS = [
      "Every test that cannot be run says so in its own words, at the very bottom of its "
      "Expected Results. If you open a test and it tells you it is waiting on something, "
      "that is the test telling you it cannot be judged today. Mark it Blocked and move on.",
-     "This is not a formality. It has already happened. Checked in TestRail this morning: "
-     "16 tests that cannot currently be judged already have a Passed result recorded "
-     "against them. A test nobody could run cannot have passed. Those 16 are listed on the "
-     "last tab and marked, and they need changing to Blocked before anyone reads them as "
+     "This is not a formality. It has already happened. Read from TestRail as this sheet was "
+     f"written: {N_PASSED} tests that cannot currently be judged already have a Passed result "
+     "recorded against them. A test nobody could run cannot have passed. They are listed on "
+     "the last tab and shaded, and they need changing to Blocked before anyone reads them as "
      "evidence that the feature works."),
 
     ("2", "What is on each tab",
@@ -78,7 +101,8 @@ T1_ROWS = [
      "Tab 3, \"Old tickets that mislead\". Four tickets where what the ticket says and what "
      "the product actually does no longer match. Three say they are closed and the fault is "
      "still there. One is still open and the fault is gone.\n\n"
-     "Tab 4, \"Tests that cannot be run yet\". All 91 of them, with one plain sentence each.",
+     f"Tab 4, \"Tests that cannot be run yet\". All {N_HOLD} of them, with one plain "
+     "sentence each.",
      "Tabs 2 and 3 are suggestions for a person to action. Nothing on them has been done for "
      "you, and nothing has been raised in Jira - we were asked to hold off on that."),
 
@@ -93,15 +117,23 @@ T1_ROWS = [
      "the QA lead. Never guess a result."),
 
     ("4", "How many tests there are",
-     "Filters: 97 to run, 18 to skip (115 in total).\n"
-     "Schedule: 145 to run, 31 to skip (176 in total).\n"
-     "Report Suite: 438 to run, 42 to skip (480 in total).\n\n"
-     "All three together: 680 to run, 91 to skip, 771 in total.",
+     "\n".join(
+         f"{p}: {TOTALS[p]['ours'] - PER[p]} to run, {PER[p]} to skip "
+         f"({TOTALS[p]['ours']} in total)."
+         for p in ('Filters', 'Schedule', 'Report Suite')
+     ) + f"\n\nAll three together: {N_RUN} to run, {N_HOLD} to skip, {N_TOTAL} in total.",
      "A few tests in Filters and the Report Suite were written by a colleague and are not "
      "counted above and not listed here. They are not ours to change and not yours to "
      "compare against this sheet: 5 in Filters, 12 in the Report Suite."),
 
-    ("5", "One thing to know about dates on the tests",
+    ("5", "When these numbers were taken",
+     STAMP,
+     "A count taken an hour earlier said 91 tests to skip and 16 of them wrongly marked "
+     f"Passed. It now says {N_HOLD} and {N_PASSED}, because three Schedule tests were checked "
+     "and passed while this was being written. Neither figure is wrong - they are different "
+     "minutes."),
+
+    ("6", "One thing to know about dates on the tests",
      "Near the bottom of every test there is a line saying which build it was last checked "
      "against. On most tests that build is older than the one you will be testing on today.\n\n"
      "That does not make the test wrong. What a test expects comes from the written product "
@@ -116,8 +148,8 @@ T1_ROWS = [
 # ================================================ TAB 2 — problems found, not reported
 T2_TITLE = "Problems we found and confirmed, which have NOT been reported anywhere"
 T2_NOTE = (
-    "THREE problems. All three are in Schedule. All three were seen with our own eyes on the "
-    "build listed on each row, and no Jira ticket covers any of them.\n\n"
+    f"{len(DATA['defects'])} problems, all of them in Schedule. Every one was seen with our own "
+    "eyes on the build named on its row, and no Jira ticket covers any of them.\n\n"
     "WHAT TO DO WITH THIS TAB: nothing, unless you want to. We were asked to hold off raising "
     "tickets, so these are written out in full in case you would rather raise them yourself. "
     "Everything you need is on the row. Use the last column to write down the ticket number if "
@@ -154,15 +186,16 @@ T3 = DATA['tickets']
 
 
 # =============================================== TAB 4 — tests that cannot be run
-T4_TITLE = "Tests that cannot be run yet, and why — all 91"
+T4_TITLE = f"Tests that cannot be run yet, and why — all {N_HOLD}"
 T4_NOTE = (
     "Mark every test on this tab BLOCKED. Do not mark any of them Passed.\n\n"
     "Each row says in one plain sentence what the test is waiting on. The same sentence is on "
     "the test itself, at the bottom of its Expected Results.\n\n"
-    "TWO THINGS TO LOOK AT FIRST. (1) The column 'Already has a result?' - 16 of these tests "
-    "already say Passed in the test run. Those need changing to Blocked; they are the most "
-    "useful thing on this tab. (2) 14 Schedule tests are all waiting on the same one thing - a "
-    "second login that is not an administrator. One login would release all 14 at once.\n\n"
+    f"TWO THINGS TO LOOK AT FIRST. (1) The column 'Already has a result?' - {N_PASSED} of these "
+    "tests already say Passed in the test run, and they are shaded. Those need changing to "
+    "Blocked; they are the most useful thing on this tab. (2) "
+    f"{N_SIGNIN['Schedule']} Schedule tests are all waiting on the same one thing - a second "
+    "login that is not an administrator. One login would release them all at once.\n\n"
     "The 'What it is waiting on' wording is quoted from the test itself, so it matches what you "
     "will read on the case. The only thing changed is that document reference codes have been "
     "spelled out as 'the written description'."
@@ -334,8 +367,7 @@ def build_md():
             A(f"| [C{x['id']}]({link(x['id'])}) | {x['title']} | {x['reason']} | {res}{flag} |")
         A("")
     A("---\n")
-    A("*Every count and every list in this document was read from TestRail on 12 August 2026. "
-      "If tests are added or changed after that, the counts move with them.*")
+    A("*" + STAMP.replace("\n\n", " ") + "*")
     open(MD, 'w').write("\n".join(L) + "\n")
     return MD
 

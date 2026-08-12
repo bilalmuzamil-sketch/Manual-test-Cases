@@ -25,6 +25,23 @@
    43561,
    43562
   ],
+  "build_line_moved": [
+   {
+    "id": 29615,
+    "from": "v3.4.2-d00239b",
+    "to": "v3.6-3e9dd6d"
+   },
+   {
+    "id": 38895,
+    "from": "v3.4.2-d00239b",
+    "to": "v3.6-3e9dd6d"
+   },
+   {
+    "id": 43561,
+    "from": null,
+    "to": "v3.6-3e9dd6d"
+   }
+  ],
   "created_after_snapshot": [
    43590
   ]
@@ -110,10 +127,46 @@
     "title": "Hiding the panel lasts for the rest of your sign-in but is not saved"
    },
    {
+    "id": 30044,
+    "from": "HOLD - needs a second sign-in as a user with no staff record of their own",
+    "to": "HOLD - point 4 needs a user with no staff record of their own; points 1 to 3 are observed and pass",
+    "title": "'My Shifts' filters the grid to only the current user's shifts"
+   },
+   {
+    "id": 30074,
+    "from": "HOLD - needs a second sign-in as a view-only user",
+    "to": "READY",
+    "title": "Schedule: View grants the full read-only experience across the whole page"
+   },
+   {
+    "id": 30075,
+    "from": "HOLD - needs a second sign-in as a view-only user",
+    "to": "READY",
+    "title": "View-only: every editing affordance is hidden or disabled"
+   },
+   {
+    "id": 30082,
+    "from": "HOLD - needs a second sign-in as a view-only technician",
+    "to": "READY",
+    "title": "No own-only restriction: a View user sees ALL technicians' shifts"
+   },
+   {
     "id": 43585,
     "from": "READY",
     "to": "HOLD - the panel button does not exist in this build",
     "title": "On a narrow window the panel button still works and your choice holds"
+   },
+   {
+    "id": 38872,
+    "from": "HOLD - needs three separate sign-ins, one per permission level",
+    "to": "HOLD - points 1 and 3 need a user with no Schedule permission and a user with Schedule Edit but not Delete; point 2 is observed and passes",
+    "title": "API - Schedule reads need View; writes need Edit; deletes need Delete (403)"
+   },
+   {
+    "id": 38874,
+    "from": "HOLD - needs a second sign-in as a user who cannot see work orders",
+    "to": "HOLD - point 2 needs a user without Work Orders View; point 1 is observed and passes",
+    "title": "API - No pricing fields in Schedule responses; WO details need Work Orders View"
    }
   ],
   "title_changed": [
@@ -178,6 +231,363 @@
    43585,
    43586,
    43587
+  ],
+  "build_line_moved": [
+   {
+    "id": 29930,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 43554,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29936,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29939,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29940,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29941,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29942,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29943,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29944,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29945,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29947,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29950,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29953,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29954,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29956,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29958,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29962,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29963,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29965,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29967,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29978,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29980,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29981,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29982,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29983,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29984,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29985,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29986,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 29998,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30004,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30006,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30008,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30013,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30015,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30016,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30017,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30018,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30020,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30025,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30029,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30032,
+    "from": "v3.5-d122eef",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30039,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 43582,
+    "from": "v3.5-af3a6e1",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 43583,
+    "from": "v3.5-af3a6e1",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 43584,
+    "from": "v3.5-af3a6e1",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 43586,
+    "from": "v3.5-af3a6e1",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 43587,
+    "from": "v3.5-af3a6e1",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30042,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30043,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30044,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30045,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30046,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30047,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30050,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30051,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30054,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 38855,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30057,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30074,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30075,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30077,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30082,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 30084,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 38926,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 43585,
+    "from": "v3.5-af3a6e1",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 38847,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 38848,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 38849,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 38850,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 38872,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   },
+   {
+    "id": 38874,
+    "from": "v3.5-7ec992f",
+    "to": "v3.5-65d6500"
+   }
   ],
   "created_after_snapshot": [
    43588,
@@ -327,6 +737,53 @@
    38913,
    38914,
    38917
+  ],
+  "build_line_moved": [
+   {
+    "id": 30102,
+    "from": "v3.5-16cf83f",
+    "to": "v3.6-8c28eed"
+   },
+   {
+    "id": 30510,
+    "from": "v3.5-4795eee",
+    "to": "v3.6-8c28eed"
+   },
+   {
+    "id": 30511,
+    "from": "v3.5-f77875c",
+    "to": "v3.6-8c28eed"
+   },
+   {
+    "id": 30512,
+    "from": "v3.5-16cf83f",
+    "to": "v3.6-8c28eed"
+   },
+   {
+    "id": 30513,
+    "from": "v3.5-16cf83f",
+    "to": "v3.6-8c28eed"
+   },
+   {
+    "id": 30514,
+    "from": "v3.5-16cf83f",
+    "to": "v3.6-8c28eed"
+   },
+   {
+    "id": 30515,
+    "from": "v3.5-16cf83f",
+    "to": "v3.6-8c28eed"
+   },
+   {
+    "id": 30516,
+    "from": "v3.5-16cf83f",
+    "to": "v3.6-8c28eed"
+   },
+   {
+    "id": 30518,
+    "from": "v3.5-16cf83f",
+    "to": "v3.6-8c28eed"
+   }
   ],
   "created_after_snapshot": [
    43591,

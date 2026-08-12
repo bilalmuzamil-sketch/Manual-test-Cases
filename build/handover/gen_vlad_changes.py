@@ -25,6 +25,7 @@ from openpyxl.styles import Alignment, Font, PatternFill
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 D = json.load(open(os.path.join(HERE, 'vlad.json')))
+READ_AT = json.load(open(os.path.join(HERE, 'data.json')))['read_at']
 XLSX = os.path.join(HERE, 'Test-Case-Changes-for-Vlad_2026-08-12.xlsx')
 MD = os.path.join(HERE, 'Test-Case-Changes-for-Vlad_2026-08-12.md')
 
@@ -55,6 +56,9 @@ NOTE = (
     "individual assertions, they will not.\n\n"
     "Sections B and C are for completeness. Section C is new cases, which you can see in "
     "TestRail yourself.\n\n"
+    f"READ FROM TESTRAIL AT {READ_AT}. Another worker was editing the same suites during this "
+    "pass, so a handful of Schedule cases moved after this snapshot; the case ids and the "
+    "Automated set are unaffected.\n\n"
     "Please overrule us on the last column wherever you disagree — we have never seen your "
     "scripts, and something we call cosmetic can still break a check that matches an exact "
     "string."

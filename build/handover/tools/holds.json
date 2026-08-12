@@ -190,24 +190,8 @@
    {
     "id": 30044,
     "title": "'My Shifts' filters the grid to only the current user's shifts",
-    "reason": "needs a second sign-in as a user with no staff record of their own",
+    "reason": "point 4 needs a user with no staff record of their own; points 1 to 3 are observed and pass",
     "status": "Failed",
-    "graded_by": "Mudassir Qamar",
-    "graded_on": 1786464665
-   },
-   {
-    "id": 30074,
-    "title": "Schedule: View grants the full read-only experience across the whole page",
-    "reason": "needs a second sign-in as a view-only user",
-    "status": "Passed",
-    "graded_by": "Mudassir Qamar",
-    "graded_on": 1786464665
-   },
-   {
-    "id": 30075,
-    "title": "View-only: every editing affordance is hidden or disabled",
-    "reason": "needs a second sign-in as a view-only user",
-    "status": "Passed",
     "graded_by": "Mudassir Qamar",
     "graded_on": 1786464665
    },
@@ -247,14 +231,6 @@
     "id": 30081,
     "title": "Schedule without Work Orders: View - the sidebar hides the work order list",
     "reason": "needs a second sign-in as a user who cannot see work orders",
-    "status": "Passed",
-    "graded_by": "Mudassir Qamar",
-    "graded_on": 1786464665
-   },
-   {
-    "id": 30082,
-    "title": "No own-only restriction: a View user sees ALL technicians' shifts",
-    "reason": "needs a second sign-in as a view-only technician",
     "status": "Passed",
     "graded_by": "Mudassir Qamar",
     "graded_on": 1786464665
@@ -318,7 +294,7 @@
    {
     "id": 38872,
     "title": "API - Schedule reads need View; writes need Edit; deletes need Delete (403)",
-    "reason": "needs three separate sign-ins, one per permission level",
+    "reason": "points 1 and 3 need a user with no Schedule permission and a user with Schedule Edit but not Delete; point 2 is observed and passes",
     "status": null,
     "graded_by": null,
     "graded_on": null
@@ -326,7 +302,7 @@
    {
     "id": 38874,
     "title": "API - No pricing fields in Schedule responses; WO details need Work Orders View",
-    "reason": "needs a second sign-in as a user who cannot see work orders",
+    "reason": "point 2 needs a user without Work Orders View; point 1 is observed and passes",
     "status": null,
     "graded_by": null,
     "graded_on": null
@@ -754,9 +730,9 @@
    "other": 0
   },
   "Schedule": {
-   "held": 31,
-   "graded": 18,
-   "passed": 11,
+   "held": 28,
+   "graded": 15,
+   "passed": 8,
    "other": 7
   },
   "Report Suite": {
