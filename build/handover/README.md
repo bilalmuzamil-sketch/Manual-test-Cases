@@ -2,6 +2,43 @@
 
 Two files, both for people outside this session.
 
+> ## ⚠️ READ THIS FIRST — THE COMBINED TESTER SHEET HAS BEEN SPLIT INTO THREE, LATER THE SAME DAY
+>
+> `Manual-Tester-Handover_2026-08-12.xlsx` (item 1 below) is **superseded for hand-off purposes**
+> by **three per-project sheets**, on the QA lead's instruction, verbatim: *"keep the hold on
+> creating Jira tickets, rather give the Spreadsheet for each project to me to handover to the QA
+> tester, so that they create the ticket if needed, just like you did for schedule this morning."*
+>
+> | | |
+> |---|---|
+> | `Schedule_Tester-Handover_2026-08-12.xlsx` (+ `.md`) | 8 problems · 4 misleading tickets · 35 to skip |
+> | `Filters_Tester-Handover_2026-08-12.xlsx` (+ `.md`) | 1 problem · 1 misleading ticket · 18 to skip |
+> | `Report-Suite_Tester-Handover_2026-08-12.xlsx` (+ `.md`) | 1 problem · 3 misleading tickets · 42 to skip |
+>
+> **Each tester gets only what concerns them.** Same four tabs, same layout and tone as the
+> combined sheet it replaces (Standing Rule 16). **The combined sheet is KEPT, not deleted** — it
+> is the record of the earlier snapshot, and its figures were right for their minute.
+>
+> **The counts differ from the combined sheet, and both are right for when they were taken.**
+> Held went **88 → 95** and already-Passed-on-held went **13 → 15**, because more Schedule tests
+> were checked and found to be waiting on something between the two snapshots.
+>
+> Full write-up, generator, live derivation and the 21-check verifier: **`per-project/`**
+> (`data.py` · `gen.py` · `verify.py` · `tools/`). Snapshot **2026-08-12T12:33:19Z**, re-confirmed
+> unchanged at **12:53Z**.
+>
+> **What the three sheets add that the combined one did not:**
+> - **five more Schedule problems** written up — no way to collapse a department heading, the Tech
+>   Hours switch showing nothing, no Priority section in the filter panel, no Unassigned row in the
+>   grid, and the hover summary hiding the VIN behind a display switch;
+> - **a "strongest argument AGAINST it being a fault" column on every problem**, so a tester can
+>   answer the push-back before filing (Standing Rule 52's pre-filing self-challenge);
+> - **the build markers re-read live** — **Schedule and Filters both redeployed at ~12:10 GMT
+>   today**, so their observations predate the running build and every sheet says so;
+> - **three Report Suite tests marked runnable that our own notes say cannot be run** (C30107,
+>   C43591, C38913) — the correcting change was prepared and never executed;
+> - **grouping by blocker on tab 4**, so one unblock is visible as one group.
+
 ## 1. `Manual-Tester-Handover_2026-08-12.xlsx` (+ `.md` twin)
 
 For the manual QA tester, who is reading it for the first time. Four tabs:
