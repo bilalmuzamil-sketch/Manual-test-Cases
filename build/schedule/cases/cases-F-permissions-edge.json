@@ -151,7 +151,7 @@
   "type": "Functional",
   "permissions_required": "A low-tier role with Schedule: View (for example Technician or Time Clock).",
   "preconditions": "1. Shifts and events exist for SEVERAL different technicians.\n2. A test user with a low-tier View-only role exists (and is themselves one of the technicians).\n3. You are signed in AS that user, on the Schedule page.",
-  "steps": "1. Read the grid across all departments and technicians.\n2. Check 'My Shifts' in 'Filter and Display' is OFF (default).",
+  "steps": "1. Read the grid across all departments and technicians.\n2. Check 'My Shifts' in 'Filter & display' is OFF (default).",
   "expected": "1. The user sees ALL technicians' shifts and events, not only their own - there is no role-based 'own shifts only' restriction.\n2. 'My Shifts' exists only as an optional personal convenience filter (off by default), not a security boundary.\n\n---\nThis is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§14.3), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.\n\nAUTOMATION: HOLD - needs a second sign-in as a view-only technician\n",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.3",
