@@ -1,0 +1,121 @@
+{
+  "probe": "S3",
+  "at": "2026-08-12T18:05:34.617Z",
+  "build": "v3.7-20e801b",
+  "c43562_step4": {
+    "optionsSeen": 65,
+    "savedCategory": "Uncategorized",
+    "sharedCategory": ".Brake Parts",
+    "afterSetA": {
+      "url": "https://sv8785.qa.shopview.com/parts/inventory?category=d8e28ff3-c811-46c8-bee5-c5f8f5e2c8e9&category=b25c5c04-fe8d-4c21-a15c-a02c69f1ee5d",
+      "rows": 32,
+      "chip": {
+        "id": "filter_chip_category",
+        "domText": "list Category : .Brake Parts, +1"
+      }
+    },
+    "sharedUrl": "https://sv8785.qa.shopview.com/parts/inventory?category=d8e28ff3-c811-46c8-bee5-c5f8f5e2c8e9",
+    "shared": {
+      "landedOn": "https://sv8785.qa.shopview.com/parts/inventory?category=d8e28ff3-c811-46c8-bee5-c5f8f5e2c8e9",
+      "rows": 6,
+      "chip": {
+        "id": "filter_chip_category",
+        "domText": "list Category : .Brake Parts"
+      }
+    },
+    "control_bare": {
+      "landedOn": "https://sv8785.qa.shopview.com/parts/inventory?category=d8e28ff3-c811-46c8-bee5-c5f8f5e2c8e9&category=b25c5c04-fe8d-4c21-a15c-a02c69f1ee5d",
+      "rows": 32,
+      "chip": {
+        "id": "filter_chip_category",
+        "domText": "list Category : .Brake Parts, +1"
+      }
+    },
+    "sharedShowsSharedCategory": true,
+    "controlShowsSavedCategory": false,
+    "detectorCanFail": true
+  },
+  "salesTaxAllRates": {
+    "before": {
+      "url": "https://sv8785.qa.shopview.com/reports/sales-tax/invoices?range=this_quarter",
+      "chips": [
+        {
+          "id": "filter_chip_range",
+          "domText": "calendar_today Date Range : This quarter"
+        },
+        {
+          "id": "filter_chip_statuses",
+          "domText": "Invoice Status"
+        }
+      ],
+      "rows": 2
+    },
+    "controlFound": {
+      "text": "See All Tax Rates",
+      "tag": "A",
+      "testId": "button_see_all_tax_rates",
+      "href": "/reports/sales-tax/all-tax-rates"
+    },
+    "after": {
+      "url": "https://sv8785.qa.shopview.com/reports/sales-tax/all-tax-rates",
+      "chips": [
+        {
+          "id": "filter_chip_statuses",
+          "domText": "Invoice Status"
+        }
+      ],
+      "rows": 2,
+      "body": "Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 AS LABOR schedule Timesheet Activities PERFORMANCE description Sales percent Technician Efficiency query_stats Advisor Analys"
+    },
+    "wentSomewhere": true
+  },
+  "reportsMultiSelect": {
+    "baseline": {
+      "url": "https://sv8785.qa.shopview.com/reports/notes-report",
+      "chip": {
+        "id": "filter_chip_mention",
+        "domText": "alternate_email Filter by Mention"
+      }
+    },
+    "optionCount": 39,
+    "p1": "Admin ShopView",
+    "p2": "Ahtasham Zeeshan",
+    "menuStillOpenAfterFirstPick": false,
+    "afterOne": {
+      "url": "https://sv8785.qa.shopview.com/reports/notes-report?mention=0eabf741-019e-4b02-84ce-66097c140b3a",
+      "chip": {
+        "id": "filter_chip_mention",
+        "domText": "alternate_email Filter by Mention : Admin ShopView"
+      }
+    },
+    "reopened": true,
+    "optionsOnReopen": 39,
+    "secondIdStillPresent": true,
+    "menuStillOpenAfterSecondPick": false,
+    "afterTwo": {
+      "url": "https://sv8785.qa.shopview.com/reports/notes-report?mention=3c771968-e500-470d-ba7d-ee1257cfd5cf",
+      "chip": {
+        "id": "filter_chip_mention",
+        "domText": "alternate_email Filter by Mention : Ahtasham Zeeshan"
+      }
+    },
+    "settled": {
+      "url": "https://sv8785.qa.shopview.com/reports/notes-report?mention=3c771968-e500-470d-ba7d-ee1257cfd5cf",
+      "chip": {
+        "id": "filter_chip_mention",
+        "domText": "alternate_email Filter by Mention : Ahtasham Zeeshan"
+      },
+      "rows": 0
+    },
+    "mentionParams": {
+      "baseline": 0,
+      "one": 1,
+      "two": 1
+    },
+    "firstPickChangedSomething": true,
+    "secondPickChangedSomething": true,
+    "holdsTwo": false,
+    "detectorCanFail": true
+  },
+  "bridgeErrors": 0
+}
