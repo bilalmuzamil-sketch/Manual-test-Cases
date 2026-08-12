@@ -1,0 +1,299 @@
+{
+  "res": {
+    "build": null,
+    "tabs": [
+      {
+        "t": "Approved - partially completed (15)",
+        "sel": "true"
+      },
+      {
+        "t": "Approved - not started (3)",
+        "sel": "false"
+      },
+      {
+        "t": "Completed (4)",
+        "sel": "false"
+      },
+      {
+        "t": "Estimates (15)",
+        "sel": "false"
+      }
+    ],
+    "menu": {
+      "raw": [
+        "Download (PDF)",
+        "Download (CSV)"
+      ],
+      "innerText": "Download (PDF)\nDownload (CSV)",
+      "items": [
+        {
+          "txt": "Download (PDF)",
+          "inner": "Download (PDF)",
+          "tid": "action_wip_export_pdf"
+        },
+        {
+          "txt": "Download (CSV)",
+          "inner": "Download (CSV)",
+          "tid": "action_wip_export_csv"
+        }
+      ]
+    },
+    "attempts": [
+      {
+        "i": 0,
+        "label": "Download (PDF)",
+        "newReqs": [
+          {
+            "m": "GET",
+            "u": "/api/reporting/reports/work-in-progress/export?format=pdf&tab=ApprovedPartiallyCompleted&from=2026-08-09T00:00:00.000Z&to=2026-08-12T23:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&columns=wo_number,status,customer,asset,advisor,days_open,earned,remaining,total&sortBy=days_open&descending=true",
+            "pd": ""
+          }
+        ],
+        "newDownloads": [
+          {
+            "name": "wip-2-report.pdf",
+            "url": "blob:https://sv8582.qa.shopview.com/1f03e1fd-e5df-4cad-a131-ef85f7ea854b",
+            "saved": "/home/user/Manual-test-Cases/build/report-suite/build-viu-2026-08-12/evidence/dl-wip-2-report.pdf"
+          }
+        ],
+        "notification": [
+          "check_circle\nSuccess\nData exported successfully.\nClose",
+          "Success\nData exported successfully."
+        ]
+      },
+      {
+        "i": 1,
+        "label": "Download (CSV)",
+        "newReqs": [
+          {
+            "m": "GET",
+            "u": "/api/reporting/reports/work-in-progress/export?format=csv&tab=ApprovedPartiallyCompleted&from=2026-08-09T00:00:00.000Z&to=2026-08-12T23:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&columns=wo_number,status,customer,asset,advisor,days_open,earned,remaining,total&sortBy=days_open&descending=true",
+            "pd": ""
+          }
+        ],
+        "newDownloads": [
+          {
+            "name": "wip-2-report.csv",
+            "url": "blob:https://sv8582.qa.shopview.com/c7dce274-35d9-4029-ac6e-e383395f2c86",
+            "saved": "/home/user/Manual-test-Cases/build/report-suite/build-viu-2026-08-12/evidence/dl-wip-2-report.csv"
+          }
+        ],
+        "notification": [
+          "check_circle\nSuccess\nData exported successfully.\nClose",
+          "Success\nData exported successfully."
+        ]
+      }
+    ]
+  },
+  "reqs": [
+    {
+      "m": "POST",
+      "u": "https://o1220818.ingest.sentry.io/api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F8.55.2",
+      "pd": "{}\n{\"type\":\"client_report\"}\n{\"timestamp\":1786505866.234,\"discarded_events\":[{\"reason\":\"network_error\",\"category\":\"session\",\"quantity\":1},{\"reason\":\"sample_rate\",\"category\":\"transaction\",\"quantity\":1}]}"
+    },
+    {
+      "m": "GET",
+      "u": "https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCPN5W8yDviHWCRbLHfGys421NDST6Jsno&callback=Function.prototype&loading=async",
+      "pd": ""
+    },
+    {
+      "m": "POST",
+      "u": "https://o1220818.ingest.sentry.io/api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F8.55.2",
+      "pd": "{\"sent_at\":\"2026-08-12T03:37:46.554Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"8.55.2\"}}\n{\"type\":\"session\"}\n{\"sid\":\"8a0f92f6ffe44148a643f11811eb71bf\",\"init\":true,\"started\":\"2026-08-12T03:37:46.554Z\",\"timestamp\":\"2026-08-12T03:37:46.554Z\",\"status\":\"ok\",\"errors\":0,\"attrs\":{\"release\":\"shopview-app@v3.6\",\"environment\":\"qa\",\"user_agent\":\"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36\"}}"
+    },
+    {
+      "m": "GET",
+      "u": "/api/staff/my-workplaces",
+      "pd": ""
+    },
+    {
+      "m": "GET",
+      "u": "/api/organization/feature-flags?organization_id=",
+      "pd": ""
+    },
+    {
+      "m": "GET",
+      "u": "/api/technician-tasks/my-current-task",
+      "pd": ""
+    },
+    {
+      "m": "GET",
+      "u": "/api/reporting/reports/work-in-progress/filters?from=2026-08-09T00%3A00%3A00.000Z&to=2026-08-12T23%3A59%3A59.999Z",
+      "pd": ""
+    },
+    {
+      "m": "GET",
+      "u": "/api/reporting/reports/work-in-progress?from=2026-08-09T00%3A00%3A00.000Z&to=2026-08-12T23%3A59%3A59.999Z&tab=ApprovedPartiallyCompleted&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_open&pagination%5Bdescending%5D=true",
+      "pd": ""
+    },
+    {
+      "m": "GET",
+      "u": "/api/global-search/fetch",
+      "pd": ""
+    },
+    {
+      "m": "GET",
+      "u": "/api/iam/view-profile/",
+      "pd": ""
+    },
+    {
+      "m": "GET",
+      "u": "/api/notes?mention_id=0eabf741-019e-4b02-84ce-66097c140b3a&is_read=false",
+      "pd": ""
+    },
+    {
+      "m": "GET",
+      "u": "/api/notifications/subscribe-token",
+      "pd": ""
+    },
+    {
+      "m": "GET",
+      "u": "/api/reporting/individual-punch-clock/today?range=today",
+      "pd": ""
+    },
+    {
+      "m": "GET",
+      "u": "/api/reporting/reports/work-in-progress/filters?from=2026-08-09T00%3A00%3A00.000Z&to=2026-08-12T23%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+      "pd": ""
+    },
+    {
+      "m": "GET",
+      "u": "/api/reporting/reports/work-in-progress?from=2026-08-09T00%3A00%3A00.000Z&to=2026-08-12T23%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&tab=ApprovedPartiallyCompleted&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_open&pagination%5Bdescending%5D=true",
+      "pd": ""
+    },
+    {
+      "m": "GET",
+      "u": "/api/reporting/individual-punch-clock/today?range=today",
+      "pd": ""
+    },
+    {
+      "m": "GET",
+      "u": "/api/reporting/reports/work-in-progress/export?format=pdf&tab=ApprovedPartiallyCompleted&from=2026-08-09T00:00:00.000Z&to=2026-08-12T23:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&columns=wo_number,status,customer,asset,advisor,days_open,earned,remaining,total&sortBy=days_open&descending=true",
+      "pd": ""
+    },
+    {
+      "m": "GET",
+      "u": "/api/reporting/reports/work-in-progress/export?format=csv&tab=ApprovedPartiallyCompleted&from=2026-08-09T00:00:00.000Z&to=2026-08-12T23:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&columns=wo_number,status,customer,asset,advisor,days_open,earned,remaining,total&sortBy=days_open&descending=true",
+      "pd": ""
+    }
+  ],
+  "resp": [
+    {
+      "s": 200,
+      "u": "/api/staff/my-workplaces",
+      "ct": "application/json",
+      "cl": "2576",
+      "err": ""
+    },
+    {
+      "s": 200,
+      "u": "/api/technician-tasks/my-current-task",
+      "ct": "application/json",
+      "cl": "31",
+      "err": ""
+    },
+    {
+      "s": 400,
+      "u": "/api/organization/feature-flags?organization_id=",
+      "ct": "application/problem+json",
+      "cl": "57",
+      "err": "{\"errors\":[{\"organization_id\":\"Invalid parameter type\"}]}"
+    },
+    {
+      "s": 200,
+      "u": "/api/reporting/reports/work-in-progress/filters?from=2026-08-09T00%3A00%3A00.000Z&to=2026-08-12T23%3A59%3A59.999Z",
+      "ct": "application/json",
+      "cl": "1320",
+      "err": ""
+    },
+    {
+      "s": 200,
+      "u": "/api/reporting/reports/work-in-progress?from=2026-08-09T00%3A00%3A00.000Z&to=2026-08-12T23%3A59%3A59.999Z&tab=ApprovedPartiallyCompleted&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_open&pagination%5Bdescending%5D=true",
+      "ct": "application/json",
+      "cl": "8755",
+      "err": ""
+    },
+    {
+      "s": 200,
+      "u": "/api/reporting/individual-punch-clock/today?range=today",
+      "ct": "application/json",
+      "cl": "101",
+      "err": ""
+    },
+    {
+      "s": 200,
+      "u": "/api/notes?mention_id=0eabf741-019e-4b02-84ce-66097c140b3a&is_read=false",
+      "ct": "application/json",
+      "cl": "96",
+      "err": ""
+    },
+    {
+      "s": 200,
+      "u": "/api/notifications/subscribe-token",
+      "ct": "application/json",
+      "cl": "308",
+      "err": ""
+    },
+    {
+      "s": 200,
+      "u": "/api/iam/view-profile/",
+      "ct": "application/json",
+      "cl": "996",
+      "err": ""
+    },
+    {
+      "s": 200,
+      "u": "/api/reporting/individual-punch-clock/today?range=today",
+      "ct": "application/json",
+      "cl": "101",
+      "err": ""
+    },
+    {
+      "s": 200,
+      "u": "/api/reporting/reports/work-in-progress?from=2026-08-09T00%3A00%3A00.000Z&to=2026-08-12T23%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&tab=ApprovedPartiallyCompleted&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_open&pagination%5Bdescending%5D=true",
+      "ct": "application/json",
+      "cl": "8755",
+      "err": ""
+    },
+    {
+      "s": 200,
+      "u": "/api/reporting/reports/work-in-progress/filters?from=2026-08-09T00%3A00%3A00.000Z&to=2026-08-12T23%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+      "ct": "application/json",
+      "cl": "1320",
+      "err": ""
+    },
+    {
+      "s": 200,
+      "u": "/api/global-search/fetch",
+      "ct": "application/json",
+      "cl": "9514826",
+      "err": ""
+    },
+    {
+      "s": 200,
+      "u": "/api/reporting/reports/work-in-progress/export?format=pdf&tab=ApprovedPartiallyCompleted&from=2026-08-09T00:00:00.000Z&to=2026-08-12T23:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&columns=wo_number,status,customer,asset,advisor,days_open,earned,remaining,total&sortBy=days_open&descending=true",
+      "ct": "application/pdf; charset=UTF-8",
+      "cl": "177683",
+      "err": ""
+    },
+    {
+      "s": 200,
+      "u": "/api/reporting/reports/work-in-progress/export?format=csv&tab=ApprovedPartiallyCompleted&from=2026-08-09T00:00:00.000Z&to=2026-08-12T23:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&columns=wo_number,status,customer,asset,advisor,days_open,earned,remaining,total&sortBy=days_open&descending=true",
+      "ct": "text/csv; charset=UTF-8",
+      "cl": "1366",
+      "err": ""
+    }
+  ],
+  "dls": [
+    {
+      "name": "wip-2-report.pdf",
+      "url": "blob:https://sv8582.qa.shopview.com/1f03e1fd-e5df-4cad-a131-ef85f7ea854b",
+      "saved": "/home/user/Manual-test-Cases/build/report-suite/build-viu-2026-08-12/evidence/dl-wip-2-report.pdf"
+    },
+    {
+      "name": "wip-2-report.csv",
+      "url": "blob:https://sv8582.qa.shopview.com/c7dce274-35d9-4029-ac6e-e383395f2c86",
+      "saved": "/home/user/Manual-test-Cases/build/report-suite/build-viu-2026-08-12/evidence/dl-wip-2-report.csv"
+    }
+  ]
+}
