@@ -5,8 +5,11 @@
 > First proven on **Fees & Discounts** (2026-07-13; all 183 cases, all pushed, 0 errors).
 > **Apply this to any project (Fees & Discounts / Simple Flow / Custom Roles / future) ONLY
 > WHEN THE USER ASKS.** Ties directly to **CLAUDE.md Standing Rule 9** (build-accurate,
-> layman-friendly wording) and Standing Rules 6/8/9 (TestRail is the only real system;
-> per-day authorization; TestRail Case ID + Link columns in deliverables).
+> layman-friendly wording — **and, since its 2026-08-12 amendment, RUNNABILITY: preconditions
+> and steps verified against the build**) and Standing Rules 6/8/9 (TestRail is the only real
+> system; per-day authorization; TestRail Case ID + Link columns in deliverables), plus
+> **Standing Rule 57** (the expected behaviour comes from the documents, never the build) and
+> **Standing Rule 10** (whose behaviour-verdict half passed to the manual tester on 2026-08-11).
 
 ---
 
@@ -20,6 +23,30 @@ Deliver test cases a **new, non-technical manual tester** can run with zero prio
   and a `fresh_run` date.
 - The corrected wording + status is **synced to TestRail** (update_case only), with a
   per-case audit log, so TestRail matches the source of truth.
+
+> **⇒ AMENDED 2026-08-12 (CLAUDE.md Standing Rule 9) — THE TEST OF THIS PROCESS IS
+> *RUNNABILITY*, NOT JUST LABELS. EVERY PRECONDITION AND EVERY STEP MUST BE **VERIFIED
+> AGAINST THE BUILD** so a manual tester can execute the case as written.**
+> QA lead, verbatim: *"steps of reproduction MUST be verified from the build to 100% ensure
+> that when manual tester would run the test he will be able to run it."* and *"if the steps
+> of reproduction and preconditions are not runnable as they differ from what is there in the
+> build then the manual tester can not test that test."*
+>
+> **🔑 THE BUILD IS THE CHECK, NEVER THE AUTHOR.** Steps come from **what the case exists to
+> test**; the build **confirms they can be run**. Where a step cannot be executed as written,
+> correct it to **the minimum that makes it executable** — **never rewrite the case around what
+> the build makes convenient, and never invent a step.** Writing steps by walking the build lets
+> the product choose our coverage: the suite ends up testing whatever was easiest to reach.
+>
+> **🛑 AND THE EXPECTED BEHAVIOUR STILL COMES ONLY FROM THE DOCUMENTS (Standing Rule 57) —
+> restated intact, because "take the steps from the build" is exactly the clause that could be
+> over-read into "take the expectation from the build too", which is the failure that cost 748
+> cases on 5 August 2026.** His own words in the same directive: *"YES the expected behavior
+> should come from the sources rather than the build."*
+>
+> **📊 THE STANDARD IS 100%, AND THE COUNT IS HONEST: an unverified step is an unverified case.**
+> Report **how many cases had EVERY step verified, on which build marker** — never how many were
+> "looked at". The five-check runnability test is in **step (2a)** below.
 
 ---
 
@@ -64,6 +91,35 @@ Update Title / Preconditions / Steps / Expected of every case in the area:
   from tester-facing fields).
 - **Never invent** — if a term cannot be confirmed from the build, **FLAG it** rather than
   guess.
+- **The EXPECTED RESULT is rewritten for WORDING ONLY.** Its assertion comes from the
+  documents (Standing Rule 57) and **does not change in this step** — if a rewrite would
+  alter what the case asserts, **stop**: that is a sourcing decision, not a wording one.
+
+**(2a) VERIFY RUNNABILITY — the five checks, on EVERY case (Standing Rule 9, 2026-08-12).**
+Steps come from **what the case exists to test**; this step **verifies them against the
+build** so a tester can actually execute them. **The build is the check, never the author.**
+Fail any one of these and the case is not runnable:
+1. **Is the precondition reachable?** Does the data state exist, or can it be seeded
+   (Standing Rule 14)? If genuinely unreachable → `AUTOMATION: HOLD` with a plain reason
+   **plus a tester-facing "mark BLOCKED, not failed" line** — never a silent pass.
+2. **Does the navigation path exist?** Every screen, tab and menu the steps name.
+3. **Does each named control exist WHERE THE STEP SAYS IT IS** — not merely somewhere on
+   the page? *(Live 2026-08-12: `C38926` sent the tester to the roles-list three-dot menu
+   for `Reset to template`; that menu holds only `View Permissions` — the control is on the
+   role's own edit screen. A tester would have stalled on the case that resets every role
+   before permission testing.)*
+4. **Do the steps work in the order written?** A step depending on a state no earlier step
+   creates is **not runnable**, however correct each line looks alone.
+5. **Are the labels the ones actually on screen — read the COMPUTED STYLE, not
+   `textContent`?** *(Live 2026-08-12: WIP tab labels carry `text-transform: capitalize`;
+   `textContent` gives "Approved - partially completed" while the tester reads "Approved -
+   Partially Completed". A `textContent`-only sweep nearly "corrected" five cases on a FINAL
+   report into being wrong, hours before release. **Both readings are needed — neither alone
+   is "the label".**)*
+
+Where a step fails a check, **correct it to the MINIMUM that makes it executable.** Record
+per case whether **every** step was verified — **an unverified step is an unverified case**,
+and the pass reports **N of M with the build marker**, never a rounded-up total.
 
 **(3) VIU the behavior — LIVE UI-OBSERVED, with evidence, never inferred.**
 Exercise the case **live in the UI** and capture evidence **that run** (a screenshot
@@ -199,6 +255,18 @@ nor a spec anchor is flagged missing-traceability, not left unsourced.
   while a manual tester is active on the shared env; a role negative isn't testable because
   the shared role has drifted. Record it as an action, not a fake result.
 - Only mark **Verified** what you actually exercised (or re-validated with fresh evidence).
+- **AN UNVERIFIED STEP IS AN UNVERIFIED CASE (2026-08-12).** A suite may be called runnable
+  **only to the extent its steps have actually been verified against the build** — one
+  unchecked step disqualifies the whole case from the count, because that is the step the
+  tester stops on. Report **how many cases had EVERY step verified, on which build marker** —
+  never "swept", "looked at", or "expected to be fine".
+- **DESCRIBE THE RESULT HONESTLY.** With Rule 10's 2026-08-11 amendment the **manual QA tester**
+  records pass or fail, not us — so a suite in this state is
+  **"source-verified and build-accurate in its preconditions, steps, navigation and labels —
+  with the behaviour verdict belonging to the tester"**, and **NOT "VIU complete"**. Plainly:
+  *"Every case says what the documents require, and every case can actually be run on the build
+  as written. Whether the build does what the documents require is the tester's call — and that
+  is by design."*
 
 ---
 
@@ -235,10 +303,14 @@ authorized)".
 1. Cookies in `/tmp` (chmod 600) · backend healthy · **fresh TestRail authorization** ·
    re-derive roles matrix if perms in scope.
 2. For each area: capture labels + screenshots → rewrite Title/Precond/Steps/Expected to
-   exact build terms (layman; no VIU/flag words; flag unconfirmables) → VIU + set
+   exact build terms (layman; no VIU/flag words; flag unconfirmables; **the expectation's
+   assertion does NOT change — wording only**) → **VERIFY RUNNABILITY: the five checks on
+   every case (step 2a) — precondition reachable · path exists · control where the step says
+   · steps work in order · labels read from computed style** → VIU + set
    `viu_status`/evidence/`fresh_run` → commit by pathspec → push via `update_case`
    (GET→diff→update→200/200; skip no-ops; API-section rule) + audit log → report
-   tester-ready.
+   tester-ready **with the honest N-of-M: how many cases had EVERY step verified, on which
+   build marker**.
 3. Leave real blockers blocked with precise reasons; note shared-tester limits.
 4. Regenerate import + Blockers Tracker + results workbook (keep Case ID + Link columns).
 5. **State the TestRail update status explicitly** in the final report.

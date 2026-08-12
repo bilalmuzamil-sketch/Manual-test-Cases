@@ -2204,6 +2204,127 @@ deliver the 7-tab management report.
    method for this (capture labels → rewrite → VIU → push → deliverables) is
    `build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md`; apply it to a given project WHEN THE
    USER ASKS.**
+   **⇒ AMENDMENT, 2026-08-12 — THIS RULE IS WIDER THAN "LABELS", AND ITS TEST IS *RUNNABILITY*.
+   EVERY PRECONDITION AND EVERY STEP MUST BE **VERIFIED AGAINST THE BUILD**; THE EXPECTED BEHAVIOUR
+   STILL COMES ONLY FROM THE DOCUMENTS. This is a SHARPENING of the rule, NOT a reversal of Rule
+   57.** The wording above is kept verbatim and dated, never deleted (the Rules 31/52/53 pattern) —
+   it was never wrong, it was read too narrowly.
+   USER DIRECTIVE (2026-08-12, verbatim, his typing preserved exactly as he wrote it because Rule 25
+   applies to his instructions as it does to a spec): *"I understand, you have to address my concern,
+   so even if you are not fully following what is meant by VIU, you have to make sure that the
+   Preconditions/Steps or preproduction and Expected behavior are correct and Runnable by the manual
+   tester. Steps of reproduction should not be the invented ones, neither the expected behaviors. For
+   the steps of reproduction you can take them from the build to make them correct, and I need those
+   steps of reproduction and preconditions mentioned in the test cases correct to the level that they
+   can be executed by the manual QA tester, if the steps of reproduction and preconditions are not
+   runnable as they differ from what is there in the build then the manual tester can not test that
+   test, YES the expected behavior should come from the sources rather than the build, Keep the VIU
+   rule but correct it as needed."*
+   **⇒ AND HE SHARPENED IT THE SAME DAY, verbatim — THIS SECOND FORMULATION IS THE OPERATIVE ONE:**
+   *"when I say steps of reproduction can be taken from build I mean, that steps of reproduction MUST
+   be verified from the build to 100% ensure that when manual tester would run the test he will be
+   able to run it."*
+   **🔑 THE DISTINCTION, AND IT IS THE WHOLE POINT: THE BUILD IS THE *CHECK*, NEVER THE *AUTHOR*.**
+   **· ❌ NOT THIS:** observe the build, then write the steps to describe what it does. **That would
+   let the build AUTHOR OUR COVERAGE — the same failure mode as taking an expectation from it, one
+   layer down.** A case whose steps were written by watching the build **ends up testing whatever the
+   build happens to make easy**, and it will look impeccable while doing it.
+   **· ✅ THIS:** the steps come from **what the case exists to test**; **every one is then VERIFIED
+   against the build** so that a manual tester can actually execute it. **Where a step cannot be
+   executed as written, it is CORRECTED to the MINIMUM that makes it executable — never a rewrite of
+   the case around what the build makes convenient, and never an invented step.**
+   **🔴 THE TWO-WAY SPLIT — READ BOTH HALVES TOGETHER, NEVER ONE ALONE:**
+   **· PRECONDITIONS · STEPS · NAVIGATION · LABELS → 100% VERIFIED AGAINST THE BUILD, and must be
+   EXECUTABLE EXACTLY AS WRITTEN.** The obligation is **VERIFICATION, not derivation**: *"steps of
+   reproduction MUST be verified from the build to 100% ensure that when manual tester would run the
+   test he will be able to run it."*
+   **· EXPECTED BEHAVIOUR → COMES ONLY FROM THE DOCUMENTS (Standing Rule 57), in his own words:
+   *"YES the expected behavior should come from the sources rather than the build"*.**
+   **· NEITHER MAY BE INVENTED — his words cover both halves in one breath: *"Steps of reproduction
+   should not be the invented ones, neither the expected behaviors."*** **AN INVENTED STEP IS WORSE
+   THAN A MISSING ONE, BECAUSE IT *LOOKS* RUNNABLE** and the tester only discovers otherwise with the
+   case open in front of them.
+   **🛑 TWO GUARDS, AND THEY PROTECT AGAINST OPPOSITE ERRORS — BOTH ARE LOAD-BEARING:**
+   **· GUARD 1 — THE BUILD MAY NOT SUPPLY THE *EXPECTATION*. RULE 57 IS UNTOUCHED AND IS RESTATED
+   HERE INTACT: THE EXPECTED BEHAVIOUR COMES FROM THE DOCUMENTS, NEVER FROM THE BUILD.** This is
+   spelled out because **the clause *"for the steps of reproduction you can take them from the
+   build"* is EXACTLY the sentence a future session could over-read into "take the expectation from
+   the build too"** — which is the failure that cost **748 cases on 5 August 2026** (Rule 57's
+   rationale). **The licence is scoped to the ROUTE — how you get there, what the screen is called,
+   what the button says. It stops dead at the ASSERTION.**
+   **· GUARD 2 — THE BUILD MAY NOT SUPPLY THE *COVERAGE*.** Steps are **verified** against the build,
+   never **authored** from it. **A pass that walks the build and writes down what it finds has let
+   the product decide what gets tested** — it will produce a suite that passes handsomely and covers
+   whatever was easiest to reach. **Guard 1 keeps the build out of the assertion; guard 2 keeps it
+   out of the coverage.** Neither substitutes for the other, and **the second is the easier one to
+   breach without noticing**, because the resulting case is genuinely runnable and reads as careful
+   work.
+   **THE RUNNABILITY TEST — FIVE CHECKS, AND A REVIEWER MAY FAIL A CASE ON ANY ONE OF THEM:**
+   **(1) IS THE PRECONDITION REACHABLE?** Does the required data state exist, or can it be seeded
+   (Rule 14)? **If it is genuinely unreachable, that is an `AUTOMATION: HOLD` with a plain reason and
+   a tester-facing "mark BLOCKED, not failed" instruction — NEVER a silent pass.**
+   **(2) DOES THE NAVIGATION PATH EXIST?** Every screen, tab and menu the steps name.
+   **(3) DOES EACH NAMED CONTROL EXIST WHERE THE STEP SAYS IT IS?** — **not merely somewhere on the
+   page.** A control that exists two screens away is a failed check, not a near miss.
+   **(4) DO THE STEPS WORK IN THE ORDER WRITTEN?** **A step that depends on a state no earlier step
+   creates is NOT runnable**, however correct each line looks in isolation.
+   **(5) ARE THE LABELS THE ONES ACTUALLY ON SCREEN?** — **read the COMPUTED STYLE, not
+   `textContent`.** A label carrying `text-transform: capitalize` **reads one way in the DOM and
+   another to the tester**, and **BOTH READINGS ARE NEEDED — neither alone is "the label".**
+   **WHY THIS MATTERS, IN HIS TERMS: a case whose steps do not match the build CANNOT BE EXECUTED AT
+   ALL** — *"then the manual tester can not test that test."* **A perfect expectation sitting behind
+   an unrunnable precondition is worth NOTHING**, and it fails silently: the tester does not report a
+   defect, they simply stop.
+   **📊 THE REPORTING CONSEQUENCE — THE STANDARD IS 100%, AND THE COUNT IS STATED HONESTLY, NEVER
+   ROUNDED UP.** His words are *"verified from the build to 100%"*, so: **a suite may be called
+   runnable ONLY to the extent its steps have ACTUALLY been verified.** **AN UNVERIFIED STEP IS AN
+   UNVERIFIED CASE** — one unchecked step disqualifies the whole case from the runnable count, because
+   that is the step the tester will stop on. **The honest report is HOW MANY CASES HAD EVERY STEP
+   VERIFIED — not how many were "looked at", "swept", "covered by a label pass" or "expected to be
+   fine".** State it as **N of M, on which build marker** (Rules 12/17/50; Rule 60(d) bars the blanket
+   caveat that hides the number). **A case whose steps were never checked against the build is
+   reported as exactly that**, not folded into a total.
+   **RATIONALE, 2026-08-12 — TWO LIVE EXAMPLES FROM THIS WEEK, AND BOTH ARE OURS:**
+   **(a) [C38926](https://shopview.testrail.io/index.php?/cases/view/38926) (Schedule)** sent the
+   tester to the **roles-list three-dot menu** to use **`Reset to template`** — **that menu offers
+   ONLY `View Permissions`** (measured on Technician and Parts Manager). The control lives on the
+   role's own screen at `/administration/roles-permissions/<id>/edit`. **A tester would have been
+   stuck on the very case that resets every role before permission testing** — check (3) catches it.
+   Evidence: `build/schedule/build-viu-2026-08-12/FINDINGS.md` §F2.
+   **(b) [C43561](https://shopview.testrail.io/index.php?/cases/view/43561) = FLT-PSRCH-14
+   (Filters)** told the tester to *"Open the **Sales Tax** report, choose the **Collected** tab"* —
+   **a report and a tab in that shape the specification does not describe**; `S13-R19` names
+   **"Sales Tax (Collected)"** as ONE surface. **The case is `READY` and UNTESTED**, so a tester
+   would have opened it and stopped — check (2) catches it. Evidence:
+   `build/filters/build-viu-2026-08-12/CHANGES-MADE.md` §1.
+   **(c) AND THE COUNTER-EXAMPLE THAT PRODUCED CHECK (5): a `textContent`-only sweep nearly
+   "CORRECTED" FIVE Work In Progress cases INTO BEING WRONG** — on a **FINAL** report, **hours before
+   release**. The tab labels carry `text-transform: capitalize`: `textContent` gives
+   *"Approved - partially completed"* while **the tester reads *"Approved - Partially Completed"* —
+   and our cases said the second, and were RIGHT.** Evidence:
+   `build/report-suite/build-viu-2026-08-12/FINDINGS.md`.
+   **⚠️ HONEST SCOPE NOTE — WHAT A SUITE IN THIS STATE MAY AND MAY NOT BE CALLED.** The QA lead has
+   **separately re-scoped the behaviour half** (Rule 10's 2026-08-11 amendment): **the MANUAL QA
+   TESTER records pass or fail; WE DO NOT.** So a suite that has had this treatment is described as
+   **"source-verified and build-accurate in its preconditions, steps, navigation and labels — with
+   the behaviour verdict belonging to the tester"**, and **NOT as "VIU complete"**.
+   **THE PLAINER PHRASING, RECORDED DELIBERATELY BECAUSE IT IS WHAT HE WILL SAY OUT LOUD WHEN
+   CHALLENGED — and it is BOTH TRUE AND STRONGER THAN AN OVERCLAIM:** ***"Every case says what the
+   documents require, and every case can actually be run on the build as written. Whether the build
+   does what the documents require is the tester's call — and that is by design."***
+   Ties to Standing Rules 7 (plain layman wording), 10 (**"VIU" means this method end to end — and
+   its behaviour half is the tester's since 2026-08-11**), 12 (observed, never inferred — a
+   runnability check is an OBSERVATION and must genuinely be made), 13 (live feature-by-feature), 14
+   (seed the state rather than declare blocked — check (1)'s first resort), 25 (**"matched to the
+   build" = VIU'd against the build: the route, never the assertion**), 41 (touch a case → the
+   whole-case re-read now includes all five checks), 42 (a scope-conditional expectation is still
+   worth nothing behind an unrunnable precondition), 49 (a runnability finding on a non-final build
+   is still PROVISIONAL), 54 (sentence 2 records when the route was last checked; sentence 1 still
+   names documents only), 57 (**UNTOUCHED — the expectation comes from the documents, never the
+   build**), 58 (an ambiguous source about a STEP is settled from the build; an ambiguous source
+   about an EXPECTATION is held and asked), 60 (**layer 1 is hereby WIDENED from "labels and
+   navigation" to "preconditions, steps, navigation and labels"**) and 61 (a held case tells the
+   tester to mark BLOCKED, not failed).
 10. **"VIU" = the full BUILD-ACCURATE-WORDING-VIU-PROCESS (all projects, default
     meaning):** When the user says **"VIU the test cases"** (or "do the VIU"), it
     means **run `build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md` END-TO-END** (this is
@@ -2281,6 +2402,32 @@ deliver the 7-tab management report.
     **The full callable list, with trigger phrases and the deliverable each produces, is
     `build/PROCESS-CATALOG.md` — read it to pick and name the processes rather than reconstructing
     them from memory.**
+    **⇒ AMENDMENT, 2026-08-12 — THE WORDING HALF OF THIS RULE IS WIDER THAN "LABELS": IT IS
+    RUNNABILITY, AND IT COVERS PRECONDITIONS, STEPS AND NAVIGATION AS WELL. Full text, the verbatim
+    directive and the FIVE-CHECK RUNNABILITY TEST live at the tail of Standing Rule 9** — recorded
+    once there rather than duplicated here, because Rule 9 is where the wording obligation is
+    defined and a divergent second copy is how the two drift apart.
+    **WHAT IT CHANGES IN THIS RULE'S STEP LIST, IN ONE LINE:** the step above that reads *"rewrite
+    every case Title/Preconditions/Steps/Expected into build-accurate, layman, non-technical
+    wording"* is **not satisfied by correcting labels alone** — **every precondition and every step
+    must be VERIFIED AGAINST THE BUILD and be EXECUTABLE EXACTLY AS WRITTEN**, and a pass that
+    skipped the five checks **has not done this rule's wording half.** QA lead, verbatim
+    (2026-08-12): *"steps of reproduction MUST be verified from the build to 100% ensure that when
+    manual tester would run the test he will be able to run it."* and *"Keep the VIU rule but correct
+    it as needed."*
+    **🛑 TWO GUARDS, BOTH RESTATED: THE BUILD SUPPLIES NEITHER THE EXPECTATION NOR THE COVERAGE.**
+    **(1) RULE 57 IS INTACT — THE EXPECTED BEHAVIOUR STILL COMES FROM THE DOCUMENTS, NEVER FROM THE
+    BUILD**, in his own words: *"YES the expected behavior should come from the sources rather than
+    the build"*. **(2) THE BUILD IS THE CHECK, NEVER THE AUTHOR** — steps come from what the case
+    exists to test and are then **verified** against the build; **a suite whose steps were written by
+    watching the build tests whatever the build made easy.**
+    **AND THE COUNT IS HONEST: an unverified step is an unverified case**, so a VIU report states
+    **how many cases had EVERY step verified, on which build marker** — never how many were looked
+    at (Rule 9's reporting consequence).
+    **HOW A SUITE IN THIS STATE IS DESCRIBED (with this rule's 2026-08-11 behaviour-verdict
+    amendment above): "source-verified and build-accurate in its preconditions, steps, navigation and
+    labels — with the behaviour verdict belonging to the tester" — NEVER "VIU complete".** The plain
+    spoken form is recorded at the tail of Rule 9.
 11. **ALWAYS ASK which process to run on a new/updated spec OR a VIU request (all
     projects):** Whenever the user provides a spec (new or updated) OR asks to VIU,
     ALWAYS ASK the user first whether they want (1)
@@ -2611,7 +2758,21 @@ deliver the 7-tab management report.
     that the test case should be VIU'd from the build"*. The reasoning in one line: **if the
     expected behaviour bends to whatever shipped, the case can no longer fail, and a test that
     cannot fail is not a test.** The source of expected behaviour is governed by **Standing Rule
-    57**. Never assert a deviation from memory or a
+    57**.
+    **⇒ WIDENED 2026-08-12 (Standing Rule 9's amendment): "MATCHED TO THE BUILD" COVERS THE
+    PRECONDITIONS AND THE WHOLE NAVIGATION ROUTE, NOT JUST THE LABELS AND STEP ORDER LISTED ABOVE —
+    AND IT MEANS *VERIFIED AGAINST* THE BUILD, NOT *DERIVED FROM* IT.** QA lead, verbatim: *"steps of
+    reproduction MUST be verified from the build to 100% ensure that when manual tester would run the
+    test he will be able to run it."* **THE BUILD IS THE CHECK, NEVER THE AUTHOR:** steps come from
+    **what the case exists to test**, the build **confirms they can be run**, and a step that cannot
+    be executed as written is corrected to **the minimum that makes it executable**. **The sentence
+    immediately above is UNCHANGED and is the reason the widening is safe: it has NEVER meant
+    rewriting what the case EXPECTS** — *"YES the expected behavior should come from the sources
+    rather than the build"* (same directive). **So the check confirms the ROUTE and stops dead at
+    the ASSERTION**, and the repair for an unsupported assertion remains **removal or
+    scope-conditional wording (Rule 42), never substitution.** The five-check runnability test is at
+    the tail of Rule 9.
+    Never assert a deviation from memory or a
     prose summary; pull the wording from the canonical spec/ticket (Rule 15 verbatim
     truth-table; Rule 23 read Confluence when unsure). Rationale, 2026-07-23: FD-STATS-002
     (C28460) "expected a per-row target + clickable link" — but the FD spec only says
@@ -2622,7 +2783,8 @@ deliver the 7-tab management report.
     that point, and **that ambiguity is what cost us 2026-08-05** (see Rule 57). User: "whenever
     you discuss a deviation, give specs/tickets/stories reference
     with the wordings from which the test case is deviating." Ties to Standing Rules 12/15/20/23
-    and 57 (the source of expected behaviour is the document, never the build).
+    and 57 (the source of expected behaviour is the document, never the build), **and 9 (the
+    2026-08-12 widening of what "matched to the build" covers)**.
 26. **Reset roles to template/default BEFORE any permission/role verification on a shared/
     disposable environment (all projects).** Whenever verifying permission- or role-gated
     behavior — a permission/role VIU (e.g. role-matrix cases), a prod-vs-staging (or any
@@ -3331,6 +3493,18 @@ deliver the 7-tab management report.
     field the pass did NOT intend to change proven byte-identical to its pre-write snapshot.** Where the re-read finds a further problem the pass was not chartered to fix,
     **RECORD IT** (in the manifest and the Outstanding register) rather than silently leaving it;
     where it finds nothing, the recorded line is the positive evidence that it was looked at.
+    **⇒ EXTENDED 2026-08-12 (Standing Rule 9's amendment): THE WHOLE-CASE RE-READ IS AGAINST THE
+    CURRENT SPEC *AND* THE CURRENT BUILD — IT NOW RUNS THE FIVE-CHECK RUNNABILITY TEST TOO.** Reading
+    a case end-to-end against the spec proves its **expectation** is sound and says **nothing** about
+    whether a tester can reach the screen. So the re-read also asks: **is the precondition reachable ·
+    does the navigation path exist · does each named control exist where the step says it is · do the
+    steps work in the order written · are the labels the ones actually on screen (computed style, not
+    `textContent`)** — full text at the tail of Rule 9. **The recorded line gains a second half:
+    "re-verified whole against `<spec + version + date>` and runnable against `<build marker>`"**, or
+    an honest statement that the build half was **not** checked this pass. **This rule's own logic
+    demands it: opening a case is the cheapest chance to catch that it is unrunnable, and the fresh
+    "Updated" date makes an unrunnable case look freshly maintained** — exactly the harm the rule was
+    written against, in the one dimension it did not yet cover.
     **RATIONALE (2026-07-31):** **SBR-EXP-10 = C30285** and **SBR-EXP-11 = C30286** were touched that
     same day — **ops 46 and 47** of the authorized push
     (`build/report-suite/chris-answers-2026-07-31/testrail-execution-log-2026-07-31.md`) — **purely to
@@ -3338,7 +3512,7 @@ deliver the 7-tab management report.
     both cases open, edited the very line that lists the headers, and **did not notice the header LIST
     itself was already stale** against `S14-R20`. One end-to-end re-read of either case would have
     caught the day's worst defect hours earlier and for free. Ties to Standing Rules 20, 28, 31, 40
-    and 43.
+    and 43, **and 9 (the five-check runnability test the re-read now also runs)**.
 42. **NO ABSOLUTE ENUMERATIONS without a version-pinned anchor — prefer scope-conditional wording
     (all projects).** A closed list in an expected result is a **time bomb**: it is correct until the
     spec adds one item, and then it makes a tester **fail a correct build**. Any expected result that
@@ -3362,8 +3536,18 @@ deliver the 7-tab management report.
     # Invoices, …, Subtotal."* (SBR-EXP-10 = C30285, and its twin C30286) **broke the moment the spec
     added a column** — `S14-R20`, 2026-07-29. The enumerations dated from the **2026-07-11** "Exports
     hardened" change and the cases' `refs` cited only **S14-R15 / S14-R16 / S14-R18**, so nothing
-    connected them to the requirement that changed. Ties to Standing Rules 7 (plain tester wording),
-    20 (refs), 25 (verbatim citation), 28 (Dimension 2), 32 (latest wins), 40 and 43.
+    connected them to the requirement that changed.
+    **⇒ CROSS-REFERENCE ADDED 2026-08-12 (Standing Rule 9's amendment): SCOPE-CONDITIONAL WORDING
+    FIXES THE *ASSERTION*, AND IS WORTH NOTHING BEHIND AN UNRUNNABLE PRECONDITION.** This rule keeps
+    a correct build from reading as a failure; **Rule 9's five-check runnability test keeps the
+    tester from never reaching the screen at all.** A case can satisfy this rule perfectly and still
+    be untestable, so the two are checked **together** on any pass that touches a case (Rule 41).
+    **And note the direction of the licence: the build may correct the ROUTE to the assertion; it may
+    never supply or narrow the ASSERTION** — the repair for an unsupported enumeration is still
+    removal or a scope condition (Rules 25/57), never substituting what the build renders.
+    Ties to Standing Rules 7 (plain tester wording),
+    20 (refs), 25 (verbatim citation), 28 (Dimension 2), 32 (latest wins), 40 and 43, **and 9
+    (runnability — the other half of a case a tester can actually run)**.
 43. **Spec-diff processing must emit a PER-REQUIREMENT COVERAGE VERDICT — a narrative summary is not
     acceptable (all projects).** For **EVERY** added / changed / removed requirement in a spec diff,
     the deliverable carries **its own explicit ROW**: the **requirement id** + the **VERBATIM
@@ -4463,6 +4647,16 @@ deliver the 7-tab management report.
     provenance line that credits the build invites leadership to conclude that our expectations are
     reverse-engineered from whatever shipped. Splitting the line into **SOURCE** and **RECORD OF
     CHECKING** makes that reading impossible while keeping everything the build legitimately gives us.
+    **⇒ CLARIFIED 2026-08-12 (Standing Rule 9's amendment): SENTENCE 2 RECORDS THE CHECK OF THE WHOLE
+    BUILD-FACING LAYER — the preconditions, the steps, the navigation path AND the labels — not the
+    labels alone.** *"Last checked against build … on …"* is therefore the per-case record that the
+    **five-check runnability test** was run on that build (Rule 9), which is what makes Rule 60's
+    honest N-of-M split derivable from the cases themselves.
+    **🛑 SENTENCE 1 IS UNCHANGED AND NAMES DOCUMENTS ONLY.** The 2026-08-12 licence to correct steps
+    from the build **does NOT put the build into sentence 1**, in any form, at any strength — the
+    build is still **never** the source of an expectation (Rule 57), and *"as per the build tested on
+    …"* remains **BARRED**. **Widening what sentence 2 records is precisely what keeps sentence 1
+    clean:** the build gets full credit for the route, in the sentence built for it.
     Ties to Standing Rules 7 (plain layman wording — with the authorised anchor exception
     above), 8 (a case is always named with its C-id), 9 (build-accurate wording), 10 (the VIU push step
     stamps/refreshes the line), 12 (never assert a source you did not read), 19 (full readable names),
@@ -4474,7 +4668,8 @@ deliver the 7-tab management report.
     what stops a deliberate decision looking like a miss), 49 (the build marker + the re-check
     queue) and 57 (the source of expected behaviour is the DOCUMENT, never the build — this line is
     where that principle becomes visible to the tester, which is exactly why it may not name the build
-    as a source).
+    as a source), **and 9 (sentence 2 records the runnability check of preconditions, steps,
+    navigation and labels — while sentence 1 stays documents-only)**.
 55. **A PO QUESTIONNAIRE NAMES THE PROJECT AND THE FEATURE ON EVERY ROW, IS ANSWERABLE BY A
     NON-TECHNICAL READER, AND GOES BACK OUT WHENEVER AN ANSWER IS UNCLEAR (all projects).**
     USER DIRECTIVE (2026-08-05, verbatim): *"Anything which is not clear we need to ask him again.
@@ -4839,12 +5034,48 @@ deliver the 7-tab management report.
     expectation filled in from the build HIDES the gap — and that is the deeper harm**, because the
     missing requirement stops being visible to anyone: no reviewer, no PO and no future pass can tell
     that nothing was ever decided.
+    **⇒ CLARIFIED 2026-08-12 — WHAT "FROM THE BUILD WE TAKE ONLY THE LABELS AND THE VERDICT" MEANT
+    ALL ALONG: THE WHOLE *ROUTE* — PRECONDITIONS, STEPS, NAVIGATION AND LABELS — IS **VERIFIED
+    AGAINST** THE BUILD. THIS RULE'S CORE IS UNTOUCHED AND IS RESTATED IN FULL: THE EXPECTED
+    BEHAVIOUR COMES FROM THE DOCUMENTS, NEVER FROM THE BUILD.** Nothing below is weakened, no source
+    is added to (a)–(g), and **the build is still NOT on the list.**
+    QA lead, verbatim (2026-08-12): *"YES the expected behavior should come from the sources rather
+    than the build, Keep the VIU rule but correct it as needed."* — and, **sharpening the steps half
+    the same day**: *"when I say steps of reproduction can be taken from build I mean, that steps of
+    reproduction MUST be verified from the build to 100% ensure that when manual tester would run the
+    test he will be able to run it."*
+    **THE LINE, DRAWN ONCE AND PRECISELY: THE BUILD MAY CONFIRM *HOW YOU GET THERE*. IT MAY NEVER
+    SUPPLY *WHAT SHOULD HAPPEN WHEN YOU DO*, AND IT MAY NEVER DECIDE *WHAT GETS TESTED*.** Screen
+    names, tab names, menu paths, button text, step order, the data state a precondition needs — **all
+    verified against the build, and corrected to the minimum that makes them executable.** The
+    assertion — **from a source in (a)–(g), always.**
+    **⚠️ TWO MISREADINGS TO GUARD AGAINST, BOTH NAMED SO NEITHER CAN HAPPEN QUIETLY:**
+    **(1) *"you can take them from the build"* IS SCOPED TO THE STEPS BY ITS OWN SENTENCE.** Reading
+    it as licence to take the **EXPECTATION** from the build reproduces **EXACTLY the failure this
+    rule was written for — the one that cost 748 cases on 5 August 2026.** If a future pass finds
+    itself citing this clarification while editing an **expected result**, it has misread it: **stop,
+    and re-read the directive above, in which the very next clause says the opposite.**
+    **(2) IT IS ALSO NOT LICENCE TO *AUTHOR* STEPS FROM THE BUILD** — his own sharpening rules that
+    out: the obligation is **VERIFICATION**, and **the build is the CHECK, never the AUTHOR.**
+    Writing steps by walking the build lets the product **choose our coverage**, which is the same
+    error one layer down: **a suite that tests whatever the build made easy, and passes beautifully
+    while doing it.**
+    **AND THE WIDENING CUTS BOTH WAYS — IT CREATES AN OBLIGATION, NOT A LOOPHOLE.** A case whose
+    expectation is impeccably sourced but whose steps do not match the build **still fails**, because
+    *"the manual tester can not test that test"* — the five-check runnability test at the tail of
+    **Rule 9** is now part of doing this properly, **at his stated standard of 100%**, and **an
+    unverified step is an unverified case** in any count we publish.
     **THE DIAGNOSTIC TO CARRY FORWARD (the hardest failure to spot):** a case whose **STEPS were
     correctly VIU'd** while its **EXPECTED RESULT was quietly changed in the same edit** looks
     **freshly maintained**, and its **Rule-54 provenance line looks current** — so it reads as our
     best work. **That is WORSE than an obviously stale case, not better**, because staleness at least
     announces itself. When auditing, diff the **expected result** against its **cited source**, not
     against how recently the case was touched.
+    **⚠️ AND THIS DIAGNOSTIC IS SHARPER AFTER 2026-08-12, NOT BLUNTER: verifying and correcting steps
+    against the build is now EXPLICITLY REQUIRED, so an expectation edit riding along inside a
+    legitimate step correction has BETTER COVER THAN IT EVER HAD.** So when auditing, **diff the
+    expected result SEPARATELY from the steps** — a pass that changed both in one edit must be able to
+    **quote the new expectation back to a document** (Rule 58's quote-back test).
     **RATIONALE, 2026-08-05:** the QA lead found **FLT-BAR-01 =
     [C29557](https://shopview.testrail.io/index.php?/cases/view/29557)** asserting **build behaviour
     as expected behaviour**. It was **one of five Filters cases rewritten into "accepted behaviour"
@@ -4897,6 +5128,19 @@ deliver the 7-tab management report.
     and it is reverted or held, never shipped with a hopeful provenance line (Rule 54).
     **(c) THE HELD CASES CARRY THE QUESTION**, and the question goes into the **OUTSTANDING-ITEMS
     REGISTER** (Rule 36) until answered — so the gap stays visible instead of being quietly filled.
+    **⇒ SCOPE CLARIFIED 2026-08-12 (Standing Rule 9's amendment) — THIS RULE IS ABOUT *EXPECTATIONS*,
+    AND THE DISTINCTION IS WORTH STATING BECAUSE IT LOOKS LIKE A CONTRADICTION AND IS NOT:**
+    **· AN AMBIGUOUS SOURCE ABOUT A *STEP OR A ROUTE* IS SETTLED AGAINST THE BUILD — that is not a
+    breach of this rule, it is Rule 9's obligation.** If the spec does not say which menu holds a
+    control, **you verify it against the build and write the route that works.** Nothing is being
+    decided about what the product SHOULD do.
+    **· AN AMBIGUOUS SOURCE ABOUT AN *EXPECTATION* IS HELD AND ASKED — this rule, unchanged.** The
+    build may not break that tie, at any strength, for any deadline.
+    **THE TEST THAT SEPARATES THEM IN ONE QUESTION: *"IF I WRITE THIS DOWN, AM I RECORDING HOW TO GET
+    THERE, OR AM I DECIDING WHAT IS CORRECT?"*** The first is verification; the second is this rule's
+    forbidden move. **AND THE THIRD THING, WHICH IS NEITHER: if the ambiguity is about WHETHER THIS
+    CASE SHOULD EXIST AT ALL, the build settles nothing — that is coverage, and letting the build
+    author it is Rule 9's guard 2.**
     **HONESTY CLAUSE:** this rule will sometimes leave a case **less specific than the build would
     allow us to make it, and that is the correct outcome.** A vague-but-sourced expectation with an open
     PO question is **honest**; a precise expectation invented from the build is **confidently wrong and
@@ -4921,7 +5165,8 @@ deliver the 7-tab management report.
     per assertion), 54 (the provenance line must name a source that genuinely supports the
     expectation), 55 (an unclear answer goes straight back to the PO), 56 (disclose a divergence rather
     than absorb it) and 57 (the source of expected behaviour is the document, never the build — this
-    rule closes the door 57 did not know about).
+    rule closes the door 57 did not know about), **and 9 (an ambiguity about the ROUTE is settled
+    against the build; an ambiguity about the EXPECTATION is held and asked)**.
 59. **RE-READ THE SOURCES IMMEDIATELY BEFORE THE WRITES BEGIN — a second currency check, not only the
     one at pass start (all projects).**
     **ORIGIN (2026-08-05):** added by the QA lead's instruction after two same-day incidents in which a
@@ -5043,6 +5288,14 @@ deliver the 7-tab management report.
     go stale when the build moves, and they are a **far smaller surface than a whole suite**:
     **(1) THE ON-SCREEN LABELS AND THE NAVIGATION PATH** — the Rule-9 layer (button text, field names,
     screen names, step order, where you click).
+    **⚠️ LAYER 1 WAS WIDENED 2026-08-12 (Standing Rule 9's amendment) — IT IS THE WHOLE RUNNABLE
+    ROUTE: THE PRECONDITIONS AND THE STEPS AS WELL AS THE LABELS AND THE NAVIGATION PATH.** The
+    original wording is kept above and dated, not overwritten (the Rules 31/52/53 pattern). **A
+    redeploy can make a precondition unreachable or a step un-executable just as easily as it can
+    rename a button**, so practice (b) below re-checks all of it — and **the re-check is a
+    VERIFICATION against the build, never an occasion to re-author the steps around what the new
+    build makes convenient** (Rule 9, guard 2). **This is the layer whose staleness stops a tester
+    dead**, which is why it heads the list.
     **(2) THE PASS / FAIL / DEVIATION VERDICT.**
     **(3) THE MARKERS THAT ASSERT A BUILD FACT** — `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` and
     `AUTOMATION: HOLD - <not built>`. **NOTE, because this is routinely got wrong: plain
@@ -5100,7 +5353,9 @@ deliver the 7-tab management report.
     never-final build is worked with rather than waited on**), 50 (exhaustive and exact — the re-check
     covers every row of layers 1–3, no sampling), 54 (sentence 2 is the per-case record of when it was
     last checked) and 57 (because expectations come from documents, a redeploy cannot invalidate them —
-    that is the whole reason this strategy is possible).
+    that is the whole reason this strategy is possible), **and 9 (layer 1 is the whole runnable route
+    — preconditions and steps included — and an unverified step is an unverified case in the N-of-M
+    the honesty clause demands)**.
 61. **THE EXPECT-FAIL MARKER IS AN INSTRUCTION, NOT A PREDICTION — NAME THE SYMPTOM, AND LET THE
     SUITE BE THE MONITOR (all projects).**
     **ORIGIN (2026-08-06):** the QA lead proposed that the ticket link plus the tested-on date already
