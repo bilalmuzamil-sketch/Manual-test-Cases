@@ -1,4 +1,26 @@
 {
+ "29955": {
+  "steps": [
+   {
+    "step": "1-2 drag a single-line card and drop it on a technician cell",
+    "seen": "S8685-12876 1 line · 1h Est. Pamill Paving 713 AC Alicia Campbell chevron_right Approved -> {\"x\":990,\"y\":447}; board added=1"
+   },
+   {
+    "step": "1 a shift is created immediately, no scope picker and no spread step",
+    "seen": "board added=1 [{\"wo\":\"S-12876\",\"mins\":60}]"
+   },
+   {
+    "step": "2 the block shows customer name, unit number and the line name",
+    "seen": "confirmed in the first run: \"Pamill Paving 713 Replace - Rear ramp handles\""
+   },
+   {
+    "step": "4 a toast with an Undo option appears (re-driven: polled from 400 ms, because a toast without Undo lasts about 4 s and the first run read at 5.5 s)",
+    "seen": "FOUND at ~400 ms: [{\"cls\":\"q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round te\",\"text\":\"notifications\",\"buttons\":[]},{\"cls\":\"undo-toast-host column\",\"text\":\"check Shift scheduled. Undo close\",\"buttons\":[\"Undo\",\"close\"]},{\"cls\":\"undo-toast__check row flex-center\",\"text\":\"check\",\"buttons\":[]},{\"cls\":\"undo-toast__body column col\",\"text\":\"Shift scheduled. Undo\",\"buttons\":[\"Undo\"]},{\"cls\":\"undo-toast__message\",\"text\":\"Shift scheduled.\",\"buttons\":[]},{\"cls\":\"q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangl\",\"text\":\"Undo\",\"buttons\":[]},{\"cls\":\"q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round te\",\"text\":\"close\",\"buttons\":[]},{\"cls\":\"q-notifications__list q-notifications__list--center fixed column no-wr\",\"text\":\"\",\"buttons\":[]},{\"cls\":\"q-notifications__list q-notifications__list--center fixed column no-wr\",\"text\":\"\",\"buttons\":[]},{\"cls\":\"q-notifications__list q-notifications__list--center fixed column no-wr\",\"text\":\"\",\"buttons\":[]}]"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T08:43:26.636Z"
+ },
  "29956": {
   "steps": [
    {
@@ -29,6 +51,68 @@
   "verdict": "pending-board-diff",
   "at": "2026-08-12T08:37:47.536Z"
  },
+ "29959": {
+  "steps": [
+   {
+    "step": "2 in the scope picker tap the small line (0.3h)",
+    "seen": "{\"i\":4,\"t\":\"Replace - Engine air filter Est. 0.3h AC MQ\",\"h\":0.3}"
+   },
+   {
+    "step": "1 the shift is created straight away, the spread step does NOT appear",
+    "seen": "spread dialog present=false; dialogs open=0; board added=1"
+   },
+   {
+    "step": "2 the shift sits on the dropped day only",
+    "seen": "[{\"wo\":\"S-13014\",\"lines\":1,\"mins\":60,\"starts\":\"2026-08-13T12:00:00Z\"}]"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T08:41:07.262Z"
+ },
+ "29960": {
+  "steps": [
+   {
+    "step": "1 drag a card and hold it OVER A GRID CELL (re-driven: the first attempt sampled while the cursor was over the sidebar, which is not a cell)",
+    "seen": "sampled 9 times with the cursor inside the calendar, ending at {\"x\":990,\"y\":447}"
+   },
+   {
+    "step": "1 the cell under the cursor highlights as a drop target",
+    "seen": "[{\"cls\":\"schedule-drop-target\"}]"
+   },
+   {
+    "step": "2 a ghost block follows the drag showing the line name and its hours",
+    "seen": "[{\"cls\":\"fc-event fc-event-draggable fc-event-start fc-event-end fc-event-past fc-timeline-event fc-h-event\",\"t\":\"Fuline Enterprises G30 6 Lines\",\"parent\":\"DIV\"},{\"cls\":\"fc-event fc-event-draggable fc-event-start fc-event-end fc-event-past fc-timeline-event fc-h-event\",\"t\":\"Pamill Paving 713 Replace - Rear ramp handles\",\"parent\":\"DIV\"},{\"cls\":\"fc-event fc-event-draggable fc-event-start fc-event-end fc-event-future fc-timeline-event fc-h-event\",\"t\":\"Fuline Enterprises G30 Replace - Engine air filter\",\"parent\":\"DIV\"}]"
+   },
+   {
+    "step": "3 releasing outside any valid cell creates nothing",
+    "seen": "proven in the first run: released over the sidebar, board 675 -> 675, 0 added"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T08:43:26.635Z"
+ },
+ "29961": {
+  "steps": [
+   {
+    "step": "1 drag a line onto a technician cell and create the shift",
+    "seen": "Replace front wheel seal Est. 3h AC MQ ; board added=1"
+   },
+   {
+    "step": "2 check the line's technician roster afterwards",
+    "seen": "roster rows re-read from the picker; rows whose roster text changed: []"
+   },
+   {
+    "step": "1-2 the technician appears on the roster and the avatar stack updates",
+    "seen": "NO roster row changed. before=[\"ak Est. 1h AC AK LC +3\",\" Est. 0.7h AC LC MT +1\",\" Est. 0.8h AC LC MT +1\",\"ic lines Est. 3h AC MQ\",\"filter Est. 0.3h AC MQ\",\"eel seal Est. 3h AC MQ\"] after=[\"ak Est. 1h AC AK LC +3\",\" Est. 0.7h AC LC MT +1\",\" Est. 0.8h AC LC MT +1\",\"ic lines Est. 3h AC MQ\",\"filter Est. 0.3h AC MQ\",\"eel seal Est. 3h AC MQ\"]"
+   },
+   {
+    "step": "4-5 a second technician can be added without swapping the first",
+    "seen": "not driven this run - needs a second drop of the SAME line onto another technician"
+   }
+  ],
+  "verdict": "partial",
+  "at": "2026-08-12T08:43:52.810Z"
+ },
  "29963": {
   "steps": [
    {
@@ -58,6 +142,54 @@
   ],
   "verdict": "see RUNNABILITY",
   "at": "2026-08-12T08:37:47.538Z"
+ },
+ "29964": {
+  "steps": [
+   {
+    "step": "1 drag the work order onto a technician cell",
+    "seen": "S8685-13014 6 lines · 8.7h Est. Fuline Enterprises G30 AC Alicia Campbell chevron_right Ap -> picker=true"
+   },
+   {
+    "step": "2 choose 'Schedule whole work order'",
+    "seen": "content_paste Schedule whole work order All 6 lines · 8.7h total chevron_right"
+   },
+   {
+    "step": "1 ONE shift is created covering all the approved lines",
+    "seen": "board added=1 [{\"wo\":\"S-13014\",\"lines\":6,\"mins\":523,\"series\":null}]; dialogs still open=0 spread=false"
+   },
+   {
+    "step": "2 the block's last text line reads 'N Lines'",
+    "seen": "[\"Fuline Enterprises G30 6 Lines\",\"Pamill Paving 713 Replace - Rear ramp handles\",\"Fuline Enterprises G30 Replace - Engine air filter\",\"Fuline Enterprises G30 6 Lines\"]"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T08:41:23.267Z"
+ },
+ "29965": {
+  "steps": [
+   {
+    "step": "1 drag the work order onto a technician cell",
+    "seen": "S8685-13014 6 lines · 8.7h Est. Fuline Enterprises G30 AC Alicia Campbell chevron_right Ap -> picker=true"
+   },
+   {
+    "step": "2 click one line row (not Select multiple)",
+    "seen": "{\"i\":4,\"t\":\"Replace - Engine air filter Est. 0.3h AC MQ\",\"h\":0.3}"
+   },
+   {
+    "step": "1 a single-line shift is created immediately, no extra confirmation",
+    "seen": "board added=1 [{\"wo\":\"S-13014\",\"lines\":1,\"mins\":60,\"starts\":\"2026-08-13T12:00:00Z\"}]"
+   },
+   {
+    "step": "2 the picker closes",
+    "seen": "dialogs open=0 picker=false"
+   },
+   {
+    "step": "3 the block's last text line shows the line's name",
+    "seen": "[\"Fuline Enterprises G30 6 Lines\",\"Pamill Paving 713 Replace - Rear ramp handles\",\"Fuline Enterprises G30 Replace - Engine air filter\"]"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T08:41:07.262Z"
  },
  "29967": {
   "steps": [
