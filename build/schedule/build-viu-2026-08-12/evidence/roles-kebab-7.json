@@ -1,0 +1,53 @@
+{
+  "path": "/administration/roles-permissions",
+  "plan": [
+    {
+      "find": "more_vert",
+      "scope": "i",
+      "nth": 7,
+      "wait": 4000
+    }
+  ],
+  "steps": [
+    {
+      "ok": true,
+      "find": "more_vert",
+      "x": 1623.6875,
+      "y": 624.5,
+      "text": "more_vert"
+    }
+  ],
+  "scope_selector": ".q-dialog__inner, .q-menu, [role=dialog]",
+  "harvest": {
+    "scoped": true,
+    "nodes": [
+      {
+        "raw": "visibility",
+        "transform": "none"
+      },
+      {
+        "raw": "View Permissions",
+        "transform": "none"
+      }
+    ],
+    "controls": [
+      {
+        "tag": "div",
+        "raw_text": "visibilityView Permissions",
+        "aria": null,
+        "testid": "action_view_permissions_d85418d8-86b2-46d0-a8df-aa1575d09b60",
+        "transform": "none",
+        "disabled": false
+      }
+    ]
+  },
+  "api_errors": [
+    {
+      "m": "GET",
+      "s": 404,
+      "u": "/api/api/sso/check"
+    }
+  ],
+  "bridge_errors": [],
+  "read_at_utc": "2026-08-12T02:59:58.909Z"
+}
