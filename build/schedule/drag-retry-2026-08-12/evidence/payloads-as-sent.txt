@@ -1,0 +1,112 @@
+====================================================================================================
+C29967  ('Select multiple' checkbox mode: running tally, Select all, and Cancel)
+1. 'Select multiple' switches the line rows into tick boxes - one per line.
+2. A bar appears at the bottom of the picker with a running tally of what is ticked - the number of lines and their combined hours, in the specification's example shape 'Create shift - 2 lines - 6h'.
+3. A 'Select all' shortcut ticks every line, giving the same line count and hours as choosing the whole work order.
+4. A 'Cancel' control leaves tick-box mode and returns you to the ordinary single-tap line list, without creating anything and without closing the picker.
+5. Confirming creates ONE shift covering exactly the ticked lines, and the technician is added to those lines' rosters only - not to the other lines.
+
+What you should see today: Ticking lines does switch the rows into tick boxes and the bar at the bottom does count what you have ticked, but it reads '2 selected - 4h' rather than the wording above, there is no 'Select all' button anywhere, and there is no 'Cancel'. The only 'All' control is the 'All 27' chip higher up, which filters the list and ticks nothing. To leave tick-box mode you have to press 'Select multiple' a second time, and nothing on screen tells you that. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8886.
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
+---
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.3), read on 11 August 2026. Last checked against build v3.5-65d6500 on 12 August 2026.
+
+AUTOMATION: READY - EXPECT FAIL (SV-8886)
+
+====================================================================================================
+C29982  (Start date defaults to the earliest working day and can be changed)
+1. The start date defaults to the earliest working day.
+2. It can be changed; technician B's series then starts after A's series ends (sequential, not parallel).
+3. B's series is created from the adjusted start date onward.
+
+What you should see today: There is no start date anywhere in the window, so step 2 cannot be carried out at all. The run of days always begins on the day you dropped the work order on. Check all five choices in the 'Schedule' dropdown before you mark it: 'Until a date...' adds a 'Finish by' date and 'Specific hours...' adds an hours stepper, but both of those set where the run ENDS, not where it begins. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-9090. That ticket has been closed without a fix, so do not wait for one.
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
+
+The same problem was also reported earlier as SV-8855, which is closed too.
+---
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.5), read on 11 August 2026. Last checked against build v3.5-65d6500 on 12 August 2026.
+
+AUTOMATION: READY - EXPECT FAIL (SV-9090)
+
+====================================================================================================
+C29984  (Spread preview: one-line summary, expandable to a week-by-week breakdown)
+1. Collapsed: a one-line summary in the spirit of the spec's example '20 shifts · Jun 15 to Jul 13 · skips weekends + 2 days'.
+2. Expanded: a week-by-week breakdown of the planned shifts.
+3. Skipped days are struck through and show the reason they are skipped - in V1 the only skip reason is a weekend day with no working hours set.
+
+What you should see today: Points 1 and 2 are fine - the summary line and the week-by-week breakdown both appear. Point 3 is not: the skipped days are not struck through and no reason is shown, because they are not listed at all. A run from 13 to 24 August crosses two weekends and none of those four dates appears anywhere in the breakdown. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-9006.
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
+---
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.5), read on 11 August 2026. That specification describes this point in two different ways, so the behaviour above follows its first-release wording and a product owner decision is still awaited; the open question is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md, read on 11 August 2026. Last checked against build v3.5-65d6500 on 12 August 2026.
+
+AUTOMATION: READY - EXPECT FAIL (SV-9006)
+
+====================================================================================================
+C29985  (Confirming the spread creates a linked series of daily shifts)
+1. One daily shift is created per planned working day, together forming a linked series.
+2. The shifts render as one connected banner (see the series-banner cases).
+3. Each daily shift keeps its own day and hours.
+4. A toast with Undo appears.
+
+What you should see today: Points 1 and 3 are fine - confirming created one shift per working day, all joined into one series, each keeping its own day and hours, and weekends were skipped. Point 2 looked right on the grid but was not examined closely, so check the connected banner yourself. Point 4 is not: no message with an Undo button appeared after confirming. This has been checked on the build and reported to the QA lead, but it does not have a ticket number yet.
+- If you see exactly that, mark this test FAILED and say it is the known problem with no ticket yet.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, tell the QA lead: it means this was fixed after 12 August 2026.
+---
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.5, §4.6, §8.2), read on 11 August 2026. Last checked against build v3.5-65d6500 on 12 August 2026.
+
+AUTOMATION: HOLD - an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker
+
+====================================================================================================
+C30004  (Dragging a shift sideways moves its start time in 15-minute steps)
+1. The shift moves along the timeline as you drag.
+2. The released start time snaps to a 15-minute interval (for example 9:15, 9:30 - never 9:22).
+3. The duration is unchanged by a horizontal move.
+4. A toast with Undo appears for the move.
+
+What you should see today: Points 1, 2 and 3 are fine - the shift moves, the released start time lands on a quarter hour, and the length does not change. Point 4 is not: no message with an Undo button appeared after the move. This has been checked on the build and reported to the QA lead, but it does not have a ticket number yet.
+- If you see exactly that, mark this test FAILED and say it is the known problem with no ticket yet.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, tell the QA lead: it means this was fixed after 12 August 2026.
+---
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.8, §7), read on 11 August 2026. Last checked against build v3.5-65d6500 on 12 August 2026.
+
+AUTOMATION: HOLD - an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker
+
+====================================================================================================
+C30013  (Notes can be added, edited, and deleted per work order from the modal)
+1. The note is added and shown in the modal.
+2. The edit is saved and displayed.
+3. The delete removes the note.
+4. Notes are kept per work order (the same note is visible from another shift of the same work order).
+
+What you should see today: Points 1, 2 and 3 are fine - a note can be added, changed and removed, and each step shows on screen straight away. Point 4 is not: the note belongs to the one shift you added it to. On a work order with 18 shifts the note appeared on that one shift and on none of the other 17. This has been checked on the build and reported to the QA lead, but it does not have a ticket number yet.
+- If you see exactly that, mark this test FAILED and say it is the known problem with no ticket yet.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, tell the QA lead: it means this was fixed after 12 August 2026.
+---
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.9), read on 11 August 2026. Last checked against build v3.5-65d6500 on 12 August 2026.
+
+AUTOMATION: HOLD - an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker
+
+====================================================================================================
+C30020  (Events can be dragged to another technician or another day)
+1. Dropping on another technician reassigns the event to them.
+2. Dropping on another day moves it to that day.
+3. Each move produces a toast with Undo.
+
+What you should see today: Point 2 is fine - dragging the event to a different day does move it to that day. Point 3 is not: no message with an Undo button appeared after the move. Point 1, dropping the event on a different technician's row, was NOT checked on this build - our tooling could not land the drop in another technician's lane, so please try it by hand and report what you see. This has been checked on the build and reported to the QA lead, but it does not have a ticket number yet.
+- If you see exactly that, mark this test FAILED and say it is the known problem with no ticket yet.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, tell the QA lead: it means this was fixed after 12 August 2026.
+---
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.10, §7), read on 11 August 2026. Last checked against build v3.5-65d6500 on 12 August 2026.
+
+AUTOMATION: HOLD - an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker
+
