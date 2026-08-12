@@ -1,0 +1,676 @@
+{
+  "probe": "Q1b",
+  "at": "2026-08-12T16:49:03.216Z",
+  "cases": {
+    "C29559": {
+      "steps": [
+        {
+          "n": 1,
+          "text": "Click the Estimates tab",
+          "click": {
+            "clicked": true,
+            "attempt": 1
+          },
+          "bar": {
+            "alreadyOpen": true,
+            "toggled": false,
+            "chips": 4
+          },
+          "url": "https://sv8785.qa.shopview.com/workorders",
+          "activeTab": [
+            "tab_estimates"
+          ]
+        },
+        {
+          "n": 2,
+          "text": "Look at the filter bar",
+          "chipCount": 4,
+          "chips": [
+            {
+              "id": "filter_chip_company_id",
+              "text": "person Customer keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 262
+            },
+            {
+              "id": "filter_chip_tech_assigned_id",
+              "text": "build Lead Technician keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 412
+            },
+            {
+              "id": "filter_chip_service_advisor_id",
+              "text": "headset_mic Service Advisor keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 601
+            },
+            {
+              "id": "filter_chip_vehicleHere",
+              "text": "local_shipping Asset on Site keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 785
+            }
+          ]
+        },
+        {
+          "n": 3,
+          "text": "Look at each chip in turn",
+          "perChip": [
+            {
+              "id": "filter_chip_company_id",
+              "onScreenText": "person Customer keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "opened": true,
+              "optionCount": 4754,
+              "firstOptions": [
+                "Iibay Landscaping",
+                "Zecrest Technology",
+                "Teton Apparel"
+              ]
+            },
+            {
+              "id": "filter_chip_tech_assigned_id",
+              "onScreenText": "build Lead Technician keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "opened": true,
+              "optionCount": 47,
+              "firstOptions": [
+                "Admin ShopView",
+                "Alexander Cohen",
+                "Alyssa Randall"
+              ]
+            },
+            {
+              "id": "filter_chip_service_advisor_id",
+              "onScreenText": "headset_mic Service Advisor keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "opened": true,
+              "optionCount": 60,
+              "firstOptions": [
+                "Admin ShopView",
+                "Alexander Cohen",
+                "Ayesha Khan"
+              ]
+            },
+            {
+              "id": "filter_chip_vehicleHere",
+              "onScreenText": "local_shipping Asset on Site keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "opened": true,
+              "optionCount": 2,
+              "firstOptions": [
+                "Yes",
+                "No"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "C29609": {
+      "steps": [
+        {
+          "n": 1,
+          "text": "Click the Estimates tab",
+          "click": {
+            "clicked": true,
+            "attempt": 1
+          },
+          "bar": {
+            "alreadyOpen": true,
+            "toggled": false,
+            "chips": 4
+          },
+          "url": "https://sv8785.qa.shopview.com/workorders",
+          "activeTab": [
+            "tab_estimates"
+          ]
+        },
+        {
+          "n": 2,
+          "text": "Look at the filter bar and at the Status chip",
+          "statusChipPresent": false,
+          "statusChip": null,
+          "chipCount": 4,
+          "chips": [
+            {
+              "id": "filter_chip_company_id",
+              "text": "person Customer keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 262
+            },
+            {
+              "id": "filter_chip_tech_assigned_id",
+              "text": "build Lead Technician keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 412
+            },
+            {
+              "id": "filter_chip_service_advisor_id",
+              "text": "headset_mic Service Advisor keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 601
+            },
+            {
+              "id": "filter_chip_vehicleHere",
+              "text": "local_shipping Asset on Site keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 785
+            }
+          ]
+        },
+        {
+          "n": 3,
+          "text": "Try to click the Status chip and change it",
+          "statusChipPresent": false,
+          "executable": false,
+          "note": "the control this step names is not on the page at all on this tab"
+        },
+        {
+          "n": 4,
+          "text": "Open the Customer filter and select one customer",
+          "chipPresent": true,
+          "opened": true,
+          "optionCount": 4754,
+          "picked": "Iibay Landscaping",
+          "pick": {
+            "clicked": true,
+            "attempt": 1
+          },
+          "tickedAfter": [
+            "filter_option_company_id_00122246-ab6d-47ee-a885-3425c7bda754"
+          ]
+        },
+        {
+          "n": 5,
+          "text": "Look at the table",
+          "rows": {
+            "tbody": 2,
+            "cards": 0,
+            "emptyStateVisible": true
+          },
+          "url": "https://sv8785.qa.shopview.com/workorders?company_id=00122246-ab6d-47ee-a885-3425c7bda754",
+          "chipsNow": [
+            {
+              "id": "filter_chip_company_id",
+              "text": "person Customer : Iibay Landscaping keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgb(227, 242, 253)",
+              "x": 262
+            },
+            {
+              "id": "filter_chip_tech_assigned_id",
+              "text": "build Lead Technician keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 535
+            },
+            {
+              "id": "filter_chip_service_advisor_id",
+              "text": "headset_mic Service Advisor keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 723
+            },
+            {
+              "id": "filter_chip_vehicleHere",
+              "text": "local_shipping Asset on Site keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 908
+            }
+          ]
+        }
+      ]
+    },
+    "C29610": {
+      "steps": [
+        {
+          "n": 1,
+          "text": "Click the Completed tab",
+          "click": {
+            "clicked": true,
+            "attempt": 1
+          },
+          "bar": {
+            "alreadyOpen": true,
+            "toggled": false,
+            "chips": 4
+          },
+          "url": "https://sv8785.qa.shopview.com/workorders?tab=complete",
+          "activeTab": [
+            "tab_completed"
+          ]
+        },
+        {
+          "n": 2,
+          "text": "Look at the filter bar and at the Status chip",
+          "statusChipPresent": false,
+          "statusChip": null,
+          "chipCount": 4,
+          "chips": [
+            {
+              "id": "filter_chip_company_id",
+              "text": "person Customer keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 262
+            },
+            {
+              "id": "filter_chip_tech_assigned_id",
+              "text": "build Lead Technician keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 412
+            },
+            {
+              "id": "filter_chip_service_advisor_id",
+              "text": "headset_mic Service Advisor keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 601
+            },
+            {
+              "id": "filter_chip_vehicleHere",
+              "text": "local_shipping Asset on Site keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 785
+            }
+          ]
+        },
+        {
+          "n": 3,
+          "text": "Try to click the Status chip and change it",
+          "statusChipPresent": false,
+          "executable": false,
+          "note": "the control this step names is not on the page at all on this tab"
+        },
+        {
+          "n": 4,
+          "text": "Open the Customer filter and select one customer",
+          "chipPresent": true,
+          "opened": true,
+          "optionCount": 4754,
+          "picked": "Iibay Landscaping",
+          "pick": {
+            "clicked": true,
+            "attempt": 1
+          },
+          "tickedAfter": [
+            "filter_option_company_id_00122246-ab6d-47ee-a885-3425c7bda754"
+          ]
+        },
+        {
+          "n": 5,
+          "text": "Look at the table",
+          "rows": {
+            "tbody": 2,
+            "cards": 0,
+            "emptyStateVisible": true
+          },
+          "url": "https://sv8785.qa.shopview.com/workorders?company_id=00122246-ab6d-47ee-a885-3425c7bda754&tab=complete",
+          "chipsNow": [
+            {
+              "id": "filter_chip_company_id",
+              "text": "person Customer : Iibay Landscaping keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgb(227, 242, 253)",
+              "x": 262
+            },
+            {
+              "id": "filter_chip_tech_assigned_id",
+              "text": "build Lead Technician keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 535
+            },
+            {
+              "id": "filter_chip_service_advisor_id",
+              "text": "headset_mic Service Advisor keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 723
+            },
+            {
+              "id": "filter_chip_vehicleHere",
+              "text": "local_shipping Asset on Site keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 908
+            }
+          ]
+        }
+      ]
+    },
+    "C29612": {
+      "steps": [
+        {
+          "n": 1,
+          "text": "On the All tab, open the Status filter and tick Approved",
+          "bar": {
+            "alreadyOpen": true,
+            "toggled": false,
+            "chips": 5
+          },
+          "statusOpened": true,
+          "optionCount": 9,
+          "approvedOptionPresent": true,
+          "approvedId": "filter_option_status_approved",
+          "allOptions": [
+            "Estimate",
+            "Approved",
+            "In progress",
+            "Review",
+            "Complete",
+            "Invoiced",
+            "Paid",
+            "Declined",
+            "Imported"
+          ],
+          "pick": {
+            "clicked": true,
+            "attempt": 1
+          },
+          "ticked": [
+            "filter_option_status_approved"
+          ],
+          "urlAfter": "https://sv8785.qa.shopview.com/workorders?status=approved&tab=all",
+          "chipsAfter": [
+            {
+              "id": "filter_chip_status",
+              "text": "Status : Approved keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgb(227, 242, 253)",
+              "x": 262
+            },
+            {
+              "id": "filter_chip_company_id",
+              "text": "person Customer keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 462
+            },
+            {
+              "id": "filter_chip_tech_assigned_id",
+              "text": "build Lead Technician keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 613
+            },
+            {
+              "id": "filter_chip_service_advisor_id",
+              "text": "headset_mic Service Advisor keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 801
+            },
+            {
+              "id": "filter_chip_vehicleHere",
+              "text": "local_shipping Asset on Site keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 986
+            }
+          ]
+        },
+        {
+          "n": 2,
+          "text": "Open the Customer filter and select one customer",
+          "opened": true,
+          "optionCount": 4754,
+          "picked": "Iibay Landscaping",
+          "pick": {
+            "clicked": true,
+            "attempt": 1
+          },
+          "ticked": [
+            "filter_option_company_id_00122246-ab6d-47ee-a885-3425c7bda754"
+          ],
+          "urlAfter": "https://sv8785.qa.shopview.com/workorders?status=approved&company_id=00122246-ab6d-47ee-a885-3425c7bda754&tab=all"
+        },
+        {
+          "n": 3,
+          "text": "Click the Estimates tab and look at the filter bar and the table",
+          "click": {
+            "clicked": true,
+            "attempt": 1
+          },
+          "bar": {
+            "alreadyOpen": true,
+            "toggled": false,
+            "chips": 4
+          },
+          "url": "https://sv8785.qa.shopview.com/workorders?status=approved&company_id=00122246-ab6d-47ee-a885-3425c7bda754",
+          "activeTab": [
+            "tab_estimates"
+          ],
+          "chips": [
+            {
+              "id": "filter_chip_company_id",
+              "text": "person Customer : Iibay Landscaping keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgb(227, 242, 253)",
+              "x": 262
+            },
+            {
+              "id": "filter_chip_tech_assigned_id",
+              "text": "build Lead Technician keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 535
+            },
+            {
+              "id": "filter_chip_service_advisor_id",
+              "text": "headset_mic Service Advisor keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 723
+            },
+            {
+              "id": "filter_chip_vehicleHere",
+              "text": "local_shipping Asset on Site keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 908
+            }
+          ],
+          "rows": {
+            "tbody": 2,
+            "cards": 0,
+            "emptyStateVisible": true
+          }
+        },
+        {
+          "n": 4,
+          "text": "Click back to the All tab",
+          "click": {
+            "clicked": true,
+            "attempt": 1
+          },
+          "bar": {
+            "alreadyOpen": true,
+            "toggled": false,
+            "chips": 5
+          },
+          "url": "https://sv8785.qa.shopview.com/workorders?status=approved&company_id=00122246-ab6d-47ee-a885-3425c7bda754&tab=all",
+          "activeTab": [
+            "tab_all"
+          ]
+        },
+        {
+          "n": 5,
+          "text": "Look at the Status chip and the Customer chip",
+          "chips": [
+            {
+              "id": "filter_chip_status",
+              "text": "Status : Approved keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgb(227, 242, 253)",
+              "x": 262
+            },
+            {
+              "id": "filter_chip_company_id",
+              "text": "person Customer : Iibay Landscaping keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgb(227, 242, 253)",
+              "x": 462
+            },
+            {
+              "id": "filter_chip_tech_assigned_id",
+              "text": "build Lead Technician keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 735
+            },
+            {
+              "id": "filter_chip_service_advisor_id",
+              "text": "headset_mic Service Advisor keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 924
+            },
+            {
+              "id": "filter_chip_vehicleHere",
+              "text": "local_shipping Asset on Site keyboard_arrow_down",
+              "disabled": false,
+              "opacity": "1",
+              "background": "rgba(0, 0, 0, 0)",
+              "x": 1108
+            }
+          ],
+          "url": "https://sv8785.qa.shopview.com/workorders?status=approved&company_id=00122246-ab6d-47ee-a885-3425c7bda754&tab=all",
+          "ticked": []
+        }
+      ]
+    }
+  },
+  "preconditionData": {
+    "estimate": {
+      "http": 200,
+      "workOrders": 100,
+      "distinctCustomers": 52
+    },
+    "complete": {
+      "http": 200,
+      "workOrders": 11,
+      "distinctCustomers": 8
+    },
+    "approved": {
+      "http": 200,
+      "workOrders": 96,
+      "distinctCustomers": 47
+    }
+  },
+  "tabsOnScreen": [
+    {
+      "id": "tab_all",
+      "domText": "All",
+      "textTransform": "uppercase",
+      "active": true
+    },
+    {
+      "id": "tab_estimates",
+      "domText": "Estimates",
+      "textTransform": "uppercase",
+      "active": false
+    },
+    {
+      "id": "tab_completed",
+      "domText": "Completed",
+      "textTransform": "uppercase",
+      "active": false
+    },
+    {
+      "id": "tab_my_work_orders",
+      "domText": "My Work Orders",
+      "textTransform": "uppercase",
+      "active": false
+    }
+  ],
+  "prefAtEnd": {
+    "status": 200,
+    "updatedAt": "2026-08-12T16:05:30Z",
+    "value": {
+      "tab": "all",
+      "sortBy": "status",
+      "columns": {
+        "vin": true,
+        "vehicle": true,
+        "daysOpen": false,
+        "progress": true,
+        "startDate": true,
+        "linesCount": true,
+        "technician": true,
+        "totalPrice": true,
+        "invoicedDate": false,
+        "serviceAdvisor": true,
+        "partRequestsCount": false,
+        "clockedInTechnicians": true,
+        "partReturnRequestsCount": false,
+        "unreceivedPartRequestsCount": true
+      },
+      "filters": {
+        "status": [
+          "declined"
+        ]
+      },
+      "collapsed": false,
+      "descending": false
+    }
+  },
+  "api4xx": [
+    {
+      "m": "GET",
+      "s": 404,
+      "u": "/api/api/sso/check"
+    }
+  ],
+  "bridgeErrors": [],
+  "apiCalls": 65
+}

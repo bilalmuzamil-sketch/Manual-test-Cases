@@ -1,0 +1,164 @@
+{
+  "probe": "Q1",
+  "at": "2026-08-12T16:42:48.775Z",
+  "cases": {
+    "C29559": {
+      "steps": [
+        {
+          "n": 1,
+          "text": "Click the Estimates tab",
+          "ok": true,
+          "url": "https://sv8785.qa.shopview.com/workorders"
+        },
+        {
+          "n": 2,
+          "text": "Look at the filter bar",
+          "chipCount": 0,
+          "chips": []
+        },
+        {
+          "n": 3,
+          "text": "Look at each chip in turn",
+          "perChip": []
+        }
+      ]
+    },
+    "C29609": {
+      "steps": [
+        {
+          "n": 1,
+          "text": "Click the Estimates tab",
+          "ok": true,
+          "url": "https://sv8785.qa.shopview.com/workorders"
+        },
+        {
+          "n": 2,
+          "text": "Look at the filter bar and at the Status chip",
+          "allChips": []
+        },
+        {
+          "n": 3,
+          "text": "Try to click the Status chip and change it",
+          "clickAttempt": {
+            "clicked": false,
+            "notFound": true
+          },
+          "optionsAppeared": 0,
+          "urlChanged": false
+        },
+        {
+          "n": 4,
+          "text": "Open the Customer filter and select one customer",
+          "chipPresent": false
+        },
+        {
+          "n": 5,
+          "text": "Look at the table",
+          "rows": {
+            "tbody": 33,
+            "cards": 0,
+            "emptyStateVisible": false
+          },
+          "chipsNow": [],
+          "url": "https://sv8785.qa.shopview.com/workorders"
+        }
+      ]
+    },
+    "C29610": {
+      "steps": [
+        {
+          "n": 1,
+          "text": "Click the Completed tab",
+          "ok": true,
+          "url": "https://sv8785.qa.shopview.com/workorders?tab=complete"
+        },
+        {
+          "n": 2,
+          "text": "Look at the filter bar and at the Status chip",
+          "allChips": []
+        },
+        {
+          "n": 3,
+          "text": "Try to click the Status chip and change it",
+          "clickAttempt": {
+            "clicked": false,
+            "notFound": true
+          },
+          "optionsAppeared": 0,
+          "urlChanged": false
+        },
+        {
+          "n": 4,
+          "text": "Open the Customer filter and select one customer",
+          "chipPresent": false
+        },
+        {
+          "n": 5,
+          "text": "Look at the table",
+          "rows": {
+            "tbody": 14,
+            "cards": 0,
+            "emptyStateVisible": false
+          },
+          "chipsNow": [],
+          "url": "https://sv8785.qa.shopview.com/workorders?tab=complete"
+        }
+      ]
+    }
+  },
+  "dataCheck": {
+    "estimate": {
+      "http": 200,
+      "count": 0,
+      "distinctCustomers": 0,
+      "sample": []
+    },
+    "complete": {
+      "http": 200,
+      "count": 0,
+      "distinctCustomers": 0,
+      "sample": []
+    },
+    "approved": {
+      "http": 200,
+      "count": 0,
+      "distinctCustomers": 0,
+      "sample": []
+    }
+  },
+  "tabs": [
+    {
+      "domText": "All",
+      "transform": "uppercase",
+      "id": "tab_all",
+      "ariaSelected": "true"
+    },
+    {
+      "domText": "Estimates",
+      "transform": "uppercase",
+      "id": "tab_estimates",
+      "ariaSelected": "false"
+    },
+    {
+      "domText": "Completed",
+      "transform": "uppercase",
+      "id": "tab_completed",
+      "ariaSelected": "false"
+    },
+    {
+      "domText": "My Work Orders",
+      "transform": "uppercase",
+      "id": "tab_my_work_orders",
+      "ariaSelected": "false"
+    }
+  ],
+  "api4xx": [
+    {
+      "m": "GET",
+      "s": 404,
+      "u": "/api/api/sso/check"
+    }
+  ],
+  "bridgeErrors": [],
+  "apiCount": 39
+}

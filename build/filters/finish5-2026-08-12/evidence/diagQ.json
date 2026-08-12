@@ -1,0 +1,92 @@
+{
+  "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+  "anyFilterTestIds": [
+    "page_search_toggle",
+    "toggle_filter_bar",
+    "back_to_saved_filters",
+    "filter_chip_status",
+    "filter_chip_company_id",
+    "filter_chip_tech_assigned_id",
+    "filter_chip_service_advisor_id",
+    "filter_chip_vehicleHere",
+    "button_vehicle_here_toggle"
+  ],
+  "allTestIdsSample": [
+    "skip-to-content",
+    "button_desktop_nav_link",
+    "select_global_search",
+    "clock_in_button",
+    "clock_in_timer",
+    "button_notifications",
+    "profile_menu_button",
+    "tab_all",
+    "tab_estimates",
+    "tab_completed",
+    "tab_my_work_orders",
+    "page_search_toggle",
+    "toggle_filter_bar",
+    "button_column_selection",
+    "button_new_work_order",
+    "back_to_saved_filters",
+    "filter_chip_status",
+    "filter_chip_company_id",
+    "filter_chip_tech_assigned_id",
+    "filter_chip_service_advisor_id",
+    "filter_chip_vehicleHere",
+    "button_vehicle_here_toggle",
+    "button_copy_vin",
+    "link_waiting_on_parts_090be60f-d18c-4fd8-a412-528c3800f385",
+    "link_waiting_on_parts_2fac376a-fb57-4b47-ba7e-aca2ca8ebb83",
+    "link_waiting_on_parts_35c30311-eef1-4e09-8d3c-217a6202cbf8",
+    "link_waiting_on_parts_3ae0163d-67c9-413d-b052-52680560adb8"
+  ],
+  "pref": {
+    "status": 200,
+    "updatedAt": "2026-08-12T16:05:30Z",
+    "value": {
+      "tab": "all",
+      "sortBy": "status",
+      "columns": {
+        "vin": true,
+        "vehicle": true,
+        "daysOpen": false,
+        "progress": true,
+        "startDate": true,
+        "linesCount": true,
+        "technician": true,
+        "totalPrice": true,
+        "invoicedDate": false,
+        "serviceAdvisor": true,
+        "partRequestsCount": false,
+        "clockedInTechnicians": true,
+        "partReturnRequestsCount": false,
+        "unreceivedPartRequestsCount": true
+      },
+      "filters": {
+        "status": [
+          "declined"
+        ]
+      },
+      "collapsed": false,
+      "descending": false
+    }
+  },
+  "bodyTop": "Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 AS All Estimates Completed My Work Orders search Search filter_list width_normal Create Work Order undo Back To My Saved Filters Status keyboard_arrow_down person Customer keyboard_arrow_down build Lead Technician keyboard_arrow_down headset_mic Service Advisor keyboard_arrow_down local_shipping Asset on Site keyboard_arrow_down On Sitearrow_drop_up Statusarrow_drop_up Waiting On Partsarrow_drop_up Numberarrow_drop_up Customerarrow_drop_up Assetarrow_drop_up Unitarrow_drop_up VIN/Serial #arrow_drop_up Progress Service Advisorarrow_drop_up Lead Technicianarrow",
+  "apiShape": {
+    "plain": {
+      "http": 200,
+      "topKeys": [
+        "data"
+      ],
+      "dataKeys": [
+        "pagination",
+        "work_orders"
+      ]
+    },
+    "estimate": {
+      "http": 200,
+      "len": 0,
+      "firstKeys": null
+    }
+  }
+}

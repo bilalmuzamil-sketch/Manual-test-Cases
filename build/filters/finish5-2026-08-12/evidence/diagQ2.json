@@ -1,0 +1,146 @@
+{
+  "stages": [
+    {
+      "tag": "landed-all",
+      "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+      "chipCount": 5,
+      "chipIds": [
+        "filter_chip_status",
+        "filter_chip_company_id",
+        "filter_chip_tech_assigned_id",
+        "filter_chip_service_advisor_id",
+        "filter_chip_vehicleHere"
+      ],
+      "togglepresent": true,
+      "activeTab": [
+        "tab_all"
+      ],
+      "tabs": [
+        "tab_all:All",
+        "tab_estimates:Estimates",
+        "tab_completed:Completed",
+        "tab_my_work_orders:My Work Orders"
+      ]
+    },
+    {
+      "tag": "after-tab_estimates-click",
+      "url": "https://sv8785.qa.shopview.com/workorders",
+      "chipCount": 4,
+      "chipIds": [
+        "filter_chip_company_id",
+        "filter_chip_tech_assigned_id",
+        "filter_chip_service_advisor_id",
+        "filter_chip_vehicleHere"
+      ],
+      "togglepresent": true,
+      "activeTab": [
+        "tab_estimates"
+      ],
+      "tabs": [
+        "tab_all:All",
+        "tab_estimates:Estimates",
+        "tab_completed:Completed",
+        "tab_my_work_orders:My Work Orders"
+      ]
+    },
+    {
+      "tag": "after-ensureBarOpen",
+      "url": "https://sv8785.qa.shopview.com/workorders",
+      "chipCount": 0,
+      "chipIds": [],
+      "togglepresent": true,
+      "activeTab": [
+        "tab_estimates"
+      ],
+      "tabs": [
+        "tab_all:All",
+        "tab_estimates:Estimates",
+        "tab_completed:Completed",
+        "tab_my_work_orders:My Work Orders"
+      ]
+    },
+    {
+      "tag": "direct-url-tab=estimate",
+      "url": "https://sv8785.qa.shopview.com/workorders?tab=estimate",
+      "chipCount": 4,
+      "chipIds": [
+        "filter_chip_company_id",
+        "filter_chip_tech_assigned_id",
+        "filter_chip_service_advisor_id",
+        "filter_chip_vehicleHere"
+      ],
+      "togglepresent": true,
+      "activeTab": [
+        "tab_estimates"
+      ],
+      "tabs": [
+        "tab_all:All",
+        "tab_estimates:Estimates",
+        "tab_completed:Completed",
+        "tab_my_work_orders:My Work Orders"
+      ]
+    }
+  ],
+  "estClick": {
+    "clicked": true,
+    "attempt": 1
+  },
+  "ensure1": {
+    "alreadyOpen": false,
+    "toggled": true,
+    "nowOpen": false
+  },
+  "pref": {
+    "status": 200,
+    "updatedAt": "2026-08-12T16:05:30Z",
+    "value": {
+      "tab": "all",
+      "sortBy": "status",
+      "columns": {
+        "vin": true,
+        "vehicle": true,
+        "daysOpen": false,
+        "progress": true,
+        "startDate": true,
+        "linesCount": true,
+        "technician": true,
+        "totalPrice": true,
+        "invoicedDate": false,
+        "serviceAdvisor": true,
+        "partRequestsCount": false,
+        "clockedInTechnicians": true,
+        "partReturnRequestsCount": false,
+        "unreceivedPartRequestsCount": true
+      },
+      "filters": {
+        "status": [
+          "declined"
+        ]
+      },
+      "collapsed": false,
+      "descending": false
+    }
+  },
+  "api": {
+    "estimate": {
+      "http": 200,
+      "len": 100,
+      "customers": 52
+    },
+    "complete": {
+      "http": 200,
+      "len": 11,
+      "customers": 8
+    },
+    "approved": {
+      "http": 200,
+      "len": 96,
+      "customers": 47
+    },
+    "declined": {
+      "http": 200,
+      "len": 7,
+      "customers": 7
+    }
+  }
+}
