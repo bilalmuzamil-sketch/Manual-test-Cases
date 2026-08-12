@@ -90,7 +90,7 @@ Pressing it should slide the panel closed and let the grid widen into the space,
 
 "A borderless panel-left icon in secondary text color. The icon does not change between states; the tooltip carries the meaning — 'Hide panel' when open, 'Show panel' when collapsed."
 
-The same section also names it in the list of grid toolbar controls: "Panel toggle — Collapses and expands the left work order panel (§5.3)."
+The same section of the description also lists this control by name among the controls in the row above the grid, calling it the "Panel toggle".
 
 **Exactly how to see it.** 1. Sign in as an administrator and open Schedule.
 2. Look at the row of controls immediately above the grid. Find the "Today" button. Look to the left of it — there is nothing there.
@@ -227,6 +227,8 @@ Each row says in one plain sentence what the test is waiting on. The same senten
 
 TWO THINGS TO LOOK AT FIRST. (1) The column 'Already has a result?' - 16 of these tests already say Passed in the test run. Those need changing to Blocked; they are the most useful thing on this tab. (2) 14 Schedule tests are all waiting on the same one thing - a second login that is not an administrator. One login would release all 14 at once.
 
+The 'What it is waiting on' wording is quoted from the test itself, so it matches what you will read on the case. The only thing changed is that document reference codes have been spelled out as 'the written description'.
+
 ### Filters — 18 tests to skip
 
 | Test | What the test covers | What it is waiting on | Already has a result? |
@@ -235,7 +237,7 @@ TWO THINGS TO LOOK AT FIRST. (1) The column 'Already has a result?' - 16 of thes
 | [C29609](https://shopview.testrail.io/index.php?/cases/view/29609) | Estimates tab: Status chip is greyed out and pre-filled; other four work | waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification | Passed ⚠️ |
 | [C29610](https://shopview.testrail.io/index.php?/cases/view/29610) | Completed tab: Status chip is greyed out and pre-filled; other four work | waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification | Passed ⚠️ |
 | [C29612](https://shopview.testrail.io/index.php?/cases/view/29612) | A Status choice is kept while you switch tabs and comes back on the All tab | waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification | Passed ⚠️ |
-| [C38880](https://shopview.testrail.io/index.php?/cases/view/38880) | Each page and tab remembers its own filters separately | held for the QA lead's ruling only - the behaviour IS documented (S10-R4 says each Parts view and each Report tab keeps its own separate filter set and each persists independently), so the earlier reason that no source described it was wrong | — |
+| [C38880](https://shopview.testrail.io/index.php?/cases/view/38880) | Each page and tab remembers its own filters separately | held for the QA lead's ruling only - the behaviour IS documented (the written description says each Parts view and each Report tab keeps its own separate filter set and each persists independently), so the earlier reason that no source described it was wrong | — |
 | [C38881](https://shopview.testrail.io/index.php?/cases/view/38881) | Filters saved before the redesign carry over after the update | cannot be run - it needs an account whose filters were saved before the redesign, and none exists | — |
 | [C38882](https://shopview.testrail.io/index.php?/cases/view/38882) | Date range filter offers ready-made periods and a custom start/end range | waiting on Branko's Parts and Reports product write-up - the date range filter is built but no source states the periods it must offer | — |
 | [C38891](https://shopview.testrail.io/index.php?/cases/view/38891) | Every list page keeps its own search box (Parts, Reports, detail tabs) | cannot be run yet - its own precondition needs the page-search rollout finished everywhere, and it is still part-way through | — |

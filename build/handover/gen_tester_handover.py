@@ -162,7 +162,10 @@ T4_NOTE = (
     "TWO THINGS TO LOOK AT FIRST. (1) The column 'Already has a result?' - 16 of these tests "
     "already say Passed in the test run. Those need changing to Blocked; they are the most "
     "useful thing on this tab. (2) 14 Schedule tests are all waiting on the same one thing - a "
-    "second login that is not an administrator. One login would release all 14 at once."
+    "second login that is not an administrator. One login would release all 14 at once.\n\n"
+    "The 'What it is waiting on' wording is quoted from the test itself, so it matches what you "
+    "will read on the case. The only thing changed is that document reference codes have been "
+    "spelled out as 'the written description'."
 )
 
 T4_COLS = ["#", "Project", "Test", "Link", "What the test covers",
