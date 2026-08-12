@@ -74,3 +74,50 @@ Each write was additionally checked by an **independent re-read of the stored te
 trusting the verification helper: the new stamp present (`stamp_ok`) and the old build token gone
 (`stale_gone`). **45 of 45 passed both.** Machine log: `evidence/restamp-oplog.json`.
 
+
+## 2 · Batch B — the Technician session
+
+Driven as **Bilal Muzamil, role Technician** (Schedule: View, no Edit, no Delete), in a **separate
+cookie jar and a separate browser context** from the administrator. `quick-login` and `switch-user`
+were never called — they rotate the shared token and siblings are live on Report Suite and Filters.
+
+| # | case | op | HTTP | fields compared | mismatches | collateral | marker before |
+|---|---|---|---|---|---|---|---|
+| 1 | C30044 | update_case | 200 | 30 | 0 | 0 | HOLD - needs a second sign-in as a user with no staff record of their own |
+| 2 | C30074 | update_case | 200 | 30 | 0 | 0 | HOLD - needs a second sign-in as a view-only user |
+| 3 | C30075 | update_case | 200 | 30 | 0 | 0 | HOLD - needs a second sign-in as a view-only user |
+| 4 | C30082 | update_case | 200 | 30 | 0 | 0 | HOLD - needs a second sign-in as a view-only technician |
+| 5 | C38872 | update_case | 200 | 30 | 0 | 0 | HOLD - needs three separate sign-ins, one per permission level |
+| 6 | C38874 | update_case | 200 | 30 | 0 | 0 | HOLD - needs a second sign-in as a user who cannot see work orders |
+
+**6 of 6 written, every one HTTP 200 + byte-verified, 30 fields compared each, 0 mismatches,
+0 collateral changes.** Machine log: `evidence/tech-oplog.json`.
+
+**Only the automation marker and Rule-54 sentence 2 moved.** The builder asserted before sending that
+the expected behaviour and provenance sentence 1 were byte-identical on all six, and refused to
+produce a payload otherwise. **No precondition and no step was edited** — all six were verified
+against the build and found executable as written.
+
+## 3 · Totals for the pass
+
+**51 `update_case` operations over 51 distinct cases, every one HTTP 200 + byte-verified,
+30 fields compared each, 0 mismatches, 0 collateral changes.**
+
+0 `add_case` · 0 `delete_case` · 0 section writes · 0 run writes · 0 results logged ·
+**0 Jira calls of any kind** — the creation hold is active, so findings are written up instead.
+`custom_atmstatus` never sent.
+
+## 4 · Run 357, proven untouched — checked after BOTH batches
+
+| | Before | After |
+|---|---|---|
+| `include_all` | `false` | `false` |
+| tests | 176 | 176 |
+| results | 529 | 529 |
+
+- test-id and case-id sets **equal in both directions**
+- **all 529 prior results present BY ID**, 0 missing, 0 new
+- **0 graded-field changes**, **0** `case_title` / `case_refs` echo changes
+
+Verified by **content**, never by `updated_on`.
+

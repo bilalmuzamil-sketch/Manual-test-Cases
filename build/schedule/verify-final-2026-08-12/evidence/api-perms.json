@@ -1,0 +1,32 @@
+{
+ "READ   board": {
+  "admin": "400",
+  "tech": "400",
+  "tech_body": "{\"errors\":[{\"error\":\"Must be a UTC ISO-8601 instant, for example 2026-08-03T00:00:00Z.\"},{\"error\":\"Must be a UTC ISO-8601 instant, for example 2026-08"
+ },
+ "READ   work-orders": {
+  "admin": "200",
+  "tech": "200",
+  "tech_body": "{\"data\":{\"workOrders\":[{\"id\":\"e8d42b49-f189-4949-8d0f-40283f14be85\",\"number\":\"S-15875\",\"status\":\"approved\",\"statusLabel\":\"Approved\",\"priority\":null,\"c"
+ },
+ "WRITE  create shift": {
+  "admin": "400",
+  "tech": "403",
+  "tech_body": "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+ },
+ "WRITE  patch shift": {
+  "admin": "400",
+  "tech": "403",
+  "tech_body": "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+ },
+ "WRITE  patch event": {
+  "admin": "404",
+  "tech": "403",
+  "tech_body": "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+ },
+ "DELETE shift": {
+  "admin": "404",
+  "tech": "403",
+  "tech_body": "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+ }
+}
