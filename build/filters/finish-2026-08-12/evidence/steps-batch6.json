@@ -1,0 +1,89 @@
+{
+ "read_at_utc": "2026-08-12T11:44:35.348Z",
+ "checks": [
+  {
+   "name": "C38883 steps 4-6 + C38898 step 5",
+   "with_text": {
+    "input_visible": true,
+    "value": "Iibay",
+    "toggle_visible": null
+   },
+   "after_round_x": {
+    "input_visible": true,
+    "value": "",
+    "toggle_visible": null
+   },
+   "rows_after_clear": 33,
+   "empty_then_click_away": {
+    "input_visible": null,
+    "value": null,
+    "toggle_visible": null
+   },
+   "text_then_click_away": {
+    "input_visible": null,
+    "value": null,
+    "toggle_visible": null
+   }
+  },
+  {
+   "name": "C38898 step 2 hover",
+   "before_hover": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(97, 97, 97)",
+    "cursor": "pointer"
+   },
+   "on_hover": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(97, 97, 97)",
+    "cursor": "pointer"
+   },
+   "changed": false
+  },
+  {
+   "name": "C38899 steps 4-5",
+   "before_enter": {
+    "rows": 2,
+    "url": "https://sv8785.qa.shopview.com/workorders?tab=all&search=Iibay"
+   },
+   "after_enter": {
+    "rows": 2,
+    "url": "https://sv8785.qa.shopview.com/workorders?tab=all&search=Iibay",
+    "still_on_page": true
+   },
+   "parts_inventory_search": {
+    "toggle_present": 1,
+    "typed": {
+     "rows_before": 32,
+     "rows_after": 32,
+     "url": "https://sv8785.qa.shopview.com/parts/inventory?search=oil"
+    }
+   }
+  },
+  {
+   "name": "C38877 step 3 combine",
+   "with_imported": {
+    "chip": "Status : Imported keyboard_arrow_down"
+   },
+   "attempt": {
+    "clicked_approved": false,
+    "options_state": []
+   },
+   "after": {
+    "url": "https://sv8785.qa.shopview.com/workorders?tab=all&status=imported",
+    "chip": "Status : Imported keyboard_arrow_down"
+   }
+  },
+  {
+   "name": "C38893 desktop top-nav search",
+   "rows_before": 2,
+   "after_typing_in_top_search": {
+    "rows": 2,
+    "url": "https://sv8785.qa.shopview.com/workorders?tab=all&search=Iibay",
+    "dropdown": "Customers\nbusiness\nIibay Landscaping\n90356 Melissa Corner Apt. 170 ..\nbusiness\nIibay Commercial\n9472 Woods Islands Suite 061 E.."
+   },
+   "page_list_unchanged": true,
+   "url_gained_search_param": true
+  }
+ ],
+ "bridge_errors": []
+}
