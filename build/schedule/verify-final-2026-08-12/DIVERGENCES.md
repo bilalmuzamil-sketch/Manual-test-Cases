@@ -84,16 +84,41 @@ the order written, as the Technician** — the sign-in, the shifts and events al
 three views, the mini calendar, the toolbar search, the sidebar filter, the hover tooltip, the detail
 modal, and the `My Shifts` toggle. **Nothing needed correcting.**
 
+## F · FOUND TODAY — three more, added after the first version of this file
+
+| Case | Class | What the case said | What the build ships | Done |
+|---|---|---|---|---|
+| [C30059](https://shopview.testrail.io/index.php?/cases/view/30059) | **cosmetic, but it would have stranded a tester** | step 1: use the **`this and everything after`** scope | the option reads **`This and all later shifts`** | **step corrected** |
+| [C30061](https://shopview.testrail.io/index.php?/cases/view/30061) | **needs your ruling** | its EXPECTED result names the options **`this and after`**, **`this only`**, **`whole series`** | **`This and all later shifts`**, **`This shift only`**, **`Entire series (8 shifts)`** | **NOT edited — raised** |
+| [C30034](https://shopview.testrail.io/index.php?/cases/view/30034) | **deviation** | the tooltip shows the VIN **whenever the unit has one, regardless of the `VIN Number` toggle** — your 31 July decision | VIN appears **only when the toggle is ON**. Off: `G30`. On: `G30 · VIN 12-06696` | expectation kept; deviation recorded |
+
+**Why C30061 was left alone and C30059 was corrected.** C30059's shorthand is in a **step** — a
+tester follows it, hunts for wording that does not exist, and is stuck. C30061's shorthand is in the
+**expected result**, and an expected result is not ours to edit. The wording is recognisably the same
+three options, so nobody is stranded; but the case reads oddly against the screen and **you may want
+it aligned**. One word from you and it is a two-minute change.
+
+**And one thing got BETTER, which is worth as much as a defect.** C30034 carried a note saying the
+tooltip listed **all five** line names with no overflow row. **That is no longer true** — a six-line
+shift showed exactly three names and a **`+3 more lines`** row. The stale note is gone. It was found
+because the case was re-driven, not because a ticket changed status.
+
 ## E · WHAT I HAVE NOT CHECKED — the number stated strictly
 
-**This pass verified every precondition and every step, in the order written, on 4 cases**:
-C30074, C30075, C30082, C30044. **Two more were partly verified** — C38872 and C38874, where the legs
-this Technician can reach were carried out and the rest cannot be set up (section A).
+**This pass verified every precondition and every step, in the order written, on 6 cases**:
+C30074, C30075, C30082, C30044 (as the Technician), and C30061, C30034 (as the administrator).
 
-**Counting every committed pass that ran on this same build**, the cases whose steps have actually
-been carried out on it are **28 of 176**: 8 from the drag re-try, 14 from the dialog pass, and these
-6. **The other 148 have had labels compared against a harvest of this build, but nobody has walked
-their preconditions and steps.**
+**Five more were partly verified**, and I will not round them up:
+· **C38872, C38874** — the legs this Technician can reach were carried out; the rest cannot be set up
+· **C29946** — the `Clear all` control was located and its label read, but the click was not driven
+· **C30058, C30059** — their steps require actually **deleting** a shift from a live series. The scope
+dialog was opened and read, then cancelled. **The deletion was not performed**, so their steps are
+**not** fully verified, and I am not claiming they are.
 
-**So the honest figure for "a tester could pick this up tomorrow and run it" is 28 of 176 proven, not
-176.** I would rather hand you that number than a comfortable one.
+**Counting every committed pass on this same build**, the cases whose steps have actually been
+carried out are **28 of 176** — 8 from the drag re-try, 14 from the dialog pass, and these 6.
+
+**So the honest figure for "a tester could pick this up tomorrow and run it start to finish" is 28 of
+176 proven.** The other 148 have had their **labels** compared against a harvest of this build, which
+is worth something but is not the same claim. I would rather hand you that number than a comfortable
+one.
