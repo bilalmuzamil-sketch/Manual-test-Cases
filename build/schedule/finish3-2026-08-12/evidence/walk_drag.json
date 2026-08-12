@@ -3,7 +3,7 @@
   "steps": [
    {
     "step": "1-2 drag a single-line card and drop it on a technician cell",
-    "seen": "S8685-12876 1 line · 1h Est. Pamill Paving 713 AC Alicia Campbell chevron_right Approved -> {\"x\":990,\"y\":447}; board added=1"
+    "seen": "S8685-12876 1 line \u00b7 1h Est. Pamill Paving 713 AC Alicia Campbell chevron_right Approved -> {\"x\":990,\"y\":447}; board added=1"
    },
    {
     "step": "1 a shift is created immediately, no scope picker and no spread step",
@@ -29,7 +29,7 @@
    },
    {
     "step": "drag multi-line card from sidebar",
-    "seen": "S8685-13014 6 lines · 8.7h Est. Fuline Enterprises G30 AC Alicia Campb"
+    "seen": "S8685-13014 6 lines \u00b7 8.7h Est. Fuline Enterprises G30 AC Alicia Campb"
    },
    {
     "step": "drop on technician cell at {\"ok\":true,\"x\":921,\"y\":377}",
@@ -37,19 +37,49 @@
    },
    {
     "step": "1 picker opens, anchored to the dropped cell",
-    "seen": "picker box {\"x\":921,\"y\":380,\"w\":460,\"h\":700} ; dropped-on label: dropped on Admin ShopView · Wed, Aug 12 ; near drop point: true"
+    "seen": "picker box {\"x\":921,\"y\":380,\"w\":460,\"h\":700} ; dropped-on label: dropped on Admin ShopView \u00b7 Wed, Aug 12 ; near drop point: true"
    },
    {
     "step": "2 offers 'Schedule whole work order' / line rows / 'Select multiple'",
-    "seen": "[\"content_paste Schedule whole work order All 6 lines · 8.7h total chevron_right\",\"6 line rows\",\"Select multiple\"]"
+    "seen": "[\"content_paste Schedule whole work order All 6 lines \u00b7 8.7h total chevron_right\",\"6 line rows\",\"Select multiple\"]"
    },
    {
     "step": "3 no shift created until a scope is chosen",
-    "seen": "checked by board diff at end of run"
+    "seen": "CONFIRMED by board diff: 675 shifts before, 675 after, 0 added, 0 removed, 0 changed, while the picker was open and then dismissed with Escape."
    }
   ],
-  "verdict": "pending-board-diff",
+  "verdict": "PASS",
   "at": "2026-08-12T08:37:47.536Z"
+ },
+ "29957": {
+  "steps": [
+   {
+    "step": "0 open the work order drill-down in the sidebar",
+    "seen": "card S8685-13014 6 lines \u00b7 8.7h Est. Fuline Enterprises G30 AC Alicia Campb ; drill-down test ids: {\"button_sidebar_lines_back\":1,\"text_sidebar_lines_customer\":1,\"input_sidebar_line_search\":1,\"button_sidebar_line_scope_all\":1,\"button_sidebar_line_scope_unscheduled\":1,\"sidebar_line_list\":1,\"sidebar_line_row\":6,\"sidebar_line_status_b6f3a900-d89b-471f-be54-1185413c2e1e\":1,\"sidebar_line_status_c6028bad-8037-4651-8fbd-065539184fb1\":1,\"sidebar_line_status_bca5c4b6-2673-4fe0-bf1c-0633b67e3479\":1,\"sidebar_line_status_85faed36-d9b3-4a08-bfc0-49747a34a7bd\":1,\"sidebar_line_status_2716e353-25ff-45e6-9818-2fe3c019daa2\":1,\"sidebar_line_status_07d01fc3-4eb1-4429-a384-2bd04655ed80\":1}"
+   },
+   {
+    "step": "1 using the line's drag handle, drag one line from the drill-down",
+    "seen": "sidebar_line_row :: drag_indicator Diagnose - Oil Leak Est. 1h AC Alicia Campbell +5 Complete"
+   },
+   {
+    "step": "2 drop it onto a technician cell",
+    "seen": "lane MT MQ Test Tech Qamar MQ Test Tech at {\"x\":880,\"y\":669}"
+   },
+   {
+    "step": "1 a single-line shift is created directly, NO scope picker appears",
+    "seen": "picker=false dialogs=0 ; board added=1 [{\"wo\":\"S-13014\",\"lines\":1,\"mins\":60}]"
+   },
+   {
+    "step": "2 the block's last text line shows that line's name",
+    "seen": "[\"1 line(s)\"]"
+   },
+   {
+    "step": "3 the technician is added to that line roster only",
+    "seen": "see C29961"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T08:47:30.873Z"
  },
  "29959": {
   "steps": [
@@ -72,24 +102,28 @@
  "29960": {
   "steps": [
    {
-    "step": "1 drag a card and hold it OVER A GRID CELL (re-driven: the first attempt sampled while the cursor was over the sidebar, which is not a cell)",
-    "seen": "sampled 9 times with the cursor inside the calendar, ending at {\"x\":990,\"y\":447}"
+    "step": "1 start dragging A LINE from the sidebar and hold it over grid cells (re-driven twice: the first run sampled over the sidebar, the second dragged a work-order card instead of a line)",
+    "seen": "line dragged: drag_indicator Diagnose - Oil Leak Est. 1h AC Alicia Campbell +5 Complete"
    },
    {
     "step": "1 the cell under the cursor highlights as a drop target",
-    "seen": "[{\"cls\":\"schedule-drop-target\"}]"
+    "seen": "[{\"i\":14,\"cursor\":{\"x\":528,\"y\":509},\"hi\":[{\"cls\":\"schedule-drop-target\",\"x\":524,\"y\":393,\"w\":165,\"h\":236}]},{\"i\":19,\"cursor\":{\"x\":704,\"y\":589},\"hi\":[{\"cls\":\"schedule-drop-target\",\"x\":689,\"y\":393,\"w\":165,\"h\":236}]},{\"i\":23,\"cursor\":{\"x\":845,\"y\":653},\"hi\":[{\"cls\":\"schedule-drop-target\",\"x\":689,\"y\":629,\"w\":165,\"h\":245}]}]"
    },
    {
     "step": "2 a ghost block follows the drag showing the line name and its hours",
-    "seen": "[{\"cls\":\"fc-event fc-event-draggable fc-event-start fc-event-end fc-event-past fc-timeline-event fc-h-event\",\"t\":\"Fuline Enterprises G30 6 Lines\",\"parent\":\"DIV\"},{\"cls\":\"fc-event fc-event-draggable fc-event-start fc-event-end fc-event-past fc-timeline-event fc-h-event\",\"t\":\"Pamill Paving 713 Replace - Rear ramp handles\",\"parent\":\"DIV\"},{\"cls\":\"fc-event fc-event-draggable fc-event-start fc-event-end fc-event-future fc-timeline-event fc-h-event\",\"t\":\"Fuline Enterprises G30 Replace - Engine air filter\",\"parent\":\"DIV\"}]"
+    "seen": "SPLIT RESULT, measured two ways. (a) WORK-ORDER CARD drag: a ghost DOES follow the cursor - a clone of the sidebar card reparented to <body>, reading 'S8685-12876 / 1 line - 1h Est. / Pamill Paving / 713 / AC Alicia Campbell'. It carries the HOURS but names the line COUNT, not the line's name. (b) DRILL-DOWN LINE drag: no element carrying the dragged line's name ('Diagnose - Oil Leak') was found anywhere outside the sidebar in a whole-tree hunt at two points mid-drag, and none is visible in the mid-drag screenshot evidence/ghost-22.png. The 24 and 21 text matches found were pre-existing blocks already on the calendar; the cursor moved +369,+138 between samples and NO match moved with it. Harness ruled out: the same pointer events that produced no ghost DID produce the drop-target highlight and DID complete the drop, so the drag mechanism was working."
    },
    {
     "step": "3 releasing outside any valid cell creates nothing",
-    "seen": "proven in the first run: released over the sidebar, board 675 -> 675, 0 added"
+    "seen": "proven earlier: released over the sidebar, board 675 -> 675, 0 added"
+   },
+   {
+    "step": "NOTE on what would still explain (b)",
+    "seen": "If the line drag used the browser's NATIVE HTML5 drag image, that image is drawn by the compositor, is absent from the DOM and absent from screenshots - so neither check could see it. Against that: the CARD drag on the same page renders its mirror as a real DOM node, so this app draws DOM mirrors. Recorded as an observation, NOT called a defect."
    }
   ],
-  "verdict": "see RUNNABILITY",
-  "at": "2026-08-12T08:43:26.635Z"
+  "verdict": "PASS on 1 and 3; expected 2 PARTIAL - see the note",
+  "at": "2026-08-12T08:47:30.871Z"
  },
  "29961": {
   "steps": [
@@ -117,7 +151,7 @@
   "steps": [
    {
     "step": "2 read the top option",
-    "seen": "content_paste Schedule whole work order All 6 lines · 8.7h total chevron_right"
+    "seen": "content_paste Schedule whole work order All 6 lines \u00b7 8.7h total chevron_right"
    },
    {
     "step": "1 pinned at top, visually distinct",
@@ -125,11 +159,11 @@
    },
    {
     "step": "2 labelled with line count and total hours",
-    "seen": "content_paste Schedule whole work order All 6 lines · 8.7h total chevron_right"
+    "seen": "content_paste Schedule whole work order All 6 lines \u00b7 8.7h total chevron_right"
    },
    {
     "step": "3 anchored to the dropped cell",
-    "seen": "dropped on Admin ShopView · Wed, Aug 12"
+    "seen": "dropped on Admin ShopView \u00b7 Wed, Aug 12"
    },
    {
     "step": "4 each line row shows title and estimated hours",
@@ -147,11 +181,11 @@
   "steps": [
    {
     "step": "1 drag the work order onto a technician cell",
-    "seen": "S8685-13014 6 lines · 8.7h Est. Fuline Enterprises G30 AC Alicia Campbell chevron_right Ap -> picker=true"
+    "seen": "S8685-13014 6 lines \u00b7 8.7h Est. Fuline Enterprises G30 AC Alicia Campbell chevron_right Ap -> picker=true"
    },
    {
     "step": "2 choose 'Schedule whole work order'",
-    "seen": "content_paste Schedule whole work order All 6 lines · 8.7h total chevron_right"
+    "seen": "content_paste Schedule whole work order All 6 lines \u00b7 8.7h total chevron_right"
    },
    {
     "step": "1 ONE shift is created covering all the approved lines",
@@ -169,7 +203,7 @@
   "steps": [
    {
     "step": "1 drag the work order onto a technician cell",
-    "seen": "S8685-13014 6 lines · 8.7h Est. Fuline Enterprises G30 AC Alicia Campbell chevron_right Ap -> picker=true"
+    "seen": "S8685-13014 6 lines \u00b7 8.7h Est. Fuline Enterprises G30 AC Alicia Campbell chevron_right Ap -> picker=true"
    },
    {
     "step": "2 click one line row (not Select multiple)",
@@ -203,11 +237,11 @@
    },
    {
     "step": "3 tick two lines and read the confirm bar",
-    "seen": "ticked=2 ; bar tail: Diagnose - Low coolant Est. 0.7h AC LC MT +1 Diagnose - Right side wheel seal/brake leak Est. 0.8h AC LC MT +1 Replace - Hydraulic lines Est. 3h AC MQ Replace - Engine air filter Est. 0.3h AC MQ Replace front wheel seal Est. 3h AC MQ 2 selected · 1.7h Schedule"
+    "seen": "ticked=2 ; bar tail: Diagnose - Low coolant Est. 0.7h AC LC MT +1 Diagnose - Right side wheel seal/brake leak Est. 0.8h AC LC MT +1 Replace - Hydraulic lines Est. 3h AC MQ Replace - Engine air filter Est. 0.3h AC MQ Replace front wheel seal Est. 3h AC MQ 2 selected \u00b7 1.7h Schedule"
    },
    {
     "step": "4 'Select all' shortcut present?",
-    "seen": "has_select_all=false ; buttons=[\"close\",\"content_paste Schedule whole work order All 6 lines · 8.7h total chevron_right\",\"Select multiple\",\"All 6\",\"Unscheduled 0\",\"Schedule\"]"
+    "seen": "has_select_all=false ; buttons=[\"close\",\"content_paste Schedule whole work order All 6 lines \u00b7 8.7h total chevron_right\",\"Select multiple\",\"All 6\",\"Unscheduled 0\",\"Schedule\"]"
    },
    {
     "step": "5 'Cancel' control present?",
