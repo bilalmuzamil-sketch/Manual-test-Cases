@@ -30,3 +30,17 @@ at the end.
 | # | when (UTC) | app-version | etag | sha256 of index.html |
 |---|---|---|---|---|
 | 1 (start) | 2026-08-12T05:21:48Z | `v3.7-4626299` | `da084d29fbcc187229d2988862374d6b` | `6dc177ab…9c85b` |
+| 2 (mid-run) | 2026-08-12T05:51:20Z | `v3.7-4626299` | `da084d29fbcc187229d2988862374d6b` | `6dc177ab…9c85b` |
+
+**The marker was byte-identical at both reads — `index.html` sha256 equal — so NOTHING redeployed
+under this pass.** Every observation in `LABEL-DIFF.md` and `DIVERGENCES.md` was taken on one build.
+
+*(A third read at stand-down was not taken: the pass was stood down at the usage limit and the two
+reads bracket every probe that produced a finding. Stated rather than glossed.)*
+
+## What this pass did with the build
+
+It was used as the **CHECK**, never the author. Preconditions and steps were read from the
+specifications, then verified runnable against the build; **no expectation was taken from it**, and
+where the build disagreed with a specification the case kept the specification and the difference was
+recorded in `DIVERGENCES.md`.
