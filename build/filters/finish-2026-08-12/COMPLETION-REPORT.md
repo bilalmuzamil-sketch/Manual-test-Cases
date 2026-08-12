@@ -19,7 +19,7 @@ across the session.** Location: **Staging Heavy Duty - 9919**.
 | 3a | **Build-verified — naming the build NOW RUNNING** (`v3.6-3e9dd6d`) | **13 of 115** (12 inherited + C43590 re-confirmed today) |
 | 3b | **Build-verified — naming an EARLIER build** | **92** name `v3.4.2-d00239b` (5 Aug) — *93 before C43590 was corrected* |
 | 3c | **No build line at all** | **10** — and this is not a defect: each says in its own text that it has not been checked against a build |
-| 4 | **Steps AND preconditions actually walked on the build** | **9 with every step verified** · **13 more with the navigation path and every named control verified** · **97 never walked** |
+| 4 | **Steps AND preconditions actually walked on the build** | **10 with every step verified** · **13 more with the navigation path and every named control verified** · **92 never walked** |
 | 5a | **Runnable vs held** | **97 runnable · 18 held** |
 | 5b | **Marker arithmetic, both ways** | `READY 90 + READY-EXPECT-FAIL 7 = 97` **and** `115 − HOLD 18 = 97` — **the gate closes** |
 | 6 | **Created / updated / deleted** | **0 created · 1 updated · 0 deleted** |
@@ -27,14 +27,14 @@ across the session.** Location: **Staging Heavy Duty - 9919**.
 
 **Row 4 is the number that answers "can a tester pick this up tomorrow?", and it is deliberately the
 smallest one in the table.** An unverified step is an unverified case, so the 13 are not folded into
-the 9. Rows 3 and 4 are different questions: row 3 is what a case *says* it was last checked against;
+the 10. Rows 3 and 4 are different questions: row 3 is what a case *says* it was last checked against;
 row 4 is what this session actually drove.
 
 ---
 
 ## WHAT WAS DONE
 
-- **The 29 untested-and-runnable cases were taken first** — what the tester opens first — and **9 were
+- **The 29 untested-and-runnable cases were taken first** — what the tester opens first — and **10 were
   driven end to end**, with 13 more having every screen, tab, chip and button they name confirmed
   present where the step says it is.
 - **One correction pushed: [C43590](https://shopview.testrail.io/index.php?/cases/view/43590)**, whose
@@ -58,8 +58,9 @@ row 4 is what this session actually drove.
 
 ## WHAT WAS NOT DONE, AND WHY
 
-- **93 of the 115 cases were not walked at all.** The 29-case priority set was the brief's ordering and
-  it was not exhausted either — 7 of the 29 remain.
+- **92 of the 115 cases were not walked at all.** The 29-case priority set was the brief's ordering and
+  it was not exhausted either — 6 of the 29 remain, and two further checks (C38877 step 3, C43560)
+  produced nothing because their own control failed.
 - **No re-stamp campaign was run.** 92 cases still name the 5 August build. **Re-stamping them would
   have been unsupportable**: the bar is that a case's labels were actually compared against a harvest
   from this build, and this session harvested surfaces rather than adjudicating all 115 cases against
@@ -73,8 +74,8 @@ row 4 is what this session actually drove.
 | # | Item | Waiting on | Who can clear it |
 |---|---|---|---|
 | 1 | **[C38897](https://shopview.testrail.io/index.php?/cases/view/38897) needs a defect ticket** — the empty state does not offer a separate clear-the-search control, against spec v19 `S8-R4`/`S8-R5` | **The Jira creation hold**, re-stated 2026-08-12: *"However for now the Jira ticket creation is still on hold."* | **The QA lead** — one word lifts it |
-| 2 | **7 of the 29 priority cases still unwalked** — C29581, C29588, C29619, C38876, C38879, C38886, C43560 | Session time; and for **C29581/C29588** specifically, a **staff-record deactivation**, which is barred here because such an edit destroys the session of every holder | A tester can do C29581/C29588 directly; the rest need another pass |
-| 3 | **86 of the 115 never examined by any runnability walk** (115 − 29) | Session time | Another pass |
+| 2 | **6 of the 29 priority cases still unwalked** — C29581, C29588, C29619, C38876, C38879, C43560 | Session time; and for **C29581/C29588** specifically, a **staff-record deactivation**, which is barred here because such an edit destroys the session of every holder | A tester can do C29581/C29588 directly; the rest need another pass |
+| 3 | **86 of the 115 never examined by any runnability walk** (115 − 29) · plus **two checks whose own control failed**, C38877 step 3 and C43560 | Session time | Another pass |
 | 4 | **92 cases still name the 5 August build** in their Rule-54 sentence 2 | A pass that actually compares each case's labels against a harvest from `v3.6-3e9dd6d` | Another pass — **not** a bulk re-stamp |
 | 5 | **[C38891](https://shopview.testrail.io/index.php?/cases/view/38891) — the 42-surface walk** — two names known wrong (`IBS Batch Transactions` → **IBS Batches**, `Sales Tax Invoices` → **Sales Tax Collected**) | One pass that walks all 42 surfaces at once, by URL not by name | Another pass; the case is held on the page-search rollout anyway |
 | 6 | **8 of the 18 held cases wait on Branko's Parts and Reports product write-up** | **Branko** — outstanding since **27 July** | The PO |

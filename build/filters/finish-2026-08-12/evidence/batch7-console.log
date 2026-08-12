@@ -1,0 +1,73 @@
+
+### C38877 step 3 (combine)
+{
+ "chip_with_imported": "Status : Imported keyboard_arrow_down",
+ "menu_readable": true,
+ "options_while_imported_on": [],
+ "approved_attempt": {
+  "err": "no Approved option",
+  "saw": []
+ },
+ "options_after_attempt": [],
+ "url_after": "https://sv8785.qa.shopview.com/workorders?tab=all&status=imported",
+ "chip_after": "Status : Imported keyboard_arrow_down",
+ "rows_after": 2
+}
+
+### C38884 steps 1-4 + C38900 step 4
+{
+ "filter_only": {
+  "url": "https://sv8785.qa.shopview.com/workorders?tab=all&status=approved",
+  "rows": 33,
+  "chip": "Status : Approved keyboard_arrow_down"
+ },
+ "filter_plus_search": {
+  "url": "https://sv8785.qa.shopview.com/workorders?status=approved&tab=all&search=a",
+  "rows": 33,
+  "chip": "Status : Approved keyboard_arrow_down"
+ },
+ "after_clearing_search_only": {
+  "url": "https://sv8785.qa.shopview.com/workorders?status=approved&tab=all",
+  "rows": 33,
+  "chip": "Status : Approved keyboard_arrow_down",
+  "note": "cleared ONLY the search - the filter should survive"
+ },
+ "after_clearing_filters_only": {
+  "url": "https://sv8785.qa.shopview.com/workorders?tab=all&search=a",
+  "rows": 33,
+  "chip": "Status keyboard_arrow_down",
+  "search_value": "a",
+  "note": "cleared ONLY the filters - the typed word should survive"
+ }
+}
+
+### C38886 second tab + return
+{
+ "tab_A_with_search": {
+  "url": "https://sv8785.qa.shopview.com/workorders?tab=all&search=Iibay",
+  "rows": 2
+ },
+ "tab_B_fresh": {
+  "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+  "search_box_present": false,
+  "search_value": null,
+  "toggle_collapsed": true,
+  "rows": 33
+ },
+ "tab_A_after_leaving_and_returning": {
+  "url": "https://sv8785.qa.shopview.com/workorders?tab=all&search=Iibay",
+  "search_value": "Iibay",
+  "rows": 2
+ }
+}
+node:internal/process/promises:394
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+page.evaluate: TypeError: Cannot read properties of undefined (reading 'querySelectorAll')
+    at eval (eval at evaluate (:290:30), <anonymous>:2:51)
+    at UtilityScript.evaluate (<anonymous>:292:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+    at /home/user/Manual-test-Cases/build/filters/finish-2026-08-12/tools/probe_batch7.cjs:114:12
+
+Node.js v22.22.2

@@ -3,8 +3,8 @@
 ## STATE IN ONE LINE
 
 **115 ours / 120 live. Build `v3.6-3e9dd6d`, unmoved. 1 `update_case` (C43590), byte-verified. 0 add,
-0 delete, 0 run writes, 0 results, 0 Jira. 9 of 29 priority cases fully walked, 13 more with every
-named control verified, 7 not walked. Markers 90 READY + 7 EXPECT-FAIL + 18 HOLD, gate closing both
+0 delete, 0 run writes, 0 results, 0 Jira. 10 of 29 priority cases fully walked, 13 more with every
+named control verified, 6 not walked. Markers 90 READY + 7 EXPECT-FAIL + 18 HOLD, gate closing both
 ways at 97.**
 
 Read **`COMPLETION-REPORT.md`** first — it is the Rule-67 table. Then `RUNNABILITY.md` (what was
@@ -16,10 +16,15 @@ walked and what was not), then `DIVERGENCES.md` (the one correction, the one rai
    clear-the-search control, against spec v19 `S8-R4`/`S8-R5`. Evidence, with the rule-out that makes
    the absence meaningful, is in `evidence/empty-state.json`. It is the only unticketed real deviation
    this pass found.
-2. **Finish the 7 remaining priority cases** — C29619, C38876, C38879, C38886, C43560 are ordinary
-   work; **C29581 and C29588 need a staff record deactivated, which is barred on this branch** and
-   should be handed to a tester rather than attempted.
+2. **Finish the 6 remaining priority cases** — C29619, C38876, C38879, C43560 are ordinary work;
+   **C29581 and C29588 need a staff record deactivated, which is barred on this branch** and should be
+   handed to a tester rather than attempted. **C43560 and C38877 step 3 were attempted and produced
+   nothing** — the menu reader's own control failed, so re-run them with the wait described below
+   rather than trusting either result.
 3. **Walk the other 86.** Nothing beyond the 29-case priority set has been examined for runnability.
+   **And note the menu-reader fragility**: it worked on three runs and failed on two, including once on
+   a clean-page control. Wait for a menu that actually contains options before reading it, and always
+   keep a control state that proves the reader can see them.
 4. **Then, and only then, consider the re-stamp.** 92 cases still name `v3.4.2-d00239b`. The bar is
    unchanged and is not negotiable: **re-stamp only where the case's own quoted labels were compared
    against a harvest from this build.** A case merely present during a pass was not checked.
