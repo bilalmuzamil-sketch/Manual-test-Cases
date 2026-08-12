@@ -97,7 +97,35 @@ else owes).
 
 ---
 
-## 🆕 NEWEST — 2026-08-11 (latest), THE FILTERS RE-SYNC + SV-9041 PASS. **THE LOCAL FILTERS SOURCE WAS STALE ON ALL 114 CASES AND IS NOW FIXED. THE EPIC GAINED A CHILD CARRYING A PO RULING — AND FOR ONCE IT CONFIRMS OUR WORDING RATHER THAN BREAKING IT.**
+## 🆕 NEWEST — 2026-08-12, THE LOSS AUDIT. **NO QA WORK WAS LOST IN THE LIMIT KILL. ONE PIECE OF EVIDENCE WAS, AND IT IS NAMED. TWO ITEMS ARE OPEN, ONE OF THEM FOUND BY THE AUDIT ITSELF.**
+
+**The QA lead asked whether the limit kill cost us anything.** It was re-proved independently from
+live TestRail, live git and each pass's own committed artefacts — **not** by re-reading the recovery
+note. **Verdict: every intended operation landed or was deliberately dropped for a documented better
+reason; all three runs intact with 0 graded fields changed; nothing in the "never landed and never
+redone" category.** Full paper: `build/loss-audit-2026-08-11/VERDICT.md`.
+
+**What was lost, honestly:** the follow-up push's **contemporaneous byte-comparison output**, which
+lived in `/tmp`. Its two writes landed and are provably correct, but the original proof is gone and
+its execution log is an **after-the-fact reconstruction that says so on its first line.** No ask
+attached — recorded because it is the reason Standing Rule 29 now requires verification evidence to
+be committed to the repository.
+
+| Row | Item | Category | Who owes it | What it BLOCKS | Since |
+|---|---|---|---|---|---|
+| **L1** | **Re-sync the Schedule local case source FROM LIVE and regenerate its deliverables — 6 cases are stale.** The labels-final pass pushed 12 build-accurate label corrections to TestRail and did not re-sync local. **[C29930](https://shopview.testrail.io/index.php?/cases/view/29930) · [C30015](https://shopview.testrail.io/index.php?/cases/view/30015) · [C30025](https://shopview.testrail.io/index.php?/cases/view/30025) · [C30042](https://shopview.testrail.io/index.php?/cases/view/30042) · [C30046](https://shopview.testrail.io/index.php?/cases/view/30046) · [C30051](https://shopview.testrail.io/index.php?/cases/view/30051)** still carry the OLD wording locally (`Saturday` for `'Show Saturday'`, `'VIN'` for `'VIN Number'`, `working hours` for `business hours`), and `testrail-import/schedule-v1-testrail-import.csv` was last written **before** the push | GO-AHEAD | QA lead | **Nothing today — live TestRail is already correct, so no TestRail write is needed.** The risk is forward-looking and it is the same one that nearly bit Filters: anyone regenerating Schedule deliverables from local, or driving a future pass off it, would **revert live to wording the build does not use**. Filters (115) and Report Suite (480) are clean | 2026-08-12 |
+| **L2** | **Decide what to do about the JWTs still in git history.** The redaction cleaned HEAD — the tracked tree is clean across **11,696 files** — but `git show 5b1b573f:…/diag-roles.json` **still returns a live-shaped token**. Options are laid out in `build/secret-redaction-2026-08-11/REPORT.md` | DECISION | QA lead | **Nothing in QA.** This is the only item in the audit with a blast radius outside the team. Rotating the signing secret makes the historic copies inert; rewriting history would rewrite ~491 commits and force-push a branch several live sessions share, which the standing rules forbid | 2026-08-11 |
+
+**Honesty note — what the audit could NOT determine.** Whether the killed Filters pass issued any
+TestRail call before dying (no oplog; that **no write landed** is proven, attempts are not
+reconstructable) · which phase last wrote C38866 (TestRail exposes only the latest write) · **whether
+any killed pass had `/tmp`-only output nobody has noticed is missing** — unknowable by construction,
+and the strongest argument for the new write-the-log-first requirement · how many historic secret
+exposures exist across all ~491 commits (at least one confirmed; not swept exhaustively).
+
+---
+
+## 🆕 2026-08-11 (latest), THE FILTERS RE-SYNC + SV-9041 PASS. **THE LOCAL FILTERS SOURCE WAS STALE ON ALL 114 CASES AND IS NOW FIXED. THE EPIC GAINED A CHILD CARRYING A PO RULING — AND FOR ONCE IT CONFIRMS OUR WORDING RATHER THAN BREAKING IT.**
 
 **What cleared, without needing you:** the Filters local case source was stale on **114 of 114**
 bodies (spec v18 provenance + missing read-dates + seven build-accurate label corrections).
