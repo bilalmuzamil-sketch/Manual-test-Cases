@@ -113,6 +113,22 @@ def add_case_payload(title, refs=None, preconds=None, steps=None, expected=None,
     if expected is not None:
         payload["custom_expected"] = expected
     payload.update(extra)
+
+    # RE-VALIDATE AFTER THE MERGE — found 2026-08-12 (run-sync pass).
+    # `payload.update(extra)` runs AFTER the `atmstatus` check above, so until this block
+    # existed a caller could bypass the whole guard with the FIELD name instead of the
+    # parameter name:
+    #     add_case_payload(title="x", custom_atmstatus=3)   -> produced 3, silently
+    # and `custom_atmstatus` is exactly the name a caller copying an old exec script would
+    # reach for, because that is the key those scripts use. The validated value was being
+    # overwritten by the very spelling the guard exists to stop.
+    if payload.get("custom_atmstatus") == AUTOMATION_STATUS["Automated"]:
+        raise ValueError(
+            "custom_atmstatus=3 ('Automated') was injected through **extra, bypassing the "
+            "`atmstatus` check. 3 is the automation engineer's flag to set, not ours "
+            "(CLAUDE.md 'Durable key facts -> TestRail'; Standing Rules 38 and 65). "
+            "A case we create has not been automated by anyone, so it is 1 ('Not Automated')."
+        )
     return payload
 
 

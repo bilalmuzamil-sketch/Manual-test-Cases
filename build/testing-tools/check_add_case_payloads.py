@@ -68,8 +68,21 @@ KNOWN_EXECUTED = {
 # The trailing (?=[,}\)]|\s*$) is what keeps English sentences out — a prose line reads
 # "... custom_atmstatus = 3 AUTOMATED) ..." or "custom_atmstatus:3 + custom_automation_type:0",
 # where the 3 is followed by a word rather than a delimiter or end-of-line.
+#
+# CORRECTED 2026-08-12 (run-sync pass). The trailing look-ahead did NOT keep English out: a
+# docstring reading "establish WHO set custom_atmstatus = 3, and when." has a COMMA straight
+# after the 3, so it satisfied (?=[,}\)]) and the guard FAILED on three read-only analysis
+# scripts that create nothing. A guard that cries wolf gets ignored, which is the one failure
+# mode a guard cannot afford — so the bare `=` alternative is removed.
+#
+# WHY REMOVING IT COSTS NO DETECTION POWER: a real payload key is always either QUOTED with a
+# colon ("custom_atmstatus": 3), an unquoted colon in a JS object literal (custom_atmstatus: 3),
+# or a SUBSCRIPT assignment (payload["custom_atmstatus"] = 3) — and `\]\s*=` still matches that
+# last form. A bare `custom_atmstatus = 3` is a local variable or prose, never a dict entry.
+# Proven: with this change the detected file:line set across the repo is byte-identical except
+# for the three prose docstrings, i.e. every real payload in KNOWN_EXECUTED still matches.
 ASSIGN = re.compile(
-    r"""custom_atmstatus["']?\s*(?::|=|\]\s*=)\s*3\s*(?=[,}\)]|$)""")
+    r"""custom_atmstatus["']?\s*(?::|\]\s*=)\s*3\s*(?=[,}\)]|$)""")
 
 # A DIFFERENT hazard, and a nastier one: a post-write VERIFIER that treats `3` as the PASS
 # condition. It does not create anything wrong — it declares a correctly-created case a
