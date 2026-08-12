@@ -312,7 +312,7 @@
     "permissions_required": "Two different user accounts with access to the Work Orders page.",
     "preconditions": "1. Two test users (A and B) can sign in to the same shop.\n2. User A has applied filters on the Work Orders page (for example Status: Approved).",
     "steps": "1. As user B (separate login/browser profile), open the Work Orders page.\n2. Look at the filter chips and the table.\n3. As user B, apply a DIFFERENT filter (for example a customer), then re-check user A's view.",
-    "expected": "1. User B does not see user A's filters - user B's page opens with user B's own (or no) filters.\n2. User B's new filter does not change what user A sees; each user keeps their own saved filter state.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S10-R3), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.\n\nAUTOMATION: HOLD - needs a second test login to prove one person's saved filters do not reach another\n",
+    "expected": "1. User B does not see user A's filters - user B's page opens with user B's own (or no) filters.\n2. User B's new filter does not change what user A sees; each user keeps their own saved filter state.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S10-R3), read on 11 August 2026. Last checked against build v3.6-3e9dd6d on 12 August 2026.\n\nAUTOMATION: READY\n",
     "design_ref": "design-notes.md B.1 #4 (11854:26246)",
     "spec_ref": "SV-8795 (S10-R3; §4 Key Decisions (saved per user)) [spec v1.6 2026-07-28]",
     "viu_status": "VIU-Pending",

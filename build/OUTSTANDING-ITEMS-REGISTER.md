@@ -213,7 +213,27 @@ exposures exist across all ~491 commits (at least one confirmed; not swept exhau
 
 ---
 
-## 🆕🆕 2026-08-12 (NEWEST), THE FILTERS BUILD-VIU PASS. **BOTH SUPPLIED FILTERS SIGN-INS ARE DEAD, SO 0 OF 115 CASES WERE OBSERVED — AND THE "UNBLOCK YOURSELF" ROUTE IN ROW C1 IS ITSELF BLOCKED BY THE SAME THING.**
+## 🆕🆕 2026-08-12 (NEWEST), THE FILTERS BUILD-VIU PASS. **✅ F-BLOCK-1 IS CLEARED — THE QA LEAD SENT WORKING `sv8785` COOKIES AND THE 8-DAY BLOCKER IS GONE. C29615 AND C38895 BOTH PASS.**
+
+**✅ CLEARED SAME DAY — F-BLOCK-1.** He supplied two fresh `sv8785` `PHPSESSID` values; **both
+returned HTTP 200**. The two identities were **proven different three independent ways** before any
+observation was recorded (42 permissions / `view_mode: full` against **6** / `tech`; the staff
+directory showing role **Technician**; and different per-user preference stores). **C29615 and
+C38895 were driven live as the Technician and BOTH PASS**, closing the item that had been open since
+5 August. **C43590 and C43561 were also verified live.** `quick-login` and `switch-user` were never
+called, so both sibling workers kept their session. **The row is left below, struck through in
+substance rather than deleted**, because the diagnosis in it is what produced the narrow, correct
+ask — *the two `PHPSESSID` values by name* — rather than a scattergun request for "new cookies".
+
+**⚠️ C1 IS NOT CLEARED BY THIS.** A second non-administrator sign-in now EXISTS for **Filters**, but
+C1 is cross-project: the Schedule and Report Suite permission cases still need one on **their**
+branches, and `PHPSESSID` is per-branch.
+
+**Still open from this pass: F-STAMP-1 and F-PASS-1 below** — though **F-PASS-1 has softened**: we can
+now say the Passed verdict recorded on C29615 was the **correct** one, since the case genuinely
+passes. What remains unknowable is whether the step was driven at the time.
+
+### ~~The original row, kept for the diagnosis it carries~~
 
 | id | What is missing | Who owes it | What it BLOCKS | Since |
 |---|---|---|---|---|
