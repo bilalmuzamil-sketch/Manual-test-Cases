@@ -1,0 +1,100 @@
+{
+ "29929": {
+  "steps": [
+   {
+    "step": "1 click each department group header to collapse it",
+    "seen": "Week / \"WORK ORDER STATUS\": lanes 30 -> 30 ({\"rowCls\":\"schedule-lane schedule-lane--department\",\"w\":171,\"h\":18}) | Week / \"SERVICE/PARTS\": lanes 30 -> 30 ({\"rowCls\":\"schedule-lane schedule-lane--department\",\"w\":171,\"h\":18}) | Week / \"SERVICE\": lanes 30 -> 30 ({\"rowCls\":\"schedule-lane schedule-lane--department\",\"w\":171,\"h\":18}) | Day / \"WORK ORDER STATUS\": lanes 30 -> 30 ({\"rowCls\":\"schedule-lane schedule-lane--department\",\"w\":171,\"h\":18}) | Day / \"SERVICE/PARTS\": lanes 30 -> 30 ({\"rowCls\":\"schedule-lane schedule-lane--department\",\"w\":171,\"h\":18}) | Day / \"SERVICE\": lanes 30 -> 30 ({\"rowCls\":\"schedule-lane schedule-lane--department\",\"w\":171,\"h\":18})"
+   },
+   {
+    "step": "2 the same again with a real mouse click at the header coordinates",
+    "seen": "real mouse click on \"WORK ORDER STATUS\" at 402,222: lanes 30 -> 30; popups []"
+   },
+   {
+    "step": "3 look for any collapse affordance on the header",
+    "seen": "the header row is div.schedule-lane.schedule-lane--department; cursor auto; no chevron child; no aria-expanded on it or any of its four ancestors"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:35:53.430Z"
+ },
+ "30001": {
+  "steps": [
+   {
+    "step": "1 switch to day view and look at where the timeline is scrolled to (window narrowed to 900px so the timeline CAN scroll)",
+    "seen": "{\"scrollLeft\":287,\"scrollWidth\":1248,\"clientWidth\":375,\"maxScroll\":873,\"leftEdgeHour\":\"6 AM\",\"hoursTotal\":24}"
+   },
+   {
+    "step": "2 manually scroll the timeline to a late hour",
+    "seen": "{\"scrollLeft\":873,\"scrollWidth\":1248,\"clientWidth\":375,\"maxScroll\":873,\"leftEdgeHour\":\"5 PM\",\"hoursTotal\":24}"
+   },
+   {
+    "step": "3 wait and interact without changing the day",
+    "seen": "{\"scrollLeft\":873,\"scrollWidth\":1248,\"clientWidth\":375,\"maxScroll\":873,\"leftEdgeHour\":\"5 PM\",\"hoursTotal\":24}"
+   },
+   {
+    "step": "4 navigate to the next day and look again",
+    "seen": "{\"scrollLeft\":287,\"scrollWidth\":1248,\"clientWidth\":375,\"maxScroll\":873,\"leftEdgeHour\":\"6 AM\",\"hoursTotal\":24}"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:34:54.827Z"
+ },
+ "30006": {
+  "steps": [
+   {
+    "step": "1 open day view on today, scroll to the current time",
+    "seen": "range \"Wed, Aug 12\""
+   },
+   {
+    "step": "2 find the vertical current-time indicator",
+    "seen": "[{\"cls\":\"fc-timeline-now-indicator-container\",\"w\":0,\"h\":63,\"x\":431,\"bg\":\"rgba(0, 0, 0, 0)\",\"border\":\"rgb(18, 25, 38) 0px\",\"opacity\":\"1\",\"vis\":false},{\"cls\":\"fc-timeline-now-indicator-arrow\",\"w\":0,\"h\":63,\"x\":818,\"bg\":\"rgba(0, 0, 0, 0)\",\"border\":\"rgb(18, 25, 38) 0px\",\"opacity\":\"1\",\"vis\":false},{\"cls\":\"schedule-now-chip\",\"w\":58,\"h\":18,\"x\":789,\"bg\":\"rgb(37, 124, 255)\",\"border\":\"rgb(255, 255, 255) 0px\",\"opacity\":\"0\",\"vis\":false},{\"cls\":\"fc-timeline-now-indicator-container\",\"w\":0,\"h\":2515,\"x\":431,\"bg\":\"rgba(0, 0, 0, 0)\",\"border\":\"rgb(18, 25, 38) 0px\",\"opacity\":\"1\",\"vis\":false},{\"cls\":\"fc-timeline-now-indicator-line\",\"w\":2,\"h\":2515,\"x\":823,\"bg\":\"rgba(0, 0, 0, 0)\",\"border\":\"rgb(37, 124, 255) 2px\",\"opacity\":\"1\",\"vis\":true}]"
+   },
+   {
+    "step": "3 hover it with the pointer over the grid",
+    "seen": "chip opacity at rest \"0\" -> on hover {\"opacity\":\"1\",\"text\":\"7:34 AM\"}"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:34:28.836Z"
+ },
+ "30012": {
+  "steps": [
+   {
+    "step": "1 open a shift detail modal",
+    "seen": "opened on \"Fuline Enterprises G30 6 Lines\""
+   },
+   {
+    "step": "2 read every control in the modal",
+    "seen": "test ids: {\"dialog_schedule_shift_detail\":1,\"text_shift_detail_title\":1,\"text_shift_detail_status\":1,\"text_shift_detail_work_order\":1,\"text_shift_detail_unit\":1,\"text_shift_detail_vin\":1,\"button_shift_detail_delete\":1,\"button_close_dialog\":1,\"schedule_shift_detail_body\":1,\"schedule_shift_detail_logged\":1,\"text_shift_detail_logged\":1,\"text_shift_detail_scheduled\":1,\"select_shift_detail_start_time\":1,\"select_shift_detail_end_time\":1,\"text_shift_detail_lane_heading\":1,\"text_shift_detail_technician\":1,\"text_shift_detail_line_count\":1,\"text_shift_detail_scope\":1,\"table_shift_lines\":1,\"shift_line_row\":6,\"text_shift_line_name\":6,\"button_shift_line_estimate_b6f3a900-d89b-471f-be54-1185413c2e1e\":1,\"text_shift_line_status\":6,\"button_shift_line_estimate_c6028bad-8037-4651-8fbd-065539184fb1\":1,\"button_shift_line_estimate_bca5c4b6-2673-4fe0-bf1c-0633b67e3479\":1,\"button_shift_line_estimate_85faed36-d9b3-4a08-bfc0-49747a34a7bd\":1,\"button_shift_line_estimate_2716e353-25ff-45e6-9818-2fe3c019daa2\":1,\"button_shift_line_estimate_07d01fc3-4eb1-4429-a384-2bd04655ed80\":1,\"button_shift_detail_color\":1,\"button_shift_detail_add_note\":1}"
+   },
+   {
+    "step": "3 click each hours-looking value to see whether it becomes editable",
+    "seen": "clicked \"1h\": inputs 2 -> 3 [\"select_shift_detail_start_time\",\"select_shift_detail_end_time\",\"input_shift_line_estimate_b6f3a900-d89b-471f-be54-1185413c2e1e\"] | clicked \"40m\": inputs 3 -> 3 [\"select_shift_detail_start_time\",\"select_shift_detail_end_time\",\"input_shift_line_estimate_c6028bad-8037-4651-8fbd-065539184fb1\"] | clicked \"45m\": inputs 3 -> 3 [\"select_shift_detail_start_time\",\"select_shift_detail_end_time\",\"input_shift_line_estimate_bca5c4b6-2673-4fe0-bf1c-0633b67e3479\"] | clicked \"3h\": inputs 3 -> 3 [\"select_shift_detail_start_time\",\"select_shift_detail_end_time\",\"input_shift_line_estimate_85faed36-d9b3-4a08-bfc0-49747a34a7bd\"] | clicked \"18m\": inputs 3 -> 3 [\"select_shift_detail_start_time\",\"select_shift_detail_end_time\",\"input_shift_line_estimate_2716e353-25ff-45e6-9818-2fe3c019daa2\"]"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:36:07.934Z"
+ },
+ "30050": {
+  "steps": [
+   {
+    "step": "1 open View options and read the Tech Hours toggle's state",
+    "seen": "Tech Hours row: {\"text\":\"Tech Hours\",\"checked\":\"false\",\"rowCls\":\"q-toggle cursor-pointer no-outline row inline no-wrap items-center q-t\"} ; all rows [{\"t\":\"VIEW OPTIONS\",\"c\":null},{\"t\":\"Business Hours\",\"c\":\"false\"},{\"t\":\"Tech Hours\",\"c\":\"false\"},{\"t\":\"Capacity Planning\",\"c\":\"false\"},{\"t\":\"Events\",\"c\":\"false\"},{\"t\":\"Show Saturday\",\"c\":\"false\"},{\"t\":\"Show Sunday\",\"c\":\"false\"}]"
+   },
+   {
+    "step": "2 click it once and read the state again",
+    "seen": "clicked true; state now {\"text\":\"Tech Hours\",\"checked\":\"false\",\"rowCls\":\"q-toggle cursor-pointer no-outline row inline no-wrap items-center q-t\"}"
+   },
+   {
+    "step": "3 read the technician row headers in both states",
+    "seen": "STATE A [\"BM Bilal Muzamil AB\",\"AS Admin ShopView Admin\",\"SERVICE/PARTS\",\"MT MQ Test Tech Qamar MQ Test Tech\"] || STATE B [\"BM Bilal Muzamil AB\",\"AS Admin ShopView Admin\",\"SERVICE/PARTS\",\"MT MQ Test Tech Qamar MQ Test Tech\"] || identical: true"
+   },
+   {
+    "step": "4 click it back",
+    "seen": "clicked true; rows [\"BM Bilal Muzamil AB\",\"AS Admin ShopView Admin\",\"SERVICE/PARTS\",\"MT MQ Test Tech Qamar MQ Test Tech\"]"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:35:24.221Z"
+ }
+}

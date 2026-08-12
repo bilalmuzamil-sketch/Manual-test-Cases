@@ -1,0 +1,70 @@
+{
+ "30050": {
+  "steps": [
+   {
+    "step": "PRECONDITION CHECK - the case requires 'Technicians have configured working hours'",
+    "seen": "\"Admin ShopView admin@shopview.com Admin Admin\" -> {\"hasToggle\":true,\"state\":\"true\",\"cls\":\"col-12 staff-working-hours\"} | \"Alicia Campbell alicia.campbell@staging.shopv\" -> {\"hasToggle\":true,\"state\":\"true\",\"cls\":\"col-12 staff-working-hours\"} | \"Anthony Mejia anthony.mejia@staging.shopview.\" -> {\"hasToggle\":true,\"state\":\"true\",\"cls\":\"col-12 staff-working-hours\"} | \"Ayesha Khan AK ayesha.khan+1@shopview.com Tec\" -> {\"hasToggle\":true,\"state\":\"true\",\"cls\":\"col-12 staff-working-hours\"} | \"Benjamin Peters benjamin.peters@staging.shopv\" -> {\"hasToggle\":true,\"state\":\"true\",\"cls\":\"col-12 staff-working-hours\"} | \"Bilal Muzamil bilal.muzamil+schedule@shopview\" -> {\"hasToggle\":true,\"state\":\"true\",\"cls\":\"col-12 staff-working-hours\"}"
+   },
+   {
+    "step": "this is why the Tech Hours toggle result is reported the way it is",
+    "seen": "see walk_hard.json C30050 for the toggle behaviour itself"
+   }
+  ],
+  "verdict": "PRECONDITION EVIDENCE - see walk_hard.json for the toggle drive",
+  "at": "2026-08-12T07:40:33.840Z"
+ },
+ "38847": {
+  "steps": [
+   {
+    "step": "1 open Settings and the shop/location list",
+    "seen": "at /administration/locations"
+   },
+   {
+    "step": "2 open the shop for editing",
+    "seen": "opened {\"t\":\"Staging Heavy Duty - 9919 8685 Calgary Alberta 9919 Shepard Road SE (4\",\"viaButton\":true}"
+   },
+   {
+    "step": "3 find the business-hours toggle",
+    "seen": "found: [\"BUSINESS HOURS\",\"Set business hours for this shop\"]"
+   },
+   {
+    "step": "4 turn it on and read the per-day From/To editor",
+    "seen": "{\"days\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\",\"Friday\",\"Saturday\",\"Sunday\"],\"fromTo\":[\"to\"],\"times\":[]}"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:41:08.301Z"
+ },
+ "38848": {
+  "steps": [
+   {
+    "step": "1 open a staff member for editing",
+    "seen": "opened \"Admin ShopView admin@shopview.com Admin Admin 9 Departments \"; toggle state {\"hasToggle\":true,\"state\":\"true\",\"cls\":\"col-12 staff-working-hours\"}"
+   },
+   {
+    "step": "2 turn on 'Set working hours for this technician'",
+    "seen": "toggled on"
+   },
+   {
+    "step": "3 read what the toggle reveals (dialog scrolled to the bottom first)",
+    "seen": "NEW text after toggling: []"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:40:44.234Z"
+ },
+ "38850": {
+  "steps": [
+   {
+    "step": "1 open the technician hours editor",
+    "seen": "editor revealed"
+   },
+   {
+    "step": "2 look for 'Add Hours' and the per-day rows",
+    "seen": "inputs now [{\"tid\":\"input_first_name\",\"val\":\"Admin\",\"ph\":null},{\"tid\":\"input_last_name\",\"val\":\"ShopView\",\"ph\":null},{\"tid\":\"input_email\",\"val\":\"admin@shopview.com\",\"ph\":null},{\"tid\":\"input_salary\",\"val\":\"18.00\",\"ph\":null},{\"tid\":\"input_job_title\",\"val\":\"Admin\",\"ph\":null},{\"tid\":\"select_working_hours_start_monday_0\",\"val\":\"7:00 AM\",\"ph\":null},{\"tid\":\"select_working_hours_end_monday_0\",\"val\":\"7:00 PM\",\"ph\":null},{\"tid\":\"select_working_hours_start_tuesday_0\",\"val\":\"7:00 AM\",\"ph\":null},{\"tid\":\"select_working_hours_end_tuesday_0\",\"val\":\"7:00 PM\",\"ph\":null},{\"tid\":\"select_working_hours_start_wednesday_0\",\"val\":\"7:00 AM\",\"ph\":null},{\"tid\":\"select_working_hours_end_wednesday_0\",\"val\":\"7:00 PM\",\"ph\":null},{\"tid\":\"select_working_hours_start_thursday_0\",\"val\":\"7:00 AM\",\"ph\":null},{\"tid\":\"select_working_hours_end_thursday_0\",\"val\":\"7:00 PM\",\"ph\":null},{\"tid\":\"select_working_hours_start_friday_0\",\"val\":\"7:00 AM\",\"ph\":null},{\"tid\":\"select_working_hours_end_friday_0\",\"val\":\"7:00 PM\",\"ph\":null}]; new visible text []"
+   }
+  ],
+  "verdict": "PARTIAL",
+  "at": "2026-08-12T07:40:44.235Z"
+ }
+}
