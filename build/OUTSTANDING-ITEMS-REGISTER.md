@@ -213,6 +213,39 @@ exposures exist across all ~491 commits (at least one confirmed; not swept exhau
 
 ---
 
+## 🆕🆕🆕🆕 2026-08-12 (NEWEST OF ALL), THE FILTERS RUNNABILITY FINISH — SECOND PASS. **A CASE THE TESTER MARKED FAILED ACTUALLY PASSES AS WRITTEN, AND THE GAP BEHIND IT IS UNCOVERED. ALSO: WE CORRECTED ONE OF OUR OWN READINGS BEFORE IT BECAME A FALSE FINDING.**
+
+Deliverables: **`build/filters/finish2-2026-08-12/`** — read `COMPLETION-REPORT.md` (the Rule-67
+table) first, then `FINDINGS.md` §1, then `RUNNABILITY.md` and `DIVERGENCES.md`.
+
+**Build `v3.6-3e9dd6d`, unmoved. 115 ours / 120 live. 10 `update_case`, every one byte-verified,
+30 fields each, 0 mismatches, 0 collateral. 0 add · 0 delete · 0 run writes · 0 results · 0 Jira.
+Markers unchanged: 90 READY + 7 EXPECT-FAIL + 18 HOLD, gate closing both ways at 97.**
+
+**THE HONEST HEADLINE: 12 cases had EVERY step walked this pass — 22 across all Filters passes, of
+115.** Three more were part-walked and say which steps were not driven; **two produced nothing
+because the check itself failed, and are reported as failed checks, not findings.**
+
+**THE PRIORITY HAD MOVED, AND IT IS WORTH KNOWING WHY:** re-derived live, **zero** never-examined
+`READY` cases were still Untested — the tester had already Passed 74 and Failed 7. So the value lay
+in **the cases he FAILED**: five were plain `READY` and each carried a **fresh Jira ticket**, and if
+any of those cases were wrong we would have caused a bogus ticket the day before release. **Four of
+the five are squarely evidenced. The fifth is row F-C29603 below.**
+
+**WE ALSO CORRECTED OURSELVES INSIDE THE PASS.** An early probe applied a filter **by URL**, saw it
+not restored, and read that as corroborating the persistence defect behind SV-8828. Driven the way a
+tester drives it — **clicking the chip** — the filter **is** saved and **is** restored. The build
+distinguishes the two; the first reading was our own artefact and is corrected in `DIVERGENCES.md`
+§2 rather than left in an evidence file to be quoted later.
+
+| id | What is missing | Who owes it | What it BLOCKS | Since |
+|---|---|---|---|---|
+| **F-C29603** | **A ruling on [C29603](https://shopview.testrail.io/index.php?/cases/view/29603) and SV-8905.** The case **PASSES as written** — driven end to end today: collapsed survives a return, expanded survives a return, and the saved preference carries `"collapsed": false`. **The tester failed it and filed SV-8905 with the comment *"Collapsed state is remembered on Work Orders page, but not on Parts/Reports page"* — ground this case never covers, because its steps only ever exercise Work Orders.** Two things follow, pointing opposite ways: the Failed result is **not supported by this case**, and the behaviour he found is **probably real and covered by NO Filters case at all**. | **the QA lead** — either the result moves, the ticket's evidence is re-pointed, or a new case is authored (authoring is **not** barred by the creation hold; only Jira is) | Tomorrow's run carries a Failed result whose case passes, and a genuine coverage gap on Parts/Reports collapse persistence stays uncovered. | **2026-08-12** |
+| **F-TICKET-1** *(unchanged, restated)* | **A defect ticket for [C38897](https://shopview.testrail.io/index.php?/cases/view/38897)** — still the only unticketed real deviation on this project. Not re-driven this pass; the previous pass established it with a proper rule-out. | **the QA lead** — the creation hold, re-stated 2026-08-12: *"However for now the Jira ticket creation is still on hold."* | It will read as an unexplained failure in tomorrow's run. | **2026-08-12** |
+| **F-CTRL-1** *(HALF CLOSED)* | **✅ C38877 step 3 is RESOLVED** — the cause was never the product: the filter options are **`DIV[data-test-id^="filter_option_"]`**, not `label` and not `.q-item`, so two passes' readers matched nothing and **could not fail**. Found by dumping the menu DOM. Ticking Imported disables all four other chips; picking a second status deselects Imported. **❌ C43560 and C38876 STILL produce nothing** — neither status pick registered, `updatedAt` never moved, and the guard reported `check_could_fail: false`. | another pass | Nothing is known to be wrong in the product; **the point is that we do not know**, and a vacuous check must never be reported as a pass. | **2026-08-12** |
+| **F-WALK-1** *(advanced)* | **22 of 115 walked, not 10.** 93 remain — **but most have been executed successfully by the tester himself**, which is direct evidence of runnability. Still owed: C29614 steps 3–6, C29625 steps 1/2/4, C43563 steps 6–7, and **C29581 / C29588, which need a staff record deactivated — barred for us, ordinary work for a tester.** | another pass; **C29581/C29588 are tester work** | The runnability claim is **22 of 115**, stated plainly so nobody reads the walk as complete. | **2026-08-12** |
+| **F-PLAYBOOK-1** | **A playbook note is owed** — the `filter_option_` selector, plus four traps this pass paid for: a URL-applied filter is not persisted (a chip-applied one is); `.q-dialog` is the full-screen wrapper not the sheet card; collapsed accordions stay mounted so a card-wide option sweep reads the wrong section; and the customer list marks selection with a **check glyph**, not a Quasar checkbox. | **`build/APP-ACTIONS-PLAYBOOK.md` §J** — not edited from this worker | Every one of these has already cost a pass real time, twice in two cases. | **2026-08-12** |
+
 ## 🆕🆕🆕 2026-08-12 (NEWEST), THE FILTERS RUNNABILITY FINISH. **10 OF THE 29 PRIORITY CASES DRIVEN END TO END, ONE PRECONDITION CORRECTED THAT WOULD HAVE COST A TEST TOMORROW, AND ONE REAL BUILD DEVIATION THAT NEEDS A TICKET THE MOMENT THE HOLD LIFTS.**
 
 Deliverables: **`build/filters/finish-2026-08-12/`** — read `COMPLETION-REPORT.md` (the Rule-67 table)
