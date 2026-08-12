@@ -1,0 +1,77 @@
+{
+ "read_at_utc": "2026-08-12T14:57:30.674Z",
+ "blocks": [
+  {
+   "action": "collapse toggle (CONTROL: known to save)",
+   "prefCallsSincePick": [],
+   "prefNow": false
+  },
+  {
+   "action": "status pick (UNDER TEST)",
+   "menuOptions": 9,
+   "picked": false,
+   "urlAfter": "https://sv8785.qa.shopview.com/workorders?tab=all",
+   "prefCallsSincePick": [
+    {
+     "m": "GET",
+     "s": 200
+    }
+   ],
+   "anyPutSent": false,
+   "prefBefore": {
+    "status": [
+     "declined"
+    ]
+   },
+   "prefAfter": {
+    "status": [
+     "declined"
+    ]
+   },
+   "updatedAtMoved": false,
+   "before_updatedAt": "2026-08-12T14:56:35Z",
+   "after_updatedAt": "2026-08-12T14:56:35Z"
+  },
+  {
+   "action": "direct PUT from the page",
+   "response": {
+    "status": 200,
+    "body": "{\"data\":{\"pageKey\":\"work-orders-list\",\"value\":{\"tab\":\"all\",\"sortBy\":\"companyName\",\"columns\":{\"vin\":true,\"vehicle\":true,\"daysOpen\":false,\"progress\":true,\"startDate\":true,\"linesCount\":true,\"technician\":true,\"totalPrice\":true,\"invoicedDate\":false,\"serviceAdvisor\":true,\"partRequestsCount\":false,\"clocked"
+   },
+   "prefAfterDirect": {
+    "status": [
+     "review"
+    ]
+   },
+   "directWriteWorked": true
+  }
+ ],
+ "all_preference_calls": [
+  {
+   "m": "GET",
+   "s": 200
+  },
+  {
+   "m": "GET",
+   "s": 200
+  },
+  {
+   "m": "GET",
+   "s": 200
+  },
+  {
+   "m": "GET",
+   "s": 200
+  },
+  {
+   "m": "PUT",
+   "s": 200
+  },
+  {
+   "m": "GET",
+   "s": 200
+  }
+ ],
+ "bridge_errors": 0,
+ "realConsoleErrors": []
+}

@@ -1,0 +1,126 @@
+{
+ "read_at_utc": "2026-08-12T15:02:20.901Z",
+ "cases": {
+  "29616": {
+   "seeded": {
+    "name": "ZZAUTOTEST Deleted Remembered Three",
+    "id": "79beb37c-6140-4245-9440-7423db3874f2"
+   },
+   "savingProvenBeforeStart": true,
+   "customerPick": {
+    "menuOptions": 4752,
+    "visible": [
+     {
+      "id": "filter_option_company_id_79beb37c-6140-4245-9440-7423db3874f2",
+      "t": "ZZAUTOTEST Deleted Remembered Three"
+     },
+     {
+      "id": "filter_option_company_id_a238fb82-894a-4aca-b553-13feffd15059",
+      "t": "ZZAUTOTEST Deleted Remembered Value Two"
+     }
+    ],
+    "picked": true,
+    "hit": {
+     "id": "filter_option_company_id_79beb37c-6140-4245-9440-7423db3874f2",
+     "t": "ZZAUTOTEST Deleted Remembered Three"
+    }
+   },
+   "urlAfterPick": "https://sv8785.qa.shopview.com/workorders?status=declined&company_id=79beb37c-6140-4245-9440-7423db3874f2&tab=all",
+   "savedPreference": {
+    "status": [
+     "declined"
+    ],
+    "company_id": [
+     "79beb37c-6140-4245-9440-7423db3874f2"
+    ]
+   },
+   "preconditionAchieved": true,
+   "delete": {
+    "status": 201
+   },
+   "reReadAfterDelete": {
+    "status": 404
+   },
+   "arrivedPlainly": {
+    "url": "https://sv8785.qa.shopview.com/workorders?status=declined&company_id=79beb37c-6140-4245-9440-7423db3874f2&tab=all",
+    "customerChip": "person\nCustomer\nkeyboard_arrow_down",
+    "customerChipShowsAValue": false,
+    "statusChip": "Status\n: Declined\nkeyboard_arrow_down",
+    "statusStillApplied": true,
+    "rows": {
+     "tbody": 2,
+     "cards": 0,
+     "emptyStateVisible": true
+    },
+    "lastListRequest": {
+     "status": 200,
+     "decoded": "/api/work-orders?pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=companyName&pagination[descending]=false&filters[0][field]=status&filters[0][value]=declined&filters[1][field]=company_id&filters[1][value]=79beb37c-6140-4245-9440-7423db3874f2&search=&showMyWorkOrders=0"
+    },
+    "deletedIdStillSent": true,
+    "pageErrored": false,
+    "realConsoleErrors": []
+   },
+   "could_fail": true
+  },
+  "43560-steps5-6": {
+   "step5": {
+    "baseline": {
+     "status": [
+      "declined"
+     ],
+     "company_id": [
+      "79beb37c-6140-4245-9440-7423db3874f2"
+     ]
+    },
+    "afterStatus": {
+     "status": [
+      "declined"
+     ],
+     "company_id": [
+      "79beb37c-6140-4245-9440-7423db3874f2"
+     ]
+    },
+    "customerPick": {
+     "menuOptions": 4751,
+     "visible": [
+      {
+       "id": "filter_option_company_id_59882c23-3a6d-4975-acf1-a10859982716",
+       "t": "Brabay Maintenance"
+      }
+     ],
+     "picked": true,
+     "hit": {
+      "id": "filter_option_company_id_59882c23-3a6d-4975-acf1-a10859982716",
+      "t": "Brabay Maintenance"
+     }
+    },
+    "urlAfter": "https://sv8785.qa.shopview.com/workorders?status=declined&company_id=59882c23-3a6d-4975-acf1-a10859982716&tab=all",
+    "afterCustomer": {
+     "status": [
+      "declined"
+     ],
+     "company_id": [
+      "79beb37c-6140-4245-9440-7423db3874f2"
+     ]
+    },
+    "bothSavesObserved": false
+   },
+   "step6": {
+    "url": "https://sv8785.qa.shopview.com/workorders?status=declined&company_id=79beb37c-6140-4245-9440-7423db3874f2&tab=all",
+    "chips": [
+     "Status : Declined keyboard_arrow_down",
+     "person Customer keyboard_arrow_down",
+     "build Lead Technician keyboard_arrow_down",
+     "headset_mic Service Advisor keyboard_arrow_down",
+     "local_shipping Asset on Site keyboard_arrow_down"
+    ],
+    "showsStatus": true,
+    "showsCustomer": false,
+    "customerChip": "person Customer keyboard_arrow_down",
+    "nothingDuplicated": true
+   },
+   "could_fail": false,
+   "bridge_errors": 0
+  }
+ }
+}

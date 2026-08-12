@@ -1,0 +1,395 @@
+{
+ "read_at_utc": "2026-08-12T14:46:16.661Z",
+ "cases": {
+  "29603": {
+   "collapseClicked": {
+    "clicked": true,
+    "attempt": 1
+   },
+   "collapsedAfterClick": true,
+   "savedCollapsedFlag": false,
+   "stillCollapsedAfterReturn": false,
+   "expandedAfterClick": false,
+   "savedExpandedFlag": true,
+   "stillExpandedAfterReturn": false,
+   "chipsOnReturn": 0,
+   "bothDirectionsHold": false,
+   "could_fail": true
+  },
+  "29614": {
+   "setInFirstBrowser": {
+    "picked": true,
+    "chip": "Status\n: Declined\nkeyboard_arrow_down",
+    "savedFilters": {
+     "status": [
+      "declined"
+     ]
+    },
+    "updatedAt": "2026-08-12T14:50:37Z"
+   },
+   "afterCompletelyNewBrowser": {
+    "url": "https://sv8785.qa.shopview.com/workorders?status=declined&tab=all",
+    "chips": [
+     "Status : Declined keyboard_arrow_down",
+     "person Customer keyboard_arrow_down",
+     "build Lead Technician keyboard_arrow_down",
+     "headset_mic Service Advisor keyboard_arrow_down",
+     "local_shipping Asset on Site keyboard_arrow_down"
+    ],
+    "statusChip": "Status\n: Declined\nkeyboard_arrow_down",
+    "restored": true,
+    "tally": {
+     "Declined": 7,
+     "$0.00": 1
+    }
+   },
+   "could_fail": true,
+   "honest_limit": "a different physical computer cannot be produced here; a brand-new browser process with the same sign-in is the closest legitimate proxy and is what was driven"
+  },
+  "29616": {
+   "seeded": {
+    "name": "ZZAUTOTEST Remembered Deleted Value Customer",
+    "id": "5fa852f7-8d6a-4880-9876-e5761ea64805"
+   },
+   "pickedInUi": true,
+   "savedPreference": {
+    "status": [
+     "declined"
+    ]
+   },
+   "preconditionAchieved": false,
+   "note": "the seeded customer never reached the saved preference, so the case precondition was not achieved and nothing is concluded"
+  },
+  "38876": {
+   "technicianPrefBefore": {
+    "status": 200,
+    "updatedAt": "2026-08-12T14:36:08Z",
+    "value": {
+     "tab": "all",
+     "sortBy": "invoicedDate",
+     "columns": {
+      "vin": true,
+      "vehicle": true,
+      "daysOpen": false,
+      "progress": true,
+      "startDate": true,
+      "linesCount": true,
+      "technician": true,
+      "invoicedDate": false,
+      "serviceAdvisor": true,
+      "partRequestsCount": false,
+      "clockedInTechnicians": true,
+      "partReturnRequestsCount": false,
+      "unreceivedPartRequestsCount": false
+     },
+     "filters": {
+      "status": [
+       "invoiced"
+      ]
+     },
+     "collapsed": false,
+     "descending": true
+    }
+   },
+   "deleteCall": {
+    "status": 405
+   },
+   "technicianPrefAfterDelete": {
+    "status": 200,
+    "updatedAt": "2026-08-12T14:36:08Z",
+    "value": {
+     "tab": "all",
+     "sortBy": "invoicedDate",
+     "columns": {
+      "vin": true,
+      "vehicle": true,
+      "daysOpen": false,
+      "progress": true,
+      "startDate": true,
+      "linesCount": true,
+      "technician": true,
+      "invoicedDate": false,
+      "serviceAdvisor": true,
+      "partRequestsCount": false,
+      "clockedInTechnicians": true,
+      "partReturnRequestsCount": false,
+      "unreceivedPartRequestsCount": false
+     },
+     "filters": {
+      "status": [
+       "invoiced"
+      ]
+     },
+     "collapsed": false,
+     "descending": true
+    }
+   },
+   "freshAccountAchieved": false,
+   "firstVisit": {
+    "url": "https://sv8785.qa.shopview.com/workorders?status=invoiced&tab=all",
+    "tabsInOrder": [
+     "All",
+     "Estimates",
+     "Completed",
+     "My Work Orders"
+    ],
+    "selected": [
+     "tab_all"
+    ],
+    "tabs": [
+     {
+      "id": "tab_all",
+      "text": "All",
+      "active": true,
+      "x": 35
+     },
+     {
+      "id": "tab_estimates",
+      "text": "Estimates",
+      "active": false,
+      "x": 95
+     },
+     {
+      "id": "tab_completed",
+      "text": "Completed",
+      "active": false,
+      "x": 176
+     },
+     {
+      "id": "tab_my_work_orders",
+      "text": "My Work Orders",
+      "active": false,
+      "x": 264
+     }
+    ]
+   },
+   "afterSwitchingToAll": {
+    "clicked": {
+     "clicked": true,
+     "attempt": 1
+    },
+    "url": "https://sv8785.qa.shopview.com/workorders?status=invoiced&tab=all",
+    "savedTab": "all",
+    "updatedAt": "2026-08-12T14:36:08Z",
+    "saveObserved": false
+   },
+   "afterRoundTrip": {
+    "url": "https://sv8785.qa.shopview.com/workorders?status=invoiced&tab=all",
+    "selected": [
+     "tab_all"
+    ]
+   },
+   "could_fail": false,
+   "bridge_errors": 0
+  },
+  "38886": {
+   "searchTyped": {
+    "toggleFound": true,
+    "inputFound": true,
+    "typed": true,
+    "value": "Iibay"
+   },
+   "urlWithSearch": "https://sv8785.qa.shopview.com/workorders?tab=all&search=Iibay",
+   "prefBefore": {
+    "updatedAt": "2026-08-12T14:49:54Z",
+    "hasSearchKey": false
+   },
+   "prefAfter": {
+    "updatedAt": "2026-08-12T14:49:54Z",
+    "hasSearchKey": false,
+    "value": {
+     "tab": "all",
+     "sortBy": "companyName",
+     "columns": {
+      "vin": true,
+      "vehicle": true,
+      "daysOpen": false,
+      "progress": true,
+      "startDate": true,
+      "linesCount": true,
+      "technician": true,
+      "totalPrice": true,
+      "invoicedDate": false,
+      "serviceAdvisor": true,
+      "partRequestsCount": false,
+      "clockedInTechnicians": true,
+      "partReturnRequestsCount": false,
+      "unreceivedPartRequestsCount": true
+     },
+     "filters": [],
+     "collapsed": false,
+     "descending": false
+    }
+   },
+   "searchNeverSaved": true,
+   "could_fail": true
+  },
+  "38888": {
+   "copiedUrl": "https://sv8785.qa.shopview.com/workorders?tab=all&search=Iibay",
+   "freshTabUrl": "https://sv8785.qa.shopview.com/workorders?tab=all&search=Iibay",
+   "freshTabSearchBoxValue": "Iibay",
+   "freshTabRows": 2,
+   "originalTabRows": 2,
+   "could_fail": true
+  },
+  "38897": {
+   "rowsWithFilterOnly": 33,
+   "searchTyped": {
+    "toggleFound": true,
+    "inputFound": true,
+    "typed": true,
+    "value": "zzzznomatchzzz"
+   },
+   "emptyMessage": "No work orders match your filters",
+   "clearControlsOffered": [
+    {
+     "id": "select_global_search",
+     "text": ""
+    },
+    {
+     "id": "page_search_input",
+     "text": ""
+    },
+    {
+     "id": "page_search_clear",
+     "text": "cancel"
+    },
+    {
+     "id": "clear_filters",
+     "text": "Clear Filters"
+    },
+    {
+     "id": "empty_state_clear_filters",
+     "text": "Clear Filters"
+    }
+   ],
+   "messageMentionsSearch": false,
+   "step3_clearSearchOnly": {
+    "clicked": {
+     "clicked": true,
+     "attempt": 1
+    },
+    "after": {
+     "url": "https://sv8785.qa.shopview.com/workorders?status=invoiced&tab=all",
+     "rows": 33,
+     "statusChip": "Status\n: Invoiced\nkeyboard_arrow_down",
+     "searchStillInUrl": false
+    }
+   },
+   "step4_retyped": {
+    "toggleFound": true,
+    "inputFound": true,
+    "typed": true,
+    "value": "zzzznomatchzzz"
+   },
+   "step4_clearFiltersOnly": {
+    "clicked": {
+     "clicked": true,
+     "attempt": 1
+    },
+    "after": {
+     "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+     "rows": 33,
+     "searchBoxValue": null,
+     "searchStillInUrl": false,
+     "statusChip": "Status\nkeyboard_arrow_down"
+    }
+   },
+   "could_fail": true
+  },
+  "43560": {
+   "steps": [
+    {
+     "step": 0,
+     "updatedAt": "2026-08-12T14:42:17Z",
+     "filters": {
+      "status": []
+     }
+    },
+    {
+     "step": 1,
+     "browser": "A",
+     "menuOptions": 9,
+     "picked": true,
+     "url": "https://sv8785.qa.shopview.com/workorders?status=approved&tab=all",
+     "updatedAt": "2026-08-12T14:46:55Z",
+     "saveObserved": true,
+     "filters": {
+      "status": [
+       "approved"
+      ]
+     }
+    },
+    {
+     "step": 2,
+     "browser": "B",
+     "menuOptions": 9,
+     "pickedEstimate": true,
+     "tickedBeforeClearing": [
+      "filter_option_status_estimate"
+     ],
+     "unclickedApproved": "not needed",
+     "url": "https://sv8785.qa.shopview.com/workorders?status=estimate&tab=all",
+     "updatedAt": "2026-08-12T14:47:05Z",
+     "saveObserved": true,
+     "filters": {
+      "status": [
+       "estimate"
+      ]
+     }
+    },
+    {
+     "step": "3-4",
+     "browser": "A",
+     "url": "https://sv8785.qa.shopview.com/workorders?status=estimate&tab=all",
+     "chips": [
+      "Status : Estimate keyboard_arrow_down",
+      "person Customer keyboard_arrow_down",
+      "build Lead Technician keyboard_arrow_down",
+      "headset_mic Service Advisor keyboard_arrow_down",
+      "local_shipping Asset on Site keyboard_arrow_down"
+     ],
+     "showsBsChoice": true,
+     "stillShowsOwnChoice": false,
+     "tally": {
+      "Estimate": 30,
+      "$127,862.46": 1
+     }
+    },
+    {
+     "step": 5,
+     "browser": "A",
+     "picked": false,
+     "updatedAt": "2026-08-12T14:47:05Z",
+     "saveObserved": false,
+     "filters": {
+      "status": [
+       "estimate"
+      ]
+     }
+    },
+    {
+     "step": 6,
+     "browser": "B",
+     "url": "https://sv8785.qa.shopview.com/workorders?status=estimate&tab=all",
+     "chips": [
+      "Status : Estimate keyboard_arrow_down",
+      "person Customer keyboard_arrow_down",
+      "build Lead Technician keyboard_arrow_down",
+      "headset_mic Service Advisor keyboard_arrow_down",
+      "local_shipping Asset on Site keyboard_arrow_down"
+     ],
+     "showsAsCustomer": false,
+     "tally": {
+      "Estimate": 30,
+      "$127,862.46": 1
+     }
+    }
+   ],
+   "could_fail": true,
+   "realConsoleErrors": [],
+   "bridge_errors": 0
+  }
+ },
+ "bridge_errors_c": 0
+}

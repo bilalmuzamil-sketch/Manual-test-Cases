@@ -1,0 +1,93 @@
+{
+ "read_at_utc": "2026-08-12T14:58:56.129Z",
+ "attempts": [
+  {
+   "target": "filter_option_status_ready_for_review",
+   "targetExistsInMenu": true,
+   "picked": true,
+   "tickedAfterPick": [
+    "filter_option_status_ready_for_review"
+   ],
+   "urlAfter": "https://sv8785.qa.shopview.com/workorders?status=ready_for_review&tab=all",
+   "writeRequestsSeen": [
+    {
+     "m": "GET",
+     "s": 200
+    }
+   ],
+   "aWriteWasSent": false,
+   "prefBefore": {
+    "status": [
+     "review"
+    ]
+   },
+   "prefAfter": {
+    "status": [
+     "review"
+    ]
+   },
+   "updatedAtMoved": false,
+   "savedWhatWasPicked": false
+  },
+  {
+   "target": "filter_option_status_paid",
+   "targetExistsInMenu": true,
+   "picked": true,
+   "tickedAfterPick": [
+    "filter_option_status_ready_for_review",
+    "filter_option_status_paid"
+   ],
+   "urlAfter": "https://sv8785.qa.shopview.com/workorders?status=ready_for_review&status=paid&tab=all",
+   "writeRequestsSeen": [
+    {
+     "m": "GET",
+     "s": 200
+    }
+   ],
+   "aWriteWasSent": false,
+   "prefBefore": {
+    "status": [
+     "review"
+    ]
+   },
+   "prefAfter": {
+    "status": [
+     "review"
+    ]
+   },
+   "updatedAtMoved": false,
+   "savedWhatWasPicked": false
+  },
+  {
+   "target": "filter_option_status_complete",
+   "targetExistsInMenu": true,
+   "picked": true,
+   "tickedAfterPick": [
+    "filter_option_status_ready_for_review",
+    "filter_option_status_complete",
+    "filter_option_status_paid"
+   ],
+   "urlAfter": "https://sv8785.qa.shopview.com/workorders?status=ready_for_review&status=paid&status=complete&tab=all",
+   "writeRequestsSeen": [
+    {
+     "m": "GET",
+     "s": 200
+    }
+   ],
+   "aWriteWasSent": false,
+   "prefBefore": {
+    "status": [
+     "review"
+    ]
+   },
+   "prefAfter": {
+    "status": [
+     "review"
+    ]
+   },
+   "updatedAtMoved": false,
+   "savedWhatWasPicked": false
+  }
+ ],
+ "bridge_errors": 0
+}

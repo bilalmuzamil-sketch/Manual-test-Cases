@@ -1,0 +1,39 @@
+{
+ "read_at_utc": "2026-08-12T15:00:30.391Z",
+ "poisonedPreference": {
+  "status": [
+   "review"
+  ]
+ },
+ "restore": {
+  "status": 200
+ },
+ "preferenceAfterRestore": [],
+ "afterRestore": {
+  "menuOptions": 9,
+  "picked": true,
+  "urlAfter": "https://sv8785.qa.shopview.com/workorders?status=declined&tab=all",
+  "writeRequestsSeen": [
+   {
+    "m": "GET",
+    "s": 200
+   },
+   {
+    "m": "PUT",
+    "s": 200
+   }
+  ],
+  "aWriteWasSent": true,
+  "prefBefore": [],
+  "prefAfter": {
+   "status": [
+    "declined"
+   ]
+  },
+  "updatedAtMoved": true,
+  "savingResumed": true
+ },
+ "verdict": "SAVING RESUMED after restoring a valid preference -- the earlier \"filters are not saved\" observation was CAUSED BY OUR OWN direct PUT of an invalid status value. NOT a product finding.",
+ "finalPreference": [],
+ "bridge_errors": 0
+}
