@@ -6063,6 +6063,104 @@ deliver the 7-tab management report.
     is written; this rule governs WHEN it is sent**), 58 (an ambiguous source is never resolved by looking
     at the build — it waits for the sheet) and 62 (a blocker on creating or correcting a case is escalated
     immediately, never deferred onto the sheet).
+67. **EACH PROJECT REPORTS BEFORE THE NEXT ONE STARTS — a per-project completion TABLE, delivered to
+    the QA lead as the gate on moving on (all projects, and all future projects).**
+    USER DIRECTIVE (2026-08-12, verbatim, his typing preserved exactly as he wrote it because Rule 25
+    applies to his instructions as it does to a spec): *"Before starting with filters, give me the report
+    for schedule and set it as a rule to do before starting the next thing. I need a report table as to
+    how many cases have been Source verified and how many have been build verified/VIU'd and what is
+    left."*
+    **THE RULE:** a **per-project completion report is DELIVERED BEFORE WORK STARTS ON THE NEXT
+    PROJECT.** **Not at the end of the day. Not bundled with two other projects. Not "I'll write it up
+    once all three are done."** **Each project reports, and only then does the next begin** — his words
+    are *"before starting the next thing"*, and the sequencing is the instruction, not a preference about
+    formatting.
+    **IT IS A TABLE.** Not a paragraph, not a narrative summary with the numbers embedded in prose — he
+    asked for *"a report table"*, and a table is what makes a missing column visible. **A figure that has
+    no row is a figure nobody notices is absent.**
+    **THE COLUMNS — THESE ARE THE MINIMUM, EVERY ONE OF THEM, EVERY TIME:**
+    **(1) TOTAL CASES — TWO NUMBERS, OURS AND LIVE-INCLUDING-FOREIGN.** Per **Rule 38** we never claim
+    or hide another author's work, so the row reads *"ours N / live M"*. **One number alone is wrong
+    whichever one it is.**
+    **(2) SOURCE-VERIFIED** — how many carry **a per-source read-date AND a current spec version pin**.
+    Both halves, not either: a case pinned to a spec version nobody re-read is not source-verified, and
+    a source read on a date but pinned to a superseded version is Rule 31's trap (c) waiting to happen.
+    **(3) BUILD-VERIFIED — SPLIT IN TWO: how many name THE BUILD NOW RUNNING, and how many name an
+    EARLIER one.** A single "build-verified" total silently merges the two and is the easiest number in
+    the whole table to overstate. **Under Rule 60 the second group is the ORDINARY consequence of a
+    branch nobody declares final — it is reported, not apologised for, and never rounded into the
+    first.**
+    **(4) STEPS AND PRECONDITIONS ACTUALLY WALKED ON THE BUILD — the Rule-9 runnability figure.**
+    **(5) RUNNABLE vs HELD, WITH THE MARKER ARITHMETIC SHOWN CLOSING BOTH WAYS** — `READY` +
+    `READY - EXPECT FAIL` on one side, total − `HOLD` on the other, **both printed**. A gate that is
+    only shown one way is not a gate.
+    **(6) CREATED / UPDATED / DELETED IN THE PASS.**
+    **(7) WHAT IS LEFT — ITEMISED, NEVER A TOTAL.** Not *"48 remaining"* but **what specifically remains
+    and what each item is waiting on**.
+    **🔴 THE HONESTY REQUIREMENTS — READ THESE AS THE SUBSTANCE OF THE RULE, NOT AS CAVEATS ON IT. THE
+    TABLE IS THE FORMAT; THIS IS THE POINT.**
+    **(a) "BUILD-VERIFIED" AND "STEPS WALKED" ARE DIFFERENT NUMBERS AND ARE REPORTED SEPARATELY —
+    NEVER MERGED, NEVER SUBSTITUTED FOR ONE ANOTHER.** **Build-verified** says a case's **labels were
+    compared against this build**. **Steps walked** says **a tester could actually execute it** — every
+    precondition reachable, every navigation path present, every control where the step says it is, the
+    order workable (Rule 9's five checks). **THE SECOND IS ALWAYS THE SMALLER NUMBER AND ALWAYS THE MORE
+    HONEST CLAIM.** **On Schedule today it was 76 against 28, out of 176** — reporting the 76 alone
+    would have overstated the position by a factor of nearly three, on the day before a release.
+    **Evidence: `build/schedule/verify-final-2026-08-12/FINDINGS.md`, which states both figures in its
+    own headline and says why: *"Those are two different numbers on purpose, and the second is the one
+    that answers 'can a tester pick this up tomorrow and run it?'"***
+    **(b) NEVER REPORT "VIU COMPLETE"** unless the **behaviour verdict was genuinely ours to make**.
+    Since the QA lead re-scoped that half to the manual tester (**Rule 10's 2026-08-11 amendment**), the
+    accurate phrase — and it is **stronger than the overclaim, not weaker** — is: **"source-verified and
+    build-accurate in its preconditions, steps, navigation and labels — with the behaviour verdict
+    belonging to the tester."**
+    **(c) EVERY FIGURE IS DERIVED LIVE AT REPORT TIME, NOT CARRIED FROM A DOCUMENT — AND THE READ TIME
+    IS STAMPED ON THE TABLE.** Counts have moved **within a single pass**: a sibling worker watched a
+    held count drop **91 → 88 mid-write** (recorded here as that worker's mid-pass observation, not as
+    something re-derived by this entry — Rule 12). **A number copied out of yesterday's findings file is
+    a claim about yesterday**, however carefully it was measured then. **This is Rule 59's logic applied
+    to reporting: re-read at the moment you rely on it.**
+    **(d) STATE PLAINLY WHERE A COLUMN IS NOT 100%, AND WHY.** **An unexplained gap invites the
+    challenge; an explained one answers it in advance.** This is **Rule 60(d)** — the blanket caveat
+    ("the branch is not final") is barred precisely because it hides the number instead of explaining
+    it.
+    **(e) "WHAT IS LEFT" NAMES THE BLOCKER AND WHO CAN CLEAR IT** — with **Rule 48's five fields wherever
+    the item is blocked on the QA lead himself** (which ruling, verbatim · when and what question it
+    answered · what it blocks, with C-ids and links per Rule 8 · why it was reasonable, or what has
+    changed · the one thing that would unblock it, and from whom). **So the report doubles as the ask**,
+    and the same items are logged in the **OUTSTANDING-ITEMS REGISTER** (Rule 36) rather than living only
+    in a report he has to go back and find.
+    **RATIONALE, 2026-08-12 — IN HIS TERMS, BECAUSE THE RISK IS HIS AND NOT OURS.** **HE is the one who
+    presents these numbers**, to people who will not have read the findings file behind them. **An
+    overstated figure is what would bite him** — not a missing one. A shortfall stated plainly is a
+    position he can defend in a sentence; a number that turns out to have merged "labels checked" with
+    "actually runnable" is one he cannot defend at all, because he will have said it in good faith. **The
+    conservative number is therefore the useful number**, and this rule exists to make the conservative
+    number the one that reaches him.
+    **AND THE TIMING IS HALF THE VALUE, NOT PACKAGING.** A report delivered **before the next project
+    starts** surfaces a problem **while there is still time to act on it** — the effort, the attention
+    and the environment access are all still on that project. The same report delivered after the work
+    has moved on is an **archaeology exercise**: re-establishing a build marker, a session and a data
+    state that have all since changed, to fix something that was cheap to fix an hour earlier. **This is
+    the reporting-side sibling of Rule 66** — Rule 66 defers the PO question sheet to the END of a
+    project's work, and this rule fixes what accompanies it: **the sheet goes out attached to a report
+    that says, with a table behind it, exactly what is done and exactly what is not.**
+    Ties to Standing Rules 8 (every case named with its C-id and link, including in the "what is left"
+    rows), 9 (**the runnability figure of column 4 — and its "N of M, on which build marker" reporting
+    standard is this table's column 3/4 discipline**), 10 (**"VIU" means the method end to end, and its
+    behaviour half has belonged to the manual tester since 2026-08-11 — which is why (b) bars the
+    phrase**), 12 (observed, never inferred — a figure not derived live is not a measurement), 17
+    (complete data in and out — including the **honest remainder**, itemised), 34 and 47 (a run out of
+    sync with the suite makes any coverage figure meaningless — check before reporting one), 36 (**the
+    outstanding register is where the asks live; the report points at it, it does not replace it**), 38
+    (ours-and-live, two numbers), 48 (**a blocked item cites the ruling blocking it, with all five
+    fields**), 49 (an OPEN re-check queue is part of "what is left" and is named as such), 50 (exhaustive
+    and exact — a count is set-equal in both directions, never a matching total), 54 (the provenance
+    line's sentence 2 is **where the per-case build date in column 3 actually comes from**), 59 (re-read
+    immediately before you rely on it — the reason for (c)), 60 (**what "build-verified" means when a
+    branch is never declared final, and 60(d)'s bar on the blanket caveat**), 61 (an automated suite
+    monitors what it can see; the rest is what column 7 itemises) and 66 (**the question sheet is sent
+    WITH this report, once it says everything else is done**).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
@@ -6484,6 +6582,23 @@ regression / bug-fix re-testing.
   characters; put the full detail in Steps/Expected/Preconditions, never rely on a long
   title. Applies to all future authoring and to any long title when a case is next
   touched. (User instruction 2026-07-27.)
+- **A PER-PROJECT COMPLETION TABLE GOES OUT BEFORE THE NEXT PROJECT STARTS (Standing Rule 67, added
+  2026-08-12 — QA lead, verbatim: *"Before starting with filters, give me the report for schedule and
+  set it as a rule to do before starting the next thing. I need a report table as to how many cases have
+  been Source verified and how many have been build verified/VIU'd and what is left."*).** A **table**,
+  not prose, carrying at minimum: **total cases as two numbers (ours / live incl. foreign, Rule 38)** ·
+  **source-verified** (read-date + current version pin) · **build-verified, SPLIT — how many name the
+  build now running and how many name an earlier one** · **steps and preconditions actually walked on
+  the build** (the Rule-9 runnability figure) · **runnable vs held with the marker arithmetic shown
+  closing both ways** · **created / updated / deleted** · **what is left, ITEMISED with each item's
+  blocker and who can clear it** (Rule 48's five fields where it is blocked on him). **"Build-verified"
+  and "steps walked" are DIFFERENT NUMBERS and are reported separately — the second is always smaller
+  and always the more honest claim (Schedule 2026-08-12: 76 against 28, of 176).** **Never say "VIU
+  complete"** — the accurate phrase since the behaviour half became the tester's (Rule 10, 2026-08-11)
+  is **"source-verified and build-accurate in its preconditions, steps, navigation and labels — with the
+  behaviour verdict belonging to the tester."** **Every figure derived LIVE at report time with the read
+  time stamped on the table** (counts have moved mid-pass), and **any column short of 100% says plainly
+  why** (Rule 60(d) bars the blanket caveat).
 - **Blocked-revisit loop (standing, all projects):** tester-marked-**Blocked** cases are a
   standing intake queue — if a case seems off/confusing/wrong during execution the manual
   tester marks it Blocked (never skips, never guesses); EVERY Blocked case then gets a manual
