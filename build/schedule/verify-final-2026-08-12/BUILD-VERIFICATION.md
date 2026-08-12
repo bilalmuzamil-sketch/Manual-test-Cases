@@ -4,7 +4,7 @@
 
 | | Pass start | Pass end |
 |---|---|---|
-| `<meta name="app-version">` | **`v3.5-65d6500`** | **`v3.5-65d6500`** |
+| `<meta name="app-version">` | **`v3.5-65d6500`** | **`v3.5-65d6500`** — re-read at pass end, `cmp` byte-identical |
 | `last-modified` | Tue, 11 Aug 2026 09:33:33 GMT | same |
 | `etag` | `"3250d285ffcf50626363a578fe273071"` | same |
 | `index.html` sha256 | `9348ca09d6167375dc52bfc29bf3b9f8c4163dede2ea5ea62269b186c9cc5f6f` | same |
@@ -51,13 +51,13 @@ a string no tester can see is never certified as correct.
 
 | Build the case's verdict rests on | Before | **After** |
 |---|---|---|
-| **`v3.5-65d6500` — the build shipping tomorrow** | 22 | **67** |
-| `v3.5-7ec992f` | 82 | 65 |
+| **`v3.5-65d6500` — the build shipping tomorrow** | 22 | **76** |
+| `v3.5-7ec992f` | 82 | 56 |
 | `v3.5-d122eef` — **a build that no longer exists** | 70 | 42 |
 | No build line at all, and saying so in their own text | 2 | 2 |
 | **Total** | **176** | **176** |
 
-**67 of 176 now rest on the build that ships. 109 do not, and every one of them says so in its own
+**76 of 176 now rest on the build that ships. 100 do not, and every one of them says so in its own
 text.** No case was given a build line it did not earn.
 
 ## 6 · Suite hygiene — all 176 read live after the writes
@@ -70,11 +70,11 @@ text.** No case was given a build line it did not earn.
 | More than one build stamp on a case | **0** |
 | Stranded version fragments (the `…on 8/12/2026.5-af3a6e1…` defect) | **0** |
 
-**MARKERS: `READY` 141 · `READY - EXPECT FAIL` 4 · `HOLD` 31 = 176.**
-**THE ARITHMETIC GATE PASSES BOTH WAYS: 141 + 4 = 145, and 176 − 31 = 145.**
+**MARKERS: `READY` 147 · `READY - EXPECT FAIL` 0 · `HOLD` 29 = 176.**
+**THE ARITHMETIC GATE PASSES BOTH WAYS: 147 + 0 = 147, and 176 − 29 = 147.**
 Both figures read back **from the live cases**, not computed from our notes.
 
-**⚠️ 145 IS A COUNT OF WHAT IS AUTOMATABLE. IT IS NOT A COVERAGE CLAIM AND MUST NOT BE QUOTED AS ONE.**
+**⚠️ 147 IS A COUNT OF WHAT IS AUTOMATABLE. IT IS NOT A COVERAGE CLAIM AND MUST NOT BE QUOTED AS ONE.**
 
 ## 7 · Run 357 — proven untouched, by content
 
