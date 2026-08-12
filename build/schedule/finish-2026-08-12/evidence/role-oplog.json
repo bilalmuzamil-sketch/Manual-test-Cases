@@ -1,0 +1,51 @@
+[
+ {
+  "op": "snapshot Technician",
+  "result": "saved",
+  "atoms": [
+   "customersView",
+   "scheduleView",
+   "woPickParts",
+   "woTechViewMode",
+   "workOrderLinesCreateAndEdit",
+   "workOrdersView"
+  ],
+  "view_mode": "tech",
+  "cross_toggles": {
+   "seeFinancialData": false,
+   "seeApArData": false,
+   "viewHistoryLogs": false
+  },
+  "at": "2026-08-12T06:21:46.574352Z"
+ },
+ {
+  "op": "set_atoms B-edit-not-delete",
+  "result": "WRITE FAILED HTTP 500",
+  "resp": "{'errors': [{'error': \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\"}, {'requestId': 'be4f8765-d1e7-4278-90fa-893f842852b7'}]}",
+  "at": "2026-08-12T06:21:47.313341Z"
+ },
+ {
+  "op": "restore Technician",
+  "result": "MISMATCH",
+  "http": 500,
+  "fields_compared": 10,
+  "mismatches": [
+   "fe_permissions: before=['customersView', 'scheduleView', 'woPickParts', 'woTechViewMode', 'workOrderLinesCreateAndEdit', 'workOrdersView'] after=['customersView', 'scheduleCreateAndEdit', 'scheduleDelete', 'scheduleView', 'woPickParts', 'woTechViewMode', 'workOrderLinesCreateAndEdit', 'workOrdersView']"
+  ],
+  "at": "2026-08-12T06:23:04.082287Z"
+ },
+ {
+  "at": "2026-08-12T06:34:00Z",
+  "op": "restore Technician (camelCase payload)",
+  "result": "BYTE-IDENTICAL",
+  "http": 200,
+  "fields_compared": 10,
+  "mismatches": [],
+  "note": "snake_case PUT returns 200 but silently ignores removals; camelCase fePermissions/viewMode/crossToggles replaces the set correctly"
+ },
+ {
+  "at": "2026-08-12T06:35:00Z",
+  "op": "tech session after restore",
+  "result": "HTTP 409 - permanently invalidated; a role-definition change is one-way"
+ }
+]
