@@ -126,6 +126,22 @@
 >   layer 3**. Plain `AUTOMATION: READY` asserts *automatable*, not *currently passing*, and is
 >   **build-independent**. **Also unchanged: ticket status is NEVER read as evidence about the build**
 >   (Rule 61) — it is traceability, nothing more.
+>   **🔵 ⚠️ AND THE REMAINING HALF OF THE TRIGGER WENT ON 2026-08-12 — A BUG-FIX DEPLOY DOES NOT MAKE
+>   A PRIOR PASS STALE (Standing Rule 60's bug-fix-deploy amendment; the Rule 60(b) sentence
+>   immediately above is KEPT VERBATIM AND DATED, not overwritten).** QA lead, verbatim: ***"don't
+>   worry about them shipping the new biuilds everytime they fix a bug, they are just fixing the
+>   reported bugs … and not adding any functionality to the build, so that does not make your previous
+>   pass as stale."*** **So *"ON A REDEPLOY"* in Rule 60(b) now means *on a redeploy THAT ADDS OR
+>   CHANGES FUNCTIONALITY*:** previously verified **labels, navigation, preconditions and steps STAY
+>   VERIFIED** across a bug-fix-only deploy, their Rule-54 build stamps stay **honest records of a real
+>   check**, and **a pass is NOT re-run merely because the marker moved** — the trigger is **a
+>   specific, observed contradiction**, never a new hash. **THE HONEST LIMIT: this rests on the deploys
+>   being bug-fix-only, and a marker cannot tell us which kind a deploy was — so do not PRE-EMPTIVELY
+>   discard a pass, and where functionality demonstrably changed, Rule 60(b) applies as written.**
+>   **UNCHANGED: a date nobody observed is never invented (Rule 12), a never-observed row is still
+>   unobserved (Rule 60's honesty clause), and the Rule-49 close condition is not lowered.**
+>   **WHAT IT REPAIRS: reports saying *"only N of M rest on the build now running"* as though the rest
+>   were worthless were UNDERSTATING the position — those verdicts stand.**
 >   **THE TRUE QUEUE STATE — 14 files, 13 OPEN, 1 CLOSED, established 2026-08-06 by reading every one
 >   (this REPLACES the "THREE QUEUES ARE OPEN NOW (2026-08-04)" pointer that stood here, whose count
 >   AND date were both stale — the body of this file already described a fourth and later ones):**
@@ -4077,6 +4093,16 @@ deliver the 7-tab management report.
     register), 46 (a provisional finding recorded as final is indistinguishable from a miss) and 61
     (**which scopes this queue to what an automated suite cannot see, without lowering its close
     condition or its PROVISIONAL labelling**).
+    **⇒ CROSS-REFERENCE, 2026-08-12 — A BUG-FIX DEPLOY DOES NOT RE-OPEN A CLOSED ROW, AND IT IS NOT A
+    QUEUE TRIGGER (Standing Rule 60's bug-fix-deploy amendment).** QA lead, verbatim: *"they are just
+    fixing the reported bugs … and not adding any functionality to the build, so that does not make
+    your previous pass as stale."* **This rule already said a queue row's trigger is THE THING IT IS
+    WAITING ON, not a deploy** — the amendment extends the same logic to a whole pass, so **a row
+    re-verified before a bug-fix-only deploy STAYS re-verified** and the marker moving underneath it
+    does not push it back onto the list. **THE CLOSE CONDITION IS NOT LOWERED BY ONE INCH: 100% of a
+    queue's rows re-verified, no sampling, and a row that was NEVER observed is still unobserved
+    (Rules 12/17/50).** **A deploy that ADDS OR CHANGES FUNCTIONALITY is a different matter entirely
+    and re-opens what it actually touched, per Rule 60 practice (b) as written.**
 50. **VERIFY EXHAUSTIVELY — "byte-level" means NOTHING is skipped, sampled, or assumed (all
     projects).**
     USER DIRECTIVE (2026-08-04, verbatim): *"Also remember, the verification should always be
@@ -5326,6 +5352,72 @@ deliver the 7-tab management report.
     stale BY DESIGN, which is the normal state of an actively-fixed branch and never something to
     "fix" by re-stamping a date nobody observed** (practice (f) + Rule 12). Full text at the tail of
     Standing Rule 49.
+    **🔵 ⇒ AMENDMENT, 2026-08-12 — A BUG-FIX DEPLOY DOES **NOT** MAKE A PRIOR PASS STALE. THIS
+    REFINES THE BLOCK IMMEDIATELY ABOVE AND PRACTICE (b) BELOW; THE LAYER SPLIT ITSELF IS UNTOUCHED.**
+    **USER DIRECTIVE (2026-08-12, verbatim, his typing preserved exactly as he wrote it because Rule
+    25 applies to his instructions as it does to a spec):** *"don't worry about them shipping the new
+    biuilds everytime they fix a bug, they are just fixing the reported bugs which are to help fix the
+    reported issues and not adding any functionality to the build, so that does not make your previous
+    pass as stale."*
+    **HIS REASONING IS THE OPERATIVE PART, NOT A COURTESY: THESE DEPLOYS FIX REPORTED ISSUES AND ADD
+    NO FUNCTIONALITY, SO THEY CANNOT HAVE MOVED THE LABELS, ROUTES, PRECONDITIONS OR STEPS THAT A PASS
+    HAS JUST VERIFIED.** A deploy that changes nothing a pass looked at cannot invalidate what that
+    pass found.
+    **WHAT IS ENCODED — THREE THINGS:**
+    **· (1) PREVIOUSLY VERIFIED WORK REMAINS VERIFIED ACROSS A BUG-FIX DEPLOY.** Labels, navigation,
+    preconditions and steps that were checked stay checked, and their **Rule-54 sentence-2 build
+    stamps remain HONEST RECORDS OF A REAL CHECK** — not stale claims to be apologised for.
+    **· (2) A PASS IS NOT RE-RUN MERELY BECAUSE THE MARKER MOVED.** Re-verification is driven by
+    **WHAT ACTUALLY CHANGED** — a fixed defect's own cases, a shipped feature, a changed requirement —
+    **never by the marker alone.** A marker change is a fact to record, not a trigger to act on.
+    **· (3) WHAT STILL HOLDS, IN FULL. THE STAMP KEEPS NAMING THE BUILD IT WAS ACTUALLY CHECKED ON,
+    AND A DATE NOBODY OBSERVED IS NEVER INVENTED (Standing Rule 12, RESTATED INTACT AND NOT WEAKENED
+    BY ONE WORD).** This amendment says a prior check **STILL COUNTS**; it does **NOT** say the check
+    may be **RE-DATED**. **Re-stamping a case to a build nobody opened it against is a fabricated
+    observation and remains barred** — exactly as practice (f) and the 2026-08-11 block above already
+    say. **AND A CASE WHOSE OWN SPECIFIC DEFECT WAS THE THING FIXED GENUINELY DOES NEED RE-CHECKING**
+    — which is precisely what **Rule 61's expect-fail three-outcome instruction already detects at no
+    cost**, outcome (3) being the shipped fix reporting itself through the next automated run.
+    **⚠️ THE HONEST LIMIT — WRITTEN DOWN BECAUSE A RULE WITH NO LIMIT GETS OVER-APPLIED IN THE
+    DANGEROUS DIRECTION.** This rests entirely on the deploys being **BUG-FIX-ONLY**. **IF A DEPLOY
+    ADDS OR CHANGES FUNCTIONALITY, RULE 60's LAYER INVALIDATION APPLIES EXACTLY AS BEFORE** — layers
+    1 and 2 go stale and practice (b) governs unchanged. **AND WE GENERALLY CANNOT TELL WHICH KIND A
+    DEPLOY IS FROM THE MARKER**: an app-version string says a build shipped, never what it contained.
+    **SO THE PRACTICAL GUIDANCE IS DELIBERATELY ASYMMETRIC: DO NOT PRE-EMPTIVELY DISCARD A PASS OVER A
+    MARKER CHANGE — TREAT A SPECIFIC, OBSERVED CONTRADICTION AS THE TRIGGER INSTEAD.** A control that
+    is genuinely no longer where a step says it is, a precondition that can no longer be reached, a
+    label that has genuinely changed: **those are triggers. A new hash is not.**
+    **🔧 WHAT THIS REPAIRS, AND IT IS THE POINT OF THE RULING: PASSES HAVE BEEN REPORTING *"only N of
+    M rest on the build now running"* AS THOUGH THE REMAINING M−N WERE WORTHLESS. UNDER THIS RULING
+    THAT FRAMING IS WRONG AND IT UNDERSTATES THE POSITION — THOSE VERDICTS STAND.** The cost was real
+    and it was paid today: **Schedule and Filters both redeployed at approximately 12:10 GMT on
+    2026-08-12** *(reported context, on which this ruling was given; NOT re-verified by this
+    documentation-only entry — Rule 12)*, and the honest-but-unhelpful conclusion drawn from Rule 60
+    read literally was that **a full day's runnability verification had gone stale within the hour.**
+    **It had not.** The same over-reading is what produced a week of readiness reports discounting
+    their own sound work — the 2026-08-11 figures *"only 51 of the 476"*, *"every Filters verdict now
+    predates the build that is running"* and *"165 of the 168 have NOT been re-observed on the build
+    running now"* are all **kept exactly as written elsewhere in this file, as the dated record of what
+    was believed at the time**, and are **re-read under this amendment as UNDERSTATEMENTS rather than
+    as findings.**
+    **📋 THE BOOKKEEPING DOES NOT CHANGE — ONLY THE INTERPRETATION.** **Rule 67's completion table
+    STILL REPORTS THE BUILD A CASE WAS CHECKED AGAINST**, split as it requires, because that remains a
+    **fact worth stating** and a reader is entitled to it. **What changes is what the split MEANS:** a
+    case checked on an earlier build across bug-fix-only deploys is **verified**, not **owed**.
+    **Rule 60(d) still bars the blanket caveat**, and **Rule 60's honesty clause is untouched — a row
+    that was NEVER observed is still unobserved, and this amendment converts nothing into a
+    verification that was not performed.**
+    Ties to Standing Rules 9 (**layer 1 is the runnable route — this is what stops a bug-fix deploy
+    forcing it to be re-walked**), 10 (VIU's live-observation step), 12 (**observed, never inferred —
+    restated intact above: a prior check still counts, and a date nobody observed is still never
+    invented**), 17 (complete data in/out — the honest N-of-M survives, correctly interpreted), 49
+    (**a queue row's trigger is the thing it is waiting on, not a deploy — this amendment is that
+    principle applied to a whole pass**), 54 (sentence 2 keeps naming the build actually checked), 57
+    (expectations come from documents and were never at risk from a deploy at all), 59 (re-read the
+    sources before you rely on them — a genuine functionality change is found this way, not from a
+    hash), 61 (**outcome (3) is how a shipped fix reports itself, which is why a fixed defect's own
+    cases need no manual sweep**) and 67 (**the table still reports the build; the interpretation of
+    its split is what this amendment corrects**).
     **THE HONEST CONSEQUENCE: 433 cases across the three projects are FINAL BUT NOT BUILD-VERIFIED**
     (Schedule 174 · Filters 8 · Report Suite 251) against **331 that are** (Report Suite 225 · Filters
     106), **with the release on Thursday** — so this **raises** the outstanding work rather than
@@ -5397,6 +5489,16 @@ deliver the 7-tab management report.
     suite, re-read the spec
     per case, or re-audit expectations — a redeploy is not a spec change, and treating it as one is how
     a cheap re-check turns into an unaffordable one that then does not happen at all.
+    **⚠️ AMENDED 2026-08-12 — THIS PRACTICE IS SCOPED BY THE BUG-FIX-DEPLOY AMENDMENT ABOVE, AND THE
+    WORDING ABOVE IS KEPT VERBATIM AND DATED, NEVER DELETED (the Rules 31/52/53 pattern).** *"ON A
+    REDEPLOY"* now means **on a redeploy THAT ADDS OR CHANGES FUNCTIONALITY**. **A BUG-FIX-ONLY DEPLOY
+    TRIGGERS NO RE-CHECK OF LAYERS 1–2** — QA lead, verbatim: *"they are just fixing the reported bugs
+    … and not adding any functionality to the build, so that does not make your previous pass as
+    stale."* **The trigger is a SPECIFIC, OBSERVED CONTRADICTION — a control genuinely moved, a
+    precondition genuinely unreachable, a label genuinely changed — NEVER a changed app-version
+    string.** Where the deploy's content is unknown (the ordinary case, since a marker says nothing
+    about what shipped), **do not pre-emptively discard the pass**; and where the deploy is known to
+    have added or changed functionality, **this practice governs unchanged as written above.**
     **(c) KEEP THE RULE-49 QUEUE PERMANENTLY OPEN AS THE STANDING MECHANISM, NOT AN EXCEPTION.** The
     branches will not be declared final, so an OPEN queue is now the **normal steady state** of an
     active project — it is a **living work list**, not an embarrassment to be closed.
@@ -5559,6 +5661,17 @@ deliver the 7-tab management report.
     note, and the marker still goes last), 57 (**its sibling — a closed ticket is not a spec change,
     and an open ticket is not proof of a live defect**) and 60 (**this is how layer 3, the build-fact
     markers, is monitored without re-observation**).
+    **⇒ CROSS-REFERENCE, 2026-08-12 — THIS RULE IS WHAT MAKES STANDING RULE 60's BUG-FIX-DEPLOY
+    AMENDMENT SAFE.** The one thing a bug-fix deploy genuinely *does* change is **the case whose own
+    defect was fixed** — and that is exactly the case this rule already covers **at no cost**:
+    **outcome (3) means the shipped fix REPORTS ITSELF through the next automated run**, and
+    **outcome (2) catches a failure that has CHANGED rather than gone.** **So the correct response to
+    a bug-fix deploy is NOT a manual sweep of the affected cases — it is the next run of the suite**,
+    which is why Rule 60 can now say a marker change is not by itself a trigger. QA lead, verbatim
+    (2026-08-12): *"they are just fixing the reported bugs … and not adding any functionality to the
+    build, so that does not make your previous pass as stale."* **UNCHANGED: an expect-fail marker
+    still needs LIVE BACKING (this rule's 2026-08-11 amendment) — a fix shipping is a reason to REMOVE
+    a marker once reported, never a reason to assert a build fact nobody observed (Rule 12).**
 62. **NO JIRA TICKET IS EVER CREATED WITHOUT THE QA LEAD'S EXPLICIT PERMISSION, ASKED FOR AND GRANTED
     FIRST (all projects, every ticket type).**
     USER DIRECTIVE (2026-08-10, verbatim): *"Just One NEW rule, DO NOT create the Tickets in Jira but
@@ -6130,6 +6243,20 @@ deliver the 7-tab management report.
     changed · the one thing that would unblock it, and from whom). **So the report doubles as the ask**,
     and the same items are logged in the **OUTSTANDING-ITEMS REGISTER** (Rule 36) rather than living only
     in a report he has to go back and find.
+    **⇒ CLARIFIED 2026-08-12 — HOW COLUMN 3's SPLIT IS *INTERPRETED*, NOT WHAT IT REPORTS (Standing
+    Rule 60's bug-fix-deploy amendment). THE BOOKKEEPING IS UNCHANGED: THE TABLE STILL REPORTS THE
+    BUILD A CASE WAS CHECKED AGAINST, SPLIT INTO "the build now running" AND "an earlier one."** That
+    remains a **fact worth stating** and the reader is entitled to it. **WHAT CHANGES IS THE MEANING
+    OF THE SECOND GROUP: across BUG-FIX-ONLY deploys those cases are VERIFIED, NOT OWED** — QA lead,
+    verbatim: *"they are just fixing the reported bugs … and not adding any functionality to the
+    build, so that does not make your previous pass as stale."* **SO THE SECOND NUMBER IS NOT WRITTEN
+    UP AS A SHORTFALL, AND IT DOES NOT BELONG IN COLUMN 7 ("what is left") ON THE STRENGTH OF THE
+    MARKER ALONE** — a report that discounts its own sound work **understates the position**, which is
+    the opposite of this rule's purpose even though it errs in the "safe" direction. **UNCHANGED AND
+    NOT WEAKENED: figures are still derived LIVE (c), any column short of 100% still says plainly why
+    (d), a row NEVER observed is still reported as never observed (Rule 60's honesty clause), and no
+    case is ever re-dated to a build nobody checked it on (Rule 12).** **Where a deploy is known to
+    have ADDED OR CHANGED functionality, the affected cases ARE owed and column 7 says so.**
     **RATIONALE, 2026-08-12 — IN HIS TERMS, BECAUSE THE RISK IS HIS AND NOT OURS.** **HE is the one who
     presents these numbers**, to people who will not have read the findings file behind them. **An
     overstated figure is what would bite him** — not a missing one. A shortfall stated plainly is a
