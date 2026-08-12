@@ -1,0 +1,517 @@
+{
+  "report": "sbc",
+  "build": "v3.7-4626299",
+  "atoms": [
+    {
+      "name": "nav_via_reports_menu",
+      "ok": true,
+      "nav_link_present": true,
+      "landed": "/reports/sales-by-customer",
+      "expected": "/reports/sales-by-customer"
+    },
+    {
+      "name": "report_loads",
+      "ok": true,
+      "headers": [
+        "Customer",
+        "Date",
+        "Inv. Hrs",
+        "Labor Invoiced",
+        "Labor Margin",
+        "Parts Invoiced",
+        "Parts Margin",
+        "Shop Supplies",
+        "Margin",
+        "Margin %",
+        "Subtotal"
+      ],
+      "rowcount": 14,
+      "tabs": [],
+      "totals": "Totals +41.00 $5,954.90 $5,954.90 $2,468.91 $1,255.16 $625.41 $7,210.06 85.6% $9,049.22"
+    },
+    {
+      "name": "control_open:btn_dropdown_sbc_export",
+      "ok": true,
+      "tid": "btn_dropdown_sbc_export",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "Download Summary (PDF)",
+          "tid": "action_sbc_export_summary_pdf"
+        },
+        {
+          "it": "Download Expanded View (PDF)",
+          "tid": "action_sbc_export_expanded_pdf"
+        },
+        {
+          "it": "Download Summary (CSV)",
+          "tid": "action_sbc_export_summary_csv"
+        },
+        {
+          "it": "Download Expanded View (CSV)",
+          "tid": "action_sbc_export_expanded_csv"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:button_column_selection",
+      "ok": true,
+      "tid": "button_column_selection",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "Date",
+          "tid": null
+        },
+        {
+          "it": "Inv. Hrs",
+          "tid": null
+        },
+        {
+          "it": "Labor Invoiced",
+          "tid": null
+        },
+        {
+          "it": "Labor Margin",
+          "tid": null
+        },
+        {
+          "it": "Parts Invoiced",
+          "tid": null
+        },
+        {
+          "it": "Parts Margin",
+          "tid": null
+        },
+        {
+          "it": "Shop Supplies",
+          "tid": null
+        },
+        {
+          "it": "Margin",
+          "tid": null
+        },
+        {
+          "it": "Margin %",
+          "tid": null
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:date-range-selector_sbc_trigger",
+      "ok": true,
+      "tid": "date-range-selector_sbc_trigger",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "chevron_left",
+          "tid": null
+        },
+        {
+          "it": "August",
+          "tid": null
+        },
+        {
+          "it": "chevron_right",
+          "tid": null
+        },
+        {
+          "it": "chevron_left",
+          "tid": null
+        },
+        {
+          "it": "2026",
+          "tid": null
+        },
+        {
+          "it": "chevron_right",
+          "tid": null
+        },
+        {
+          "it": "1",
+          "tid": null
+        },
+        {
+          "it": "2",
+          "tid": null
+        },
+        {
+          "it": "3",
+          "tid": null
+        },
+        {
+          "it": "4",
+          "tid": null
+        },
+        {
+          "it": "5",
+          "tid": null
+        },
+        {
+          "it": "6",
+          "tid": null
+        },
+        {
+          "it": "7",
+          "tid": null
+        },
+        {
+          "it": "8",
+          "tid": null
+        },
+        {
+          "it": "9",
+          "tid": null
+        },
+        {
+          "it": "10",
+          "tid": null
+        },
+        {
+          "it": "11",
+          "tid": null
+        },
+        {
+          "it": "12",
+          "tid": null
+        },
+        {
+          "it": "13",
+          "tid": null
+        },
+        {
+          "it": "14",
+          "tid": null
+        },
+        {
+          "it": "15",
+          "tid": null
+        },
+        {
+          "it": "16",
+          "tid": null
+        },
+        {
+          "it": "17",
+          "tid": null
+        },
+        {
+          "it": "18",
+          "tid": null
+        },
+        {
+          "it": "19",
+          "tid": null
+        },
+        {
+          "it": "20",
+          "tid": null
+        },
+        {
+          "it": "21",
+          "tid": null
+        },
+        {
+          "it": "22",
+          "tid": null
+        },
+        {
+          "it": "23",
+          "tid": null
+        },
+        {
+          "it": "24",
+          "tid": null
+        },
+        {
+          "it": "25",
+          "tid": null
+        },
+        {
+          "it": "26",
+          "tid": null
+        },
+        {
+          "it": "27",
+          "tid": null
+        },
+        {
+          "it": "28",
+          "tid": null
+        },
+        {
+          "it": "29",
+          "tid": null
+        },
+        {
+          "it": "30",
+          "tid": null
+        },
+        {
+          "it": "31",
+          "tid": null
+        },
+        {
+          "it": "Apply",
+          "tid": "button_sbc_apply"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:select_sbc_product_type",
+      "ok": true,
+      "tid": "select_sbc_product_type",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "check Parts & Service",
+          "tid": "option_sbc_product_type_all"
+        },
+        {
+          "it": "check Parts only",
+          "tid": "option_sbc_product_type_parts"
+        },
+        {
+          "it": "check Service only",
+          "tid": "option_sbc_product_type_service"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:select_sbc_customer_filter",
+      "ok": true,
+      "tid": "select_sbc_customer_filter",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "search",
+          "tid": null
+        },
+        {
+          "it": "All customers check",
+          "tid": "item_sbc_select_all_customers"
+        },
+        {
+          "it": "Clear all",
+          "tid": "item_sbc_clear_all_customers"
+        },
+        {
+          "it": "Aagate Landscaping",
+          "tid": "item_sbc_customer_97734382-36a3-4f04-9226-a97bd662ec24"
+        },
+        {
+          "it": "Auline Consulting",
+          "tid": "item_sbc_customer_12e5cb8e-39a6-42d9-a3cb-7f11cafe9b6a"
+        },
+        {
+          "it": "E2E COD Customer",
+          "tid": "item_sbc_customer_1eee6951-16ae-48f6-922d-9b9f1d49e8af"
+        },
+        {
+          "it": "E2E Credits Customer",
+          "tid": "item_sbc_customer_a37d99d0-5370-4fe7-9028-ade73c4df112"
+        },
+        {
+          "it": "E2E Term Customer",
+          "tid": "item_sbc_customer_aa94c643-018a-4d7e-ae59-1b446df0cb29"
+        },
+        {
+          "it": "SBC E2E CO-MSPTQ62M9OK",
+          "tid": "item_sbc_customer_9b9edda3-862e-4bec-9f87-2cce3289fffd"
+        },
+        {
+          "it": "SBC E2E CO-MSPU9FDOOM1",
+          "tid": "item_sbc_customer_13dcb97f-7a44-457b-85fc-36bf52472c3d"
+        },
+        {
+          "it": "SBC E2E CO-MSPUDSA3A1K",
+          "tid": "item_sbc_customer_cc026739-1932-4e33-8365-1031484550e5"
+        },
+        {
+          "it": "SBR E2E CO-MSPTR8Y3OQD",
+          "tid": "item_sbc_customer_b6216fa8-36bf-4fb9-9b96-c7584372a5d1"
+        },
+        {
+          "it": "SBR E2E CO-MSPTRES4GJI",
+          "tid": "item_sbc_customer_30dec4bb-82c8-42ac-b749-0791d46dacf6"
+        },
+        {
+          "it": "TestVT1",
+          "tid": "item_sbc_customer_274f0f38-da0b-4634-a3d4-9b51da0375cc"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:select_multiple_report_location_filter",
+      "ok": true,
+      "tid": "select_multiple_report_location_filter",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "All locations",
+          "tid": "item_select_all_report_location_filter"
+        },
+        {
+          "it": "Clear all",
+          "tid": "item_clear_all_report_location_filter"
+        },
+        {
+          "it": "QB Location",
+          "tid": "item_report_location_filter_f90faec5-210b-4f9f-ab09-b41dbac789a0"
+        },
+        {
+          "it": "3rd",
+          "tid": "item_report_location_filter_0e56cd85-e8e0-49db-8700-1998d6e9ac37"
+        },
+        {
+          "it": "L'Espace Tralala Yoga",
+          "tid": "item_report_location_filter_7ea0b9d4-ebde-4d64-949f-038d6ee2524e"
+        },
+        {
+          "it": "Staging Heavy Duty - 9919",
+          "tid": "item_report_location_filter_b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        },
+        {
+          "it": "(New Location) Melissa Heiney, Counselling Therapy",
+          "tid": "item_report_location_filter_c0dcd563-d479-4495-8340-31febea09b31"
+        },
+        {
+          "it": "Staging Lethbridge - 4310",
+          "tid": "item_report_location_filter_f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:clear_report_location_filter",
+      "ok": true,
+      "tid": "clear_report_location_filter",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "All locations",
+          "tid": "item_select_all_report_location_filter"
+        },
+        {
+          "it": "Clear all",
+          "tid": "item_clear_all_report_location_filter"
+        },
+        {
+          "it": "QB Location",
+          "tid": "item_report_location_filter_f90faec5-210b-4f9f-ab09-b41dbac789a0"
+        },
+        {
+          "it": "3rd",
+          "tid": "item_report_location_filter_0e56cd85-e8e0-49db-8700-1998d6e9ac37"
+        },
+        {
+          "it": "L'Espace Tralala Yoga",
+          "tid": "item_report_location_filter_7ea0b9d4-ebde-4d64-949f-038d6ee2524e"
+        },
+        {
+          "it": "Staging Heavy Duty - 9919",
+          "tid": "item_report_location_filter_b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        },
+        {
+          "it": "(New Location) Melissa Heiney, Counselling Therapy",
+          "tid": "item_report_location_filter_c0dcd563-d479-4495-8340-31febea09b31"
+        },
+        {
+          "it": "Staging Lethbridge - 4310",
+          "tid": "item_report_location_filter_f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:button_sbc_expand_all",
+      "ok": true,
+      "tid": "button_sbc_expand_all",
+      "opened_panel": false,
+      "rows": [],
+      "testids_grew": true
+    },
+    {
+      "name": "sort:header_sbc_margin",
+      "ok": true,
+      "header": "header_sbc_margin",
+      "before": [
+        "Aagate Landscaping(1)",
+        "local_shippingMEAUAS015DKKL62UM(1)",
+        "Auline Consulting(1)",
+        "local_shipping54DC4W1B9ES801599(1)",
+        "E2E COD Customer(1)"
+      ],
+      "after": [
+        "E2E COD Customer(1)",
+        "Auline Consulting(1)",
+        "SBR E2E CO-MSPTRES4GJI(1)",
+        "SBR E2E CO-MSPTR8Y3OQD(1)",
+        "Aagate Landscaping(1)"
+      ],
+      "order_changed": true,
+      "extractor_returned_rows": 11
+    },
+    {
+      "name": "sort:header_sbc_margin_pct",
+      "ok": true,
+      "header": "header_sbc_margin_pct",
+      "before": [
+        "E2E COD Customer(1)",
+        "Auline Consulting(1)",
+        "SBR E2E CO-MSPTRES4GJI(1)",
+        "SBR E2E CO-MSPTR8Y3OQD(1)",
+        "Aagate Landscaping(1)"
+      ],
+      "after": [
+        "Auline Consulting(1)",
+        "E2E COD Customer(1)",
+        "E2E Credits Customer(4)",
+        "SBC E2E CO-MSPTQ62M9OK(3)",
+        "SBC E2E CO-MSPU9FDOOM1(3)"
+      ],
+      "order_changed": true,
+      "extractor_returned_rows": 11
+    },
+    {
+      "name": "sort:header_sbc_subtotal",
+      "ok": true,
+      "header": "header_sbc_subtotal",
+      "before": [
+        "Auline Consulting(1)",
+        "E2E COD Customer(1)",
+        "E2E Credits Customer(4)",
+        "SBC E2E CO-MSPTQ62M9OK(3)",
+        "SBC E2E CO-MSPU9FDOOM1(3)"
+      ],
+      "after": [
+        "E2E COD Customer(1)",
+        "SBR E2E CO-MSPTRES4GJI(1)",
+        "SBR E2E CO-MSPTR8Y3OQD(1)",
+        "Aagate Landscaping(1)",
+        "Auline Consulting(1)"
+      ],
+      "order_changed": true,
+      "extractor_returned_rows": 11
+    },
+    {
+      "name": "expand:button_sbc_expand_all",
+      "ok": true,
+      "tid": "button_sbc_expand_all",
+      "rows_before": 14,
+      "rows_after": 33,
+      "grew": true,
+      "rows_after_collapse": 14
+    }
+  ],
+  "started": "2026-08-12T13:20:38.381Z",
+  "finished": "2026-08-12T13:21:30.876Z",
+  "bridge_errors": [],
+  "api_calls": 51,
+  "non_get": []
+}

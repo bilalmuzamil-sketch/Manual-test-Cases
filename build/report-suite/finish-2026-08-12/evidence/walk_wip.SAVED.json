@@ -1,0 +1,656 @@
+{
+  "report": "wip",
+  "build": "v3.7-4626299",
+  "atoms": [
+    {
+      "name": "nav_via_reports_menu",
+      "ok": true,
+      "nav_link_present": true,
+      "landed": "/reports/work-in-progress",
+      "expected": "/reports/work-in-progress"
+    },
+    {
+      "name": "report_loads",
+      "ok": true,
+      "headers": [
+        "WO #",
+        "Status",
+        "Customer",
+        "Asset",
+        "Advisor",
+        "Days Open",
+        "Earned",
+        "Remaining",
+        "Total"
+      ],
+      "rowcount": 18,
+      "tabs": [
+        "Approved - Partially Completed (15)",
+        "Approved - Not Started (3)",
+        "Completed (4)",
+        "Estimates (15)"
+      ],
+      "totals": "Totals $2,175.00 $0.00 $2,175.00"
+    },
+    {
+      "name": "tab_click:tab_wip_approved_partially_completed",
+      "ok": true,
+      "tab_tid": "tab_wip_approved_partially_completed",
+      "rendered": "Approved - Partially Completed (15)",
+      "markup": "Approved - partially completed (15)",
+      "text_transform": "none",
+      "rows_before": 18,
+      "rows_after": 18,
+      "headers_after": [
+        "WO #",
+        "Status",
+        "Customer",
+        "Asset",
+        "Advisor",
+        "Days Open",
+        "Earned",
+        "Remaining",
+        "Total"
+      ],
+      "selected_after": "true",
+      "body_changed": false
+    },
+    {
+      "name": "tab_click:tab_wip_approved_not_started",
+      "ok": true,
+      "tab_tid": "tab_wip_approved_not_started",
+      "rendered": "Approved - Not Started (3)",
+      "markup": "Approved - not started (3)",
+      "text_transform": "none",
+      "rows_before": 18,
+      "rows_after": 6,
+      "headers_after": [
+        "WO #",
+        "Status",
+        "Customer",
+        "Asset",
+        "Advisor",
+        "Days Open",
+        "Earned",
+        "Remaining",
+        "Total"
+      ],
+      "selected_after": "true",
+      "body_changed": true
+    },
+    {
+      "name": "tab_click:tab_wip_completed",
+      "ok": true,
+      "tab_tid": "tab_wip_completed",
+      "rendered": "Completed (4)",
+      "markup": "Completed (4)",
+      "text_transform": "none",
+      "rows_before": 6,
+      "rows_after": 7,
+      "headers_after": [
+        "WO #",
+        "Status",
+        "Customer",
+        "Asset",
+        "Advisor",
+        "Days Open",
+        "Earned",
+        "Remaining",
+        "Total"
+      ],
+      "selected_after": "true",
+      "body_changed": true
+    },
+    {
+      "name": "tab_click:tab_wip_estimates",
+      "ok": true,
+      "tab_tid": "tab_wip_estimates",
+      "rendered": "Estimates (15)",
+      "markup": "Estimates (15)",
+      "text_transform": "none",
+      "rows_before": 7,
+      "rows_after": 18,
+      "headers_after": [
+        "WO #",
+        "Status",
+        "Customer",
+        "Asset",
+        "Advisor",
+        "Days Open",
+        "Earned",
+        "Remaining",
+        "Total"
+      ],
+      "selected_after": "true",
+      "body_changed": true
+    },
+    {
+      "name": "control_open:btn_dropdown_wip_export",
+      "ok": true,
+      "tid": "btn_dropdown_wip_export",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "Download (PDF)",
+          "tid": "action_wip_export_pdf"
+        },
+        {
+          "it": "Download (CSV)",
+          "tid": "action_wip_export_csv"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:button_column_selection",
+      "ok": true,
+      "tid": "button_column_selection",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "WO #",
+          "tid": null
+        },
+        {
+          "it": "Status",
+          "tid": null
+        },
+        {
+          "it": "Customer",
+          "tid": null
+        },
+        {
+          "it": "Asset",
+          "tid": null
+        },
+        {
+          "it": "VIN",
+          "tid": null
+        },
+        {
+          "it": "Advisor",
+          "tid": null
+        },
+        {
+          "it": "Days Open",
+          "tid": null
+        },
+        {
+          "it": "Last Activity",
+          "tid": null
+        },
+        {
+          "it": "Labor Earned",
+          "tid": null
+        },
+        {
+          "it": "Labor Remaining",
+          "tid": null
+        },
+        {
+          "it": "Parts Earned",
+          "tid": null
+        },
+        {
+          "it": "Parts Remaining",
+          "tid": null
+        },
+        {
+          "it": "Earned",
+          "tid": null
+        },
+        {
+          "it": "Remaining",
+          "tid": null
+        },
+        {
+          "it": "Inv. Hrs",
+          "tid": null
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:date-range-selector_wip_trigger",
+      "ok": true,
+      "tid": "date-range-selector_wip_trigger",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "chevron_left",
+          "tid": null
+        },
+        {
+          "it": "August",
+          "tid": null
+        },
+        {
+          "it": "chevron_right",
+          "tid": null
+        },
+        {
+          "it": "chevron_left",
+          "tid": null
+        },
+        {
+          "it": "2026",
+          "tid": null
+        },
+        {
+          "it": "chevron_right",
+          "tid": null
+        },
+        {
+          "it": "1",
+          "tid": null
+        },
+        {
+          "it": "2",
+          "tid": null
+        },
+        {
+          "it": "3",
+          "tid": null
+        },
+        {
+          "it": "4",
+          "tid": null
+        },
+        {
+          "it": "5",
+          "tid": null
+        },
+        {
+          "it": "6",
+          "tid": null
+        },
+        {
+          "it": "7",
+          "tid": null
+        },
+        {
+          "it": "8",
+          "tid": null
+        },
+        {
+          "it": "9",
+          "tid": null
+        },
+        {
+          "it": "10",
+          "tid": null
+        },
+        {
+          "it": "11",
+          "tid": null
+        },
+        {
+          "it": "12",
+          "tid": null
+        },
+        {
+          "it": "13",
+          "tid": null
+        },
+        {
+          "it": "14",
+          "tid": null
+        },
+        {
+          "it": "15",
+          "tid": null
+        },
+        {
+          "it": "16",
+          "tid": null
+        },
+        {
+          "it": "17",
+          "tid": null
+        },
+        {
+          "it": "18",
+          "tid": null
+        },
+        {
+          "it": "19",
+          "tid": null
+        },
+        {
+          "it": "20",
+          "tid": null
+        },
+        {
+          "it": "21",
+          "tid": null
+        },
+        {
+          "it": "22",
+          "tid": null
+        },
+        {
+          "it": "23",
+          "tid": null
+        },
+        {
+          "it": "24",
+          "tid": null
+        },
+        {
+          "it": "25",
+          "tid": null
+        },
+        {
+          "it": "26",
+          "tid": null
+        },
+        {
+          "it": "27",
+          "tid": null
+        },
+        {
+          "it": "28",
+          "tid": null
+        },
+        {
+          "it": "29",
+          "tid": null
+        },
+        {
+          "it": "30",
+          "tid": null
+        },
+        {
+          "it": "31",
+          "tid": null
+        },
+        {
+          "it": "Apply",
+          "tid": "button_wip_apply"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:select_multiple_wip_advisor_filter",
+      "ok": true,
+      "tid": "select_multiple_wip_advisor_filter",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "Clear all",
+          "tid": "item_clear_all_wip_advisor_filter"
+        },
+        {
+          "it": "Admin ShopView",
+          "tid": "item_wip_advisor_filter_Admin ShopView"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:select_multiple_wip_customer_filter",
+      "ok": true,
+      "tid": "select_multiple_wip_customer_filter",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "All customers",
+          "tid": "item_select_all_wip_customer_filter"
+        },
+        {
+          "it": "Clear all",
+          "tid": "item_clear_all_wip_customer_filter"
+        },
+        {
+          "it": "Aaborough Works",
+          "tid": "item_wip_customer_filter_Aaborough Works"
+        },
+        {
+          "it": "E2E PO Required Customer",
+          "tid": "item_wip_customer_filter_E2E PO Required Customer"
+        },
+        {
+          "it": "TestVT1",
+          "tid": "item_wip_customer_filter_TestVT1"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:select_multiple_wip_asset_filter",
+      "ok": true,
+      "tid": "select_multiple_wip_asset_filter",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "search",
+          "tid": null
+        },
+        {
+          "it": "All assets",
+          "tid": "item_select_all_wip_asset_filter"
+        },
+        {
+          "it": "Clear all",
+          "tid": "item_clear_all_wip_asset_filter"
+        },
+        {
+          "it": "(no unit #) 86J8FAC1VALJ43SJY",
+          "tid": "item_wip_asset_filter_86J8FAC1VALJ43SJY"
+        },
+        {
+          "it": "(no unit #) WIPMSOBOLFSNQT000",
+          "tid": "item_wip_asset_filter_WIPMSOBOLFSNQT000"
+        },
+        {
+          "it": "(no unit #) WIPMSOBP3PKIUG000",
+          "tid": "item_wip_asset_filter_WIPMSOBP3PKIUG000"
+        },
+        {
+          "it": "(no unit #) WIPMSOBS67RJHN000",
+          "tid": "item_wip_asset_filter_WIPMSOBS67RJHN000"
+        },
+        {
+          "it": "(no unit #) WIPMSOBV28EINI000",
+          "tid": "item_wip_asset_filter_WIPMSOBV28EINI000"
+        },
+        {
+          "it": "(no unit #) WIPMSOC0MOSEL0000",
+          "tid": "item_wip_asset_filter_WIPMSOC0MOSEL0000"
+        },
+        {
+          "it": "(no unit #) WIPMSOC3EYHKD5000",
+          "tid": "item_wip_asset_filter_WIPMSOC3EYHKD5000"
+        },
+        {
+          "it": "(no unit #) WIPMSOC8VFYXDQ000",
+          "tid": "item_wip_asset_filter_WIPMSOC8VFYXDQ000"
+        },
+        {
+          "it": "(no unit #) WIPMSOC9E7EIAF000",
+          "tid": "item_wip_asset_filter_WIPMSOC9E7EIAF000"
+        },
+        {
+          "it": "(no unit #) WIPMSOPAD3SQ5W000",
+          "tid": "item_wip_asset_filter_WIPMSOPAD3SQ5W000"
+        },
+        {
+          "it": "(no unit #) WIPMSOPBSWG32V000",
+          "tid": "item_wip_asset_filter_WIPMSOPBSWG32V000"
+        },
+        {
+          "it": "(no unit #) WIPMSOPDHT37HI000",
+          "tid": "item_wip_asset_filter_WIPMSOPDHT37HI000"
+        },
+        {
+          "it": "(no unit #) WIPMSOPE2ZTL3M000",
+          "tid": "item_wip_asset_filter_WIPMSOPE2ZTL3M000"
+        },
+        {
+          "it": "(no unit #) WIPMSOPEM9KOMQ000",
+          "tid": "item_wip_asset_filter_WIPMSOPEM9KOMQ000"
+        },
+        {
+          "it": "(no unit #) WIPMSOPF6QGRHC000",
+          "tid": "item_wip_asset_filter_WIPMSOPF6QGRHC000"
+        },
+        {
+          "it": "(no unit #) WIPMSOPWRS0YXF000",
+          "tid": "item_wip_asset_filter_WIPMSOPWRS0YXF000"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:select_multiple_report_location_filter",
+      "ok": true,
+      "tid": "select_multiple_report_location_filter",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "All locations",
+          "tid": "item_select_all_report_location_filter"
+        },
+        {
+          "it": "Clear all",
+          "tid": "item_clear_all_report_location_filter"
+        },
+        {
+          "it": "QB Location",
+          "tid": "item_report_location_filter_f90faec5-210b-4f9f-ab09-b41dbac789a0"
+        },
+        {
+          "it": "3rd",
+          "tid": "item_report_location_filter_0e56cd85-e8e0-49db-8700-1998d6e9ac37"
+        },
+        {
+          "it": "L'Espace Tralala Yoga",
+          "tid": "item_report_location_filter_7ea0b9d4-ebde-4d64-949f-038d6ee2524e"
+        },
+        {
+          "it": "Staging Heavy Duty - 9919",
+          "tid": "item_report_location_filter_b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        },
+        {
+          "it": "(New Location) Melissa Heiney, Counselling Therapy",
+          "tid": "item_report_location_filter_c0dcd563-d479-4495-8340-31febea09b31"
+        },
+        {
+          "it": "Staging Lethbridge - 4310",
+          "tid": "item_report_location_filter_f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:clear_report_location_filter",
+      "ok": true,
+      "tid": "clear_report_location_filter",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "All locations",
+          "tid": "item_select_all_report_location_filter"
+        },
+        {
+          "it": "Clear all",
+          "tid": "item_clear_all_report_location_filter"
+        },
+        {
+          "it": "QB Location",
+          "tid": "item_report_location_filter_f90faec5-210b-4f9f-ab09-b41dbac789a0"
+        },
+        {
+          "it": "3rd",
+          "tid": "item_report_location_filter_0e56cd85-e8e0-49db-8700-1998d6e9ac37"
+        },
+        {
+          "it": "L'Espace Tralala Yoga",
+          "tid": "item_report_location_filter_7ea0b9d4-ebde-4d64-949f-038d6ee2524e"
+        },
+        {
+          "it": "Staging Heavy Duty - 9919",
+          "tid": "item_report_location_filter_b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        },
+        {
+          "it": "(New Location) Melissa Heiney, Counselling Therapy",
+          "tid": "item_report_location_filter_c0dcd563-d479-4495-8340-31febea09b31"
+        },
+        {
+          "it": "Staging Lethbridge - 4310",
+          "tid": "item_report_location_filter_f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "sort:th#6",
+      "ok": true,
+      "header": "th#6",
+      "before": [
+        "S8582-16650",
+        "S8582-16649",
+        "S8582-16648",
+        "S8582-16647",
+        "S8582-16645"
+      ],
+      "after": [
+        "S8582-16710",
+        "S8582-16709",
+        "S8582-16708",
+        "S8582-16707",
+        "S8582-16706"
+      ],
+      "order_changed": true,
+      "extractor_returned_rows": 11
+    },
+    {
+      "name": "sort:th#7",
+      "ok": true,
+      "header": "th#7",
+      "before": [
+        "S8582-16710",
+        "S8582-16709",
+        "S8582-16708",
+        "S8582-16707",
+        "S8582-16706"
+      ],
+      "after": [
+        "S8582-16710",
+        "S8582-16709",
+        "S8582-16708",
+        "S8582-16707",
+        "S8582-16706"
+      ],
+      "order_changed": false,
+      "extractor_returned_rows": 11
+    },
+    {
+      "name": "sort:th#8",
+      "ok": true,
+      "header": "th#8",
+      "before": [
+        "S8582-16710",
+        "S8582-16709",
+        "S8582-16708",
+        "S8582-16707",
+        "S8582-16706"
+      ],
+      "after": [
+        "S8582-16710",
+        "S8582-16709",
+        "S8582-16708",
+        "S8582-16707",
+        "S8582-16706"
+      ],
+      "order_changed": false,
+      "extractor_returned_rows": 11
+    }
+  ],
+  "started": "2026-08-12T13:13:32.011Z",
+  "finished": "2026-08-12T13:14:55.354Z",
+  "bridge_errors": [],
+  "api_calls": 36,
+  "non_get": []
+}

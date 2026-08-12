@@ -1,0 +1,901 @@
+{
+  "report": "pv",
+  "build": "v3.7-4626299",
+  "atoms": [
+    {
+      "name": "nav_via_reports_menu",
+      "ok": true,
+      "nav_link_present": true,
+      "landed": "/reports/parts-velocity",
+      "expected": "/reports/parts-velocity"
+    },
+    {
+      "name": "report_loads",
+      "ok": true,
+      "headers": [
+        "Type",
+        "Part #",
+        "Description",
+        "Category",
+        "Vendor",
+        "Units Sold info_outline",
+        "Unit Cost",
+        "Sell Price",
+        "Revenue",
+        "Margin",
+        "Margin %",
+        "Demand info_outline",
+        "Last Sale",
+        "On Hand"
+      ],
+      "rowcount": 2,
+      "tabs": [],
+      "totals": null
+    },
+    {
+      "name": "control_open:btn_dropdown_pv_export",
+      "ok": true,
+      "tid": "btn_dropdown_pv_export",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "Download (PDF)",
+          "tid": "action_pv_export_pdf"
+        },
+        {
+          "it": "Download (CSV)",
+          "tid": "action_pv_export_csv"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:button_column_selection",
+      "ok": true,
+      "tid": "button_column_selection",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "Type",
+          "tid": null
+        },
+        {
+          "it": "Part #",
+          "tid": null
+        },
+        {
+          "it": "Description",
+          "tid": null
+        },
+        {
+          "it": "Category",
+          "tid": null
+        },
+        {
+          "it": "Vendor",
+          "tid": null
+        },
+        {
+          "it": "Units Sold",
+          "tid": null
+        },
+        {
+          "it": "Units Returned",
+          "tid": null
+        },
+        {
+          "it": "Sold (WO)",
+          "tid": null
+        },
+        {
+          "it": "Sold (Parts Sale)",
+          "tid": null
+        },
+        {
+          "it": "Unit Cost",
+          "tid": null
+        },
+        {
+          "it": "Sell Price",
+          "tid": null
+        },
+        {
+          "it": "Revenue",
+          "tid": null
+        },
+        {
+          "it": "Margin",
+          "tid": null
+        },
+        {
+          "it": "Margin %",
+          "tid": null
+        },
+        {
+          "it": "Demand",
+          "tid": null
+        },
+        {
+          "it": "Last Sale",
+          "tid": null
+        },
+        {
+          "it": "On Hand",
+          "tid": null
+        },
+        {
+          "it": "Turns/Yr",
+          "tid": null
+        },
+        {
+          "it": "Min",
+          "tid": null
+        },
+        {
+          "it": "Max",
+          "tid": null
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:date-range-selector_pv_trigger",
+      "ok": true,
+      "tid": "date-range-selector_pv_trigger",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "chevron_left",
+          "tid": null
+        },
+        {
+          "it": "January",
+          "tid": null
+        },
+        {
+          "it": "chevron_right",
+          "tid": null
+        },
+        {
+          "it": "chevron_left",
+          "tid": null
+        },
+        {
+          "it": "2026",
+          "tid": null
+        },
+        {
+          "it": "chevron_right",
+          "tid": null
+        },
+        {
+          "it": "1",
+          "tid": null
+        },
+        {
+          "it": "2",
+          "tid": null
+        },
+        {
+          "it": "3",
+          "tid": null
+        },
+        {
+          "it": "4",
+          "tid": null
+        },
+        {
+          "it": "5",
+          "tid": null
+        },
+        {
+          "it": "6",
+          "tid": null
+        },
+        {
+          "it": "7",
+          "tid": null
+        },
+        {
+          "it": "8",
+          "tid": null
+        },
+        {
+          "it": "9",
+          "tid": null
+        },
+        {
+          "it": "10",
+          "tid": null
+        },
+        {
+          "it": "11",
+          "tid": null
+        },
+        {
+          "it": "12",
+          "tid": null
+        },
+        {
+          "it": "13",
+          "tid": null
+        },
+        {
+          "it": "14",
+          "tid": null
+        },
+        {
+          "it": "15",
+          "tid": null
+        },
+        {
+          "it": "16",
+          "tid": null
+        },
+        {
+          "it": "17",
+          "tid": null
+        },
+        {
+          "it": "18",
+          "tid": null
+        },
+        {
+          "it": "19",
+          "tid": null
+        },
+        {
+          "it": "20",
+          "tid": null
+        },
+        {
+          "it": "21",
+          "tid": null
+        },
+        {
+          "it": "22",
+          "tid": null
+        },
+        {
+          "it": "23",
+          "tid": null
+        },
+        {
+          "it": "24",
+          "tid": null
+        },
+        {
+          "it": "25",
+          "tid": null
+        },
+        {
+          "it": "26",
+          "tid": null
+        },
+        {
+          "it": "27",
+          "tid": null
+        },
+        {
+          "it": "28",
+          "tid": null
+        },
+        {
+          "it": "29",
+          "tid": null
+        },
+        {
+          "it": "30",
+          "tid": null
+        },
+        {
+          "it": "31",
+          "tid": null
+        },
+        {
+          "it": "Today",
+          "tid": "button_pv_today"
+        },
+        {
+          "it": "Apply",
+          "tid": "button_pv_apply"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:select_pv_type",
+      "ok": true,
+      "tid": "select_pv_type",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "check Both",
+          "tid": "option_pv_type_both"
+        },
+        {
+          "it": "check Inventory",
+          "tid": "option_pv_type_inventory"
+        },
+        {
+          "it": "check Special Order",
+          "tid": "option_pv_type_special_order"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:select_multiple_pv_category_filter",
+      "ok": true,
+      "tid": "select_multiple_pv_category_filter",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "search",
+          "tid": null
+        },
+        {
+          "it": "All categories check",
+          "tid": "item_select_all_pv_category_filter"
+        },
+        {
+          "it": "Clear all",
+          "tid": "item_clear_all_pv_category_filter"
+        },
+        {
+          "it": "Uncategorized",
+          "tid": "item_pv_category_filter_b25c5c04-fe8d-4c21-a15c-a02c69f1ee5d"
+        },
+        {
+          "it": ".Brake Parts",
+          "tid": "item_pv_category_filter_17a91956-3e3f-4d96-9806-96e270ba6a07"
+        },
+        {
+          "it": ".Suspension",
+          "tid": "item_pv_category_filter_245cea2e-1358-459a-ba40-04c7a3946ac0"
+        },
+        {
+          "it": "70%override",
+          "tid": "item_pv_category_filter_b62e76cc-3e2d-4383-9752-b50497c33d4d"
+        },
+        {
+          "it": "AUTO-Accessories (Gauges, Power Accessories, Vision & A",
+          "tid": "item_pv_category_filter_41ade71d-475c-470d-bc76-00de9c461d4b"
+        },
+        {
+          "it": "AUTO-Batteries",
+          "tid": "item_pv_category_filter_69647424-0c59-492a-986b-b988930d6fda"
+        },
+        {
+          "it": "AUTO-Body",
+          "tid": "item_pv_category_filter_c7eed0bd-04ef-47f7-a56d-3ab880d94c60"
+        },
+        {
+          "it": "AUTO-Brakes",
+          "tid": "item_pv_category_filter_55e0ff48-6774-4717-bbcf-5ba3e0cfa42a"
+        },
+        {
+          "it": "AUTO-Drive Train (Final Drive, Transaxle, Differential ",
+          "tid": "item_pv_category_filter_be74f02f-f1d7-452e-a7b3-3a5700b0a3d7"
+        },
+        {
+          "it": "AUTO-Driveability (Fuel, Ignition & Emissions)",
+          "tid": "item_pv_category_filter_64dd3fcb-f704-4b7c-908f-f70446c61aa0"
+        },
+        {
+          "it": "AUTO-Electrical (Belts, Lighting, Starting & Charging S",
+          "tid": "item_pv_category_filter_8a213a78-d187-4bc9-b6e0-ef6b85bc4d0b"
+        },
+        {
+          "it": "AUTO-Engine",
+          "tid": "item_pv_category_filter_c726a721-e607-4f1d-937f-eaaf7c80b46b"
+        },
+        {
+          "it": "AUTO-Exhaust",
+          "tid": "item_pv_category_filter_15f392ca-2a81-4aee-89b4-2dfc5ee69b4c"
+        },
+        {
+          "it": "Auto-Freight",
+          "tid": "item_pv_category_filter_416a7fd6-8b54-4028-995d-637482ca94b1"
+        },
+        {
+          "it": "AUTO-HVAC (Heating, Ventilation & Air Conditioning)",
+          "tid": "item_pv_category_filter_d4d783b9-25e3-4996-a278-775197d243a7"
+        },
+        {
+          "it": "AUTO-MISC CHARGES",
+          "tid": "item_pv_category_filter_309dbf71-c2a5-4b96-b4f7-8eac15e76cce"
+        },
+        {
+          "it": "AUTO-Oil, Lube & Maintenance",
+          "tid": "item_pv_category_filter_58f7540d-4afd-4e61-955d-f16f2a45f56f"
+        },
+        {
+          "it": "AUTO-Steering & Suspension",
+          "tid": "item_pv_category_filter_018d1299-e0e0-4d54-b7b9-2aa5b683e08d"
+        },
+        {
+          "it": "Auto-Sublet",
+          "tid": "item_pv_category_filter_2882d921-f206-4dbe-8820-17641738a175"
+        },
+        {
+          "it": "AUTO-Tires & Wheels",
+          "tid": "item_pv_category_filter_a0062658-fd59-4b6c-8dbc-118c2d812897"
+        },
+        {
+          "it": "AUTO-Transmission & Clutch",
+          "tid": "item_pv_category_filter_e0aafe79-738b-4537-bbf0-91111370a31c"
+        },
+        {
+          "it": "COC-Proposal",
+          "tid": "item_pv_category_filter_17a59140-1e60-47b8-a782-82e8584456b3"
+        },
+        {
+          "it": "COCtest",
+          "tid": "item_pv_category_filter_d1ddbdc6-0e02-46de-8051-4406d165d406"
+        },
+        {
+          "it": "DO NOT USE",
+          "tid": "item_pv_category_filter_84fcf4fa-a1c0-4e6d-9a3b-1379bd319d86"
+        },
+        {
+          "it": "HD-ABS Comp",
+          "tid": "item_pv_category_filter_3516618d-0140-4925-9c9c-cdb715029730"
+        },
+        {
+          "it": "HD-Air Brakes & Air Suspension",
+          "tid": "item_pv_category_filter_add88ebf-c459-4d09-85c6-5fbeedb83d17"
+        },
+        {
+          "it": "HD-Batteries",
+          "tid": "item_pv_category_filter_56aed0d7-c26d-47e3-8879-3579b0bb1327"
+        },
+        {
+          "it": "HD-Belts, Pulleys & Tensioners",
+          "tid": "item_pv_category_filter_6d6262eb-f4e2-40d8-b7d9-760912ab87ab"
+        },
+        {
+          "it": "HD-Body Exterior",
+          "tid": "item_pv_category_filter_c20b1726-5494-4bb7-b1e1-82c937282f3d"
+        },
+        {
+          "it": "HD-Body Interior",
+          "tid": "item_pv_category_filter_30858cf7-6432-4aba-8c2f-76739779f72e"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:select_multiple_pv_vendor_filter",
+      "ok": true,
+      "tid": "select_multiple_pv_vendor_filter",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "search",
+          "tid": null
+        },
+        {
+          "it": "All vendors check",
+          "tid": "item_select_all_pv_vendor_filter"
+        },
+        {
+          "it": "Clear all",
+          "tid": "item_clear_all_pv_vendor_filter"
+        },
+        {
+          "it": "123 Cannabis Forestlawn",
+          "tid": "item_pv_vendor_filter_2612369b-532f-40d9-a4a2-eb891962b1f8"
+        },
+        {
+          "it": "4Refuel",
+          "tid": "item_pv_vendor_filter_19e9b319-411a-462b-bdcd-5c392c893c1f"
+        },
+        {
+          "it": "Aabridge Beverages",
+          "tid": "item_pv_vendor_filter_1e7bd0bf-e882-45fa-8c21-835e32ffa374"
+        },
+        {
+          "it": "Aabridge Mining",
+          "tid": "item_pv_vendor_filter_c9c6e2cf-4a75-4969-a90a-afd0e0de7e01"
+        },
+        {
+          "it": "Aacastle Apparel",
+          "tid": "item_pv_vendor_filter_b2d1c655-a0ac-4f47-9594-9b179be60d1c"
+        },
+        {
+          "it": "Aahaven Ventures",
+          "tid": "item_pv_vendor_filter_7d369989-e786-4534-bb5d-b28c04cec457"
+        },
+        {
+          "it": "Aaside Excavating",
+          "tid": "item_pv_vendor_filter_7f2412d4-a1c8-4375-b052-e153ac1f2201"
+        },
+        {
+          "it": "Abay Retail",
+          "tid": "item_pv_vendor_filter_0b835a7e-f962-48cc-aab4-b3a23a8ff099"
+        },
+        {
+          "it": "Aburg Towing",
+          "tid": "item_pv_vendor_filter_3765b3fb-a3e8-4cdb-a57e-603dda5e0f2a"
+        },
+        {
+          "it": "Aeboro Motors",
+          "tid": "item_pv_vendor_filter_28593bb5-4a54-4075-bdb3-e78ce3175919"
+        },
+        {
+          "it": "Aeland Design",
+          "tid": "item_pv_vendor_filter_d79e15d2-c13b-4d5d-82a5-543a1255c71a"
+        },
+        {
+          "it": "Aemont Maintenance",
+          "tid": "item_pv_vendor_filter_4eab5d6a-3822-4d31-bc6c-eff4d5c8e8f6"
+        },
+        {
+          "it": "Aemoor Hauling",
+          "tid": "item_pv_vendor_filter_6a990dce-11db-4df2-bcb4-2d7cee091aff"
+        },
+        {
+          "it": "Aepark Media",
+          "tid": "item_pv_vendor_filter_f00f0acf-f218-4bab-802e-a40c6cc245bb"
+        },
+        {
+          "it": "Aepoint Builders",
+          "tid": "item_pv_vendor_filter_e0000c3e-1309-4b6f-8a3d-9704b72d7c8f"
+        },
+        {
+          "it": "Aeton Towing",
+          "tid": "item_pv_vendor_filter_52815112-6b74-4059-8d18-f91e45cec71c"
+        },
+        {
+          "it": "Aeview Forestry",
+          "tid": "item_pv_vendor_filter_ea66d45c-2deb-4fd5-aafa-755512b6f123"
+        },
+        {
+          "it": "Afield Plumbing",
+          "tid": "item_pv_vendor_filter_3e460cc0-03ff-4322-83ea-f2bcba8990ec"
+        },
+        {
+          "it": "Ahampton Commercial",
+          "tid": "item_pv_vendor_filter_8210c56c-3395-485b-930c-b072773816d5"
+        },
+        {
+          "it": "Aiboro Rentals",
+          "tid": "item_pv_vendor_filter_086df5dc-5dfb-4627-bfbe-f7efafaffcc9"
+        },
+        {
+          "it": "Aifalls Systems",
+          "tid": "item_pv_vendor_filter_f6ffe4fe-fc9c-44d0-9a74-661f9f180633"
+        },
+        {
+          "it": "Aiford Holdings",
+          "tid": "item_pv_vendor_filter_f871b62d-cdf8-42fb-a3af-ceceaed4234c"
+        },
+        {
+          "it": "Aigrove Builders",
+          "tid": "item_pv_vendor_filter_11ad006e-1e9e-47ac-b437-250819d1f8c7"
+        },
+        {
+          "it": "Airidge Rentals",
+          "tid": "item_pv_vendor_filter_56b472c6-e750-441a-b212-f17de2d77c2c"
+        },
+        {
+          "it": "Airiver Retail",
+          "tid": "item_pv_vendor_filter_310885cf-2586-4047-a649-bc025077008f"
+        },
+        {
+          "it": "Aistone Enterprises",
+          "tid": "item_pv_vendor_filter_4ec425d6-3b9e-4984-886a-1b3719e5ced0"
+        },
+        {
+          "it": "Aiwick Concrete",
+          "tid": "item_pv_vendor_filter_00650021-c6be-4fda-afaa-1846d771f641"
+        },
+        {
+          "it": "Aline Mechanical",
+          "tid": "item_pv_vendor_filter_5e6ebb46-5616-4554-bf5d-19aef752738a"
+        },
+        {
+          "it": "Aoborough Excavating",
+          "tid": "item_pv_vendor_filter_1320f777-4227-4c2b-9273-d6bf7a908193"
+        },
+        {
+          "it": "Aolake Services",
+          "tid": "item_pv_vendor_filter_f59ce391-f818-43e7-8f9e-2a5999804ed3"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:select_multiple_pv_bin_filter",
+      "ok": true,
+      "tid": "select_multiple_pv_bin_filter",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "search",
+          "tid": null
+        },
+        {
+          "it": "All bins check",
+          "tid": "item_select_all_pv_bin_filter"
+        },
+        {
+          "it": "Clear all",
+          "tid": "item_clear_all_pv_bin_filter"
+        },
+        {
+          "it": "General Storage",
+          "tid": "item_pv_bin_filter_0dfc09d7-479b-11f1-9bed-020a144de1a3"
+        },
+        {
+          "it": "A1A",
+          "tid": "item_pv_bin_filter_1295099b-479b-11f1-9bed-020a144de1a3"
+        },
+        {
+          "it": "A1B",
+          "tid": "item_pv_bin_filter_129509f7-479b-11f1-9bed-020a144de1a3"
+        },
+        {
+          "it": "A1C",
+          "tid": "item_pv_bin_filter_12950a54-479b-11f1-9bed-020a144de1a3"
+        },
+        {
+          "it": "A1D",
+          "tid": "item_pv_bin_filter_12950aaf-479b-11f1-9bed-020a144de1a3"
+        },
+        {
+          "it": "A1E",
+          "tid": "item_pv_bin_filter_12950b0e-479b-11f1-9bed-020a144de1a3"
+        },
+        {
+          "it": "A1F",
+          "tid": "item_pv_bin_filter_12950b6a-479b-11f1-9bed-020a144de1a3"
+        },
+        {
+          "it": "A2A",
+          "tid": "item_pv_bin_filter_12950bcc-479b-11f1-9bed-020a144de1a3"
+        },
+        {
+          "it": "A2CA",
+          "tid": "item_pv_bin_filter_12950c2c-479b-11f1-9bed-020a144de1a3"
+        },
+        {
+          "it": "A2CB",
+          "tid": "item_pv_bin_filter_12950cb4-479b-11f1-9bed-020a144de1a3"
+        },
+        {
+          "it": "A2CC",
+          "tid": "item_pv_bin_filter_12950d10-479b-11f1-9bed-020a144de1a3"
+        },
+        {
+          "it": "A2CD",
+          "tid": "item_pv_bin_filter_34c90772-bea9-4dd8-a8be-a79f3cdd31c5"
+        },
+        {
+          "it": "A2CE",
+          "tid": "item_pv_bin_filter_e4ec373c-0cf2-4352-981c-39a7f87312bc"
+        },
+        {
+          "it": "A2CF",
+          "tid": "item_pv_bin_filter_3bf08bc7-cfb0-4e60-bf51-d612fc16df26"
+        },
+        {
+          "it": "A2CG",
+          "tid": "item_pv_bin_filter_12950d6e-479b-11f1-9bed-020a144de1a3"
+        },
+        {
+          "it": "A2CH",
+          "tid": "item_pv_bin_filter_12950dc8-479b-11f1-9bed-020a144de1a3"
+        },
+        {
+          "it": "A2CI",
+          "tid": "item_pv_bin_filter_3d3e6610-d56d-41b6-9751-ff68b5e8e418"
+        },
+        {
+          "it": "A2CJ",
+          "tid": "item_pv_bin_filter_ac8e212a-1478-4802-a004-38a6884ad404"
+        },
+        {
+          "it": "A2CK",
+          "tid": "item_pv_bin_filter_f59970ac-21d3-4f81-8324-37e498a6b3a9"
+        },
+        {
+          "it": "A2CL",
+          "tid": "item_pv_bin_filter_ee4cc75f-e32e-4d3e-ada7-52b7d726ba6c"
+        },
+        {
+          "it": "A2CM",
+          "tid": "item_pv_bin_filter_7e092344-f2e2-41b5-97db-2b1aa6ebf315"
+        },
+        {
+          "it": "A2DA",
+          "tid": "item_pv_bin_filter_dd89c889-a530-4bbe-8ad3-709d451b3c93"
+        },
+        {
+          "it": "A2DB",
+          "tid": "item_pv_bin_filter_1d887550-9b60-41fa-ac21-f3f2229e84a2"
+        },
+        {
+          "it": "A2DC",
+          "tid": "item_pv_bin_filter_1354d649-ff04-4b7d-ac88-857e7e9d90f4"
+        },
+        {
+          "it": "A2E",
+          "tid": "item_pv_bin_filter_12950e22-479b-11f1-9bed-020a144de1a3"
+        },
+        {
+          "it": "A2F",
+          "tid": "item_pv_bin_filter_12950e7b-479b-11f1-9bed-020a144de1a3"
+        },
+        {
+          "it": "A3A",
+          "tid": "item_pv_bin_filter_12950ed5-479b-11f1-9bed-020a144de1a3"
+        },
+        {
+          "it": "A3B",
+          "tid": "item_pv_bin_filter_12950f2f-479b-11f1-9bed-020a144de1a3"
+        },
+        {
+          "it": "A3C",
+          "tid": "item_pv_bin_filter_12950f89-479b-11f1-9bed-020a144de1a3"
+        },
+        {
+          "it": "A3D",
+          "tid": "item_pv_bin_filter_12950fe3-479b-11f1-9bed-020a144de1a3"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:select_multiple_report_location_filter",
+      "ok": true,
+      "tid": "select_multiple_report_location_filter",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "All locations",
+          "tid": "item_select_all_report_location_filter"
+        },
+        {
+          "it": "Clear all",
+          "tid": "item_clear_all_report_location_filter"
+        },
+        {
+          "it": "QB Location",
+          "tid": "item_report_location_filter_f90faec5-210b-4f9f-ab09-b41dbac789a0"
+        },
+        {
+          "it": "3rd",
+          "tid": "item_report_location_filter_0e56cd85-e8e0-49db-8700-1998d6e9ac37"
+        },
+        {
+          "it": "L'Espace Tralala Yoga",
+          "tid": "item_report_location_filter_7ea0b9d4-ebde-4d64-949f-038d6ee2524e"
+        },
+        {
+          "it": "Staging Heavy Duty - 9919",
+          "tid": "item_report_location_filter_b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        },
+        {
+          "it": "(New Location) Melissa Heiney, Counselling Therapy",
+          "tid": "item_report_location_filter_c0dcd563-d479-4495-8340-31febea09b31"
+        },
+        {
+          "it": "Staging Lethbridge - 4310",
+          "tid": "item_report_location_filter_f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:clear_report_location_filter",
+      "ok": true,
+      "tid": "clear_report_location_filter",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "All locations",
+          "tid": "item_select_all_report_location_filter"
+        },
+        {
+          "it": "Clear all",
+          "tid": "item_clear_all_report_location_filter"
+        },
+        {
+          "it": "QB Location",
+          "tid": "item_report_location_filter_f90faec5-210b-4f9f-ab09-b41dbac789a0"
+        },
+        {
+          "it": "3rd",
+          "tid": "item_report_location_filter_0e56cd85-e8e0-49db-8700-1998d6e9ac37"
+        },
+        {
+          "it": "L'Espace Tralala Yoga",
+          "tid": "item_report_location_filter_7ea0b9d4-ebde-4d64-949f-038d6ee2524e"
+        },
+        {
+          "it": "Staging Heavy Duty - 9919",
+          "tid": "item_report_location_filter_b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        },
+        {
+          "it": "(New Location) Melissa Heiney, Counselling Therapy",
+          "tid": "item_report_location_filter_c0dcd563-d479-4495-8340-31febea09b31"
+        },
+        {
+          "it": "Staging Lethbridge - 4310",
+          "tid": "item_report_location_filter_f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "sort:header_pv_demand",
+      "ok": true,
+      "header": "header_pv_demand",
+      "before": [
+        "Inventory",
+        "Inventory",
+        "Inventory",
+        "Inventory",
+        "Inventory"
+      ],
+      "after": [
+        "Inventory",
+        "Inventory",
+        "Inventory",
+        "Inventory",
+        "Inventory"
+      ],
+      "order_changed": false,
+      "extractor_returned_rows": 11
+    },
+    {
+      "name": "sort:header_pv_last_sale",
+      "ok": true,
+      "header": "header_pv_last_sale",
+      "before": [
+        "Inventory",
+        "Inventory",
+        "Inventory",
+        "Inventory",
+        "Inventory"
+      ],
+      "after": [
+        "Inventory",
+        "Inventory",
+        "Inventory",
+        "Inventory",
+        "Inventory"
+      ],
+      "order_changed": false,
+      "extractor_returned_rows": 11
+    },
+    {
+      "name": "sort:header_pv_on_hand",
+      "ok": true,
+      "header": "header_pv_on_hand",
+      "before": [
+        "Inventory",
+        "Inventory",
+        "Inventory",
+        "Inventory",
+        "Inventory"
+      ],
+      "after": [
+        "Inventory",
+        "Inventory",
+        "Inventory",
+        "Inventory",
+        "Inventory"
+      ],
+      "order_changed": false,
+      "extractor_returned_rows": 11
+    }
+  ],
+  "started": "2026-08-12T13:22:36.310Z",
+  "finished": "2026-08-12T13:23:27.533Z",
+  "bridge_errors": [],
+  "api_calls": 29,
+  "non_get": []
+}

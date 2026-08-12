@@ -1,0 +1,478 @@
+{
+  "report": "sbr",
+  "build": "v3.7-4626299",
+  "atoms": [
+    {
+      "name": "nav_via_reports_menu",
+      "ok": true,
+      "nav_link_present": true,
+      "landed": "/reports/sales-by-representative",
+      "expected": "/reports/sales-by-representative"
+    },
+    {
+      "name": "report_loads",
+      "ok": true,
+      "headers": [
+        "Date",
+        "Invoice",
+        "Customer",
+        "Status",
+        "Inv. Hrs",
+        "Labor Invoiced",
+        "Labor Margin",
+        "Parts Invoiced",
+        "Parts Margin",
+        "Margin",
+        "Margin %",
+        "Subtotal"
+      ],
+      "rowcount": 6,
+      "tabs": [],
+      "totals": "Totals +3.00 $444.90 $444.90 $433.91 $150.16 $595.06 67.7% $925.53"
+    },
+    {
+      "name": "control_open:btn_dropdown_sbr_export",
+      "ok": true,
+      "tid": "btn_dropdown_sbr_export",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "Download Summary (PDF)",
+          "tid": "action_sbr_export_summary_pdf"
+        },
+        {
+          "it": "Download Expanded View (PDF)",
+          "tid": "action_sbr_export_expanded_pdf"
+        },
+        {
+          "it": "Download Summary (CSV)",
+          "tid": "action_sbr_export_summary_csv"
+        },
+        {
+          "it": "Download Expanded View (CSV)",
+          "tid": "action_sbr_export_expanded_csv"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:button_column_selection",
+      "ok": true,
+      "tid": "button_column_selection",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "Inv. Hrs",
+          "tid": null
+        },
+        {
+          "it": "Labor Invoiced",
+          "tid": null
+        },
+        {
+          "it": "Labor Margin",
+          "tid": null
+        },
+        {
+          "it": "Parts Invoiced",
+          "tid": null
+        },
+        {
+          "it": "Parts Margin",
+          "tid": null
+        },
+        {
+          "it": "Margin",
+          "tid": null
+        },
+        {
+          "it": "Margin %",
+          "tid": null
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:toggle_sbr_show_unassigned",
+      "ok": true,
+      "tid": "toggle_sbr_show_unassigned",
+      "opened_panel": false,
+      "rows": [],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:date-range-selector_sbr_trigger",
+      "ok": true,
+      "tid": "date-range-selector_sbr_trigger",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "chevron_left",
+          "tid": null
+        },
+        {
+          "it": "August",
+          "tid": null
+        },
+        {
+          "it": "chevron_right",
+          "tid": null
+        },
+        {
+          "it": "chevron_left",
+          "tid": null
+        },
+        {
+          "it": "2026",
+          "tid": null
+        },
+        {
+          "it": "chevron_right",
+          "tid": null
+        },
+        {
+          "it": "1",
+          "tid": null
+        },
+        {
+          "it": "2",
+          "tid": null
+        },
+        {
+          "it": "3",
+          "tid": null
+        },
+        {
+          "it": "4",
+          "tid": null
+        },
+        {
+          "it": "5",
+          "tid": null
+        },
+        {
+          "it": "6",
+          "tid": null
+        },
+        {
+          "it": "7",
+          "tid": null
+        },
+        {
+          "it": "8",
+          "tid": null
+        },
+        {
+          "it": "9",
+          "tid": null
+        },
+        {
+          "it": "10",
+          "tid": null
+        },
+        {
+          "it": "11",
+          "tid": null
+        },
+        {
+          "it": "12",
+          "tid": null
+        },
+        {
+          "it": "13",
+          "tid": null
+        },
+        {
+          "it": "14",
+          "tid": null
+        },
+        {
+          "it": "15",
+          "tid": null
+        },
+        {
+          "it": "16",
+          "tid": null
+        },
+        {
+          "it": "17",
+          "tid": null
+        },
+        {
+          "it": "18",
+          "tid": null
+        },
+        {
+          "it": "19",
+          "tid": null
+        },
+        {
+          "it": "20",
+          "tid": null
+        },
+        {
+          "it": "21",
+          "tid": null
+        },
+        {
+          "it": "22",
+          "tid": null
+        },
+        {
+          "it": "23",
+          "tid": null
+        },
+        {
+          "it": "24",
+          "tid": null
+        },
+        {
+          "it": "25",
+          "tid": null
+        },
+        {
+          "it": "26",
+          "tid": null
+        },
+        {
+          "it": "27",
+          "tid": null
+        },
+        {
+          "it": "28",
+          "tid": null
+        },
+        {
+          "it": "29",
+          "tid": null
+        },
+        {
+          "it": "30",
+          "tid": null
+        },
+        {
+          "it": "31",
+          "tid": null
+        },
+        {
+          "it": "Apply",
+          "tid": "button_sbr_apply"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:select_sbr_product_type",
+      "ok": true,
+      "tid": "select_sbr_product_type",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "check Parts & Service",
+          "tid": "option_sbr_product_type_all"
+        },
+        {
+          "it": "check Parts only",
+          "tid": "option_sbr_product_type_parts"
+        },
+        {
+          "it": "check Service only",
+          "tid": "option_sbr_product_type_service"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:select_sbr_invoice_status",
+      "ok": true,
+      "tid": "select_sbr_invoice_status",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "check All Statuses",
+          "tid": "option_sbr_invoice_status_all"
+        },
+        {
+          "it": "check Paid",
+          "tid": "option_sbr_invoice_status_paid"
+        },
+        {
+          "it": "check Partially Paid",
+          "tid": "option_sbr_invoice_status_partially_paid"
+        },
+        {
+          "it": "check Unpaid",
+          "tid": "option_sbr_invoice_status_unpaid"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:select_multiple_report_location_filter",
+      "ok": true,
+      "tid": "select_multiple_report_location_filter",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "All locations",
+          "tid": "item_select_all_report_location_filter"
+        },
+        {
+          "it": "Clear all",
+          "tid": "item_clear_all_report_location_filter"
+        },
+        {
+          "it": "QB Location",
+          "tid": "item_report_location_filter_f90faec5-210b-4f9f-ab09-b41dbac789a0"
+        },
+        {
+          "it": "3rd",
+          "tid": "item_report_location_filter_0e56cd85-e8e0-49db-8700-1998d6e9ac37"
+        },
+        {
+          "it": "L'Espace Tralala Yoga",
+          "tid": "item_report_location_filter_7ea0b9d4-ebde-4d64-949f-038d6ee2524e"
+        },
+        {
+          "it": "Staging Heavy Duty - 9919",
+          "tid": "item_report_location_filter_b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        },
+        {
+          "it": "(New Location) Melissa Heiney, Counselling Therapy",
+          "tid": "item_report_location_filter_c0dcd563-d479-4495-8340-31febea09b31"
+        },
+        {
+          "it": "Staging Lethbridge - 4310",
+          "tid": "item_report_location_filter_f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:clear_report_location_filter",
+      "ok": true,
+      "tid": "clear_report_location_filter",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "All locations",
+          "tid": "item_select_all_report_location_filter"
+        },
+        {
+          "it": "Clear all",
+          "tid": "item_clear_all_report_location_filter"
+        },
+        {
+          "it": "QB Location",
+          "tid": "item_report_location_filter_f90faec5-210b-4f9f-ab09-b41dbac789a0"
+        },
+        {
+          "it": "3rd",
+          "tid": "item_report_location_filter_0e56cd85-e8e0-49db-8700-1998d6e9ac37"
+        },
+        {
+          "it": "L'Espace Tralala Yoga",
+          "tid": "item_report_location_filter_7ea0b9d4-ebde-4d64-949f-038d6ee2524e"
+        },
+        {
+          "it": "Staging Heavy Duty - 9919",
+          "tid": "item_report_location_filter_b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        },
+        {
+          "it": "(New Location) Melissa Heiney, Counselling Therapy",
+          "tid": "item_report_location_filter_c0dcd563-d479-4495-8340-31febea09b31"
+        },
+        {
+          "it": "Staging Lethbridge - 4310",
+          "tid": "item_report_location_filter_f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:button_sbr_expand_all",
+      "ok": true,
+      "tid": "button_sbr_expand_all",
+      "opened_panel": false,
+      "rows": [],
+      "testids_grew": true
+    },
+    {
+      "name": "sort:header_sbr_margin",
+      "ok": true,
+      "header": "header_sbr_margin",
+      "before": [
+        "Unassigned(40)",
+        "Aug 12 2026",
+        "Aug 12 2026",
+        "Aug 12 2026",
+        "Aug 12 2026"
+      ],
+      "after": [
+        "Unassigned(40)",
+        "Parth Fadadu(1)",
+        "SBR REP-MSPTR5KAMTZ (Inactive)(1)",
+        "Admin ShopView(1)",
+        "Totals"
+      ],
+      "order_changed": true,
+      "extractor_returned_rows": 11
+    },
+    {
+      "name": "sort:header_sbr_margin_pct",
+      "ok": true,
+      "header": "header_sbr_margin_pct",
+      "before": [
+        "Unassigned(40)",
+        "Parth Fadadu(1)",
+        "SBR REP-MSPTR5KAMTZ (Inactive)(1)",
+        "Admin ShopView(1)",
+        "Totals"
+      ],
+      "after": [
+        "Unassigned(40)",
+        "Parth Fadadu(1)",
+        "SBR REP-MSPTR5KAMTZ (Inactive)(1)",
+        "Admin ShopView(1)",
+        "Totals"
+      ],
+      "order_changed": false,
+      "extractor_returned_rows": 5
+    },
+    {
+      "name": "sort:header_sbr_subtotal",
+      "ok": true,
+      "header": "header_sbr_subtotal",
+      "before": [
+        "Unassigned(40)",
+        "Parth Fadadu(1)",
+        "SBR REP-MSPTR5KAMTZ (Inactive)(1)",
+        "Admin ShopView(1)",
+        "Totals"
+      ],
+      "after": [
+        "Unassigned(41)",
+        "SBR REP-MSPTR5KAMTZ (Inactive)(1)",
+        "Admin ShopView(1)",
+        "Parth Fadadu(1)",
+        "Totals"
+      ],
+      "order_changed": true,
+      "extractor_returned_rows": 5
+    },
+    {
+      "name": "expand:button_sbr_expand_all",
+      "ok": true,
+      "tid": "button_sbr_expand_all",
+      "rows_before": 7,
+      "rows_after": 51,
+      "grew": true,
+      "rows_after_collapse": 7
+    }
+  ],
+  "started": "2026-08-12T13:21:35.495Z",
+  "finished": "2026-08-12T13:22:30.736Z",
+  "bridge_errors": [],
+  "api_calls": 37,
+  "non_get": []
+}

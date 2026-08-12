@@ -1,0 +1,411 @@
+{
+  "report": "tu",
+  "build": "v3.7-4626299",
+  "atoms": [
+    {
+      "name": "nav_via_reports_menu",
+      "ok": true,
+      "nav_link_present": true,
+      "landed": "/reports/technician-utilization",
+      "expected": "/reports/technician-utilization"
+    },
+    {
+      "name": "report_loads",
+      "ok": true,
+      "headers": [
+        "Technician",
+        "Total Hours",
+        "WO Hours",
+        "Internal Hours",
+        "Utilization %",
+        "Est. Lost Laborinfo_outline"
+      ],
+      "rowcount": 4,
+      "tabs": [],
+      "totals": null
+    },
+    {
+      "name": "control_open:btn_dropdown_tu_export",
+      "ok": true,
+      "tid": "btn_dropdown_tu_export",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "Download Summary (PDF)",
+          "tid": "action_tu_export_summary_pdf"
+        },
+        {
+          "it": "Download Summary (CSV)",
+          "tid": "action_tu_export_summary_csv"
+        },
+        {
+          "it": "Download Expanded View (PDF)",
+          "tid": "action_tu_export_expanded_pdf"
+        },
+        {
+          "it": "Download Expanded View (CSV)",
+          "tid": "action_tu_export_expanded_csv"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:button_column_selection",
+      "ok": true,
+      "tid": "button_column_selection",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "Total Hours",
+          "tid": null
+        },
+        {
+          "it": "WO Hours",
+          "tid": null
+        },
+        {
+          "it": "Internal Hours",
+          "tid": null
+        },
+        {
+          "it": "Utilization %",
+          "tid": null
+        },
+        {
+          "it": "Est. Lost Labor",
+          "tid": null
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:date-range-selector_tu_trigger",
+      "ok": true,
+      "tid": "date-range-selector_tu_trigger",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "chevron_left",
+          "tid": null
+        },
+        {
+          "it": "August",
+          "tid": null
+        },
+        {
+          "it": "chevron_right",
+          "tid": null
+        },
+        {
+          "it": "chevron_left",
+          "tid": null
+        },
+        {
+          "it": "2026",
+          "tid": null
+        },
+        {
+          "it": "chevron_right",
+          "tid": null
+        },
+        {
+          "it": "1",
+          "tid": null
+        },
+        {
+          "it": "2",
+          "tid": null
+        },
+        {
+          "it": "3",
+          "tid": null
+        },
+        {
+          "it": "4",
+          "tid": null
+        },
+        {
+          "it": "5",
+          "tid": null
+        },
+        {
+          "it": "6",
+          "tid": null
+        },
+        {
+          "it": "7",
+          "tid": null
+        },
+        {
+          "it": "8",
+          "tid": null
+        },
+        {
+          "it": "9",
+          "tid": null
+        },
+        {
+          "it": "10",
+          "tid": null
+        },
+        {
+          "it": "11",
+          "tid": null
+        },
+        {
+          "it": "12",
+          "tid": null
+        },
+        {
+          "it": "13",
+          "tid": null
+        },
+        {
+          "it": "14",
+          "tid": null
+        },
+        {
+          "it": "15",
+          "tid": null
+        },
+        {
+          "it": "16",
+          "tid": null
+        },
+        {
+          "it": "17",
+          "tid": null
+        },
+        {
+          "it": "18",
+          "tid": null
+        },
+        {
+          "it": "19",
+          "tid": null
+        },
+        {
+          "it": "20",
+          "tid": null
+        },
+        {
+          "it": "21",
+          "tid": null
+        },
+        {
+          "it": "22",
+          "tid": null
+        },
+        {
+          "it": "23",
+          "tid": null
+        },
+        {
+          "it": "24",
+          "tid": null
+        },
+        {
+          "it": "25",
+          "tid": null
+        },
+        {
+          "it": "26",
+          "tid": null
+        },
+        {
+          "it": "27",
+          "tid": null
+        },
+        {
+          "it": "28",
+          "tid": null
+        },
+        {
+          "it": "29",
+          "tid": null
+        },
+        {
+          "it": "30",
+          "tid": null
+        },
+        {
+          "it": "31",
+          "tid": null
+        },
+        {
+          "it": "Apply",
+          "tid": "button_tu_apply"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:select_multiple_tu_technician_filter",
+      "ok": true,
+      "tid": "select_multiple_tu_technician_filter",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "All technicians check",
+          "tid": "item_select_all_tu_technician_filter"
+        },
+        {
+          "it": "Clear all",
+          "tid": "item_clear_all_tu_technician_filter"
+        },
+        {
+          "it": "Johnny Olson",
+          "tid": "item_tu_technician_filter_d6ce228e-da73-45c5-830a-50e915c0c3c2"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:clear_tu_technician_filter",
+      "ok": true,
+      "tid": "clear_tu_technician_filter",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "All technicians",
+          "tid": "item_select_all_tu_technician_filter"
+        },
+        {
+          "it": "Clear all",
+          "tid": "item_clear_all_tu_technician_filter"
+        },
+        {
+          "it": "Johnny Olson",
+          "tid": "item_tu_technician_filter_d6ce228e-da73-45c5-830a-50e915c0c3c2"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:select_multiple_report_location_filter",
+      "ok": true,
+      "tid": "select_multiple_report_location_filter",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "All locations",
+          "tid": "item_select_all_report_location_filter"
+        },
+        {
+          "it": "Clear all",
+          "tid": "item_clear_all_report_location_filter"
+        },
+        {
+          "it": "QB Location",
+          "tid": "item_report_location_filter_f90faec5-210b-4f9f-ab09-b41dbac789a0"
+        },
+        {
+          "it": "3rd",
+          "tid": "item_report_location_filter_0e56cd85-e8e0-49db-8700-1998d6e9ac37"
+        },
+        {
+          "it": "L'Espace Tralala Yoga",
+          "tid": "item_report_location_filter_7ea0b9d4-ebde-4d64-949f-038d6ee2524e"
+        },
+        {
+          "it": "Staging Heavy Duty - 9919",
+          "tid": "item_report_location_filter_b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        },
+        {
+          "it": "(New Location) Melissa Heiney, Counselling Therapy",
+          "tid": "item_report_location_filter_c0dcd563-d479-4495-8340-31febea09b31"
+        },
+        {
+          "it": "Staging Lethbridge - 4310",
+          "tid": "item_report_location_filter_f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:clear_report_location_filter",
+      "ok": true,
+      "tid": "clear_report_location_filter",
+      "opened_panel": true,
+      "rows": [
+        {
+          "it": "All locations",
+          "tid": "item_select_all_report_location_filter"
+        },
+        {
+          "it": "Clear all",
+          "tid": "item_clear_all_report_location_filter"
+        },
+        {
+          "it": "QB Location",
+          "tid": "item_report_location_filter_f90faec5-210b-4f9f-ab09-b41dbac789a0"
+        },
+        {
+          "it": "3rd",
+          "tid": "item_report_location_filter_0e56cd85-e8e0-49db-8700-1998d6e9ac37"
+        },
+        {
+          "it": "L'Espace Tralala Yoga",
+          "tid": "item_report_location_filter_7ea0b9d4-ebde-4d64-949f-038d6ee2524e"
+        },
+        {
+          "it": "Staging Heavy Duty - 9919",
+          "tid": "item_report_location_filter_b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        },
+        {
+          "it": "(New Location) Melissa Heiney, Counselling Therapy",
+          "tid": "item_report_location_filter_c0dcd563-d479-4495-8340-31febea09b31"
+        },
+        {
+          "it": "Staging Lethbridge - 4310",
+          "tid": "item_report_location_filter_f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+      ],
+      "testids_grew": true
+    },
+    {
+      "name": "control_open:button_tu_expand_all",
+      "ok": false,
+      "tid": "button_tu_expand_all",
+      "err": "TimeoutError: page.click: Timeout 7000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-test-id=button_tu_expand_all]')\u001b[22m\n\u001b[2m   "
+    },
+    {
+      "name": "sort:header_tu_internal_hours",
+      "ok": true,
+      "header": "header_tu_internal_hours",
+      "before": [],
+      "after": [],
+      "order_changed": false,
+      "extractor_returned_rows": 0
+    },
+    {
+      "name": "sort:header_tu_utilization",
+      "ok": true,
+      "header": "header_tu_utilization",
+      "before": [],
+      "after": [],
+      "order_changed": false,
+      "extractor_returned_rows": 0
+    },
+    {
+      "name": "sort:header_tu_est_lost_labor",
+      "ok": true,
+      "header": "header_tu_est_lost_labor",
+      "before": [],
+      "after": [],
+      "order_changed": false,
+      "extractor_returned_rows": 0
+    },
+    {
+      "name": "expand:button_tu_expand_all",
+      "ok": false,
+      "tid": "button_tu_expand_all",
+      "err": "TimeoutError: page.click: Timeout 7000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-test-id=button_tu_expand_all]')\u001b[22m\n\u001b[2m   "
+    }
+  ],
+  "started": "2026-08-12T13:16:59.857Z",
+  "finished": "2026-08-12T13:17:57.092Z",
+  "bridge_errors": [],
+  "api_calls": 28,
+  "non_get": []
+}
