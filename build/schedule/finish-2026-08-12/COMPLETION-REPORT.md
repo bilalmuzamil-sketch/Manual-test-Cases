@@ -8,7 +8,7 @@
 | Cases — **ours / live** | **176 / 176** | every case under the group 4254 subtree (31 sections, paged); all ours, none foreign |
 | **Source-verified** | **176 / 176** | every case carries its Rule-54 provenance line naming epic SV-8685 and the Schedule specification version 27 |
 | **Build line naming the RUNNING build** | **76 / 176** | count of cases whose text names `v3.5-65d6500` |
-| **Preconditions and steps ACTUALLY WALKED** | **7 this pass · at most 35 of 176 in total** | the honest, smaller number — see the note below |
+| **Preconditions and steps ACTUALLY WALKED** | **19 this pass · 45–47 of 176 in total** | the honest, smaller number — see the note below |
 | Labels checked against a live harvest | **176 / 176** | 758 visible strings and 297 test ids harvested across 20 surfaces |
 | **Runnable / held** | **147 / 29** | live marker census |
 | Marker arithmetic | **143 READY + 4 EXPECT-FAIL = 147**, and **176 − 29 HOLD = 147** | **closes both ways** |
@@ -20,22 +20,28 @@
 
 ## The walked figure, stated strictly
 
-**7 cases had every step carried out on this build this pass:** C29941, C29944, C29946, C30008,
-C30037, C30042, C30046. **2 more were partly driven:** C30015 (steps 1–2 of 3) and C30047 (the
-before-state was not measured).
+**19 cases had every step carried out on this build this pass**, in two batches:
+· batch 1 — C29941, C29944, C29946, C30008, C30037, C30042, C30046
+· batch 2 — C29925, C29927, C29928, C29930, C29931, C29932, C29934, C29936, C29937, C29940, C29942, C43554
 
-Earlier passes recorded **28** on this same build marker. **The union is between 33 and 35** — I
-cannot rule out that one or two of my seven were also among the earlier "dialog pass" fourteen, and
-I would rather give you a range than a number I cannot defend.
+**5 more were partly driven:** C30015, C30047, C29933, C29948, C29954.
 
-**The other ~141 cases have had their LABELS checked, not their steps carried out.** That distinction
+Earlier passes recorded **28** on this same build marker. **The union is between 45 and 47** — I
+cannot rule out that one or two of mine were also among the earlier "dialog pass" fourteen, and I
+would rather give you a range than a number I cannot defend.
+
+**Three of the nineteen produced a result I will not stand behind as a verdict** — C43554 (confounded
+by my own earlier probe), C29931 and C29942 (inconclusive). **Their STEPS were still carried out, so
+they count as walked; their outcomes do not count as verdicts.** `RUNNABILITY.md` §7.
+
+**The other ~129 cases have had their LABELS checked, not their steps carried out.** That distinction
 is the whole point of this report and the two figures are never added together.
 
 ## What is left, itemised, with what each item waits on
 
 | # | What is left | Waiting on | Effect if it stays open |
 |---|---|---|---|
-| 1 | **~141 cases whose steps have not been carried out** | worker time, nothing else — the estate, the session and the method all work | a tester meets an unrunnable step for the first time during the release run |
+| 1 | **~129 cases whose steps have not been carried out** | worker time, nothing else — the estate, the session and the method all work | a tester meets an unrunnable step for the first time during the release run |
 | 2 | **10 permission cases** — C30076, C30077, C30078, C30079, C30081, C30614, C38874, C38872, C38926 (part), C30044 | **three users, created and given their permissions BEFORE their cookies are minted.** The order matters: a permission change kills an existing session one way. Table in `DIVERGENCES.md` §A | the whole permission area of Schedule ships unobserved |
 | 3 | **~11 drag-dependent cases** — the scope picker and multi-day spread | a drag our tooling cannot perform, and the click alternative was removed from the build ([SV-8957](https://shopview.atlassian.net/browse/SV-8957)) | unchanged from previous passes; correctly held |
 | 4 | **`Set business hours for this shop`** (C38847) | one probe that reaches Settings → Locations → the pencil. **Not reached, and NOT recorded as absent** | one case unverified |

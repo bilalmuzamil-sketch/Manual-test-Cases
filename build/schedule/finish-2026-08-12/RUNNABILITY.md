@@ -92,3 +92,46 @@ The step already says *"on a series shift"*, so it is not wrong — but a tester
 block loses data. **I have not changed it**: adding a warning is a wording decision on a case whose
 purpose is that assertion, and it is yours to make. **One sentence would do it** — *"make sure the
 block you pick is part of a series; a single shift deletes immediately with no confirmation."*
+
+---
+
+# BATCH 2 — navigation, grid structure, mini calendar, sidebar
+
+**12 more cases had every step carried out; 3 more partly.** Per-step evidence: `evidence/walk2.json`.
+Zero write calls (`evidence/walk2-meta.json`).
+
+| Case | Outcome |
+|---|---|
+| [C29925](https://shopview.testrail.io/index.php?/cases/view/29925) | nav reads `Work Orders · Schedule · Customers · Parts · Reports`; clicking Schedule lands on `/schedule` with **both regions visible**. **Runnable as written.** |
+| [C29927](https://shopview.testrail.io/index.php?/cases/view/29927) | Day → **`Wed, Aug 12`**; Week → **`Aug 10 – 16, 2026`**; Month → **`August 2026`**. **Runnable as written.** |
+| [C29928](https://shopview.testrail.io/index.php?/cases/view/29928) | 30 lanes; group headers **`WORK ORDER STATUS`**, **`SERVICE/PARTS`** sit above their technicians. **Runnable as written.** |
+| [C29930](https://shopview.testrail.io/index.php?/cases/view/29930) | no control anywhere in the toolbar mentions tech/department grouping — **the case's assertion is confirmed, not merely uncontradicted.** |
+| [C29932](https://shopview.testrail.io/index.php?/cases/view/29932) | clicking 4 Sep in the mini calendar moved the grid **`Aug 10 – 16, 2026` → `Aug 31 – Sep 6, 2026`**. **Runnable as written.** |
+| [C29934](https://shopview.testrail.io/index.php?/cases/view/29934) | the chevron took visible day cells **42 → 0 → 42**. **Runnable as written.** |
+| [C29936](https://shopview.testrail.io/index.php?/cases/view/29936) | 21 cards, **no tabs above the list** — assertion confirmed. |
+| [C29937](https://shopview.testrail.io/index.php?/cases/view/29937) | card reads `S8685-12876 · 1 line · 1h Est. · Pamill Paving · 713 · AC Alicia Campbell · Approved`, and its **computed left border is `rgb(37, 124, 255)` at `4px`** — the status colour, read from computed style. |
+| [C29940](https://shopview.testrail.io/index.php?/cases/view/29940) | typing `G`, `o`, `p` one character at a time took the list **21 → 5 → 1** with no Enter pressed. **Real-time filtering confirmed.** |
+| [C29942](https://shopview.testrail.io/index.php?/cases/view/29942) | panel opened and read. **See §7 — the badge half is inconclusive and is not called either way.** |
+| [C29931](https://shopview.testrail.io/index.php?/cases/view/29931) | **See §7 — no Unassigned lane was visible, and that is NOT a deviation on this evidence.** |
+| [C43554](https://shopview.testrail.io/index.php?/cases/view/43554) | **See §7 — the result is confounded by my own earlier probe and must not be read as a fix.** |
+| [C29933](https://shopview.testrail.io/index.php?/cases/view/29933) · [C29948](https://shopview.testrail.io/index.php?/cases/view/29948) · [C29954](https://shopview.testrail.io/index.php?/cases/view/29954) | first steps carried out; later steps not driven. The drill-down chips read **`All 1`** and **`Unscheduled 0`**, and its header reads `S8685-12876 · 1 line · Pamill Paving`. |
+
+## 7 · THREE RESULTS I WILL NOT DRESS UP
+
+**C43554 — the default-view result is CONFOUNDED, and it would have been an attractive false positive.**
+On arrival `Day` carried `aria-pressed="true"`, which is exactly what the case asserts and would
+suggest [SV-8863](https://shopview.atlassian.net/browse/SV-8863) is fixed. **It establishes nothing**,
+because **an earlier probe in this same session left the view on Day** (C30047 switches to day view),
+and the view may be remembered per user. **A clean answer needs a session that has never touched the
+view control.** Reported as unresolved rather than as good news.
+
+**C29931 — no lane labelled `Unassigned` was visible among 30, and that is not a deviation.** The case
+asserts an unassigned row sits inside the grid. **A lane for unassigned work may only render when an
+unassigned shift exists in the visible range**, and I did not establish that one did. **Proving it
+either way means seeding a shift with no technician** — which is now cheap, since data need not be
+restored. **One probe away, and worth doing before release.**
+
+**C29942 — the active-filter badge is inconclusive.** After applying a filter the button still read
+`filter_list Filters` with no number, but the click landed on a container rather than a single option,
+so **I cannot say a filter was actually applied.** The same assertion appears in C29946's expected
+result. **Both need one clean re-drive**, and neither is called either way here.

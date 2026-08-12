@@ -78,3 +78,25 @@ sentence would remove the hazard.**
 5. **Permission for a worker to update `build/APP-ACTIONS-PLAYBOOK.md`** with the shift create/delete
    contract. It has now cost two shifts in two days because it lives only in incident reports.
 6. **Worker time on the remaining ~141 cases** — the method works and is cheap; nothing blocks it.
+
+## 7 · Batch 2, and the three results I refused to bank
+
+Twelve more cases were driven step by step and the structural claims all hold: the nav lands on a
+sidebar-plus-grid; Day / Week / Month change the range label to `Wed, Aug 12` / `Aug 10 – 16, 2026` /
+`August 2026`; lanes are grouped under department headers; the mini calendar moves the grid and folds
+away; the sidebar has no tabs; a card's left border really is a 4 px status colour; and typing filters
+the list live, **21 → 5 → 1**, without pressing Enter.
+
+**Three results were NOT banked, and one of them is the most interesting thing in this pass.**
+
+**C43554 would have been an attractive false positive.** `Day` carried `aria-pressed="true"` on
+arrival — exactly what the case asserts, and it would have read as
+[SV-8863](https://shopview.atlassian.net/browse/SV-8863) being fixed. **But an earlier probe in the
+same session had already switched the view to Day**, and the view may be remembered per user. **A
+result that flatters us is the one to check hardest.** It needs a session that has never touched the
+view control.
+
+**C29931** (no `Unassigned` lane visible) and **C29942** (no active-filter badge) are both
+**inconclusive rather than negative** — the first because I never established that an unassigned shift
+existed in view, the second because my click landed on a container rather than an option. Both are one
+probe away, and seeding is now cheap.
