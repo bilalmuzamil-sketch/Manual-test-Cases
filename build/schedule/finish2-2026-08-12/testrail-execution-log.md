@@ -6,29 +6,34 @@
 `update_case` **only**. **0 add · 0 delete · 0 section · 0 run · 0 result** writes.
 **0 Jira calls of any kind** — the creation hold is active (Standing Rule 62 and the QA lead's
 2026-08-10 ruling, verbatim: *"Do not create anything until my next order."*).
-`custom_atmstatus` was never sent. No role, staff record or setting was touched.
+`custom_atmstatus` was never sent. **No role, staff record, permission or setting was changed.**
 
-**41 operations over 39 distinct cases**, every one **HTTP 200 and byte-verified**:
+**46 operations over 44 distinct cases**, every one **HTTP 200 and byte-verified**:
 30 fields compared each, 3 intended, **0 mismatches and 0 collateral changes**. All three text
-fields (`custom_preconds`, `custom_steps`, `custom_expected`) went on every payload, because
-TestRail re-renders any text field it is not sent.
+fields (`custom_preconds`, `custom_steps`, `custom_expected`) went on every payload, because TestRail
+re-renders any text field it is not sent.
 
-## Two things went wrong in this batch, and both are recorded rather than tidied away
+## Three things went wrong, and all three are recorded rather than tidied away
 
-**1 · A transient HTTP 502 stopped the batch, which is what should happen.**
-`policy unavailable` hit the **pre-snapshot READ** for **C30010** part-way through. The batch
-**stopped**, as Rule 50 requires. C30010 was then **read back live** and confirmed **unwritten**
-(it still named `v3.5-7ec992f`) before the run resumed — a failed write is never retried until the
-live state has been read, because a failure can come back from a write that already landed.
+**1 · Two payload defects were caught BEFORE anything was sent**, by printing the built payloads in
+a dry run and reading them. `C30041`'s build sentence runs into a `;` followed by a trailing clause,
+and the first version produced *"on 12 August 2026**.**; the wording above …"* — a stray full stop
+that **would have passed the byte-check, because the payload itself was wrong**. `C29929` gained a
+tripled blank line. Both fixed and re-read before executing.
 
-**2 · The resume applied one tester note TWICE, and it was my defect.**
-`restamp.py` skips any case that already names the running build — but it **deliberately exempted**
-the two note-carrying cases from that skip, which is right on the first run and **wrong on a
-resume**. So **C29929** came back with its note duplicated. **It was found by reconciling the
-operation count against the plan — 39 writes over 38 cases — not by chance**, and repaired in one
-further write (`fix_29929.py`). Both note cases were then re-read live and carry **exactly one**
-note, one marker and one provenance line. The correct guard is to skip when the note is already
-present; that is written into the repair script so the next pass does not repeat it.
+**2 · A transient HTTP 502 stopped the batch, which is what should happen.** `policy unavailable`
+hit the **pre-snapshot READ** for **C30010**. The batch **stopped**, as Rule 50 requires. C30010 was
+then **read back live** and confirmed **unwritten** before the run resumed — a failed operation is
+never retried until the live state has been read, because a failure can come back from a write that
+already landed.
+
+**3 · The resume applied one tester note TWICE, and that was my defect.** `restamp.py` skipped any
+case already naming the running build, but **exempted the note-carrying cases from that skip** —
+right on a first run, **wrong on a resume**. **C29929** came back with its note duplicated.
+**It was found by reconciling the operation count against the plan — 39 writes over 38 cases — not
+by chance**, repaired in one further write, and the skip condition was then rewritten to test *"the
+note is already present"* rather than *"this case is exempt"*. Both note cases were re-read live and
+carry **exactly one** note, one marker and one provenance line.
 
 ## Every operation
 
@@ -51,7 +56,7 @@ present; that is written into the repair script so the next pass does not repeat
 | 15 | [C30001](https://shopview.testrail.io/index.php?/cases/view/30001) | 200 | sentence 2 re-stamped | update_case C30001: 30 fields compared, 3 intended, 0 mismatch |
 | 16 | [C30003](https://shopview.testrail.io/index.php?/cases/view/30003) | 200 | sentence 2 re-stamped | update_case C30003: 30 fields compared, 3 intended, 0 mismatch |
 | 17 | [C30009](https://shopview.testrail.io/index.php?/cases/view/30009) | 200 | sentence 2 re-stamped | update_case C30009: 30 fields compared, 3 intended, 0 mismatch |
-| 18 | [C30010](https://shopview.testrail.io/index.php?/cases/view/30010) | **FAILED** | — | FAILED: pre-snapshot C30010 HTTP 502: policy unavailable |
+| 18 | [C30010](https://shopview.testrail.io/index.php?/cases/view/30010) | **FAILED — batch stopped** | — | FAILED: pre-snapshot C30010 HTTP 502: policy unavailable |
 | 19 | [C29929](https://shopview.testrail.io/index.php?/cases/view/29929) | 200 | sentence 2 re-stamped; tester note added; marker -> HOLD | update_case C29929: 30 fields compared, 3 intended, 0 mismatch |
 | 20 | [C30010](https://shopview.testrail.io/index.php?/cases/view/30010) | 200 | sentence 2 re-stamped | update_case C30010: 30 fields compared, 3 intended, 0 mismatch |
 | 21 | [C30011](https://shopview.testrail.io/index.php?/cases/view/30011) | 200 | sentence 2 re-stamped | update_case C30011: 30 fields compared, 3 intended, 0 mismatch |
@@ -76,6 +81,11 @@ present; that is written into the repair script so the next pass does not repeat
 | 40 | [C43588](https://shopview.testrail.io/index.php?/cases/view/43588) | 200 | sentence 2 ADDED (case had none) | update_case C43588: 30 fields compared, 3 intended, 0 mismatch |
 | 41 | [C29929](https://shopview.testrail.io/index.php?/cases/view/29929) | 200 | REPAIR - the resume re-applied the tester note; the duplicate copy removed | update_case C29929: 30 fields compared, 3 intended, 0 mismatch |
 | 42 | [C38873](https://shopview.testrail.io/index.php?/cases/view/38873) | 200 | sentence 2 re-stamped | update_case C38873: 30 fields compared, 3 intended, 0 mismatch |
+| 43 | [C29945](https://shopview.testrail.io/index.php?/cases/view/29945) | 200 | sentence 2 re-stamped; tester note added; marker -> HOLD (Priority filter absent, re-confirmed live) | update_case C29945: 30 fields compared, 3 intended, 0 mismatch |
+| 44 | [C30023](https://shopview.testrail.io/index.php?/cases/view/30023) | 200 | sentence 2 re-stamped | update_case C30023: 30 fields compared, 3 intended, 0 mismatch |
+| 45 | [C30087](https://shopview.testrail.io/index.php?/cases/view/30087) | 200 | sentence 2 re-stamped | update_case C30087: 30 fields compared, 3 intended, 0 mismatch |
+| 46 | [C30088](https://shopview.testrail.io/index.php?/cases/view/30088) | 200 | sentence 2 re-stamped | update_case C30088: 30 fields compared, 3 intended, 0 mismatch |
+| 47 | [C30090](https://shopview.testrail.io/index.php?/cases/view/30090) | 200 | sentence 2 re-stamped | update_case C30090: 30 fields compared, 3 intended, 0 mismatch |
 
 ## Run 357 — proven untouched BY CONTENT, never by a timestamp
 
@@ -85,11 +95,9 @@ present; that is written into the repair script so the next pass does not repeat
 | tests | 176 | 176 |
 | result records | 529 | 529 |
 
-**`case_id` and `test_id` sets equal in BOTH directions.** All **529** prior result records present
-**by id** — **0 missing, 0 new**. **0 graded fields changed** and **0 derived/echo fields changed**,
-not even `case_title`, because no case was retitled.
-
-**Re-proved at the end of the pass**, after every write: `include_all` still False, 176 tests, **529
-results**, and the **test_id, case_id and result_id sets all equal the pre-write snapshot exactly**.
+**Re-proved at the very end of the pass, after every write**: the **`test_id`, `case_id` and
+`result_id` sets all equal the pre-write snapshot exactly**, in both directions. **0 results missing,
+0 new, 0 graded fields changed, 0 derived/echo fields changed** — not even `case_title`, because no
+case was retitled.
 
 Snapshot: `evidence/run357-PRE.json` (ids only — no result bodies are stored).

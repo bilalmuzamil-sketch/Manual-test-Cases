@@ -9,11 +9,11 @@ read at **2026-08-12T07:11:17Z**. **Re-read it before trusting anything below.**
 | | |
 |---|---|
 | Cases (group 4254) | **176**, all ours (`created_by = 3`), no foreign cases |
-| Markers | READY **141** · EXPECT-FAIL **4** · HOLD **31** · **gate closes both ways at 145** |
-| Build line naming the running build | **114 of 176** (was 76) |
-| **Preconditions and steps actually walked** | **88 of 176** — 55 this pass, 54 of them new |
-| Never walked by anybody | **88** (25 already on HOLD; **63 are the real remaining work**) |
-| TestRail writes | **41 operations over 39 cases**, all HTTP 200 + byte-verified, 30 fields each, 0 mismatches |
+| Markers | READY **140** · EXPECT-FAIL **4** · HOLD **32** · **gate closes both ways at 144** |
+| Build line naming the running build | **118 of 176** (was 76) |
+| **Preconditions and steps actually walked** | **96 of 176** — 63 this pass, 62 of them new |
+| Never walked by anybody | **80** (25 already on HOLD; **55 are the real remaining work**) |
+| TestRail writes | **46 operations over 44 cases**, all HTTP 200 + byte-verified, 30 fields each, 0 mismatches |
 | add / delete / section / run / result | **0** · Jira creates **0** · `custom_atmstatus` never sent |
 | Run 357 | **untouched, proven by content** — 176 tests, 529 results all present by id, 0 changes |
 
@@ -53,6 +53,8 @@ node walk_b3.cjs                         # modal, tooltips, conflict styling, co
 node walk_b4.cjs ; node walk_b5.cjs      # working hours settings, shop business hours
 node walk_b6.cjs                         # overlap, series, keyboard, events, responsive, dark mode
 node walk_hard.cjs                       # the five results that needed a harder check
+node walk_b7.cjs                         # conflicts, cell menu, colour labels, load
+python3 note_29945.py                    # the Priority-filter tester note (idempotent)
 python3 restamp.py                       # DRY RUN by default; --go executes
 python3 fix_29929.py                     # the duplicate-note repair (idempotent)
 python3 walk_api.py ; python3 walk_api2.py  # the two API cases, driven against the API host

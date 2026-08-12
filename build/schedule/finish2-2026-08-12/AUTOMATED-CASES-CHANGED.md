@@ -35,3 +35,33 @@ themselves at 2026-08-12T07:56:09Z, not computed from these notes.
 
 **The figure went DOWN by two, and that is the point of the exercise.** A lower honest figure is worth
 more than a higher one that a tester discovers is wrong on the morning of release.
+
+---
+
+## Addendum — a third case joined them
+
+| Case | Was | Now | Why |
+|---|---|---|---|
+| [C29945](https://shopview.testrail.io/index.php?/cases/view/29945) | `AUTOMATION: READY` | `AUTOMATION: HOLD - the Priority filter this test needs does not exist in this build; a ticket cannot be raised yet` | its **step 2 tells the tester to "Choose High under Priority" and there is nothing to choose** |
+
+**The Priority group's absence was re-confirmed live this pass**, independently of the 12 August pass
+that first found it: the Filters panel's **entire** text is
+`FILTERS Unassigned 22 Assigned 71 Approved 92 Declined 0 In Progress 0 Ready for Review 1` — no
+`Priority` heading and no `High` / `Medium` / `Low`.
+
+**This deliberately SUPERSEDES the 12 August pass's decision to leave the marker alone.** That decision
+was defensible and its reasoning was recorded — `READY` asserts *automatable*, not *passing*. But the
+release is tomorrow and **a tester who cannot carry out step 2 is stranded on the morning of it**, so
+the note matters more than the marker's purity. **The expected behaviour is unchanged.**
+
+## The gate, finally
+
+| | start of pass | end of pass |
+|---|---|---|
+| `AUTOMATION: READY` | 143 | **140** |
+| `AUTOMATION: READY - EXPECT FAIL` | 4 | **4** |
+| `AUTOMATION: HOLD` | 29 | **32** |
+| **ready to automate** | 147 | **144** |
+
+**140 + 4 = 144, and 176 − 32 = 144. It closes both ways**, read back live at 2026-08-12T08:24:22Z.
+**The figure fell by three, and every one of the three is explained above.**

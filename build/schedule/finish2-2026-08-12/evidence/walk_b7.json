@@ -1,0 +1,142 @@
+{
+ "29945": {
+  "steps": [
+   {
+    "step": "1 open the sidebar Filters panel",
+    "seen": "the panel's entire text is \"FILTERS Unassigned 22 Assigned 71 Approved 92 Declined 0 In Progress 0 Ready for Review 1\""
+   },
+   {
+    "step": "2 look for the Priority group and its High / Medium / Low options",
+    "seen": "Priority heading present: false · High: false · Medium: false · Low: false"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T08:16:46.152Z"
+ },
+ "30023": {
+  "steps": [
+   {
+    "step": "1 find a technician with two overlapping work orders on one day",
+    "seen": "conflict list opened: \"SCHEDULE ISSUES 35 warning_amber Fuline Enterprises Starts before business hours (6:00 AM)\""
+   },
+   {
+    "step": "2 read how the double-booking is flagged",
+    "seen": "entries mentioning a double-booking: [\"Starts before business hours (7:00 AM) · Extends past business hours (7:00 PM) · Double-booked with Pamill Paving, Aagate Landscaping, Braside Design\",\"warning_amber Kastone Solutions Double-booked with Goport Energy, Pamill Paving chevron_right\",\"Kastone Solutions Double-booked with Goport Energy, Pamill Paving\"]"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T08:16:21.002Z"
+ },
+ "30024": {
+  "steps": [
+   {
+    "step": "1 look for a shift on a day outside the technician's working days",
+    "seen": "all conflict reasons the build reports in this range: [\"Starts before business hours (6:00 AM) · Extends past business hours (3:00 PM) chevron_right\",\"Starts before business hours (6:00 AM) · Extends past business hours (3:00 PM)\",\"Starts before business hours (7:00 AM) · Extends past business hours (7:00 PM) · Double-booked with Pamill Paving\",\"Double-booked with Goport Energy\",\"Double-booked with Zuline Builders\",\"Extends past business hours (3:00 PM) chevron_right\"]"
+   },
+   {
+    "step": "2 check it is flagged as a working-day conflict",
+    "seen": "no working-day/weekend reason appears among the reasons in this range — the reasons present are double-booking and business-hours ones. NOT evidence the rule is missing: no shift in this range sits on a non-working day"
+   }
+  ],
+  "verdict": "PARTIAL - the reason wording is recorded; a shift on a non-working day would have to be seeded to settle it",
+  "at": "2026-08-12T08:16:21.007Z"
+ },
+ "30025": {
+  "steps": [
+   {
+    "step": "1 find a shift starting before, or running past, the working hours",
+    "seen": "entries: [\"warning_amber Fuline Enterprises Starts before business hours (6:00 AM) · Extends past business hours (3:00 PM) chevron_right\",\"Fuline Enterprises Starts before business hours (6:00 AM) · Extends past business hours (3:00 PM)\",\"Starts before business hours (6:00 AM) · Extends past business hours (3:00 PM)\",\"Starts before business hours (7:00 AM) · Extends past business hours (7:00 PM) · Double-booked with Pamill Paving, Aagate Landscaping, Braside Design\"]"
+   },
+   {
+    "step": "2 read how each is flagged",
+    "seen": "distinct reason wordings the build reports: [\"Starts before business hours (6:00 AM) · Extends past business hours (3:00 PM) chevron_right\",\"Starts before business hours (6:00 AM) · Extends past business hours (3:00 PM)\",\"Starts before business hours (7:00 AM) · Extends past business hours (7:00 PM) · Double-booked with Pamill Paving\",\"Double-booked with Goport Energy\",\"Double-booked with Zuline Builders\",\"Extends past business hours (3:00 PM) chevron_right\"]"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T08:16:21.006Z"
+ },
+ "30054": {
+  "steps": [
+   {
+    "step": "1 left-click an empty cell in the grid",
+    "seen": "clicked at 55%/62% of the calendar (width 1380 px)"
+   },
+   {
+    "step": "2 read the menu",
+    "seen": "header \"MQ TEST TECH QAMAR · THU, AUG 13\"; items [\"MQ TEST TECH QAMAR · THU, AUG 13\",\"event\",\"Create Event\",\"content_paste\",\"New Work Order\"]"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T08:16:23.274Z"
+ },
+ "30073": {
+  "steps": [
+   {
+    "step": "1 open Settings and look for colour labels",
+    "seen": "at /administration/settings; colour/label wording found: []"
+   },
+   {
+    "step": "2 check they can be edited per shop",
+    "seen": "visible settings entries: [\"Skip to main content\",\"Work Orders\",\"Schedule\",\"Customers\",\"Parts\",\"Reports\",\"Search\",\"Ctrl+K\",\"timer\",\"Clock In\",\"notifications\",\"Staging Heavy Duty - 9919\",\"AS\",\"info\",\"flag\",\"Feature Flags\",\"SETTINGS\",\"info\",\"Settings\",\"supervisor_account\",\"Staff\",\"verified_user\",\"Roles & Permissions\",\"location_on\",\"Locations\",\"apartment\",\"Departments\",\"attach_money\",\"Taxes\",\"SERVICE\"]"
+   }
+  ],
+  "verdict": "PARTIAL - no colour-label surface found on the settings page",
+  "at": "2026-08-12T08:16:59.621Z"
+ },
+ "30087": {
+  "steps": [
+   {
+    "step": "1 look at the sidebar work order list",
+    "seen": "21 cards rendered at rest"
+   },
+   {
+    "step": "2 scroll it to the bottom and check it stays responsive",
+    "seen": "after scrolling: 21 cards rendered; the list virtualises rather than rendering all of them, which is why the count stays flat (2206 ms for the scroll and settle)"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T08:17:19.742Z"
+ },
+ "30088": {
+  "steps": [
+   {
+    "step": "1 load the grid at full load",
+    "seen": "30 technician lanes and 44 shift blocks rendered in week view"
+   },
+   {
+    "step": "2 check it renders smoothly",
+    "seen": "the page rendered its 30 lanes with 0 bridge errors and 0 console failures on load"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T08:17:19.743Z"
+ },
+ "30090": {
+  "steps": [
+   {
+    "step": "1 open a shift and read its hour figures",
+    "seen": "\"Fuline Enterprises Approved S-13014 · G30 12-06696 delete_outline close TIME LOGGED 7h 28m / 8h 43m SCHEDULED Mon, Aug 10, 2026 TIME arrow_drop_down – arrow_drop_down DEPARTMENT Service/Parts Work Order Lines 6 6 lines · 8h 43m 1 Diagnose - Oil Leak 1h Complete 2 Diagnose - Low coolant 40m Complete 3 Diagnose - Right s\""
+   },
+   {
+    "step": "2 check scheduled, estimated and clocked are three separate numbers",
+    "seen": "the modal shows TIME LOGGED as clocked/estimate ([\"TIME LOGGED\"]), the shift's own start and end times as the scheduled window, and each line's own estimate ([\"1h\",\"3h\",\"3h\"])"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T08:17:23.540Z"
+ },
+ "38855": {
+  "steps": [
+   {
+    "step": "1 open the cell menu and read the 'New Work Order' item",
+    "seen": "menu items [\"MQ TEST TECH QAMAR · THU, AUG 13\",\"event\",\"Create Event\",\"content_paste\",\"New Work Order\"]"
+   },
+   {
+    "step": "2 choose 'New Work Order' and see where it takes you",
+    "seen": "https://sv8685.qa.shopview.com/schedule -> https://sv8685.qa.shopview.com/schedule; panels open: [\"New Work Order close Customer arrow_drop_down Add Asset arrow_drop_down Add Asse\"]"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T08:16:27.364Z"
+ }
+}
