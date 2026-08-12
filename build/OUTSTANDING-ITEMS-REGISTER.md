@@ -213,6 +213,24 @@ exposures exist across all ~491 commits (at least one confirmed; not swept exhau
 
 ---
 
+## 🆕🆕 2026-08-12 (NEWEST), THE FILTERS BUILD-VIU PASS. **BOTH SUPPLIED FILTERS SIGN-INS ARE DEAD, SO 0 OF 115 CASES WERE OBSERVED — AND THE "UNBLOCK YOURSELF" ROUTE IN ROW C1 IS ITSELF BLOCKED BY THE SAME THING.**
+
+| id | What is missing | Who owes it | What it BLOCKS | Since |
+|---|---|---|---|---|
+| **F-BLOCK-1** | **A live `PHPSESSID` for branch `sv8785` — one for the administrator, and one for `bilal.muzamil+filters@shopview.com` (Technician).** Both values supplied on 2026-08-12 return **HTTP 409 `Session has expired.`** on `sv8785api`, and on the Schedule and Report Suite API hosts too. **This is NOT the estate-wide `sv_sso_session` failure of row A1/A2:** the shared `sv_sso_session` and `cf_clearance` supplied are **PROVEN ALIVE** — a sibling worker's byte-identical shared pair returns **HTTP 200 with 42 permissions** on its own branch. **`PHPSESSID` is per-branch, proven both ways.** So **ask for the two `sv8785` `PHPSESSID` values by name** — not for "new cookies", not for a `cf_clearance`. Evidence, every probe with its HTTP code: `build/filters/build-viu-2026-08-12/evidence/session-probe-2026-08-12.txt` | **the QA lead** | **Everything that needs the build.** **0 of 115 Filters cases were observed on 2026-08-12.** The **8** cases blocked since 5 August stay blocked; the other **107** keep verdicts from an earlier build. **⚠️ AND IT BLOCKS ROW C1's OWN REMEDY:** his ruling *"You should unblock yourself"* is right and the method is real (`POST /api/iam/create`, or `switch-user`) — **but both require a working admin session to execute**, so "unblock yourself" cannot start from here. **`quick-login` was deliberately NOT called** (playbook §A trap 5: it rotates the shared token and would sign out the two siblings live on Schedule and Reports, and possibly his own browser). | **2026-08-12** |
+| **F-STAMP-1** | **Authorisation to re-stamp ~89 Filters cases whose build line understates when they were really checked.** **95 of 115 say `Last checked against build v3.4.2-d00239b on 8/5/2026`** while the branch runs **`v3.6-3e9dd6d`** — but yesterday's pass checked **106 of 114 against that exact running build** and wrote to only the 8 it had to correct. So the stamps are wrong **in the cases' favour**. | **the QA lead** (a go-ahead) | Nothing operationally — but it makes the suite look a week staler than it is, and it is the one number a reviewer would seize on. **This session deliberately did NOT do it:** the brief said re-stamp only what you observed, and this session observed nothing. | **2026-08-12** |
+| **F-PASS-1** | **A ruling on five HELD cases that already carry PASSED results**, all graded by user 7 (Ahtasham Amjad), all with empty comments: C29559, C29609, C29610, C29612 and — the one that matters — **[C29615](https://shopview.testrail.io/index.php?/cases/view/29615)**, whose whole assertion is that **one user's saved filters do not reach another user**, marked Passed on 6 Aug 09:49Z while its own marker still reads `HOLD - needs a second test login`. **Either the second login existed a week ago, or the per-user step was never driven.** | **the QA lead** (it is another author's result on our case — reported, never touched, Rule 38) | Confidence in the per-user isolation coverage the suite currently appears to have. **It also predicts tomorrow:** the `AUTOMATION: HOLD` marker is not stopping testers running held cases, and **15 held cases are still Untested** in run 352. | **2026-08-12** |
+
+**What did NOT need you:** the suite was audited whole and is **structurally clean** — 0 raw markup,
+0 marker defects, 0 provenance defects, 0 dead links, 0 over-long titles, gate passes both ways
+(88 + 7 = 95 = 115 − 20). **5 build-independent corrections were pushed and byte-verified**, the
+most useful being **[C43561](https://shopview.testrail.io/index.php?/cases/view/43561)**, which is
+`READY` and **Untested** and was sending testers to a *"Sales Tax"* report with a *"Collected"* tab
+that `S13-R19` does not describe. **And the workload for the morning is 28 runnable cases, not 43** —
+`build/filters/build-viu-2026-08-12/FINDINGS.md` §1 names both lists.
+
+---
+
 ## 🆕 2026-08-11 (latest), THE FILTERS RE-SYNC + SV-9041 PASS. **THE LOCAL FILTERS SOURCE WAS STALE ON ALL 114 CASES AND IS NOW FIXED. THE EPIC GAINED A CHILD CARRYING A PO RULING — AND FOR ONCE IT CONFIRMS OUR WORDING RATHER THAN BREAKING IT.**
 
 **What cleared, without needing you:** the Filters local case source was stale on **114 of 114**
