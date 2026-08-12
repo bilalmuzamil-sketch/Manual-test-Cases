@@ -454,6 +454,104 @@ def f32():
             'Control: rowsNumber is the server total, independent of rowsPerPage.')
 
 
+# -------------------------------------------------- invoice / work-order level
+# /api/work-orders returns {'data':{'pagination':..,'work_orders':[..]}} -- a shape
+# api.rowsof deliberately refuses, so it is unpacked explicitly here.
+_WO = {}
+
+
+def wos(limit=250):
+    if 'rows' not in _WO:
+        st, b = api.get(f'/api/work-orders?limit={limit}')
+        if st != 200:
+            raise RuntimeError(f'HTTP {st}')
+        _WO['rows'] = b['data']['work_orders']
+    return _WO['rows']
+
+
+@fact('F33', 'BOTH service (S) and parts (P) invoice numbers exist', 'SBC 30107/30131/30138, SBR 30206/30247')
+def f33():
+    rows = wos()
+    pre = collections.Counter((r.get('number') or '?')[0] for r in rows)
+    # DELIBERATELY *NOT* 'ABSENT'. /api/work-orders is HARD-CAPPED AT 100 ROWS -- limit=250
+    # still returns 100 -- and it reports no total, so these 100 are an unknown fraction of
+    # the whole. The type filters that would reach part sales (type=2, status=invoiced) both
+    # return HTTP 400, and CLAUDE.md records part sales as a separate WO type with P-numbers.
+    # So "no P in this window" is NOT evidence that no P exists. Calling it ABSENT would be
+    # exactly the false-absence this pass caught four times already.
+    return ('NOT_ESTABLISHED',
+            {'number_prefixes_in_the_100_read': dict(pre), 'rows_read': len(rows),
+             'server_row_cap': '100 (limit=250 still returns 100)',
+             'no_total_reported': True,
+             'filters_rejected': ['type=2 -> HTTP 400', 'status=invoiced -> HTTP 400'],
+             'why_not_absent': 'an unknown fraction of an unknown total, with the part-sale '
+                               'path unverified; a P-prefixed invoice may well exist'},
+            'NO VALID CONTROL WAS ESTABLISHED for the P half. The S half is proven present. '
+            'The correct next step is to capture the request the SBC expansion actually makes '
+            'in the browser, rather than guessing a filter.')
+
+
+@fact('F34', 'A work order with NO vehicle (counter / parts sale)', 'SBC 30126/30130/30131, WIP 30470')
+def f34():
+    rows = wos()
+    none = [r for r in rows if not r.get('vin') and not r.get('unit') and not r.get('licencePlate')]
+    withv = [r for r in rows if r.get('vin')]
+    return ('PRESENT' if none and withv else 'PARTIAL',
+            {'no_vehicle_identifier': len(none), 'with_vin': len(withv), 'rows_read': len(rows),
+             'examples': [r['number'] for r in none[:4]]},
+            'Control: the complement (with a VIN) is counted in the same pass and is non-zero, '
+            'so the fields are populated and a match is real.')
+
+
+@fact('F35', 'An invoice number longer than 18 characters, and one of exactly 18', 'SBR 30280')
+def f35():
+    rows = wos()
+    ln = collections.Counter(len(r.get('number') or '') for r in rows)
+    long18 = [r['number'] for r in rows if len(r.get('number') or '') > 18]
+    eq18 = [r['number'] for r in rows if len(r.get('number') or '') == 18]
+    return ('PRESENT' if long18 and eq18 else 'ABSENT_IN_SAMPLE',
+            {'length_histogram': dict(sorted(ln.items())), 'longer_than_18': long18[:3],
+             'exactly_18': eq18[:3], 'rows_read': len(rows),
+             'caveat': 'the same 100-row server cap as F33 applies; the histogram shows a '
+                       '7-11 character scheme, so >18 looks structurally impossible rather '
+                       'than merely unsampled -- but it is 100 rows of an unknown total'},
+            'Control: a full length histogram is printed, so the zero is visibly a fact about '
+            'the numbering scheme and not a failed read. Graded ABSENT_IN_SAMPLE, not ABSENT.')
+
+
+@fact('F36', 'Customer names with mixed upper/lower-case first letters', 'SBC 30143')
+def f36():
+    rows, _ = rep('sbc', extra=f'locations={TWO}&')
+    up = [r['customer_name'] for r in rows if r['customer_name'][:1].isupper()]
+    lo = [r['customer_name'] for r in rows if r['customer_name'][:1].islower()]
+    return ('PRESENT' if up and lo else 'PARTIAL',
+            {'starting_uppercase': len(up), 'starting_lowercase': len(lo),
+             'lower_examples': lo[:4], 'rows_read': len(rows)},
+            'Control: both cases counted over the same rows; the uppercase side is large, so a '
+            'zero lowercase count is a real fact about the names.')
+
+
+@fact('F37', 'A technician CURRENTLY CLOCKED IN on a line', 'WIP 38890')
+def f37():
+    rows = wos()
+    ci = [r for r in rows if (r.get('clockedInTechniciansCount') or 0) > 0]
+    return ('PRESENT' if ci else 'ABSENT',
+            {'work_orders_with_someone_clocked_in': len(ci), 'rows_read': len(rows),
+             'examples': [(r['number'], r.get('clockedInTechniciansCount')) for r in ci[:4]]},
+            'Control: the field is an integer present on every row; rows with 0 are the majority, '
+            'so a non-zero is a real live clock-in. This is time-of-day dependent.')
+
+
+@fact('F38', 'Work orders in Invoiced and in Paid status', 'SBR 30313, WIP 30457')
+def f38():
+    rows = wos()
+    st = collections.Counter(r.get('status') for r in rows)
+    return ('PRESENT' if st.get('invoiced') and st.get('paid') else 'PARTIAL',
+            {'statuses': dict(st), 'rows_read': len(rows)},
+            'Control: the full status histogram is printed, so a missing status is visible as '
+            'such rather than inferred from a filtered query.')
+
+
 # ---------------------------------------------------------------- run
 if __name__ == '__main__':
     results = []

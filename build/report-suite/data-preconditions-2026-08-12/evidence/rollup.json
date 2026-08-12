@@ -1,0 +1,5428 @@
+{
+ "30096": {
+  "cid": 30096,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30098": {
+  "cid": 30098,
+  "report": "Sales By Customer Report",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "A test user exists whose role has the ordinary reports access (the standard \"can this person see reports\" setting) and NO report-specific permission (create a ZZAUTOTEST custom role if needed; restore afterwards)."
+   ],
+   [
+    "BARRED_TO_US",
+    "You are signed in as that user."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30099": {
+  "cid": 30099,
+  "report": "Sales By Customer Report",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "A test user exists whose role does NOT have reports access (use/create a ZZAUTOTEST role; restore afterwards)."
+   ],
+   [
+    "BARRED_TO_US",
+    "You are signed in as the unpermitted user."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30100": {
+  "cid": 30100,
+  "report": "Sales By Customer Report",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "You are signed in as a user who can view the report but lacks permission to open the underlying invoice destination."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30101": {
+  "cid": 30101,
+  "report": "Sales By Customer Report",
+  "verdict": "NOT_OURS",
+  "facts_used": [
+   "F3"
+  ],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "A non-administrator test user is assigned to only ONE of the locations."
+   ],
+   [
+    "BARRED_TO_US",
+    "An administrator account is also available."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "39447": {
+  "cid": 39447,
+  "report": "Sales By Customer Report",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "You are signed in as an administrator who can edit roles and their permissions."
+   ],
+   [
+    "BARRED_TO_US",
+    "Create a throwaway custom role named starting with ZZAUTOTEST to work in, and delete it when you have finished."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30102": {
+  "cid": 30102,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30104": {
+  "cid": 30104,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30105": {
+  "cid": 30105,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30107": {
+  "cid": 30107,
+  "report": "Sales By Customer Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "The date range contains at least one service invoice (number starting with S) and one parts invoice (number starting with P) \u2014 seed ZZAUTOTEST data if needed."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "43591": {
+  "cid": 43591,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30109": {
+  "cid": 30109,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30111": {
+  "cid": 30111,
+  "report": "Sales By Customer Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "At least two accessible locations each have invoices in the chosen date range (seed ZZAUTOTEST data if needed)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "38912": {
+  "cid": 38912,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F3"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30112": {
+  "cid": 30112,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30113": {
+  "cid": 30113,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F4"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30114": {
+  "cid": 30114,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30115": {
+  "cid": 30115,
+  "report": "Sales By Customer Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F4"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A customer exists that has invoices ONLY in a wider date range than the current one (seed a ZZAUTOTEST invoice dated last month if needed)."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30116": {
+  "cid": 30116,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30117": {
+  "cid": 30117,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30120": {
+  "cid": 30120,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30121": {
+  "cid": 30121,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F9"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30122": {
+  "cid": 30122,
+  "report": "Sales By Customer Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A customer exists whose invoices all fall OUTSIDE the current date range (seed if needed)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30123": {
+  "cid": 30123,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F4"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30124": {
+  "cid": 30124,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30125": {
+  "cid": 30125,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F9"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30126": {
+  "cid": 30126,
+  "report": "Sales By Customer Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A customer has invoices on at least two vehicles AND at least one no-vehicle invoice (counter/parts sale) in the current view (seed ZZAUTOTEST data)."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30128": {
+  "cid": 30128,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F4"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30129": {
+  "cid": 30129,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F4"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30130": {
+  "cid": 30130,
+  "report": "Sales By Customer Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Customer A has an asset with exactly one invoice; customer B has ONLY no-vehicle (counter/parts sale) invoices in the current view (seed ZZAUTOTEST data)."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30131": {
+  "cid": 30131,
+  "report": "Sales By Customer Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A customer has an invoice whose number starts with S but whose work order has NO vehicle (seed a ZZAUTOTEST no-vehicle service work order and invoice it, if the app allows)."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30132": {
+  "cid": 30132,
+  "report": "Sales By Customer Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A customer has a known set of invoices in the current range, one of which you then reverse (or void) \u2014 seed ZZAUTOTEST data and note the totals before and after."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30133": {
+  "cid": 30133,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30134": {
+  "cid": 30134,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F29"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30137": {
+  "cid": 30137,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F29"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30138": {
+  "cid": 30138,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30139": {
+  "cid": 30139,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30140": {
+  "cid": 30140,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30141": {
+  "cid": 30141,
+  "report": "Sales By Customer Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "In another tab/session, that invoice is deleted or reversed AFTER the report loaded (do not refresh the report)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "43558": {
+  "cid": 43558,
+  "report": "Sales By Customer Report",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "You need TWO sign-ins: one person who can open work orders and part sales, and one person who can see reports but CANNOT open them. Ask whoever manages permissions to set the second one up, or set it up yourself in administration and put it back as you found it afterwards."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30142": {
+  "cid": 30142,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F4",
+   "F9"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30143": {
+  "cid": 30143,
+  "report": "Sales By Customer Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Customer names with mixed upper/lower-case first letters exist in the view (seed ZZAUTOTEST names like \"acme test\" and \"Best Test\")."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30144": {
+  "cid": 30144,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F4"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30145": {
+  "cid": 30145,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F4"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30149": {
+  "cid": 30149,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F27"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30150": {
+  "cid": 30150,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F6"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30151": {
+  "cid": 30151,
+  "report": "Sales By Customer Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Invoices exist where billed hours exceed worked hours, where worked exceeds billed, and where they are equal (seed ZZAUTOTEST work orders with clocked time)."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30152": {
+  "cid": 30152,
+  "report": "Sales By Customer Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A parts-only invoice (no labor at all) exists in range; if possible also an invoice whose delta rounds to zero (for example +0.04)."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30153": {
+  "cid": 30153,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F9"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30154": {
+  "cid": 30154,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30155": {
+  "cid": 30155,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F4"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30156": {
+  "cid": 30156,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30157": {
+  "cid": 30157,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "43550": {
+  "cid": 43550,
+  "report": "Sales By Customer Report",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "You are signed in as a person who has access to exactly ONE location. Check this in administration under that person's location access, and put their access back as you found it when you finish."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30159": {
+  "cid": 30159,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30160": {
+  "cid": 30160,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30161": {
+  "cid": 30161,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30162": {
+  "cid": 30162,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30163": {
+  "cid": 30163,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F4"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30164": {
+  "cid": 30164,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30166": {
+  "cid": 30166,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30167": {
+  "cid": 30167,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30168": {
+  "cid": 30168,
+  "report": "Sales By Customer Report",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "You can toggle the organization's uploaded logo on/off in administration (restore it afterwards)."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30169": {
+  "cid": 30169,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F6"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30172": {
+  "cid": 30172,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F9"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30173": {
+  "cid": 30173,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "38856": {
+  "cid": 38856,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "43553": {
+  "cid": 43553,
+  "report": "Sales By Customer Report",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "You are signed in to the ShopView App on a desktop browser and you can change the organization's uploaded logo in administration."
+   ],
+   [
+    "BARRED_TO_US",
+    "You will need the organization in a state where a logo IS set but the picture will not load - for example an uploaded logo whose file has since been removed or renamed. Ask a developer to help you produce that state if you cannot."
+   ],
+   [
+    "BARRED_TO_US",
+    "Write down the organization's original logo first, because you will put it back at the end."
+   ]
+  ],
+  "n_lines": 4
+ },
+ "30174": {
+  "cid": 30174,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30175": {
+  "cid": 30175,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30176": {
+  "cid": 30176,
+  "report": "Sales By Customer Report",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "An administrator then removes your access to that location (restore afterwards)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30177": {
+  "cid": 30177,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30178": {
+  "cid": 30178,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30179": {
+  "cid": 30179,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30180": {
+  "cid": 30180,
+  "report": "Sales By Customer Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Scenario A: leave the report in the all-customers state, then seed a NEW ZZAUTOTEST customer with an invoice in range."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30181": {
+  "cid": 30181,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30184": {
+  "cid": 30184,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30185": {
+  "cid": 30185,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30186": {
+  "cid": 30186,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30187": {
+  "cid": 30187,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30188": {
+  "cid": 30188,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30189": {
+  "cid": 30189,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30190": {
+  "cid": 30190,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30191": {
+  "cid": 30191,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30192": {
+  "cid": 30192,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30193": {
+  "cid": 30193,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30194": {
+  "cid": 30194,
+  "report": "Sales By Customer Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "43546": {
+  "cid": 43546,
+  "report": "Sales By Customer Report",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "Two sign-ins are available: one user whose role has the ordinary reports access, and one whose role does not have it (for example a Foreman)."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30195": {
+  "cid": 30195,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30197": {
+  "cid": 30197,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30198": {
+  "cid": 30198,
+  "report": "Sales By Representative Report",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "A test user exists whose role can see another Performance-group report (create/assign a ZZAUTOTEST role if needed; restore afterwards)."
+   ],
+   [
+    "BARRED_TO_US",
+    "You are signed in as that user."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30199": {
+  "cid": 30199,
+  "report": "Sales By Representative Report",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "A test user exists whose role has no Reports access (use/create a ZZAUTOTEST role; restore afterwards)."
+   ],
+   [
+    "BARRED_TO_US",
+    "You are signed in as that user."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30200": {
+  "cid": 30200,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30201": {
+  "cid": 30201,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30202": {
+  "cid": 30202,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30204": {
+  "cid": 30204,
+  "report": "Sales By Representative Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "ZZAUTOTEST invoices exist dated exactly ON the start date and exactly ON the end date of a custom range, plus one dated just outside it."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30206": {
+  "cid": 30206,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F10"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30208": {
+  "cid": 30208,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30209": {
+  "cid": 30209,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F31"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30211": {
+  "cid": 30211,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F10",
+   "F31"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30212": {
+  "cid": 30212,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F31"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30213": {
+  "cid": 30213,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30215": {
+  "cid": 30215,
+  "report": "Sales By Representative Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F10"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "The signed-in user has access to X and Y but not to a third location Z which also has data."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30216": {
+  "cid": 30216,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "38913": {
+  "cid": 38913,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F12",
+   "F3"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30217": {
+  "cid": 30217,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F10"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30218": {
+  "cid": 30218,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30219": {
+  "cid": 30219,
+  "report": "Sales By Representative Report",
+  "verdict": "NOT_OURS",
+  "facts_used": [
+   "F11"
+  ],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "Rep A has matching invoices; you then turn rep A's sales-rep toggle OFF (restore afterwards)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30221": {
+  "cid": 30221,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F10"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30222": {
+  "cid": 30222,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F10"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30223": {
+  "cid": 30223,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F10"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30224": {
+  "cid": 30224,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F10"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30225": {
+  "cid": 30225,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F9"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30226": {
+  "cid": 30226,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F31"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30227": {
+  "cid": 30227,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30229": {
+  "cid": 30229,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F31"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30230": {
+  "cid": 30230,
+  "report": "Sales By Representative Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F10"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "If producible, an invoice whose delta is tiny (e.g., +0.04) and one with a small negative delta (e.g., -0.5) also exist."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30231": {
+  "cid": 30231,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F27"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30233": {
+  "cid": 30233,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F6"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30234": {
+  "cid": 30234,
+  "report": "Sales By Representative Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A ZZAUTOTEST invoice exists with known billed labor, billed parts, labor cost, parts cost, and tax."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30235": {
+  "cid": 30235,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F7"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30236": {
+  "cid": 30236,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F9"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "38894": {
+  "cid": 38894,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F31"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30237": {
+  "cid": 30237,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F8"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30238": {
+  "cid": 30238,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30239": {
+  "cid": 30239,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30241": {
+  "cid": 30241,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F10"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30242": {
+  "cid": 30242,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30243": {
+  "cid": 30243,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F10"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30244": {
+  "cid": 30244,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30245": {
+  "cid": 30245,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F10"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30247": {
+  "cid": 30247,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30249": {
+  "cid": 30249,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30250": {
+  "cid": 30250,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30251": {
+  "cid": 30251,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "43559": {
+  "cid": 43559,
+  "report": "Sales By Representative Report",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "You need TWO sign-ins: one person who can open work orders, part sales and customers, and one person who can see reports but CANNOT open them. Ask whoever manages permissions to set the second one up, or set it up yourself in administration and put it back as you found it afterwards."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30253": {
+  "cid": 30253,
+  "report": "Sales By Representative Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "ZZAUTOTEST rep \"A\" is active, toggle on, and assigned as sales representative to exactly 1 customer; ZZAUTOTEST rep \"B\" likewise to 3 customers."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30254": {
+  "cid": 30254,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F10"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30255": {
+  "cid": 30255,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F10"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30256": {
+  "cid": 30256,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F10"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30257": {
+  "cid": 30257,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F10"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30258": {
+  "cid": 30258,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F11"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30259": {
+  "cid": 30259,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F10"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30260": {
+  "cid": 30260,
+  "report": "Sales By Representative Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A staff member is active with the sales-rep toggle on."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30261": {
+  "cid": 30261,
+  "report": "Sales By Representative Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "No remembered settings; at least one matching invoice with NO assigned rep exists (seed via a WO with no Sales Representative whose customer also has no rep)."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30262": {
+  "cid": 30262,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F11"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30264": {
+  "cid": 30264,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F12"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30265": {
+  "cid": 30265,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30267": {
+  "cid": 30267,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30268": {
+  "cid": 30268,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30269": {
+  "cid": 30269,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30271": {
+  "cid": 30271,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30272": {
+  "cid": 30272,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30273": {
+  "cid": 30273,
+  "report": "Sales By Representative Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Your saved settings include a location you are then un-assigned from (restore access afterwards)."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30274": {
+  "cid": 30274,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30275": {
+  "cid": 30275,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30276": {
+  "cid": 30276,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30277": {
+  "cid": 30277,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 4
+ },
+ "30278": {
+  "cid": 30278,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30279": {
+  "cid": 30279,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30280": {
+  "cid": 30280,
+  "report": "Sales By Representative Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "At least one invoice in the current view has an invoice number LONGER than 18 characters, and one has a number of 18 characters or fewer (seed data if needed)."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30281": {
+  "cid": 30281,
+  "report": "Sales By Representative Report",
+  "verdict": "NOT_OURS",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "For the fallback check: the organization has NO configured logo (clear it in settings if permitted, and restore afterward)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30282": {
+  "cid": 30282,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F7"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30283": {
+  "cid": 30283,
+  "report": "Sales By Representative Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "You can produce (or seed) filtered views whose LONGEST formatted positive dollar value \u2014 checked across every value in the document, including the totals row \u2014 falls in different length brackets (for example, $1,234.56 = 9 characters vs $1,000,000.00 = 13 characters)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30285": {
+  "cid": 30285,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30286": {
+  "cid": 30286,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30287": {
+  "cid": 30287,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30288": {
+  "cid": 30288,
+  "report": "Sales By Representative Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "The current filter set includes at least one invoice with no assigned sales representative (seed one if needed)."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30289": {
+  "cid": 30289,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30290": {
+  "cid": 30290,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F32"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30291": {
+  "cid": 30291,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30292": {
+  "cid": 30292,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30293": {
+  "cid": 30293,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F4"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30294": {
+  "cid": 30294,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F4"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30295": {
+  "cid": 30295,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F11"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30296": {
+  "cid": 30296,
+  "report": "Sales By Representative Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A customer exists whose assigned rep's staff record has been cleared or deleted while the customer still references it (seed and delete a throwaway ZZAUTOTEST rep if needed)."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30297": {
+  "cid": 30297,
+  "report": "Sales By Representative Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "For the empty path: no customer in the organization has an assigned rep (or use a state where the export yields zero rows)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30298": {
+  "cid": 30298,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30300": {
+  "cid": 30300,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30301": {
+  "cid": 30301,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30302": {
+  "cid": 30302,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30303": {
+  "cid": 30303,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30304": {
+  "cid": 30304,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30305": {
+  "cid": 30305,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30306": {
+  "cid": 30306,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30307": {
+  "cid": 30307,
+  "report": "Sales By Representative Report",
+  "verdict": "EXTERNAL",
+  "facts_used": [],
+  "reasons": [
+   [
+    "EXTERNAL",
+    "You are on the report with at least one rep row; a screen reader or the browser's accessibility inspector is available."
+   ],
+   [
+    "EXTERNAL",
+    "Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA \u2014 it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30308": {
+  "cid": 30308,
+  "report": "Sales By Representative Report",
+  "verdict": "EXTERNAL",
+  "facts_used": [],
+  "reasons": [
+   [
+    "EXTERNAL",
+    "You are on the report with at least two rep rows; a screen reader or accessibility inspector is available."
+   ],
+   [
+    "EXTERNAL",
+    "Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA \u2014 it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30309": {
+  "cid": 30309,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30310": {
+  "cid": 30310,
+  "report": "Sales By Representative Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "You have: an open standard Work Order, an open Part Sale WO, an imported Work Order, and a way to view a WO in History mode."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30311": {
+  "cid": 30311,
+  "report": "Sales By Representative Report",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "At least one staff member has the sales-representative toggle ON and at least one has it OFF. To arrange this: open Settings, go to Staff, edit the staff member, and use the sales-representative toggle there (restore both afterward)."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30312": {
+  "cid": 30312,
+  "report": "Sales By Representative Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "At least one staff member is offered as a sales representative."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30313": {
+  "cid": 30313,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F31"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30314": {
+  "cid": 30314,
+  "report": "Sales By Representative Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Three throwaway ZZAUTOTEST setups: (a) a WO WITH a Sales Representative assigned; (b) a WO with NO rep whose customer HAS an assigned rep; (c) a WO with NO rep whose customer has NO assigned rep."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30315": {
+  "cid": 30315,
+  "report": "Sales By Representative Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F11"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "One customer HAS an assigned sales representative and one customer has NONE."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30316": {
+  "cid": 30316,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30317": {
+  "cid": 30317,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30318": {
+  "cid": 30318,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30319": {
+  "cid": 30319,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30320": {
+  "cid": 30320,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F32"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30321": {
+  "cid": 30321,
+  "report": "Sales By Representative Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F4"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30322": {
+  "cid": 30322,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30323": {
+  "cid": 30323,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30324": {
+  "cid": 30324,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Enough parts data exists that the report visibly takes a moment to load."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30325": {
+  "cid": 30325,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F14"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30326": {
+  "cid": 30326,
+  "report": "Parts Velocity Report",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "You are signed in as a user whose role is neither Manager nor Office User (a role without access to the Reports section)."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30327": {
+  "cid": 30327,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30328": {
+  "cid": 30328,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F14"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30330": {
+  "cid": 30330,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30331": {
+  "cid": 30331,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30332": {
+  "cid": 30332,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F17"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30333": {
+  "cid": 30333,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A part exists whose part number you know, and another whose description contains a distinctive word."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30334": {
+  "cid": 30334,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F17"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30335": {
+  "cid": 30335,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F25"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30336": {
+  "cid": 30336,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F15"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30337": {
+  "cid": 30337,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30338": {
+  "cid": 30338,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30339": {
+  "cid": 30339,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F18"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30340": {
+  "cid": 30340,
+  "report": "Parts Velocity Report",
+  "verdict": "NOT_OURS",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "You are signed in as a user with access to exactly one location."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "38914": {
+  "cid": 38914,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F3"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30341": {
+  "cid": 30341,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F19"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30342": {
+  "cid": 30342,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F15"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30343": {
+  "cid": 30343,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F14"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30344": {
+  "cid": 30344,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F15"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30345": {
+  "cid": 30345,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30346": {
+  "cid": 30346,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "The Turns/Yr column has been enabled via the column picker (it is hidden by default)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30347": {
+  "cid": 30347,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F1",
+   "F17"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A part with a long part number exists."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30348": {
+  "cid": 30348,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F15"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30349": {
+  "cid": 30349,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Inventory part A: zero stock movement in the window, less than one unit on hand, zero billed revenue in the window."
+   ],
+   [
+    "UNMAPPED",
+    "Inventory part B: zero stock movement and zero on hand, but billed revenue in the window (e.g. a drop-ship sale billed without a stock decrement)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30351": {
+  "cid": 30351,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30352": {
+  "cid": 30352,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30353": {
+  "cid": 30353,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30354": {
+  "cid": 30354,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30355": {
+  "cid": 30355,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30356": {
+  "cid": 30356,
+  "report": "Parts Velocity Report",
+  "verdict": "NOT_OURS",
+  "facts_used": [
+   "F15"
+  ],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "User 2 can open the report."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30358": {
+  "cid": 30358,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30359": {
+  "cid": 30359,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "An inventory part with known starting stock."
+   ],
+   [
+    "UNMAPPED",
+    "You can invoice work orders, reverse/void an invoice, and initiate a part return for that part inside the report window."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30360": {
+  "cid": 30360,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F15"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30361": {
+  "cid": 30361,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A part with in-window sales (so its row exists) and the Units Returned column enabled via the column picker."
+   ],
+   [
+    "UNMAPPED",
+    "You can initiate a work-order part return, a parts-sale credit, and cancel a return."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30362": {
+  "cid": 30362,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A part sold in a PREVIOUS window whose return is initiated inside the CURRENT window (and the part has current-window activity or stock so its row exists)."
+   ],
+   [
+    "UNMAPPED",
+    "A core-charge return exists for a part in the window."
+   ],
+   [
+    "UNMAPPED",
+    "The Units Returned column is enabled."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30363": {
+  "cid": 30363,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F31"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "The Sold (WO) and Sold (Parts Sale) columns are enabled."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30364": {
+  "cid": 30364,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F15",
+   "F25"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "One of the inventory part's in-window sales is then reversed/voided."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30365": {
+  "cid": 30365,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A part whose most recent sale was N days ago, OUTSIDE the currently selected date range (e.g. range = This Month, last sale 42 days ago)."
+   ],
+   [
+    "UNMAPPED",
+    "The part still appears in the report (it has on-hand stock)."
+   ],
+   [
+    "UNMAPPED",
+    "For the location check: the part's most recent sale at location A is more recent than at location B."
+   ],
+   [
+    "UNMAPPED",
+    "For the reversal check: a ZZAUTOTEST part whose MOST RECENT sale can be reversed, and an older sale of the same part also exists."
+   ]
+  ],
+  "n_lines": 4
+ },
+ "30366": {
+  "cid": 30366,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F16",
+   "F25"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30367": {
+  "cid": 30367,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "The Turns / Yr column is enabled."
+   ],
+   [
+    "UNMAPPED",
+    "Part A: known Units Sold over a known window with On Hand > 0 (e.g. Units Sold 10.00 over a 30-day window with 5 on hand)."
+   ],
+   [
+    "UNMAPPED",
+    "Part B: in-window sales but On Hand now 0."
+   ],
+   [
+    "UNMAPPED",
+    "Part C: negative Units Sold (reversals exceed sales) with stock on hand."
+   ]
+  ],
+  "n_lines": 4
+ },
+ "30368": {
+  "cid": 30368,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F31"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "All five profitability columns are visible."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30369": {
+  "cid": 30369,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A part with two in-window billed sales of known amounts, one of which you then reverse/void."
+   ],
+   [
+    "UNMAPPED",
+    "All movement and profitability columns are visible."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30370": {
+  "cid": 30370,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Row 1: a part with booked revenue but ZERO billed units in the window (e.g. a credit/adjustment line carrying revenue with no billed quantity)."
+   ],
+   [
+    "UNMAPPED",
+    "Row 2: a part with billed units > 0 but Revenue $0.00 (e.g. billed at a $0 sell price)."
+   ],
+   [
+    "UNMAPPED",
+    "Row 3: a part with both billed units \u2264 0 and Revenue \u2264 0."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30371": {
+  "cid": 30371,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "All 20 columns are enabled and rows exist with large (1,000+), negative, and null values across the column types."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30372": {
+  "cid": 30372,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F14",
+   "F31"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30373": {
+  "cid": 30373,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F15",
+   "F25"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Units Sold, Sold (WO), Sold (Parts Sale), and the profitability columns are visible."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30374": {
+  "cid": 30374,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A work order whose END date falls in window W1 but whose invoicing (stock-movement event) happened in window W2 for an inventory part."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "38924": {
+  "cid": 38924,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "You can sign in with a role that opens the Parts Velocity report."
+   ],
+   [
+    "UNMAPPED",
+    "A ZZAUTOTEST inventory part is in stock with a known unit cost, and there is enough on the shelf to sell a part-of-a-unit quantity such as 2.5."
+   ],
+   [
+    "UNMAPPED",
+    "Today's date falls inside the date range you will use on the report."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30375": {
+  "cid": 30375,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30376": {
+  "cid": 30376,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30377": {
+  "cid": 30377,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30378": {
+  "cid": 30378,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F16"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30379": {
+  "cid": 30379,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30380": {
+  "cid": 30380,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30381": {
+  "cid": 30381,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F15"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "All nullable columns are enabled."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30382": {
+  "cid": 30382,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30384": {
+  "cid": 30384,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "38885": {
+  "cid": 38885,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A filter/location combination exists whose filtered set EXCEEDS the export row cap (widest date range + all locations; seed ZZAUTOTEST parts in bulk if needed, or use the largest available data set)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "43547": {
+  "cid": 43547,
+  "report": "Parts Velocity Report",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Parts Velocity is open with a date range that returns a few hundred rows \u2014 narrow with the toolbar search until the list is roughly 300 to 500 rows."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30385": {
+  "cid": 30385,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30386": {
+  "cid": 30386,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30387": {
+  "cid": 30387,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30388": {
+  "cid": 30388,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30389": {
+  "cid": 30389,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30390": {
+  "cid": 30390,
+  "report": "Parts Velocity Report",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30391": {
+  "cid": 30391,
+  "report": "Parts Velocity Report",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "You are signed in as a user whose role has the ordinary reports access turned on and no other reports-related permission turned on."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "38925": {
+  "cid": 38925,
+  "report": "Parts Velocity Report",
+  "verdict": "EXTERNAL",
+  "facts_used": [
+   "F31"
+  ],
+  "reasons": [
+   [
+    "EXTERNAL",
+    "The test company is connected to QuickBooks."
+   ],
+   [
+    "EXTERNAL",
+    "You can sign in to that QuickBooks company and look at its journal entries."
+   ],
+   [
+    "EXTERNAL",
+    "This test cannot be run without a company whose QuickBooks account is connected, because it checks what was sent to QuickBooks. If no QuickBooks-connected company is available, mark this test Blocked and say so \u2014 do not guess the result."
+   ]
+  ],
+  "n_lines": 4
+ },
+ "30392": {
+  "cid": 30392,
+  "report": "Technician Utilization",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "You are signed in as a user whose role has the ordinary reports access."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30393": {
+  "cid": 30393,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F20"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30394": {
+  "cid": 30394,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "You are using a browser with NO saved settings for this report (fresh profile or cleared site storage)."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30395": {
+  "cid": 30395,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30396": {
+  "cid": 30396,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30397": {
+  "cid": 30397,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F3"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A technician has a clock record that starts before the selected range and ends inside it."
+   ],
+   [
+    "UNMAPPED",
+    "A technician has a clock record that crosses midnight."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30398": {
+  "cid": 30398,
+  "report": "Technician Utilization",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "You are signed in as a user whose role does NOT have reports access."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30399": {
+  "cid": 30399,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F20"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30401": {
+  "cid": 30401,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F21"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30402": {
+  "cid": 30402,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F22"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30403": {
+  "cid": 30403,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F20"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Other technicians with mixed hours for the upper-bound check."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30404": {
+  "cid": 30404,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F3"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A technician clocked known internal hours at A and known internal hours at B in the range."
+   ],
+   [
+    "UNMAPPED",
+    "Both locations are selected in the location filter."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30405": {
+  "cid": 30405,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Est. Lost Labor is turned ON in the Column Selection control (it is on by default)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30406": {
+  "cid": 30406,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F23"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Technician A has zero internal hours in the range (all time on work orders)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30407": {
+  "cid": 30407,
+  "report": "Technician Utilization",
+  "verdict": "EXTERNAL",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A technician's in-range internal hours were all clocked at location(s) with NO default labor rate configured (rate absent, not $0.00)."
+   ],
+   [
+    "EXTERNAL",
+    "Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA \u2014 it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30408": {
+  "cid": 30408,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F23"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Both locations are selected."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30409": {
+  "cid": 30409,
+  "report": "Technician Utilization",
+  "verdict": "EXTERNAL",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [
+   [
+    "EXTERNAL",
+    "Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA \u2014 it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30410": {
+  "cid": 30410,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30411": {
+  "cid": 30411,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30412": {
+  "cid": 30412,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30413": {
+  "cid": 30413,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Rows exist with: a normal Est. Lost Labor value, a \"$0.00\" value, and at least two \"\u2014\" values (no rate configured)."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30414": {
+  "cid": 30414,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30415": {
+  "cid": 30415,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Several technicians with known clocked hours are visible (all selected in the technician filter)."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30416": {
+  "cid": 30416,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Two visible technicians with deliberately skewed hours - e.g. tech A: 1.00 total / 1.00 WO (100%); tech B: 9.00 total / 0.00 WO (0.0%) - so the weighted and averaged results differ clearly."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30417": {
+  "cid": 30417,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Visible technicians include: one with a normal Est. Lost Labor, one showing \"\u2014\" (no rate anywhere), and (if possible) one partially valued."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30418": {
+  "cid": 30418,
+  "report": "Technician Utilization",
+  "verdict": "EXTERNAL",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [
+   [
+    "EXTERNAL",
+    "Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA \u2014 it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30419": {
+  "cid": 30419,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F23"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30420": {
+  "cid": 30420,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30421": {
+  "cid": 30421,
+  "report": "Technician Utilization",
+  "verdict": "EXTERNAL",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [
+   [
+    "EXTERNAL",
+    "Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA \u2014 it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30422": {
+  "cid": 30422,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30423": {
+  "cid": 30423,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30424": {
+  "cid": 30424,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Several technician rows are visible and the Summary row shows their totals."
+   ],
+   [
+    "UNMAPPED",
+    "Note the current date range so you can confirm it does not change."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30425": {
+  "cid": 30425,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Several technicians are in the current range; a different range exists in which an ADDITIONAL technician (not listed in the current range) has clocked time."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30426": {
+  "cid": 30426,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30428": {
+  "cid": 30428,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30429": {
+  "cid": 30429,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30430": {
+  "cid": 30430,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A technician has only CLOSED (clocked-out) records in the range - no open clock."
+   ],
+   [
+    "UNMAPPED",
+    "The report's location filter holds exactly ONE location, and it is the user's currently active shop."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30431": {
+  "cid": 30431,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A technician is still clocked in (an open, not-yet-clocked-out record) inside the range."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30432": {
+  "cid": 30432,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F23"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Both locations are selected in the report's location filter; only one of them is the user's currently active shop."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30433": {
+  "cid": 30433,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30434": {
+  "cid": 30434,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30435": {
+  "cid": 30435,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30436": {
+  "cid": 30436,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "At least one technician's Est. Lost Labor exceeds $1,000 (so a value contains a comma)."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30437": {
+  "cid": 30437,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F3"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30438": {
+  "cid": 30438,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Rows exist including a \"\u2014\" Est. Lost Labor value."
+   ],
+   [
+    "UNMAPPED",
+    "The on-screen rows are sorted by something OTHER than Technician A to Z (e.g. Est. Lost Labor descending)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30439": {
+  "cid": 30439,
+  "report": "Technician Utilization",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "You can toggle the shop's logo in the shop settings (restore the original state afterwards - shared env)."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30440": {
+  "cid": 30440,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30441": {
+  "cid": 30441,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "38887": {
+  "cid": 38887,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A range/location combination exists whose filtered set EXCEEDS the export row cap (widest date range + all locations; seed ZZAUTOTEST clock records in bulk if needed, or use the largest available data set)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "43552": {
+  "cid": 43552,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "The three-dot download menu offers a spreadsheet option for the Summary view and a separate one for the Expanded view."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30442": {
+  "cid": 30442,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30443": {
+  "cid": 30443,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F23"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30444": {
+  "cid": 30444,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "The user saved a location selection that includes a location their access to was later removed."
+   ]
+  ],
+  "n_lines": 1
+ },
+ "30446": {
+  "cid": 30446,
+  "report": "Technician Utilization",
+  "verdict": "NOT_OURS",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "You are signed in as a user with access to exactly one location."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "38915": {
+  "cid": 38915,
+  "report": "Technician Utilization",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F1",
+   "F3"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "One of those days has hours at two locations (for the per-day check)."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30447": {
+  "cid": 30447,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30448": {
+  "cid": 30448,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "38859": {
+  "cid": 38859,
+  "report": "Technician Utilization",
+  "verdict": "EXTERNAL",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "This browser has never saved settings for this report (fresh visit), so every column is at its default."
+   ],
+   [
+    "EXTERNAL",
+    "Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA \u2014 it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30449": {
+  "cid": 30449,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30450": {
+  "cid": 30450,
+  "report": "Technician Utilization",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30451": {
+  "cid": 30451,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30452": {
+  "cid": 30452,
+  "report": "Work In Progress",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "You have not visited the report before in this browser (no saved active-tab setting)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30455": {
+  "cid": 30455,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30456": {
+  "cid": 30456,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F31"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30457": {
+  "cid": 30457,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F31"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30458": {
+  "cid": 30458,
+  "report": "Work In Progress",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Several open ZZAUTOTEST service work orders exist within the current date range, including one open estimate with no approved line items at all."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30459": {
+  "cid": 30459,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30460": {
+  "cid": 30460,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F26"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30462": {
+  "cid": 30462,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F31"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30464": {
+  "cid": 30464,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F31"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30466": {
+  "cid": 30466,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F3"
+  ],
+  "reasons": [],
+  "n_lines": 4
+ },
+ "30467": {
+  "cid": 30467,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30468": {
+  "cid": 30468,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30469": {
+  "cid": 30469,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30470": {
+  "cid": 30470,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30471": {
+  "cid": 30471,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30472": {
+  "cid": 30472,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30473": {
+  "cid": 30473,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "43557": {
+  "cid": 43557,
+  "report": "Work In Progress",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "You need TWO sign-ins for this test: one person who can open work orders, and one person who can see reports but CANNOT open work orders. Ask whoever manages permissions to set the second one up for you, or set it up yourself in administration and put it back as you found it afterwards."
+   ],
+   [
+    "UNMAPPED",
+    "The Work In Progress report has at least one work order showing. If a tab looks empty, widen the date range."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30474": {
+  "cid": 30474,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F27"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30475": {
+  "cid": 30475,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F27"
+  ],
+  "reasons": [],
+  "n_lines": 4
+ },
+ "30476": {
+  "cid": 30476,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F27"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30477": {
+  "cid": 30477,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F27"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30478": {
+  "cid": 30478,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F27"
+  ],
+  "reasons": [],
+  "n_lines": 4
+ },
+ "30479": {
+  "cid": 30479,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F27"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30480": {
+  "cid": 30480,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F27"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30481": {
+  "cid": 30481,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30482": {
+  "cid": 30482,
+  "report": "Work In Progress",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A ZZAUTOTEST open estimate exists with no approved line items."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "38890": {
+  "cid": 38890,
+  "report": "Work In Progress",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F27"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A technician is CURRENTLY CLOCKED IN on that line and has not clocked out."
+   ]
+  ],
+  "n_lines": 4
+ },
+ "43592": {
+  "cid": 43592,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F27"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "43593": {
+  "cid": 43593,
+  "report": "Work In Progress",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F27"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "You are able to mark that line completed."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "43594": {
+  "cid": 43594,
+  "report": "Work In Progress",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F27"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "The returned core is waiting to be marked OK or Not OK."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30483": {
+  "cid": 30483,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F26"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30484": {
+  "cid": 30484,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F26"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30485": {
+  "cid": 30485,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F26"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30486": {
+  "cid": 30486,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F26"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30487": {
+  "cid": 30487,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30488": {
+  "cid": 30488,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30489": {
+  "cid": 30489,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30490": {
+  "cid": 30490,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F26",
+   "F27"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30491": {
+  "cid": 30491,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F26"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30493": {
+  "cid": 30493,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30494": {
+  "cid": 30494,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F26"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30495": {
+  "cid": 30495,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F26"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30498": {
+  "cid": 30498,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30499": {
+  "cid": 30499,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30500": {
+  "cid": 30500,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30501": {
+  "cid": 30501,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30502": {
+  "cid": 30502,
+  "report": "Work In Progress",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Open work orders exist with created dates both inside and outside the current week."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30503": {
+  "cid": 30503,
+  "report": "Work In Progress",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F3"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "This browser has never saved settings for this report (fresh visit)."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30504": {
+  "cid": 30504,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30505": {
+  "cid": 30505,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "38916": {
+  "cid": 38916,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F3"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30506": {
+  "cid": 30506,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30507": {
+  "cid": 30507,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30508": {
+  "cid": 30508,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30509": {
+  "cid": 30509,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F28"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "43551": {
+  "cid": 43551,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30510": {
+  "cid": 30510,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30511": {
+  "cid": 30511,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30512": {
+  "cid": 30512,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F7"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30513": {
+  "cid": 30513,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F7"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30514": {
+  "cid": 30514,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F26"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30515": {
+  "cid": 30515,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30516": {
+  "cid": 30516,
+  "report": "Work In Progress",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "The Asset and Location columns are both turned on."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30517": {
+  "cid": 30517,
+  "report": "Work In Progress",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "The shop has a logo set in its settings."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30518": {
+  "cid": 30518,
+  "report": "Work In Progress",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "The report can be put in three states: rows present, no rows visible (filters leave nothing), and (if simulatable) a failing download, for example by disconnecting the network before the download."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "38918": {
+  "cid": 38918,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F28"
+  ],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30519": {
+  "cid": 30519,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30520": {
+  "cid": 30520,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30521": {
+  "cid": 30521,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30522": {
+  "cid": 30522,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F8"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30523": {
+  "cid": 30523,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30524": {
+  "cid": 30524,
+  "report": "Work In Progress",
+  "verdict": "EXTERNAL",
+  "facts_used": [],
+  "reasons": [
+   [
+    "EXTERNAL",
+    "Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA \u2014 it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30525": {
+  "cid": 30525,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30526": {
+  "cid": 30526,
+  "report": "Work In Progress",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "A test user exists whose role has the ordinary reports access (assign the Tech user a suitable role if needed; restore the original role afterward)."
+   ],
+   [
+    "BARRED_TO_US",
+    "You are signed in as that user on a desktop browser."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30527": {
+  "cid": 30527,
+  "report": "Work In Progress",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "A test user exists whose role does NOT have reports access (assign the Tech user such a role; restore the original role afterward)."
+   ],
+   [
+    "BARRED_TO_US",
+    "You are signed in as that user on a desktop browser."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30528": {
+  "cid": 30528,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F24"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30530": {
+  "cid": 30530,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F24",
+   "F27"
+  ],
+  "reasons": [],
+  "n_lines": 4
+ },
+ "30531": {
+  "cid": 30531,
+  "report": "Work In Progress",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F24",
+   "F30",
+   "F31"
+  ],
+  "reasons": [],
+  "n_lines": 4
+ },
+ "30533": {
+  "cid": 30533,
+  "report": "Work In Progress",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F24"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "An open ZZAUTOTEST estimate with no approved line items existed at capture time."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30534": {
+  "cid": 30534,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30535": {
+  "cid": 30535,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Several ZZAUTOTEST parts with positive on-hand quantity exist at your active location."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30536": {
+  "cid": 30536,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30538": {
+  "cid": 30538,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "The selected location(s) hold more in-stock parts than fit on one page (seed ZZAUTOTEST parts if needed)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30539": {
+  "cid": 30539,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Three causes can be produced: (a) a location you can access holds no in-stock parts, (b) a past range ends entirely before nightly recording began (or its covered dates were pruned by retention), (c) the filters can be set so nothing qualifies."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30540": {
+  "cid": 30540,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "ZZAUTOTEST parts exist at your active location: a normal part with positive on-hand quantity, a core-charge part with a positive quantity, a part with exactly zero on-hand quantity, and (if producible) one with a negative on-hand quantity."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30541": {
+  "cid": 30541,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F3"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30545": {
+  "cid": 30545,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F27"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30546": {
+  "cid": 30546,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F27"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30547": {
+  "cid": 30547,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F18"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Note for the tester: on this build a part cannot be saved without a category, so you may not be able to create the part described in step 2. If you cannot, mark this test Blocked and say so \u2014 do not guess the result."
+   ]
+  ],
+  "n_lines": 4
+ },
+ "30548": {
+  "cid": 30548,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A ZZAUTOTEST in-stock part exists with a known on-hand quantity (include a fractional quantity if possible), unit cost, and unit sell."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30549": {
+  "cid": 30549,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A ZZAUTOTEST in-stock part exists with a quantity greater than 1 and different unit cost and unit sell values."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30550": {
+  "cid": 30550,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30551": {
+  "cid": 30551,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Every column (including Margin and Total Sell) is turned on in the column-selection control."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30552": {
+  "cid": 30552,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30553": {
+  "cid": 30553,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30554": {
+  "cid": 30554,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [],
+  "reasons": [],
+  "n_lines": 1
+ },
+ "30555": {
+  "cid": 30555,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30556": {
+  "cid": 30556,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F8"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30557": {
+  "cid": 30557,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F8"
+  ],
+  "reasons": [],
+  "n_lines": 4
+ },
+ "30558": {
+  "cid": 30558,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "The filtered set contains parts with clearly different Margin % values (so a recomputed figure differs from a simple average)."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30561": {
+  "cid": 30561,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30562": {
+  "cid": 30562,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F24"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A part exists that was ALREADY in stock before the selected range started."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30563": {
+  "cid": 30563,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F24"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A ZZAUTOTEST part's on-hand quantity was changed TODAY (after last night's capture)."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30564": {
+  "cid": 30564,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F24"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30565": {
+  "cid": 30565,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F24"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30566": {
+  "cid": 30566,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30568": {
+  "cid": 30568,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "The date nightly recording began at this organization is known."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "38892": {
+  "cid": 38892,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A recorded (overnight-captured) day exists that includes ZZAUTOTEST parts under a known category and a known vendor."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30569": {
+  "cid": 30569,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "In-stock parts exist across at least two categories and two vendors."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30570": {
+  "cid": 30570,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "The unfiltered result set is long enough to need scrolling, and matching parts for a category/vendor/search exist well down the list (beyond the first screenful)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30571": {
+  "cid": 30571,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "The report has been filtered by category, vendor, and a part search."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30572": {
+  "cid": 30572,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "In-stock parts exist whose part numbers and descriptions you know (including a description containing a distinctive word)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30573": {
+  "cid": 30573,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "In-stock parts exist with a known mix of categories and vendors, so a combined filter isolates a known subset."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30574": {
+  "cid": 30574,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "This browser has never saved settings for this report (fresh visit)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30575": {
+  "cid": 30575,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "In-stock parts exist at both locations."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30576": {
+  "cid": 30576,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30577": {
+  "cid": 30577,
+  "report": "Inventory Value",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "A test user exists with access to exactly one location (create a fresh ZZAUTOTEST staff member if needed; clean up afterward)."
+   ],
+   [
+    "BARRED_TO_US",
+    "You are signed in as that user on a desktop browser."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "38917": {
+  "cid": 38917,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1",
+   "F3"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30579": {
+  "cid": 30579,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30580": {
+  "cid": 30580,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30581": {
+  "cid": 30581,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30582": {
+  "cid": 30582,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "The report has saved settings in this browser, including a category or vendor selection that can be made stale (for example, the last in-stock part of a saved category is consumed so the category disappears from the data)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30583": {
+  "cid": 30583,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F8"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30584": {
+  "cid": 30584,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F8"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30585": {
+  "cid": 30585,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F27"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30587": {
+  "cid": 30587,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30588": {
+  "cid": 30588,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30589": {
+  "cid": 30589,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F27"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30590": {
+  "cid": 30590,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "The shop has a logo set in its settings."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30591": {
+  "cid": 30591,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30592": {
+  "cid": 30592,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F8"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30593": {
+  "cid": 30593,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A filter/location combination exists whose filtered set EXCEEDS the export row cap (seed ZZAUTOTEST parts in bulk if needed, or use the largest available data set)."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30595": {
+  "cid": 30595,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "43548": {
+  "cid": 43548,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30596": {
+  "cid": 30596,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30597": {
+  "cid": 30597,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 2
+ },
+ "30599": {
+  "cid": 30599,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A ZZAUTOTEST part exists with a very long description (and, if possible, long category/vendor names) and a long part number."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30600": {
+  "cid": 30600,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30601": {
+  "cid": 30601,
+  "report": "Inventory Value",
+  "verdict": "EXTERNAL",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [
+   [
+    "EXTERNAL",
+    "Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA \u2014 it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30602": {
+  "cid": 30602,
+  "report": "Inventory Value",
+  "verdict": "EXTERNAL",
+  "facts_used": [
+   "F1"
+  ],
+  "reasons": [
+   [
+    "EXTERNAL",
+    "Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA \u2014 it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30603": {
+  "cid": 30603,
+  "report": "Inventory Value",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "A test user exists whose role has the ordinary reports access (assign the Tech user a suitable role if needed; restore the original role afterward)."
+   ],
+   [
+    "BARRED_TO_US",
+    "You are signed in as that user on a desktop browser."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30604": {
+  "cid": 30604,
+  "report": "Inventory Value",
+  "verdict": "NOT_OURS",
+  "facts_used": [],
+  "reasons": [
+   [
+    "BARRED_TO_US",
+    "A test user exists whose role does NOT have reports access (assign the Tech user such a role; restore the original role afterward)."
+   ],
+   [
+    "BARRED_TO_US",
+    "You are signed in as that user on a desktop browser."
+   ]
+  ],
+  "n_lines": 2
+ },
+ "30605": {
+  "cid": 30605,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F24",
+   "F3"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A location with NO in-stock parts also exists."
+   ]
+  ],
+  "n_lines": 4
+ },
+ "30606": {
+  "cid": 30606,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F24",
+   "F27"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "A core-charge part and a zero-quantity part also exist."
+   ]
+  ],
+  "n_lines": 4
+ },
+ "30607": {
+  "cid": 30607,
+  "report": "Inventory Value",
+  "verdict": "EXTERNAL",
+  "facts_used": [
+   "F24"
+  ],
+  "reasons": [
+   [
+    "EXTERNAL",
+    "The capture can be re-run for that date (arrange with the developers)."
+   ]
+  ],
+  "n_lines": 3
+ },
+ "30609": {
+  "cid": 30609,
+  "report": "Inventory Value",
+  "verdict": "ESTABLISHED",
+  "facts_used": [
+   "F24"
+  ],
+  "reasons": [],
+  "n_lines": 3
+ },
+ "30610": {
+  "cid": 30610,
+  "report": "Inventory Value",
+  "verdict": "UNVERIFIED_DATA",
+  "facts_used": [
+   "F24"
+  ],
+  "reasons": [
+   [
+    "UNMAPPED",
+    "Thinned history exists (dates older than 13 months where only the monthly last-capture remains \u2014 dev-seeded if needed)."
+   ]
+  ],
+  "n_lines": 3
+ }
+}

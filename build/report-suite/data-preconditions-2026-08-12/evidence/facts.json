@@ -525,5 +525,107 @@
    "note": "SBC/SBR/WIP counts are far smaller; the cap is reachable on PV/IV only"
   },
   "control": "Control: rowsNumber is the server total, independent of rowsPerPage."
+ },
+ {
+  "id": "F33",
+  "desc": "BOTH service (S) and parts (P) invoice numbers exist",
+  "needed_by": "SBC 30107/30131/30138, SBR 30206/30247",
+  "verdict": "NOT_ESTABLISHED",
+  "evidence": {
+   "number_prefixes_in_the_100_read": {
+    "S": 100
+   },
+   "rows_read": 100,
+   "server_row_cap": "100 (limit=250 still returns 100)",
+   "no_total_reported": true,
+   "filters_rejected": [
+    "type=2 -> HTTP 400",
+    "status=invoiced -> HTTP 400"
+   ],
+   "why_not_absent": "an unknown fraction of an unknown total, with the part-sale path unverified; a P-prefixed invoice may well exist"
+  },
+  "control": "NO VALID CONTROL WAS ESTABLISHED for the P half. The S half is proven present. The correct next step is to capture the request the SBC expansion actually makes in the browser, rather than guessing a filter."
+ },
+ {
+  "id": "F34",
+  "desc": "A work order with NO vehicle (counter / parts sale)",
+  "needed_by": "SBC 30126/30130/30131, WIP 30470",
+  "verdict": "PRESENT",
+  "evidence": {
+   "no_vehicle_identifier": 1,
+   "with_vin": 99,
+   "rows_read": 100,
+   "examples": [
+    "S8582-16651"
+   ]
+  },
+  "control": "Control: the complement (with a VIN) is counted in the same pass and is non-zero, so the fields are populated and a match is real."
+ },
+ {
+  "id": "F35",
+  "desc": "An invoice number longer than 18 characters, and one of exactly 18",
+  "needed_by": "SBR 30280",
+  "verdict": "ABSENT_IN_SAMPLE",
+  "evidence": {
+   "length_histogram": {
+    "7": 25,
+    "8": 63,
+    "11": 12
+   },
+   "longer_than_18": [],
+   "exactly_18": [],
+   "rows_read": 100,
+   "caveat": "the same 100-row server cap as F33 applies; the histogram shows a 7-11 character scheme, so >18 looks structurally impossible rather than merely unsampled -- but it is 100 rows of an unknown total"
+  },
+  "control": "Control: a full length histogram is printed, so the zero is visibly a fact about the numbering scheme and not a failed read. Graded ABSENT_IN_SAMPLE, not ABSENT."
+ },
+ {
+  "id": "F36",
+  "desc": "Customer names with mixed upper/lower-case first letters",
+  "needed_by": "SBC 30143",
+  "verdict": "PARTIAL",
+  "evidence": {
+   "starting_uppercase": 250,
+   "starting_lowercase": 0,
+   "lower_examples": [],
+   "rows_read": 250
+  },
+  "control": "Control: both cases counted over the same rows; the uppercase side is large, so a zero lowercase count is a real fact about the names."
+ },
+ {
+  "id": "F37",
+  "desc": "A technician CURRENTLY CLOCKED IN on a line",
+  "needed_by": "WIP 38890",
+  "verdict": "PRESENT",
+  "evidence": {
+   "work_orders_with_someone_clocked_in": 2,
+   "rows_read": 100,
+   "examples": [
+    [
+     "S2-10869",
+     1
+    ],
+    [
+     "S2-10536",
+     1
+    ]
+   ]
+  },
+  "control": "Control: the field is an integer present on every row; rows with 0 are the majority, so a non-zero is a real live clock-in. This is time-of-day dependent."
+ },
+ {
+  "id": "F38",
+  "desc": "Work orders in Invoiced and in Paid status",
+  "needed_by": "SBR 30313, WIP 30457",
+  "verdict": "PARTIAL",
+  "evidence": {
+   "statuses": {
+    "estimate": 9,
+    "paid": 90,
+    "approved": 1
+   },
+   "rows_read": 100
+  },
+  "control": "Control: the full status histogram is printed, so a missing status is visible as such rather than inferred from a filtered query."
  }
 ]

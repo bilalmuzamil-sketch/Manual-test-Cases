@@ -174,6 +174,13 @@ RULES = [
     r'selection is empty', r'you have selected exactly',
     r'date range is this month', r'known active location',
     r'the report is open with an invoice detail row visible',
+    r'is expanded', r'are expanded', r'rep row is expanded', r'owning rep is expanded',
+    r'columns? (are|is) hidden', r'hidden via the column selector',
+    r'sorted by a metric column', r'sort by a financial column',
+    r'leave at least one rep collapsed', r'all collapsed', r'is left collapsed',
+    r'^a date range is selected', r'never clicked a financial column header',
+    r'totals indicator is visible', r'table is scrolled', r'scrolled partway',
+    r'non-default filters are set', r'set a specific date range',
  ]),
  ('DATA_OPEN', [
     r'^you are on the .* report( with (data|rows)| as | in )?\.?$',
