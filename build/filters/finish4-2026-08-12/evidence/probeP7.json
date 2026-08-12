@@ -1,0 +1,153 @@
+{
+ "read_at_utc": "2026-08-12T15:55:23.821Z",
+ "cases": {
+  "29594": {
+   "case": "C29594",
+   "route": "precondition 3, second route: combine with another filter",
+   "chipIdUsed": "filter_chip_vehicleHere",
+   "server": {
+    "reviewTotal": 1,
+    "reviewOnSite": 1,
+    "reviewOffSite": 0
+   },
+   "pickedReview": true,
+   "urlStatusOnly": "https://sv8785.qa.shopview.com/workorders?status=ready_for_review&tab=all",
+   "numbersStatusOnly": [
+    "S2-15762"
+   ],
+   "assetChipFound": true,
+   "assetOptionIds": [
+    "filter_option_vehicleHere_1",
+    "filter_option_vehicleHere_0"
+   ],
+   "pickedYes": true,
+   "control": {
+    "url": "https://sv8785.qa.shopview.com/workorders?status=ready_for_review&vehicleHere=1&tab=all",
+    "rows": {
+     "tbody": 4,
+     "cards": 0,
+     "emptyStateVisible": false
+    },
+    "numbers": [
+     "S2-15762"
+    ],
+    "emptyText": null
+   },
+   "pickedNo": true,
+   "empty": {
+    "url": "https://sv8785.qa.shopview.com/workorders?status=ready_for_review&vehicleHere=0&tab=all",
+    "rows": {
+     "tbody": 2,
+     "cards": 0,
+     "emptyStateVisible": true
+    },
+    "numbers": [],
+    "emptyText": "No work orders match your filters",
+    "chips": [
+     "Status : Review keyboard_arrow_down",
+     "person Customer keyboard_arrow_down",
+     "build Lead Technician keyboard_arrow_down",
+     "headset_mic Service Advisor keyboard_arrow_down",
+     "local_shipping Asset on Site : No keyboard_arrow_down"
+    ]
+   },
+   "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ],
+   "api_4xx5xx": [],
+   "bridge_errors": 0
+  },
+  "38886": {
+   "case": "C38886",
+   "step": 2,
+   "search": {
+    "toggleFound": true,
+    "inputFound": true,
+    "typed": true,
+    "value": "Aagate"
+   },
+   "searchedUrl": "https://sv8785.qa.shopview.com/workorders?tab=all&search=Aagate",
+   "searchedRows": {
+    "tbody": 33,
+    "cards": 0,
+    "emptyStateVisible": false
+   },
+   "numbersBeforeSort": [
+    "S2-15591",
+    "S2-12888",
+    "S2-14846",
+    "S2-11498",
+    "S2-13145",
+    "S2-15017",
+    "S2-13455"
+   ],
+   "customerColumnBefore": [
+    null,
+    "Aagate Landscaping",
+    "Aagate Landscaping",
+    "Aagate Landscaping",
+    "Aagate Landscaping",
+    "Aagate Landscaping"
+   ],
+   "afterSort": {
+    "url": "https://sv8785.qa.shopview.com/workorders?tab=all&search=Aagate",
+    "searchBoxValue": "Aagate",
+    "rows": {
+     "tbody": 33,
+     "cards": 0,
+     "emptyStateVisible": false
+    },
+    "numbers": [
+     "S2-9955",
+     "S2-10094",
+     "S2-10112",
+     "S2-10251",
+     "S2-10536",
+     "S2-10869",
+     "S2-11165"
+    ]
+   },
+   "sortActuallyChangedOrder": true,
+   "searchSurvivedSort": true,
+   "paginationHunt": {
+    "qTableBottom": [],
+    "qPagination": [],
+    "rowsPerPageText": false,
+    "totalRowsRendered": 33,
+    "scrolledTo": 27,
+    "docHeight": 1107,
+    "ariaNextish": [],
+    "iconNextish": [],
+    "testIdsMentioningPage": [
+     "page_search_input",
+     "page_search_clear"
+    ],
+    "bodyTail": "SNEEC705471\ncontent_copy\n\t\n92%\n\tLauren Knight\tUnassigned\t\t7\t$2,620.38\tJan 22, 2026\n\nlocation_on\n\t\nPaid\n\t—\tS2-12779\t\nAagate Landscaping\n\t\nCase 580sn\n\tTH412\t\nJJGN58SNEEC705471\ncontent_copy\n\t\n76%\n\tKimberly Barnes\tUnassigned\t\t2\t$1,027.54\tJan 23, 2026\n\n\t$51,547.49\n"
+   },
+   "lazyLoadCheck": {
+    "rowsBefore": 33,
+    "rowsAfterSecondScroll": 33,
+    "searchStillApplied": "Aagate"
+   },
+   "bridge_errors": 0
+  },
+  "38886-step5": {
+   "case": "C38886",
+   "step": 5,
+   "note": "fresh chromium process and profile, same account",
+   "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+   "urlCarriesSearch": false,
+   "inputPresentBeforeToggle": false,
+   "toggleClicked": true,
+   "searchBoxValueAfterOpening": {
+    "value": "",
+    "placeholder": "Type to search"
+   },
+   "rows": {
+    "tbody": 33,
+    "cards": 0,
+    "emptyStateVisible": false
+   }
+  }
+ }
+}
