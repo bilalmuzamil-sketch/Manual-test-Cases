@@ -6288,6 +6288,133 @@ deliver the 7-tab management report.
     branch is never declared final, and 60(d)'s bar on the blanket caveat**), 61 (an automated suite
     monitors what it can see; the rest is what column 7 itemises) and 66 (**the question sheet is sent
     WITH this report, once it says everything else is done**).
+68. **A BLOCKER MUST BE PROVED, AND IT BLOCKS ONLY WHAT IT ACTUALLY BLOCKS — decompose the work,
+    prove the blocker is real and total, and clear it yourself before escalating it (all projects,
+    and all future projects).**
+    USER DIRECTIVE (2026-08-12, verbatim, his typing preserved exactly as he wrote it because Rule 25
+    applies to his instructions as it does to a spec): *"Regarding this mistake make a rule to avoid
+    making similar mistake."*
+    **THE MISTAKE THIS RULE EXISTS FOR, STATED PLAINLY SO THE RULE HAS A SPINE — AND IT WAS OURS.**
+    Across the Filters work of 12 August, **23 cases were reported as remaining and 14 of them were
+    classified "waiting on Branko" and treated as untouchable. THEY WERE NOT.** Branko's missing
+    Parts/Reports product write-up leaves those cases' **EXPECTED BEHAVIOUR** unsourced — it does
+    **NOT** prevent verifying that **a tester can execute their preconditions and steps**, which is
+    precisely what the QA lead had asked for (Rule 9's runnability half). **ROUGHLY 60% OF A REPORTED
+    REMAINDER WAS SELF-INFLICTED.**
+    Evidence, both sides of it: the claim is
+    `build/filters/finish4-2026-08-12/COMPLETION-REPORT.md` §7, groups (a) **10 cases** — C38882,
+    C38904, C38905, C38906, C38907, C38908, C38909, C38910, C38911, C43562 — and (b) **4 cases** —
+    C29559, C29609, C29610, C29612. The correction is the next pass, which **walked the Status-chip
+    four** (commit `e882d1c6`) and **all 14 Parts/Reports surfaces** (commit `b3e3aeb6`), with the
+    probe evidence committed alongside. **The blocker was real about the VERDICT and false about the
+    RUNNABILITY, and nobody had tested which.**
+    **⚠️ HONEST SCOPE OF THAT EVIDENCE: the commits prove the surfaces and the four were WALKED. The
+    corrected per-case write-up was still in flight when this rule was recorded, so this entry does
+    NOT claim the 14 are closed** — only that they were **never unwalkable**, which is the whole
+    point (Rule 12 — a claim carries only what was observed).
+    **AND IT IS A PATTERN, NOT AN INCIDENT — TWO MORE OF THE SAME SHAPE, THE SAME DAY. One example
+    reads as bad luck; three read as a habit.**
+    **· (ii) A COST WAS TREATED AS A WALL.** **[C29581](https://shopview.testrail.io/index.php?/cases/view/29581)**
+    and **[C29588](https://shopview.testrail.io/index.php?/cases/view/29588)** were held because they
+    need a **staff record deactivated**, and such an edit **destroys the session of every holder**
+    (`build/filters/finish3-2026-08-12/DIVERGENCES.md` and `finish4`'s §7(d), which records them as
+    *"runnable; they are simply not runnable by us"*). **The destruction is TRUE. The conclusion did
+    not follow.** That is a **SEQUENCING problem, not a wall**: do everything else that needs the
+    session first, commit it, then make the edit **last** and accept that the session ends. **The cost
+    was being AVOIDED rather than SCHEDULED.**
+    **· (iii) AN ASK REACHED THE QA LEAD THAT SHOULD NEVER HAVE REACHED HIM.**
+    `build/schedule/verify-final-2026-08-12/DIVERGENCES.md` §A escalated *"three role assignments"* as
+    the thing that would unblock **ten** Schedule cases — when **Standing Rules 5, 14 and 26 already
+    authorise creating and assigning roles ourselves**, and his own standing words are *"do whatever
+    you want to do with data seeding/changing/editing in the QA branch."*
+    **THE NEXT PASS DID ATTEMPT IT, AND THAT IS THE INSTRUCTIVE PART** — it is written up at
+    `build/schedule/finish-2026-08-12/DIVERGENCES.md` §A under the heading *"I tried to unblock them
+    myself, and I can tell you exactly why it cannot be done from here"*, opening: **"This section
+    replaces the previous pass's 'three role assignments would fix it'. That ask was right about the
+    goal and wrong about the mechanism."** Attempting it **turned a vague ask into a precise one** —
+    a **role-definition** edit invalidates every holder's session **one way, and it does not come back
+    when the permissions are restored**, so the correct ask is *"create the users, give them their
+    permissions, and only THEN sign each one in and send the cookies — configure first, mint
+    second."*
+    **⚠️ AND THAT ATTEMPT COST THE TECHNICIAN SESSION, WHICH IS REQUIREMENT (4) FAILING IN THE OTHER
+    DIRECTION AND IS RECORDED RATHER THAN TIDIED AWAY.** Attempting it was **right** (Rules 5/14/26);
+    doing it **before** everything else needing that session was finished was **wrong**. **So the two
+    halves of this rule are not in tension — (3) says clear it yourself, (4) says schedule the
+    destructive part last. Instance (ii) breached (4) by never doing it; instance (iii) breached (4)
+    by doing it first.**
+    **🔴 WHAT THE RULE REQUIRES — SIX THINGS, ALL CHECKABLE, BECAUSE A RULE NOBODY CAN FAIL IS A RULE
+    NOBODY FOLLOWS:**
+    **(1) NAME WHAT THE BLOCKER ACTUALLY BLOCKS — DECOMPOSE THE WORK AND BLOCK ONLY THE PART THAT IS
+    GENUINELY BLOCKED.** A missing PO answer blocks the **VERDICT**, not the **RUNNABILITY**. A
+    missing permission blocks **ONE STEP**, not the whole case. A missing ticket number blocks the
+    **MARKER**, not the walk. **"Blocked" is not a property of a case — it is a property of a
+    QUESTION about that case**, and a case usually raises several. **The tell that this step was
+    skipped: a blocked item whose reason is a person's name.**
+    **(2) PROVE THE BLOCKER IS REAL *AND TOTAL* BEFORE RECORDING IT — the same standard Rule 12 sets
+    for any absence.** *"Waiting on X"* asserted without testing what can still be done is an
+    **INFERENCE, not an observation**, and it is exactly the class of claim Rule 12 forbids. **The
+    checkable form: state what was attempted, what it returned, and what remained possible.** *"We
+    could not see a way"* is an assumption; *"we tried A, B and C and here is what each returned"* is
+    a measurement.
+    **(3) CHECK IT IS NOT SELF-SERVICEABLE FIRST (Rules 5, 14 and 26).** Seeding data, creating
+    roles, creating users, switching location, driving the API where the UI resists — **all ours to
+    do.** The QA lead's standing words are the test: ***"there is nothing like 'require seeding data'
+    — you can make everything in the build; do not find an excuse to keep yourself blocked."***
+    **Rule 14's self-seed playbook is the checklist**, and it must genuinely be worked before the word
+    "blocked" is written down.
+    **(4) A COST IS NOT A BLOCKER — IT IS A SCHEDULING DECISION.** Where an action is **possible but
+    destructive** (it ends a session, consumes a one-way resource, dirties an environment state),
+    the answer is **DO IT LAST, AFTER COMMITTING EVERYTHING THAT DEPENDS ON WHAT IT DESTROYS** — not
+    "do not do it". **Order the pass around the destructive step; never let the destructive step
+    delete the pass.** Both failure directions are live examples above: **never doing it** (ii) and
+    **doing it first** (iii).
+    **(5) STATE THE RESIDUAL EXPLICITLY — WHAT REMAINS POSSIBLE UNDER THE BLOCKER, AND WHAT IS
+    GENUINELY IMPOSSIBLE.** **A blocked item that never names what could still be done is not a
+    report, it is an excuse.** The required shape is two lines, not one: ***"Blocked for X. Still
+    possible under it: Y. Genuinely impossible until X clears: Z."*** **A blocker with an empty
+    residual is a claim, and it must be provable under (2).**
+    **(6) ESCALATE ONLY WHAT IS TRULY HIS (Rule 62's "prepare it fully, then stop at the button"
+    shape).** Before a blocker is put to the QA lead, **confirm we cannot clear it ourselves** — and
+    where it *is* his, it carries **Rule 48's five fields** and states **what we already tried**.
+    **AN ASK THAT SHOULD NOT HAVE BEEN MADE COSTS HIM TIME AND COSTS US CREDIBILITY** — and it costs
+    more than that, because **the next ask, the one that really is his, is read against the last
+    one.**
+    **RATIONALE, IN HIS TERMS, BECAUSE THE COST LANDS ON HIM AND NOT ON US.** He is **short of time
+    before a release**, and **A FALSELY-BLOCKED CASE IS WORSE THAN AN UNBLOCKED ONE** — an unblocked
+    case is visibly unfinished and someone picks it up; **a falsely-blocked case LOOKS LIKE SOMEONE
+    ELSE'S PROBLEM AND STOPS BEING WORKED.** It also **migrates**: it lands in the Rule-67 completion
+    table's *"what is left"* column, then in the outstanding register, then in the ask he forwards to
+    a PO — **gathering authority at every hop while nobody re-tests the premise.** By the time it
+    reaches Branko it is a fact. **The asymmetry is the argument: testing a blocker costs minutes and
+    is fully recoverable; recording a false one costs a case for the rest of the release AND spends
+    the PO's patience on a question that did not need asking.**
+    **AND NOTE WHERE THIS FAILURE SURFACES, WHICH IS WHY IT WENT UNCAUGHT: Rule 67's column 7 asks
+    "what is left" and Rule 36's register asks "what are we waiting on" — BOTH ARE ANSWERED HONESTLY
+    BY A FALSELY-BLOCKED ITEM.** Neither rule asks *"and did you prove it?"*. **Rule 68 is that
+    question**, and it is asked **before** the item is written into either.
+    Ties to Standing Rules 5 (self-service test data and roles — requirement (3)'s authority), 6
+    (nothing written to a system of record unasked — a blocker is never cleared by writing something
+    we were not authorised to write), 7 (the escalation is in plain layman words), 8 (a blocked item
+    names its cases with C-id and link), 9 (**the decomposition that requirement (1) turns on:
+    RUNNABILITY comes from the build, the EXPECTATION from the documents — so a missing document
+    blocks one and not the other**), 12 (**observed, never inferred — requirement (2) is Rule 12
+    applied to the word "blocked"**), 14 (**seed it rather than declare blocked; its playbook is
+    requirement (3)'s checklist**), 17 (complete data in and out — a remainder is itemised and
+    honest, which requires it to be true as well as complete), 26 (roles are ours to reset and
+    assign), 27 (a blocker cleared once is recorded in the playbook so it is never re-hit), 36 (an
+    outstanding item must be **real** before it is registered), 45 (the outside-in lenses — an
+    outsider is exactly who spots that a "blocked" item was runnable), 46 (**a deliberate hold is
+    RECORDED with its evidence, so it can never look like a miss — and, in reverse, an unproved
+    blocker must never be able to look like a deliberate hold**), 48 (**the five fields an item
+    blocked on the QA lead carries — requirement (6)**), 49 (a queue row's trigger is the thing it is
+    actually waiting on, which requires knowing what that thing really is), 57 and 58 (**a missing or
+    ambiguous source blocks the ASSERTION and is never resolved from the build — the canonical case
+    of a blocker that is real but partial**), 62 (**prepare it fully and stop at the button; and the
+    creation hold is a genuine blocker on FILING, never on walking a case**), 63 (where clearing a
+    blocker would cut across a recorded rule or a brief, surface it BEFORE the work rather than
+    recording a block), 64 (a case held for an open source question is HELD, not deleted — the same
+    decomposition) and 67 (**whose "what is left" column is exactly where this failure surfaces, and
+    which this rule is the precondition of**).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
@@ -6726,6 +6853,25 @@ regression / bug-fix re-testing.
   behaviour verdict belonging to the tester."** **Every figure derived LIVE at report time with the read
   time stamped on the table** (counts have moved mid-pass), and **any column short of 100% says plainly
   why** (Rule 60(d) bars the blanket caveat).
+- **A BLOCKER IS PROVED BEFORE IT IS WRITTEN DOWN, AND IT BLOCKS ONLY WHAT IT ACTUALLY BLOCKS
+  (Standing Rule 68, added 2026-08-12 — QA lead, verbatim: *"Regarding this mistake make a rule to
+  avoid making similar mistake."*).** Before any item is recorded as blocked — in a Rule-67 table's
+  *"what is left"* column, in the outstanding register, or in an ask to him — **(1) name what the
+  blocker actually blocks** (a missing PO answer blocks the **verdict**, not the **runnability**; a
+  missing permission blocks **one step**, not the case) · **(2) prove it is real AND total** by
+  stating what was attempted and what each attempt returned — *"waiting on X"* untested is an
+  **inference**, not an observation (Rule 12) · **(3) check it is not self-serviceable first** —
+  seeding data, creating roles and creating users are **ours** (Rules 5/14/26) · **(4) treat a cost
+  as a SCHEDULING decision, not a wall** — a destructive step (one that ends a session or consumes a
+  one-way resource) is done **LAST, after committing everything that depends on it**, never skipped
+  and never done first · **(5) state the residual explicitly** — *"Blocked for X. Still possible
+  under it: Y. Genuinely impossible until X clears: Z."* — **a blocked item that never names what
+  could still be done is not a report, it is an excuse** · **(6) escalate only what is truly his**,
+  with Rule 48's five fields and what we already tried. **A falsely-blocked case is WORSE than an
+  unblocked one: it looks like someone else's problem and stops being worked**, and it gathers
+  authority at every hop while nobody re-tests the premise. On 12 August **14 of 23 reported-remaining
+  Filters cases were classified "waiting on Branko" and were walkable all along** — roughly 60% of a
+  reported remainder, self-inflicted.
 - **Blocked-revisit loop (standing, all projects):** tester-marked-**Blocked** cases are a
   standing intake queue — if a case seems off/confusing/wrong during execution the manual
   tester marks it Blocked (never skips, never guesses); EVERY Blocked case then gets a manual
