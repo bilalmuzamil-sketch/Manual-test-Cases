@@ -172,8 +172,16 @@ async function clearAll(page) {
 
 /** How many options are ticked right now, by aria-checked. */
 async function tickedCount(page) {
-  return page.$$eval(OPT, els => els.filter(e => e.getAttribute('aria-checked') === 'true'
-    || !!e.querySelector('.q-checkbox__inner--truthy')).map(e => e.getAttribute('data-test-id')));
+  // TWO DIFFERENT MARKUPS on this build, both proven from outerHTML:
+  //  * STATUS / ASSET  -> q-checkbox, role=checkbox, aria-checked flips false->true
+  //  * CUSTOMER / TECH / ADVISOR -> q-item, role=listitem, NO aria-checked; selection
+  //    appends a `q-item__section--side` holding a check <i>. An aria-only detector
+  //    returns [] for every row here and makes the check unable to fail.
+  return page.$$eval(OPT, els => els.filter(e =>
+    e.getAttribute('aria-checked') === 'true'
+    || !!e.querySelector('.q-checkbox__inner--truthy')
+    || !!e.querySelector('.q-item__section--side i')
+  ).map(e => e.getAttribute('data-test-id')));
 }
 
 /** Click 'Clear Selection' inside the open dropdown. */
@@ -194,13 +202,17 @@ async function clearSelection(page) {
 async function serverCount(page, filters = []) {
   return page.evaluate(async ({ api, fs }) => {
     const p = new URLSearchParams();
-    p.set('pagination[rowsPerPage]', '1'); p.set('pagination[page]', '1');
+    // The envelope is {data:{pagination,work_orders}} and pagination carries NO row total
+    // (only totalWorkOrderPrice), so a total has to be counted from a wide page.
+    p.set('pagination[rowsPerPage]', '500'); p.set('pagination[page]', '1');
     fs.forEach((f, i) => { p.set(`filters[${i}][field]`, f.field); p.set(`filters[${i}][value]`, f.value); });
     p.set('search', ''); p.set('showMyWorkOrders', '0');
     const r = await fetch(`${api}/api/work-orders?${p.toString()}`, { headers: { accept: 'application/json' } });
     let j = null; try { j = await r.json(); } catch (_) {}
-    return { http: r.status, total: j?.meta?.total ?? j?.pagination?.rowsNumber ?? j?.total ?? null,
-             returned: Array.isArray(j?.data) ? j.data.length : null, query: p.toString() };
+    const wos = j?.data?.work_orders;
+    return { http: r.status, total: Array.isArray(wos) ? wos.length : null,
+             capped: Array.isArray(wos) ? wos.length >= 500 : null,
+             totalPrice: j?.data?.pagination?.totalWorkOrderPrice ?? null, query: p.toString() };
   }, { api: API, fs: filters });
 }
 
