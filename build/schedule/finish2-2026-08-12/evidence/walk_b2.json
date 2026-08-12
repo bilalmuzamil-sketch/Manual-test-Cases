@@ -1,0 +1,262 @@
+{
+ "29929": {
+  "steps": [
+   {
+    "step": "1 find a department header row",
+    "seen": "30 lanes; group headers: [\"WORK ORDER STATUS\",\"SERVICE/PARTS\",\"SERVICE\"]"
+   },
+   {
+    "step": "2 click the header \"WORK ORDER STATUS\" to collapse its group",
+    "seen": "clicked header itself; lanes 30 -> 30"
+   },
+   {
+    "step": "3 click again to expand",
+    "seen": "lanes back to 30"
+   }
+  ],
+  "verdict": "PARTIAL - the click landed but the lane count did not change (30 -> 30)",
+  "at": "2026-08-12T07:25:56.511Z"
+ },
+ "29935": {
+  "steps": [
+   {
+    "step": "1 look at today's date in the mini calendar",
+    "seen": "today: {\"d\":\"2026-08-12\",\"bg\":\"rgb(37, 124, 255)\",\"color\":\"rgb(255, 255, 255)\",\"weight\":\"600\",\"cls\":\"mini-calendar__day mini-calendar__day--selected mini-calendar__day--to\"}"
+   },
+   {
+    "step": "2 compare with an ordinary date, and note which dates are tinted",
+    "seen": "plain: [{\"d\":\"2026-07-27\",\"bg\":\"rgba(0, 0, 0, 0)\",\"color\":\"rgb(154, 164, 178)\",\"weight\":\"500\",\"cls\":\"mini-calendar__day mini-calendar__day--outside\"},{\"d\":\"2026-07-28\",\"bg\":\"rgba(0, 0, 0, 0)\",\"color\":\"rgb(154, 164, 178)\",\"weight\":\"500\",\"cls\":\"mini-calendar__day mini-calendar__day--outside\"}] ; tinted: [{\"d\":\"2026-08-12\",\"bg\":\"rgb(37, 124, 255)\",\"color\":\"rgb(255, 255, 255)\",\"weight\":\"600\",\"cls\":\"mini-calendar__day mini-calendar__day--selected mini-calendar__day--to\"}]"
+   },
+   {
+    "step": "3 hover a date",
+    "seen": "{\"bg\":\"rgb(248, 250, 252)\",\"color\":\"rgb(18, 25, 38)\",\"cls\":\"mini-calendar__day\"}"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:25:51.688Z"
+ },
+ "29939": {
+  "steps": [
+   {
+    "step": "1 look at the list before searching",
+    "seen": "21 cards"
+   },
+   {
+    "step": "2 type each kind of term into Search work orders",
+    "seen": "work order number \"12876\" -> 1 card(s) [\"S8685-12876 1 line · 1h Est. Pamill Paving 713 AC Alicia Campbell chevron_right Approved\"] | customer \"Goport\" -> 1 card(s) [\"S8685-13053 2 lines · 3.5h Est. Goport Energy AC Alicia Campbell chevron_right Approved\"] | unit \"713\" -> 2 card(s) [\"S8685-12876 1 line · 1h Est. Pamill Paving 713 AC Alicia Campbell chevron_right Approved\"] | technician \"Alicia\" -> 8 card(s) [\"S8685-12876 1 line · 1h Est. Pamill Paving 713 AC Alicia Campbell chevron_right Approved\"] | nonsense control \"zzzxq999\" -> 0 card(s) []"
+   },
+   {
+    "step": "3 clear it",
+    "seen": "back to 21 cards"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:23:32.537Z"
+ },
+ "29943": {
+  "steps": [
+   {
+    "step": "1 open the Filters panel",
+    "seen": "panel reads \"FILTERS Unassigned 22 Assigned 71 Approved 92 Declined 0 In Progress 0 Ready for Review 1\""
+   },
+   {
+    "step": "2 choose Unassigned",
+    "seen": "clicked \"Unassigned\""
+   },
+   {
+    "step": "3 look at the list",
+    "seen": "21 cards -> 21 cards; filter button now reads \"filter_list Filters\""
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:23:38.187Z"
+ },
+ "29947": {
+  "steps": [
+   {
+    "step": "1 apply a filter",
+    "seen": "Unassigned applied -> 21 cards"
+   },
+   {
+    "step": "2 with it still on, type a search term",
+    "seen": "\"Goport\" -> 0 card(s) []"
+   },
+   {
+    "step": "3 check both are still in force",
+    "seen": "filter control still reads \"filter_list Filters\""
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:23:42.599Z"
+ },
+ "29950": {
+  "steps": [
+   {
+    "step": "1 open a work order in the sidebar",
+    "seen": "expanded \"S8685-13014 6 lines · 8.7h Est. Fuline Enterprises G30 AC Alicia Campb\""
+   },
+   {
+    "step": "2 read the lines listed and their statuses",
+    "seen": "\"chevron_left S8685-13014 · 6 lines Fuline Enterprises search All 6 Unscheduled 0 drag_indicator Diagnose - Oil Leak Est. 1h AC Alicia Campbell +5 Complete drag_indicator Diagnose - Low coolant Est. 0.7h AC Alicia Campbell +3 Complete drag_indicator Diagnose - Right side wheel seal/brake leak Est. 0.8h AC Alicia Campbell +3 Complete drag_indicator Replace - Hydraulic lines Est. 3h AC Alicia Campbell +1 Complete drag_indicator Replace - Engine air filter Est. 0.3h AC Alicia Campbell +1 Complete drag_indicator Replace front wheel seal Est. 3h AC Alicia Campbell +1 Authorized\""
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:23:48.084Z"
+ },
+ "29951": {
+  "steps": [
+   {
+    "step": "1 look at one line row",
+    "seen": "\"chevron_left S8685-13014 · 6 lines Fuline Enterprises search All 6 Unscheduled 0 drag_indicator Diagnose - Oil Leak Est. 1h AC Alicia Campbell +5 Complete drag_indicator Diagnose - Low coolant Est. 0.7h AC Alicia Campbell +3 Complete drag_indicator Diagnose - Right side wheel seal/brake leak Est. 0.8h AC Alicia Campbell +3 Complete drag_indicator Replace - Hydraulic lines Est. 3h AC Alicia Campbell +1 Complete drag_indicator Replace - Engine air filter Est. 0.3h AC Alicia Campbell +1 Complete drag_indicator Replace front wheel seal Est. 3h AC Alicia Campbell +1 Authorized\""
+   },
+   {
+    "step": "2 note title, hours, technicians and a drag handle",
+    "seen": "visible test ids inside the sidebar: {\"button_sidebar_lines_back\":1,\"text_sidebar_lines_customer\":1,\"input_sidebar_line_search\":1,\"button_sidebar_line_scope_all\":1,\"button_sidebar_line_scope_unscheduled\":1,\"sidebar_line_list\":1,\"sidebar_line_row\":6,\"sidebar_line_status_b6f3a900-d89b-471f-be54-1185413c2e1e\":1,\"sidebar_line_status_c6028bad-8037-4651-8fbd-065539184fb1\":1,\"sidebar_line_status_bca5c4b6-2673-4fe0-bf1c-0633b67e3479\":1,\"sidebar_line_status_85faed36-d9b3-4a08-bfc0-49747a34a7bd\":1,\"sidebar_line_status_2716e353-25ff-45e6-9818-2fe3c019daa2\":1,\"sidebar_line_status_07d01fc3-4eb1-4429-a384-2bd04655ed80\":1}"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:23:48.084Z"
+ },
+ "29952": {
+  "steps": [
+   {
+    "step": "1 look for a line with no technician assigned",
+    "seen": "\"chevron_left S8685-13014 · 6 lines Fuline Enterprises search All 6 Unscheduled 0 drag_indicator Diagnose - Oil Leak Est. 1h AC Alicia Campbell +5 Complete drag_indicator Diagnose - Low coolant Est. 0.7h AC Alicia Campbell +3 Complete drag_indicator Diagnose - Right side wheel seal/brake leak Est. 0.8h AC Alicia Campbell +3 Complete drag_indicator Replace - Hydraulic lines Est. 3h AC Alicia Campbell +1 Complete drag_indicator Replace - Engine air filter Est. 0.3h AC Alicia Campbell +1 Complete drag_indicator Replace front wheel seal Est. 3h AC Alicia Campbell +1 Authorized\""
+   },
+   {
+    "step": "2 look for a 'Needs techs' badge on it",
+    "seen": "no 'Needs techs' text anywhere in the drill-down as it stands"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:23:48.085Z"
+ },
+ "29953": {
+  "steps": [
+   {
+    "step": "1 open a work order drill-down",
+    "seen": "opened \"S8685-13014 6 lines · 8.7h Est. Fuline Enterprises\""
+   },
+   {
+    "step": "2 type into 'Search lines'",
+    "seen": "a line title word \"coolant\" -> \"chevron_left S8685-13014 · 6 lines Fuline Enterprises search cancel All 1 Unscheduled 0 drag_indicator Diagnose - Low coolant Est. 0.7h AC Alicia Camp\" | a customer name (should NOT match) \"Fuline\" -> \"chevron_left S8685-13014 · 6 lines Fuline Enterprises search cancel All 0 Unscheduled 0 No lines match this filter.\" | nonsense control \"zzzxq999\" -> \"chevron_left S8685-13014 · 6 lines Fuline Enterprises search cancel All 0 Unscheduled 0 No lines match this filter.\""
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:26:45.892Z"
+ },
+ "29991": {
+  "steps": [
+   {
+    "step": "1 find a shift made from one work order line",
+    "seen": "{\"text\":\"Pamill Paving 713 Replace - Rear ramp handles\",\"icons\":[]}"
+   },
+   {
+    "step": "2 read what the block shows",
+    "seen": "customer / unit / line name are all present in the text above"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:24:10.141Z"
+ },
+ "29992": {
+  "steps": [
+   {
+    "step": "1 find a whole-order or multi-line shift",
+    "seen": "{\"text\":\"Fuline Enterprises G30 6 Lines\",\"icons\":[]}"
+   },
+   {
+    "step": "2 read the line count wording on the block",
+    "seen": "block reads \"Fuline Enterprises G30 6 Lines\""
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:24:10.141Z"
+ },
+ "29995": {
+  "steps": [
+   {
+    "step": "1 read every icon on each shift block",
+    "seen": "[[],[],[\"warning_amber\"],[\"warning_amber\"],[\"warning_amber\"],[\"warning_amber\"],[\"warning_amber\"],[\"warning_amber\"],[\"warning_amber\"],[\"warning_amber\"]]"
+   },
+   {
+    "step": "2 check none is anything other than the conflict icon",
+    "seen": "distinct icons across 10 blocks: [\"warning_amber\"]"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:24:10.142Z"
+ },
+ "30043": {
+  "steps": [
+   {
+    "step": "1 open the Filter & display menu",
+    "seen": "heading \"FILTER & DISPLAY\"; items [\"FILTER & DISPLAY\",\"Service\",\"Work order status\",\"Service/Parts\",\"My Shifts\",\"VIN Number\"]"
+   },
+   {
+    "step": "2 turn one department group off",
+    "seen": "toggled \"Service\"; lanes 30 -> 9; labels now [\"WORK ORDER STATUS\",\"BM Bilal Muzamil AB\",\"AS Admin ShopView Admin\",\"SERVICE/PARTS\",\"MT MQ Test Tech Qamar MQ Test Tech\",\"BM Bilal Muzamil AB\"]"
+   },
+   {
+    "step": "3 turn it back on",
+    "seen": "lanes back to 30"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:26:05.947Z"
+ },
+ "30045": {
+  "steps": [
+   {
+    "step": "1 open Filter & display",
+    "seen": "items [\"FILTER & DISPLAY\",\"Service\",\"Work order status\",\"Service/Parts\",\"My Shifts\",\"VIN Number\"]"
+   },
+   {
+    "step": "2 toggle 'VIN Number' and read the shift blocks",
+    "seen": "blocks showing a 17-char VIN: 0/44 -> 27/44; sample after [\"Fuline Enterprises G30 12-06696 6 Lines\",\"Pamill Paving 713 3HAEUMMP1NL291283 Replace - Rear ramp handles\"]"
+   },
+   {
+    "step": "3 put it back",
+    "seen": "toggle restored"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:26:16.215Z"
+ },
+ "30050": {
+  "steps": [
+   {
+    "step": "1 open View options",
+    "seen": "heading \"VIEW OPTIONS\"; items [\"VIEW OPTIONS\",\"Business Hours\",\"Tech Hours\",\"Capacity Planning\",\"Events\",\"Show Saturday\",\"Show Sunday\"]"
+   },
+   {
+    "step": "2 toggle 'Tech Hours' and read the technician rows",
+    "seen": "before [\"BM Bilal Muzamil AB\",\"AS Admin ShopView Admin\",\"SERVICE/PARTS\"] -> after [\"BM Bilal Muzamil AB\",\"AS Admin ShopView Admin\",\"SERVICE/PARTS\"]"
+   },
+   {
+    "step": "3 put it back",
+    "seen": "toggle restored"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:26:25.607Z"
+ },
+ "30051": {
+  "steps": [
+   {
+    "step": "1 open View options",
+    "seen": "items [\"VIEW OPTIONS\",\"Business Hours\",\"Tech Hours\",\"Capacity Planning\",\"Events\",\"Show Saturday\",\"Show Sunday\"]"
+   },
+   {
+    "step": "2 toggle 'Show Saturday' and read the day columns",
+    "seen": "[] -> []"
+   },
+   {
+    "step": "3 put it back",
+    "seen": "columns back to []"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:26:36.040Z"
+ }
+}

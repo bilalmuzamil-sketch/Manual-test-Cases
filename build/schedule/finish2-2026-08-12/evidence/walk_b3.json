@@ -1,0 +1,222 @@
+{
+ "29929": {
+  "steps": [
+   {
+    "step": "1 find a department header row in the grid",
+    "seen": "header \"WORK ORDER STATUS\""
+   },
+   {
+    "step": "2 look for a collapse control on it (chevron, aria-expanded, pointer cursor)",
+    "seen": "cursor \"auto\"; children [{\"t\":\"WORK ORDER STATUS\",\"cls\":\"schedule-lane__stack\",\"tag\":\"SPAN\"},{\"t\":\"WORK ORDER STATUS\",\"cls\":\"schedule-lane__title\",\"tag\":\"SPAN\"}]; ancestors [{\"tag\":\"DIV\",\"cls\":\"schedule-lane schedule-lane--department\",\"role\":null,\"exp\":null,\"cursor\":\"auto\"},{\"tag\":\"SPAN\",\"cls\":\"fc-datagrid-cell-main\",\"role\":null,\"exp\":null,\"cursor\":\"auto\"},{\"tag\":\"DIV\",\"cls\":\"fc-datagrid-cell-cushion fc-scrollgrid-sync-inner\",\"role\":null,\"exp\":null,\"cursor\":\"auto\"},{\"tag\":\"DIV\",\"cls\":\"fc-datagrid-cell-frame\",\"role\":null,\"exp\":null,\"cursor\":\"auto\"}]"
+   },
+   {
+    "step": "3 clicking the header (both this pass and the last) left the lane count at 30",
+    "seen": "no lane rows were hidden by the click"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:29:13.103Z"
+ },
+ "30009": {
+  "steps": [
+   {
+    "step": "1 open a shift and find the date and time controls",
+    "seen": "[{\"tid\":\"select_shift_detail_start_time\",\"ph\":null,\"val\":\"12:00 PM\",\"type\":\"search\"},{\"tid\":\"select_shift_detail_end_time\",\"ph\":null,\"val\":\"8:43 PM\",\"type\":\"search\"}]"
+   },
+   {
+    "step": "2 open a time picker and read the increments it offers",
+    "seen": "[\"check 12:00 AM\\ncheck 12:15 AM\\ncheck 12:30 AM\\ncheck 12:45 AM\\ncheck 1:00 AM\\ncheck 1:15 AM\\ncheck 1:30 AM\\ncheck 1:45 AM\\ncheck 2:00 AM\\ncheck 2:15 AM\\ncheck 2:30 AM\\ncheck 2:45 AM\\ncheck 3:00 AM\\ncheck 3:15 AM\\ncheck 3:30 AM\\ncheck 3:45 AM\\ncheck 4:00 AM\\ncheck 4:15 AM\\ncheck 4:30 AM\\ncheck 4:45 AM\\ncheck 5:00 AM\\ncheck 5:15 AM\\ncheck 5:30 AM\\ncheck 5:45 AM\\ncheck 6:00 AM\\ncheck 6:15 AM\\ncheck 6:30 AM\\ncheck 6:45 AM\\ncheck 7:00 AM\\ncheck 7:15 AM\\ncheck 7:30 AM\\ncheck 7:45 AM\\ncheck 8:00 AM\\ncheck 8:15 AM\\ncheck 8:30 AM\\ncheck 8:45 AM\\ncheck 9:00 AM\\ncheck 9:15 AM\\ncheck 9:30 AM\\ncheck 9:45 AM\\ncheck 10:00 AM\\ncheck 10:15 AM\\ncheck 10:30 AM\\ncheck 10:45 AM\\ncheck 11:00 AM\\ncheck 11:15 AM\\ncheck 11:30 AM\\ncheck 11:45 AM\\ncheck 12:00 PM\\ncheck 12:15 PM\\ncheck 12:30 PM\\ncheck 12:45 PM\\ncheck 1:00 PM\\ncheck 1:15 PM\\ncheck 1:30 PM\\ncheck 1:45 PM\\ncheck 2:00 PM\\ncheck 2:15 PM\\ncheck 2:30 PM\\ncheck 2:45 PM\\ncheck 3:00 PM\\ncheck 3:15 PM\\ncheck 3:30 PM\\ncheck 3:45 PM\\ncheck 4:00 PM\\ncheck 4:15 PM\\ncheck 4:30 PM\\ncheck 4:45 PM\\ncheck 5:00 PM\\ncheck 5:15 PM\\ncheck 5:30 PM\\ncheck 5:45 PM\\ncheck 6:00 PM\\ncheck 6:15 PM\\ncheck 6:30 PM\\ncheck 6:45 PM\\ncheck 7:00 PM\\ncheck 7:15 PM\\ncheck 7:30 PM\\ncheck 7:45 PM\\ncheck 8:00 PM\\ncheck 8:15 PM\\ncheck 8:30 PM\\ncheck 8:45 PM\\ncheck 9:00 PM\\ncheck 9:15 PM\\ncheck 9:30 PM\\ncheck 9:45 PM\\ncheck 10:00 PM\\ncheck 10:15 PM\\ncheck 10:30 PM\\ncheck 10:45 PM\\ncheck 11:00 PM\\ncheck 11:15 PM\\ncheck 11:30 PM\\ncheck 11:45 PM\",\"check 12:00 AM\",\"check 12:00 AM\",\"check 12:00 AM\",\"check 12:15 AM\",\"check 12:15 AM\",\"check 12:15 AM\",\"check 12:30 AM\",\"check 12:30 AM\",\"check 12:30 AM\"]"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:29:19.043Z"
+ },
+ "30010": {
+  "steps": [
+   {
+    "step": "1 open a shift block",
+    "seen": "clicked \"Fuline Enterprises G30 6 Lines\""
+   },
+   {
+    "step": "2 read the technician and the time-logged vs estimate progress",
+    "seen": "\"Fuline Enterprises Approved S-13014 · G30 12-06696 delete_outline close TIME LOGGED 7h 28m / 8h 43m SCHEDULED Mon, Aug 10, 2026 TIME arrow_drop_down – arrow_drop_down DEPARTMENT Service/Parts Work Order Lines 6 6 lines · 8h 43m 1 Diagnose - Oil Leak 1h Complete 2 Diagnose - Low coolant 40m Complete 3 Diagnose - Right side wheel seal/brake leak 45m Complete 4 Replace - Hydraulic lines 3h Complete 5 Replace - Engine air filter 18m Complete 6 Replace front wheel seal 3h Authorized blue expand_more \""
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:29:17.012Z"
+ },
+ "30011": {
+  "steps": [
+   {
+    "step": "1 open a shift block",
+    "seen": "clicked \"Fuline Enterprises G30 6 Lines\""
+   },
+   {
+    "step": "2 read the scheduled line list",
+    "seen": "\"Fuline Enterprises Approved S-13014 · G30 12-06696 delete_outline close TIME LOGGED 7h 28m / 8h 43m SCHEDULED Mon, Aug 10, 2026 TIME arrow_drop_down – arrow_drop_down DEPARTMENT Service/Parts Work Order Lines 6 6 lines · 8h 43m 1 Diagnose - Oil Leak 1h Complete 2 Diagnose - Low coolant 40m Complete 3 Diagnose - Right side wheel seal/brake leak 45m Complete 4 Replace - Hydraulic lines 3h Complete 5 Replace - Engine air filter 18m Complete 6 Replace front wheel seal 3h Authorized blue expand_more Notes add Add Note\""
+   },
+   {
+    "step": "3 check no money fields are shown",
+    "seen": "no currency symbol and no price/cost/total/amount wording anywhere in the modal"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:29:17.012Z"
+ },
+ "30012": {
+  "steps": [
+   {
+    "step": "1 open a shift",
+    "seen": "clicked \"Fuline Enterprises G30 6 Lines\""
+   },
+   {
+    "step": "2 look for an editable estimated-hours field",
+    "seen": "{\"inputs\":[{\"tid\":\"select_shift_detail_start_time\",\"val\":\"12:00 PM\",\"ro\":false,\"dis\":false},{\"tid\":\"select_shift_detail_end_time\",\"val\":\"8:43 PM\",\"ro\":false,\"dis\":false}],\"estTexts\":[]}"
+   }
+  ],
+  "verdict": "PARTIAL - the controls are recorded; typing a new value is a write and was not made",
+  "at": "2026-08-12T07:29:19.049Z"
+ },
+ "30014": {
+  "steps": [
+   {
+    "step": "1 open a shift that is flagged as conflicting",
+    "seen": "clicked \"Fuline Enterprises warning_amber G30 6 Lines\""
+   },
+   {
+    "step": "2 read the top of the modal for a conflict banner",
+    "seen": "\"Fuline Enterprises Approved S-13014 · G30 12-06696 delete_outline close TIME LOGGED 7h 28m / 8h 43m warning_amber Scheduling conflict Extends past business hours (3:00 PM) Adjust SCHEDULED Thu, Aug 13, 2026 TIME arrow_drop_down – arrow_drop_down DEPARTMENT Service/Parts Work Order Lines 6 6 lines · 8h 43m 1 Diagnose - Oil Leak 1h Complete 2 Diagnose - Low coolant 40m Complete 3 Diagnose - Right side wheel seal/brake leak 45m Complete 4 Replace - Hydraulic lines 3h Complete 5 Replace - Engine air filter 18m Complete 6 Replace front wheel seal 3h Authorized Cyan expand_more Notes add Add Note\""
+   },
+   {
+    "step": "3 look for an 'Adjust' control",
+    "seen": "an 'Adjust'-style control IS present"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:29:23.838Z"
+ },
+ "30029": {
+  "steps": [
+   {
+    "step": "1 look at everything that could be red: conflicts, overtime, capacity",
+    "seen": "{\"redElements\":[{\"tid\":\"button_schedule_conflicts\",\"color\":\"rgb(181, 71, 8)\",\"bg\":\"rgb(255, 250, 235)\",\"border\":\"rgb(254, 223, 137)\",\"txt\":\"warning_amber 35 conflicts\"}],\"overtime\":[],\"conflictPill\":{\"txt\":\"warning_amber 35 conflicts\",\"color\":\"rgb(181, 71, 8)\",\"bg\":\"rgb(255, 250, 235)\"}}"
+   },
+   {
+    "step": "2 check overtime is NOT red",
+    "seen": "no overtime element in this view (the OT tag renders in Day view; it read rgb(181, 71, 8), an amber-brown, not red)"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:29:33.801Z"
+ },
+ "30035": {
+  "steps": [
+   {
+    "step": "1 hover a conflicted shift",
+    "seen": "hovered \"Fuline Enterprises warning_amber G30 6 Lines\""
+   },
+   {
+    "step": "2 read the tooltip: icon, reason, colour",
+    "seen": "[{\"text\":\"Fuline Enterprises warning_amber G30 Thu, Aug 13, 2026 · 1:00 PM – 9:43 PM 6 lines · 8h 43m Diagnose - Oil Leak Diagnose - Low coolant Diagnose - Right side wheel seal/brake leak +3 more lines 7h 28m / 8h 43m warning_amber Extends past business hours\",\"color\":\"rgb(18, 25, 38)\",\"bg\":\"rgb(255, 255, 255)\",\"rect\":{\"x\":954,\"y\":477,\"w\":294,\"h\":280},\"inViewport\":true},{\"text\":\"Fuline Enterprises warning_amber G30 Thu, Aug 13, 2026 · 1:00 PM – 9:43 PM 6 lines · 8h 43m Diagnose - Oil Leak Diagnose - Low coolant Diagnose - Right side wheel seal/brake leak +3 more lines 7h 28m / 8h 43m warning_amber Extends past business hours\",\"color\":\"rgb(18, 25, 38)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":971,\"y\":492,\"w\":260,\"h\":250},\"inViewport\":true},{\"text\":\"Fuline Enterprises warning_amber\",\"color\":\"rgb(18, 25, 38)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":971,\"y\":492,\"w\":260,\"h\":18},\"inViewport\":true},{\"text\":\"warning_amber\",\"color\":\"rgb(247, 144, 9)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":1207,\"y\":493,\"w\":24,\"h\":16},\"inViewport\":true},{\"text\":\"G30\",\"color\":\"rgb(105, 117, 134)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":971,\"y\":514,\"w\":260,\"h\":18},\"inViewport\":true},{\"text\":\"Thu, Aug 13, 2026 · 1:00 PM – 9:43 PM\",\"color\":\"rgb(105, 117, 134)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":971,\"y\":534,\"w\":260,\"h\":18},\"inViewport\":true},{\"text\":\"\",\"color\":\"rgb(128, 128, 128)\",\"bg\":\"rgb(248, 250, 252)\",\"rect\":{\"x\":971,\"y\":560,\"w\":260,\"h\":1},\"inViewport\":true},{\"text\":\"6 lines · 8h 43m\",\"color\":\"rgb(18, 25, 38)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":971,\"y\":569,\"w\":260,\"h\":18},\"inViewport\":true},{\"text\":\"Diagnose - Oil Leak Diagnose - Low coolant Diagnose - Right side wheel seal/brake leak +3 more lines\",\"color\":\"rgb(18, 25, 38)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":971,\"y\":592,\"w\":260,\"h\":81},\"inViewport\":true},{\"text\":\"Diagnose - Oil Leak\",\"color\":\"rgb(105, 117, 134)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":971,\"y\":592,\"w\":260,\"h\":18},\"inViewport\":true},{\"text\":\"\",\"color\":\"rgb(105, 117, 134)\",\"bg\":\"rgb(154, 164, 178)\",\"rect\":{\"x\":971,\"y\":600,\"w\":3,\"h\":3},\"inViewport\":true},{\"text\":\"Diagnose - Oil Leak\",\"color\":\"rgb(105, 117, 134)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":980,\"y\":592,\"w\":251,\"h\":18},\"inViewport\":true},{\"text\":\"Diagnose - Low coolant\",\"color\":\"rgb(105, 117, 134)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":971,\"y\":613,\"w\":260,\"h\":18},\"inViewport\":true},{\"text\":\"\",\"color\":\"rgb(105, 117, 134)\",\"bg\":\"rgb(154, 164, 178)\",\"rect\":{\"x\":971,\"y\":621,\"w\":3,\"h\":3},\"inViewport\":true},{\"text\":\"Diagnose - Low coolant\",\"color\":\"rgb(105, 117, 134)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":980,\"y\":613,\"w\":251,\"h\":18},\"inViewport\":true},{\"text\":\"Diagnose - Right side wheel seal/brake leak\",\"color\":\"rgb(105, 117, 134)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":971,\"y\":634,\"w\":260,\"h\":18},\"inViewport\":true},{\"text\":\"\",\"color\":\"rgb(105, 117, 134)\",\"bg\":\"rgb(154, 164, 178)\",\"rect\":{\"x\":971,\"y\":642,\"w\":3,\"h\":3},\"inViewport\":true},{\"text\":\"Diagnose - Right side wheel seal/brake leak\",\"color\":\"rgb(105, 117, 134)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":980,\"y\":634,\"w\":251,\"h\":18},\"inViewport\":true},{\"text\":\"+3 more lines\",\"color\":\"rgb(105, 117, 134)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":971,\"y\":655,\"w\":260,\"h\":18},\"inViewport\":true},{\"text\":\"7h 28m / 8h 43m\",\"color\":\"rgb(18, 25, 38)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":971,\"y\":681,\"w\":260,\"h\":18},\"inViewport\":true},{\"text\":\"\",\"color\":\"rgb(18, 25, 38)\",\"bg\":\"rgb(248, 250, 252)\",\"rect\":{\"x\":971,\"y\":688,\"w\":169,\"h\":4},\"inViewport\":true},{\"text\":\"\",\"color\":\"rgb(18, 25, 38)\",\"bg\":\"rgb(37, 124, 255)\",\"rect\":{\"x\":971,\"y\":688,\"w\":146,\"h\":4},\"inViewport\":true},{\"text\":\"7h 28m / 8h 43m\",\"color\":\"rgb(105, 117, 134)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":1148,\"y\":681,\"w\":83,\"h\":18},\"inViewport\":true},{\"text\":\"warning_amber Extends past business hours\",\"color\":\"rgb(18, 25, 38)\",\"bg\":\"rgb(255, 250, 235)\",\"rect\":{\"x\":971,\"y\":707,\"w\":260,\"h\":35},\"inViewport\":true},{\"text\":\"warning_amber\",\"color\":\"rgb(247, 144, 9)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":984,\"y\":717,\"w\":16,\"h\":16},\"inViewport\":true},{\"text\":\"Extends past business hours\",\"color\":\"rgb(181, 71, 8)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":1006,\"y\":716,\"w\":153,\"h\":16},\"inViewport\":true}]"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:29:27.747Z"
+ },
+ "30036": {
+  "steps": [
+   {
+    "step": "1 hover an event block",
+    "seen": "hovered \"event Test 6:00 AM – 5:59 AM\""
+   },
+   {
+    "step": "2 read the tooltip: name, grey category dot, time range",
+    "seen": "[{\"text\":\"Test Sun, Aug 9, 2026 · 6:00 AM – 5:59 AM MT MQ Test Tech Qamar\",\"color\":\"rgb(18, 25, 38)\",\"bg\":\"rgb(255, 255, 255)\",\"rect\":{\"x\":463,\"y\":550,\"w\":294,\"h\":100},\"inViewport\":true},{\"text\":\"Test Sun, Aug 9, 2026 · 6:00 AM – 5:59 AM MT MQ Test Tech Qamar\",\"color\":\"rgb(18, 25, 38)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":480,\"y\":565,\"w\":260,\"h\":70},\"inViewport\":true},{\"text\":\"Test\",\"color\":\"rgb(18, 25, 38)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":480,\"y\":565,\"w\":260,\"h\":18},\"inViewport\":true},{\"text\":\"\",\"color\":\"rgb(18, 25, 38)\",\"bg\":\"rgb(135, 91, 247)\",\"rect\":{\"x\":480,\"y\":570,\"w\":8,\"h\":8},\"inViewport\":true},{\"text\":\"Sun, Aug 9, 2026 · 6:00 AM – 5:59 AM\",\"color\":\"rgb(105, 117, 134)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":480,\"y\":585,\"w\":260,\"h\":18},\"inViewport\":true},{\"text\":\"MT MQ Test Tech Qamar\",\"color\":\"rgb(18, 25, 38)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"rect\":{\"x\":480,\"y\":611,\"w\":260,\"h\":24},\"inViewport\":true}]"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:29:30.765Z"
+ },
+ "30038": {
+  "steps": [
+   {
+    "step": "1 hover the shift closest to the right edge of the window",
+    "seen": "block right edge 1510 of viewport 1680"
+   },
+   {
+    "step": "2 check the tooltip stays inside the window",
+    "seen": "[{\"x\":1284,\"right\":1578,\"vw\":1680,\"inside\":true,\"text\":\"Pamill Paving warning_amber 713 Sat, Aug 15, 2026 · 1:00 PM – 2:00 PM MT MQ Test\"},{\"x\":1301,\"right\":1561,\"vw\":1680,\"inside\":true,\"text\":\"Pamill Paving warning_amber 713 Sat, Aug 15, 2026 · 1:00 PM – 2:00 PM MT MQ Test\"},{\"x\":1301,\"right\":1561,\"vw\":1680,\"inside\":true,\"text\":\"Pamill Paving warning_amber\"},{\"x\":1537,\"right\":1561,\"vw\":1680,\"inside\":true,\"text\":\"warning_amber\"},{\"x\":1301,\"right\":1561,\"vw\":1680,\"inside\":true,\"text\":\"713\"},{\"x\":1301,\"right\":1561,\"vw\":1680,\"inside\":true,\"text\":\"Sat, Aug 15, 2026 · 1:00 PM – 2:00 PM\"},{\"x\":1301,\"right\":1561,\"vw\":1680,\"inside\":true,\"text\":\"MT MQ Test Tech Qamar\"},{\"x\":1301,\"right\":1561,\"vw\":1680,\"inside\":true,\"text\":\"\"},{\"x\":1301,\"right\":1561,\"vw\":1680,\"inside\":true,\"text\":\"Single line · 1h\"},{\"x\":1301,\"right\":1561,\"vw\":1680,\"inside\":true,\"text\":\"Replace - Rear ramp handles\"},{\"x\":1301,\"right\":1561,\"vw\":1680,\"inside\":true,\"text\":\"Replace - Rear ramp handles\"},{\"x\":1301,\"right\":1304,\"vw\":1680,\"inside\":true,\"text\":\"\"},{\"x\":1310,\"right\":1561,\"vw\":1680,\"inside\":true,\"text\":\"Replace - Rear ramp handles\"},{\"x\":1301,\"right\":1561,\"vw\":1680,\"inside\":true,\"text\":\"0m / 1h\"},{\"x\":1301,\"right\":1516,\"vw\":1680,\"inside\":true,\"text\":\"\"},{\"x\":1524,\"right\":1561,\"vw\":1680,\"inside\":true,\"text\":\"0m / 1h\"},{\"x\":1301,\"right\":1561,\"vw\":1680,\"inside\":true,\"text\":\"warning_amber Not a working day\"},{\"x\":1314,\"right\":1330,\"vw\":1680,\"inside\":true,\"text\":\"warning_amber\"},{\"x\":1336,\"right\":1432,\"vw\":1680,\"inside\":true,\"text\":\"Not a working day\"}]"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:29:33.791Z"
+ },
+ "30050": {
+  "steps": [
+   {
+    "step": "1 open View options",
+    "seen": "items [\"VIEW OPTIONS\",\"Business Hours\",\"Tech Hours\",\"Capacity Planning\",\"Events\",\"Show Saturday\",\"Show Sunday\"]"
+   },
+   {
+    "step": "2 toggle 'Tech Hours' on",
+    "seen": "toggled"
+   },
+   {
+    "step": "3 read the technician rows before and after",
+    "seen": "BEFORE lanes [\"BM Bilal Muzamil AB\",\"AS Admin ShopView Admin\",\"SERVICE/PARTS\"] subs [\"AB\",\"Admin\",\"MQ Test Tech\",\"Parts Technician\",\"Schedule v only\",\"HD Technician\",\"HD Shop Foreman\",\"Heavy Duty Technician\"] hourRanges [\"6:00 AM – 5:59 AM\",\"8:15 PM – 9:15 PM\",\"1:00 PM – 2:00 PM\",\"10:00 AM – 3:30 PM\",\"2:00 PM – 3:00 PM\"] || AFTER lanes [\"BM Bilal Muzamil AB\",\"AS Admin ShopView Admin\",\"SERVICE/PARTS\"] subs [\"AB\",\"Admin\",\"MQ Test Tech\",\"Parts Technician\",\"Schedule v only\",\"HD Technician\",\"HD Shop Foreman\",\"Heavy Duty Technician\"] hourRanges [\"6:00 AM – 5:59 AM\",\"8:15 PM – 9:15 PM\",\"1:00 PM – 2:00 PM\",\"10:00 AM – 3:30 PM\",\"2:00 PM – 3:00 PM\"]"
+   },
+   {
+    "step": "4 put it back",
+    "seen": "toggle restored"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:29:02.755Z"
+ },
+ "30051": {
+  "steps": [
+   {
+    "step": "1 open View options",
+    "seen": "items [\"VIEW OPTIONS\",\"Business Hours\",\"Tech Hours\",\"Capacity Planning\",\"Events\",\"Show Saturday\",\"Show Sunday\"]"
+   },
+   {
+    "step": "2 toggle 'Show Saturday' off, read the day columns",
+    "seen": "BEFORE {\"headers\":[\"Department\",\"Monday Aug 10 OT Tuesday Aug 11 OT Wednesday Aug 12 OT Thursday Aug 13 OT Friday Aug 14 Saturday Aug 15 OT Sunday Aug 16\",\"Monday Aug 10 OT\",\"Tuesday Aug 11 OT\",\"Wednesday Aug 12 OT\",\"Thursday Aug 13 OT\",\"Friday Aug 14\",\"Saturday Aug 15 OT\",\"Sunday Aug 16\"],\"dayTexts\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\",\"Friday\",\"Saturday\",\"Sunday\"]} -> AFTER {\"headers\":[\"Department\",\"Monday Aug 10 OT Tuesday Aug 11 OT Wednesday Aug 12 OT Thursday Aug 13 OT Friday Aug 14 Sunday Aug 16\",\"Monday Aug 10 OT\",\"Tuesday Aug 11 OT\",\"Wednesday Aug 12 OT\",\"Thursday Aug 13 OT\",\"Friday Aug 14\",\"Sunday Aug 16\"],\"dayTexts\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\",\"Friday\",\"Sunday\"]}"
+   },
+   {
+    "step": "3 put it back",
+    "seen": "{\"headers\":[\"Department\",\"Monday Aug 10 OT Tuesday Aug 11 OT Wednesday Aug 12 OT Thursday Aug 13 OT Friday Aug 14 Saturday Aug 15 OT Sunday Aug 16\",\"Monday Aug 10 OT\",\"Tuesday Aug 11 OT\",\"Wednesday Aug 12 OT\",\"Thursday Aug 13 OT\",\"Friday Aug 14\",\"Saturday Aug 15 OT\",\"Sunday Aug 16\"],\"dayTexts\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\",\"Friday\",\"Saturday\",\"Sunday\"]}"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:29:13.075Z"
+ },
+ "30071": {
+  "steps": [
+   {
+    "step": "1 look at the shift blocks on the grid",
+    "seen": "10 blocks read"
+   },
+   {
+    "step": "2 read each one's colour",
+    "seen": "[{\"bg\":\"rgb(233, 245, 255)\",\"border\":\"rgb(37, 124, 255) 3px\",\"txt\":\"Fuline Enterprises G30 6 Lines\"},{\"bg\":\"rgb(233, 245, 255)\",\"border\":\"rgb(37, 124, 255) 3px\",\"txt\":\"Pamill Paving 713 Replace - Rear ramp handles\"},{\"bg\":\"rgb(236, 253, 255)\",\"border\":\"rgb(6, 174, 212) 3px\",\"txt\":\"Fuline Enterprises warning_amber G30 6 Lines\"},{\"bg\":\"rgb(233, 245, 255)\",\"border\":\"rgb(37, 124, 255) 3px\",\"txt\":\"Brabay Maintenance warning_amber Replace - Tu\"},{\"bg\":\"rgb(233, 245, 255)\",\"border\":\"rgb(37, 124, 255) 3px\",\"txt\":\"Pamill Paving warning_amber 713 Replace - Rea\"},{\"bg\":\"rgb(233, 245, 255)\",\"border\":\"rgb(37, 124, 255) 3px\",\"txt\":\"Goport Energy warning_amber 2 Lines\"},{\"bg\":\"rgb(233, 245, 255)\",\"border\":\"rgb(37, 124, 255) 3px\",\"txt\":\"Zuline Builders warning_amber 22791 Replace -\"},{\"bg\":\"rgb(233, 245, 255)\",\"border\":\"rgb(37, 124, 255) 3px\",\"txt\":\"Xamont Holdings warning_amber 70061328 4 Line\"},{\"bg\":\"rgb(233, 245, 255)\",\"border\":\"rgb(37, 124, 255) 3px\",\"txt\":\"Goport Energy warning_amber 2 Lines\"},{\"bg\":\"rgb(233, 245, 255)\",\"border\":\"rgb(37, 124, 255) 3px\",\"txt\":\"Aagate Landscaping warning_amber 189 3 Lines\"}]"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:29:33.807Z"
+ },
+ "30072": {
+  "steps": [
+   {
+    "step": "1 open a shift",
+    "seen": "clicked \"Fuline Enterprises G30 6 Lines\""
+   },
+   {
+    "step": "2 look for a colour picker in the modal",
+    "seen": "{\"swatches\":[{\"bg\":\"rgb(248, 250, 252)\",\"cls\":\"shift-detail__count\"},{\"bg\":\"rgb(233, 245, 255)\",\"cls\":\"shift-lines__position\"},{\"bg\":\"rgb(233, 245, 255)\",\"cls\":\"shift-lines__position\"},{\"bg\":\"rgb(233, 245, 255)\",\"cls\":\"shift-lines__position\"},{\"bg\":\"rgb(233, 245, 255)\",\"cls\":\"shift-lines__position\"},{\"bg\":\"rgb(233, 245, 255)\",\"cls\":\"shift-lines__position\"},{\"bg\":\"rgb(233, 245, 255)\",\"cls\":\"shift-lines__position\"},{\"bg\":\"rgb(37, 124, 255)\",\"cls\":\"color-picker__dot color-picker__dot--blue\"}],\"colourWords\":[]}"
+   }
+  ],
+  "verdict": "PARTIAL - the picker surface is recorded; choosing a colour is a write and was not made",
+  "at": "2026-08-12T07:29:37.727Z"
+ }
+}
