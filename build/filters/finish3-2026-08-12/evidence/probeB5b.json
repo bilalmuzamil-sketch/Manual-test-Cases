@@ -1,0 +1,279 @@
+{
+ "read_at_utc": "2026-08-12T14:29:07.498Z",
+ "cases": {
+  "29569": {
+   "selected": [
+    {
+     "nm": "Brabay Maintenance",
+     "clicked": true
+    }
+   ],
+   "tagsBefore": [
+    "Brabay Maintenance cancel"
+   ],
+   "tickedBefore": [
+    "filter_option_company_id_59882c23-3a6d-4975-acf1-a10859982716"
+   ],
+   "removed": {
+    "ok": true,
+    "label": "Brabay Maintenance cancel"
+   },
+   "tagsAfter": [],
+   "tickedAfter": [],
+   "urlBefore": "https://sv8785.qa.shopview.com/workorders?company_id=59882c23-3a6d-4975-acf1-a10859982716&tab=all",
+   "urlAfter": "https://sv8785.qa.shopview.com/workorders?tab=all",
+   "oneFewerTag": true,
+   "oneFewerTick": true,
+   "customerColumn": {
+    "Aadale Motors": 1,
+    "Aagate Landscaping": 29
+   },
+   "could_fail": false
+  },
+  "29587": {
+   "advisorsCounted": [
+    {
+     "advisor": "Admin ShopView",
+     "count": 27
+    },
+    {
+     "advisor": "Alexander Cohen",
+     "count": 3
+    },
+    {
+     "advisor": "Ayesha Khan",
+     "count": 0
+    }
+   ],
+   "advisor": "Ayesha Khan",
+   "serverCount": 0,
+   "picked": true,
+   "url": "https://sv8785.qa.shopview.com/workorders?service_advisor_id=1e81b8a0-9a45-4f16-89e3-209bf240990a&tab=all",
+   "rows": {
+    "tbody": 2,
+    "cards": 0,
+    "emptyStateVisible": true
+   },
+   "emptyText": "No work orders match your filters",
+   "realConsoleErrors": [],
+   "could_fail": true
+  },
+  "29590": {
+   "declinedTotal": 7,
+   "declinedOnSite": 6,
+   "declinedOffSite": 1,
+   "partitionExact": true,
+   "disjoint": true,
+   "pickedYes": true,
+   "tickedAfterYes": [],
+   "url": "https://sv8785.qa.shopview.com/workorders?status=declined&vehicleHere=1&tab=all",
+   "visibleRowsDeclinedOnly": 10,
+   "visibleRowsDeclinedPlusOnSite": 9,
+   "chip": "local_shipping\nAsset on Site\n: Yes\nkeyboard_arrow_down",
+   "could_fail": true
+  },
+  "29591": {
+   "tickedWithYes": [
+    "filter_option_vehicleHere_1"
+   ],
+   "pickedNo": true,
+   "tickedAfterNo": [],
+   "exactlyOneTicked": false,
+   "yesWasDeselected": true,
+   "urlVehicleHereValues": [
+    "0"
+   ],
+   "url": "https://sv8785.qa.shopview.com/workorders?status=declined&vehicleHere=0&tab=all",
+   "chip": "local_shipping\nAsset on Site\n: No\nkeyboard_arrow_down",
+   "visibleRows": 4,
+   "expectedOffSite": 1,
+   "could_fail": true
+  },
+  "29592": {
+   "tickedBefore": [
+    "filter_option_vehicleHere_0"
+   ],
+   "clearSelectionClicked": true,
+   "tickedAfter": [],
+   "url": "https://sv8785.qa.shopview.com/workorders?status=declined&tab=all",
+   "statusFilterSurvived": true,
+   "chip": "local_shipping\nAsset on Site\nkeyboard_arrow_down",
+   "could_fail": true
+  },
+  "29600": {
+   "customer": "Brabay Maintenance",
+   "customerId": "59882c23-3a6d-4975-acf1-a10859982716",
+   "customerIsInBothStatusSets": true,
+   "customerAllStatuses": {
+    "count": 28,
+    "numbers": [
+     "S2-14129",
+     "S2-14158",
+     "S2-14170",
+     "S2-14235",
+     "S2-14302",
+     "S2-14308",
+     "S2-14489",
+     "S2-14521",
+     "S2-14836",
+     "S2-14851",
+     "S2-15112",
+     "S2-15206"
+    ]
+   },
+   "declinedForCustomer": {
+    "http": 200,
+    "count": 1,
+    "numbers": [
+     "S2-14308"
+    ],
+    "companies": [
+     "Brabay Maintenance"
+    ]
+   },
+   "completeForCustomer": {
+    "http": 200,
+    "count": 1,
+    "numbers": [
+     "S2-15733"
+    ],
+    "companies": [
+     "Brabay Maintenance"
+    ]
+   },
+   "bothStatusesForCustomer": {
+    "http": 200,
+    "count": 2,
+    "numbers": [
+     "S2-14308",
+     "S2-15733"
+    ],
+    "companies": [
+     "Brabay Maintenance"
+    ]
+   },
+   "intersectionNarrowerThanStatusAlone": true,
+   "intersectionNarrowerThanCustomerAlone": true,
+   "intersectionIsSubsetOfBoth": true,
+   "onlyThatCustomerInResult": true,
+   "eitherOrHolds": true,
+   "otherCustomerExcluded": true,
+   "otherCustomerName": "Fuline Enterprises"
+  },
+  "29631": {
+   "requests": 2,
+   "lastStatus": 200,
+   "lastRequestDecoded": "/api/work-orders?pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=companyName&pagination[descending]=false&filters[0][field]=status&filters[0][value]=declined&filters[1][field]=company_id&filters[1][value]=59882c23-3a6d-4975-acf1-a10859982716&search=&showMyWorkOrders=0",
+   "carriesStatusValue": true,
+   "carriesCustomerId": true,
+   "bothInOneRequest": true,
+   "pickedCustomer": true,
+   "url": "https://sv8785.qa.shopview.com/workorders?status=declined&company_id=59882c23-3a6d-4975-acf1-a10859982716&tab=all",
+   "customerColumnInTable": {
+    "Brabay Maintenance": 1
+   },
+   "could_fail": true
+  },
+  "29632": {
+   "customer": "Brabay Maintenance",
+   "customerId": "59882c23-3a6d-4975-acf1-a10859982716",
+   "customerIsInBothStatusSets": true,
+   "customerAllStatuses": {
+    "count": 28,
+    "numbers": [
+     "S2-14129",
+     "S2-14158",
+     "S2-14170",
+     "S2-14235",
+     "S2-14302",
+     "S2-14308",
+     "S2-14489",
+     "S2-14521",
+     "S2-14836",
+     "S2-14851",
+     "S2-15112",
+     "S2-15206"
+    ]
+   },
+   "declinedForCustomer": {
+    "http": 200,
+    "count": 1,
+    "numbers": [
+     "S2-14308"
+    ],
+    "companies": [
+     "Brabay Maintenance"
+    ]
+   },
+   "completeForCustomer": {
+    "http": 200,
+    "count": 1,
+    "numbers": [
+     "S2-15733"
+    ],
+    "companies": [
+     "Brabay Maintenance"
+    ]
+   },
+   "bothStatusesForCustomer": {
+    "http": 200,
+    "count": 2,
+    "numbers": [
+     "S2-14308",
+     "S2-15733"
+    ],
+    "companies": [
+     "Brabay Maintenance"
+    ]
+   },
+   "intersectionNarrowerThanStatusAlone": true,
+   "intersectionNarrowerThanCustomerAlone": true,
+   "intersectionIsSubsetOfBoth": true,
+   "onlyThatCustomerInResult": true,
+   "eitherOrHolds": true,
+   "otherCustomerExcluded": true,
+   "otherCustomerName": "Fuline Enterprises"
+  },
+  "29568-longname": {
+   "menu": true,
+   "tag": true,
+   "fullName": "ZZAUTOTEST Imported Exclusivity Corp",
+   "renderedText": "ZZAUTOTEST Imported Exclusivity Corp",
+   "textOverflow": "clip",
+   "overflow": "visible",
+   "whiteSpace": "nowrap",
+   "maxWidth": "100%",
+   "isTruncatedVisually": false,
+   "scrollWidth": 254,
+   "clientWidth": 254,
+   "pickedOk": true,
+   "nameLength": 36
+  }
+ },
+ "small_sets": {
+  "declined": 7,
+  "complete": 11,
+  "invoiced": 71,
+  "declinedCompanies": [
+   "Brabay Maintenance",
+   "Daland Builders",
+   "Fuline Enterprises",
+   "Holand Concrete",
+   "Iecastle Energy",
+   "Vishore Excavating",
+   "Yiharbor Builders"
+  ],
+  "completeCompanies": [
+   "Brabay Maintenance",
+   "Ceview Builders",
+   "Gicastle Ventures",
+   "Joshore Farms",
+   "Oechester Mechanical",
+   "Pamill Paving",
+   "Vaspring Consulting",
+   "Ximarket Mechanical"
+  ]
+ },
+ "name_to_id_resolved": 12,
+ "bridge_errors": 0
+}

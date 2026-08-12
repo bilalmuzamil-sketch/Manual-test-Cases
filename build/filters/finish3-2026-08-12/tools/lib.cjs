@@ -24,12 +24,30 @@ async function pref(page, key = 'work-orders-list') {
   }, { k: key, api: API });
 }
 
+
+/** Click by SELECTOR with retries. A handle captured before a Vue re-render detaches, and
+ *  elementHandle.click() then throws "Element is not attached to the DOM", killing a whole
+ *  batch mid-way -- that is what ended probeB5's first run. */
+async function clickSel(page, sel, tries = 4) {
+  for (let i = 0; i < tries; i++) {
+    try {
+      const el = await page.$(sel);
+      if (!el) { await page.waitForTimeout(700); continue; }
+      await el.click({ timeout: 8000 });
+      return { clicked: true, attempt: i + 1 };
+    } catch (e) {
+      if (i === tries - 1) return { clicked: false, error: String(e).slice(0, 120) };
+      await page.waitForTimeout(900);
+    }
+  }
+  return { clicked: false, notFound: true };
+}
+
 /** Open a filter chip's dropdown and enumerate its real options. */
 async function openChip(page, testId) {
-  const chip = await page.$(`[data-test-id="${testId}"]`);
-  if (!chip) return { found: false, options: [] };
-  await chip.click();
-  await page.waitForTimeout(1200);
+  const c = await clickSel(page, `[data-test-id="${testId}"]`);
+  if (!c.clicked) return { found: false, options: [], click: c };
+  await page.waitForTimeout(1400);
   const options = await page.$$eval(OPT, els => els.map(e => ({
     id: e.getAttribute('data-test-id'),
     text: (e.innerText || '').replace(/\s+/g, ' ').trim(),
@@ -45,11 +63,9 @@ async function openChip(page, testId) {
 
 /** Click a named option inside an open dropdown. Returns whether it was really there. */
 async function pickOption(page, optionTestId) {
-  const el = await page.$(`div[data-test-id="${optionTestId}"]`);
-  if (!el) return { clicked: false };
-  await el.click();
-  await page.waitForTimeout(1500);
-  return { clicked: true };
+  const r = await clickSel(page, `div[data-test-id="${optionTestId}"]`);
+  await page.waitForTimeout(1600);
+  return r;
 }
 
 /** Close any open dropdown WITHOUT navigating: Escape, never a page click. */
@@ -145,10 +161,9 @@ async function clearControls(page) {
 async function ensureBarOpen(page) {
   let chip = await page.$('[data-test-id="filter_chip_status"]');
   if (chip) return { alreadyOpen: true, toggled: false };
-  const t = await page.$('[data-test-id="toggle_filter_bar"]');
-  if (!t) return { alreadyOpen: false, toggled: false, toggleFound: false };
-  await t.click();
-  await page.waitForTimeout(2500);
+  if (!(await page.$('[data-test-id="toggle_filter_bar"]'))) return { alreadyOpen: false, toggled: false, toggleFound: false };
+  await clickSel(page, '[data-test-id="toggle_filter_bar"]');
+  await page.waitForTimeout(2600);
   chip = await page.$('[data-test-id="filter_chip_status"]');
   return { alreadyOpen: false, toggled: true, nowOpen: !!chip };
 }
@@ -162,11 +177,10 @@ async function goWO(page, qs = '?tab=all') {
 
 /** Clear every active filter through the control the tester uses. */
 async function clearAll(page) {
-  const b = await page.$('[data-test-id="clear_filters"]');
-  if (!b) return { present: false };
-  await b.click();
-  await page.waitForTimeout(2500);
-  return { present: true, url: page.url() };
+  if (!(await page.$('[data-test-id="clear_filters"]'))) return { present: false };
+  const r = await clickSel(page, '[data-test-id="clear_filters"]');
+  await page.waitForTimeout(2600);
+  return { present: true, click: r, url: page.url() };
 }
 
 
@@ -204,14 +218,14 @@ async function serverCount(page, filters = []) {
     const p = new URLSearchParams();
     // The envelope is {data:{pagination,work_orders}} and pagination carries NO row total
     // (only totalWorkOrderPrice), so a total has to be counted from a wide page.
-    p.set('pagination[rowsPerPage]', '500'); p.set('pagination[page]', '1');
+    p.set('pagination[rowsPerPage]', '3000'); p.set('pagination[page]', '1');
     fs.forEach((f, i) => { p.set(`filters[${i}][field]`, f.field); p.set(`filters[${i}][value]`, f.value); });
     p.set('search', ''); p.set('showMyWorkOrders', '0');
     const r = await fetch(`${api}/api/work-orders?${p.toString()}`, { headers: { accept: 'application/json' } });
     let j = null; try { j = await r.json(); } catch (_) {}
     const wos = j?.data?.work_orders;
     return { http: r.status, total: Array.isArray(wos) ? wos.length : null,
-             capped: Array.isArray(wos) ? wos.length >= 500 : null,
+             capped: Array.isArray(wos) ? wos.length >= 3000 : null,
              totalPrice: j?.data?.pagination?.totalWorkOrderPrice ?? null, query: p.toString() };
   }, { api: API, fs: filters });
 }
@@ -238,4 +252,4 @@ function save(out, name, obj) {
   fs.writeFileSync(`${out}/${name}.json`, JSON.stringify(obj, null, 1));
 }
 
-module.exports = { OPT, pref, openChip, pickOption, closeMenu, chips, rows, label, search, clearControls, ensureBarOpen, goWO, clearAll, tickedCount, clearSelection, serverCount, statusTally, shot, save };
+module.exports = { OPT, clickSel, pref, openChip, pickOption, closeMenu, chips, rows, label, search, clearControls, ensureBarOpen, goWO, clearAll, tickedCount, clearSelection, serverCount, statusTally, shot, save };
