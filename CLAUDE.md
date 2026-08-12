@@ -2726,6 +2726,37 @@ deliver the 7-tab management report.
     across the 2026-07-28/29 daily-limit hits — because every step was committed+pushed and
     state-saved, ZERO work was lost across the resets. Ties to Standing Rules 6/17/20 and the
     two-session shared-brain convention (CLAUDE.md + PROJECT-STATE.md are the resume anchors).
+    **⇒ STRENGTHENED 2026-08-11 INTO SEVEN CHECKABLE REQUIREMENTS — because the wording above was
+    ALREADY IN FORCE on 2026-08-11 and was NOT ENOUGH. USER DIRECTIVE (2026-08-11, verbatim):**
+    *"there are the chances that again we will lose all the work due to 5 hours limit issue, so we
+    have to make sure that we have a permanent strategy or a rule that protects us from losing our
+    work due to these limit issues."* **A six-worker kill that day cost almost nothing — but only
+    because a sweeper worker happened to be committing other passes' output, and the recovery that
+    followed first concluded everything was lost and had to withdraw it. That is luck, not
+    architecture.** **THE SEVEN REQUIREMENTS, IN FULL, WITH THEIR EVIDENCE AND A COMPLIANCE
+    CHECKLIST: `build/NO-WORK-LOSS-STRATEGY.md` (rewritten 2026-08-11).** In one line each:
+    **R1 — the PER-OPERATION LOG IS WRITTEN BEFORE OR AS EACH WRITE AND IS COMMITTED** (an oplog
+    written at the end is worthless to a run that dies in the middle; the test is *"if this worker
+    is killed right now, can the next one find its exact position from git ALONE?"*) · **R2 — a HARD
+    CHECKPOINT INTERVAL: commit AND push every 25 write operations or every 10 minutes of wall
+    clock, whichever comes first** ("regularly" is what the 40-minute silent stretch was already
+    doing) · **R3 — `git fetch` + `git merge --ff-only` AT THE START OF EVERY PASS**, never trusting
+    the local tracking ref or a clean tree as evidence of currency (a checkout read *clean* and *1
+    ahead* while 110 commits behind, and a recovery pass then reported six passes' work lost —
+    falsely) · **R4 — VERIFICATION EVIDENCE IS COMMITTED TO THE REPOSITORY, NEVER LEFT IN `/tmp`**
+    (`/tmp` is for secrets only; a Rule-50 byte-comparison whose output is not committed did not
+    happen, evidentially — this is the ONLY thing actually lost on 2026-08-11) · **R5 — RESUME BY
+    RE-ESTABLISHING POSITION FROM LIVE, BY CONTENT, never from the pass's own memory: a fresh
+    `updated_on` is NOT proof of your write, TestRail re-renders text without moving it at all, an
+    HTTP 500 can come back from a write that SUCCEEDED (read the case, never blind-retry), and a
+    liveness check is not evidence of progress — check the work product, and never `pgrep -f` a
+    pattern that appears in the watching shell's own command line** · **R6 — THE PRE-KILL STATE-SAVE**
+    (DONE · IN FLIGHT with its exact re-run recipe · AWAITING WHOM), **naming explicitly where a
+    staged exact-string plan must be REBUILT rather than REPLAYED** — a sibling pass may have moved
+    the anchors it matches on · **R7 — PATH-SCOPED COMMITS** (`git add <explicit paths>`,
+    `git commit -m "…" -- <paths>`, `git show --stat`, push the explicit SHA, never force) — a bare
+    commit has swept a sibling's staged work three times now. **Independent proof that nothing was
+    lost, and of the one thing that was: `build/loss-audit-2026-08-11/VERDICT.md`.**
 30. **Tech plan is a standard project input — remind the user if missing (all projects).**
     USER DIRECTIVE (2026-07-29, verbatim): "Also, going forward if I miss to provide you the
     tech plan for the project, please remind me of that. Save it as a rule". Every project's
@@ -3674,6 +3705,33 @@ deliver the 7-tab management report.
     Recorded in `build/OUTSTANDING-ITEMS-REGISTER.md`. **The QA lead's sequencing (Schedule → Filters
     → Report Suite) is unchanged by this ruling** — what changed is that every one of the 433 now
     counts for real.
+    **⇒ REFINEMENT, 2026-08-11 (LATER STILL) — WHAT "FINAL" MEANS, CONFIRMED FROM THE DEVELOPERS'
+    OWN BEHAVIOUR. THIS CHANGES NO POLICY; IT CLOSES THE ONE MISREADING THIS RULE IS MOST EXPOSED TO.**
+    **USER DIRECTIVE (2026-08-11, verbatim):** *"remember the developers said that those builds are
+    final but they keep on pushing new builds as they fix a reported issue which they will keep on
+    doing until the last bug for those projects is fixed."*
+    **SO "FINAL" IS A STATEMENT ABOUT SCOPE, NOT ABOUT MOTION: it means FEATURE-COMPLETE AND HANDED
+    OFF TO QA. IT HAS NEVER MEANT THAT THE CODE HAS STOPPED CHANGING, AND IT DOES NOT MEAN THAT NOW.**
+    Deploys **will continue until the last bug is fixed** — and, pointedly, **each one is likely to be
+    a fix for a defect WE reported**, so the busier we are the faster the build moves.
+    **THE THREE CONSEQUENCES, ALL OF WHICH ALREADY FOLLOW FROM RULE 60'S LAYER SPLIT — nothing new is
+    invented here:**
+    **· A REDEPLOY STILL INVALIDATES LAYER 1 (the on-screen labels and the navigation path) AND LAYER
+    2 (the pass/fail verdict), EVEN ON A FINAL REPORT.** Finality does not exempt a case from
+    re-checking; **Rule 60(b) governs exactly as before.**
+    **· WHAT FINALITY CHANGES IS THE MEANING OF A GAP.** On a not-final feature a missing control might
+    be unfinished work; **on a final feature it is a DEFECT.** That is the whole value of the
+    distinction, and it is why the old hedges now understate real findings rather than protecting us.
+    **· BUILD STAMPS WILL KEEP GOING STALE BY DESIGN, AND THAT IS THE NORMAL STATE OF AN ACTIVELY-FIXED
+    BRANCH — NOT A FAILURE OF OURS.** A Rule-54 sentence-2 marker naming a superseded build is an
+    honest record of when the case was last checked (Rule 60(f)); it is **never** to be "fixed" by
+    re-stamping a date nobody observed (Rule 12). **Already evidenced: the Schedule branch redeployed
+    to `v3.5-65d6500` on the morning of 2026-08-11.**
+    **⚠️ WHAT THIS DOES *NOT* DO, SAID EXPLICITLY BECAUSE IT IS THE TEMPTING READING: it does NOT
+    re-open the "wait for the build to settle" blocker, and it does NOT return any verdict to
+    PROVISIONAL-pending-development.** The branches are final; queue rows may close on the ordinary
+    condition. **Nor does it lower the close condition — Rule 60 may still never be cited to close a
+    queue with rows unverified.**
     **RATIONALE, 2026-08-03:** the Report Suite got its first QA branch (`sv8582`,
     `v3.4.1-0ed4433`) and 475 cases were finally live-verifiable — but engineering said the branch is
     still being worked on. Without this rule the suite would have been stamped "VIU-Verified" against
@@ -4713,6 +4771,16 @@ deliver the 7-tab management report.
     layers 1–2 (the on-screen labels and the pass/fail verdict) on every one of them.** **What
     finality removes is a different doubt: whether a gap is an UNFINISHED FEATURE or a DEFECT. On all
     three it is now a defect.**
+    **⇒ AND THE DEVELOPERS' OWN BEHAVIOUR CONFIRMS IT, 2026-08-11.** QA lead, verbatim: ***"remember
+    the developers said that those builds are final but they keep on pushing new builds as they fix a
+    reported issue which they will keep on doing until the last bug for those projects is fixed."***
+    **So deploys CONTINUE after finality, indefinitely, and each one is likely to be a fix for a defect
+    WE reported.** Three consequences, all of which this rule's layer split already produces — **layers
+    1 and 2 are still invalidated by every redeploy, even on a final branch** (practice (b) governs
+    unchanged) · **a gap on a final feature is a DEFECT, not unfinished work** · and **build stamps go
+    stale BY DESIGN, which is the normal state of an actively-fixed branch and never something to
+    "fix" by re-stamping a date nobody observed** (practice (f) + Rule 12). Full text at the tail of
+    Standing Rule 49.
     **THE HONEST CONSEQUENCE: 433 cases across the three projects are FINAL BUT NOT BUILD-VERIFIED**
     (Schedule 174 · Filters 8 · Report Suite 251) against **331 that are** (Report Suite 225 · Filters
     106), **with the release on Thursday** — so this **raises** the outstanding work rather than
