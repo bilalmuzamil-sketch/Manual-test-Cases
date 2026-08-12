@@ -37,6 +37,26 @@ def norm(s):
     return str(s)
 
 
+def dumps_like(path, orig_bytes, data):
+    """Serialise `data` in the EXACT format this file already uses.
+
+    The projects do not agree: Schedule case files are indent=1 with no trailing
+    newline, Report Suite files are indent=2 with one. Assuming either reformats
+    the other end to end -- a one-field change came out as 524 changed lines,
+    which buries the real edit and makes the diff unreviewable. So the format is
+    DETECTED by round-tripping the untouched file and only then used to write.
+    """
+    orig = json.loads(orig_bytes)
+    for indent in (1, 2, 4, None):
+        for nl in ('\n', ''):
+            cand = json.dumps(orig, indent=indent, ensure_ascii=False) + nl
+            if cand.encode() == orig_bytes:
+                return json.dumps(data, indent=indent, ensure_ascii=False) + nl
+    raise SystemExit(
+        'REFUSING TO WRITE %s: its exact formatting could not be reproduced, so a '
+        'write would reformat the whole file and hide the real change.' % path)
+
+
 def main():
     proj = sys.argv[1]
     apply_ = '--apply' in sys.argv
@@ -44,7 +64,8 @@ def main():
             if c['created_by'] == 3}
     moved = []
     for f in sorted(glob.glob(f'build/{PROJECTS[proj]}/cases/*.json')):
-        data = json.load(open(f))
+        orig_bytes = open(f, 'rb').read()
+        data = json.loads(orig_bytes)
         if not isinstance(data, list):
             continue
         touched = False
@@ -65,10 +86,8 @@ def main():
                 moved.append({'cid': 'C' + cid, 'field': lk, 'file': f})
                 touched = True
         if touched and apply_:
-            # indent=1, no trailing newline -- proven byte-identical round-trip
-            # against every existing case file before this was used to write.
             with open(f, 'w') as fh:
-                fh.write(json.dumps(data, indent=1, ensure_ascii=False))
+                fh.write(dumps_like(f, orig_bytes, data))
     print(f'{proj}: {len({m["cid"] for m in moved})} cases,'
           f' {len(moved)} fields {"UPDATED" if apply_ else "would move (dry run)"}')
     for m in moved:
