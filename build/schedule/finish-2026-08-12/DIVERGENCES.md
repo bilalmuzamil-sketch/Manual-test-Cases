@@ -136,3 +136,71 @@ while C30059's **step** was corrected. A step sends a tester hunting; an expecte
 ---
 
 *Sections E and F — the per-case runnability walk of this pass — are in `RUNNABILITY.md`.*
+
+---
+
+# E · FOUND BY THE RUNNABILITY WALK, 2026-08-12
+
+Both were found by carrying out steps, not by reading text, and **neither has been rewritten.** The
+cases keep what the sources say; the build's disagreement is recorded here (Rule 57).
+
+**No ticket has been raised for either — the creation hold is active** (Standing Rule 62 and the
+2026-08-10 ruling *"Do not create anything until my next order."*). Both are written up ready to file.
+
+## E1 · The sidebar filter panel offers no Priority group, and no group headings at all
+
+| | |
+|---|---|
+| **Cases** | [C29942](https://shopview.testrail.io/index.php?/cases/view/29942) · [C29945](https://shopview.testrail.io/index.php?/cases/view/29945) · touches [C29943](https://shopview.testrail.io/index.php?/cases/view/29943) |
+| **Source** | `SV-8687 (§5.1)` — C29942 expects *"three groups: Assignment (Assigned, Unassigned), Status (…), and Priority (High, Medium, Low)"*; C29945 expects *"The Priority group offers High, Medium, and Low."* |
+| **Build** | the panel's entire text is **`FILTERS · Clear all · Unassigned 22 · Assigned 71 · Approved 92 · Declined 0 · In Progress 0 · Ready for Review 1`** |
+
+**There is no `Priority` group, no `High` / `Medium` / `Low`, and no `Assignment` or `Status`
+heading** — the options are a single flat list. Read from the panel's own full text on three separate
+runs, so it is not a scroll or a truncation artefact.
+
+**C29945 cannot be run at all as written** — its step 2 says *"Choose High under Priority"*, and there
+is nothing to choose. **C29942's group-structure assertion fails on the same evidence.**
+
+**Recommendation: one Story Defect against `SV-8687`, priority Medium** (Rules 52/53), when the hold
+lifts. **Markers deliberately unchanged** — `AUTOMATION: READY` asserts *automatable*, not *passing*,
+and turning them into `EXPECT FAIL` needs a ticket number that cannot exist yet.
+
+## E2 · No Unassigned lane appears in the grid, in a week that contains three unassigned shifts
+
+| | |
+|---|---|
+| **Case** | [C29931](https://shopview.testrail.io/index.php?/cases/view/29931) |
+| **Source** | `SV-8686 (§3.2, §4.2)` — *"An unassigned row/lane appears within the grid itself… Shifts without a technician sit in this row."* |
+| **Build** | **all 30 lane labels read, none matches `unassigned`, and the word does not occur anywhere in the grid's text** |
+
+**The precondition was proven to hold before the absence was recorded**, which is the part that makes
+this worth reading: querying the board across June–November found **8 shifts with no technician**, and
+**three of them fall inside the week on screen** — 10, 11 and 13 August, against work orders S-13014
+and S-12876, while the grid showed `Aug 10 – 16, 2026`.
+
+**So the shifts exist, they are in view, and no lane holds them.** Whether they render somewhere else
+or not at all is not established, and I have not guessed.
+
+**My first attempt at this reported the same absence for the wrong reason** — it compared only the
+first 22 of 30 lane labels. **That would have been a right answer built on a broken check**, which is
+worth as much of a warning as a wrong one.
+
+**Recommendation: one Story Defect against `SV-8686`, priority Medium**, when the hold lifts.
+
+## E3 · One result that flattered us, checked hardest, and survived
+
+[C43554](https://shopview.testrail.io/index.php?/cases/view/43554) asserts the module opens on **Day**
+view. [SV-8863](https://shopview.atlassian.net/browse/SV-8863) says it opened on Week.
+
+**On this build it opens on Day** — in a browser context that had never touched the view control,
+navigating in from Work Orders and reading the toggle before anything else:
+`Day pressed="true" · Week "false" · Month "false"`, range `Wed, Aug 12`.
+
+**I nearly withdrew this as confounded**, because an earlier probe in the session had switched the
+view. What settled it: **every probe records its non-GET calls and all of them read `[]`**, so the view
+is not persisted server-side, and each run launches a fresh browser. **The confound could not reach
+across runs.**
+
+**So SV-8863's symptom does not reproduce on `v3.5-65d6500`.** Under Rule 61 that is an outcome-3
+report — **the ticket is worth re-reading before release**, and it is not ours to close.

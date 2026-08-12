@@ -100,3 +100,23 @@ view control.
 **inconclusive rather than negative** — the first because I never established that an unassigned shift
 existed in view, the second because my click landed on a container rather than an option. Both are one
 probe away, and seeding is now cheap.
+
+## 8 · Two substantive divergences, found by driving rather than reading
+
+**Neither case was rewritten, and neither ticket was filed** — the creation hold is active, so both
+are written up ready to file in `DIVERGENCES.md` §E.
+
+**The sidebar filter panel has no Priority group** — its entire text is `FILTERS · Clear all ·
+Unassigned · Assigned · Approved · Declined · In Progress · Ready for Review`, with **no `High` /
+`Medium` / `Low` and no group headings**, against `SV-8687 (§5.1)`. **C29945 cannot be run as
+written** — its step 2 tells the tester to choose `High` under Priority, and there is nothing to
+choose.
+
+**No Unassigned lane exists in the grid**, against `SV-8686 (§3.2, §4.2)` — all 30 lane labels read,
+none matches, and the word does not occur in the grid at all. **The precondition was proven first**:
+the board holds 8 shifts with no technician across June–November and **three of them fall inside the
+week on screen**. So the shifts exist, they are in view, and no lane holds them.
+
+**And a warning about my own first attempt at that one:** it reported the same absence after checking
+only the **first 22 of 30** lane labels. **It would have been a right answer resting on a broken
+check**, which is worth as much of a warning as a wrong answer would be.

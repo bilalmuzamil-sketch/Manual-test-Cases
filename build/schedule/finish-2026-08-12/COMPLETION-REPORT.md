@@ -30,9 +30,15 @@ Earlier passes recorded **28** on this same build marker. **The union is between
 cannot rule out that one or two of mine were also among the earlier "dialog pass" fourteen, and I
 would rather give you a range than a number I cannot defend.
 
-**Three of the nineteen produced a result I will not stand behind as a verdict** — C43554 (confounded
-by my own earlier probe), C29931 and C29942 (inconclusive). **Their STEPS were still carried out, so
-they count as walked; their outcomes do not count as verdicts.** `RUNNABILITY.md` §7.
+**Three of the nineteen were re-driven to settle them, and two turned into real findings:**
+· **C43554 — resolved, and it PASSES.** The module opens on **Day** in a context that never touched
+  the view control, so [SV-8863](https://shopview.atlassian.net/browse/SV-8863)'s symptom does not
+  reproduce. Nearly withdrawn as confounded; what saved it is that every probe records its non-GET
+  calls and all read `[]`, so the view is not persisted and the confound could not cross runs.
+· **C29931 — a substantive divergence.** No `Unassigned` lane exists among all 30 lanes, in a week
+  proven to contain **three** shifts with no technician. `DIVERGENCES.md` §E2.
+· **C29942 / C29945 — a substantive divergence.** The filter panel has **no Priority group and no
+  group headings at all**, so C29945 cannot be run as written. `DIVERGENCES.md` §E1.
 
 **The other ~129 cases have had their LABELS checked, not their steps carried out.** That distinction
 is the whole point of this report and the two figures are never added together.
@@ -50,6 +56,7 @@ is the whole point of this report and the two figures are never added together.
 | 7 | **C30015 step 3 is a hazard as written** | **your ruling** on adding one warning sentence | a tester who picks a non-series block deletes it with no confirmation |
 | 8 | **The Technician session is dead** | a fresh sign-in for `bilal.muzamil+schedule@shopview.com` | no Technician-perspective work is possible until it arrives |
 | 9 | **Two playbook entries are owed** | a worker permitted to edit `build/APP-ACTIONS-PLAYBOOK.md` | the shift create/delete contract has now cost two shifts in two days because it lives only in incident reports |
+| 10 | **Two defect tickets are written up and NOT filed** — the missing Priority filter group (`SV-8687`) and the missing Unassigned lane (`SV-8686`) | **your order lifting the creation hold.** Both are ready to file as Story Defects at priority Medium | two real gaps ship with no ticket against them |
 
 ## The one thing that would help most
 
