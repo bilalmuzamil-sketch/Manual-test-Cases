@@ -2,9 +2,11 @@
 
 **Read this first, then `COMPLETION-REPORT.md`.**
 
-**Status at the time of writing: everything except the three session-cost cases is DONE, COMMITTED
-AND PUSHED.** This file is written **before** the staff-record edit that ends the session, exactly
-as the brief requires.
+**Status: COMPLETE. Everything is done, committed and pushed — and the session survived, because
+the staff-record edit that was going to end it turned out not to be needed at all.**
+
+*This file was first written in full BEFORE that step, as the brief required. §3 and §7 were then
+appended by the run itself.*
 
 ---
 
@@ -13,13 +15,13 @@ as the brief requires.
 | | |
 |---|---|
 | Ours / live | **115 / 120** (the 5 are Ahtasham's C43576–C43580, untouched and proven byte-identical) |
-| Walked union — every step verified runnable | **106 of 115** (was 92) |
+| Walked union — every step verified runnable | **108 of 115** (was 92) |
 | Source-verified | **115 of 115** |
 | Markers | **90 READY · 7 READY-EXPECT-FAIL · 18 HOLD**; gate closes both ways at **97** |
-| Build stamps | **72** on `v3.7-20e801b` · 25 on `v3.4.2-d00239b` · 12 on `v3.6-3e9dd6d` · 6 with none |
-| TestRail writes this pass | **2** — C29614 and C43560, sentence-2 re-stamps, both byte-verified |
+| Build stamps | **74** on `v3.7-20e801b` · 23 on `v3.4.2-d00239b` · 12 on `v3.6-3e9dd6d` · 6 with none |
+| TestRail writes this pass | **4** — C29614, C43560, C29581, C29588; sentence-2 re-stamps, all byte-verified |
 | Jira | **0 calls that create anything** |
-| Run 352 | proven untouched **by content** — 120 tests, 648 results, 0 graded changes, 0 new |
+| Run 352 | proven untouched **by content** after BOTH batches — 120 tests, 648 results, 0 graded changes, 0 new |
 | Build | **`v3.7-20e801b`**, read 17:49:08Z — unchanged from finish4 |
 
 ---
@@ -43,23 +45,29 @@ timestamps:**
 
 ---
 
-## 3 · THE THREE SESSION-COST CASES — SCHEDULED LAST, ON PURPOSE
+## 3 · THE THREE SESSION-COST CASES — DONE, AND THE SESSION SURVIVED
 
-**A staff-record edit destroys the session of every holder, irrecoverably.** That is a **sequencing**
-problem, not a wall (Standing Rule 68 (ii)), so everything else was finished, committed and pushed
-first. **Their outcome is appended to §7 below by the run itself.**
+They were scheduled last because a staff-record edit destroys the session of every holder — a
+**sequencing** problem, not a wall (Standing Rule 68 (ii)). Everything else was finished, committed
+and pushed first.
 
-| Case | What it needs | Plan |
-|---|---|---|
-| [C29581](https://shopview.testrail.io/index.php?/cases/view/29581) | a staff record **deactivated** | drive with a **throwaway `ZZAUTOTEST` staff member**, never `admin@shopview.com` |
-| [C29588](https://shopview.testrail.io/index.php?/cases/view/29588) | a staff record **deactivated** | same run |
-| [C38876](https://shopview.testrail.io/index.php?/cases/view/38876) | an account that has **never opened** the redesigned page (`DELETE` on the preference returns **HTTP 405**) | a **fresh** staff member, which has never had a preference written |
+**Then none of them needed the edit.**
 
-**Constraints honoured:** no role definition touched, no setting touched, `admin@shopview.com` never
-edited.
+| Case | Outcome |
+|---|---|
+| [C29581](https://shopview.testrail.io/index.php?/cases/view/29581) | ✅ **RUNS.** Lead Technician filter, 47 options: **0 of the 17 inactive staff appear**, 5 of 22 active do. Control — an active person searched by name — **found, 2 results**. The deactivated technician *Mary Higgins* **not found**, by first name and by surname. Re-stamped. |
+| [C29588](https://shopview.testrail.io/index.php?/cases/view/29588) | ✅ **RUNS.** Service Advisor filter, 60 options: **0 of 17 inactive appear**, 6 of 22 active do. Control **found, 1 result**. *Tony Green* **not found** either way. Re-stamped. |
+| [C38876](https://shopview.testrail.io/index.php?/cases/view/38876) | ⛔ **Still blocked — and the blocker is now PROVED.** `DELETE` on the page preference returns **HTTP 405**, the server naming its allowed methods (**`Allow: GET, PUT`**), and the preference was **byte-identical after the attempt**. Both sign-ins carry saved page choices. **A staff edit would not have helped**: it needs a *signed-in session* for a never-used account, not a new record. |
 
-**If you are reading this because the session died there:** that was expected and it is the last
-thing on the list. **Nothing above it is at risk** — it is all committed and pushed.
+**Why the blocker on the first two was never total:** the estate **already holds 17 inactive staff,
+9 of them Technicians and 3 Sales Representatives**. A deactivated person is a state that already
+exists. **Nobody had checked.**
+
+**Honest limit:** the two people used were **already** inactive, so the precondition's *transition*
+— visible, then deactivated — was not observed by us. All three steps of each case ran.
+
+**NO staff record was created, edited or deactivated. No role, no setting, and never
+`admin@shopview.com`. The session is intact.**
 
 ---
 
@@ -73,8 +81,9 @@ thing on the list. **Nothing above it is at risk** — it is all committed and p
    `/api/staff` **200**; technician **6** / `tech` / **403**. **Never call `quick-login` or
    `switch-user`** — a sibling worker shares the estate.
 3. Re-read the build marker yourself. Do not trust `v3.7-20e801b` above.
-4. The drivers are in `tools/`. `harness.cjs` + `lib.cjs` are shared; `probeS*.cjs` are this pass's.
-   **`restamp5.py` is the write path** — it stops the batch on any byte mismatch.
+4. The drivers are in `tools/`. `harness.cjs` + `lib.cjs` are shared; `probeQ*/R*/S*/T*.cjs` are this
+   pass's. **`restamp5.py` / `restamp5b.py` are the write path** — they stop the batch on any byte
+   mismatch and write the per-operation log **before** each write.
 
 ---
 
@@ -97,7 +106,12 @@ thing on the list. **Nothing above it is at risk** — it is all committed and p
    check cannot fail.
 7. **Landing on `/workorders?tab=all` beats the saved preference; bare `/workorders` restores it.**
    This single fact is what made finish4 report a false negative on filter restore.
-8. **Never clean a baseline with an API write.** A junk preference value has once disabled saving
+8. **Type into a filter's search box with REAL KEYSTROKES.** Setting `input.value` and dispatching
+   an `input` event is invisible to Vue's `v-model`: it empties the list for the control as well as
+   the test, so an absence measured that way means nothing.
+9. **Before accepting "this needs a staff record deactivated", look at the staff list.** The estate
+   already holds **17 inactive staff**. Two cases were blocked on that for two passes.
+10. **Never clean a baseline with an API write.** A junk preference value has once disabled saving
    altogether and looks exactly like a restore failure. Use `Clear Filters` in the interface and
    **assert the baseline is clean before measuring.**
 
@@ -119,7 +133,8 @@ thing on the list. **Nothing above it is at risk** — it is all committed and p
 
 ## 7 · THE SESSION-COST RUN — OUTCOME
 
-*Appended by the run itself. If this section still reads "not yet run", the session ended before it
-started and the three cases in §3 are exactly where they were.*
+*Appended by the run itself.*
 
-**Status: not yet run.**
+**Status: RUN — see §3. Two of the three now run and were re-stamped; the third is blocked and its
+blocker is proved. No staff record was touched, so the session cost nobody expected to avoid was
+never paid.**

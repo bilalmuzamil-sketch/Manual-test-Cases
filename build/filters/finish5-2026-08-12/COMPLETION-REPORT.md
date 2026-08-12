@@ -11,7 +11,7 @@ technician `bilal.muzamil+filters@shopview.com` (6 permissions, `view_mode: tech
 `switch-user` never called.
 
 **Every figure below was derived LIVE from TestRail and the running build. Census read at
-`2026-08-12T18:25:15Z`.** Nothing is carried from a document.
+`2026-08-12T18:34:29Z`, after the last write.** Nothing is carried from a document.
 
 ---
 
@@ -21,16 +21,16 @@ technician `bilal.muzamil+filters@shopview.com` (6 permissions, `view_mode: tech
 |---|---|---|---|
 | 1 | **Total cases** | **ours 115 / live 120** | The other 5 (C43576–C43580) are **Ahtasham Amjad's**. Never edited, never counted as ours, proven byte-identical over every field **including `updated_on`/`updated_by`** across this pass's writes (Rule 38). |
 | 2 | **Source-verified** — a per-source read-date **and** a current version pin | **115 of 115** | Measured live, **both conditions together**: 115 carry Rule-54 sentence 1 with `read on <date>` per source, and 115 pin **spec Confluence v19 (published 6 Aug 2026)**, still the current version. Unchanged by this pass. |
-| 3 | **Build-verified — naming the build NOW RUNNING (`v3.7-20e801b`)** | **72** | Was 70. **+2, exactly this pass's two writes.** |
-| 3b | **Build-verified — naming an EARLIER build** | **37** | **25** name `v3.4.2-d00239b` (5 Aug), **12** name `v3.6-3e9dd6d` (11 Aug). **These are NOT owed work.** Under Rule 60's 2026-08-12 amendment a bug-fix-only deploy does not make a prior pass stale, so these stamps are honest records of a real check, not a shortfall. |
+| 3 | **Build-verified — naming the build NOW RUNNING (`v3.7-20e801b`)** | **74** | Was 70. **+4, exactly this pass's four writes.** |
+| 3b | **Build-verified — naming an EARLIER build** | **35** | **23** name `v3.4.2-d00239b` (5 Aug), **12** name `v3.6-3e9dd6d` (11 Aug). **These are NOT owed work.** Under Rule 60's 2026-08-12 amendment a bug-fix-only deploy does not make a prior pass stale, so these stamps are honest records of a real check, not a shortfall. |
 | 3c | **Carrying no build line at all** | **6** | Was 7 — C43560 gained one. Each says in its own text that it has not been checked against any build, which is what Rule 60 requires. |
-| 4 | **Steps and preconditions ACTUALLY WALKED on a build — every step verified** | **106 of 115** | **Was 92. +14 this pass**, as a **union by case id**. **This is the smaller and more honest number, and it is the one that answers "can a tester pick this up tomorrow and run it?"** |
+| 4 | **Steps and preconditions ACTUALLY WALKED on a build — every step verified** | **108 of 115** | **Was 92. +16 this pass**, as a **union by case id**. **This is the smaller and more honest number, and it is the one that answers "can a tester pick this up tomorrow and run it?"** |
 | 5 | **Runnable vs held** — live marker census | **90 `READY` · 7 `READY - EXPECT FAIL` · 18 `HOLD` = 115** | **The gate closes both ways: 90 + 7 = 97, and 115 − 18 = 97.** Read back from the live cases. **No marker was changed by this pass.** |
-| 6 | **Created / updated / deleted** | **0 created · 2 updated · 0 deleted** | 2 × `update_case`, both HTTP 200, **28 fields byte-compared each, 0 collateral**. 0 add_section, 0 run writes, 0 results, **0 Jira creations**. |
-| 7 | **What is left** | **9 cases** | Itemised below, each with what it waits on and who can clear it. |
+| 6 | **Created / updated / deleted** | **0 created · 4 updated · 0 deleted** | 4 × `update_case`, all HTTP 200, **28 fields byte-compared each, 0 collateral**. 0 add_section, 0 run writes, 0 results, **0 Jira creations**. |
+| 7 | **What is left** | **7 cases** | Itemised below, each with what it waits on and who can clear it. |
 
-**Column 3 + 3b + 3c = 72 + 37 + 6 = 115.** ✓
-**Column 4 + what is left = 106 + 9 = 115.** ✓
+**Column 3 + 3b + 3c = 74 + 35 + 6 = 115.** ✓
+**Column 4 + what is left = 108 + 7 = 115.** ✓
 **Raw markup shown to the tester: 0 of 115** (checked across all three text fields).
 
 ### Why columns 3 and 4 are different numbers, deliberately
@@ -45,7 +45,7 @@ on screen. **The second is always the smaller claim and it is the one that matte
 **Not "VIU complete".** Since the behaviour verdict became the manual tester's (Rule 10, amended
 2026-08-11):
 
-> **106 of the 115 cases are source-verified and build-accurate in their preconditions, steps,
+> **108 of the 115 cases are source-verified and build-accurate in their preconditions, steps,
 > navigation and labels, against build `v3.7-20e801b`. The behaviour verdict belongs to the
 > tester — and that is by design.**
 
@@ -60,12 +60,13 @@ about whether a tester can execute their steps. **They were walked: 11 of the 14
 today and 3 are not** — and the 3 fail for reasons that have **nothing to do with Branko**, two of
 which would have stayed invisible until a tester opened the case and stopped. Separately, **the
 filter-restore contradiction is settled** (finish3 was right; restore works, and finish4's negative
-came from the address its probe landed on), which closed the last two part-walked cases. **The
-walked union moved 92 → 106.**
+came from the address its probe landed on), which closed the last two part-walked cases. **And the three cases everyone had written off as costing the session cost nothing** — two of
+them run on data that already exists, and the third never needed a staff edit at all. **The walked
+union moved 92 → 108.**
 
 ---
 
-## 7 · WHAT IS LEFT — 9 CASES, ITEMISED
+## 7 · WHAT IS LEFT — 7 CASES, ITEMISED
 
 ### (a) Genuinely unrunnable — the precondition cannot be produced by anyone here — **2 cases**
 
@@ -93,20 +94,54 @@ Both were checked for self-serviceability first. Neither is seedable. Evidence: 
 **All three are RAISED, not rewritten.** Rewriting a substantive divergence into a runnable step
 deletes the finding — full texts, both sides quoted, in `DIVERGENCES.md`.
 
-### (d) Ordinary tester work that costs the session — **3 cases** · *attempted last, see `RESUME.md`*
+### (d) Blocked on a sign-in, and the blocker is now PROVED — **1 case**
 
-| Case | What it needs |
-|---|---|
-| [C29581](https://shopview.testrail.io/index.php?/cases/view/29581) | a staff record **deactivated** |
-| [C29588](https://shopview.testrail.io/index.php?/cases/view/29588) | a staff record **deactivated** |
-| [C38876](https://shopview.testrail.io/index.php?/cases/view/38876) | an account that has **never opened** the redesigned page (`DELETE` on the page preference returns **HTTP 405**) |
+| Case | What it needs | Who clears it |
+|---|---|---|
+| [C38876](https://shopview.testrail.io/index.php?/cases/view/38876) | an account that has **never opened** the redesigned Work Orders page | **the QA lead** — a third sign-in, or a ruling that the case becomes `AUTOMATION: HOLD` |
 
-**These are a SEQUENCING problem, not a wall** (Standing Rule 68 (ii)). A staff-record edit destroys
-the session of every holder, irrecoverably — so everything else was finished, committed and pushed
-first, and they are driven at the very end. **Their outcome is recorded in `RESUME.md`, written
-before the edit was made.**
+**Proved rather than asserted, this pass:** `DELETE` on the page preference returns **HTTP 405**
+with the server naming its own allowed methods (**`Allow: GET, PUT`**), and the preference was
+**byte-identical after the attempt**. A `PUT` can only overwrite a preference, never make it absent.
+**Both available sign-ins carry one** — admin `updatedAt 2026-08-12T17:39:11Z`, technician
+`2026-08-12T14:36:08Z`. **And a staff-record edit would not have helped it**: what it needs is a
+*signed-in session* for a never-used account, not a new record.
 
-**2 + 1 + 3 + 3 = 9.** ✓
+**2 + 1 + 3 + 1 = 7.** ✓
+
+---
+
+## 🟢 THE THREE CASES THAT WERE GOING TO COST THE SESSION — AND COST NOTHING
+
+They were scheduled last precisely because a staff-record edit destroys the session of every holder.
+**No staff record was touched, because none needed to be.**
+
+**[C29581](https://shopview.testrail.io/index.php?/cases/view/29581) and
+[C29588](https://shopview.testrail.io/index.php?/cases/view/29588) now RUN.** The blocker — *"needs a
+staff record deactivated"* — had stood since finish3 and **was never total**: the estate **already
+holds 17 inactive staff, 9 of them Technicians and 3 Sales Representatives**. A deactivated person is
+a state that already exists, not one we had to create.
+
+| | Lead Technician filter (C29581) | Service Advisor filter (C29588) |
+|---|---|---|
+| Options offered | **47** | **60** |
+| Active staff appearing | 5 of 22 | 6 of 22 |
+| **Inactive staff appearing** | **0 of 17** | **0 of 17** |
+| **CONTROL** — an active person searched by name | **found**, 2 results | **found**, 1 result |
+| The deactivated person, by first name **and** by surname | **not found** | **not found** |
+
+**The control is what makes the absence a measurement**: the search box demonstrably finds an active
+person, so "the deactivated technician is not in the list" is a result rather than a broken box. **An
+earlier run of this could not fail** — it typed by setting `input.value`, which Vue's `v-model` never
+sees, and emptied the list for the control as well as for the test. That run is kept in
+`evidence/probeT1.json`.
+
+**Honest limit:** the two people used (*Mary Higgins*, *Tony Green*) were **already** inactive, so the
+**transition** the precondition describes — visible, then deactivated — was not observed by us. All
+three of each case's steps ran, and creating a `ZZAUTOTEST` person and deactivating them is ordinary
+work for a tester with admin rights.
+
+**Both were re-stamped to `v3.7-20e801b`.**
 
 ---
 
@@ -139,12 +174,13 @@ clear, and nothing about the build stands in the way.**
    **My Timesheets** report still in scope? It does not exist on this build.
 6. **The developers' before-list for [C38908](https://shopview.testrail.io/index.php?/cases/view/38908)**,
    or your decision to re-scope it against the specification instead.
-7. **Your authorisation for one small edit pass** to apply the recommended step wording in
+7. **A third sign-in for [C38876](https://shopview.testrail.io/index.php?/cases/view/38876)**, or your ruling that it becomes `AUTOMATION: HOLD` — the blocker is now proved (DELETE 405, `Allow: GET, PUT`) and no staff edit can clear it.
+8. **Your authorisation for one small edit pass** to apply the recommended step wording in
    `DIVERGENCES.md` §§1, 3, 4, 5 and 6 — deliberately not applied on release eve, and likely to be
    overtaken by Branko's write-up anyway.
-8. **A ruling on [C38881](https://shopview.testrail.io/index.php?/cases/view/38881)** — it can never
+9. **A ruling on [C38881](https://shopview.testrail.io/index.php?/cases/view/38881)** — it can never
    be run now the migration window has closed.
-9. **A ticket for [C38897](https://shopview.testrail.io/index.php?/cases/view/38897)** when the
+10. **A ticket for [C38897](https://shopview.testrail.io/index.php?/cases/view/38897)** when the
    creation hold lifts — still the project's only unticketed real deviation, prepared and unfiled.
    **One more candidate joins it**: a shared **report** address filters the data but its button
    shows no value (`DIVERGENCES.md` §7).
@@ -156,16 +192,21 @@ and the build did not move under the pass.
 
 ## HONEST LIMITS OF THIS REPORT
 
-* **106 of 115 walked, not 115.** The 9 are itemised above rather than covered by a caveat.
+* **108 of 115 walked, not 115.** The 7 are itemised above rather than covered by a caveat.
 * **The behaviour verdict is not ours** (Rule 10 as amended). Where the build disagreed with a case
   we **left the case asserting its source so the tester fails it** — including the four Status-chip
   cases, where the chip is absent rather than greyed.
-* **Five apparent product faults in this pass were our own harness**, and two further readings are
-  reported as **INCONCLUSIVE** rather than as findings because their checks could not fail. All
-  seven are named in `RUNNABILITY.md` §4 rather than quietly dropped.
-* **The two cases this pass closed were closed by disproving our own previous pass**, not the
-  build's behaviour. That is a caution about our verdicts: *"the build is broken"* and *"this cannot
-  be produced"* both need the same rule-out discipline.
+* **Six apparent product faults in this pass were our own harness**, and two further readings are
+  reported as **INCONCLUSIVE** rather than as findings because their checks could not fail. All are
+  named in `RUNNABILITY.md` §4 rather than quietly dropped — including the sixth, a filter search
+  that returned nothing for the control as well as the test because it typed in a way Vue never saw.
+* **Four of the cases this pass closed were closed by disproving our own previous passes**, not by
+  anything the build did. Two were blocked on a restore failure that was our own landing URL; two
+  were blocked on a staff edit that was never necessary. That is a caution about our verdicts:
+  ***"the build is broken"* and *"this cannot be produced"* need the same rule-out discipline**, and
+  the second is the easier one to get away with.
+* **The precondition transition on C29581 and C29588 was not observed** — the two people used were
+  already inactive. Their three steps ran; the visible-then-deactivated transition did not.
 * **A previous worker was killed by a container restart mid-pass.** Everything it had measured was
   recovered from its committed evidence and from `/tmp`, and **its zero TestRail writes were proven
   by content** — all 120 cases byte-identical to the census it took at 16:41Z, `updated_on` and

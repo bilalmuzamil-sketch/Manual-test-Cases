@@ -22,11 +22,15 @@ Vlad marked by hand, and the Rule-65 report is genuinely owed rather than an art
 
 ---
 
-## THE OTHER CASE THIS PASS WROTE TO — NOT AUTOMATED
+## THE OTHER THREE CASES THIS PASS WROTE TO — NONE OF THEM AUTOMATED
 
 | Case | `custom_atmstatus` at write time | Note |
 |---|---|---|
-| [C43560](https://shopview.testrail.io/index.php?/cases/view/43560) — *Two browsers: the last one to save wins* | **1 — Not Automated** | Its `custom_atmstatus` history is **empty**, so nobody has ever marked it. Same change: the sentence *"This test has not yet been checked against any build"* became *"Last checked against build v3.7-20e801b on 12 August 2026"*. **Listed for completeness; not owed to Vlad.** |
+| [C43560](https://shopview.testrail.io/index.php?/cases/view/43560) — *Two browsers: the last one to save wins* | **1 — Not Automated** | Its `custom_atmstatus` history is **empty**, so nobody has ever marked it. Same change: the sentence *"This test has not yet been checked against any build"* became *"Last checked against build v3.7-20e801b on 12 August 2026"*. |
+| [C29581](https://shopview.testrail.io/index.php?/cases/view/29581) — *A deactivated technician does not appear in the Lead Technician filter list* | **1 — Not Automated** | Sentence-2 build stamp only. |
+| [C29588](https://shopview.testrail.io/index.php?/cases/view/29588) — *A deactivated advisor does not appear in the Service Advisor filter list* | **1 — Not Automated** | Sentence-2 build stamp only. |
+
+**All three listed for completeness; none is owed to Vlad.**
 
 ---
 
@@ -48,5 +52,11 @@ recorded as failing:
 
 ---
 
-**Total: 1 Automated case changed (C29614), and the change does not alter what an automated check
-should conclude — though the reason the case had been failing does.**
+**Total: 4 cases written to; 1 of them Automated (C29614); the change does not alter what an
+automated check should conclude — though the reason that case had been failing does.**
+
+**One more thing worth Vlad's time, on cases nobody touched:** C29581 and C29588 are now proven
+runnable **without any staff record being deactivated** — the estate already holds 17 inactive staff,
+9 of them Technicians. **An automated check for these two does not need a staff-administration
+step at all**; it can assert directly that no inactive person appears in the Lead Technician or
+Service Advisor list, with an active person as its control.

@@ -242,8 +242,43 @@ have read as a finding.
 5. **"The Date chip's menu is empty."** An option count that only counts `filter_option_` divs, on
    a Date panel that is **not built that way** — as an earlier probe in this same pass had already
    recorded.
+6. **"The deactivated technician is not found by searching the filter."** True, as it turns out —
+   but the run that first said so **typed by setting `input.value` and dispatching an `input`
+   event**, which Vue's `v-model` never sees. It returned **zero results for the ACTIVE control
+   name as well**, so it could not fail. Re-run with real keystrokes, the control is found and the
+   absence is a measurement.
 
 **Two further readings are reported as INCONCLUSIVE rather than as findings**, because their checks
 could not fail: the phone apply-immediately behaviour on a *report* (the option was already
 selected), and the workplace count (`/api/staff/my-workplaces` returned 200 and our parser did not
 understand the shape).
+
+
+---
+
+## 5 · A SIXTH AND SEVENTH CASE WALKED THE SAME DAY, ON THE SAME PRINCIPLE
+
+**These two are not among the 14** — they were in finish4's group (d), *"runnable; they are simply
+not runnable by us"*, because both need **a staff record deactivated** and such an edit destroys the
+session of every holder. They were scheduled for the very end of this pass for that reason.
+
+**Neither needed the edit.** The estate **already holds 17 inactive staff** — 9 Technicians, 3 Sales
+Representatives, 5 Admins — so *"a deactivated person"* is a state that already exists.
+
+| | [C29581](https://shopview.testrail.io/index.php?/cases/view/29581) — Lead Technician | [C29588](https://shopview.testrail.io/index.php?/cases/view/29588) — Service Advisor |
+|---|---|---|
+| Step 1 · open the filter | **47** options | **60** options |
+| Active staff appearing in the list | 5 of 22 | 6 of 22 |
+| **Inactive staff appearing** | **0 of 17** | **0 of 17** |
+| **CONTROL** — an active person searched by name | **found**, 2 results | **found**, 1 result |
+| Step 2–3 · search the deactivated person, by first name **and** surname | *Mary Higgins* — **not found** | *Tony Green* — **not found** |
+| Verdict | **RUNNABLE** | **RUNNABLE** |
+
+**The control is what makes this a measurement.** Without it, "not found" is equally consistent with
+a search box that finds nothing at all — which is exactly what the first attempt produced.
+
+**Honest limit:** both people were **already** inactive, so the precondition's **transition** —
+visible in the list, then deactivated — was **not observed by us**. The three steps each case asks
+for all ran, and producing that transition is ordinary work for a tester with admin rights.
+
+**Both were re-stamped to `v3.7-20e801b`. No staff record was touched.**

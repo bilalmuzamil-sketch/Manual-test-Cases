@@ -1,6 +1,6 @@
 # TESTRAIL EXECUTION LOG — Filters finish5, 2026-08-12
 
-**Two operations. Both `update_case`. Nothing else was written anywhere.**
+**Four operations, in two batches. All `update_case`. Nothing else was written anywhere.**
 
 Written at **2026-08-12T18:15:13.104042Z** · build **v3.7-20e801b** · TestRail project 1 / suite 1 / group 4110.
 
@@ -14,8 +14,14 @@ Written at **2026-08-12T18:15:13.104042Z** · build **v3.7-20e801b** · TestRail
 |---|---|---|---|---|---|---|---|---|
 | 1 | [C29614](https://shopview.testrail.io/index.php?/cases/view/29614) | `update_case` | **200** | **28** | yes | **0** | **3** | **PASS** |
 | 2 | [C43560](https://shopview.testrail.io/index.php?/cases/view/43560) | `update_case` | **200** | **28** | yes | **0** | **1** | **PASS** |
+| 3 | [C29581](https://shopview.testrail.io/index.php?/cases/view/29581) | `update_case` | **200** | **28** | yes | **0** | **1** | **PASS** |
+| 4 | [C29588](https://shopview.testrail.io/index.php?/cases/view/29588) | `update_case` | **200** | **28** | yes | **0** | **1** | **PASS** |
 
-**Summary:** planned 2 · written 2 · skipped 0 · no-op 0 · stopped early: **none**
+**Summary: planned 4 · written 4 · skipped 0 · no-op 0 · stopped early: none.**
+
+Batch 1 (C29614, C43560) at **18:15:13Z**, logged in `evidence/restamp5-oplog.json`.
+Batch 2 (C29581, C29588) at **18:31Z**, logged in `evidence/restamp5b-oplog.json`.
+Both per-operation logs were written **before** each write.
 ---
 
 ## WHAT WAS CHANGED, EXACTLY
@@ -28,9 +34,13 @@ is what Rule 54's 2026-08-05 amendment forbids.
 |---|---|---|
 | C29614 | `Last checked against build v3.4.2-d00239b on 8/5/2026.` | `Last checked against build v3.7-20e801b on 12 August 2026.` |
 | C43560 | `This test has not yet been checked against any build.` | `Last checked against build v3.7-20e801b on 12 August 2026.` |
+| C29581 | `Last checked against build v3.4.2-d00239b on 8/5/2026.` | `Last checked against build v3.7-20e801b on 12 August 2026.` |
+| C29588 | `Last checked against build v3.4.2-d00239b on 8/5/2026.` | `Last checked against build v3.7-20e801b on 12 August 2026.` |
 
-**Why only these two.** They are the only two cases this pass drove **end to end, every step**, that
-it had not already driven. The 14 cases held on Branko were walked for **runnability** but were
+**Why only these four.** They are the only cases this pass drove **end to end, every step**, that it
+had not already driven. C29614 and C43560 closed once the filter-restore contradiction was settled;
+C29581 and C29588 closed once it turned out that **no staff record had to be deactivated at all** —
+the estate already holds 17 inactive staff. The 14 cases held on Branko were walked for **runnability** but were
 **deliberately not written to** — the brief bars touching their expected results, and the provenance
 line lives in that field. Their runnability verdict is recorded in `RUNNABILITY.md`, off the case.
 
@@ -64,7 +74,7 @@ The tester is grading this run live, so it was snapshotted before the writes and
 | Tests | **120** before, **120** after |
 | Test-id sets | **equal in both directions** |
 | `case_id` sets | **equal in both directions** |
-| Result records | **648** before, **648** after |
+| Result records | **648** before, **648** after — re-verified after **both** batches |
 | Prior results missing **by id** | **0** |
 | Graded fields changed on any prior result | **0** (`status_id`, `comment`, `defects`, `assignedto_id`, `elapsed`, `version`, `created_by`, `created_on`, `test_id`) |
 | Derived/echo fields changed | **0** |

@@ -1,13 +1,15 @@
 # CHANGES MADE — Filters finish5, 2026-08-12
 
-## IN TESTRAIL — TWO CASES, ONE FIELD EACH
+## IN TESTRAIL — FOUR CASES, ONE FIELD EACH
 
 | Case | Change | Verified |
 |---|---|---|
 | [C29614](https://shopview.testrail.io/index.php?/cases/view/29614) | Rule-54 **sentence 2** re-stamped `v3.4.2-d00239b` (8/5/2026) → **`v3.7-20e801b`, 12 August 2026** | HTTP 200, 28 fields byte-compared, 0 collateral |
 | [C43560](https://shopview.testrail.io/index.php?/cases/view/43560) | Rule-54 **sentence 2** *"has not yet been checked against any build"* → **`v3.7-20e801b`, 12 August 2026** | HTTP 200, 28 fields byte-compared, 0 collateral |
+| [C29581](https://shopview.testrail.io/index.php?/cases/view/29581) | Rule-54 **sentence 2** re-stamped `v3.4.2-d00239b` (8/5/2026) → **`v3.7-20e801b`, 12 August 2026** | HTTP 200, 28 fields byte-compared, 0 collateral |
+| [C29588](https://shopview.testrail.io/index.php?/cases/view/29588) | Rule-54 **sentence 2** re-stamped `v3.4.2-d00239b` (8/5/2026) → **`v3.7-20e801b`, 12 August 2026** | HTTP 200, 28 fields byte-compared, 0 collateral |
 
-**Nothing else was changed on either case** — no title, no precondition, no step, no expectation, no
+**Nothing else was changed on any of the four** — no title, no precondition, no step, no expectation, no
 `refs`, no `AUTOMATION` marker, no `custom_atmstatus`. Full log and proofs:
 `testrail-execution-log.md`.
 
@@ -17,16 +19,16 @@
 
 | File | What it is |
 |---|---|
-| `RUNNABILITY.md` | The 14 cases held on Branko, walked. **11 runnable, 3 not** — with the five of our own harness faults that looked like build faults. |
+| `RUNNABILITY.md` | The 14 cases held on Branko, walked. **11 runnable, 3 not** — plus the six of our own harness faults that looked like build faults, and the two readings reported INCONCLUSIVE. |
 | `RESTORE-CONTRADICTION.md` | The finish3-vs-finish4 disagreement settled. **finish3 was right.** |
 | `HOLD-REASONS.md` | The four already-held cases, each reason checked against live data. **One is a filing reason on a runnable case.** |
 | `DIVERGENCES.md` | 3 substantive · 2 cosmetic · 1 correction to our own text · 1 build observation. **None applied.** |
 | `AUTOMATED-CASES-CHANGED.md` | Rule 65 — **one** Automated case changed, and Vlad set that flag himself. |
 | `COMPLETION-REPORT.md` | Rule 67 — the table, every figure derived live. |
 | `RESUME.md` | Where this pass got to and what the next one picks up. |
-| `testrail-execution-log.md` | Two operations, with the run-352 and foreign-case proofs. |
-| `evidence/probe{Q1,Q1b,Q2,Q3,Q4,Q5,Q6,R1,R2,R3,S1,S2,S3,S4,S5,S6}.json` + run logs | Every measurement, including **the runs that could not fail**, kept deliberately. |
-| `tools/probe*.cjs`, `tools/restamp5.py`, `tools/harness.cjs`, `tools/lib.cjs` | The drivers, re-runnable. |
+| `testrail-execution-log.md` | Four operations in two batches, with the run-352 and foreign-case proofs. |
+| `evidence/probe{Q1,Q1b,Q2,Q3,Q4,Q5,Q6,R1,R2,R3,S1..S6,T1,T2}.json` + run logs + `c38876-blocker-verified.json` | Every measurement, including **the runs that could not fail**, kept deliberately. |
+| `tools/probe*.cjs`, `tools/restamp5.py`, `tools/restamp5b.py`, `tools/harness.cjs`, `tools/lib.cjs` | The drivers, re-runnable. |
 
 ---
 
@@ -54,16 +56,22 @@ by the QA lead on 2026-08-12 in the same breath as raising the evidence bar. **T
 this pass produced** — a shared report address that filters the data while its button shows no value
 — is written up in `DIVERGENCES.md` §7 with its evidence, ready to file when the hold lifts.
 
-**6 · Nothing was seeded, and nothing needed to be.** Every data state the walk required already
-existed and was used read-only. **No `ZZAUTOTEST` data exists from this pass** because none was ever
-created. No role, no setting and no staff record was touched — the three cases that need a staff
-change are scheduled last, on purpose (see `RESUME.md`).
+**6 · Nothing was seeded, and nothing needed to be — including the part everyone expected to cost
+the session.** Every data state the walk required already existed and was used read-only. **No
+`ZZAUTOTEST` data exists from this pass** because none was ever created. **No role, no setting and
+NO STAFF RECORD was touched.**
+
+The three cases held as *"they need a staff record deactivated, which destroys the session of every
+holder"* were scheduled last for exactly that reason — and then **none of them needed it**. The
+estate already holds **17 inactive staff**, so C29581 and C29588 ran on existing data; and C38876
+never needed a staff edit either, because what it wants is a *signed-in session for a never-used
+account*, which creating a record does not provide. **The session survived the pass intact.**
 
 ---
 
 ## THE ENVIRONMENT AS THIS PASS LEAVES IT
 
-**Two page preferences hold values this pass set through the interface**, on
+**Three page preferences hold values this pass set through the interface**, on
 `admin@shopview.com`'s own account:
 
 * **Work Orders** — `status: [estimate]`, `company_id: [Iibay Landscaping]`, from C43560's step 5.
