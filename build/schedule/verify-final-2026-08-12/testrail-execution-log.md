@@ -98,9 +98,21 @@ the expected behaviour and provenance sentence 1 were byte-identical on all six,
 produce a payload otherwise. **No precondition and no step was edited** — all six were verified
 against the build and found executable as written.
 
+## 2b · Batch C — the surface probes
+
+| # | case | op | HTTP | fields compared | mismatches | collateral | what moved |
+|---|---|---|---|---|---|---|---|
+| 1 | C29946 | update_case | 200 | 30 | 0 | 0 | stamp only - 'Clear all' confirmed exact |
+| 2 | C30034 | update_case | 200 | 30 | 0 | 0 | stale known-issue note replaced; marker to no-ticket HOLD; stamp |
+| 3 | C30058 | update_case | 200 | 30 | 0 | 0 | stamp only - 'This shift only' confirmed exact |
+| 4 | C30059 | update_case | 200 | 30 | 0 | 0 | STEP 1 scope label corrected to 'This and all later shifts'; stamp |
+| 5 | C30061 | update_case | 200 | 30 | 0 | 0 | stamp only - middle shift confirmed showing all three options |
+
+**5 of 5 written, every one HTTP 200 + byte-verified, 0 mismatches, 0 collateral changes.**
+
 ## 3 · Totals for the pass
 
-**51 `update_case` operations over 51 distinct cases, every one HTTP 200 + byte-verified,
+**56 `update_case` operations over 56 distinct cases, every one HTTP 200 + byte-verified,
 30 fields compared each, 0 mismatches, 0 collateral changes.**
 
 0 `add_case` · 0 `delete_case` · 0 section writes · 0 run writes · 0 results logged ·
