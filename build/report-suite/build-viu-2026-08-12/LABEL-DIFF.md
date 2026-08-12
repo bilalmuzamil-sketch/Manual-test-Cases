@@ -51,7 +51,7 @@ verdict** — *not seen* is never scored as *wrong* (Rule 12).
 | [C38859](https://shopview.testrail.io/index.php?/cases/view/38859) | Technician Utilization | five column toggles (Technician fixed) | **MATCH, exact and in order** |
 | [C30401](https://shopview.testrail.io/index.php?/cases/view/30401) | Technician Utilization | six column headers, in order | **MATCH, exact and in order** |
 
-**7 of 7 scored classes match exactly, all three of them on the FINAL reports.**
+**7 of 7 scored classes match exactly, all three of them on the FINAL reports.** *(A late addition at the end of this file takes it to **12 of 12** — the nine date presets were established on a second attempt.)*
 
 ## The one ordering difference — and the suite had already handled it
 
@@ -92,11 +92,11 @@ column-selection menus with each column's default on/off state — are in
   strings, and — the big one — **options inside dropdowns that were never opened** (`Last Month`,
   `All locations`, `Clear all`, `Select all`, status and product-type filters). **None of those 230
   is reported as a mismatch, because a label we did not harvest is not a label the build lacks.**
-- **The date-range picker's nine named presets were NOT established.** Opening it showed a calendar
-  (`Aug 1, 2026 — Aug 11, 2026`) and the preset panel was not captured, so
-  [C30102](https://shopview.testrail.io/index.php?/cases/view/30102),
-  [C30501](https://shopview.testrail.io/index.php?/cases/view/30501) and their siblings carry **no
-  verdict from this pass**.
+- ~~**The date-range picker's nine named presets were NOT established.**~~ **SUPERSEDED LATER THE
+  SAME SESSION — they WERE established on a second attempt; see the late addition at the end of this
+  file.** The wording is kept and struck through rather than deleted, because the first attempt's
+  failure is itself the lesson: the panel sits beside the calendar and the day numbers swamped a
+  capped text dump, so *"not found"* meant *"not looked at properly"*, not *"not there"*.
 - **The Location column question is untouched.** Work In Progress's column-selection list has **15
   items and `Location` is not one of them**, while `Inventory Value`'s list does contain it. That
   looks like a finding and is **deliberately not reported as one**: this is the exact open question
