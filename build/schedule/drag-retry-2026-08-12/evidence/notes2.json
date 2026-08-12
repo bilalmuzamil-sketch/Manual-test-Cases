@@ -1,0 +1,91 @@
+{
+ "work_order": "S-15299",
+ "customer": "Xiriver Apparel",
+ "target_shift": "1b8961a9-a040-4e0c-a374-9e3db4a3c66e",
+ "sibling_shift": "2fe09150-99c4-4db3-ba60-c54cfeb26e17",
+ "note_before": {
+  "target": null,
+  "sibling": null
+ },
+ "steps": [],
+ "opened": {
+  "ok": true,
+  "text": "Fuline Enterprises G30 6 Lines"
+ },
+ "wo_on_screen": "S-13014",
+ "add_typed": {
+  "ok": true,
+  "val": "ZZAUTOTEST note"
+ },
+ "add_confirm": {
+  "ok": true
+ },
+ "after_add": {
+  "has_zz": true,
+  "note_tids": [
+   "text_shift_detail_note",
+   "button_shift_detail_note_edit",
+   "button_shift_detail_note_delete"
+  ],
+  "notes_area": "Notes ZZAUTOTEST note edit delete_outline"
+ },
+ "edit_open": {
+  "ok": true,
+  "via": "button_shift_detail_note_edit"
+ },
+ "edit_typed": {
+  "ok": true,
+  "val": "ZZAUTOTEST note edited"
+ },
+ "edit_confirm": {
+  "ok": true
+ },
+ "after_edit": {
+  "has_edited": true,
+  "notes_area": "Notes ZZAUTOTEST note edited edit delete_outline"
+ },
+ "per_work_order": {
+  "target_note": null,
+  "sibling_note": null,
+  "same": true
+ },
+ "del_open": {
+  "ok": true,
+  "via": "button_shift_detail_note_delete"
+ },
+ "del_typed": {
+  "ok": false,
+  "why": "no note field"
+ },
+ "del_confirm": {
+  "ok": false,
+  "why": "no button_shift_detail_note_confirm"
+ },
+ "note_after_cleanup": null,
+ "clean": true,
+ "api_writes": [
+  {
+   "m": "PATCH",
+   "s": 200,
+   "u": "/api/schedule/shifts/6b12f567-aae1-4f85-b66e-990b13c22e58"
+  },
+  {
+   "m": "PATCH",
+   "s": 200,
+   "u": "/api/schedule/shifts/6b12f567-aae1-4f85-b66e-990b13c22e58"
+  },
+  {
+   "m": "PATCH",
+   "s": 200,
+   "u": "/api/schedule/shifts/6b12f567-aae1-4f85-b66e-990b13c22e58"
+  }
+ ],
+ "api_4xx": [
+  {
+   "m": "GET",
+   "s": 404,
+   "u": "/api/api/sso/check"
+  }
+ ],
+ "read_at_utc": "2026-08-12T04:32:31.724Z"
+}
