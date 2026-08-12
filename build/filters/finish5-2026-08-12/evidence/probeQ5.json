@@ -1,0 +1,168 @@
+{
+  "probe": "Q5",
+  "at": "2026-08-12T17:00:29.329Z",
+  "partsInteract": {
+    "startRows": 32,
+    "startUrl": "https://sv8785.qa.shopview.com/parts/inventory",
+    "startChips": [
+      "place Bin Location",
+      "list Category",
+      "inventory_2 Supply"
+    ],
+    "afterClearFilters": {
+      "click": {
+        "present": false
+      },
+      "rows": 32,
+      "url": "https://sv8785.qa.shopview.com/parts/inventory",
+      "chips": [
+        "place Bin Location",
+        "list Category",
+        "inventory_2 Supply"
+      ]
+    },
+    "categoryOptions": 65,
+    "picked1": ".Brake Parts",
+    "afterOne": {
+      "ticked": [
+        "filter_option_category_d8e28ff3-c811-46c8-bee5-c5f8f5e2c8e9"
+      ],
+      "rows": 6,
+      "url": "https://sv8785.qa.shopview.com/parts/inventory?category=d8e28ff3-c811-46c8-bee5-c5f8f5e2c8e9"
+    },
+    "picked2": ".Suspension",
+    "afterTwo": {
+      "ticked": [
+        "filter_option_category_d8e28ff3-c811-46c8-bee5-c5f8f5e2c8e9",
+        "filter_option_category_a4c66481-46fc-4f1f-a463-c38f9d36efd8"
+      ],
+      "rows": 6,
+      "url": "https://sv8785.qa.shopview.com/parts/inventory?category=d8e28ff3-c811-46c8-bee5-c5f8f5e2c8e9&category=a4c66481-46fc-4f1f-a463-c38f9d36efd8"
+    },
+    "chipTextWithTwo": [
+      "place Bin Location",
+      "list Category : .Brake Parts, +1",
+      "inventory_2 Supply"
+    ],
+    "clearSelection": true,
+    "afterClearSelection": {
+      "ticked": [],
+      "rows": 32,
+      "url": "https://sv8785.qa.shopview.com/parts/inventory"
+    },
+    "clearFiltersControlPresent": false
+  },
+  "creditsTab": {
+    "returnsTabChips": [
+      "Show cores only",
+      "person Vendor"
+    ],
+    "tabs": [
+      {
+        "id": "tab_returns",
+        "text": "Returns",
+        "active": true
+      },
+      {
+        "id": "tab_credits",
+        "text": "Credits",
+        "active": false
+      }
+    ],
+    "creditsClicked": true,
+    "creditsUrl": "https://sv8785.qa.shopview.com/parts/returns",
+    "creditsTabChips": [
+      "calendar_today Date : 30 days"
+    ],
+    "creditsRows": 5
+  },
+  "dateRangePanel": {
+    "chipsBefore": [
+      "calendar_today Date Range : Last month",
+      "person Filter by Staff"
+    ],
+    "panel": {
+      "menu": true,
+      "text": "Today Yesterday This week Last week This month Last month check This quarter Last quarter This year Last year Custom Clear Selection",
+      "optionish": [
+        "Today",
+        "Today",
+        "Yesterday",
+        "Yesterday",
+        "This week",
+        "This week",
+        "Last week",
+        "Last week",
+        "This month",
+        "This month",
+        "Last month\ncheck",
+        "Last month",
+        "check",
+        "This quarter",
+        "This quarter",
+        "Last quarter",
+        "Last quarter",
+        "This year",
+        "This year",
+        "Last year",
+        "Last year",
+        "Custom",
+        "Custom",
+        "Clear Selection"
+      ],
+      "hasCustom": true,
+      "hasClear": true,
+      "inputs": []
+    }
+  },
+  "reportsInteract": {
+    "startRows": 16,
+    "startUrl": "https://sv8785.qa.shopview.com/reports/sales",
+    "chips": [
+      "person Customer",
+      "calendar_today Date : This month"
+    ],
+    "customerOptions": 0,
+    "after": {
+      "rows": 16,
+      "url": "https://sv8785.qa.shopview.com/reports/sales",
+      "chips": [
+        "person Customer",
+        "calendar_today Date : This month"
+      ]
+    }
+  },
+  "notesMention": {
+    "chips": [
+      "sort Sort By : Newest First",
+      "calendar_today Date Range : This Week",
+      "person Filter by Author : Ahtasham Zeeshan",
+      "alternate_email Filter by Mention : Admin ShopView"
+    ],
+    "startRows": 0,
+    "mentionOptions": 39,
+    "tickA": "Admin ShopView check",
+    "afterA": {
+      "ticked": [],
+      "rows": 0,
+      "url": "https://sv8785.qa.shopview.com/reports/notes-report?author=3c771968-e500-470d-ba7d-ee1257cfd5cf&mention=0eabf741-019e-4b02-84ce-66097c140b3a"
+    },
+    "tickB": "Ahtasham Zeeshan",
+    "afterB": {
+      "ticked": [],
+      "rows": 0,
+      "url": "https://sv8785.qa.shopview.com/reports/notes-report?author=3c771968-e500-470d-ba7d-ee1257cfd5cf&mention=0eabf741-019e-4b02-84ce-66097c140b3a"
+    },
+    "arAgingDetailChips": [
+      "calendar_today Date : 2026-08-12"
+    ]
+  },
+  "bridgeErrors": [],
+  "api4xx": [
+    {
+      "m": "GET",
+      "s": 404,
+      "u": "/api/api/sso/check"
+    }
+  ]
+}
