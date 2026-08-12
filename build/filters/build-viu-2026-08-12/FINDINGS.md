@@ -1,5 +1,12 @@
 # Filters — what a manual tester can actually run tomorrow
 
+> **⚠️ UPDATED LATER THE SAME DAY — the figures below were written before fresh cookies arrived.**
+> **The current position: 29 runnable-untested and 14 held-untested** (C38895 moved from held to
+> runnable when its blocker cleared, and C29615/C38895 both now PASS). **Markers are now
+> 90 `READY` + 7 `EXPECT FAIL` + 18 `HOLD`, gate 97 = 97.** The authoritative morning list is
+> **`SKIP-LIST.md`**; §2 and §4 below are superseded in part by `NON-ADMIN-FINDINGS.md`.
+> The superseded figures are kept, dated, rather than overwritten.
+
 **Build `v3.6-3e9dd6d`. Source: TestRail read live 2026-08-12. Nothing here was observed on the build — see `BUILD-VERIFICATION.md`.**
 
 ## 1. The number that matters

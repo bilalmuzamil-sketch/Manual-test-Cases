@@ -27,3 +27,16 @@ results, its navigation route or its automation marker.
 `custom_atmstatus` was **not sent on any payload**, so no case could have been silently re-flagged;
 the field was additionally compared byte-for-byte on all five writes as part of the 30-field
 verification, and did not move.
+
+---
+
+# ADDENDUM — still none, after the second half of 2026-08-12
+
+Four more cases were written after fresh cookies arrived: **C29615, C38895, C43590, C43561**.
+**None is one of the four TestRail flags as Automated.**
+
+Read live at the end of the session, unchanged all day: **`custom_atmstatus` = `1` on 111 cases and
+`3` on 4** — C29600, C29614, C29623, C38877. **The field was never sent on any of the nine payloads**
+and was byte-compared on every one.
+
+**Day total: 9 cases written, 0 of them Automated. There is nothing for Vlad in this pass.**

@@ -64,3 +64,22 @@ behaviour it is attributed to the last recorded check — **not presented as som
 - **The 5 held-but-Passed results**, including C29615's. Another author's results are reported, never
   edited.
 - **`custom_atmstatus` on any case** — in particular the four Vladimir Tomovic set to `3` by hand.
+
+---
+
+# ADDENDUM — after fresh cookies arrived, same day
+
+**4 more cases changed, all on the strength of observations made today on `v3.6-3e9dd6d`.**
+
+| Case | Change | Basis |
+|---|---|---|
+| [C29615](https://shopview.testrail.io/index.php?/cases/view/29615) | marker `HOLD` → **`READY`**; sentence 2 → `v3.6-3e9dd6d`, 12 August | driven live as the Technician; **PASS** |
+| [C38895](https://shopview.testrail.io/index.php?/cases/view/38895) | same, plus the stale *"we could not run it for you… mark BLOCKED"* note replaced with what was actually found | all four assertions **PASS** |
+| [C43590](https://shopview.testrail.io/index.php?/cases/view/43590) | sentence 2 added (it had none) | Part Sales: one chip, no toggle, still absent after leaving and returning; Inventory as control |
+| [C43561](https://shopview.testrail.io/index.php?/cases/view/43561) | sentence 2 added (it had none) | the live Reports nav reads **`Sales Tax Collected`**, confirming this morning's spec-sourced correction |
+
+**No expectation was altered in any of the four.** The build supplied labels and verdicts only.
+
+**Deliberately still not stamped: the ~89 cases checked against this same build yesterday.** They
+were not observed by this session, and the brief is explicit that sentence 2 goes only on what was
+actually observed. That remains register row **F-STAMP-1**.

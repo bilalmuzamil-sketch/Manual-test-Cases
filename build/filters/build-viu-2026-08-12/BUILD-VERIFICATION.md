@@ -1,5 +1,52 @@
 # Filters — build verification, 2026-08-12
 
+## ✅ SECOND HALF OF THE SESSION: FRESH COOKIES ARRIVED AND THE 8-DAY BLOCKER IS CLEARED
+
+**The QA lead supplied two new `sv8785` `PHPSESSID` values and both work.** Everything below the
+next horizontal rule describes the FIRST half of this session, when both supplied sessions were
+dead — **it is kept, dated and not rewritten**, because it is the evidence that produced the
+narrow, correct ask.
+
+**What changed:**
+
+| | |
+|---|---|
+| Both sessions live | **HTTP 200** — admin **42 permissions / `view_mode: full`**; Technician **6 permissions / `view_mode: tech`** |
+| Identities proven different | **three independent ways** — see below |
+| **[C29615](https://shopview.testrail.io/index.php?/cases/view/29615)** | **PASS**, driven live as the Technician |
+| **[C38895](https://shopview.testrail.io/index.php?/cases/view/38895)** | **PASS**, all four assertions |
+| **[C43590](https://shopview.testrail.io/index.php?/cases/view/43590)** | **PASS**, all four, with a control group |
+| **[C43561](https://shopview.testrail.io/index.php?/cases/view/43561)** | correction made earlier today **confirmed live** |
+| Ready-to-automate gate | **90 `READY` + 7 `EXPECT FAIL` = 97 = 115 − 18 `HOLD`** (was 95 / 20) |
+| Build | **`v3.6-3e9dd6d`, unmoved** — read at start, mid-run and end, `index.html` byte-identical every time |
+
+### The identity check, done before a single observation was recorded
+
+| Evidence | Admin | Technician |
+|---|---|---|
+| `GET /api/auth/me/fe-permissions` | 42 permissions, `view_mode: full`, all three cross-toggles **true** | **6** permissions, `view_mode: tech`, all three cross-toggles **false** |
+| `GET /api/staff?limit=200` | `admin@shopview.com` → role **Admin** | `bilal.muzamil+filters@shopview.com` → role **Technician** |
+| `GET /api/users/me/preferences/…` (a per-user store) | a 427-character saved value | **`null`** |
+
+The Technician's six are exactly the canonical template: `customersView`, `scheduleView`,
+`woPickParts`, `woTechViewMode`, `workOrderLinesCreateAndEdit`, `workOrdersView`. **Only one
+permission is Technician-only (`woTechViewMode`); 37 are admin-only.** The two are unambiguously
+different users.
+
+**Corroborated on screen:** the Technician's Work Orders page carries **no `New Work Order` button**
+(no `workOrdersCreateAndEdit`) and a three-item navigation, where the admin has the button and the
+full navigation.
+
+**`quick-login` and `switch-user` were never called**, so the two sibling workers kept their session
+throughout.
+
+Full evidence: `evidence/two-user-isolation-2026-08-12.txt` · outcomes `NON-ADMIN-FINDINGS.md` ·
+the morning's list `SKIP-LIST.md`.
+
+---
+
+## FIRST HALF (superseded by the block above, kept as the record)
+
 **Read this section first. It changes what the rest of the pass could be.**
 
 ---

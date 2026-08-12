@@ -87,3 +87,35 @@ string-format cases into lists, producing a 107-line diff that looked like sweep
 purely a storage-format artefact. **It was reverted with `git checkout` and redone with the type
 asserted per case**, giving a **6-line diff**: five expected fields and one steps field, exactly the
 text that was written to TestRail. This is the same class of trap the brief warned about.
+
+---
+
+# ADDENDUM — the second half of 2026-08-12, after fresh cookies arrived
+
+**4 further `update_case`, bringing the day to 9.** All HTTP 200, 30 fields compared each, **0
+mismatches, 0 collateral changes**. Still **0 add · 0 delete · 0 section · 0 run writes · 0 results ·
+0 Jira calls**. `custom_atmstatus` never sent; distribution unchanged at **111 × `1`, 4 × `3`**.
+
+| Time (UTC) | Case | HTTP | Fields | Mismatches | What and why |
+|---|---|---|---|---|---|
+| 03:35 | [C29615](https://shopview.testrail.io/index.php?/cases/view/29615) | **200** | 30 | **0** | verified live as the Technician → marker `HOLD` → `READY`; sentence 2 stamped to the observed build |
+| 03:35 | [C38895](https://shopview.testrail.io/index.php?/cases/view/38895) | **200** | 30 | **0** | same, plus its stale *"we could not run it for you"* note replaced with what was found |
+| 03:39 | [C43590](https://shopview.testrail.io/index.php?/cases/view/43590) | **200** | 30 | **0** | observed live (Part Sales one chip / no toggle, Inventory as control) → sentence 2 added |
+| 03:39 | [C43561](https://shopview.testrail.io/index.php?/cases/view/43561) | **200** | 30 | **0** | `Sales Tax Collected` confirmed in the live Reports nav → sentence 2 added |
+
+**Rule-54 discipline held: sentence 2 was written on exactly the 4 cases observed today, and on no
+others.** 93 cases still name `v3.4.2-d00239b`, 10 name no build, 12 now name `v3.6-3e9dd6d`.
+
+**Untouched-proofs re-run at the end of the session:**
+
+- **Run 352** — `include_all` still false, 115 tests, **473 results, 0 missing by id, 0 field
+  changes of any kind**, counters unchanged 65 / 7 / 43. `update_run` never called.
+- **Foreign 5** (C43576–C43580) — **byte-identical, `updated_on` and `updated_by` included**.
+- **Raw markup 0 of 115**, one marker and one provenance line on every case, **gate 97 = 97**.
+- **Build `v3.6-3e9dd6d` byte-identical at start, mid-run and end** — no redeploy under the pass.
+
+**One harness trap worth recording:** deep-linking straight to `/parts/part-sales` bounces to
+`/workorders`, so a control read as "absent" there would have been an artefact. The page was reached
+by **in-app navigation** instead, and **Inventory was used as a control group** — it has three chips
+and **does** show the collapse toggle, which is what makes Part Sales' missing toggle a real
+observation rather than a failed page load.

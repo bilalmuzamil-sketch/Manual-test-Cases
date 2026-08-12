@@ -1,6 +1,79 @@
 # The non-admin cases — 2026-08-12
 
-## Outcome: NOT RUN. The Technician sign-in is dead.
+## ✅ RESOLVED. Fresh cookies arrived, both cases were driven as the Technician, and both PASS.
+
+**[C29615](https://shopview.testrail.io/index.php?/cases/view/29615) — PASS.**
+**[C38895](https://shopview.testrail.io/index.php?/cases/view/38895) — PASS.**
+Blocked since 5 August; settled today on build **`v3.6-3e9dd6d`**.
+Evidence: `evidence/two-user-isolation-2026-08-12.txt`.
+
+### C29615 — saved filters are per user
+
+Driven exactly as written, with the **Technician as the user who applies a filter**:
+
+1. **Start state proved the first half on its own** — the admin held a 427-character saved value
+   while the Technician's store returned **`null`**. The Technician never received the
+   administrator's saved state.
+2. **As the Technician, in the browser**, the Status chip was opened and **Declined** ticked. The
+   chip became **`Status: Declined`**, **Clear Filters** appeared, the table went **33 → 10 rows**,
+   the address bar became `/workorders?status=declined&tab=all`, and the choice was saved
+   server-side.
+3. **The administrator's page was then opened while that was in force**: `/workorders?tab=all` with
+   **no status parameter**, **all five chips inactive**, **no Clear Filters**, **33 rows** — and the
+   administrator's saved record was **byte-identical, `updatedAt` unmoved at 2026-08-11T16:41:57Z**.
+
+**Expected 1 met. Expected 2 met.** The administrator's record was **never written to at any point**.
+
+### C38895 — saved-filters service round-trip
+
+| Assertion | Result |
+|---|---|
+| 1. changing a filter sends a save, and it succeeds | **HTTP 200**, response echoes the state |
+| 2. reload asks for the saved state and applies it | **fresh browser, nothing typed** — the preferences `GET` was seen on load and the page came back already filtered: `Status: Declined`, 10 rows, URL carrying it |
+| 3. the second user does not receive the first user's state | proven **in both directions** |
+| 4. a never-saved key returns success with an empty value | `HTTP 200 {"value":null,"updatedAt":null}` — and a path-traversal-shaped key gives a clean **404** |
+
+**All four met.**
+
+### 🟢 And it settles the awkward question, in the reassuring direction
+
+C29615 **already carried a Passed result** from Ahtasham Amjad, 6 August, with an empty comment,
+while its own marker still said it needed a second sign-in. **We can now say the verdict he recorded
+is the correct one** — the case does pass. **What we still cannot say is whether the per-user step
+was actually driven at the time**, and that is unknowable from TestRail. The outcome is confirmed
+either way, so **this is no longer a risk to the release** — it is a process note, and the four
+Status-chip cases in the same pattern (C29559, C29609, C29610, C29612) remain held on Branko's
+ruling regardless of their Passed results.
+
+### What was changed on the two cases
+
+Both markers moved **`AUTOMATION: HOLD` → `AUTOMATION: READY`** — the blocker is gone. Both had
+Rule-54 sentence 2 re-stamped to **`Last checked against build v3.6-3e9dd6d on 12 August 2026.`**,
+which is the build actually observed. **C38895's stale note** — *"We could not run it for you…"* —
+was replaced with what was actually found, keeping the BLOCKED-not-failed fallback for a tester
+without a second account.
+
+### Rule 24
+
+**No Rule-24 situation arose in either case**, so nothing was classified under it. The Technician's
+missing `New Work Order` button was observed but is not what either case tests, and no API route was
+found that let the Technician do something the interface denied. **The inverse — the interface
+exposing what the back end blocks — was not seen either.**
+
+### Environment
+
+The Technician's filter was cleared **through the interface**; the account is back to 33 rows and no
+saved filters. **Honest residue:** that account's preference row previously read `value: null`; it
+now holds a no-filters object with today's timestamp, and it **cannot** be returned to literal
+`null` — `PUT {"value":null}` gives **HTTP 400** and there is **no DELETE route (405)**.
+Functionally it is what a tester will see. Nothing else was created, changed or deleted; no role was
+touched; no `ZZAUTOTEST` data was needed.
+
+---
+
+## FIRST HALF (superseded by the block above, kept as the record of why the ask was made)
+
+## Outcome at that point: NOT RUN. The Technician sign-in was dead.
 
 **This was the reason this session existed, and it could not be done.**
 
