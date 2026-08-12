@@ -1,0 +1,72 @@
+C29615 + C38895 — LIVE TWO-USER EVIDENCE, 2026-08-12
+Build v3.6-3e9dd6d (last-mod Tue 11 Aug 2026 07:45:44 GMT, etag b1b2623f...,
+sha256 fa01a52544d9fc96...) — read at session start, mid-run and end, identical every time.
+Location: Staging Heavy Duty - 9919.  No quick-login, no switch-user, ever.
+No cookie or Authorization header appears in this file.
+
+IDENTITY PROOF — THREE INDEPENDENT WAYS
+  GET /api/auth/me/fe-permissions
+    admin session : HTTP 200, 42 permissions, view_mode "full",
+                    cross_toggles seeFinancialData/seeApArData/viewHistoryLogs = all TRUE
+    tech  session : HTTP 200,  6 permissions, view_mode "tech",
+                    cross_toggles = all FALSE
+    identical sets? NO. admin-only: 37. tech-only: 1 (woTechViewMode).
+    tech's 6 = customersView, scheduleView, woPickParts, woTechViewMode,
+               workOrderLinesCreateAndEdit, workOrdersView
+               (exactly the canonical Technician template in CLAUDE.md)
+  GET /api/staff?limit=200 (read with the admin session)
+    bilal.muzamil+filters@shopview.com -> role_label "Technician"
+    admin@shopview.com                 -> role_label "Admin"
+  GET /api/users/me/preferences/work-orders-list  (a per-user store)
+    admin -> HTTP 200, a 427-char saved value, updatedAt 2026-08-11T16:41:57Z
+    tech  -> HTTP 200, value null, updatedAt null
+  => the two sessions are genuinely different users. Confirmed before any observation was recorded.
+
+C29615 — SAVED FILTERS ARE PER USER
+  Start state: admin holds a saved value; tech holds value null
+               => the Technician did NOT receive the administrator's saved state.
+
+  Step: as the TECHNICIAN, in the browser, click the Status chip and tick Declined.
+    status options offered: Estimate, Approved, In progress, Review, Complete,
+                            Invoiced, Paid, Declined, Imported
+    chip becomes ....... "Status: Declined"
+    Clear Filters ...... appears
+    rows ............... 33 -> 10
+    URL ................ /workorders?status=declined&tab=all
+    saved server-side .. filters {"status":["declined"]}, updatedAt 2026-08-12T03:32:16Z
+
+  Step: open the ADMINISTRATOR's Work Orders page while that is in force.
+    URL ................ /workorders?tab=all   (no status parameter)
+    all five chips ..... inactive, no selected value shown
+    Clear Filters ...... NOT present
+    rows ............... 33
+    admin saved pref ... filters [] , updatedAt STILL 2026-08-11T16:41:57Z (unmoved)
+
+  => expected 1 MET: user B does not see user A's filters.
+  => expected 2 MET: user B's new filter did not change what user A sees.
+  VERDICT: PASS.
+
+C38895 — SAVED-FILTERS SERVICE ROUND-TRIP
+  1. changing a filter sends a save and it succeeds ....... PUT HTTP 200, body echoes the state
+  2. reload asks for the saved state and APPLIES it ....... fresh browser, nothing typed:
+       GET /api/users/me/preferences/work-orders-list observed on load;
+       page returned already filtered — chip "Status: Declined", 10 rows,
+       URL /workorders?status=declined&tab=all
+  3. the second user does NOT receive the first user's state ... proven both directions above
+  4. a key that was never saved ....................... GET /api/users/me/preferences/
+       zzautotest-never-saved-key -> HTTP 200 {"value":null,"updatedAt":null}
+       (success with an empty value, NOT an error page)
+       and a path-traversal-shaped key -> a clean HTTP 404
+  VERDICT: PASS, all four.
+
+ENVIRONMENT RESTORED
+  The Technician's filter was cleared through the interface (Clear Filters):
+    chip back to "Status", Clear Filters gone, rows back to 33, saved filters []
+  The ADMINISTRATOR's record was NEVER WRITTEN TO at any point:
+    byte-identical PRE vs FINAL including updatedAt.
+  Honest residue: the Technician's preference row previously read value null / updatedAt null.
+    It now holds a no-filters object with today's updatedAt. It cannot be returned to literal
+    null: PUT {"value":null} -> HTTP 400 "value must be a JSON object", and DELETE -> HTTP 405
+    (no route). Functionally the account is back to no saved filters, which is what a tester
+    would see; the difference is a stored empty object instead of an absent row.
+  Nothing else was created, changed or deleted. No role touched. No ZZAUTOTEST data was needed.
