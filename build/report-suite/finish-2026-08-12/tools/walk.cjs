@@ -182,5 +182,9 @@ const NAVID={wip:'report_nav_work_in_progress',tu:'report_nav_technician_utiliza
   R.non_get=H.apiLog.filter(x=>x.m!=='GET').map(x=>x.m+' '+x.u);
   fs.writeFileSync(`/tmp/rs812/walk_${REPORT}.json`,JSON.stringify(R,null,2));
   console.log(`\n== ${REPORT}: ${R.atoms.filter(a=>a.ok).length}/${R.atoms.length} atoms performed; bridge_errors=${H.bridgeErrors.length}; non-GET=${R.non_get.length}`);
-  await H.browser.close();
+  // browser.close() can hang behind the request-interception route handler, which left an
+  // orphan node process racing the next report in the loop. The JSON is already on disk, so
+  // close on a timer and exit hard.
+  await Promise.race([H.browser.close(), new Promise(r=>setTimeout(r,8000))]);
+  process.exit(0);
 })().catch(e=>{console.error('FATAL',e);process.exit(1);});
