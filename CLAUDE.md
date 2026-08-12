@@ -28,6 +28,31 @@
 >   **LIFT CONDITION: his next order — a session reading this weeks from now must NOT treat it as
 >   standing law; check whether it has been lifted.** Full text at the tail of Standing Rule 62;
 >   register row **H1**.
+>   **🔴 RE-STATED BY HIM 2026-08-12, IN THE SAME BREATH AS RAISING THE TICKET-EVIDENCE BAR: *"However
+>   for now the Jira ticket creation is still on hold."* — SO THE HOLD IS STILL ACTIVE AS OF 2026-08-12
+>   AND THE NEW BAR (Standing Rule 52, amended) IS EXPRESSLY FOR THE FUTURE, NOT A SIGNAL THAT FILING
+>   HAS RESUMED.**
+> - **🔴 THREE RULINGS RECORDED 2026-08-12 — read them before any ticket, question sheet or
+>   tech-plan-vs-spec judgement.** **(1) DEFECT TICKETS MUST BE UNCHALLENGEABLE — Standing Rule 52's new
+>   EIGHT-ITEM EVIDENCE BAR** (verbatim: *"the defects you create can not be challenged and should not
+>   bite me, they did badly bite me and my job is on threat due to that"*): the expectation quoted from a
+>   named source with version and date (**no quotable document, no ticket**) · annotated screenshots ·
+>   exact named test data · build marker + environment · a recorded duplicate search · the five-part
+>   reader shape · a written pre-filing self-challenge · and a check that it is not a Rule-24 PASS.
+>   **The bar decides FITNESS, never authorisation, and the creation hold above is unchanged.**
+>   **(2) PO QUESTION SHEETS ARE THE LAST THING SENT — new Standing Rule 66** (verbatim: *"This should be
+>   the last thing once you give me the report that everything else has been done only this part is
+>   left"*): write them any time, **send only when everything we can do ourselves is finished**; a genuine
+>   blocker is still raised immediately.
+>   **(3) THE TECHNICAL-DESIGN AUTHORITY QUESTION IS ANSWERED AND CLOSED** (verbatim: *"Technical design
+>   is the authority but if that contradicts with specs/tickets/answer sheet/claude design/figma … consider
+>   the specs/tickets/answer sheet/claude design/figma … as the authority for the test cases but let me
+>   know where it contradicts with the tech design"*): the technical design **sources a case alone where
+>   nothing contradicts it**; **where it contradicts, the other five win** (latest-wins among them); **and
+>   every contradiction is REPORTED TO HIM — applying the order silently is NOT compliance.**
+>   Recorded at **Rule 52** · new **Rule 66** · **Rule 57** follow-up (ii) · **Rule 30** · **Rule 33**.
+>   **ELEVEN CASES HELD ON the old open question are RELEASED**; list + the contradiction sweep:
+>   `build/rulings-2026-08-12/TECH-DESIGN-CONTRADICTIONS.md`.
 > - **⚖️ IF HIS INSTRUCTION CONTRADICTS A RECORDED RULE — STOP AND SAY SO *BEFORE* DOING THE WORK
 >   (Standing Rule 63, 2026-08-11).** Verbatim: ***"If I say something that contradicts with you r
 >   rules, please do tell me what I am saying VS what the rule and and ask me to tell you what to
@@ -2768,20 +2793,48 @@ deliver the 7-tab management report.
     intent NEVER overrules product truth from the spec/PO — where a tech plan conflicts with
     the spec/PO position, the conflict becomes a PO/dev QUESTION (Rules 7/11/15), never a
     silent case change.
-    **⚠️ A TENSION WAS NAMED 2026-08-06 AND IS NOT YET RESOLVED — SEE RULE 57's FOLLOW-UP RULING (ii).**
-    His ruling that day, verbatim — *"Design is Claude design/Figma Design/ also I do share with you the
-    Technical design as well."* — puts the **TECHNICAL DESIGN** among the authoritative design artefacts
-    of Rule 57(d), while **THIS RULE'S SUBORDINATION CLAUSE ABOVE IS PRESERVED UNCHANGED AND
-    DELIBERATELY: engineering intent never overrules product truth.** Our reading is that a technical
-    design does **NOT** overrule the PRD or a PO answer on product behaviour — **that reading is OURS,
-    pending his confirmation, and it is NOT his position.** **THE QUESTION IS OUTSTANDING: does a
-    technical design carry PRD-level authority on what the product SHOULD DO, or does "informs but never
-    overrules" still hold for it?** Do not answer it for him; until he does, a case that would turn on
-    the difference is HELD.
+    **✅ THE TENSION NAMED 2026-08-06 IS RESOLVED — ANSWERED BY THE QA LEAD ON 2026-08-12, AND THIS
+    RULE'S SUBORDINATION CLAUSE IS VINDICATED RATHER THAN OVERTURNED.**
+    **USER DIRECTIVE (2026-08-12, verbatim):** *"Technical design is the authority but if that contradicts
+    with specs/tickets/answer sheet/claude design/figma (because they are also the authority with the rule
+    that the latest entry for that question wins) I would suggest to consider the specs/tickets/answer
+    sheet/claude design/figma (with the rule that the latest entry for that question wins) as the authority
+    for the test cases but let me know where it contradicts with the tech design."*
+    **SO, IN THIS RULE'S OWN TERMS:** the technical design **IS** an authoritative source (Rule 57 (d3)) —
+    *"Technical design is the authority"* — **AND the clause above stands exactly as written: where it
+    CONTRADICTS the spec, a ticket, an answer sheet, a Claude design or Figma, THOSE win for the test
+    cases**, with latest-wins applying among them (Rule 32). **The clause was OUR reading until this date;
+    it is now HIS RULING, and may be cited as such.**
+    **⚠️ ONE THING CHANGED, AND IT IS THE PART THAT IS EASY TO DROP: a contradiction is no longer merely
+    "a PO/dev QUESTION" — HE HAS ASKED TO BE TOLD ABOUT EVERY ONE.** His closing clause is an instruction:
+    *"but let me know where it contradicts with the tech design."* **Following the precedence order
+    silently is NOT compliance.** Each contradiction is **reported to him** and logged in the
+    OUTSTANDING-ITEMS REGISTER (Rule 36).
+    **AND THE OTHER HALF, WHICH THIS RULE'S WORDING ALONE WOULD HIDE: WHERE NOTHING CONTRADICTS THE
+    TECHNICAL DESIGN, IT SOURCES A CASE ON ITS OWN.** *"Informs but never overrules"* is a rule about
+    **conflict**, not a rule about **weight in isolation** — a case resting on the technical design while
+    every other document is **silent** is properly sourced and is **not** a Rule-64 deletion candidate.
+    **Eleven cases were held on the old open question and are released by this** (Rule 57's follow-up (ii);
+    list at `build/rulings-2026-08-12/TECH-DESIGN-CONTRADICTIONS.md` §3).
+    **⚠️ THE SUPERSEDED WORDING, PRESERVED AND DATED — from 2026-08-06 until this ruling this block read:**
+    *"⚠️ A TENSION WAS NAMED 2026-08-06 AND IS NOT YET RESOLVED — SEE RULE 57's FOLLOW-UP RULING (ii). His
+    ruling that day, verbatim — 'Design is Claude design/Figma Design/ also I do share with you the
+    Technical design as well.' — puts the TECHNICAL DESIGN among the authoritative design artefacts of Rule
+    57(d), while THIS RULE'S SUBORDINATION CLAUSE ABOVE IS PRESERVED UNCHANGED AND DELIBERATELY:
+    engineering intent never overrules product truth. Our reading is that a technical design does NOT
+    overrule the PRD or a PO answer on product behaviour — that reading is OURS, pending his confirmation,
+    and it is NOT his position. THE QUESTION IS OUTSTANDING: does a technical design carry PRD-level
+    authority on what the product SHOULD DO, or does 'informs but never overrules' still hold for it? Do
+    not answer it for him; until he does, a case that would turn on the difference is HELD."*
     Canonical example: the 2026-07-29 tech-plan reconciliations —
     build/filters/tech-plan-2026-07-29/, build/report-suite/tech-plan-2026-07-29/,
     build/schedule/tech-plan-2026-07-29/. Ties to Standing Rules 1 (complete inputs before
-    work), 11 (ask which process on new inputs), 17 (complete data in/out), and the
+    work), 11 (ask which process on new inputs), 17 (complete data in/out), **32 (latest-wins applies
+    among the sources that outrank the technical design on a contradiction)**, **33 (whose precedence
+    order now carries this ruling explicitly)**, **36 (every contradiction found is an OUTSTANDING item —
+    he asked to be told)**, **57 (which lists the technical design at (d3) and records the 2026-08-12
+    ruling in full at its follow-up (ii))**, **64 (a case sourced by the technical design ALONE is
+    sourced, and is not a deletion candidate)**, and the
     new-project onboarding convention (tech plan is part of the required input set).
 31. **Establish the CURRENCY OF EVERY SOURCE before doing ANYTHING on a project (all projects).**
     *(Originally "always pull the latest spec"; **STRENGTHENED 2026-07-31** to cover EVERY source;
@@ -2961,6 +3014,23 @@ deliver the 7-tab management report.
     other therefore sits at **tier (a) against itself**, and this rule does **not** break that tie: it
     is **RAISED to the PO as a question** (Rules 7/55/57) and logged (Rule 36), while the case follows
     the most recent authoritative source (Rule 32) and **discloses the divergence (Rule 56)**.
+    **⚠️ ONE DOCUMENT-vs-DOCUMENT TIE *IS* NOW SETTLED, AND IT IS SETTLED HERE RATHER THAN LEFT TO THE PO
+    (added 2026-08-12).** **THE TECHNICAL DESIGN AGAINST THE SPEC, A TICKET, AN ANSWER SHEET, A CLAUDE
+    DESIGN OR FIGMA: THOSE FIVE WIN FOR THE TEST CASES**, with **latest-wins applying among THEM** (Rule
+    32). **USER DIRECTIVE (2026-08-12, verbatim):** *"Technical design is the authority but if that
+    contradicts with specs/tickets/answer sheet/claude design/figma (because they are also the authority
+    with the rule that the latest entry for that question wins) I would suggest to consider the
+    specs/tickets/answer sheet/claude design/figma (with the rule that the latest entry for that question
+    wins) as the authority for the test cases but let me know where it contradicts with the tech design."*
+    **THIS IS A QA-LEAD RULING AT TIER (b), so it OUTRANKS any reviewer or engineering claim to the
+    contrary** — and it is **narrow**: it decides only the technical design's standing **on a
+    contradiction**. **Where the technical design is the ONLY source and nothing contradicts it, it
+    SOURCES the case on its own** (Rule 57 (d3); Rule 64 — such a case is **not** a deletion candidate).
+    **AND THE RULING CARRIES A REPORTING DUTY THAT IS NOT OPTIONAL: *"let me know where it contradicts
+    with the tech design."*** Applying the order **silently** satisfies half the ruling and breaches the
+    other half — every contradiction is **named to him** and logged (Rule 36). Full text at **Rule 57's
+    follow-up (ii)**; the resolved tension is recorded at **Rule 30**; the live list is
+    `build/rulings-2026-08-12/TECH-DESIGN-CONTRADICTIONS.md`.
 34. **Keep test runs in sync with the cases (all projects) — new/updated cases must appear in
     the existing run.** USER DIRECTIVE (2026-07-31, verbatim): "when we update or add test cases
     for any projects and we have a test run for them, make sure that those test cases also appear
@@ -3896,6 +3966,108 @@ deliver the 7-tab management report.
     the Bug-on-an-epic-parent convention of 2026-08-04, which is preserved below as dated history).**
     **⚠️ THE ROLL-UP HALF OF THAT HEADLINE IS FACTUALLY WRONG — CORRECTED 2026-08-06 BELOW; THE REQUIRED
     SHAPE IS UNCHANGED.**
+    **🔴🔴 ⇒ AMENDMENT, 2026-08-12 — THE EVIDENCE BAR: A DEFECT TICKET WE FILE MUST BE UNCHALLENGEABLE.
+    THIS IS THE MOST IMPORTANT CLAUSE IN THIS RULE. IT GOVERNS *WHETHER A TICKET IS FIT TO FILE AT ALL*,
+    WHERE EVERYTHING ELSE IN RULE 52 GOVERNS ONLY ITS SHAPE — AND A CORRECTLY-SHAPED TICKET THAT FAILS
+    THIS BAR IS EXACTLY THE TICKET THAT BIT US.**
+    **USER DIRECTIVE (2026-08-12, verbatim, his typing preserved exactly as he wrote it because Rule 25
+    applies to his instructions as it does to a spec):** *"The Engineering manager had raised a concern
+    over creating tickets which does not make sense, so we have to make sure that the defects or tickets
+    which we create do NOT bite us like it did, and must have solid references for the expected behavior,
+    and should have the annotated screenshots in them, but this is for the future but you have to amend
+    your rule to make sure that the defects you create can not be challenged and should not bite me, they
+    did badly bite me and my job is on threat due to that. However for now the Jira ticket creation is
+    still on hold."*
+    **🛑 READ HIS LAST SENTENCE BEFORE ANY OTHER PART OF THIS AMENDMENT: *"However for now the Jira ticket
+    creation is still on hold."* THIS IS A RULE FOR THE FUTURE. THE CREATION HOLD AT RULE 62's TAIL
+    REMAINS ACTIVE AND NOTHING IS FILED NOW.** He re-stated the hold **in the same breath** as raising the
+    bar, so this amendment is **not** a signal that filing has resumed and must never be read as one. What
+    it does is make sure that **when the hold lifts, the first ticket out of the door cannot be thrown
+    back.**
+    **THE BAR — EIGHT ITEMS. EVERY ONE IS CHECKABLE, DELIBERATELY: A RULE NOBODY CAN FAIL IS A RULE NOBODY
+    FOLLOWS.** A ticket that cannot show all eight **is not ready to be put to him**, and saying so is the
+    correct outcome (Rule 12 — never dress an unfinished case up as a finished one).
+    **(1) THE EXPECTED BEHAVIOUR IS QUOTED VERBATIM FROM A NAMED SOURCE, WITH ITS VERSION AND ITS DATE.**
+    The PRD with its **Confluence version number** (never the in-body one — Rule 31 trap (a)), an **epic
+    story**, a **PO answer with its file and date**, the **design or Figma**, or the **technical design** —
+    Standing Rule 57's list at (a)–(g). **IF THE EXPECTATION CANNOT BE QUOTED BACK TO A DOCUMENT, THERE IS
+    NO TICKET.** **This single test is the one that would have prevented most of what went wrong**, and it
+    is deliberately absolute: *"the build ought to behave this way"*, *"any reasonable product would"*,
+    *"it is obviously wrong"* are **not sources**, and a ticket resting on one of them is precisely the
+    ticket an engineering manager throws back as *not making sense* — **he would be right, and we would
+    have handed him the argument.** This is **Rule 57 applied at the filing step**: expected behaviour
+    comes from the document, never from what the build ought to do.
+    **(2) ANNOTATED SCREENSHOTS.** The actual behaviour **captured and marked up** — arrow, box, caption —
+    so a reader **sees the fault without reproducing it**. A bare screenshot is not an annotated one, and a
+    file list is not an embedded image (playbook §"Filing a defect ticket" section 6). **⚠️ RECORDED
+    HAZARD, AND IT HAS ALREADY COST US ONE IMAGE: EDITING A JIRA DESCRIPTION OVER THE REST API DESTROYS ANY
+    PASTED IMAGE WHOSE `media` NODE IS NOT CARRIED FORWARD INTO THE NEW BODY, AND JIRA LOGS THE ADDITION BUT
+    NOT THE DELETION** — so the loss is invisible in the changelog and provable only from a pre-write
+    snapshot. **One image was destroyed this way on SV-8818 and is unrecoverable.** The working method, the
+    node-lifting code and the read-only auditor are in `build/APP-ACTIONS-PLAYBOOK.md` §J declared hazard
+    #4 (Rule 27 — do not re-derive it).
+    **(3) EXACT, NAMED TEST DATA (Standing Rule 50).** Every **canned line · customer · contact · part ·
+    asset · work-order state · location · role/user · date range**, named **exactly as it appears on
+    screen** — **plus what was tried and RULED OUT**. *"Create a work order with a canned line"* is **not
+    reproducible**; *"add canned line **HD CVIP air brake trailer single/tandem**"* is. **AN UNNAMED
+    VARIABLE IS AN UNVERIFIED VARIABLE:** the reader picks a different one, gets a different result, and
+    closes the ticket. **That is exactly how SV-8821 was bounced** — the QA lead could not reproduce it
+    because our steps named no canned line, and the real condition turned out to be a **missing CONTACT,
+    not the canned line at all.** **A ticket the reader cannot reproduce is a ticket that gets closed.**
+    **(4) THE BUILD MARKER AND THE ENVIRONMENT.** The **app-version string** (`<meta name="app-version">`,
+    e.g. `v3.5-16cf83f`), the **QA branch/URL and API host**, the **date and time observed**, and the
+    **true viewing context** — *"desktop browser, signed in as an Admin"*, or whatever the role actually
+    was. **State the role you were really in, not the role the case assumes** (Rule 12).
+    **(5) A DUPLICATE SEARCH RUN FIRST, WITH THE QUERIES RECORDED.** Not *"we looked"* — **the JQL, in the
+    ticket pack.** **Several tickets we filed already existed**, and a duplicate is the cheapest possible
+    way to look careless in front of the people whose queue it lands in.
+    **(6) THE SHAPE THE POs AND THE ENGINEERING MANAGER ASKED FOR, UNCHANGED** — **concise description ·
+    steps of reproduction · current behaviour in plain words · expected behaviour in plain words · a line
+    break, then the source.** This sits inside, and does not replace, the **seven-section format** in
+    `build/APP-ACTIONS-PLAYBOOK.md` § "Filing a defect ticket" (which additionally pins Branch/Environment,
+    Images and a LAST technical section); the seven-section format remains the mechanical layout, and item
+    (6) is the **reader's** view of it. **The source block at the bottom is not optional** — his ruling,
+    verbatim: *"Yes this source block MUST exist for every ticket you created."*
+    **(7) A PRE-FILING SELF-CHALLENGE, WRITTEN DOWN.** Before filing, answer **in writing**: ***what is the
+    strongest argument that this is NOT a defect?*** **If the honest answer is *"the source does not
+    actually say that"* or *"I cannot reproduce it from my own steps"* — DO NOT FILE IT.** Record the
+    challenge **and** the answer on the ticket or in the pack. **This is the hostile-reviewer lens of Rule
+    45(c) moved to the filing step**, and it exists because the argument gets made either way: **either we
+    make it first, in private, or the engineering manager makes it in public.**
+    **(8) CHECK IT IS NOT A RULE-24 PASS.** A control **hidden in the UI while the API still allows the
+    action is a PASS, not a defect** (Standing Rule 24). Filing one of those is **the literal definition of
+    a ticket that "does not make sense"**, and it is an easy mistake to make from a network capture. **The
+    inverse — the front end EXPOSING what the back end blocks — IS a defect** and stays filable.
+    **AND CHECK THE OTHER THREE THINGS THAT MAKE A TICKET NONSENSE, because (8) is only the commonest:**
+    **· a CLOSED ticket is NOT a spec change** (Rule 57) — the build failing a requirement whose ticket was
+    closed *accepted* is still a deviation, but it needs the **expect-fail treatment (Rule 61), not a new
+    ticket** · **· ticket status is never evidence about the build** (Rule 61) · **· an API-only finding is
+    classified by Rule 51's reachability test and asked about separately**, whatever else is approved.
+    **WHAT THIS DOES NOT CHANGE:** the **shape** (this rule's five fields), the **priority** (`Medium`,
+    Rule 53), the **permission requirement** (Rule 62 — asked for and granted, **per ask**), or the **active
+    hold**. **The bar is ADDITIONAL. It never licenses filing, and passing all eight is still not
+    permission.**
+    **⚠️ AND THE BAR APPLIES TO THE FIVE ALREADY-PREPARED REPORT SUITE DEFECTS BEFORE THEY ARE PUT TO HIM.**
+    They were written under the old bar; **each must be re-checked against these eight and repaired or
+    withdrawn before it is offered**, and any that cannot clear item (1) or item (3) **should be withdrawn
+    from the pack rather than filed weaker** (Rule 46 — a deliberate non-filing is recorded, so it can never
+    look like a miss).
+    **RATIONALE, 2026-08-12 — AND THE HUMAN STAKES ARE PART OF THE RULE, NOT DECORATION. A FUTURE SESSION
+    MUST UNDERSTAND *WHY* THE BAR IS THIS HIGH, OR IT WILL QUIETLY LOWER IT.** The engineering manager
+    raised a concern about **tickets that do not make sense** — the same manager who, on **2026-07-27**,
+    claimed our suites were *"serious AI slop"* and produced **Standing Rule 28**. This time the complaint
+    landed on the **QA lead personally**, and his words are the record: ***"they did badly bite me and my
+    job is on threat due to that."*** **That is the cost of a weak ticket, stated by the person who paid
+    it.** Read it against Rule 62's own rationale, which is the same lesson from the other side: a ticket is
+    **immediately visible to the whole engineering organisation** and **cannot be cleanly undone** — a
+    withdrawn ticket stays on the record for good. **So a weak ticket does not cost us a correction; it
+    costs him credibility, and credibility is what lets every other finding we raise be believed.** The
+    asymmetry is the whole argument: **a finding held back for one more day of evidence costs nothing and is
+    fully recoverable; a challengeable ticket cannot be recovered at all**, and it discredits the ninety
+    good ones filed beside it. **When a future pass is tempted to file something on "it is obviously
+    broken", the honest question is not "am I right?" but "can I prove it from a document, and can a
+    stranger reproduce it from my own steps?" — and if the answer to either is no, the correct action is to
+    hold it and say so.**
     USER DIRECTIVE (2026-08-05, verbatim): *"Also, make sure that whenever you create a ticket it should
     be attached to the parent ticket as its epic and that ticket should be created as STORY DEFECT"*.
     **THE REQUIRED SHAPE — five things, and no ambiguity between them:** **`issuetype` = `Story Defect`
@@ -4055,9 +4227,20 @@ deliver the 7-tab management report.
     re-derived), 32/33 (the latest ruling wins — his 2026-08-05 Story-Defect instruction supersedes the
     2026-08-04 Bug shape, which is kept and dated rather than deleted), 38 (another author's ticket is
     theirs — we do not convert it), 50 (byte-verifying at filing is the ONLY reason the silent Product
-    Area loss was ever detectable), 51 (an API-related ticket is not filed without asking, whatever its
-    shape) and 53 (priority `Medium` since 2026-08-06, and never "restore" a field he changed — which is exactly why a
-    conversion someone else performed is left alone).
+    Area loss was ever detectable — **and its EXACT-NAMED-TEST-DATA clause is item (3) of the 2026-08-12
+    evidence bar**), 51 (an API-related ticket is not filed without asking, whatever its
+    shape — **and its reachability test is part of the bar's nonsense check**), 53 (priority `Medium` since 2026-08-06, and never "restore" a field he changed — which is exactly why a
+    conversion someone else performed is left alone) **and, for the 2026-08-12 evidence bar specifically:
+    7** (the ticket is written in plain layman words), **12** (observed, never inferred — including the
+    role and the environment we claim we were in), **24** (an FE-block/BE-allow finding is a PASS and must
+    never be filed), **25** (the expectation is QUOTED verbatim from its source), **27** (the image-loss
+    hazard and the seven-section format are in the playbook — never re-derived), **31** (use the Confluence
+    version, not the in-body one), **45(c)** (the hostile-reviewer lens, moved to the filing step as the
+    pre-filing self-challenge), **46** (a defect deliberately NOT filed is RECORDED, so it can never look
+    like a miss), **57** (the expectation comes from the document — a ticket resting on how the build
+    "ought" to behave is the ticket that gets thrown back), **61** (a closed ticket is not a spec change,
+    and a known failure is handled by the expect-fail marker rather than a second ticket) and **62** (the
+    permission requirement and the ACTIVE creation hold — the bar governs FITNESS, never authorisation).
 53. **NEVER set a ticket's priority to High — always file at Medium; and NEVER "restore" a field the QA
     lead has changed (all projects; the required value became `Medium` on 2026-08-06, superseding `Low`,
     which is preserved below as dated history).**
@@ -4505,22 +4688,63 @@ deliver the 7-tab management report.
     requires it be CITED AS EXACTLY THAT, undated and editable, and never dressed up as a versioned
     source** (Rule 12). That constraint is already written in Rule 54 sentence 1; cross-referenced here
     rather than restated.
-    **🔴 (d3) CARRIES A GENUINE TENSION WITH STANDING RULE 30, AND IT IS RAISED HERE RATHER THAN
-    RESOLVED.** Rule 30 says the **engineering tech plan INFORMS but NEVER OVERRULES product truth from
-    the spec/PO**, and that a tech-plan-vs-spec conflict becomes a **PO/dev QUESTION, never a silent
-    case change**. His ruling now names **"the Technical design"** among the design artefacts, and this
-    rule's amended list makes designs **authoritative sources of expected behaviour**. **THOSE TWO
-    READINGS CAN CONFLICT.** How it is recorded, pending his confirmation:
-    **· the TECHNICAL DESIGN IS a design artefact under (d)/(d3), as he instructed** — it is on the
-    authoritative list;
-    **· RULE 30'S SUBORDINATION CLAUSE IS PRESERVED IN FULL** — a technical design does **NOT** overrule
-    the PRD or a PO answer **on product behaviour**, and such a conflict is a **PO/dev question**;
-    **· THAT SECOND BULLET IS OUR READING, PENDING HIS CONFIRMATION — HE HAS NOT RULED ON IT.** It is
-    not his position and must never be quoted as one.
-    **⏳ OUTSTANDING QUESTION FOR THE QA LEAD (unanswered — do NOT answer it for him): does a TECHNICAL
-    DESIGN carry the same authority as the PRD on what the product SHOULD DO, or does Rule 30's
-    "informs but never overrules" still hold for it?** Until he answers, the two bullets above stand
-    together, and any case that would turn on the difference is **HELD**, not decided.
+    **✅ ⇒ ANSWERED AND CLOSED 2026-08-12 BY THE QA LEAD. THE SUPERSEDED "OPEN QUESTION" WORDING IS KEPT
+    VISIBLE IMMEDIATELY BELOW AND DATED, NEVER DELETED (the Rules 31/52/53 pattern) — a silently-erased
+    question is how a future session re-asks something a source has already answered.**
+    **USER DIRECTIVE (2026-08-12, verbatim, his typing preserved exactly as he wrote it because Rule 25
+    applies to his instructions as it does to a spec):** *"Technical design is the authority but if that
+    contradicts with specs/tickets/answer sheet/claude design/figma (because they are also the authority
+    with the rule that the latest entry for that question wins) I would suggest to consider the
+    specs/tickets/answer sheet/claude design/figma (with the rule that the latest entry for that question
+    wins) as the authority for the test cases but let me know where it contradicts with the tech design."*
+    **THE RULING, IN THREE LINES — AND ALL THREE MATTER:**
+    **· THE TECHNICAL DESIGN *IS* AN AUTHORITY.** His first four words settle it: *"Technical design is
+    the authority"*. It stays on the source list at **(d3)**, and a case sourced by the technical design
+    **alone** — where nothing else speaks — **is properly sourced and is NOT a Rule-64 deletion
+    candidate.** **This is the half that UNBLOCKS work**, and it is easy to miss behind the second half.
+    **· WHERE IT CONTRADICTS ANOTHER SOURCE, THE OTHER SOURCE WINS FOR THE TEST CASES.** Specifically the
+    **specs · tickets · answer sheets · Claude design · Figma** — *"consider the [them] … as the authority
+    for the test cases"* — **with latest-wins applying AMONG them** (Rule 32; and Rule 31 trap (c): date
+    the REQUIREMENT by diffing its own text across versions, never the page).
+    **· AND EVERY SUCH CONTRADICTION IS REPORTED TO HIM — NOT SILENTLY RESOLVED.** His closing clause is
+    an instruction, not a courtesy: *"but let me know where it contradicts with the tech design."* **So
+    following the winning source is only half of what he asked for; the other half is TELLING HIM**, and a
+    pass that quietly applies the precedence order and says nothing has complied with one sentence of the
+    ruling and ignored the other. The contradiction goes into the **OUTSTANDING-ITEMS REGISTER** (Rule 36)
+    and is named in the pass report. **The reason it matters: a tech-design-vs-PRD contradiction is a
+    DEFECT IN THE DOCUMENTS — it means engineering is building to one description and the product is
+    written to another — and that is worth far more to him than a quietly-corrected test case.**
+    **WHAT THIS DOES *NOT* CHANGE, said explicitly (Rule 63(iii) — an override of one clause is not an
+    override of the rules around it):** **(a)** the technical design's place on the source list is
+    **unchanged** — it was already at (d3) and still is; **(b) Rule 30's subordination clause is
+    VINDICATED, not overturned** — *"engineering intent never overrules product truth"* was our reading,
+    and he has now confirmed it in his own words, so the clause stands as **his** position rather than
+    ours; **(c)** the build is **still not a source** (Rules 57/58) — nothing here reopens that;
+    **(d)** where the technical design is the **only** source and nothing contradicts it, **no
+    subordination arises at all** and the case is simply sourced.
+    **NO RETROACTIVE SWEEP IS AUTHORISED BY THIS RULING.** It settles the resolution order; it does not
+    instruct a rewrite of existing cases. The contradiction **list** is produced and handed over (that is
+    what he asked for); **acting on it is his call** (Rule 6).
+    **⚠️ THE SUPERSEDED WORDING, PRESERVED AND DATED — from 2026-08-06 until this ruling this block read:**
+    *"🔴 (d3) CARRIES A GENUINE TENSION WITH STANDING RULE 30, AND IT IS RAISED HERE RATHER THAN RESOLVED.
+    Rule 30 says the engineering tech plan INFORMS but NEVER OVERRULES product truth from the spec/PO, and
+    that a tech-plan-vs-spec conflict becomes a PO/dev QUESTION, never a silent case change. His ruling now
+    names "the Technical design" among the design artefacts, and this rule's amended list makes designs
+    authoritative sources of expected behaviour. THOSE TWO READINGS CAN CONFLICT. How it is recorded,
+    pending his confirmation: · the TECHNICAL DESIGN IS a design artefact under (d)/(d3), as he instructed
+    — it is on the authoritative list; · RULE 30'S SUBORDINATION CLAUSE IS PRESERVED IN FULL — a technical
+    design does NOT overrule the PRD or a PO answer on product behaviour, and such a conflict is a PO/dev
+    question; · THAT SECOND BULLET IS OUR READING, PENDING HIS CONFIRMATION — HE HAS NOT RULED ON IT. It is
+    not his position and must never be quoted as one. ⏳ OUTSTANDING QUESTION FOR THE QA LEAD (unanswered —
+    do NOT answer it for him): does a TECHNICAL DESIGN carry the same authority as the PRD on what the
+    product SHOULD DO, or does Rule 30's "informs but never overrules" still hold for it? Until he answers,
+    the two bullets above stand together, and any case that would turn on the difference is HELD, not
+    decided."*
+    **THE HOLD THAT WORDING IMPOSED IS LIFTED. ELEVEN CASES WERE HELD ON IT AND ARE NOW SETTLED** — nine
+    in class C-3 of `build/unsourced-cases-2026-08-11/CANDIDATES.md` plus **C29600** and **C29632** —
+    **every one of them a case the technical design sources ALONE, with the other documents SILENT rather
+    than contradictory**, so the subordination limb never fires and they are sourced as they stand. The
+    list, with what each now needs, is `build/rulings-2026-08-12/TECH-DESIGN-CONTRADICTIONS.md` §3.
     **NO RETROACTIVE CHANGES — his words are the authority: *"For now seit it as a rule but do not
     change any test cases in retro."*** **No existing test case is re-sourced, re-worded or
     re-verdicted because of this amendment.** It governs **NEW AND FUTURE WORK ONLY**, and a pass that
@@ -5443,6 +5667,71 @@ deliver the 7-tab management report.
     flag is captured in the same snapshot the byte-check already takes), 60/61 (a marker move is exactly
     what changes an automated run's conclusion) and 64 (**which settled which marker this means, and
     where the flag cannot be trusted**).
+66. **A PO / DEV QUESTION SHEET IS THE LAST THING SENT — it goes out only once everything we can do
+    ourselves is finished and the sheet is genuinely the only item left (all projects, and all future
+    projects).**
+    USER DIRECTIVE (2026-08-12, verbatim, his typing preserved exactly as he wrote it because Rule 25
+    applies to his instructions as it does to a spec): *"This should be the last thing once you give me
+    the report that everything else has been done only this part is left and save it as a rule for now
+    and for the future projects too."*
+    **THE RULE:** a **PO or dev question sheet is SENT only when everything we can settle ourselves is
+    settled** and the sheet is the **only remaining item** — and it is **reported to the QA lead as
+    exactly that**: *"everything else on this project is done; the only thing left is these questions."*
+    **Until that point the questions are WRITTEN, HELD, and LOGGED in the OUTSTANDING-ITEMS REGISTER
+    (Rule 36).** Writing the sheet early is not merely permitted, it is **wanted** — what is deferred is
+    **SENDING it**.
+    **THE REASONING, SO THIS IS NOT MISTAKEN FOR MERE SEQUENCING — there are two costs and both are
+    real.** **(a) A QUESTION SENT EARLY GETS ANSWERED AGAINST A STATE THAT HAS SINCE CHANGED.** Between
+    the ask and the answer the spec moves, the build redeploys, another source lands — and the answer
+    comes back addressed to a question we would no longer ask in those words. That is not hypothetical:
+    **Standing Rule 59 exists because sources moved *within the hour* on 2026-08-05**, and **Standing Rule
+    31's own lesson is that a readiness figure has a shelf life measured in minutes when a PO is active.**
+    **(b) IT SPENDS THE PO's PATIENCE ON SOMETHING WE COULD HAVE RESOLVED OURSELVES.** A PO's willingness
+    to answer is a **finite resource shared across every project he owns** — Branko owns three, Chris owns
+    two — and every question we could have answered from a document we had not yet read is drawn against
+    the questions only he can answer. **Rule 55 already forbids the drip of separate asks; this rule
+    forbids the PREMATURE ask**, and the two work together: **one sheet, sent once, at the end.**
+    **THE HONEST COUNTER-LIMIT — A RULE WITH NO LIMIT GETS MISAPPLIED, AND THIS ONE WOULD BE MISAPPLIED IN
+    A DANGEROUS DIRECTION.** **THIS DOES NOT LICENSE SITTING ON A GENUINE BLOCKER.** An item that
+    **actually stops work** — a missing source, an access blocker, an unanswered authorisation, a
+    contradiction with no defensible resolution order — is **RAISED IMMEDIATELY as an outstanding item
+    (Rule 36)**, and where it stops us creating or correcting a test case it is escalated **in the same
+    breath** (Rule 62's 2026-08-11 duty: *"anything that stops you from creating/updating a test case You
+    MUST let me know"*). **What is deferred is the QUESTION SHEET — a batched, considered, end-of-work
+    deliverable. It is NOT the escalation of a blocker, and the two must never be conflated to justify
+    silence.** The distinguishing test, in one line: ***if the answer would change what we do NEXT, raise
+    it now; if it would change what a case ASSERTS once everything else is done, it belongs on the
+    sheet.***
+    **AND THE DEFERRED SHEET IS NEVER A REASON TO STALL A CASE SILENTLY.** A case waiting on an unsent
+    question carries `AUTOMATION: HOLD` and **says in its own words that the question has not been sent
+    yet** — never wording that implies the PO is sitting on it. **We have had that exact embarrassment:**
+    the Schedule shop-closures question was drafted on **22 July** and **had never been sent**, while the
+    register had to record plainly that *"the blocker is US, not him."*
+    **WHAT "EVERYTHING ELSE IS DONE" MEANS, so it cannot be stretched:** every source re-read and current
+    (Rule 31), every requirement carrying a coverage verdict (Rule 43), every case we can author authored
+    and every case we can correct corrected (Rule 62's carve-out), every deliverable regenerated, and the
+    remaining items **each traced to a named external dependency**. **If work remains that we could do, the
+    sheet is not ready to send — however finished the sheet itself looks.**
+    **UNCHANGED: HOW A SHEET IS WRITTEN.** **Rule 55** still governs its content in full — the project and
+    the feature named **on every row**, extremely simplified language, A/B options, story/epic references
+    where they orient the reader, the QA-only mapping on a separate tab, the established format mirrored
+    1:1 (Rule 16), a human-readable filename (Rule 19). **This rule adds WHEN, and only WHEN.**
+    **RATIONALE, 2026-08-12:** the instruction arrived while **two written, ready, unsent sheets** were on
+    the books — **Chris Ward's 13 items** and **Branko Cicovic's 21** — with real work still outstanding on
+    all three active projects. His framing is the operative part and it is a **reporting** requirement as
+    much as a sequencing one: the sheet goes out **attached to a report that says everything else is
+    finished**, so that when he forwards it he can stand behind it, and the PO sees one considered ask
+    rather than a project still in motion. Ties to Standing Rules 1 (never proceed without the complete
+    input set — an unanswered question IS a missing input, which is exactly why the counter-limit above
+    matters), 7 (plain layman wording), 11 (ask which process on new inputs), 16 (mirror the established
+    format), 19 (human-readable filenames), 31 and 59 (source currency — the reason a stale question is
+    worse than a late one), 36 (**every unsent question is an OUTSTANDING item and stays visible while it
+    is held**), 43 (an unanswered question leaves a requirement row un-verdicted and that must be visible),
+    46 (a deliberately-held sheet is RECORDED, so it can never look like a miss), 48 (a case held on an
+    unsent question quotes the ruling holding it — for these, this one), 55 (**which governs HOW the sheet
+    is written; this rule governs WHEN it is sent**), 58 (an ambiguous source is never resolved by looking
+    at the build — it waits for the sheet) and 62 (a blocker on creating or correcting a case is escalated
+    immediately, never deferred onto the sheet).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
@@ -5727,8 +6016,33 @@ regression / bug-fix re-testing.
   to respond."* — so the **most recent artefact wins**, **unless it does not make sense**, in which case
   it becomes a **PO question sheet** (Rules 7/55), never a choice of ours. **An UNDATED, EDITABLE share
   link has no date, so latest-wins cannot be applied to it — it is cited as exactly that (Rule 54) and
-  escalated.** **A technical design is on the authoritative list, but Rule 30's "informs but never
-  overrules" is PRESERVED and the question of which prevails is OUTSTANDING with him — do not answer it.**
+  escalated.**
+  **✅ THE TECHNICAL-DESIGN QUESTION IS ANSWERED — 2026-08-12 (Standing Rule 57 follow-up (ii); Rule 30's
+  tension resolved; Rule 33's order updated). QA lead, verbatim:** *"Technical design is the authority but
+  if that contradicts with specs/tickets/answer sheet/claude design/figma (because they are also the
+  authority with the rule that the latest entry for that question wins) I would suggest to consider the
+  specs/tickets/answer sheet/claude design/figma (with the rule that the latest entry for that question
+  wins) as the authority for the test cases but let me know where it contradicts with the tech design."*
+  **So: the technical design IS an authority and sources a case on its own where nothing contradicts it;
+  where it CONTRADICTS the spec, a ticket, an answer sheet, a Claude design or Figma, THOSE win for the
+  test cases (latest-wins among them); and EVERY contradiction is REPORTED TO HIM — applying the order
+  silently is not compliance.** Live list:
+  `build/rulings-2026-08-12/TECH-DESIGN-CONTRADICTIONS.md`.
+  **⚠️ SUPERSEDED WORDING, kept visible and dated:** *"A technical design is on the authoritative list,
+  but Rule 30's 'informs but never overrules' is PRESERVED and the question of which prevails is
+  OUTSTANDING with him — do not answer it."*
+- **A PO / DEV QUESTION SHEET IS THE LAST THING SENT (Standing Rule 66, 2026-08-12 — QA lead, verbatim:
+  *"This should be the last thing once you give me the report that everything else has been done only this
+  part is left and save it as a rule for now and for the future projects too."*).** Write the sheet
+  whenever it is ready; **send it only once everything we can do ourselves is finished**, and report it to
+  him as *"everything else is done; only this is left."* Until then the questions are **held and logged in
+  the outstanding register** (Rule 36). **A question sent early gets answered against a state that has
+  since changed, and it spends the PO's patience on something we could have resolved ourselves.** **It does
+  NOT license sitting on a genuine blocker** — anything that actually stops work is raised immediately, and
+  anything that stops us creating or correcting a case is escalated in the same breath (Rule 62). **A case
+  waiting on an unsent question says in its own words that the question has not been sent** — never wording
+  that implies the PO is sitting on it. Rule 55 still governs HOW the sheet is written; Rule 66 governs
+  WHEN it is sent.
 - **A PROVENANCE LINE ends every case's Expected Results (Standing Rule 54) — TWO SENTENCES THAT ARE
   NEVER MERGED:** after a separator line, **sentence 1 names ONLY DOCUMENTS** as the source of the
   expectation (the **epic and/or owning story + the specification with its version + the requirement
@@ -5800,6 +6114,23 @@ regression / bug-fix re-testing.
   filing is **not** permission. Write the finding up, log it in the outstanding register, and present it
   with the recommendation and the ready-to-file text — then stop. **Editing an existing ticket is not
   creating one** and remains permitted.
+  **🔴 AND WHEN THE HOLD LIFTS, THE TICKET MUST BE UNCHALLENGEABLE — THE EIGHT-ITEM EVIDENCE BAR
+  (Standing Rule 52, amended 2026-08-12; QA lead, verbatim: *"you have to amend your rule to make sure
+  that the defects you create can not be challenged and should not bite me, they did badly bite me and my
+  job is on threat due to that. However for now the Jira ticket creation is still on hold."*).** Every
+  ticket must show: **(1)** the expected behaviour **quoted verbatim from a named source with its version
+  and date** — **no quotable document, no ticket** · **(2)** **annotated** screenshots, embedded (and
+  beware the §J hazard: rewriting a description over the API destroys pasted images whose `media` nodes
+  are not carried forward — one was lost on SV-8818) · **(3)** the **exact test data named as it appears
+  on screen**, plus what was ruled out — an unnamed variable is why SV-8821 was bounced · **(4)** the
+  **build marker and environment**, including the role actually used · **(5)** a **duplicate search, with
+  the queries recorded** · **(6)** the **five-part reader shape** — concise description · steps of
+  reproduction · current behaviour in plain words · expected behaviour in plain words · a line break, then
+  the source — inside the seven-section playbook layout · **(7)** a written **pre-filing self-challenge**
+  (*what is the strongest argument this is NOT a defect?* — if the answer is *"the source does not say
+  that"* or *"I cannot reproduce it from my own steps"*, **do not file it**) · **(8)** a check that it is
+  **not a Rule-24 PASS** (UI hidden + API allows = PASS, never a defect). **The bar decides FITNESS, never
+  authorisation — passing all eight is still not permission (Rule 62).**
 - Test cases with FE-block/BE-allow behavior carry a plain tester-facing "Note for the
   tester: …expected, mark PASSED, don't raise a bug" line (per Standing Rule 24).
 - **Simple-format status updates (all chat updates + reports):** Give updates/status
