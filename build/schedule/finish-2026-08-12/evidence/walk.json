@@ -1,0 +1,159 @@
+{
+ "29941": {
+  "steps": [
+   {
+    "step": "1 type 'zzzxq999' in Search work orders",
+    "seen": "0 cards; list text \"No schedulable work orders match this filter.\""
+   },
+   {
+    "step": "2 look at the list",
+    "seen": "list is empty"
+   },
+   {
+    "step": "3 clear the search",
+    "seen": "21 cards returned"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT"
+ },
+ "29944": {
+  "steps": [
+   {
+    "step": "1 open the 'Filters' panel",
+    "seen": "FILTERS Unassigned 22 Assigned 71 Approved 92 Declined 0 In Progress 0 Ready for Review 1"
+   },
+   {
+    "step": "2 choose one status under Status",
+    "seen": "Approved 92"
+   },
+   {
+    "step": "3 read the list",
+    "seen": "cards before 21 -> after 21"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT"
+ },
+ "29946": {
+  "steps": [
+   {
+    "step": "1 click 'Clear all'",
+    "seen": "clicked 'Clear all'"
+   },
+   {
+    "step": "2 look at the list and the 'Filters' button",
+    "seen": "21 cards; panel now: \"FILTERS Unassigned 22 Assigned 71 Approved 92 Declined 0 In Progress 0 Ready for Review 1\""
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT"
+ },
+ "30008": {
+  "steps": [
+   {
+    "step": "1 click the shift block",
+    "seen": "modal opened"
+   },
+   {
+    "step": "2 read the modal's identity section",
+    "seen": "Pamill Paving Approved S-12876 · 713 3HAEUMMP1NL291283 delete_outline close TIME LOGGED 0m / 1h warning_amber Scheduling conflict Extends past business hours Adjust SCHEDULED Wed, Aug 12, 2026 TIME arrow_drop_down – arro"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT"
+ },
+ "30015": {
+  "steps": [
+   {
+    "step": "1 look at the modal's actions",
+    "seen": "Pamill Paving Approved S-12876 · 713 3HAEUMMP1NL291283 delete_outline close TIME LOGGED 0m / 1h warning_amber Scheduling conflict Extends past business hours Adjust SCHEDULED Wed, Aug 12, 2026 TIME arrow_drop_down – arrow_drop_down TECHNICIAN MT MQ Test Tech Qamar Work Order Lines 1 Single line · 1h"
+   },
+   {
+    "step": "2 confirm there is no 'Reassign' action",
+    "seen": "no 'Reassign' anywhere in the modal"
+   },
+   {
+    "step": "3 click Delete on a series shift and cancel",
+    "seen": "NOT DRIVEN - deliberately not pressed after today's accidental delete; see INCIDENT-shift-delete-2026-08-12.md"
+   }
+  ],
+  "verdict": "STEPS 1-2 CARRIED OUT; step 3 deliberately not driven"
+ },
+ "30037": {
+  "steps": [
+   {
+    "step": "1 move quickly across without stopping",
+    "seen": "0 tooltip(s) while moving"
+   },
+   {
+    "step": "2 rest the pointer and wait",
+    "seen": "tooltip: Pamill Paving warning_amber 713 Wed, Aug 12, 2026 · 2:30 AM – 3:30 AM MT MQ Test Tech Qamar Single line · 1h Replace - Rear ramp handles 0m / 1h warning_amber E"
+   },
+   {
+    "step": "3 move the mouse off the block",
+    "seen": "0 tooltip(s) remain"
+   },
+   {
+    "step": "4 click the block",
+    "seen": "modal opened: Pamill Paving Approved S-12876 · 713 3HAEUMMP1NL291283 delete_outline close TIME LOGGED 0m / 1h warning_amber Scheduling conflict "
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT"
+ },
+ "30042": {
+  "steps": [
+   {
+    "step": "1 open the 'Filter & display' dropdown",
+    "seen": "opened"
+   },
+   {
+    "step": "2 read its contents and default states",
+    "seen": "Pamill Paving warning_amber 713 Wed, Aug 12, 2026 · 2:30 AM – 3:30 AM MT MQ Test Tech Qamar Single line · 1h Replace - Rear ramp handles 0m / 1h warning_amber Extends past business hours"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT"
+ },
+ "30046": {
+  "steps": [
+   {
+    "step": "1 open 'View options'",
+    "seen": "VIEW OPTIONS Business Hours Tech Hours Capacity Planning Events Show Saturday Show Sunday"
+   },
+   {
+    "step": "2 read each toggle and its state",
+    "seen": "VIEW OPTIONS Business Hours Tech Hours Capacity Planning Events Show Saturday Show Sunday"
+   },
+   {
+    "step": "3 turn OFF Capacity Planning, look at the day column headers",
+    "seen": "toggled Capacity Planning; capacity_bar elements now 0"
+   },
+   {
+    "step": "3b turn Capacity Planning back ON",
+    "seen": "capacity_bar elements now 1"
+   },
+   {
+    "step": "4 turn OFF Events, look at the grid",
+    "seen": "toggled Events; event blocks now 0"
+   },
+   {
+    "step": "4b turn Events back ON",
+    "seen": "event blocks now 2"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT"
+ },
+ "30047": {
+  "steps": [
+   {
+    "step": "1 note the timeline background outside working hours (Business Hours OFF)",
+    "seen": "day view loaded"
+   },
+   {
+    "step": "2 turn ON Business Hours in 'View options'",
+    "seen": "toggled Business Hours"
+   },
+   {
+    "step": "3 look at the timeline again",
+    "seen": "11 out-of-hours marked element(s) visible"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT"
+ }
+}

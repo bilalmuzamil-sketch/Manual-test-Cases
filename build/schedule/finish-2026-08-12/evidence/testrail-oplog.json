@@ -1,0 +1,47 @@
+[
+ {
+  "op": "update_case C30008",
+  "result": "HTTP 200 :: label-fix C30008: 30 fields compared, 3 intended, 0 mismatch",
+  "replacements": [
+   {
+    "field": "custom_preconds",
+    "old": "'Filter and Display'",
+    "new": "'Filter & display'",
+    "why": "the toolbar dropdown reads 'Filter & display'; read live from its open panel on v3.5-65d6500"
+   }
+  ],
+  "at": "2026-08-12T06:50:12.496630Z"
+ },
+ {
+  "op": "update_case C29946",
+  "result": "HTTP 200 :: label-fix C29946: 30 fields compared, 3 intended, 0 mismatch",
+  "replacements": [
+   {
+    "field": "custom_steps",
+    "old": "the 'Filter' button",
+    "new": "the 'Filters' button",
+    "why": "the sidebar control reads 'Filters'; read live on v3.5-65d6500"
+   },
+   {
+    "field": "custom_expected",
+    "old": "the 'Filter' button",
+    "new": "the 'Filters' button",
+    "why": "same control named in the expected result; the assertion itself is untouched"
+   }
+  ],
+  "at": "2026-08-12T06:50:16.903278Z"
+ },
+ {
+  "op": "update_case C30058",
+  "result": "HTTP 200 :: label-fix C30058: 30 fields compared, 3 intended, 0 mismatch",
+  "replacements": [
+   {
+    "field": "custom_steps",
+    "old": "the 'this shift only' scope",
+    "new": "the 'This shift only' scope",
+    "why": "the delete-scope dialog offers 'This shift only'; read on this same build"
+   }
+  ],
+  "at": "2026-08-12T06:50:20.518105Z"
+ }
+]

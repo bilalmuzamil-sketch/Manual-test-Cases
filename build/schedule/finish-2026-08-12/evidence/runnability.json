@@ -1,0 +1,2759 @@
+[
+ {
+  "id": 29925,
+  "title": "Schedule opens from the top-level navigation into a sidebar + grid layout",
+  "section": 4255,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in to the ShopView App on a desktop browser (window at least 960px wide).",
+   "Your role has the Schedule: View permission (and Work Orders: View, so the sidebar work order list loads)."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29927,
+  "title": "Day / Week / Month segmented control switches the grid between the three views",
+  "section": 4255,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "You are on the Schedule page.",
+   "At least one shift exists on the current week (create one first if needed, or have a colleague with Edit permission create it)."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29928,
+  "title": "Grid rows are grouped by department under group headers",
+  "section": 4255,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "Staff members are assigned to at least two different departments (adjust staff records if needed, restore after).",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29929,
+  "title": "Collapsing a department header hides its technician rows",
+  "section": 4255,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "You are on the Schedule page with at least one department group visible containing technicians."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29930,
+  "title": "No Tech/Dept toggle - department grouping is the only grid grouping",
+  "section": 4255,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 1
+ },
+ {
+  "id": 29931,
+  "title": "An Unassigned row sits inside the grid, not in a separate tray",
+  "section": 4255,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "You are on the Schedule page.",
+   "At least one unassigned shift exists (a user with Edit permission drops a work order onto the Unassigned row first)."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 43554,
+  "title": "Schedule opens on Day view the first time you open it from the navigation",
+  "section": 4255,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in to the ShopView App on a desktop browser (window at least 960px wide).",
+   "Your role has the Schedule: View permission.",
+   "You are NOT already on the Schedule page - start from another page, for example Work Orders, so that opening Schedule is a fresh arrival."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29932,
+  "title": "Clicking a date in the mini calendar navigates the main grid to that date",
+  "section": 4256,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "You are on the Schedule page with the mini calendar visible in the left sidebar."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29933,
+  "title": "Mini calendar month/year picker has month buttons and year arrows",
+  "section": 4256,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "You are on the Schedule page with the mini calendar visible."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29934,
+  "title": "A chevron toggle collapses and expands the mini calendar grid",
+  "section": 4256,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "You are on the Schedule page with the mini calendar expanded."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29935,
+  "title": "Mini calendar highlights the selected date, today, and the hovered week",
+  "section": 4256,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "You are on the Schedule page with the mini calendar visible.",
+   "The grid is on a date other than today (click a different date first)."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29936,
+  "title": "The sidebar is a flat list of work order cards with no tabs",
+  "section": 4257,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: View and Work Orders: View.",
+   "Several open work orders exist (create ZZAUTOTEST work orders if needed).",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29937,
+  "title": "Work order card anatomy, incl. the status-colored left border",
+  "section": 4257,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "A work order exists with a customer, a unit, at least one approved line with estimated hours, and a lead technician assigned.",
+   "You are on the Schedule page with the work order list visible."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29939,
+  "title": "'Search work orders' matches work order number, customer, unit, and technician",
+  "section": 4257,
+  "labels": [
+   "Search work orders"
+  ],
+  "found": [
+   {
+    "label": "Search work orders",
+    "how": "exact"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "Work orders exist with different work order numbers and with distinct customer names, unit numbers, and lead technicians.",
+   "You are on the Schedule page with the work order list visible."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 29940,
+  "title": "Sidebar search filters the card list in real time as you type",
+  "section": 4257,
+  "labels": [
+   "Search work orders"
+  ],
+  "found": [
+   {
+    "label": "Search work orders",
+    "how": "exact"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "Several work orders exist.",
+   "You are on the Schedule page with the work order list visible."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29941,
+  "title": "Sidebar search with no matching work orders shows an empty list",
+  "section": 4257,
+  "labels": [
+   "Search work orders",
+   "zzzxq999"
+  ],
+  "found": [
+   {
+    "label": "Search work orders",
+    "how": "exact"
+   }
+  ],
+  "missing": [
+   "zzzxq999"
+  ],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "You are on the Schedule page with the work order list visible."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29942,
+  "title": "The 'Filters' button opens Assignment / Status / Priority filter groups",
+  "section": 4258,
+  "labels": [
+   "Filters"
+  ],
+  "found": [
+   {
+    "label": "Filters",
+    "how": "exact"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "Several work orders exist in mixed statuses and priorities.",
+   "You are on the Schedule page with the work order list visible."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29943,
+  "title": "Assignment filter narrows the list to Assigned or Unassigned work orders",
+  "section": 4258,
+  "labels": [
+   "Filter"
+  ],
+  "found": [
+   {
+    "label": "Filter",
+    "how": "substring"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "At least one work order has a technician assigned and at least one has none.",
+   "You are on the Schedule page with the work order list visible."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29944,
+  "title": "Status filter narrows the list to work orders in the chosen status(es)",
+  "section": 4258,
+  "labels": [
+   "Filter"
+  ],
+  "found": [
+   {
+    "label": "Filter",
+    "how": "substring"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "Work orders exist in at least two different statuses.",
+   "You are on the Schedule page with the work order list visible."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29945,
+  "title": "Priority filter offers High, Medium, Low and narrows the list accordingly",
+  "section": 4258,
+  "labels": [
+   "Filter"
+  ],
+  "found": [
+   {
+    "label": "Filter",
+    "how": "substring"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "Work orders exist with different priorities (High and Low at minimum).",
+   "You are on the Schedule page with the work order list visible."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29946,
+  "title": "'Clear all' resets every applied sidebar filter in one click",
+  "section": 4258,
+  "labels": [
+   "Clear all",
+   "Filter"
+  ],
+  "found": [
+   {
+    "label": "Filter",
+    "how": "substring"
+   }
+  ],
+  "missing": [
+   "Clear all"
+  ],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "You are on the Schedule page and have applied at least two filters (for example an Assignment and a Priority filter)."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29947,
+  "title": "Search and filter work together - both can be active at the same time",
+  "section": 4258,
+  "labels": [
+   "Filter",
+   "Search work orders"
+  ],
+  "found": [
+   {
+    "label": "Filter",
+    "how": "substring"
+   },
+   {
+    "label": "Search work orders",
+    "how": "exact"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "Several work orders exist for the same customer in different statuses.",
+   "You are on the Schedule page with the work order list visible."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29948,
+  "title": "Work order card opens the line drill-down in place, with header and back control",
+  "section": 4259,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "A work order exists with a known number of approved lines (at least two).",
+   "You are on the Schedule page with the work order list visible."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 29950,
+  "title": "Only approved work order lines appear in the drill-down",
+  "section": 4259,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "A ZZAUTOTEST work order exists with at least one APPROVED line and at least one UNAPPROVED line (create/adjust it first).",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29951,
+  "title": "Line row shows title, hours, the technician roster and a drag handle",
+  "section": 4259,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A work order exists whose approved lines have estimated hours; at least one line has several technicians on its roster.",
+   "You are on the Schedule page with the drill-down open."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29952,
+  "title": "Lines with no technician assigned show a 'Needs techs' badge",
+  "section": 4259,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "A work order exists with an approved line that has NO technician on its roster and another approved line that has at least one.",
+   "You are on the Schedule page with the drill-down open."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29953,
+  "title": "'Search lines' matches the line title/name only",
+  "section": 4259,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "A work order exists with several approved lines with distinct titles.",
+   "You are on the Schedule page with the drill-down open."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29954,
+  "title": "'All / Unscheduled' filter chips show counts and filter the line list",
+  "section": 4259,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "A work order exists where at least one approved line already has a shift on the grid and at least one approved line has none.",
+   "You are on the Schedule page with the drill-down open."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29955,
+  "title": "Dropping a single-line work order creates a shift with no scope picker",
+  "section": 4260,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A ZZAUTOTEST work order exists with exactly ONE approved line whose estimated hours fit within one working day of the target technician.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29956,
+  "title": "Dropping a multi-line work order on a technician cell opens the scope picker",
+  "section": 4260,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A work order exists with TWO or more approved lines.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29957,
+  "title": "Dragging a line from the drill-down creates a single-line shift",
+  "section": 4260,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A work order with several approved lines exists; its drill-down is open in the sidebar.",
+   "The chosen line's hours fit within one working day of the target technician.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29958,
+  "title": "A job over the technician's daily hours opens the spread step",
+  "section": 4260,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A ZZAUTOTEST work order exists whose chosen scope's estimated hours EXCEED one working day of the target technician (for example a 40h line for a tech with 8h days).",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29959,
+  "title": "A scope that fits one working day skips the spread step",
+  "section": 4260,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A multi-line work order exists where one line's hours fit within the target technician's working day.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29960,
+  "title": "While dragging, target cells highlight and a ghost block follows",
+  "section": 4260,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A work order with an approved line exists.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29961,
+  "title": "Scheduling a technician onto a line adds them to its labor roster",
+  "section": 4260,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A work order exists with an approved line where the target technician is NOT yet on the line's roster.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 29962,
+  "title": "A click-to-arm alternative exists for scheduling without dragging",
+  "section": 4260,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A work order with an approved line exists.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 43555,
+  "title": "Month view: dragging a work order onto a day creates a shift for that day",
+  "section": 4260,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in to the ShopView App on a desktop browser (window at least 960px wide).",
+   "Your role has the Schedule: Edit permission.",
+   "You are on the Schedule page with Month switched on.",
+   "Use the right arrow next to the Today button to move to a month with nothing scheduled in it - on the test shop, November 2026 is empty. The grid then shows the line \"Nothing is scheduled in this range. Drag a work order from the list to book it.\"",
+   "A work order with approved lines is visible in the sidebar list. Use work order S-12876 (customer Pamill Paving, unit 713, 2 lines, 1h Est.)."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 29963,
+  "title": "Scope picker contents: the pinned whole-order row and the line rows",
+  "section": 4261,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A work order exists with three approved lines with known estimated hours, where at least one line already has technicians on its roster.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29964,
+  "title": "'Schedule whole work order' assigns all lines and creates one shift",
+  "section": 4261,
+  "labels": [
+   "Schedule whole work order"
+  ],
+  "found": [],
+  "missing": [
+   "Schedule whole work order"
+  ],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A ZZAUTOTEST work order exists with two or more approved lines whose TOTAL hours fit within the technician's working day (to avoid the spread step).",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29965,
+  "title": "Tapping a line row creates a single-line shift with no confirm step",
+  "section": 4261,
+  "labels": [
+   "Select multiple"
+  ],
+  "found": [
+   {
+    "label": "Select multiple",
+    "how": "test-id"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A multi-line work order exists; one line fits within the technician's day.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29967,
+  "title": "'Select multiple' checkbox mode: running tally, Select all, and Cancel",
+  "section": 4261,
+  "labels": [
+   "Select all",
+   "Select multiple"
+  ],
+  "found": [
+   {
+    "label": "Select multiple",
+    "how": "test-id"
+   }
+  ],
+  "missing": [
+   "Select all"
+  ],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A work order exists with three or more approved lines.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 6
+ },
+ {
+  "id": 29969,
+  "title": "A shift's start time uses the technician's own working hours when set",
+  "section": 4262,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A technician has configured working hours that DIFFER from the shop's business hours (for example tech 6:00 AM start vs shop 8:00 AM) - set this up first and restore after.",
+   "A schedulable work order line exists.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29970,
+  "title": "With no technician hours set, start time falls back to business hours",
+  "section": 4262,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A technician exists with NO configured working hours, and the shop HAS business hours set (note the shop start time).",
+   "A schedulable work order line exists.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29971,
+  "title": "With neither technician hours nor business hours set, a 7:00 AM default applies",
+  "section": 4262,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A technician exists with no configured hours AND the shop's business hours are not set (adjust settings if the environment allows; restore the settings byte-identical after).",
+   "A schedulable work order line exists.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29972,
+  "title": "In day view the start time comes from the drop position",
+  "section": 4262,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A schedulable work order line exists.",
+   "You are on the Schedule page in DAY view."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29973,
+  "title": "Dropping onto the Unassigned row creates a shift with no technician",
+  "section": 4262,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A schedulable work order line exists.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29974,
+  "title": "Unassigned shift start time uses business hours or the default",
+  "section": 4262,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "The shop has business hours set (note the start time).",
+   "A schedulable work order line exists.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29975,
+  "title": "Dragging an unassigned shift onto a technician row assigns it",
+  "section": 4262,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "An unassigned shift exists in the Unassigned row.",
+   "The target technician has configured working hours that differ from the shop's business hours.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29978,
+  "title": "Spread step header shows the scope; 'Change scope' returns to the picker",
+  "section": 4263,
+  "labels": [
+   "Change scope"
+  ],
+  "found": [],
+  "missing": [
+   "Change scope"
+  ],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A multi-line work order exists with a scope that exceeds the technician's daily hours.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 29979,
+  "title": "How-much selector defaults to Full estimate; preset amounts apply at once",
+  "section": 4263,
+  "labels": [
+   "1 week",
+   "2 weeks",
+   "Full estimate",
+   "how much to schedule"
+  ],
+  "found": [],
+  "missing": [
+   "1 week",
+   "2 weeks",
+   "Full estimate",
+   "how much to schedule"
+  ],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "You are on the spread step for a large scope (for example 40+ hours)."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29980,
+  "title": "'Until a date\u2026' reveals a single finish-by date field",
+  "section": 4263,
+  "labels": [
+   "Until a date..."
+  ],
+  "found": [],
+  "missing": [
+   "Until a date..."
+  ],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "You are on the spread step for a large scope."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29981,
+  "title": "'Specific hours\u2026' reveals an hours stepper",
+  "section": 4263,
+  "labels": [
+   "Specific hours..."
+  ],
+  "found": [],
+  "missing": [
+   "Specific hours..."
+  ],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "You are on the spread step for a large scope."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29982,
+  "title": "Start date defaults to the earliest working day and can be changed",
+  "section": 4263,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A large job has already been spread for technician A (note A's series end date).",
+   "You are on the spread step for the SAME work order dropped on technician B."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29983,
+  "title": "Spread uses the tech's working hours; skips weekends only when hours not set",
+  "section": 4263,
+  "labels": [
+   "Full estimate"
+  ],
+  "found": [],
+  "missing": [
+   "Full estimate"
+  ],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "The technician has known daily working hours (for example 8h/day, Monday to Friday).",
+   "A shop closure day is defined inside the spread window (set one up if the environment allows).",
+   "A scope of known size exists (for example 40h)."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29984,
+  "title": "Spread preview: one-line summary, expandable to a week-by-week breakdown",
+  "section": 4263,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "You are on the spread step for a multi-week scope that will skip at least one weekend."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29985,
+  "title": "Confirming the spread creates a linked series of daily shifts",
+  "section": 4263,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "You are on the spread step for a multi-day scope with the preview showing several shifts."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29986,
+  "title": "The same work order on a second technician spreads the full estimate again",
+  "section": 4263,
+  "labels": [
+   "Full estimate"
+  ],
+  "found": [],
+  "missing": [
+   "Full estimate"
+  ],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A large work order (for example 40h) has already been fully spread for technician A.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 38863,
+  "title": "Spread past 8 weeks asks to confirm; a series can never exceed 120 shifts",
+  "section": 4263,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A work order line with a very large hours estimate exists (enough to fill more than 8 weeks of daily shifts - seed one if needed).",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 29987,
+  "title": "Month view: series banner wraps across weeks, labeled once, then 'continues'",
+  "section": 4264,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "A multi-week series exists for one technician (spread a 40h+ job first).",
+   "You are on the Schedule page in MONTH view showing the series' month."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29988,
+  "title": "Week view: series banner spans the week, with chevrons and 'week N of M'",
+  "section": 4264,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "A multi-week series exists for one technician; on one of its days the technician also has an unrelated booking.",
+   "You are on the Schedule page in WEEK view on a middle week of the series."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29989,
+  "title": "Day view shows the series day as one block with a multi-week cue",
+  "section": 4264,
+  "labels": [
+   "block on the technician"
+  ],
+  "found": [],
+  "missing": [
+   "block on the technician"
+  ],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "A multi-week series exists for one technician.",
+   "You are on the Schedule page in DAY view on one of the series' days."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29990,
+  "title": "A series is just a grouping - capacity and conflicts use the daily shifts",
+  "section": 4264,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "A series exists for a technician; on one series day the technician also has a second, overlapping shift (set up with Edit permission).",
+   "Capacity Bars are on in View Options."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29991,
+  "title": "A single-line shift block shows customer, unit number and line name",
+  "section": 4265,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "A single-line shift exists on the grid (VIN toggle off).",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 1
+ },
+ {
+  "id": 29992,
+  "title": "Whole-order and multi-line shifts both read 'N Lines' on the block",
+  "section": 4265,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "Two shifts exist for a 4-line work order: one whole-order shift (4 lines) and one 2-line subset shift.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29995,
+  "title": "The conflict icon is the only icon on a shift block",
+  "section": 4265,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "One normal (unconflicted) shift and one conflicted shift exist (create an overlapping second shift to force a conflict).",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29996,
+  "title": "Non-overlapping same-day shifts share one lane, even from different orders",
+  "section": 4266,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "Two DIFFERENT work orders have schedulable lines.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 29997,
+  "title": "Shifts whose times intersect split into stacked lanes and the row grows to fit",
+  "section": 4266,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "One technician has two shifts on the same day whose time ranges DO intersect (for example 9:00-12:00 and 10:00-13:00).",
+   "You are on the Schedule page in day view."
+  ],
+  "n_steps": 1
+ },
+ {
+  "id": 29998,
+  "title": "Visible lanes cap at 3; extra overlapping shifts collapse into '+N more'",
+  "section": 4266,
+  "labels": [
+   "+N more"
+  ],
+  "found": [],
+  "missing": [
+   "+N more"
+  ],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "One technician has FIVE mutually overlapping shifts at the same time on the same day (seed ZZAUTOTEST work orders as needed).",
+   "You are on the Schedule page in day view."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 29999,
+  "title": "Lane stacking and the '+N more' overflow apply in day, week, and month views",
+  "section": 4266,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "One technician has several overlapping shifts on the same day.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30001,
+  "title": "Day view auto-scrolls to the working-day start; manual scrolling stands",
+  "section": 4267,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "Technicians have configured start times; note the EARLIEST one (or the business-hours start / 7:00 AM if none).",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 30003,
+  "title": "Date and time headers stick to the top during vertical scroll",
+  "section": 4267,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "Enough technician rows exist that the grid scrolls vertically.",
+   "You are on the Schedule page in day view."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30004,
+  "title": "Dragging a shift sideways moves its start time in 15-minute steps",
+  "section": 4267,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A shift exists on a technician's day-view timeline.",
+   "You are on the Schedule page in day view."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30005,
+  "title": "Dragging a shift's left or right edge resizes its duration",
+  "section": 4267,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A shift exists on a technician's day-view timeline (note its start/end).",
+   "You are on the Schedule page in day view."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30006,
+  "title": "A now line marks the current time on today's day view, with a label on hover",
+  "section": 4267,
+  "labels": [
+   "Today"
+  ],
+  "found": [
+   {
+    "label": "Today",
+    "how": "exact"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "You are on the Schedule page in day view, on TODAY (click 'Today' if needed)."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30008,
+  "title": "Clicking a shift opens its detail modal, with VIN always visible",
+  "section": 4268,
+  "labels": [
+   "Filter and Display"
+  ],
+  "found": [],
+  "missing": [
+   "Filter and Display"
+  ],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "A shift exists for a unit that has a VIN; the VIN toggle in 'Filter and Display' is OFF.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 30009,
+  "title": "Scheduled date and start/end time pickers work in 15-minute increments",
+  "section": 4268,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A shift exists; its detail modal is open."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 30010,
+  "title": "The modal shows the technician and time logged vs estimate progress",
+  "section": 4268,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "A shift exists whose line has some clocked-in time logged against an estimate (seed by clocking a technician in/out if possible).",
+   "The shift's detail modal is open."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 30011,
+  "title": "The modal lists the scheduled line(s) with no money fields",
+  "section": 4268,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "A multi-line (subset) shift exists covering 2 of a work order's 4 lines.",
+   "The shift's detail modal is open."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 30012,
+  "title": "Estimated hours can be edited inline in the modal",
+  "section": 4268,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A shift exists; its detail modal is open; note the current estimated hours."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30013,
+  "title": "Notes can be added, edited, and deleted per work order from the modal",
+  "section": 4268,
+  "labels": [
+   "ZZAUTOTEST note"
+  ],
+  "found": [],
+  "missing": [
+   "ZZAUTOTEST note"
+  ],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A shift exists; its detail modal is open."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30014,
+  "title": "A conflicted shift's modal shows a conflict banner with an 'Adjust' action",
+  "section": 4268,
+  "labels": [
+   "Adjust"
+  ],
+  "found": [
+   {
+    "label": "Adjust",
+    "how": "test-id"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A conflicted shift exists (for example double-booked - create an overlap).",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30015,
+  "title": "Shift modal offers Delete only - there is no Reassign action",
+  "section": 4268,
+  "labels": [
+   "Reassign"
+  ],
+  "found": [],
+  "missing": [
+   "Reassign"
+  ],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Delete (which includes Edit and View).",
+   "A shift exists; its detail modal is open."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30016,
+  "title": "Create an event via left-click 'Create Event' on empty grid space",
+  "section": 4269,
+  "labels": [
+   "Create Event",
+   "ZZAUTOTEST stand-up"
+  ],
+  "found": [],
+  "missing": [
+   "Create Event",
+   "ZZAUTOTEST stand-up"
+  ],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30017,
+  "title": "Day view event creation shows a live preview block you can drag to resize",
+  "section": 4269,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "You are on the Schedule page in DAY view."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30018,
+  "title": "Event modal fields all save; the all-day toggle creates an all-day event",
+  "section": 4269,
+  "labels": [
+   "Create Event"
+  ],
+  "found": [],
+  "missing": [
+   "Create Event"
+  ],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "You are on the Schedule page with the event modal open (left-click empty grid space, then 'Create Event')."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 30020,
+  "title": "Events can be dragged to another technician or another day",
+  "section": 4269,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "An event exists on a technician's day.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30021,
+  "title": "Event cards look structurally distinct from shift cards",
+  "section": 4269,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "An event and a shift sit near each other on the grid.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 1
+ },
+ {
+  "id": 30022,
+  "title": "Events default to grey; choosing a color tints the card and chip",
+  "section": 4269,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A newly created event exists with no color chosen.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30615,
+  "title": "An event's hours count toward the capacity bar but raise no conflict",
+  "section": 4269,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "Capacity Bars and Events are ON in View Options.",
+   "A technician has a shift and, on the same day/time, an event (create both, ZZAUTOTEST)."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30023,
+  "title": "Double-booked: two overlapping work orders on one technician are flagged",
+  "section": 4270,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "Two different work orders have schedulable lines.",
+   "You are on the Schedule page; note the toolbar conflict pill's current count."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30024,
+  "title": "Working-day conflict: a shift outside the tech's working days is flagged",
+  "section": 4270,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A technician's configured working days are known (for example Monday to Friday); Saturday/Sunday columns are visible (View Options - Saturday and Sunday on).",
+   "A schedulable work order line exists."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 30025,
+  "title": "Before-hours and after-hours shifts are flagged against the tech's hours",
+  "section": 4270,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A technician has a known working day (for example 8:00 AM to 5:00 PM).",
+   "A shift exists for that technician inside those hours."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 30027,
+  "title": "The toolbar conflict pill shows the count and opens a list",
+  "section": 4270,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "At least two conflicts of different types exist (for example one double-booked overlap and one Saturday shift - create them first).",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30028,
+  "title": "Clicking a conflict in the dropdown navigates to the relevant technician and day",
+  "section": 4270,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "A conflict exists on a technician/day that is NOT currently in view (navigate the grid away first).",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 30029,
+  "title": "Red styling is only for conflicts and errors, never for overtime",
+  "section": 4270,
+  "labels": [
+   "OT"
+  ],
+  "found": [
+   {
+    "label": "OT",
+    "how": "exact"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "One technician is booked into OVERTIME on a day WITHOUT any conflict (more hours than their day, sequential non-overlapping shifts within working hours - use the technician's working window carefully, or observe the OT tag day).",
+   "Capacity Bars are on."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 30030,
+  "title": "Capacity bar fill = booked (shifts + events) vs available, clamped, equal tracks",
+  "section": 4271,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "Capacity Bars are ON in View Options (default).",
+   "Technicians' working hours are known; shifts exist on at least two days with different total booked hours.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30031,
+  "title": "Over capacity, an amber spill extends past the track's right edge",
+  "section": 4271,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "Capacity Bars are ON.",
+   "One day is booked BEYOND the team's total available hours (seed extra shifts)."
+  ],
+  "n_steps": 1
+ },
+ {
+  "id": 30032,
+  "title": "'OT' text tag appears when one technician exceeds their own daily hours",
+  "section": 4271,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "Capacity Bars are ON.",
+   "On one day, a single technician is booked beyond THEIR daily hours while the team's aggregate for that day remains UNDER total capacity (other techs lightly booked)."
+  ],
+  "n_steps": 1
+ },
+ {
+  "id": 30033,
+  "title": "Hovering a capacity bar shows a per-technician breakdown",
+  "section": 4271,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "Capacity Bars are ON; a day exists where one technician is in overtime and others are not.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 30034,
+  "title": "Shift hover tooltip shows the full shift summary incl. up to 3 line names",
+  "section": 4272,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "A multi-line shift exists covering 5 lines, with some time logged, for a unit that has a VIN.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 30035,
+  "title": "A conflicted shift's tooltip shows the icon and reason in amber",
+  "section": 4272,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "A conflicted shift exists (for example double-booked).",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 1
+ },
+ {
+  "id": 30036,
+  "title": "Event hover tooltip shows name, grey category dot, time range and tech",
+  "section": 4272,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "An event exists on a technician's day.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 1
+ },
+ {
+  "id": 30037,
+  "title": "Tooltips open after a hover delay, dismiss on mouse-leave, are read-only",
+  "section": 4272,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "A shift exists on the grid.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 30038,
+  "title": "The tooltip flips or shifts to stay within the viewport - never clipped",
+  "section": 4272,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "A multi-line shift (tall tooltip) exists near the BOTTOM edge of the viewport, and another near a horizontal edge (scroll to arrange).",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 30039,
+  "title": "'Today' button jumps the grid to the current date",
+  "section": 4273,
+  "labels": [
+   "Today"
+  ],
+  "found": [
+   {
+    "label": "Today",
+    "how": "exact"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "You are on the Schedule page, navigated several weeks away from today."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 30040,
+  "title": "Left/right arrows step by day, week, or month to match the active range",
+  "section": 4273,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30041,
+  "title": "Toolbar search matches customer, work order, unit, technician and line names",
+  "section": 4273,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "Several shifts exist on the visible range for different customers/orders/technicians.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 43582,
+  "title": "Panel button sits left of Today and its tooltip names what it will do",
+  "section": 4273,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in to the ShopView App on a desktop browser, with the window at least 960 pixels wide.",
+   "Your role has the Schedule: View permission.",
+   "You are on the Schedule page, and the left panel is showing - that is the strip down the left-hand side holding the small month calendar and the list of work orders."
+  ],
+  "n_steps": 7
+ },
+ {
+  "id": 43583,
+  "title": "Panel button hides the left panel and the grid widens into the space",
+  "section": 4273,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in to the ShopView App on a desktop browser, with the window at least 960 pixels wide.",
+   "Your role has the Schedule: View permission.",
+   "You are on the Schedule page, the left panel is showing, and there are some shifts visible in the grid."
+  ],
+  "n_steps": 6
+ },
+ {
+  "id": 43584,
+  "title": "What you had set up in the left panel survives hiding and showing it",
+  "section": 4273,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in to the ShopView App on a desktop browser, with the window at least 960 pixels wide.",
+   "Your role has the Schedule: View permission.",
+   "You are on the Schedule page and the left panel is showing.",
+   "There are enough work orders in the list that it has to be scrolled to see them all."
+  ],
+  "n_steps": 7
+ },
+ {
+  "id": 43586,
+  "title": "Menus and pop-up windows reposition when the left panel is hidden",
+  "section": 4273,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in to the ShopView App on a desktop browser, with the window at least 960 pixels wide.",
+   "Your role has the Schedule: View permission.",
+   "You are on the Schedule page, the left panel is showing, and there is at least one shift in the grid."
+  ],
+  "n_steps": 5
+ },
+ {
+  "id": 43587,
+  "title": "Hiding the panel lasts for the rest of your sign-in but is not saved",
+  "section": 4273,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in to the ShopView App on a desktop browser, with the window at least 960 pixels wide.",
+   "Your role has the Schedule: View permission.",
+   "You are on the Schedule page and the left panel is showing.",
+   "You know the password for the account you are signed in with, because this test signs out and back in.",
+   "For the last step only, you also need a SECOND sign-in for a different person who can see the Schedule. If you do not have one, do steps 1 to 6 and mark the last point Blocked rather than guessing."
+  ],
+  "n_steps": 7
+ },
+ {
+  "id": 30042,
+  "title": "'Filter & display' dropdown: department toggles, 'My Shifts' and 'VIN Number'",
+  "section": 4274,
+  "labels": [
+   "Filter & display"
+  ],
+  "found": [
+   {
+    "label": "Filter & display",
+    "how": "exact"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 30043,
+  "title": "Department toggles show or hide individual department groups in the grid",
+  "section": 4274,
+  "labels": [
+   "Filter & display"
+  ],
+  "found": [
+   {
+    "label": "Filter & display",
+    "how": "exact"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "At least two department groups are visible in the grid.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30044,
+  "title": "'My Shifts' filters the grid to only the current user's shifts",
+  "section": 4274,
+  "labels": [
+   "Filter & display",
+   "My Shifts"
+  ],
+  "found": [
+   {
+    "label": "Filter & display",
+    "how": "exact"
+   },
+   {
+    "label": "My Shifts",
+    "how": "exact"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser as a user who appears as a technician row and has at least one shift.",
+   "Other technicians also have shifts on the visible range.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30045,
+  "title": "'VIN Number' toggle gates the block VIN only - tooltip and modal always show it",
+  "section": 4274,
+  "labels": [
+   "Filter & display",
+   "VIN Number"
+  ],
+  "found": [
+   {
+    "label": "Filter & display",
+    "how": "exact"
+   },
+   {
+    "label": "VIN Number",
+    "how": "exact"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "A shift exists for a unit with a VIN; the VIN toggle is OFF.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 30046,
+  "title": "'View options': six toggles with defaults; Capacity Planning and Events flip",
+  "section": 4274,
+  "labels": [
+   "View options"
+  ],
+  "found": [
+   {
+    "label": "View options",
+    "how": "exact"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "You are on the Schedule page in week view with no view options changed yet (fresh state).",
+   "At least one event and some shifts exist in the visible range, so capacity bars have fill."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 30047,
+  "title": "Business Hours toggle shades non-working hours in day view",
+  "section": 4274,
+  "labels": [
+   "View options"
+  ],
+  "found": [
+   {
+    "label": "View options",
+    "how": "exact"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "The shop has working hours set.",
+   "You are on the Schedule page in DAY view with Business Hours OFF."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30050,
+  "title": "Tech Hours toggle displays each technician's working hours next to their name",
+  "section": 4274,
+  "labels": [
+   "View options"
+  ],
+  "found": [
+   {
+    "label": "View options",
+    "how": "exact"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "Technicians have configured working hours.",
+   "You are on the Schedule page with Tech Hours OFF (default)."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 30051,
+  "title": "'Show Saturday' and 'Show Sunday' include or exclude the weekend columns",
+  "section": 4274,
+  "labels": [
+   "Show Saturday",
+   "Show Sunday",
+   "View options"
+  ],
+  "found": [
+   {
+    "label": "Show Saturday",
+    "how": "exact"
+   },
+   {
+    "label": "Show Sunday",
+    "how": "exact"
+   },
+   {
+    "label": "View options",
+    "how": "exact"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "You are on the Schedule page in WEEK view with Saturday and Sunday ON (default) - 7 columns visible."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30052,
+  "title": "Dragging a shift to another technician row reassigns it, with a confirm modal",
+  "section": 4275,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A shift exists on technician A; note the affected line's roster.",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30054,
+  "title": "Left-click empty grid space opens a menu: Create Event and New Work Order",
+  "section": 4275,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "You are on the Schedule page in week view (the same menu is offered in month view).",
+   "Schedulable work order lines exist."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 38855,
+  "title": "'New Work Order' in the cell menu points the user to the Work Orders tab",
+  "section": 4275,
+  "labels": [
+   "Create Event",
+   "New Work Order"
+  ],
+  "found": [],
+  "missing": [
+   "Create Event",
+   "New Work Order"
+  ],
+  "pre": [
+   "You are on the Schedule grid.",
+   "The cell menu already shows 'Create Event' and 'New Work Order'."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 43556,
+  "title": "Week view: a shift that is part of a repeating series can be reassigned",
+  "section": 4275,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in to the ShopView App on a desktop browser (window at least 960px wide).",
+   "Your role has the Schedule: Edit permission.",
+   "You are on the Schedule page with Week switched on.",
+   "A repeating series of shifts exists on the week you are looking at. On the test shop, work order S-9379 (customer Xiriver Apparel, unit 16604, 11 Lines) has a series sitting on technician Jose Young; its blocks are labelled \"Part of a series\" or \"Week 1 of 2\". If none exists, make one first: drag a work order with several lines onto a technician, choose Schedule whole work order, and let it spread over several days.",
+   "A second technician has a row on the same screen - use MQ Test Tech Qamar."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 30057,
+  "title": "Deleting a middle shift of a series offers all three scope options",
+  "section": 4276,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Delete.",
+   "A series of at least 3 shifts exists for one technician.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 30058,
+  "title": "'This shift only' removes that day and the series keeps the gap",
+  "section": 4276,
+  "labels": [
+   "this shift only"
+  ],
+  "found": [],
+  "missing": [
+   "this shift only"
+  ],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Delete.",
+   "A series of at least 3 shifts exists; note the total scheduled hours.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30059,
+  "title": "'This and everything after' removes from the clicked shift onward",
+  "section": 4276,
+  "labels": [
+   "THIRD shift with the"
+  ],
+  "found": [],
+  "missing": [
+   "THIRD shift with the"
+  ],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Delete.",
+   "A series of at least 4 shifts exists.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 30060,
+  "title": "'The whole series' removes all of the series' shifts for that technician",
+  "section": 4276,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Delete.",
+   "The SAME work order has a series on technician A and an independent series on technician B.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 30061,
+  "title": "Scope options adapt: the first and last shift each show only two",
+  "section": 4276,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Delete.",
+   "A series of at least 3 shifts exists.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30062,
+  "title": "Deleting a standalone (non-series) shift does not ask for a series scope",
+  "section": 4276,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Delete.",
+   "A single standalone shift (not part of any series) exists.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 30064,
+  "title": "Toast lasts ~7s with Undo (about 4s without); stays on hover, goes on leave",
+  "section": 4276,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30065,
+  "title": "Every create/delete/move/reassign toasts with Undo, and Undo restores",
+  "section": 4276,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Delete.",
+   "Schedulable lines exist and a shift exists; note its technician, day, and time.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 5
+ },
+ {
+  "id": 38864,
+  "title": "Schedule actions save immediately - Undo reverses them, closing does not cancel",
+  "section": 4276,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Delete.",
+   "A shift exists on the grid; note its technician, day, and time.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 30066,
+  "title": "Escape closes the topmost open modal or popover, following the stacking order",
+  "section": 4277,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 30068,
+  "title": "Enter confirms the active dialog, but not inside a note textarea",
+  "section": 4277,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Delete.",
+   "Shifts/series and events exist to exercise the dialogs.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 5
+ },
+ {
+  "id": 30070,
+  "title": "Modals trap focus and all interactive elements are keyboard-reachable",
+  "section": 4277,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A shift's detail modal is open."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30071,
+  "title": "Blue is the default color for all shifts, including long and multi-week jobs",
+  "section": 4278,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30072,
+  "title": "Shift modal color picker recolors that shift only, in matching tones",
+  "section": 4278,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "Two shifts from the SAME work order exist (for example on different technicians).",
+   "One of those shifts' detail modal is open."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 30073,
+  "title": "Color labels are editable per shop",
+  "section": 4278,
+  "labels": [
+   "ZZAUTOTEST Rush"
+  ],
+  "found": [],
+  "missing": [
+   "ZZAUTOTEST Rush"
+  ],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A shift's or event's color picker is open."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 30074,
+  "title": "Schedule: View grants the full read-only experience across the whole page",
+  "section": 4279,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "A test user's role has Schedule: View but NOT Edit (assign a suitable system role or a purpose-made custom role; restore after).",
+   "Shifts and events exist on the grid, created by an Edit-capable user.",
+   "You are signed in AS that View-only user on a desktop browser."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 30075,
+  "title": "View-only: every editing affordance is hidden or disabled",
+  "section": 4279,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "A test user's role has Schedule: View but NOT Edit.",
+   "Shifts, a series, and events exist on the grid.",
+   "You are signed in AS that View-only user on a desktop browser, on the Schedule page."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 30076,
+  "title": "With Schedule: View OFF, the Schedule top-level nav item is hidden entirely",
+  "section": 4279,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "A test user's role has Schedule: View OFF (no Schedule permission).",
+   "You are signed in AS that user on a desktop browser."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 30077,
+  "title": "Schedule: Edit unlocks all creation and modification interactions",
+  "section": 4279,
+  "labels": [
+   "Create Event"
+  ],
+  "found": [],
+  "missing": [
+   "Create Event"
+  ],
+  "pre": [
+   "A test user's role has Schedule: Edit (and View) but NOT Delete.",
+   "Work orders with approved lines exist; you are signed in AS that user, on the Schedule page."
+  ],
+  "n_steps": 5
+ },
+ {
+  "id": 30078,
+  "title": "Edit without Delete: the user can create and modify but not remove",
+  "section": 4279,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "A test user's role has Schedule: Edit but NOT Delete.",
+   "A shift, a series, and an event exist (some created by this user).",
+   "You are signed in AS that user, on the Schedule page."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30079,
+  "title": "Schedule: Delete unlocks deleting shifts and events",
+  "section": 4279,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "A test user's role has Schedule: Delete.",
+   "A standalone shift, a series, and an event exist.",
+   "You are signed in AS that user, on the Schedule page."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30080,
+  "title": "Permission tiers nest: Delete requires Edit, Edit requires View",
+  "section": 4279,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in as an admin who can edit custom roles.",
+   "A ZZAUTOTEST custom role exists (create one; delete after)."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30081,
+  "title": "Schedule without Work Orders: View - the sidebar hides the work order list",
+  "section": 4279,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "A test user's role has Schedule access but Work Orders: View OFF.",
+   "Shifts already exist on the grid.",
+   "You are signed in AS that user, on the Schedule page."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30082,
+  "title": "No own-only restriction: a View user sees ALL technicians' shifts",
+  "section": 4279,
+  "labels": [
+   "Filter & display",
+   "My Shifts"
+  ],
+  "found": [
+   {
+    "label": "Filter & display",
+    "how": "exact"
+   },
+   {
+    "label": "My Shifts",
+    "how": "exact"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "Shifts and events exist for SEVERAL different technicians.",
+   "A test user with a low-tier View-only role exists (and is themselves one of the technicians).",
+   "You are signed in AS that user, on the Schedule page."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 30083,
+  "title": "Grid rows are department-based, not role-based",
+  "section": 4279,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "A staff member with a NON-technician role (for example Office) is assigned to a department that is visible on the schedule (set up; restore after).",
+   "Another staff member has NO department assignment.",
+   "You are signed in on a desktop browser, on the Schedule page."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 30084,
+  "title": "Clocking into line tasks is gated by the staff 'Time Clock' setting",
+  "section": 4279,
+  "labels": [
+   "Time Clock"
+  ],
+  "found": [
+   {
+    "label": "Time Clock",
+    "how": "substring"
+   }
+  ],
+  "missing": [],
+  "pre": [
+   "Two staff members exist: one with the 'Time Clock' setting ON on their staff record, one with it OFF (set up; restore after).",
+   "Both appear as schedule rows and have shifts on work order lines."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 30614,
+  "title": "With Work Orders: View OFF, work order details on shifts are hidden",
+  "section": 4279,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "A test user's role has Schedule access but Work Orders: View OFF (assign a suitable role; restore after).",
+   "Shifts already exist on the grid, created by a fully-permissioned user, for units that have customers, scheduled lines, and a VIN.",
+   "You are signed in AS that user on a desktop browser, on the Schedule page."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 38926,
+  "title": "Default roles start at the Schedule level the spec names (view-only vs edit)",
+  "section": 4279,
+  "labels": [
+   "Reset to template",
+   "View Permissions"
+  ],
+  "found": [],
+  "missing": [
+   "Reset to template",
+   "View Permissions"
+  ],
+  "pre": [
+   "You are signed in as an admin who can view and edit the roles and their permissions.",
+   "You can sign in (or switch) to a user who holds each role you need to check.",
+   "Write down each role's current Schedule permissions before you change anything, and put them back afterwards."
+  ],
+  "n_steps": 6
+ },
+ {
+  "id": 30086,
+  "title": "Below 960px the grid scrolls sideways and the sidebar collapses",
+  "section": 4280,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "You are on the Schedule page in week view with shifts visible."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30087,
+  "title": "The sidebar work order list and line drill-down stay smooth with 50+ items",
+  "section": 4280,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "50 or more open work orders exist (seed ZZAUTOTEST orders if the environment lacks them), including one order with many approved lines.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30088,
+  "title": "The grid renders smoothly at full load - 15 technicians over 7 days",
+  "section": 4280,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser.",
+   "The schedule is loaded to roughly the spec's stated scale: around 15 technician rows across a week with several shifts per cell (seed ZZAUTOTEST shifts as needed).",
+   "You are on the Schedule page in week view."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30089,
+  "title": "Shop closures do NOT block spread in V1 - shifts can land on closure days",
+  "section": 4280,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A shop closure (holiday/inventory day) is defined at the shop level on a working weekday inside the planned spread window (set it up; remove after).",
+   "A large job (multi-day scope) is ready to spread."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 30090,
+  "title": "Scheduled, estimated and actual clocked hours are three separate numbers",
+  "section": 4280,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "A line has estimate 10h; a technician has 6h scheduled against it and some different amount of time actually clocked (seed what is possible)."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 38865,
+  "title": "A multi-week series keeps the same local start time across the clock change",
+  "section": 4280,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser with Schedule: Edit.",
+   "The shop's location observes daylight saving (clocks change); the next clock-change date is known (e.g. the November change).",
+   "A job large enough to spread across the clock-change date exists."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 38866,
+  "title": "Schedule and all its dialogs display correctly in dark mode",
+  "section": 4280,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in on a desktop browser; the app's dark mode / theme toggle is available.",
+   "The Schedule page has shifts, an event, a conflict, and capacity bars visible."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 43585,
+  "title": "On a narrow window the panel button still works and your choice holds",
+  "section": 4280,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in to the ShopView App on a desktop browser.",
+   "Your role has the Schedule: View permission.",
+   "You are on the Schedule page."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 43588,
+  "title": "Dark mode is chosen from the user menu and is remembered for you",
+  "section": 4280,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in to the ShopView App on a desktop browser.",
+   "Your role has the Schedule: View permission.",
+   "You know the password for the account you are signed in with, because this test signs out and back in.",
+   "The app is currently in light mode."
+  ],
+  "n_steps": 9
+ },
+ {
+  "id": 43589,
+  "title": "In dark mode pop-up windows still look raised above the page",
+  "section": 4280,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are signed in to the ShopView App on a desktop browser.",
+   "Your role has the Schedule: View permission.",
+   "The app is in dark mode.",
+   "You are on the Schedule page in week view, with at least one shift in the grid."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 38847,
+  "title": "Business-hours toggle reveals a per-day (Mon-Sun) From-To editor",
+  "section": 5405,
+  "labels": [
+   "Set business hours for this shop"
+  ],
+  "found": [],
+  "missing": [
+   "Set business hours for this shop"
+  ],
+  "pre": [
+   "You are signed in to the ShopView App with access to location settings.",
+   "You are on the Edit Location screen for a shop - Settings > Locations, then the pencil on that shop's row."
+  ],
+  "n_steps": 5
+ },
+ {
+  "id": 38848,
+  "title": "Edit Staff has a 'Set working hours for this technician' toggle, off by default",
+  "section": 5405,
+  "labels": [
+   "Set working hours for this technician"
+  ],
+  "found": [],
+  "missing": [
+   "Set working hours for this technician"
+  ],
+  "pre": [
+   "You are signed in with access to staff settings.",
+   "You open the Edit Staff Member screen for a technician - Settings > Staff, then the pencil on that technician's row."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 38849,
+  "title": "A technician with no custom hours inherits the shop business hours",
+  "section": 5405,
+  "labels": [
+   "Set working hours for this technician"
+  ],
+  "found": [],
+  "missing": [
+   "Set working hours for this technician"
+  ],
+  "pre": [
+   "The shop has business hours set for the shop.",
+   "A technician has the 'Set working hours for this technician' toggle OFF."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 38850,
+  "title": "'Add Hours' appends a removable second range for split shifts, starting empty",
+  "section": 5405,
+  "labels": [
+   ", or from Settings > Staff > the pencil on a technician",
+   "Add Hours",
+   "Set working hours for this technician"
+  ],
+  "found": [],
+  "missing": [
+   ", or from Settings > Staff > the pencil on a technician",
+   "Add Hours",
+   "Set working hours for this technician"
+  ],
+  "pre": [
+   "You are in the per-day working-hours editor with a day's first range set. Reach it either from Settings > Locations > the pencil on a shop's row > turn on 'Set business hours for this shop', or from Settings > Staff > the pencil on a technician's row > turn on 'Set working hours for this technician'."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 38851,
+  "title": "Overlapping hour ranges block Save; incomplete rows are ignored",
+  "section": 5405,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "You are in the per-day working-hours editor with at least two ranges on one day."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 38867,
+  "title": "Shifts and events created before the Schedule rewrite still appear after it",
+  "section": 5408,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "This case runs around the Schedule rewrite release: before the release, note (or create) a handful of scheduled shifts and calendar events - including at least one future-dated one - with their technician, day, and time.",
+   "The release (which replaces the Schedule behind the scenes) has been deployed."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 38868,
+  "title": "Dashboard shows one schedule row per work order even with many shifts",
+  "section": 5408,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "The Schedule rewrite release is deployed.",
+   "One work order has been spread across MANY days for a technician (e.g. a 2-week series - 10+ daily shifts)."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 38869,
+  "title": "A work order created with an appointment shows up on the Schedule board",
+  "section": 5408,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "The Schedule rewrite release is deployed.",
+   "You can create a work order and set its appointment/scheduling details during creation."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 38870,
+  "title": "A multi-location technician's shift appears only on the work order's location",
+  "section": 5408,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "The Schedule rewrite release is deployed.",
+   "A technician is enrolled at TWO locations (set this up if needed).",
+   "A work order belonging to location A has a shift scheduled on that technician."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 38871,
+  "title": "Work order form offers a Priority (High/Medium/Low) that drives the sidebar",
+  "section": 5408,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "The Schedule rewrite release (which adds the Priority field) is deployed.",
+   "You can create/edit a work order."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 38872,
+  "title": "API - Schedule reads need View; writes need Edit; deletes need Delete (403)",
+  "section": 5409,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "The Schedule rewrite build (new /api/schedule endpoints) is deployed.",
+   "Three test users exist: one with NO Schedule permission, one with Schedule: View only, one with Schedule: View + Edit (but not Delete).",
+   "A shift id from the current location is known."
+  ],
+  "n_steps": 3
+ },
+ {
+  "id": 38873,
+  "title": "API - Series past 8 weeks returns 409 until acknowledged; over 120 shifts 422",
+  "section": 5409,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "The Schedule rewrite build is deployed; an API session with Schedule: Edit exists.",
+   "A schedulable work order line id and a technician staff id are known."
+  ],
+  "n_steps": 4
+ },
+ {
+  "id": 38874,
+  "title": "API - No pricing fields in Schedule responses; WO details need Work Orders View",
+  "section": 5409,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "The Schedule rewrite build is deployed.",
+   "A shift covering work order lines exists.",
+   "Two API users: one with Schedule: View + Work Orders: View, one with Schedule: View but WITHOUT Work Orders: View."
+  ],
+  "n_steps": 2
+ },
+ {
+  "id": 38875,
+  "title": "API - A shift from another location returns 404, not another shop's data",
+  "section": 5409,
+  "labels": [],
+  "found": [],
+  "missing": [],
+  "pre": [
+   "The Schedule rewrite build is deployed.",
+   "Two locations exist; a shift exists at location B; your API session is scoped to location A.",
+   "The location-B shift's id is known (create it while switched to B, then switch back to A)."
+  ],
+  "n_steps": 3
+ }
+]

@@ -1,0 +1,80 @@
+# Schedule — findings, 2026-08-12
+
+Build `v3.5-65d6500`. Findings only; the numbers are in `COMPLETION-REPORT.md`.
+
+## 1 · A permission change kills the session it is needed for — and it is one-way
+
+The ten blocked permission cases were attacked directly rather than escalated, because Standing Rules
+5, 14 and 26 authorise seeding roles. Editing the **role definition** the Technician holds — chosen
+precisely because it does not touch a staff record — **invalidated the Technician session anyway**,
+and **restoring the permissions did not bring it back.**
+
+**So the change that creates the test user destroys the session you would test with**, and this
+estate cannot sign in again: `quick-login` and `switch-user` are barred, and a new staff member needs
+invite confirmation.
+
+**The practical consequence is a precise ask replacing a vague one: create the three users, give them
+their permissions, and only THEN sign each in and send the cookies.** Configure first, mint second.
+Detail and the per-user table: `DIVERGENCES.md` §A.
+
+## 2 · Two API behaviours worth keeping, both found the hard way
+
+**A save that returns 200 and does half the write.** `PUT /api/roles/{id}` with snake_case field
+names **applies additions and silently ignores removals**. The screen sends camelCase, and with those
+names the same call replaces the set correctly. **The first restore attempt reported success and
+changed nothing**, and only a field-by-field read-back caught it. Not raised as a defect — no user can
+send snake_case from a screen — but it is exactly the class of thing that costs somebody a day.
+
+**The permission tiers are enforced server-side and cascade upward.** Asking for `Schedule: Delete`
+alone came back with `Schedule: Edit` and `Schedule: View` added automatically — the specification's
+`Delete ⊇ Edit ⊇ View` tier, observed from the API side. **A good finding, and not a substitute for
+observing it in the UI**, which is what the held cases exist to do.
+
+## 3 · A false absence, caught before it was written down
+
+Three separate attempts reported the empty-cell menu as not opening, across two views and three
+gestures. **The menu exists.** The `.schedule-lane` elements are 199 px wide — the technician label
+column — so every click landed outside the grid. Clicking at 35 %, 55 % and 80 % of the calendar width
+opened it every time: **`Create Event`** and **`New Work Order`**, under a header like
+`LARRY COLLINS · WED, AUG 12 · 06:45`.
+
+**Five cases would have been wrongly marked as testing a feature that does not exist.** The project's
+own standing warning — prove the state a control should appear in before recording it absent — is what
+stopped it.
+
+## 4 · What the walk confirmed
+
+Seven cases were carried out step by step and **all seven work as written.** Two assertions were
+positively confirmed rather than merely not contradicted: **there is no `Reassign` in the shift
+modal** (C30015), and **tooltips do not appear on a fast mouse-over, appear on rest, and dismiss on
+leave** (C30037). Two toggles were proven to do what their case says — Capacity Planning took the
+capacity bars 1 → 0 → 1, and Events took the event blocks 2 → 0 → 2.
+
+**`Clear all` exists but only once a filter is applied.** Worth knowing before hunting for it, and
+worth an automation script knowing before asserting it.
+
+## 5 · One observation deliberately left as an observation
+
+Choosing the `Approved` status filter left the sidebar at **21 cards before and after** (C29944).
+That is **not** evidence of a broken filter — the list is overwhelmingly Approved already and renders
+a virtualised window. Settling it needs a status the list actually mixes, which is a seeding job.
+**Recorded so nobody re-derives it; not a verdict.**
+
+## 6 · A hazard in our own case text
+
+**C30015 step 3 tells a tester to click Delete and cancel.** On a series shift that is safe. On a
+**non-series** shift there is no confirmation and the shift is destroyed on the first click — which is
+how **two workers destroyed a shift on this branch in two days.** The step is not wrong, and I have
+not changed it, because adding a warning is a wording decision on the case's own assertion. **One
+sentence would remove the hazard.**
+
+## OUTSTANDING — what I need from you
+
+1. **Three users for the permission cases**, configured before their cookies are minted — unblocks ten
+   cases and the whole permission area. **The single highest-value item.**
+2. **A fresh Technician sign-in**, if any further Technician-perspective work is wanted.
+3. **A ruling on C30061** — align its expected result to the build's scope wording, or leave it.
+4. **A ruling on C30015 step 3** — add the one-sentence warning, or leave it.
+5. **Permission for a worker to update `build/APP-ACTIONS-PLAYBOOK.md`** with the shift create/delete
+   contract. It has now cost two shifts in two days because it lives only in incident reports.
+6. **Worker time on the remaining ~141 cases** — the method works and is cheap; nothing blocks it.
