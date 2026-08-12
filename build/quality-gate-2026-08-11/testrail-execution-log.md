@@ -112,3 +112,53 @@ Runs 352 and 357 were **not read for writes and not written** — no case in eit
 
 Re-synced **FROM LIVE** after the write (`tools/resync_local_from_live.py`), 1 case / 1 field.
 Final content comparison across all three suites: **Filters 0 drifted · Schedule 0 · Report Suite 0.**
+
+---
+
+## SECOND WRITE BATCH — 2 operations, 2 cases (the wrong-report symptom blocks)
+
+| # | Op | Case | Section | `custom_atmstatus` | Fields sent | HTTP | Byte-level verification |
+|---|---|---|---|---|---|---|---|
+| 2 | `update_case` | **C30162** [link](https://shopview.testrail.io/index.php?/cases/view/30162) | SBC — Exports | **1 — not sent, unchanged** | `custom_preconds`, `custom_steps`, `custom_expected` | **200** | **30 fields compared, 3 intended, 0 mismatch, 0 collateral change** |
+| 3 | `update_case` | **C30287** [link](https://shopview.testrail.io/index.php?/cases/view/30287) | SBR — Exports | **1 — not sent, unchanged** | `custom_preconds`, `custom_steps`, `custom_expected` | **200** | **30 fields compared, 3 intended, 0 mismatch, 0 collateral change** |
+
+**What was wrong.** Both cases were given, **today**, a `What you should see today:` block naming the
+**Inventory Value** column set — *"Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell,
+Total Cost, Total Sell"* — and that report's example figure `$11,176.88`. **C30162 is Sales By
+Customer and C30287 is Sales By Representative; neither report has those columns.** Proven a
+regression, not a pre-existing fault: the block is **absent from both cases at the pre-today baseline**
+`43930ee3`.
+
+**Why it was worth a write on release eve.** The block is the tester's instruction under Standing
+Rule 61, and its own second bullet says that a symptom which does not match means *"a NEW problem —
+please report it"*. So the text does not merely confuse; **it instructs a tester to raise duplicate
+tickets, on two different reports.**
+
+**The repair used only words already present in each case.** Each already carried its **own correct**
+symptom sentence immediately above the pasted one (*"the money in the spreadsheet file comes out as
+`$224.92`…"* on C30162, *"…`$1,979.40`…"* on C30287). That sentence was promoted into the Rule-61
+position and the wrong-report sentence deleted. The redundant *"On this build "* prefix was dropped
+beside *"today"*; **no other word was changed, nothing was invented, and no build was opened.**
+
+**Proven by assertion in the executor, before the network write:**
+
+- the list of numbered expectation lines is **identical before and after** (`old_items == new_items`);
+- the three Rule-61 outcomes and the ticket link **survive**;
+- the text **ends with the unchanged provenance block**, so Rule-54 sentence 1 and sentence 2 are
+  byte-identical and the marker is untouched;
+- `Part #, Description, Category, Vendor, Qty` and `$11,176.88` are **absent** from the result.
+
+Fields proven byte-identical before → after on both: `title`, `refs`, `custom_preconds`,
+`custom_steps`, **`custom_atmstatus`**, `custom_automation_type`, `section_id`.
+
+### Run 359 re-proven undisturbed after this batch
+
+480 tests · `case_id` sets **equal both directions** · **535** results, **all present by id** ·
+**0 new** · **0 graded-field changes** · `include_all` still **false**.
+
+**Runs 352 and 357 were never written to and hold no case this pass touched.**
+
+### Totals for the whole pass
+
+**3 `update_case` operations on 3 cases. 0 `add_case` · 0 `delete_case` · 0 section ops · 0 run
+writes · 0 results · 0 Jira calls. `custom_atmstatus` never sent.**
