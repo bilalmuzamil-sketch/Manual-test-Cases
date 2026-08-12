@@ -1,0 +1,51 @@
+{
+ "steps": [
+  {
+   "pre": "status=invoiced via chip",
+   "opened": true,
+   "options": 9,
+   "picked": true,
+   "url": "https://sv8785.qa.shopview.com/workorders?status=invoiced&tab=all",
+   "rows": {
+    "tbody": 33,
+    "cards": 0,
+    "emptyStateVisible": false
+   }
+  },
+  {
+   "step": 1,
+   "search": {
+    "toggleFound": true,
+    "inputFound": true,
+    "typed": true,
+    "value": "zzzznomatchzzz"
+   },
+   "url": "https://sv8785.qa.shopview.com/workorders?status=invoiced&tab=all&search=zzzznomatchzzz",
+   "rows": {
+    "tbody": 2,
+    "cards": 0,
+    "emptyStateVisible": true
+   }
+  },
+  {
+   "step": 2,
+   "message": {
+    "found": true,
+    "text": "No work orders match your filters",
+    "controls": []
+   }
+  },
+  {
+   "step": "2-ruleout",
+   "clear_or_search_testids_on_page": [
+    "select_global_search",
+    "page_search_input",
+    "page_search_clear",
+    "clear_filters",
+    "empty_state_clear_filters"
+   ]
+  }
+ ],
+ "could_fail": true,
+ "bridge_errors": 0
+}
