@@ -1,0 +1,9 @@
+{
+ "check": "C38876 blocker verification — DELETE on the page preference",
+ "at_utc": "2026-08-12T18:40Z",
+ "request": "DELETE https://sv8785api.qa.shopview.com/api/users/me/preferences/work-orders-list",
+ "http": 405,
+ "body": "No route found for \"DELETE .../api/users/me/preferences/work-orders-list\": Method Not Allowed (Allow: GET, PUT)",
+ "preference_byte_identical_after_attempt": true,
+ "conclusion": "The preference cannot be made ABSENT. PUT can only overwrite it, and the case needs an account with NO saved page choices. Both available sign-ins carry one (admin updatedAt 2026-08-12T17:39:11Z, technician 2026-08-12T14:36:08Z). The blocker is real and total for the accounts we have."
+}

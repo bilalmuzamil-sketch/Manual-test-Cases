@@ -1,0 +1,100 @@
+{
+  "probe": "T2",
+  "at": "2026-08-12T18:30:43.403Z",
+  "build": "v3.7-20e801b",
+  "readOnly": true,
+  "runs": [
+    {
+      "case": "C29581",
+      "chipId": "filter_chip_tech_assigned_id",
+      "step1_openFilter": {
+        "opened": true,
+        "optionCount": 47
+      },
+      "control": {
+        "name": "Bilal Muzamil",
+        "typed": {
+          "found": true,
+          "value": "Bilal",
+          "placeholder": "Search"
+        },
+        "resultCount": 2,
+        "results": [
+          "Bilal Muzamil",
+          "Bilal Muzamil"
+        ],
+        "found": true,
+        "boxWorks": true
+      },
+      "step2_searchDeactivated": {
+        "name": "Mary Higgins",
+        "role": "Technician",
+        "typed": {
+          "found": true,
+          "value": "Mary",
+          "placeholder": "Search"
+        }
+      },
+      "step3_lookAtList": {
+        "resultCount": 0,
+        "results": [],
+        "deactivatedPersonFound": false,
+        "bySurname": {
+          "resultCount": 0,
+          "results": [],
+          "deactivatedPersonFound": false
+        }
+      },
+      "detectorCanFail": true,
+      "everyStepExecutable": true
+    },
+    {
+      "case": "C29588",
+      "chipId": "filter_chip_service_advisor_id",
+      "step1_openFilter": {
+        "opened": true,
+        "optionCount": 60
+      },
+      "control": {
+        "name": "Bilal Muzamil",
+        "typed": {
+          "found": true,
+          "value": "Bilal",
+          "placeholder": "Search"
+        },
+        "resultCount": 1,
+        "results": [
+          "Bilal Muzamil"
+        ],
+        "found": true,
+        "boxWorks": true
+      },
+      "step2_searchDeactivated": {
+        "name": "Tony Green",
+        "role": "Sales Representative",
+        "typed": {
+          "found": true,
+          "value": "Tony",
+          "placeholder": "Search"
+        }
+      },
+      "step3_lookAtList": {
+        "resultCount": 0,
+        "results": [],
+        "deactivatedPersonFound": false,
+        "bySurname": {
+          "resultCount": 0,
+          "results": [],
+          "deactivatedPersonFound": false
+        }
+      },
+      "detectorCanFail": true,
+      "everyStepExecutable": true
+    }
+  ],
+  "staffCounts": {
+    "active": 22,
+    "inactive": 17
+  },
+  "bridgeErrors": 0
+}
