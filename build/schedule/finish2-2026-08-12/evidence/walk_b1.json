@@ -1,0 +1,196 @@
+{
+ "30001": {
+  "steps": [
+   {
+    "step": "1 open day view",
+    "seen": "range \"Wed, Aug 12\""
+   },
+   {
+    "step": "2 note which hour the timeline is showing at its left edge on arrival",
+    "seen": "{\"firstInView\":[\"12 AM\",\"1 AM\",\"2 AM\",\"3 AM\"],\"totalLabels\":24,\"allFirst6\":[\"12 AM\",\"1 AM\",\"2 AM\",\"3 AM\",\"4 AM\",\"5 AM\"],\"scrollLeft\":93,\"scrollWidth\":1248,\"clientWidth\":1155,\"scCls\":\"fc-scroller\"}"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:19:06.119Z"
+ },
+ "30003": {
+  "steps": [
+   {
+    "step": "1 scroll the grid down vertically",
+    "seen": "scrollTop set to 400"
+   },
+   {
+    "step": "2 watch the date/time header row",
+    "seen": "header top 134 -> 134 (unchanged = stuck)"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:16:37.858Z"
+ },
+ "30006": {
+  "steps": [
+   {
+    "step": "1 open day view for today",
+    "seen": "range \"Wed, Aug 12\""
+   },
+   {
+    "step": "2 look for the current-time marker and its label",
+    "seen": "{\"found\":true,\"text\":\"7:18 AM\",\"rect\":{\"w\":57.578125,\"h\":18,\"x\":776,\"y\":161},\"display\":\"block\",\"visibility\":\"visible\",\"opacity\":\"0\",\"color\":\"rgb(255, 255, 255)\",\"hostClass\":\"schedule-now-chip\",\"hostRect\":{\"w\":58,\"h\":18,\"x\":776,\"y\":161},\"hostBg\":\"rgb(37, 124, 255)\",\"hostBorder\":\"rgb(255, 255, 255) 0px\"}"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:19:06.110Z"
+ },
+ "30027": {
+  "steps": [
+   {
+    "step": "1 look at the toolbar for a conflict indicator",
+    "seen": "pill reads \"warning_amber 24 conflicts\""
+   },
+   {
+    "step": "2 click it",
+    "seen": "popup: [\"SCHEDULE ISSUES 24 warning_amber Fuline Enterprises Double-booked with Pamill Paving, Goport Energy chevron_right warning_amber Fuline Enterprises Starts before business hours (7:00 AM) chevron_right warning_amber Pamill Paving Double-booked with Fuline Enterprises, Goport Energy chevron_right warning_amber Pamill Paving Double-booked with Fuline Enterprises, Goport Energy chevron_right warning_amber Goport Energy Double-booked with Fuline Enterprises, Pamill Paving chevron_right warning_amber Pamill Paving Double-booked with Fuline Enterprises, Goport Energy chevron_right warning_amber Zuline Builders Double-booked with Qispring Rentals chevron_right warning_amber Zuline Builders Double-booked with Qispring Rentals chevron_right warning_amber Fuline Enterprises Starts before business hours (11:00 AM) chevron_right warning_amber Qispring Rentals Extends past business hours (3:00 PM) · Do\"]"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:17:45.862Z"
+ },
+ "30028": {
+  "steps": [
+   {
+    "step": "1 open the conflict list",
+    "seen": "popup had 1 panel(s)"
+   },
+   {
+    "step": "2 click one of the conflicts",
+    "seen": "clicked \"warning_amber Fuline Enterprises Double-booked with Pamill Paving, Goport Energy chevron_right\""
+   },
+   {
+    "step": "3 note where the grid goes",
+    "seen": "range \"Jul 27 – Aug 2, 2026\" -> \"Jul 27 – Aug 2, 2026\"; open panels now [\"Fuline Enterprises Approved S-13014 · G30 12-06696 delete_outline close TIME LOGGED 7h 28m\",\"Fuline Enterprises Approved S-13014 · G30 12-06696 delete_outline close TIME LOGGED 7h 28m\"]"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:17:49.068Z"
+ },
+ "30030": {
+  "steps": [
+   {
+    "step": "1 look at a technician row with shifts on it",
+    "seen": "7 capacity bars read"
+   },
+   {
+    "step": "2 read the bar fill against the track",
+    "seen": "[{\"outer\":122.5,\"title\":null,\"aria\":\"Capacity 10% — 20h 13m scheduled of 205h, overtime\",\"kids\":[{\"w\":122.5,\"bg\":\"rgba(0, 0, 0, 0)\",\"cls\":\"capacity-bar__lane\"},{\"w\":91.875,\"bg\":\"rgb(227, 232, 239)\",\"cls\":\"capacity-bar__track\"},{\"w\":9.1875,\"bg\":\"rgb(37, 124, 255)\",\"cls\":\"capacity-bar__fill\"}]},{\"outer\":122,\"title\":null,\"aria\":\"Capacity 2% — 3h 30m scheduled of 191h\",\"kids\":[{\"w\":122,\"bg\":\"rgba(0, 0, 0, 0)\",\"cls\":\"capacity-bar__lane\"},{\"w\":91.5,\"bg\":\"rgb(227, 232, 239)\",\"cls\":\"capacity-bar__track\"},{\"w\":1.828125,\"bg\":\"rgb(37, 124, 255)\",\"cls\":\"capacity-bar__fill\"}]},{\"outer\":122,\"title\":null,\"aria\":\"Capacity 8% — 15h scheduled of 183h, overtime\",\"kids\":[{\"w\":122,\"bg\":\"rgba(0, 0, 0, 0)\",\"cls\":\"capacity-bar__lane\"},{\"w\":91.5,\"bg\":\"rgb(227, 232, 239)\",\"cls\":\"capacity-bar__track\"},{\"w\":7.3125,\"bg\":\"rgb(37, 124, 255)\",\"cls\":\"capacity-bar__fill\"}]}]"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:17:54.250Z"
+ },
+ "30031": {
+  "steps": [
+   {
+    "step": "1 look for a technician booked over capacity",
+    "seen": "OT tags present: 0"
+   },
+   {
+    "step": "2 read the bar for the amber overflow past the track",
+    "seen": "[{\"outer\":122.5,\"title\":null,\"aria\":\"Capacity 10% — 20h 13m scheduled of 205h, overtime\",\"kids\":[{\"w\":122.5,\"bg\":\"rgba(0, 0, 0, 0)\",\"cls\":\"capacity-bar__lane\"},{\"w\":91.875,\"bg\":\"rgb(227, 232, 239)\",\"cls\":\"capacity-bar__track\"},{\"w\":9.1875,\"bg\":\"rgb(37, 124, 255)\",\"cls\":\"capacity-bar__fill\"}]},{\"outer\":122,\"title\":null,\"aria\":\"Capacity 2% — 3h 30m scheduled of 191h\",\"kids\":[{\"w\":122,\"bg\":\"rgba(0, 0, 0, 0)\",\"cls\":\"capacity-bar__lane\"},{\"w\":91.5,\"bg\":\"rgb(227, 232, 239)\",\"cls\":\"capacity-bar__track\"},{\"w\":1.828125,\"bg\":\"rgb(37, 124, 255)\",\"cls\":\"capacity-bar__fill\"}]}]"
+   }
+  ],
+  "verdict": "PARTIAL - needs a row proven over capacity; recorded what the bars actually render",
+  "at": "2026-08-12T07:17:56.464Z"
+ },
+ "30032": {
+  "steps": [
+   {
+    "step": "1 find a technician booked past their own daily hours",
+    "seen": "the capacity tooltip for Mon Jul 27 reads \"1 tech in overtime · +6.2h\" and \"Mudassir 15.2h / 9h · +6.2h\", so an over-hours technician exists"
+   },
+   {
+    "step": "2 look for the 'OT' text tag in each view",
+    "seen": "{\"Day\":[{\"txt\":\"OT\",\"color\":\"rgb(181, 71, 8)\",\"w\":33,\"h\":18,\"visible\":true}],\"Week\":[],\"Month\":[]}"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:19:20.738Z"
+ },
+ "30033": {
+  "steps": [
+   {
+    "step": "1 hover the capacity bar",
+    "seen": "hovered at 606,183"
+   },
+   {
+    "step": "2 read what appears",
+    "seen": "[\"Monday, Jul 27 20.2h assigned / 205h capacity 1 tech in overtime · +6.2h Alicia 3h / 9h MQ N. 1h / 12h MQ Q. 1h / 12h Mudassir 15.2h / 9h · +6.2h\"]"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:17:56.461Z"
+ },
+ "30039": {
+  "steps": [
+   {
+    "step": "1 move the grid away from today",
+    "seen": "range now \"Sun, Sep 20\""
+   },
+   {
+    "step": "2 click 'Today'",
+    "seen": "button clicked; range \"Wed, Aug 12\""
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:16:48.350Z"
+ },
+ "30040": {
+  "steps": [
+   {
+    "step": "in Day view click the right then the left arrow",
+    "seen": "\"Wed, Aug 12\" -> \"Thu, Aug 13\" -> back to \"Wed, Aug 12\""
+   },
+   {
+    "step": "in Week view click the right then the left arrow",
+    "seen": "\"Aug 10 – 16, 2026\" -> \"Aug 17 – 23, 2026\" -> back to \"Aug 10 – 16, 2026\""
+   },
+   {
+    "step": "in Month view click the right then the left arrow",
+    "seen": "\"August 2026\" -> \"September 2026\" -> back to \"August 2026\""
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:17:23.621Z"
+ },
+ "30041": {
+  "steps": [
+   {
+    "step": "1 open the toolbar search (its own field, data-test-id input_schedule_search)",
+    "seen": "opened; baseline 44 shift blocks in view"
+   },
+   {
+    "step": "2 type a term of each kind and watch the grid",
+    "seen": "customer \"Pamill\" -> 19 [\"Pamill Paving 713 Replace - Rear ramp handles\",\"Pamill Paving warning_amber 713 Replace - Rear ramp handles\"] | work order number \"12876\" -> 19 [\"Pamill Paving 713 Replace - Rear ramp handles\",\"Pamill Paving warning_amber 713 Replace - Rear ramp handles\"] | unit \"713\" -> 19 [\"Pamill Paving 713 Replace - Rear ramp handles\",\"Pamill Paving warning_amber 713 Replace - Rear ramp handles\"] | technician \"Larry\" -> 1 [\"Fuline Enterprises G30 3 Lines\"] | line name \"ramp\" -> 18 [\"Pamill Paving 713 Replace - Rear ramp handles\",\"Pamill Paving warning_amber 713 Replace - Rear ramp handles\"] | nonsense control \"zzzxq999\" -> 0 []"
+   },
+   {
+    "step": "3 clear the search",
+    "seen": "back to 44 blocks"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:19:43.315Z"
+ },
+ "43554": {
+  "steps": [
+   {
+    "step": "1 open the Schedule module in a browser that has never touched the view control",
+    "seen": "first action of this context; range \"Wed, Aug 12\""
+   },
+   {
+    "step": "2 read the Day / Week / Month buttons",
+    "seen": "[{\"t\":\"Day\",\"pressed\":\"true\"},{\"t\":\"Day\",\"pressed\":null},{\"t\":\"Day\",\"pressed\":null},{\"t\":\"Week\",\"pressed\":\"false\"},{\"t\":\"Week\",\"pressed\":null},{\"t\":\"Week\",\"pressed\":null},{\"t\":\"Month\",\"pressed\":\"false\"},{\"t\":\"Month\",\"pressed\":null},{\"t\":\"Month\",\"pressed\":null}]"
+   }
+  ],
+  "verdict": "ALL STEPS CARRIED OUT",
+  "at": "2026-08-12T07:16:36.636Z"
+ }
+}
