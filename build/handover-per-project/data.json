@@ -1,0 +1,1188 @@
+{
+ "Filters": {
+  "project": "Filters",
+  "read_at": "2026-08-12T12:33:19Z",
+  "build": {
+   "branch": "https://sv8785.qa.shopview.com",
+   "now": "v3.7-20e801b",
+   "now_modified": "Wed, 12 Aug 2026 12:09:14 GMT",
+   "observed_on": "v3.6-3e9dd6d",
+   "moved": true
+  },
+  "env": "Build v3.6-3e9dd6d on https://sv8785.qa.shopview.com. Desktop browser, signed in as an administrator (admin@shopview.com), location \"Staging Heavy Duty - 9919\".",
+  "run": 352,
+  "ours": 115,
+  "foreign": 5,
+  "ready": 90,
+  "expect_fail": 7,
+  "hold": 18,
+  "holds": [
+   {
+    "id": 38891,
+    "title": "Every list page keeps its own search box (Parts, Reports, detail tabs)",
+    "reason": "cannot be run yet - its own precondition needs the page-search rollout finished everywhere, and it is still part-way through",
+    "group": "The feature or control is not in the build yet",
+    "result": "Blocked",
+    "result_raw": "Blocked",
+    "by": "Ahtasham Amjad"
+   },
+   {
+    "id": 38901,
+    "title": "Each Report tab and each Parts view keeps its own separate search",
+    "reason": "only half of it can be run - the report pages have no page search box yet, so the report-tab half cannot be tested",
+    "group": "The feature or control is not in the build yet",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 43562,
+    "title": "Parts and Reports filters collapse, share and work on a phone as Work Orders do",
+    "reason": "the new filter bar has reached only some Parts views and one report tab, so most of this cannot be run yet",
+    "group": "The feature or control is not in the build yet",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 29559,
+    "title": "The filter bar still shows the other four chips on the Estimates tab",
+    "reason": "waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification",
+    "group": "Waiting on an answer from the product owner",
+    "result": "Passed",
+    "result_raw": "Passed",
+    "by": "Ahtasham Amjad"
+   },
+   {
+    "id": 29609,
+    "title": "Estimates tab: Status chip is greyed out and pre-filled; other four work",
+    "reason": "waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification",
+    "group": "Waiting on an answer from the product owner",
+    "result": "Passed",
+    "result_raw": "Passed",
+    "by": "Ahtasham Amjad"
+   },
+   {
+    "id": 29610,
+    "title": "Completed tab: Status chip is greyed out and pre-filled; other four work",
+    "reason": "waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification",
+    "group": "Waiting on an answer from the product owner",
+    "result": "Passed",
+    "result_raw": "Passed",
+    "by": "Ahtasham Amjad"
+   },
+   {
+    "id": 29612,
+    "title": "A Status choice is kept while you switch tabs and comes back on the All tab",
+    "reason": "waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification",
+    "group": "Waiting on an answer from the product owner",
+    "result": "Passed",
+    "result_raw": "Passed",
+    "by": "Ahtasham Amjad"
+   },
+   {
+    "id": 38882,
+    "title": "Date range filter offers ready-made periods and a custom start/end range",
+    "reason": "waiting on Branko's Parts and Reports product write-up - the date range filter is built but no source states the periods it must offer",
+    "group": "Waiting on an answer from the product owner",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 38904,
+    "title": "Every Parts list page shows its designed filter buttons",
+    "reason": "waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+    "group": "Waiting on an answer from the product owner",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 38905,
+    "title": "Part Type filter opens a Core / Non Core list with Clear Selection",
+    "reason": "waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+    "group": "Waiting on an answer from the product owner",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 38906,
+    "title": "Choosing a Parts filter narrows the list on that page",
+    "reason": "waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+    "group": "Waiting on an answer from the product owner",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 38907,
+    "title": "Parts filters support multiple choices and can be cleared",
+    "reason": "waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+    "group": "Waiting on an answer from the product owner",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 38908,
+    "title": "Every filter a page had before is still available in the new filter bar",
+    "reason": "waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+    "group": "Waiting on an answer from the product owner",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 38909,
+    "title": "Report filter bars appear on the reports this change covers",
+    "reason": "Branko's Parts and Reports write-up is still outstanding, so no product source states which filter buttons each report should show",
+    "group": "Waiting on an answer from the product owner",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 38910,
+    "title": "Choosing a Reports filter narrows the report results",
+    "reason": "waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+    "group": "Waiting on an answer from the product owner",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 38911,
+    "title": "New Reports filter types behave correctly (Location, Transaction Type, etc.)",
+    "reason": "waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+    "group": "Waiting on an answer from the product owner",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 38880,
+    "title": "Each page and tab remembers its own filters separately",
+    "reason": "held for the QA lead's ruling only - the behaviour IS documented (the written description says each Parts view and each Report tab keeps its own separate filter set and each persists independently), so the earlier reason that no source described it was wrong",
+    "group": "Waiting on the QA lead's ruling",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 38881,
+    "title": "Filters saved before the redesign carry over after the update",
+    "reason": "cannot be run - it needs an account whose filters were saved before the redesign, and none exists",
+    "group": "The set-up this test needs cannot be produced on this environment",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   }
+  ],
+  "n_hold": 18,
+  "n_passed_on_hold": 4,
+  "n_graded_run": 84,
+  "run_passed": 75,
+  "run_failed": 8,
+  "defects": [
+   {
+    "name": "When nothing matches, there is no way to clear just the search",
+    "seen": "Put a filter on AND type something in the page search box so that nothing matches. The table is replaced by the message \"No work orders match your filters\".\n\nTwo things are wrong with that screen.\n\nFirst, the message blames the filters only. It never mentions the search \u2014 not even when the search is the ONLY thing narrowing the list.\n\nSecond, the only thing it offers you is a \"Clear Filters\" link. There is no offer to clear just the search.",
+    "expected": "The message should mention BOTH the filters and the search, not the filters alone.\n\nAnd because a search is active, the screen should offer a way to clear the filters AND a separate way to clear the search, so that each can be undone on its own \u2014 clearing the filters should leave your typed word in place, and clearing the search should leave the filters in place.",
+    "source": "The Filters product description on Confluence, version 19, read on 11 August 2026. Two requirements.\n\nQuoted word for word: \"The empty state includes a prompt or link to clear filters.\"\n\nAnd, quoted word for word: \"Where both a query and filters are active, each is cleared independently from the empty state. Clearing filters does not clear the query and clearing the query does not clear the filters.\"",
+    "steps": "1. Open Work Orders on the All tab.\n2. Turn on any Status filter \u2014 Approved is fine.\n3. Type a word into the page Search box that matches nothing. We used \"zzzznomatchqqq\".\n4. The table empties and the message reads \"No work orders match your filters\". Read it: it does not mention the search at all.\n5. Look at what the message offers you. There is one link, \"Clear Filters\". There is nothing offering to clear the search.\n6. Now take the filter off and leave only the search. The message is word for word the same \u2014 still blaming the filters.",
+    "cases": [
+     38897
+    ],
+    "owed": "SCREENSHOTS: two pictures exist and are saved with the day's work (\"empty-state-filter-plus-search.png\" and \"empty-state-search-only.png\"), but they are NOT marked up. Before filing, annotate one \u2014 a box round the message and the single \"Clear Filters\" link, captioned \"no way to clear the search\".\n\nDUPLICATE SEARCH: not run. Please search Jira first and record what you searched for.\n\nRE-CHECK IT FIRST: this was seen on build v3.6-3e9dd6d, and the Filters branch was rebuilt at 12:09 today. It takes two minutes to confirm on the build you are on.",
+    "against": "This one has a real counter-argument and you should get in front of it. The search box itself has its own little clear (x) control, and that control IS present on this screen \u2014 it was recorded as present. So a developer can say \"the search can be cleared, just not from the message.\" The answer back is that the requirement says each is cleared independently FROM THE EMPTY STATE, and the message is the empty state. Say both things in the ticket; it will not survive if you only say the first.",
+    "record": "build/filters/finish-2026-08-12/DIVERGENCES.md, section 2"
+   }
+  ],
+  "tickets": [
+   {
+    "key": "SV-8875",
+    "says": "On a phone, tapping a choice inside a single filter's own sheet applies it straight away instead of waiting for you to press \"Apply Filters\".\n\nThe ticket is OPEN, and two of our tests point at it and tell the tester to expect a failure.",
+    "actual": "Part of it may already be fixed, and the evidence is your own colleague's test run from today.\n\nOne of the two tests, C29625, was marked PASSED in the test run this morning by Ahtasham Amjad \u2014 while the test itself still says \"expect this to fail\". The other one, C29624, was marked Failed on the same run, which is what the ticket predicts.\n\nWe did NOT re-check this ourselves and we made no Jira call, so this is a signal, not a verdict.",
+    "cases": [
+     29624,
+     29625
+    ],
+    "suggest": "Somebody should check C29625 on a phone once. If it really passes now, the ticket has been part-fixed and the note on that test needs taking off, or the next person to run it will report a working screen as broken. This is exactly the case the test itself asks you to report: \"if it PASSES, the fix has shipped, tell the QA lead.\""
+   }
+  ],
+  "mismarked": []
+ },
+ "Schedule": {
+  "project": "Schedule",
+  "read_at": "2026-08-12T12:33:19Z",
+  "build": {
+   "branch": "https://sv8685.qa.shopview.com",
+   "now": "v3.5-85ee495",
+   "now_modified": "Wed, 12 Aug 2026 12:11:04 GMT",
+   "observed_on": "v3.5-65d6500",
+   "moved": true
+  },
+  "env": "Build v3.5-65d6500 on https://sv8685.qa.shopview.com. Desktop browser, signed in as an administrator (admin@shopview.com), location \"Staging Heavy Duty - 9919\".",
+  "run": 357,
+  "ours": 176,
+  "foreign": 0,
+  "ready": 137,
+  "expect_fail": 4,
+  "hold": 35,
+  "holds": [
+   {
+    "id": 29929,
+    "title": "Collapsing a department header hides its technician rows",
+    "reason": "the control this test needs does not exist in this build; a ticket cannot be raised yet",
+    "group": "A problem was found but no ticket exists for it yet",
+    "result": "Passed",
+    "result_raw": "Passed",
+    "by": "Ayesha Khan"
+   },
+   {
+    "id": 29945,
+    "title": "Priority filter offers High, Medium, Low and narrows the list accordingly",
+    "reason": "the Priority filter this test needs does not exist in this build; a ticket cannot be raised yet",
+    "group": "A problem was found but no ticket exists for it yet",
+    "result": "Blocked",
+    "result_raw": "Blocked",
+    "by": "Ayesha Khan"
+   },
+   {
+    "id": 29985,
+    "title": "Confirming the spread creates a linked series of daily shifts",
+    "reason": "an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker",
+    "group": "A problem was found but no ticket exists for it yet",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30004,
+    "title": "Dragging a shift sideways moves its start time in 15-minute steps",
+    "reason": "an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker",
+    "group": "A problem was found but no ticket exists for it yet",
+    "result": "Passed",
+    "result_raw": "Passed",
+    "by": "Mudassir Qamar"
+   },
+   {
+    "id": 30013,
+    "title": "Notes can be added, edited, and deleted per work order from the modal",
+    "reason": "an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker",
+    "group": "A problem was found but no ticket exists for it yet",
+    "result": "Passed",
+    "result_raw": "Passed",
+    "by": "Mudassir Qamar"
+   },
+   {
+    "id": 30020,
+    "title": "Events can be dragged to another technician or another day",
+    "reason": "an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker",
+    "group": "A problem was found but no ticket exists for it yet",
+    "result": "Passed",
+    "result_raw": "Passed",
+    "by": "Mudassir Qamar"
+   },
+   {
+    "id": 30034,
+    "title": "Shift hover tooltip shows the full shift summary incl. up to 3 line names",
+    "reason": "an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker",
+    "group": "A problem was found but no ticket exists for it yet",
+    "result": "Passed",
+    "result_raw": "Passed",
+    "by": "Mudassir Qamar"
+   },
+   {
+    "id": 30050,
+    "title": "Tech Hours toggle displays each technician's working hours next to their name",
+    "reason": "the toggle displays nothing in this build; a ticket cannot be raised yet",
+    "group": "A problem was found but no ticket exists for it yet",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 29973,
+    "title": "Dropping onto the Unassigned row creates a shift with no technician",
+    "reason": "the Unassigned row does not exist in the build, so this cannot be run",
+    "group": "The feature or control is not in the build yet",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 29974,
+    "title": "Unassigned shift start time uses business hours or the default",
+    "reason": "the Unassigned row does not exist in the build, so this cannot be run",
+    "group": "The feature or control is not in the build yet",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 29975,
+    "title": "Dragging an unassigned shift onto a technician row assigns it",
+    "reason": "the Unassigned row does not exist in the build, so this cannot be run",
+    "group": "The feature or control is not in the build yet",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 38868,
+    "title": "Dashboard shows one schedule row per work order even with many shifts",
+    "reason": "the Dashboard section this test needs does not exist in the build",
+    "group": "The feature or control is not in the build yet",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 38869,
+    "title": "A work order created with an appointment shows up on the Schedule board",
+    "reason": "work order creation offers no appointment in the build",
+    "group": "The feature or control is not in the build yet",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 38871,
+    "title": "Work order form offers a Priority (High/Medium/Low) that drives the sidebar",
+    "reason": "the Priority field this test needs does not exist in the build",
+    "group": "The feature or control is not in the build yet",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 43582,
+    "title": "Panel button sits left of Today and its tooltip names what it will do",
+    "reason": "the panel button does not exist in this build",
+    "group": "The feature or control is not in the build yet",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 43583,
+    "title": "Panel button hides the left panel and the grid widens into the space",
+    "reason": "the panel button does not exist in this build",
+    "group": "The feature or control is not in the build yet",
+    "result": "Failed",
+    "result_raw": "Failed",
+    "by": "Mudassir Qamar"
+   },
+   {
+    "id": 43584,
+    "title": "What you had set up in the left panel survives hiding and showing it",
+    "reason": "the panel button does not exist in this build",
+    "group": "The feature or control is not in the build yet",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 43585,
+    "title": "On a narrow window the panel button still works and your choice holds",
+    "reason": "the panel button does not exist in this build",
+    "group": "The feature or control is not in the build yet",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 43586,
+    "title": "Menus and pop-up windows reposition when the left panel is hidden",
+    "reason": "the panel button does not exist in this build",
+    "group": "The feature or control is not in the build yet",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 43587,
+    "title": "Hiding the panel lasts for the rest of your sign-in but is not saved",
+    "reason": "the panel button does not exist in this build",
+    "group": "The feature or control is not in the build yet",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 30044,
+    "title": "'My Shifts' filters the grid to only the current user's shifts",
+    "reason": "point 4 needs a user with no staff record of their own; points 1 to 3 are observed and pass",
+    "group": "Waiting on a second sign-in as a different user",
+    "result": "Failed",
+    "result_raw": "Failed",
+    "by": "Mudassir Qamar"
+   },
+   {
+    "id": 30076,
+    "title": "With Schedule: View OFF, the Schedule top-level nav item is hidden entirely",
+    "reason": "needs a second sign-in as a user without the Schedule permission",
+    "group": "Waiting on a second sign-in as a different user",
+    "result": "Passed",
+    "result_raw": "Passed",
+    "by": "Mudassir Qamar"
+   },
+   {
+    "id": 30077,
+    "title": "Schedule: Edit unlocks all creation and modification interactions",
+    "reason": "needs a second sign-in as an edit-without-delete user",
+    "group": "Waiting on a second sign-in as a different user",
+    "result": "Passed",
+    "result_raw": "Passed",
+    "by": "Mudassir Qamar"
+   },
+   {
+    "id": 30078,
+    "title": "Edit without Delete: the user can create and modify but not remove",
+    "reason": "needs a second sign-in as an edit-without-delete user",
+    "group": "Waiting on a second sign-in as a different user",
+    "result": "Passed",
+    "result_raw": "Passed",
+    "by": "Mudassir Qamar"
+   },
+   {
+    "id": 30079,
+    "title": "Schedule: Delete unlocks deleting shifts and events",
+    "reason": "needs a second sign-in as a delete-capable user",
+    "group": "Waiting on a second sign-in as a different user",
+    "result": "Passed",
+    "result_raw": "Passed",
+    "by": "Mudassir Qamar"
+   },
+   {
+    "id": 30081,
+    "title": "Schedule without Work Orders: View - the sidebar hides the work order list",
+    "reason": "needs a second sign-in as a user who cannot see work orders",
+    "group": "Waiting on a second sign-in as a different user",
+    "result": "Passed",
+    "result_raw": "Passed",
+    "by": "Mudassir Qamar"
+   },
+   {
+    "id": 30084,
+    "title": "Clocking into line tasks is gated by the staff 'Time Clock' setting",
+    "reason": "needs a second sign-in as each of the two staff members",
+    "group": "Waiting on a second sign-in as a different user",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30614,
+    "title": "With Work Orders: View OFF, work order details on shifts are hidden",
+    "reason": "needs a second sign-in as a user who cannot see work orders",
+    "group": "Waiting on a second sign-in as a different user",
+    "result": "Blocked",
+    "result_raw": "Blocked",
+    "by": "Mudassir Qamar"
+   },
+   {
+    "id": 38872,
+    "title": "API - Schedule reads need View; writes need Edit; deletes need Delete (403)",
+    "reason": "points 1 and 3 need a user with no Schedule permission and a user with Schedule Edit but not Delete; point 2 is observed and passes",
+    "group": "Waiting on a second sign-in as a different user",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 38874,
+    "title": "API - No pricing fields in Schedule responses; WO details need Work Orders View",
+    "reason": "point 2 needs a user without Work Orders View; point 1 is observed and passes",
+    "group": "Waiting on a second sign-in as a different user",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 38926,
+    "title": "Default roles start at the Schedule level the spec names (view-only vs edit)",
+    "reason": "needs a second sign-in as a holder of each permission level",
+    "group": "Waiting on a second sign-in as a different user",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 29983,
+    "title": "Spread uses the tech's working hours; skips weekends only when hours not set",
+    "reason": "waiting on the product owner's answer, and the question has not been sent yet",
+    "group": "Waiting on an answer from the product owner",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30089,
+    "title": "Shop closures do NOT block spread in V1 - shifts can land on closure days",
+    "reason": "waiting on the product owner's answer, and the shop-closure setting does not exist in the build",
+    "group": "Waiting on an answer from the product owner",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 43555,
+    "title": "Month view: dragging a work order onto a day creates a shift for that day",
+    "reason": "waiting on the product owner's answer, and the question has not been sent yet",
+    "group": "Waiting on an answer from the product owner",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 38867,
+    "title": "Shifts and events created before the Schedule rewrite still appear after it",
+    "reason": "cannot be run now - it needs shifts noted BEFORE the release, and the release is already deployed",
+    "group": "The set-up this test needs cannot be produced on this environment",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   }
+  ],
+  "n_hold": 35,
+  "n_passed_on_hold": 10,
+  "n_graded_run": 97,
+  "run_passed": 89,
+  "run_failed": 6,
+  "defects": [
+   {
+    "name": "There is no button to hide the left panel",
+    "seen": "There is no button anywhere to hide or show the left work-order panel.\n\nThe leftmost control in the row above the grid is the \"Today\" button, and there is nothing at all to the left of it.\n\nThe only thing on the page that hides anything is a small arrow inside the panel, above the month calendar. Its tooltip reads \"Hide the calendar\", and pressing it folds away the month calendar only \u2014 the panel itself stays exactly where it was. That is a different control and it is easy to mistake for this one.",
+    "expected": "An icon button that collapses and expands the whole left panel.\n\nIt should be the first item in the row of controls above the grid, immediately to the left of \"Today\".\n\nIts tooltip should read \"Hide panel\" when the panel is open and \"Show panel\" when it is collapsed.\n\nPressing it should slide the panel closed and let the grid widen into the space, and whatever you had set up in the panel should still be there when you open it again.",
+    "source": "The Schedule product description on Confluence, version 27, read on 11 August 2026, section 5.3 \"Panel collapse\". Quoted word for word:\n\n\"An icon button collapses and expands the left panel. It is the first item in the grid toolbar, left of Today, sitting in the same left gutter as the grid's row labels and avatars so it reads as belonging to the panel it controls, and grouping with the date controls.\"\n\n\"A borderless panel-left icon in secondary text color. The icon does not change between states; the tooltip carries the meaning \u2014 'Hide panel' when open, 'Show panel' when collapsed.\"\n\nThe same section also lists this control by name among the controls in the row above the grid, calling it the \"Panel toggle\".",
+    "steps": "1. Sign in as an administrator and open Schedule.\n2. Look at the row of controls immediately above the grid. Find the \"Today\" button. Look to the left of it \u2014 there is nothing there.\n3. Now look inside the left panel, just above the month calendar, and find the small arrow. Rest the mouse on it: the tooltip reads \"Hide the calendar\".\n4. Press it. Only the month calendar folds away. The panel is still there and the grid does not widen.",
+    "cases": [
+     43582,
+     43583,
+     43584,
+     43585,
+     43586,
+     43587
+    ],
+    "owed": "SCREENSHOTS: pictures were taken and are saved with the day's work, but they are NOT marked up. Before filing, annotate one \u2014 a picture of the row above the grid with a box drawn round the empty space to the left of \"Today\" is the one that makes the point.\n\nDUPLICATE SEARCH: not run for this one. One nearby ticket was checked and ruled out \u2014 SV-8942 is about the page scrolling sideways on a narrow window, which is a different thing. Please search Jira before you file, and record what you searched for on the ticket.",
+    "against": "This wording was only added to the product description on 7 August. So it is possible the feature has simply not been built yet rather than being broken. It is still worth raising either way \u2014 but say \"not built yet\" rather than \"broken\", because that is what the evidence actually supports.",
+    "record": "build/schedule/panel-collapse-2026-08-11/"
+   },
+   {
+    "name": "No confirmation message and no Undo after three actions",
+    "seen": "Nothing appears on screen after any of these three actions:\n\n- creating a run of shifts across several days,\n- dragging a shift sideways to a new start time,\n- dragging an event to a different day.\n\nThe change happens, and it happens silently. No message, and nowhere to press Undo. If you drag the wrong thing, you have to put it back by hand.\n\nThis was not judged by eye. The screen was watched for 11 seconds after each action, and separately every single thing the page added to itself was recorded: 37 things appeared, none of them a message and none of them containing the word \"Undo\".",
+    "expected": "Every create, delete, move and reassign should put a short message on screen with an Undo option on it.\n\nThe message should stay for 4 to 7 seconds, should stay put for as long as your mouse is over it, and should disappear when you move the mouse away.",
+    "source": "The Schedule product description on Confluence, version 27, read on 11 August 2026. It says this in two separate places.\n\nSection 7, quoted word for word: \"Toast notifications. Every create, delete, move, and reassign action produces a toast with an Undo option. The toast persists for 4 to 7 seconds, stays while the cursor is over it, and dismisses on mouse-leave.\"\n\nSection 11, quoted word for word: \"Undo. Every destructive action (delete, move, reassign) is undoable for 4 to 7 seconds via a toast that persists while hovered.\"",
+    "steps": "Creating a run of shifts:\n1. In the left panel find work order S8685-14158, customer \"Brabay Maintenance\" (27 lines, 67h 44m). Drag it onto technician Alicia Campbell on Thursday 13 August.\n2. Choose \"Schedule whole work order\", then press the button reading \"Create 8 shifts\".\n3. Watch the screen for ten seconds. Nothing appears.\n\nMoving a shift:\n4. Switch to Day view. Find the shift for customer \"Pamill Paving\", unit 713, \"Replace - Rear ramp handles\". Drag it sideways. It moves (in our run, from 02:30 to 05:15) and keeps its length.\n5. Watch the screen. Nothing appears.\n\nMoving an event:\n6. Switch to Week view and find the event named \"Test\" on 9 August. Drag it to 10 August. It moves.\n7. Watch the screen. Nothing appears.",
+    "cases": [
+     29985,
+     30004,
+     30020
+    ],
+    "owed": "SCREENSHOTS: pictures were taken and are saved with the day's work, but they are NOT marked up. An absence is hard to photograph \u2014 the most useful picture is the whole window immediately after the action, with a caption saying what should have been there and where.\n\nDUPLICATE SEARCH: this one HAS been done. Every ticket in the SV project whose title mentions \"undo\" or \"toast\" was checked; three came back and all three are about other parts of the product (work-order lines, timesheets, imports). Please put that search on the ticket so nobody has to repeat it.",
+    "against": "We could not find one. The description says it plainly, and says it twice, in two different sections.",
+    "record": "build/schedule/drag-retry-2026-08-12/"
+   },
+   {
+    "name": "A note added to a shift is kept against that one shift only",
+    "seen": "A note added from a shift's detail window is kept against that ONE shift only. Every other shift on the same work order still shows no note.\n\nMeasured on work order S-13014, which has 18 shifts on the board: after adding a note to one of them, exactly 1 of the 18 carried it and the other 17 were empty.\n\nAdding, editing and deleting a note all work correctly in themselves. It is only where the note is kept that is wrong.",
+    "expected": "Notes on the shift detail window should be added, edited and deleted PER WORK ORDER \u2014 so a note added from any one shift should be visible from every shift of the same work order.",
+    "source": "The Schedule product description on Confluence, version 27, read on 11 August 2026, section 4.9 \"Shift detail modal\", in the list of what that window shows. Quoted word for word: \"Notes: add, edit, and delete per work order.\"",
+    "steps": "1. Open Schedule and find a shift for work order S-13014, customer \"Fuline Enterprises\", unit G30 (the card reads \"Fuline Enterprises G30 6 Lines\"). This work order has 18 shifts on the board, which is why it is the one to use.\n2. Click the shift to open its detail window.\n3. Press the add-note control, type any text, and confirm it. NOTE: the confirm control is a small icon, not a button labelled Save \u2014 if you go looking for a Save button you will think there is no way to save the note.\n4. Close the window and open ANY OTHER shift of the same work order S-13014.\n5. The note is not there.",
+    "cases": [
+     30013
+    ],
+    "owed": "SCREENSHOTS: pictures were taken and are saved with the day's work, but they are NOT marked up. Before filing, annotate two side by side \u2014 the shift with the note and another shift of the same work order without it.\n\nDUPLICATE SEARCH: not run for this one. Please search Jira before you file, and record what you searched for.",
+    "against": "This is a real one. The phrase \"per work order\" sits in a list of things the shift window offers, so somebody could argue it only means \"notes about the work order, written from here\" rather than \"shared across all that work order's shifts\". That is the argument a developer would make. It may be worth asking the product owner which was meant before raising a ticket.",
+    "record": "build/schedule/drag-retry-2026-08-12/"
+   },
+   {
+    "name": "Clicking a department heading does not collapse it",
+    "seen": "Clicking a department heading in the grid does nothing at all. The technician rows under it stay exactly where they were.\n\nThe heading is not even clickable: the mouse pointer does not change over it, there is no arrow or chevron on it, and nothing about it tells a screen reader it can be opened or closed.\n\nThis was checked hard before it was written down: in BOTH Week and Day view, on ALL THREE headings on the page (\"WORK ORDER STATUS\", \"SERVICE/PARTS\" and \"SERVICE\"), with two different kinds of click \u2014 a scripted one and a real mouse click at the heading's own position on screen. The number of rows in the grid was counted before and after every single attempt: 30 rows before, 30 rows after, every time. Nothing popped up either.",
+    "expected": "Clicking a department heading should collapse that department, hiding its technician rows while the heading itself stays visible. Clicking again should bring them back.",
+    "source": "The Schedule product description on Confluence, version 27, read on 11 August 2026, section 3.2 \"Grid grouping\". Quoted word for word:\n\n\"Rows are grouped by department under collapsible group headers (e.g. SERVICE/PARTS, ADMINISTRATION), with the department's technicians listed beneath each header.\"\n\nThe word that matters is \"collapsible\".",
+    "steps": "1. Open Schedule in Week view. Count the rows in the grid \u2014 there were 30 in our run.\n2. Click the department heading \"WORK ORDER STATUS\". Count the rows again. Still 30, and nothing on screen has changed.\n3. Repeat on the headings \"SERVICE/PARTS\" and \"SERVICE\". Nothing happens on either.\n4. Switch to Day view and repeat all three. Nothing happens there either.\n5. Rest the mouse on any heading: the pointer stays an ordinary arrow, and there is no chevron or triangle to click.",
+    "cases": [
+     29929
+    ],
+    "owed": "SCREENSHOTS: NONE EXIST for this one. What was recorded is a written measurement \u2014 the row counts before and after each click. Before filing you will need to take and annotate a picture yourself: the grid with a box round a department heading, captioned \"clicking here does nothing\".\n\nDUPLICATE SEARCH: not run. Please search Jira first and record what you searched for.",
+    "against": "A developer could fairly say the FUNCTION of hiding a department already exists, just somewhere else: the \"Filter & display\" menu has Service / Work order status / Service/Parts switches, and turning \"Service\" off did take the grid from 30 rows down to 9. So the ability is there. The argument back is that the description says the HEADINGS are collapsible, and no one reading \"click a department group header\" would recognise a menu in the toolbar as the same thing. Worth mentioning both in the ticket so nobody thinks it was missed.",
+    "record": "build/schedule/finish2-2026-08-12/DIVERGENCES.md, section A1"
+   },
+   {
+    "name": "The Tech Hours switch turns on but shows nothing",
+    "seen": "Turning on \"Tech Hours\" in the View options menu changes nothing on screen. No working hours appear beside any technician's name. The technician rows are identical before and after, letter for letter.\n\nThe switch itself works \u2014 it moves when you click it. It is what it is supposed to display that never arrives.",
+    "expected": "With Tech Hours turned on, each technician's working hours should be displayed next to their name in the row heading, and the hours shown should match the hours set up against that technician.",
+    "source": "The Schedule product description on Confluence, version 27, read on 11 August 2026, section 9, in the table of View options. Quoted word for word:\n\n\"Tech Hours | Off | Displays each technician's working hours next to their name.\"",
+    "steps": "1. First check the set-up is right, or the empty result would be correct. Go to Settings then Staff, and open a few technicians. In our run six were opened \u2014 Admin ShopView, Alicia Campbell, Anthony Mejia, Ayesha Khan, Benjamin Peters and Bilal Muzamil \u2014 and ALL SIX had \"Set working hours for this technician\" switched on, with 7:00 AM to 7:00 PM Monday to Friday.\n2. Open Schedule. Note what the technician row headings say.\n3. Open the \"View options\" menu and turn \"Tech Hours\" on.\n4. Look at the technician row headings again. They are unchanged. No hours appear anywhere near any name.",
+    "cases": [
+     30050
+    ],
+    "owed": "SCREENSHOTS: NONE EXIST for this one. What was recorded is a written before-and-after comparison of the row headings. Before filing, take a picture of the View options menu with Tech Hours ON and the technician rows visible in the same shot, and annotate it.\n\nDUPLICATE SEARCH: not run. Please search Jira first and record what you searched for.",
+    "against": "The obvious one \u2014 \"no technician has any hours set up, so there is nothing to show\" \u2014 was checked and ruled out; step 1 is that check, and it is worth repeating yourself so you can say so on the ticket. The other obvious one \u2014 \"the click never landed\" \u2014 was also ruled out: the very same menu, driven the very same way, moved three other switches on the same visit (\"Show Saturday\" took the columns from 7 to 6, \"VIN Number\" made VINs appear on 27 blocks, and the \"Service\" switch took the grid from 30 rows to 9). Three switches worked; this one did not.",
+    "record": "build/schedule/finish2-2026-08-12/DIVERGENCES.md, section A2"
+   },
+   {
+    "name": "The filter panel has no Priority section",
+    "seen": "The filter panel in the left work-order panel has no Priority section, and no High, Medium or Low to choose. It also has no headings at all \u2014 the choices are one flat list.\n\nThe whole text of the panel reads: \"FILTERS \u00b7 Clear all \u00b7 Unassigned 22 \u00b7 Assigned 71 \u00b7 Approved 92 \u00b7 Declined 0 \u00b7 In Progress 0 \u00b7 Ready for Review 1\". That is all of it. It was read on three separate visits, so it is not something scrolled out of sight.",
+    "expected": "The filter panel should offer three named groups: Assignment (Assigned, Unassigned), Status (the work order statuses), and Priority (High, Medium, Low).",
+    "source": "The Schedule product description on Confluence, version 27, read on 11 August 2026, section 5.1, in the table of filter groups. Quoted word for word:\n\n\"Filter group / Options \u2014 Assignment: Assigned, Unassigned. Status: All work order statuses currently supported in the app. Priority: High, Medium, Low.\"",
+    "steps": "1. Open Schedule.\n2. In the left work-order panel, open the filter control.\n3. Read everything in the panel. There is no \"Priority\" anywhere, and no High, Medium or Low to choose. There are no group headings either \u2014 Assignment and Status choices are mixed into one flat list.",
+    "cases": [
+     29942,
+     29945
+    ],
+    "owed": "SCREENSHOTS: one picture exists (saved with the day's work as \"c-29942.png\") but it is NOT marked up. Before filing, annotate it \u2014 a box round the whole panel with the caption \"no Priority group, no headings\" is enough.\n\nDUPLICATE SEARCH: not run. Please search Jira first and record what you searched for.",
+    "against": "A developer could say Priority does not exist anywhere in the product yet, so a filter for it could not have been built \u2014 and that is probably true: a separate test (C38871) records that the work order form has no Priority field either. If you raise this, \"the Priority feature is not built\" is the more accurate way to put it, and it covers the missing group headings too, which is a genuinely separate and smaller point.",
+    "record": "build/schedule/finish-2026-08-12/DIVERGENCES.md, section E1"
+   },
+   {
+    "name": "There is no Unassigned row in the grid",
+    "seen": "The grid has no Unassigned row. It shows 30 rows: three department headings (\"WORK ORDER STATUS\", \"SERVICE/PARTS\", \"SERVICE\") and 27 technician rows. None of them is named Unassigned, and the word \"unassigned\" does not appear anywhere on the page.\n\nSo there is nowhere to drop a work order to create a shift with no technician, and nothing to drag one out of.",
+    "expected": "An Unassigned row should sit inside the grid itself \u2014 not in a separate tray at the side \u2014 holding shifts that are not yet tied to a technician. Dragging a shift from that row down onto a technician should assign it.",
+    "source": "The Schedule product description on Confluence, version 27, read on 11 August 2026. It says this in two places.\n\nSection 3.2, quoted word for word: \"Unassigned placeholder. An unassigned row sits within the grid (not a separate tray) and holds shifts that are not yet tied to a technician. Dragging a shift from this row down onto a technician assigns it.\"\n\nSection 4.2, quoted word for word: \"Unassigned shifts are created by dropping a work order (or line) onto the grid's Unassigned placeholder row (an in-grid lane, not a separate tray).\"",
+    "steps": "1. Open Schedule in Week view, on a week that contains shifts with no technician. In our run the grid showed \"Aug 10 - 16, 2026\" and there were shifts with no technician inside it \u2014 against work orders S-13014 and S-12876, on 10, 11 and 13 August.\n2. Read every row name down the left-hand side. There are 30. Three are department headings; the other 27 are technicians. None is called Unassigned.\n3. Search the page for the word \"unassigned\". It does not appear.",
+    "cases": [
+     29931,
+     29973,
+     29974,
+     29975
+    ],
+    "owed": "SCREENSHOTS: a full-page picture exists (saved with the day's work as \"unassigned.png\") but it is NOT marked up. Before filing, annotate it \u2014 the row names down the left with a caption saying which row should have been there.\n\nDUPLICATE SEARCH: not run. Please search Jira first and record what you searched for.",
+    "against": "The three obvious ones were checked and ruled out already, and saying so on the ticket is what will stop it being closed: (1) \"the row is empty so it is hidden\" \u2014 no, there were shifts with no technician on the board at the time, 13 of them; (2) \"a switch in the toolbar is hiding it\" \u2014 no, both toolbar menus were opened and read in full and neither mentions unassigned; (3) \"it is below the fold\" \u2014 no, the row names were read from the whole page, not just the visible part, and a full-page picture was taken.",
+    "record": "build/schedule/finish3-2026-08-12/DIVERGENCES.md, section 1"
+   },
+   {
+    "name": "The hover summary hides the VIN unless a display switch is on",
+    "seen": "Rest the mouse on a shift and a small summary appears. Its second line shows the unit number only \u2014 for example \"G30\".\n\nTurn the \"VIN Number\" switch on in the View options menu and rest the mouse on the same shift again: now it reads \"G30 - VIN 12-06696\".\n\nSo the VIN in the hover summary is tied to that display switch.",
+    "expected": "The hover summary should show the VIN whenever the unit has one, whichever way the \"VIN Number\" switch is set. That switch is meant to control the shift blocks in the grid, not the hover summary.",
+    "source": "The product owner (Branko) answered this directly on 31 July 2026, question 6, choosing option A. Quoted word for word:\n\n\"A. Vin is always visible on hover regardless of the toggle\"\n\nThe Schedule product description, version 27, section 4.13, agrees with him \u2014 it lists what the hover summary shows with no condition attached: \"Shift tooltip: customer name (plus the conflict icon if conflicted); unit, vehicle, and VIN; date and time range\".",
+    "steps": "1. Open Schedule and make sure the \"VIN Number\" switch in the View options menu is OFF.\n2. Rest the mouse on a shift whose unit has a VIN. In our run this was unit G30, VIN 12-06696.\n3. Read the second line of the summary that appears: it says \"G30\" and no VIN.\n4. Now turn the \"VIN Number\" switch ON.\n5. Rest the mouse on the same shift again. The second line now reads \"G30 - VIN 12-06696\".",
+    "cases": [
+     30034
+    ],
+    "owed": "PLEASE DO NOT FILE THIS ONE WITHOUT ASKING FIRST \u2014 see the column to the left. It is the one item on this sheet where a ticket would land in the middle of a disagreement that has not been settled.\n\nSCREENSHOTS: none marked up. Two would be needed, the same shift with the switch off and on.\n\nDUPLICATE SEARCH: partly done \u2014 SV-8835 is known and is named opposite.",
+    "against": "This is the strongest counter-argument on the whole sheet, and it is why this row says ask before filing.\n\nFirst, the product description contradicts itself. Section 4.13 lists the VIN in the hover summary with no condition, but the View options table in section 9 says the switch \"Shows the VIN number as an additional line on shift blocks (day and week views) and in hover tooltips\" \u2014 which puts the hover summary UNDER the switch, exactly as the build behaves.\n\nSecond, and more awkward: a ticket already exists saying the OPPOSITE of this \u2014 SV-8835 argues the hover summary SHOULD hide the VIN when the switch is off. So filing this would put two tickets on the same screen asking for opposite things.\n\nWhat actually needs to happen is that the product owner fixes the section 9 wording so it matches his own answer. That is a question, not a defect ticket.",
+    "record": "build/schedule/verify-final-2026-08-12/FINDINGS.md, section 1 \u00b7 build/schedule/provenance-2026-08-04/PO-RULING-DEFENCE.md, A-ii"
+   }
+  ],
+  "tickets": [
+   {
+    "key": "SV-9090",
+    "says": "Raised on 10 August: when you spread a job across several days, it always starts on the day you dropped it on, and there is no way to choose a different start day.\n\nThe ticket is CLOSED, marked obsolete.",
+    "actual": "It still happens. There is no start-date control anywhere in the spread window.\n\nBefore saying that, all five choices in the \"How much to schedule\" list were opened in turn \u2014 including the two that reveal an extra control \u2014 because a field that only shows under one option would otherwise look missing. \"Until a date...\" reveals a field called \"Finish by\" and \"Specific hours...\" reveals an hours stepper. Both of those set the END, not the start.",
+    "cases": [
+     29982
+    ],
+    "suggest": "Reopen it \u2014 or reopen SV-8855 instead, but not both: they are the same fault reported twice. A person needs to decide which one survives. We have not touched either."
+   },
+   {
+    "key": "SV-8855",
+    "says": "Raised on 4 August, by us: the same fault as SV-9090 above \u2014 the spread always begins on the day you dropped on.\n\nThe ticket is CLOSED, marked obsolete.",
+    "actual": "It still happens \u2014 same evidence as the row above. Both tickets describe one fault, and both are closed while the fault is live.",
+    "cases": [
+     29982
+    ],
+    "suggest": "The same decision as the row above. Our suggestion is to reopen ONE of SV-9090 and SV-8855 and to link the other to it as a duplicate."
+   },
+   {
+    "key": "SV-8957",
+    "says": "The alternative to dragging \u2014 a control on the work-order card that arms it so you can place it with a click instead of a drag \u2014 was removed.\n\nThe ticket is CLOSED, marked obsolete.",
+    "actual": "It is still gone. Looked for in three ways \u2014 when the page loads, when the mouse rests on the card, and inside the card's expanded line list \u2014 in a state where it must appear (21 work orders on screen, approved lines, editing rights held). It is not there in any of them.\n\nThis matters more than it sounds: it is the only way to place a job for anyone who cannot drag with a mouse.",
+    "cases": [
+     29962
+    ],
+    "suggest": "Reopen it. The test itself is already honest \u2014 it tells the tester exactly what they will see and that the ticket was closed without a fix \u2014 so nothing is blocked either way. This is a tidiness and truthfulness call."
+   },
+   {
+    "key": "SV-9005",
+    "says": "The \"Finish by\" control in the spread window may not respond at all \u2014 pressing its arrows does nothing to the date or the preview.\n\nThe ticket is OPEN.",
+    "actual": "It is fixed. This is the opposite case to the three above, and worth knowing before somebody spends time on it.\n\nThe control responds fully in both directions and the preview follows it: from \"Tue, Aug 11 / 1 shift\", five presses forward gave \"Sun, Aug 16 / 4 shifts\", five more gave \"Fri, Aug 21 / 9 shifts\", and three presses back gave \"Tue, Aug 18\".",
+    "cases": [
+     29980
+    ],
+    "suggest": "Close it. The test has already been corrected so it no longer tells a tester to expect a dead control \u2014 if the ticket stays open, somebody will eventually put that expectation back and the test will start failing a working build."
+   }
+  ],
+  "mismarked": []
+ },
+ "Report Suite": {
+  "project": "Report Suite",
+  "read_at": "2026-08-12T12:33:19Z",
+  "build": {
+   "branch": "https://sv8582.qa.shopview.com",
+   "now": "v3.7-4626299",
+   "now_modified": "Wed, 12 Aug 2026 05:06:49 GMT",
+   "observed_on": "v3.7-4626299",
+   "moved": false
+  },
+  "env": "Build v3.7-4626299 on https://sv8582.qa.shopview.com. Desktop browser, signed in as an administrator (admin@shopview.com), location \"Staging Heavy Duty - 9919\".",
+  "run": 359,
+  "ours": 480,
+  "foreign": 12,
+  "ready": 343,
+  "expect_fail": 95,
+  "hold": 42,
+  "holds": [
+   {
+    "id": 30467,
+    "title": "First visit shows the default columns; the rest are in the column selector",
+    "reason": "the build does not follow the ratified Location rule; the defect is written up in the team's own notes and needs the QA lead's permission before a ticket exists to point at",
+    "group": "A problem was found but no ticket exists for it yet",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 38912,
+    "title": "Location column: shown to any multi-location user, Multiple on aggregating rows",
+    "reason": "the build does not follow the ratified Location rule; the defect is written up in the team's own notes and needs the QA lead's permission before a ticket exists to point at",
+    "group": "A problem was found but no ticket exists for it yet",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 43551,
+    "title": "A hand-made Location column choice is remembered like any other column",
+    "reason": "the build does not follow the ratified Location rule; the defect is written up in the team's own notes and needs the QA lead's permission before a ticket exists to point at",
+    "group": "A problem was found but no ticket exists for it yet",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 30311,
+    "title": "Selector offers only reps whose sales-representative toggle is on",
+    "reason": "this part of the report is not built yet",
+    "group": "The feature or control is not in the build yet",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30398,
+    "title": "Without reports access Technician Utilization is hidden",
+    "reason": "needs a second sign-in as a user without reports access, and there is one shared sign-in on this environment",
+    "group": "Waiting on a second sign-in as a different user",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30446,
+    "title": "Technician Utilization: Location filter hidden for a one-location user",
+    "reason": "needs a second sign-in as a user who can reach only one location, and there is one shared sign-in on this environment",
+    "group": "Waiting on a second sign-in as a different user",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30577,
+    "title": "Inventory Value: the Location filter is hidden for a one-location user",
+    "reason": "needs a second sign-in as a user with access to only one location",
+    "group": "Waiting on a second sign-in as a different user",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30603,
+    "title": "A user with ordinary reports access can open Inventory Value",
+    "reason": "needs a second sign-in as a user holding only the ordinary reports access",
+    "group": "Waiting on a second sign-in as a different user",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30604,
+    "title": "Without reports access Inventory Value is absent from the navigation",
+    "reason": "needs a second sign-in as a user with no reports access",
+    "group": "Waiting on a second sign-in as a different user",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 43558,
+    "title": "You cannot reach an invoice you have no permission to open",
+    "reason": "waiting on one answer from the product owner about what the invoice number should look like, and it needs a second sign-in that cannot open work orders or part sales",
+    "group": "Waiting on a second sign-in as a different user",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 43559,
+    "title": "Invoice # and customer name when you cannot open what they point at",
+    "reason": "waiting on one answer from the product owner about what these two values should look like, and it needs a second sign-in that cannot open work orders, part sales or customers",
+    "group": "Waiting on a second sign-in as a different user",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 30100,
+    "title": "Opening an invoice you lack permission for shows access-denied; back works",
+    "reason": "waiting on one answer from the product owner about whether this person is given a link at all",
+    "group": "Waiting on an answer from the product owner",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30310,
+    "title": "Sales Representative selector shows on WO and Part Sale, not on imported",
+    "reason": "waiting on an answer from the product owner",
+    "group": "Waiting on an answer from the product owner",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30315,
+    "title": "Customer record shows a \"Sales Representative\" row; \"Unassigned\" when none",
+    "reason": "waiting on an answer from the product owner",
+    "group": "Waiting on an answer from the product owner",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30458,
+    "title": "Each qualifying work order appears exactly once in exactly one tab",
+    "reason": "the specification states two different tab-placement rules (whole work order by status, or per line state) and the product owner has been asked which governs",
+    "group": "Waiting on an answer from the product owner",
+    "result": "Passed",
+    "result_raw": "Passed",
+    "by": "Nebojsa Glavinic"
+   },
+   {
+    "id": 30462,
+    "title": "Status-to-tab mapping: Estimate, Complete, In Progress and Review work orders",
+    "reason": "the specification states two different tab-placement rules (whole work order by status, or per line state) and the product owner has been asked which governs",
+    "group": "Waiting on an answer from the product owner",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30464,
+    "title": "Approved started-boundary: time or part received vs neither decides the tab",
+    "reason": "the specification states two different tab-placement rules (whole work order by status, or per line state) and the product owner has been asked which governs",
+    "group": "Waiting on an answer from the product owner",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30528,
+    "title": "Nightly snapshot records one row per then-open job per calendar date",
+    "reason": "the nightly capture is written by a background process and nothing in the product reads it back in this version",
+    "group": "Depends on a nightly/background job the product never shows you",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30530,
+    "title": "Captured Earned and Remaining use the same maths as the on-screen report",
+    "reason": "the nightly capture is written by a background process and nothing in the product reads it back in this version",
+    "group": "Depends on a nightly/background job the product never shows you",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30531,
+    "title": "Nightly snapshot spans every location with no user location filter",
+    "reason": "the nightly capture is written by a background process and nothing in the product reads it back in this version",
+    "group": "Depends on a nightly/background job the product never shows you",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30533,
+    "title": "Nightly snapshot: a job with nothing approved is captured at $0.00; not skipped",
+    "reason": "the nightly capture is written by a background process and nothing in the product reads it back in this version",
+    "group": "Depends on a nightly/background job the product never shows you",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30605,
+    "title": "Nightly snapshot records one row per in-stock non-core part per location",
+    "reason": "the nightly capture is a server-side job and its stored rows are not reachable from the application",
+    "group": "Depends on a nightly/background job the product never shows you",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30606,
+    "title": "A recorded snapshot day equals what the live report showed that day",
+    "reason": "needs the stored nightly capture rows, which are not reachable from the application",
+    "group": "Depends on a nightly/background job the product never shows you",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30607,
+    "title": "Nightly snapshot: re-running the capture for a date replaces that date's rows",
+    "reason": "the nightly capture job cannot be re-run or inspected from the application",
+    "group": "Depends on a nightly/background job the product never shows you",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30609,
+    "title": "Snapshot retention: daily captures are kept for 0\u201313 months",
+    "reason": "retention pruning is a server-side job over stored history, not reachable from the application",
+    "group": "Depends on a nightly/background job the product never shows you",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30104,
+    "title": "Building a custom range on the calendar cannot exceed a 366-day span",
+    "reason": "the calendar cannot be driven past the 366-day span from this harness; the back end refuses a wider range but the on-screen prevention was not seen",
+    "group": "The set-up this test needs cannot be produced on this environment",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30131,
+    "title": "A service (S) invoice with no vehicle also lands in the Parts Sales bucket",
+    "reason": "this organisation has no service invoice without a vehicle, so nothing lands in the Parts Sales bucket from the service side",
+    "group": "The set-up this test needs cannot be produced on this environment",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30132,
+    "title": "Reversed and voided invoices are excluded from every row; count and total",
+    "reason": "this organisation has no reversed or voided invoice inside the report date range",
+    "group": "The set-up this test needs cannot be produced on this environment",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30137,
+    "title": "Duplicate asset labels get stable (#1)/(#2) suffixes that survive reloads",
+    "reason": "no customer in this organisation has two assets that produce the same label, so the numbered suffix cannot appear",
+    "group": "The set-up this test needs cannot be produced on this environment",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30141,
+    "title": "An invoice deleted after load shows the not-found state and back returns",
+    "reason": "deleting a real invoice while the report is open is not something to do on a shared environment",
+    "group": "The set-up this test needs cannot be produced on this environment",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30184,
+    "title": "A failed data fetch shows the error toast which fades after 5 seconds",
+    "reason": "a failing data fetch cannot be forced from the application",
+    "group": "The set-up this test needs cannot be produced on this environment",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30202,
+    "title": "A Custom range uses the date-picker and holds a 366-day maximum span",
+    "reason": "needs the calendar driven past a 366-day span, which this harness could not do",
+    "group": "The set-up this test needs cannot be produced on this environment",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30372,
+    "title": "Core parts are excluded from both the inventory and special-order result sets",
+    "reason": "no part in this organisation carries the core flag, so core exclusion cannot be exercised",
+    "group": "The set-up this test needs cannot be produced on this environment",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30407,
+    "title": "Internal hours with no default labor rate anywhere show an em-dash",
+    "reason": "no location on this environment is set up without a default labor rate, so the em-dash state cannot be produced",
+    "group": "The set-up this test needs cannot be produced on this environment",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30408,
+    "title": "Internal hours split across rated and unrated locations show a part value",
+    "reason": "no location on this environment is set up without a default labor rate, so a part-valued row cannot be produced",
+    "group": "The set-up this test needs cannot be produced on this environment",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30413,
+    "title": "Sorting Est. Lost Labor keeps em-dash rows last both ways; $0.00 sorts as 0",
+    "reason": "no technician on this environment has an em-dash in Est. Lost Labor, because both locations have a default labor rate",
+    "group": "The set-up this test needs cannot be produced on this environment",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30431,
+    "title": "Reconcile exception (a): an open clock is snapshotted at each load instant",
+    "reason": "needs a technician clocked in at the moment of the test, and no technician on this environment is currently clocked in",
+    "group": "The set-up this test needs cannot be produced on this environment",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30547,
+    "title": "With no fixed sell price and no category, Unit Sell equals Unit Cost",
+    "reason": "a part cannot be saved without a category on this build, so the no-category path cannot be produced",
+    "group": "The set-up this test needs cannot be produced on this environment",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 30610,
+    "title": "Thinned history still served by the closest-recorded-day rule",
+    "reason": "needs a thinned history that this organisation does not have and cannot be produced from the application",
+    "group": "The set-up this test needs cannot be produced on this environment",
+    "result": null,
+    "result_raw": "Untested",
+    "by": "Bilal Muzamil"
+   },
+   {
+    "id": 38892,
+    "title": "A recorded day keeps its category and vendor names after a rename or delete",
+    "reason": "needs a recorded earlier day plus the stored capture rows, which are not reachable from the application",
+    "group": "The set-up this test needs cannot be produced on this environment",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 38918,
+    "title": "An over-cap Work In Progress download is refused with the too-large message",
+    "reason": "the over-size refusal cannot be produced on this environment; no tab comes near the size limit",
+    "group": "The set-up this test needs cannot be produced on this environment",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   },
+   {
+    "id": 43553,
+    "title": "A logo that is set but will not load falls back to the ShopView logo",
+    "reason": "this organisation has a logo that loads correctly, so the set-but-will-not-load fallback cannot be produced",
+    "group": "The set-up this test needs cannot be produced on this environment",
+    "result": null,
+    "result_raw": null,
+    "by": null
+   }
+  ],
+  "n_hold": 42,
+  "n_passed_on_hold": 1,
+  "n_graded_run": 6,
+  "run_passed": 6,
+  "run_failed": 0,
+  "defects": [
+   {
+    "name": "The Location column cannot be turned on, on five of the six reports",
+    "seen": "On five of the six reports the Location column only appears if you have ALL locations chosen. Pick a single location and it vanishes. And it is never in the column list, so you cannot turn it on or off yourself.\n\nMeasured today on all six reports, with one location chosen and then with all of them:\n\n- Work In Progress: absent with one, present with all, NEVER in the column list\n- Sales By Customer: the same\n- Technician Utilization: the same\n- Sales By Representative: the same\n- Parts Velocity: the same\n- Inventory Value: present either way, and IS in the column list \u2014 this is the only one that behaves correctly\n\nOn Work In Progress the column list has 15 entries and Location is not one of them, both before and after switching to all locations.",
+    "expected": "The Location column should be offered in the column list to anybody who can REACH more than one location \u2014 whatever they currently have chosen. For that person it should be shown by default and they should be able to switch it on and off. Somebody who can reach only one location should never see it.\n\nThe test is what the person can reach, not what they have picked.",
+    "source": "The Work In Progress product description on Confluence, and the same rule in the Sales By Customer and Technician Utilization descriptions, all amended on 5 to 6 August 2026 and read on 12 August 2026. Quoted word for word:\n\n\"The Location column is offered in the column selector to any user with access to more than one location; for that user it is shown by default and can be toggled on or off. A user with access to only one location never sees it.\"",
+    "steps": "1. Sign in as a user who can reach more than one location. The account used could reach five: \"QB Location\", \"3rd\", \"L'Espace Tralala Yoga\", \"Staging Heavy Duty - 9919\" and \"Staging Lethbridge - 4310\".\n2. Open Work In Progress. The location filter reads a single location \u2014 \"Staging Heavy Duty - 9919\". Read the column headings: WO #, Status, Customer, Asset, Advisor, Days Open, Earned, Remaining, Total. There is no Location column.\n3. Open the column list. It has 15 entries and Location is not one of them, so there is nothing to switch on.\n4. Change the location filter to \"All locations\". A Location column now appears in the table, between Asset and Advisor.\n5. Open the column list again. Location is STILL not in it \u2014 the column appeared without you being able to control it.\n6. Repeat on Sales By Customer, Technician Utilization, Sales By Representative and Parts Velocity \u2014 all four behave the same way.\n7. Repeat on Inventory Value. This one is correct: the column is there either way, and it IS in the column list.",
+    "cases": [
+     38912,
+     38913,
+     43551,
+     30467
+    ],
+    "owed": "READ THIS FIRST: a ticket already exists for part of this \u2014 SV-8954 \u2014 but it describes Technician Utilization ONLY, and it was closed as obsolete on 9 August. So this is not a clean new report. The tidiest thing is probably to REOPEN SV-8954 and widen it to all five reports rather than raise a second ticket beside it; see tab 3.\n\nSCREENSHOTS: pictures of all six reports exist and are saved with the day's work, but they are NOT marked up. Before filing, annotate two side by side \u2014 the column list with no Location in it, and the table showing a Location column anyway.\n\nDUPLICATE SEARCH: only SV-8954 was found and it is named above. Please run a proper search before filing and record what you searched for.",
+    "against": "The weakest point is not the finding, it is the paperwork: a developer can reasonably say \"this is already reported and it was closed\", so a brand-new ticket will look like a duplicate. That is why reopening and widening the existing one is the better route. On the substance itself there is no good argument the other way \u2014 the wording is plain, it was changed deliberately on 5 to 6 August, and one of the six reports already does exactly what it asks for, which shows it is buildable.",
+    "record": "build/report-suite/verify-final-2026-08-12/DIVERGENCES.md, section 2"
+   }
+  ],
+  "tickets": [
+   {
+    "key": "57 tickets at once",
+    "link": null,
+    "says": "This row is not about one ticket. On 9 August, between 22:40:38 and 22:42:46 \u2014 a window of two minutes and eight seconds, with tickets closing about two seconds apart \u2014 57 defect tickets were all set to closed/obsolete.\n\nThat is a bulk close, not one-by-one checking.",
+    "actual": "It matters to you because 75 of the Report Suite tests carry a note saying \"this test is expected to fail today, here is the ticket that explains why\" \u2014 and for those 75 tests the ticket now reads Done. Open one tomorrow morning and you would reasonably conclude the test should now pass.\n\nTwo of the 57 were actually checked on the build:\n\n- SV-8954, the Location column: STILL BROKEN, and on five reports rather than the one the ticket names. See tab 2.\n- SV-8907, Work In Progress downloads: GENUINELY FIXED. Eight downloads out of eight worked.\n\nSo one closed ticket is fixed and another is not. The status tells you nothing.",
+    "cases": [],
+    "suggest": "This is a question for the QA lead, not something to act on: were those 57 closed because the work was done, or because the list was being tidied before release? The answer changes what you should do with 75 tests. Nobody has changed any of those 75 notes \u2014 changing them because a ticket says Done would be exactly the mistake this row is warning about.\n\nIn the meantime: run each test as written. The test tells you what to expect and what to do if you see something different."
+   },
+   {
+    "key": "SV-8954",
+    "says": "The Technician Utilization Location column disappears when a single location is chosen.\n\nThe ticket is CLOSED, marked obsolete \u2014 one of the 57 above.",
+    "actual": "It still happens, and it is worse than the ticket says. The ticket names Technician Utilization only; it is actually on FIVE of the six reports. Only Inventory Value behaves correctly. Re-proved today on all six \u2014 the full detail is on tab 2.",
+    "cases": [
+     38912,
+     38913,
+     43551,
+     30467
+    ],
+    "suggest": "Reopen it and widen it from one report to five, rather than raising a new ticket beside it. A person has to decide that; we have not touched it."
+   },
+   {
+    "key": "SV-8907",
+    "says": "Work In Progress downloads fail with a server error on any tab that has rows in it.",
+    "actual": "It is FIXED. Proven by 8 downloads out of 8: all four Work In Progress tabs (with 15, 3, 4 and 15 rows in them \u2014 every one a tab WITH rows, which is exactly the state the ticket says must fail), each in both formats. Every one produced a real file, all eight files were different sizes, and the product showed \"Success - Data exported successfully.\"\n\nHONEST NOTE ON ITS STATUS: our own two records from today disagree about whether this ticket is still open or was closed on 9 August. We made no Jira call at all, so we cannot settle it \u2014 please just open the ticket and look. Either way the build behaviour above is what was measured.",
+    "cases": [
+     30510,
+     30511,
+     30512,
+     30513,
+     30514,
+     30515,
+     30518
+    ],
+    "suggest": "If it is still open, close it. The seven tests listed here have already been corrected so they no longer tell a tester to expect a failure \u2014 if the ticket stays open, somebody will eventually re-add that expectation and the tests will start failing a working build."
+   }
+  ],
+  "mismarked": [
+   {
+    "id": 30107,
+    "title": "Product Type multi-select: both toggles on by default",
+    "why": "The steps send you to a \"Product Type\" filter with two toggles, \"Parts\" and \"Services\", and rows reading \"All products\" and \"Clear all\". The build still has the older single-choice filter with \"Parts & Service\", \"Parts only\" and \"Service only\". There is nothing to toggle. The change was accepted on 10 August (SV-9074) and has not been built yet."
+   },
+   {
+    "id": 43591,
+    "title": "Clear all leaves neither Product Type toggle on",
+    "why": "Same reason as the row above \u2014 it asks you to read two action rows at the top of the Product Type list, and there are no action rows."
+   },
+   {
+    "id": 38913,
+    "title": "Location column: shown to any multi-location user; toggleable",
+    "why": "It asserts a Location column you can switch on and off, which five of the six reports do not offer \u2014 see tab 2. Its two sister tests (C38912 and C43551) are already marked as \"cannot be run yet\"; this one was left marked runnable by mistake."
+   }
+  ]
+ }
+}
