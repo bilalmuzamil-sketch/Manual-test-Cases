@@ -1,0 +1,164 @@
+{
+ "read_at_utc": "2026-08-12T11:31:20.657Z",
+ "checks": [
+  {
+   "name": "C29618 shared filtered URL",
+   "loaded": {
+    "url": "https://sv8785.qa.shopview.com/workorders?tab=all&status=approved",
+    "rows": 33,
+    "chips": {
+     "status": "Status : Approved keyboard_arrow_down",
+     "customer": "person Customer keyboard_arrow_down",
+     "asset": "local_shipping Asset on Site keyboard_arrow_down"
+    },
+    "search_value": null,
+    "err_banner": [],
+    "filter_chip_tids": [
+     "filter_chip_status",
+     "filter_chip_company_id",
+     "filter_chip_tech_assigned_id",
+     "filter_chip_service_advisor_id",
+     "filter_chip_vehicleHere"
+    ],
+    "toggle_filter_bar": true,
+    "page_search_toggle": true
+   },
+   "chips_reflect_url": {
+    "status": "Status : Approved keyboard_arrow_down",
+    "customer": "person Customer keyboard_arrow_down",
+    "asset": "local_shipping Asset on Site keyboard_arrow_down"
+   }
+  },
+  {
+   "name": "C29620/C38888 malformed URLs",
+   "bad_status": {
+    "url": "https://sv8785.qa.shopview.com/workorders?tab=all&status=NOT_A_REAL_STATUS_zzz",
+    "rows": 2,
+    "chips": {
+     "status": "Status keyboard_arrow_down",
+     "customer": "person Customer keyboard_arrow_down",
+     "asset": "local_shipping Asset on Site keyboard_arrow_down"
+    },
+    "errors": []
+   },
+   "scrambled_params": {
+    "url": "https://sv8785.qa.shopview.com/workorders?tab=all&status[]=%%%&company_id=@@@nonsense",
+    "rows": 2,
+    "chips": {
+     "status": "Status keyboard_arrow_down",
+     "customer": "person Customer keyboard_arrow_down",
+     "asset": "local_shipping Asset on Site keyboard_arrow_down"
+    },
+    "errors": []
+   },
+   "malformed_search": {
+    "url": "https://sv8785.qa.shopview.com/workorders?tab=all&search=%E2%98%A0%00broken",
+    "rows": 2,
+    "search_value": "☠\u0000broken",
+    "errors": []
+   }
+  },
+  {
+   "name": "C38902 old top-search link",
+   "query_param": {
+    "url": "https://sv8785.qa.shopview.com/workorders?query=Iibay&tab=all&search=%E2%98%A0%00broken",
+    "rows": 2,
+    "page_search_box": "☠\u0000broken"
+   },
+   "globalSearch_param": {
+    "url": "https://sv8785.qa.shopview.com/workorders?globalSearch=Iibay&tab=all&search=%E2%98%A0%00broken",
+    "rows": 2,
+    "page_search_box": "☠\u0000broken"
+   }
+  },
+  {
+   "name": "C43590 one-filter page survey (desktop)",
+   "survey": [
+    {
+     "page": "Part Sales",
+     "url": "https://sv8785.qa.shopview.com/parts/sales",
+     "filter_chips": [],
+     "n": 0,
+     "collapse_control": false,
+     "page_search": false
+    },
+    {
+     "page": "Parts Inventory",
+     "url": "https://sv8785.qa.shopview.com/parts/inventory",
+     "filter_chips": [
+      "filter_chip_gridLocation",
+      "filter_chip_category",
+      "filter_chip_supply"
+     ],
+     "n": 3,
+     "collapse_control": true,
+     "page_search": true
+    },
+    {
+     "page": "Purchase Orders",
+     "url": "https://sv8785.qa.shopview.com/parts/orders",
+     "filter_chips": [],
+     "n": 0,
+     "collapse_control": false,
+     "page_search": true
+    },
+    {
+     "page": "Customers",
+     "url": "https://sv8785.qa.shopview.com/customers",
+     "filter_chips": [],
+     "n": 0,
+     "collapse_control": false,
+     "page_search": true
+    },
+    {
+     "page": "Reports default",
+     "url": "https://sv8785.qa.shopview.com/reports/punch-clock-activities?range=last_month",
+     "filter_chips": [
+      "filter_chip_range",
+      "filter_chip_staffId"
+     ],
+     "n": 2,
+     "collapse_control": true,
+     "page_search": false
+    }
+   ]
+  },
+  {
+   "name": "C38900 one search box across tabs",
+   "sequence": [
+    {
+     "tab": "tab_all",
+     "url": "https://sv8785.qa.shopview.com/workorders?tab=all&search=Iibay",
+     "search_value": "Iibay",
+     "rows": 2
+    },
+    {
+     "tab": "tab_estimates",
+     "url": "https://sv8785.qa.shopview.com/workorders?search=Iibay",
+     "search_value": "Iibay",
+     "rows": 2
+    },
+    {
+     "tab": "tab_completed",
+     "url": "https://sv8785.qa.shopview.com/workorders?tab=complete&search=Iibay",
+     "search_value": "Iibay",
+     "rows": 2
+    },
+    {
+     "tab": "tab_all",
+     "url": "https://sv8785.qa.shopview.com/workorders?tab=all&search=Iibay",
+     "search_value": "Iibay",
+     "rows": 2
+    }
+   ]
+  }
+ ],
+ "bridge_errors": [],
+ "api_errors": [
+  {
+   "m": "GET",
+   "s": 404,
+   "u": "/api/api/sso/check"
+  }
+ ]
+}
