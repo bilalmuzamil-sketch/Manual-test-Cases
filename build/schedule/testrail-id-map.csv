@@ -111,14 +111,14 @@ SCH-PANEL-06,43587,Hiding the panel lasts for the rest of your sign-in but is no
 SCH-TOOL-01,30039,'Today' button jumps the grid to the current date,Grid Toolbar,SV-8686 (§6 (Today button))
 SCH-TOOL-02,30040,"Left/right arrows step by day, week, or month to match the active range",Grid Toolbar,"SV-8686 (§6 (Left/right arrows,Date label))"
 SCH-TOOL-03,30041,"Toolbar search matches customer, work order, unit, technician and line names",Grid Toolbar,SV-8686 (§6 (Search) - spec v27 2026-08-07)
-SCH-VIEW-01,30042,"'Filter & Display' dropdown combines department toggles, My Shifts, and VIN",Filter and Display and View Options,"SV-8700 (§6,§9 (Filter and Display dropdown))"
+SCH-VIEW-01,30042,"'Filter & display' dropdown: department toggles, 'My Shifts' and 'VIN Number'",Filter and Display and View Options,"SV-8700 (§6,§9 (Filter and Display dropdown))"
 SCH-VIEW-02,30043,Department toggles show or hide individual department groups in the grid,Filter and Display and View Options,SV-8700 (§9 (Department toggles))
 SCH-VIEW-03,30044,'My Shifts' filters the grid to only the current user's shifts,Filter and Display and View Options,"SV-8700 (§9 (My Shifts),§14.3)"
 SCH-VIEW-04,30045,'VIN Number' toggle gates the block VIN only - tooltip and modal always show it,Filter and Display and View Options,"SV-8700 (§9 (VIN),§4.4); SV-8690 (§4.4,§9 (VIN option)); SV-8694 (§4.8 (Lane height with VIN))"
-SCH-VIEW-05,30046,'View Options': six toggles with defaults; Capacity Bars and Events flip,Filter and Display and View Options,"SV-8700 (§6,§9 (View Options popover,Capacity Bars,Events),§4.12)"
+SCH-VIEW-05,30046,'View options': six toggles with defaults; Capacity Planning and Events flip,Filter and Display and View Options,"SV-8700 (§6,§9 (View Options popover,Capacity Bars,Events),§4.12)"
 SCH-VIEW-06,30047,Business Hours toggle shades non-working hours in day view,Filter and Display and View Options,"SV-8700 (§9 (Business Hours),§4.8 (Business-hours shading))"
 SCH-VIEW-09,30050,Tech Hours toggle displays each technician's working hours next to their name,Filter and Display and View Options,SV-8700 (§9 (Tech Hours))
-SCH-VIEW-10,30051,Saturday and Sunday toggles include or exclude the weekend columns,Filter and Display and View Options,"SV-8700 (§9 (Saturday,Sunday),§3.2 (Week view))"
+SCH-VIEW-10,30051,'Show Saturday' and 'Show Sunday' include or exclude the weekend columns,Filter and Display and View Options,"SV-8700 (§9 (Saturday,Sunday),§3.2 (Week view))"
 SCH-REAS-01,30052,"Dragging a shift to another technician row reassigns it, with a confirm modal",Reassignment and Context Menu,"SV-8695 (§7 (Shift reassignment),§12)"
 SCH-REAS-03,30054,Left-click empty grid space opens a menu: Create Event and New Work Order,Reassignment and Context Menu,"SV-8700 (§7 (left-click menu on empty grid space; View Day and New Shift removed),§14.1 (creation via the cell menu))"
 SCH-REAS-06,38855,'New Work Order' in the cell menu points the user to the Work Orders tab,Reassignment and Context Menu,SV-8700 (§7 / §4.10 New Work Order cell-menu shortcut)
@@ -139,9 +139,9 @@ SCH-COLOR-01,30071,"Blue is the default color for all shifts, including long and
 SCH-COLOR-02,30072,"Shift modal color picker recolors that shift only, in matching tones",Color System,"SV-8700 (§10,§4.9 (Color picker)); SV-8690 (§4.4,§10)"
 SCH-COLOR-03,30073,Color labels are editable per shop,Color System,"SV-8700 (§10 (Color labels are editable per shop),§4.10 (shared picker))"
 SCH-HRS-02,38847,Business-hours toggle reveals a per-day (Mon-Sun) From-To editor,Working Hours Settings,"SV-8699 (§4.2 Working Hours - business hours toggle,per-day From/To editor)"
-SCH-HRS-03,38848,"Edit Staff has a 'Set custom hours for this technician' toggle, off by default",Working Hours Settings,SV-8699 (§4.2 Working Hours - technician custom-hours toggle)
+SCH-HRS-03,38848,"Edit Staff has a 'Set working hours for this technician' toggle, off by default",Working Hours Settings,SV-8699 (§4.2 Working Hours - technician custom-hours toggle)
 SCH-HRS-04,38849,A technician with no custom hours inherits the shop business hours,Working Hours Settings,SV-8699 (§4.2 Working Hours - inherit shop hours when no custom hours)
-SCH-HRS-05,38850,"'Add hours' appends a removable second range for split shifts, starting empty",Working Hours Settings,SV-8699 (§4.2 Working Hours - Add hours split shifts)
+SCH-HRS-05,38850,"'Add Hours' appends a removable second range for split shifts, starting empty",Working Hours Settings,SV-8699 (§4.2 Working Hours - Add hours split shifts)
 SCH-HRS-06,38851,Overlapping hour ranges block Save; incomplete rows are ignored,Working Hours Settings,SV-8699 (§4.2 Working Hours - overlap validation; incomplete rows ignored by overlap check)
 SCH-PERM-01,30074,Schedule: View grants the full read-only experience across the whole page,Permissions,"SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: View),§14.3)"
 SCH-PERM-02,30075,View-only: every editing affordance is hidden or disabled,Permissions,"SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: View - editing affordances hidden or disabled))"

@@ -54,7 +54,7 @@ AUTOMATION: READY
 ",SV-8686 (§3.2),,
 No Tech/Dept toggle - department grouping is the only grid grouping,Navigation and Layout,Negative,Low,"1. You are signed in on a desktop browser.
 2. You are on the Schedule page.",1. Look through the grid toolbar and its dropdowns for any control that switches the grid between a department-grouped view and a flat technician-only view.,"1. No such toggle exists - the department-grouped rows are the only grid grouping.
-2. Department visibility is controlled only through the department toggles in the 'Filter and Display' dropdown.
+2. Department visibility is controlled only through the department toggles in the 'Filter & display' dropdown.
 
 ---
 This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.2), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
@@ -81,7 +81,7 @@ Schedule opens on Day view the first time you open it from the navigation,Naviga
 2. Of the three buttons Day, Week and Month, the one that is switched on (highlighted) is Day.
 3. The grid shows the Day layout: a 24-hour timeline for each technician row, with shifts placed at their times.
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the acceptance criterion of its story SV-8686, read on 11 August 2026, which states that when the schedule page loads the grid displays with day view as default. The Schedule specification version 27 does not say which view the page opens on, so this expectation comes from the story rather than the specification. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the acceptance criterion of its story SV-8686, read on 11 August 2026, which states that when the schedule page loads the grid displays with day view as default. The Schedule specification version 27 does not say which view the page opens on, so this expectation comes from the story rather than the specification. Last checked against build v3.5-65d6500 on 8/12/2026.
 
 AUTOMATION: READY
 ",SV-8863 (SV-8686 acceptance criterion - grid displays with day view as default),,
@@ -479,10 +479,15 @@ A click-to-arm alternative exists for scheduling without dragging,Drag-and-Drop 
 3. You are on the Schedule page.","1. Instead of dragging, click (arm) the work order card or line in the sidebar.
 2. Then click a technician cell in the grid.","1. The item can be placed onto a cell without holding a drag - clicking arms it, and clicking a cell places it.
 2. The result is the same as the equivalent drag-and-drop (scope picker / spread step rules apply the same way).
----
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§7, §11), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
 
-AUTOMATION: READY
+What you should see today: there is no click alternative anywhere. The work order card in the left-hand panel carries no button that arms it for placing - not when the page loads, not when you rest the mouse on the card, and not inside the card's line list. The only way to place a job on the grid is to drag it. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8957. That ticket has been closed without the problem being fixed, so do not wait for a fix.
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
+---
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§7, §11), read on 11 August 2026. Last checked against build v3.5-65d6500 on 8/12/2026.
+
+AUTOMATION: READY - EXPECT FAIL (SV-8957)
 ","SV-8688 (§7 (Keyboard support - click-to-arm),§11 (Accessibility))",,
 Month view: dragging a work order onto a day creates a shift for that day,Drag-and-Drop Scheduling,Functional,High,"1. You are signed in to the ShopView App on a desktop browser (window at least 960px wide).
 2. Your role has the Schedule: Edit permission.
@@ -1072,7 +1077,7 @@ AUTOMATION: READY
 Shift modal offers Delete only - there is no Reassign action,Shift Detail Modal,Functional,High,"1. You are signed in on a desktop browser with Schedule: Delete (which includes Edit and View).
 2. A shift exists; its detail modal is open.","1. Look at the modal's actions.
 2. Confirm there is no 'Reassign' action anywhere in the modal.
-3. Click Delete on a series shift and read what it asks (cancel without deleting).","1. The modal offers a Delete action (a trash icon in the header) and a close (x) icon - and no other actions.
+3. Click Delete on a series shift and read what it asks (cancel without deleting).","1. The modal offers a Delete action (a trash icon in the header) and a close (x) icon. It offers no way to move the shift to a different technician - no Reassign action, under that or any other name. Other editing controls may be present (for example notes, colour, or estimated hours); their presence is not what this test checks.
 2. There is no 'Reassign' action in the modal; reassignment is done by dragging a shift to another technician row (covered by its own case).
 3. Delete on a series member asks for a deletion scope (the full scope behavior has its own cases).
 
@@ -1202,8 +1207,8 @@ Before-hours and after-hours shifts are flagged against the tech's hours,Conflic
 3. A shift exists for that technician inside those hours.","1. In day view, drag the shift so it starts BEFORE the technician's working-day start (for example 6:00 AM).
 2. Look at the block and the conflict pill.
 3. Now drag the shift's right edge so it extends PAST the working-day end (for example to 7:00 PM).
-4. Look at the block and the conflict pill again.","1. The shift is flagged as a before-hours conflict, with a reason sentence in the spirit of 'Starts before working hours', measured against that technician's own configured working-day START time (not a fixed hour).
-2. The shift is flagged as an after-hours conflict, with a reason sentence in the spirit of 'Extends past working hours', measured against that technician's own configured working-day END time (not a fixed hour).
+4. Look at the block and the conflict pill again.","1. The shift is flagged as a before-hours conflict, with a reason sentence in the spirit of 'Starts before business hours', measured against that technician's own configured working-day START time (not a fixed hour).
+2. The shift is flagged as an after-hours conflict, with a reason sentence in the spirit of 'Extends past business hours', measured against that technician's own configured working-day END time (not a fixed hour).
 3. Both the start and the end follow the hierarchy technician hours, then shop business hours, then the general default working day of 7:00 AM to 7:00 PM.
 4. Warning icon on the block in each case; the conflict appears in the toolbar dropdown.
 
@@ -1371,11 +1376,11 @@ Panel button sits left of Today and its tooltip names what it will do,Grid Toolb
 7. The picture on the button is exactly the same in both states - only the tooltip changes.
 8. Clicking the button at step 4 hides the left panel, and clicking it again at step 7 shows it.
 
-Run this test as written and mark it on what you actually find. When it was last checked, on 11 August 2026, the Schedule toolbar had no panel button at all - the button furthest to the left above the grid was Today - so on that build steps 1 to 7 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
+Run this test as written and mark it on what you actually find. When it was last checked, on 12 August 2026, the Schedule toolbar still had no panel button at all - the button furthest to the left above the grid was Today, and the only thing on the page that hides anything is the small arrow that folds away the month calendar inside the panel, which is a different control - so on that build steps 1 to 7 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, its story SV-8686, read on 11 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse and §6 Grid toolbar), read on 11 August 2026. Last checked against build v3.5-af3a6e1 on 8/11/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, its story SV-8686, read on 11 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse and §6 Grid toolbar), read on 11 August 2026. Last checked against build v3.5-65d6500 on 8/12/2026.
 
-AUTOMATION: READY
+AUTOMATION: HOLD - the panel button does not exist in this build
 ",SV-8686 (§5.3 Panel collapse - the control: position; borderless icon; tooltip wording. §6 Grid toolbar - Panel toggle row),,
 Panel button hides the left panel and the grid widens into the space,Grid Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser, with the window at least 960 pixels wide.
 2. Your role has the Schedule: View permission.
@@ -1389,11 +1394,11 @@ Panel button hides the left panel and the grid widens into the space,Grid Toolba
 3. The grid grows into the space the panel gave up and lays itself out again in the wider area, so you can see more of the grid than you could before.
 4. Clicking the button a second time brings the panel back to its normal width, and the grid goes back to the size it was at step 1.
 
-Run this test as written and mark it on what you actually find. When it was last checked, on 11 August 2026, the Schedule toolbar had no panel button at all - the button furthest to the left above the grid was Today - so on that build steps 1 to 6 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
+Run this test as written and mark it on what you actually find. When it was last checked, on 12 August 2026, the Schedule toolbar had no panel button at all - the button furthest to the left above the grid was Today - so on that build steps 1 to 6 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, its story SV-8686, read on 11 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse and §3.1 Left panel: work order sidebar), read on 11 August 2026. Last checked against build v3.5-af3a6e1 on 8/11/2026.
+This is the expected behaviour as per epic SV-8685, read on 12 August 2026, its story SV-8686, read on 12 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse and §3.1 Left panel: work order sidebar), read on 12 August 2026. Last checked against build v3.5-65d6500 on 8/12/2026.
 
-AUTOMATION: READY
+AUTOMATION: HOLD - the panel button does not exist in this build
 ",SV-8686 (§5.3 Panel collapse - Behavior; §3.1 - collapsed from the grid toolbar handing its width to the grid),,
 What you had set up in the left panel survives hiding and showing it,Grid Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser, with the window at least 960 pixels wide.
 2. Your role has the Schedule: View permission.
@@ -1411,11 +1416,11 @@ What you had set up in the left panel survives hiding and showing it,Grid Toolba
 5. The panel comes back showing that work order's lines, not the full list of work orders - it returns to whichever of the two views was open when you hid it.
 6. The work order you had opened is still the selected one.
 
-Run this test as written and mark it on what you actually find. When it was last checked, on 11 August 2026, the Schedule toolbar had no panel button at all - the button furthest to the left above the grid was Today - so on that build steps 1 to 7 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
+Run this test as written and mark it on what you actually find. When it was last checked, on 12 August 2026, the Schedule toolbar still had no panel button at all - the button furthest to the left above the grid was Today, and the only thing on the page that hides anything is the small arrow that folds away the month calendar inside the panel, which is a different control - so on that build steps 1 to 7 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, its story SV-8686, read on 11 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse and §3.1 Left panel: work order sidebar), read on 11 August 2026. Last checked against build v3.5-af3a6e1 on 8/11/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, its story SV-8686, read on 11 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse and §3.1 Left panel: work order sidebar), read on 11 August 2026. Last checked against build v3.5-65d6500 on 8/12/2026.
 
-AUTOMATION: READY
+AUTOMATION: HOLD - the panel button does not exist in this build
 ",SV-8686 (§5.3 Panel collapse - State preservation; §3.1 - without losing panel state),,
 Menus and pop-up windows reposition when the left panel is hidden,Grid Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser, with the window at least 960 pixels wide.
 2. Your role has the Schedule: View permission.
@@ -1427,11 +1432,11 @@ Menus and pop-up windows reposition when the left panel is hidden,Grid Toolbar,F
 2. The whole pop-up is on screen: nothing is cut off at an edge, pushed outside the window, or left floating with a large empty gap beside it.
 3. The pop-up behaves normally otherwise - you can read it, use its buttons, and close it.
 
-Run this test as written and mark it on what you actually find. When it was last checked, on 11 August 2026, the Schedule toolbar had no panel button at all - the button furthest to the left above the grid was Today - so on that build steps 1 to 5 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
+Run this test as written and mark it on what you actually find. When it was last checked, on 12 August 2026, the Schedule toolbar had no panel button at all - the button furthest to the left above the grid was Today - so on that build steps 1 to 5 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, its story SV-8686, read on 11 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse, Popovers and modals), read on 11 August 2026. Last checked against build v3.5-af3a6e1 on 8/11/2026.
+This is the expected behaviour as per epic SV-8685, read on 12 August 2026, its story SV-8686, read on 12 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse, Popovers and modals), read on 12 August 2026. Last checked against build v3.5-65d6500 on 8/12/2026.
 
-AUTOMATION: READY
+AUTOMATION: HOLD - the panel button does not exist in this build
 ",SV-8686 (§5.3 Panel collapse - Popovers and modals),,
 Hiding the panel lasts for the rest of your sign-in but is not saved,Grid Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser, with the window at least 960 pixels wide.
 2. Your role has the Schedule: View permission.
@@ -1449,11 +1454,11 @@ Hiding the panel lasts for the rest of your sign-in but is not saved,Grid Toolba
 
 Still to be confirmed, and it affects the second point above. The product owner's description of 7 August says this choice lasts only for the current sign-in. Separately, the design review of 5 August asks for the Schedule's view settings to be stored per user so they survive signing out and back in. Those are two different promises. The question has been put to the product owner and has not been answered yet, so the second point follows the written specification for now. If the answer is that it should survive signing out, the second point will change.
 
-Run this test as written and mark it on what you actually find. When it was last checked, on 11 August 2026, the Schedule toolbar had no panel button at all - the button furthest to the left above the grid was Today - so on that build steps 1 to 7 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
+Run this test as written and mark it on what you actually find. When it was last checked, on 12 August 2026, the Schedule toolbar still had no panel button at all - the button furthest to the left above the grid was Today, and the only thing on the page that hides anything is the small arrow that folds away the month calendar inside the panel, which is a different control - so on that build steps 1 to 7 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, its story SV-8686, read on 11 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse, Persistence), read on 11 August 2026. Last checked against build v3.5-af3a6e1 on 8/11/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, its story SV-8686, read on 11 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse, Persistence), read on 11 August 2026. Last checked against build v3.5-65d6500 on 8/12/2026.
 
-AUTOMATION: READY
+AUTOMATION: HOLD - the panel button does not exist in this build
 ",SV-8686 (§5.3 Panel collapse - Persistence; session-scoped per user for build),,
 'Today' button jumps the grid to the current date,Grid Toolbar,Functional,High,"1. You are signed in on a desktop browser.
 2. You are on the Schedule page, navigated several weeks away from today.","1. Click the 'Today' button in the grid toolbar.
@@ -1491,10 +1496,10 @@ Last checked against build v3.5-7ec992f on 8/6/2026; the wording above was corre
 
 AUTOMATION: READY
 ",SV-8686 (§6 (Search) - spec v27 2026-08-07),,
-"'Filter & Display' dropdown combines department toggles, My Shifts, and VIN",Filter and Display and View Options,Functional,High,"1. You are signed in on a desktop browser.
-2. You are on the Schedule page.","1. Open the 'Filter & Display' dropdown in the grid toolbar.
-2. Read its contents and default states.","1. The dropdown is checkbox style and contains: a toggle per department, 'My Shifts', and 'VIN'.
-2. Defaults: all department toggles ON, 'My Shifts' OFF, 'VIN' OFF.
+"'Filter & display' dropdown: department toggles, 'My Shifts' and 'VIN Number'",Filter and Display and View Options,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on the Schedule page.","1. Open the 'Filter & display' dropdown in the grid toolbar.
+2. Read its contents and default states.","1. The dropdown is checkbox style and contains: a toggle per department, 'My Shifts', and 'VIN Number'.
+2. Defaults: all department toggles ON, 'My Shifts' OFF, 'VIN Number' OFF.
 3. There is no separate departments-only control - this dropdown replaces it.
 
 ---
@@ -1504,7 +1509,7 @@ AUTOMATION: READY
 ","SV-8700 (§6,§9 (Filter and Display dropdown))",,
 Department toggles show or hide individual department groups in the grid,Filter and Display and View Options,Functional,High,"1. You are signed in on a desktop browser.
 2. At least two department groups are visible in the grid.
-3. You are on the Schedule page.","1. In 'Filter and Display', turn OFF one department's toggle.
+3. You are on the Schedule page.","1. In 'Filter & display', turn OFF one department's toggle.
 2. Look at the grid.
 3. Turn it back ON.","1. The turned-off department's group (header and technician rows) disappears from the grid.
 2. Other departments are unaffected.
@@ -1517,7 +1522,7 @@ AUTOMATION: READY
 ",SV-8700 (§9 (Department toggles)),,
 'My Shifts' filters the grid to only the current user's shifts,Filter and Display and View Options,Functional,High,"1. You are signed in on a desktop browser as a user who appears as a technician row and has at least one shift.
 2. Other technicians also have shifts on the visible range.
-3. You are on the Schedule page.","1. In 'Filter and Display', turn ON 'My Shifts'.
+3. You are on the Schedule page.","1. In 'Filter & display', turn ON 'My Shifts'.
 2. Look at the grid.
 3. Turn it OFF again.","1. Only shifts assigned to you remain visible; all other technician rows and their shifts are hidden.
 2. Turning it off restores the full grid.
@@ -1532,7 +1537,7 @@ AUTOMATION: HOLD - needs a second sign-in as a user with no staff record of thei
 'VIN Number' toggle gates the block VIN only - tooltip and modal always show it,Filter and Display and View Options,Functional,Medium,"1. You are signed in on a desktop browser.
 2. A shift exists for a unit with a VIN; the VIN toggle is OFF.
 3. You are on the Schedule page in week view.","1. With 'VIN Number' off: read the block in week view, hover for the tooltip, then open the detail modal.
-2. Turn 'VIN Number' ON in 'Filter and Display'.
+2. Turn 'VIN Number' ON in 'Filter & display'.
 3. Read the block again in week view, then in day view, then in month view; hover for the tooltip and open the detail modal again.
 4. In day view, compare the height of the shift's lane with the toggle off and on.","1. 'VIN Number' off: no VIN line on the block (the block shows its three normal lines) - but the hover tooltip still shows the VIN, and the detail modal still shows the VIN.
 2. 'VIN Number' on: the VIN appears as an additional line on blocks in day and week views.
@@ -1546,14 +1551,14 @@ This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and 
 
 AUTOMATION: READY
 ","SV-8700 (§9 (VIN),§4.4); SV-8690 (§4.4,§9 (VIN option)); SV-8694 (§4.8 (Lane height with VIN))",,
-'View Options': six toggles with defaults; Capacity Bars and Events flip,Filter and Display and View Options,Functional,High,"1. You are signed in on a desktop browser.
+'View options': six toggles with defaults; Capacity Planning and Events flip,Filter and Display and View Options,Functional,High,"1. You are signed in on a desktop browser.
 2. You are on the Schedule page in week view with no view options changed yet (fresh state).
-3. At least one event and some shifts exist in the visible range, so capacity bars have fill.","1. Open 'View Options' in the grid toolbar.
+3. At least one event and some shifts exist in the visible range, so capacity bars have fill.","1. Open 'View options' in the grid toolbar.
 2. Read each toggle and its state.
-3. Turn OFF Capacity Bars, look at the day column headers, then turn it back ON.
-4. Turn OFF Events, look at the grid, then turn it back ON.","1. Six toggles are offered: Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday.
-2. Defaults: Business Hours OFF, Capacity Bars ON, Events ON, Tech Hours OFF, Saturday ON, Sunday ON.
-3. Capacity Bars OFF: the capacity bars disappear from the column headers; ON: they reappear with the same values.
+3. Turn OFF Capacity Planning, look at the day column headers, then turn it back ON.
+4. Turn OFF Events, look at the grid, then turn it back ON.","1. Six toggles are offered: Business Hours, Capacity Planning, Events, Tech Hours, Show Saturday, Show Sunday.
+2. Defaults: Business Hours OFF, Capacity Planning ON, Events ON, Tech Hours OFF, Show Saturday ON, Show Sunday ON.
+3. Capacity Planning OFF: the capacity bars disappear from the column headers; ON: they reappear with the same values.
 4. Events OFF: event blocks disappear from the grid while shifts remain; ON: the events reappear unchanged.
 ---
 This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§6, §9, §4.12), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
@@ -1563,7 +1568,7 @@ AUTOMATION: READY
 Business Hours toggle shades non-working hours in day view,Filter and Display and View Options,Functional,Medium,"1. You are signed in on a desktop browser.
 2. The shop has working hours set.
 3. You are on the Schedule page in DAY view with Business Hours OFF.","1. Note the timeline background outside working hours.
-2. Turn ON Business Hours in 'View Options'.
+2. Turn ON Business Hours in 'View options'.
 3. Look at the timeline again.","1. With the toggle on, the hours OUTSIDE the working day are shaded with a grey overlay.
 2. Working hours remain unshaded.
 3. Turning it off removes the shading.
@@ -1575,7 +1580,7 @@ AUTOMATION: READY
 ","SV-8700 (§9 (Business Hours),§4.8 (Business-hours shading))",,
 Tech Hours toggle displays each technician's working hours next to their name,Filter and Display and View Options,Functional,Medium,"1. You are signed in on a desktop browser.
 2. Technicians have configured working hours.
-3. You are on the Schedule page with Tech Hours OFF (default).","1. Turn ON Tech Hours in 'View Options'.
+3. You are on the Schedule page with Tech Hours OFF (default).","1. Turn ON Tech Hours in 'View options'.
 2. Look at the technician rows.","1. Each technician's working hours are displayed next to their name in the row header.
 2. The hours match the technicians' configured hours.
 3. Turning it off hides the hours again.
@@ -1584,11 +1589,11 @@ This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and 
 
 AUTOMATION: READY
 ",SV-8700 (§9 (Tech Hours)),,
-Saturday and Sunday toggles include or exclude the weekend columns,Filter and Display and View Options,Functional,Medium,"1. You are signed in on a desktop browser.
-2. You are on the Schedule page in WEEK view with Saturday and Sunday ON (default) - 7 columns visible.","1. Turn OFF Saturday in 'View Options'; look at the grid.
-2. Turn OFF Sunday too; look again.
-3. Turn both back ON.","1. Saturday off: the Saturday column is removed (6 columns remain).
-2. Sunday off too: 5 weekday columns remain (Monday to Friday).
+'Show Saturday' and 'Show Sunday' include or exclude the weekend columns,Filter and Display and View Options,Functional,Medium,"1. You are signed in on a desktop browser.
+2. You are on the Schedule page in WEEK view with Saturday and Sunday ON (default) - 7 columns visible.","1. Turn OFF 'Show Saturday' in 'View options'; look at the grid.
+2. Turn OFF 'Show Sunday' too; look again.
+3. Turn both back ON.","1. 'Show Saturday' off: the Saturday column is removed (6 columns remain).
+2. 'Show Sunday' off too: 5 weekday columns remain (Monday to Friday).
 3. Both back on: the full Monday-to-Sunday 7-column week returns.
 
 ---
@@ -1853,7 +1858,7 @@ This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and 
 AUTOMATION: READY
 ","SV-8700 (§10 (Color labels are editable per shop),§4.10 (shared picker))",,
 Business-hours toggle reveals a per-day (Mon-Sun) From-To editor,Working Hours Settings,Functional,High,"1. You are signed in to the ShopView App with access to location settings.
-2. You are on the Edit Location screen for a shop.","1. Find the business hours setting on Edit Location and read its default state.
+2. You are on the Edit Location screen for a shop - Settings > Locations, then the pencil on that shop's row.","1. Find the business hours setting on Edit Location and read its default state.
 2. Turn the 'Set business hours for this shop' toggle ON.
 3. Read the per-day rows shown when business hours are ON.
 4. Set a From time and a To time for one day (for example Monday).
@@ -1864,40 +1869,40 @@ Business-hours toggle reveals a per-day (Mon-Sun) From-To editor,Working Hours S
 5. The saved shop business hours are used by the Schedule (start-time hierarchy, before/after-hours conflicts, business-hours shading).
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.2), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.2), read on 11 August 2026. Last checked against build v3.5-65d6500 on 8/12/2026.
 
 AUTOMATION: READY
 ","SV-8699 (§4.2 Working Hours - business hours toggle,per-day From/To editor)",,
-"Edit Staff has a 'Set custom hours for this technician' toggle, off by default",Working Hours Settings,Functional,High,"1. You are signed in with access to staff settings.
-2. You open the Edit Staff Member screen for a technician.","1. Open the Edit Staff Member screen for a technician.
+"Edit Staff has a 'Set working hours for this technician' toggle, off by default",Working Hours Settings,Functional,High,"1. You are signed in with access to staff settings.
+2. You open the Edit Staff Member screen for a technician - Settings > Staff, then the pencil on that technician's row.","1. Open the Edit Staff Member screen for a technician.
 2. Find the custom-hours setting and read its default state.
-3. Turn the 'Set custom hours for this technician' toggle ON.","1. Edit Staff Member shows a toggle labelled 'Set custom hours for this technician'.
+3. Turn the 'Set working hours for this technician' toggle ON.","1. Edit Staff Member shows a toggle labelled 'Set working hours for this technician'.
 2. The toggle is OFF by default (no custom hours set).
 3. Turning it ON reveals a per-day working-hours editor for that technician.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.2), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.2), read on 11 August 2026. Last checked against build v3.5-65d6500 on 8/12/2026.
 
 AUTOMATION: READY
 ",SV-8699 (§4.2 Working Hours - technician custom-hours toggle),,
 A technician with no custom hours inherits the shop business hours,Working Hours Settings,Functional,Medium,"1. The shop has business hours set for the shop.
-2. A technician has the 'Set custom hours for this technician' toggle OFF.","1. Confirm the technician has no custom hours set.
+2. A technician has the 'Set working hours for this technician' toggle OFF.","1. Confirm the technician has no custom hours set.
 2. Schedule a shift for that technician and check start-time defaults / before-after-hours conflicts against the shop business hours.","1. With no custom hours, the technician's working hours fall back to the shop business hours.
 2. Start-time defaults and before/after-hours conflict checks for that technician use the shop business hours.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.2), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.2), read on 11 August 2026. Last checked against build v3.5-65d6500 on 8/12/2026.
 
 AUTOMATION: READY
 ",SV-8699 (§4.2 Working Hours - inherit shop hours when no custom hours),,
-"'Add hours' appends a removable second range for split shifts, starting empty",Working Hours Settings,Functional,Medium,1. You are in the per-day working-hours editor (location or technician) with a day's first range set.,"1. On one day, click 'Add hours'.
+"'Add Hours' appends a removable second range for split shifts, starting empty",Working Hours Settings,Functional,Medium,"1. You are in the per-day working-hours editor with a day's first range set. Reach it either from Settings > Locations > the pencil on a shop's row > turn on 'Set business hours for this shop', or from Settings > Staff > the pencil on a technician's row > turn on 'Set working hours for this technician'.","1. On one day, click 'Add Hours'.
 2. Read the new range that appears.
-3. Set the second range, then remove it.","1. 'Add hours' appends an additional From-To range to that day (to support split shifts).
+3. Set the second range, then remove it.","1. 'Add Hours' appends an additional From-To range to that day (to support split shifts).
 2. The added range starts empty (no From/To pre-filled).
 3. Each added range can be removed individually.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.2), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.2), read on 11 August 2026. Last checked against build v3.5-65d6500 on 8/12/2026.
 
 AUTOMATION: READY
 ",SV-8699 (§4.2 Working Hours - Add hours split shifts),,
@@ -2026,7 +2031,7 @@ AUTOMATION: HOLD - needs a second sign-in as a user who cannot see work orders
 No own-only restriction: a View user sees ALL technicians' shifts,Permissions,Functional,High,"1. Shifts and events exist for SEVERAL different technicians.
 2. A test user with a low-tier View-only role exists (and is themselves one of the technicians).
 3. You are signed in AS that user, on the Schedule page.","1. Read the grid across all departments and technicians.
-2. Check 'My Shifts' in 'Filter and Display' is OFF (default).","1. The user sees ALL technicians' shifts and events, not only their own - there is no role-based 'own shifts only' restriction.
+2. Check 'My Shifts' in 'Filter & display' is OFF (default).","1. The user sees ALL technicians' shifts and events, not only their own - there is no role-based 'own shifts only' restriction.
 2. 'My Shifts' exists only as an optional personal convenience filter (off by default), not a security boundary.
 
 ---
@@ -2051,7 +2056,7 @@ Clocking into line tasks is gated by the staff 'Time Clock' setting,Permissions,
 2. The Time-Clock-OFF staff member cannot - the ability is controlled by the staff-record setting, not by the Schedule permission tier.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§14.4), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§14.4), read on 11 August 2026. Last checked against build v3.5-65d6500 on 8/12/2026.
 
 AUTOMATION: HOLD - needs a second sign-in as each of the two staff members
 ",SV-8686 (§14.4 (Time Clock setting)),,
@@ -2071,7 +2076,7 @@ AUTOMATION: HOLD - needs a second sign-in as a user who cannot see work orders
 Default roles start at the Schedule level the spec names (view-only vs edit),Permissions,Functional,High,"1. You are signed in as an admin who can view and edit the roles and their permissions.
 2. You can sign in (or switch) to a user who holds each role you need to check.
 3. Write down each role's current Schedule permissions before you change anything, and put them back afterwards.","1. Open the roles screen where each role's permissions are listed.
-2. Take these roles one at a time - Technician, Parts Manager, Parts Tech, Office, Time Clock - use 'Reset To Template' so the role is back at its default, then read its Schedule permissions (View, Edit, Delete).
+2. Take these roles one at a time - Technician, Parts Manager, Parts Tech, Office, Time Clock. Open the role by clicking the pencil on its row, then click 'Reset to template' on the role's own screen so the role is back at its default, and read its Schedule permissions (View, Edit, Delete). Note: the three-dot menu on the roles list does NOT offer this - it only offers 'View Permissions'. The reset button is on the role's own screen.
 3. Do the same for these roles - Service Manager, Senior Service Advisor, Service Advisor, Foreman - and read their Schedule permissions.
 4. Sign in as a user with one of the roles from step 2 and try to drag a work order onto the grid.
 5. Sign in as a user with one of the roles from step 3 and try the same drag.
@@ -2081,7 +2086,7 @@ Default roles start at the Schedule level the spec names (view-only vs edit),Per
 4. The user from step 5 can drag a work order onto the grid and create a shift.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§14.1), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§14.1), read on 11 August 2026. Last checked against build v3.5-65d6500 on 8/12/2026.
 
 AUTOMATION: HOLD - needs a second sign-in as a holder of each permission level
 ",SV-8685 [epic - cross-cutting - no single-story owner] (§14.1 default role tiers - view-only role list + edit role list; spec v27 2026-08-07),,
@@ -2216,11 +2221,11 @@ On a narrow window the panel button still works and your choice holds,Edge Cases
 2. The panel stays as you set it while you keep working at that width - moving around the page does not undo your choice.
 3. Your choice only stops applying when the window is resized back across the 960 pixel mark; at that point the page goes back to deciding for itself whether the panel is shown.
 
-Run this test as written and mark it on what you actually find. When it was last checked, on 11 August 2026, the Schedule toolbar had no panel button at all - the button furthest to the left above the grid was Today - so on that build steps 1 to 4 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
+Run this test as written and mark it on what you actually find. When it was last checked, on 12 August 2026, the Schedule toolbar had no panel button at all - the button furthest to the left above the grid was Today - so on that build steps 1 to 4 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, its story SV-8686, read on 11 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse, Narrow viewports), read on 11 August 2026. Last checked against build v3.5-af3a6e1 on 8/11/2026.
+This is the expected behaviour as per epic SV-8685, read on 12 August 2026, its story SV-8686, read on 12 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse, Narrow viewports), read on 12 August 2026. Last checked against build v3.5-65d6500 on 8/12/2026.
 
-AUTOMATION: READY
+AUTOMATION: HOLD - the panel button does not exist in this build
 ",SV-8686 (§5.3 Panel collapse - Narrow viewports; toggle works at any width and the manual choice holds until the next resize),,
 Shifts and events created before the Schedule rewrite still appear after it,Cross-Module and Rewrite Regression,Functional,Critical,"1. This case runs around the Schedule rewrite release: before the release, note (or create) a handful of scheduled shifts and calendar events - including at least one future-dated one - with their technician, day, and time.
 2. The release (which replaces the Schedule behind the scenes) has been deployed.","1. After the release, open the Schedule and navigate to the dates of the noted entries.
