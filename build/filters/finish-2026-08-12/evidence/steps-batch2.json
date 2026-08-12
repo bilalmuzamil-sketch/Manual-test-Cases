@@ -1,0 +1,206 @@
+{
+ "read_at_utc": "2026-08-12T11:19:17.999Z",
+ "checks": [
+  {
+   "name": "C38897 filter+search empty state",
+   "with_filter_only": {
+    "url": "https://sv8785.qa.shopview.com/workorders?tab=all&status=approved",
+    "rows": 33,
+    "empty": null,
+    "status_chip": {
+     "painted": "Status : Approved keyboard_arrow_down",
+     "disabled": false,
+     "opacity": "1",
+     "pointer": "auto",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangl"
+    }
+   },
+   "with_filter_and_search": {
+    "url": "https://sv8785.qa.shopview.com/workorders?tab=all&status=approved&search=zzzznomatchqqq",
+    "rows": 2,
+    "empty": "No work orders match your filters",
+    "status_chip": {
+     "painted": "Status : Approved keyboard_arrow_down",
+     "disabled": false,
+     "opacity": "1",
+     "pointer": "auto",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangl"
+    }
+   },
+   "empty_message_text": "No work orders match your filters",
+   "offers_clear_filters": true,
+   "offers_clear_search_in_message": [
+    "page_search_clear"
+   ],
+   "page_search_clear_present_in_box": true,
+   "NOTE": "scanner proven able to see page_search_clear (empty-state.json rule-out)"
+  },
+  {
+   "name": "C38877 Imported",
+   "status_menu_items": [],
+   "clicked": null,
+   "other_status_items_after_imported": [],
+   "chips_before": {
+    "status": {
+     "painted": "Status keyboard_arrow_down",
+     "disabled": false,
+     "opacity": "1",
+     "pointer": "auto",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangl"
+    },
+    "customer": {
+     "painted": "person Customer keyboard_arrow_down",
+     "disabled": false,
+     "opacity": "1",
+     "pointer": "auto",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangl"
+    },
+    "tech": {
+     "painted": "build Lead Technician keyboard_arrow_down",
+     "disabled": false,
+     "opacity": "1",
+     "pointer": "auto",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangl"
+    },
+    "advisor": {
+     "painted": "headset_mic Service Advisor keyboard_arrow_down",
+     "disabled": false,
+     "opacity": "1",
+     "pointer": "auto",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangl"
+    },
+    "asset": {
+     "painted": "local_shipping Asset on Site keyboard_arrow_down",
+     "disabled": false,
+     "opacity": "1",
+     "pointer": "auto",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangl"
+    }
+   },
+   "chips_with_imported": {
+    "status": {
+     "painted": "Status keyboard_arrow_down",
+     "disabled": false,
+     "opacity": "1",
+     "pointer": "auto",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangl"
+    },
+    "customer": {
+     "painted": "person Customer keyboard_arrow_down",
+     "disabled": false,
+     "opacity": "1",
+     "pointer": "auto",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangl"
+    },
+    "tech": {
+     "painted": "build Lead Technician keyboard_arrow_down",
+     "disabled": false,
+     "opacity": "1",
+     "pointer": "auto",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangl"
+    },
+    "advisor": {
+     "painted": "headset_mic Service Advisor keyboard_arrow_down",
+     "disabled": false,
+     "opacity": "1",
+     "pointer": "auto",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangl"
+    },
+    "asset": {
+     "painted": "local_shipping Asset on Site keyboard_arrow_down",
+     "disabled": false,
+     "opacity": "1",
+     "pointer": "auto",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangl"
+    }
+   },
+   "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+   "rows": 33
+  },
+  {
+   "name": "C38878 Asset on Site No",
+   "picked": "No",
+   "url": "https://sv8785.qa.shopview.com/workorders?vehicleHere=0&tab=all",
+   "rows": 33,
+   "chip": {
+    "painted": "local_shipping Asset on Site : No keyboard_arrow_down",
+    "disabled": false,
+    "opacity": "1",
+    "pointer": "auto",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangl"
+   },
+   "first_col_values": [
+    "",
+    "location_on"
+   ]
+  },
+  {
+   "name": "C38903 collapse with search",
+   "before": {
+    "rows": 2,
+    "url": "https://sv8785.qa.shopview.com/workorders?tab=all&search=Iibay",
+    "search_box": {
+     "value": "Iibay",
+     "visible": true,
+     "y": 85
+    },
+    "chips_present": [
+     "status",
+     "customer",
+     "tech",
+     "advisor",
+     "asset"
+    ]
+   },
+   "after_collapse": {
+    "rows": 2,
+    "url": "https://sv8785.qa.shopview.com/workorders?tab=all&search=Iibay",
+    "search_box": {
+     "value": "Iibay",
+     "visible": true,
+     "y": 85
+    },
+    "chips_present": []
+   },
+   "after_expand": {
+    "rows": 2,
+    "chips_present": [
+     "status",
+     "customer",
+     "tech",
+     "advisor",
+     "asset"
+    ]
+   }
+  },
+  {
+   "name": "C38896 back-to-my-view on own view",
+   "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+   "back_to_view_matches": [
+    {
+     "t": "undo\nBack To My Saved Filters",
+     "tid": "back_to_saved_filters"
+    },
+    {
+     "t": "undo\nBack To My Saved Filters",
+     "tid": null
+    },
+    {
+     "t": "Back To My Saved Filters",
+     "tid": null
+    }
+   ],
+   "any_tid_like_back": [
+    "back_to_saved_filters"
+   ]
+  }
+ ],
+ "bridge_errors": [],
+ "api_errors": [
+  {
+   "m": "GET",
+   "s": 404,
+   "u": "/api/api/sso/check"
+  }
+ ]
+}

@@ -1,0 +1,183 @@
+{
+ "read_at_utc": "2026-08-12T11:15:38.310Z",
+ "checks": [
+  {
+   "name": "C38883/98/99 page search",
+   "toggle_exists": 1,
+   "toggle_pos": [
+    {
+     "tid": "page_search_toggle",
+     "t": "search\nSearch",
+     "x": 1272,
+     "y": 90
+    }
+   ],
+   "input_visible_before_click": 0,
+   "inputs_after_click": [
+    {
+     "ph": "",
+     "tid": "select_global_search",
+     "x": 761,
+     "w": 214
+    },
+    {
+     "ph": "Type to search",
+     "tid": "page_search_input",
+     "x": 1238,
+     "w": 132
+    }
+   ],
+   "rows_before_type": 33,
+   "rows_after_type_Iibay": 2,
+   "narrowed": true,
+   "url_after_type": "https://sv8785.qa.shopview.com/workorders?status=estimate&tab=all&search=Iibay",
+   "apply_or_submit_button_found": [
+    {
+     "t": "Search",
+     "tid": null,
+     "x": 761,
+     "y": 10
+    },
+    {
+     "t": "Search",
+     "tid": null,
+     "x": 761,
+     "y": 20
+    },
+    {
+     "t": "search",
+     "tid": null,
+     "x": 1214,
+     "y": 85
+    }
+   ],
+   "clear_candidates": [
+    {
+     "tid": "page_search_clear",
+     "aria": null,
+     "t": "cancel",
+     "x": 1352
+    },
+    {
+     "tid": "clear_filters",
+     "aria": null,
+     "t": "Clear Filters",
+     "x": 913
+    },
+    {
+     "tid": "empty_state_clear_filters",
+     "aria": null,
+     "t": "Clear Filters",
+     "x": 771
+    }
+   ]
+  },
+  {
+   "name": "C38900 search across tabs",
+   "seq": [
+    {
+     "tab": "tab_estimates",
+     "url": "https://sv8785.qa.shopview.com/workorders?status=estimate&search=Iibay",
+     "search_box": {
+      "value": "Iibay",
+      "ph": "Type to search",
+      "visible": true
+     },
+     "rows": 2
+    },
+    {
+     "tab": "tab_completed",
+     "url": "https://sv8785.qa.shopview.com/workorders?status=estimate&tab=complete&search=Iibay",
+     "search_box": {
+      "value": "Iibay",
+      "ph": "Type to search",
+      "visible": true
+     },
+     "rows": 2
+    },
+    {
+     "tab": "tab_all",
+     "url": "https://sv8785.qa.shopview.com/workorders?status=estimate&tab=all&search=Iibay",
+     "search_box": {
+      "value": "Iibay",
+      "ph": "Type to search",
+      "visible": true
+     },
+     "rows": 2
+    }
+   ]
+  },
+  {
+   "name": "C38897 empty state",
+   "status_picked": null,
+   "rows_with_filter": 2,
+   "rows_with_filter_and_search": 2,
+   "empty_message_blocks": [
+    {
+     "t": "On Sitearrow_drop_up\tStatusarrow_drop_up\tWaiting On Partsarrow_drop_up\tNumberarrow_drop_up\tCustomerarrow_drop_up\tAssetarrow_drop_up\tUnitarrow_drop_up\tVIN/Serial #arrow_drop_up\tProgress\tService Advisorarrow_drop_up\tLead Technicianarrow_drop_up\tClocked Inarrow_drop_up\tLinesarrow_drop_up\tTotal Pricearr",
+     "tids": [
+      "empty_state_clear_filters"
+     ]
+    },
+    {
+     "t": "No work orders match your filters\nClear Filters",
+     "tids": [
+      "empty_state_clear_filters"
+     ]
+    },
+    {
+     "t": "No work orders match your filters\nClear Filters",
+     "tids": [
+      "empty_state_clear_filters"
+     ]
+    },
+    {
+     "t": "No work orders match your filters",
+     "tids": []
+    }
+   ],
+   "clear_search_offer": [],
+   "clear_filters_offer": [
+    {
+     "t": "Clear Filters",
+     "tid": "clear_filters",
+     "x": 913,
+     "y": 144
+    },
+    {
+     "t": "Clear Filters",
+     "tid": null,
+     "x": 929,
+     "y": 148
+    },
+    {
+     "t": "Clear Filters",
+     "tid": null,
+     "x": 929,
+     "y": 148
+    },
+    {
+     "t": "No work orders match your filters\nClear Filters",
+     "tid": null,
+     "x": 30,
+     "y": 966
+    },
+    {
+     "t": "No work orders match your filters\nClear Filters",
+     "tid": null,
+     "x": 46,
+     "y": 970
+    }
+   ],
+   "url": "https://sv8785.qa.shopview.com/workorders?status=estimate&tab=all&search=zzzznomatchqqq"
+  }
+ ],
+ "bridge_errors": [],
+ "api_errors": [
+  {
+   "m": "GET",
+   "s": 404,
+   "u": "/api/api/sso/check"
+  }
+ ]
+}
