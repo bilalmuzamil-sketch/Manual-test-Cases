@@ -1,0 +1,130 @@
+{
+ "30016": {
+  "steps": [
+   {
+    "step": "1 left-click an empty spot in a technician's cell",
+    "seen": "clicked {\"x\":714,\"y\":910} in lane \"LC Larry Collins Heavy Duty Technician\"; menu(s) opened: [\"BILAL MUZAMIL · TUE, AUG 11 event Create Event content_paste New Work Order\"]"
+   },
+   {
+    "step": "1 the menu contains 'Create Event'",
+    "seen": "present=true"
+   },
+   {
+    "step": "2 the event modal opens with the clicked technician and date pre-set",
+    "seen": "\"Create Event close Event name All day Start date Start time arrow_drop_down End date End time arrow_drop_down Grey expand_more Note (optional) Cancel Create Event\""
+   },
+   {
+    "step": "3 fill a name and save",
+    "seen": "{\"filled\":{\"ok\":true,\"tid\":\"input_event_title\"},\"saved\":{\"clicked\":true,\"label\":\"Create Event\"},\"evToast\":[{\"cls\":\"undo-toast-host column\",\"text\":\"check Event created. Undo close\",\"buttons\":[\"Undo\",\"close\"]},{\"cls\":\"undo-toast row no-wrap items-start\",\"text\":\"check Event created. Undo close\",\"button"
+   },
+   {
+    "step": "3-4 an event block is created and a toast with Undo appears",
+    "seen": "events 52 -> 53; toast: [{\"cls\":\"undo-toast-host column\",\"text\":\"check Event created. Undo close\",\"buttons\":[\"Undo\",\"close\"]},{\"cls\":\"undo-toast row no-wrap items-start\",\"text\":\"check Event created. Undo close\",\"buttons\":[\"Undo\",\"close\"]},{\"cls\":\"undo-toast__check row flex-center\",\"text\":\"check\",\"buttons\":[]},{\"cls\":\"undo-toast__body column col\",\"text\":\"Event created. Undo\",\"buttons\":[\"Undo\"]},{\"cls\":\"undo-toast__message\",\"text\":\"Event created.\",\"buttons\":[]},{\"cls\":\"q-btn q-btn-item non-selectable no-outline q-btn--\",\"text\":\"Undo\",\"buttons\":[]},{\"cls\":\"q-btn q-btn-item non-selectable no-outline q-btn--\",\"text\":\"close\",\"buttons\":[]}]"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T09:06:00.230Z"
+ },
+ "30024": {
+  "steps": [
+   {
+    "step": "precondition: a shift on a day outside the technician working days",
+    "seen": "the board already computes this reason: 67 shifts across the range carry conflictReasons including \"non_working_day\" (the four reasons present are {\"before_hours\":57,\"double_booked\":105,\"after_hours\":107,\"non_working_day\":67})"
+   },
+   {
+    "step": "2 look at the block and the conflict pill",
+    "seen": "toolbar pill reads: warning_amber 38 conflicts"
+   },
+   {
+    "step": "3 the conflict is listed in the toolbar dropdown",
+    "seen": "\"SCHEDULE ISSUES 38 warning_amber Fuline Enterprises Starts before business hours (6:00 AM) · Extends past business hours (3:00 PM) chevron_right warning_amber Zuline Builders Starts before business hours (7:00 AM) · Extends past business hours (7:00 PM) · Double-booked with Pamill Paving, Aagate Landscaping, Braside Design chevron_right warning_amber Kastone Solutions Double-booked with Goport Energy, Pamill Paving chevron_right warning_amber Kastone Solutions Double-booked with Goport Energy, Pamill Paving chevron_right warning_amber Pamill Paving Double-booked with Zuline Builders, Aagate L"
+   },
+   {
+    "step": "1 the reason names the working-day rule",
+    "seen": "examples: [{\"wo\":\"S-15733\",\"starts\":\"2026-06-06T12:00:00Z\",\"reasons\":[\"non_working_day\"]},{\"wo\":\"S-15716\",\"starts\":\"2026-06-06T12:00:00Z\",\"reasons\":[\"non_working_day\"]},{\"wo\":\"S-15543\",\"starts\":\"2026-06-06T12:00:00Z\",\"reasons\":[\"non_working_day\"]}]"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T09:06:04.181Z"
+ },
+ "30052": {
+  "steps": [
+   {
+    "step": "1 drag a shift block from one technician's row towards another",
+    "seen": "Fuline Enterprises G30 6 Lines  ->  aimed at lane \"MT MQ Test Tech Qamar MQ Test Tech\" at {\"x\":714,\"y\":675}"
+   },
+   {
+    "step": "was the move actually cross-technician? (proven from the API, not from my aim)",
+    "seen": "shifts whose staffId changed: 0 [] ; shifts that moved but kept the same technician: 0"
+   },
+   {
+    "step": "1 a confirmation modal appears for the cross-technician move",
+    "seen": "[\"Reassign shift S-13014 · Fuline Enterprises close Move this shift to MQ Test Tech Qamar on Tue, Aug 11? The shift’s time changes from 12:00 PM – 8:43 PM to 7:00 AM – 3:43 PM. Cancel Reassign\",\"Reassign shift S-13014 · Fuline Enterprises close Move this shift to MQ Test Tech Qamar on Tue, Aug 11? The shift’s time changes from 12:00 PM – 8:43 PM to 7:00 AM – 3:43 PM. Cancel Reassign\"]  [and no cross-technician move actually occurred, so this is NOT evidence either way]"
+   },
+   {
+    "step": "2-4 shift sits on B, rosters swap, toast with Undo",
+    "seen": "toast: []"
+   }
+  ],
+  "verdict": "INCONCLUSIVE - the drag did not produce a cross-technician move",
+  "at": "2026-08-12T09:08:34.672Z"
+ },
+ "30057": {
+  "steps": [
+   {
+    "step": "1 open a shift that belongs to a series and press Delete",
+    "seen": "no series block found on screen"
+   },
+   {
+    "step": "1 three scope options are offered",
+    "seen": "no scope dialog captured"
+   },
+   {
+    "step": "nothing was confirmed",
+    "seen": "the run pressed Escape rather than any scope button"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T09:09:03.955Z"
+ },
+ "30062": {
+  "steps": [
+   {
+    "step": "1 delete a standalone (non-series) shift",
+    "seen": "deleted a shift THIS PASS created: work order S-12876, seriesId null"
+   },
+   {
+    "step": "2 watch what is asked",
+    "seen": "dialogs open immediately after pressing Delete: []"
+   },
+   {
+    "step": "1 no series-scope prompt appears",
+    "seen": "no scope prompt - the shift went at once"
+   },
+   {
+    "step": "2 the shift is deleted and an undo toast appears",
+    "seen": "toast: [{\"cls\":\"undo-toast-host column\",\"text\":\"check Shift deleted. Undo close\",\"buttons\":[\"Undo\",\"close\"]},{\"cls\":\"undo-toast row no-wrap items-start\",\"text\":\"check Shift deleted. Undo close\",\"buttons\":[\"Undo\",\"close\"]},{\"cls\":\"undo-toast__check row flex-center\",\"text\":\"check\",\"buttons\":[]},{\"cls\":\"undo-toast__body column col\",\"text\":\"Shift deleted. Undo\",\"buttons\":[\"Undo\"]},{\"cls\":\"undo-toast__message\",\"text\":\"Shift deleted.\",\"buttons\":[]},{\"cls\":\"q-btn q-btn-item non-selectable no-outline q-btn--\",\"text\":\"Undo\",\"buttons\":[]},{\"cls\":\"q-btn q-btn-item non-selectable no-outline q-btn--\",\"text\":\"close\",\"buttons\":[]}] ; board removed 1"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T09:06:32.004Z"
+ },
+ "30064": {
+  "steps": [
+   {
+    "step": "1 trigger a toast, leave it alone, and time it",
+    "seen": "polled every 500 ms with the cursor parked away from it: gone by 4038 ms ; had an Undo action: true"
+   },
+   {
+    "step": "2 hold the cursor over it well past its life (14 s)",
+    "seen": "still present: true [{\"text\":\"check Shift moved to Mon, Aug 10. Undo close\",\"buttons\":[\"Undo\",\"close\"]}]"
+   },
+   {
+    "step": "3 move the cursor off - it dismisses",
+    "seen": "gone 4032 ms after the cursor left"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T09:09:00.950Z"
+ }
+}
