@@ -1,0 +1,42 @@
+{
+ "30057": {
+  "steps": [
+   {
+    "step": "precondition: a shift that is a MIDDLE member of a repeating series",
+    "seen": "series 7fca50c0, 4 shifts; opened shift 3 of 4. The modal states it itself: \"Part of a series - Shift 3 of 4\". Selected BY ID, never by customer name."
+   },
+   {
+    "step": "1 open that shift and press Delete",
+    "seen": "delete control = {\"tid\":\"button_shift_detail_delete\",\"t\":\"delete_outline\"}"
+   },
+   {
+    "step": "2 a scope dialog offers all three options",
+    "seen": "[\"Delete from this series? close layers Series of 4 shifts This shift is part of a series. Choose how much to remove. This shift only returns 9h This and all later shifts returns 14h 30m Entire series (4 shifts) returns 32h 30m Cancel\"]"
+   },
+   {
+    "step": "  the dialog controls",
+    "seen": "[{\"tid\":\"button_close_dialog\",\"t\":\"close\"},{\"tid\":\"button_delete_scope_shift\",\"t\":\"This shift only returns 9h\"},{\"tid\":\"button_delete_scope_following\",\"t\":\"This and all later shifts returns 14h 30m\"},{\"tid\":\"button_delete_scope_series\",\"t\":\"Entire series (4 shifts) returns 32h 30m\"},{\"tid\":\"button_cancel_dialog\",\"t\":\"Cancel\"}]"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T10:08:19.098Z"
+ },
+ "43556": {
+  "steps": [
+   {
+    "step": "precondition: week view, a shift that belongs to a repeating series",
+    "seen": "week view is the default on arrival; shift 207e4f90 is member 3 of 4 of series 7fca50c0"
+   },
+   {
+    "step": "1 open the shift and look for the technician control",
+    "seen": "{\"found\":true,\"controls\":[{\"tid\":\"text_shift_detail_lane_heading\",\"tag\":\"SPAN\",\"t\":\"TECHNICIAN\"},{\"tid\":\"text_shift_detail_technician\",\"tag\":\"SPAN\",\"t\":\"Diana Macias\"}]}"
+   },
+   {
+    "step": "2 the context menu route",
+    "seen": "[\"Delete from this series? close layers Series of 4 shifts This shift is part of a series. Choose how much to remove. This shift only returns 9h This and all later shifts returns 14h 30m Entire series (4 shifts) returns 32h 30m Cancel\"]"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T10:08:29.951Z"
+ }
+}
