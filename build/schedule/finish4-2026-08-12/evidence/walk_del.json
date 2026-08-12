@@ -1,0 +1,64 @@
+{
+ "30060": {
+  "steps": [
+   {
+    "step": "precondition: the SAME work order has a series on technician A and an independent series on technician B",
+    "seen": "SEEDED this pass: work order S-14209 carries series 7fca50c0 on technician A and series 81a6b48c on MQ Test Tech Qamar (evidence/seed-series.json)"
+   },
+   {
+    "step": "1 delete one of technician A's series shifts with the 'whole series' scope",
+    "seen": "the scope control read \"Entire series (4 shifts) returns 32h 30m\""
+   },
+   {
+    "step": "2 look at both technicians' rows",
+    "seen": "technician A's series: 4 shifts -> 0; technician B's series: 2 -> 2; board total 174 -> 170"
+   },
+   {
+    "step": "3 an undo toast appears",
+    "seen": "[{\"t\":\"check Shift deleted. Undo close\",\"btns\":[\"Undo\",\"close\"]},{\"t\":\"check Shift deleted. Undo close\",\"btns\":[\"Undo\",\"close\"]},{\"t\":\"check\",\"btns\":[]},{\"t\":\"Shift deleted. Undo\",\"btns\":[\"Undo\"]},{\"t\":\"Shift deleted.\",\"btns\":[]},{\"t\":\"Undo\",\"btns\":[]},{\"t\":\"close\",\"btns\":[]}]"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T10:11:47.285Z"
+ },
+ "30065": {
+  "steps": [
+   {
+    "step": "precondition: a shift exists; note its technician, day and time",
+    "seen": "shift e35d37ef, chosen from the blocks the grid actually renders; board held 170 shifts"
+   },
+   {
+    "step": "2 delete the shift, watch for the toast, then click Undo on it",
+    "seen": "no scope dialog - this is a lone shift, the delete went straight through; toast read within 700ms: [{\"t\":\"check Shift deleted. Undo close\",\"btns\":[\"Undo\",\"close\"]},{\"t\":\"check Shift deleted. Undo close\",\"btns\":[\"Undo\",\"close\"]},{\"t\":\"Shift deleted. Undo\",\"btns\":[\"Undo\"]},{\"t\":\"Shift deleted.\",\"btns\":[]},{\"t\":\"Undo\",\"btns\":[]},{\"t\":\"close\",\"btns\":[]}]; Undo control found and clicked = true"
+   },
+   {
+    "step": "  after Undo",
+    "seen": "board 170 -> 170; the same shift id present again = true"
+   },
+   {
+    "step": "1 create / 3 move / 4 reassign halves",
+    "seen": "not driven in this probe - the create half was driven by the finish3 pass on C29955 (toast \"Shift scheduled. Undo\" found at ~400ms); move and reassign remain"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T10:13:18.759Z"
+ },
+ "38864": {
+  "steps": [
+   {
+    "step": "1-2 delete, refresh WITHOUT clicking Undo, then check the grid",
+    "seen": "driven in probe B: technician A's 4-shift series went 4 -> 0 on delete and still read 0 after a full page reload, with Undo never clicked. Board total 174 -> 170 -> 170."
+   },
+   {
+    "step": "4 delete once more and this time click Undo before the toast disappears",
+    "seen": "no scope dialog - this is a lone shift, the delete went straight through; toast [{\"t\":\"check Shift deleted. Undo close\",\"btns\":[\"Undo\",\"close\"]},{\"t\":\"check Shift deleted. Undo close\",\"btns\":[\"Undo\",\"close\"]},{\"t\":\"Shift deleted. Undo\",\"btns\":[\"Undo\"]},{\"t\":\"Shift deleted.\",\"btns\":[]},{\"t\":\"Undo\",\"btns\":[]},{\"t\":\"close\",\"btns\":[]}]; Undo clicked = true; board 170 -> 170"
+   },
+   {
+    "step": "3 recreate, move, refresh while the toast shows",
+    "seen": "the MOVE half is not driven here - it needs a drag between two days"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T10:13:18.760Z"
+ }
+}
