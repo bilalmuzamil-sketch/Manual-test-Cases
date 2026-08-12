@@ -30,3 +30,40 @@ front-end permissions, role **Admin**, default workplace **Staging Heavy Duty - 
 found dead. `quick-login` and `switch-user` were **never called**.
 
 Tested on the **api** host, never the app host, which returns 200 on any path.
+
+## The marker read three times — the build did NOT move under this pass
+
+| read | UTC | app-version | etag | sha256 of `index.html` |
+|---|---|---|---|---|
+| start | 2026-08-12T03:19:07Z | `v3.6-8c28eed` | `68041643da19d1e525c3e1e31cf09d35` | `441a150c…b944983` |
+| mid-run (after the writes) | 2026-08-12T03:56:52Z | `v3.6-8c28eed` | `68041643da19d1e525c3e1e31cf09d35` | `441a150c…b944983` |
+| end | 2026-08-12T04:05:22Z | `v3.6-8c28eed` | `68041643da19d1e525c3e1e31cf09d35` | `441a150c…b944983` |
+
+**Byte-identical all three times**, so nothing was redeployed under this session and every
+observation here belongs to one build. Session still returning **HTTP 200** at the end.
+
+Developers are still deploying, so this will not stay true — but nothing read in this session needs
+re-reading on account of a mid-pass deploy.
+
+## What this means for the 480 cases
+
+**Not one of the 480 carried a `v3.6-8c28eed` build line before this session.** The build lines
+across the suite stood at:
+
+| build named in Rule-54 sentence 2 | cases |
+|---|---:|
+| `v3.5-16cf83f` (8/6) | 213 |
+| `v3.5-7168d14` (8/6) | 129 |
+| `v3.4.1-3d03023` (8/4) | 64 |
+| `v3.5-f77875c` (8/6) | 48 |
+| `v3.5-4795eee` (8/10) | 13 |
+| `v3.5-16cf83f` (8/5) | 4 |
+| **no build line at all** | **9** |
+
+**8 cases now name `v3.6-8c28eed`** — the eight this session actually observed. The other 472 were
+left exactly as found, because a build line is a record of a check that happened, and inventing one
+would make every honest line in the suite worthless.
+
+**The 9 with no build line are NOT a defect.** Each says in its own words that it has not been
+checked against any build, which is exactly what Rule 60 requires: C30169, C30288, C43550, C43558,
+C43559, C43591, C43592, C43593, C43594.
