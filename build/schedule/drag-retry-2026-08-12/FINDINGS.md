@@ -125,11 +125,107 @@ own work order — which is why the answer is now a measurement rather than a co
 
 ## The estate
 
-**Nothing was left behind: the board is byte-identical to the baseline taken before any drive** —
-**545 shifts / 49 events / 18 series**, id sets equal in both directions and **every per-object hash
-unchanged, 0 diff rows**. Snapshots `evidence/board-BEFORE.json` and `evidence/board-MID1.json`.
+**The board is back to its baseline counts — 545 shifts / 49 events / 18 series — and the final diff
+is TWO rows, not zero, and both are the same incident:** one shift REMOVED and one ADDED, because a
+cleanup step deleted a pre-existing shift by matching on a customer name and it had to be recreated.
+**Every field of the replacement matches the original except the id, which a delete destroys for
+good.** Full account: `INCIDENT-accidental-delete-2026-08-12.md`. Snapshots `evidence/board-BEFORE.json`
+→ `evidence/board-AFTER.json`; the mid-run snapshots show the board was clean before that point.
+
+**Build byte-identical at the start and the end of the session** — `v3.5-65d6500`, etag
+`3250d285…`, `index.html` sha256 `9348ca09…` both times, so nothing redeployed underneath this work.
 
 **One piece of ZZAUTOTEST residue exists and it is NOT ours:** shift `0f1bec52-f420-4798-948d-16f1d43c9fda`
 carries the note **`ZZAUTOTEST line one\nZZAUTOTEST line two`**. Its hash is **identical in the baseline
 taken before this session touched anything**, so it predates us — left by an earlier pass. Reported,
 not removed.
+
+---
+
+## F5 · C29985 — the spread creates exactly what it promised, but nothing offers an Undo
+
+Confirming **`Create 8 shifts`** produced **exactly the eight days the preview named** — Aug 13, 14,
+17, 18, 19, 20, 21, 24 — **all four weekend dates skipped**, all sharing **one `seriesId`**, and
+7 × 540 min + 1 × 284 min = **4064 min = 67h 44m, the estimate to the minute**. Items 1 and 3 pass.
+The grid carried `schedule_series_block`, `schedule_block_series_cue` and `schedule_block_series_after`
+while the series existed, so item 2's banner is built, though it was not examined closely.
+
+**Item 4 fails: no toast, no Undo.**
+
+**One existing shift changed while the series existed** — `bb43d6a3-…` gained
+`isConflict: true / double_booked`. That is a **derived** consequence of the new series double-booking
+the same technician on Aug 14, not collateral damage: it reverted by itself when the series was
+removed, and nothing was done to it. **Conflict detection demonstrably works.**
+
+## F6 · C30004 — the snapping is right; the Undo is missing
+
+A shift dragged sideways in Day view moved **02:30 → 05:15**: minute **15**, so it **snapped to the
+quarter hour**, and the duration stayed **60 → 60**. Items 1, 2 and 3 pass. **Item 4 fails.**
+
+## F7 · C30020 — the day move works; the technician move was not reachable from here
+
+Dragging an event moved it **Aug 9 → Aug 10**, so item 2 passes. **Item 3 fails** — no toast.
+
+**Item 1 was NOT observed, and that is a limit of ours, not a verdict on the product.** Two attempts
+were made; one dropped +90 px and the staff id did not change, the other dropped +230 px and no move
+registered at all. The lane rectangles could not be resolved from the DOM, so the drop was never
+confirmed to land in a different technician's lane. **A person with a mouse will manage this in
+seconds** — the case now asks the tester to do exactly that and report what they see.
+
+## F8 · No toast and no Undo on three separate actions
+
+Creating a series, moving a shift, moving an event. Polled every 350 ms for 11 s, and separately a
+**`MutationObserver` over the whole document recorded 37 added nodes, 0 with a notification class and
+0 containing "Undo"**. The specification asks for one on each of the three.
+
+**No ticket covers this** — a JQL sweep of every SV issue whose summary mentions *undo* or *toast*
+returns three unrelated items (work-order lines, timesheets, imports). **Prepared, not filed:** the
+QA lead's *"create nothing until my next order"* hold is active (Standing Rule 62).
+
+## F9 · The label sweep found one thing, and it was small
+
+All 176 Schedule cases were swept against the labels this session actually read off
+`v3.5-65d6500` — using the **computed text-transform**, not `textContent`, because these labels are
+CSS-transformed and a `textContent` sweep reports the pre-transform string and would make correct
+cases look wrong.
+
+**Nine suspect patterns, 7 casing hits, and 6 of the 7 are ordinary prose** ("only approved work order
+lines appear", "spreads the full estimate again"), not label references. **One was real:**
+**[C29980](https://shopview.testrail.io/index.php?/cases/view/29980)** quoted the field as
+`'finish by'` where the build shows **`Finish by`** (`transform: none`, so that is genuinely what the
+tester sees). Corrected.
+
+**Also checked and clean:** no case says a bare *"Create shifts"* where the button carries a count; no
+case says *"Add note"* for **`Add Note`**; `Add Hours` already carries its capital H.
+
+**The honest limit: this is not a full label re-check of the 162 unchecked cases.** It compares them
+against the labels **this session could observe**, which is the scope picker, the spread step, the
+shift modal and the staff/location editors. Anything outside those screens is untouched.
+
+---
+
+## OUTSTANDING — what I need from you
+
+1. **Permission to file four defect tickets.** Each has been observed, written up and has ready-to-file
+   text; none exists yet, and each is blocking one case from moving off `HOLD`:
+   **(a)** no toast/Undo after creating a series, moving a shift, or moving an event — one ticket
+   covers all three (C29985, C30004, C30020); **(b)** shift notes are kept **per shift**, not per work
+   order (C30013). **Not created: your "do not create anything until my next order" hold is active,
+   and Standing Rule 62 requires your permission per ask.**
+2. **Whether to reopen [SV-9090](https://shopview.atlassian.net/browse/SV-9090) and
+   [SV-8855](https://shopview.atlassian.net/browse/SV-8855).** Both are closed OBSOLETE and the missing
+   start-date control **plainly still reproduces** — proven against all five options of the selector.
+   The cases are honest either way, so this is a truth-and-tidiness call, not a blocker.
+3. **A second sign-in as a non-administrator.** **13 of the 31 Schedule holds** are waiting on exactly
+   this. Impersonation was deliberately not used.
+4. **Two playbook notes I did not write myself** (`build/APP-ACTIONS-PLAYBOOK.md` is not mine to edit
+   from this worker): the shift create/delete contract discovered by probing — the field is
+   `total_minutes`, not `scheduled_minutes`, and `start_date` is a **local date** — and the fact that
+   **deleting a shift from the detail modal asks nothing at all**.
+5. **One thing you should know rather than be asked for.** A cleanup step of mine **deleted a
+   pre-existing shift** by matching on a customer name where two shifts shared one. It was restored
+   field-for-field and the board is back to baseline counts, but **the id could not be restored**. The
+   full record is in `INCIDENT-accidental-delete-2026-08-12.md`.
+6. **Someone else's ZZAUTOTEST residue is on the board** — shift `0f1bec52-…` carries the note
+   `ZZAUTOTEST line one / ZZAUTOTEST line two`. Its hash is identical in the baseline taken **before**
+   this session touched anything, so it predates us. Left alone.

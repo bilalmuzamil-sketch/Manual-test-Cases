@@ -54,3 +54,30 @@ its three outcomes, and what was replaced is the provenance line's second senten
 **The payloads exactly as sent** are in `evidence/payloads-as-sent.txt` — read before sending, because
 a re-stamp regex once landed inside a version string and produced corrupt text that a byte-check
 passed, the write being faithful to a wrong payload.
+
+## A ninth and tenth write — C29980, and a mistake of mine caught by reading the result
+
+| # | case | op | HTTP | fields compared | mismatches | collateral |
+|---|---|---|---|---|---|---|
+| 8 | [C29980](https://shopview.testrail.io/index.php?/cases/view/29980) | update_case | 200 | 30 | 0 | 0 |
+| 9 | C29980 | update_case (correction) | 200 | 30 | 0 | 0 |
+
+**Write 8** corrected the label `'finish by'` → **`'Finish by'`** — read live today from the visible
+text node with its computed `text-transform` applied (`raw='Finish by'`, `transform='none'`), so the
+tester really does see a capital F. It also added a plain note for point 2.
+
+**Write 9 exists because write 8 got the provenance wrong, and I caught it by reading the result
+rather than trusting the byte-check.** My re-stamp tested `line.startswith('Last checked against
+build')`, but that sentence sits **mid-line**, appended after the specification sentence — so nothing
+matched and the case kept a stale `v3.5-d122eef` stamp. **The byte-check passed both times**, because
+the write was faithful to the payload; the payload was wrong. Fixed by splitting on the literal
+sentence opener, which is what the seven-case builder did correctly.
+
+The stamp reads **`Last checked against build v3.5-65d6500 on 12 August 2026 (point 1 only).`** — the
+qualifier is there because only point 1 was observed.
+
+## Totals
+
+**9 `update_case` operations over 8 distinct cases, every one HTTP 200 + byte-verified, 30 fields
+compared each, 0 mismatches, 0 collateral changes.**
+0 `add_case` · 0 `delete_case` · 0 section writes · 0 run writes · 0 results logged.
