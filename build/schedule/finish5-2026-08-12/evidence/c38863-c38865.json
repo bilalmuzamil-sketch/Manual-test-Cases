@@ -1,0 +1,621 @@
+{
+ "cases": [
+  "C38863",
+  "C38865"
+ ],
+ "read_at": "2026-08-12T10:37:42.302004Z",
+ "build": "v3.5-65d6500",
+ "location": "Staging Heavy Duty - 9919",
+ "timezone": "America/Edmonton",
+ "dst_change": "2026-11-01 (first Sunday in November; MDT UTC-6 -> MST UTC-7)",
+ "guards": [
+  {
+   "guard": ">120 shifts",
+   "total_minutes": 100000,
+   "status": 422,
+   "body": "{'errors': [{'error': 'A single scheduling action may not create more than 120 shifts.'}]}",
+   "shifts_created": 0
+  },
+  {
+   "guard": ">120 shifts WITH the acknowledgement - must still refuse",
+   "status": 422,
+   "body": "{'errors': [{'error': 'A single scheduling action may not create more than 120 shifts.'}]}",
+   "shifts_created": 0
+  },
+  {
+   "guard": "past 8 weeks warns before creating",
+   "total_minutes": 42000,
+   "status": 409,
+   "body": "{'errors': [{'error': 'The series would span 83 days, beyond the 56-day limit. Resubmit with acknowledgeLongSeries to schedule it anyway.'}]}",
+   "span_days": 83,
+   "shifts_created": 0
+  },
+  {
+   "guard": "the SAME spread resubmitted WITH acknowledgeLongSeries",
+   "status": 201,
+   "shifts_created": 59,
+   "body": "created"
+  }
+ ],
+ "series": {
+  "series_id": "8bf1d682-5267-4bd9-828d-491a0be8f5b4",
+  "shift_count": 59,
+  "first": "2026-08-20T13:00:00Z",
+  "last": "2026-11-10T14:00:00Z"
+ },
+ "dst": {
+  "shifts_before_1_Nov": 52,
+  "shifts_on_or_after_1_Nov": 7,
+  "distinct_local_start_times_before": [
+   "07:00"
+  ],
+  "distinct_local_start_times_after": [
+   "07:00"
+  ],
+  "utc_offsets_before": [
+   "-0600"
+  ],
+  "utc_offsets_after": [
+   "-0700"
+  ],
+  "same_local_time_across_the_change": true,
+  "sample_before": [
+   {
+    "id": "a9847052-66a4-4680-9de2-2afff100aade",
+    "utc": "2026-10-28T13:00:00Z",
+    "local_date": "2026-10-28",
+    "local_time": "07:00",
+    "utc_offset": "-0600",
+    "dst": true
+   },
+   {
+    "id": "e7a64557-10f7-4408-8f7e-fcfb2e865671",
+    "utc": "2026-10-29T13:00:00Z",
+    "local_date": "2026-10-29",
+    "local_time": "07:00",
+    "utc_offset": "-0600",
+    "dst": true
+   },
+   {
+    "id": "13895b52-386f-4377-9275-7b5f5ac543bc",
+    "utc": "2026-10-30T13:00:00Z",
+    "local_date": "2026-10-30",
+    "local_time": "07:00",
+    "utc_offset": "-0600",
+    "dst": true
+   }
+  ],
+  "sample_after": [
+   {
+    "id": "841f66da-dd66-4f74-a931-e9e018499e79",
+    "utc": "2026-11-02T14:00:00Z",
+    "local_date": "2026-11-02",
+    "local_time": "07:00",
+    "utc_offset": "-0700",
+    "dst": false
+   },
+   {
+    "id": "d9f02eb8-09c1-4adb-b645-be4493a3a12c",
+    "utc": "2026-11-03T14:00:00Z",
+    "local_date": "2026-11-03",
+    "local_time": "07:00",
+    "utc_offset": "-0700",
+    "dst": false
+   },
+   {
+    "id": "1290be6d-1299-457c-821d-345819cfda28",
+    "utc": "2026-11-04T14:00:00Z",
+    "local_date": "2026-11-04",
+    "local_time": "07:00",
+    "utc_offset": "-0700",
+    "dst": false
+   }
+  ]
+ },
+ "work_order": {
+  "number": "S-15681",
+  "customer": "Vuchester Retail",
+  "estimate_minutes": 6259,
+  "lines": 37
+ },
+ "all_shift_rows": [
+  {
+   "id": "7a78666e-8f52-424a-9a91-e1a0ef955cae",
+   "utc": "2026-08-20T13:00:00Z",
+   "local_date": "2026-08-20",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "fa6a630b-20c2-499b-bd20-cbda596e5747",
+   "utc": "2026-08-21T13:00:00Z",
+   "local_date": "2026-08-21",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "fa2c0f03-0d2f-4633-83ac-13950af2999a",
+   "utc": "2026-08-24T13:00:00Z",
+   "local_date": "2026-08-24",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "7036662e-7500-431c-ab0f-c1c8025be17a",
+   "utc": "2026-08-25T13:00:00Z",
+   "local_date": "2026-08-25",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "7afaa871-53c8-42bb-a22c-1db9a682349c",
+   "utc": "2026-08-26T13:00:00Z",
+   "local_date": "2026-08-26",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "03e0d269-5e41-4af3-8460-1f2154a69199",
+   "utc": "2026-08-27T13:00:00Z",
+   "local_date": "2026-08-27",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "f5ede22b-1a87-4ec1-8a5a-cdc3fb06ccf2",
+   "utc": "2026-08-28T13:00:00Z",
+   "local_date": "2026-08-28",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "0efb6082-a99e-4762-93af-fd8e7e8d31bc",
+   "utc": "2026-08-31T13:00:00Z",
+   "local_date": "2026-08-31",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "b438b0c6-2ee2-4199-8d01-f7351022b9ef",
+   "utc": "2026-09-01T13:00:00Z",
+   "local_date": "2026-09-01",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "14374314-fa03-4ba1-b0ac-87af985873a1",
+   "utc": "2026-09-02T13:00:00Z",
+   "local_date": "2026-09-02",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "607086d0-155c-4516-bd9b-1387ff764429",
+   "utc": "2026-09-03T13:00:00Z",
+   "local_date": "2026-09-03",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "bb270050-b314-4218-a185-efab72a06384",
+   "utc": "2026-09-04T13:00:00Z",
+   "local_date": "2026-09-04",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "0439ca4d-350a-46f3-8697-42d1b41a1ccd",
+   "utc": "2026-09-07T13:00:00Z",
+   "local_date": "2026-09-07",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "7944aa4e-2fc7-47cd-ba81-4758990d25a6",
+   "utc": "2026-09-08T13:00:00Z",
+   "local_date": "2026-09-08",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "b69268ba-0a14-47be-a081-5647788bb5d0",
+   "utc": "2026-09-09T13:00:00Z",
+   "local_date": "2026-09-09",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "9f069795-778d-4c45-9716-95f4063c9e80",
+   "utc": "2026-09-10T13:00:00Z",
+   "local_date": "2026-09-10",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "ddf0a840-85a0-4475-8016-e7478a5825cc",
+   "utc": "2026-09-11T13:00:00Z",
+   "local_date": "2026-09-11",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "6e09594d-2309-4620-90dd-128e657854ee",
+   "utc": "2026-09-14T13:00:00Z",
+   "local_date": "2026-09-14",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "73fe6068-8bfe-45f9-a612-c91949e6b4e4",
+   "utc": "2026-09-15T13:00:00Z",
+   "local_date": "2026-09-15",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "db43a2da-a5db-49f3-a8a9-fd98ab59487a",
+   "utc": "2026-09-16T13:00:00Z",
+   "local_date": "2026-09-16",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "66767f90-4c22-4d5d-8769-9cd02740f76c",
+   "utc": "2026-09-17T13:00:00Z",
+   "local_date": "2026-09-17",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "2b70dbfc-228d-4681-b85a-2d8beee468f7",
+   "utc": "2026-09-18T13:00:00Z",
+   "local_date": "2026-09-18",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "18c788ed-6906-4004-adb9-af7376e21db7",
+   "utc": "2026-09-21T13:00:00Z",
+   "local_date": "2026-09-21",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "6ec028a9-6681-4b6e-a1f0-e3019b7b9b2a",
+   "utc": "2026-09-22T13:00:00Z",
+   "local_date": "2026-09-22",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "919ad31e-e5c7-408f-a59f-544d2ac03f6f",
+   "utc": "2026-09-23T13:00:00Z",
+   "local_date": "2026-09-23",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "285b946a-8956-4d0a-b57b-79778630c92f",
+   "utc": "2026-09-24T13:00:00Z",
+   "local_date": "2026-09-24",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "d45a95e2-0262-4830-b59f-2775425ad75e",
+   "utc": "2026-09-25T13:00:00Z",
+   "local_date": "2026-09-25",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "aa6024bf-0419-4ce3-a7ce-cbb09efe410f",
+   "utc": "2026-09-28T13:00:00Z",
+   "local_date": "2026-09-28",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "44829c45-db4c-4494-b544-0ce9983deee3",
+   "utc": "2026-09-29T13:00:00Z",
+   "local_date": "2026-09-29",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "eabe33f1-4fbc-4193-a6b1-afad60a579e5",
+   "utc": "2026-09-30T13:00:00Z",
+   "local_date": "2026-09-30",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "780c2d28-6126-4ca9-907c-f946fc330949",
+   "utc": "2026-10-01T13:00:00Z",
+   "local_date": "2026-10-01",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "60f9898c-2fd2-41c7-8632-79aa36f06316",
+   "utc": "2026-10-02T13:00:00Z",
+   "local_date": "2026-10-02",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "701f28c8-2879-4bb5-804d-61565e4eeed5",
+   "utc": "2026-10-05T13:00:00Z",
+   "local_date": "2026-10-05",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "579d3efa-9cbe-4d35-994b-de41c5914969",
+   "utc": "2026-10-06T13:00:00Z",
+   "local_date": "2026-10-06",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "d4c021b3-0911-456f-91fa-cc747f4db718",
+   "utc": "2026-10-07T13:00:00Z",
+   "local_date": "2026-10-07",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "dc053646-f314-41bf-a19a-15cb72dc60d4",
+   "utc": "2026-10-08T13:00:00Z",
+   "local_date": "2026-10-08",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "d8432fd5-3c6e-4b30-b59d-eaae7b8cd0df",
+   "utc": "2026-10-09T13:00:00Z",
+   "local_date": "2026-10-09",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "daeb6dc4-5ce6-4caa-8f8a-871b49eb5043",
+   "utc": "2026-10-12T13:00:00Z",
+   "local_date": "2026-10-12",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "126dce34-b159-4da3-8839-b476318a053d",
+   "utc": "2026-10-13T13:00:00Z",
+   "local_date": "2026-10-13",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "f652f7e7-e431-44c2-932e-0198d51db172",
+   "utc": "2026-10-14T13:00:00Z",
+   "local_date": "2026-10-14",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "5060283a-57d4-43bb-a613-d4e3c8bc6daf",
+   "utc": "2026-10-15T13:00:00Z",
+   "local_date": "2026-10-15",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "68d20a6d-0eab-438f-9c32-c5189f217bf7",
+   "utc": "2026-10-16T13:00:00Z",
+   "local_date": "2026-10-16",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "08549fc2-17c8-4ee1-8b32-c1236485545f",
+   "utc": "2026-10-19T13:00:00Z",
+   "local_date": "2026-10-19",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "a939df87-57a4-4d2f-aa1a-f8b0259456ca",
+   "utc": "2026-10-20T13:00:00Z",
+   "local_date": "2026-10-20",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "63151be1-5ef5-41af-b23f-a2bb296bb594",
+   "utc": "2026-10-21T13:00:00Z",
+   "local_date": "2026-10-21",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "8b63da70-120f-42bf-bbee-bde2b051df45",
+   "utc": "2026-10-22T13:00:00Z",
+   "local_date": "2026-10-22",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "a77b259f-38c8-41d1-81c0-d6dc70d9ea03",
+   "utc": "2026-10-23T13:00:00Z",
+   "local_date": "2026-10-23",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "158830ed-5d84-4370-b9e6-00d4255cc4eb",
+   "utc": "2026-10-26T13:00:00Z",
+   "local_date": "2026-10-26",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "e993940d-03f1-4e5d-a8a9-852c15bbc0a3",
+   "utc": "2026-10-27T13:00:00Z",
+   "local_date": "2026-10-27",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "a9847052-66a4-4680-9de2-2afff100aade",
+   "utc": "2026-10-28T13:00:00Z",
+   "local_date": "2026-10-28",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "e7a64557-10f7-4408-8f7e-fcfb2e865671",
+   "utc": "2026-10-29T13:00:00Z",
+   "local_date": "2026-10-29",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "13895b52-386f-4377-9275-7b5f5ac543bc",
+   "utc": "2026-10-30T13:00:00Z",
+   "local_date": "2026-10-30",
+   "local_time": "07:00",
+   "utc_offset": "-0600",
+   "dst": true
+  },
+  {
+   "id": "841f66da-dd66-4f74-a931-e9e018499e79",
+   "utc": "2026-11-02T14:00:00Z",
+   "local_date": "2026-11-02",
+   "local_time": "07:00",
+   "utc_offset": "-0700",
+   "dst": false
+  },
+  {
+   "id": "d9f02eb8-09c1-4adb-b645-be4493a3a12c",
+   "utc": "2026-11-03T14:00:00Z",
+   "local_date": "2026-11-03",
+   "local_time": "07:00",
+   "utc_offset": "-0700",
+   "dst": false
+  },
+  {
+   "id": "1290be6d-1299-457c-821d-345819cfda28",
+   "utc": "2026-11-04T14:00:00Z",
+   "local_date": "2026-11-04",
+   "local_time": "07:00",
+   "utc_offset": "-0700",
+   "dst": false
+  },
+  {
+   "id": "568eec45-2538-4002-9b32-e9da3a54fe59",
+   "utc": "2026-11-05T14:00:00Z",
+   "local_date": "2026-11-05",
+   "local_time": "07:00",
+   "utc_offset": "-0700",
+   "dst": false
+  },
+  {
+   "id": "cc00e4a8-07c2-4498-b99b-3f316ada4e80",
+   "utc": "2026-11-06T14:00:00Z",
+   "local_date": "2026-11-06",
+   "local_time": "07:00",
+   "utc_offset": "-0700",
+   "dst": false
+  },
+  {
+   "id": "1e06e64e-e57c-45e5-87c3-8b5c3d9e9991",
+   "utc": "2026-11-09T14:00:00Z",
+   "local_date": "2026-11-09",
+   "local_time": "07:00",
+   "utc_offset": "-0700",
+   "dst": false
+  },
+  {
+   "id": "dccb2d29-cccf-4928-a29f-79e90a5882b7",
+   "utc": "2026-11-10T14:00:00Z",
+   "local_date": "2026-11-10",
+   "local_time": "07:00",
+   "utc_offset": "-0700",
+   "dst": false
+  }
+ ],
+ "non_get_calls": [
+  {
+   "m": "POST",
+   "path": "/api/schedule/shifts",
+   "loc": "b3c8c820",
+   "status": 422
+  },
+  {
+   "m": "POST",
+   "path": "/api/schedule/shifts",
+   "loc": "b3c8c820",
+   "status": 422
+  },
+  {
+   "m": "POST",
+   "path": "/api/schedule/shifts",
+   "loc": "b3c8c820",
+   "status": 409
+  },
+  {
+   "m": "POST",
+   "path": "/api/schedule/shifts",
+   "loc": "b3c8c820",
+   "status": 201
+  }
+ ]
+}

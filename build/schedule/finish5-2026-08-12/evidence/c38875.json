@@ -1,0 +1,142 @@
+{
+ "case": "C38875",
+ "read_at": "2026-08-12T10:35:05.769411Z",
+ "build": "v3.5-65d6500",
+ "location_A": "Staging Heavy Duty - 9919",
+ "location_B": "Staging Lethbridge - 4310",
+ "checks": [
+  {
+   "check": "the seeded shift is on location B's board",
+   "result": true
+  },
+  {
+   "check": "the seeded shift is ABSENT from location A's board",
+   "result": true
+  }
+ ],
+ "steps": [
+  {
+   "step": 1,
+   "call": "GET /api/schedule/shifts/{foreign id} scoped to location A",
+   "status": 404,
+   "body": "{'errors': [{'error': \"'Shift' was not found.\"}]}"
+  },
+  {
+   "step": "1-control",
+   "call": "the same GET scoped to location B",
+   "status": 200,
+   "note": "proves the route exists and the id is real",
+   "body": "{'data': {'shift': {'id': '90de5d39-635d-470a-ab44-15bac6eedf63', 'staffId': '7d9c5af8-5c10-4a02-9ed3-46c28c5bbf44', 'departmentId': None, 'seriesId': None, 'startsAt': '2026-08-20T13:00:00Z', 'endsAt': '2026-08-20T15:00:00Z', 'isAllDay': False, 'durationMinutes': 120, 'color': '#e2effe', 'note': None, 'isConflict': False, 'conflictReasons': [], 'workOrder': {'id': 'aa64523b-1e74-40c0-a433-d170008"
+  },
+  {
+   "step": 2,
+   "call": "PATCH /api/schedule/shifts/{foreign id} scoped to location A",
+   "status": 400,
+   "body": "{'errors': [{'error': 'The request changes nothing.'}]}"
+  },
+  {
+   "step": 3,
+   "call": "GET /api/schedule/board for location A",
+   "status": 200,
+   "A_shifts": 170,
+   "B_shifts": 1,
+   "ids_present_in_both": []
+  }
+ ],
+ "before": {
+  "A_shifts": 170,
+  "B_shifts": 0
+ },
+ "seeded": {
+  "shift_id": "90de5d39-635d-470a-ab44-15bac6eedf63",
+  "at": "Staging Lethbridge - 4310",
+  "work_order": "S-15874",
+  "customer": "Roridge Holdings",
+  "technician": "Daniel Padilla",
+  "start_date": "2026-08-20",
+  "total_minutes": 120,
+  "note": "test data; the QA lead has authorised seeding freely on this branch"
+ },
+ "non_get_calls": [
+  {
+   "m": "POST",
+   "path": "/api/schedule/shifts",
+   "loc": "f8a8b802",
+   "status": 201
+  },
+  {
+   "m": "PATCH",
+   "path": "/api/schedule/shifts/90de5d39-635d-470a-ab44-15bac6eedf63",
+   "loc": "b3c8c820",
+   "status": 400
+  }
+ ],
+ "all_calls": [
+  {
+   "m": "GET",
+   "path": "/api/schedule/board",
+   "loc": "b3c8c820",
+   "status": 200
+  },
+  {
+   "m": "GET",
+   "path": "/api/schedule/board",
+   "loc": "f8a8b802",
+   "status": 200
+  },
+  {
+   "m": "GET",
+   "path": "/api/schedule/work-orders",
+   "loc": "f8a8b802",
+   "status": 200
+  },
+  {
+   "m": "POST",
+   "path": "/api/schedule/shifts",
+   "loc": "f8a8b802",
+   "status": 201
+  },
+  {
+   "m": "GET",
+   "path": "/api/schedule/board",
+   "loc": "f8a8b802",
+   "status": 200
+  },
+  {
+   "m": "GET",
+   "path": "/api/schedule/board",
+   "loc": "b3c8c820",
+   "status": 200
+  },
+  {
+   "m": "GET",
+   "path": "/api/schedule/shifts/90de5d39-635d-470a-ab44-15bac6eedf63",
+   "loc": "b3c8c820",
+   "status": 404
+  },
+  {
+   "m": "GET",
+   "path": "/api/schedule/shifts/90de5d39-635d-470a-ab44-15bac6eedf63",
+   "loc": "f8a8b802",
+   "status": 200
+  },
+  {
+   "m": "PATCH",
+   "path": "/api/schedule/shifts/90de5d39-635d-470a-ab44-15bac6eedf63",
+   "loc": "b3c8c820",
+   "status": 400
+  },
+  {
+   "m": "GET",
+   "path": "/api/schedule/board",
+   "loc": "b3c8c820",
+   "status": 200
+  },
+  {
+   "m": "GET",
+   "path": "/api/schedule/board",
+   "loc": "f8a8b802",
+   "status": 200
+  }
+ ]
+}
