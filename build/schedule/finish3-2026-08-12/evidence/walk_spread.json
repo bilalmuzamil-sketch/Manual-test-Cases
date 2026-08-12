@@ -1,0 +1,158 @@
+{
+ "29958": {
+  "steps": [
+   {
+    "step": "1 drag a work order far bigger than one working day onto a technician cell",
+    "seen": "S8685-14531 26 lines · 76.6h Est. Wuwick Apparel DM Diana Macias chevron_right A (76.6h estimated)"
+   },
+   {
+    "step": "2 choose the large scope",
+    "seen": "content_paste Schedule whole work order All 26 lines · 76.6h total chevron_right"
+   },
+   {
+    "step": "1 the spread step opens as step 2 of the same modal",
+    "seen": "dialog open=2 still the picker=false ; text: S8685-14531 · Wuwick Apparel chevron_left Change scope Service/Parts · Whole order · 76h 36m close Schedule Full estimate (76h 36m) arrow_drop_down calendar_month 9 shifts · 76h 36m Aug 11 to Aug 21 · 9h/day, Mon–Fri expand_more Cancel Create 9 shifts"
+   },
+   {
+    "step": "2 header shows the chosen scope and a 'Change scope' back-link",
+    "seen": "[\"chevron_left Change scope\",\"close\",\"calendar_month 9 shifts · 76h 36m Aug 11 to Aug 21 · 9h/day, Mon–Fri expand_more\",\"Cancel\",\"Create 9 shifts\"]"
+   },
+   {
+    "step": "3 no shifts exist yet until the spread is confirmed",
+    "seen": "board while the spread step is open: 681 -> 681, added 0"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T08:53:00.043Z"
+ },
+ "29978": {
+  "steps": [
+   {
+    "step": "1-2 reach the spread step and read its header",
+    "seen": "S8685-14531 · Wuwick Apparel chevron_left Change scope Service/Parts · Whole order · 76h 36m close Schedule Full estimate (76h 36m) arrow_drop_down calendar_month 9 shifts · 76h 36m Aug 11 to Aug 21 · 9h/day, Mon–Fri expand_more Cancel Create 9 shifts"
+   },
+   {
+    "step": "3 a 'Change scope' back-link is present and clicking it returns to the scope picker",
+    "seen": "clicked 'Change scope' -> back on the picker=true (dialog open=2)"
+   },
+   {
+    "step": "4 without creating anything",
+    "seen": "board 681 -> 681, added 0"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T08:53:07.485Z"
+ },
+ "29979": {
+  "steps": [
+   {
+    "step": "1 the selector defaults to 'Full estimate'",
+    "seen": "Full estimate (76h 36m)"
+   },
+   {
+    "step": "2 the options include Full estimate / 1 week / 2 weeks / Until a date… / Specific hours…",
+    "seen": "read in the previous run: [\"Full estimate (76h 36m)\",\"1 week\",\"2 weeks\",\"Until a date…\",\"Specific hours…\"]"
+   },
+   {
+    "step": "3 Full estimate, 1 week and 2 weeks apply on selection with no extra fields",
+    "seen": "{\"1 week\":{\"picked\":true,\"option\":\"1 week\",\"summary\":\"5 shifts · 76h 36m\",\"cadence\":\"Aug 11 to Aug 17 · 15h 20m/day, Mon–Fri\",\"extraFields\":[]},\"2 weeks\":{\"picked\":true,\"option\":\"2 weeks\",\"summary\":\"10 shifts · 76h 36m\",\"cadence\":\"Aug 11 to Aug 24 · 7h 40m/day, Mon–Fri\",\"extraFields\":[]},\"Full estimate\":{\"picked\":true,\"option\":\"Full estimate (76h 36m)\",\"summary\":\"9 shifts · 76h 36m\",\"cadence\":\"Aug 11 to Aug 21 · 9h/day, Mon–Fri\",\"extraFields\":[]}}"
+   },
+   {
+    "step": "4 the preview summary updates to match each selection",
+    "seen": "1 week -> 5 shifts · 76h 36m  |  2 weeks -> 10 shifts · 76h 36m  |  Full estimate -> 9 shifts · 76h 36m"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T08:55:12.426Z"
+ },
+ "29980": {
+  "steps": [
+   {
+    "step": "1 choose 'Until a date…'",
+    "seen": "selector reads Until a date…; a single Finish-by control is revealed: button_spread_until_date_prev / text_spread_until_date / button_spread_until_date_next, reading \"calendar_month Tue, Aug 11\""
+   },
+   {
+    "step": "2 press the forward arrow 5 times, then 5 more, then back 3",
+    "seen": "date: calendar_month Tue, Aug 11 -> calendar_month Sun, Aug 16 -> calendar_month Fri, Aug 21 -> calendar_month Tue, Aug 18"
+   },
+   {
+    "step": "2 does the date respond?",
+    "seen": "forward moved it: true ; back moved it: true"
+   },
+   {
+    "step": "2 does the preview follow the date?",
+    "seen": "summary 1 shift · 76h 36m -> 4 shifts · 76h 36m -> 9 shifts · 76h 36m ; cadence Aug 11 · 76h 36m -> Aug 11 to Aug 14 · 19h 9m/day, Tue–Fri -> Aug 11 to Aug 21 · 8h 31m/day, Mon–Fri"
+   },
+   {
+    "step": "SV-9005 outcome (Standing Rule 61)",
+    "seen": "IT RESPONDS - so SV-9005 no longer reproduces on this build. Outcome 3: tell the QA lead."
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T08:57:29.865Z"
+ },
+ "29981": {
+  "steps": [
+   {
+    "step": "1 choose 'Specific hours…'",
+    "seen": "an hours stepper is revealed - \"Hours  −  9h  +\" (button_spread_specific_hours_decrement / text_spread_specific_hours / button_spread_specific_hours_increment)"
+   },
+   {
+    "step": "2 press + seven times, then − twice",
+    "seen": "hours: 9h -> 12.5h -> 11.5h"
+   },
+   {
+    "step": "2 the preview updates to spread exactly the entered hours",
+    "seen": "summary 9 shifts · 76h 36m -> 7 shifts · 76h 36m -> 7 shifts · 76h 36m ; cadence Aug 11 to Aug 21 · 9h/day, Mon–Fri -> Aug 11 to Aug 19 · 12h 30m/day, Mon–Fri -> Aug 11 to Aug 19 · 11h 30m/day, Mon–Fri"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T08:57:47.223Z"
+ },
+ "29982": {
+  "steps": [
+   {
+    "step": "1 read the start date the spread proposes",
+    "seen": "summary: 9 shifts · 76h 36m ; cadence: Aug 11 to Aug 21 · 9h/day, Mon–Fri"
+   },
+   {
+    "step": "2 is a start-date control offered on the spread step?",
+    "seen": "controls inside the spread body: [\"LABEL\",\"select_spread_option\",\"button_spread_toggle_preview\",\"text_spread_summary\",\"text_spread_cadence\"] ; all dialog test ids: [\"dialog_title\",\"button_spread_change_scope\",\"text_spread_scope\",\"button_close_dialog\",\"schedule_spread_body\",\"select_spread_option\",\"button_spread_toggle_preview\",\"text_spread_summary\",\"text_spread_cadence\",\"button_spread_cancel\",\"button_spread_confirm\"]"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T08:55:25.986Z"
+ },
+ "29984": {
+  "steps": [
+   {
+    "step": "1 read the preview summary",
+    "seen": "9 shifts · 76h 36m | cadence: Aug 11 to Aug 21 · 9h/day, Mon–Fri"
+   },
+   {
+    "step": "2 expand it",
+    "seen": "button_spread_toggle_preview clicked=true"
+   },
+   {
+    "step": "2 a week-by-week breakdown appears",
+    "seen": "body BEFORE: Schedule Full estimate (76h 36m) arrow_drop_down calendar_month 9 shifts · 76h 36m Aug 11 to Aug 21 · 9h/day, Mon–Fri expand_more  ||  body AFTER: Schedule Full estimate (76h 36m) arrow_drop_down calendar_month 9 shifts · 76h 36m Aug 11 to Aug 21 · 9h/day, Mon–Fri expand_less Week of Aug 11: Tue 11, Wed 12, Thu 13, Fri 14 Week of Aug 17: Mon 17, Tue 18, Wed 19, Thu 20, Fri 21"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T08:54:57.630Z"
+ },
+ "38863": {
+  "steps": [
+   {
+    "step": "1 build a spread long enough to cross 8 weeks",
+    "seen": "the largest work order on this branch is 76.6h, which spreads to 9 shifts · 76h 36m - it does not reach 8 weeks, so the confirm prompt cannot be provoked from the interface with the data present"
+   },
+   {
+    "step": "2 a series can never exceed 120 shifts",
+    "seen": "the server limits were established by the 12 August pass at the API: a series over 56 days returns 409 unless acknowledgeLongSeries is set, and over 120 shifts returns 422 which the acknowledgement does NOT override"
+   }
+  ],
+  "verdict": "partial - needs a work order large enough, or the API",
+  "at": "2026-08-12T08:55:25.987Z"
+ }
+}
