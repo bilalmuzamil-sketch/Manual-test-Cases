@@ -1,0 +1,148 @@
+{
+  "probe": "S5",
+  "at": "2026-08-12T18:12:00.170Z",
+  "build": "v3.7-20e801b",
+  "c38880_step4": {
+    "report": "/reports/technician-efficiency",
+    "tabsOnArrival": [
+      {
+        "id": "tab_technician_efficiency_invoiced",
+        "domText": "Invoiced",
+        "textTransform": "uppercase",
+        "ariaSelected": "true",
+        "active": true
+      },
+      {
+        "id": "tab_technician_efficiency_completed",
+        "domText": "Completed",
+        "textTransform": "uppercase",
+        "ariaSelected": "false",
+        "active": false
+      }
+    ],
+    "chipsOnArrival": [
+      {
+        "id": "filter_chip_range",
+        "domText": "calendar_today Date : This month"
+      }
+    ],
+    "rowsOnArrival": 5,
+    "urlOnArrival": "https://sv8785.qa.shopview.com/reports/technician-efficiency",
+    "activeOnArrival": "Invoiced",
+    "panelText": "Today Yesterday This week Last week This month check Last month This quarter Last quarter This year Last year Custom Clear Selection",
+    "pickedPeriod": "Last year",
+    "periodClicked": true,
+    "afterFilter": {
+      "url": "https://sv8785.qa.shopview.com/reports/technician-efficiency?range=last_year",
+      "chips": [
+        {
+          "id": "filter_chip_range",
+          "domText": "calendar_today Date : Last year"
+        }
+      ],
+      "rows": 24
+    },
+    "filterActuallyApplied": true,
+    "otherTab": "Completed",
+    "switchClick": {
+      "clicked": true,
+      "attempt": 1
+    },
+    "onOtherTab": {
+      "url": "https://sv8785.qa.shopview.com/reports/technician-efficiency?range=last_year",
+      "chips": [
+        {
+          "id": "filter_chip_range",
+          "domText": "calendar_today Date : Last year"
+        }
+      ],
+      "rows": 24,
+      "active": "Completed"
+    },
+    "tabSwitchActuallyHappened": true,
+    "backOnFirst": {
+      "url": "https://sv8785.qa.shopview.com/reports/technician-efficiency?range=last_year",
+      "chips": [
+        {
+          "id": "filter_chip_range",
+          "domText": "calendar_today Date : Last year"
+        }
+      ],
+      "rows": 24,
+      "active": "Invoiced"
+    },
+    "executable": true
+  },
+  "c38901_step4": {
+    "report": "/reports/batch-transactions",
+    "tabsOnArrival": [
+      {
+        "id": "tab_readyToSend",
+        "domText": "Ready To Send",
+        "textTransform": "uppercase",
+        "ariaSelected": "true",
+        "active": true
+      },
+      {
+        "id": "tab_sent",
+        "domText": "Sent",
+        "textTransform": "uppercase",
+        "ariaSelected": "false",
+        "active": false
+      },
+      {
+        "id": "tab_payments",
+        "domText": "Payments",
+        "textTransform": "uppercase",
+        "ariaSelected": "false",
+        "active": false
+      }
+    ],
+    "activeOnArrival": "Ready To Send",
+    "pageSearchPresent": true,
+    "rowsOnArrival": 6,
+    "searchOnFirstTab": {
+      "drove": {
+        "toggleFound": true,
+        "inputFound": true,
+        "typed": true,
+        "value": "a"
+      },
+      "url": "https://sv8785.qa.shopview.com/reports/batch-transactions?search=a",
+      "rows": 5,
+      "box": {
+        "value": "",
+        "visible": true
+      }
+    },
+    "searchActuallyApplied": true,
+    "otherTab": "Sent",
+    "switchClick": {
+      "clicked": true,
+      "attempt": 1
+    },
+    "onOtherTab": {
+      "url": "https://sv8785.qa.shopview.com/reports/batch-transactions?search=a",
+      "rows": 2,
+      "active": "Sent",
+      "pageSearchPresent": false,
+      "box": {
+        "value": "",
+        "visible": true
+      }
+    },
+    "tabSwitchActuallyHappened": true,
+    "backOnFirst": {
+      "url": "https://sv8785.qa.shopview.com/reports/batch-transactions?search=a",
+      "rows": 5,
+      "active": "Ready To Send",
+      "pageSearchPresent": false,
+      "box": {
+        "value": "",
+        "visible": true
+      }
+    },
+    "executable": true
+  },
+  "bridgeErrors": 0
+}

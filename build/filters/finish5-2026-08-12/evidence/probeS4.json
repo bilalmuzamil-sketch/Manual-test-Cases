@@ -1,0 +1,232 @@
+{
+  "probe": "S4",
+  "at": "2026-08-12T18:09:09.053Z",
+  "build": "v3.7-20e801b",
+  "c38880": {
+    "steps": [
+      {
+        "n": 1,
+        "text": "On one Parts view (Inventory) apply a filter",
+        "before": {
+          "url": "https://sv8785.qa.shopview.com/parts/inventory?category=d8e28ff3-c811-46c8-bee5-c5f8f5e2c8e9&category=b25c5c04-fe8d-4c21-a15c-a02c69f1ee5d",
+          "chips": [
+            {
+              "id": "filter_chip_gridLocation",
+              "domText": "place Bin Location"
+            },
+            {
+              "id": "filter_chip_category",
+              "domText": "list Category : .Brake Parts, +1"
+            },
+            {
+              "id": "filter_chip_supply",
+              "domText": "inventory_2 Supply"
+            }
+          ],
+          "rows": 32
+        },
+        "picked": "Under-supplied",
+        "after": {
+          "url": "https://sv8785.qa.shopview.com/parts/inventory?category=d8e28ff3-c811-46c8-bee5-c5f8f5e2c8e9&category=b25c5c04-fe8d-4c21-a15c-a02c69f1ee5d&supply=under-supplied",
+          "chips": [
+            {
+              "id": "filter_chip_gridLocation",
+              "domText": "place Bin Location"
+            },
+            {
+              "id": "filter_chip_category",
+              "domText": "list Category : .Brake Parts, +1"
+            },
+            {
+              "id": "filter_chip_supply",
+              "domText": "inventory_2 Supply : Under-supplied"
+            }
+          ],
+          "rows": 2
+        },
+        "applied": true
+      },
+      {
+        "n": 2,
+        "text": "Switch to a different Parts view (Purchase Orders)",
+        "url": "https://sv8785.qa.shopview.com/parts/orders",
+        "chips": [],
+        "rows": 32
+      },
+      {
+        "n": 3,
+        "text": "Return to the first Parts view",
+        "url": "https://sv8785.qa.shopview.com/parts/inventory?category=d8e28ff3-c811-46c8-bee5-c5f8f5e2c8e9&category=b25c5c04-fe8d-4c21-a15c-a02c69f1ee5d&supply=under-supplied",
+        "chips": [
+          {
+            "id": "filter_chip_gridLocation",
+            "domText": "place Bin Location"
+          },
+          {
+            "id": "filter_chip_category",
+            "domText": "list Category : .Brake Parts, +1"
+          },
+          {
+            "id": "filter_chip_supply",
+            "domText": "inventory_2 Supply : Under-supplied"
+          }
+        ],
+        "rows": 2
+      },
+      {
+        "n": 4,
+        "text": "On a report with tabs, apply a filter on one tab, switch, switch back",
+        "reportUsed": "/reports/technician-efficiency",
+        "tabs": [
+          {
+            "id": "tab_technician_efficiency_invoiced",
+            "domText": "Invoiced",
+            "textTransform": "uppercase",
+            "active": true
+          },
+          {
+            "id": "tab_technician_efficiency_completed",
+            "domText": "Completed",
+            "textTransform": "uppercase",
+            "active": true
+          }
+        ],
+        "chipsOnArrival": [
+          {
+            "id": "filter_chip_range",
+            "domText": "calendar_today Date : This month"
+          }
+        ],
+        "rowsOnArrival": 5,
+        "urlOnArrival": "https://sv8785.qa.shopview.com/reports/technician-efficiency",
+        "chipOpened": true,
+        "optionCount": 0,
+        "afterFilterOnTabA": {
+          "url": "https://sv8785.qa.shopview.com/reports/technician-efficiency",
+          "chips": [
+            {
+              "id": "filter_chip_range",
+              "domText": "calendar_today Date : This month"
+            }
+          ],
+          "rows": 5,
+          "tabs": [
+            {
+              "id": "tab_technician_efficiency_invoiced",
+              "domText": "Invoiced",
+              "textTransform": "uppercase",
+              "active": true
+            },
+            {
+              "id": "tab_technician_efficiency_completed",
+              "domText": "Completed",
+              "textTransform": "uppercase",
+              "active": true
+            }
+          ]
+        },
+        "onOtherTab": {
+          "url": "https://sv8785.qa.shopview.com/reports/technician-efficiency",
+          "chips": [
+            {
+              "id": "filter_chip_range",
+              "domText": "calendar_today Date : This month"
+            }
+          ],
+          "rows": 5,
+          "tabs": [
+            {
+              "id": "tab_technician_efficiency_invoiced",
+              "domText": "Invoiced",
+              "textTransform": "uppercase",
+              "active": true
+            },
+            {
+              "id": "tab_technician_efficiency_completed",
+              "domText": "Completed",
+              "textTransform": "uppercase",
+              "active": true
+            }
+          ]
+        },
+        "backOnFirstTab": {
+          "url": "https://sv8785.qa.shopview.com/reports/technician-efficiency",
+          "chips": [
+            {
+              "id": "filter_chip_range",
+              "domText": "calendar_today Date : This month"
+            }
+          ],
+          "rows": 5,
+          "tabs": [
+            {
+              "id": "tab_technician_efficiency_invoiced",
+              "domText": "Invoiced",
+              "textTransform": "uppercase",
+              "active": true
+            },
+            {
+              "id": "tab_technician_efficiency_completed",
+              "domText": "Completed",
+              "textTransform": "uppercase",
+              "active": true
+            }
+          ]
+        },
+        "executable": true
+      }
+    ]
+  },
+  "c38901_ibs": {
+    "landedOn": "https://sv8785.qa.shopview.com/reports/batch-transactions",
+    "tabs": [
+      {
+        "id": "tab_readyToSend",
+        "domText": "Ready To Send",
+        "textTransform": "uppercase",
+        "active": true
+      },
+      {
+        "id": "tab_sent",
+        "domText": "Sent",
+        "textTransform": "uppercase",
+        "active": true
+      },
+      {
+        "id": "tab_payments",
+        "domText": "Payments",
+        "textTransform": "uppercase",
+        "active": true
+      }
+    ],
+    "chips": [],
+    "pageSearchPresent": true,
+    "rowsOnArrival": 6,
+    "searchOnTabA": {
+      "drove": {
+        "toggleFound": true,
+        "inputFound": true,
+        "typed": true,
+        "value": "a"
+      },
+      "url": "https://sv8785.qa.shopview.com/reports/batch-transactions?search=a",
+      "rows": 5,
+      "boxValue": ""
+    },
+    "onOtherTab": {
+      "url": "https://sv8785.qa.shopview.com/reports/batch-transactions?search=a",
+      "rows": 5,
+      "pageSearchPresent": false,
+      "boxValue": ""
+    },
+    "executable": true
+  },
+  "bridgeErrors": 0,
+  "api4xx": [
+    {
+      "m": "GET",
+      "s": 404,
+      "u": "/api/api/sso/check"
+    }
+  ]
+}
