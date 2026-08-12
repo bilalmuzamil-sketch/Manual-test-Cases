@@ -115,3 +115,51 @@ status quoted on tab 3 comes from those same committed records.
 - **The concurrent worker's own pass has no committed execution log yet**, so its per-case
   detail is not in the "What changed" wording on Vlad's Section B. The case list is still
   complete, because it was derived from live TestRail rather than from the logs.
+
+---
+
+## ⚠️ TWO GENERATIONS OF GENERATOR SIT SIDE BY SIDE — CHECK WHICH `data.json` YOU ARE READING
+
+*(Added 2026-08-12 by the Filters finish4 pass. Nothing below was changed or removed; this note
+only labels what is already here, because the two vintages have near-identical names.)*
+
+**There are TWO `data.json` files in this tree and they are different snapshots, hours apart.**
+The hazard is not hypothetical: **both generators load their input with the same line of code,**
+`json.load(open(os.path.join(HERE, 'data.json')))`, **so each silently reads the `data.json`
+sitting beside itself.** Reading the wrong one publishes wrong counts in a sheet handed to a
+tester.
+
+| File | Snapshot | Status | Feeds |
+|---|---|---|---|
+| **`per-project/data.json`** | **12:47:58Z** | ✅ **CURRENT** | `per-project/gen.py` → the three per-project sheets · `per-project/verify.py` (21 checks) |
+| `data.json` (top level) | 05:59:03Z | 🕗 **earlier snapshot — kept as the record** | `gen_tester_handover.py` → the combined `Manual-Tester-Handover_2026-08-12.xlsx` |
+| `vlad.json` | 06:00:05Z | current for its own purpose | `gen_vlad_changes.py` → `Test-Case-Changes-for-Vlad_2026-08-12.xlsx` |
+
+**Which generator produced which delivered file:**
+
+| Delivered file | Generator | Input |
+|---|---|---|
+| `Schedule_Tester-Handover_2026-08-12.*` | `per-project/gen.py` | `per-project/data.json` |
+| `Filters_Tester-Handover_2026-08-12.*` | `per-project/gen.py` | `per-project/data.json` |
+| `Report-Suite_Tester-Handover_2026-08-12.*` | `per-project/gen.py` | `per-project/data.json` |
+| `Manual-Tester-Handover_2026-08-12.*` (superseded for hand-off) | `gen_tester_handover.py` | `data.json` (top level) |
+| `Test-Case-Changes-for-Vlad_2026-08-12.*` | `gen_vlad_changes.py` | `vlad.json` |
+
+**The counts differ between the two snapshots and both were right when taken** — held went
+88 → 95 and already-Passed-on-held 13 → 15, as the banner at the top of this file records. So a
+figure quoted from the top-level `data.json` is not wrong, it is **stale**: it belongs to the
+05:59Z snapshot. **Quote the per-project one for anything going to a tester.**
+
+### One more thing to know before re-running `per-project/gen.py`
+
+**It writes its output into `per-project/`, not into this folder.** `gen.py` builds its paths as
+`os.path.join(HERE, stem + '.xlsx')` (lines 479–480) while `verify.py` sets
+`OUT = os.path.dirname(HERE)` (line 21) and checks the copies **here in the parent** — which is
+where the three delivered sheets live, having been relocated after they were generated.
+
+**Consequence, stated plainly: a re-run as-is would drop a SECOND set of three sheets inside
+`per-project/` and leave the delivered ones in this folder untouched, while `verify.py` went on
+passing against those older delivered copies.** Nothing would look broken. If you re-run the
+generator, either point its output at the parent or move the files afterwards, **and re-run
+`verify.py` and read which files it actually opened.** There are no generated sheets in
+`per-project/` today, so this has not happened yet.
