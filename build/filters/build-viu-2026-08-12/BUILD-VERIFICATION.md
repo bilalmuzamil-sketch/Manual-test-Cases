@@ -34,7 +34,8 @@ observation earned, which is exactly what Rule 54 requires and what Rule 60 make
 | `last-modified` | **Tue, 11 Aug 2026 07:45:44 GMT** |
 | `etag` | `"b1b2623f07bec03883f57a0e17204431"` |
 | `sha256(index.html)` | `fa01a52544d9fc96113f6785bec26bb43771af57fe2bc8c6120d4b6fbb11d4cb` |
-| read at | 2026-08-12T02:54Z, and again at the end of the pass |
+| read at start | 2026-08-12T02:54Z |
+| read at end | 2026-08-12T03:11Z — **`index.html` byte-identical, same sha256** |
 
 **THE BUILD HAS NOT MOVED SINCE YESTERDAY'S PASS.** `build/filters/build-verify-2026-08-11/`
 recorded `v3.6-3e9dd6d`, the same `last-modified`, the same etag and the same sha256 at
@@ -103,4 +104,28 @@ nothing at all. The suite's text lives in TestRail, which was reachable througho
 See `FINDINGS.md` for the tester-readiness audit of all 115 cases and `testrail-execution-log.md`
 for what was written.
 
-_Last updated 2026-08-12._
+## What was written
+
+**5 `update_case`, all HTTP 200, 30 fields compared each, 0 mismatches, 0 collateral changes.**
+0 add · 0 delete · 0 section · 0 run writes · 0 results · **0 Jira calls** (the creation hold, restated
+by the QA lead today, stands).
+
+**Run 352 proven undamaged by content:** 115 tests, **all 473 results present by id, 0 field changes,
+0 new**. `update_run` never called — the run was already in sync at 115.
+
+**The 5 foreign cases proven byte-identical**, `updated_on` and `updated_by` included.
+
+**No `Last checked against build` line was written on any case**, because nothing was observed.
+
+Detail: `CHANGES-MADE.md` · `LABEL-DIFF.md` · `testrail-execution-log.md` ·
+`AUTOMATED-CASES-CHANGED.md`.
+
+## Sources — currency checked (Rule 31)
+
+| Source | Version / last change | Verdict |
+|---|---|---|
+| Filters specification, Confluence page 572030978 | last modified **6 August 2026** (v19); its in-body "Version: 1.6" is the Rule-31(a) trap | **CURRENT** — unchanged since our 11 August records |
+| Build `sv8785` | `v3.6-3e9dd6d`, 11 Aug 07:45:44 GMT | **CURRENT, and unmoved** — identical to yesterday's pass and at both ends of this one |
+| The running build as an *observable* source | **UNREACHABLE** — both sign-ins dead | **BLOCKED** |
+
+_Last updated 2026-08-12T03:12Z._
