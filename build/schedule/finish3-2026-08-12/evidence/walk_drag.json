@@ -1,0 +1,88 @@
+{
+ "29956": {
+  "steps": [
+   {
+    "step": "week view",
+    "seen": true
+   },
+   {
+    "step": "drag multi-line card from sidebar",
+    "seen": "S8685-13014 6 lines · 8.7h Est. Fuline Enterprises G30 AC Alicia Campb"
+   },
+   {
+    "step": "drop on technician cell at {\"ok\":true,\"x\":921,\"y\":377}",
+    "seen": "picker open=2"
+   },
+   {
+    "step": "1 picker opens, anchored to the dropped cell",
+    "seen": "picker box {\"x\":921,\"y\":380,\"w\":460,\"h\":700} ; dropped-on label: dropped on Admin ShopView · Wed, Aug 12 ; near drop point: true"
+   },
+   {
+    "step": "2 offers 'Schedule whole work order' / line rows / 'Select multiple'",
+    "seen": "[\"content_paste Schedule whole work order All 6 lines · 8.7h total chevron_right\",\"6 line rows\",\"Select multiple\"]"
+   },
+   {
+    "step": "3 no shift created until a scope is chosen",
+    "seen": "checked by board diff at end of run"
+   }
+  ],
+  "verdict": "pending-board-diff",
+  "at": "2026-08-12T08:37:47.536Z"
+ },
+ "29963": {
+  "steps": [
+   {
+    "step": "2 read the top option",
+    "seen": "content_paste Schedule whole work order All 6 lines · 8.7h total chevron_right"
+   },
+   {
+    "step": "1 pinned at top, visually distinct",
+    "seen": "whole at y=460 vs first line row y=664 ; whole style {\"bg\":\"rgb(233, 245, 255)\",\"border\":\"1px solid rgb(37, 124, 255)\",\"weight\":\"400\"} vs row style {\"bg\":\"rgb(255, 255, 255)\",\"border\":\"1px solid rgb(227, 232, 239)\",\"weight\":\"400\"}"
+   },
+   {
+    "step": "2 labelled with line count and total hours",
+    "seen": "content_paste Schedule whole work order All 6 lines · 8.7h total chevron_right"
+   },
+   {
+    "step": "3 anchored to the dropped cell",
+    "seen": "dropped on Admin ShopView · Wed, Aug 12"
+   },
+   {
+    "step": "4 each line row shows title and estimated hours",
+    "seen": "[{\"id\":\"line_picker_line_b6f3a900-d89b-471f-be54-1185413c2e1e\",\"text\":\"Diagnose - Oil Leak Est. 1h AC AK LC +3\",\"cb\":0,\"avatars\":6},{\"id\":\"line_picker_line_c6028bad-8037-4651-8fbd-065539184fb1\",\"text\":\"Diagnose - Low coolant Est. 0.7h AC LC MT +1\",\"cb\":0,\"avatars\":6},{\"id\":\"line_picker_line_bca5c4b6-2673-4fe0-bf1c-0633b67e3479\",\"text\":\"Diagnose - Right side wheel seal/brake leak Est. 0.8h AC LC MT +1\",\"cb\":0,\"avatars\":6}]"
+   },
+   {
+    "step": "5 rows with technicians show an avatar stack plus count",
+    "seen": "[{\"t\":\"Diagnose - Oil Leak Est. 1h AC AK LC +3\",\"av\":6},{\"t\":\"Diagnose - Low coolant Est. 0.7h AC LC MT +1\",\"av\":6},{\"t\":\"Diagnose - Right side wheel seal/brake leak E\",\"av\":6},{\"t\":\"Replace - Hydraulic lines Est. 3h AC MQ\",\"av\":4},{\"t\":\"Replace - Engine air filter Est. 0.3h AC MQ\",\"av\":4},{\"t\":\"Replace front wheel seal Est. 3h AC MQ\",\"av\":4}]"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T08:37:47.538Z"
+ },
+ "29967": {
+  "steps": [
+   {
+    "step": "2 click 'Select multiple'",
+    "seen": "clicked=true ; checkboxes in picker before=0 after=12"
+   },
+   {
+    "step": "1 rows become tick boxes, one per line",
+    "seen": "rows=6 checkbox-bearing rows=6"
+   },
+   {
+    "step": "3 tick two lines and read the confirm bar",
+    "seen": "ticked=2 ; bar tail: Diagnose - Low coolant Est. 0.7h AC LC MT +1 Diagnose - Right side wheel seal/brake leak Est. 0.8h AC LC MT +1 Replace - Hydraulic lines Est. 3h AC MQ Replace - Engine air filter Est. 0.3h AC MQ Replace front wheel seal Est. 3h AC MQ 2 selected · 1.7h Schedule"
+   },
+   {
+    "step": "4 'Select all' shortcut present?",
+    "seen": "has_select_all=false ; buttons=[\"close\",\"content_paste Schedule whole work order All 6 lines · 8.7h total chevron_right\",\"Select multiple\",\"All 6\",\"Unscheduled 0\",\"Schedule\"]"
+   },
+   {
+    "step": "5 'Cancel' control present?",
+    "seen": "has_cancel=false"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T08:37:51.350Z"
+ }
+}
