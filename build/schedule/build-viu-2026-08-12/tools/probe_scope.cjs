@@ -58,12 +58,17 @@ const GRAB = `(() => {
     return { ok: true, text: (multi.innerText || '').replace(/\s+/g, ' ').slice(0, 90), x: r.x + r.width / 2, y: r.y + r.height / 2 };
   });
   const tgt = await page.evaluate(() => {
+    // the target MUST be inside the viewport: a drop computed at y=2095 in a
+    // 1080-tall window lands on nothing and the picker never opens (12 Aug).
+    const vh = window.innerHeight, vw = window.innerWidth;
     const cells = Array.from(document.querySelectorAll('.q-calendar-agenda__day, [class*=day-column], td'))
-      .filter(e => { const r = e.getBoundingClientRect(); return r.width > 60 && r.height > 30 && r.y > 250 && r.x > 320; });
+      .filter(e => { const r = e.getBoundingClientRect();
+        return r.width > 60 && r.height > 25 && r.x > 320 && r.x + r.width < vw
+               && r.y > 250 && r.y + Math.min(30, r.height) < vh - 20; });
     const c = cells[Math.floor(cells.length / 2)];
-    if (!c) return { ok: false, cells: cells.length };
+    if (!c) return { ok: false, cells: cells.length, vh, vw };
     const r = c.getBoundingClientRect();
-    return { ok: true, x: r.x + r.width / 2, y: r.y + Math.min(40, r.height / 2), cells: cells.length };
+    return { ok: true, x: r.x + r.width / 2, y: r.y + Math.min(30, r.height / 2), cells: cells.length, vh };
   });
 
   let harvest = { open: 0 };

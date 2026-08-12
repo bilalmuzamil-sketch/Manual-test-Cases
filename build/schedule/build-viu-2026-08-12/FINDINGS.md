@@ -67,17 +67,25 @@ rerun** — a standing gotcha that has now bitten twice; the re-merge is in `too
 
 - **162 of the 176 cases were not checked against the build now running.** 14 were. This pass was
   chartered on the dialogs, the harness and the two wrong-marker groups, not on a fresh run of all 176.
-- **The scope picker was not reached.** The drag attempt computed a drop target at y=2095 in a
-  1080-tall viewport and landed nowhere. `Change scope` and `Full estimate` (C29978, C29979, C29983,
-  C29986) remain unchecked. **A tooling miss, not a build finding — and drag-and-drop through this
-  tooling has failed repeatedly, which is why seven cases already sit on `HOLD` for it.**
+- **The scope picker WAS reached, on the second attempt** — the first drag computed a drop target at
+  y=2095 in a 1080-tall viewport and landed nowhere, which is a tooling defect of ours and exactly the
+  shape of a false "the control is missing" finding. Constraining the target to the visible window
+  fixed it at once. **`Schedule whole work order` and `Select multiple` are confirmed exact**
+  (C29956, C29963, C29964, C29965, C29967). **This also means drag-and-drop IS drivable through our
+  tooling**, which bears on the seven cases sitting on `HOLD` for a drag that "could not be
+  completed" — worth a re-try next pass rather than accepting that HOLD as settled.
+- **`Change scope` and `Full estimate` (C29978, C29979, C29983, C29986) remain unchecked** — they sit
+  past the picker's confirm button, and the confirm was deliberately not pressed.
 - **The `Filter & display` and `View options` menus were not re-opened today** — both anchor lookups
   resolved to the same non-clickable `DIV`. Their labels were confirmed and pushed on 11 August
   against this same build marker, so they stand unverified-today rather than unverified.
 - **Nothing was seeded and nothing was created.** No work orders, shifts, events, series, customers or
   technicians. **No ZZAUTOTEST data exists from this pass because none was needed** — every state used
   already existed and was read only. The Edit Staff and Edit Location dialogs were opened and closed
-  **without saving**; the scope-picker drag never reached a confirm button.
+  **without saving**; the scope-picker drag opened the dialog and ended on Escape.
+  **Proven, not asserted:** `GET /api/schedule/board` across the whole of August afterwards reads
+  **138 shifts, 25 events, 14 series, and ZERO shifts starting on 2026-08-13** — the exact date the
+  picker offered. Per-shift hashes in `evidence/board-after-drag.json`.
 - **`admin@shopview.com` was not edited. `quick-login` and `switch-user` were never called.**
 
 ---

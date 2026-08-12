@@ -106,13 +106,39 @@ The sidebar Filters panel was opened by test-id and holds exactly:
 The conflicts panel header reads **`Schedule issues`** (painted uppercase), with reasons
 `Extends past business hours`, `Starts before business hours (7:00 AM)`, `Double-booked with …`.
 
+
+## 3b · THE SCOPE PICKER — REACHED, on the second attempt
+
+The first drag computed a drop target at **y=2095 in a 1080-tall viewport** and landed on nothing;
+no picker opened. **That was a tooling defect of ours, and it is exactly the shape of a false
+"the control is missing" finding** — the fix was to constrain the target to the visible window.
+With that one change the picker opened immediately, from the same 6-line card.
+
+Read as raw text nodes, with the picker's own test-ids beside them:
+
+| Label our case asserts | Build | Test-id | Cases |
+|---|---|---|---|
+| `Schedule whole work order` | **present, exact** | `line_picker_whole_work_order` | C29956 · C29963 · C29964 |
+| `Select multiple` | **present, exact** | `button_line_picker_multi_select` | C29956 · C29965 · C29967 |
+| `All` / `Unscheduled` chips | **present** — `All 6` / `Unscheduled 0` | `button_line_picker_scope_all` / `_unscheduled` | C29954 |
+
+Other strings the picker carries, captured for the next pass:
+`dropped on Alicia Campbell · Thu, Aug 13` · `S8685-13014 · Fuline Enterprises` ·
+`All 6 lines · 8.7h total` · `or pick a line` · **`Alicia's on this`** — note the **curly
+apostrophe (U+2019)**, which will not match a straight `'` in any search.
+
+**NOTHING WAS COMMITTED.** The picker's confirm button was never pressed; the run ended on Escape.
+Proven afterwards from `GET /api/schedule/board` for the whole of August: **138 shifts, 25 events,
+14 series, and ZERO shifts starting on 2026-08-13** — the very date the picker offered. Snapshot with
+per-shift hashes: `evidence/board-after-drag.json`.
+
 ## 4 · STILL NOT CHECKED — and why, honestly
 
 **These are NOT reported as absent. They were not reached, which is a different thing.**
 
 | Labels | Cases | Why not reached today |
 |---|---|---|
-| `Change scope`, `Full estimate` | C29978 · C29979 · C29983 · C29986 | Sit past the scope picker's confirm button. The drag was attempted; **our tooling computed a drop target at y=2095 in a 1080-tall viewport, so the drag landed nowhere and no picker opened.** A tooling miss, not a build finding. |
+| `Change scope`, `Full estimate` | C29978 · C29979 · C29983 · C29986 | These sit **past the scope picker's confirm button**, in the spread step. The picker itself **was** reached on the second attempt (below); its confirm was deliberately **not** pressed, so the spread step was not entered. |
 | `Filter & display`, `View options`, `VIN Number`, `Show Saturday`, `Show Sunday`, `My Shifts`, `Capacity Planning` | C30042 · C30043 · C30044 · C30045 · C30046 · C30047 · C30050 · C30051 · C30082 · C29930 · C30034 | The two toolbar menus **did not open** under today's sweep — both anchor lookups resolved to the same non-clickable `DIV`. **All of these were CONFIRMED and pushed on 11 August against this same build marker**, so they stand; they simply were not re-read today. |
 | `Needs techs` | C29952 · C29961 | Every line on every card we opened already has a technician. Needs a line with **none** — a data state, not an absence. |
 | `Clear all` | C29946 | The Filters panel was opened with **no filter applied**; this control plausibly appears only when one is. Not looked for in the right state. |
