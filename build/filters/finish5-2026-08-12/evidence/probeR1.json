@@ -1,0 +1,393 @@
+{
+  "probe": "R1",
+  "at": "2026-08-12T17:07:04.728Z",
+  "build": "v3.7-20e801b",
+  "stages": [
+    {
+      "tag": "bare",
+      "landing": "/workorders",
+      "samples": [
+        {
+          "atMs": 0,
+          "chips": [
+            "Status : Declined",
+            "person Customer",
+            "build Lead Technician",
+            "headset_mic Service Advisor",
+            "local_shipping Asset on Site"
+          ],
+          "url": "https://sv8785.qa.shopview.com/workorders?status=declined&tab=all",
+          "statusHasValue": true
+        },
+        {
+          "atMs": 0,
+          "chips": [
+            "Status : Declined",
+            "person Customer",
+            "build Lead Technician",
+            "headset_mic Service Advisor",
+            "local_shipping Asset on Site"
+          ],
+          "url": "https://sv8785.qa.shopview.com/workorders?status=declined&tab=all",
+          "statusHasValue": true
+        },
+        {
+          "atMs": 0,
+          "chips": [
+            "Status : Declined",
+            "person Customer",
+            "build Lead Technician",
+            "headset_mic Service Advisor",
+            "local_shipping Asset on Site"
+          ],
+          "url": "https://sv8785.qa.shopview.com/workorders?status=declined&tab=all",
+          "statusHasValue": true
+        },
+        {
+          "atMs": 0,
+          "chips": [
+            "Status : Declined",
+            "person Customer",
+            "build Lead Technician",
+            "headset_mic Service Advisor",
+            "local_shipping Asset on Site"
+          ],
+          "url": "https://sv8785.qa.shopview.com/workorders?status=declined&tab=all",
+          "statusHasValue": true
+        }
+      ],
+      "afterFurtherReload": {
+        "chips": [
+          "Status : Declined",
+          "person Customer",
+          "build Lead Technician",
+          "headset_mic Service Advisor",
+          "local_shipping Asset on Site"
+        ],
+        "url": "https://sv8785.qa.shopview.com/workorders?status=declined&tab=all",
+        "statusHasValue": true
+      },
+      "appGET": [
+        {
+          "m": "GET",
+          "s": 200,
+          "u": "/api/users/me/preferences/work-orders-list"
+        },
+        {
+          "m": "GET",
+          "s": 200,
+          "u": "/api/users/me/preferences/work-orders-list"
+        }
+      ],
+      "appPUT": [],
+      "prefNow": {
+        "status": 200,
+        "updatedAt": "2026-08-12T17:07:33Z",
+        "value": {
+          "tab": "all",
+          "sortBy": "status",
+          "columns": {
+            "vin": true,
+            "vehicle": true,
+            "daysOpen": false,
+            "progress": true,
+            "startDate": true,
+            "linesCount": true,
+            "technician": true,
+            "totalPrice": true,
+            "invoicedDate": false,
+            "serviceAdvisor": true,
+            "partRequestsCount": false,
+            "clockedInTechnicians": true,
+            "partReturnRequestsCount": false,
+            "unreceivedPartRequestsCount": true
+          },
+          "filters": {
+            "status": [
+              "declined"
+            ]
+          },
+          "collapsed": false,
+          "descending": false
+        }
+      },
+      "bridgeErrors": 0,
+      "api4xx": [
+        {
+          "m": "GET",
+          "s": 404,
+          "u": "/api/api/sso/check"
+        }
+      ]
+    },
+    {
+      "tag": "tabAll",
+      "landing": "/workorders?tab=all",
+      "samples": [
+        {
+          "atMs": 0,
+          "chips": [
+            "Status",
+            "person Customer",
+            "build Lead Technician",
+            "headset_mic Service Advisor",
+            "local_shipping Asset on Site"
+          ],
+          "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+          "statusHasValue": false
+        },
+        {
+          "atMs": 0,
+          "chips": [
+            "Status",
+            "person Customer",
+            "build Lead Technician",
+            "headset_mic Service Advisor",
+            "local_shipping Asset on Site"
+          ],
+          "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+          "statusHasValue": false
+        },
+        {
+          "atMs": 0,
+          "chips": [
+            "Status",
+            "person Customer",
+            "build Lead Technician",
+            "headset_mic Service Advisor",
+            "local_shipping Asset on Site"
+          ],
+          "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+          "statusHasValue": false
+        },
+        {
+          "atMs": 0,
+          "chips": [
+            "Status",
+            "person Customer",
+            "build Lead Technician",
+            "headset_mic Service Advisor",
+            "local_shipping Asset on Site"
+          ],
+          "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+          "statusHasValue": false
+        }
+      ],
+      "afterFurtherReload": {
+        "chips": [
+          "Status",
+          "person Customer",
+          "build Lead Technician",
+          "headset_mic Service Advisor",
+          "local_shipping Asset on Site"
+        ],
+        "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+        "statusHasValue": false
+      },
+      "appGET": [
+        {
+          "m": "GET",
+          "s": 200,
+          "u": "/api/users/me/preferences/work-orders-list"
+        },
+        {
+          "m": "GET",
+          "s": 200,
+          "u": "/api/users/me/preferences/work-orders-list"
+        }
+      ],
+      "appPUT": [],
+      "prefNow": {
+        "status": 200,
+        "updatedAt": "2026-08-12T17:07:33Z",
+        "value": {
+          "tab": "all",
+          "sortBy": "status",
+          "columns": {
+            "vin": true,
+            "vehicle": true,
+            "daysOpen": false,
+            "progress": true,
+            "startDate": true,
+            "linesCount": true,
+            "technician": true,
+            "totalPrice": true,
+            "invoicedDate": false,
+            "serviceAdvisor": true,
+            "partRequestsCount": false,
+            "clockedInTechnicians": true,
+            "partReturnRequestsCount": false,
+            "unreceivedPartRequestsCount": true
+          },
+          "filters": {
+            "status": [
+              "declined"
+            ]
+          },
+          "collapsed": false,
+          "descending": false
+        }
+      },
+      "bridgeErrors": 0,
+      "api4xx": [
+        {
+          "m": "GET",
+          "s": 404,
+          "u": "/api/api/sso/check"
+        }
+      ]
+    }
+  ],
+  "prefOnArrival": {
+    "status": 200,
+    "updatedAt": "2026-08-12T17:02:06Z",
+    "value": {
+      "tab": "all",
+      "sortBy": "status",
+      "columns": {
+        "vin": true,
+        "vehicle": true,
+        "daysOpen": false,
+        "progress": true,
+        "startDate": true,
+        "linesCount": true,
+        "technician": true,
+        "totalPrice": true,
+        "invoicedDate": false,
+        "serviceAdvisor": true,
+        "partRequestsCount": false,
+        "clockedInTechnicians": true,
+        "partReturnRequestsCount": false,
+        "unreceivedPartRequestsCount": true
+      },
+      "filters": {
+        "status": [
+          "declined"
+        ]
+      },
+      "collapsed": false,
+      "descending": false
+    }
+  },
+  "chipsOnArrival": [
+    "Status : Declined",
+    "person Customer",
+    "build Lead Technician",
+    "headset_mic Service Advisor",
+    "local_shipping Asset on Site"
+  ],
+  "urlOnArrival": "https://sv8785.qa.shopview.com/workorders?status=declined&tab=all",
+  "clearFilters": {
+    "control": {
+      "present": true,
+      "click": {
+        "clicked": true,
+        "attempt": 1
+      },
+      "url": "https://sv8785.qa.shopview.com/workorders?tab=all"
+    },
+    "chips": [
+      "Status",
+      "person Customer",
+      "build Lead Technician",
+      "headset_mic Service Advisor",
+      "local_shipping Asset on Site"
+    ],
+    "url": "https://sv8785.qa.shopview.com/workorders?tab=all"
+  },
+  "prefAfterClear": {
+    "status": 200,
+    "updatedAt": "2026-08-12T17:07:25Z",
+    "value": {
+      "tab": "all",
+      "sortBy": "status",
+      "columns": {
+        "vin": true,
+        "vehicle": true,
+        "daysOpen": false,
+        "progress": true,
+        "startDate": true,
+        "linesCount": true,
+        "technician": true,
+        "totalPrice": true,
+        "invoicedDate": false,
+        "serviceAdvisor": true,
+        "partRequestsCount": false,
+        "clockedInTechnicians": true,
+        "partReturnRequestsCount": false,
+        "unreceivedPartRequestsCount": true
+      },
+      "filters": [],
+      "collapsed": false,
+      "descending": false
+    }
+  },
+  "baselineClean": true,
+  "setFilter": {
+    "optionsSeen": 9,
+    "declinedPresent": true,
+    "chipsAfter": [
+      "Status : Declined",
+      "person Customer",
+      "build Lead Technician",
+      "headset_mic Service Advisor",
+      "local_shipping Asset on Site"
+    ],
+    "url": "https://sv8785.qa.shopview.com/workorders?status=declined&tab=all",
+    "rows": 10,
+    "appPUT": [
+      {
+        "m": "PUT",
+        "s": 200,
+        "u": "/api/users/me/preferences/work-orders-list"
+      },
+      {
+        "m": "PUT",
+        "s": 200,
+        "u": "/api/users/me/preferences/work-orders-list"
+      }
+    ]
+  },
+  "prefAfterSet": {
+    "status": 200,
+    "updatedAt": "2026-08-12T17:07:33Z",
+    "value": {
+      "tab": "all",
+      "sortBy": "status",
+      "columns": {
+        "vin": true,
+        "vehicle": true,
+        "daysOpen": false,
+        "progress": true,
+        "startDate": true,
+        "linesCount": true,
+        "technician": true,
+        "totalPrice": true,
+        "invoicedDate": false,
+        "serviceAdvisor": true,
+        "partRequestsCount": false,
+        "clockedInTechnicians": true,
+        "partReturnRequestsCount": false,
+        "unreceivedPartRequestsCount": true
+      },
+      "filters": {
+        "status": [
+          "declined"
+        ]
+      },
+      "collapsed": false,
+      "descending": false
+    }
+  },
+  "control_sameProfileBareReload": {
+    "url": "https://sv8785.qa.shopview.com/workorders?status=declined&tab=all",
+    "chips": [
+      "Status : Declined",
+      "person Customer",
+      "build Lead Technician",
+      "headset_mic Service Advisor",
+      "local_shipping Asset on Site"
+    ],
+    "statusHasValue": true
+  }
+}

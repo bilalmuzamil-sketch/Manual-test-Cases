@@ -1,0 +1,129 @@
+{
+  "probe": "Q6",
+  "at": "2026-08-12T17:03:50.402Z",
+  "salesCorrectId": {
+    "chips": [
+      "person Customer",
+      "calendar_today Date : This month"
+    ],
+    "startRows": 16,
+    "startUrl": "https://sv8785.qa.shopview.com/reports/sales",
+    "optionCount": 4754,
+    "markup": "<div data-v-86f2af4e=\"\" class=\"q-item q-item-type row no-wrap q-item--clickable q-link cursor-pointer q-focusable q-hoverable\" role=\"listitem\" tabindex=\"0\" data-test-id=\"filter_option_companyId_7af75d7c-c9f8-4209-860a-e685e9bd7c1c\"><div class=\"q-focus-helper\" tabindex=\"-1\"></div><div data-v-86f2af4e=\"\" class=\"q-item__section column q-item__section--main justify-center\">Aaborough Works</div><!----></div>",
+    "picked": "Aaborough Works",
+    "afterPickMarkup": "NONE-LOOKS-SELECTED",
+    "ticked": [],
+    "after": {
+      "rows": 2,
+      "url": "https://sv8785.qa.shopview.com/reports/sales?companyId=7af75d7c-c9f8-4209-860a-e685e9bd7c1c",
+      "chips": [
+        "person Customer : Aaborough Works",
+        "calendar_today Date : This month"
+      ]
+    }
+  },
+  "customRange": {
+    "startUrl": "https://sv8785.qa.shopview.com/reports/punch-clock-activities?range=last_month",
+    "startRows": 8,
+    "chipBefore": "calendar_today Date Range : Last month",
+    "pickedPeriod": "Today",
+    "afterPeriod": {
+      "url": "https://sv8785.qa.shopview.com/reports/punch-clock-activities?range=today",
+      "rows": 2,
+      "chip": "calendar_today Date Range : Today"
+    },
+    "clickedCustom": true,
+    "customPanel": {
+      "menu": true,
+      "text": "Today Yesterday This week Last week This month Last month This quarter Last quarter This year Last year Custom check event From event To Clear Selection",
+      "inputs": [
+        {
+          "ph": null,
+          "al": "From",
+          "id": "date_input_range_start",
+          "type": "text",
+          "val": "08/12/2026"
+        },
+        {
+          "ph": null,
+          "al": "To",
+          "id": "date_input_range_end",
+          "type": "text",
+          "val": "08/12/2026"
+        }
+      ]
+    },
+    "afterFromOnly": {
+      "url": "https://sv8785.qa.shopview.com/reports/punch-clock-activities?range=today",
+      "urlChanged": false,
+      "rows": 2
+    },
+    "afterTo": {
+      "url": "https://sv8785.qa.shopview.com/reports/punch-clock-activities?range=custom&range=2026-07-01&range=2026-07-31",
+      "rows": 8,
+      "chip": "calendar_today Date Range : Custom"
+    }
+  },
+  "c43562_parts": {
+    "optionCount": 65,
+    "picked": ".Brake Parts",
+    "filteredUrl": "https://sv8785.qa.shopview.com/parts/inventory?category=d8e28ff3-c811-46c8-bee5-c5f8f5e2c8e9",
+    "filteredRows": 6,
+    "chips": [
+      "place Bin Location",
+      "list Category : .Brake Parts",
+      "inventory_2 Supply"
+    ],
+    "chipCount": 3,
+    "collapsePresent": true,
+    "afterCollapse": {
+      "chips": 0
+    },
+    "afterExpand": {
+      "chips": 3
+    },
+    "onReturn": {
+      "url": "https://sv8785.qa.shopview.com/parts/inventory?category=d8e28ff3-c811-46c8-bee5-c5f8f5e2c8e9",
+      "chips": [
+        "place Bin Location",
+        "list Category : .Brake Parts",
+        "inventory_2 Supply"
+      ],
+      "collapsed": false
+    }
+  },
+  "c43562_report": {
+    "optionCount": 2,
+    "picked": "Heather Carlson",
+    "filteredUrl": "https://sv8785.qa.shopview.com/reports/punch-clock-activities?range=custom&range=2026-07-01&range=2026-07-31&staffId=eba4be23-e3ae-4477-89c9-97b6701ed9e0",
+    "filteredRows": 5,
+    "chips": [
+      "calendar_today Date Range : Custom",
+      "person Filter by Staff : Heather Carlson"
+    ],
+    "chipCount": 2,
+    "collapsePresent": true,
+    "afterCollapse": {
+      "chips": 0
+    },
+    "afterExpand": {
+      "chips": 2
+    },
+    "onReturn": {
+      "url": "https://sv8785.qa.shopview.com/reports/punch-clock-activities?range=custom&range=2026-07-01&range=2026-07-31&staffId=eba4be23-e3ae-4477-89c9-97b6701ed9e0",
+      "chips": [
+        "calendar_today Date Range : Custom",
+        "person Filter by Staff : Heather Carlson"
+      ],
+      "collapsed": false
+    }
+  },
+  "bridgeErrors": [],
+  "api4xx": [
+    {
+      "m": "GET",
+      "s": 404,
+      "u": "/api/api/sso/check"
+    }
+  ]
+}
