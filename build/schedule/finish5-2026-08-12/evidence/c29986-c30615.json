@@ -1,0 +1,93 @@
+{
+ "cases": [
+  "C29986",
+  "C30615"
+ ],
+ "read_at": "2026-08-12T10:40:08.608522Z",
+ "build": "v3.5-65d6500",
+ "location": "Staging Heavy Duty - 9919",
+ "C29986": {
+  "work_order": {
+   "number": "S-15761",
+   "customer": "Qodale Consulting",
+   "full_estimate_minutes": 1801,
+   "lines": 12
+  },
+  "technician_A": {
+   "name": "Brittany Rodriguez",
+   "id": "7a495a78-5972-4a2d-8631-ecd9555d6b07",
+   "status": 201,
+   "shifts": 4,
+   "minutes": 1801,
+   "series_id": "a6eed853-a2fb-4bf3-91f6-0740065ed24a"
+  },
+  "technician_B": {
+   "name": "Christopher Smith",
+   "id": "bd9a5aa1-75d8-4b99-a9f4-0a7e47e43cd1",
+   "status": 201,
+   "shifts": 3,
+   "minutes": 1801,
+   "series_id": "f67bccde-1fdd-4010-ab7f-3d414fe63eca"
+  },
+  "B_got_the_full_estimate_again": true,
+  "B_was_not_reduced_by_As_booking": true,
+  "series_are_independent": true,
+  "planned_across_technicians": 3602,
+  "exceeds_the_estimate_without_error": true,
+  "error_on_the_second_spread": null
+ },
+ "C30615": {
+  "technician": "Brittany Rodriguez",
+  "day": "2026-09-07",
+  "event_created": {
+   "status": 201,
+   "body": "{'data': {'event': {'id': '359b3006-cda3-4b4c-8ec4-a2f5afc9a674', 'staffId': '7a495a78-5972-4a2d-8631-ecd9555d6b07', 'departmentId': None, 'title': 'ZZAUTOTEST capacity vs conflict', 'startsAt': '2026-09-07T15:00:00Z', 'endsAt': '2026-09-07T17:00:00Z', 'durationMinutes': 120, 'color': '#eaddff', 'no"
+  },
+  "shifts_on_the_day": 1,
+  "events_on_the_day_after": 1,
+  "capacity_before": {
+   "date": "2026-09-07",
+   "scheduledMinutes": 540,
+   "availableMinutes": 540,
+   "utilization": 1,
+   "isOvertime": false
+  },
+  "capacity_after": {
+   "date": "2026-09-07",
+   "scheduledMinutes": 660,
+   "availableMinutes": 540,
+   "utilization": 1.2222222222222223,
+   "isOvertime": true
+  },
+  "scheduled_minutes_rose": true,
+  "rise": 120,
+  "event_duration_minutes": 120,
+  "conflicts_on_the_shifts_before": [
+   null
+  ],
+  "conflicts_on_the_shifts_after": [
+   null
+  ],
+  "board_conflictsComputed": true
+ },
+ "non_get_calls": [
+  {
+   "m": "POST",
+   "path": "/api/schedule/shifts",
+   "loc": "b3c8c820",
+   "status": 201
+  },
+  {
+   "m": "POST",
+   "path": "/api/schedule/shifts",
+   "loc": "b3c8c820",
+   "status": 201
+  },
+  {
+   "m": "POST",
+   "path": "/api/schedule/events",
+   "loc": "b3c8c820",
+   "status": 201
+  }
+ ]
+}

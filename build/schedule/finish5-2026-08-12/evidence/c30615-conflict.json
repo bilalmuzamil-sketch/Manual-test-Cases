@@ -1,0 +1,142 @@
+{
+ "case": "C30615",
+ "read_at": "2026-08-12T10:46:51.750732Z",
+ "build": "v3.5-65d6500",
+ "correction": "the first probe read shift.conflicts, which is not a field on this payload; the real fields are isConflict and conflictReasons",
+ "technician": "Brittany Rodriguez",
+ "day": "2026-09-07",
+ "event_placed": "13:00-14:30Z, wholly inside the shift's 12:00-21:00Z hours",
+ "event_create_status": 201,
+ "before": {
+  "board_conflict_shifts": 5,
+  "conflict_rows": [
+   {
+    "id": "18ecc3d7-f542-48a4-8445-ca20c540245b",
+    "staffId": "1e81b8a0-9a45-4f16-89e3-209bf240990a",
+    "startsAt": "2026-09-01T13:00:00Z",
+    "reasons": [
+     "double_booked"
+    ]
+   },
+   {
+    "id": "f15145ce-5774-46f0-886a-dfbd604c2bdd",
+    "staffId": "1e81b8a0-9a45-4f16-89e3-209bf240990a",
+    "startsAt": "2026-09-01T13:00:00Z",
+    "reasons": [
+     "double_booked"
+    ]
+   },
+   {
+    "id": "68d86c33-2850-45df-96f6-ede1b62ce156",
+    "staffId": "16469a2e-c167-4797-b16e-a17bdc5f32e9",
+    "startsAt": "2026-09-05T12:00:00Z",
+    "reasons": [
+     "non_working_day"
+    ]
+   },
+   {
+    "id": "86819f22-c492-4aed-aaff-ab45b82b659e",
+    "staffId": "16469a2e-c167-4797-b16e-a17bdc5f32e9",
+    "startsAt": "2026-09-10T12:00:00Z",
+    "reasons": [
+     "after_hours"
+    ]
+   },
+   {
+    "id": "beeb1a95-6647-4cc5-ba26-c2b98ceb2be9",
+    "staffId": "16469a2e-c167-4797-b16e-a17bdc5f32e9",
+    "startsAt": "2026-09-11T12:00:00Z",
+    "reasons": [
+     "after_hours"
+    ]
+   }
+  ],
+  "capacity": {
+   "scheduledMinutes": 660,
+   "availableMinutes": 540,
+   "utilization": 1.2222222222222223,
+   "isOvertime": true
+  },
+  "events_on_the_day": 1,
+  "target_shifts": [
+   {
+    "id": "8cd672bf-adbd-4584-a7fa-9de93408df90",
+    "isConflict": false,
+    "conflictReasons": [],
+    "startsAt": "2026-09-07T12:00:00Z",
+    "endsAt": "2026-09-07T21:00:00Z"
+   }
+  ]
+ },
+ "after": {
+  "board_conflict_shifts": 5,
+  "conflict_rows": [
+   {
+    "id": "18ecc3d7-f542-48a4-8445-ca20c540245b",
+    "staffId": "1e81b8a0-9a45-4f16-89e3-209bf240990a",
+    "startsAt": "2026-09-01T13:00:00Z",
+    "reasons": [
+     "double_booked"
+    ]
+   },
+   {
+    "id": "f15145ce-5774-46f0-886a-dfbd604c2bdd",
+    "staffId": "1e81b8a0-9a45-4f16-89e3-209bf240990a",
+    "startsAt": "2026-09-01T13:00:00Z",
+    "reasons": [
+     "double_booked"
+    ]
+   },
+   {
+    "id": "68d86c33-2850-45df-96f6-ede1b62ce156",
+    "staffId": "16469a2e-c167-4797-b16e-a17bdc5f32e9",
+    "startsAt": "2026-09-05T12:00:00Z",
+    "reasons": [
+     "non_working_day"
+    ]
+   },
+   {
+    "id": "86819f22-c492-4aed-aaff-ab45b82b659e",
+    "staffId": "16469a2e-c167-4797-b16e-a17bdc5f32e9",
+    "startsAt": "2026-09-10T12:00:00Z",
+    "reasons": [
+     "after_hours"
+    ]
+   },
+   {
+    "id": "beeb1a95-6647-4cc5-ba26-c2b98ceb2be9",
+    "staffId": "16469a2e-c167-4797-b16e-a17bdc5f32e9",
+    "startsAt": "2026-09-11T12:00:00Z",
+    "reasons": [
+     "after_hours"
+    ]
+   }
+  ],
+  "capacity": {
+   "scheduledMinutes": 750,
+   "availableMinutes": 540,
+   "utilization": 1.3888888888888888,
+   "isOvertime": true
+  },
+  "events_on_the_day": 2,
+  "target_shifts": [
+   {
+    "id": "8cd672bf-adbd-4584-a7fa-9de93408df90",
+    "isConflict": false,
+    "conflictReasons": []
+   }
+  ]
+ },
+ "capacity_rose_by": 90,
+ "event_duration_minutes": 90,
+ "board_conflict_count_unchanged": true,
+ "overlapped_shift_still_not_a_conflict": true,
+ "non_get_calls": [
+  {
+   "m": "POST",
+   "path": "/api/schedule/events",
+   "loc": "b3c8c820",
+   "status": 201
+  }
+ ]
+}

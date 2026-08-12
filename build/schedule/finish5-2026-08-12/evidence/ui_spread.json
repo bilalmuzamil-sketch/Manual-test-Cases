@@ -1,0 +1,135 @@
+{
+ "case_ids": [
+  "C38863",
+  "C29986"
+ ],
+ "read_at": "2026-08-12T10:42:40.526Z",
+ "build": "v3.5-65d6500",
+ "steps": {
+  "spread_step_reached": {
+   "scope": "Service/Parts · Whole order · 76h 36m",
+   "option": "Full estimate (76h 36m)",
+   "summary": "9 shifts · 76h 36m",
+   "cadence": "Aug 12 to Aug 24 · 9h/day, Mon–Fri",
+   "confirm": "Create 9 shifts",
+   "cancel": "Cancel",
+   "body": "Schedule Full estimate (76h 36m) arrow_drop_down calendar_month 9 shifts · 76h 36m Aug 12 to Aug 24 · 9h/day, Mon–Fri expand_more",
+   "dialogIds": [
+    "dialog_title",
+    "button_spread_change_scope",
+    "text_spread_scope",
+    "button_close_dialog",
+    "schedule_spread_body",
+    "select_spread_option",
+    "button_spread_toggle_preview",
+    "text_spread_summary",
+    "text_spread_cadence",
+    "button_spread_cancel",
+    "button_spread_confirm"
+   ],
+   "dialogText": [
+    "S8685-14531 · Wuwick Apparel chevron_left Change scope Service/Parts · Whole order · 76h 36m close Schedule Full estimate (76h 36m) arrow_drop_down calendar_month 9 shifts · 76h 36m Aug 12 to Aug 24 · 9h/day, Mon–Fri expand_more Cancel Create 9 shifts"
+   ]
+  },
+  "option_list": [
+   "check Full estimate (76h 36m)",
+   "check 1 week",
+   "check 2 weeks",
+   "check Until a date…",
+   "check Specific hours…"
+  ],
+  "date_advance": {
+   "clicked": 85
+  },
+  "after_pushing_the_date": {
+   "scope": "Service/Parts · Whole order · 76h 36m",
+   "option": "Until a date…",
+   "summary": "62 shifts · 76h 36m",
+   "cadence": "Aug 12 to Nov 5 · 1h 15m/day, Mon–Fri",
+   "confirm": "Create 62 shifts",
+   "cancel": "Cancel",
+   "body": "Schedule Until a date… arrow_drop_down Finish by chevron_left calendar_month Thu, Nov 5 chevron_right calendar_month 62 shifts · 76h 36m Aug 12 to Nov 5 · 1h 15m/day, Mon–Fri expand_more",
+   "dialogIds": [
+    "dialog_title",
+    "button_spread_change_scope",
+    "text_spread_scope",
+    "button_close_dialog",
+    "schedule_spread_body",
+    "select_spread_option",
+    "button_spread_until_date_prev",
+    "text_spread_until_date",
+    "button_spread_until_date_next",
+    "button_spread_toggle_preview",
+    "text_spread_summary",
+    "text_spread_cadence",
+    "button_spread_cancel",
+    "button_spread_confirm"
+   ],
+   "dialogText": [
+    "S8685-14531 · Wuwick Apparel chevron_left Change scope Service/Parts · Whole order · 76h 36m close Schedule Until a date… arrow_drop_down Finish by chevron_left calendar_month Thu, Nov 5 chevron_right calendar_month 62 shifts · 76h 36m Aug 12 to Nov 5 · 1h 15m/day, Mon–Fri expand_more Cancel Create 62 shifts"
+   ]
+  },
+  "after_pressing_create": {
+   "scope": "Service/Parts · Whole order · 76h 36m",
+   "option": "Until a date…",
+   "summary": "62 shifts · 76h 36m",
+   "cadence": "Aug 12 to Nov 5 · 1h 15m/day, Mon–Fri",
+   "confirm": "Create 62 shifts anyway",
+   "cancel": "Cancel",
+   "body": "Schedule Until a date… arrow_drop_down Finish by chevron_left calendar_month Thu, Nov 5 chevron_right calendar_month 62 shifts · 76h 36m Aug 12 to Nov 5 · 1h 15m/day, Mon–Fri expand_more This series runs 86 days — longer than 8 weeks. Schedule it anyway?",
+   "dialogIds": [
+    "dialog_title",
+    "button_spread_change_scope",
+    "text_spread_scope",
+    "button_close_dialog",
+    "schedule_spread_body",
+    "select_spread_option",
+    "button_spread_until_date_prev",
+    "text_spread_until_date",
+    "button_spread_until_date_next",
+    "button_spread_toggle_preview",
+    "text_spread_summary",
+    "text_spread_cadence",
+    "text_spread_long_series_warning",
+    "button_spread_cancel",
+    "button_spread_confirm"
+   ],
+   "dialogText": [
+    "S8685-14531 · Wuwick Apparel chevron_left Change scope Service/Parts · Whole order · 76h 36m close Schedule Until a date… arrow_drop_down Finish by chevron_left calendar_month Thu, Nov 5 chevron_right calendar_month 62 shifts · 76h 36m Aug 12 to Nov 5 · 1h 15m/day, Mon–Fri expand_more This series runs 86 days — longer than 8 weeks. Schedule it anyway? Cancel Create 62 shifts anyway"
+   ]
+  },
+  "non_get_calls_during_create": [
+   {
+    "m": "POST",
+    "s": 409,
+    "u": "/api/schedule/shifts"
+   }
+  ]
+ },
+ "source_card": {
+  "hours": 76.6,
+  "text": "S8685-14531 26 lines · 76.6h Est. Wuwick Apparel DM Diana Macias chevron_right A",
+  "x": 145,
+  "y": 722
+ },
+ "api_4xx": [
+  {
+   "m": "GET",
+   "s": 404,
+   "u": "/api/api/sso/check"
+  },
+  {
+   "m": "POST",
+   "s": 409,
+   "u": "/api/schedule/shifts"
+  }
+ ],
+ "bridge_errors": 0,
+ "all_non_get": [
+  {
+   "m": "POST",
+   "s": 409,
+   "u": "/api/schedule/shifts"
+  }
+ ]
+}
