@@ -1,0 +1,1155 @@
+{
+ "read_at_utc": "2026-08-12T12:09:20.567446Z",
+ "ours": [
+  {
+   "id": 29557,
+   "title": "Filter bar is shown below the tab row on the Work Orders page",
+   "section": 4111,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8786 (S1-R1) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29558,
+   "title": "Five filter chips appear in a fixed order with an icon, name and arrow",
+   "section": 4111,
+   "marker": "READY",
+   "nmark": 1,
+   "build": null,
+   "atm": 1,
+   "refs": "SV-8786 (S1-R2 (five chips in a fixed order); S1-R3 (each chip shows a leading type-icon,the filter name and a chevron - new in Confluence v19)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29559,
+   "title": "The filter bar still shows the other four chips on the Estimates tab",
+   "section": 4111,
+   "marker": "HOLD - waiting on Branko to confirm whet",
+   "nmark": 1,
+   "build": null,
+   "atm": 1,
+   "refs": "SV-8786 (S1-N1; S9-R2; Branko Round-1 Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = Status chip shown greyed-out/pre-filled on this tab) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29560,
+   "title": "Status chip opens a checkbox list of all nine statuses plus Clear Selection",
+   "section": 4112,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8787 (S2-R1; S2-R4) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29561,
+   "title": "Ticking one status filters the table immediately, with no apply button",
+   "section": 4112,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8787 (S2-R2; S2-R3; S2-R6) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29562,
+   "title": "Ticking several statuses shows work orders matching any of them",
+   "section": 4112,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8787 (S2-R2; \u00a74 Key Decisions (no selection limit)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29563,
+   "title": "Clear Selection in the Status dropdown unticks every status",
+   "section": 4112,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S2-R4; S8-R2) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29564,
+   "title": "Clicking outside the Status dropdown closes it and keeps the selections applied",
+   "section": 4112,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8787 (S2-R5) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29565,
+   "title": "Selecting statuses that no work order has shows the empty state",
+   "section": 4112,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S2-N3; S8-R3) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38877,
+   "title": "Imported works alone: picking it greys out the other filters",
+   "section": 4112,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 3,
+   "refs": "SV-8787 (S2-R7 (Imported cannot be combined with anything else; other filter chips disabled while it is active); S2-N4 (the combination is prevented rather than returning an empty result)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29566,
+   "title": "Customer chip opens a dropdown with a search field and a customer list",
+   "section": 4113,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8788 (S3-R1) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29567,
+   "title": "Typing in the customer search narrows the list to matching names",
+   "section": 4113,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8788 (S3-R2) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29568,
+   "title": "Selected customers show as removable tags and as ticks in the list",
+   "section": 4113,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8788 (S3-R3; S3-R4; \u00a74 Key Decisions (no selection limit)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29569,
+   "title": "Clicking the x on a customer tag removes just that customer from the selection",
+   "section": 4113,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8788 (S3-R5) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29570,
+   "title": "The table shows only work orders belonging to any of the selected customers",
+   "section": 4113,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S3-R6; S2-R6 (real-time pattern)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29571,
+   "title": "Clear Selection in the Customer dropdown removes all selected customers",
+   "section": 4113,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S3-R7; S8-R2) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29572,
+   "title": "Clicking outside the Customer dropdown closes it and the selections remain",
+   "section": 4113,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8788 (S3-R8) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29573,
+   "title": "Customer search with no matching name shows a no-results message in the list",
+   "section": 4113,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8788 (S3-N1) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29574,
+   "title": "A customer with no work orders is still listed; picking them shows no rows",
+   "section": 4113,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S3-E1; S3-N2; S8-R3) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29575,
+   "title": "Lead Technician chip opens a dropdown with a search field and a list",
+   "section": 4114,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8789 (S4-R1) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29576,
+   "title": "Typing in the technician search narrows the list to matching names",
+   "section": 4114,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8789 (S4-R2) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29577,
+   "title": "Selecting technicians shows only work orders where they are the lead technician",
+   "section": 4114,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8789 (S4-R3; S4-R4) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29578,
+   "title": "Clear Selection in the Lead Technician dropdown removes all selected technicians",
+   "section": 4114,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S4-R5; S8-R2) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29579,
+   "title": "Clicking outside the Lead Technician dropdown closes it",
+   "section": 4114,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8789 (S4-R6) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29580,
+   "title": "Selecting a technician who leads no work orders shows the empty state",
+   "section": 4114,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S4-N1; S8-R3) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29581,
+   "title": "A deactivated technician does not appear in the Lead Technician filter list",
+   "section": 4114,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8789 (S4-E1) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29582,
+   "title": "Service Advisor chip opens a dropdown with a search field and a list",
+   "section": 4115,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8790 (S5-R1) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29583,
+   "title": "Typing in the advisor search narrows the list to matching names",
+   "section": 4115,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8790 (S5-R2) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29584,
+   "title": "Selecting advisors shows only work orders assigned to those advisors",
+   "section": 4115,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8790 (S5-R3; S5-R4) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29585,
+   "title": "Clear Selection in the Service Advisor dropdown removes all selected advisors",
+   "section": 4115,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S5-R5; S8-R2) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29586,
+   "title": "Clicking outside the Service Advisor dropdown closes it",
+   "section": 4115,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8790 (S5-R6) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29587,
+   "title": "Selecting an advisor with no assigned work orders shows the empty state",
+   "section": 4115,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S5-N1; S8-R3) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29588,
+   "title": "A deactivated advisor does not appear in the Service Advisor filter list",
+   "section": 4115,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8790 (S5-E1) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29589,
+   "title": "Asset on Site chip opens a dropdown with Yes and No plus Clear Selection",
+   "section": 4116,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8791 (S6-R1; \u00a74 Key Decisions (dropdown - not toggle)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29590,
+   "title": "Choosing Yes shows only work orders whose asset is on site",
+   "section": 4116,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8791 (S6-R2) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29591,
+   "title": "Asset on Site is single-select: choosing the other option replaces the first",
+   "section": 4116,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8791 (S6-R3) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29592,
+   "title": "Clear Selection in the Asset on Site dropdown removes the filter",
+   "section": 4116,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S6-R4; S8-R2) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29593,
+   "title": "Clicking outside the Asset on Site dropdown closes it",
+   "section": 4116,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8791 (S6-R5) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29594,
+   "title": "An Asset on Site choice that matches no work orders shows the empty state",
+   "section": 4116,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S6-N1; S8-R3) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38878,
+   "title": "Choosing No shows only work orders whose asset is not on site",
+   "section": 4116,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8791 (S6-R2; tech plan 2026-07-29 G4 (filtering No is new capability)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29595,
+   "title": "A chip with a selected value turns blue and shows the value",
+   "section": 4117,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.6-3e9dd6d",
+   "atm": 1,
+   "refs": "SV-8792 (S7-R1) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29596,
+   "title": "A chip with several values shows the first ones and shortens the rest",
+   "section": 4117,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.6-3e9dd6d",
+   "atm": 1,
+   "refs": "SV-8792 (S7-R2) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29597,
+   "title": "'Clear Filters' shows right of the chips only when a filter is active",
+   "section": 4117,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S7-R3; S7-N1; S8-N1) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29598,
+   "title": "'Clear Filters' removes every active filter and resets all chips",
+   "section": 4117,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S8-R1; \u00a74 Key Decisions; S13-R13 (clearing filters does not clear a typed search)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29599,
+   "title": "'Clear Selection' in one dropdown clears only that filter",
+   "section": 4117,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8793 (S8-R2; \u00a74 Key Decisions) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29600,
+   "title": "Status and Customer filters together show only work orders matching both",
+   "section": 4117,
+   "marker": "READY",
+   "nmark": 1,
+   "build": null,
+   "atm": 3,
+   "refs": "SV-8793 (\u00a72 Feature Overview: active chips + 'Clear filters' button; Tech Plan \u00a70.3 + \u00a71.8 'AND across fields' for the intersection - the specification states no cross-filter rule) [spec v19 2026-08-06; tech plan 2026-07-29 undated baseline v1.3]"
+  },
+  {
+   "id": 29601,
+   "title": "The toolbar filter button collapses the bar and the table takes the space",
+   "section": 4118,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8786; SV-9041 (S1-R4; S1-R5; SV-9041 - toggle shown only when the page has more than one filter) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29602,
+   "title": "Expanding the filter bar brings it back with active filters still shown",
+   "section": 4118,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8786 (S1-R6) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29603,
+   "title": "The filter bar's collapsed or expanded state is remembered on return",
+   "section": 4118,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S1-R7; S10-R1) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29604,
+   "title": "Collapsed filter button shows a blue indicator only when filters are active",
+   "section": 4118,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8792 (S7-R4; S7-N2) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29605,
+   "title": "Active filters keep filtering the table while the filter bar is collapsed",
+   "section": 4118,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8792 (S7-R5) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 43590,
+   "title": "One filter on a page: no collapse control and the filter bar stays shown",
+   "section": 4118,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.6-3e9dd6d",
+   "atm": 1,
+   "refs": "SV-9041; SV-8785 [epic] (SV-9041 - collapse control shown only where a page has >1 filter; spec v19 S1-R4 states the toggle exists but sets no condition on it) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29606,
+   "title": "A filter combination with no matches shows a no-results empty state",
+   "section": 4119,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8793 (S8-R3) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29607,
+   "title": "The filtered empty state offers a way to clear the filters",
+   "section": 4119,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8793 (S8-R4 (the empty state includes a prompt or link to clear filters); S8-R5 (where a query is also active each is cleared independently)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38897,
+   "title": "When filters and a search find nothing, each can be cleared on its own",
+   "section": 4119,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S8-R3 (empty state covers filters AND any active query); S8-R4 (prompt to clear filters and the query where active); S8-R5 (each cleared independently from the empty state); S13-N1; S13-N2) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29608,
+   "title": "The All tab shows all five filter chips, all working",
+   "section": 4120,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8794 (S9-R1) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29609,
+   "title": "Estimates tab: Status chip is greyed out and pre-filled; other four work",
+   "section": 4120,
+   "marker": "HOLD - waiting on Branko to confirm whet",
+   "nmark": 1,
+   "build": null,
+   "atm": 1,
+   "refs": "SV-8794 (S9-R2; S2-N1; Branko Round-1 Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = chip shown greyed-out/pre-filled; the PRD text saying \"hidden\" is unchanged since v4 2026-05-14) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29610,
+   "title": "Completed tab: Status chip is greyed out and pre-filled; other four work",
+   "section": 4120,
+   "marker": "HOLD - waiting on Branko to confirm whet",
+   "nmark": 1,
+   "build": null,
+   "atm": 1,
+   "refs": "SV-8794 (S9-R3; S2-N2; Branko Round-1 Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = chip shown greyed-out/pre-filled; the PRD text saying \"hidden\" is unchanged since v4 2026-05-14) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29611,
+   "title": "My Work Orders tab shows all five filters and they narrow that list",
+   "section": 4120,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8794 (S9-R4; \u00a74 Key Decisions (My Work Orders tab does not remove filters)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29612,
+   "title": "A Status choice is kept while you switch tabs and comes back on the All tab",
+   "section": 4120,
+   "marker": "HOLD - waiting on Branko to confirm whet",
+   "nmark": 1,
+   "build": null,
+   "atm": 1,
+   "refs": "SV-8794 (S9-R5 (selections retained across tabs and reappear on the All tab); S9-R2; Branko Round-1 Q4=B 2026-07-17 = Status chip shown greyed-out/pre-filled) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38876,
+   "title": "First visit opens the Estimates tab; your last-used tab is remembered",
+   "section": 4120,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (no requirement in spec v19 - default/last-used tab is not in the spec; RULED by Branko answers 2026-08-04 Q2 \"A - it's fine\"); tech plan 2026-07-29 D10 (default tab = Estimates; last-used tab persists) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29613,
+   "title": "Leaving the page and coming back restores the filters and the bar state",
+   "section": 4121,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S10-R1; S1-R7) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29614,
+   "title": "Filters are remembered permanently, even after closing the browser",
+   "section": 4121,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 3,
+   "refs": "SV-8795 (S10-R2 (stored server-side against the account; survives logout; syncs across devices); S10-R3 (saved per user); S10-R1 (restored after navigating away)) + Branko Q2 2026-07-17 - now matched by the PRD [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29615,
+   "title": "Saved filters are per user: one user's filters do not appear for another user",
+   "section": 4121,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.6-3e9dd6d",
+   "atm": 1,
+   "refs": "SV-8795 (S10-R3; \u00a74 Key Decisions (saved per user)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29616,
+   "title": "A remembered filter value that was deleted is silently ignored",
+   "section": 4121,
+   "marker": "READY - EXPECT FAIL (SV-8832)",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8795 (S10-N1) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38880,
+   "title": "Each page and tab remembers its own filters separately",
+   "section": 4121,
+   "marker": "HOLD - held for the QA lead's ruling onl",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8795 (spec v19 S10-R4; \u00a74 \"Parts and Reports selections are scoped to their view/tab and persist there\"); Branko answers 2026-07-31 Q5 exception 1; tech plan 2026-07-29 D20"
+  },
+  {
+   "id": 38881,
+   "title": "Filters saved before the redesign carry over after the update",
+   "section": 4121,
+   "marker": "HOLD - cannot be run - it needs an accou",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8795 (no numbered v18 requirement covers the one-off migration - context S10-R2 server-side model); tech plan 2026-07-29 s4-3.3 (browser-storage to account-preference migration) - confirmation requested [spec v19 2026-08-06]"
+  },
+  {
+   "id": 43560,
+   "title": "When two devices set different filters, the last one saved wins",
+   "section": 4121,
+   "marker": "READY",
+   "nmark": 1,
+   "build": null,
+   "atm": 1,
+   "refs": "SV-8795 (S10-R2 (where two devices write different state,last write wins); S10-R1) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29617,
+   "title": "Applying filters updates the page URL to reflect the active filter state",
+   "section": 4122,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8796 (S11-R1) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29618,
+   "title": "Opening a shared URL or bookmark loads the page with those filters on",
+   "section": 4122,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8796 (S11-R2; \u00a72 Feature Overview (share or bookmark)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29619,
+   "title": "A URL with a deleted filter value loads and ignores that value",
+   "section": 4122,
+   "marker": "READY - EXPECT FAIL (SV-8832)",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8796 (S11-R3) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29620,
+   "title": "A broken filter URL loads the page with no filters and no error",
+   "section": 4122,
+   "marker": "READY - EXPECT FAIL (SV-8832)",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8796 (S11-N1) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38879,
+   "title": "Opening a shared link does not change your own saved filters",
+   "section": 4122,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8796 (S11-R6 (URL state runtime-only with no write-back); S11-R7 (Back to my view - also clears the query); S11-R8 (rationale: the query is never saved)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38896,
+   "title": "'Back to my view' is not shown when you are on your own view",
+   "section": 4122,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8796 (S11-N3; S11-R7) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29621,
+   "title": "Mobile: chips sit in a scrollable row below the tabs, starting All Filters",
+   "section": 4123,
+   "marker": "READY",
+   "nmark": 1,
+   "build": null,
+   "atm": 1,
+   "refs": "SV-8797 (S12-R1) [spec v19 2026-08-06]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button"
+  },
+  {
+   "id": 29622,
+   "title": "Mobile: All Filters opens a sheet of expandable rows with Apply filters",
+   "section": 4123,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.6-3e9dd6d",
+   "atm": 1,
+   "refs": "SV-8797 (S12-R3) [spec v19 2026-08-06]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button"
+  },
+  {
+   "id": 29623,
+   "title": "Mobile: tapping Apply filters applies the statuses and updates the count",
+   "section": 4123,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.6-3e9dd6d",
+   "atm": 3,
+   "refs": "SV-8785 [epic] (S12-R2; S12-R3; S2-R1) [spec v19 2026-08-06]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button"
+  },
+  {
+   "id": 29624,
+   "title": "Mobile: one chip opens its own sheet and applies only on Apply filters",
+   "section": 4123,
+   "marker": "READY - EXPECT FAIL (SV-8875)",
+   "nmark": 1,
+   "build": "v3.6-3e9dd6d",
+   "atm": 1,
+   "refs": "SV-8797 (S12-R2; S12-R3; S2-R6) [spec v19 2026-08-06] ; individual-chip real-time per S12-R2 + S2-R6 + tech-plan 2026-07-29; only the combined All Filters sheet is batch; CONFIRMED by Branko answers 2026-08-04 Q1"
+  },
+  {
+   "id": 29625,
+   "title": "Mobile Customer filter has search, multi-select and removable tags",
+   "section": 4123,
+   "marker": "READY - EXPECT FAIL (SV-8875)",
+   "nmark": 1,
+   "build": "v3.6-3e9dd6d",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S12-R2; S3-R2/R3/R5) [spec v19 2026-08-06]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button"
+  },
+  {
+   "id": 29626,
+   "title": "Mobile Lead Technician and Service Advisor filters offer their search lists",
+   "section": 4123,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.6-3e9dd6d",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S12-R2; S4-R1; S5-R1) [spec v19 2026-08-06]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button"
+  },
+  {
+   "id": 29627,
+   "title": "The mobile Asset on Site filter offers Yes/No with Clear Selection in the sheet",
+   "section": 4123,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.6-3e9dd6d",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S12-R2; S6-R1/R2/R3) [spec v19 2026-08-06]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button"
+  },
+  {
+   "id": 29628,
+   "title": "Active chips and Clear Filters behave on mobile the same way as on desktop",
+   "section": 4123,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S12-R2; S7-R1/R3; S8-R1) [spec v19 2026-08-06]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button"
+  },
+  {
+   "id": 29629,
+   "title": "Mobile has no collapse toggle: the filter chip row is always visible",
+   "section": 4123,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8797 (S12-R4) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29630,
+   "title": "Filters matching no work orders on mobile show the same empty state as desktop",
+   "section": 4123,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S12-N1; S8-R3/R4) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 43563,
+   "title": "On a phone, picking Imported works alone and disables the other filters",
+   "section": 4123,
+   "marker": "READY",
+   "nmark": 1,
+   "build": null,
+   "atm": 1,
+   "refs": "SV-8797 (S2-R7 (Imported cannot be combined with anything else; the other filter chips are disabled while it is active and re-enabled when it is deselected); S2-N4; S12-R6 (mobile applies on the Apply filters button)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29631,
+   "title": "The work order list request carries the active filter selections",
+   "section": 4124,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S2-R2; S3-R6 (backend view)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29632,
+   "title": "A combined multi-filter request returns only work orders matching all filters",
+   "section": 4124,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S2-R2; S3-R6; Tech Plan \u00a70.3 repeated-eq request shape + \u00a71.8 'AND across fields' - the specification states no cross-filter rule) [spec v19 2026-08-06; tech plan 2026-07-29 undated baseline v1.3]"
+  },
+  {
+   "id": 29633,
+   "title": "A request with a deleted or unknown filter value gives no server error",
+   "section": 4124,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S10-N1; S11-R3) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29634,
+   "title": "A list request with malformed filter parameters does not produce a server error",
+   "section": 4124,
+   "marker": "READY - EXPECT FAIL (SV-8832)",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8796 (S11-N1) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 29635,
+   "title": "A filter combination matching nothing returns an empty list, not an error",
+   "section": 4124,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S8-R3; S2-N3) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38895,
+   "title": "Saved-filters service round-trip: save, reload, and per-user isolation",
+   "section": 4124,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.6-3e9dd6d",
+   "atm": 1,
+   "refs": "SV-8795 (S10-R2 (filters stored server-side against the user account; last write wins); S10-R3 (saved per user)) + tech plan 2026-07-29 s4-1.3 (GET/PUT per-user page preferences) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38883,
+   "title": "Page toolbar Search expands in place and narrows the list as you type",
+   "section": 5410,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8798 (S13-R1 (placement in the toolbar action group); S13-R9 (scoped to this table only); S13-R12; S13-R15 (blur rules)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38884,
+   "title": "Page search combines with filters and is cleared separately",
+   "section": 5410,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S13-R10 (search and filters are additive); S13-R13 (each cleared independently); S8-R5) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38886,
+   "title": "Your typed search stays in this browser tab only and is never saved",
+   "section": 5410,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S13-R14 (retained for the browser tab session); S13-R25 (never stored against the account; each tab independent); S13-N4 (not restored on a later visit); S10-R5) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38888,
+   "title": "The search term is part of the shareable page link",
+   "section": 5410,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8796 (S11-R4 (query reflected in the URL); S11-R5 (URL query pre-applied with the control filled); S11-N2 (malformed query ignored with no error); S11-R8 (rationale: no saved value to overwrite)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38889,
+   "title": "On mobile the search expands in the toolbar and buttons make room",
+   "section": 5410,
+   "marker": "READY - EXPECT FAIL (SV-8912)",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S13-R16 (inline expansion with no modal); S13-R17 (field fills the remaining width); S13-R18 (CTA hug width); S13-R19 (2+ icon actions -> \"more\" kebab); S13-R20 (no active-query indicator); S12-R5) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38891,
+   "title": "Every list page keeps its own search box (Parts, Reports, detail tabs)",
+   "section": 5410,
+   "marker": "HOLD - cannot be run yet - its own preco",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S14-R6 (audit: 42 surfaces across 39 components; Work Order Parts excluded); S14-R5 (app-wide sweep); S13-R22 (every table carries a search control); S14-N1 (verify once at the end)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38893,
+   "title": "The top navigation search no longer filters page lists",
+   "section": 5410,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8799 (S14-R1 (navigational results only); S14-R2 (the page-filtering code path is removed rather than dormant); S14-R4 (the list is left untouched); S14-R5) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38898,
+   "title": "The Search box changes look as you hover over it, open it and type",
+   "section": 5410,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8798 (S13-R2 (default text button); S13-R3 (hover fill); S13-R4 (expands in place at 180px); S13-R5 (placeholder \"Type to search\"); S13-R6 (typed text + X-circle clear); S13-R8 (long queries scroll)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38899,
+   "title": "The list narrows shortly after you stop typing, with no button to press",
+   "section": 5410,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8798 (S13-R7 (applies as you type; debounced 300ms; no apply/submit; Enter not required; Inventory 350ms); S13-R12 (results replace the table in place)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38900,
+   "title": "One search box serves all Work Orders tabs and searches the tab you are on",
+   "section": 5410,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8798 (S13-R11 (search applies within the active tab only); S13-R24 (the Work Orders tabs share a single query - views of one dataset)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38901,
+   "title": "Each Report tab and each Parts view keeps its own separate search",
+   "section": 5410,
+   "marker": "HOLD - only half of it can be run - the ",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (S13-R24 (Reports sub-tabs and Parts views each keep their own query); S13-R11; S10-R4 (each view/tab keeps its own set)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38902,
+   "title": "An old link carrying a top-search word no longer narrows the page list",
+   "section": 5410,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8799 (S14-R3 (state / URL parameters / persisted values carrying a global search term into page filtering are removed with it); S14-R2; S14-R1) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38903,
+   "title": "Collapsing the filter bar keeps an active search working",
+   "section": 5410,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8798 (S13-E1 (a collapsed filter bar keeps an active query applying and the search control stays in the toolbar); \u00a74 Key Decisions (page search is separate from the filter bar)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 43561,
+   "title": "On a phone, pages with two or more icon buttons collapse them into one menu",
+   "section": 5410,
+   "marker": "READY",
+   "nmark": 1,
+   "build": "v3.6-3e9dd6d",
+   "atm": 1,
+   "refs": "SV-8798 (S13-R19 (2+ icon-only toolbar actions collapse into one more kebab on mobile; names Inventory; Purchase Orders; Timesheet Activities; both Technician Efficiency; Sales Tax Collected)) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38904,
+   "title": "Every Parts list page shows its designed filter buttons",
+   "section": 5411,
+   "marker": "HOLD - waiting on Branko's Parts and Rep",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (spec v19 \u00a72 Parts Filters; \u00a74 context-specific filter sets + multi-select); Branko answers 2026-07-31 Q2/Q3/Q5/Q7 + 2026-08-04 Q3 (Vendors design exists Figma 11903-10461) + Q8 (Part Sales chips); Figma 11884-16885"
+  },
+  {
+   "id": 38905,
+   "title": "Part Type filter opens a Core / Non Core list with Clear Selection",
+   "section": 5411,
+   "marker": "HOLD - waiting on Branko's Parts and Rep",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (spec v19 \u00a72 Feature Overview -> Parts Filters; \u00a74 Key Decisions -> \"Context-specific filter sets on Parts and Reports\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885"
+  },
+  {
+   "id": 38906,
+   "title": "Choosing a Parts filter narrows the list on that page",
+   "section": 5411,
+   "marker": "HOLD - waiting on Branko's Parts and Rep",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (spec v19 \u00a72 Feature Overview -> Parts Filters; \u00a74 Key Decisions -> \"Context-specific filter sets on Parts and Reports\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885"
+  },
+  {
+   "id": 38907,
+   "title": "Parts filters support multiple choices and can be cleared",
+   "section": 5411,
+   "marker": "HOLD - waiting on Branko's Parts and Rep",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (spec v19 \u00a72 Feature Overview -> Parts Filters; \u00a74 Key Decisions -> \"Context-specific filter sets on Parts and Reports\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885"
+  },
+  {
+   "id": 38908,
+   "title": "Every filter a page had before is still available in the new filter bar",
+   "section": 5411,
+   "marker": "HOLD - waiting on Branko's Parts and Rep",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (spec v19 \u00a72 Parts Filters + Reports Filters); Branko answers 2026-07-31 Q3 + 2026-08-04 Q8 (\"we should have all filters we support now per each page plus we should add new ones\"); tech plan 2026-07-29 rollout rule"
+  },
+  {
+   "id": 43562,
+   "title": "Parts and Reports filters collapse, share and work on a phone as Work Orders do",
+   "section": 5411,
+   "marker": "HOLD - the new filter bar has reached on",
+   "nmark": 1,
+   "build": null,
+   "atm": 1,
+   "refs": "SV-8785 [epic]; SV-9041 (Branko 2026-07-31 R3 Q5=A - collapse; URL and mobile match Work Orders; SV-9041 - collapse control only where a page has >1 filter; spec v19 \u00a74 Key Decisions - context-specific filter sets) [spec v19 2026-08-06]"
+  },
+  {
+   "id": 38882,
+   "title": "Date range filter offers ready-made periods and a custom start/end range",
+   "section": 5412,
+   "marker": "HOLD - waiting on Branko's Parts and Rep",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (Filters spec v19 2026-08-06: Feature Overview + Key Decisions \"New date-range filter type\" - standard predefined ranges; pre-populated default range; preset applies on selection; custom applies on 2nd date)"
+  },
+  {
+   "id": 38909,
+   "title": "Report filter bars appear on the reports this change covers",
+   "section": 5412,
+   "marker": "HOLD - Branko's Parts and Reports write-",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (spec v19 \u00a72 Reports Filters; \u00a74 Key Decisions date-range + multi-select; S1-R3 chip type-icon); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11903-10573; eng handover SV-8785-app-wide-filter-redesign \u00a73+\u00a78 2026-08-10"
+  },
+  {
+   "id": 38910,
+   "title": "Choosing a Reports filter narrows the report results",
+   "section": 5412,
+   "marker": "HOLD - waiting on Branko's Parts and Rep",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (spec v19 \u00a72 Reports Filters; \u00a74 Key Decisions \"New date-range filter type\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11903-10573"
+  },
+  {
+   "id": 38911,
+   "title": "New Reports filter types behave correctly (Location, Transaction Type, etc.)",
+   "section": 5412,
+   "marker": "HOLD - waiting on Branko's Parts and Rep",
+   "nmark": 1,
+   "build": "v3.4.2-d00239b",
+   "atm": 1,
+   "refs": "SV-8785 [epic] (spec v19 \u00a72 Reports Filters; \u00a74 \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q3/Q5 + 2026-08-04 Q8 (\"We do not have list of all filter items\" - confirms no option list exists); Figma 11903-10573"
+  }
+ ]
+}
