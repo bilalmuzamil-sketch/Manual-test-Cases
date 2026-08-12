@@ -1,0 +1,236 @@
+{
+  "probe": "R2",
+  "at": "2026-08-12T17:10:26.557Z",
+  "C29614": {
+    "steps": [
+      {
+        "n": 1,
+        "text": "Visit several other areas and use them briefly",
+        "visited": [
+          {
+            "path": "/customers",
+            "landedOn": "https://sv8785.qa.shopview.com/customers"
+          },
+          {
+            "path": "/parts/inventory",
+            "landedOn": "https://sv8785.qa.shopview.com/parts/inventory?category=d8e28ff3-c811-46c8-bee5-c5f8f5e2c8e9"
+          },
+          {
+            "path": "/reports/sales",
+            "landedOn": "https://sv8785.qa.shopview.com/reports/sales?companyId=7af75d7c-c9f8-4209-860a-e685e9bd7c1c"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "text": "Return to Work Orders and look at chips and table",
+        "chips": [
+          "Status : Declined, +1",
+          "person Customer : Iibay Landscaping",
+          "build Lead Technician",
+          "headset_mic Service Advisor",
+          "local_shipping Asset on Site"
+        ],
+        "rows": 2,
+        "url": "https://sv8785.qa.shopview.com/workorders?status=declined&status=approved&company_id=00122246-ab6d-47ee-a885-3425c7bda754&tab=all"
+      },
+      {
+        "n": 3,
+        "text": "Close the browser completely",
+        "done": true,
+        "prefAtClose": {
+          "status": [
+            "declined",
+            "approved"
+          ],
+          "company_id": [
+            "00122246-ab6d-47ee-a885-3425c7bda754"
+          ]
+        }
+      },
+      {
+        "n": "4-5",
+        "text": "Open the browser again, sign in as the same person, go to Work Orders; look",
+        "chips": [
+          "Status : Declined, +1",
+          "person Customer : Iibay Landscaping",
+          "build Lead Technician",
+          "headset_mic Service Advisor",
+          "local_shipping Asset on Site"
+        ],
+        "rows": 2,
+        "url": "https://sv8785.qa.shopview.com/workorders?status=declined&status=approved&company_id=00122246-ab6d-47ee-a885-3425c7bda754&tab=all",
+        "statusKept": true,
+        "customerKept": true,
+        "appGET": [
+          {
+            "m": "GET",
+            "s": 200,
+            "u": "/api/users/me/preferences/work-orders-list"
+          }
+        ]
+      },
+      {
+        "n": 6,
+        "text": "On a different browser profile, sign in as the same person and open Work Orders",
+        "separateBrowserProcess": true,
+        "chips": [
+          "Status : Declined, +1",
+          "person Customer : Iibay Landscaping",
+          "build Lead Technician",
+          "headset_mic Service Advisor",
+          "local_shipping Asset on Site"
+        ],
+        "rows": 2,
+        "url": "https://sv8785.qa.shopview.com/workorders?status=declined&status=approved&company_id=00122246-ab6d-47ee-a885-3425c7bda754&tab=all",
+        "statusKept": true,
+        "customerKept": true,
+        "bridgeErrors": 0
+      }
+    ],
+    "precondition": {
+      "status": "Approved",
+      "customer": "Iibay Landscaping",
+      "chips": [
+        "Status : Declined, +1",
+        "person Customer : Iibay Landscaping",
+        "build Lead Technician",
+        "headset_mic Service Advisor",
+        "local_shipping Asset on Site"
+      ],
+      "url": "https://sv8785.qa.shopview.com/workorders?status=declined&status=approved&company_id=00122246-ab6d-47ee-a885-3425c7bda754&tab=all",
+      "rows": 2
+    },
+    "cleanedTo": []
+  },
+  "C43560": {
+    "steps": [
+      {
+        "n": 1,
+        "text": "Browser A: set Status to Approved; wait",
+        "optionsSeen": 9,
+        "found": true,
+        "chips": [
+          "Status : Approved",
+          "person Customer",
+          "build Lead Technician",
+          "headset_mic Service Advisor",
+          "local_shipping Asset on Site"
+        ],
+        "url": "https://sv8785.qa.shopview.com/workorders?status=approved&tab=all",
+        "appPUT": 1
+      },
+      {
+        "n": 2,
+        "text": "Browser B: set Status to Estimate instead, and clear Approved; wait",
+        "bReloadedFirst": true,
+        "whatBSawOnLoad": [
+          "Status : Approved",
+          "person Customer",
+          "build Lead Technician",
+          "headset_mic Service Advisor",
+          "local_shipping Asset on Site"
+        ],
+        "afterUntickApproved": [
+          "Status",
+          "person Customer",
+          "build Lead Technician",
+          "headset_mic Service Advisor",
+          "local_shipping Asset on Site"
+        ],
+        "afterTickEstimate": [
+          "Status : Estimate",
+          "person Customer",
+          "build Lead Technician",
+          "headset_mic Service Advisor",
+          "local_shipping Asset on Site"
+        ],
+        "url": "https://sv8785.qa.shopview.com/workorders?status=estimate&tab=all",
+        "appPUT": 2
+      },
+      {
+        "n": "3-4",
+        "text": "Browser A: reload; look at chips and table",
+        "chips": [
+          "Status : Estimate",
+          "person Customer",
+          "build Lead Technician",
+          "headset_mic Service Advisor",
+          "local_shipping Asset on Site"
+        ],
+        "rows": 33,
+        "url": "https://sv8785.qa.shopview.com/workorders?status=estimate&tab=all",
+        "showsEstimate": true,
+        "showsApproved": false
+      },
+      {
+        "n": 5,
+        "text": "Browser A: set a Customer filter as well; wait",
+        "customer": "Iibay Landscaping",
+        "chips": [
+          "Status : Estimate",
+          "person Customer : Iibay Landscaping",
+          "build Lead Technician",
+          "headset_mic Service Advisor",
+          "local_shipping Asset on Site"
+        ],
+        "url": "https://sv8785.qa.shopview.com/workorders?status=estimate&company_id=00122246-ab6d-47ee-a885-3425c7bda754&tab=all"
+      },
+      {
+        "n": 6,
+        "text": "Browser B: reload and look at chips and table",
+        "chips": [
+          "Status : Estimate",
+          "person Customer : Iibay Landscaping",
+          "build Lead Technician",
+          "headset_mic Service Advisor",
+          "local_shipping Asset on Site"
+        ],
+        "rows": 2,
+        "url": "https://sv8785.qa.shopview.com/workorders?status=estimate&company_id=00122246-ab6d-47ee-a885-3425c7bda754&tab=all",
+        "showsCustomer": true,
+        "showsEstimate": true
+      }
+    ],
+    "precondition": {
+      "browserA": {
+        "chips": [
+          "Status",
+          "person Customer",
+          "build Lead Technician",
+          "headset_mic Service Advisor",
+          "local_shipping Asset on Site"
+        ],
+        "url": "https://sv8785.qa.shopview.com/workorders?tab=all"
+      },
+      "browserB": {
+        "chips": [
+          "Status",
+          "person Customer",
+          "build Lead Technician",
+          "headset_mic Service Advisor",
+          "local_shipping Asset on Site"
+        ],
+        "url": "https://sv8785.qa.shopview.com/workorders?tab=all"
+      },
+      "separateProcesses": true
+    },
+    "errors": {
+      "A": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "B": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "bridgeA": 0,
+      "bridgeB": 0
+    },
+    "cleanedTo": []
+  }
+}
