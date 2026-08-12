@@ -1,0 +1,128 @@
+{
+ "30005": {
+  "steps": [
+   {
+    "step": "precondition: a shift on a technician's day-view timeline",
+    "seen": "day view; block {\"id\":\"e35d37ef-1bf0-491d-b8f4-470faff59426\",\"x\":564,\"y\":458,\"w\":45,\"h\":68,\"right\":609}"
+   },
+   {
+    "step": "1 drag the shift's RIGHT edge further right",
+    "seen": "hovered the right edge first, because a handle that only appears on hover would read as absent otherwise: {\"label\":\"right edge\",\"at\":{\"x\":607,\"y\":458},\"cursor_at_point\":{\"tag\":\"DIV\",\"cls\":\"fc-event-resizer fc-event-resizer-end\",\"tid\":null,\"cursor\":\"e-resize\"},\"handles\":[]}"
+   },
+   {
+    "step": "2 drag the shift's LEFT edge",
+    "seen": "{\"label\":\"left edge\",\"at\":{\"x\":566,\"y\":458},\"cursor_at_point\":{\"tag\":\"DIV\",\"cls\":\"fc-event-resizer fc-event-resizer-start\",\"tid\":null,\"cursor\":\"w-resize\"},\"handles\":[]}"
+   },
+   {
+    "step": "  control: the block centre",
+    "seen": "{\"label\":\"centre\",\"at\":{\"x\":587,\"y\":458},\"cursor_at_point\":{\"tag\":\"SPAN\",\"cls\":\"schedule-block__line-text\",\"tid\":null,\"cursor\":\"pointer\"},\"handles\":[]}"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T10:17:50.512Z"
+ },
+ "30017": {
+  "steps": [
+   {
+    "step": "precondition: the Schedule page in DAY view",
+    "seen": "Day toggle clicked = true; page reads: Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 AS August 2026 expand_more chevron_left chevron_right expand_less M T W T F S S 27 28"
+   },
+   {
+    "step": "1 left-click an empty spot on a technician's timeline and choose Create Event",
+    "seen": "menu: [\"SERVICE/PARTS · WED, AUG 12 · 12:00 event Create Event content_paste New Work Order\"] ; Create Event clicked = true"
+   },
+   {
+    "step": "2 while creating, watch the block and try dragging to size it",
+    "seen": "event modal opened: [\"Create Event close Event name All day Start date Start time arrow_drop_down End date End time arrow_drop_down Grey expand_more Note (optional) Cancel Create Event\"]"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T10:16:19.444Z"
+ },
+ "30018": {
+  "steps": [
+   {
+    "step": "precondition: the event modal is open (left-click empty grid space, then Create Event)",
+    "seen": "reached: [\"Create Event close Event name All day Start date Start time arrow_drop_down End date End time arrow_drop_down Grey expand_more Note (optional) Cancel Create Event\"]"
+   },
+   {
+    "step": "1 read the fields the modal offers",
+    "seen": "[{\"tid\":\"dialog_title\",\"tag\":\"SPAN\",\"t\":\"Create Event\"},{\"tid\":\"button_close_dialog\",\"tag\":\"BUTTON\",\"t\":\"close\"},{\"tid\":\"schedule_event_form_body\",\"tag\":\"DIV\",\"t\":\"Event name All day Start date Star\"},{\"tid\":\"input_event_title\",\"tag\":\"INPUT\",\"t\":\"\"},{\"tid\":\"checkbox_event_all_day\",\"tag\":\"DIV\",\"t\":\"All day\"},{\"tid\":\"input_event_start_date\",\"tag\":\"INPUT\",\"t\":\"\"},{\"tid\":\"select_event_start_time\",\"tag\":\"INPUT\",\"t\":\"\"},{\"tid\":\"input_event_end_date\",\"tag\":\"INPUT\",\"t\":\"\"},{\"tid\":\"select_event_end_time\",\"tag\":\"INPUT\",\"t\":\"\"},{\"tid\":\"button_event_color\",\"tag\":\"BUTTON\",\"t\":\"Grey expand_more\"},{\"tid\":\"input_event_note\",\"tag\":\"TEXTAREA\",\"t\":\"\"},{\"tid\":\"button_event_cancel\",\"tag\":\"BUTTON\",\"t\":\"Cancel\"},{\"tid\":\"button_event_confirm\",\"tag\":\"BUTTON\",\"t\":\"Create Event\"}]"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T10:16:19.445Z"
+ },
+ "30031": {
+  "steps": [
+   {
+    "step": "precondition: Capacity Bars are ON, and one day is booked BEYOND the team's available hours",
+    "seen": "capacity elements render on the board: [\"capacity-bar capacity-bar--compact\",\"capacity-bar__lane\",\"capacity-bar__track\",\"capacity-bar__fill\",\"capacity-bar__tick\",\"capacity-bar__spill capacity-bar__spill--capped\"]"
+   },
+   {
+    "step": "1 look at that day's capacity bar",
+    "seen": "[{\"cls\":\"capacity-bar capacity-bar--compact\",\"t\":\"\",\"w\":123,\"bg\":\"rgba(0, 0, 0, 0)\",\"title\":\"Capacity 63% — 129h 6m scheduled of 205h, overtime\"},{\"cls\":\"capacity-bar__lane\",\"t\":\"\",\"w\":123,\"bg\":\"rgba(0, 0, 0, 0)\",\"title\":null},{\"cls\":\"capacity-bar__track\",\"t\":\"\",\"w\":92,\"bg\":\"rgb(227, 232, 239)\",\"title\":null},{\"cls\":\"capacity-bar__fill\",\"t\":\"\",\"w\":58,\"bg\":\"rgb(37, 124, 255)\",\"title\":null},{\"cls\":\"capacity-bar capacity-bar--compact\",\"t\":\"\",\"w\":122,\"bg\":\"rgba(0, 0, 0, 0)\",\"title\":\"Capacity 23% — 44h 13m scheduled of 191h, overtime\"},{\"cls\":\"capacity-bar__lane\",\"t\":\"\",\"w\":122,\"bg\":\"rgba(0, 0, 0, 0)\",\"title\":null},{\"cls\":\"capacity-bar__track\",\"t\":\"\",\"w\":92,\"bg\":\"rgb(227, 232, 239)\",\"title\":null},"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T10:18:04.029Z"
+ },
+ "30068": {
+  "steps": [
+   {
+    "step": "precondition: shifts/series and events exist to exercise the dialogs",
+    "seen": "they do - series delete-scope, reassign confirm and the event modal were all reached live this pass"
+   },
+   {
+    "step": "5 open a shift's detail modal, click into the note editor",
+    "seen": "note control: {\"control\":{\"tid\":\"schedule_shift_detail_body\",\"t\":\"TIME LOGGED\\n0m / 1h\\nSCHEDULED\\n\\nMon, Aug 10, 2026\\n\\nTIME\\narrow_drop_down\\n–\\narrow_drop_down\\nTECHNICIAN\\nBM\\nBilal Muzamil\\nWork Order Lines\\n1\\nSingle line · 1h\\n1\\nReplace - Rear ramp handles\\n1h\\nAuthorized\\nblue\\nexpand_more\\nNotes\\nadd\\nAdd Note\"}}; editable fields then present: [{\"tag\":\"INPUT\",\"tid\":\"select_shift_detail_start_time\"},{\"tag\":\"INPUT\",\"tid\":\"select_shift_detail_end_time\"}]"
+   },
+   {
+    "step": "1-4 the four dialogs Enter must confirm",
+    "seen": "all four reached this pass: the SPREAD step (finish3), the REASSIGN confirm (\"Move this shift to Lisa Stewart on Wed, Aug 12?\"), the EVENT modal, and the series DELETE-SCOPE prompt"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T10:18:08.585Z"
+ },
+ "30072": {
+  "steps": [
+   {
+    "step": "precondition: a shift detail modal is open",
+    "seen": "shift e35d37ef; modal read live"
+   },
+   {
+    "step": "1 open the colour picker in the modal",
+    "seen": "{\"found\":true,\"tid\":\"button_shift_detail_color\",\"t\":\"blue expand_more\"}"
+   },
+   {
+    "step": "2 the picker offers non-default colours",
+    "seen": "[{\"tag\":\"BUTTON\",\"tid\":\"button_color_swatch_blue\",\"t\":\"blue\",\"editable\":false},{\"tag\":\"BUTTON\",\"tid\":\"button_color_label_rename_blue\",\"t\":\"edit\",\"editable\":false},{\"tag\":\"BUTTON\",\"tid\":\"button_color_swatch_teal\",\"t\":\"Teal\",\"editable\":false},{\"tag\":\"BUTTON\",\"tid\":\"button_color_swatch_violet\",\"t\":\"Violet\",\"editable\":false},{\"tag\":\"BUTTON\",\"tid\":\"button_color_swatch_pink\",\"t\":\"Pink\",\"editable\":false},{\"tag\":\"BUTTON\",\"tid\":\"button_color_swatch_cyan\",\"t\":\"Cyan\",\"editable\":false},{\"tag\":\"BUTTON\",\"tid\":\"button_color_swatch_amber\",\"t\":\"Amber\",\"editable\":false},{\"tag\":\"BUTTON\",\"tid\":\"button_color_swatc"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T10:16:06.146Z"
+ },
+ "30073": {
+  "steps": [
+   {
+    "step": "precondition: a shift's colour picker is open",
+    "seen": "opened from button_shift_detail_color; controls: [{\"tid\":\"button_color_swatch_blue\",\"t\":\"blue\"},{\"tid\":\"button_color_label_rename_blue\",\"t\":\"edit\"},{\"tid\":\"button_color_swatch_teal\",\"t\":\"Teal\"},{\"tid\":\"button_color_swatch_violet\",\"t\":\"Violet\"},{\"tid\":\"button_color_swatch_pink\",\"t\":\"Pink\"},{\"tid\":\"button_color_swatch_cyan\",\"t\":\"Cyan\"},{\"tid\":\"button_color_swatch_amber\",\"t\":\"Amber\"},{\"tid\":\"button_color_swatch_grey\",\"t\":\"Grey\"}]"
+   },
+   {
+    "step": "1 find the editable label of one colour in the picker",
+    "seen": "a per-colour rename control exists: button_color_label_rename_blue"
+   },
+   {
+    "step": "2 rename it",
+    "seen": "after clicking it: {\"inputs\":[{\"tid\":\"input_color_label_name\",\"type\":\"text\",\"value\":\"blue\"}],\"text\":\"check Teal edit Violet edit Pink edit Cyan edit Amber edit Grey edit\"}"
+   },
+   {
+    "step": "  NOTE",
+    "seen": "the rename was NOT saved - this pass verifies the route is runnable, it does not change a shop-wide label"
+   }
+  ],
+  "verdict": "see RUNNABILITY",
+  "at": "2026-08-12T10:18:02.158Z"
+ }
+}
