@@ -1,0 +1,68 @@
+FILTERS SESSION PROBE — 2026-08-12, all times UTC
+Probes are curl GETs. No values of any cookie appear here; only the HTTP result.
+
+Container clock at probe time: 2026-08-12T02:54:29Z
+
+BUILD MARKER (unauthenticated, works without a session)
+  GET https://sv8785.qa.shopview.com/index.html            -> HTTP 200
+  <meta name="app-version"> ................................. v3.6-3e9dd6d
+  last-modified ............................................. Tue, 11 Aug 2026 07:45:44 GMT
+  etag ...................................................... "b1b2623f07bec03883f57a0e17204431"
+  sha256(index.html) ........................................ fa01a52544d9fc96113f6785bec26bb43771af57fe2bc8c6120d4b6fbb11d4cb
+
+A. BOTH SUPPLIED FILTERS SESSIONS, AGAINST THE FILTERS API HOST
+  GET https://sv8785api.qa.shopview.com/api/auth/me/fe-permissions
+    ADMIN set (sso + PHPSESSID <admin value, not recorded> + cf)  -> HTTP 409 {"errors":[{"error":"Session has expired."}]}
+    TECH  set (sso + PHPSESSID <tech value, not recorded> + cf)  -> HTTP 409 {"errors":[{"error":"Session has expired."}]}
+
+B. THE SAME TWO SETS AGAINST THE OTHER TWO BRANCH API HOSTS
+    sv8685api / ADMIN -> HTTP 409     sv8685api / TECH -> HTTP 409
+    sv8582api / ADMIN -> HTTP 409     sv8582api / TECH -> HTTP 409
+
+C. IS THE SHARED TOKEN ITSELF DEAD? NO — PROVEN ALIVE
+   The Schedule sibling worker's cookie file (/tmp/qa-cookies/schedule-cookie-header.txt,
+   written 2026-08-12T02:52Z) carries a sv_sso_session and cf_clearance that are
+   BYTE-IDENTICAL to the ones supplied to this session (compared by sha256, values never printed),
+   and differs ONLY in PHPSESSID.
+    that set   vs https://sv8685api.qa.shopview.com/api/auth/me/fe-permissions -> HTTP 200,
+                  42 permissions, view_mode "full"
+   => the shared sv_sso_session and cf_clearance supplied to this session are ALIVE.
+
+D. IS PHPSESSID PER-BRANCH? YES — PROVEN BOTH WAYS (playbook section A, trap 4)
+    schedule PHPSESSID vs sv8685api (its own branch)  -> HTTP 200
+    schedule PHPSESSID vs sv8785api (another branch)  -> HTTP 409
+   => a PHPSESSID authenticates on exactly one branch. Both Filters PHPSESSIDs authenticate
+      on NO branch.
+
+E. ISOLATING WHICH COOKIE FAILS
+    sv_sso_session + cf_clearance, NO PHPSESSID, vs sv8785api -> HTTP 409 (identical body)
+    PHPSESSID alone, no sv_sso_session, vs sv8785api          -> HTTP 401 {"error":"sso_required"}
+   => the 409 is driven by the branch having no live session for either supplied PHPSESSID.
+      Adding or removing the PHPSESSID changes nothing, which is the signature of an expired one.
+
+F. THE FIVE FALSE-ALARM TRAPS OF PLAYBOOK SECTION A, EACH RULED OUT
+   trap 1 expired cf_clearance mistaken for a dead sign-in .. RULED OUT: cf_clearance proven alive at C
+   trap 2 probing the app host, which answers 200 on any path RULED OUT: every probe used the ...api. host
+   trap 3 paste -sd corrupting the cookie header ............ RULED OUT: header built with '; '.join,
+                                                              one line, three pairs, lengths verified
+                                                              64 / 32 / 426, no newline
+   trap 4 per-branch session store ......................... IS THE DIAGNOSIS, and it is terminal here:
+                                                              neither PHPSESSID works on any branch
+   trap 5 quick-login / switch-user rotating the shared token NOT TRIGGERED: neither was ever called
+
+G. IS THERE A RECOVERY ROUTE THAT DOES NOT ROTATE THE SHARED TOKEN? NO
+    GET https://sv8785.qa.shopview.com/ following redirects with the shared cookies
+        -> HTTP 200, SPA index.html, NO Set-Cookie, no redirect chain (the SPA authenticates client-side)
+    GET the API's own sso_redirect_url with the shared cookies
+        -> HTTP 409 directly: with a valid sv_sso_session present the API never emits the 401
+           redirect, so there is no handshake to follow
+    GET /api/auth/callback, /api/sso/callback, /api/auth/sso, /api/auth/session, /api/auth/refresh
+        -> HTTP 404 'resource was not found' on all five
+    GET /api/login -> HTTP 405 (POST-only)
+   => the only documented recovery is POST /api/quick-login, which is BANNED for this session
+      because it rotates the shared sv_sso_session and would sign out the two sibling workers
+      live on Schedule and Reports, and could sign the QA lead out of his own browser.
+
+H. SIBLING CANARY, CHECKED BEFORE AND AFTER EVERY PROBE ABOVE
+    schedule set vs sv8685api: 200 before -> 200 after -> 200 after -> 200 final
+   => nothing this session did disturbed the sibling workers.
