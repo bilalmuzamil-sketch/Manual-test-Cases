@@ -210,10 +210,24 @@ about coverage.
   merely because it arrived most recently in a conversation. *(Live case: three Schedule tickets cite a
   `claude.ai/design/p/…?…&via=share` page with no version and no date, while ~48 of our Schedule
   labels are pinned from a different, ingested prototype.)*
-  **⏳ AND AN OPEN QUESTION SITS HERE: does a TECHNICAL DESIGN carry PRD-level authority on what the
-  product should do, or does "informs but never overrules" still hold for it?** The QA lead has named
-  the technical design as a design artefact; Rule 30's subordination clause is preserved. **Do not
-  answer it for him.** Until he does, a case that would turn on the difference is **HELD**.
+  **✅ THE TECHNICAL DESIGN'S AUTHORITY IS ANSWERED AND CLOSED — DO NOT RE-ASK IT (QA lead,
+  2026-08-12).** Verbatim: *"Technical design is the authority but if that contradicts with
+  specs/tickets/answer sheet/claude design/figma (because they are also the authority with the rule
+  that the latest entry for that question wins) I would suggest to consider the specs/tickets/answer
+  sheet/claude design/figma … as the authority for the test cases but let me know where it contradicts
+  with the tech design."*
+  **SO: (1) on a CONTRADICTION the other five win**, latest-wins among them; **(2) where NOTHING
+  contradicts it, the technical design SOURCES a case on its own** — properly sourced, and **not** a
+  Rule-64 deletion candidate (**eleven held cases were released by this ruling**); **(3) 🛑 EVERY
+  CONTRADICTION IS REPORTED TO HIM** — his closing clause is an instruction, and **applying the
+  precedence order silently breaches half the ruling.** Log each one in the outstanding register.
+  **⚠️ SUPERSEDED WORDING, KEPT VISIBLE AND DATED:** from 2026-08-06 until that ruling this block read
+  *"AND AN OPEN QUESTION SITS HERE: does a TECHNICAL DESIGN carry PRD-level authority on what the
+  product should do, or does 'informs but never overrules' still hold for it? … Do not answer it for
+  him. Until he does, a case that would turn on the difference is HELD."* **That is no longer in
+  force.** It is kept rather than deleted because **a silently-erased open question is how a session
+  re-asks something a source has already answered** — an embarrassment this workspace has had before.
+  Live list: `build/rulings-2026-08-12/TECH-DESIGN-CONTRADICTIONS.md`.
 - **Tech plan.** If none was supplied, **remind him** — it is a standard input, not an optional extra.
 - **PO answers / messages / videos / shared `.md` files.** The **newest authoritative one wins**, and
   **a later answer can reverse an earlier ruling our cases still assert.**
@@ -324,6 +338,16 @@ Sources read at pass start: <UTC>   ·   re-read at write start: <UTC>   ·   ve
 
 - **CURRENT / STALE / PARTIAL — and a PARTIAL source names its EXACT shortfall.**
 - **Nothing may claim completeness while any source is STALE.**
+- **🔑 THE "DATE CHECKED" COLUMN IS THE READ-DATE THAT NOW GOES ONTO THE CASES THEMSELVES** — Standing
+  Rule 54 as amended 2026-08-11 requires **every cited source in a case's provenance line to carry the
+  date we read it** (core §14.1). So this table is not merely a pass artefact: **it is the input to
+  the stamp.** Two consequences that bite if they are missed: **each source keeps its OWN date** (a
+  spec and a PO answer move independently, so one shared date would misstate at least one), and **a
+  source this pass did NOT actually re-read keeps its previous date** — **back-filling today's date
+  onto a source nobody opened is a fabricated observation** (Rule 12) and **defeats the whole point,
+  because the date's value is evidentiary.** His reason, verbatim: *"if someone changes the source of
+  truth I can guard myself telling that the refrence taken from the source of truth was from the state
+  of that source which was at this certain date."*
 - If the spec moved: **`SPEC-DIFF-<date>.md`** with the per-requirement verdict table (step 5).
 - Then **`OUTSTANDING — what I need from you`** (core §13).
 

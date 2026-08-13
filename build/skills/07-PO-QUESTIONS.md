@@ -191,9 +191,18 @@ and DISCLOSES the divergence in its own text.** **We never silently pick a side.
 question sheet — never a decision of ours. His words: *"the latest wins or if latest does not make
 sense we can create a question sheet for the PO to respond."*
 
-**⏳ One open item belongs here rather than being answered for him: does a TECHNICAL DESIGN carry
-PRD-level authority on what the product should do, or does "informs but never overrules" still hold?**
-**Do not answer it on his behalf.**
+**✅ AND ONE ITEM THAT USED TO BELONG HERE IS ANSWERED — DO NOT PUT IT ON A SHEET.** The technical
+design's authority was **closed by the QA lead on 2026-08-12**, verbatim: *"Technical design is the
+authority but if that contradicts with specs/tickets/answer sheet/claude design/figma … consider the
+specs/tickets/answer sheet/claude design/figma … as the authority for the test cases but let me know
+where it contradicts with the tech design."* So **on a contradiction the other five win**; **where
+nothing contradicts it the technical design sources a case on its own**; and **every contradiction is
+REPORTED TO HIM** — that is an instruction, and it goes to him directly, **not onto a PO sheet**
+(it is our-side reporting, not a product decision for the PO to rule on).
+**⚠️ SUPERSEDED WORDING, KEPT AND DATED:** this block previously read *"One open item belongs here
+rather than being answered for him: does a TECHNICAL DESIGN carry PRD-level authority … Do not answer
+it on his behalf."* **Asking it again would spend the PO's patience on a question already settled** —
+exactly what §6 below exists to prevent.
 
 ---
 
