@@ -10,7 +10,16 @@
 > Every skill points at it instead of repeating it, so a fix lands in **one** place instead of seven.
 > It carries the honesty bar · TestRail write discipline and hazards · runs · foreign cases · access
 > mechanics · environment · session survival · git on a shared branch · secrets · authority ·
-> reader-facing standards · and the OUTSTANDING section every deliverable ends with.
+> reader-facing standards · the OUTSTANDING section every deliverable ends with · **the provenance
+> line and the read-date every source now carries (§14)** · **the `AUTOMATION:` marker and its
+> live-backing precondition (§15)** · and **finality — all three branches are FINAL (§16)**.
+>
+> ## 📋 AND [`COVERAGE-MATRIX.md`](COVERAGE-MATRIX.md) IS THE PROOF THIS SET IS COMPLETE
+> One row per session learning — the item, its source, **which file carries it**, and the verdict.
+> **98 items: 80 already present, 16 added, 2 completed, 2 deliberately excluded with the reason.**
+> It also records, rather than hides, **its own two false absences and its own corrected totals** —
+> read it if you want to challenge whether anything was missed, or before adding a new learning, so
+> the new item lands in the right file **and gets a row.**
 
 ---
 
