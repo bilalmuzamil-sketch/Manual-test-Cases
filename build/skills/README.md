@@ -1,4 +1,4 @@
-# Skills — the seven jobs this workspace does, written to be run cold
+# Skills — the eight jobs this workspace does, written to be run cold
 
 > **Each file below is a complete specification for one job, written for a session with NO memory of
 > this workspace.** They exist because the QA lead asked for them in these words (2026-08-12):
@@ -7,12 +7,20 @@
 > lost and things start to bite me and cost me my job due to this."***
 >
 > ## 🔴 START WITH [`00-COMMON-CORE.md`](00-COMMON-CORE.md), ALWAYS
-> Every skill points at it instead of repeating it, so a fix lands in **one** place instead of seven.
+> Every skill points at it instead of repeating it, so a fix lands in **one** place instead of eight.
 > It carries the honesty bar · TestRail write discipline and hazards · runs · foreign cases · access
 > mechanics · environment · session survival · git on a shared branch · secrets · authority ·
 > reader-facing standards · the OUTSTANDING section every deliverable ends with · **the provenance
 > line and the read-date every source now carries (§14)** · **the `AUTOMATION:` marker and its
 > live-backing precondition (§15)** · and **finality — all three branches are FINAL (§16)**.
+>
+> **⚠️ AND IF YOU READ ONLY FOUR SECTIONS OF IT, READ THESE — they were all added or corrected on
+> 2026-08-13 by the adversarial audit, and each is a thing that has actually bitten us:**
+> **§17 the PROJECT FACT SHEET** (epic · group · run · branch · API host · spec page · case source,
+> per project — a cold session could not run a single skill without them) · **§2.10 the POST-WRITE
+> ASSERTION RE-AUDIT** (*an audit committed before the repair does not audit the repair*) ·
+> **§15.1a a HOLD on a runnable case DISARMS it** · **§7.5 a probe may not press a destructive
+> control to find out what it does.**
 >
 > ## 📋 AND [`COVERAGE-MATRIX.md`](COVERAGE-MATRIX.md) IS THE PROOF THIS SET IS COMPLETE
 > One row per session learning — the item, its source, **which file carries it**, and the verdict.
@@ -23,7 +31,7 @@
 
 ---
 
-## THE SEVEN
+## THE EIGHT
 
 | # | Skill | Trigger word | What it does, in one line |
 |---|---|---|---|
@@ -34,6 +42,7 @@
 | **05** | [PROJECT-REPORT](05-PROJECT-REPORT.md) | **`PROJECT-REPORT`** | The completion table, delivered before the next project starts |
 | **06** | [DEFECT-PREP](06-DEFECT-PREP.md) | **`DEFECT-PREP`** | Build a defect ticket that cannot be challenged — then stop at the button |
 | **07** | [PO-QUESTIONS](07-PO-QUESTIONS.md) | **`PO-QUESTIONS`** | One sheet, in plain words, sent last |
+| **08** | [RECOVER](08-RECOVER.md) | **`RECOVER`** | Establish what a killed pass actually landed, by content, and finish it |
 
 **Call one like this:** *"Run **RUN-CHECK** for **Schedule**."* Each file opens with a kickoff prompt
 to fill in.
@@ -52,6 +61,8 @@ to fill in.
 
         06 DEFECT-PREP  ── raised BY 03, prepared, held for permission
         07 PO-QUESTIONS ── written throughout, SENT once 05 says everything else is done
+
+        08 RECOVER      ── runs when ANY of the above is killed mid-flight, before it resumes
 ```
 
 **Read the arrows as "answers a different question", not as a rigid pipeline.** They are run
@@ -94,10 +105,12 @@ weaker** — is:
 | *"This looks like a bug"* | **03 first** (rule out our own probe), **then 06** |
 | *"Prepare the ticket"* | **06** — and **nothing is filed while the creation hold stands** |
 | *"We need Branko to decide something"* | **07** — but **test the blocker first** (core §11.4) |
+| *"The last pass was killed"* / *"did we lose anything?"* / *"the container restarted"* | **08** — **before resuming anything** |
+| *"Which epic / group / run / branch is this project?"* | **core §17**, the project fact sheet |
 
 ---
 
-## THE FIVE THINGS THAT WILL BITE A COLD SESSION FASTEST
+## THE SEVEN THINGS THAT WILL BITE A COLD SESSION FASTEST
 
 Each is treated fully in the core; they are listed here because **they are the ones that look safe.**
 
@@ -113,6 +126,13 @@ Each is treated fully in the core; they are listed here because **they are the o
    landed. **Verify by content.** (core §2.5)
 5. **The repository is PUBLIC**, and **response bodies leak credentials as readily as headers** — 12
    JWTs reached it that way. **Redact at the point of capture; scan every staged diff.** (core §10)
+6. **Putting a case on `AUTOMATION: HOLD` can DISARM it.** A hold tells the tester to mark it BLOCKED,
+   so on a case whose steps **do** run it destroys the case's ability to fail — **and it looks like
+   caution rather than like a mistake.** Decide on **whether the steps run**, never on how badly the
+   case looks like failing. (core §15.1a)
+7. **An audit committed BEFORE the repair does not audit the repair.** A pass classified **C29944** as
+   legitimate and then, in its own write, gave it an assertion **no source supports**. Every byte-check
+   passed. **Re-audit what the pass actually changed, afterwards.** (core §2.10)
 
 ---
 
@@ -120,7 +140,18 @@ Each is treated fully in the core; they are listed here because **they are the o
 
 - **Not a replacement for `CLAUDE.md`.** That is the authority — the standing rules, the project
   entries, the durable facts. These skills operationalise it and **state every referenced rule in
-  substance**, but where the two ever differ, **`CLAUDE.md` wins and this file is the one to fix.**
+  substance.**
+  **⚠️ ON A DIFFERENCE, ESTABLISH WHICH IS NEWER BEFORE DECIDING WHICH WINS — corrected 2026-08-13.**
+  This line previously read *"where the two ever differ, `CLAUDE.md` wins and this file is the one to
+  fix"*, **and that is wrong in one direction that matters.** `CLAUDE.md` is the authority on **what he
+  ruled**; it is **not automatically the newer record of it.** A ruling can land in a skill first while
+  `CLAUDE.md` lags — so a blanket *"CLAUDE.md wins"* would **revert a current ruling to a stale one**,
+  which is exactly what Standing Rule 32 (latest authoritative source wins) forbids.
+  **⇒ THE RULE: find the DATE of each statement, apply latest-wins, and FIX THE OLDER FILE IN THE SAME
+  TURN** — keeping the superseded wording visible and dated. **Where they are the same age, or the date
+  cannot be established, `CLAUDE.md` wins and the skill is the one to fix.** *(Checked 2026-08-13: on
+  the one place this could have bitten — finality — `CLAUDE.md` is current, carrying **"The Branches
+  are Final now."** at lines 3982/4014. No live divergence was found.)*
 - **Not a replacement for `build/APP-ACTIONS-PLAYBOOK.md`.** Environment recipes, endpoints, payload
   shapes and the declared TestRail hazards live there in full. **Reuse them; never re-derive them —
   and append any new proven recipe the moment you find it.**
