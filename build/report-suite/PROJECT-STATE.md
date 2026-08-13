@@ -1,5 +1,13 @@
 # PROJECT-STATE — Report Suite
 
+> **🔴 BEFORE DOING ANY WORK ON THIS PROJECT, READ [`../skills/README.md`](../skills/README.md).**
+> The eight skills are the cold-start method for every job this workspace does — authoring, source
+> currency, runnability, handover, the completion report, defects, PO questions, and recovering a
+> killed pass. **Start with [`../skills/00-COMMON-CORE.md`](../skills/00-COMMON-CORE.md)**, whose
+> **§17 carries this project's identifiers** — epic, TestRail group, run, QA branch, API host,
+> Confluence page and case-source path — **so none of them has to be guessed.**
+
+
 ## §0-FULL-VIU-2026-08-05 (LATEST) — 32 of 476 driven live; the observation gap is NARROWED, not closed
 
 Resume: `build/report-suite/full-viu-2026-08-05/RESUME.md` -> `FINDINGS.md` -> `testrail-execution-log.md`

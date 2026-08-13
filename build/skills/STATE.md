@@ -85,9 +85,9 @@ reports, forensic audits and divergence files** that no inventory had swept.
 | **S1** | **NO SKILL HAS EVER BEEN RUN COLD.** Every one was written and audited by sessions that already had the context. **The cold-start test in §2 was a SIMULATION — a reading, not a trial.** | **us**, on the next real pass | **This is the largest unknown about the set**, and it cannot be closed by more editing. **The next pass to invoke a skill should record where it had to guess**, and that record is worth more than another audit. |
 | **S2** | **The 13 new items are STATED, not EXERCISED.** §2.10's re-audit, §7.5's probe discipline and §15.1a's marker table have **never been run on a live pass**. | **us** | A procedure that has not been executed may be unworkable in ways no reading finds — **the failure mode is over-cost, not error**: a step too expensive to run gets quietly skipped. **§2.10 was deliberately scoped to the diff for exactly this reason; whether that is cheap enough is untested.** |
 | **S3** | **The audit swept incident and forensic files but NOT exhaustively.** It went to them because the regression list pointed there. **No census of `build/**/INCIDENT-*.md`, `DIVERGENCES.md` or the forensic audits was run**, so **there may be more of the seven's shape.** | **us** | Stated plainly rather than implied: **13 found by one pass is evidence the method finds things, not evidence there is nothing left.** |
-| **S4** | **`00-COMMON-CORE.md` is now ~1,450 lines.** Every addition is load-bearing and each names its scar — **but a file nobody finishes protects nobody**, which is the same failure mode as a pointer. | **the QA lead** — it is his call whether to split it | **No split was attempted**, because splitting it would break the *"a fix lands in one place"* property that is the whole design. **Recorded as a risk, not a recommendation.** |
-| **S5** | **`build/PROCESS-CATALOG.md` lists S0–S7 and does not know about `08-RECOVER`.** | **us** — one row | Standing Rule 21 requires the catalogue row **in the same turn** as a new process. **This one is owed.** |
-| **S6** | **The skills are not referenced from the per-project `PROJECT-STATE.md` files.** A session resuming a project lands there first and is not told the skill set exists. | **us** | Cheap, and it closes a real cold-start path that §17 does not cover. |
+| **S4** | **`00-COMMON-CORE.md` is now 1,435 lines.** Every addition is load-bearing and each names its scar — **but a file nobody finishes protects nobody**, which is the same failure mode as a pointer. | **the QA lead** — it is his call whether to split it | **No split was attempted**, because splitting it would break the *"a fix lands in one place"* property that is the whole design. **Recorded as a risk, not a recommendation.** |
+| **S5** | ✅ **CLOSED 2026-08-13.** `build/PROCESS-CATALOG.md` now carries the **S8 RECOVER** row, and the S0–S7 references read S0–S8. | — | Standing Rule 21 requires the catalogue row **in the same turn** as a new process, so this was not optional. |
+| **S6** | ✅ **CLOSED 2026-08-13.** All three `PROJECT-STATE.md` files (**Filters · Schedule · Report Suite**) now open with a banner pointing at `../skills/README.md` and naming **§17** as where that project's identifiers live. | — | It closed a real cold-start path §17 could not reach by itself: **a session resuming a project lands on `PROJECT-STATE.md` first**, and was not told the skill set existed. |
 
 ### And two live items the skills DESCRIBE but cannot CLOSE
 
@@ -100,19 +100,17 @@ reports, forensic audits and divergence files** that no inventory had swept.
 
 ## 4 · THE EXACT NEXT STEP FOR WHOEVER RESUMES
 
-**In order. The first two are cheap and close real gaps; the third is the one that produces new
-knowledge.**
+**S5 and S6 were done by the audit itself and are struck from this list. What remains, in order:**
 
-1. **Add the `08-RECOVER` row to `build/PROCESS-CATALOG.md`** (S5) — Standing Rule 21, one row, owed.
-2. **Point each `build/<project>/PROJECT-STATE.md` at `build/skills/README.md`** (S6) — one line each,
-   closing a cold-start path §17 does not reach.
-3. **🔑 RUN THE S8 RE-CHECK — it needs no permission and it is the highest-value unblocked work here.**
+1. **🔑 RUN THE S8 RE-CHECK — it needs no permission and it is the highest-value unblocked work here.**
    Take the five prepared Report Suite defects, run each against `06`'s eight items, and **repair or
    withdraw**. Expect withdrawals; **that is the correct outcome, not a failure of the pass.** It also
    **exercises `06` cold, which closes part of S1 and S2 at the same time** — and if the eight items
    turn out to be unworkable in practice, that is a finding about the skill worth more than the pack.
-4. **Then, on the next real project pass, record where the skill had to be guessed** (S1) — and
+2. **Then, on the next real project pass, record where the skill had to be guessed** (S1) — and
    **write those gaps back into the skill in the same turn**, not into a report about it.
+3. **Sweep `build/**/INCIDENT-*.md`, `DIVERGENCES.md` and the forensic audits properly** (S3) — that
+   is where **seven of this audit's thirteen** items came from, and **no census of them has been run.**
 
 **And ask him about S7** — the read-date sweep is the largest owed piece of work in the register and
 **nothing in this set can close it.**
@@ -147,5 +145,5 @@ knowledge.**
    **only the FILING of the five defects waits on your hold**, which stands and was not treated as
    lifted.
 3. **A decision, when you have a moment, on S4** — whether `00-COMMON-CORE.md` should be split now it
-   is ~1,450 lines. **We have not split it**, because doing so breaks the *"a fix lands in one place"*
+   is 1,435 lines. **We have not split it**, because doing so breaks the *"a fix lands in one place"*
    property, and that trade-off is yours rather than ours.

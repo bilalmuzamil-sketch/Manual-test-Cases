@@ -1,5 +1,13 @@
 # Schedule — PROJECT STATE
 
+> **🔴 BEFORE DOING ANY WORK ON THIS PROJECT, READ [`../skills/README.md`](../skills/README.md).**
+> The eight skills are the cold-start method for every job this workspace does — authoring, source
+> currency, runnability, handover, the completion report, defects, PO questions, and recovering a
+> killed pass. **Start with [`../skills/00-COMMON-CORE.md`](../skills/00-COMMON-CORE.md)**, whose
+> **§17 carries this project's identifiers** — epic, TestRail group, run, QA branch, API host,
+> Confluence page and case-source path — **so none of them has to be guessed.**
+
+
 ## §0-PANEL-COLLAPSE-2026-08-11 — §5.3 IS NOW COVERED, AND THE CONTROL IS NOT BUILT
 
 **Resume here: `build/schedule/panel-collapse-2026-08-11/`** — start at `NEW-CASES.md`, then
