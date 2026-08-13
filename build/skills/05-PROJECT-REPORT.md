@@ -177,6 +177,34 @@ why (d) · **a row NEVER observed is still reported as never observed** · **no 
 a build nobody checked it on**. **Where a deploy is known to have ADDED OR CHANGED functionality, the
 affected cases ARE owed and column 7 says so.**
 
+### (h) 🛑 GATE EVERY TOTAL — AND REFUSE TO SUM FIGURES THAT MAY DOUBLE-COUNT
+
+**A total that reads well is worth nothing if its parts overlap, and this table is exactly where such
+a total gets published.** The proof is our own: the 2026-08-11 finality position was first framed as
+**"425 final but not build-verified / 339 build-verified"**, and **those two totals double-counted the
+8 Filters cases** — they appeared as unverified in the first and verified in the second. The corrected
+figures are **433 and 331**, and **they gate both ways: 433 + 331 = 764 = Schedule 174 + Filters 114 +
+Report Suite 476.** **The component figures were right all along; only the sums were wrong.**
+
+**⇒ THREE THINGS, EVERY TABLE:**
+1. **Gate each total against a known whole** — the parts must reconcile to the suite, both directions.
+2. **Where the parts may overlap and no de-duplication was done, PUBLISH THE COMPONENTS AND SAY SO
+   rather than inventing a total.** *(The false-absence count is the standing example: *"more than
+   forty, plus four after that"* — deliberately not a tidy number, because the per-pass figures sit
+   inside one another.)*
+3. **Record the correction visibly and dated — never quietly fix it.** **A figure that fails its own
+   gate is a finding**, and it is his credibility that a silently-repaired total puts at risk.
+
+### (i) On these three projects, the branches are FINAL — do not hedge the findings
+
+QA lead, 2026-08-11, verbatim: ***"The Branches are Final now."*** (after *"note that ALL 6 reports
+have been handed off now."*). **So a deviation in column 7 is a REAL DEFECT IN A FINISHED FEATURE**,
+and describing it as provisional-pending-development is now **wrong and understates it.** **Finality
+closed nothing out — it RAISED the stakes:** as at that date **433 cases were final but NOT
+build-verified** (Schedule 174 · Filters 8 · Report Suite 251) against **331 build-verified**.
+*(Figures move — derive live, per (c).)* **"Final" means handed off, not frozen**: the branches still
+redeploy, so (g)'s bug-fix-versus-functional distinction still governs.
+
 ---
 
 ## THE STEPS
