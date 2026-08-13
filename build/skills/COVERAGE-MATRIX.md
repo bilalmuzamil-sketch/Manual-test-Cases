@@ -31,6 +31,14 @@
 **98 = 80 + 16 + 2 + 2 — the gate closes.** Counted from the tables below, not from notes:
 **52 rules + 32 operational facts + 12 working practices + 2 exclusions = 98.**
 
+> **⚠️ SUPERSEDED AS A TOTAL, 2026-08-13 — THE INVENTORY IS 111, NOT 98. See §6 at the end of this
+> file.** A second, **adversarial** pass asked a harder question than this one — *would a fresh session
+> running only these files produce work that cannot be challenged?* — and **found 13 more items,
+> seven of which were never in `SESSION-LEARNINGS-2026-08-12.md` at all**: they sat in incident
+> reports, forensic audits and divergence files **that no inventory had swept.** **The figures in this
+> box were right about what they measured; what they measured was too narrow.** Kept and dated rather
+> than overwritten, per this file's own §P02.
+
 **⚠️ THE FIGURES IN THIS BOX WERE WRONG IN THE FIRST DRAFT AND ARE CORRECTED RATHER THAN QUIETLY
 FIXED** — it read *"91 = 74 + 15 + 2"*, written from working notes instead of counted from the
 tables, and **it failed its own gate** (the real row count is 98). **A figure that fails its own gate
@@ -207,6 +215,59 @@ WORTH:**
    settled question up as open is the same defect as erasing one** — it is how a session re-asks
    something a source has already answered. **The genuinely open item is the five Report Suite defects**
    (`06`, HONESTY NOTES).
+
+---
+
+## 6 · THE 2026-08-13 ADVERSARIAL AUDIT — 13 items this matrix did NOT catch
+
+**⚠️ READ THIS BEFORE TRUSTING THE TOTALS ABOVE.** The table above measured **transfer** — *did we
+carry across what we already knew we knew?* It answered that honestly (98 items, 16 gaps filled). **It
+could not answer a different and harder question:** *would a fresh session, running only this skill
+set, produce work that cannot be challenged?* **A second pass asked that instead — by replaying the
+session's real failures against the skills one at a time — and found 13 more items.**
+
+**THE TRANSFERABLE LESSON, AND IT IS THE SAME ONE THIS WHOLE SET TEACHES: a coverage measurement
+cannot find what nobody wrote down as a learning in the first place.** Seven of the 13 below were
+never in `SESSION-LEARNINGS-2026-08-12.md` at all — they sat in **incident reports, forensic audits and
+divergence files** that no inventory had swept. **A matrix over a list is only as complete as the
+list.**
+
+| # | Item | Where the evidence was | Now carried by |
+|---|---|---|---|
+| **A1** | **An audit committed BEFORE the repair does not audit the repair** — C29944 was classed LEGITIMATE by the pass that then gave it an unsourced assertion, absent from **all 27 spec versions** | `schedule/assertion-forensics-2026-08-11/FINDINGS.md` | `00` §2.10 |
+| **A2** | **Content that lands on the WRONG CASE** — C30162/C30287 given a symptom block naming another report's columns; it would have manufactured duplicate tickets. **Every byte-check passed** | `quality-gate-2026-08-11/DEFECTS-PRIORITISED.md` P1-4 | `00` §2.10 check 3 |
+| **A3** | **An expectation can be disarmed by a NOTE PARAGRAPH, not an assertion** (C29557) — so the note blocks are diffed too, hunting the **waiver signature** | `schedule/assertion-forensics-2026-08-11/AUDIT.md` §5 | `00` §2.10 check 4 |
+| **A4** | **A run write needs its OWN explicit permission, per ask** — an `add_case` approval is not a run-sync approval, though the sync is mandatory after the add | Standing Rule 34 / Rule 6 | `00` §4.1 step 0 |
+| **A5** | **Scope the run-sync executor to ONE run before running it** — the `run_sync_357_only.py` pattern | `CLAUDE.md` Schedule entry | `00` §4.1 |
+| **A6** | **The canonical run-sync folder's own paginators carry the fragile URL shape of §3.3** — the worst possible false negative there, because an empty `current` list turns the union into a partial list | `00` §3.3 + `testrail-run-sync-2026-07-31/` | `00` §4.1 |
+| **A7** | **A probe may not press a destructive control to discover what it does** — the same shift destroyed **twice in two days**, the second time by a worker who had not read the first one's incident report | both `INCIDENT-*.md` files | `00` §7.5, `03` G9 |
+| **A8** | **A `HOLD` on a runnable case DISARMS it** — and `03` actively pointed the wrong way, saying *"normally `AUTOMATION: HOLD`"* | `report-suite/finish-2026-08-12/DIVERGENCES.md`; register `F-TICKET-1` | `00` §15.1a, `03` |
+| **A9** | **The project identifiers** — epic · group · run · branch · API host · spec page · case source, per project. **Scattered across five files or absent** | `CLAUDE.md` + pass folders | `00` §17 |
+| **A10** | **RECOVER** — used four times in two days; its pieces were spread across `00` §2.5, §2.6, §8 and §9.1, which a resuming session must assemble under pressure | `loss-audit-2026-08-11/VERDICT.md`, `RECOVERY-2026-08-11/` | **`08`** |
+| **A11** | **Standing Rule 63 was in NONE of the seven skill files** — only `00` §11.6 | `CLAUDE.md` R63 | `01`–`07` guardrails |
+| **A12** | **Rule 24 decides *"is this a defect?"* (ours), not *"did it pass?"* (the tester's)** — one sentence in Rule 24 because it predates the 2026-08-11 re-scoping, and as written it sat against `03`'s own G4 | Rule 24 vs Rule 10's amendment | `03` §5.1 |
+| **A13** | **The precedence line was wrong in one direction** — *"`CLAUDE.md` always wins"* would revert a ruling that landed in a skill first, which Rule 32 forbids | Rule 32 | `README` |
+
+### CORRECTED TOTALS
+
+| | Count |
+|---|---:|
+| Items inventoried by the coverage pass | 98 |
+| **Items found by the adversarial audit** | **+13** |
+| **= inventoried in total** | **111** |
+| Already present in substance | 80 |
+| Added by the coverage pass | 16 |
+| **Added by the adversarial audit** | **13** |
+| Present but incomplete, completed | 2 |
+| Deliberately excluded, with the reason | 2 |
+
+**111 = 80 + 16 + 13 + 2 — the gate closes.** *(The 2 exclusions are counted in the inventory and not
+in the additions, exactly as the original box does.)*
+
+**⚠️ AND THE HONEST LIMIT, RESTATED: THIS IS STILL A COVERAGE MEASUREMENT, NOT A QUALITY ONE.** 13
+items were found by one adversarial pass. **That is evidence the method finds things; it is not
+evidence there is nothing left to find** — and a future pass that finds a fourteenth should add it
+here rather than treat this box as closed.
 
 ---
 
