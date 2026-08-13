@@ -1,0 +1,218 @@
+{
+ "filters": {
+  "project": "Filters",
+  "read_at": "2026-08-13 07:44:58 UTC",
+  "group": 4110,
+  "run": 352,
+  "live_total": 120,
+  "ours": 115,
+  "foreign": [
+   {
+    "id": 43576,
+    "created_by": 7,
+    "title": "Global search returns navigational results only and does not modify the current table"
+   },
+   {
+    "id": 43577,
+    "created_by": 7,
+    "title": "Global search no longer alters the record set on any surface (app-wide sweep)"
+   },
+   {
+    "id": 43578,
+    "created_by": 7,
+    "title": "Page-filtering code path is removed and stale URL / persisted terms no longer filter"
+   },
+   {
+    "id": 43579,
+    "created_by": 7,
+    "title": "Every affected surface still offers text narrowing via page search"
+   },
+   {
+    "id": 43580,
+    "created_by": 7,
+    "title": "Global-search filtering is not removed from a page before page search is available there"
+   }
+  ],
+  "marker_ready": 90,
+  "marker_expect_fail": 7,
+  "marker_hold": 18,
+  "marker_none": [],
+  "gate_a": 97,
+  "gate_b": 97,
+  "expect_fail_tickets": {
+   "29616": "SV-8832",
+   "29619": "SV-8832",
+   "29620": "SV-8832",
+   "29624": "SV-8875",
+   "29625": "SV-8875",
+   "29634": "SV-8832",
+   "38889": "SV-8912"
+  },
+  "hold_reasons": {
+   "29559": "HOLD - waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification",
+   "29609": "HOLD - waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification",
+   "29610": "HOLD - waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification",
+   "29612": "HOLD - waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification",
+   "38880": "HOLD - held for the QA lead's ruling only - the behaviour IS documented (S10-R4 says each Parts view and each Report tab keeps its own separate filter set and e",
+   "38881": "HOLD - cannot be run - it needs an account whose filters were saved before the redesign, and none exists",
+   "38891": "HOLD - cannot be run yet - its own precondition needs the page-search rollout finished everywhere, and it is still part-way through",
+   "38901": "HOLD - only half of it can be run - the report pages have no page search box yet, so the report-tab half cannot be tested",
+   "38904": "HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+   "38905": "HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+   "38906": "HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+   "38907": "HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+   "38908": "HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+   "43562": "HOLD - the new filter bar has reached only some Parts views and one report tab, so most of this cannot be run yet",
+   "38882": "HOLD - waiting on Branko's Parts and Reports product write-up - the date range filter is built but no source states the periods it must offer",
+   "38909": "HOLD - Branko's Parts and Reports write-up is still outstanding, so no product source states which filter buttons each report should show",
+   "38910": "HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do",
+   "38911": "HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do"
+  },
+  "source_verified": 115,
+  "source_missing": [],
+  "spec_pins": {
+   "19": 115
+  },
+  "read_dates": {
+   "11 August 2026": 115
+  },
+  "build_stamps": {
+   "v3.7-20e801b on 12 August 2026": 74,
+   "v3.4.2-d00239b on 8/5/2026": 23,
+   "v3.6-3e9dd6d on 12 August 2026": 11,
+   "v3.6-3e9dd6d on 8/11/2026": 1
+  },
+  "no_build_stamp": [
+   29559,
+   29609,
+   29610,
+   29612,
+   29621,
+   43562
+  ],
+  "run_include_all": false,
+  "run_tests": 120,
+  "in_run_not_suite": [],
+  "in_suite_not_run": [],
+  "run_results_records": 648,
+  "grading": {
+   "passed": 81,
+   "untested": 27,
+   "failed": 8,
+   "blocked": 4
+  },
+  "run_counts_check": {
+   "passed_count": 81,
+   "failed_count": 8,
+   "blocked_count": 4,
+   "retest_count": 0,
+   "untested_count": 27
+  },
+  "idmap_rows": 115,
+  "idmap_blank": 0,
+  "idmap_minus_live": [],
+  "live_minus_idmap": [],
+  "import_rows": 115,
+  "local_bodies_active": 115,
+  "local_bodies_retired": 36
+ },
+ "schedule": {
+  "project": "Schedule",
+  "read_at": "2026-08-13 07:44:58 UTC",
+  "group": 4254,
+  "run": 357,
+  "live_total": 176,
+  "ours": 176,
+  "foreign": [],
+  "marker_ready": 137,
+  "marker_expect_fail": 4,
+  "marker_hold": 35,
+  "marker_none": [],
+  "gate_a": 141,
+  "gate_b": 141,
+  "expect_fail_tickets": {
+   "29962": "SV-8957",
+   "29967": "SV-8886",
+   "29982": "SV-9090",
+   "29984": "SV-9006"
+  },
+  "hold_reasons": {
+   "29929": "HOLD - the control this test needs does not exist in this build; a ticket cannot be raised yet",
+   "29945": "HOLD - the Priority filter this test needs does not exist in this build; a ticket cannot be raised yet",
+   "43555": "HOLD - waiting on the product owner's answer, and the question has not been sent yet",
+   "29973": "HOLD - the Unassigned row does not exist in the build, so this cannot be run",
+   "29974": "HOLD - the Unassigned row does not exist in the build, so this cannot be run",
+   "29975": "HOLD - the Unassigned row does not exist in the build, so this cannot be run",
+   "29983": "HOLD - waiting on the product owner's answer, and the question has not been sent yet",
+   "29985": "HOLD - an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker",
+   "30004": "HOLD - an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker",
+   "30013": "HOLD - an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker",
+   "30020": "HOLD - an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker",
+   "30034": "HOLD - an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker",
+   "43582": "HOLD - the panel button does not exist in this build",
+   "43583": "HOLD - the panel button does not exist in this build",
+   "43584": "HOLD - the panel button does not exist in this build",
+   "43586": "HOLD - the panel button does not exist in this build",
+   "43587": "HOLD - the panel button does not exist in this build",
+   "30044": "HOLD - point 4 needs a user with no staff record of their own; points 1 to 3 are observed and pass",
+   "30050": "HOLD - the toggle displays nothing in this build; a ticket cannot be raised yet",
+   "30076": "HOLD - needs a second sign-in as a user without the Schedule permission",
+   "30077": "HOLD - needs a second sign-in as an edit-without-delete user",
+   "30078": "HOLD - needs a second sign-in as an edit-without-delete user",
+   "30079": "HOLD - needs a second sign-in as a delete-capable user",
+   "30081": "HOLD - needs a second sign-in as a user who cannot see work orders",
+   "30084": "HOLD - needs a second sign-in as each of the two staff members",
+   "30614": "HOLD - needs a second sign-in as a user who cannot see work orders",
+   "38926": "HOLD - needs a second sign-in as a holder of each permission level",
+   "30089": "HOLD - waiting on the product owner's answer, and the shop-closure setting does not exist in the build",
+   "43585": "HOLD - the panel button does not exist in this build",
+   "38867": "HOLD - cannot be run now - it needs shifts noted BEFORE the release, and the release is already deployed",
+   "38868": "HOLD - the Dashboard section this test needs does not exist in the build",
+   "38869": "HOLD - work order creation offers no appointment in the build",
+   "38871": "HOLD - the Priority field this test needs does not exist in the build",
+   "38872": "HOLD - points 1 and 3 need a user with no Schedule permission and a user with Schedule Edit but not Delete; point 2 is observed and passes",
+   "38874": "HOLD - point 2 needs a user without Work Orders View; point 1 is observed and passes"
+  },
+  "source_verified": 176,
+  "source_missing": [],
+  "spec_pins": {
+   "27": 176
+  },
+  "read_dates": {
+   "11 August 2026": 173,
+   "12 August 2026": 3
+  },
+  "build_stamps": {
+   "v3.5-65d6500 on 12 August 2026": 140,
+   "v3.5-7ec992f on 8/6/2026": 15,
+   "v3.5-65d6500 on 8/12/2026": 11,
+   "v3.5-d122eef on 8/5/2026": 10
+  },
+  "no_build_stamp": [],
+  "run_include_all": false,
+  "run_tests": 176,
+  "in_run_not_suite": [],
+  "in_suite_not_run": [],
+  "run_results_records": 549,
+  "grading": {
+   "passed": 90,
+   "untested": 68,
+   "blocked": 7,
+   "failed": 11
+  },
+  "run_counts_check": {
+   "passed_count": 90,
+   "failed_count": 11,
+   "blocked_count": 7,
+   "retest_count": 0,
+   "untested_count": 68
+  },
+  "idmap_rows": 176,
+  "idmap_blank": 0,
+  "idmap_minus_live": [],
+  "live_minus_idmap": [],
+  "import_rows": 176,
+  "local_bodies_active": 176,
+  "local_bodies_retired": 27
+ }
+}

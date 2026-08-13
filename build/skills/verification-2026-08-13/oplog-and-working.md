@@ -40,3 +40,19 @@ Pass folder: `build/skills/verification-2026-08-13/` · started 2026-08-13 ~05:5
 1. **C43582–C43587 still carry `AUTOMATION: HOLD - the panel button does not exist in this build`** — core §15.1's worked example already ruled that wrong ("should carry plain `AUTOMATION: READY`"). Needs an authorised `update_case` sweep.
 2. Core §14.1 says the read-date sweep is "NOT DONE" — **live census: Filters 115/115 and Schedule 176/176 DO carry read-dates** (Report Suite not measured this pass). Stale claim; corrected additively in the skill file.
 3. Eight Schedule HOLDs are filing-problem holds (§15.1a's last paragraph) — one edit each from `READY - EXPECT FAIL` once the Jira creation hold lifts (register H1).
+
+---
+
+## RELAUNCH 2026-08-13 ~07:40 UTC (predecessor killed by usage limit before producing the reports)
+
+Per the cold protocol and the skill's own §(c)/G1 ("derive every figure LIVE at report time"), the
+predecessor's 05:58 figures were NOT reused — everything was re-derived live.
+
+| UTC | Op | Result |
+|---|---|---|
+| 07:41 | `git fetch` + `merge --ff-only` (repaired a stale local tracking ref first — `update-ref` only, no force) | up to date at bfb72066 |
+| 07:41 | Read both skill files in full; read predecessor oplog | predecessor's D1 (creds not named in skill) CONFIRMED independently — creds found only by exploring `/tmp` |
+| 07:43–07:45 | Live re-derivation via `build/reports-2026-08-13/derive_live.py` — paged `get_sections` (626), paged `get_cases` (4099), `get_statuses`, `get_run/get_tests/get_results_for_run` for 352 + 357; all URLs ampersand-only | JSON: `build/reports-2026-08-13/live-derivation.json`, read stamped **2026-08-13 07:44:58 UTC** |
+| 07:45 | Cross-check vs predecessor's 05:58 read | **every figure identical** — nothing moved between the two reads |
+| 07:45 | Local-active fix: Filters marks retirement in `viu_status` ("Retired — …"), not `status` — 151 bodies = 115 active + 36 retired | reconciles: live-ours 115 = local 115 = id-map 115 (0 blanks) = import 115; Schedule 176 = 176 = 176 = 176; set-equal both directions |
+| — | TestRail writes / Jira calls / app requests this relaunch | **ZERO** |
