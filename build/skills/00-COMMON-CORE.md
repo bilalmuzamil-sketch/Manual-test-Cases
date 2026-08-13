@@ -1,0 +1,937 @@
+# 00 · COMMON CORE — what every Skill in this set needs, regardless of the task
+
+> **Read this FIRST, then the skill you were called for.** Every skill file (`01`–`07`) points here
+> instead of repeating this material, so a fix lands in one place instead of seven.
+>
+> **WHO THIS IS WRITTEN FOR: a session with NO memory of this workspace.** Nothing below assumes you
+> were here yesterday. Where a rule is referenced by number, **its substance is stated too** — a bare
+> number is useless in a fresh session.
+>
+> **WHY THE FAILURES ARE NAMED.** Almost every paragraph here carries the incident that produced it.
+> That is deliberate: **a rule without its scar gets optimised away** by the next session that finds
+> it inconvenient. The QA lead's own framing of the stakes, verbatim (2026-08-12): *"I do not want our
+> hard work to be lost and things start to bite me and cost me my job due to this."*
+>
+> **THE ONE-LINE THROUGH-LINE, and it is worth reading twice:** *almost every signal a pass naturally
+> trusts — its own memory, a clean git tree, an HTTP 200, a timestamp, a liveness check, a selector
+> returning zero — lied at least once in the two days of 11–12 August 2026.* **The only things that did
+> not lie were committed records and live content read back.**
+> Source: `build/SESSION-LEARNINGS-2026-08-12.md`.
+
+---
+
+## CONTENTS
+
+| § | Read it before you… |
+|---|---|
+| **0** | do anything at all — the first five minutes of any pass |
+| **1** | write a number, a verdict or the word "complete" anywhere |
+| **2** | write to TestRail, or trust that a write landed |
+| **3** | build any TestRail payload or read any TestRail response |
+| **4** | touch a test run |
+| **5** | count cases, or look at a case somebody else wrote |
+| **6** | try to reach the application |
+| **7** | create, change or delete anything in the environment |
+| **8** | start a long batch, or resume after one died |
+| **9** | commit or push |
+| **10** | write **anything** to disk |
+| **11** | decide what a case should say, or whether you may act |
+| **12** | write a word a human will read |
+| **13** | finish any deliverable |
+
+---
+
+# 0 · THE FIRST FIVE MINUTES OF ANY PASS
+
+Do these in order, before reading anything else, and **record that you did them** in the pass's log.
+
+1. **`git fetch origin <branch>` then `git merge --ff-only`.** A clean tree proves **nothing** about
+   currency (§9). **If the fast-forward is refused, STOP and report** — never force, never rebase,
+   never `reset --hard`.
+2. **Create the pass folder now and put the oplog in it** — `build/<project>/<pass-name>-<date>/`.
+   Not `/tmp`. Not later (§8).
+3. **Establish source currency** (§11 and skill `02`) — spec version, epic children, designs, tech
+   plan, PO answers. **This is the first action of any project task, including a read-only one.**
+4. **If the pass touches the build**, establish the build marker before anything else:
+   `<meta name="app-version">` in `index.html`, plus `last-modified`/`etag`, plus the UTC time you
+   read it. Read it again at the end and say whether it moved.
+5. **Say what the pass will and will not do**, in its own README or findings file, before it starts.
+
+---
+
+# 1 · THE HONESTY BAR
+
+This is the section that protects the QA lead. **He presents these numbers to people who will not
+have read the file behind them.** An overstated figure is what bites him; a shortfall stated plainly
+is a position he can defend in one sentence.
+
+### 1.1 Observed, never inferred (Standing Rule 12)
+
+**Only call something Verified / Pass / Fail / present / absent if it was ACTUALLY OBSERVED, live,
+with evidence captured in that run.** Never fill a gap with inference from the spec, the source code,
+a role definition or prior data and present it as a result. Anything not directly observed is
+labelled **NOT VERIFIED** or **Blocked-with-reason** — never silently derived.
+
+**If a live check cannot be completed, say so plainly and say what is needed.** Do not substitute
+inference to appear complete. *(Rule 12 exists because a 2026-07-14 permission comparison presented
+inferred capabilities as observed results and broke the QA lead's trust.)*
+
+### 1.2 Exhaustive first, then exact (Standing Rule 50)
+
+The QA lead's own gloss on *"byte-level verification"*, verbatim: ***"I meant not to miss anything
+when you are verifying something."*** So the rule has two halves and **neither substitutes for the
+other**:
+
+**EXHAUSTIVE** — no sampling, no "representative subset", no spot-check reported in words that imply
+the whole.
+- a **suite** means every case · a **case** means every field, not only the one you came to change ·
+  **coverage** means every requirement, **in both directions** · a **permission** means every role,
+  both ways · an **export** means every format and every view, **with the file's content read**.
+- **A large population changes the SCHEDULE, not the SCOPE.** Batch it, checkpoint it, finish it, and
+  state the exact number done and the exact remainder.
+- **A sample is acceptable only when the QA lead explicitly asks for one**, and then the deliverable
+  says it is a sample, of what size, out of what population.
+
+**EXACT** — where a comparison is possible, make it byte-level: never by eye, never by "looks right",
+never by a `contains` check, never by a matching total. **Counts are proven as SET EQUALITY IN BOTH
+DIRECTIONS** (`A − B` and `B − A` both empty) — **two sets of the same size can differ.**
+
+### 1.3 Two numbers, always: ours and live (Standing Rule 38)
+
+Other people write cases in the same TestRail groups. **Report "ours N / live M"** so our counts stay
+honest without claiming or hiding anyone else's work. One number alone is wrong whichever one it is.
+
+### 1.4 "Not established" beats a finding
+
+A probe that errors, or that cannot be shown capable of firing, is graded **`NOT_ESTABLISHED`** —
+**never `ABSENT`**, never "the feature is missing". See §2 of skill `03`; this is the single most
+expensive mistake this workspace makes.
+
+### 1.5 Never round a figure up, and never merge two figures into one
+
+**"Build-verified" and "steps walked" are different numbers and are reported separately.** On
+Schedule on 2026-08-12 they were **76 and 28, out of 176** — reporting the 76 alone would have
+overstated the position by nearly three times, the day before a release.
+Evidence: `build/schedule/verify-final-2026-08-12/FINDINGS.md`.
+
+### 1.6 🛑 NEVER claim "VIU complete"
+
+**The behaviour half of VIU stopped being ours on 2026-08-11.** The QA lead re-scoped the pass/fail
+verdict to the manual tester (Standing Rule 10's amendment; he confirmed it verbatim: *"you are
+RIGHT"*). The accurate phrase — and it is **stronger** than the overclaim, not weaker:
+
+> **"source-verified and build-accurate in its preconditions, steps, navigation and labels — with the
+> behaviour verdict belonging to the tester."**
+
+### 1.7 Derive every figure LIVE, at report time, and stamp the read time
+
+**A number copied out of yesterday's findings file is a claim about yesterday**, however carefully it
+was measured then. Counts have moved **within a single pass** — a worker watched a held count drop
+91 → 88 mid-write (Standing Rule 67(c)).
+
+### 1.8 State plainly where a column is not 100%, and why
+
+An unexplained gap invites the challenge; an explained one answers it in advance. **A blanket caveat
+("the branch is not final") is barred** — it hides the number instead of explaining it (Rule 60(d)).
+
+---
+
+# 2 · TESTRAIL WRITE DISCIPLINE
+
+> **TestRail is the ONLY real production system we touch. NEVER create, update or delete a case, run
+> or result without the QA lead's explicit permission (Standing Rule 6).** Permission is **per ask**.
+> Everything else — staging, QA branches, QuickBooks — is disposable.
+
+### 2.1 🔑 Send ALL THREE text fields on EVERY `update_case`
+
+`custom_preconds` + `custom_steps` + `custom_expected` — **even when you are changing only one**,
+setting the unchanged ones to their exact pre-write snapshot value.
+
+**Why:** TestRail **re-renders any text field you OMIT** through its HTML pipeline. On 2026-08-05,
+write 1 of 110 sent only `custom_expected`, returned HTTP 200, and came back with `custom_preconds`
+and `custom_steps` **wrapped in `<p>…</p>` with every `\n` turned into `\r\n`**. A field sent
+explicitly is stored verbatim. **These projects render that markup LITERALLY to the manual tester** —
+the same day, 10 Filters cases and 16 Schedule cases had to be repaired for showing raw `<ol>`/`<li>`.
+
+**It is intermittent and you cannot predict it:** the same day, in the same project, a Report Suite
+pass sent **469 partial payloads over structurally identical content and was not affected at all.**
+So **treat every partial payload as unsafe.** *(Playbook §J, DECLARED NORMALISATION #3.)*
+
+### 2.2 Re-GET and byte-compare, field by field, after every write
+
+Compare the live case against **the intended payload**, and prove **every field you did not intend to
+change byte-identical to its pre-write snapshot**. That second half is what catches collateral damage,
+and it is the half a "200 OK" can never tell you.
+
+### 2.3 🛑 STOP the batch on any mismatch
+
+**A mismatch means the write FAILED.** Do not proceed to the next operation, do not retry blindly, do
+not log it as success. Report **both byte sequences**. Restore from the snapshot if needed.
+
+### 2.4 🔑 THE BYTE-CHECK PASSES WHEN THE *PAYLOAD* IS WRONG
+
+**This is the most important item in this file, because it defeats the control we rely on most.** The
+byte-check proves the **server stored what we sent**. It says **nothing** about whether what we sent
+was right.
+
+Three proven instances:
+
+| What the payload would have written | Evidence |
+|---|---|
+| A re-stamp regex `Last checked against build [^\n]*?\.` — **non-greedy to the first `.`, which lands INSIDE the build marker `v3.5-65d6500`** — producing `…build v3.5-65d6500 on 8/12/2026.5-af3a6e1 on 8/11/2026.` | `build/schedule/build-viu-2026-08-12/CHANGES-MADE.md` |
+| A stray full stop (`on 12 August 2026**.**; the wording above…`) on C30041 and a tripled blank line on C29929 | `build/schedule/finish2-2026-08-12/testrail-execution-log.md` |
+| **C30341** stored its text as raw HTML, so none of the writer's plain-text patterns matched: instead of **replacing** the provenance line and the marker it **APPENDED a second one of each — and the byte-check PASSED**, because the write was faithful to the payload | `build/report-suite/full-viu-2026-08-06/CHANGES-MADE.md` |
+
+**⇒ THE PRACTICE, THREE PARTS:**
+1. **DRY-RUN AND READ THE BUILT PAYLOADS BEFORE SENDING.** Not the diff, not the count — **the actual
+   strings**. This caught all three above; the byte-check caught none of them.
+2. **MAKE THE WRITER REFUSE INPUT IT CANNOT HANDLE.** After C30341, `rebuild()` was changed to
+   **refuse outright** on any case containing raw markup. A writer that silently does the wrong thing
+   on unexpected input **will do it again**.
+3. **ANCHOR REGEXES ON SOMETHING THAT CANNOT OCCUR INSIDE THE FIELD.** Trap 1 was fixed by anchoring
+   on the trailing date (`build \S+ on \d{1,2}/\d{1,2}/\d{4}\.`), because build markers contain full
+   stops.
+4. **RUN A POST-BATCH INVARIANT CENSUS** — exactly one provenance line and exactly one automation
+   marker per touched case. **That census is what found C30341, not chance.**
+
+### 2.5 🛑 VERIFY BY CONTENT, NEVER BY `updated_on` — it lies in BOTH directions
+
+- **A FROZEN timestamp hides a change that happened.** Fourteen Report Suite cases had all three text
+  fields turn into raw `<ol>`/`<li>` HTML **while `updated_on` and `updated_by` stayed frozen** at
+  pre-pass values. Nobody in that pass wrote to any of them.
+- **A FRESH timestamp advertises a change that did NOT happen — and this one is worse.** Three
+  Filters cases (**C29601 · C38882 · C43562**) carried the current day's `updated_on` from an
+  *unrelated* pass while the write intended for them **had never landed**. A worker checking "did my
+  write go through?" by timestamp would have read today's date on all three and **stopped checking
+  something that was broken**.
+
+**On a shared suite, a fresh timestamp is the EXPECTED state and proves nothing at all.**
+
+### 2.6 An HTTP 500 or 502 can come back from a write that LANDED
+
+**NEVER blind-retry a failed write. READ THE LIVE STATE FIRST.** A blind retry after a 500 that
+actually succeeded writes over a landed change — and the byte-check will happily confirm the second
+one. *(Proven live: a transient HTTP 502 `policy unavailable` hit a pre-write read for C30010; the
+batch stopped as Rule 50 requires, C30010 was read back live and confirmed unwritten, then the run
+resumed.)*
+
+### 2.7 An idempotence guard must test the CONTENT, not the CASE
+
+`restamp.py` skipped any case already naming the running build **but exempted note-carrying cases from
+that skip** — correct on a first run, **wrong on a resume**. C29929 came back with its tester note
+**duplicated**. It was found by **reconciling the operation count against the plan (39 writes over 38
+cases)**, not by chance.
+
+**⇒ Two transferable rules:** an idempotence guard tests **the content it is about to write**, never a
+class of case; and **reconcile the op count against the plan at the end of every batch.**
+
+### 2.8 What a "0 changes" claim actually requires
+
+Set equality **in both directions**, and presence **by id** — never matching totals. The shape that
+stands up: *"176 tests, 529 results, 0 missing by id, 0 graded fields moved, 0 new, `case_id` sets
+equal both ways, `include_all` still false."*
+
+### 2.9 The audit log records four things per operation
+
+**operation · target C-id · HTTP status · byte-level verification result.** An entry saying only
+*"200 OK"* is **non-compliant**.
+
+---
+
+# 3 · TESTRAIL HAZARDS — the mechanics that cost real time
+
+### 3.1 🛑 NEVER set `custom_atmstatus: 3` on `add_case`
+
+Send **`custom_atmstatus: 1`** ("Not Automated") **+ `custom_automation_type: 0`**.
+
+**`3` is Vladimir Tomovic's OWN flag for what HE has automated**, and the whole tell-Vlad duty
+(Standing Rule 65) keys off it — so a case born `3` corrupts a signal he and we both rely on. The
+field is `is_required: true` but its `default_value` is `"1"`, so `3` was never required by anything.
+
+**This was our own long-standing defect:** the playbook told every `add_case` script to send `3`, so
+**31 Schedule cases claimed to be automated when nobody had automated them**; all 31 were corrected
+`3 → 1` on 2026-08-11.
+
+- **Use the canonical helper:** `build/testing-tools/testrail_add_case.py` — `add_case_payload()` sets
+  `1` and **raises** on `3`.
+- **Run the guard before committing a pass that creates cases:**
+  `build/testing-tools/check_add_case_payloads.py`.
+- **Do NOT copy a payload out of an executed push script** — the 19 executed scripts still contain `3`
+  **deliberately**, because they are the audit record of what was actually run.
+
+### 3.2 `refs` — 248 chars per entry, comma-delimited, and it is a PATTERN error
+
+TestRail splits `refs` on `,`, trims each entry, and re-joins with a bare comma. **Any single entry
+over 248 characters rejects the WHOLE `update_case`** with `HTTP 400 Field :refs does not match the
+required pattern.` — 248 passes, 249 fails. **Total** length is unbounded.
+
+- **House style: one comma-free entry, ≤ 248 chars, semicolons as separators.**
+- **Never put a comma inside a quoted list in `refs`** — `"Today, Yesterday, …"` silently becomes many
+  references.
+- **When verifying a `refs` write, compare under the normalisation**
+  `','.join(p.strip() for p in s.split(','))`, and **assert it explicitly in the log as the expected
+  transformation**. This is **the only declared normalisation permitted by Rule 50**; any newly
+  discovered one must be **proven and recorded in `build/APP-ACTIONS-PLAYBOOK.md` §J with its
+  evidence BEFORE it may be relied on**. Until then, **a mismatch means the write failed.**
+
+### 3.3 ⚠️ `get_sections` NEEDS PAGING — and it fails SILENTLY
+
+This project has **625 sections**. An unpaged `get_sections` returns the **first 250**, with no error
+and no warning. Because the Filters group is section **4110**, an unpaged call finds **ZERO Filters
+sections and therefore zero cases** — which reads exactly like *"the group is empty"*. Same for
+`get_cases`, `get_tests`, `get_results_for_run`.
+
+**And the URL separator is `&`, never `?`** — the whole `/api/v2/...` path already sits inside
+`index.php?`, so a second `?` is an illegal character, not a separator. `get_cases/1?suite_id=1`
+returns `HTTP 400 Invalid characters in URI`. **Build the path with `&` unconditionally.**
+
+### 3.4 `case_title` and `case_refs` on run results are ECHOES, not graded fields
+
+A run result record carries the case's **current** title and refs, filled in at read time. **So
+retitling a case, or writing its `refs`, makes its old result records read back differently with NO
+run write at all.** A raw whole-record compare will report a false *"results changed"* and stop a
+clean batch.
+
+**Verify a run untouched on the GRADED fields only:** `status_id · comment · defects · elapsed ·
+version · assignedto_id · created_by · created_on · test_id · case_id · id`.
+
+*(`case_refs` is better described as a snapshot that catches up when the case is next written — on
+2026-08-10 it moved on **208** run-357 results belonging to cases whose `refs` we never edited, purely
+because an unrelated `custom_expected` write touched them.)*
+
+### 3.5 🛑 TestRail re-renders tester text into HTML HOURS AFTER your write
+
+**This is NOT §2.1, and §2.1's mitigation does not prevent it.** It fires **later**, on cases written
+with all three fields sent, and produces a **full rich-text render** (`<ol>`/`<li>`, `<p>`, `<br />`,
+`<hr />` for `---`, `<a href>` around bare URLs, `&nbsp;`) — **without moving `updated_on` or
+`updated_by`**, so the immediate re-GET byte-check cannot see it.
+
+**The proof:** two committed live snapshots of the same 110 Filters cases, 2.5 hours apart with **no
+write in between**, differ on **10 cases in exactly the three text fields and no other field**, while
+`updated_on` is byte-identical in both.
+
+**What triggers it:** the run owners working the cases in the TestRail UI. 19 of 20 rendered Schedule
+cases had been graded inside one 14-minute window.
+
+**⇒ THE MITIGATION IS A DEFERRED CENSUS, NOT A TIGHTER WRITE:** census raw markup across the project
+**at the START of every pass**, before any write; **never report "0 raw markup" as a durable state**
+— it is true only of the moment measured; **expect repaired cases to regress.** Converter:
+`build/markup-regression-2026-08-10/demark.py`.
+
+### 3.6 The generator blanks the id-map C-ids and drops `refs` on every rerun
+
+`gen_import.py` (every project's copy) **blanks the C-id column and drops the `refs` column** each
+time it runs. **Re-merge both from live after every regeneration**, then prove: id-map rows == live
+count, 0 blanks, `refs` N/N, header byte-identical to its peers.
+
+### 3.7 The `joinlines` shredding bug
+
+`gen_import.py`'s `joinlines()` did `"\n".join(x)` over a **string** where a live re-sync now writes
+strings rather than lists — producing an import with **a newline between EVERY CHARACTER** of
+preconds/steps/expected, in **all 165 rows** (Schedule) and **all 110** (Filters) and **all 473**
+(Report Suite). **Fixed in each generator (split a string first), and every pass runs the shredding
+guard and reports the count.**
+
+### 3.8 Angle brackets are eaten as HTML
+
+**Never use `<` or `>` in case text.** `TU-DAY-01 / C30418` imported as *"Expand 's daily breakdown"* —
+the angle-bracket placeholder was swallowed. Sweep any payload for `<` before sending.
+
+### 3.9 A byte-check is a check on FIDELITY, never on CORRECTNESS
+
+Restated here because it is the single sentence that generalises §2.4: **pair it with a post-batch
+invariant census, always.**
+
+---
+
+# 4 · RUNS
+
+**In scope: the active projects' runs only** — Filters **352** · Schedule **357** · Report Suite
+**359**. Runs belonging to other or completed projects (324, 325, 278, 312) are **ignored entirely**:
+not synced, not written to, **and not audited for missing cases**.
+
+**Our coverage is measured against the CASE SUITE under our group — never against anyone else's run
+selection.**
+
+### 4.1 🛑 UNION ONLY — a partial `case_ids` list DELETES tests AND THEIR RESULTS
+
+`update_run` **REPLACES** the selection. A run built with `include_all: false` — which is how every
+run here was built — **stays frozen** at its original selection, so new cases never appear in it
+automatically. The sync is therefore mandatory after any authorised `add_case`, and it is **add-only**
+(deleted cases drop out by themselves).
+
+```
+1. get_run/{id}          → if include_all is true, nothing to do; just verify the count
+2. get_tests/{run_id}    → the run's CURRENT case_id list
+3. get_results_for_run   → SNAPSHOT every result BEFORE writing
+4. update_run with sorted(set(current) | set(new))   ← THE FULL UNION, never a partial list
+5. verify: test count as expected, case_id sets equal BOTH ways,
+           EVERY prior result present BY ID, include_all still false
+```
+
+**Never write a RESULT to another tester's run.** Log only Passed cases to a run at all, and only with
+permission; keep Failed / Retest / Blocked local.
+
+**Why this rule exists:** a frozen run selection on Filters 352 made a reviewer see coverage gaps
+**that did not exist**, and cost a wasted review cycle.
+
+---
+
+# 5 · FOREIGN CASES — hands off, and counted separately
+
+**We NEVER edit, update, delete, move, or add to a run any case we did not author.** Not to tidy a
+title, not to add `refs`, not to merge an apparent duplicate.
+
+**How to tell:** `get_case` returns `created_by` / `updated_by` as user ids. **We are user id 3 (Bilal
+Muzamil).** Id 1 = **Vladimir Tomovic**, the automation engineer. Others: 2 Nebojsa Glavinic ·
+4 Viktoria Videnovic · 5 Ayesha Khan · 6 Mudassir Qamar · 7 Ahtasham Amjad · 8 Chris Amani ·
+9 Sasha Grossman. `get_users` is admin-only for our account; resolve with `get_user/{id}`.
+
+**Supporting tells:** no `refs` (ours always carry one) · `template_id` 2 vs our 1 · no expected
+results · titles over 80 chars · `custom_automation_type` unset. **⚠️ `custom_atmstatus` is NOT a
+tell** — it is `3` on his cases *and* on some of ours.
+
+### 5.1 Proving a foreign case untouched
+
+**By CONTENT, byte-compared against a pre-write snapshot committed before the first write —
+including `updated_on` / `updated_by`.** *"We didn't write to it"* is an assertion; a byte-identical
+snapshot is evidence. **A timestamp is context, never evidence** (§2.5).
+
+### 5.2 When a foreign case CONTRADICTS ours
+
+**The first move is NOT to defend ours.** Re-derive our own position from the current sources. **If
+our source is stale or was misread, OURS IS THE DEFECT and we fix ours**, and we say so. Only then is
+it a question for them, escalated to the QA lead with **both sides' sources** on the table.
+
+**Never dismiss their case for having no `refs`.** A missing `refs` is a traceability shortcoming of
+their case; **it is not evidence about the build**.
+
+**The scar:** Vladimir's automated **C38923** asserted a Location column in the SBR CSV exports while
+our **C30285** and **C30286** enumerated the headers *"exactly"* without it. **He was right and we
+were wrong, against our own spec** (SBR v15 `S14-R20`, live one day before he authored) — and **his
+case carried no `refs` at all**, precisely the signal we might have used to wave it away. The same
+on-screen/export split existed on **four more reports**.
+
+### 5.3 We must TELL VLAD when we change a case TestRail flags as Automated (Standing Rule 65)
+
+**Any change — an UPDATE as much as a deletion — to a case with `custom_atmstatus = 3` obliges a
+report**, so he can adjust his automation. **Every pass report carries an "AUTOMATED CASES CHANGED —
+FOR VLAD" section**: per case, the **C-id + link**, **what changed in one plain phrase**, and
+**whether it affects what an automated check would assert**. **Say "none" where none — never omit the
+section.**
+
+- **Record `custom_atmstatus` at WRITE time**, from the snapshot you already take — the flag moves
+  (C29600 went `1→3→1→3`).
+- **Check whether a PERSON actually set it** via `get_history_for_case` before reporting a case as
+  automated. On Schedule **nobody ever did** — our own tooling hardcoded `3` (§3.1) — so reporting
+  those would pad the list and cost it credibility on first reading.
+- **This is a REPORT, not a write.** It never authorises editing a flag or opening a ticket, and it is
+  **never a reason to skip a correction**.
+
+---
+
+# 6 · ACCESS MECHANICS — the five traps that produce a FALSE "dead session"
+
+**Read this before asking the QA lead for new cookies.** The first three each cost a whole pass.
+
+**(1) A 401 `sso_required` is usually an EXPIRED `cf_clearance`, not a dead sign-in.** Measured
+against the exact set that had just 401'd, `sv_sso_session` and `PHPSESSID` were **byte-identical**
+and only `cf_clearance` had changed. **Ask for a fresh `cf_clearance` by name, not a whole new
+sign-in.**
+
+**(2) PROBE THE `…api.` HOST, NEVER THE APP HOST.** `GET https://sv8685.qa.shopview.com/api/auth/me/…`
+returns **HTTP 200 — and it is not a live session**: the SPA host serves `index.html` for any
+unmatched path, so the 200 is an HTML page. Always probe
+`https://sv<n>api.qa.shopview.com/api/auth/me/fe-permissions`.
+
+**(3) `paste -sd'; '` SILENTLY CORRUPTS THE COOKIE HEADER** — it **alternates** the two delimiter
+characters, producing `A=1;B=2 C=3` and **dropping the third cookie**. That one bug produced a false
+"dead session" that stopped an entire pass; rebuilt as **`'; '.join(lines)`** the very same cookies
+returned **HTTP 200 with 42 permissions on the first try**. Keep the cookie file as **one line**,
+`name=value; name=value; …`, `chmod 600`, `/tmp` only.
+
+**(4) EACH QA BRANCH KEEPS ITS OWN SESSION STORE.** `sv_sso_session` + `cf_clearance` are **shared
+across branches**; **`PHPSESSID` is per-branch**. A set alive on one branch returns **HTTP 409
+`Session has expired.`** on another. **A live cookie on one branch is not a live session on another.**
+
+**(5) 🛑 `POST /api/quick-login` AND `POST /api/switch-user` BOTH ROTATE THE SHARED `sv_sso_session`,
+SIGNING OUT ANY CONCURRENT WORKER ON ANOTHER BRANCH.** **Never call either while a sibling worker is
+live** — and say so in the pass notes, because it is the honest reason a permission case goes
+unobserved rather than being seeded around.
+
+### 6.1 The diagnostic order — so nobody re-derives it
+
+> build the header with `'; '.join` → probe the **`…api.`** host → on **401** ask for a fresh
+> **`cf_clearance`** → on **409** check you are using **that branch's** `PHPSESSID` → only then
+> consider the sign-in dead.
+
+**401 vs 409 vs an HTML challenge each name a different dead half:**
+
+| Symptom | What is dead |
+|---|---|
+| **401 `{"error":"sso_required"}` as JSON from the app** | the **shared `sv_sso_session`** — the request reached the application, so Cloudflare is fine |
+| **A Cloudflare challenge / HTML body** | **`cf_clearance`** — the request never reached the application |
+| **409 `Session has expired.`** | the **per-branch `PHPSESSID`** — wrong branch's value, or a burned session |
+
+**The signature of a genuinely dead shared sign-in — all three together:** all branches 401 at once on
+a byte-identical shared token · the refusal arrives from the app as **JSON** · **nothing returns 409**.
+**Then, and only then, ask for a fresh `sv_sso_session` — by that name.** `quick-login` is **not** a
+recovery route in that state: it is itself SSO-gated and answers 401.
+
+### 6.2 The 409 recovery recipe (a failed `quick-login` burns the session)
+
+If `quick-login {"key":"tech"}` returns **403**, every request on that branch then returns **409**.
+**The fix:** call `quick-login {"key":"admin"}`, take **only the `PHPSESSID`** it returns, and swap
+that one value into the existing header, leaving `sv_sso_session` and `cf_clearance` untouched.
+**Do not rebuild the whole header and do not ask for new cookies.**
+
+### 6.3 Other mechanics
+
+- **Cookie lifetime ~24 hours**, and they also die **on a deploy**. A 401 well before 24h ⇒ suspect a
+  deployment.
+- **`node-fetch` ignores the proxy** → use undici `ProxyAgent`, or Node global `fetch` with
+  `NODE_USE_ENV_PROXY=1`.
+- **Chromium cannot TLS through the egress proxy directly** → `boot2` hydration (seed cookies +
+  localStorage `user` / `fe_permissions_wrapper` / `token`, **then** navigate; the DEV login buttons
+  do not reliably work), and rebuild the MITM bridge every run — **the port rotates, never hard-code
+  it**.
+- **Cookie VALUES are secrets: `/tmp` only, never in the repo.** Cookie *names* are fine.
+
+---
+
+# 7 · ENVIRONMENT — what you may create, change and destroy
+
+### 7.1 Everything except TestRail is disposable (Standing Rule 6)
+
+Staging, the QA branches, QuickBooks, every integration account — **nothing there is off-limits.**
+Create work orders, adjustments, invoices; push to QuickBooks and verify the real line items; unmap
+and remap settings. **Do NOT skip a verification because it writes to a third-party integration.**
+
+### 7.2 Seed rather than block (Standing Rule 14) — this is not optional
+
+**A test may NEVER be left "NOT VERIFIED" because the data state does not currently exist.** The QA
+lead's standing words: ***"there is nothing like 'require seeding data' — you can make everything in
+the build; do not find an excuse to keep yourself blocked."*** And on the QA branches: ***"do whatever
+you want to do with data seeding/changing/editing in the QA branch."***
+
+*"Line already approved"*, *"no returnable part exists"*, *"no invoice in void state"*, *"this role
+has no live holder"* are **not blockers** — they are things to create. The self-seed playbook:
+- **Don't wait for the QA lead to unblock an env/data problem** — find the fix (e.g. the location
+  switcher, a different work order in your own workplace).
+- **When the UI resists, switch to the API; when the API is awkward, switch to the UI.**
+- **Discover endpoints by probing** — POST an empty body and read the validation error to learn the
+  required fields.
+- **For Quasar UI, click by element-centre coordinate** rather than Playwright actionability clicks
+  that time out on backdrops.
+- Only after all of this genuinely fails is it a real blocker — and then it is a
+  **fully-characterised, evidence-backed label** (*"WO line-create returns HTTP 500, requestId X"*),
+  **never a bare "NOT VERIFIED"**.
+
+**Tag throwaway data `ZZAUTOTEST`.** Rules 5/6 also ask that you **restore any setting, role or
+location you change** — see the carve-out immediately below, which is where that obligation actually
+bites.
+
+### 7.3 🛑 ROLES, STAFF RECORDS AND SETTINGS ARE EXCLUDED FROM "SEED FREELY"
+
+They are excluded for two separate reasons, and both are load-bearing:
+
+**(a) A DRIFTED ROLE CHANGES WHAT EVERY OTHER TEST SEES (Standing Rule 26).** Before any
+permission-or-role-gated verification, **reset every in-scope role to its template first**, record the
+before→after diff (**the diff is itself a finding**), verify each template default against the spec
+matrix, and **leave the roles at template afterwards** — that corrected state is the baseline every
+session sharing the org depends on. **If a role re-drifts mid-test, reset it again and continue** —
+persistently, not a fixed number of retries.
+
+**(b) THE EDIT DESTROYS SESSIONS, ONE WAY.** A **staff-record** edit invalidates that user's session
+instantly (HTTP 409 `Session has expired`). A **role-definition** edit invalidates **every holder's**
+session — **and it does not come back when the permissions are restored.** On this estate sign-ins are
+scarce, so that is often the whole day's access.
+
+**⇒ THAT IS A SCHEDULING CONSTRAINT, NOT A WALL** (§11.4). Do everything that needs the session
+**first**, commit it, **then** make the edit **last**. Both failure directions have already happened
+in one day: two Filters cases were held for months because the cost was **avoided rather than
+scheduled**, and a Schedule pass **cost itself the Technician session by doing the edit first**.
+**The correct order when new role-holders are needed: create the users, permission them, and only
+THEN sign each one in and mint cookies — configure first, mint second.**
+
+### 7.4 🔑 SEEDING DATA IS PERMITTED. MANUFACTURING THE CONDITION UNDER TEST IS NOT
+
+**Section §3 of skill `03` is the full treatment; the line is drawn here because it governs every
+skill.** Two proven instances, in opposite directions:
+
+- **A "persistence defect" that was our own leftover state.** A saved filter preference did not move
+  when a filter was applied — twice, in the exact area where two open tickets live, the evening before
+  a release. **It was ours:** from a proven-clean baseline (`filters: []`) the same action saved
+  perfectly. The earlier non-update came from **state a previous probe of ours had left behind**.
+- **A pass SEEDED a default workplace** to get past the `/no-location` redirect, then observed
+  work-order links working where a normally-signed-in session had faithfully seen plain text. **Its
+  own setup had created the evidence** — the shipped guard withholds the link from any user whose
+  `defaultWorkplace` is null. Caught before three cases were changed.
+
+**⇒ Establish and record the BASELINE BEFORE the action, not just the state after it. When a result
+surprises you in an area that already has open tickets, RE-RUN FROM CLEAN FIRST. And name every
+environment mutation the pass made, in the pass's own record**, so the next reader can tell setup from
+finding.
+
+---
+
+# 8 · SESSION SURVIVAL (Standing Rule 29)
+
+**Four passes were killed on 12 August. Nothing was lost — only because of this.** The container and
+`/tmp` are **ephemeral**; **git is the only durable store.**
+
+### The seven requirements — a pass can be FAILED on these
+
+| # | Requirement | The failure it was written against |
+|---|---|---|
+| **R1** | **The per-operation log is written BEFORE or AS each write, `flush()`ed, and COMMITTED** — case id · verb · intended fields · HTTP status · verification result · UTC time. **Write the INTENT line before the call and complete it after**: an op with an intent and no outcome is the exact point the pass died. | a pass wrote for ~40 minutes with no checkpoint; an oplog written at the end is worthless to a run that dies in the middle |
+| **R2** | **Commit AND push every 25 write ops or 10 minutes of wall clock, whichever comes first.** On exploratory passes the 10-minute ceiling governs. **A checkpoint never waits for a clean stopping point** — a half-finished findings file committed beats a perfect one lost. | *"commit regularly"* is exactly what the 40-minute silence was already doing |
+| **R3** | **`git fetch` + `merge --ff-only` at pass start**, before reading anything | a checkout reported *clean* and *1 ahead* while **110 commits behind** |
+| **R4** | **Verification evidence is COMMITTED, never left in `/tmp`.** `/tmp` is for **secrets only**. **A byte-comparison whose output is not committed did not happen, evidentially.** | **the only thing actually lost on 2026-08-11** — the writes landed, the proof did not |
+| **R5** | **Resume by re-establishing position from LIVE, by CONTENT** — fetch, read the killed pass's oplog, **verify that claim against live field by field**, complete only what is verifiably missing | a fresh `updated_on` is not proof; a 500 can follow a success; a liveness check is not progress |
+| **R6** | **The pre-kill state save** — **DONE** (with evidence path) · **IN FLIGHT** (with its exact re-run recipe) · **AWAITING WHOM** | — |
+| **R7** | **Path-scoped commits** (§9) | a bare commit has swept a sibling's staged work **three times** |
+
+**The test that decides whether R1 is really being met:** *if this worker is killed right now, can the
+next one find its exact position from **git alone**?*
+
+> **⚠️ THE REPLAY TRAP, PROVEN TWICE.** A staged plan that performs **exact-string surgery** against a
+> pre-write snapshot **cannot simply be re-run later** — a sibling may have moved the anchors it
+> matches on, so it fails its own assertions. **Say so in the recipe: REBUILD, do not replay.** And
+> the upside, recorded because it is not obvious: one plan **rebuilt from source** produced a *better*
+> result — it dropped a case that did not belong and found a gap the original had missed.
+
+> **⚠️ NEVER `pgrep -f` A PATTERN THAT APPEARS IN THE WATCHING SHELL'S OWN COMMAND LINE.** It matches
+> itself and returns *true* forever, while the batch has **silently never run**. **A liveness check is
+> not evidence of progress — check the work product.**
+
+---
+
+# 9 · GIT ON A SHARED, MOVING BRANCH
+
+**Another session pushes to this branch from a different container.** All of the following are proven,
+not theoretical.
+
+### 9.1 A clean tree is not a current tree
+
+`git status` reported **clean** and `git rev-list` reported **1 ahead** while the checkout was **110
+commits behind**. A recovery pass then concluded **all six passes' work was lost** — false, and
+withdrawn. **Every conclusion it drew was confident, fully evidenced and wrong.**
+
+**⇒ `git fetch origin <branch>` + `git merge --ff-only` as the FIRST ACTION of every pass. If the
+fast-forward is refused, STOP and report — never force, never rebase, never `reset --hard`**, because
+a sibling's commits are the very thing at risk.
+
+**⇒ And a "1 unpushed commit" warning is usually a STALE TRACKING REF.** `origin/<branch>` is only as
+fresh as your last fetch. **Fetch, then check, before acting on it.**
+
+### 9.2 Parallel workers share ONE git index
+
+**A bare `git commit` takes the WHOLE INDEX, including another worker's staged files.** It has swept a
+sibling's staged work **three times**. One documented instance: a worker staged correctly path-scoped
+to `build/schedule/`, then committed with a bare `git commit -q -F /tmp/cm4.txt` and **swept in nine
+files staged by the live Report Suite worker**. Nothing was lost — **the damage was to the record**,
+because the commit message talks only about Schedule and misattributes the nine. **It was deliberately
+NOT fixed:** *"a misleading commit message is a documentation problem; a rewritten shared history is a
+data-loss problem."*
+
+**Note the asymmetry:** path-scoped `add` protects **other people's files from you**; only path-scoped
+**`commit`** protects **you from an un-scoped sibling**.
+
+### 9.3 The procedure
+
+```
+git fetch origin <branch> && git merge --ff-only     # first action of the pass
+python3 build/testing-tools/scan_secrets.py --staged # §10 — before every commit
+git status                                           # immediately before committing
+git add -- <explicit paths>                          # NEVER -A, NEVER .
+git commit -F /tmp/msg.txt -- <the same paths>       # back to back, nothing in between
+git show --stat                                      # confirm what actually landed
+git push origin <sha>:refs/heads/<branch>            # the EXPLICIT SHA, never force
+```
+
+- **`git commit -m "msg" -- <paths>` errors** (*"did not match any file(s)"*) — write the message to a
+  temp file and use **`-F`**.
+- **Push the explicit SHA**, because `git push <branch>` resolves the ref **at push time**: a sibling
+  can add a commit between your scan and your push, publishing work **you never looked at**. Report
+  the pushed SHA and confirm it equals the SHA you scanned.
+- **Expect HEAD to move under you.** That is normal here, not an error.
+
+---
+
+# 10 · SECRETS — THE REPOSITORY IS **PUBLIC**
+
+`bilalmuzamil-sketch/Manual-test-Cases` is `"private": false`. **Everything committed is
+world-readable the moment it is pushed.** That changes what may be written to disk **at all** — it is
+not merely a reason to be tidy.
+
+### 10.1 The proven incident (2026-08-11)
+
+**12 Mercure JWT bearer tokens in 13 tracked files.** Eight had been public **since 4 August**. Every
+earlier scan passed, because the patterns looked for **cookie prefixes** and **`eyJ` was not among
+them**.
+
+**THE HARNESS CAUSE — and it was NOT an `Authorization` header.** A capture script did
+`body = JSON.stringify(j).slice(0, 600)` — **the first 600 characters of EVERY JSON response body** —
+and `/api/notifications/subscribe-token` exists purely to **return a token**. There were **zero
+`Bearer` literals in the repo**, so a scan for request headers would have found nothing.
+**⇒ RESPONSE BODIES LEAK CREDENTIALS JUST AS READILY AS REQUEST HEADERS, AND ARE FAR LESS WATCHED.**
+
+**THE REASONING THAT FAILED US, so it is not repeated:** *"it expires in ten minutes"* and *"it only
+grants read to one topic"* are statements about **blast radius**, not arguments for committing it. A
+signed token is also an **offline oracle for brute-forcing the signing key**, and **that risk does not
+expire when the token does.**
+
+### 10.2 The practice
+
+- **NEVER write an `Authorization` or `Cookie` header, or a response body containing a token, to
+  disk.**
+- **REDACT AT THE POINT OF CAPTURE, not before commit.** Keep the header/key **name** so the evidence
+  stays diagnostically useful; replace only the **value**. Copy the `scrub()` helper pattern into any
+  new capture harness.
+- **Run the scanner before every commit:**
+  ```
+  python3 build/testing-tools/scan_secrets.py --staged    # exits non-zero on a hit
+  python3 build/testing-tools/scan_secrets.py --selftest  # proves it BOTH ways
+  ```
+  It covers JWTs, `Bearer`/`Basic` values, `Authorization` headers, `set-cookie` and session-cookie
+  **values**, the known cookie prefixes, `figd_` Figma tokens, private keys, cloud/GitHub/Slack
+  tokens, and literal password assignments — and it deliberately **distinguishes a reference from a
+  value**, because **a scanner that cries wolf gets switched off and then protects nothing**.
+- **⚠️ REDACTION DOES NOT UNDO EXPOSURE.** Cleaning files at HEAD leaves the tokens **in git history**;
+  on a public repo anything pushed must be assumed already cloned and cached. **Rotating the signing
+  secret is the only control that actually revokes them — that is the QA lead's decision, not a
+  worker's.**
+
+---
+
+# 11 · AUTHORITY — what you may act on, and what you must ask about
+
+### 11.1 🛑 THE JIRA CREATION HOLD IS ACTIVE (Standing Rule 62 + the 2026-08-10 hold)
+
+**Standing Rule 62:** no Jira ticket of **any type** may be created without the QA lead's explicit
+permission, **asked for and granted first**. Permission is **PER ASK** — an earlier batch approval
+never covers a later ticket. **A finding being real, sourced and obviously worth filing is NOT
+permission**; how good the finding is and whether we may file it are two unrelated questions.
+
+**Layered on top, his ruling of 2026-08-10, verbatim: *"Do not create anything until my next
+order."*** Rule 62 says **ask first**; this says **the answer is no for now**, so there is nothing to
+ask about while it stands.
+
+**Safe reading, as encoded:** no Jira ticket · no new artefact in any external system of record.
+**`update_case` on EXISTING cases CONTINUES** — that is **correction, not creation**.
+**⚠️ `add_case` IS NOT BARRED BY HIM.** He corrected that reading himself, verbatim: ***"WHY? We are
+supposed to crfeate test cases … we are supposed to create the test cases."***
+**Where a worker cannot tell which side of the line something sits, it STOPS AND ASKS.**
+
+**⏳ LIFT CONDITION: his next order.** **A session reading this weeks later must NOT treat it as
+standing law — check whether it has been lifted.**
+
+### 11.2 Expected behaviour comes from the DOCUMENTS, never the build (Standing Rules 57/58)
+
+**The sources are (a)–(g) and the list is OPEN-ENDED by his instruction:**
+**(a)** the PRD / Confluence specification · **(b)** the epic's stories (description, acceptance
+criteria, comments) · **(c)** the PO's verified answers · **(d)** the **DESIGN** — a Claude design or
+prototype, a Figma design, **or the technical design he shares** · **(e)** **Figma** · **(f)** a
+shared **`.md` file** (handover, design review) · **(g)** any newer **written statement** shared with
+us, including a message or channel post. **A new document type does not need a rule amendment before
+it counts.**
+
+**THE BUILD IS NOT ON THE LIST.** From the build we take exactly two things: **the exact on-screen
+labels** and **the pass/fail verdict**. Nothing else.
+
+- **If the build differs from the documented expectation, the case KEEPS the documented expectation**
+  and becomes a deviation with a ticket. **Never the reverse.**
+- **A CLOSED ticket is not a spec change.** Closing as *accepted* / *obsolete* / *not reproducible* is
+  triage about whether to **fix** — the expect-fail marker carries that qualification instead.
+- **The one narrow exception:** where **our own** case asserted something **no source supports**, the
+  repair is **REMOVAL or scope-conditional wording — never substitution of observed behaviour**.
+- **Where no source speaks at all**, assert only what a source supports and **raise the gap as a PO
+  question**. Filling it in from the build **HIDES the gap**, and that is the deeper harm.
+- **Standing Rule 58: an AMBIGUOUS source is never resolved by looking at the build.** The ambiguity
+  goes back to the PO and the cases are **HELD with the open question cited on them**. **Reaching for
+  the build to break a tie is how build behaviour becomes expected behaviour without anyone deciding
+  to do it** — and the edit then looks sourced, so it survives every later review.
+- **The quote-back gate:** an ingest pass **may not produce a case edit whose new expected result
+  cannot be QUOTED BACK to the source text**. If it cannot be quoted, **the edit is invalid** — not
+  "weakly sourced", invalid.
+
+**The scar: 748 cases.** On 2026-08-05 the QA lead found cases asserting build behaviour as expected
+behaviour, wrote *"I am shocked to see that how come you considered the Build behavior as the expected
+behavior?"*, and ordered a four-way audit of all 748 cases across three projects.
+
+**The audit diagnostic, and it is the hardest failure to spot:** a case whose **steps were correctly
+VIU'd** while its **expected result was quietly changed in the same edit** looks **freshly
+maintained** and its provenance line looks current. **Diff the expected result against its CITED
+SOURCE, never against how recently the case was touched.**
+
+### 11.3 Latest authoritative source wins — but date the RULE, not the PAGE (Standing Rules 31/32)
+
+Where sources disagree, **the most recent authoritative product source wins**, with source + date
+recorded on the case. **Duplication across two agreeing sources raises confidence.** Engineering docs
+**inform but never overrule** product truth. Where recency **cannot be established, or the newest
+source does not make sense, ASK the PO** — never pick a side.
+
+**⚠️ A PAGE'S VERSION NUMBER SAYS NOTHING ABOUT A REQUIREMENT'S AGE.** A spec republished yesterday
+can carry a requirement untouched for five months. **To date a requirement, diff THAT REQUIREMENT'S
+OWN TEXT across versions** — one extra fetch per version.
+
+**The scar:** two Filters cases (C29609, C29610) were flipped off a PO ruling onto spec text, reasoning
+*"the specification is the newer authoritative source"* — measured from the **page's** date. Fetched
+from **ten spec versions**, the rule was **byte-identical in all ten, unchanged since 2026-05-14 — two
+and a half months BEFORE the answer.** Latest-wins pointed the other way. **And the same pass silently
+reversed a recorded QA-lead ruling, deleting the very `refs` entry that named it.**
+
+**⇒ THE CHECK THAT CATCHES IT: before overriding any case, read what the case's OWN `refs` credits. If
+a ruling is named there, it may not be dropped without citing it and saying why.**
+
+### 11.4 A blocker blocks only what it ACTUALLY blocks (Standing Rule 68)
+
+**"Blocked" is not a property of a case — it is a property of a QUESTION about that case**, and a case
+usually raises several. A missing PO answer blocks the **VERDICT**, not the **RUNNABILITY**. A missing
+permission blocks **one step**, not the whole case. A missing ticket number blocks the **MARKER**, not
+the walk. **The tell that this was skipped: a blocked item whose reason is a person's name.**
+
+**Six requirements, all checkable:**
+1. **Name what the blocker actually blocks** — decompose the work.
+2. **Prove it real AND TOTAL** — *"we could not see a way"* is an assumption; *"we tried A, B and C
+   and here is what each returned"* is a measurement.
+3. **Check it is not self-serviceable** (§7.2) before writing the word "blocked".
+4. **A cost is a scheduling decision, not a wall** (§7.3).
+5. **State the residual explicitly**, in two lines: ***"Blocked for X. Still possible under it: Y.
+   Genuinely impossible until X clears: Z."*** **A blocked item that never names what could still be
+   done is not a report, it is an excuse.**
+6. **Escalate only what is truly his** — and then with Rule 48's five fields and what we already tried.
+
+**The scar:** across the Filters work of 12 August, **23 cases were reported as remaining and 14
+classified "waiting on Branko" and treated as untouchable. They were not** — the next pass walked all
+14 surfaces. **Roughly 60% of a reported remainder was self-inflicted.**
+
+**Why it costs more than it looks:** a falsely-blocked case **looks like someone else's problem and
+stops being worked**, then **migrates** — into a "what is left" row, into the outstanding register,
+into an ask forwarded to a PO — **gathering authority at every hop while nobody re-tests the premise.**
+
+### 11.5 The precedence order (Standing Rule 33)
+
+**(a)** the PO's product ruling → **(b)** the QA lead's ruling → **(c)** our own live-observed,
+evidence-backed findings → **(d)** a reviewer's or another QA's spec-reading claims. Within a tier,
+the most recent authoritative source wins.
+
+**A review is an INPUT, evaluated claim by claim — never an authority that reverses a ruling, and
+never dismissed either. Judge the claim, not the claimant.** Where a review claim is **correct, adopt
+it and say so plainly.** Where it contradicts a recorded ruling, **the ruling stands** and the review
+is noted as the trigger that surfaced the inconsistency.
+
+**POs by project:** **Branko Cicovic** = Filters, Schedule, Global Search · **Chris Ward** = Report
+Suite, Fees & Discounts · **Milos** = Simple Flow. **Never mix attributions.**
+
+### 11.6 🛑 SURFACE A CONFLICT BEFORE ACTING (Standing Rule 63)
+
+His directive, verbatim: *"If I say something that contradicts with you r rules, please do tell me
+what I am saying VS what the rule and and ask me to tell you what to follow."*
+
+When his instruction **conflicts with a recorded rule**, **STOP and state three things**: **(a)** what
+he instructed, **quoted verbatim** · **(b)** what the rule requires, **quoted, with its number** ·
+**(c)** an explicit ask — **which should we follow?**
+
+**NEITHER SILENT PATH IS AVAILABLE.** We may not silently follow the new instruction, and we may not
+silently keep following the old rule. **BEFORE the work, not after** — discovering the conflict
+mid-pass and mentioning it in the closing summary is **not compliance**: by then the work is done one
+way and the summary merely reports a decision he was never given.
+
+**Distinguish a conflict from a TIGHTENING or a LAYERING.** Neither needs escalation — both are simply
+recorded. **Escalating what does not conflict is its own failure**: it trains him to wave escalations
+through, which costs us the real ones.
+
+**Where he confirms:** his ruling becomes the rule, the **superseded text is kept visible and dated,
+never deleted**, his ruling is **cited as the authority**, and the amendment **says what it does NOT
+touch**. **Where he declines:** the rule stands and the instruction is recorded as
+considered-and-not-adopted.
+
+**He has endorsed the practice by name**, verbatim: ***"Good catch, be like this always."*** **The cost
+of a needless check is one sentence; the cost of a silent assumption is a ticket he never approved.**
+
+### 11.7 A ruling is a SOURCE, and sources get cited (Standing Rule 48)
+
+**Never write "waiting on you" or "frozen by your ruling" bare.** Any item blocked on the QA lead
+carries **five fields**: **(1)** which ruling, **quoted verbatim** · **(2)** when he gave it and what
+question it answered · **(3)** what it blocks, concretely, with **C-ids and links** · **(4)** why it
+was reasonable, **or what has changed since** · **(5)** the single thing that would unblock it, and
+from whom.
+
+**A blocked item with no cited ruling is indistinguishable from us having forgotten to do the work.**
+
+---
+
+# 12 · READER-FACING STANDARDS
+
+- **Plain, layman English (Rules 7/9).** Assume the reader is not technical at all. No case IDs, spec
+  anchors, HTTP terms, endpoint names, enum names, bug codes — **and never the word "VIU"** — in
+  anything a PO or a manual tester reads.
+- **Build-accurate wording (Rule 9).** Every label, button, screen and field name is **exactly** as it
+  appears in the build — taken from the build, never invented, paraphrased or guessed. **If a term
+  cannot be confirmed, flag it rather than invent it.**
+- **Always give the C-id and the link (Rule 8).** Anywhere a case is named by an internal ID
+  (`FLT-…`, `SCH-…`), pair it with the TestRail Case ID and
+  `https://shopview.testrail.io/index.php?/cases/view/<id>` — **in chat replies and summaries as much
+  as in files.** A case not yet in TestRail is stated as *"new, no C-ID yet"*.
+- **Titles ≤ ~80 characters** so they display in full on the TestRail case page.
+- **Mirror the established format 1:1 (Rule 16).** Before producing any deliverable, **find the
+  canonical prior example** and match its columns, order, naming and location exactly. Do not invent
+  a layout.
+- **Human-readable filenames (Rule 19).** Spell names out in full — never cryptic abbreviations
+  (`sbc`, `pv`, `tu`), internal codes or opaque slugs. Include the deliverable type and, where dated,
+  the date.
+- **Reuse recorded recipes; never re-derive (Rule 27).** Read `build/APP-ACTIONS-PLAYBOOK.md` before
+  any environment action, and **append any new proven recipe immediately, in the same session** —
+  success-proven knowledge only, never dead ends. **The books ARE the channel between parallel
+  sessions; there is no live message bus.**
+- **Every DEVIATION / Failed / Blocked cell carries a plain "What needs to be done"** a
+  non-technical QA can act on. Never a bare status.
+- **API-content cases go in a section whose title includes "API" (Rule 4).**
+- **Give updates in extremely simple words** under plain headings (*"What I did / What needs to be
+  done"*), nothing important omitted.
+- **No emojis in prose to the user.**
+
+---
+
+# 13 · EVERY DELIVERABLE ENDS WITH "OUTSTANDING — what I need from you"
+
+**Standing Rule 36. If nothing is outstanding, SAY SO explicitly — never omit the section**, so the
+reader can tell *"clear"* from *"we forgot to look"*.
+
+**Sweep all six categories every time** (walk all six; do not stop at the first with items):
+1. **Missing sources** — spec not shared or stale, no epic, designs missing or a fetch queue open, no
+   tech plan.
+2. **Unanswered questions** to a PO or dev — name the sheet, the question number, who owes it, and
+   **how long it has been outstanding**.
+3. **Missing go-aheads / authorisations** — TestRail pushes, retirements, merges, deletions, run syncs.
+4. **Access / credentials** — fresh cookies, Atlassian access, a Figma token, a QA branch.
+5. **Decisions deferred or HELD.**
+6. **Things another team owes** — a spec correction, a dev fix, a missing ticket key.
+
+**Each item states four things:** *what is missing* · *who owes it* · **what it BLOCKS** (the concrete
+consequence, not a vague "needed for completeness") · *since when*. **Items blocked on the QA lead
+himself carry Rule 48's five fields** (§11.7).
+
+**Update `build/OUTSTANDING-ITEMS-REGISTER.md` in the same turn** an item is raised or cleared. A
+cleared item **moves to "Recently cleared" with the date and how it was satisfied** — never quietly
+dropped, so nothing gets re-asked. *(We have already had that embarrassment: re-asking a question a
+source had answered.)*
+
+---
+
+## APPENDIX · THE PRIMARY SOURCES BEHIND THIS FILE
+
+Go to these rather than trusting this summary.
+
+| Topic | Source |
+|---|---|
+| All standing rules, project entries, durable facts | `CLAUDE.md` |
+| The incidents behind the rules, 11–12 August | `build/SESSION-LEARNINGS-2026-08-12.md` |
+| Environment recipes; **§A sessions**, **§J TestRail hazards**, **§L git** | `build/APP-ACTIONS-PLAYBOOK.md` |
+| The seven survival requirements + compliance checklist | `build/NO-WORK-LOSS-STRATEGY.md` |
+| What we are waiting on, cross-project | `build/OUTSTANDING-ITEMS-REGISTER.md` |
+| How a process doc must be written | `build/PROCESS-AUTHORING-STANDARD.md` |
+| Every callable process and its trigger | `build/PROCESS-CATALOG.md` |
+| Per-project cold-resume snapshots | `build/<project>/PROJECT-STATE.md` |
