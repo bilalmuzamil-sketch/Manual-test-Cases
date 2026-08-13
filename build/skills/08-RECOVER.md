@@ -145,6 +145,20 @@ orphaned probe output the container restart left uncommitted."*
 **Redact at the point of capture before committing anything from `/tmp`** (core §10) — and **cookie
 values never leave `/tmp` at all.**
 
+**WHEN `/tmp` IS ALREADY GONE (added 2026-08-13, from the forensic drill against the finish5 kill —
+this is the NORMAL state for a recovery running in a fresh container, not an edge case):**
+1. **Enumerate what the dead pass's own records say lived in `/tmp`** — its RESUME/README, its
+   commit messages and its scripts' output paths name them (finish5's named `/tmp/testrail/f5/`,
+   `/tmp/r2.log`, `/tmp/q*.log`).
+2. **Classify each item: RECOVERABLE ELSEWHERE** (a committed copy, a re-derivable live read) **or
+   GENUINELY LOST.**
+3. **Carry every GENUINELY LOST item into the verdict's second half** — and any conclusion that
+   rested on it is labelled **reconstructed, not contemporaneous**, on its own line (the honesty
+   note below). Do NOT quietly re-prove the conclusion from other evidence and present it as if the
+   original proof still existed.
+4. **Check the current `/tmp` belongs to a DIFFERENT worker before touching anything in it** — on
+   this estate a fresh container's `/tmp` routinely holds a live sibling's snapshots and credentials.
+
 ### 4 · VERIFY EVERY CLAIMED OPERATION AGAINST LIVE, FIELD BY FIELD
 
 **Not by count. Not by timestamp. Not by re-reading the log.** For each operation the oplog claims:
@@ -157,6 +171,14 @@ values never leave `/tmp` at all.**
 **Then reconcile the operation count against the plan** (core §2.7). **That is how a duplicated edit
 was found** — 39 writes over 38 cases, because a resume re-applied an edit whose idempotence guard
 tested *the case* rather than *the content*.
+
+**DATE THE EVIDENCE WHEN THE KILL IS NOT RECENT (added 2026-08-13):** live content proves what is
+there **now**, not who put it there. Before classifying anything LANDED / LANDED BUT WRONG for a
+pass that is not the most recent, **establish from git whether any LATER pass wrote to the same
+cases or runs** — otherwise a legitimate later edit misreads as LANDED BUT WRONG (and a later
+overwrite of a never-landed write misreads as LANDED). On a shared suite also check the other
+authors' activity on those cases (`updated_by` as context, content as evidence). State in the
+recovery report **which interval the live read is attributable to.**
 
 ### 5 · PROVE THE RUNS UNTOUCHED, AND THE FOREIGN CASES
 

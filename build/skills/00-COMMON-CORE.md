@@ -1403,6 +1403,15 @@ and belong in each `PROJECT-STATE.md`, derived live).
 - **TestRail:** project **1**, single suite **1 "Master"**, API v2 at
   `https://shopview.testrail.io/index.php?/api/v2/…` — **and the separator inside that path is `&`,
   never a second `?`** (§3.3).
+- **TestRail CREDENTIALS (added 2026-08-13 — found missing by TWO cold drills in one morning):**
+  Basic auth, and the credentials live in **`/tmp/testrail/creds.json`** (keys: `email` / `host` /
+  `password` / `user`; `chmod 600`, **never committed** — the repository is public, §10). **`/tmp` is
+  ephemeral: if the file is absent on a fresh container, ASK THE QA LEAD for the TestRail credentials
+  by that path-name** — do not hunt the repository for them (they are not there, by design) and do
+  not report TestRail as unreachable without having asked. *(Scar: the 05-drill and the 08-drill of
+  2026-08-13 each had to discover this file by exploring `/tmp` — the first logged it and no fix
+  landed, so the second hit it again. A logged-but-unfixed defect is §7.5's "guardrail written down
+  but not read".)*
 - **Confluence:** `GET /wiki/api/v2/pages/<id>` on `shopview.atlassian.net`. **Use the Confluence
   version number, never the in-body one** (§11.3 / skill `02` trap (a)).
 - **We are TestRail user id 3** (Bilal Muzamil); **id 1 is Vladimir Tomovic**, the automation engineer

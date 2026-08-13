@@ -277,6 +277,18 @@ items were found by one adversarial pass. **That is evidence the method finds th
 evidence there is nothing left to find** — and a future pass that finds a fourteenth should add it
 here rather than treat this box as closed.
 
+## 6a · THE 2026-08-13 COLD DRILLS — defects found by RUNNING the skills, not by reading them
+
+*(From the cold run of `05` and the forensic drill of `08` against the real finish5 kill —
+`build/skills/verification-2026-08-13/08-RECOVER-VERDICT.md`. These are counted separately from the
+box above, which this section deliberately does not reopen.)*
+
+| # | What was missing | Found by | Now lives in |
+|---|---|---|---|
+| **B1** | **TestRail credentials location** (`/tmp/testrail/creds.json`) — in neither `00` nor any skill; **both drills had to explore `/tmp` for it, the second after the first had already logged it** (a logged-but-unfixed defect is `00` §7.5's "guardrail written down but not read") | 05-drill + 08-drill | `00` **§17** |
+| **B2** | **What a recovery does when `/tmp` is ALREADY GONE** — enumerate the dead pass's named `/tmp` artefacts, classify recoverable / genuinely lost, label the affected conclusions reconstructed | 08-drill | `08` step 3 |
+| **B3** | **Date the evidence on a non-recent kill** — establish from git whether a LATER pass wrote to the same cases before classifying LANDED / LANDED BUT WRONG | 08-drill | `08` step 4 |
+
 ---
 
 ## APPENDIX · THE SOURCES MINED
