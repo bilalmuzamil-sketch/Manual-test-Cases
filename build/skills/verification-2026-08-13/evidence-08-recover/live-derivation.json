@@ -1,0 +1,88 @@
+{
+ "read_at": "2026-08-13T07:44:47Z",
+ "run352": {
+  "id": 352,
+  "include_all": false,
+  "passed_count": 81,
+  "failed_count": 8,
+  "blocked_count": 4,
+  "untested_count": 27,
+  "retest_count": 0
+ },
+ "n_tests": 120,
+ "n_results": 648,
+ "cases": {
+  "29614": {
+   "updated_by": 3,
+   "updated_on": 1786558514,
+   "created_by": 3,
+   "title": "Filters are remembered permanently, even after closing the browser",
+   "custom_expected": "1. After moving around the app (step 2) the filter selections are still applied - you do not have to re-apply them.\n2. After closing the browser completely and signing back in (step 5) the same filter selections are still applied - the app remembers your filters for you permanently, not just for one browser session.\n3. The same filter selections are applied on the other computer too - the filters are saved to your account, not to one computer or browser (to confirm live once built).\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S10-R2, S10-R3, S10-R1), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.\n\nAUTOMATION: READY\n",
+   "refs": "SV-8795 (S10-R2 (stored server-side against the account; survives logout; syncs across devices); S10-R3 (saved per user); S10-R1 (restored after navigating away)) + Branko Q2 2026-07-17 - now matched by the PRD [spec v19 2026-08-06]"
+  },
+  "43560": {
+   "updated_by": 3,
+   "updated_on": 1786558516,
+   "created_by": 3,
+   "title": "When two devices set different filters, the last one saved wins",
+   "custom_expected": "1. After the reload in step 3, Browser A shows the filter that was saved MOST RECENTLY - the Estimate choice made in Browser B - not the Approved choice it had set itself. The newer save wins.\n2. The table in Browser A matches those newer filters.\n3. After the reload in step 6, Browser B likewise shows the newest saved state, including the Customer filter that Browser A added in step 5.\n4. Nothing is merged and nothing is duplicated: whichever browser saved last is the one whose filters both browsers end up with.\n5. No error message appears in either browser at any point.\n\nNote for the tester: the two browsers do not update each other while you watch. You have to reload the page to see the saved filters come back. That is expected.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 11 August 2026, the owning story SV-8795, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S10-R2), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.\n\nAUTOMATION: READY\n",
+   "refs": "SV-8795 (S10-R2 (where two devices write different state,last write wins); S10-R1) [spec v19 2026-08-06]"
+  },
+  "29581": {
+   "updated_by": 3,
+   "updated_on": 1786559584,
+   "created_by": 3,
+   "title": "A deactivated technician does not appear in the Lead Technician filter list",
+   "custom_expected": "1. The deactivated technician is NOT shown in the filter list.\n2. Active technicians are still listed normally.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S4-E1), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.\n\nAUTOMATION: READY\n",
+   "refs": "SV-8789 (S4-E1) [spec v19 2026-08-06]"
+  },
+  "29588": {
+   "updated_by": 3,
+   "updated_on": 1786559586,
+   "created_by": 3,
+   "title": "A deactivated advisor does not appear in the Service Advisor filter list",
+   "custom_expected": "1. The deactivated advisor is NOT shown in the filter list.\n2. Active advisors are still listed normally.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S5-E1), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.\n\nAUTOMATION: READY\n",
+   "refs": "SV-8790 (S5-E1) [spec v19 2026-08-06]"
+  },
+  "43576": {
+   "updated_by": 7,
+   "updated_on": 1786371856,
+   "created_by": 7,
+   "title": "Global search returns navigational results only and does not modify the current table",
+   "custom_expected": null,
+   "refs": "SV-8799 (S14-R1; S14-R4) [spec v1.6 / Confluence v19]"
+  },
+  "43577": {
+   "updated_by": 7,
+   "updated_on": 1786371856,
+   "created_by": 7,
+   "title": "Global search no longer alters the record set on any surface (app-wide sweep)",
+   "custom_expected": null,
+   "refs": "SV-8799 (S14-R5) [spec v1.6 / Confluence v19]"
+  },
+  "43578": {
+   "updated_by": 7,
+   "updated_on": 1786371856,
+   "created_by": 7,
+   "title": "Page-filtering code path is removed and stale URL / persisted terms no longer filter",
+   "custom_expected": null,
+   "refs": "SV-8799 (S14-R2; S14-R3) [spec v1.6 / Confluence v19]"
+  },
+  "43579": {
+   "updated_by": 7,
+   "updated_on": 1786371856,
+   "created_by": 7,
+   "title": "Every affected surface still offers text narrowing via page search",
+   "custom_expected": null,
+   "refs": "SV-8799 (S14-R6) [spec v1.6 / Confluence v19]"
+  },
+  "43580": {
+   "updated_by": 7,
+   "updated_on": 1786371856,
+   "created_by": 7,
+   "title": "Global-search filtering is not removed from a page before page search is available there",
+   "custom_expected": null,
+   "refs": "SV-8799 (S14-N1) [spec v1.6 / Confluence v19]"
+  }
+ }
+}
