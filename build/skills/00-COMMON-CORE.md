@@ -265,6 +265,78 @@ equal both ways, `include_all` still false."*
 **operation · target C-id · HTTP status · byte-level verification result.** An entry saying only
 *"200 OK"* is **non-compliant**.
 
+### 2.10 🔑 THE POST-WRITE ASSERTION RE-AUDIT — because an audit committed BEFORE the repair does not audit the repair
+
+**This is the control that §2.4 leaves open, and it was missing until 2026-08-13.** §2.4 catches a
+payload that is **mechanically** wrong — a bad regex, a stray full stop, an appended duplicate. **It
+cannot catch a payload that is mechanically perfect and SEMANTICALLY WRONG for the case it landed on.**
+Neither can the invariant census, because the result has exactly one provenance line and exactly one
+marker, as required.
+
+**THE SCAR, AND IT IS THE SHARPEST ONE WE HAVE, BECAUSE THE PASS THAT CAUSED IT WAS THE PASS FIXING
+THIS EXACT PROBLEM.** `expected-behaviour-audit-2026-08-05.md` row 59 classified **SCH-FILT-03 =
+[C29944](https://shopview.testrail.io/index.php?/cases/view/29944)** as **class C — LEGITIMATE**, and
+quoted its expected results as three items with **no multi-status assertion**. The audit was committed
+**before** the repair, exactly as good practice requires. **Then the same pass's own write added the
+assertion** — *"Choosing more than one status shows the work orders of all the chosen statuses
+together"* — which **no source in Rule 57's list supports**: absent from **all 27 spec versions**, from
+story SV-8687, from the tech plan, from the design and from Branko's answers. **And the case's own
+metadata still said *"Single vs multi-select within a group is not pinned - confirm live"*** — the
+authoring pass had flagged it, the later pass confirmed it on the build, and the observation was
+written in as a requirement. **Rule 58 exactly.** *(It is not even runnable as written: the steps say
+*"choose one status"*, so the tester never reaches that expectation.)*
+
+> **AN AUDIT COMMITTED BEFORE THE REPAIR DOES NOT AUDIT THE REPAIR. That is a structural hole in the
+> discipline, not a slip by one pass.**
+
+**A SECOND, DIFFERENT INSTANCE OF THE SAME CLASS — CONTENT THAT LANDED ON THE WRONG CASE.**
+[C30162](https://shopview.testrail.io/index.php?/cases/view/30162) (Sales By Customer) and
+[C30287](https://shopview.testrail.io/index.php?/cases/view/30287) (Sales By Representative) were
+given, in one pass, a symptom block naming the **Inventory Value** column set — *"Part #, Description,
+Category, Vendor, Qty, Unit Cost, Unit Sell, Total Cost, Total Sell"* — and that report's example
+figure `$11,176.88`. **Neither report has those columns.** A tester cannot match a symptom from another
+report, so **Rule 61's second bullet would then have told them it was *"a NEW problem — please report
+it"*: the text manufactured duplicate tickets on two reports.** Every byte-check passed.
+
+### ⇒ THE PRACTICE — re-audit ONLY what the pass changed, and do it AFTER the write
+
+**It is cheap precisely because it is scoped to the diff.** The proven method
+(`build/quality-gate-2026-08-11/AUDIT.md`) makes *"what changed"* **a measurement rather than a
+judgement**, by splitting `custom_expected` into three parts and comparing part by part:
+
+| Part | What it is |
+|---|---|
+| **body** | everything **before** the `---` separator — **the assertion itself** |
+| **provenance** | the Rule-54 line(s) after it |
+| **marker** | the trailing `AUTOMATION:` line |
+
+**A case is MATERIAL only if `title`, `preconditions`, `steps` or the EXPECTED BODY moved.** A
+provenance re-stamp or a `refs` version re-cut **falls out by construction** — on that pass **495 of
+771 cases fell out that way**, leaving 240 to read. **That is the whole reason this is affordable.**
+
+**Then, for every material case, four checks:**
+1. **QUOTE THE NEW ASSERTION BACK TO ITS CITED SOURCE.** If it cannot be quoted, **the edit is
+   invalid** — not "weakly sourced", invalid (§11.2's quote-back gate, applied to our own output).
+2. **CHECK THE ASSERTION IS REACHABLE BY THE CASE'S OWN STEPS.** C29944 failed this independently, and
+   that failure **corroborated the sourcing finding from a different direction** — an assertion the
+   procedure cannot reach usually did not come from the procedure.
+3. **CHECK THE CONTENT BELONGS TO THIS CASE.** Any text naming a screen, column set, figure or report
+   is checked against **this** case's subject. C30162/C30287 is the whole reason.
+4. **DIFF THE NOTE PARAGRAPHS TOO, NOT ONLY THE NUMBERED ASSERTIONS.** On Filters,
+   [C29557](https://shopview.testrail.io/index.php?/cases/view/29557) was **disarmed by a note
+   paragraph**, not by an assertion. The forensic pass classified **105 note-block transitions across
+   46 cases** and found the dominant pattern was the *correct* one; **the point is that it looked.**
+   **The signature to hunt is a waiver** — *"known and accepted"*, *"on purpose for now"*, *"do not
+   raise this as a new problem"* — over a requirement a document states plainly.
+
+**⚠️ AND THE REPAIR IS NEVER "DELETE THE CASE".** An unsourced assertion is repaired by **removing that
+assertion or making it scope-conditional** (Rule 42), leaving the rest of the case intact — see `01`
+step 7, which separates *unsourceable* from *a traceability gap* from *open with the PO*.
+
+**Record it as `POST-WRITE-AUDIT.md` in the pass folder**, stating the population, how many fell out by
+construction, how many were read, and the verdict on each. **Saying "0 material changes, nothing to
+re-audit" is a valid outcome; omitting the file is not.**
+
 ---
 
 # 3 · TESTRAIL HAZARDS — the mechanics that cost real time
@@ -410,13 +482,37 @@ automatically. The sync is therefore mandatory after any authorised `add_case`, 
 (deleted cases drop out by themselves).
 
 ```
+0. CONFIRM EXPLICIT PERMISSION FOR THIS RUN, THIS PASS   ← see below; a run write is never implied
 1. get_run/{id}          → if include_all is true, nothing to do; just verify the count
 2. get_tests/{run_id}    → the run's CURRENT case_id list
-3. get_results_for_run   → SNAPSHOT every result BEFORE writing
+3. get_results_for_run   → SNAPSHOT every result BEFORE writing, and COMMIT the snapshot (§8 R4)
 4. update_run with sorted(set(current) | set(new))   ← THE FULL UNION, never a partial list
 5. verify: test count as expected, case_id sets equal BOTH ways,
            EVERY prior result present BY ID, include_all still false
 ```
+
+**🛑 STEP 0 IS NOT OPTIONAL, AND IT WAS MISSING FROM THIS PROCEDURE UNTIL 2026-08-13.** **These runs
+belong to other testers** — 352 Ahtasham Amjad · 357 Ayesha Khan · 359 Nebojsa Glavinic and Viktoria
+Videnovic — and **`update_run` is the single most destructive call we make**, because a partial list
+**deletes their graded results and they cannot be recovered**. **Authorisation is required for the run
+write itself, per ask** (Rule 6 + Rule 34), **not merely for writing results.** An `add_case` approval
+is **not** a run-sync approval, even though the sync is mandatory after the add: **do the add, then
+ask.** Where the run belongs to a completed project or already holds graded results, **ask whether to
+sync it at all** — a "finished" run becoming incomplete is a reporting decision, not a QA one.
+
+**🛑 SCOPE THE EXECUTOR TO ONE RUN BEFORE YOU RUN IT.** The canonical executor
+(`build/testrail-run-sync-2026-07-31/sync_runs_EXECUTOR.py`) carries a **multi-run `SCOPE`**. The
+proven-safe practice is the one used on 2026-08-05: **copy it with `SCOPE` cut to the single run you
+were authorised for** — `tools/run_sync_357_only.py` — **so that runs another worker is live on cannot
+be touched by a mistake in a list.** Do not run the multi-run form.
+
+**⚠️ AND THAT FOLDER'S OWN PAGINATORS CARRY THE FRAGILE URL SHAPE NAMED IN §3.3** —
+`run_sync_audit.py`, `sync_runs_EXECUTOR.py` and `exec_run_sync_2026-07-31.py` all build
+`?limit=`-then-`.replace()`, **which works only because the patch undoes the conditional.** So the
+canonical run-sync tooling is **exactly** the tooling most likely to return an empty page that reads
+like *"the run has no tests"* — **the most dangerous possible false negative here, because an empty
+`current` list turns the union into a partial list.** **Assert the run's test count against `get_run`'s
+own `untested_count + passed_count + …` before building the union**, and stop if they disagree.
 
 **Never write a RESULT to another tester's run.** Log only Passed cases to a run at all, and only with
 permission; keep Failed / Retest / Blocked local.
@@ -621,6 +717,48 @@ skill.** Two proven instances, in opposite directions:
 surprises you in an area that already has open tickets, RE-RUN FROM CLEAN FIRST. And name every
 environment mutation the pass made, in the pass's own record**, so the next reader can tell setup from
 finding.
+
+### 7.5 🛑 A PROBE MAY NOT PRESS A DESTRUCTIVE CONTROL TO FIND OUT WHAT IT DOES
+
+**The same pre-existing shift was destroyed TWICE in two days, by two different workers, on the same
+branch — and the second time is the one that matters, because the first was already written up with
+the exact warning that would have prevented it.**
+
+**Both probes made the same assumption:** click **Delete** on a shift's detail modal, then read the
+*"this shift or the whole series?"* dialog and press Escape. **For a NON-SERIES shift there is no
+dialog at all**, so `DELETE /api/schedule/shifts/{id}?scope=shift` → **HTTP 204** completed on the
+first click. There was nothing to cancel.
+
+**THE SECOND WORKER'S OWN WORDS, KEPT VERBATIM BECAUSE THEY ARE THE LESSON:**
+
+> *"The warning was already on disk and I had not read it. … **A guardrail written down but not read is
+> not a guardrail.** The lesson is not 'be careful with delete'; it is **read the project's own incident
+> reports before writing a probe that clicks anything destructive**. … And the deeper fault was in the
+> probe's shape, not my attention. The probe pressed a destructive control in order to *discover* what
+> would happen next."*
+
+**THE FOUR RULES THAT FOLLOW:**
+1. **ESTABLISH WHETHER A CONFIRMATION STEP EXISTS *BEFORE* PRESSING THE CONTROL THAT COMMITS.** A probe
+   may open a destructive dialog **to read it**; it may never press the commit control to learn whether
+   one appears. **The safe order is: establish, then press.**
+2. **SELECT BY ID, NEVER BY A DISPLAYED STRING.** The first delete matched the customer name
+   **`Brabay Maintenance`** on the grid, which was ambiguous — the eight shifts that worker had created
+   and the one it destroyed all belonged to the **same work order, S-14158**. The id was already in
+   hand. **Matching on a display string is how a cleanup step becomes a destructive one.**
+3. **READ `build/<project>/*/INCIDENT-*.md` BEFORE WRITING ANY PROBE THAT CLICKS.** They are short,
+   there are two, and one of them contains the field-by-field record that made the recovery possible.
+4. **MAKE THE PROBE PRINT ITS NON-GET CALLS AT EXIT, AND EXPECT THAT LIST TO BE EMPTY.** That is the
+   only reason the second delete was caught within seconds instead of at the next board diff.
+
+**WHAT RECOVERY LOOKS LIKE, SINCE IT WILL HAPPEN AGAIN:** recreate from a **board fetch taken earlier
+in the session**, verify **field by field** (11 fields, 0 mismatches), and **state plainly that the id
+cannot be restored** — a delete destroys it and the create mints a new one, so the board diff reads
+one REMOVED and one ADDED **for good, and that is the honest record.** Then prove nothing else moved:
+*"shifts 545 → 545, events 49 → 49, series 18 → 18; REMOVED ece60594, ADDED 07c11c58, CHANGED 0."*
+**Write the incident up rather than tidying it away** — both are on the record, and the second one
+exists only because the first one was.
+*(`build/schedule/drag-retry-2026-08-12/INCIDENT-accidental-delete-2026-08-12.md` ·
+`build/schedule/finish-2026-08-12/INCIDENT-shift-delete-2026-08-12.md`.)*
 
 ---
 
