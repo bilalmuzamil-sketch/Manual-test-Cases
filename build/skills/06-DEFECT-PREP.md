@@ -359,9 +359,19 @@ outstanding — never quietly dropped, never re-decided by us.
 
 - **"Cannot clear the bar" is a legitimate, correct outcome.** Say which item failed. **Withdraw a
   weak finding from the pack rather than offering it weaker.**
-- **The five already-prepared Report Suite defects were written under the OLD bar** and **must each be
-  re-checked against these eight and repaired or withdrawn before being offered.** Any that cannot
-  clear item (1) or item (3) **should be withdrawn rather than filed weaker.**
+- **⏳ UNRESOLVED, AND IT IS THE OPEN ITEM THIS SKILL OWNS: the five already-prepared Report Suite
+  defects were written under the OLD bar.** They are **prepared, unfiled, and NOT yet re-checked**
+  against the eight items. **Each must be re-checked and repaired or withdrawn BEFORE it is offered**;
+  any that cannot clear item (1) *(the expectation quoted from a named source)* or item (3) *(exact
+  named test data)* **is withdrawn rather than filed weaker.** **Who closes it:** the **QA lead** lifts
+  the creation hold and grants permission per ask; **the re-check against the bar is OURS to do, and it
+  can be done now — it needs no permission, because preparing is not filing.**
+- **⚠️ AND THE BAR MATTERS MORE NOW THAN WHEN IT WAS WRITTEN, BECAUSE ALL THREE BRANCHES ARE FINAL**
+  (QA lead, 2026-08-11: ***"The Branches are Final now."***). **A deviation on Schedule, Filters or the
+  Report Suite is a REAL DEFECT IN A FINISHED FEATURE, not a possibly-unfinished one** — so the
+  hedge that used to soften a weak finding is gone, and **a ticket that fails the bar now lands
+  squarely as the "does not make sense" complaint that put the QA lead's job at risk.** **Finality
+  raises the standard of evidence; it does not lower the standard of permission.**
 - **Withdraw our own invalid ticket when we find it.** One of ours was closed OBSOLETE because it had
   been raised against a shop **with no business hours configured — which the source case's own
   precondition required.**
