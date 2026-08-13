@@ -387,6 +387,14 @@ do not make sense"*. **No suite we deliver may ever substantiate that claim** �
 - **Regenerate the deliverables** — import, id-map, trackers — then **re-merge the C-ids and `refs`
   from live** (core §3.6), run the **shredding guard** (core §3.7), and prove **four counts set-equal
   in BOTH directions**: live · local active · id-map rows · import rows.
+- **🔑 RUN THE POST-WRITE ASSERTION RE-AUDIT** (core §2.10) over the cases this pass materially
+  changed — **quote every new assertion back to its cited source**, check it is reachable by the case's
+  own steps, check the content belongs to **that** case, and **diff the note paragraphs, not only the
+  numbered assertions.** **An audit run before the write does not audit the write** — that is how
+  **C29944** acquired an assertion no source supports, from the very pass that was fixing this problem.
+- **🛑 AND SYNC THE RUN ONLY WITH ITS OWN EXPLICIT PERMISSION** — an `add_case` approval is **not** a
+  run-write approval, even though the sync is mandatory after the add (core §4.1 step 0). **Do the
+  add, then ask.**
 
 ---
 
@@ -422,6 +430,17 @@ do not make sense"*. **No suite we deliver may ever substantiate that claim** �
   *The scar: C30285 and C30286 were touched that very day, for a one-word header rename, on the exact
   line that listed the headers — and nobody noticed the list itself was stale.*
 - **G7 — Checkpoint every 25 ops or 10 minutes** (core §8).
+- **G8 — 🛑 If an instruction for this pass conflicts with a rule here, STOP and surface it BEFORE
+  acting** (core §11.6, Standing Rule 63). Three things: **what he instructed, quoted verbatim** · **what
+  the rule requires, quoted, with its number** · **an explicit ask — which should we follow?** **Neither
+  silent path is available**: we may not silently follow the new instruction, and we may not silently
+  keep following the old rule. **A tightening or a layering is NOT a conflict** — escalating those
+  trains him to wave escalations through, which costs us the real ones. *He endorsed the practice by
+  name: **"Good catch, be like this always."***
+- **G9 — Every deliverable ends with "OUTSTANDING — what I need from you"** (core §13), sweeping all
+  six categories. **Say "nothing outstanding" if that is true — never omit the section**, so he can tell
+  *"clear"* from *"we forgot to look"*. **Update `build/OUTSTANDING-ITEMS-REGISTER.md` in the same
+  turn**, and items blocked on him carry Rule 48's five fields (core §11.7).
 
 ---
 

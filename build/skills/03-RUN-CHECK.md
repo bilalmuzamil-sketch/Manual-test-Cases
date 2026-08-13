@@ -549,7 +549,7 @@ name — that is why it is usable evidence rather than a list of edits) ·
   second time by a worker who had not read the incident report the first one wrote.*
 - **G10 — Never put a case on `HOLD` whose steps run** (§ above, core §15.1a). A hold disarms it.
 - **G11 — If an instruction for this pass conflicts with a rule here, STOP and surface it before
-  acting** (core §11.6): his words quoted, the rule quoted with its number, and an explicit *"which
+  acting** (core §11.6, Standing Rule 63): his words quoted, the rule quoted with its number, and an explicit *"which
   should we follow?"*. **Not in the closing summary — by then the work is done one way.**
 
 ---

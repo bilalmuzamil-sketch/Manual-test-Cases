@@ -280,7 +280,12 @@ and the PO sees one considered ask rather than a project still in motion.**
 - **G6 — Never imply the PO is sitting on an unsent question** (§1).
 - **G7 — Never mix PO attributions** (§2). Branko ≠ Chris ≠ Milos.
 - **G8 — Prove the question is necessary first** (§6).
-
+- **G9 — 🛑 If an instruction for this pass conflicts with a rule here, STOP and surface it BEFORE
+  acting** (core §11.6, Standing Rule 63). **What he instructed, quoted verbatim · what the rule
+  requires, quoted, with its number · an explicit ask: which should we follow?** **Neither silent path
+  is available** — not silently following the new instruction, not silently keeping the old rule. **A
+  tightening or a layering is NOT a conflict**; escalating those trains him to wave escalations
+  through. *He endorsed the practice by name: **"Good catch, be like this always."***
 ---
 
 ## HONESTY NOTES

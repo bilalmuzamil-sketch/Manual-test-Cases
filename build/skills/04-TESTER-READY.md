@@ -285,7 +285,12 @@ retire.
 - **G5 — Test the hold before listing it as blocked** (core §11.4).
 - **G6 — No jargon in anything the tester reads** (core §12).
 - **G7 — Generate the numbers; never transcribe them** (§6).
-
+- **G8 — 🛑 If an instruction for this pass conflicts with a rule here, STOP and surface it BEFORE
+  acting** (core §11.6, Standing Rule 63). **What he instructed, quoted verbatim · what the rule
+  requires, quoted, with its number · an explicit ask: which should we follow?** **Neither silent path
+  is available** — not silently following the new instruction, not silently keeping the old rule. **A
+  tightening or a layering is NOT a conflict**; escalating those trains him to wave escalations
+  through. *He endorsed the practice by name: **"Good catch, be like this always."***
 ---
 
 ## HONESTY NOTES

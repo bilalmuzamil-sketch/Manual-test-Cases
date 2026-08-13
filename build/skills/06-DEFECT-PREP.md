@@ -352,7 +352,12 @@ outstanding — never quietly dropped, never re-decided by us.
   in the `Severity` field, not in `Priority`. *(And never "restore" a priority the QA lead changed —
   that produced an embarrassing `High → Low → High → Low` round trip on four tickets, all under our
   shared account, where his edits are indistinguishable from ours in the changelog.)*
-
+- **G9 — 🛑 If an instruction for this pass conflicts with a rule here, STOP and surface it BEFORE
+  acting** (core §11.6, Standing Rule 63). **What he instructed, quoted verbatim · what the rule
+  requires, quoted, with its number · an explicit ask: which should we follow?** **Neither silent path
+  is available** — not silently following the new instruction, not silently keeping the old rule. **A
+  tightening or a layering is NOT a conflict**; escalating those trains him to wave escalations
+  through. *He endorsed the practice by name: **"Good catch, be like this always."***
 ---
 
 ## HONESTY NOTES

@@ -264,7 +264,12 @@ cheap to fix an hour earlier.
 - **G6 — Read-only by default.** This skill reports; it does not fix what it finds. If it finds
   something that needs fixing, **name it in column 7 and ask.**
 - **G7 — Never omit the OUTSTANDING section.** Say *"nothing outstanding"* if that is true.
-
+- **G8 — 🛑 If an instruction for this pass conflicts with a rule here, STOP and surface it BEFORE
+  acting** (core §11.6, Standing Rule 63). **What he instructed, quoted verbatim · what the rule
+  requires, quoted, with its number · an explicit ask: which should we follow?** **Neither silent path
+  is available** — not silently following the new instruction, not silently keeping the old rule. **A
+  tightening or a layering is NOT a conflict**; escalating those trains him to wave escalations
+  through. *He endorsed the practice by name: **"Good catch, be like this always."***
 ---
 
 ## HONESTY NOTES

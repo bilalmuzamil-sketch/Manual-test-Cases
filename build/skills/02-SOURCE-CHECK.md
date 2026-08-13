@@ -371,7 +371,12 @@ Sources read at pass start: <UTC>   ·   re-read at write start: <UTC>   ·   ve
 - **G6 — Do not resolve a document-vs-document conflict silently** (core §11.2/§11.3). Raise it as a
   PO question and log it; meanwhile the case follows the most recent authoritative source **and
   discloses the divergence in its own text**.
-
+- **G7 — 🛑 If an instruction for this pass conflicts with a rule here, STOP and surface it BEFORE
+  acting** (core §11.6, Standing Rule 63). **What he instructed, quoted verbatim · what the rule
+  requires, quoted, with its number · an explicit ask: which should we follow?** **Neither silent path
+  is available** — not silently following the new instruction, not silently keeping the old rule. **A
+  tightening or a layering is NOT a conflict**; escalating those trains him to wave escalations
+  through. *He endorsed the practice by name: **"Good catch, be like this always."***
 ---
 
 ## HONESTY NOTES
