@@ -1,0 +1,125 @@
+{
+ "S11-N1": {
+  "pinned": [
+   "S11-N1: No applicable user-visible negative cases. The Subtotal column is always present, always pinned, and always bold, regardless of permission, data, filters, or sort. Story 12: Inv. Hrs (Labor Delta) display Show whether a customer or invoice was billed for more time than was worked. Design: See Story 20 Jira: TBD Prerequisites: User is on the Sales By Customer report with at least one customer in the set of customers. Requirements:"
+  ],
+  "live": [
+   "S11-N1: No applicable user-visible negative cases. The Subtotal column is always present, always pinned, and always bold, regardless of permission, data, filters, or sort. Story 12: Labor Delta column display Show whether a customer or invoice was billed for more time than was worked. Design: See Story 20 Jira: TBD Prerequisites: User is on the Sales By Customer report with at least one customer in the set of customers. Requirements:"
+  ]
+ },
+ "S12-R1": {
+  "pinned": [
+   "S12-R1: The column heading reads \"Inv. Hrs\" (including the period after \"Inv\")."
+  ],
+  "live": [
+   "S12-R1: The column heading reads \"Labor Delta\" (including the period after \"Inv\")."
+  ]
+ },
+ "S13-N1": {
+  "pinned": [
+   "S13-N1: Hiding all nine toggleable columns is allowed. The table still renders the Customer and Subtotal columns, and the totals row still shows its Subtotal. Story 14: Download as CSV (Summary and Expanded) Download the report as a CSV file, in a Summary version or an Expanded version. Design: See Story 20 Jira: TBD Prerequisites: User is on the Sales By Customer report. Requirements:"
+  ],
+  "live": [
+   "S13-N1: Hiding all ten toggleable columns is allowed. The table still renders the Customer and Subtotal columns, and the totals row still shows its Subtotal. Story 14: Download as CSV (Summary and Expanded) Download the report as a CSV file, in a Summary version or an Expanded version. Design: See Story 20 Jira: TBD Prerequisites: User is on the Sales By Customer report. Requirements:"
+  ]
+ },
+ "S13-R4": {
+  "pinned": [
+   "S13-R4: The nine toggleable columns are, in order: Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %."
+  ],
+  "live": [
+   "S13-R4: The ten toggleable columns are, in order: Date, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %."
+  ]
+ },
+ "S13-R7": {
+  "pinned": [
+   "S13-R7). Story 7: View customer summary rows Show one row per customer that rolls up their revenue. Design: See Story 20 Jira: TBD Prerequisites: User is on the Sales By Customer report with at least one customer in the set of customers. Requirements:",
+   "S13-R7: When no saved selection exists, all nine toggleable columns default to visible."
+  ],
+  "live": [
+   "S13-R7). Story 7: View customer summary rows Show one row per customer that rolls up their revenue. Design: See Story 20 Jira: TBD Prerequisites: User is on the Sales By Customer report with at least one customer in the set of customers. Requirements:",
+   "S13-R7: When no saved selection exists, all ten toggleable columns default to visible."
+  ]
+ },
+ "S14-R12": {
+  "pinned": [
+   "S14-R12: Neither CSV has color. The signed Inv. Hrs value still conveys direction."
+  ],
+  "live": [
+   "S14-R12: Neither CSV has color. The signed Labor Delta value still conveys direction."
+  ]
+ },
+ "S14-R4": {
+  "pinned": [
+   "S14-R4 (Summary contents): The Summary CSV has one row per customer and no asset or invoice rows. Its columns, in this exact order, are: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal.",
+   "S14-R4); the Expanded PDF body has the Expanded columns and order (",
+   "S14-R4); set exact Inv. Hrs PDF colors (#21ba45 / #c10015) and surface hex; split bundled requirements into one behavior each; promoted behavior out of context notes into requirements; removed \"Show only comparing\" and search from the saved view; defined the location default, asset ordering under sort, sort-by-Date, and the two-chip order. 2026-07-12 @chris / @claude Comparison rework (Head-of-Product review, Sasha Grosman). Removed the customer comparison list and \"Show only comparing\" (old Story 18) and replaced them with a multi-select Customer filter \u2014 search-as-you-type, all customers selected by default, persisted between visits (new Story 18). Removed the side-by-side asset comparison entirely (old Story 19 \u2014 the modal, asset pins, the \"Compare N\" chip, and its CSV/PDF exports); asset comparison is deferred to a future dedicated report. Kept the Customer \u2192 Asset \u2192 Invoice grouping. Swept every comparison cross-reference (\u00a72, \u00a73, \u00a74, Stories 5/6/10/13/14/15/17) and the feedback table. Story 19 is retained as a placeholder so later story numbers and \"See Story 20\" references stay stable. 2026-07-15 @chris / @claude Removed the report's use of the application's global search bar. Narrowing to a specific customer is now done solely with the multi-select Customer filter (Story 18); its search-as-you-type finds a customer by name. Retired Story 5 (global-search narrowing) to a placeholder and re-homed its export-narrowing contract into Story 18 ("
+  ],
+  "live": [
+   "S14-R4 (Summary contents): The Summary CSV has one row per customer and no asset or invoice rows. Its columns, in this exact order, are: Customer, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, Subtotal.",
+   "S14-R4); the Expanded PDF body has the Expanded columns and order (",
+   "S14-R4); set exact Inv. Hrs PDF colors (#21ba45 / #c10015) and surface hex; split bundled requirements into one behavior each; promoted behavior out of context notes into requirements; removed \"Show only comparing\" and search from the saved view; defined the location default, asset ordering under sort, sort-by-Date, and the two-chip order. 2026-07-12 @chris / @claude Comparison rework (Head-of-Product review, Sasha Grosman). Removed the customer comparison list and \"Show only comparing\" (old Story 18) and replaced them with a multi-select Customer filter \u2014 search-as-you-type, all customers selected by default, persisted between visits (new Story 18). Removed the side-by-side asset comparison entirely (old Story 19 \u2014 the modal, asset pins, the \"Compare N\" chip, and its CSV/PDF exports); asset comparison is deferred to a future dedicated report. Kept the Customer \u2192 Asset \u2192 Invoice grouping. Swept every comparison cross-reference (\u00a72, \u00a73, \u00a74, Stories 5/6/10/13/14/15/17) and the feedback table. Story 19 is retained as a placeholder so later story numbers and \"See Story 20\" references stay stable. 2026-07-15 @chris / @claude Removed the report's use of the application's global search bar. Narrowing to a specific customer is now done solely with the multi-select Customer filter (Story 18); its search-as-you-type finds a customer by name. Retired Story 5 (global-search narrowing) to a placeholder and re-homed its export-narrowing contract into Story 18 ("
+  ]
+ },
+ "S14-R5": {
+  "pinned": [
+   "S14-R5 (Expanded contents): The Expanded CSV contains the full Customer \u2192 Asset \u2192 Invoice tree. Its columns, in this exact order, are: Customer, Asset, Invoice #, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal.",
+   "S14-R5), with the asset layer shown. Column labels match the CSV."
+  ],
+  "live": [
+   "S14-R5 (Expanded contents): The Expanded CSV contains the full Customer \u2192 Asset \u2192 Invoice tree. Its columns, in this exact order, are: Customer, Asset, Invoice #, Date, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, Subtotal.",
+   "S14-R5), with the asset layer shown. Column labels match the CSV."
+  ]
+ },
+ "S15-R10": {
+  "pinned": [
+   "S15-R10: The header text block shows, in order: the report title \"Sales By Customer Report\"; the organization name; the date range; the filter summary line \"Product Type: {value}\" where value is \"Parts & Service,\" \"Parts only,\" or \"Service only\"; and the location line \"Locations: {value}\" ("
+  ],
+  "live": [
+   "S15-R10)) appears as a leading metadata line in the CSV, above the column-header row. A CSV saved or forwarded later is never ambiguous about which filters produced it. (Suite-wide rule, 2026-08-12.)",
+   "S15-R10: The header text block shows, in order: the report title \"Sales By Customer Report\"; the organization name; the date range; the filter summary line \"Product Type: {value}\" where value is \"Parts & Service,\" \"Parts only,\" or \"Service only\"; and the location line \"Locations: {value}\" ("
+  ]
+ },
+ "S15-R24": {
+  "pinned": [
+   "S15-R24: Inv. Hrs in the PDF uses the same signs and coloring as on screen ("
+  ],
+  "live": [
+   "S15-R24: Labor Delta in the PDF uses the same signs and coloring as on screen ("
+  ]
+ },
+ "S3-R6a": {
+  "pinned": [
+   "S3-R6a: When neither toggle is selected (after \"Clear all\"), the report shows the empty-state message (Story 17) until a toggle is selected.",
+   "S3-R6a); export filter-summary values unchanged via the selection mapping. Per SV-9074."
+  ],
+  "live": [
+   "S3-R6a: When neither toggle is selected (after \"Clear all\"), the report shows the empty-state message (Story 17) until a toggle is selected.",
+   "S3-R6a); export filter-summary values unchanged via the selection mapping. Per SV-9074. 2026-08-12 @chris / @claude Added the invoice-level Adjustments money model: Adjustments column (fees positive, discounts negative, never allocated into Labor or Parts) inserted between Shop Supplies and Margin on screen and in both CSV/PDF layouts; Subtotal and Margin definitions now include Adjustments so every row ties out (Labor + Parts + Supplies + Adjustments = Subtotal; Labor Margin + Parts Margin + Adjustments = Margin); column selector grows to ten toggleable columns; Terminology and Key Decisions entries added. Shared Adjustments proposal (WIP + SBC) from Nebojsa's F&D repro. 2026-08-12 @chris / @claude Column heading renamed from \"Inv. Hrs\" to \"Labor Delta\" everywhere it appears (screen, column selector, sorting references, CSV and PDF layouts), reversing the earlier label decision: the old heading named a quantity the column does not hold (it holds invoiced minus worked, a signed delta). Display label only \u2014 the calculation, signed one-decimal format, coloring, and field names are unchanged. Per SV-9071 (suite-wide). 2026-08-12 @chris / @claude Suite rule added: the CSV carries the same filter-summary lines as the PDF header, verbatim ("
+  ]
+ },
+ "S7-R16": {
+  "pinned": [
+   "S7-R16: A cell with no value for its row (for example, the Date cell on a customer or asset row) is left blank and keeps its column position; no value moves into another column. Negative cases:"
+  ],
+  "live": [
+   "S7-R16: A cell with no value for its row (for example, the Date cell on a customer or asset row) is left blank and keeps its column position; no value moves into another column."
+  ]
+ },
+ "S7-R6": {
+  "pinned": [
+   "S7-R6: The summary row totals the customer's matching invoices for each financial column: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, and Subtotal."
+  ],
+  "live": [
+   "S7-R6: The summary row totals the customer's matching invoices for each financial column: Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, and Subtotal."
+  ]
+ },
+ "S8-R12": {
+  "pinned": [
+   "S8-R12: Each invoice detail row shows the invoice number (as a link, see Story 9), the invoice date, and the per-invoice Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, and Subtotal."
+  ],
+  "live": [
+   "S8-R12: Each invoice detail row shows the invoice number (as a link, see Story 9), the invoice date, and the per-invoice Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, and Subtotal."
+  ]
+ }
+}

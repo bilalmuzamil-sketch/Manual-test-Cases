@@ -1,0 +1,970 @@
+{
+ "Sales By Customer": {
+  "pinned": 17,
+  "live": 20,
+  "moved": true,
+  "anchors_pinned": 240,
+  "anchors_live": 243,
+  "gone": [],
+  "added": [
+   "S14-R13a",
+   "S7-R17",
+   "S7-R18"
+  ],
+  "changed": [
+   "S11-N1",
+   "S12-R1",
+   "S13-N1",
+   "S13-R4",
+   "S13-R7",
+   "S14-R12",
+   "S14-R4",
+   "S14-R5",
+   "S15-R10",
+   "S15-R24",
+   "S3-R6a",
+   "S7-R16",
+   "S7-R6",
+   "S8-R12"
+  ],
+  "changed_detail": {
+   "S11-N1": {
+    "pinned": [
+     "S11-N1: No applicable user-visible negative cases. The Subtotal column is always present, always pinned, and always bold, regardless of permission, data, filters, or sort. Story 12: Inv. Hrs (Labor Delta) display Show whether a customer or invoice was billed for more time than was worked. Design: See Story 20 Jira: TBD Prerequisites: User is on the Sales By Customer report with at least one customer in the set of customers. Requirements:"
+    ],
+    "live": [
+     "S11-N1: No applicable user-visible negative cases. The Subtotal column is always present, always pinned, and always bold, regardless of permission, data, filters, or sort. Story 12: Labor Delta column display Show whether a customer or invoice was billed for more time than was worked. Design: See Story 20 Jira: TBD Prerequisites: User is on the Sales By Customer report with at least one customer in the set of customers. Requirements:"
+    ]
+   },
+   "S12-R1": {
+    "pinned": [
+     "S12-R1: The column heading reads \"Inv. Hrs\" (including the period after \"Inv\")."
+    ],
+    "live": [
+     "S12-R1: The column heading reads \"Labor Delta\" (including the period after \"Inv\")."
+    ]
+   },
+   "S13-N1": {
+    "pinned": [
+     "S13-N1: Hiding all nine toggleable columns is allowed. The table still renders the Customer and Subtotal columns, and the totals row still shows its Subtotal. Story 14: Download as CSV (Summary and Expanded) Download the report as a CSV file, in a Summary version or an Expanded version. Design: See Story 20 Jira: TBD Prerequisites: User is on the Sales By Customer report. Requirements:"
+    ],
+    "live": [
+     "S13-N1: Hiding all ten toggleable columns is allowed. The table still renders the Customer and Subtotal columns, and the totals row still shows its Subtotal. Story 14: Download as CSV (Summary and Expanded) Download the report as a CSV file, in a Summary version or an Expanded version. Design: See Story 20 Jira: TBD Prerequisites: User is on the Sales By Customer report. Requirements:"
+    ]
+   },
+   "S13-R4": {
+    "pinned": [
+     "S13-R4: The nine toggleable columns are, in order: Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %."
+    ],
+    "live": [
+     "S13-R4: The ten toggleable columns are, in order: Date, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %."
+    ]
+   },
+   "S13-R7": {
+    "pinned": [
+     "S13-R7). Story 7: View customer summary rows Show one row per customer that rolls up their revenue. Design: See Story 20 Jira: TBD Prerequisites: User is on the Sales By Customer report with at least one customer in the set of customers. Requirements:",
+     "S13-R7: When no saved selection exists, all nine toggleable columns default to visible."
+    ],
+    "live": [
+     "S13-R7). Story 7: View customer summary rows Show one row per customer that rolls up their revenue. Design: See Story 20 Jira: TBD Prerequisites: User is on the Sales By Customer report with at least one customer in the set of customers. Requirements:",
+     "S13-R7: When no saved selection exists, all ten toggleable columns default to visible."
+    ]
+   },
+   "S14-R12": {
+    "pinned": [
+     "S14-R12: Neither CSV has color. The signed Inv. Hrs value still conveys direction."
+    ],
+    "live": [
+     "S14-R12: Neither CSV has color. The signed Labor Delta value still conveys direction."
+    ]
+   },
+   "S14-R4": {
+    "pinned": [
+     "S14-R4 (Summary contents): The Summary CSV has one row per customer and no asset or invoice rows. Its columns, in this exact order, are: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal.",
+     "S14-R4); the Expanded PDF body has the Expanded columns and order (",
+     "S14-R4); set exact Inv. Hrs PDF colors (#21ba45 / #c10015) and surface hex; split bundled requirements into one behavior each; promoted behavior out of context notes into requirements; removed \"Show only comparing\" and search from the saved view; defined the location default, asset ordering under sort, sort-by-Date, and the two-chip order. 2026-07-12 @chris / @claude Comparison rework (Head-of-Product review, Sasha Grosman). Removed the customer comparison list and \"Show only comparing\" (old Story 18) and replaced them with a multi-select Customer filter \u2014 search-as-you-type, all customers selected by default, persisted between visits (new Story 18). Removed the side-by-side asset comparison entirely (old Story 19 \u2014 the modal, asset pins, the \"Compare N\" chip, and its CSV/PDF exports); asset comparison is deferred to a future dedicated report. Kept the Customer \u2192 Asset \u2192 Invoice grouping. Swept every comparison cross-reference (\u00a72, \u00a73, \u00a74, Stories 5/6/10/13/14/15/17) and the feedback table. Story 19 is retained as a placeholder so later story numbers and \"See Story 20\" references stay stable. 2026-07-15 @chris / @claude Removed the report's use of the application's global search bar. Narrowing to a specific customer is now done solely with the multi-select Customer filter (Story 18); its search-as-you-type finds a customer by name. Retired Story 5 (global-search narrowing) to a placeholder and re-homed its export-narrowing contract into Story 18 ("
+    ],
+    "live": [
+     "S14-R4 (Summary contents): The Summary CSV has one row per customer and no asset or invoice rows. Its columns, in this exact order, are: Customer, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, Subtotal.",
+     "S14-R4); the Expanded PDF body has the Expanded columns and order (",
+     "S14-R4); set exact Inv. Hrs PDF colors (#21ba45 / #c10015) and surface hex; split bundled requirements into one behavior each; promoted behavior out of context notes into requirements; removed \"Show only comparing\" and search from the saved view; defined the location default, asset ordering under sort, sort-by-Date, and the two-chip order. 2026-07-12 @chris / @claude Comparison rework (Head-of-Product review, Sasha Grosman). Removed the customer comparison list and \"Show only comparing\" (old Story 18) and replaced them with a multi-select Customer filter \u2014 search-as-you-type, all customers selected by default, persisted between visits (new Story 18). Removed the side-by-side asset comparison entirely (old Story 19 \u2014 the modal, asset pins, the \"Compare N\" chip, and its CSV/PDF exports); asset comparison is deferred to a future dedicated report. Kept the Customer \u2192 Asset \u2192 Invoice grouping. Swept every comparison cross-reference (\u00a72, \u00a73, \u00a74, Stories 5/6/10/13/14/15/17) and the feedback table. Story 19 is retained as a placeholder so later story numbers and \"See Story 20\" references stay stable. 2026-07-15 @chris / @claude Removed the report's use of the application's global search bar. Narrowing to a specific customer is now done solely with the multi-select Customer filter (Story 18); its search-as-you-type finds a customer by name. Retired Story 5 (global-search narrowing) to a placeholder and re-homed its export-narrowing contract into Story 18 ("
+    ]
+   },
+   "S14-R5": {
+    "pinned": [
+     "S14-R5 (Expanded contents): The Expanded CSV contains the full Customer \u2192 Asset \u2192 Invoice tree. Its columns, in this exact order, are: Customer, Asset, Invoice #, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal.",
+     "S14-R5), with the asset layer shown. Column labels match the CSV."
+    ],
+    "live": [
+     "S14-R5 (Expanded contents): The Expanded CSV contains the full Customer \u2192 Asset \u2192 Invoice tree. Its columns, in this exact order, are: Customer, Asset, Invoice #, Date, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, Subtotal.",
+     "S14-R5), with the asset layer shown. Column labels match the CSV."
+    ]
+   },
+   "S15-R10": {
+    "pinned": [
+     "S15-R10: The header text block shows, in order: the report title \"Sales By Customer Report\"; the organization name; the date range; the filter summary line \"Product Type: {value}\" where value is \"Parts & Service,\" \"Parts only,\" or \"Service only\"; and the location line \"Locations: {value}\" ("
+    ],
+    "live": [
+     "S15-R10)) appears as a leading metadata line in the CSV, above the column-header row. A CSV saved or forwarded later is never ambiguous about which filters produced it. (Suite-wide rule, 2026-08-12.)",
+     "S15-R10: The header text block shows, in order: the report title \"Sales By Customer Report\"; the organization name; the date range; the filter summary line \"Product Type: {value}\" where value is \"Parts & Service,\" \"Parts only,\" or \"Service only\"; and the location line \"Locations: {value}\" ("
+    ]
+   },
+   "S15-R24": {
+    "pinned": [
+     "S15-R24: Inv. Hrs in the PDF uses the same signs and coloring as on screen ("
+    ],
+    "live": [
+     "S15-R24: Labor Delta in the PDF uses the same signs and coloring as on screen ("
+    ]
+   },
+   "S3-R6a": {
+    "pinned": [
+     "S3-R6a: When neither toggle is selected (after \"Clear all\"), the report shows the empty-state message (Story 17) until a toggle is selected.",
+     "S3-R6a); export filter-summary values unchanged via the selection mapping. Per SV-9074."
+    ],
+    "live": [
+     "S3-R6a: When neither toggle is selected (after \"Clear all\"), the report shows the empty-state message (Story 17) until a toggle is selected.",
+     "S3-R6a); export filter-summary values unchanged via the selection mapping. Per SV-9074. 2026-08-12 @chris / @claude Added the invoice-level Adjustments money model: Adjustments column (fees positive, discounts negative, never allocated into Labor or Parts) inserted between Shop Supplies and Margin on screen and in both CSV/PDF layouts; Subtotal and Margin definitions now include Adjustments so every row ties out (Labor + Parts + Supplies + Adjustments = Subtotal; Labor Margin + Parts Margin + Adjustments = Margin); column selector grows to ten toggleable columns; Terminology and Key Decisions entries added. Shared Adjustments proposal (WIP + SBC) from Nebojsa's F&D repro. 2026-08-12 @chris / @claude Column heading renamed from \"Inv. Hrs\" to \"Labor Delta\" everywhere it appears (screen, column selector, sorting references, CSV and PDF layouts), reversing the earlier label decision: the old heading named a quantity the column does not hold (it holds invoiced minus worked, a signed delta). Display label only \u2014 the calculation, signed one-decimal format, coloring, and field names are unchanged. Per SV-9071 (suite-wide). 2026-08-12 @chris / @claude Suite rule added: the CSV carries the same filter-summary lines as the PDF header, verbatim ("
+    ]
+   },
+   "S7-R16": {
+    "pinned": [
+     "S7-R16: A cell with no value for its row (for example, the Date cell on a customer or asset row) is left blank and keeps its column position; no value moves into another column. Negative cases:"
+    ],
+    "live": [
+     "S7-R16: A cell with no value for its row (for example, the Date cell on a customer or asset row) is left blank and keeps its column position; no value moves into another column."
+    ]
+   },
+   "S7-R6": {
+    "pinned": [
+     "S7-R6: The summary row totals the customer's matching invoices for each financial column: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, and Subtotal."
+    ],
+    "live": [
+     "S7-R6: The summary row totals the customer's matching invoices for each financial column: Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, and Subtotal."
+    ]
+   },
+   "S8-R12": {
+    "pinned": [
+     "S8-R12: Each invoice detail row shows the invoice number (as a link, see Story 9), the invoice date, and the per-invoice Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, and Subtotal."
+    ],
+    "live": [
+     "S8-R12: Each invoice detail row shows the invoice number (as a link, see Story 9), the invoice date, and the per-invoice Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, and Subtotal."
+    ]
+   }
+  }
+ },
+ "Sales By Representative": {
+  "pinned": 18,
+  "live": 22,
+  "moved": true,
+  "anchors_pinned": 228,
+  "anchors_live": 231,
+  "gone": [],
+  "added": [
+   "S14-R20a",
+   "S5-R11",
+   "S5-R12"
+  ],
+  "changed": [
+   "S1-R2",
+   "S1-R7",
+   "S10-R5",
+   "S11-R1",
+   "S14-N2",
+   "S14-R17",
+   "S14-R2a",
+   "S14-R3",
+   "S16-R4",
+   "S18-R12",
+   "S19-R7",
+   "S20-N1",
+   "S20-R1",
+   "S20-R2",
+   "S20-R6",
+   "S21-R7",
+   "S22-R1",
+   "S23-R4",
+   "S5-R2",
+   "S5-R9",
+   "S6-R3",
+   "S8-N1",
+   "S8-R1",
+   "S8-R3",
+   "S9-N1",
+   "S9-R1"
+  ],
+  "changed_detail": {
+   "S1-R2": {
+    "pinned": [
+     "S1-R2). Location is surfaced per row, not as a standalone scope stamp. A Location column is shown only when the current view spans more than one location; when the view is scoped to a single location the column is hidden, because that one location is already unambiguous. On a rep summary row the cell reads the location's name when all of that rep's matching invoices are at one location, or the literal Multiple when they span more than one; on an invoice detail row the cell reads that invoice's own exact location. Every export additionally carries a \"Locations:\" line naming the scope (or \"All locations\" when the full accessible set is selected), so a multi-location export is never ambiguous about which locations it covers. 4. Terminology Sales rep toggle \u2014 The flag on a staff member that marks them as a sales representative. It governs who is offered for a new rep assignment. For this report, a rep whose toggle is currently on is \"active\"; a rep whose toggle is off is \"(Inactive)\" but still shown if they have matching invoices. Inv. Hrs (Labor Delta) \u2014 hours invoiced minus hours worked (see \u00a73). Positive means the shop billed more time than it spent. Rendered \"Inv. Hrs\" with green/red/default coloring. Subtotal \u2014 Labor Invoiced + Parts Invoiced, pre-tax (\u00a73). The headline revenue column. Margin / Margin % \u2014 combined profit dollars / that profit as a percentage of Subtotal (\u00a73). Rep summary row \u2014 the collapsed row representing one rep, rolling up their matching invoices. The Unassigned row is a special summary row (shown only when Show Unassigned is on) that rolls up matching invoices with no assigned rep. Invoice detail row \u2014 a row inside a rep's expanded view, representing one contributing invoice. Parts invoice / Service invoice \u2014 the Product Type classification, by invoice number prefix ( P = Parts, S = Service). Snapshot \u2014 the rep captured onto the invoice at creation time \u2014 the Work Order's rep, or (when the WO has no rep) the customer's assigned rep \u2014 stored as the rep's id and a denormalized rep display name . Immutable on past invoices. The denormalized name is what the report displays (and sorts on) for a rep whose staff record is later deleted (",
+     "S1-R2: The entry is placed within the Performance group, at the bottom of the group \u2014 immediately below whichever report currently sits last in that group at the time the report is built. Additive: no existing entry is moved, replaced, or reordered."
+    ],
+    "live": [
+     "S1-R2). Location is surfaced per row, not as a standalone scope stamp. A Location column is shown only when the current view spans more than one location; when the view is scoped to a single location the column is hidden, because that one location is already unambiguous. On a rep summary row the cell reads the location's name when all of that rep's matching invoices are at one location, or the literal Multiple when they span more than one; on an invoice detail row the cell reads that invoice's own exact location. Every export additionally carries a \"Locations:\" line naming the scope (or \"All locations\" when the full accessible set is selected), so a multi-location export is never ambiguous about which locations it covers. Invoice-level fees and discounts surface as a shared Adjustments column. Nebojsa's repro on Sales By Customer showed invoice-level fees and discounts landing in Subtotal and Margin with no column showing them, so a row's visible columns did not tie out. This report shares the fix: the signed net (fees positive, discounts negative) shows as an Adjustments column between Parts Margin and Margin \u2014 never allocated into Labor or Parts, because a flat fee has no labor/parts basis \u2014 so every row ties out: Labor Invoiced + Parts Invoiced + Adjustments = Subtotal, and Labor Margin + Parts Margin + Adjustments = Margin. The same column ships on Sales By Customer and (as work-order-level Adjustments) on WIP. (Shared proposal, 2026-08-12.) 4. Terminology Sales rep toggle \u2014 The flag on a staff member that marks them as a sales representative. It governs who is offered for a new rep assignment. For this report, a rep whose toggle is currently on is \"active\"; a rep whose toggle is off is \"(Inactive)\" but still shown if they have matching invoices. Labor Delta \u2014 hours invoiced minus hours worked (see \u00a73). Positive means the shop billed more time than it spent. Rendered \"Labor Delta\" with green/red/default coloring (renamed from \"Inv. Hrs\" per SV-9071). Subtotal \u2014 Labor Invoiced + Parts Invoiced + Adjustments, pre-tax (\u00a73). The headline revenue column. Adjustments \u2014 The signed net of invoice-level fees and discounts across the row's invoices: fees positive, discounts negative (\u00a73). Margin / Margin % \u2014 combined profit dollars / that profit as a percentage of Subtotal (\u00a73). Rep summary row \u2014 the collapsed row representing one rep, rolling up their matching invoices. The Unassigned row is a special summary row (shown only when Show Unassigned is on) that rolls up matching invoices with no assigned rep. Invoice detail row \u2014 a row inside a rep's expanded view, representing one contributing invoice. Parts invoice / Service invoice \u2014 the Product Type classification, by invoice number prefix ( P = Parts, S = Service). Snapshot \u2014 the rep captured onto the invoice at creation time \u2014 the Work Order's rep, or (when the WO has no rep) the customer's assigned rep \u2014 stored as the rep's id and a denormalized rep display name . Immutable on past invoices. The denormalized name is what the report displays (and sorts on) for a rep whose staff record is later deleted (",
+     "S1-R2: The entry is placed within the Performance group, at the bottom of the group \u2014 immediately below whichever report currently sits last in that group at the time the report is built. Additive: no existing entry is moved, replaced, or reordered."
+    ]
+   },
+   "S1-R7": {
+    "pinned": [
+     "S1-R7). This is a layout fix, not a reason to shorten the name. 2. Feature Overview Core ShopView A report called Sales By Representative is available under the Performance section of the Reports navigation. The report shows revenue grouped by sales rep over a chosen date range. Each sales rep who contributed at least one invoice in the current filtered view occupies one summary row ; the user can expand a rep's row with a chevron to reveal every invoice that contributed to that rep's totals. For each invoice on an expanded row, the user sees: the invoice's date and number (a clickable link to the underlying work order or parts sale in the same tab, rendered as a link only when the user has permission to open that target, otherwise plain text); the customer name (clickable and styled as plain text when the user has permission to open the customer, otherwise non-interactive plain text); the invoice's payment status as a colored badge; the per-invoice Inv. Hrs (Labor Delta) value with green/red coloring; and the per-invoice money columns (Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal). (The authoritative left-to-right column order is",
+     "S1-R7: The navigation entry's horizontal padding must be sized so the full \"Sales By Representative\" label renders without crowding against the entry's edges and without truncation. This is a layout adjustment; the label is not shortened to fit. Negative cases:",
+     "S1-R7 added (nav padding must fit the longer label). PDF title + export filenames \u2192 sales-by-representative-* . 2026-07-11 @claude Money-column labels standardized (Labor/Parts Margin , Margin , new Margin % ). Concrete definitions added in \u00a73 for Subtotal (Labor+Parts Invoiced, pre-tax), Margin (invoiced \u2212 cost), Margin % (Margin\u00f7Subtotal, 1dp, \"\u2014\" when \u2264 0, recomputed on every aggregate, never summed ), Inv. Hrs (billed labor-line hours \u2212 technician clocked hours), payment status, invoice date, invoice location, reversed, and half-up rounding. 2026-07-11 @claude Filters: \"Type\" \u2192 \"Product Type\" (Story 3); added \"All Time\" (",
+     "S1-R7). 2026-08-05 @claude Applied Chris's QA-review decisions (2026-08-04): Location filter hidden for single-location users; Location column changed to an access gate and made toggleable in the column selector (any user with access to more than one location sees it by default; single-location-access users never see it); download column heading set to \"Representative\"; specified the Location column position in the Summary download. 2026-08-05 @claude Applied the suite-wide link-permission rule (2026-08-05): on expanded rows the invoice/work-order link and the customer link are rendered as links only when the user has permission to open the target; otherwise they are shown as plain text. 2026-08-06 @claude Section 3 tidy-ups (QA review workbook 2026-08-06): reworded the Location-column visibility to the access-gated, column-selector-toggleable rule, matching the decision note already in this spec. QA review workbook (2026-08-06)."
+    ],
+    "live": [
+     "S1-R7). This is a layout fix, not a reason to shorten the name. 2. Feature Overview Core ShopView A report called Sales By Representative is available under the Performance section of the Reports navigation. The report shows revenue grouped by sales rep over a chosen date range. Each sales rep who contributed at least one invoice in the current filtered view occupies one summary row ; the user can expand a rep's row with a chevron to reveal every invoice that contributed to that rep's totals. For each invoice on an expanded row, the user sees: the invoice's date and number (a clickable link to the underlying work order or parts sale in the same tab, rendered as a link only when the user has permission to open that target, otherwise plain text); the customer name (clickable and styled as plain text when the user has permission to open the customer, otherwise non-interactive plain text); the invoice's payment status as a colored badge; the per-invoice Labor Delta (Labor Delta) value with green/red coloring; and the per-invoice money columns (Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %, Subtotal). (The authoritative left-to-right column order is",
+     "S1-R7: The navigation entry's horizontal padding must be sized so the full \"Sales By Representative\" label renders without crowding against the entry's edges and without truncation. This is a layout adjustment; the label is not shortened to fit. Negative cases:",
+     "S1-R7 added (nav padding must fit the longer label). PDF title + export filenames \u2192 sales-by-representative-* . 2026-07-11 @claude Money-column labels standardized (Labor/Parts Margin , Margin , new Margin % ). Concrete definitions added in \u00a73 for Subtotal (Labor+Parts Invoiced, pre-tax), Margin (invoiced \u2212 cost), Margin % (Margin\u00f7Subtotal, 1dp, \"\u2014\" when \u2264 0, recomputed on every aggregate, never summed ), Inv. Hrs (billed labor-line hours \u2212 technician clocked hours), payment status, invoice date, invoice location, reversed, and half-up rounding. 2026-07-11 @claude Filters: \"Type\" \u2192 \"Product Type\" (Story 3); added \"All Time\" (",
+     "S1-R7). 2026-08-05 @claude Applied Chris's QA-review decisions (2026-08-04): Location filter hidden for single-location users; Location column changed to an access gate and made toggleable in the column selector (any user with access to more than one location sees it by default; single-location-access users never see it); download column heading set to \"Representative\"; specified the Location column position in the Summary download. 2026-08-05 @claude Applied the suite-wide link-permission rule (2026-08-05): on expanded rows the invoice/work-order link and the customer link are rendered as links only when the user has permission to open the target; otherwise they are shown as plain text. 2026-08-06 @claude Section 3 tidy-ups (QA review workbook 2026-08-06): reworded the Location-column visibility to the access-gated, column-selector-toggleable rule, matching the decision note already in this spec. QA review workbook (2026-08-06). 2026-08-12 @chris / @claude Added the invoice-level Adjustments money model: Adjustments column (fees positive, discounts negative, never allocated into Labor or Parts) inserted between Parts Margin and Margin on screen, in both PDFs, and in both CSVs; Subtotal and Margin definitions now include Adjustments so every row ties out ("
+    ]
+   },
+   "S10-R5": {
+    "pinned": [
+     "S10-R5). The user can filter the on-screen report by date range , product type (Parts & Service / Parts only / Service only), invoice payment status (All Statuses / Unpaid / Partially Paid / Paid), and location (one, several, or all of the locations the user has access to). A Show Unassigned toggle adds a rolled-up \"Unassigned\" row for invoices with no assigned rep. The report shows a per-row Location column to any user with access to more than one location; it is shown by default and can be toggled on or off from the column selector, and a single-location-access user never sees it. A rep summary row that spans more than one location reads Multiple ; an invoice detail row reads its own exact location. Every export names the location scope on a \"Locations:\" line. The user can sort the report by any of the financial columns. The user can download the report in four formats via the \u00e2\u2039\u00af overflow menu: Download Summary (PDF) , Download Expanded View (PDF) , Download Summary (CSV) , and Download Expanded View (CSV) . Both PDF formats adapt their font size to the data in the export. Work Orders include a Sales Rep field (Story 19) that lets service writers assign the correct rep before the WO is invoiced. This WO-level assignment determines whose totals the resulting invoice contributes to. Managers can deactivate a sales rep from staff administration (Story 13); when the rep still has customer assignments, a type-to-confirm warning is shown before the change commits. The customer record shows the customer's assigned sales rep (",
+     "S10-R5). Negative cases:",
+     "S10-R5) \u2014 they load on the first expand of that rep (with a brief row-level loading indicator) and are paginated per rep when that rep's matching-invoice count is large. (Context note: the per-rep detail page size, and the bound on how many reps the header expand-all control (",
+     "S10-R5,",
+     "S10-R5: Grand Totals indicator \u2014 responsive. Present whenever at least one summary row exists (a rep row or the Unassigned row); hidden only during loading (",
+     "S10-R5).",
+     "S10-R5); Assignments \"Rep is active?\" value is Yes/No , not \"Deactivated\" (\u00a73/",
+     "S10-R5); \u00e2\u2039\u00af/Location toolbar positions reconciled (",
+     "S10-R5); removed the"
+    ],
+    "live": [
+     "S10-R5). The user can filter the on-screen report by date range , product type (Parts & Service / Parts only / Service only), invoice payment status (All Statuses / Unpaid / Partially Paid / Paid), and location (one, several, or all of the locations the user has access to). A Show Unassigned toggle adds a rolled-up \"Unassigned\" row for invoices with no assigned rep. The report shows a per-row Location column to any user with access to more than one location; it is shown by default and can be toggled on or off from the column selector, and a single-location-access user never sees it. A rep summary row that spans more than one location reads Multiple ; an invoice detail row reads its own exact location. Every export names the location scope on a \"Locations:\" line. The user can sort the report by any of the financial columns. The user can download the report in four formats via the \u00e2\u2039\u00af overflow menu: Download Summary (PDF) , Download Expanded View (PDF) , Download Summary (CSV) , and Download Expanded View (CSV) . Both PDF formats adapt their font size to the data in the export. Work Orders include a Sales Rep field (Story 19) that lets service writers assign the correct rep before the WO is invoiced. This WO-level assignment determines whose totals the resulting invoice contributes to. Managers can deactivate a sales rep from staff administration (Story 13); when the rep still has customer assignments, a type-to-confirm warning is shown before the change commits. The customer record shows the customer's assigned sales rep (",
+     "S10-R5).",
+     "S10-R5) \u2014 they load on the first expand of that rep (with a brief row-level loading indicator) and are paginated per rep when that rep's matching-invoice count is large. (Context note: the per-rep detail page size, and the bound on how many reps the header expand-all control (",
+     "S10-R5,",
+     "S10-R5: Grand Totals indicator \u2014 responsive. Present whenever at least one summary row exists (a rep row or the Unassigned row); hidden only during loading (",
+     "S10-R5).",
+     "S10-R5); Assignments \"Rep is active?\" value is Yes/No , not \"Deactivated\" (\u00a73/",
+     "S10-R5); \u00e2\u2039\u00af/Location toolbar positions reconciled (",
+     "S10-R5); removed the"
+    ]
+   },
+   "S11-R1": {
+    "pinned": [
+     "S11-R1: The user can sort by any financial column (Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal)."
+    ],
+    "live": [
+     "S11-R1: The user can sort by any financial column (Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %, Subtotal)."
+    ]
+   },
+   "S14-N2": {
+    "pinned": [
+     "S14-N2: All four exports are generated server-side against the active filters and sort, not from loaded screen data, so the former client-side \"export from unloaded or partially-loaded data\" failure mode no longer exists. A genuine server-side export failure (no file produced) shows an error toast (\u00a77) and downloads nothing \u2014 never a malformed file. (This is distinct from an empty-but-loaded result, which produces a valid header-row-only file \u2014",
+     "S14-N2 applies only to a genuine load failure where no result returned, not to an empty-but-loaded result). The Summary PDF renders the header strip, no data rows, and a grand-totals row showing zeros for the money and Inv. Hrs columns and \"\u2014\" for Margin % (Subtotal \u2264 0, per \u00a73). The Expanded View PDF (no grand-totals row,",
+     "S14-N2 client-side failure mode; header cleanup (removed the loose Companion Video and status-badge paragraphs, unified to the 4-row header table). Per Milan Zivanovic's 2026-07-15 engineering review; the server-side model is the committed build target (spec ahead of current code by design). 2026-07-29 @chris / @claude Added a per-row Location column, shown only when the current view spans more than one location: a rep summary row spanning more than one location reads Multiple , a single-location rep row reads that location's name, and each invoice detail row reads its exact location (\u00a72, \u00a73, \u00a74,"
+    ],
+    "live": [
+     "S14-N2: All four exports are generated server-side against the active filters and sort, not from loaded screen data, so the former client-side \"export from unloaded or partially-loaded data\" failure mode no longer exists. A genuine server-side export failure (no file produced) shows an error toast (\u00a77) and downloads nothing \u2014 never a malformed file. (This is distinct from an empty-but-loaded result, which produces a valid header-row-only file \u2014",
+     "S14-N2 applies only to a genuine load failure where no result returned, not to an empty-but-loaded result). The Summary PDF renders the header strip, no data rows, and a grand-totals row showing zeros for the money and Labor Delta columns and \"\u2014\" for Margin % (Subtotal \u2264 0, per \u00a73). The Expanded View PDF (no grand-totals row,",
+     "S14-N2 client-side failure mode; header cleanup (removed the loose Companion Video and status-badge paragraphs, unified to the 4-row header table). Per Milan Zivanovic's 2026-07-15 engineering review; the server-side model is the committed build target (spec ahead of current code by design). 2026-07-29 @chris / @claude Added a per-row Location column, shown only when the current view spans more than one location: a rep summary row spanning more than one location reads Multiple , a single-location rep row reads that location's name, and each invoice detail row reads its exact location (\u00a72, \u00a73, \u00a74,"
+    ]
+   },
+   "S14-R17": {
+    "pinned": [
+     "S14-R17.) On every rolled-up row (rep summary rows and every totals row), Margin % is recomputed as (that row-set's total Margin \u00f7 that row-set's total Subtotal) \u2014 it is never the sum or average of the child percentages. Inv. Hrs (Labor Delta) = hours invoiced \u2212 hours worked, where hours invoiced = the billed labor hours on the invoice's work-order labor lines, and hours worked = the technician clocked (timesheet) hours recorded against that work order. Payment status. Every invoice carries exactly one of five canonical system payment states \u2014 unpaid , prepaid , partially_paid , paid , overpaid \u2014 which this report maps to one of three display values ( Paid , Partially Paid , Unpaid ). This mapping is the single source of truth for both the on-screen/PDF status badge (Story 8) and the Invoice Status filter predicate (Story 4): paid \u2192 Paid . overpaid \u2192 Paid . partially_paid \u2192 Partially Paid . unpaid \u2192 Unpaid . prepaid \u2192 Paid when the invoice's balance owed is zero; Partially Paid when a balance is still owed. (Prepaid is the only state whose display value depends on the balance owed, because a prepayment can fully cover the invoice or only cover part of it.) A zero-total invoice with no payment applied is unpaid and maps to Unpaid . A negative-total invoice (e.g., a net credit/return) carries its own canonical system state and follows the same mapping; when its balance owed is zero (no balance owed), it maps to Paid . An invoice's date for the date-range filter is the invoice's own date (the value shown in the Date column). An invoice's location for the location filter is the location of its originating work order / parts sale. Reversed is determined by the canonical ShopView invoice-status ruleset; reversed invoices are excluded everywhere in this report. When that ruleset evolves, this report follows it. All displayed numeric values round half-up (away from zero) at their stated precision (money to cents; Inv. Hrs and Margin % to one decimal). Rolled-up values are computed from unrounded components and then rounded, so a totals cell may differ from the eye-summed displayed rows by one unit in the last decimal \u2014 this is expected. Subtotal is the headline column: bolded across the header, every rep summary row, every invoice detail row, and the grand Totals indicator; pinned to the right edge on screen (Story 10). \"Inv. Hrs\" is color-coded (green positive / red negative / default zero) on screen and in both PDFs; the CSVs stay monochrome. Negative dollar values use accounting-convention parentheses \u2014 ($1,234.56) \u2014 on screen and in both PDFs, across every money column (Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Subtotal). Inv. Hrs (a signed time value) and Margin % (a signed percentage) are excluded. The CSVs use plain signed numbers (see",
+     "S14-R17). Rep names otherwise render plainly.",
+     "S14-R17: CSV cell formatting (both CSVs): numeric columns are emitted as plain numbers for re-pivoting \u2014 no currency symbol, thousands separators, or parentheses; a negative value uses a leading minus ( -1234.56 ). Money values carry two decimals; Hrs Worked / Hrs Invoiced / Inv. Hrs carry their full stored precision; Inv. Hrs keeps its leading + / - sign. Margin % is a number to one decimal (e.g., 45.2 ), left empty when Margin % is undefined (Subtotal \u2264 0). Sales Rep names carry the \"(Inactive)\" tag when applicable; the on-screen (N) count is not embedded in the name. Text fields are quoted per standard CSV escaping.",
+     "S14-R17, plain numbers, Margin % empty when undefined); # Invoices / # Customers defined ("
+    ],
+    "live": [
+     "S14-R17.) On every rolled-up row (rep summary rows and every totals row), Margin % is recomputed as (that row-set's total Margin \u00f7 that row-set's total Subtotal) \u2014 it is never the sum or average of the child percentages. Labor Delta (Labor Delta) = hours invoiced \u2212 hours worked, where hours invoiced = the billed labor hours on the invoice's work-order labor lines, and hours worked = the technician clocked (timesheet) hours recorded against that work order. Payment status. Every invoice carries exactly one of five canonical system payment states \u2014 unpaid , prepaid , partially_paid , paid , overpaid \u2014 which this report maps to one of three display values ( Paid , Partially Paid , Unpaid ). This mapping is the single source of truth for both the on-screen/PDF status badge (Story 8) and the Invoice Status filter predicate (Story 4): paid \u2192 Paid . overpaid \u2192 Paid . partially_paid \u2192 Partially Paid . unpaid \u2192 Unpaid . prepaid \u2192 Paid when the invoice's balance owed is zero; Partially Paid when a balance is still owed. (Prepaid is the only state whose display value depends on the balance owed, because a prepayment can fully cover the invoice or only cover part of it.) A zero-total invoice with no payment applied is unpaid and maps to Unpaid . A negative-total invoice (e.g., a net credit/return) carries its own canonical system state and follows the same mapping; when its balance owed is zero (no balance owed), it maps to Paid . An invoice's date for the date-range filter is the invoice's own date (the value shown in the Date column). An invoice's location for the location filter is the location of its originating work order / parts sale. Reversed is determined by the canonical ShopView invoice-status ruleset; reversed invoices are excluded everywhere in this report. When that ruleset evolves, this report follows it. All displayed numeric values round half-up (away from zero) at their stated precision (money to cents; Labor Delta and Margin % to one decimal). Rolled-up values are computed from unrounded components and then rounded, so a totals cell may differ from the eye-summed displayed rows by one unit in the last decimal \u2014 this is expected. Subtotal is the headline column: bolded across the header, every rep summary row, every invoice detail row, and the grand Totals indicator; pinned to the right edge on screen (Story 10). \"Labor Delta\" is color-coded (green positive / red negative / default zero) on screen and in both PDFs; the CSVs stay monochrome. Negative dollar values use accounting-convention parentheses \u2014 ($1,234.56) \u2014 on screen and in both PDFs, across every money column (Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Subtotal). Labor Delta (a signed time value) and Margin % (a signed percentage) are excluded. The CSVs use plain signed numbers (see",
+     "S14-R17). Rep names otherwise render plainly.",
+     "S14-R17: CSV cell formatting (both CSVs): numeric columns are emitted as plain numbers for re-pivoting \u2014 no currency symbol, thousands separators, or parentheses; a negative value uses a leading minus ( -1234.56 ). Money values carry two decimals; Hrs Worked / Hrs Invoiced / Labor Delta carry their full stored precision; Labor Delta keeps its leading + / - sign. Margin % is a number to one decimal (e.g., 45.2 ), left empty when Margin % is undefined (Subtotal \u2264 0). Sales Rep names carry the \"(Inactive)\" tag when applicable; the on-screen (N) count is not embedded in the name. Text fields are quoted per standard CSV escaping.",
+     "S14-R17, plain numbers, Margin % empty when undefined); # Invoices / # Customers defined ("
+    ]
+   },
+   "S14-R2a": {
+    "pinned": [
+     "S14-R2a: All four downloads render rep rows in the report's currently-active order \u2014 the active on-screen column sort (column + direction) if one is set, otherwise the A\u2192Z default (",
+     "S14-R2a), with an \"(Inactive)\" tag on toggled-off contributors (",
+     "S14-R2a), page break before each new rep after the first, each with the header strip (which already includes the selected date range per",
+     "S14-R2a). Headers, in order: Representative , # Invoices , # Customers , Hrs Worked , Hrs Invoiced , Inv. Hrs , Labor Invoiced , Labor Margin , Parts Invoiced , Parts Margin , Margin , Margin % , Subtotal . Generated server-side against the current filters and active sort (",
+     "S14-R2a).",
+     "S14-R2a), for the current filtered view. Headers, in order: Representative , Date , Invoice # , Customer , Status , Hrs Worked , Hrs Invoiced , Inv. Hrs , Labor Invoiced , Labor Margin , Parts Invoiced , Parts Margin , Margin , Margin % , Subtotal . Generated server-side against the current filters and active sort (",
+     "S14-R2a). (Build note: the current build populates a single mislabeled hours column here; align it to these three hours columns to match the Summary CSV and the screen.)",
+     "S14-R2a/R15/R16), server-side sort ("
+    ],
+    "live": [
+     "S14-R2a: All four downloads render rep rows in the report's currently-active order \u2014 the active on-screen column sort (column + direction) if one is set, otherwise the A\u2192Z default (",
+     "S14-R2a), with an \"(Inactive)\" tag on toggled-off contributors (",
+     "S14-R2a), page break before each new rep after the first, each with the header strip (which already includes the selected date range per",
+     "S14-R2a). Headers, in order: Representative , # Invoices , # Customers , Hrs Worked , Hrs Invoiced , Labor Delta , Labor Invoiced , Labor Margin , Parts Invoiced , Parts Margin , Adjustments , Margin , Margin % , Subtotal . Generated server-side against the current filters and active sort (",
+     "S14-R2a).",
+     "S14-R2a), for the current filtered view. Headers, in order: Representative , Date , Invoice # , Customer , Status , Hrs Worked , Hrs Invoiced , Labor Delta , Labor Invoiced , Labor Margin , Parts Invoiced , Parts Margin , Adjustments , Margin , Margin % , Subtotal . Generated server-side against the current filters and active sort (",
+     "S14-R2a). (Build note: the current build populates a single mislabeled hours column here; align it to these three hours columns to match the Summary CSV and the screen.)",
+     "S14-R2a/R15/R16), server-side sort ("
+    ]
+   },
+   "S14-R3": {
+    "pinned": [
+     "S14-R3: Both PDFs are server-rendered and delivered as a file attachment, in A4 portrait, edge-to-edge, with a header strip (on the first page, and on every per-rep page in the Expanded View) showing the workplace name and address, the organization logo, the report title \"Sales By Representative,\" and the selected date range.",
+     "S14-R3), the rep's name, and a per-invoice table: Date / Invoice / Customer / Status / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal. Each block ends with a per-rep totals row (\"Totals\" in the Date cell; Invoice/Customer/Status blank; each metric column aggregated as in"
+    ],
+    "live": [
+     "S14-R3: Both PDFs are server-rendered and delivered as a file attachment, in A4 portrait, edge-to-edge, with a header strip (on the first page, and on every per-rep page in the Expanded View) showing the workplace name and address, the organization logo, the report title \"Sales By Representative,\" and the selected date range.",
+     "S14-R3), the rep's name, and a per-invoice table: Date / Invoice / Customer / Status / Labor Delta / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Adjustments / Margin / Margin % / Subtotal. Each block ends with a per-rep totals row (\"Totals\" in the Date cell; Invoice/Customer/Status blank; each metric column aggregated as in"
+    ]
+   },
+   "S16-R4": {
+    "pinned": [
+     "S16-R4).",
+     "S16-R4) and in the empty state (Story 16). The grand totals are server-computed over the full filtered result set \u2014 every matching non-reversed invoice across every rep, independent of which rep rows are currently expanded or loaded \u2014 and are delivered with the summary payload; the client does not derive them by summing loaded rows. Desktop (\u2265 1024px): a Totals row as the last row inside the table. Its first cell is a single merged cell spanning the four leading identifier columns (Date, Invoice, Customer, Status) with the label \"Totals,\" followed by an individual cell for each metric column: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, and its own Subtotal cell (pinned right,",
+     "S16-R4). Invoice detail rows continue to load lazily per rep on expand (",
+     "S16-R4: Loading state. On the initial load and on every filter-triggered re-fetch, the table shows the standard reports loading indicator (a centered spinner over the data area); the grand Totals indicator is hidden during loading. The toolbar stays interactive so the user can change filters. A re-fetch replaces the previous data only when the new data returns (no flash of blank table mid-fetch beyond the spinner overlay)."
+    ],
+    "live": [
+     "S16-R4).",
+     "S16-R4) and in the empty state (Story 16). The grand totals are server-computed over the full filtered result set \u2014 every matching non-reversed invoice across every rep, independent of which rep rows are currently expanded or loaded \u2014 and are delivered with the summary payload; the client does not derive them by summing loaded rows. Desktop (\u2265 1024px): a Totals row as the last row inside the table. Its first cell is a single merged cell spanning the four leading identifier columns (Date, Invoice, Customer, Status) with the label \"Totals,\" followed by an individual cell for each metric column: Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %, and its own Subtotal cell (pinned right,",
+     "S16-R4). Invoice detail rows continue to load lazily per rep on expand (",
+     "S16-R4: Loading state. On the initial load and on every filter-triggered re-fetch, the table shows the standard reports loading indicator (a centered spinner over the data area); the grand Totals indicator is hidden during loading. The toolbar stays interactive so the user can change filters. A re-fetch replaces the previous data only when the new data returns (no flash of blank table mid-fetch beyond the spinner overlay)."
+    ]
+   },
+   "S18-R12": {
+    "pinned": [
+     "S18-R12: No information is conveyed by color alone: Inv. Hrs carries its + / - sign, status badges carry their text label ("
+    ],
+    "live": [
+     "S18-R12: No information is conveyed by color alone: Labor Delta carries its + / - sign, status badges carry their text label ("
+    ]
+   },
+   "S19-R7": {
+    "pinned": [
+     "S19-R7). A standalone, snapshot-style Sales Rep Assignments export (Story 15) is available from the Reports section's Export dialog \u2014 a flat CSV of every current customer\u2192rep assignment in the organization. A column selector button lets the user show or hide any of the seven metric columns. The five always-visible columns (Date, Invoice, Customer, Status, Subtotal) cannot be hidden. The report remembers the user's filter and view settings (date range, product type, invoice status, location, Show Unassigned, column visibility, and sort) and restores them on the next visit (Story 23). Out of Scope Per-line-item rep splits. The report classifies whole invoices by their assigned Sales Rep, not by individual line items. A bulk customer\u2192rep reassignment tool. Rep assignment happens on the Work Order (Story 19); this report does not provide a reassignment surface. Mobile-optimized layout. The report is functional on phones (every filter, control, and export works on touch), but the dense table is not redesigned for small screens. Aging or \"days since\" logic on dates. Dates are shown as plain calendar dates. Persisting the user's expanded-rep set or scroll position across a page reload. Filters, column visibility, and sort ARE remembered (Story 23); expansion state and scroll position reset on reload. (Browser back-navigation from a drilldown is a separate case that restores everything \u2014",
+     "S19-R7: The customer record's left-panel sidebar shows a single \"Sales Rep\" row with the customer's assigned rep; when none is assigned it renders \"Unassigned\"."
+    ],
+    "live": [
+     "S19-R7). A standalone, snapshot-style Sales Rep Assignments export (Story 15) is available from the Reports section's Export dialog \u2014 a flat CSV of every current customer\u2192rep assignment in the organization. A column selector button lets the user show or hide any of the eight metric columns. The five always-visible columns (Date, Invoice, Customer, Status, Subtotal) cannot be hidden. The report remembers the user's filter and view settings (date range, product type, invoice status, location, Show Unassigned, column visibility, and sort) and restores them on the next visit (Story 23). Out of Scope Per-line-item rep splits. The report classifies whole invoices by their assigned Sales Rep, not by individual line items. A bulk customer\u2192rep reassignment tool. Rep assignment happens on the Work Order (Story 19); this report does not provide a reassignment surface. Mobile-optimized layout. The report is functional on phones (every filter, control, and export works on touch), but the dense table is not redesigned for small screens. Aging or \"days since\" logic on dates. Dates are shown as plain calendar dates. Persisting the user's expanded-rep set or scroll position across a page reload. Filters, column visibility, and sort ARE remembered (Story 23); expansion state and scroll position reset on reload. (Browser back-navigation from a drilldown is a separate case that restores everything \u2014",
+     "S19-R7: The customer record's left-panel sidebar shows a single \"Sales Rep\" row with the customer's assigned rep; when none is assigned it renders \"Unassigned\"."
+    ]
+   },
+   "S20-N1": {
+    "pinned": [
+     "S20-N1: With all seven metric columns hidden, the table still renders the five always-on columns and the grand Totals indicator; it is not an empty or error state. Story 21: Filter the report by location As a user who works across more than one location, I want to scope the report to one, several, or all locations, so that I can review rep performance per shop or org-wide. Design: TBD Jira: TBD Prerequisites: The user is on the report and has access to more than one location. Requirements:"
+    ],
+    "live": [
+     "S20-N1: With all eight metric columns hidden, the table still renders the five always-on columns and the grand Totals indicator; it is not an empty or error state. Story 21: Filter the report by location As a user who works across more than one location, I want to scope the report to one, several, or all locations, so that I can review rep performance per shop or org-wide. Design: TBD Jira: TBD Prerequisites: The user is on the report and has access to more than one location. Requirements:",
+     "S20-N1,"
+    ]
+   },
+   "S20-R1": {
+    "pinned": [
+     "S20-R1: The toolbar includes a column selector button opening a dropdown of the seven toggleable metric columns, each with a toggle switch."
+    ],
+    "live": [
+     "S20-R1: The toolbar includes a column selector button opening a dropdown of the eight toggleable metric columns, each with a toggle switch."
+    ]
+   },
+   "S20-R2": {
+    "pinned": [
+     "S20-R2: The seven toggleable columns are: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %."
+    ],
+    "live": [
+     "S20-R2: The eight toggleable columns are: Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %."
+    ]
+   },
+   "S20-R6": {
+    "pinned": [
+     "S20-R6: On first visit (no remembered preference), all seven metric columns are visible.",
+     "S20-R6), sort = A\u2192Z default ("
+    ],
+    "live": [
+     "S20-R6: On first visit (no remembered preference), all eight metric columns are visible.",
+     "S20-R6), sort = A\u2192Z default (",
+     "S20-R6,"
+    ]
+   },
+   "S21-R7": {
+    "pinned": [
+     "S21-R7), it is included in all four exports in the same position it occupies on screen \u2014 Summary and Expanded, PDF and CSV: a Summary (rolled-up) row carries the rep's location, reading Multiple when that rep spans more than one location; an Expanded (per-invoice) row carries that invoice's own exact location. In addition, every export (each PDF and each CSV, Summary and Expanded) includes a \"Locations:\" line naming the location or locations the report is scoped to, or \"All locations\" when every location the user has access to is selected \u2014 matching the on-screen scope. In a PDF the \"Locations:\" line appears in the header strip; in a CSV it appears as a leading metadata line above the column-header row. In the shorter Summary download, which has no Date or Status column, the Location column appears immediately after the Representative name. Negative cases:",
+     "S21-R7), the Location column appears at the end of the leading identifier group \u2014 immediately after the Status column and before the first metric column (Inv. Hrs) \u2014 on every rep summary row and invoice detail row, matching the Location column's placement across the reports suite; it never displaces the pinned Subtotal column, which stays rightmost (",
+     "S21-R7: A per-row Location column is shown to any user with access to more than one location: it appears by default and can be toggled on or off from the column selector, whatever the current location selection, and a user with access to only one location never sees it.",
+     "S21-R7), its cell reads: on a rep summary row , that rep's single location name when all of the rep's matching invoices are at one location, or the literal Multiple when they span more than one location; on an invoice detail row , that invoice's own exact location (its originating work order's / parts sale's location, \u00a73). \"Multiple\" is used verbatim. The Unassigned summary row (Story 22) follows the same rule as any rep summary row. Negative cases:",
+     "S21-R7/R8,"
+    ],
+    "live": [
+     "S21-R7), it is included in all four exports in the same position it occupies on screen \u2014 Summary and Expanded, PDF and CSV: a Summary (rolled-up) row carries the rep's location, reading Multiple when that rep spans more than one location; an Expanded (per-invoice) row carries that invoice's own exact location. In addition, every export (each PDF and each CSV, Summary and Expanded) includes a \"Locations:\" line naming the location or locations the report is scoped to, or \"All locations\" when every location the user has access to is selected \u2014 matching the on-screen scope. In a PDF the \"Locations:\" line appears in the header strip; in a CSV it appears as a leading metadata line above the column-header row. In the shorter Summary download, which has no Date or Status column, the Location column appears immediately after the Representative name.",
+     "S21-R7), the Location column appears at the end of the leading identifier group \u2014 immediately after the Status column and before the first metric column (Labor Delta) \u2014 on every rep summary row and invoice detail row, matching the Location column's placement across the reports suite; it never displaces the pinned Subtotal column, which stays rightmost (",
+     "S21-R7: A per-row Location column is shown to any user with access to more than one location: it appears by default and can be toggled on or off from the column selector, whatever the current location selection, and a user with access to only one location never sees it.",
+     "S21-R7), its cell reads: on a rep summary row , that rep's single location name when all of the rep's matching invoices are at one location, or the literal Multiple when they span more than one location; on an invoice detail row , that invoice's own exact location (its originating work order's / parts sale's location, \u00a73). \"Multiple\" is used verbatim. The Unassigned summary row (Story 22) follows the same rule as any rep summary row. Negative cases:",
+     "S21-R7/R8,"
+    ]
+   },
+   "S22-R1": {
+    "pinned": [
+     "S22-R1: A \"Show Unassigned\" toggle sits in the toolbar between the column selector and the date range picker (per the",
+     "S22-R1), all seven metric columns visible ("
+    ],
+    "live": [
+     "S22-R1: A \"Show Unassigned\" toggle sits in the toolbar between the column selector and the date range picker (per the",
+     "S22-R1), all eight metric columns visible ("
+    ]
+   },
+   "S23-R4": {
+    "pinned": [
+     "S23-R4: With no saved settings (first visit): date range This Month (",
+     "S23-R4). No server-side profile is kept. 7. User Feedback Summary Every message below is the exact, normative wording \u2014 no synonyms, no rephrasing. Trigger Message Behavior Report data fails to load (initial or re-fetch) \"Couldn't load the report. Please try again.\" Inline message in the data area with a \"Retry\" action ("
+    ],
+    "live": [
+     "S23-R4: With no saved settings (first visit): date range This Month (",
+     "S23-R4). No server-side profile is kept. 7. User Feedback Summary Every message below is the exact, normative wording \u2014 no synonyms, no rephrasing. Trigger Message Behavior Report data fails to load (initial or re-fetch) \"Couldn't load the report. Please try again.\" Inline message in the data area with a \"Retry\" action (",
+     "S23-R4) updated to eight. Follow-up to the same-day Adjustments row. 2026-08-12 @chris / @claude Column heading renamed from \"Inv. Hrs\" to \"Labor Delta\" everywhere it appears (screen, column selector, sorting references, CSV and PDF layouts), reversing the earlier label decision: the old heading named a quantity the column does not hold (it holds invoiced minus worked, a signed delta). Display label only \u2014 the calculation, signed one-decimal format, coloring, and field names are unchanged. Per SV-9071 (suite-wide). 2026-08-12 @chris / @claude Suite rule added: the CSV carries the same filter-summary lines as the PDF header, verbatim ("
+    ]
+   },
+   "S5-R2": {
+    "pinned": [
+     "S5-R2.) A grand Totals indicator is shown at the bottom of the report whenever there is at least one summary row (a rep row or the Unassigned row) (desktop: a full Totals row inside the table; mobile: a Subtotal-only bar below the table \u2014 see",
+     "S5-R2: The columns appear left-to-right: Date, Invoice, Customer, Status, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. (12 columns: four leading identifier columns, seven metric columns, and Subtotal.)"
+    ],
+    "live": [
+     "S5-R2.) A grand Totals indicator is shown at the bottom of the report whenever there is at least one summary row (a rep row or the Unassigned row) (desktop: a full Totals row inside the table; mobile: a Subtotal-only bar below the table \u2014 see",
+     "S5-R2: The columns appear left-to-right: Date, Invoice, Customer, Status, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %, Subtotal. (13 columns: four leading identifier columns, eight metric columns, and Subtotal.)"
+    ]
+   },
+   "S5-R9": {
+    "pinned": [
+     "S5-R9). This keeps the grand Totals reconciled to the period's invoices \u2014 no revenue silently disappears \u2014 while making the toggled-off state visible. The toggle still governs who is offered for a new assignment (Story 19) and A\u2192Z is the only ordering (no active/inactive tiers). Single sales-rep model. A customer has one sales rep; a Work Order has one Sales Rep; an invoice carries one rep. At invoice creation the WO's rep is snapshotted onto the invoice; when the WO has no rep, the snapshot falls back to the customer's assigned rep; when that is also absent, the invoice is unassigned (Story 22). (Build note: the shipped database currently stores a separate parts-side and service-side rep; this spec locks the single-rep model, which requires collapsing those two fields into one and reworking invoice crediting.) The money columns use the standardized report labels: billed labor/parts = Labor Invoiced / Parts Invoiced ; per-category profit = Labor Margin / Parts Margin ; combined profit dollars = Margin ; profit percentage = Margin % . Definitions of the numbers (business-level; the same values everywhere they appear): Subtotal = Labor Invoiced + Parts Invoiced, before tax . It is the row's headline revenue figure. Labor Margin = Labor Invoiced \u2212 the shop's labor cost; Parts Margin = Parts Invoiced \u2212 the shop's parts cost; Margin = Labor Margin + Parts Margin. Margin % = Margin \u00f7 Subtotal \u00d7 100, to one decimal, rendered on screen and in both PDFs with a trailing % \u2014 e.g., 45.2% ; a negative renders -8.4% (leading minus, no parentheses, no + on positives). It renders \"\u2014\" when Subtotal \u2264 0 (never \"0.0%\" or a divide-by-zero result). (In the CSVs it is a plain number with no % \u2014",
+     "S5-R9). Location (column) \u2014 A per-row column showing the location a row belongs to, displayed only when the current view spans more than one location (hidden for a single-location view). On a rep summary row it reads the single location's name, or the literal Multiple when that rep's matching invoices span more than one location; on an invoice detail row it reads that invoice's own exact location (the location of its originating work order / parts sale, \u00a73). 5. Assumptions The sales rep toggle on staff records is the canonical \"is this person a sales rep\" flag. Enabling it makes a staff member selectable as a rep; existing staff are not retroactively swept. A Work Order carries a single Sales Rep assignment, settable/changeable before invoicing. At invoice creation the WO's rep is snapshotted onto the invoice; when the WO has no rep, the snapshot falls back to the customer's assigned rep; when that is absent, the invoice is unassigned. Reversed invoices are excluded everywhere in this report (rep totals, detail rows, both PDF tables, and the contributor gate). \"Reversed\" defers to the canonical ShopView invoice-status ruleset. Invoice numbers always start with P (Parts) or S (Service) \u2014 a system invariant the Product Type filter relies on. Staff active status and the sales-rep toggle are independent flags: a staff member can be inactive but still be a tracked sales rep, and vice-versa. 6. Requirements * Numbering note: story and requirement numbers are stable across revisions. Some numbers were retired when their content was removed in earlier rounds and are intentionally not reused (there is no Story 7); this keeps existing cross-references valid. Gaps are deliberate, not dropped content. Story 1: Access the Sales By Representative Report As a shop manager, I want to find the report from the Reports navigation, so that I can open it the same way I open every other report. Design: TBD Jira: TBD Requirements:",
+     "S5-R9).",
+     "S5-R9: Inactive-rep marker. When a rendered rep's sales-rep toggle is currently off (or their staff record has been deleted) but they have matching invoices, their display name is followed by a subdued \"(Inactive)\" tag \u2014 e.g., Mary Smith (Inactive) (12) \u2014 rendered in the same muted grey as the count. A rep whose toggle is currently on shows no tag. The tag is a display marker only; it does not change the rep's metrics, position in the A\u2192Z order, or expandability. For a rep whose staff record has been deleted , both the display name and the A\u2192Z sort position come from the denormalized rep-name snapshot on the rep's most recent matching invoice (by invoice date, ties broken by invoice number per",
+     "S5-R9) in this report while retaining their credit.",
+     "S5-R9). Columns: Rep / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal. Subtotal bolded across header, body, and the grand totals row; Inv. Hrs colored. The grand totals row reads \"Totals\" in the Rep cell and shows, for each metric column, the grand aggregate across all summary rows in the document \u2014 rep rows plus the Unassigned row when Show Unassigned is on (money and Inv. Hrs summed from unrounded values; Margin % recomputed as total Margin \u00f7 total Subtotal, \"\u2014\" when \u2264 0).",
+     "S5-R9) does render on toggled-off contributors' rep names in both PDFs \u2014 consistent with",
+     "S5-R9). The two can differ (a rep can be staff-active but toggle-off, or toggle-on but staff-inactive); this column tracks staff-active status only.",
+     "S5-R9, \u00a73,"
+    ],
+    "live": [
+     "S5-R9). This keeps the grand Totals reconciled to the period's invoices \u2014 no revenue silently disappears \u2014 while making the toggled-off state visible. The toggle still governs who is offered for a new assignment (Story 19) and A\u2192Z is the only ordering (no active/inactive tiers). Single sales-rep model. A customer has one sales rep; a Work Order has one Sales Rep; an invoice carries one rep. At invoice creation the WO's rep is snapshotted onto the invoice; when the WO has no rep, the snapshot falls back to the customer's assigned rep; when that is also absent, the invoice is unassigned (Story 22). (Build note: the shipped database currently stores a separate parts-side and service-side rep; this spec locks the single-rep model, which requires collapsing those two fields into one and reworking invoice crediting.) The money columns use the standardized report labels: billed labor/parts = Labor Invoiced / Parts Invoiced ; per-category profit = Labor Margin / Parts Margin ; combined profit dollars = Margin ; profit percentage = Margin % ; the signed net of invoice-level fees and discounts = Adjustments . Definitions of the numbers (business-level; the same values everywhere they appear): Subtotal = Labor Invoiced + Parts Invoiced + Adjustments, before tax . It is the row's headline revenue figure. Labor Margin = Labor Invoiced \u2212 the shop's labor cost; Parts Margin = Parts Invoiced \u2212 the shop's parts cost; Margin = Labor Margin + Parts Margin + Adjustments. Adjustments = the signed net of invoice-level fees and discounts across the row's invoices: fees count positive, discounts count negative. A line-level fee or discount stays folded into its own line's Labor or Parts value; an invoice-level amount is never allocated into Labor or Parts, because a flat fee has no labor/parts basis. No cost attaches to an adjustment, so its full amount flows into Margin. Margin % = Margin \u00f7 Subtotal \u00d7 100, to one decimal, rendered on screen and in both PDFs with a trailing % \u2014 e.g., 45.2% ; a negative renders -8.4% (leading minus, no parentheses, no + on positives). It renders \"\u2014\" when Subtotal \u2264 0 (never \"0.0%\" or a divide-by-zero result). (In the CSVs it is a plain number with no % \u2014",
+     "S5-R9). Location (column) \u2014 A per-row column showing the location a row belongs to, displayed only when the current view spans more than one location (hidden for a single-location view). On a rep summary row it reads the single location's name, or the literal Multiple when that rep's matching invoices span more than one location; on an invoice detail row it reads that invoice's own exact location (the location of its originating work order / parts sale, \u00a73). 5. Assumptions The sales rep toggle on staff records is the canonical \"is this person a sales rep\" flag. Enabling it makes a staff member selectable as a rep; existing staff are not retroactively swept. A Work Order carries a single Sales Rep assignment, settable/changeable before invoicing. At invoice creation the WO's rep is snapshotted onto the invoice; when the WO has no rep, the snapshot falls back to the customer's assigned rep; when that is absent, the invoice is unassigned. Reversed invoices are excluded everywhere in this report (rep totals, detail rows, both PDF tables, and the contributor gate). \"Reversed\" defers to the canonical ShopView invoice-status ruleset. Invoice numbers always start with P (Parts) or S (Service) \u2014 a system invariant the Product Type filter relies on. Staff active status and the sales-rep toggle are independent flags: a staff member can be inactive but still be a tracked sales rep, and vice-versa. 6. Requirements * Numbering note: story and requirement numbers are stable across revisions. Some numbers were retired when their content was removed in earlier rounds and are intentionally not reused (there is no Story 7); this keeps existing cross-references valid. Gaps are deliberate, not dropped content. Story 1: Access the Sales By Representative Report As a shop manager, I want to find the report from the Reports navigation, so that I can open it the same way I open every other report. Design: TBD Jira: TBD Requirements:",
+     "S5-R9).",
+     "S5-R9: Inactive-rep marker. When a rendered rep's sales-rep toggle is currently off (or their staff record has been deleted) but they have matching invoices, their display name is followed by a subdued \"(Inactive)\" tag \u2014 e.g., Mary Smith (Inactive) (12) \u2014 rendered in the same muted grey as the count. A rep whose toggle is currently on shows no tag. The tag is a display marker only; it does not change the rep's metrics, position in the A\u2192Z order, or expandability. For a rep whose staff record has been deleted , both the display name and the A\u2192Z sort position come from the denormalized rep-name snapshot on the rep's most recent matching invoice (by invoice date, ties broken by invoice number per",
+     "S5-R9) in this report while retaining their credit.",
+     "S5-R9). Columns: Rep / Labor Delta / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Adjustments / Margin / Margin % / Subtotal. Subtotal bolded across header, body, and the grand totals row; Labor Delta colored. The grand totals row reads \"Totals\" in the Rep cell and shows, for each metric column, the grand aggregate across all summary rows in the document \u2014 rep rows plus the Unassigned row when Show Unassigned is on (money and Labor Delta summed from unrounded values; Margin % recomputed as total Margin \u00f7 total Subtotal, \"\u2014\" when \u2264 0).",
+     "S5-R9) does render on toggled-off contributors' rep names in both PDFs \u2014 consistent with",
+     "S5-R9). The two can differ (a rep can be staff-active but toggle-off, or toggle-on but staff-inactive); this column tracks staff-active status only.",
+     "S5-R9, \u00a73,"
+    ]
+   },
+   "S6-R3": {
+    "pinned": [
+     "S6-R3: Each detail row shows, left to right: the invoice's date, the invoice number, the customer name, the payment status badge, and the per-invoice values for Inv. Hrs and the money columns."
+    ],
+    "live": [
+     "S6-R3: Each detail row shows, left to right: the invoice's date, the invoice number, the customer name, the payment status badge, and the per-invoice values for Labor Delta and the money columns."
+    ]
+   },
+   "S8-N1": {
+    "pinned": [
+     "S8-N1: Every invoice on a detail row has a payment status; badge rendering is unconditional on detail rows. Story 9: Inv. Hrs (Labor Delta) column display As a user, I want to see whether a rep or invoice was billed for more time than was worked, so that I can spot trends without doing math. Design: TBD Jira: TBD Prerequisites: The user is on the report. Requirements:"
+    ],
+    "live": [
+     "S8-N1: Every invoice on a detail row has a payment status; badge rendering is unconditional on detail rows. Story 9: Labor Delta column display As a user, I want to see whether a rep or invoice was billed for more time than was worked, so that I can spot trends without doing math. Design: TBD Jira: TBD Prerequisites: The user is on the report. Requirements:"
+    ]
+   },
+   "S8-R1": {
+    "pinned": [
+     "S8-R1: A Status column sits between the Customer column and the Inv. Hrs column."
+    ],
+    "live": [
+     "S8-R1: A Status column sits between the Customer column and the Labor Delta column."
+    ]
+   },
+   "S8-R3": {
+    "pinned": [
+     "S8-R3: Paid = dark teal text on light teal; Partially Paid = dark orange on light orange; Unpaid = dark red on light red. These use the application's canonical payment-status color tokens (the same tokens the invoice list uses) so the treatment is consistent app-wide and in both light and dark mode.",
+     "S8-R3) and stay legible in both modes; Inv. Hrs green/red use the app's positive/negative tokens (mode-appropriate). PDFs always render in light-mode colors. Requirements \u2014 accessibility:"
+    ],
+    "live": [
+     "S8-R3: Paid = dark teal text on light teal; Partially Paid = dark orange on light orange; Unpaid = dark red on light red. These use the application's canonical payment-status color tokens (the same tokens the invoice list uses) so the treatment is consistent app-wide and in both light and dark mode.",
+     "S8-R3) and stay legible in both modes; Labor Delta green/red use the app's positive/negative tokens (mode-appropriate). PDFs always render in light-mode colors. Requirements \u2014 accessibility:"
+    ]
+   },
+   "S9-N1": {
+    "pinned": [
+     "S9-N1: An invoice with neither billed labor hours nor clocked technician hours (e.g., a parts-only invoice with no labor and no time logged) shows Inv. Hrs 0.0 in the default color \u2014 never blank, \"N/A,\" or \"\u2014\". An invoice with clocked technician hours but no billed labor line shows the resulting negative delta per \u00a73 (e.g., -3.0 in red) \u2014 this worked-but-unbilled signal is not suppressed to 0.0 . Edge cases:"
+    ],
+    "live": [
+     "S9-N1: An invoice with neither billed labor hours nor clocked technician hours (e.g., a parts-only invoice with no labor and no time logged) shows Labor Delta 0.0 in the default color \u2014 never blank, \"N/A,\" or \"\u2014\". An invoice with clocked technician hours but no billed labor line shows the resulting negative delta per \u00a73 (e.g., -3.0 in red) \u2014 this worked-but-unbilled signal is not suppressed to 0.0 . Edge cases:"
+    ]
+   },
+   "S9-R1": {
+    "pinned": [
+     "S9-R1: The column heading reads \"Inv. Hrs\" (verbatim, including the period after \"Inv\")."
+    ],
+    "live": [
+     "S9-R1: The column heading reads \"Labor Delta\" (verbatim, including the period after \"Inv\")."
+    ]
+   }
+  }
+ },
+ "Parts Velocity": {
+  "pinned": 6,
+  "live": 8,
+  "moved": true,
+  "anchors_pinned": 74,
+  "anchors_live": 76,
+  "gone": [],
+  "added": [
+   "S5-R8",
+   "S6-R11a"
+  ],
+  "changed": [
+   "S2-R6",
+   "S3-R10",
+   "S3-R1a",
+   "S3-R6"
+  ],
+  "changed_detail": {
+   "S2-R6": {
+    "pinned": [
+     "S2-R6: A search input in the report's own toolbar (page-specific, not the application's global search bar) filters to rows where the part number or description contains the search string, case-insensitively.",
+     "S2-R6). Header cleanup: removed the loose Companion Video and status-badge paragraphs. Per Milan Zivanovic's 2026-07-15 engineering review; server-side model is the committed build target (spec ahead of current code by design). 2026-07-29 @chris / @claude Renamed the \"Catalogue\" part type to \"Special Order\" (display + value); renamed the \"Sold via WO\" / \"Sold via Parts Sale\" columns to \"Sold (WO)\" / \"Sold (Parts Sale)\"; added a per-row Location column (shown when more than one location is in scope; \"Multiple\" on rows spanning locations) plus a \"Locations:\" export line and a constant-width Location filter. 2026-08-05 @claude Applied Chris's QA-review decisions (2026-08-04): the Location filter is now hidden for a single-location user; the Location column changed to an access gate (any user with access to more than one location sees it by default and can toggle it in the column selector, and a single-location-access user never sees it); report access stated as the single reports permission, with no per-report permission. 2026-08-06 @claude Section 3 tidy-ups (QA review workbook 2026-08-06): reworded the Location-column visibility to the access-gated, column-selector-toggleable rule; added the export size-cap requirement (10,000 rows) with the verbatim \"too large to export\" message."
+    ],
+    "live": [
+     "S2-R6: A search input in the report's own toolbar (page-specific, not the application's global search bar) filters to rows where the part number or description contains the search string, case-insensitively.",
+     "S2-R6). Header cleanup: removed the loose Companion Video and status-badge paragraphs. Per Milan Zivanovic's 2026-07-15 engineering review; server-side model is the committed build target (spec ahead of current code by design). 2026-07-29 @chris / @claude Renamed the \"Catalogue\" part type to \"Special Order\" (display + value); renamed the \"Sold via WO\" / \"Sold via Parts Sale\" columns to \"Sold (WO)\" / \"Sold (Parts Sale)\"; added a per-row Location column (shown when more than one location is in scope; \"Multiple\" on rows spanning locations) plus a \"Locations:\" export line and a constant-width Location filter. 2026-08-05 @claude Applied Chris's QA-review decisions (2026-08-04): the Location filter is now hidden for a single-location user; the Location column changed to an access gate (any user with access to more than one location sees it by default and can toggle it in the column selector, and a single-location-access user never sees it); report access stated as the single reports permission, with no per-report permission. 2026-08-06 @claude Section 3 tidy-ups (QA review workbook 2026-08-06): reworded the Location-column visibility to the access-gated, column-selector-toggleable rule; added the export size-cap requirement (10,000 rows) with the verbatim \"too large to export\" message. 2026-08-12 @chris / @claude Stated the work-order-level fees/discounts exclusion explicitly (new"
+    ]
+   },
+   "S3-R10": {
+    "pinned": [
+     "S3-R10. Negative cases:",
+     "S3-R10: When the per-row Location column is shown (more than one location in scope,",
+     "S3-R10), in its on-screen column position. Both exports also include a \"Locations:\" line naming the location or locations the report is scoped to, or \"All locations\" when every location the user has access to is selected. In the PDF the \"Locations:\" line appears in the header area; in the CSV it appears as a leading metadata line above the column-header row. Negative cases:",
+     "S3-R10), the per-row Location column renders as the leftmost column, before Type, using the suite's standard column treatment so its placement matches the same column on the other reports in the suite. The Location filter control ("
+    ],
+    "live": [
+     "S3-R10. Negative cases:",
+     "S3-R10: When the per-row Location column is shown (more than one location in scope,",
+     "S3-R10), in its on-screen column position. Both exports also include a \"Locations:\" line naming the location or locations the report is scoped to, or \"All locations\" when every location the user has access to is selected. In the PDF the \"Locations:\" line appears in the header area; in the CSV it appears as a leading metadata line above the column-header row.",
+     "S3-R10), the per-row Location column renders as the leftmost column, before Type, using the suite's standard column treatment so its placement matches the same column on the other reports in the suite. The Location filter control ("
+    ]
+   },
+   "S3-R1a": {
+    "pinned": [
+     "S3-R1a). Inventory rows are per location. An inventory part is a per-location stock record, so the same part number stocked at two selected locations produces two inventory rows \u2014 one per location, each with that location's own On Hand / Min / Max (",
+     "S3-R1a). Inventory On Hand / Min / Max are never summed across locations. Special-order inventory metrics are always null. Special-order parts are not stocked, so On Hand, Turns / Yr, Min, and Max are not applicable and always render as \u2014 . Units Returned counts initiated returns, net of cancellations. It is sourced from part-return records \u2014 created by a work-order part return or a parts-sale credit, not from invoice voids: each return adds its quantity; each cancelled return is excluded. Counted the same way for both inventory and special-order parts. Core-charge returns are excluded. Core parts are excluded from both the inventory and special-order result sets (",
+     "S3-R1a) shows the literal Multiple . Every export additionally carries a \"Locations:\" line naming the scope, so a multi-location export is never ambiguous about which locations it covers. 4. Terminology Inventory part \u2014 A part held in stock at a location, tracked in the inventory system with an on-hand quantity. Each location's stock of a part is its own record (so one part number can be several inventory rows across locations). Special Order part \u2014 A part sourced from a vendor on a per-job basis via a part request. Not stocked; no on-hand quantity. One report row per special-order part, merged across the selected locations. Type \u2014 The classification of a report row: Inventory or Special Order . Demand (a.k.a. demand frequency) \u2014 The number of separate stock-decrement transactions (for inventory parts) or vendor part requests (for special-order parts) that included a given part in the selected date range. Each transaction counts once regardless of quantity. A later reversal of a sale does not add to, or subtract from, the count (",
+     "S3-R1a: Row model across locations. An inventory part is a per-location stock record: the same part number stocked at N of the selected locations produces N inventory rows, each carrying that one location's On Hand / Min / Max (never summed). A special-order part produces a single row, with its movement and profitability values summed across the selected locations. (Money columns being additive, the special-order merge reconciles cleanly.)",
+     "S3-R1a): an inventory row \u2014 a per-location stock record \u2014 shows its own location's name ; a merged special-order row, which aggregates across the selected locations, shows the literal Multiple . A drill-down/detail row shows the exact single location it belongs to. The column is available to any user with access to more than one location: it is offered in the column picker (",
+     "S3-R1a).",
+     "S3-R1a; never summed across locations). \u2014 (not applicable). Turns / Yr (Units Sold \u00f7 Window days \u00d7 365) \u00f7 On Hand ; renders 0.00 when On Hand is 0. Because Units Sold can be negative, Turns / Yr can be negative. \u2014 (not applicable). Min The part's stored minimum reorder threshold at that row's location (read-only). \u2014 (not applicable). Max The part's stored maximum reorder threshold at that row's location (read-only). \u2014 (not applicable).",
+     "S3-R1a). Expanded Story 4 to a remembered-view model (filters + columns + sort, per browser , restore overrides first-visit defaults, defensive fallback). Documented the deliberate export vs screen differences (right-alignment"
+    ],
+    "live": [
+     "S3-R1a). Inventory rows are per location. An inventory part is a per-location stock record, so the same part number stocked at two selected locations produces two inventory rows \u2014 one per location, each with that location's own On Hand / Min / Max (",
+     "S3-R1a). Inventory On Hand / Min / Max are never summed across locations. Special-order inventory metrics are always null. Special-order parts are not stocked, so On Hand, Turns / Yr, Min, and Max are not applicable and always render as \u2014 . Units Returned counts initiated returns, net of cancellations. It is sourced from part-return records \u2014 created by a work-order part return or a parts-sale credit, not from invoice voids: each return adds its quantity; each cancelled return is excluded. Counted the same way for both inventory and special-order parts. Core-charge returns are excluded. Core parts are excluded from both the inventory and special-order result sets (",
+     "S3-R1a) shows the literal Multiple . Every export additionally carries a \"Locations:\" line naming the scope, so a multi-location export is never ambiguous about which locations it covers. Work-order-level fees and discounts stay out of this report. The suite's shared Adjustments column (added to WIP, Sales By Customer, and Sales By Representative on 2026-08-12) surfaces invoice-level fees and discounts as their own signed column. Parts Velocity deliberately does not adopt it: its figures are per-part, and a flat work-order fee has no per-part basis to allocate against. The exclusion is stated as a requirement (",
+     "S3-R1a: Row model across locations. An inventory part is a per-location stock record: the same part number stocked at N of the selected locations produces N inventory rows, each carrying that one location's On Hand / Min / Max (never summed). A special-order part produces a single row, with its movement and profitability values summed across the selected locations. (Money columns being additive, the special-order merge reconciles cleanly.)",
+     "S3-R1a): an inventory row \u2014 a per-location stock record \u2014 shows its own location's name ; a merged special-order row, which aggregates across the selected locations, shows the literal Multiple . A drill-down/detail row shows the exact single location it belongs to. The column is available to any user with access to more than one location: it is offered in the column picker (",
+     "S3-R1a).",
+     "S3-R1a; never summed across locations). \u2014 (not applicable). Turns / Yr (Units Sold \u00f7 Window days \u00d7 365) \u00f7 On Hand ; renders 0.00 when On Hand is 0. Because Units Sold can be negative, Turns / Yr can be negative. \u2014 (not applicable). Min The part's stored minimum reorder threshold at that row's location (read-only). \u2014 (not applicable). Max The part's stored maximum reorder threshold at that row's location (read-only). \u2014 (not applicable).",
+     "S3-R1a). Expanded Story 4 to a remembered-view model (filters + columns + sort, per browser , restore overrides first-visit defaults, defensive fallback). Documented the deliberate export vs screen differences (right-alignment"
+    ]
+   },
+   "S3-R6": {
+    "pinned": [
+     "S3-R6). For special-order rows the two share one basis (the vendor request quantity), so they do not diverge. Special-order rows come from vendor-sourced part requests. Special-order parts are identified as vendor-sourced parts requested on invoiced or paid work orders. Each special-order part appears as a single report row, merged across the selected locations (",
+     "S3-R6: Three columns \u2014 Units Sold , Demand , and Turns / Yr \u2014 carry a grey \u00e2\u201c\u02dc icon immediately to the right of the header label. The icon is always-on (not a hover-to-reveal affordance), shown whenever its column is visible; Units Sold and Demand are visible by default, while Turns / Yr is hidden by default (",
+     "S3-R6). Likewise Units Sold , Sold (WO) , and Sold (Parts Sale) are computed over different event sets and are not expected to equal one another versus Units Sold. Because work orders are only Service- or Parts-type (Assumptions), Sold (WO) + Sold (Parts Sale) together do equal the billed-units basis , but neither equals the movement-based Units Sold. For special-order rows the movement quantity and billed units share one source (the vendor request quantity), so Units Sold, Sold (WO) + Sold (Parts Sale), and billed units all reconcile for special-order. Rounding: all money and one-decimal values round half away from zero (a tie rounds up in magnitude \u2014 e.g., -8.45% \u2192 -8.5% , 8.45% \u2192 8.5% ). (Build note: a separate \"Units Billed\" column was considered to make each inventory row self-reconcile; it was deferred in favor of the Units Sold tooltip. Revisit only if users still trip on the cross-column math.) Story 6: Exports (CSV & PDF) What the CSV and PDF exports contain and how they are formatted. Design: TBD Jira: TBD Prerequisites: Report data has loaded. Requirements:",
+     "S3-R6) +"
+    ],
+    "live": [
+     "S3-R6). For special-order rows the two share one basis (the vendor request quantity), so they do not diverge. Special-order rows come from vendor-sourced part requests. Special-order parts are identified as vendor-sourced parts requested on invoiced or paid work orders. Each special-order part appears as a single report row, merged across the selected locations (",
+     "S3-R6: Three columns \u2014 Units Sold , Demand , and Turns / Yr \u2014 carry a grey \u00e2\u201c\u02dc icon immediately to the right of the header label. The icon is always-on (not a hover-to-reveal affordance), shown whenever its column is visible; Units Sold and Demand are visible by default, while Turns / Yr is hidden by default (",
+     "S3-R6). Likewise Units Sold , Sold (WO) , and Sold (Parts Sale) are computed over different event sets and are not expected to equal one another versus Units Sold. Because work orders are only Service- or Parts-type (Assumptions), Sold (WO) + Sold (Parts Sale) together do equal the billed-units basis , but neither equals the movement-based Units Sold. For special-order rows the movement quantity and billed units share one source (the vendor request quantity), so Units Sold, Sold (WO) + Sold (Parts Sale), and billed units all reconcile for special-order. Rounding: all money and one-decimal values round half away from zero (a tie rounds up in magnitude \u2014 e.g., -8.45% \u2192 -8.5% , 8.45% \u2192 8.5% ). (Build note: a separate \"Units Billed\" column was considered to make each inventory row self-reconcile; it was deferred in favor of the Units Sold tooltip. Revisit only if users still trip on the cross-column math.)",
+     "S3-R6) +"
+    ]
+   }
+  }
+ },
+ "Technician Utilization": {
+  "pinned": 7,
+  "live": 9,
+  "moved": true,
+  "anchors_pinned": 122,
+  "anchors_live": 124,
+  "gone": [],
+  "added": [
+   "S2-R8a",
+   "S7-R13a"
+  ],
+  "changed": [
+   "S1-R2",
+   "S1-R9",
+   "S2-R8",
+   "S6-R1",
+   "S6-R5",
+   "S6-R6"
+  ],
+  "changed_detail": {
+   "S1-R2": {
+    "pinned": [
+     "S1-R2: When the user opens the report, it shows one row for each technician who has clocked time in the selected date range at the selected location(s).",
+     "S1-R2 admits only technicians with clocked time), Utilization % would be undefined and renders \"\u2014\"; in practice this state is unreachable on a technician or day row.",
+     "S1-R2, so the link always applies). The link is distinguished by more than color \u2014 it carries an underline (or equivalent non-color affordance), is keyboard-focusable with a visible focus indicator, and activates on Enter."
+    ],
+    "live": [
+     "S1-R2: When the user opens the report, it shows one row for each technician who has clocked time in the selected date range at the selected location(s).",
+     "S1-R2 admits only technicians with clocked time), Utilization % would be undefined and renders \"\u2014\"; in practice this state is unreachable on a technician or day row."
+    ]
+   },
+   "S1-R9": {
+    "pinned": [
+     "S1-R9. * Context note: the two reports must agree because they read the same underlying clock data. For the same range and location (closed records), a mismatch is a defect \u2014 see",
+     "S1-R9 for the exact scope of the guarantee (open clocks and multi-location drill-through are deliberate scope differences, not defects). Out of scope Scheduling exports to run automatically is not included. 3. Key Decisions The technician filter works on screen only and does not reload the report (Story 5); the location filter reloads the report from the server (Story 9). The report remembers the user's selected date range, technician selection, location selection, and column selection (per browser), and restores them when the user returns. Sort is not remembered \u2014 it resets to Technician A\u2192Z on every load (",
+     "S1-R9) depends on that shared rounding. 6. Requirements Story 1: Report Access and Display The report is reachable from the reports navigation and shows technician rows for the selected date range and location(s). Design: See Story 8 Jira: TBD Prerequisites: The user must have the single reports permission \u2014 the one permission that grants access to all reports; there is no per-report permission. Requirements:",
+     "S1-R9).",
+     "S1-R9: Reconciliation guarantee (scope). For the same date range and the same single location , and counting closed clock records, this report's Total Hours for a technician equals the Timesheet Activities report's total for that technician to the cent. Two deliberate scope differences are not defects: (a) an open (not-yet-clocked-out) record is snapshotted at each report's own load instant, so two reports loaded at different moments can differ by the elapsed open time (",
+     "S1-R9(a) for the reconciliation consequence.) * Context note: clocked time is measured only within the selected date range \u2014 a record that starts before the range or ends after it counts only the part inside the range. A record that crosses midnight is split by day (in the active workplace's report-level time zone), so each day counts only its own hours. This matches the Timesheet Activities report. Story 2: Columns and Calculations Each technician row shows the hours breakdown, the utilization rate, and the Est. Lost Labor value, in a fixed column order. Design: See Story 8 Jira: TBD Prerequisites: The report has loaded rows for the selected date range and location(s) (Story 1). Requirements:",
+     "S1-R9); when multiple locations are selected, or when the single selected location is not the active shop, the opened Timesheet Activities view shows the active shop's data, which will differ from (or be disjoint with) the report row's value. This is a known drill-through limitation, not a data defect. Negative Cases:",
+     "S1-R9: same range + same single location + closed records; open-clock and multi-location drill-through are deliberate scope differences, not defects) and scoped the \u00a72 \"mismatch = defect\" note to match. Est. Lost Labor documented per location (",
+     "S1-R9 multi-location divergence ; header cleanup (removed Companion Video row). Per Milan Zivanovic's 2026-07-15 engineering review (timezone = his option 1). 2026-07-29 @chris / @claude Added the suite-standard column selector; made Est. Lost Labor a toggleable (hideable) column; the PDF export logo now uses the shared resolver (org logo \u2192 bundled ShopView default \u2192 none); added a per-row Location column (shown when more than one location is in scope) plus a \"Locations:\" export line; exports now mirror the selected columns. 2026-08-05 @claude Applied Chris's QA-review decisions (2026-08-04): Location filter hidden for single-location users; Location column changed to an access gate and made toggleable in the column selector (any user with access to more than one location sees it by default; single-location-access users never see it); report access stated as the single reports permission; download menu standardized to four options with the \"Download Summary/Expanded View (PDF/CSV)\" wording; logo fallback rule corrected (ShopView logo is a load-failure fallback, not a no-upload fallback). 2026-08-06 @claude Section 3 tidy-ups (QA review workbook 2026-08-06): reworded the Location-column visibility to the access-gated, column-selector-toggleable rule; added the export size-cap requirement (10,000 rows) with the verbatim \"too large to export\" message. QA review workbook (2026-08-06)."
+    ],
+    "live": [
+     "S1-R9. * Context note: the two reports must agree because they read the same underlying clock data. For the same range and location (closed records), a mismatch is a defect \u2014 see",
+     "S1-R9 for the exact scope of the guarantee (open clocks and multi-location drill-through are deliberate scope differences, not defects). Out of scope Scheduling exports to run automatically is not included. 3. Key Decisions The technician filter works on screen only and does not reload the report (Story 5); the location filter reloads the report from the server (Story 9). The report remembers the user's selected date range, technician selection, location selection, and column selection (per browser), and restores them when the user returns. Sort is not remembered \u2014 it resets to Technician A\u2192Z on every load (",
+     "S1-R9) depends on that shared rounding. 6. Requirements Story 1: Report Access and Display The report is reachable from the reports navigation and shows technician rows for the selected date range and location(s). Design: See Story 8 Jira: TBD Prerequisites: The user must have the single reports permission \u2014 the one permission that grants access to all reports; there is no per-report permission. Requirements:",
+     "S1-R9).",
+     "S1-R9: Reconciliation guarantee (scope). For the same date range and the same single location , and counting closed clock records, this report's Total Hours for a technician equals the Timesheet Activities report's total for that technician to the cent. Two deliberate scope differences are not defects: (a) an open (not-yet-clocked-out) record is snapshotted at each report's own load instant, so two reports loaded at different moments can differ by the elapsed open time (",
+     "S1-R9(a) for the reconciliation consequence.) * Context note: clocked time is measured only within the selected date range \u2014 a record that starts before the range or ends after it counts only the part inside the range. A record that crosses midnight is split by day (in the active workplace's report-level time zone), so each day counts only its own hours. This matches the Timesheet Activities report. Story 2: Columns and Calculations Each technician row shows the hours breakdown, the utilization rate, and the Est. Lost Labor value, in a fixed column order. Design: See Story 8 Jira: TBD Prerequisites: The report has loaded rows for the selected date range and location(s) (Story 1). Requirements:",
+     "S1-R9), and under any other scope the target page could not show matching data, so no link is offered rather than a misleading one (per SV-9064). Teaching Timesheet Activities a location parameter is a possible follow-up; if it lands, the link can become unconditional. Negative Cases:",
+     "S1-R9: same range + same single location + closed records; open-clock and multi-location drill-through are deliberate scope differences, not defects) and scoped the \u00a72 \"mismatch = defect\" note to match. Est. Lost Labor documented per location (",
+     "S1-R9 multi-location divergence ; header cleanup (removed Companion Video row). Per Milan Zivanovic's 2026-07-15 engineering review (timezone = his option 1). 2026-07-29 @chris / @claude Added the suite-standard column selector; made Est. Lost Labor a toggleable (hideable) column; the PDF export logo now uses the shared resolver (org logo \u2192 bundled ShopView default \u2192 none); added a per-row Location column (shown when more than one location is in scope) plus a \"Locations:\" export line; exports now mirror the selected columns. 2026-08-05 @claude Applied Chris's QA-review decisions (2026-08-04): Location filter hidden for single-location users; Location column changed to an access gate and made toggleable in the column selector (any user with access to more than one location sees it by default; single-location-access users never see it); report access stated as the single reports permission; download menu standardized to four options with the \"Download Summary/Expanded View (PDF/CSV)\" wording; logo fallback rule corrected (ShopView logo is a load-failure fallback, not a no-upload fallback). 2026-08-06 @claude Section 3 tidy-ups (QA review workbook 2026-08-06): reworded the Location-column visibility to the access-gated, column-selector-toggleable rule; added the export size-cap requirement (10,000 rows) with the verbatim \"too large to export\" message. QA review workbook (2026-08-06). 2026-08-12 @chris / @claude QA-cycle decisions: Total Hours links now render only when the report's location scope is exactly the user's active shop \u2014 any other scope renders plain text, because Timesheet Activities cannot take a location parameter ("
+    ]
+   },
+   "S2-R8": {
+    "pinned": [
+     "S2-R8). In the common single-location view this is simply that one location's rate \u00d7 the technician's internal hours. Every displayed number is computed from the unrounded underlying values and rounded only for display, using round-half-up (a tie rounds away from zero \u2014 0.005 \u2192 0.01). This covers the hours columns, Utilization %, and Est. Lost Labor, at every level (rows, day rows, and the Summary). Computing from unrounded values (rather than from the already-rounded per-row displays) is what lets the totals reconcile to the Timesheet Activities report to the cent. The report's columns are user-selectable. A column selector lets the user show or hide individual columns; the selection is remembered per browser. Technician is always shown; Est. Lost Labor \u2014 previously always-on \u2014 is now a hideable column shown by default. Both exports mirror the columns currently shown (Story 10,",
+     "S2-R8). Location \u2192 A shop/workplace the user has access to. The report can be scoped to one, several, or all of them (Story 9). Location (column) \u2192 A per-row column, shown by default to any user with access to more than one location (toggleable from the column selector), naming the location a row belongs to. A row whose hours are all at one location shows that location's name; a row aggregating more than one location shows the literal Multiple . A user with access to only one location never sees it. Separately, every export carries a \"Locations:\" line naming the scope, reading \"All locations\" when every location the user has access to is selected. 5. Assumptions Each location (workplace) may have its own configured default labor rate; a location may also have no default labor rate configured. A configured rate of exactly $0.00 is a known rate (it values internal hours at $0.00), distinct from no rate configured (",
+     "S2-R8: Est. Lost Labor is the technician's internal hours valued at the default labor rate of the location(s) where they were clocked: for each contributing location, (that location's default labor rate \u00d7 the technician's internal hours at that location); the per-location products are summed at full precision and the technician's total is rounded once (round-half-up). In a single-location view this is simply the one location's rate \u00d7 the technician's internal hours.",
+     "S2-R8) but over all visible technicians' internal hours: the sum, across the visible technicians and their contributing rated locations, of (that location's default labor rate \u00d7 internal hours there), summed at full precision and rounded once. A visible technician whose Est. Lost Labor is \"\u2014\" (no rate anywhere) contributes nothing to the sum; the Summary therefore understates true lost labor whenever any visible technician is \"\u2014\" or partially valued (",
+     "S2-R8).",
+     "S2-R8; in a single-location view it is simply that location's rate \u00d7 internal hours.)",
+     "S2-R8/",
+     "S2-R8,"
+    ],
+    "live": [
+     "S2-R8). In the common single-location view this is simply that one location's rate \u00d7 the technician's internal hours. The rate is the one in effect when the hours were clocked; changing a location's rate never revalues history (",
+     "S2-R8). Location \u2192 A shop/workplace the user has access to. The report can be scoped to one, several, or all of them (Story 9). Location (column) \u2192 A per-row column, shown by default to any user with access to more than one location (toggleable from the column selector), naming the location a row belongs to. A row whose hours are all at one location shows that location's name; a row aggregating more than one location shows the literal Multiple . A user with access to only one location never sees it. Separately, every export carries a \"Locations:\" line naming the scope, reading \"All locations\" when every location the user has access to is selected. 5. Assumptions Each location (workplace) may have its own configured default labor rate; a location may also have no default labor rate configured. A configured rate of exactly $0.00 is a known rate (it values internal hours at $0.00), distinct from no rate configured (",
+     "S2-R8: Est. Lost Labor is the technician's internal hours valued at the default labor rate of the location(s) where they were clocked: for each contributing location, (that location's default labor rate \u00d7 the technician's internal hours at that location); the per-location products are summed at full precision and the technician's total is rounded once (round-half-up). In a single-location view this is simply the one location's rate \u00d7 the technician's internal hours.",
+     "S2-R8) but over all visible technicians' internal hours: the sum, across the visible technicians and their contributing rated locations, of (that location's default labor rate \u00d7 internal hours there), summed at full precision and rounded once. A visible technician whose Est. Lost Labor is \"\u2014\" (no rate anywhere) contributes nothing to the sum; the Summary therefore understates true lost labor whenever any visible technician is \"\u2014\" or partially valued (",
+     "S2-R8).",
+     "S2-R8; in a single-location view it is simply that location's rate \u00d7 internal hours.)",
+     "S2-R8/",
+     "S2-R8,"
+    ]
+   },
+   "S6-R1": {
+    "pinned": [
+     "S6-R1: In a technician row, the Total Hours value is rendered as a link (every rendered technician row has clocked time > 0 per",
+     "S6-R1) apply in both light and dark mode."
+    ],
+    "live": [
+     "S6-R1: In a technician row, the Total Hours value is rendered as a link only when the report's location scope is exactly the user's active shop, which is the default view (per SV-9064; rationale in",
+     "S6-R1).",
+     "S6-R1): under that scope the opened total reconciles to the cent (",
+     "S6-R1) apply in both light and dark mode.",
+     "S6-R1/R5/R6 rewritten; the old \"known drill-through limitation\" wording replaced by the gate). Est. Lost Labor values internal hours at the default labor rate in effect when the hours were clocked; rate changes are effective-dated with no backfill, so history never revalues (new"
+    ]
+   },
+   "S6-R5": {
+    "pinned": [
+     "S6-R5: In an expanded day row, the Total Hours value links to the Timesheet Activities report for that technician on that single day."
+    ],
+    "live": [
+     "S6-R5: In an expanded day row, the Total Hours value links to the Timesheet Activities report for that technician on that single day, under the same scope gate as the technician row ("
+    ]
+   },
+   "S6-R6": {
+    "pinned": [
+     "S6-R6).",
+     "S6-R6: The link passes the technician and the date range only; it does not pass the location selection. Timesheet Activities opens for the user's currently active shop. Therefore: with a single selected location matching the active shop, the opened total reconciles to the cent ("
+    ],
+    "live": [
+     "S6-R6).",
+     "S6-R6). Under any other scope (a different single location, or multiple locations) the value renders as plain text, styled like the other hour columns. When rendered, the link is distinguished by more than color \u2014 it carries an underline (or equivalent non-color affordance), is keyboard-focusable with a visible focus indicator, and activates on Enter.",
+     "S6-R6: The link passes the technician and the date range only; Timesheet Activities cannot take a location parameter and always opens for the user's currently active shop. That is why the link is gated to the active-shop scope ("
+    ]
+   }
+  }
+ },
+ "Work In Progress": {
+  "pinned": 11,
+  "live": 15,
+  "moved": true,
+  "anchors_pinned": 124,
+  "anchors_live": 131,
+  "gone": [],
+  "added": [
+   "S11-R8",
+   "S11-R9",
+   "S4-E3",
+   "S4-R29",
+   "S4-R30",
+   "S5-R13",
+   "S9-R10b"
+  ],
+  "changed": [
+   "S10-R9",
+   "S11-R2",
+   "S11-R7",
+   "S4-E2",
+   "S4-R1",
+   "S4-R14",
+   "S4-R2",
+   "S4-R21",
+   "S4-R23",
+   "S4-R24",
+   "S4-R28",
+   "S4-R3",
+   "S5-R1",
+   "S5-R12",
+   "S5-R8",
+   "S5-R9",
+   "S6-R2",
+   "S6-R3",
+   "S7-R7a",
+   "S9-E1",
+   "S9-R5",
+   "S9-R7"
+  ],
+  "changed_detail": {
+   "S10-R9": {
+    "pinned": [
+     "S10-R9: The report supports dark mode; the table, the summary strip, the WO # link, the Inv. Hrs coloring, and the two-line asset cell all use dark-mode-legible colors meeting contrast. Story 11: Nightly WIP Snapshot Capture Once per day the report captures every open work order's earned/remaining value, so a future Trend view can read a consistent history. This version captures the snapshot; no screen in this version displays it. Design: TBD Jira: TBD Prerequisites: None (this is a backend capture behavior; it runs without a signed-in user). Requirements:"
+    ],
+    "live": [
+     "S10-R9: The report supports dark mode; the table, the summary strip, the WO # link, the Labor Delta coloring, and the two-line asset cell all use dark-mode-legible colors meeting contrast. Story 11: Nightly WIP Snapshot Capture Once per day the report captures every open work order's earned/remaining value, so a future Trend view can read a consistent history. This version captures the snapshot; no screen in this version displays it. Design: TBD Jira: TBD Prerequisites: None (this is a backend capture behavior; it runs without a signed-in user). Requirements:"
+    ]
+   },
+   "S11-R2": {
+    "pinned": [
+     "S11-R2: Each snapshot row captures, at minimum: the work order, its status, its Earned value, its Remaining value, the location and organization (copied from the work order), and the snapshot's calendar date."
+    ],
+    "live": [
+     "S11-R2: Each snapshot row captures, at minimum: the work order, its status, its Earned value, its Remaining value, its Adjustments value, the location and organization (copied from the work order), and the snapshot's calendar date."
+    ]
+   },
+   "S11-R7": {
+    "pinned": [
+     "S11-R7: No screen in this version reads the snapshot; there is no Trend tab (\u00a72, Out of scope). * Context note: the snapshot's money model is earned/remaining per work order per day \u2014 the same split the on-screen report shows (Story 4) \u2014 recorded so a future Trend view reads a money model consistent with this report. The capture is in scope for this version; the Trend view that would read it is not. 7. User Feedback Summary Trigger Message Behavior No work order qualifies for the current filters (or the advisor/customer/asset filters leave none visible) \"Empty bays, endless possibilities. Get Going!\" The application's standard reports no-data label, shown in the data area of each affected tab; that tab's Totals row is hidden. A download succeeds Caption: \"Data exported successfully.\" Success notification. A download yields no rows Title: \"Empty export\"; caption: \"Export didn't yield any results\" Warning notification. A download fails \"An error occurred while exporting the report. Please try again.\" Error notification. 8. Change Log Date Reporter Change Notes 2026-07-19 @chris / @claude Initial specification \u2014 authored from the built \"Work In Progress\" report (the earned-vs-remaining rebuild that supersedes the original WIP report), code-verified against the front-end and back-end. Captures the four progress tabs, the seven-figure summary strip, the earned/remaining/Total money model (Total = Earned + Remaining, not the grand total), the two-line Asset cell, the type-ahead Customer/Asset filters (empty = \"All\"), the Inv. Hrs labor-hours delta, and the export behavior. Trend/over-time view recorded as out of scope (nightly capture runs but has no reader in this version). Supersedes the original WIP report specification on this page. 2026-07-19 @chris / @claude Date range now defaults to \"All Time\" so a fresh visit shows every open work order (a bounded range still filters by created date) \u2014"
+    ],
+    "live": [
+     "S11-R7: No screen in this version reads the snapshot; there is no Trend tab (\u00a72, Out of scope)."
+    ]
+   },
+   "S4-E2": {
+    "pinned": [
+     "S4-E2: A row where the job has overrun its labor estimate shows a negative Inv. Hrs (for example \"-14.0\") in red; a job under its estimate shows a positive value in green. * Context note: the WO # link opens in the same browser tab and the user returns via the browser's back navigation \u2014 the suite convention shared with Sales By Customer and Sales By Rep. (This report previously opened the work order in a new tab.) * Context note: \"Days Open\" on screen is computed live and advances as time passes; in a downloaded file it is frozen at the moment the file was generated (Story 9), so a file can show a day count one higher than the screen it was generated from. Story 5: Summary Strip A strip across the top shows the whole floor as headline figures, and recomputes as the user filters. Design: See Story 10 Jira: TBD Prerequisites: The report has loaded rows (Story 2). * Context note: throughout this story, \"visible jobs\" means the work orders that pass the current advisor, customer, and asset filters (Story 7) \u2014 not the rows scrolled into view, and across all four tabs together. Requirements:"
+    ],
+    "live": [
+     "S4-E2: A row where the job has overrun its labor estimate shows a negative Labor Delta (for example \"-14.0\") in red; a job under its estimate shows a positive value in green."
+    ]
+   },
+   "S4-R1": {
+    "pinned": [
+     "S4-R1: The columns, in left-to-right order, are: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total.",
+     "S4-R1 (toggling visibility never reorders columns), with Total always last.",
+     "S4-R1), left-aligned like the other identifier columns, matching the suite's placement of this column. Requirements \u2014 accessibility:"
+    ],
+    "live": [
+     "S4-R1: The columns, in left-to-right order, are: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Adjustments, Labor Delta, Total.",
+     "S4-R1 (toggling visibility never reorders columns), with Total always last.",
+     "S4-R1), left-aligned like the other identifier columns, matching the suite's placement of this column. Requirements \u2014 accessibility:"
+    ]
+   },
+   "S4-R14": {
+    "pinned": [
+     "S4-R14: Money columns (Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Total) show US-dollar currency with a leading \" $\", two decimal places, and thousands separators; a negative value shows a leading minus before the \"$ \" (for example \" $1,234.56\" and \"-$ 1,234.56\"); a genuine zero shows \"$0.00\"."
+    ],
+    "live": [
+     "S4-R14: Money columns (Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Adjustments, Total) show US-dollar currency with a leading \" $\", two decimal places, and thousands separators; a negative value shows a leading minus before the \"$ \" (for example \" $1,234.56\" and \"-$ 1,234.56\"); a genuine zero shows \"$0.00\".",
+     "S4-R14 (leading minus). * Context note: the WO # link opens in the same browser tab and the user returns via the browser's back navigation \u2014 the suite convention shared with Sales By Customer and Sales By Rep. (This report previously opened the work order in a new tab.) * Context note: \"Days Open\" on screen is computed live and advances as time passes; in a downloaded file it is frozen at the moment the file was generated (Story 9), so a file can show a day count one higher than the screen it was generated from. Story 5: Summary Strip A strip across the top shows the whole floor as headline figures, and recomputes as the user filters. Design: See Story 10 Jira: TBD Prerequisites: The report has loaded rows (Story 2). * Context note: throughout this story, \"visible jobs\" means the work orders that pass the current advisor, customer, and asset filters (Story 7) \u2014 not the rows scrolled into view, and across all four tabs together. Requirements:"
+    ]
+   },
+   "S4-R2": {
+    "pinned": [
+     "S4-R2: On first visit, the visible columns are: WO #, Status, Customer, Asset, Advisor, Days Open, Earned, Remaining, and Total.",
+     "S4-R2."
+    ],
+    "live": [
+     "S4-R2: On first visit, the visible columns are: WO #, Status, Customer, Asset, Advisor, Days Open, Earned, Remaining, Adjustments, and Total.",
+     "S4-R2."
+    ]
+   },
+   "S4-R21": {
+    "pinned": [
+     "S4-R21: Total is Earned plus Remaining. It is NOT the work order's stored grand total, and it is NOT the sum of any other displayed subtotal beyond Earned + Remaining."
+    ],
+    "live": [
+     "S4-R21: Total is Earned plus Remaining plus Adjustments, so a row's Total matches what invoicing will produce for that work order. It is NOT the work order's stored grand total, and it is NOT the sum of any other displayed subtotal beyond Earned + Remaining + Adjustments."
+    ]
+   },
+   "S4-R23": {
+    "pinned": [
+     "S4-R23: Inv. Hrs shows the quoted labor hours minus the worked (clocked) labor hours across the approved lines, as a signed number with one decimal place (\"+2.0\", \"-14.0\", \"0.0\"). A zero value shows unsigned as \"0.0\" (never \"+0.0\" or blank)."
+    ],
+    "live": [
+     "S4-R23: Labor Delta shows the quoted labor hours minus the worked (clocked) labor hours across the approved lines, as a signed number with one decimal place (\"+2.0\", \"-14.0\", \"0.0\"). A zero value shows unsigned as \"0.0\" (never \"+0.0\" or blank)."
+    ]
+   },
+   "S4-R24": {
+    "pinned": [
+     "S4-R24: On screen, Inv. Hrs is colored: green when positive, red when negative, and the default text color at exactly 0.0."
+    ],
+    "live": [
+     "S4-R24: On screen, Labor Delta is colored: green when positive, red when negative, and the default text color at exactly 0.0."
+    ]
+   },
+   "S4-R28": {
+    "pinned": [
+     "S4-R28: Sorting reorders the rows within the active tab only; the Totals row stays at the bottom. Edge Cases:"
+    ],
+    "live": [
+     "S4-R28: Sorting reorders the rows within the active tab only; the Totals row stays at the bottom."
+    ]
+   },
+   "S4-R3": {
+    "pinned": [
+     "S4-R3: Every other column (VIN, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Inv. Hrs) is available in the column selector and off by default (Story 8). The Location column is offered in the column selector to any user with access to more than one location; for that user it is shown by default and can be toggled on or off. A user with access to only one location never sees it and it is not offered to them.",
+     "S4-R3 is available in the control and off by default."
+    ],
+    "live": [
+     "S4-R3: Every other column (VIN, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Labor Delta) is available in the column selector and off by default (Story 8). The Location column is offered in the column selector to any user with access to more than one location; for that user it is shown by default and can be toggled on or off. A user with access to only one location never sees it and it is not offered to them.",
+     "S4-R3 is available in the control and off by default."
+    ]
+   },
+   "S5-R1": {
+    "pinned": [
+     "S5-R1: The summary strip shows seven figures, in this order: Total Earned , Total Remaining , Not Started , Started \u2014 Earned , Started \u2014 Remaining , Ready to Invoice , and Estimates ."
+    ],
+    "live": [
+     "S5-R1: The summary strip shows eight figures, in this order: Total Earned , Total Remaining , Not Started , Started \u2014 Earned , Started \u2014 Remaining , Ready to Invoice , Estimates , and Adjustments ."
+    ]
+   },
+   "S5-R12": {
+    "pinned": [
+     "S5-R12: Each figure shows a small information icon; hovering, focusing, or tapping it reveals its explanation, in plain language, verbatim as follows: Total Earned \u2014 \"Work you have already done but have not billed yet \u2014 the money waiting to be collected.\" Total Remaining \u2014 \"Approved work you still have to do \u2014 the money that comes in once it is finished.\" Not Started \u2014 \"Approved jobs nobody has started yet. The full amount is still ahead.\" Started \u2014 Earned \u2014 \"Jobs in progress: the work already done but not billed yet.\" Started \u2014 Remaining \u2014 \"Jobs in progress: the work still left to finish.\" Ready to Invoice \u2014 \"Finished jobs, ready to bill the customer.\" Estimates \u2014 \"Quotes the customer has not approved yet \u2014 not counted in the totals.\" * Context note: \"Started \u2014 Earned\" and \"Started \u2014 Remaining\" describe approved jobs that are underway (the \"Approved - partially completed\" tab). \"Started\" is used, rather than \"In Progress\", so the figures are not confused with the \"In Progress\" work-order status badge. Story 6: Per-Tab Totals Row Each tab has a Totals row that sums the visible jobs in that tab. Design: See Story 10 Jira: TBD Prerequisites: The tab has at least one visible job (Story 2). Requirements:",
+     "S5-R12) is reachable by keyboard focus and exposes its explanation to assistive technology, not by hover alone.",
+     "S5-R12). Removed the export-only \"Lead Tech\" column (dropped"
+    ],
+    "live": [
+     "S5-R12: Each figure shows a small information icon; hovering, focusing, or tapping it reveals its explanation, in plain language, verbatim as follows: Total Earned \u2014 \"Work you have already done but have not billed yet \u2014 the money waiting to be collected.\" Total Remaining \u2014 \"Approved work you still have to do \u2014 the money that comes in once it is finished.\" Not Started \u2014 \"Approved jobs nobody has started yet. The full amount is still ahead.\" Started \u2014 Earned \u2014 \"Jobs in progress: the work already done but not billed yet.\" Started \u2014 Remaining \u2014 \"Jobs in progress: the work still left to finish.\" Ready to Invoice \u2014 \"Finished jobs, ready to bill the customer.\" Estimates \u2014 \"Quotes the customer has not approved yet \u2014 not counted in the totals.\" Adjustments \u2014 \"Work-order-level fees and discounts that will be billed at invoicing. Fees count positive, discounts count negative.\"",
+     "S5-R12) is reachable by keyboard focus and exposes its explanation to assistive technology, not by hover alone.",
+     "S5-R12). Removed the export-only \"Lead Tech\" column (dropped"
+    ]
+   },
+   "S5-R8": {
+    "pinned": [
+     "S5-R8: Estimates is the total quoted value of the jobs in the \"Estimates\" tab, and is shown in a muted style."
+    ],
+    "live": [
+     "S5-R8: Estimates is the total quoted value of the jobs in the \"Estimates\" tab, including their work-order-level adjustments so the figure matches the estimate document the customer sees, and is shown in a muted style."
+    ]
+   },
+   "S5-R9": {
+    "pinned": [
+     "S5-R9: The Estimates figure is excluded from Total Earned and from Total Remaining."
+    ],
+    "live": [
+     "S5-R9: The Estimates and Adjustments figures are excluded from Total Earned and from Total Remaining."
+    ]
+   },
+   "S6-R2": {
+    "pinned": [
+     "S6-R2: The Totals row sums each visible money column (Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Total) across the tab's visible jobs."
+    ],
+    "live": [
+     "S6-R2: The Totals row sums each visible money column (Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Adjustments, Total) across the tab's visible jobs."
+    ]
+   },
+   "S6-R3": {
+    "pinned": [
+     "S6-R3: When the Inv. Hrs column is shown, the Totals row shows the sum of the visible jobs' Inv. Hrs, in the same signed one-decimal format and the same green/red/default coloring as a row."
+    ],
+    "live": [
+     "S6-R3: When the Labor Delta column is shown, the Totals row shows the sum of the visible jobs' Labor Delta, in the same signed one-decimal format and the same green/red/default coloring as a row."
+    ]
+   },
+   "S7-R7a": {
+    "pinned": [
+     "S7-R7a and reworded the \u00a73 Key Decision + the Story 7 context note). The \"All Time\" removal is a Chris product/UX decision, not a scalability fix \u2014 Milan had approved keeping All Time (its population is bounded to currently-open work orders, not a historical scan, so it was never a scalability risk). Local spec .md / .txt were also re-synced from the current Confluence four-tab design (they had held the superseded two-tab Live/Trend draft). Not yet pushed to Confluence. 2026-07-29 @chris / @claude Aligned the per-row Location column to the suite auto-visibility rule (shown only when more than one location is in scope) and added a \"Locations:\" export line and a constant-width Location filter. Suite location-column consistency. 2026-08-05 @claude Applied Chris's QA-review decisions (2026-08-04): report access stated as the single reports permission; Location column changed to an access gate and made toggleable in the column selector (any user with access to more than one location sees it by default; single-location-access users never see it); date picker aligned to nine presets plus a custom-range calendar (no Today, Yesterday, or Custom item). QA review workbook (2026-08-04). 2026-08-05 @claude Applied Parth's WIP review (2026-08-05): clarified that the Advisor, Customer, and Asset filters apply across all open jobs in the current scope (the report loads the complete set in one request), not only a loaded subset; the WO # is a link only when the user has permission to access Work Orders, otherwise it is shown as plain text. Parth review (2026-08-05). 2026-08-06 @claude Section 3 tidy-ups (QA review workbook 2026-08-06): reworded the Location-column visibility to the access-gated, column-selector-toggleable rule; added the export size-cap requirement (10,000 rows) with the verbatim \"too large to export\" message. QA review workbook (2026-08-06). 2026-08-10 @chris / @claude Locked the QA-cycle decisions: line-state bucketing (a line's value always sits in exactly one bucket; unapproved lines stay in Estimates even on an approved WO; buckets sum to total quoted); fixed-price lines valued at their fixed amounts with binary earning on line completion; core charge included in parts value at every stage with core assessment never moving WIP figures. SV-9027, SV-9028, SV-9035, SV-9040, SV-9044, SV-9057, SV-9058."
+    ],
+    "live": [
+     "S7-R7a and reworded the \u00a73 Key Decision + the Story 7 context note). The \"All Time\" removal is a Chris product/UX decision, not a scalability fix \u2014 Milan had approved keeping All Time (its population is bounded to currently-open work orders, not a historical scan, so it was never a scalability risk). Local spec .md / .txt were also re-synced from the current Confluence four-tab design (they had held the superseded two-tab Live/Trend draft). Not yet pushed to Confluence. 2026-07-29 @chris / @claude Aligned the per-row Location column to the suite auto-visibility rule (shown only when more than one location is in scope) and added a \"Locations:\" export line and a constant-width Location filter. Suite location-column consistency. 2026-08-05 @claude Applied Chris's QA-review decisions (2026-08-04): report access stated as the single reports permission; Location column changed to an access gate and made toggleable in the column selector (any user with access to more than one location sees it by default; single-location-access users never see it); date picker aligned to nine presets plus a custom-range calendar (no Today, Yesterday, or Custom item). QA review workbook (2026-08-04). 2026-08-05 @claude Applied Parth's WIP review (2026-08-05): clarified that the Advisor, Customer, and Asset filters apply across all open jobs in the current scope (the report loads the complete set in one request), not only a loaded subset; the WO # is a link only when the user has permission to access Work Orders, otherwise it is shown as plain text. Parth review (2026-08-05). 2026-08-06 @claude Section 3 tidy-ups (QA review workbook 2026-08-06): reworded the Location-column visibility to the access-gated, column-selector-toggleable rule; added the export size-cap requirement (10,000 rows) with the verbatim \"too large to export\" message. QA review workbook (2026-08-06). 2026-08-10 @chris / @claude Locked the QA-cycle decisions: line-state bucketing (a line's value always sits in exactly one bucket; unapproved lines stay in Estimates even on an approved WO; buckets sum to total quoted); fixed-price lines valued at their fixed amounts with binary earning on line completion; core charge included in parts value at every stage with core assessment never moving WIP figures. SV-9027, SV-9028, SV-9035, SV-9040, SV-9044, SV-9057, SV-9058. 2026-08-12 @chris / @claude Added the work-order-level Adjustments money model: Adjustments column (fees positive, discounts negative, one whole-work-order amount, never allocated into Labor or Parts), Total = Earned + Remaining + Adjustments, muted Adjustments summary figure excluded from the two headline totals, Estimates figure now matches the estimate document, Totals-row coverage, snapshot capture of adjustment cents in new columns with earned/remaining staying gross and no history backfill, plus Terminology and Key Decisions entries. Shared Adjustments proposal (WIP + SBC) from Nebojsa's F&D repro. 2026-08-12 @claude Consistency sweep after the Adjustments change: reworded the three prose statements that still said fees and discounts are not shown (\u00a72 Out of scope, the \u00a73 Total key decision, and the \u00a75 assumption) \u2014 tax remains the only excluded billing amount. Follow-up to the same-day Adjustments row. 2026-08-12 @chris / @claude Column heading renamed from \"Inv. Hrs\" to \"Labor Delta\" everywhere it appears (screen, column selector, sorting references, CSV and PDF layouts), reversing the earlier label decision: the old heading named a quantity the column does not hold (it holds invoiced minus worked, a signed delta). Display label only \u2014 the calculation, signed one-decimal format, coloring, and field names are unchanged. Per SV-9071 (suite-wide). 2026-08-12 @chris / @claude Suite rule added: the CSV carries the same filter-summary lines as the PDF header, verbatim ("
+    ]
+   },
+   "S9-E1": {
+    "pinned": [
+     "S9-E1). 3. Key Decisions Buckets are keyed on line state, not work-order status. Every line''s value sits in exactly one bucket: an unapproved line counts in Estimates, an approved untouched line in Approved - not started, a started line in Approved - partially completed (split Earned/Remaining), and a completed not-invoiced line in Completed. The buckets are disjoint and always sum to the work order''s total quoted value; approving one line never removes another line''s value from the report. A work order carrying lines in more than one state appears in each matching tab, showing only that tab''s slice of its money; the status column still shows the work order''s true status. The Estimates tab count therefore reads \"work orders carrying unapproved value,\" and an unapproved line ages from the line''s creation date. (Per SV-9027.) Fixed-price lines are valued at their fixed amounts, and earn on completion. A line priced with a fixed labor total, or a fixed line total split into labor and part portions, is valued at those fixed amounts - the numbers the customer is billed - not at underlying picked parts or an hourly derivation. When progress cannot be derived (no invoiced hours), earning is binary: the full fixed amount stays in Remaining until the line is completed, then moves entirely to Earned. When invoiced hours exist, the derived-rate proration applies. A completed work order never leaves value stuck in Remaining. (Per SV-9028, SV-9035, SV-9040, SV-9044.) A core charge counts in parts value at every stage. The core charge is billed to the customer, so it is included in Parts Remaining and Parts Earned consistently across all tabs, including Estimates. Marking a returned core OK or Not OK never changes WIP figures - the core assessment is a credit event handled at invoicing, outside this report. (Per SV-9057, SV-9058.) A job's Total is Earned + Remaining, not the work order's grand total. The report's money figure is deliberately the approved-work earned/remaining sum, so it excludes tax, fees, discounts, and any non-approved lines. A Total that differs from the work order's own grand total is expected, not a data error. The date range defaults to \"This Week.\" A fresh visit shows the open work orders created in the current week; the user can widen to any other preset or build a custom range on the calendar. \"All Time\" is not offered (Story 7). Every open job is listed, including one with nothing approved yet. An open estimate with no approved lines still appears (in the Estimates tab), with its earned and remaining both at $0.00. Jobs are separated into four tabs by progress, and there is no on-screen status filter. The tab a job lands in is derived from its status and whether any work has started (Story 3); the four tabs take the place of a status filter. The summary strip recomputes from the jobs currently visible. Filtering by advisor, customer, or asset immediately re-rolls the headline figures and every tab's Totals row from the still-visible jobs, with no reload. The advisor, customer, and asset filters work on screen only; the date range and location filters reload the report. Narrowing to an advisor/customer/asset hides rows instantly; changing the date range or location re-fetches from the server. The report remembers the user's date range, advisor / customer / asset selections, location selection, column selection, and active tab (per browser) and restores them on return. \"Est.\" labor hours are the measuring stick on this not-yet-invoiced report. The Inv. Hrs column compares the hours quoted on the approved work against the hours actually worked, so a manager can see whether a job is beating or overrunning its labor estimate before it is billed (Story 4). The nightly WIP snapshot is in scope. Once per day the report captures each open work order's earned and remaining value, keyed per work order per day, using the same money model as the on-screen report (Story 11). No screen reads it in this version; it is captured now so a future Trend view reads a consistent history. The per-row Location column is access-gated and toggleable. Any user with access to more than one location sees it by default and can toggle it on or off from the column selector; a user with access to only one location never sees it, so a single-location view is never cluttered with a redundant column. Because a work order belongs to exactly one location, each WIP row names its own location \u2014 a WIP row never shows \"Multiple\". Every export still names the scope on a \"Locations:\" line. * Context note: removing \"All Time\" and defaulting to \"This Week\" is a Chris product decision, not a scalability fix. Milan Zivanovic had approved keeping \"All Time\" on WIP \u2014 its population is bounded to currently-open work orders (not a historical scan), so \"All Time\" was never a scalability risk. This change is a product/UX choice. * Context note: the report saves its settings in the user's browser only, not on their account. Settings persist across visits and reloads in the same browser but do not follow the user to another browser or device. 4. Terminology Open work order \u2192 A service work order whose status is Estimate, Approved, In Progress, Review, or Complete. Invoiced, Paid, and Declined work orders are not open and never appear. Approved line / approved work \u2192 A line item the shop has authorized (line status authorized or complete). All of the report's money comes only from approved lines. Earned \u2192 The value of approved work already performed: the portion of approved labor covered by clocked time (capped at the quoted amount per line) plus approved parts already received. Remaining \u2192 The value of approved work not yet performed: approved labor not yet earned plus approved parts ordered but not yet received. Total \u2192 For a row, Earned + Remaining. Shown as the pinned, bold headline column. (Not the work order's stored grand total.) Inv. Hrs (labor-hours delta) \u2192 Quoted labor hours minus worked (clocked) labor hours across the approved lines. Positive means the job is under its labor estimate; negative means it has overrun. Days Open \u2192 Whole days since the work order was created: elapsed time divided by 24 hours, floored (never negative). Asset \u2192 The vehicle or unit the job is for, identified by its unit number and its vehicle identification number. Snapshot \u2192 A once-daily recorded set of per-work-order earned/remaining figures for a given calendar date (Story 11), captured for a future Trend view. Location (column) \u2192 A per-row column naming the work order's location, shown by default to any user with access to more than one location, who can toggle it on or off from the column selector; a user with access to only one location never sees it. In every export it is headed \"Branch\" (",
+     "S9-E1) and is accompanied by a \"Locations:\" line naming the scope. 5. Assumptions Approved line items carry the data needed to value them: a labor time estimate and a labor rate for labor, and a quantity and sell price for parts. A work order's created date is the anchor for Days Open and for the date-range filter. Fees, discounts, and tax are not resolved for these non-invoiced work orders and are therefore not shown on this report. 6. Requirements Story 1: Report Access and Tabs The report is reachable from the reports navigation and opens on the first section tab, with four tabs in total. Design: See Story 10 Jira: TBD Prerequisites: The user must have the single reports permission \u2014 the one permission that grants access to all reports; there is no per-report permission. * Context note: the report reuses one existing reporting permission; it does not add a new one, and the same permission covers the report and its downloads. Requirements:",
+     "S9-E1). Edge Cases:",
+     "S9-E1: In a download, the asset column is headed \"Unit\" and the location column is headed \"Branch\" (they read \"Asset\" and \"Location\" on screen). This label difference is a known v1 limitation, not a defect. Error Handling:"
+    ],
+    "live": [
+     "S9-E1). 3. Key Decisions Buckets are keyed on line state, not work-order status. Every line''s value sits in exactly one bucket: an unapproved line counts in Estimates, an approved untouched line in Approved - not started, a started line in Approved - partially completed (split Earned/Remaining), and a completed not-invoiced line in Completed. The buckets are disjoint and always sum to the work order''s total quoted value; approving one line never removes another line''s value from the report. A work order carrying lines in more than one state appears in each matching tab, showing only that tab''s slice of its money; the status column still shows the work order''s true status. The Estimates tab count therefore reads \"work orders carrying unapproved value,\" and an unapproved line ages from the line''s creation date. (Per SV-9027.) Fixed-price lines are valued at their fixed amounts, and earn on completion. A line priced with a fixed labor total, or a fixed line total split into labor and part portions, is valued at those fixed amounts - the numbers the customer is billed - not at underlying picked parts or an hourly derivation. When progress cannot be derived (no invoiced hours), earning is binary: the full fixed amount stays in Remaining until the line is completed, then moves entirely to Earned. When invoiced hours exist, the derived-rate proration applies. A completed work order never leaves value stuck in Remaining. (Per SV-9028, SV-9035, SV-9040, SV-9044.) A core charge counts in parts value at every stage. The core charge is billed to the customer, so it is included in Parts Remaining and Parts Earned consistently across all tabs, including Estimates. Marking a returned core OK or Not OK never changes WIP figures - the core assessment is a credit event handled at invoicing, outside this report. (Per SV-9057, SV-9058.) A job's Total is Earned + Remaining + Adjustments, not the work order's grand total. The report's money figure is deliberately the approved-work earned/remaining sum plus the work-order-level Adjustments net, so it excludes tax and any non-approved lines. A Total that differs from the work order's own grand total is expected, not a data error. The date range defaults to \"This Week.\" A fresh visit shows the open work orders created in the current week; the user can widen to any other preset or build a custom range on the calendar. \"All Time\" is not offered (Story 7). Every open job is listed, including one with nothing approved yet. An open estimate with no approved lines still appears (in the Estimates tab), with its earned and remaining both at $0.00. Jobs are separated into four tabs by progress, and there is no on-screen status filter. The tab a job lands in is derived from its status and whether any work has started (Story 3); the four tabs take the place of a status filter. The summary strip recomputes from the jobs currently visible. Filtering by advisor, customer, or asset immediately re-rolls the headline figures and every tab's Totals row from the still-visible jobs, with no reload. The advisor, customer, and asset filters work on screen only; the date range and location filters reload the report. Narrowing to an advisor/customer/asset hides rows instantly; changing the date range or location re-fetches from the server. The report remembers the user's date range, advisor / customer / asset selections, location selection, column selection, and active tab (per browser) and restores them on return. \"Est.\" labor hours are the measuring stick on this not-yet-invoiced report. The Labor Delta column compares the hours quoted on the approved work against the hours actually worked, so a manager can see whether a job is beating or overrunning its labor estimate before it is billed (Story 4). The nightly WIP snapshot is in scope. Once per day the report captures each open work order's earned and remaining value, keyed per work order per day, using the same money model as the on-screen report (Story 11). No screen reads it in this version; it is captured now so a future Trend view reads a consistent history. The per-row Location column is access-gated and toggleable. Any user with access to more than one location sees it by default and can toggle it on or off from the column selector; a user with access to only one location never sees it, so a single-location view is never cluttered with a redundant column. Because a work order belongs to exactly one location, each WIP row names its own location \u2014 a WIP row never shows \"Multiple\". Every export still names the scope on a \"Locations:\" line. Work-order-level fees and discounts surface as a shared Adjustments column. Nebojsa's repro showed WIP excluded them entirely (a $500 tow-in fee showed nowhere), understating the report against what invoicing produces. WIP shows the signed net (fees positive, discounts negative) as one whole-work-order Adjustments column \u2014 never split into Earned/Remaining and never allocated into Labor or Parts, because a flat fee has no labor/parts basis \u2014 with Total = Earned + Remaining + Adjustments, a muted Adjustments summary figure, and Adjustments captured in the nightly snapshot as new columns with no history backfill. The same column ships on Sales By Customer so its rows tie out. (Shared WIP + SBC proposal, 2026-08-12.) * Context note: removing \"All Time\" and defaulting to \"This Week\" is a Chris product decision, not a scalability fix. Milan Zivanovic had approved keeping \"All Time\" on WIP \u2014 its population is bounded to currently-open work orders (not a historical scan), so \"All Time\" was never a scalability risk. This change is a product/UX choice. * Context note: the report saves its settings in the user's browser only, not on their account. Settings persist across visits and reloads in the same browser but do not follow the user to another browser or device. 4. Terminology Open work order \u2192 A service work order whose status is Estimate, Approved, In Progress, Review, or Complete. Invoiced, Paid, and Declined work orders are not open and never appear. Approved line / approved work \u2192 A line item the shop has authorized (line status authorized or complete). All of the report's money comes only from approved lines. Earned \u2192 The value of approved work already performed: the portion of approved labor covered by clocked time (capped at the quoted amount per line) plus approved parts already received. Remaining \u2192 The value of approved work not yet performed: approved labor not yet earned plus approved parts ordered but not yet received. Total \u2192 For a row, Earned + Remaining + Adjustments. Shown as the pinned, bold headline column. (Not the work order's stored grand total.) Adjustments \u2192 The signed net of a work order's work-order-level fees and discounts: fees positive, discounts negative. Line-level fees and discounts are not part of it \u2014 they stay folded into their line's Labor or Parts value. Labor Delta (labor-hours delta) \u2192 (Column renamed from \"Inv. Hrs\" per SV-9071.) Quoted labor hours minus worked (clocked) labor hours across the approved lines. Positive means the job is under its labor estimate; negative means it has overrun. Days Open \u2192 Whole days since the work order was created: elapsed time divided by 24 hours, floored (never negative). Asset \u2192 The vehicle or unit the job is for, identified by its unit number and its vehicle identification number. Snapshot \u2192 A once-daily recorded set of per-work-order earned/remaining figures for a given calendar date (Story 11), captured for a future Trend view. Location (column) \u2192 A per-row column naming the work order's location, shown by default to any user with access to more than one location, who can toggle it on or off from the column selector; a user with access to only one location never sees it. In every export it is headed \"Branch\" (",
+     "S9-E1) and is accompanied by a \"Locations:\" line naming the scope. 5. Assumptions Approved line items carry the data needed to value them: a labor time estimate and a labor rate for labor, and a quantity and sell price for parts. A work order's created date is the anchor for Days Open and for the date-range filter. Tax is not resolved for these non-invoiced work orders and is therefore not shown on this report. Work-order-level fees and discounts are already known before invoicing and are shown as the Adjustments column (",
+     "S9-E1).",
+     "S9-E1: In a download, the asset column is headed \"Unit\" and the location column is headed \"Branch\" (they read \"Asset\" and \"Location\" on screen). This label difference is a known v1 limitation, not a defect. Error Handling:"
+    ]
+   },
+   "S9-R5": {
+    "pinned": [
+     "S9-R5: Money values use the same \" $1,234.56\" / \"-$ 1,234.56\" format as on screen; Inv. Hrs uses the same signed one-decimal format."
+    ],
+    "live": [
+     "S9-R5: Money values use the same \" $1,234.56\" / \"-$ 1,234.56\" format as on screen; Labor Delta uses the same signed one-decimal format."
+    ]
+   },
+   "S9-R7": {
+    "pinned": [
+     "S9-R7: In both downloads, the Inv. Hrs column is monochrome \u2014 the green/red coloring is applied on screen and in the PDF only, never in the CSV."
+    ],
+    "live": [
+     "S9-R7: In both downloads, the Labor Delta column is monochrome \u2014 the green/red coloring is applied on screen and in the PDF only, never in the CSV."
+    ]
+   }
+  }
+ },
+ "Inventory Value": {
+  "pinned": 5,
+  "live": 6,
+  "moved": true,
+  "anchors_pinned": 113,
+  "anchors_live": 114,
+  "gone": [],
+  "added": [
+   "S10-R15a"
+  ],
+  "changed": [
+   "S11-R6",
+   "S7-R6"
+  ],
+  "changed_detail": {
+   "S11-R6": {
+    "pinned": [
+     "S11-R6: Snapshot retention. Captured snapshots are retained at reducing granularity as they age, measured from the current date: 0\u201313 months old: every daily capture is kept \u2014 full daily per-part detail. This covers the report's longest date preset (366 days / This Year / Last Year) entirely at daily resolution. older than 13 months: reduced to monthly \u2014 only the last capture of each calendar month is retained; the other daily captures in this band are pruned. Pruning runs as part of, or alongside, the nightly capture. The as-of resolution (",
+     "S11-R6): full daily per-part detail for ~13 months, then the last capture of each month beyond that; the \"closest recorded day on or before\" rule serves the thinned history unchanged. Valuation rules (fixed price \u2192 matrix markup \u2192 cost fallback) unchanged \u2014 approved by Milan. 2026-07-29 @chris / @claude Added a per-row Location column (shown only when more than one location is in scope) plus a \"Locations:\" line and a constant-width Location filter. Suite location-column consistency. 2026-08-05 @claude Applied Chris's QA-review decisions (2026-08-04): Location filter hidden for single-location users; Location column changed to an access gate and made toggleable in the column selector (any user with access to more than one location sees it by default; single-location-access users never see it); report access stated as the single reports permission; date picker aligned to nine presets plus a custom-range calendar (no Today, Yesterday, or Custom item); documented that the spreadsheet export also carries the \"as of\" line. QA review workbook (2026-08-04). 2026-08-06 @claude Section 3 tidy-ups (QA review workbook 2026-08-06): reworded the Location-column visibility to the access-gated, column-selector-toggleable rule, matching the decision note already in this spec. QA review workbook (2026-08-06)."
+    ],
+    "live": [
+     "S11-R6: Snapshot retention. Captured snapshots are retained at reducing granularity as they age, measured from the current date: 0\u201313 months old: every daily capture is kept \u2014 full daily per-part detail. This covers the report's longest date preset (366 days / This Year / Last Year) entirely at daily resolution. older than 13 months: reduced to monthly \u2014 only the last capture of each calendar month is retained; the other daily captures in this band are pruned. Pruning runs as part of, or alongside, the nightly capture. The as-of resolution (",
+     "S11-R6): full daily per-part detail for ~13 months, then the last capture of each month beyond that; the \"closest recorded day on or before\" rule serves the thinned history unchanged. Valuation rules (fixed price \u2192 matrix markup \u2192 cost fallback) unchanged \u2014 approved by Milan. 2026-07-29 @chris / @claude Added a per-row Location column (shown only when more than one location is in scope) plus a \"Locations:\" line and a constant-width Location filter. Suite location-column consistency. 2026-08-05 @claude Applied Chris's QA-review decisions (2026-08-04): Location filter hidden for single-location users; Location column changed to an access gate and made toggleable in the column selector (any user with access to more than one location sees it by default; single-location-access users never see it); report access stated as the single reports permission; date picker aligned to nine presets plus a custom-range calendar (no Today, Yesterday, or Custom item); documented that the spreadsheet export also carries the \"as of\" line. QA review workbook (2026-08-04). 2026-08-06 @claude Section 3 tidy-ups (QA review workbook 2026-08-06): reworded the Location-column visibility to the access-gated, column-selector-toggleable rule, matching the decision note already in this spec. QA review workbook (2026-08-06). 2026-08-12 @chris / @claude Suite rule added: the CSV carries the same filter-summary lines as the PDF header, verbatim ("
+    ]
+   },
+   "S7-R6": {
+    "pinned": [
+     "S7-R6) is inserted between Vendor and Qty on Hand; it is hidden for a single-location scope.",
+     "S7-R6: The report includes a per-row Location column that is shown to any user with access to more than one location: it appears by default and can be toggled on or off from the column-selection control (Story 8); a user with access to only one location never sees it.",
+     "S7-R6), and always includes a \"Locations:\" line naming the location or locations the report is scoped to, or \"All locations\" when every location the user has access to is selected \u2014 matching the on-screen scope. In a PDF the \"Locations:\" line appears in the header area; in a CSV it appears as a leading metadata line above the column-header row. Error Handling:"
+    ],
+    "live": [
+     "S7-R6) is inserted between Vendor and Qty on Hand; it is hidden for a single-location scope.",
+     "S7-R6: The report includes a per-row Location column that is shown to any user with access to more than one location: it appears by default and can be toggled on or off from the column-selection control (Story 8); a user with access to only one location never sees it.",
+     "S7-R6), and always includes a \"Locations:\" line naming the location or locations the report is scoped to, or \"All locations\" when every location the user has access to is selected \u2014 matching the on-screen scope. In a PDF the \"Locations:\" line appears in the header area; in a CSV it appears as a leading metadata line above the column-header row."
+    ]
+   }
+  }
+ }
+}
