@@ -28,8 +28,16 @@
 | **Already present but INCOMPLETE — the missing half added** | **2** |
 | **Deliberately excluded, with the reason** | **2** |
 
-**98 = 80 + 16 + 2 + 2 — the gate closes.** Counted from the tables below, not from notes:
+**98 = 80 + 16 + 2 — the gate closes, and the 2 INCOMPLETE rows sit INSIDE the 80** (R24 and O22
+both carry a PRESENT verdict in the tables; they are a subset, not a fourth summand). Counted from
+the tables below, not from notes:
 **52 rules + 32 operational facts + 12 working practices + 2 exclusions = 98.**
+**⚠️ SUPERSEDED EQUATION, KEPT AND DATED (2026-08-13, independent recheck):** this line previously
+read *"98 = 80 + 16 + 2 + 2 — the gate closes"* — **which sums to 100 and fails its own gate**,
+because it counted the 2 incomplete rows both inside the 80 and as their own summand. The row-count
+gate on the next line (52 + 32 + 12 + 2 = 98) was independently re-counted from the tables and is
+correct; the summand equation was not. **The same subset reading applies to §6's corrected total:
+in "111 = 80 + 16 + 13 + 2" the "+2" is the EXCLUSIONS, and the 2 incomplete are inside the 80.**
 
 > **⚠️ SUPERSEDED AS A TOTAL, 2026-08-13 — THE INVENTORY IS 111, NOT 98. See §6 at the end of this
 > file.** A second, **adversarial** pass asked a harder question than this one — *would a fresh session
