@@ -133,10 +133,37 @@ slightly different path. **Correct it so the tester can run the case, and LOG it
 **NO → SUBSTANTIVE.** **The route or the state the source describes DOES NOT EXIST on the build, or
 cannot be set up at all.** **NEVER SILENTLY REWRITTEN.** Instead:
 - **RECORD IT AS A DIVERGENCE WITH BOTH TEXTS QUOTED** and the affected C-ids;
-- give the case **the smallest change that stops a tester being stranded** — normally
-  **`AUTOMATION: HOLD` with a plain reason and a "mark BLOCKED, not failed" line**;
+- give the case **the smallest change that stops a tester being stranded** — **and the smallest change
+  is usually NOT a hold; read the next block before reaching for one**;
 - **RAISE IT TO THE QA LEAD** (his words: *"If any precondition learned from the sources is not doable
   on the build should be raised to me"*) and log it in the outstanding register.
+
+### 🛑 AND THE SMALLEST CHANGE IS RARELY `AUTOMATION: HOLD` — A HOLD ON A RUNNABLE CASE DISARMS IT
+
+**This paragraph is a 2026-08-13 correction to this file, and the superseded wording is kept above,
+dated.** It previously read *"normally `AUTOMATION: HOLD` with a plain reason and a 'mark BLOCKED, not
+failed' line"* — **which is right only when the tester genuinely cannot execute the steps, and points
+the wrong way in every other case.** `HOLD` tells the tester to mark the case **BLOCKED**, so **a hold
+on a case whose steps DO run removes its ability to fail** exactly as surely as a build-derived
+expectation does. **It simply looks like caution instead of like a mistake.**
+
+**⇒ DECIDE ON THE STEPS, NOT ON HOW BADLY THE CASE LOOKS LIKE FAILING. Core §15.1a carries the full
+four-row table and the worked examples; the short form:**
+
+| The tester… | Marker |
+|---|---|
+| **cannot execute the steps** — route, screen or precondition genuinely absent | **`HOLD`** + *"mark BLOCKED, not failed"* |
+| **can execute them; the build fails the requirement; a LIVE ticket describes it** | **`READY - EXPECT FAIL (SV-xxxx)`** + symptom + three outcomes |
+| **can execute them; the build fails the requirement; NO live ticket** | **plain `READY`, and change nothing else** — the tester fails it and is right to |
+| **can execute most of them; ONE step cannot be performed** | **plain `READY`** + a **verdict-free** note naming that step: *"mark that step blocked, record the rest normally"* |
+
+**All three worked examples are live and from the day before a release**, and two of them are cases
+where **a prepared hold was deliberately not applied**: **[C30107](https://shopview.testrail.io/index.php?/cases/view/30107)**
+became `READY - EXPECT FAIL (SV-9074)` because a hold would have sent a requirement gap **on a report
+handed off as FINAL** through the manual run unreported;
+**[C38913](https://shopview.testrail.io/index.php?/cases/view/38913)** kept plain `READY` because
+steps 1–7 and 9 all run and only step 8 cannot;
+**[C38897](https://shopview.testrail.io/index.php?/cases/view/38897)** was **not edited at all**.
 
 ### 🔥 THE DANGEROUS EDGE — and it is new
 
@@ -308,10 +335,16 @@ evidence about the request, never about what the field should have been.**
 ### 5.1 🛑 FE blocks + BE/API allows = a PASS, not a defect (Rule 24)
 
 Where a control is hidden or disabled in the UI for a role **but the same action still succeeds
-through the API**, the case is a **PASS**. **The front-end gate IS the tester-facing behaviour and is
-the pass criterion**; front-end-only enforcement is accepted product policy — this matches the
-ShopView model, where granular permissions are largely front-end display gates the backend does not
-independently enforce.
+through the API**, this is **EXPECTED BEHAVIOUR — NOT A DEFECT.** **The front-end gate IS the
+tester-facing behaviour and is the pass criterion**; front-end-only enforcement is accepted product
+policy — this matches the ShopView model, where granular permissions are largely front-end display
+gates the backend does not independently enforce.
+
+**⚠️ READ THAT AS A RULE ABOUT WHETHER IT IS A DEFECT, NOT ABOUT WHO GRADES IT — the two were one
+sentence in Rule 24 because Rule 24 predates the 2026-08-11 re-scoping.** **Rule 24 decides *"is this
+a bug?"*, and that is ours. *"Did it pass?"* is the tester's** (core §1.6, and G4 below). So this skill
+**writes the tester-facing note and does not mark anything Passed**; the note is addressed to the
+tester precisely because the grading is theirs.
 
 **Such a case carries a plain tester-facing line:** *"Note for the tester: this action is only hidden
 on the screen. If you find it can still be done another way (through the back-end/API), that is
@@ -454,7 +487,12 @@ behind an old one** — *"it failed, as expected"* reads identically either way 
 9. **Push label corrections only if authorised** (core §2 — all three text fields, byte-check, stop on
    mismatch, dry-run and read the payloads). **Re-stamp the provenance line's sentence 2** with the
    build actually observed, per case, honestly.
-10. **The "AUTOMATED CASES CHANGED — FOR VLAD" section** (core §5.3), and **OUTSTANDING** (core §13).
+10. **🔑 RUN THE POST-WRITE ASSERTION RE-AUDIT** (core §2.10) over **only the cases this pass materially
+    changed** — quote each new assertion back to its cited source, check it is reachable by the case's
+    own steps, check the content belongs to **this** case, and **diff the note paragraphs too**.
+    **This skill is the likeliest of all seven to breach it**, because correcting steps against the
+    build is exactly the activity in which an expectation quietly follows them.
+11. **The "AUTOMATED CASES CHANGED — FOR VLAD" section** (core §5.3), and **OUTSTANDING** (core §13).
 
 ---
 
@@ -504,6 +542,15 @@ name — that is why it is usable evidence rather than a list of edits) ·
 - **G7 — Redact at the point of capture.** A capture that stores response bodies **will** eventually
   store a token — that is exactly how 12 JWTs reached a public repo (core §10).
 - **G8 — Checkpoint every 25 ops or 10 minutes** (core §8).
+- **G9 — 🛑 NEVER LET A PROBE PRESS A DESTRUCTIVE CONTROL TO DISCOVER WHAT IT DOES** (core §7.5).
+  **Establish whether a confirmation step exists, then press. Select by ID, never by a displayed
+  string. Read `build/<project>/*/INCIDENT-*.md` before writing any probe that clicks**, and make the
+  probe **print its non-GET calls at exit**. *The same shift was destroyed twice in two days — the
+  second time by a worker who had not read the incident report the first one wrote.*
+- **G10 — Never put a case on `HOLD` whose steps run** (§ above, core §15.1a). A hold disarms it.
+- **G11 — If an instruction for this pass conflicts with a rule here, STOP and surface it before
+  acting** (core §11.6): his words quoted, the rule quoted with its number, and an explicit *"which
+  should we follow?"*. **Not in the closing summary — by then the work is done one way.**
 
 ---
 
