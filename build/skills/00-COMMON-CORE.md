@@ -39,8 +39,9 @@
 | **12** | write a word a human will read |
 | **13** | finish any deliverable |
 | **14** | stamp a provenance line — **the read-date every source now carries** |
-| **15** | set, move or trust an `AUTOMATION:` marker |
+| **15** | set, move or trust an `AUTOMATION:` marker — **including §15.1a, where a HOLD disarms a runnable case** |
 | **16** | describe a branch as final, or a finding as provisional |
+| **17** | **do anything at all on a named project** — the identifiers, so nothing is guessed |
 
 ---
 
@@ -1291,6 +1292,41 @@ expectation.
 `HOLD`, and **no ticket backs an expect-fail** either. **They should carry plain `AUTOMATION: READY`**,
 and the tester runs them, fails them, and records it.
 
+### 15.1a 🛑 THE OPPOSITE ERROR: PUTTING A **HOLD** ON A CASE THAT CAN BE RUN DISARMS IT
+
+**§15.1 says an unbacked `EXPECT FAIL` must come off. This says the mirror image, and it is the error
+we actually made more often.** **`AUTOMATION: HOLD` tells the tester to mark the case BLOCKED — so a
+hold on a runnable case removes its ability to fail exactly as surely as a build-derived expectation
+does.** The difference is that it looks like caution rather than like a mistake.
+
+**⇒ THE DECISION IS ABOUT THE STEPS, NOT ABOUT HOW BADLY THE CASE LOOKS LIKE FAILING:**
+
+| The situation | Marker | Why |
+|---|---|---|
+| **The tester cannot execute the steps** — the route, screen or precondition genuinely does not exist | **`HOLD - <plain reason>`** + a *"mark BLOCKED, not failed"* line | They would be stranded |
+| **The tester CAN execute the steps; the build simply fails the requirement, and a LIVE ticket describes it** | **`READY - EXPECT FAIL (SV-xxxx)`** + the symptom and three outcomes (§15.2) | It stays armed: **if the fix ships, the case passes and the tester tells us — which a HOLD can never do** |
+| **The tester CAN execute the steps; the build fails the requirement; NO live ticket exists** | **plain `READY`** — and **change nothing else** | Under Rule 57 the case keeps its documented expectation and **the tester fails it, which is correct**. An unbacked expect-fail marker is barred (§15.1); a hold would disarm it |
+| **MOST steps run; ONE cannot be performed** | **plain `READY`** + a verdict-free runnability note naming the one step and saying *"mark that step blocked and record the rest normally"* | A hold would throw away every result the runnable steps produce |
+
+**WORKED EXAMPLES, ALL LIVE, ALL THE DAY BEFORE A RELEASE:**
+- **[C30107](https://shopview.testrail.io/index.php?/cases/view/30107)** had a `HOLD` prepared for it.
+  It was given **`READY - EXPECT FAIL (SV-9074)`** instead — the tester *can* start it, step 1 shows
+  the fault immediately, and the ticket was live. **A hold would have sent a two-day-old requirement
+  gap on a report handed off as FINAL through the manual run unreported.**
+- **[C38913](https://shopview.testrail.io/index.php?/cases/view/38913)** kept plain **`READY`**: steps
+  1–7 and 9 all run, only step 8 cannot be performed, and **`SV-8954` is OBSOLETE so there is nothing
+  to hang an expect-fail on.** It gained a runnability note that deliberately **does not tell the
+  tester what to conclude** about steps 1–7 — that is the tester's call.
+- **[C38897](https://shopview.testrail.io/index.php?/cases/view/38897)** was **deliberately not edited
+  at all**: the build fails `S8-R4`/`S8-R5`, no ticket exists, so *"the tester will fail it and be
+  right to"* — **adding a hold would have disarmed a case that is working.**
+
+**⚠️ A HOLD WHOSE STATED REASON IS A *FILING* PROBLEM IS NOT A RUNNABILITY HOLD AT ALL.** *"…needs the
+QA lead's permission before a ticket exists to point at"* describes **our** constraint, not the
+tester's — and **[C38912](https://shopview.testrail.io/index.php?/cases/view/38912) may be runnable
+under exactly such a hold** (flagged, not changed, because it turns on a build fact). **When the
+creation hold lifts, sweep for these: each is one edit from `READY - EXPECT FAIL`.**
+
 ### 15.2 The three-outcome instruction stays, for markers that ARE properly backed
 
 A backed expect-fail case states, in the **tester-facing** Expected Results, **the exact observable
@@ -1337,6 +1373,49 @@ trigger is **a specific observed contradiction, never a changed app-version stri
 · Parts Velocity 71 · Inventory Value 68) — against **331 build-verified**, and **433 + 331 = 764**,
 the three suites in full. *(Those figures are as recorded on that date and move; derive live before
 quoting — §1.7. The arithmetic correction behind them is at §1.5a.)*
+
+---
+
+# 17 · THE PROJECT FACT SHEET — the identifiers a cold session would otherwise have to guess
+
+**Added 2026-08-13, because a session with no memory could not run a single skill without these**, and
+they were scattered across five files or absent. **Everything here is an IDENTIFIER — stable, checkable
+and safe to write down. No counts, no verdicts, no status** (those move within a single pass — §1.7 —
+and belong in each `PROJECT-STATE.md`, derived live).
+
+| | **FILTERS** | **SCHEDULE** | **REPORT SUITE** |
+|---|---|---|---|
+| **Epic** | `SV-8785` | `SV-8685` | `SV-8582` |
+| **Product owner** | **Branko Cicovic** | **Branko Cicovic** | **Chris Ward** |
+| **TestRail group** | **4110** | **4254** | **4281** |
+| **Test run** (someone else's) | **352** — Ahtasham Amjad | **357** — Ayesha Khan | **359** — Nebojsa Glavinic / Viktoria Videnovic |
+| **QA branch** | `sv8785.qa.shopview.com` | `sv8685.qa.shopview.com` | `sv8582.qa.shopview.com` |
+| **API host** (probe THIS, §6) | `sv8785api.qa.shopview.com` | `sv8685api.qa.shopview.com` | `sv8582api.qa.shopview.com` |
+| **Confluence spec page** | **572030978** | **713031682** | **six — one per report**, below |
+| **Case source** | `build/filters/cases/` | `build/schedule/cases/` | `build/report-suite/cases/` |
+| **Id-map · generator** | `build/filters/testrail-id-map.csv` · `gen_import.py` | `build/schedule/…` | `build/report-suite/…` |
+| **Cold-resume doc** | `build/filters/PROJECT-STATE.md` | `build/schedule/PROJECT-STATE.md` | `build/report-suite/PROJECT-STATE.md` |
+
+**THE SIX REPORT SUITE SPEC PAGES:** Sales By Customer **577634305** · Sales By Representative
+**585629698** · Parts Velocity **620888066** · Technician Utilization **641400833** · Work In Progress
+**703660034** · Inventory Value **720142338**.
+
+- **TestRail:** project **1**, single suite **1 "Master"**, API v2 at
+  `https://shopview.testrail.io/index.php?/api/v2/…` — **and the separator inside that path is `&`,
+  never a second `?`** (§3.3).
+- **Confluence:** `GET /wiki/api/v2/pages/<id>` on `shopview.atlassian.net`. **Use the Confluence
+  version number, never the in-body one** (§11.3 / skill `02` trap (a)).
+- **We are TestRail user id 3** (Bilal Muzamil); **id 1 is Vladimir Tomovic**, the automation engineer
+  (§5).
+- **The three other projects** — **Global Search** (Branko, postponed) · **Fees & Discounts** (Chris
+  Ward, completed) · **Simple Flow** (Milos, completed) · plus **Custom Roles** — have entries in
+  `CLAUDE.md` and their own `PROJECT-STATE.md`. **Their runs (324, 325, 278, 312) are OUT OF SCOPE**
+  (§4).
+
+**🛑 THE ONE THING THIS TABLE DOES NOT TELL YOU IS WHETHER IT IS STILL TRUE.** Identifiers change less
+often than counts, but *a proven-absence finding has a shelf life* — **the Filters epic was created
+hours after a pass proved no epic existed.** **Confirm the epic and the spec version live at pass
+start (skill `02`); this table is where to start looking, not what to cite.**
 
 ---
 
