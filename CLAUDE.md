@@ -291,6 +291,15 @@
 >   are RE-DERIVED, never patched) · **44** someone else's contradicting case is a bug report
 >   against OUR suite until we re-derive our own position — a missing `refs` is never a reason to
 >   dismiss it.**
+> - **THE SKILLS — the seven jobs, written to be run COLD by a session with no memory of this
+>   workspace: `build/skills/README.md`** (index + trigger words + how they compose + which to
+>   reach for). **`00-COMMON-CORE.md` is read FIRST by every one of them**, then
+>   **`01-CASE-BUILD` · `02-SOURCE-CHECK` · `03-RUN-CHECK` · `04-TESTER-READY` ·
+>   `05-PROJECT-REPORT` · `06-DEFECT-PREP` · `07-PO-QUESTIONS`**. **"VIU" = SOURCE-CHECK +
+>   RUN-CHECK + build-accurate wording; the pass/fail verdict is the manual tester's, so "VIU
+>   complete" is never said.** They do NOT replace these Standing Rules or the PROCESS CATALOG —
+>   where they differ, **this file and the process docs win.** Full pointer at the tail of this
+>   file, beside the no-work-loss strategy.
 > - **PROCESS CATALOG (the table of every reusable process + how to call it for any project):
 >   build/PROCESS-CATALOG.md — READ THIS to pick/name a process; it lists all of them with
 >   trigger phrases and the deliverable each produces. Keep it updated when a process is
@@ -6910,3 +6919,34 @@ gets implemented, ids change, scope changes).
   committed+pushed after every step; container + /tmp are ephemeral), checkpoint
   granularity, resume anchors (this CLAUDE.md + each PROJECT-STATE.md), in-flight
   kill recovery, secrets re-supply, pre-limit checklist, post-reset resume steps.
+- **SESSION LEARNINGS 2026-08-12 (the INCIDENTS behind the rules — read before any
+  TestRail write, any probe, any label diff, any "blocked" claim, or any resume):**
+  `build/SESSION-LEARNINGS-2026-08-12.md`. Written to be read COLD, by someone who was
+  not here; every claim names its committed evidence, and where a claim cannot be
+  evidenced **it says so**. Eight sections: verification traps (**the byte-check passes
+  when the PAYLOAD is wrong**) · **probes that cannot fail** (40+ false absences in two
+  days, **not one a product fault**) · our own instrumentation changing the measurement ·
+  reading the interface (`textContent` **vs** computed style — **both readings needed**) ·
+  source discipline · blockers · a shared moving branch (**a clean tree is not a current
+  tree**) · session survival. **The through-line, worth reading twice: almost every signal
+  a pass naturally trusts — its own memory, a clean git tree, an HTTP status, a timestamp,
+  a liveness check, a selector returning zero — lied at least once in those two days; the
+  only things that did not lie were COMMITTED RECORDS and LIVE CONTENT READ BACK.**
+- **THE SKILLS — the seven jobs, packaged to be run COLD by a session with no memory of
+  this workspace: `build/skills/README.md`** (index, trigger words, how they compose,
+  which to reach for). **Origin, USER DIRECTIVE 2026-08-12, verbatim:** *"In future we
+  have to convert this whole session into multiple Skills, one skill per session"* — and
+  on why: ***"I do not want our hard work to be lost and things start to bite me and cost
+  me my job due to this."*** **Every skill opens with `build/skills/00-COMMON-CORE.md`**
+  (honesty bar · TestRail write discipline + hazards · runs · foreign cases · access ·
+  environment · session survival · git · secrets · authority · reader-facing standards ·
+  the OUTSTANDING section), then one of: **`01-CASE-BUILD`** (author + prove nothing was
+  missed) · **`02-SOURCE-CHECK`** (are the sources current?) · **`03-RUN-CHECK`** (can a
+  tester actually run it?) · **`04-TESTER-READY`** (hand it over + the skip list) ·
+  **`05-PROJECT-REPORT`** (the completion table, before the next project starts) ·
+  **`06-DEFECT-PREP`** (an unchallengeable ticket, then stop at the button) ·
+  **`07-PO-QUESTIONS`** (one sheet, plain words, sent last). **"VIU" = SOURCE-CHECK +
+  RUN-CHECK + build-accurate wording — the pass/fail verdict has been the manual
+  tester's since 2026-08-11, so "VIU complete" is never said.** These do NOT replace the
+  Standing Rules or `build/PROCESS-CATALOG.md`'s processes — where they differ, **this
+  file and the process docs win, and the skill is the one to correct.**
