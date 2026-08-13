@@ -3,6 +3,7 @@
 > **Before any staging or TestRail testing, read `build/TESTING-RUNBOOK.md`.**
 > That runbook holds the full, proven method; this file is a concise index +
 > durable memory. **No secrets in this repo — ever** (secrets live in `/tmp`).
+> - **PAUSED 2026-08-13 at 98% weekly usage — say "SKILLS-VERIFICATION-RESUME" to resume; read build/SKILLS-VERIFICATION-RESUME.md FIRST.**
 > - **COLD-RESUME ENTRY POINT (2026-08-06, weekly budget exhausted): read `build/RESUME-2026-08-06.md` FIRST** — the one thing needed first (a fresh `sv_sso_session`), where all three projects stand, what is waiting on the QA lead, and the UNCONFIRMED Filters lead on Vlad's row 8 to check before Branko's question sheet is sent.
 > - **🛑 ACTIVE HOLD — CREATE NOTHING (QA lead, 2026-08-10). NOT a standing rule; a TEMPORARY hold
 >   with a lift condition, layered on Standing Rule 62.** Verbatim: ***"Do not create anything until
