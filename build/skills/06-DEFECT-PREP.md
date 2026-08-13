@@ -364,13 +364,23 @@ outstanding — never quietly dropped, never re-decided by us.
 
 - **"Cannot clear the bar" is a legitimate, correct outcome.** Say which item failed. **Withdraw a
   weak finding from the pack rather than offering it weaker.**
-- **⏳ UNRESOLVED, AND IT IS THE OPEN ITEM THIS SKILL OWNS: the five already-prepared Report Suite
-  defects were written under the OLD bar.** They are **prepared, unfiled, and NOT yet re-checked**
-  against the eight items. **Each must be re-checked and repaired or withdrawn BEFORE it is offered**;
-  any that cannot clear item (1) *(the expectation quoted from a named source)* or item (3) *(exact
-  named test data)* **is withdrawn rather than filed weaker.** **Who closes it:** the **QA lead** lifts
-  the creation hold and grants permission per ask; **the re-check against the bar is OURS to do, and it
-  can be done now — it needs no permission, because preparing is not filing.**
+- **✅ RE-CHECKED 2026-08-13 — the open item this skill owned is DISCHARGED, and the count was SIX,
+  not five.** The prepared Report Suite defects live in
+  **`build/report-suite/full-viu-2026-08-06/DEFECTS-FOR-PERMISSION.md`** (D1–D5 **plus "Defect 6"**,
+  added later the same day — the long-repeated *"five prepared defects"* was stale). The first cold run
+  of this skill scored all six against the eight items —
+  **`build/report-suite/defect-recheck-2026-08-13/SCORECARD.md`**: **D1 holds** (offer as a
+  reopen/broaden of SV-8954) · **D2 and Defect 6 hold** (new tickets) · **D3 and D4 are NOT filable as
+  new tickets** (closed SV-8943/SV-8967 still reproduce — reopen asks, per item 8) · **D5 is WITHDRAWN
+  as a ticket** (cosmetic, plausibly the document's error — a PO question). Common debts before any is
+  offered: written self-challenges (none existed), recorded JQL duplicate searches (none existed),
+  paste-ready bodies with C-ids stripped, and **annotated screenshots re-captured after the next
+  Reports build lands** (every existing capture is bare, and D4's cited `wip-checks.png` does not
+  exist). **The FILING still waits on the QA lead's hold.**
+  **⚠️ SUPERSEDED WORDING, KEPT AND DATED:** until 2026-08-13 this note read *"the five
+  already-prepared Report Suite defects were written under the OLD bar… NOT yet re-checked"* — and
+  named no path to them, which was this skill's first proven cold-start defect: a fresh session had to
+  grep the repository to find what the skill itself owned.
 - **⚠️ AND THE BAR MATTERS MORE NOW THAN WHEN IT WAS WRITTEN, BECAUSE ALL THREE BRANCHES ARE FINAL**
   (QA lead, 2026-08-11: ***"The Branches are Final now."***). **A deviation on Schedule, Filters or the
   Report Suite is a REAL DEFECT IN A FINISHED FEATURE, not a possibly-unfinished one** — so the

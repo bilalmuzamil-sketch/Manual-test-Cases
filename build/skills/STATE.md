@@ -82,8 +82,8 @@ reports, forensic audits and divergence files** that no inventory had swept.
 
 | # | What | Who closes it | Honest note |
 |---|---|---|---|
-| **S1** | **NO SKILL HAS EVER BEEN RUN COLD.** Every one was written and audited by sessions that already had the context. **The cold-start test in §2 was a SIMULATION — a reading, not a trial.** | **us**, on the next real pass | **This is the largest unknown about the set**, and it cannot be closed by more editing. **The next pass to invoke a skill should record where it had to guess**, and that record is worth more than another audit. |
-| **S2** | **The 13 new items are STATED, not EXERCISED.** §2.10's re-audit, §7.5's probe discipline and §15.1a's marker table have **never been run on a live pass**. | **us** | A procedure that has not been executed may be unworkable in ways no reading finds — **the failure mode is over-cost, not error**: a step too expensive to run gets quietly skipped. **§2.10 was deliberately scoped to the diff for exactly this reason; whether that is cheap enough is untested.** |
+| **S1** | **⚠️ PARTIALLY CLOSED 2026-08-13 — `06-DEFECT-PREP` was run COLD for real** (the independent recheck, `build/report-suite/defect-recheck-2026-08-13/SCORECARD.md`). **What the cold run surfaced, and both were fixed in the skill in the same turn:** (1) the skill owned the prepared-defects re-check but **named no path to the defects** — a fresh session had to grep the repository to find `build/report-suite/full-viu-2026-08-06/DEFECTS-FOR-PERMISSION.md`; (2) **the count was SIX, not five** — "Defect 6" sat in the same file, uncounted by the skill, this STATE file and register H1. **What worked cold:** the eight items were all checkable, core §17 supplied every identifier without guessing, and the whole re-check (three live spec re-reads, six ticket reads, one JQL sweep) fit in one pass. | **us** — the other seven skills are still unexercised | **The record is worth more than another audit, and it now exists for one skill.** `02`, `03` etc. remain untried cold; each next real pass should record where it guessed. |
+| **S2** | **PARTIALLY EXERCISED.** The eight-item bar of `06` **has now been run in anger** (S1 above) and was affordable — the over-cost worry did not materialise for it. **§2.10's re-audit, §7.5's probe discipline and §15.1a's marker table remain unexercised.** | **us** | **§2.10 was deliberately scoped to the diff; whether that is cheap enough is still untested.** |
 | **S3** | **The audit swept incident and forensic files but NOT exhaustively.** It went to them because the regression list pointed there. **No census of `build/**/INCIDENT-*.md`, `DIVERGENCES.md` or the forensic audits was run**, so **there may be more of the seven's shape.** | **us** | Stated plainly rather than implied: **13 found by one pass is evidence the method finds things, not evidence there is nothing left.** |
 | **S4** | **`00-COMMON-CORE.md` is now 1,435 lines.** Every addition is load-bearing and each names its scar — **but a file nobody finishes protects nobody**, which is the same failure mode as a pointer. | **the QA lead** — it is his call whether to split it | **No split was attempted**, because splitting it would break the *"a fix lands in one place"* property that is the whole design. **Recorded as a risk, not a recommendation.** |
 | **S5** | ✅ **CLOSED 2026-08-13.** `build/PROCESS-CATALOG.md` now carries the **S8 RECOVER** row, and the S0–S7 references read S0–S8. | — | Standing Rule 21 requires the catalogue row **in the same turn** as a new process, so this was not optional. |
@@ -94,23 +94,28 @@ reports, forensic audits and divergence files** that no inventory had swept.
 | # | What | Who closes it |
 |---|---|---|
 | **S7** | **THE READ-DATE SWEEP HAS NEVER RUN ON ANY SUITE.** Rule 54 as amended requires **one date per cited source** in every provenance line. **Only 2 cases carry it** (C30452, C30434). **The skills now carry the amendment in three places — `00` §14.1, `01` step 5, `02` step 8 — while no suite complies with it.** It **cannot** be done by stamping today's date on everything: the date must be when that source was **actually re-read**, so it is a real pass per project, not a text substitution. Register **D1**. | **the QA lead** — it needs his go-ahead as an `update_case` pass over ~750 cases |
-| **S8** | **THE FIVE PREPARED REPORT SUITE DEFECTS WERE WRITTEN UNDER THE OLD BAR** and have **not** been re-checked against the eight items. **The re-check is OURS and needs NO permission — preparing is not filing** — and any that cannot clear item **(1)** *(expectation quoted from a named source)* or item **(3)** *(exact named test data)* is **withdrawn rather than offered weaker**. **Only the FILING waits on him**, and the Jira creation hold stands: *"However for now the Jira ticket creation is still on hold."* Register **H1**. | **US** for the re-check · **the QA lead** for the lift |
+| **S8** | **✅ THE RE-CHECK RAN 2026-08-13 — and the population was SIX defects, not five** (D1–D5 **plus "Defect 6"** in `build/report-suite/full-viu-2026-08-06/DEFECTS-FOR-PERMISSION.md`; the "five" repeated here, in skill `06` and in register H1 was stale). **Scorecard: `build/report-suite/defect-recheck-2026-08-13/SCORECARD.md`** — every quoted requirement was diffed against the CURRENT spec versions (SBC v20 · TU v9 · WIP v15, all moved 2026-08-12) and **survives verbatim, so nothing was overtaken by a spec change**. Verdicts: **D1 holds** (reopen/broaden SV-8954) · **D2 + Defect 6 hold** (new tickets) · **D3/D4 NOT filable as new tickets** (closed SV-8943/SV-8967 still reproduce → reopen asks) · **D5 WITHDRAWN as a ticket** (PO question instead). Common debts before offering: self-challenges (0 existed) · recorded JQL (0 existed) · C-ids stripped from paste bodies · **annotated screenshots re-captured after next week's Reports build** (all captures are bare; D4's cited `wip-checks.png` does not exist). **Only the FILING waits on him** — the hold stands. | **the QA lead** for the lift; the owed repairs are **ours**, screenshot re-capture gated on the new build |
 
 ---
 
 ## 4 · THE EXACT NEXT STEP FOR WHOEVER RESUMES
 
-**S5 and S6 were done by the audit itself and are struck from this list. What remains, in order:**
+**S5, S6 and now S8 (2026-08-13) are done and struck from this list. What remains, in order:**
 
-1. **🔑 RUN THE S8 RE-CHECK — it needs no permission and it is the highest-value unblocked work here.**
-   Take the five prepared Report Suite defects, run each against `06`'s eight items, and **repair or
-   withdraw**. Expect withdrawals; **that is the correct outcome, not a failure of the pass.** It also
-   **exercises `06` cold, which closes part of S1 and S2 at the same time** — and if the eight items
-   turn out to be unworkable in practice, that is a finding about the skill worth more than the pack.
-2. **Then, on the next real project pass, record where the skill had to be guessed** (S1) — and
-   **write those gaps back into the skill in the same turn**, not into a report about it.
+1. **Discharge the owed repairs on the offerable defects** (D1, D2, Defect 6 — self-challenges, JQL
+   records, C-ids stripped, version re-stamps to v20/v9/v15) — **screenshot re-capture waits for the
+   new Reports build**, everything else can be done now. Then present the six verdicts to the QA lead
+   with the reopen recommendations (SV-8954 broaden · SV-8943 · SV-8967) and the D5 PO question.
+2. **On the next real project pass, record where the skill had to be guessed** (S1 — done once, for
+   `06`; seven skills remain) — and **write those gaps back into the skill in the same turn**, not
+   into a report about it.
 3. **Sweep `build/**/INCIDENT-*.md`, `DIVERGENCES.md` and the forensic audits properly** (S3) — that
    is where **seven of this audit's thirteen** items came from, and **no census of them has been run.**
+
+*(2026-08-13 recheck also verified all seven claimed audit fixes landed by content, spot-checked §17's
+identifiers against live TestRail — group ids, ours-counts 115/176/480 and run assignments all
+correct — and found one arithmetic defect of the audit's own: the coverage matrix's summand equation
+"98 = 80 + 16 + 2 + 2" summed to 100; corrected, superseded wording kept and dated.)*
 
 **And ask him about S7** — the read-date sweep is the largest owed piece of work in the register and
 **nothing in this set can close it.**
