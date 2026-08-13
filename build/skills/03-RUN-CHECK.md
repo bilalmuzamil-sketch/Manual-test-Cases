@@ -92,6 +92,24 @@ of them.
 5. **ARE THE LABELS THE ONES ACTUALLY ON SCREEN?** — read **both** the DOM string and the computed
    style (§4 below).
 
+**🎯 HIS STATED GOAL, AND IT IS THE ONE-LINE TEST OF THIS WHOLE SKILL (QA lead, 2026-08-12,
+verbatim):** *"A tester should not find a step coming from mars (which does not exist)"* and *"we need
+to make sure that the testers find a runnable test to execute."*
+**⇒ SO: NO CASE MAY SEND A TESTER TO SOMETHING THAT DOES NOT EXIST.** It is either **CORRECTED**
+(cosmetic) or **CLEARLY MARKED NOT RUNNABLE WITH THE REASON AND RAISED** (substantive). **Never left
+silently broken, and never quietly rewritten into something the sources never asked for.**
+**AND AN INVENTED STEP IS WORSE THAN A MISSING ONE, BECAUSE IT *LOOKS* RUNNABLE** — the tester only
+discovers otherwise with the case open in front of them, and at that point they do not report a
+defect, **they simply stop.**
+
+**📊 THE REPORTING CONSEQUENCE — THE STANDARD IS 100%, AND THE COUNT IS NEVER ROUNDED UP.** His words
+are *"verified from the build to 100%"*. **AN UNVERIFIED STEP IS AN UNVERIFIED CASE** — one unchecked
+step disqualifies the whole case from the runnable count, **because that is the step the tester will
+stop on**. The honest report is **how many cases had EVERY step verified** — not how many were
+*"looked at"*, *"swept"*, *"covered by a label pass"* or *"expected to be fine"* — stated as **N of M,
+on which build marker**. **A case whose steps were never checked is reported as exactly that**, never
+folded into a total.
+
 **Two live examples of failing check 2/3, both ours:**
 - **C38926 (Schedule)** sent the tester to the roles-list three-dot menu to use `Reset to template` —
   **that menu offers only `View Permissions`**; the control lives on the role's own edit screen.
@@ -270,6 +288,19 @@ Several rows were correctly graded **checker artefacts**: *"the label itself is 
 trailing full stop or comma is sentence punctuation the author put inside the quote marks"* (C30421).
 **A label differ must strip authorial punctuation, or it generates noise that buries its real hits.**
 
+### 4.4 An error message can name a field that DOES NOT EXIST
+
+Recorded during the Schedule shift-delete incident: **the API's own validation error named a field
+that is not in the payload contract at all**
+(`build/schedule/finish-2026-08-12/INCIDENT-shift-delete-2026-08-12.md`).
+
+**⇒ DO NOT REVERSE-ENGINEER A CONTRACT FROM AN ERROR STRING.** An error tells you the request was
+refused; **it is not documentation, and it is not a source** (Rule 57 — a build artefact never
+supplies an expectation). Read the contract from the sources, or probe it deliberately and record
+what each probe returned. **This pairs with the §2 catalogue entry where a wrong field name returned
+HTTP 400 and read exactly like a broken endpoint** — in both directions, **the server's complaint is
+evidence about the request, never about what the field should have been.**
+
 ---
 
 # 5 · PERMISSIONS, ROLES AND DATA
@@ -364,6 +395,15 @@ come from documents.
 **⛔ NEVER LET "the branch is not final" BECOME A BLANKET CAVEAT.** A caveat applied to everything
 tells the reader nothing. **Say exactly which cases were observed, on WHICH BUILD MARKER, and how many
 were not — numbers, not a banner.**
+
+**⚠️ AND ON THESE THREE PROJECTS THAT CAVEAT IS NOW SIMPLY WRONG — ALL THREE BRANCHES ARE FINAL.** QA
+lead, 2026-08-11, verbatim: ***"The Branches are Final now."*** (Schedule `sv8685`, Filters `sv8785`
+and the Report Suite `sv8582`, the last after *"note that ALL 6 reports have been handed off now."*).
+**SO A DEVIATION FOUND BY THIS SKILL IS A REAL DEFECT IN A FINISHED FEATURE, NOT A POSSIBLY-UNFINISHED
+FEATURE** — and **a hedge that was correct last week now UNDERSTATES a real finding.** **"Final" still
+means HANDED OFF, NOT frozen**: the branches redeploy, not least to fix the very defects we report, so
+layers 1–2 above still go stale on a **functional** deploy — while §6.1 governs a bug-fix-only one.
+Full text: core §16.
 
 ### 6.3 A regression IS possible in a case we already passed — say so
 
