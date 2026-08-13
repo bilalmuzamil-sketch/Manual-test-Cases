@@ -45,14 +45,19 @@ R46 · R48 · R52 · O14 · P10.
 **⚠️ TWO MEASUREMENT NOTES, RECORDED RATHER THAN GLOSSED, BECAUSE THEY BEAR ON HOW MUCH THIS TABLE IS
 WORTH:**
 
-1. **THE FIRST-PASS SEARCH PRODUCED AT LEAST TWO FALSE ABSENCES OF ITS OWN — my own probes, failing
-   exactly the way skill `03` §2 describes.** A literal-string grep for the app-host trap returned
-   nothing while **core §6(2) carries it in full**, and a grep for the TestRail URL separator rule
-   returned nothing because the pattern contained backticks, while **core §3.3 carries it**. **Both
-   were caught by re-reading the section rather than trusting the grep.** This is recorded because it
-   is the same discipline the skills teach: **a selector that matches nothing returns an empty list,
-   and an empty list reads exactly like "absent"** — so **no ABSENT verdict below rests on a single
-   grep**; each was confirmed by reading the candidate section.
+1. **THE SEARCH BEHIND THIS TABLE PRODUCED AT LEAST *THREE* FALSE ABSENCES OF ITS OWN — my own probes,
+   failing exactly the way skill `03` §2 describes.** *(This note first said **two**; a third was found
+   during the closing verification and the count is corrected here rather than overwritten.)*
+   **(i)** a literal-string grep for the **app-host trap** returned nothing while **core §6(2) carries
+   it in full**; **(ii)** a grep for the **TestRail URL separator rule** returned nothing because the
+   pattern contained backticks, while **core §3.3 carries it**; **(iii)** a grep for the **expect-fail
+   verbatim** reported it missing from `00` **because markdown had line-wrapped the quote mid-phrase**
+   (`…then not` / `set that marker…`) — a whitespace-tolerant re-check found it, and it had been
+   written into §15.1 by this very pass.
+   **⇒ THE TRANSFERABLE LESSON, AND IT IS THE ONE THIS WHOLE SET IS BUILT ON: a grep over wrapped prose
+   is a probe that CANNOT REPORT A POSITIVE for any phrase longer than a line.** Flatten whitespace
+   before matching, or confirm by reading. **All three were caught by re-reading the candidate section**
+   — so **no ABSENT verdict in the tables below rests on a single grep.**
 2. **THIS IS A COVERAGE MEASUREMENT, NOT A QUALITY ONE.** It proves an item is **stated in substance**
    in a named file. It does **not** prove the statement is well-placed, well-worded, or that a reader
    under time pressure will act on it.
