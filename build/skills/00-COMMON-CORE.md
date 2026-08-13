@@ -38,6 +38,9 @@
 | **11** | decide what a case should say, or whether you may act |
 | **12** | write a word a human will read |
 | **13** | finish any deliverable |
+| **14** | stamp a provenance line — **the read-date every source now carries** |
+| **15** | set, move or trust an `AUTOMATION:` marker |
+| **16** | describe a branch as final, or a finding as provisional |
 
 ---
 
@@ -113,6 +116,32 @@ expensive mistake this workspace makes.
 Schedule on 2026-08-12 they were **76 and 28, out of 176** — reporting the 76 alone would have
 overstated the position by nearly three times, the day before a release.
 Evidence: `build/schedule/verify-final-2026-08-12/FINDINGS.md`.
+
+### 1.5a 🛑 DO NOT SUM FIGURES THAT MAY DOUBLE-COUNT — refuse the tidy total, and say why
+
+**A total that reads well is worth nothing if its parts overlap.** Two real instances, and both were
+caught only because somebody added the numbers up and checked the sum against a known whole:
+
+- **The false-absence count.** One pass recorded *"more than forty"* false absences over two days;
+  other passes separately recorded Filters 11, Report Suite 4, Schedule 3 and Schedule 4. **The first
+  three almost certainly sit INSIDE the forty**, so adding them double-counts. **No census was run and
+  no de-duplication was attempted**, so the defensible statement is *"more than forty over the two
+  days, plus four after that"* — **an order of magnitude, not a count.** A first draft summed them to
+  *"well over forty-five"*; that was corrected before commit
+  (`build/SESSION-LEARNINGS-2026-08-12.md`, "WHAT THIS FILE DOES NOT CLAIM" §1).
+- **The finality arithmetic.** The 2026-08-11 ruling was first framed as **"425 final but not
+  build-verified / 339 build-verified"**. **Those two totals double-counted the 8 Filters cases** —
+  they appeared as unverified in the first and verified in the second. The corrected figures are
+  **433 and 331**, and they gate both ways: **433 + 331 = 764 = Schedule 174 + Filters 114 + Report
+  Suite 476.** **The component figures were right; only the sums were wrong.**
+
+**⇒ THE PRACTICE, THREE PARTS:**
+1. **Gate every total against a known whole** — if the parts should sum to the suite, prove they do.
+2. **Where the parts may overlap and no de-duplication was done, SAY SO AND REFUSE TO SUM.** Publish
+   the components and the reason, not an invented total.
+3. **Record the correction visibly and dated — never quietly fix it.** Both cases above are on the
+   record precisely because *a figure that fails its own gate is a finding*, and a silently-repaired
+   total teaches nobody anything.
 
 ### 1.6 🛑 NEVER claim "VIU complete"
 
@@ -284,6 +313,26 @@ sections and therefore zero cases** — which reads exactly like *"the group is 
 **And the URL separator is `&`, never `?`** — the whole `/api/v2/...` path already sits inside
 `index.php?`, so a second `?` is an illegal character, not a separator. `get_cases/1?suite_id=1`
 returns `HTTP 400 Invalid characters in URI`. **Build the path with `&` unconditionally.**
+
+**⚠️ AND THIS IS THE REAL CAUSE OF THE `getall()` / `trlib` PAGING BREAKAGE (recorded 2026-08-11,
+Schedule staged push) — the fault has been mis-described before as *"it appends `?limit=` twice"*,
+which is a symptom.** The shared paginators in
+`build/testrail-run-sync-2026-07-31/{run_sync_audit,sync_runs_EXECUTOR,exec_run_sync_2026-07-31}.py`
+all carry the shape
+
+```
+f"{path}{'&' if '?' in path or '/' in path else '?'}limit=250&offset={offset}".replace('?limit', '&limit')
+```
+
+— **a conditional that can emit `?`, followed by a `.replace()` that patches it back to `&`.** It
+works **only because the patch undoes the conditional**, so the moment anyone edits either half, adds
+a parameter, or reorders the string, the request 400s — **and the failure reads like an empty result
+set, not like a bad URL.** **Proven live 2026-08-11, all read-only:** `get_cases/1?suite_id=1` →
+**HTTP 400** · the four-parameter all-ampersand form → **HTTP 200** · a five-parameter form → **HTTP
+200**. **TestRail corroborates it itself:** the `_links.next` it hands back reads
+`/api/v2/get_cases/1&suite_id=1&limit=2&offset=2` — **ampersands throughout, no `?` anywhere**, so
+the server's own pagination link is the canonical example of the form to build.
+Full write-up: `build/APP-ACTIONS-PLAYBOOK.md` §J.
 
 ### 3.4 `case_title` and `case_refs` on run results are ECHOES, not graded fields
 
@@ -727,6 +776,18 @@ supposed to crfeate test cases … we are supposed to create the test cases."***
 **⏳ LIFT CONDITION: his next order.** **A session reading this weeks later must NOT treat it as
 standing law — check whether it has been lifted.**
 
+**🔴 THE HOLD WAS RE-STATED BY HIM ON 2026-08-12, IN THE SAME BREATH AS RAISING THE TICKET-EVIDENCE
+BAR, verbatim: *"However for now the Jira ticket creation is still on hold."*** **So the hold was
+still active as of 2026-08-12, and the new eight-item evidence bar (Standing Rule 52, and skill `06`)
+is EXPRESSLY FOR THE FUTURE — it is NOT a signal that filing has resumed and must never be read as
+one.** What the bar does is make sure that **when the hold lifts, the first ticket out of the door
+cannot be thrown back.**
+
+**WHAT THE HOLD BLOCKS TODAY, CONCRETELY, so a resuming session does not rediscover it:** the **five
+prepared Report Suite defects** stay prepared and unfiled, and any case sitting on `AUTOMATION: HOLD`
+**only because an expect-fail marker needs a ticket number that does not yet exist** stays on `HOLD`
+— each becomes `READY - EXPECT FAIL` with one edit once a ticket exists. Register row **H1**.
+
 ### 11.2 Expected behaviour comes from the DOCUMENTS, never the build (Standing Rules 57/58)
 
 **The sources are (a)–(g) and the list is OPEN-ENDED by his instruction:**
@@ -755,6 +816,37 @@ labels** and **the pass/fail verdict**. Nothing else.
 - **The quote-back gate:** an ingest pass **may not produce a case edit whose new expected result
   cannot be QUOTED BACK to the source text**. If it cannot be quoted, **the edit is invalid** — not
   "weakly sourced", invalid.
+
+**🔑 THE TECHNICAL DESIGN'S STANDING — ANSWERED AND CLOSED BY THE QA LEAD ON 2026-08-12. DO NOT
+RE-ASK IT.** For a week this sat as an open question (*"does a technical design carry PRD-level
+authority, or does Rule 30's 'informs but never overrules' still hold?"*). **He answered it,
+verbatim:**
+
+> *"Technical design is the authority but if that contradicts with specs/tickets/answer sheet/claude
+> design/figma (because they are also the authority with the rule that the latest entry for that
+> question wins) I would suggest to consider the specs/tickets/answer sheet/claude design/figma (with
+> the rule that the latest entry for that question wins) as the authority for the test cases but let
+> me know where it contradicts with the tech design."*
+
+**THREE THINGS FOLLOW, AND THE THIRD IS THE ONE THAT GETS DROPPED:**
+1. **ON A CONTRADICTION, THE OTHER FIVE WIN** — spec, ticket, answer sheet, Claude design, Figma —
+   with **latest-wins applying among them** (Rule 32).
+2. **WHERE NOTHING CONTRADICTS IT, THE TECHNICAL DESIGN SOURCES A CASE ON ITS OWN.** *"Informs but
+   never overrules"* is a rule about **conflict**, not about weight in isolation — so a case resting
+   on the technical design while every other document is **silent** is **properly sourced** and is
+   **NOT a Rule-64 deletion candidate**. **Eleven cases held on the old open question were released
+   by this ruling** (list: `build/rulings-2026-08-12/TECH-DESIGN-CONTRADICTIONS.md` §3).
+3. **🛑 EVERY CONTRADICTION IS REPORTED TO HIM — his closing clause is an INSTRUCTION, not a
+   courtesy:** *"but let me know where it contradicts with the tech design."* **Applying the
+   precedence order silently satisfies half the ruling and breaches the other half.** Each one is
+   named to him and logged in the OUTSTANDING-ITEMS REGISTER (Rule 36).
+
+**⚠️ SUPERSEDED WORDING, KEPT VISIBLE AND DATED (the Rules 31/52/53 pattern).** From 2026-08-06 until
+this ruling, this set and the workspace memory carried it as **OPEN**, with the instruction *"Do not
+answer it for him — until he does, a case that would turn on the difference is HELD."* **That is no
+longer in force.** It is kept here rather than deleted because **a silently-erased open question is
+how a session re-asks something a source has already answered** — the exact embarrassment this
+workspace has had before.
 
 **The scar: 748 cases.** On 2026-08-05 the QA lead found cases asserting build behaviour as expected
 behaviour, wrote *"I am shocked to see that how come you considered the Build behavior as the expected
@@ -805,7 +897,30 @@ the walk. **The tell that this was skipped: a blocked item whose reason is a per
 
 **The scar:** across the Filters work of 12 August, **23 cases were reported as remaining and 14
 classified "waiting on Branko" and treated as untouchable. They were not** — the next pass walked all
-14 surfaces. **Roughly 60% of a reported remainder was self-inflicted.**
+14 surfaces. **Roughly 60% of a reported remainder was self-inflicted.** Claim:
+`build/filters/finish4-2026-08-12/COMPLETION-REPORT.md` §7, groups (a) **10 cases** — C38882, C38904,
+C38905, C38906, C38907, C38908, C38909, C38910, C38911, C43562 — and (b) **4 cases** — C29559,
+C29609, C29610, C29612. Correction: commits `e882d1c6` (the Status-chip four) and `b3e3aeb6` (all 14
+Parts/Reports surfaces). **HONEST SCOPE: those commits prove the surfaces were WALKED; they do not
+claim the 14 are closed** — only that they were **never unwalkable**, which is the whole point.
+
+**AND IT IS A PATTERN, NOT AN INCIDENT — three of the same shape in one day. One reads as bad luck;
+three read as a habit.**
+- **(ii) A COST TREATED AS A WALL.** **[C29581](https://shopview.testrail.io/index.php?/cases/view/29581)**
+  and **[C29588](https://shopview.testrail.io/index.php?/cases/view/29588)** were held because they
+  need a **staff record deactivated**, which **destroys every holder's session**. **The destruction is
+  TRUE; the conclusion did not follow** — it is a **SEQUENCING problem** (requirement 4). The cost was
+  being **avoided rather than scheduled**.
+- **(iii) AN ASK THAT SHOULD NEVER HAVE REACHED HIM.** *"Three role assignments"* was escalated as
+  what would unblock ten Schedule cases, when **Rules 5/14/26 already authorise doing it ourselves**.
+  **The next pass attempted it, and that is the instructive part** — it turned a vague ask into a
+  precise one: *a role-definition edit invalidates every holder's session ONE WAY and does not come
+  back when the permissions are restored, so create the users, permission them, and only THEN sign in
+  and mint cookies — configure first, mint second.*
+- **⚠️ AND THAT ATTEMPT COST THE TECHNICIAN SESSION — requirement (4) failing in the OTHER direction.**
+  Attempting it was **right**; doing it **before** everything else needing that session was finished
+  was **wrong**. **So (3) and (4) are not in tension: clear it yourself, AND schedule the destructive
+  part last.** Instance (ii) breached (4) by **never doing it**; instance (iii) by **doing it first**.
 
 **Why it costs more than it looks:** a falsely-blocked case **looks like someone else's problem and
 stops being worked**, then **migrates** — into a "what is left" row, into the outstanding register,
@@ -918,6 +1033,172 @@ himself carry Rule 48's five fields** (§11.7).
 cleared item **moves to "Recently cleared" with the date and how it was satisfied** — never quietly
 dropped, so nothing gets re-asked. *(We have already had that embarrassment: re-asking a question a
 source had answered.)*
+
+---
+
+# 14 · THE PROVENANCE LINE — AND THE READ-DATE EVERY SOURCE NOW CARRIES
+
+**Standing Rule 54, amended 2026-08-11.** Every case ends its Expected Results with a plain
+provenance statement, after a separator line, in **TWO SENTENCES THAT ARE NEVER MERGED**. Merging them
+is the exact error that took 748 cases to undo.
+
+**SENTENCE 1 — THE SOURCE OF THE EXPECTATION. MANDATORY. NAMES ONLY DOCUMENTS.** The specification
+with its **version** and the requirement anchor, and/or the epic and/or owning story, and/or the PO's
+answer with its **file link**, and/or the design or Figma. **THE BUILD IS NEVER NAMED HERE — not as a
+source, not as corroboration, not in passing.**
+
+**SENTENCE 2 — THE RECORD OF CHECKING. OPTIONAL. NAMES THE BUILD ONLY AS WHAT THE CASE WAS CHECKED
+AGAINST.** *"Last checked against build v3.5-be42149 on 8/5/2026."* Use **neutral checking language**;
+**"as per the build tested on …" is BARRED.** Not yet checked against any build ⇒ **omit sentence 2**,
+or say plainly that it has not been checked. **A case that FAILS on the build must not say "passed"
+or "verified"** — sentence 2 records only that the check happened.
+
+### 14.1 🔑 EVERY CITED SOURCE ALSO CARRIES THE DATE WE READ IT (added 2026-08-11)
+
+**QA lead, verbatim, his typing preserved:**
+
+> *"every expected behavior as I mentioned before should have a reference in the test cases … that
+> must tell the Manual QA guy or anyone who is auditing those test cases that these are the sources of
+> the expected behavior, make sure to mention the date of the source when that source of truth was
+> taken from each source, so that in future if someone changes the source of truth I can guard myself
+> telling that the refrence taken from the source of truth was from the state of that source which was
+> at this certain date."*
+
+**HIS PURPOSE IS WHAT MAKES THE DATE LOAD-BEARING: THE READ-DATE IS EVIDENTIARY.** A version number
+says what the source was **called**; **the read-date says WHEN WE LOOKED**. So when a source later
+moves, he can show the reference was taken from it **as it stood on a stated date** — and the case
+reads as **a record of a real reading** rather than a claim that ages silently.
+
+**THE SHAPE:** *"This is the expected behaviour as per epic SV-8685 and the Schedule specification
+version 27, section 5.3, read on 11 August 2026."*
+
+**FOUR THINGS THAT ARE EASY TO GET WRONG:**
+1. **WHERE A CASE CITES MORE THAN ONE SOURCE, EACH CARRIES ITS OWN DATE.** A spec and a PO answer are
+   **read at different times and move independently**, so one shared date would misstate at least one.
+2. **THE DATE IS THE DATE *WE READ THAT SOURCE*, NOT TODAY'S DATE. NEVER back-fill a read-date onto a
+   case whose source was not actually re-read in that pass.** That is a **fabricated observation**
+   (Rule 12) and **it defeats the entire purpose — a date nobody stood behind protects nobody.**
+   Where a pass re-reads the spec but not the epic, **only the spec's date moves.**
+3. **THE READ-DATE DOES NOT ATTACH TO THE BUILD.** Sentence 2 already carries its own date, and
+   merging the two is the error this rule spent 2026-08-05 undoing.
+4. **A READ-DATE PROVES WHEN WE LOOKED, NEVER HOW OLD THE REQUIREMENT IS** (§11.3, trap (c)).
+
+**⏳ OUTSTANDING AND HONEST: THE EXISTING SUITES DO NOT CARRY READ-DATES.** Every case stamped before
+2026-08-11 names its sources **without one**, so **a sweep is owed across all projects and it is NOT
+DONE.** It is logged in `build/OUTSTANDING-ITEMS-REGISTER.md`, and **until it runs, no pass may
+describe any suite as compliant with this amendment.**
+
+### 14.2 What sentence 2 records (clarified 2026-08-12)
+
+Sentence 2 records the check of **the whole build-facing layer** — the preconditions, the steps, the
+navigation path **and** the labels — **not the labels alone.** It is therefore the per-case record
+that the **five-check runnability test** was run on that build, which is what makes an honest N-of-M
+split derivable from the cases themselves rather than from memory.
+**🛑 Sentence 1 is unchanged and names documents only.** The licence to correct steps from the build
+**does not put the build into sentence 1, in any form, at any strength.**
+
+### 14.3 Mechanics that keep it maintainable
+
+The **date is a single variable** in the generator and the **spec versions a per-project map**; the
+stamper is **IDEMPOTENT — it REPLACES an existing provenance line, never appends a second**.
+**Re-stamping is a REQUIRED step of every verification, reconciliation and spec-delta pass, not an
+optional tidy** — and **a stale date, a stale spec version or a stale epic reference is ITSELF A
+FINDING**, reported as one.
+
+---
+
+# 15 · THE `AUTOMATION:` MARKER — three forms, and one precondition that is new
+
+**The marker is the automation engineer's machine-findable string: exactly one per case, a fixed
+literal, never reworded, never abbreviated.** It goes at the **VERY END of Expected Results, AFTER
+the Rule-54 provenance line, with a blank line before and a line break after** (the QA lead's exact
+placement). Three forms only:
+
+`AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`
+
+- **Plain `READY` asserts AUTOMATABLE, not currently passing** — it is **build-independent** and
+  survives a redeploy untouched.
+- **A TOOL FLAG NEVER JUSTIFIES `HOLD`.** Devtools, DOM/network inspection, reading a PDF or CSV,
+  seeded data states, theme toggles and viewport sizes are **all automatable**. Only a **genuinely
+  unobtainable thing** — a real physical device, an external account we do not have — justifies it.
+- **NOT-BUILT cases are EXCLUDED from any "ready to automate" figure.** They are not a readiness
+  shortfall, they are absent product.
+
+### 15.1 🔑 AN EXPECT-FAIL MARKER NEEDS LIVE BACKING. NO BACKING, NO MARKER (added 2026-08-11)
+
+**QA lead, verbatim, his typing preserved:** *"WHen there is nothing to back 'Expect fail' then not
+set that marker. And let the manual QA tester simply discover whether this test fails or passes and
+mark the test case accordingly in the tesrail"*
+
+**THE PRECONDITION:** `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` may be set **ONLY where a LIVE
+source actually backs it** — an **OPEN ticket describing the failure**, or an equivalent documented
+basis. **Where the backing is absent, stale, or was never established, THE MARKER COMES OFF** and the
+case carries plain `AUTOMATION: READY`. **The manual tester then DISCOVERS whether it passes or fails
+and records that. WE DO NOT PREDICT ON THE TESTER'S BEHALF.**
+
+**A CLOSED OR OBSOLETE TICKET DOES NOT BACK THE MARKER, and this is concrete rather than theoretical:
+31 of the 33 tickets behind the Report Suite's expect-fail cases are CLOSED**, several confirmed fixed
+on 10 August — so those markers were **telling a tester to ignore a failure that may no longer
+exist**, the precise inverse of what the marker is for.
+
+**IT IS NOT A LICENCE TO GUESS THE OTHER WAY.** An unbacked expect-fail **asserts a build fact nobody
+observed** (Rule 12), and a marker written from what the build merely happens to do is
+**build-derived expectation through a side door** (Rule 57). **Removing an unbacked marker does not
+soften the case — it RESTORES the case's ability to fail**, which is the whole point of holding an
+expectation.
+
+**WORKED EXAMPLE, AND IT CUTS AGAINST OUR OWN WORK:** the six Schedule Panel-collapse cases
+**C43582–C43587** carried `AUTOMATION: HOLD - the panel collapse control is not in the build`. That is
+**wrong on both counts** — the control's **absence is perfectly observable**, so it is not a genuine
+`HOLD`, and **no ticket backs an expect-fail** either. **They should carry plain `AUTOMATION: READY`**,
+and the tester runs them, fails them, and records it.
+
+### 15.2 The three-outcome instruction stays, for markers that ARE properly backed
+
+A backed expect-fail case states, in the **tester-facing** Expected Results, **the exact observable
+symptom** and what to do in each of three outcomes: **(1) fails with that symptom** → mark failed,
+raise nothing new · **(2) fails in a DIFFERENT way** → **a NEW problem, report it** · **(3) PASSES**
+→ **the fix shipped, report it** so the ticket closes and the marker comes off.
+**Outcome (3) makes the automated run itself the detector; outcome (2) stops a new defect hiding
+behind an old one.** **Ticket status is NEVER read as evidence about the build.**
+
+---
+
+# 16 · FINALITY — all three branches are FINAL, and what that does and does not mean
+
+**⚠️ THIS SUPERSEDES THE LONG-STANDING "the branches will never be declared final" POSITION. The old
+wording is kept dated in `CLAUDE.md` rather than deleted; do not quote it.**
+
+**Sequence, both rulings verbatim:** on **2026-08-11** the QA lead confirmed *"note that ALL 6 reports
+have been handed off now."*, making the **Report Suite** branch final; **later the same day** he said
+***"The Branches are Final now."*** — plural, immediately after — **extending finality to SCHEDULE
+(`sv8685`) and FILTERS (`sv8785`) as well.**
+
+**WHAT FINALITY CHANGES:**
+- **Findings are NO LONGER PROVISIONAL pending development.** **A deviation on any of the three is a
+  REAL DEFECT IN A FINISHED FEATURE** — not possibly-an-unfinished-feature. **That ambiguity is
+  exactly what finality removes**, and it is why a hedge that was right last week is now **wrong and
+  would understate a real finding.**
+- **Rule-49 queue rows MAY CLOSE on all three**, on the **ORDINARY close condition** (the row
+  re-verified with fresh evidence). **The bar is NOT lowered** — only the *"wait for the build to
+  settle"* blocker is removed, and **Rule 60 may never be cited to close a queue with rows
+  unverified.**
+- **The "an OPEN queue is the normal steady state" framing is RETIRED** — it described a consequence
+  of branches that were never declared final, and that premise is gone.
+
+**🛑 THE CAVEAT THAT WILL OTHERWISE BE MISREAD: "FINAL" MEANS HANDED OFF / FEATURE-COMPLETE, NOT "the
+code will never change."** All three still redeploy — **not least to fix the very defects we are
+reporting** — so **a redeploy still invalidates the on-screen labels and the pass/fail verdict**
+(Rule 60 layers 1–2) on every one of them. Read this together with the **bug-fix-deploy** amendment
+(skill `03` §6.1): a **bug-fix-only** deploy does **not** make a prior pass stale, and the re-check
+trigger is **a specific observed contradiction, never a changed app-version string.**
+
+**🔴 AND THE HONEST CONSEQUENCE — FINALITY RAISED THE STAKES; IT CLOSED NOTHING OUT.** As at
+2026-08-11, **433 cases were final but NOT build-verified** — **Schedule 174** · **Filters 8**
+(blocked on the second non-administrator sign-in) · **Report Suite 251** (Sales By Representative 112
+· Parts Velocity 71 · Inventory Value 68) — against **331 build-verified**, and **433 + 331 = 764**,
+the three suites in full. *(Those figures are as recorded on that date and move; derive live before
+quoting — §1.7. The arithmetic correction behind them is at §1.5a.)*
 
 ---
 
