@@ -208,12 +208,29 @@ correct build would have failed a passing build**, and the same split existed on
   **sentence 2 is optional** and records the check in neutral language (*"Last checked against build
   … on …"*). **The build is never named in sentence 1** — not as a source, not as corroboration, not
   in passing. **A newly authored case that has not been checked against any build OMITS sentence 2.**
+- **🔑 AND EVERY CITED SOURCE IN SENTENCE 1 CARRIES THE DATE WE READ IT** (Standing Rule 54 as amended
+  2026-08-11; full text at core §14.1). Shape: *"This is the expected behaviour as per epic SV-8685
+  and the Schedule specification version 27, section 5.3, read on 11 August 2026."* **Where a case
+  cites more than one source, EACH carries its own date** — a spec and a PO answer are read at
+  different times and move independently. **The date is when WE READ that source, never today's date
+  by default: back-filling one onto a source this pass did not open is a fabricated observation**
+  (Rule 12), and it defeats the purpose, because **the date's whole value is evidentiary** — it is
+  what lets the QA lead say the reference was taken from the source **as it stood on a stated date**
+  when someone later changes it.
 - **The automation marker is the LAST thing in Expected Results**, after the provenance line, **blank
   line before and a line break after**, exactly one of:
   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
   **A tool flag never justifies HOLD** — devtools, DOM inspection, reading a PDF or CSV, seeded data,
   theme toggles and viewport sizes are all automatable. Only a **genuinely unobtainable thing** (a
   real physical device, an external account we do not have) does.
+- **🛑 AND AN `EXPECT FAIL` MARKER NEEDS LIVE BACKING — NO BACKING, NO MARKER** (Standing Rule 61 as
+  amended 2026-08-11; core §15.1). QA lead, verbatim: *"WHen there is nothing to back 'Expect fail'
+  then not set that marker. And let the manual QA tester simply discover whether this test fails or
+  passes and mark the test case accordingly in the tesrail"*. **A CLOSED OR OBSOLETE TICKET DOES NOT
+  BACK IT** — where the backing is absent or stale the marker **comes off** and the case carries plain
+  `AUTOMATION: READY`. **We do not predict on the tester's behalf**, and an unbacked expect-fail
+  **asserts a build fact nobody observed.** **Removing it does not soften the case — it RESTORES the
+  case's ability to fail.**
 - **⚠️ NO CLOSED ENUMERATIONS without a version-pinned anchor** (Rule 42). *"The headers, in order, are
   exactly…"* is **a time bomb**: correct until the spec adds one item, then it makes a tester fail a
   correct build. Prefer **scope-conditional wording** — *"includes X in position Y when Z"* — and give
@@ -249,6 +266,18 @@ unsourced it looks: an automation suite may already depend on it, so deleting it
 else's work, silently, in a system we do not own**.
 **But check whether a PERSON actually set the flag** (`get_history_for_case`) — on Schedule **nobody
 ever did**; our own tooling hardcoded `3` (core §3.1).
+
+**✅ AND WHERE OUR TOOLING SET IT WRONGLY, HE HAS RULED THAT WE FIX IT.** QA lead, verbatim, on the 31
+Schedule cases: ***"Yeh wee need to fix everycase from all the three projects where we have
+mistakengly done that."*** All **31** were corrected **`3 → 1`**, every write byte-verified with
+**only `custom_atmstatus` moved**; Schedule then read **174/174 Not Automated**.
+**🔑 THE METHOD IS THE TRANSFERABLE PART, AND IT IS WHY THE OTHER 44 WERE LEFT ALONE: who set the flag
+was established PER CASE from `get_history_for_case`, NEVER BY SUBTRACTION.** **44 cases carry an
+`custom_atmstatus` history event and every one is user 1 (Vladimir Tomovic)**; the 31 carry **none**
+while their history is otherwise non-empty, so the `3` had stood since creation. **Corroborated
+independently:** every Schedule case above id 30090 (i.e. every one we added by `add_case`) was `3`,
+and all 143 imported ones were `1` — **two lines of evidence agreeing exactly.** Never infer
+authorship from a gap in a set; read it per case. Record: `build/automated-flag-and-c30041-2026-08-11/`.
 
 **`delete_case` is IRREVERSIBLE, and irreversibility raises the bar rather than lowering it.** The
 candidate list goes to the QA lead **before** any deletion, each with internal ID + C-id + link, what

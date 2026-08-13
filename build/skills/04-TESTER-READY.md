@@ -159,6 +159,17 @@ run:
 > *· See something **different** → that is a **new** problem. Please report it.*
 > *· It **passes** → the fix has shipped. Tell the QA lead so the ticket can be closed."*
 
+**🛑 BEFORE THE BRIEF GOES OUT, CHECK EVERY `EXPECT FAIL` MARKER STILL HAS LIVE BACKING — NO BACKING,
+NO MARKER (Standing Rule 61 as amended 2026-08-11; core §15.1).** QA lead, verbatim: *"WHen there is
+nothing to back 'Expect fail' then not set that marker. And let the manual QA tester simply discover
+whether this test fails or passes and mark the test case accordingly in the tesrail"*.
+**A CLOSED OR OBSOLETE TICKET DOES NOT BACK THE MARKER, and the scale of this is real: 31 of the 33
+tickets behind the Report Suite's expect-fail cases were CLOSED**, several confirmed fixed on
+10 August. **Those markers were telling a tester to ignore a failure that may no longer exist — the
+precise inverse of what the marker is for**, and on a handover it is the tester who pays for it.
+**⇒ Where the backing is gone, the marker comes off and the case carries plain `AUTOMATION: READY`;
+the tester then DISCOVERS the outcome and records it.** **We do not predict on the tester's behalf.**
+
 **Group the skip list by the thing each case is actually waiting on**, so the reader can see at a
 glance which asks would unblock how many — *"waiting on Branko's Parts and Reports write-up"*
 (10 cases) · *"needs a second test login"* (2) · *"needs an account whose filters were saved before
