@@ -68,8 +68,8 @@ missing column visible. A figure that has no row is a figure nobody notices is a
 | # | Column | What it must show |
 |---|---|---|
 | **1** | **TOTAL CASES — TWO NUMBERS** | **"ours N / live M"**, because we never claim or hide another author's work. **One number alone is wrong whichever one it is** |
-| **2** | **SOURCE-VERIFIED** | how many carry **a per-source read date AND a current spec version pin** — **both halves.** A case pinned to a version nobody re-read is not source-verified; a source read on a date but pinned to a superseded version is the trap-(c) failure waiting to happen |
-| **3** | **BUILD-VERIFIED — SPLIT IN TWO** | how many name **the build now running**, and how many name **an earlier one**. A single total silently merges them and is **the easiest number in the whole table to overstate** |
+| **2** | **SOURCE-VERIFIED** | how many carry **a per-source read date AND a current spec version pin** — **both halves.** A case pinned to a version nobody re-read is not source-verified; a source read on a date but pinned to a superseded version is the trap-(c) failure waiting to happen. **Fallback added 2026-08-13 (cold-run defect D3):** where the live Confluence version CANNOT be fetched in this pass (no Atlassian access; a source check is skill `02`'s job, not this skill's), report the pin **as recorded on the cases plus its read date**, label the currency half **NOT ESTABLISHED**, and put the skill-`02` read in column 7 — never silently treat the recorded pin as current, and never block the whole report on it |
+| **3** | **BUILD-VERIFIED — SPLIT IN TWO** | how many name **the build now running**, and how many name **an earlier one**. A single total silently merges them and is **the easiest number in the whole table to overstate**. **Fallback added 2026-08-13 (cold-run defect D2):** core §0.4 establishes the running build only when a pass touches the build — a report-only pass with no session CANNOT read it. Then split by **the most recent build named in the cases' own sentence-2 stamps**, say in the table that the running build **was not read live**, and put "running-build identity — needs a fresh session" in column 7. Never present the most-recent-named build as confirmed-running |
 | **4** | **STEPS AND PRECONDITIONS ACTUALLY WALKED** | the runnability figure — **always the smaller number and always the more honest claim** |
 | **5** | **RUNNABLE vs HELD, WITH THE MARKER ARITHMETIC SHOWN CLOSING BOTH WAYS** | `READY` + `READY - EXPECT FAIL` on one side; `total − HOLD` on the other. **Both printed. A gate shown only one way is not a gate** |
 | **6** | **CREATED / UPDATED / DELETED in the pass** | — |
@@ -106,6 +106,18 @@ Then **column 7 as its own list**, never a number.
   navigation path present, every control where the step says it is, the order workable.
 
 **The second is always the smaller number and always the more honest claim.**
+
+**⚠️ HOW COLUMN 4 IS ACTUALLY DERIVED — added 2026-08-13 (cold-run defect D5), because the skill gave
+no procedure and core §14.2 actively collapses the two columns.** §14.2 defines every sentence-2
+stamp (from 2026-08-12 onwards) as the record of the **full runnability walk**, which would make
+column 4 equal column 3 — while this section requires them separate and the walked number smaller.
+**The cold-run resolution, until a better record exists:** count stamps dated **on or after
+2026-08-12** as the walk record, report the figure as an **upper bound** (*"≤ N by the stamp record;
+not independently established"*), and say plainly that a re-stamp of the labels layer cannot be
+told apart from a genuine walk. **Where the pass itself walked cases, its own walk log is the real
+figure — a report-only pass has no better source than the stamps and must say so.** (Live worked
+example: Schedule 2026-08-12 recorded 76 build-verified vs 28 walked, yet 151 cases carried
+12-August stamps by 2026-08-13 — the stamps alone would have overstated the walked figure five-fold.)
 
 ### (b) 🛑 NEVER report "VIU COMPLETE"
 

@@ -1227,6 +1227,13 @@ version 27, section 5.3, read on 11 August 2026."*
 DONE.** It is logged in `build/OUTSTANDING-ITEMS-REGISTER.md`, and **until it runs, no pass may
 describe any suite as compliant with this amendment.**
 
+**✅ CORRECTED 2026-08-13 (cold-run defect D7) — the paragraph above is STALE for two of the three
+suites and is kept dated rather than deleted.** A live census (two independent reads, 05:58 and
+07:44 UTC) found **Filters 115/115 and Schedule 176/176 DO carry read-dates** ("read on 11/12 August
+2026") together with their spec pins — the sweep evidently ran for those two after the paragraph was
+written. **Report Suite was NOT measured by that census**, so for Report Suite the claim above stands
+until someone measures it. Evidence: `build/reports-2026-08-13/live-derivation.json`.
+
 ### 14.2 What sentence 2 records (clarified 2026-08-12)
 
 Sentence 2 records the check of **the whole build-facing layer** — the preconditions, the steps, the
@@ -1393,7 +1400,8 @@ and belong in each `PROJECT-STATE.md`, derived live).
 | **API host** (probe THIS, §6) | `sv8785api.qa.shopview.com` | `sv8685api.qa.shopview.com` | `sv8582api.qa.shopview.com` |
 | **Confluence spec page** | **572030978** | **713031682** | **six — one per report**, below |
 | **Case source** | `build/filters/cases/` | `build/schedule/cases/` | `build/report-suite/cases/` |
-| **Id-map · generator** | `build/filters/testrail-id-map.csv` · `gen_import.py` | `build/schedule/…` | `build/report-suite/…` |
+| **Id-map · generator** | `build/filters/testrail-id-map.csv` · `gen_import.py` | `build/schedule/testrail-id-map.csv` · `gen_import.py` | `build/report-suite/testrail-id-map.csv` · `gen_import.py` |
+| **Import file** | `testrail-import/filters-v1-testrail-import.csv` | `testrail-import/schedule-v1-testrail-import.csv` | `testrail-import/report-suite-v1-testrail-import.csv` (+ six per-report splits) |
 | **Cold-resume doc** | `build/filters/PROJECT-STATE.md` | `build/schedule/PROJECT-STATE.md` | `build/report-suite/PROJECT-STATE.md` |
 
 **THE SIX REPORT SUITE SPEC PAGES:** Sales By Customer **577634305** · Sales By Representative
@@ -1403,6 +1411,10 @@ and belong in each `PROJECT-STATE.md`, derived live).
 - **TestRail:** project **1**, single suite **1 "Master"**, API v2 at
   `https://shopview.testrail.io/index.php?/api/v2/…` — **and the separator inside that path is `&`,
   never a second `?`** (§3.3).
+- **"Local active" case count (added 2026-08-13 — cold-run defect D6):** a case body under
+  `build/<project>/cases/cases-*.json` counts as ACTIVE unless its status field marks it retired —
+  the convention **differs per project**: Filters uses `viu_status` beginning `"Retired"`, Schedule
+  uses `status`. Check both keys.
 - **TestRail CREDENTIALS (added 2026-08-13 — found missing by TWO cold drills in one morning):**
   Basic auth, and the credentials live in **`/tmp/testrail/creds.json`** (keys: `email` / `host` /
   `password` / `user`; `chmod 600`, **never committed** — the repository is public, §10). **`/tmp` is
