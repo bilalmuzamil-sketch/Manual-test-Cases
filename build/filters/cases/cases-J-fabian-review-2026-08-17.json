@@ -1,0 +1,92 @@
+[
+ {
+  "id": "FLT-ASSIGN-01",
+  "title": "Assigned to me is a toggle chip with no arrow that turns on and off",
+  "section_id": 4111,
+  "refs": "SV-9271 (S6a-R1; S6a-R2; S1-R6) [spec v21 2026-08-14]",
+  "preconditions": "1. You are signed in on a desktop browser.\n2. You are on the Work Orders page.",
+  "steps": "1. Look at the 'Assigned to me' chip in the toolbar row.\n2. Click it once, then click it a second time.",
+  "expected": "1. The 'Assigned to me' chip shows a leading icon and the label 'Assigned to me'.\n2. It has NO dropdown arrow (chevron) and does not open a panel - it is a simple on/off toggle.\n3. The first click turns the filter on; the second click turns it off.\n4. It sits among the Work Orders chips in this order: Status, Assigned to me, Asset on Site.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9271 (Assigned to Me filter), and the Filters specification at Confluence version 21 (published 14 August 2026) (S6a-R1; S6a-R2; S1-R6), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026\n",
+  "testrail_case_id": 43841
+ },
+ {
+  "id": "FLT-ASSIGN-02",
+  "title": "Turning Assigned to me on highlights the chip with no value and no clear X",
+  "section_id": 4111,
+  "refs": "SV-9271 (S6a-R3; S6a-R4; S7-R5; S7-R6) [spec v21 2026-08-14]",
+  "preconditions": "1. You are signed in on a desktop browser.\n2. You are on the Work Orders page with 'Assigned to me' turned off.",
+  "steps": "1. Click the 'Assigned to me' chip to turn it on.\n2. Hover the mouse over the chip.\n3. Click the chip again to turn it off.",
+  "expected": "1. When on, the chip takes the active (highlighted) appearance used by any selected filter.\n2. It shows NO value text after the name - it stays just 'Assigned to me'.\n3. Hovering does NOT show an X-circle clear icon - the toggle chip has no separate clear control.\n4. Clicking the chip itself is what turns the filter off; it returns to its plain appearance.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9271 (Assigned to Me filter), and the Filters specification at Confluence version 21 (published 14 August 2026) (S6a-R3; S6a-R4; S7-R5; S7-R6), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026\n",
+  "testrail_case_id": 43842
+ },
+ {
+  "id": "FLT-ASSIGN-03",
+  "title": "Assigned to me narrows to my work orders on top of the tab and filters",
+  "section_id": 4111,
+  "refs": "SV-9271 (S6a-R5; S6a-R6; S11-R1; S10-R1) [spec v21 2026-08-14]",
+  "preconditions": "1. You are signed in on a desktop browser as a user who is the assignee on some work orders.\n2. You are on the Work Orders page and other work orders (not yours) also exist.",
+  "steps": "1. Turn on 'Assigned to me'.\n2. Note which work orders remain in the list.\n3. Also apply a Status filter and switch tabs, watching the list.\n4. Navigate away from the page and return; also copy the page link.",
+  "expected": "1. The list narrows to only the work orders assigned to you (the logged-in user).\n2. It applies on top of the active tab's built-in filter and on top of any other active filter - the results match all of them together.\n3. The selection is remembered when you leave and return (persistence, Story 10).\n4. The active state is reflected in the page link so a filtered view can be shared (URL state, Story 11).\n5. If nothing is assigned to you within the current tab and filters, the empty state is shown (Story 8).\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9271 (Assigned to Me filter), and the Filters specification at Confluence version 21 (published 14 August 2026) (S6a-R5; S6a-R6; S11-R1; S10-R1), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026\n",
+  "testrail_case_id": 43843
+ },
+ {
+  "id": "FLT-BANNER-01",
+  "title": "A shared-link banner appears above the tabs when you open a filtered link",
+  "section_id": 4122,
+  "refs": "SV-9277 (S11-R7; S11-R7a) [spec v21 2026-08-14]",
+  "preconditions": "1. You are signed in on a desktop browser.\n2. Another user (or you) has copied a page link that already contains filter selections.",
+  "steps": "1. Open the shared link that carries filter state.\n2. Read the banner shown between the top application header and the tabs row.\n3. Click 'Back to my view'.",
+  "expected": "1. A full-width information banner appears between the application header and the tabs row.\n2. It shows a link icon and the message: Viewing a shared link - your own saved filters aren't applied.\n3. It has a 'Back to my view' link on it.\n4. Clicking 'Back to my view' discards the shared view, restores your own saved filters, and clears any active search - so the banner disappears.\n5. The banner is not shown when you are viewing your own saved filters rather than a shared link.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9277 (Shared-link banner), and the Filters specification at Confluence version 21 (published 14 August 2026) (S11-R7; S11-R7a), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026\n",
+  "testrail_case_id": 43844
+ },
+ {
+  "id": "FLT-TAB-WO-01",
+  "title": "The Work Orders tab pre-filters to Estimate, Approved and In Progress",
+  "section_id": 4120,
+  "refs": "SV-9272 (S9-R1; S9-R2; S9-R5) [spec v21 2026-08-14]",
+  "preconditions": "1. You are signed in on a desktop browser.\n2. Work orders exist across several statuses.\n3. You are on the Work Orders page.",
+  "steps": "1. Look at the tab row and read the tab names, left to right.\n2. Click the 'Work Orders' tab.\n3. Note which work orders are shown and which filter chips are visible.",
+  "expected": "1. The tab row has four tabs: All, Work Orders, Estimates, Completed. There is NO 'My Work Orders' tab - it has been removed (its job is done by the 'Assigned to me' chip).\n2. The 'Work Orders' tab shows only work orders with the statuses Estimate, Approved and In Progress.\n3. On this tab the Status chip is NOT shown (Status is shown on the All tab only). The 'Assigned to me' and 'Asset on Site' chips are shown.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9272 (Work Orders tab model), and the Filters specification at Confluence version 21 (published 14 August 2026) (S9-R1; S9-R2; S9-R5), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026\n",
+  "testrail_case_id": 43845
+ },
+ {
+  "id": "FLT-LAYOUT-01",
+  "title": "Filter chips sit in the toolbar row; on pages with no tabs, the title row",
+  "section_id": 4111,
+  "refs": "SV-9268 (S1-R1; S1-R4; S1-R7; S1-R8) [spec v21 2026-08-14]",
+  "preconditions": "1. You are signed in on a desktop browser.\n2. You can reach both a page that has tabs (Work Orders) and a page that has no tabs but does have filters.",
+  "steps": "1. On the Work Orders page, note where the filter chips are placed relative to the tabs.\n2. Go to another page that has filters but no tabs (for example a Parts view or a Report).\n3. Look for any control to hide or collapse the filter chips.",
+  "expected": "1. The filter chips sit in the page's main toolbar row, right-aligned. There is no separate filter bar row anywhere in the application.\n2. On a page WITH tabs, the chips are in the same row as the tabs.\n3. On a page WITHOUT tabs, the chips are in the same row as the page title.\n4. The chips are always visible: there is no button to hide, collapse or expand them, on any page or screen size.\n5. Each page shows the filters that page already provides today - this change relocates and restyles existing filters; it adds none and removes none. A page with no filters today shows no chips.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9268 (Filter layout in the toolbar) and SV-9269 (remove the collapse toggle), and the Filters specification at Confluence version 21 (published 14 August 2026) (S1-R1; S1-R4; S1-R7; S1-R8), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026\n",
+  "testrail_case_id": 43846
+ },
+ {
+  "id": "FLT-LAYOUT-02",
+  "title": "Toolbar order is search, filter chips, icon actions, then the main button",
+  "section_id": 4111,
+  "refs": "SV-9268 (S1-R2; S1-R3) [spec v21 2026-08-14]",
+  "preconditions": "1. You are signed in on a desktop browser.\n2. You are on the Work Orders page (which has a page search, filter chips and a 'New Work Order' button).",
+  "steps": "1. Read the right-hand group of controls in the toolbar row, left to right.\n2. Make the browser window narrow enough that the group cannot fit on one line.",
+  "expected": "1. The right-hand action group is ordered, left to right: the page search, a divider, the filter chips, a divider, any icon-only actions, then the primary button (for example 'New Work Order').\n2. When the window is too narrow to fit the group on one line, the toolbar row wraps.\n3. The chips wrap together as a group and keep their order. Nothing is hidden and nothing collapses into an overflow menu.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9268 (Filter layout in the toolbar), and the Filters specification at Confluence version 21 (published 14 August 2026) (S1-R2; S1-R3), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026\n",
+  "testrail_case_id": 43847
+ },
+ {
+  "id": "FLT-CHIP-07",
+  "title": "A selected chip shows an X to clear on hover and shortens a long value",
+  "section_id": 4117,
+  "refs": "SV-9273 (S7-R6; S7-R7; S7-R8; S7-N1) [spec v21 2026-08-14]",
+  "preconditions": "1. You are signed in on a desktop browser.\n2. You are on the Work Orders page.",
+  "steps": "1. Open the Status chip and select several statuses, then close the panel.\n2. Hover the mouse over the selected Status chip and read the trailing icon.\n3. Click that icon.\n4. On a page with an entity filter, select a value whose name is very long and read the chip.",
+  "expected": "1. A chip with more than one value selected shows the first value followed by a count of the rest, for example 'Status: Estimate, +2'. It does not list every value.\n2. When you hover a selected chip, the arrow fades out and an X-circle fades in over it.\n3. Clicking the X-circle clears that filter's selections straight away, without opening the panel.\n4. A chip with no selection never shows the X-circle, on hover or otherwise.\n5. A value longer than the chip width is shortened with an ellipsis before the count, for example 'Customer: Texas Truck And..., +2'.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9273 (Filter chip: inline clear and truncated label), and the Filters specification at Confluence version 21 (published 14 August 2026) (S7-R6; S7-R7; S7-R8; S7-N1), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026\n",
+  "testrail_case_id": 43848
+ },
+ {
+  "id": "FLT-PANEL-01",
+  "title": "A filter panel opens under its chip and stays applied when you click away",
+  "section_id": 4111,
+  "refs": "SV-9276 (S16-R6; S16-R7; S16-N1) [spec v21 2026-08-14]",
+  "preconditions": "1. You are signed in on a desktop browser.\n2. You are on a page that has at least one filter chip that opens a panel.",
+  "steps": "1. Click a filter chip that opens a panel and note where the panel appears.\n2. Make a selection, then click somewhere outside the panel.\n3. Re-open a panel that has a search box and type text that matches nothing.",
+  "expected": "1. The panel opens as a small pop-over just below its chip, lined up with the left edge of the chip.\n2. Every panel has a 'Clear selection' action in its footer that clears only that filter.\n3. Clicking outside the panel closes it. Your selection is already applied and is kept - it is not discarded.\n4. In a panel that has a search box, a search that matches nothing shows 'No matches' in the panel body.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R6; S16-R7; S16-N1), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026\n",
+  "testrail_case_id": 43849
+ }
+]
