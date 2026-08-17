@@ -1,14 +1,14 @@
-# Schedule — Requirements (COMPLETE spec, verbatim-structured) — **Confluence version 25**
+# Schedule — Requirements (COMPLETE spec, verbatim-structured) — **Confluence version 30**
 
 > ## Spec-currency header (READ FIRST)
 >
 > | Field | Value |
 > |---|---|
 > | **Source page** | Confluence page id **713031682** — "Schedule", space **SHOPVIEW** (`/wiki/spaces/shopviewapp/pages/713031682/Schedule`) |
-> | **Confluence version this doc reflects** | **25** |
-> | **Upstream last updated** | **2026-08-06T09:13:51Z** by **Branko Cicovic** (PO) — **no version comment** (v24 at 08:34:03Z carried none either) |
-> | **We ingested / promoted to v25 on** | **2026-08-06** |
-> | **Previous baseline** | Confluence **version 23** (2026-07-30T10:40:32Z) — we were **2 versions behind** (24, 25), **both published on 2026-08-06, 39 minutes apart** |
+> | **Confluence version this doc reflects** | **30** |
+> | **Upstream last updated** | **2026-08-13T22:48:26.711Z** by **Branko Cicovic** (PO) — comment *"Restore Business hours labelling"* |
+> | **We ingested / promoted to v30 on** | **2026-08-17** (Fabian-review pass; delta doc `fabian-review-2026-08-17/SPEC-REINGEST-v25-v30.md`) |
+> | **Previous baseline** | Confluence **version 25** (2026-08-06T09:13:51Z) — we were **5 versions behind** (26, 27, 28, 29, 30). The substantive bump is **v29 "Schedule V2"** (remaining-hours scheduling; unassigned lane on the department header; six-option spread; peek + vehicle + clocked hours; typed time entry; capacity modal; single-source conflicts; Assign-work-order modal; day-view zoom + chevrons) = the 14 new stories **SV-9231…SV-9244**. v30 restored the **"Business hours"** label. |
 > | **Live pull method** | `GET /wiki/rest/api/content/713031682?expand=body.storage,version,history.lastUpdated` (HTTP 200); historical bodies with `?status=historical&version=<n>` — **all 25 versions pulled, 25 × HTTP 200**. Verbatim v23/v24/v25 storage bodies in `spec-v25-2026-08-06/evidence/raw-v{23,24,25}.xml`; version-attributed delta in `spec-v25-2026-08-06/SPEC-DIFF.md`. The earlier v18→v23 promotion is in `spec-current-2026-07-31/`. |
 >
 > ### ⚠️ STALENESS GOTCHA — the page body's own "Version" field is a LIE
@@ -118,6 +118,36 @@
 > carries**. Whether the ruling covers the modal field or only the line badge **is not determinable
 > from his words**, so it is **not resolved here** (Rule 58): see
 > `spec-v25-2026-08-06/QUESTIONS-FOR-BRANKO.md` **Q2**.
+>
+> ### What changed when it was promoted v25 → v30 (2026-08-17 — the "Schedule V2" pass)
+>
+> **Full version-attributed delta:** `fabian-review-2026-08-17/SPEC-REINGEST-v25-v30.md`. Five bumps;
+> the substance is one big rewrite (v29) framed by three label edits.
+>
+> | Where | Change | Version |
+> |---|---|---|
+> | §4.12 | Hover tooltip: *"per-technician"* → *"per-**assigned** technician"* breakdown | v26 |
+> | §5.3 / §6 | **NEW §5.3 Left-panel collapse toggle** + toolbar Panel row (own story **SV-9243**) | v27 |
+> | §4.9 | Notes: *"add, edit, delete per work order"* → *"…**per shift**"* | v28 |
+> | §3.1 | Work order card gains the **vehicle (year make model)** and **clocked hours**; NEW **work order peek** popover; sidebar search adds **vehicle** | **v29** |
+> | §3.2 | The **department header row IS the unassigned lane** (not a separate placeholder row); unassigned shifts render as **fixed-width chips carrying their hours** | **v29** |
+> | §4.2 | **RENAMED** "Shift start times…" → **"Working hours, shift length, and unassigned shifts"**; NEW **resolved working hours** hierarchy + **app-level default 7am–7pm (not a rule — no conflict outside it)**; **shift length = REMAINING hours** (estimate − clocked, floored 0.25h, never resized later) | **v29** |
+> | §4.5 | Spread selector now **six options incl. "Today only"** (each showing resolved hours; fixed spans shown only when they constrain the scope); **single-day scope shows only an editable Hours field, no selector**; **Until a date… / Specific hours… derive each other**; summary *"{N} shifts · {total}h"*, confirm *"Create {N} shifts"* | **v29** |
+> | §4.5 / §12 | **🔴 SHOP-CLOSURES CONTRADICTION RESOLVED:** spread **skips weekends only**; shop closures, public holidays and already-booked days **all receive shifts**. Both §4.5 and §12 now agree (was a two-way contradiction v22–v25). **Clears register S1/X1/NQ-1/P9; contradicts the 2026-07-29 tech plan — reported per the 2026-08-12 tech-design ruling** | **v29** |
+> | §4.8 | Day view gains a **pixels-per-hour zoom** control; auto-scroll adds a third trigger (**on grid-range change**) + **scrolls to the now line when the date is today**; move **and** resize snap to 15 min with a **live time chip**; **continuation chevrons on any clipped block** (not only series banners) | **v29** |
+> | §4.9 | Start/end/hours **typed to the minute** (15-min dropdown a shortcut, editing any two resolves the third); **time logged PER LINE and for the shift** | **v29** |
+> | §4.11 | Hours conflicts evaluated against a **single source** (technician when set, else business hours, never both; **neither set = no hours conflict**); unassigned shifts raise no conflict; "Adjust" clamps to the resolved window | **v29** |
+> | §4.12 | Hover tooltip **truncated** with **"+N more · click to view all"** opening a **capacity detail modal**; denominators use each tech's **resolved** hours; **unassigned shifts excluded** from both sides | **v29** |
+> | §7 | Cell menu gains **"Assign work order" FIRST** (opens a non-drag scheduling modal, *"Supersedes SV-8916"*); delete-scope option states *"how many scheduled hours it removes"* | **v29** |
+> | §8.1 | Shift gains `targetDate` + `rowKey empty when unassigned`; WorkOrder gains `vehicle`, `vin`, `actual`; NEW **Location** entity with `businessHours` | **v29** |
+> | §11 | Theme is **Light / Dark / System** (was Light / Dark); **story SV-9245 for it is OBSOLETE — not tested** | **v29** |
+> | §4.2 / §4.7 / §9 | **Label RESTORE:** the shading overlay, the Filter-&-Display toggle and the settings entity read **"Business hours"** again (v29 had renamed them "Working hours"); the per-technician concept stays **"resolved working hours"** | **v30** |
+>
+> **Coverage outcome (Rule 43):** the 14 new stories decompose into 34 requirement rows → **19 NEW
+> cases** (C43795–C43813, authored 2026-08-17) + **~28 existing cases updated/re-anchored** to v30
+> (2026-08-17). **0 orphaned anchors** — every §-anchor our cases cite still exists in v30; §4.2 was
+> renamed, not removed. The body sections below carry inline `[v29]`/`[v30]` tags for the reworded
+> requirements; the exhaustive verbatim delta is in `SPEC-REINGEST-v25-v30.md`.
 
 ---
 
@@ -231,7 +261,34 @@ from the sidebar and drop it onto a technician × day/time cell in the grid.
 The spread step is conditional: a scope that fits within one of the technician's
 working days skips it and creates a single shift.
 
-### 4.2 Shift start times and unassigned shifts
+### 4.2 Working hours, shift length, and unassigned shifts *`[v29 — RENAMED from "Shift start times and unassigned shifts"]`*
+
+> **`[v29 — Schedule V2 rewrite; see SPEC-REINGEST-v25-v30.md §2]`** v29 rewrote this section. The v30
+> requirements, verbatim in substance:
+> - **Resolved working hours.** One window governs each technician's day, resolved in order: the
+>   technician's configured hours → the shop's **business hours** → an **app-level default of 7:00 AM to
+>   7:00 PM** when neither is set. The first level set wins; levels are not merged. The resolved window
+>   is used **everywhere a day's length matters** (sizing on drop, the spread step, capacity §4.12,
+>   business-hours shading, day-view auto-scroll §4.8). No fixed daily hour count is used anywhere. The
+>   first two levels are **rules** (a shift outside them is a §4.11 conflict); **the app-level default is
+>   NOT a rule — a shift outside it raises no conflict.**
+> - **Shift length = REMAINING hours.** A shift is sized by the scope's **estimate minus hours already
+>   clocked**. A not-started work order uses the full estimate. Remaining is evaluated at creation,
+>   **floored at 0.25h** (a scope with less left cannot be scheduled — the user is told nothing remains).
+>   **Shifts already on the board are never resized when hours are clocked later**, so scheduled hours,
+>   the estimate and clocked hours stay three separate quantities and planned hours may exceed the
+>   estimate.
+> - **Unassigned shifts** are created by dropping onto a department's unassigned lane (§3.2): a single
+>   shift covering the whole scope, **the spread step does NOT run**, sized by remaining hours, with the
+>   drop date recorded as the **target start date**. They are **excluded from capacity**, render as
+>   **fixed-width chips carrying their hours**, and raise no conflict. **Dragging one onto a technician
+>   runs the same path as a fresh sidebar drop** (single shift if remaining fits the day, else the
+>   spread step opens with its start pre-filled from the target date); the technician is added to the
+>   labor roster and the shift begins counting toward capacity.
+>
+> The pre-v29 wording is preserved below for the record; where it conflicts, **v29/v30 wins** (Rule 32).
+
+### 4.2 (pre-v29 wording, retained for the record) — Shift start times and unassigned shifts
 Every shift has a start time. It is derived from a hierarchy:
 1. The technician's configured working hours take precedence.
 2. If those are not set, the shop's business hours are used.
@@ -314,6 +371,27 @@ the only icon. Whole-order and multi-line-subset shifts both read as "N Lines" o
 block, and the detail modal spells out the exact scope.
 
 ### 4.5 Multi-day spread scheduling
+
+> **`[v29 — Schedule V2 rewrite; see SPEC-REINGEST-v25-v30.md §2]`** v29 reworked the spread. v30
+> requirements, verbatim in substance:
+> - **Six-option selector**, default **Full estimate** (= the scope's **remaining** hours): Full
+>   estimate, **Today only** (NEW), 1 week, 2 weeks, Until a date…, Specific hours…. Fixed options carry
+>   their **resolved hours in the label**. **Today only / 1 week / 2 weeks are offered ONLY when the
+>   span's capacity is less than the scope's hours**; Until a date… and Specific hours… are always
+>   available. **Specific hours…** steps by the **resolved daily hours**.
+> - **A single-day scope shows NO selector** — only an editable **Hours** field pre-filled with the
+>   remaining hours, stepping by 0.25h; reducing it shows *"{N}h left to schedule"*; confirming makes a
+>   single shift.
+> - **Until a date… and Specific hours… derive each other** (date→hours, hours→date).
+> - **Summary** reads *"{N} shifts · {total}h"* over *"{start} to {end} · Mon–Fri, per tech hours"*,
+>   collapsed by default, expandable week-by-week; confirm reads *"Create {N} shifts"*.
+> - **🔴 SKIP RULE (contradiction RESOLVED in v29):** the generator **skips weekends only**; shop
+>   closures, public holidays and already-booked days **ALL receive shifts**. §12 now says the same.
+>   This settles the two-way contradiction that stood v22–v25; **it contradicts the 2026-07-29 tech
+>   plan (closures block) — reported per the 2026-08-12 tech-design ruling, spec wins (Rule 32).**
+>
+> Pre-v29 wording retained below for the record; where it conflicts, **v29/v30 wins**.
+
 For jobs exceeding a technician's daily capacity, the spread step distributes the work
 across consecutive working days. It appears as step 2 of the same modal, with a header
 showing the chosen scope and a "Change scope" back-link.
@@ -334,13 +412,15 @@ showing the chosen scope and a "Change scope" back-link.
   in V1.. *`[v22 — changed]`* *(the doubled full stop is the spec's own typo — reproduced
   verbatim, do NOT "fix" it in case wording)*
 
-  > ⚠️ **SPEC-INTERNAL CONTRADICTION (flagged, not resolved — Rule 15).** §4.5 above says
-  > shop closures are **NOT skipped in V1**, but **§12 Edge cases** still says closures
-  > "**block the spread step from placing shifts on those days**". Both sentences are live
-  > in Confluence v23. We do NOT pick a side: our cases follow §4.5 ("not skipped"), and
-  > this contradiction is an open confirmation question for Branko. The engineering tech
-  > plan takes the §12 side (it builds real closure-skipping), which is the second half of
-  > the same open question.
+  > ✅ **CONTRADICTION RESOLVED in v29 (`[v29]`).** For versions v22–v25 §4.5 said closures are
+  > **NOT skipped** while §12 said closures **block the spread** — a live two-way contradiction, and
+  > the oldest open Schedule question (register S1/X1/NQ-1). **v29/v30 removes it: BOTH §4.5 and §12
+  > now say the spread skips WEEKENDS ONLY, and shop closures, public holidays and already-booked
+  > days ALL receive shifts.** Our cases follow this (Rule 32 — newest authoritative source), and
+  > **no PO answer is needed**. **⚠️ It contradicts the 2026-07-29 tech plan (which built real
+  > closure-skipping); the spec wins (Rule 32) and the tech-design contradiction is REPORTED to the
+  > QA lead per the 2026-08-12 ruling (core §11.2).** The pre-v29 §4.5 wording just above is retained
+  > for the record; the ACTIVE rule is "weekends only".
 - **Preview**, collapsed by default: a one-line summary ("20 shifts · Jun 15 to Jul 13
   · skips weekends + 2 days"), expandable to a week-by-week breakdown with skipped days
   struck through and their reasons.
@@ -718,12 +798,12 @@ defaults above.
 - Every shift has a start time, resolved from the hierarchy in §4.2 or from the drop
   position in day view; unassigned shifts use the same rules minus technician hours
   until they are assigned.
-- Shop closures (holidays, inventory days) are defined at the shop level and block the
-  spread step from placing shifts on those days. ⚠️ **CONTRADICTS §4.5** ("Shop closures
-  and public holidays are not skipped in V1"). Both sentences are live in Confluence v23 —
-  unchanged here since our v18 baseline, i.e. Branko updated §4.5 in v22 and did not update
-  this bullet. **Flagged, not resolved** (Rule 15): our cases follow §4.5, and this is an
-  open confirmation question for Branko.
+- **`[v29 — REWRITTEN]`** The spread step **skips weekends only**. Shop closures, public holidays and
+  days the technician is already booked **all receive shifts**. ✅ **§12 now AGREES with §4.5** — the
+  v22–v25 contradiction (this bullet used to say closures "block the spread step") is **resolved in
+  v29/v30**. Our cases follow "weekends only" (Rule 32). *(Pre-v29 wording said closures block the
+  spread; retained in the SPEC-REINGEST doc. The tech-design contradiction is reported to the QA
+  lead.)*
 - Dropping the same work order on multiple technicians creates independent series, each
   spreading the full estimate, so planned hours across technicians may exceed the
   estimate. This is expected, since clocked-in time drives progress.
