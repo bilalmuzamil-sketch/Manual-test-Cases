@@ -122,6 +122,17 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-f77875c on 8/6/2026.
 
 AUTOMATION: HOLD - the specification states two different tab-placement rules (whole work order by status, or per line state) and the product owner has been asked which governs",SV-8659 (WIP spec v6 2026-07-29 Story 3 S3-R4 (started + not-started branches + context note)),,
+Adjustments column appears in the fixed column order and in the first-visit set,WIP — Columns & Rows,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. At least one open work order carries a work-order-level fee or discount.","1. Open the Work In Progress report.
+2. Look at the columns shown on first visit.
+3. Turn on every toggleable column and look at the full left-to-right order.","1. On first visit the visible columns include an ""Adjustments"" column, shown between ""Remaining"" and ""Total"".
+2. With all columns on, the full left-to-right order is: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Adjustments, Labor Delta, Total.
+3. ""Adjustments"" sits immediately before ""Labor Delta"" and ""Total"".
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 21 (S4-R1, S4-R2), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9282 (WIP spec v21 2026-08-14 S4-R1; S4-R2 — Adjustments column added; shared WIP+SBC proposal 2026-08-12),,
 "With all toggleable columns on, the fixed column order and alignment hold",WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.
 3. Every toggleable column is turned on in the column-selection control.
@@ -255,6 +266,50 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-4795eee on 8/10/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8967)",SV-8660 (WIP spec v9 2026-08-05 Story 4 S4-R5 — the negative half: a person without Work Order permission sees the WO # as plain text and not a link),,
+Adjustments is the signed net of work-order-level fees and discounts,WIP — Earned & Remaining,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. One open work order has a work-order-level fee (for example a $500 tow-in fee) and another has a work-order-level discount.","1. Open the Work In Progress report.
+2. Find the row for the work order that has the fee.
+3. Read its Adjustments value.
+4. Find the row for the work order that has the discount and read its Adjustments value.","1. On the work order with a fee, Adjustments shows the fee as a positive amount (for example $500.00).
+2. On the work order with a discount, Adjustments shows the discount as a negative amount.
+3. Adjustments is one whole-work-order amount - it is never split into an Earned part and a Remaining part.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 21 (S4-R29), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026","SV-9282 (WIP spec v21 2026-08-14 S4-R29 — signed net of WO-level fees/discounts, fees positive discounts negative, one whole-WO amount)",,
+A work-order fee or discount moves only Adjustments and Total,WIP — Earned & Remaining,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. An open work order appears on the report with no work-order-level fee or discount yet.","1. Open the Work In Progress report and note the row's Labor Earned, Parts Earned, Adjustments and Total.
+2. Add a work-order-level fee to that work order.
+3. Reload the report and read the same row again.","1. The Labor columns and the Parts columns are unchanged.
+2. Only the Adjustments value and the Total value change.
+3. A line-level fee or discount (one attached to a single line) stays folded into that line's Labor or Parts value and does not appear in Adjustments.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 21 (S4-R30), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9282 (WIP spec v21 2026-08-14 S4-R30 — WO-level amount never allocated into Labor/Parts; line-level stays folded),,
+A row's Total is Earned plus Remaining plus Adjustments,WIP — Earned & Remaining,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. An open work order on the report carries a work-order-level fee or discount.","1. Open the Work In Progress report.
+2. On one row read the Earned value, the Remaining value and the Adjustments value.
+3. Read the Total value on the same row.","1. Total equals Earned plus Remaining plus Adjustments.
+2. Total is NOT the work order's stored grand total, and it is NOT Earned plus Remaining by itself.
+3. A Total that differs from the work order's own grand total is expected, not a data error.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 21 (S4-R21), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9282 (WIP spec v21 2026-08-14 S4-R21 — Total = Earned + Remaining + Adjustments; not the WO stored grand total),,
+"Completed tab: Earned equals Total minus Adjustments, Remaining $0.00",WIP — Earned & Remaining,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. A completed work order that carries a work-order-level fee or discount appears on the Completed tab.","1. Open the Work In Progress report and go to the Completed tab.
+2. On a completed work order read Earned, Remaining, Adjustments and Total.","1. Remaining is $0.00.
+2. Earned equals Total minus Adjustments.
+3. Total still equals Earned plus Remaining plus Adjustments.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 21 (S4a-R2), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026","SV-9282 (WIP spec v21 2026-08-14 S4a-R2 — Completed tab: Earned = Total - Adjustments, Remaining $0.00)",,
 Money columns show US dollars to two decimals with thousands separators,WIP — Earned & Remaining,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. All money columns (Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Total) are turned on.
 3. The report shows rows with values over $1,000, a genuine zero value, and (if producible) a negative value.","1. Read a money value over one thousand dollars.
@@ -483,6 +538,16 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-f77875c on 8/6/2026.
 
 AUTOMATION: READY",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R28),,
+The summary strip shows seven figures and no Adjustments figure,WIP — Summary Strip,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. Open work orders with work-order-level fees or discounts appear on the report.","1. Open the Work In Progress report.
+2. Read the summary strip at the top of the report.","1. The summary strip shows exactly seven figures, in this order: Total Earned, Total Remaining, Not Started, Started - Earned, Started - Remaining, Ready to Invoice, and Estimates.
+2. There is no Adjustments figure in the summary strip.
+3. Work-order-level fees and discounts are carried only by the Adjustments column and the per-tab Totals row, not by a summary figure.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 21 (S5-R1, S5-R13), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026","SV-9282 (WIP spec v21 2026-08-14 S5-R1; S5-R13 — seven summary figures, no Adjustments tile (S5-R13 reverses the 2026-08-12 muted figure))",,
 The summary strip shows seven figures in a fixed order as US dollars,WIP — Summary Strip,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Read the summary strip across the top of the report, left to right.
 2. Read each figure's number format.","1. The strip shows seven figures, in this order: Total Earned, Total Remaining, Not Started, Started — Earned, Started — Remaining, Ready to Invoice, and Estimates.
@@ -550,14 +615,26 @@ Each summary figure's information icon reveals its plain explanation,WIP — Sum
 4. Started — Earned — ""Jobs in progress: the work already done but not billed yet.""
 5. Started — Remaining — ""Jobs in progress: the work still left to finish.""
 6. Ready to Invoice — ""Finished jobs, ready to bill the customer.""
-7. Estimates — ""Quotes the customer has not approved yet — not counted in the totals.""
+7. Estimates — ""The total value of all estimate lines that have not yet been approved, including lines awaiting authorization on open work orders.""
 8. Each explanation appears on hover, on keyboard focus, and on tap.
 
----
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S5-R12), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+Note for the tester: the report's written specification currently states this Estimates explanation two ways - a shorter older wording and the design-review locked wording shown above. This test follows the design-review locked wording (Fabian's design review, 17 August 2026), which is the most recent decision. The shorter wording is a leftover in the specification and has been raised with the product owner.
 
-AUTOMATION: READY",SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R12),,
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-8661, and the Work In Progress report specification version 21 (S5-R12; S5a-R2), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8661 (WIP spec v21 2026-08-14 S5-R12; S5a-R2 - Estimates explanation locked verbatim per Fabian design review 2026-08-17; S5-R12 short wording is a spec leftover),,
+The Totals row sums the Adjustments column across the tab's visible jobs,WIP — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. Several open work orders with work-order-level fees or discounts appear on the current tab.","1. Open the Work In Progress report.
+2. Scroll to the Totals row pinned at the bottom of the tab.
+3. Read the Adjustments cell in the Totals row.","1. The Totals row includes an Adjustments cell.
+2. It equals the sum of the Adjustments values of the tab's visible jobs.
+3. It uses the same signed money format as the column (fees add, discounts subtract).
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 21 (S6-R2), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9282 (WIP spec v21 2026-08-14 S6-R2 — Totals row sums each visible money column including Adjustments),,
 "Each tab has a Totals row pinned to the bottom, labeled ""Totals""",WIP — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Each tab has at least one visible job.","1. In each tab, look at the bottom of the table.
 2. Read the Totals row's leftmost cell and its Total cell.
@@ -1053,6 +1130,17 @@ Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ","SV-8657 (WIP spec Story 1 S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW"")",,
+Earlier as-of days show no Adjustments value because history is not backfilled,WIP — API,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. A nightly snapshot exists for a day before the Adjustments column was introduced.","1. Open the Work In Progress report.
+2. Set the ""as of"" date to a day before the Adjustments column existed.
+3. Read the Adjustments values on the historical rows.","1. Rows for that earlier day show an Adjustments value of $0.00 (a missing snapshot value is read as zero).
+2. Historical Adjustments values are NOT recomputed from today's data.
+3. Earned and Remaining on those historical rows are unchanged - their captured values do not move.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 21 (S11-R8, S11-R9), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9282 (WIP spec v21 2026-08-14 S11-R8; S11-R9 — Adjustments captured in its own new snapshot column; no history backfill; missing value read as zero),,
 Nightly snapshot records one row per then-open job per calendar date,WIP — API,Functional,High,"1. Open work orders exist across the organization on the capture date.
 2. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers).
 3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.","1. Note the set of open work orders before the nightly capture runs.

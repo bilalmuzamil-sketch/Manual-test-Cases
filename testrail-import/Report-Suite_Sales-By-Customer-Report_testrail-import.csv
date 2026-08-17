@@ -308,6 +308,16 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
 AUTOMATION: READY",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R9; S18-E1),,
+Each invoice detail row shows a per-invoice Adjustments value,SBC — Tree & Rows,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. A customer asset has an invoice carrying an invoice-level fee or discount.","1. Open the Sales By Customer report.
+2. Expand a customer to its assets, and an asset to its invoices.
+3. Read the invoice detail row.","1. The invoice detail row shows the invoice number (as a link), the invoice date, and per-invoice Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin % and Subtotal.
+2. The per-invoice Adjustments value is the signed net of that invoice's invoice-level fees and discounts.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S8-R12), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9280 (SBC spec v20 2026-08-12 S8-R12 — invoice detail row shows per-invoice Adjustments),,
 Each customer gets one summary row with its invoice count in parentheses,SBC — Tree & Rows,Functional,Critical,"1. You are on the Sales By Customer report.
 2. A customer has a known number of matching invoices in the current date range (seed ZZAUTOTEST data so the count is predictable).","1. Find that customer's row at the top level of the table.
 2. Read the text at the start of the row.
@@ -571,6 +581,38 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
 AUTOMATION: READY",SV-8608 (SBC spec v13 2026-07-31 Story 10 S10-R5),,
+Adjustments column appears between Shop Supplies and Margin,SBC — Totals & Calculations,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. A customer has at least one invoice carrying an invoice-level fee or discount in the selected date range.","1. Open the Sales By Customer report.
+2. Look at the financial columns left to right.","1. The financial columns appear in this order: Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %.
+2. ""Adjustments"" sits between ""Shop Supplies"" and ""Margin"".
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S7-R6), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9280 (SBC spec v20 2026-08-12 S7-R6 — Adjustments in the financial column order between Shop Supplies and Margin),,
+Adjustments is the signed net of invoice-level fees and discounts,SBC — Totals & Calculations,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. A customer has invoices with invoice-level fees and invoice-level discounts in the selected date range.","1. Open the Sales By Customer report.
+2. Read the Adjustments value on a customer row, an asset row and an invoice row.","1. Adjustments shows the signed net of invoice-level fees and discounts: fees count positive, discounts count negative.
+2. A line-level fee or discount stays folded into that line's Labor or Parts value and is not part of Adjustments.
+3. Adjustments is never allocated into the Labor or Parts columns.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S7-R17), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9280 (SBC spec v20 2026-08-12 S7-R17 — signed net of invoice-level fees/discounts; never allocated into Labor/Parts),,
+Every row ties out once Adjustments is included,SBC — Totals & Calculations,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. A customer has an invoice carrying an invoice-level fee or discount in the selected date range.","1. Open the Sales By Customer report.
+2. On a customer row, add Labor Invoiced, Parts Invoiced, Shop Supplies and Adjustments.
+3. Compare the total to Subtotal.
+4. Add Labor Margin, Parts Margin and Adjustments and compare to Margin.
+5. Repeat the checks on an asset row, an invoice row and the totals row.","1. Labor Invoiced + Parts Invoiced + Shop Supplies + Adjustments equals Subtotal.
+2. Labor Margin + Parts Margin + Adjustments equals Margin.
+3. The ties hold on customer rows, asset rows, invoice rows and the totals row alike.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S7-R18), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9280 (SBC spec v20 2026-08-12 S7-R18 — row ties out: Labor+Parts+Supplies+Adjustments=Subtotal; LaborMargin+PartsMargin+Adjustments=Margin),,
 Financial columns run in the specified order with Subtotal and Margin rules,SBC — Totals & Calculations,Functional,Critical,"1. A ZZAUTOTEST invoice exists with known labor, parts, and shop-supply amounts and known costs, in the current range.","1. Read the column headers left to right.
 2. Expand down to that invoice's detail row and read its values.
 3. Recalculate Subtotal and Margin by hand from the known amounts.","1. The financial columns appear in this order: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin % — with Subtotal as the rightmost column.
@@ -651,6 +693,14 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
 AUTOMATION: READY",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R6),,
+The column selector lists ten toggleable columns including Adjustments,SBC — Column Selector,Functional,High,1. You are signed in to the ShopView App on a desktop browser.,"1. Open the Sales By Customer report.
+2. Open the column selector.","1. The column selector lists ten toggleable columns, in order: Date, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %.
+2. ""Adjustments"" is one of the toggleable columns, between Shop Supplies and Margin.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S13-R4), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9280 (SBC spec v20 2026-08-12 S13-R4 — ten toggleable columns including Adjustments),,
 Column selector is its own toolbar button with nine toggles all on,SBC — Column Selector,Functional,High,1. You are on the report with no saved column selection (first visit or cleared storage).,"1. Find the column selector button in the toolbar's action area, next to the overflow menu.
 2. Hover it and read the tooltip.
 3. Click it and read the toggle list top to bottom.","1. The column selector is a separate control next to the overflow menu — it is not an item inside the overflow menu.
@@ -689,6 +739,17 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 This has not yet been checked against a build.
 
 AUTOMATION: READY",SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R4 with S4-R12; the never-offered rule itself comes from Chris Ward's answer T1-1 option C of 2026-08-05 and is in no specification),,
+Both CSV exports include the Adjustments column in the specified position,SBC — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. A customer has an invoice with an invoice-level fee or discount in the selected date range.","1. Open the Sales By Customer report.
+2. Download the Summary CSV and open it.
+3. Download the Expanded CSV and open it.","1. The Summary CSV columns, in order, are: Customer, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, Subtotal.
+2. The Expanded CSV columns, in order, are: Customer, Asset, Invoice #, Date, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, Subtotal.
+3. Adjustments carries the same signed values as on screen (fees positive, discounts negative).
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S14-R4, S14-R5), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9280 (SBC spec v20 2026-08-12 S14-R4; S14-R5 — Summary and Expanded CSV column order includes Adjustments),,
 The overflow menu holds exactly the four download items - no Print,SBC — Exports,Functional,High,1. You are on the Sales By Customer report.,"1. Find the overflow menu in the toolbar's action area and note its position.
 2. Open it and read the items in order.
 3. Look around the toolbar for any separate always-visible export buttons.","1. The overflow (export) menu is the leftmost control in the toolbar's action area and is the application's standard overflow-menu control.
@@ -739,8 +800,7 @@ CSV formats: Margin % plain; dates mm-dd-yyyy; currency plain; no color,SBC — 
 2. Dates export as mm-dd-yyyy — for example, 05-14-2026.
 3. Currency values are plain numbers with no dollar sign and no thousands separators.
 4. The CSV has no color; the signed Inv. Hrs value still conveys direction.
-On this build the money in the spreadsheet file comes out as ""$224.92"" - with a dollar sign, and with a comma as well once the value passes a thousand - instead of the plain number described in point 3 above.
-What you should see today: in the spreadsheet the money arrives as text with a dollar sign and thousands separators, such as $11,176.88, and the columns come out in the file's own fixed order - Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Total Cost, Total Sell, Margin, Margin % - which is not the order on screen, does not put Total Cost last, and leaves out the Location column even when it is showing on screen. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8823
+What you should see today: the money in the spreadsheet file comes out as ""$224.92"" - with a dollar sign, and with a comma as well once the value passes a thousand - instead of the plain number described in point 3 above. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8823
 - If you see exactly that, mark this test FAILED and do not raise anything new.
 - If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
 - If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.

@@ -1,5 +1,13 @@
 # OUTSTANDING ITEMS REGISTER — everything we are waiting on, across every project
 
+## 2026-08-17 — REPORT SUITE: Fabian design-review reconciliation (Adjustments + Estimates tooltip DONE; 7 Loom items STAGED)
+Source: `build/report-suite/fabian-review-2026-08-17/`. Specs re-read live (SBC v20 / SBR v22 / PV v10 / TU v9 / WIP v21 / IV v10). Authored **18 new Adjustments cases** (C43814–C43831, WIP+SBC+SBR, byte-verified) + updated **WIP-SUM-07 (C30493)** to the locked Estimates tooltip. Live group 4281 = ours **498** / foreign **12** (0 touched).
+- **RS-FB1 — Run-359 sync (GO-AHEAD needed):** the 18 new cases are not in run 359 (`include_all` false). Union-only sync needs explicit per-ask authorisation (Rule 34). *Blocks:* run under-reports coverage. Owner: QA lead. Since 2026-08-17.
+- **RS-FB2 — Spec contradiction for Chris Ward:** WIP spec states the Estimates info-icon tooltip **two ways** — S5-R12 (short, leftover) vs S5a-R2 (locked verbatim). We followed S5a-R2 (latest wins). *Ask Chris to delete the S5-R12 wording.* Spec-hygiene; case is correct. Since 2026-08-17.
+- **RS-FB3 — Fabian Claude design artifact unfetchable** (undated share link, empty shell). *Blocks:* authoring the math-strip, amber-glow and two-row-header-wrap cases without inventing labels/colours (Rule 12). Owner: QA lead — dated export/screenshots. Since 2026-08-17.
+- **RS-FB4 — STAGED authoring/updates (budget/auth):** Labor Delta rename (40 cases, 2 delicate flagged: C30151/C30229) · WIP "as of" date (~19 cases) · CSV filter-metadata SV-9283 (6 reports) · VIN "(no unit #)" suppression (SBC) · math strip / amber glow / two-row wrap (need design). Specified in `COVERAGE-REDERIVATION.md`. Since 2026-08-17.
+- **RS-FB5 — Tech plan not provided** (Rule 30). Since 2026-08-17.
+
 > **PAUSED 2026-08-10 — the Filters + Schedule source-accuracy pass was stopped mid-build with no TestRail writes; resume from [`build/RESUME-SOURCE-ACCURACY-2026-08-10.md`](RESUME-SOURCE-ACCURACY-2026-08-10.md).**
 
 > **This is the single cross-project list of what is missing.** Governed by **Standing Rule 36**

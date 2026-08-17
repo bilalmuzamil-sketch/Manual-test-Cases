@@ -308,6 +308,16 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
 AUTOMATION: READY",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R9; S18-E1),,
+Each invoice detail row shows a per-invoice Adjustments value,SBC — Tree & Rows,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. A customer asset has an invoice carrying an invoice-level fee or discount.","1. Open the Sales By Customer report.
+2. Expand a customer to its assets, and an asset to its invoices.
+3. Read the invoice detail row.","1. The invoice detail row shows the invoice number (as a link), the invoice date, and per-invoice Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin % and Subtotal.
+2. The per-invoice Adjustments value is the signed net of that invoice's invoice-level fees and discounts.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S8-R12), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9280 (SBC spec v20 2026-08-12 S8-R12 — invoice detail row shows per-invoice Adjustments),,
 Each customer gets one summary row with its invoice count in parentheses,SBC — Tree & Rows,Functional,Critical,"1. You are on the Sales By Customer report.
 2. A customer has a known number of matching invoices in the current date range (seed ZZAUTOTEST data so the count is predictable).","1. Find that customer's row at the top level of the table.
 2. Read the text at the start of the row.
@@ -571,6 +581,38 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
 AUTOMATION: READY",SV-8608 (SBC spec v13 2026-07-31 Story 10 S10-R5),,
+Adjustments column appears between Shop Supplies and Margin,SBC — Totals & Calculations,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. A customer has at least one invoice carrying an invoice-level fee or discount in the selected date range.","1. Open the Sales By Customer report.
+2. Look at the financial columns left to right.","1. The financial columns appear in this order: Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %.
+2. ""Adjustments"" sits between ""Shop Supplies"" and ""Margin"".
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S7-R6), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9280 (SBC spec v20 2026-08-12 S7-R6 — Adjustments in the financial column order between Shop Supplies and Margin),,
+Adjustments is the signed net of invoice-level fees and discounts,SBC — Totals & Calculations,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. A customer has invoices with invoice-level fees and invoice-level discounts in the selected date range.","1. Open the Sales By Customer report.
+2. Read the Adjustments value on a customer row, an asset row and an invoice row.","1. Adjustments shows the signed net of invoice-level fees and discounts: fees count positive, discounts count negative.
+2. A line-level fee or discount stays folded into that line's Labor or Parts value and is not part of Adjustments.
+3. Adjustments is never allocated into the Labor or Parts columns.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S7-R17), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9280 (SBC spec v20 2026-08-12 S7-R17 — signed net of invoice-level fees/discounts; never allocated into Labor/Parts),,
+Every row ties out once Adjustments is included,SBC — Totals & Calculations,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. A customer has an invoice carrying an invoice-level fee or discount in the selected date range.","1. Open the Sales By Customer report.
+2. On a customer row, add Labor Invoiced, Parts Invoiced, Shop Supplies and Adjustments.
+3. Compare the total to Subtotal.
+4. Add Labor Margin, Parts Margin and Adjustments and compare to Margin.
+5. Repeat the checks on an asset row, an invoice row and the totals row.","1. Labor Invoiced + Parts Invoiced + Shop Supplies + Adjustments equals Subtotal.
+2. Labor Margin + Parts Margin + Adjustments equals Margin.
+3. The ties hold on customer rows, asset rows, invoice rows and the totals row alike.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S7-R18), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9280 (SBC spec v20 2026-08-12 S7-R18 — row ties out: Labor+Parts+Supplies+Adjustments=Subtotal; LaborMargin+PartsMargin+Adjustments=Margin),,
 Financial columns run in the specified order with Subtotal and Margin rules,SBC — Totals & Calculations,Functional,Critical,"1. A ZZAUTOTEST invoice exists with known labor, parts, and shop-supply amounts and known costs, in the current range.","1. Read the column headers left to right.
 2. Expand down to that invoice's detail row and read its values.
 3. Recalculate Subtotal and Margin by hand from the known amounts.","1. The financial columns appear in this order: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin % — with Subtotal as the rightmost column.
@@ -651,6 +693,14 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
 AUTOMATION: READY",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R6),,
+The column selector lists ten toggleable columns including Adjustments,SBC — Column Selector,Functional,High,1. You are signed in to the ShopView App on a desktop browser.,"1. Open the Sales By Customer report.
+2. Open the column selector.","1. The column selector lists ten toggleable columns, in order: Date, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %.
+2. ""Adjustments"" is one of the toggleable columns, between Shop Supplies and Margin.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S13-R4), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9280 (SBC spec v20 2026-08-12 S13-R4 — ten toggleable columns including Adjustments),,
 Column selector is its own toolbar button with nine toggles all on,SBC — Column Selector,Functional,High,1. You are on the report with no saved column selection (first visit or cleared storage).,"1. Find the column selector button in the toolbar's action area, next to the overflow menu.
 2. Hover it and read the tooltip.
 3. Click it and read the toggle list top to bottom.","1. The column selector is a separate control next to the overflow menu — it is not an item inside the overflow menu.
@@ -689,6 +739,17 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 This has not yet been checked against a build.
 
 AUTOMATION: READY",SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R4 with S4-R12; the never-offered rule itself comes from Chris Ward's answer T1-1 option C of 2026-08-05 and is in no specification),,
+Both CSV exports include the Adjustments column in the specified position,SBC — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. A customer has an invoice with an invoice-level fee or discount in the selected date range.","1. Open the Sales By Customer report.
+2. Download the Summary CSV and open it.
+3. Download the Expanded CSV and open it.","1. The Summary CSV columns, in order, are: Customer, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, Subtotal.
+2. The Expanded CSV columns, in order, are: Customer, Asset, Invoice #, Date, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, Subtotal.
+3. Adjustments carries the same signed values as on screen (fees positive, discounts negative).
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S14-R4, S14-R5), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9280 (SBC spec v20 2026-08-12 S14-R4; S14-R5 — Summary and Expanded CSV column order includes Adjustments),,
 The overflow menu holds exactly the four download items - no Print,SBC — Exports,Functional,High,1. You are on the Sales By Customer report.,"1. Find the overflow menu in the toolbar's action area and note its position.
 2. Open it and read the items in order.
 3. Look around the toolbar for any separate always-visible export buttons.","1. The overflow (export) menu is the leftmost control in the toolbar's action area and is the application's standard overflow-menu control.
@@ -739,8 +800,7 @@ CSV formats: Margin % plain; dates mm-dd-yyyy; currency plain; no color,SBC — 
 2. Dates export as mm-dd-yyyy — for example, 05-14-2026.
 3. Currency values are plain numbers with no dollar sign and no thousands separators.
 4. The CSV has no color; the signed Inv. Hrs value still conveys direction.
-On this build the money in the spreadsheet file comes out as ""$224.92"" - with a dollar sign, and with a comma as well once the value passes a thousand - instead of the plain number described in point 3 above.
-What you should see today: in the spreadsheet the money arrives as text with a dollar sign and thousands separators, such as $11,176.88, and the columns come out in the file's own fixed order - Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Total Cost, Total Sell, Margin, Margin % - which is not the order on screen, does not put Total Cost last, and leaves out the Location column even when it is showing on screen. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8823
+What you should see today: the money in the spreadsheet file comes out as ""$224.92"" - with a dollar sign, and with a comma as well once the value passes a thousand - instead of the plain number described in point 3 above. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8823
 - If you see exactly that, mark this test FAILED and do not raise anything new.
 - If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
 - If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
@@ -1362,6 +1422,15 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
 AUTOMATION: READY","SV-8638; SV-8631 (SBR spec v15 2026-07-29 S21-R7; S21-R8; S18-R13; S14-R20 — per-row Location column; ""Multiple"" on a rep row spanning locations; position after Status; constant-width filter; S14-R20 = the same column in all four exports)",,
+Adjustments column appears between Parts Margin and Margin,SBR — Rep Rows & Tree,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. A representative has an invoice carrying an invoice-level fee or discount in the selected date range.","1. Open the Sales By Representative report.
+2. Look at the columns left to right.","1. The columns appear left-to-right: Date, Invoice, Customer, Status, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %, Subtotal (13 columns).
+2. ""Adjustments"" sits between ""Parts Margin"" and ""Margin"".
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9281, and the Sales By Representative report specification version 22 (S5-R2), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9281 (SBR spec v22 2026-08-12 S5-R2 — 13-column order includes Adjustments between Parts Margin and Margin),,
 A rep row appears only when the rep has a matching non-reversed invoice,SBR — Rep Rows & Tree,Functional,Critical,1. Rep A has invoices in the current filtered view; rep B (sales-rep toggle on) has NONE; rep C has only a reversed invoice (seed ZZAUTOTEST data).,"1. Open the report and read the summary rows.
 2. Look for reps B and C.
 3. Read the count in parentheses after rep A's name.","1. Rep A occupies exactly one summary row.
@@ -1484,6 +1553,16 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-f77875c on 8/6/2026.
 
 AUTOMATION: READY",SV-8625 (SBR spec v15 2026-07-29 Story 8 S8-R3; Story 18 S18-R8),,
+Adjustments is the signed net of invoice-level fees and discounts,SBR — Inv. Hrs & Calculations,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. A representative has invoices with invoice-level fees and discounts in the selected date range.","1. Open the Sales By Representative report.
+2. Read the Adjustments value on a rep row and an invoice detail row.","1. Adjustments shows the signed net of invoice-level fees and discounts: fees count positive, discounts count negative.
+2. A line-level fee or discount stays folded into that line's Labor or Parts value.
+3. An invoice-level amount is never allocated into the Labor or Parts columns.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9281, and the Sales By Representative report specification version 22 (S5-R11), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9281 (SBR spec v22 2026-08-12 S5-R11 — signed net of invoice-level fees/discounts; never allocated into Labor/Parts),,
 Inv. Hrs is hours invoiced minus hours worked; half-up to one decimal,SBR — Inv. Hrs & Calculations,Functional,High,"1. A ZZAUTOTEST work order exists with known billed labor-line hours and known technician clocked (timesheet) hours, invoiced under a rep.","1. Read the column heading.
 2. Expand the rep and read the invoice's Inv. Hrs value; recalculate by hand.","1. The column heading reads ""Inv. Hrs"" (verbatim, including the period after ""Inv"").
 2. The value equals the billed labor hours minus the technician clocked hours, rounded half-up to one decimal.
@@ -1587,6 +1666,18 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-f77875c on 8/6/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8999)",SV-8626 (SBR spec v15 2026-07-29 §3 (hours worked = technician clocked hours recorded against that work order); Story 9 S9-R2; tech-plan-2026-07-29 Phase 4 FR-F7 clock-change rebuild),,
+Every row ties out once Adjustments is included,SBR — Subtotal & Totals,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. A representative has an invoice carrying an invoice-level fee or discount.","1. Open the Sales By Representative report.
+2. On a rep row, add Labor Invoiced, Parts Invoiced and Adjustments and compare to Subtotal.
+3. Add Labor Margin, Parts Margin and Adjustments and compare to Margin.
+4. Repeat on an invoice detail row and the Totals row.","1. Labor Invoiced + Parts Invoiced + Adjustments equals Subtotal.
+2. Labor Margin + Parts Margin + Adjustments equals Margin.
+3. The ties hold on rep summary rows, invoice detail rows and the grand Totals indicator alike.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9281, and the Sales By Representative report specification version 22 (S5-R12), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9281 (SBR spec v22 2026-08-12 S5-R12 — row ties out: Labor+Parts+Adjustments=Subtotal; LaborMargin+PartsMargin+Adjustments=Margin),,
 "Subtotal: rightmost, pinned right, bold everywhere; header row sticky on scroll",SBR — Subtotal & Totals,Functional,High,"1. You are on the report with data, narrow enough to force horizontal scrolling.
 2. Enough rows exist to also force vertical scrolling.","1. Confirm nothing renders to the right of Subtotal on any row type.
 2. Scroll horizontally and watch the Subtotal column on summary and detail rows.
@@ -1884,6 +1975,14 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
 AUTOMATION: READY",SV-8639 (SBR spec v15 2026-07-29 Story 22 S22-N1; Story 6 S6-N2),,
+The eight toggleable metric columns include Adjustments,SBR — Column Selector,Functional,High,1. You are signed in to the ShopView App on a desktop browser.,"1. Open the Sales By Representative report.
+2. Open the column selector.","1. The eight toggleable columns are: Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %.
+2. ""Adjustments"" is one of the toggleable columns, between Parts Margin and Margin.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9281, and the Sales By Representative report specification version 22 (S20-R2), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9281 (SBR spec v22 2026-08-12 S20-R2 — eight toggleable columns include Adjustments),,
 Column selector: seven metric toggles; five always-on columns cannot be hidden,SBR — Column Selector,Functional,High,1. No remembered column preference exists (first visit or cleared storage).,"1. Click the column selector button in the toolbar.
 2. Read the toggle list.
 3. Check the table's visible columns.
@@ -2138,8 +2237,7 @@ AUTOMATION: READY - EXPECT FAIL (SV-8972)",SV-8631 (SBR spec v15 2026-07-29 Stor
 4. The ""Sales Representative"" name carries the ""(Inactive)"" tag when applicable; the on-screen (N) count is NOT embedded in the name.
 5. Text fields are quoted per standard CSV escaping; both CSVs are monochrome (Inv. Hrs conveys direction only by its sign).
 6. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
-On this build the money in the spreadsheet file comes out as ""$1,979.40"" - with a dollar sign and a comma - instead of the plain number described in point 1 above.
-What you should see today: in the spreadsheet the money arrives as text with a dollar sign and thousands separators, such as $11,176.88, and the columns come out in the file's own fixed order - Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Total Cost, Total Sell, Margin, Margin % - which is not the order on screen, does not put Total Cost last, and leaves out the Location column even when it is showing on screen. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8823
+What you should see today: the money in the spreadsheet file comes out as ""$1,979.40"" - with a dollar sign and a comma - instead of the plain number described in point 1 above. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8823
 - If you see exactly that, mark this test FAILED and do not raise anything new.
 - If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
 - If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
@@ -2838,6 +2936,10 @@ Location column: leftmost before Type; own location per row; Multiple on merged,
 4. A user who can reach only one location never sees the column at all.
 5. Whenever the column is shown on screen, both downloads include it in the same position (leftmost, before Type), with the same values — each inventory row's own location, and ""Multiple"" on the merged Special Order row.
 Note for the tester: two points about this column are still unsettled for Parts Velocity, and the product owner has been asked. One is whether narrowing the location selection hides it; the other is whether it can be switched off in the column picker and whether it counts toward the fourteen default columns. Whatever you see on those two points, do not raise a bug and do not fail the test for them — record what you see and carry on. The question is here: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/questions-2026-08-06/Questions-for-Chris-Ward_Report-Suite_2026-08-11.xlsx
+What you should see today: the Location column is not the leftmost column. It sits sixth, after Vendor, in all three places - on screen and in both downloads. The values themselves are right, including ""Multiple"" on the merged Special Order row. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8938
+- If you see exactly that, mark this test FAILED and do not raise anything new.
+- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
 This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Parts Velocity report specification version 6 (S2-R12, S3-R10, S7-R8, S6-R11), read on 11 August 2026. That specification still says two different things about this column: S3-R10 was rewritten in version 6 to make it access-gated and toggleable in the column picker, while S2-R12 still ties it to the current location scope and S4-R2/S4-R3 list twenty picker columns that do not include it. Chris Ward has been asked which is right, so neither reading is asserted here.
@@ -4452,6 +4554,17 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-f77875c on 8/6/2026.
 
 AUTOMATION: HOLD - the specification states two different tab-placement rules (whole work order by status, or per line state) and the product owner has been asked which governs",SV-8659 (WIP spec v6 2026-07-29 Story 3 S3-R4 (started + not-started branches + context note)),,
+Adjustments column appears in the fixed column order and in the first-visit set,WIP — Columns & Rows,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. At least one open work order carries a work-order-level fee or discount.","1. Open the Work In Progress report.
+2. Look at the columns shown on first visit.
+3. Turn on every toggleable column and look at the full left-to-right order.","1. On first visit the visible columns include an ""Adjustments"" column, shown between ""Remaining"" and ""Total"".
+2. With all columns on, the full left-to-right order is: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Adjustments, Labor Delta, Total.
+3. ""Adjustments"" sits immediately before ""Labor Delta"" and ""Total"".
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 21 (S4-R1, S4-R2), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9282 (WIP spec v21 2026-08-14 S4-R1; S4-R2 — Adjustments column added; shared WIP+SBC proposal 2026-08-12),,
 "With all toggleable columns on, the fixed column order and alignment hold",WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.
 3. Every toggleable column is turned on in the column-selection control.
@@ -4585,6 +4698,50 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-4795eee on 8/10/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8967)",SV-8660 (WIP spec v9 2026-08-05 Story 4 S4-R5 — the negative half: a person without Work Order permission sees the WO # as plain text and not a link),,
+Adjustments is the signed net of work-order-level fees and discounts,WIP — Earned & Remaining,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. One open work order has a work-order-level fee (for example a $500 tow-in fee) and another has a work-order-level discount.","1. Open the Work In Progress report.
+2. Find the row for the work order that has the fee.
+3. Read its Adjustments value.
+4. Find the row for the work order that has the discount and read its Adjustments value.","1. On the work order with a fee, Adjustments shows the fee as a positive amount (for example $500.00).
+2. On the work order with a discount, Adjustments shows the discount as a negative amount.
+3. Adjustments is one whole-work-order amount - it is never split into an Earned part and a Remaining part.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 21 (S4-R29), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026","SV-9282 (WIP spec v21 2026-08-14 S4-R29 — signed net of WO-level fees/discounts, fees positive discounts negative, one whole-WO amount)",,
+A work-order fee or discount moves only Adjustments and Total,WIP — Earned & Remaining,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. An open work order appears on the report with no work-order-level fee or discount yet.","1. Open the Work In Progress report and note the row's Labor Earned, Parts Earned, Adjustments and Total.
+2. Add a work-order-level fee to that work order.
+3. Reload the report and read the same row again.","1. The Labor columns and the Parts columns are unchanged.
+2. Only the Adjustments value and the Total value change.
+3. A line-level fee or discount (one attached to a single line) stays folded into that line's Labor or Parts value and does not appear in Adjustments.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 21 (S4-R30), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9282 (WIP spec v21 2026-08-14 S4-R30 — WO-level amount never allocated into Labor/Parts; line-level stays folded),,
+A row's Total is Earned plus Remaining plus Adjustments,WIP — Earned & Remaining,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. An open work order on the report carries a work-order-level fee or discount.","1. Open the Work In Progress report.
+2. On one row read the Earned value, the Remaining value and the Adjustments value.
+3. Read the Total value on the same row.","1. Total equals Earned plus Remaining plus Adjustments.
+2. Total is NOT the work order's stored grand total, and it is NOT Earned plus Remaining by itself.
+3. A Total that differs from the work order's own grand total is expected, not a data error.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 21 (S4-R21), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9282 (WIP spec v21 2026-08-14 S4-R21 — Total = Earned + Remaining + Adjustments; not the WO stored grand total),,
+"Completed tab: Earned equals Total minus Adjustments, Remaining $0.00",WIP — Earned & Remaining,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. A completed work order that carries a work-order-level fee or discount appears on the Completed tab.","1. Open the Work In Progress report and go to the Completed tab.
+2. On a completed work order read Earned, Remaining, Adjustments and Total.","1. Remaining is $0.00.
+2. Earned equals Total minus Adjustments.
+3. Total still equals Earned plus Remaining plus Adjustments.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 21 (S4a-R2), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026","SV-9282 (WIP spec v21 2026-08-14 S4a-R2 — Completed tab: Earned = Total - Adjustments, Remaining $0.00)",,
 Money columns show US dollars to two decimals with thousands separators,WIP — Earned & Remaining,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. All money columns (Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Total) are turned on.
 3. The report shows rows with values over $1,000, a genuine zero value, and (if producible) a negative value.","1. Read a money value over one thousand dollars.
@@ -4813,6 +4970,16 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-f77875c on 8/6/2026.
 
 AUTOMATION: READY",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R28),,
+The summary strip shows seven figures and no Adjustments figure,WIP — Summary Strip,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. Open work orders with work-order-level fees or discounts appear on the report.","1. Open the Work In Progress report.
+2. Read the summary strip at the top of the report.","1. The summary strip shows exactly seven figures, in this order: Total Earned, Total Remaining, Not Started, Started - Earned, Started - Remaining, Ready to Invoice, and Estimates.
+2. There is no Adjustments figure in the summary strip.
+3. Work-order-level fees and discounts are carried only by the Adjustments column and the per-tab Totals row, not by a summary figure.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 21 (S5-R1, S5-R13), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026","SV-9282 (WIP spec v21 2026-08-14 S5-R1; S5-R13 — seven summary figures, no Adjustments tile (S5-R13 reverses the 2026-08-12 muted figure))",,
 The summary strip shows seven figures in a fixed order as US dollars,WIP — Summary Strip,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Read the summary strip across the top of the report, left to right.
 2. Read each figure's number format.","1. The strip shows seven figures, in this order: Total Earned, Total Remaining, Not Started, Started — Earned, Started — Remaining, Ready to Invoice, and Estimates.
@@ -4880,14 +5047,26 @@ Each summary figure's information icon reveals its plain explanation,WIP — Sum
 4. Started — Earned — ""Jobs in progress: the work already done but not billed yet.""
 5. Started — Remaining — ""Jobs in progress: the work still left to finish.""
 6. Ready to Invoice — ""Finished jobs, ready to bill the customer.""
-7. Estimates — ""Quotes the customer has not approved yet — not counted in the totals.""
+7. Estimates — ""The total value of all estimate lines that have not yet been approved, including lines awaiting authorization on open work orders.""
 8. Each explanation appears on hover, on keyboard focus, and on tap.
 
----
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S5-R12), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+Note for the tester: the report's written specification currently states this Estimates explanation two ways - a shorter older wording and the design-review locked wording shown above. This test follows the design-review locked wording (Fabian's design review, 17 August 2026), which is the most recent decision. The shorter wording is a leftover in the specification and has been raised with the product owner.
 
-AUTOMATION: READY",SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R12),,
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-8661, and the Work In Progress report specification version 21 (S5-R12; S5a-R2), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8661 (WIP spec v21 2026-08-14 S5-R12; S5a-R2 - Estimates explanation locked verbatim per Fabian design review 2026-08-17; S5-R12 short wording is a spec leftover),,
+The Totals row sums the Adjustments column across the tab's visible jobs,WIP — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. Several open work orders with work-order-level fees or discounts appear on the current tab.","1. Open the Work In Progress report.
+2. Scroll to the Totals row pinned at the bottom of the tab.
+3. Read the Adjustments cell in the Totals row.","1. The Totals row includes an Adjustments cell.
+2. It equals the sum of the Adjustments values of the tab's visible jobs.
+3. It uses the same signed money format as the column (fees add, discounts subtract).
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 21 (S6-R2), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9282 (WIP spec v21 2026-08-14 S6-R2 — Totals row sums each visible money column including Adjustments),,
 "Each tab has a Totals row pinned to the bottom, labeled ""Totals""",WIP — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Each tab has at least one visible job.","1. In each tab, look at the bottom of the table.
 2. Read the Totals row's leftmost cell and its Total cell.
@@ -5383,6 +5562,17 @@ Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ","SV-8657 (WIP spec Story 1 S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW"")",,
+Earlier as-of days show no Adjustments value because history is not backfilled,WIP — API,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. A nightly snapshot exists for a day before the Adjustments column was introduced.","1. Open the Work In Progress report.
+2. Set the ""as of"" date to a day before the Adjustments column existed.
+3. Read the Adjustments values on the historical rows.","1. Rows for that earlier day show an Adjustments value of $0.00 (a missing snapshot value is read as zero).
+2. Historical Adjustments values are NOT recomputed from today's data.
+3. Earned and Remaining on those historical rows are unchanged - their captured values do not move.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 21 (S11-R8, S11-R9), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9282 (WIP spec v21 2026-08-14 S11-R8; S11-R9 — Adjustments captured in its own new snapshot column; no history backfill; missing value read as zero),,
 Nightly snapshot records one row per then-open job per calendar date,WIP — API,Functional,High,"1. Open work orders exist across the organization on the capture date.
 2. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers).
 3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.","1. Note the set of open work orders before the nightly capture runs.

@@ -202,6 +202,15 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
 AUTOMATION: READY","SV-8638; SV-8631 (SBR spec v15 2026-07-29 S21-R7; S21-R8; S18-R13; S14-R20 — per-row Location column; ""Multiple"" on a rep row spanning locations; position after Status; constant-width filter; S14-R20 = the same column in all four exports)",,
+Adjustments column appears between Parts Margin and Margin,SBR — Rep Rows & Tree,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. A representative has an invoice carrying an invoice-level fee or discount in the selected date range.","1. Open the Sales By Representative report.
+2. Look at the columns left to right.","1. The columns appear left-to-right: Date, Invoice, Customer, Status, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %, Subtotal (13 columns).
+2. ""Adjustments"" sits between ""Parts Margin"" and ""Margin"".
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9281, and the Sales By Representative report specification version 22 (S5-R2), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9281 (SBR spec v22 2026-08-12 S5-R2 — 13-column order includes Adjustments between Parts Margin and Margin),,
 A rep row appears only when the rep has a matching non-reversed invoice,SBR — Rep Rows & Tree,Functional,Critical,1. Rep A has invoices in the current filtered view; rep B (sales-rep toggle on) has NONE; rep C has only a reversed invoice (seed ZZAUTOTEST data).,"1. Open the report and read the summary rows.
 2. Look for reps B and C.
 3. Read the count in parentheses after rep A's name.","1. Rep A occupies exactly one summary row.
@@ -324,6 +333,16 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-f77875c on 8/6/2026.
 
 AUTOMATION: READY",SV-8625 (SBR spec v15 2026-07-29 Story 8 S8-R3; Story 18 S18-R8),,
+Adjustments is the signed net of invoice-level fees and discounts,SBR — Inv. Hrs & Calculations,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. A representative has invoices with invoice-level fees and discounts in the selected date range.","1. Open the Sales By Representative report.
+2. Read the Adjustments value on a rep row and an invoice detail row.","1. Adjustments shows the signed net of invoice-level fees and discounts: fees count positive, discounts count negative.
+2. A line-level fee or discount stays folded into that line's Labor or Parts value.
+3. An invoice-level amount is never allocated into the Labor or Parts columns.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9281, and the Sales By Representative report specification version 22 (S5-R11), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9281 (SBR spec v22 2026-08-12 S5-R11 — signed net of invoice-level fees/discounts; never allocated into Labor/Parts),,
 Inv. Hrs is hours invoiced minus hours worked; half-up to one decimal,SBR — Inv. Hrs & Calculations,Functional,High,"1. A ZZAUTOTEST work order exists with known billed labor-line hours and known technician clocked (timesheet) hours, invoiced under a rep.","1. Read the column heading.
 2. Expand the rep and read the invoice's Inv. Hrs value; recalculate by hand.","1. The column heading reads ""Inv. Hrs"" (verbatim, including the period after ""Inv"").
 2. The value equals the billed labor hours minus the technician clocked hours, rounded half-up to one decimal.
@@ -427,6 +446,18 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-f77875c on 8/6/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8999)",SV-8626 (SBR spec v15 2026-07-29 §3 (hours worked = technician clocked hours recorded against that work order); Story 9 S9-R2; tech-plan-2026-07-29 Phase 4 FR-F7 clock-change rebuild),,
+Every row ties out once Adjustments is included,SBR — Subtotal & Totals,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. A representative has an invoice carrying an invoice-level fee or discount.","1. Open the Sales By Representative report.
+2. On a rep row, add Labor Invoiced, Parts Invoiced and Adjustments and compare to Subtotal.
+3. Add Labor Margin, Parts Margin and Adjustments and compare to Margin.
+4. Repeat on an invoice detail row and the Totals row.","1. Labor Invoiced + Parts Invoiced + Adjustments equals Subtotal.
+2. Labor Margin + Parts Margin + Adjustments equals Margin.
+3. The ties hold on rep summary rows, invoice detail rows and the grand Totals indicator alike.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9281, and the Sales By Representative report specification version 22 (S5-R12), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9281 (SBR spec v22 2026-08-12 S5-R12 — row ties out: Labor+Parts+Adjustments=Subtotal; LaborMargin+PartsMargin+Adjustments=Margin),,
 "Subtotal: rightmost, pinned right, bold everywhere; header row sticky on scroll",SBR — Subtotal & Totals,Functional,High,"1. You are on the report with data, narrow enough to force horizontal scrolling.
 2. Enough rows exist to also force vertical scrolling.","1. Confirm nothing renders to the right of Subtotal on any row type.
 2. Scroll horizontally and watch the Subtotal column on summary and detail rows.
@@ -724,6 +755,14 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
 AUTOMATION: READY",SV-8639 (SBR spec v15 2026-07-29 Story 22 S22-N1; Story 6 S6-N2),,
+The eight toggleable metric columns include Adjustments,SBR — Column Selector,Functional,High,1. You are signed in to the ShopView App on a desktop browser.,"1. Open the Sales By Representative report.
+2. Open the column selector.","1. The eight toggleable columns are: Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %.
+2. ""Adjustments"" is one of the toggleable columns, between Parts Margin and Margin.
+
+---
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9281, and the Sales By Representative report specification version 22 (S20-R2), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9281 (SBR spec v22 2026-08-12 S20-R2 — eight toggleable columns include Adjustments),,
 Column selector: seven metric toggles; five always-on columns cannot be hidden,SBR — Column Selector,Functional,High,1. No remembered column preference exists (first visit or cleared storage).,"1. Click the column selector button in the toolbar.
 2. Read the toggle list.
 3. Check the table's visible columns.
@@ -978,8 +1017,7 @@ AUTOMATION: READY - EXPECT FAIL (SV-8972)",SV-8631 (SBR spec v15 2026-07-29 Stor
 4. The ""Sales Representative"" name carries the ""(Inactive)"" tag when applicable; the on-screen (N) count is NOT embedded in the name.
 5. Text fields are quoted per standard CSV escaping; both CSVs are monochrome (Inv. Hrs conveys direction only by its sign).
 6. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
-On this build the money in the spreadsheet file comes out as ""$1,979.40"" - with a dollar sign and a comma - instead of the plain number described in point 1 above.
-What you should see today: in the spreadsheet the money arrives as text with a dollar sign and thousands separators, such as $11,176.88, and the columns come out in the file's own fixed order - Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Total Cost, Total Sell, Margin, Margin % - which is not the order on screen, does not put Total Cost last, and leaves out the Location column even when it is showing on screen. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8823
+What you should see today: the money in the spreadsheet file comes out as ""$1,979.40"" - with a dollar sign and a comma - instead of the plain number described in point 1 above. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8823
 - If you see exactly that, mark this test FAILED and do not raise anything new.
 - If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
 - If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
