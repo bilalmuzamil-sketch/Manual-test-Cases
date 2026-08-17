@@ -81,6 +81,21 @@ Source: `build/report-suite/fabian-review-2026-08-17/`. Specs re-read live (SBC 
 *(Prior header, kept for the record — note its "nothing may be created anywhere" is the wording corrected above:)* **2026-08-10 — RULINGS PASS: three QA-lead rulings recorded. A CREATION HOLD is ACTIVE ("Do not create anything until my next order") — nothing may be created anywhere until he lifts it, though `update_case` on existing cases continues. The branch-finality question is ANSWERED PER REPORT (3 of 6 final). Four items moved to §7 Recently cleared, and one DATED reminder (SV-8954, due 2026-08-12) is now findable.** Read the section immediately below first. *(Prior header, kept for the record: "DOCUMENTATION-UPKEEP PASS: three owed rows added, four rows refreshed, four items cleared.")*
 **Superseded header (2026-08-06), kept for the record:** **DOCUMENTATION-UPKEEP PASS: three owed rows added (the technical-design authority question · the Schedule design baseline as a PARTIAL source · the two unreconciled design-ruling points), four rows refreshed against today's live figures, and four items moved to §7 Recently cleared.** Read the section immediately below first. *(Prior header, kept for the record: "CONSOLIDATION PASS: four QA-lead rulings folded in, THREE of them move work off him and onto US; one item cleared; the full six-category sweep re-done.")*
 **Active projects:** Report Suite · Schedule · Filters (user ruling 2026-07-27)
+
+> **🆕 2026-08-17 — FILTERS RECONCILED TO THE FABIAN REDESIGN (spec v21). New OUTSTANDING items:**
+> **(FAB-1)** engineering owes the **per-view filter list** (spec S1-R8/S13-R23) — until it lands,
+> Parts/Reports chip coverage stays behavioural + "confirm live". **(FAB-2)** QA-lead ruling needed on
+> the **greyed-vs-hidden Status chip** on Estimates/Completed — v21 S9-R5 says *hidden*; the recorded
+> QA-lead ruling of **2026-07-30** said *greyed-out/pre-filled*; verdict **HELD** on
+> **[C29609](https://shopview.testrail.io/index.php?/cases/view/29609) /
+> [C29610](https://shopview.testrail.io/index.php?/cases/view/29610)** (Rule 33 — not silently
+> reversed). **(FAB-3)** Ahtasham's authorization to **sync run 352** — the 9 new cases (C43841–C43849)
+> are frozen out (`include_all:False`); union staged in
+> `build/filters/fabian-review-2026-08-17/STAGED-RUN-352-SYNC.md`. **(FAB-4)** a **QA-branch sign-in**
+> for `sv8785.qa.shopview.com` to build-verify the redesign and lift the 69 Rule-69
+> (`Not available on Build to test Yet`) markers to READY. **(FAB-5)** a **v18/v19→v21 provenance
+> re-stamp** of the 55 unchanged Filters cases is owed (behaviourally correct; currency tidy).
+> Full report: `build/filters/fabian-review-2026-08-17/FILTERS-COMPLETION-REPORT.md`.
 **Predecessor snapshot (kept for the record):** `build/PROJECTS-NEEDS-2026-07-27.md`
 **Companion defensibility register (read before answering any QA challenge in a public channel):** `build/qa-preemptive-answers-2026-07-31/ANTICIPATED-QUESTIONS-AND-ANSWERS.md` / `.xlsx` — 65 rows of *what someone could say* → *the paste-ready answer* → *the evidence*, across the three active projects, with a TOP 10 and an open list of what we would genuinely have to concede.
 **Companion retrospective:** `build/LESSONS-2026-07-31.md` — what went wrong on 2026-07-31, what it
