@@ -63,3 +63,28 @@ Is the critic right? **Waste: 0% of this pass's cases.** **Makes-no-sense: 0%.**
 **Honest limit:** this audit scores the 21 cases this pass touched. It does NOT re-audit the other 155
 Schedule cases; and because build verification was deferred, "runnable on the current build" is
 unproven for all 21 (that is what the Rule-69 marker records, and what the later sync resolves).
+
+---
+
+## RE-RUN over the 28 v30-alignment UPDATES — 2026-08-17 (this pass)
+
+**Population: the 28 existing cases updated to v30 this pass** (list in the completion report). Cold-read,
+no sampling; three dimensions together. Full method + evidence in `POST-WRITE-AUDIT.md`.
+
+- **Dimension 1 (USEFUL):** 28/28 **KEEP** — each corrects an assertion a tester would actively mis-mark
+  on a v30 build (e.g. remaining-hours sizing, six-option spread, single-source conflicts, truncated
+  capacity tooltip, weekends-only skip). 0 MERGE / 0 CUT / 0 WEAK-KEEP.
+- **Dimension 2 (MAKES SENSE):** 28/28 **SENSIBLE** — steps reachable, expected follows from steps,
+  labels quoted from v30. **CROSS-CASE SWEEP over all 195 cases: 0 live contradictions.** The **5
+  contradiction groups the prior pass resolved only IN DIRECTION are now resolved IN CONTENT** — the
+  updated existing case carries the same v30 assertion as its newer counterpart (SPREAD-03↔six-option,
+  CAP-04↔truncated tooltip, CONF-02/03↔single-source, DND-01/04↔remaining-hours, NAV-07/START-07↔dept
+  unassigned lane). Two raw sweep hits were verified benign/out-of-scope (C30075 incomplete-not-
+  contradictory; C30015 a separate open PO question) — neither is a delivered contradiction.
+- **Dimension 3 (GENUINE + LAYMAN-RUNNABLE):** 28/28 — refs = owning story + v30 anchor; provenance
+  names epic + story + spec v30 + read-date 17 Aug 2026; plain layman English; titles ≤ 80 chars.
+
+**Tally: 28 touched · KEEP 28 · MERGE 0 · CUT 0 · NONSENSE 0 · contradictions delivered 0.**
+Waste 0% · makes-no-sense 0%. **The 5 prior in-direction contradictions are now 0, resolved in content.**
+Honest limit: build verification deferred, so "runnable on the current build" is unproven for all 28
+(what the Rule-69 marker records; the later sync resolves it).

@@ -98,21 +98,28 @@ else owes).
 
 ---
 
-## 🆕🆕🆕 NEWEST — 2026-08-17, THE SCHEDULE FABIAN-REVIEW PASS. **THE SPEC MOVED TO v30 AND THE EPIC GREW 19→39; 14 NEW STORIES (SV-9231…SV-9244) ARE NEW SCOPE; 19 NEW CASES AUTHORED + PUSHED, 2 STALE CASES FIXED, BUILD VERIFICATION DEFERRED (NEW RULE 69 MARKER).**
+## 🆕🆕🆕 NEWEST — 2026-08-17, THE SCHEDULE FABIAN-REVIEW PASS **NOW COMPLETE**. **SPEC RE-INGESTED v25→v30; 19 NEW CASES + 28 EXISTING CASES ALIGNED TO v30; 0 LIVE CONTRADICTIONS; BUILD VERIFICATION DEFERRED (RULE 69).**
 
-Full report: `build/schedule/fabian-review-2026-08-17/SCHEDULE-COMPLETION-REPORT.md`. New cases
-C43795–C43813 (Rule-50 byte-verified, `custom_atmstatus=1`); 2 updates C30054 (menu: Assign work
-order first of three) + C29931 (dept header row = unassigned lane). Every touched case carries
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026` (Standing Rule 69, recorded
-this pass). **0 build-verified / 0 steps walked** — the app was not opened.
+Full report: `build/schedule/fabian-review-2026-08-17/SCHEDULE-COMPLETION-REPORT.md`. Two passes: the
+authoring pass added **19 new cases** C43795–C43813 (Rule-50 byte-verified, `custom_atmstatus=1`); the
+**completion pass (this one) updated 28 existing cases to spec v30** — all byte-verified — and
+**re-ingested the spec (`requirements.md` → v30 baseline, `SPEC-REINGEST-v25-v30.md`)**. Suite **195,
+ours == live == id-map == import, 0 foreign**. Every touched case carries
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026` (Standing Rule 69). **0
+build-verified / 0 steps walked** — the app was not opened. **Finding: spec v30 RESOLVES the oldest
+Schedule question (shop closures, S1/X1/NQ-1/P9) — and contradicts the 2026-07-29 tech plan, reported
+per the 2026-08-12 tech-design ruling.** Still open: the run-357 sync go-ahead (SCH-FR-1), the
+build-verify sync (SCH-FR-3), the tech plan + closures ruling (SCH-FR-4).
 
 | Row | What is missing | Who owes it | What it BLOCKS | Since |
 |---|---|---|---|---|
 | **SCH-FR-1** | **Run 357 sync go-ahead** — the 19 new cases are absent from Ayesha's run 357 (`include_all` false, frozen at 176; union to 195 staged in `STAGED-RUN-357-SYNC.md`). A run write needs your explicit per-ask permission (Rules 6/34) | QA lead | The new cases appearing in the execution run | 2026-08-17 |
-| **SCH-FR-2** | **Go-ahead for ~22 deferred existing-case UPDATEs** (alignment, not a coverage gap — the new cases already cover the behaviour): SCH-SPREAD-03/04/05/08, SCH-CAP-04, SCH-CONF-02/03, SCH-DND-01/04, SCH-WOL-02/04, SCH-MODAL-02/03, SCH-DAY-01/04/05, SCH-START-03/07, SCH-PANEL-01…06 | QA lead | 5 in-direction contradictions closing fully (QUALITY-GATE.md) | 2026-08-17 |
-| **SCH-FR-3** | **The build-verification sync** — to lift the 21 Rule-69 markers to `READY` (or `READY - EXPECT FAIL` with a live ticket) | QA lead / build | Any "ready to automate" figure for the new scope | 2026-08-17 |
-| **SCH-FR-4** | **Technical design / tech plan for the Fabian scope** (Rule 30) — none supplied; the Claude/attached designs were **not present** in this session (design source PARTIAL) | engineering / QA lead | Edge-case strengthening + confirming labels marked VIU-confirm | 2026-08-17 |
-| **SCH-FR-5** | **Full v25→v30 `requirements.md` re-ingest** — local mirror is 5 spec versions behind; this pass reconciled the epic-story new scope, not the whole spec body | us (authorised pass) | Describing `requirements.md` as current | 2026-08-17 |
+| ~~**SCH-FR-2**~~ ✅ **DONE 2026-08-17 (completion pass)** — **28 existing cases updated to v30 and byte-verified** (the ~22 plus SCH-EDGE-05 and the 6 PANEL re-anchors and 2 title fixes). **0 live contradictions across all 195 cases** (`POST-WRITE-AUDIT.md`, `QUALITY-GATE.md` re-run). The 5 prior in-direction contradictions are now resolved IN CONTENT. | — | *cleared* | 2026-08-17 |
+| **SCH-FR-3** | **The build-verification sync** — to lift the Rule-69 markers on the 19 new + 28 updated cases to `READY` (or `READY - EXPECT FAIL` where a live ticket backs it — see `KNOWN-FAILURES-FOR-SYNC.md`) | QA lead / build | Any "ready to automate" figure for the Schedule new scope | 2026-08-17 |
+| **SCH-FR-4** | **Technical design / tech plan for the Fabian scope** (Rule 30) — none supplied; design source PARTIAL. **AND a tech-design contradiction to rule on: v30 says the spread skips weekends only and closures receive shifts; the 2026-07-29 tech plan built real closure-skipping.** Per your 2026-08-12 ruling the spec wins and it is reported here. | engineering / QA lead | Edge-case strengthening; a ruling on the closures contradiction | 2026-08-17 |
+| ~~**SCH-FR-5**~~ ✅ **DONE 2026-08-17 (completion pass)** — **`requirements.md` promoted to the v30 baseline**; exhaustive version-attributed delta in `build/schedule/fabian-review-2026-08-17/SPEC-REINGEST-v25-v30.md`; **0 orphaned anchors**. | — | *cleared* | 2026-08-17 |
+| **SCH-FR-6** | *(new)* **C30075 1-line alignment** (view-only case should also name "no 'Assign work order'") + **C30015 open PO question** (modal Reassign vs §7 stacking). Neither is a coverage gap; both out of the alignment scope. | QA lead | nothing critical | 2026-08-17 |
+| **🟢 CLEARED BY SPEC v30 (2026-08-17): the shop-closures contradiction (rows S1 / X1 / NQ-1 / P9 below, and the shop-closures half of C4)** | — | v30 §4.5 and §12 now AGREE: spread skips weekends only; shop closures, public holidays and booked days ALL receive shifts. **The PO question is moot** — no answer needed. SCH-EDGE-05 (C30089) and SCH-SPREAD-07 (C29983) are aligned to v30 (their "waiting on PO" HOLD removed). **⚠️ It contradicts the 2026-07-29 tech plan → reported as a tech-design contradiction (SCH-FR-4).** The S1/X1/NQ-1/P9 rows below are kept for the record and marked resolved-by-v30. | 2026-08-17 |
 
 ---
 

@@ -1,5 +1,12 @@
 # Schedule — SOURCE CURRENCY (Standing Rule 31) — 2026-08-17
 
+> **✅ UPDATED 2026-08-17 (completion pass): the v25→v30 re-ingest is DONE.** `requirements.md` is now
+> the **v30 baseline** (`SPEC-REINGEST-v25-v30.md`), and 28 existing cases were aligned to v30. The
+> "STALE — v25→v30 re-ingest OWED" verdict below was TRUE for the authoring pass and is kept dated; for
+> the spec source read **CURRENT (Confluence v30, re-ingested 2026-08-17)**. Build verification remains
+> DEFERRED (Rule 69).
+
+
 > Fabian design-review reconciliation pass. **Build verification is DELIBERATELY DEFERRED this pass**
 > (QA-lead instruction 2026-08-17): the application was NOT opened, no behaviour was observed, and no
 > case names a build. Every case authored/updated this pass carries the new

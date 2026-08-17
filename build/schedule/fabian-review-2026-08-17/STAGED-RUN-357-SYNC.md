@@ -22,3 +22,12 @@ execute the moment authorization is given.
 
 **⚠️ The 6 existing cases flagged for UPDATE-but-not-yet-updated (see completion report §Deferred) are
 already in run 357 — no run change is needed for them.** Only the 19 NEW cases require the union.
+
+---
+
+## Update 2026-08-17 (completion pass) — union unchanged at 195
+
+The completion pass **added 0 cases** (28 `update_case` only). So the union is still **176 → 195**
+exactly as staged above, and the **28 updated cases are already present in run 357** (they were in the
+original 176 selection) — no run change is needed for them. The manifest is unchanged and still awaits
+your explicit per-ask authorisation (Rules 6/34). Final union count = **195**.
