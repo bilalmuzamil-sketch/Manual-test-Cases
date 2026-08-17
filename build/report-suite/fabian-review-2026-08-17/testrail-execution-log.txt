@@ -1,0 +1,30 @@
+SOURCE RE-READ verdict: SBC v20 unchanged, WIP v21 unchanged at write start 2026-08-17T19:30Z (pass start ~19:20Z)
+INTENT 2026-08-17T19:31:06.113218Z add_case sec=4353 WIP-ADJ-01 title='Adjustments column appears in the fixed column order and in the first-visit set'
+  OK C43814 WIP-ADJ-01 HTTP 200 verified 6 fields byte-identical atmstatus=1
+INTENT 2026-08-17T19:31:08.318385Z add_case sec=4354 WIP-ADJ-02 title='Adjustments is the signed net of work-order-level fees and discounts'
+  OK C43815 WIP-ADJ-02 HTTP 200 verified 6 fields byte-identical atmstatus=1
+INTENT 2026-08-17T19:31:10.032541Z add_case sec=4354 WIP-ADJ-03 title='A work-order fee or discount moves only Adjustments and Total'
+  OK C43816 WIP-ADJ-03 HTTP 200 verified 6 fields byte-identical atmstatus=1
+INTENT 2026-08-17T19:31:11.618518Z add_case sec=4354 WIP-ADJ-04 title="A row's Total is Earned plus Remaining plus Adjustments"
+  OK C43817 WIP-ADJ-04 HTTP 200 verified 6 fields byte-identical atmstatus=1
+INTENT 2026-08-17T19:31:14.072917Z add_case sec=4356 WIP-ADJ-05 title='The summary strip shows seven figures and no Adjustments figure'
+  OK C43818 WIP-ADJ-05 HTTP 200 verified 6 fields byte-identical atmstatus=1
+INTENT 2026-08-17T19:31:15.799861Z add_case sec=4357 WIP-ADJ-06 title="The Totals row sums the Adjustments column across the tab's visible jobs"
+  OK C43819 WIP-ADJ-06 HTTP 200 verified 6 fields byte-identical atmstatus=1
+INTENT 2026-08-17T19:31:17.684632Z add_case sec=4363 WIP-ADJ-07 title='Earlier as-of days show no Adjustments value because history is not backfilled'
+  OK C43820 WIP-ADJ-07 HTTP 200 verified 6 fields byte-identical atmstatus=1
+INTENT 2026-08-17T19:31:19.154560Z add_case sec=4354 WIP-ADJ-08 title='Completed tab: Earned equals Total minus Adjustments, Remaining $0.00'
+  OK C43821 WIP-ADJ-08 HTTP 200 verified 6 fields byte-identical atmstatus=1
+INTENT 2026-08-17T19:31:21.216087Z add_case sec=4298 SBC-ADJ-01 title='Adjustments column appears between Shop Supplies and Margin'
+  OK C43822 SBC-ADJ-01 HTTP 200 verified 6 fields byte-identical atmstatus=1
+INTENT 2026-08-17T19:31:22.824514Z add_case sec=4298 SBC-ADJ-02 title='Adjustments is the signed net of invoice-level fees and discounts'
+  OK C43823 SBC-ADJ-02 HTTP 200 verified 6 fields byte-identical atmstatus=1
+INTENT 2026-08-17T19:31:24.949339Z add_case sec=4298 SBC-ADJ-03 title='Every row ties out once Adjustments is included'
+  OK C43824 SBC-ADJ-03 HTTP 200 verified 6 fields byte-identical atmstatus=1
+INTENT 2026-08-17T19:31:26.694098Z add_case sec=4299 SBC-ADJ-04 title='The column selector lists ten toggleable columns including Adjustments'
+  OK C43825 SBC-ADJ-04 HTTP 200 verified 6 fields byte-identical atmstatus=1
+INTENT 2026-08-17T19:31:28.627942Z add_case sec=4300 SBC-ADJ-05 title='Both CSV exports include the Adjustments column in the specified position'
+  OK C43826 SBC-ADJ-05 HTTP 200 verified 6 fields byte-identical atmstatus=1
+INTENT 2026-08-17T19:31:30.314120Z add_case sec=4294 SBC-ADJ-06 title='Each invoice detail row shows a per-invoice Adjustments value'
+  OK C43827 SBC-ADJ-06 HTTP 200 verified 6 fields byte-identical atmstatus=1
+CREATED 14 cases
