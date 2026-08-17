@@ -61,18 +61,18 @@ This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and 
 
 AUTOMATION: READY
 ",SV-8686 (§3.2),,
-"An Unassigned row sits inside the grid, not in a separate tray",Navigation and Layout,Functional,High,"1. You are signed in on a desktop browser.
+The department header row doubles as that department's unassigned lane,Navigation and Layout,Functional,High,"1. You are signed in on a desktop browser.
 2. You are on the Schedule page.
-3. At least one unassigned shift exists (a user with Edit permission drops a work order onto the Unassigned row first).","1. Look for the unassigned row inside the schedule grid.
-2. Note where the unassigned shift is displayed.","1. An unassigned row/lane appears within the grid itself - it is not a separate tray or panel outside the grid.
+3. At least one unassigned shift exists (a user with Edit permission drops a work order onto a department group header row first).","1. Look at a department group header row in the schedule grid.
+2. Note where an unassigned shift is displayed.","1. The department group header row acts as that department's unassigned lane, inside the grid itself - it is not a separate tray or panel, and it is one row, not a separate second row.
 2. Shifts without a technician sit in this row.
-3. The unassigned shift uses the same block layout as regular shifts (customer, unit, line name / line count) - it simply has no technician.
+3. An unassigned block renders as a fixed-width chip carrying its hours (it is not scaled to its duration) and simply has no technician.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.2, §4.2), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-8686 and SV-9234 (unassigned lane on the department header row) and the Schedule specification version 30 (§3.2, §4.2, §4.4, §8.1), read on 17 August 2026.
 
-AUTOMATION: READY
-","SV-8686 (§3.2,§4.2)",,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-8686; SV-9234 (§3.2; §4.2; §4.4; §8.1 unassigned lane),,
 Schedule opens on Day view the first time you open it from the navigation,Navigation and Layout,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser (window at least 960px wide).
 2. Your role has the Schedule: View permission.
 3. You are NOT already on the Schedule page - start from another page, for example Work Orders, so that opening Schedule is a fresh arrival.","1. In the top navigation, click Schedule.
@@ -150,40 +150,39 @@ This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and 
 
 AUTOMATION: READY
 ","SV-8687 (§3.1,§5.1)",,
-"Work order card anatomy, incl. the status-colored left border",Sidebar - Work Order List and Search,Functional,High,"1. You are signed in on a desktop browser.
-2. A work order exists with a customer, a unit, at least one approved line with estimated hours, and a lead technician assigned.
-3. You are on the Schedule page with the work order list visible.
-","1. Find that work order's card in the sidebar list.
-2. Read the card from top to bottom.
-","1. Top left: the work order number, shown in an accent color.
-2. Top right: the line count plus the hours estimate.
+"Work order card shows number, hours, customer, unit, vehicle, and lead tech",Sidebar - Work Order List and Search,Functional,High,"1. You are signed in on a desktop browser.
+2. A work order exists with a customer, a unit, a vehicle (year/make/model), at least one approved line with estimated hours and some hours clocked, and a lead technician assigned.
+3. You are on the Schedule page with the work order list visible.","1. Find that work order's card in the sidebar list.
+2. Read the card from top to bottom.","1. Top left: the work order number, shown in an accent color.
+2. Top right: the line count plus the hours - both the estimate and the hours clocked so far, rolled up for the whole order.
 3. Below: the customer name in bold, then the unit number.
-4. A lead technician row with the technician's avatar and name.
-5. A colored left border whose color reflects the work order's status.
+4. The vehicle shown as year, make and model (for example '2021 Freightliner Cascadia').
+5. A lead technician row with the technician's avatar and name.
+6. A colored left border whose color reflects the work order's status.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.1), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-8687 and SV-9239 (card anatomy: vehicle and clocked hours) and the Schedule specification version 30 (§3.1), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8687 (§3.1 (Work order card anatomy)),,
-"'Search work orders' matches work order number, customer, unit, and technician",Sidebar - Work Order List and Search,Functional,High,"1. You are signed in on a desktop browser.
-2. Work orders exist with different work order numbers and with distinct customer names, unit numbers, and lead technicians.
-3. You are on the Schedule page with the work order list visible.
-","1. Click the 'Search work orders' field at the top of the list and type the number of one specific work order; note the results, then clear.
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-8687; SV-9239 (§3.1 card anatomy adds the vehicle and the clocked hours rollup),,
+"'Search work orders' matches number, customer, unit, vehicle, and technician",Sidebar - Work Order List and Search,Functional,High,"1. You are signed in on a desktop browser.
+2. Work orders exist with different work order numbers and with distinct customer names, unit numbers, vehicles, and lead technicians.
+3. You are on the Schedule page with the work order list visible.","1. Click the 'Search work orders' field and type the number of one specific work order; note the results, then clear.
 2. Type part of a customer name; note the results, then clear.
 3. Type a unit number; note the results, then clear.
-4. Type a technician's name; note the results.
-","1. Work-order-number search narrows the list to the card(s) whose work order number matches what you typed, and cards that do not match disappear.
+4. Type part of the vehicle (for example the make, 'Freightliner'); note the results, then clear.
+5. Type a technician's name; note the results.","1. Work-order-number search narrows the list to the card(s) whose work order number matches what you typed, and cards that do not match disappear.
 2. Customer-name search shows only cards for that customer, and it works with the full multi-word name (for example 'Vuchester Retail').
 3. Unit-number search shows only cards with that unit.
-4. Technician-name search shows only cards where that technician is on the work order - and it must work when you type the technician's name the way the card shows it, first name and last name together (for example 'Andrew Wade').
+4. Vehicle search shows only cards whose vehicle (year, make, or model) matches what you typed.
+5. Technician-name search shows only cards where that technician is on the work order - and it must work when you type the name the way the card shows it, first name and last name together (for example 'Andrew Wade').
+6. Searching the work order number as the card shows it, or the bare number, both match.
 
-Note for the tester: searching the number exactly as the card shows it (for example S-15875) does work, and so does the bare number (15875). Searching the longer shop-prefixed form (for example S8685-15875) returns nothing; that is already raised as SV-8841 (https://shopview.atlassian.net/browse/SV-8841), so do not raise it again.
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.1), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-8687 and SV-9239 (sidebar search matches the vehicle) and the Schedule specification version 30 (§3.1), read on 17 August 2026.
 
-AUTOMATION: READY
-","SV-8687 (§3.1 (Sidebar search,Work order card anatomy))",,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-8687; SV-9239 (§3.1 sidebar search adds the vehicle to the matched fields),,
 Sidebar search filters the card list in real time as you type,Sidebar - Work Order List and Search,Functional,Medium,"1. You are signed in on a desktop browser.
 2. Several work orders exist.
 3. You are on the Schedule page with the work order list visible.
@@ -212,6 +211,39 @@ This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and 
 
 AUTOMATION: READY
 ",SV-8687 (§3.1 (derived - search behavior with no matches)),,
+Work order card shows the vehicle and clocked hours; vehicle joins the search,Sidebar - Work Order List and Search,Functional,High,"1. You are signed in on a desktop browser and on the Schedule page.
+2. The sidebar lists work orders, at least one of which has a vehicle and some clocked time.
+3. You can also see the grid toolbar search box.","1. Read a sidebar work order card: note the vehicle, customer, unit number, estimate and clocked hours.
+2. Open the card's line drill-down and read a line row's hours.
+3. Type part of a vehicle (year, make or model) into the sidebar search and note the results.
+4. Type the same vehicle text into the grid toolbar search and note the results.","The card shows the vehicle as year, make and model (for example '2021 Freightliner Cascadia') in addition to customer and unit number.
+The card shows clocked hours rolled up for the order alongside the existing estimate.
+Line rows in the drill-down show estimated and clocked hours.
+The rest of the card anatomy is unchanged.
+Vehicle text matches in the sidebar search fields and in the grid toolbar search fields.
+
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and story SV-9239 and the Schedule specification version 30 (§3.1,§6,§8.1), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9239 (§3.1;§6;§8.1),,
+Hovering a work order card opens a read-only peek panel of its lines,Sidebar - Work Order List and Search,Functional,High,"1. You are signed in on a desktop browser and on the Schedule page.
+2. The sidebar has a work order with several lines, at least one with clocked time, and a lead technician.
+3. That work order has more lines than the peek panel will show at once.","1. Hover the work order card and wait for the peek panel to open.
+2. Read the panel: line statuses, each line's estimated and clocked hours, the lead technician, and the overflow row.
+3. Move the mouse away and confirm the panel dismisses.
+4. Click the card (do not just hover) and confirm the line drill-down opens.
+5. Start dragging the card onto the grid and confirm the peek does not get in the way.","Hovering the card opens a read-only peek panel showing the order's lines with their status, each line's estimated and clocked hours, and the lead technician.
+A long list is truncated with a '+N more' row.
+The panel opens after the same hover delay as the grid tooltips and dismisses on mouse-leave.
+Clicking the card still opens the line drill-down.
+The peek does not interfere with dragging the card onto the grid.
+
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and story SV-9239 and the Schedule specification version 30 (§3.1,§6,§8.1), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9239 (§3.1;§6;§8.1),,
 The 'Filters' button opens Assignment / Status / Priority filter groups,Sidebar - Work Order Filters,Functional,High,"1. You are signed in on a desktop browser.
 2. Several work orders exist in mixed statuses and priorities.
 3. You are on the Schedule page with the work order list visible.","1. Click the 'Filters' button on the sidebar.
@@ -386,18 +418,19 @@ This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and 
 AUTOMATION: READY
 ","SV-8687 (§3.1,§5.1 (drill-down filters))",,
 Dropping a single-line work order creates a shift with no scope picker,Drag-and-Drop Scheduling,Functional,Critical,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. A ZZAUTOTEST work order exists with exactly ONE approved line whose estimated hours fit within one working day of the target technician.
+2. A ZZAUTOTEST work order exists with exactly ONE approved line, not yet started (no hours clocked), whose remaining hours therefore equal its full estimate and fit within one working day of the target technician.
 3. You are on the Schedule page in week view.","1. Drag that work order's card from the sidebar.
 2. Drop it onto a technician's cell on a working day.","1. A shift is created immediately in that cell - no scope picker and no spread step appears.
-2. The shift block shows the customer name, unit number, and the line's name.
-3. The technician is added to that line's labor roster on the work order.
-4. A toast with an Undo option appears.
+2. The shift is sized by the line's remaining hours (its estimate minus any hours already clocked); for a work order that has not been started this equals the full estimate, which fits within one working day.
+3. The shift block shows the customer name, unit number, and the line's name.
+4. The technician is added to that line's labor roster on the work order.
+5. A toast with an Undo option appears.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.1, §1.2, §7), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-8688 and SV-9232 (shift sized by remaining hours) and the Schedule specification version 30 (§4.1, §4.2, §1.2, §7), read on 17 August 2026.
 
-AUTOMATION: READY
-","SV-8688 (§4.1 (Single-line work order),§1.2 (roster sync),§7 (toast))",,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-8688; SV-9232 (§4.1 single-line work order; §4.2 shift sized by remaining hours; §1.2 roster sync; §7 toast),,
 Dropping a multi-line work order on a technician cell opens the scope picker,Drag-and-Drop Scheduling,Functional,Critical,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A work order exists with TWO or more approved lines.
 3. You are on the Schedule page in week view.","1. Drag that work order's card from the sidebar.
@@ -424,18 +457,18 @@ This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and 
 AUTOMATION: READY
 ",SV-8688 (§4.1 (Specific line drag)),,
 A job over the technician's daily hours opens the spread step,Drag-and-Drop Scheduling,Functional,Critical,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. A ZZAUTOTEST work order exists whose chosen scope's estimated hours EXCEED one working day of the target technician (for example a 40h line for a tech with 8h days).
+2. A ZZAUTOTEST work order exists whose chosen scope's REMAINING hours (estimate minus any hours already clocked) EXCEED one working day of the target technician (for example a 40h line for a tech with 8h days).
 3. You are on the Schedule page in week view.","1. Drag the work order (or the large line) onto a technician's cell.
 2. If the scope picker opens, choose the large scope.
-3. Look at what opens next.","1. The spread step opens (step 2 of the same modal) to distribute the hours across consecutive working days.
-2. Its header shows the chosen scope and a 'Change scope' back-link.
+3. Look at what opens next.","1. The spread step opens (step 2 of the same modal) because the scope's remaining hours exceed one of the technician's working days.
+2. Its header shows the work order and the technician's name and a 'Change scope' back-link.
 3. No shifts exist yet until the spread is confirmed.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.1, §4.5), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-8688 and SV-9232 (spread opens when remaining hours exceed a working day) and the Schedule specification version 30 (§4.1, §4.2, §4.5), read on 17 August 2026.
 
-AUTOMATION: READY
-","SV-8688 (§4.1 (Large job),§4.5)",,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-8688; SV-9232 (§4.1 large job; §4.2 remaining hours; §4.5 spread),,
 A scope that fits one working day skips the spread step,Drag-and-Drop Scheduling,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A multi-line work order exists where one line's hours fit within the target technician's working day.
 3. You are on the Schedule page in week view.","1. Drag the work order onto a technician's cell.
@@ -509,6 +542,32 @@ This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and 
 
 AUTOMATION: HOLD - waiting on the product owner's answer, and the question has not been sent yet
 ",SV-8870 (§4.1 drag-and-drop scheduling + §4.2 start-time hierarchy),,
+A shift is sized by remaining hours: estimate minus hours already clocked,Drag-and-Drop Scheduling,Functional,High,"1. You are signed in on a desktop browser and on the Schedule page with Schedule: Edit permission.
+2. In the sidebar you have a work order that has NOT been started (no clocked time) and a second work order that has some hours already clocked against its line(s).","1. Drag the not-started work order onto a technician cell and note the length of the shift created.
+2. Drag the work order that already has clocked time onto a technician cell and note the length of the shift created.
+3. For a multi-line work order, open the scope picker, pick two lines and note the total length.","The not-started work order creates a shift the full length of its estimate (no clocked time means no remainder).
+The work order with clocked time creates a shift sized by its estimate MINUS the hours already clocked, measured at the moment the shift is created.
+For a chosen scope the remaining hours are worked out per line and added together.
+The same remaining-hours sizing applies to a direct drop, the scope picker and the spread step.
+
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and story SV-9232 and the Schedule specification version 30 (§4.2,§12), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9232 (§4.2;§12),,
+Below 0.25h left you are told nothing remains; shifts never resize later,Drag-and-Drop Scheduling,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit permission and are on the Schedule page.
+2. You have a work order with less than 0.25 hours (15 minutes) of estimate remaining after clocked time.
+3. You have a second work order already scheduled on two technicians, against which more time can be clocked afterwards.","1. Try to drop the work order that has under 0.25h remaining onto a technician cell.
+2. For the already-scheduled work order, have time clocked against it after the shifts were created, then re-open the two existing shifts and note their lengths.
+3. Schedule a THIRD technician on that same work order after the clocking and note the new shift's length.","When less than 0.25 hours remain, you are told there is nothing left to schedule rather than being given a zero-length shift (0.25h is the minimum schedulable remainder).
+The two shifts already on the board keep exactly the hours they were given - they are NOT resized when more hours are clocked later.
+The third technician scheduled afterwards is sized by what is left at that moment, not by the original estimate.
+
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and story SV-9232 and the Schedule specification version 30 (§4.2,§12), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9232 (§4.2;§12),,
 Scope picker contents: the pinned whole-order row and the line rows,Scope Picker,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A work order exists with three approved lines with known estimated hours, where at least one line already has technicians on its roster.
 3. You are on the Schedule page in week view.","1. Drag the work order onto a technician's cell to open the scope picker.
@@ -594,13 +653,14 @@ AUTOMATION: READY
 2. A technician exists with no configured hours AND the shop's business hours are not set (adjust settings if the environment allows; restore the settings byte-identical after).
 3. A schedulable work order line exists.
 4. You are on the Schedule page in week view.","1. Drop the line onto that technician's cell.
-2. Read the created shift's start time.","1. The shift starts at 7:00 AM - the general default working day (7:00 AM to 7:00 PM) applies.
+2. Read the created shift's start time.","1. The shift starts at 7:00 AM - the app-level default working day of 7:00 AM to 7:00 PM applies because neither the technician's hours nor the shop's business hours are set.
+2. This default only sizes and draws the shift; it is not a rule, so a shift placed outside 7:00 AM to 7:00 PM while nothing is configured raises no conflict.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.2), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-8688 and SV-9231 (app-level default 7:00 AM to 7:00 PM, not a rule) and the Schedule specification version 30 (§4.2), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8688 (§4.2),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-8688; SV-9231 (§4.2 resolved working hours; app-level default 7:00 AM to 7:00 PM is not a rule),,
 In day view the start time comes from the drop position,Shift Start Times and Unassigned Shifts,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A schedulable work order line exists.
 3. You are on the Schedule page in DAY view.","1. Drag the line from the sidebar and drop it at a specific time position on a technician's timeline (for example around 10:00 AM).
@@ -637,18 +697,85 @@ This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and 
 
 AUTOMATION: READY
 ",SV-8688 (§4.2),,
-Dragging an unassigned shift onto a technician row assigns it,Shift Start Times and Unassigned Shifts,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. An unassigned shift exists in the Unassigned row.
-3. The target technician has configured working hours that differ from the shop's business hours.
-4. You are on the Schedule page in week view.","1. Drag the unassigned shift from the Unassigned row down onto a technician's row.
-2. Check the shift and the line's roster.","1. The shift is now assigned to that technician (it leaves the Unassigned row and sits in the technician's row).
-2. The technician is added to the affected line's roster.
-3. The technician's own working hours now apply to the shift's timing.
----
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§3.2, §4.2), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
+Dragging an unassigned shift onto a technician assigns and re-sizes it,Shift Start Times and Unassigned Shifts,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
+2. An unassigned shift exists in a department's unassigned lane (the department header row) - for example by dropping a work order onto that header row.
+3. The target technician has configured working hours.
+4. You are on the Schedule page in week view.","1. Drag the unassigned chip from the department header row down onto a technician in that department.
+2. Check the shift, the technician's roster, and whether it stayed one shift or became a series.","1. The shift is assigned to that technician - it leaves the department's unassigned lane and now sits in the technician's row, rendered as a normal shift block rather than a fixed-width chip.
+2. Its remaining hours are re-evaluated against the target technician's resolved working day: if they fit, a single shift is created; if they do not, the spread step opens with its start date pre-filled from the date the chip was originally dropped on.
+3. The technician is added to the labor roster of the scheduled lines.
+4. The shift now counts toward that technician's capacity.
 
-AUTOMATION: READY
-","SV-8688 (§3.2 (Unassigned placeholder),§4.2)",,
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-9234 and SV-9235 (assigning a parked unassigned shift) and the Schedule specification version 30 (§3.2, §4.2), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9234; SV-9235 (§3.2 unassigned lane; §4.2 assigning a parked shift re-evaluates remaining hours),,
+A day's hours resolve tech then shop then a 7am-7pm default used everywhere,Shift Start Times and Unassigned Shifts,Functional,High,"1. You are signed in on a desktop browser and on the Schedule page.
+2. You can see technicians whose hours differ: one with custom working hours set, one whose department/shop has business hours set but no personal hours, and one with neither set.
+3. You have Schedule: Edit permission so you can drop a work order to size a shift.","1. For the technician WITH custom hours, note the window used when a shift is sized and drawn, and the business-hours shading on that row.
+2. For the technician with NO personal hours but a shop business-hours window, repeat.
+3. For the technician with NEITHER set, repeat, and note whether any out-of-hours conflict is raised.
+4. Compare the window used for shift sizing, the spread step, capacity, business-hours shading and day-view auto-scroll for each technician.","The technician's own configured hours are used when they are set.
+When personal hours are not set, the shop's business hours are used instead.
+When neither is set, a default window of 7:00 AM to 7:00 PM is used.
+Only the first level that is set is used - the levels are never merged.
+The same resolved window is used everywhere a day's length matters: sizing shifts on drop, the spread step, capacity, business-hours shading and day-view auto-scroll. No fixed daily hour count is used anywhere.
+For the technician on the 7am-7pm default only, a shift falling outside that window raises NO conflict (the default is only there so shifts can be sized and drawn, it is not a rule).
+
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and story SV-9231 and the Schedule specification version 30 (§4.2,§8.1), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9231 (§4.2;§8.1),,
+Dropping a work order on a department header row parks it as one shift,Shift Start Times and Unassigned Shifts,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit permission and are on the Schedule page.
+2. The grid shows at least one department group header row.
+3. You have a multi-line work order in the sidebar.","1. Drag the whole work order onto a department group header row and drop it.
+2. Note the shift that is created and its scope.
+3. Check whether the spread step (multi-day) opens.
+4. Open the created shift and check the technician and labor roster.","The department group header row acts as that department's unassigned lane (one row, not a separate second row).
+Dropping the work order creates a single unassigned shift covering the whole scope.
+The spread step does NOT run - with no technician there are no working hours to spread across.
+The shift is sized by remaining hours on the same rules as any other shift.
+The date you dropped it on is recorded as the shift's target start date.
+No technician is set and no labor roster is touched.
+
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and story SV-9234 and the Schedule specification version 30 (§3.2,§4.2,§4.4,§8.1), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9234 (§3.2;§4.2;§4.4;§8.1),,
+"An unassigned block is a fixed-width chip, excluded from capacity and conflicts",Shift Start Times and Unassigned Shifts,Functional,High,"1. You are signed in on a desktop browser and on the Schedule page.
+2. At least one unassigned shift exists on a department header row.
+3. Enough unassigned shifts exist on one department/day to exceed three overlapping blocks.","1. Look at an unassigned block in Day, Week and Month views and note its width.
+2. Note the hours shown on the chip.
+3. Add unassigned blocks until more than three overlap on the same lane and note how they stack.
+4. Check the department's capacity bar and whether any double-booking or hours conflict is raised for the unassigned shifts.","The unassigned block renders as a fixed-width chip carrying its hours - it is NOT scaled to its duration - in Day, Week and Month views.
+Unassigned chips stack under the same 3-lane cap and '+N more' overflow as ordinary blocks.
+Unassigned shifts are excluded from capacity - they never fill the capacity bar.
+Unassigned shifts raise neither double-booking nor hours conflicts.
+
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and story SV-9234 and the Schedule specification version 30 (§3.2,§4.2,§4.4,§8.1), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9234 (§3.2;§4.2;§4.4;§8.1),,
+"Assigning a parked shift to a technician, spreading it if it will not fit",Shift Start Times and Unassigned Shifts,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit permission and are on the Schedule page.
+2. One unassigned (parked) shift has remaining hours that FIT within a technician's resolved day.
+3. A second parked shift has remaining hours that do NOT fit within a technician's resolved day.","1. Drag the parked shift that fits onto a technician row and note what is created.
+2. Drag the parked shift that does not fit onto a technician row and note what opens.
+3. In the spread step that opens, check the start date.
+4. After assigning, open the scheduled line(s) and check the labor roster and the capacity bar; note how the chip now renders.","Dragging an unassigned shift onto a technician runs the same path as a fresh drop from the sidebar.
+When the remaining hours fit within that technician's resolved day, a single shift is created.
+When they do not fit, the spread step opens with its start date pre-filled from the shift's recorded target date.
+The technician is added to the labor roster of the scheduled lines.
+The shift begins counting toward capacity and the chip is replaced by normal shift rendering.
+
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and story SV-9235 and the Schedule specification version 30 (§4.2,§12), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9235 (§4.2;§12),,
 Spread step header shows the scope; 'Change scope' returns to the picker,Multi-Day Spread Scheduling,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A multi-line work order exists with a scope that exceeds the technician's daily hours.
 3. You are on the Schedule page in week view.
@@ -669,38 +796,41 @@ AUTOMATION: READY
 ",SV-8691 (§4.5),,
 How-much selector defaults to Full estimate; preset amounts apply at once,Multi-Day Spread Scheduling,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. You are on the spread step for a large scope (for example 40+ hours).","1. Read the 'how much to schedule' selector's default value.
-2. Open the selector and read its options.
-3. Pick '1 week', then '2 weeks', then back to 'Full estimate', watching for extra fields.","1. The selector defaults to 'Full estimate'.
-2. The options include 'Full estimate', '1 week', '2 weeks', 'Until a date…', and 'Specific hours…'.
-3. 'Full estimate', '1 week', and '2 weeks' apply on selection with no extra fields - the modal stays to one line for these.
-4. The preview summary updates to match each selection.
+2. Open the selector and read its options and the hours shown on each.
+3. Pick 'Today only', then '1 week', then '2 weeks', then back to 'Full estimate', watching for extra fields.","1. The selector defaults to 'Full estimate', which resolves to the scope's remaining hours.
+2. The options are: 'Full estimate', 'Today only', '1 week', '2 weeks', 'Until a date…', and 'Specific hours…'. Each fixed option shows its resolved hours in its label.
+3. 'Today only', '1 week', and '2 weeks' are offered ONLY when that span's capacity is less than the scope's hours (a span that would schedule the whole scope anyway is hidden); 'Until a date…' and 'Specific hours…' are always available.
+4. 'Full estimate', 'Today only', '1 week', and '2 weeks' apply on selection with no extra fields - the modal stays to one line for these.
+5. The preview summary updates to match each selection.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.5), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-8691 and SV-9236 (six-option spread selector including Today only) and the Schedule specification version 30 (§4.5), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8691 (§4.5 (How much to schedule)),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-8691; SV-9236 (§4.5 six-option selector incl. Today only; fixed spans shown only when they constrain the scope),,
 'Until a date…' reveals a single finish-by date field,Multi-Day Spread Scheduling,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. You are on the spread step for a large scope.","1. Open the how-much selector and choose 'Until a date…'.
 2. Look at the modal.
-3. Pick a finish-by date.","1. Choosing 'Until a date…' reveals a single 'finish by' date field (this is the only custom control shown).
+3. Pick a finish-by date.","1. Choosing 'Until a date…' reveals a single 'Finish by' date field (this is the only custom control shown).
 2. Picking a date updates the preview so the series ends by that date.
+3. 'Until a date…' and 'Specific hours…' derive each other: setting a finish-by date derives the hours to schedule, and setting the hours (in the other option) derives the matching finish-by date, so the value carries across if you switch between them.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.5), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-8691 and SV-9237 (Until a date and Specific hours derive each other) and the Schedule specification version 30 (§4.5), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8691 (§4.5 (progressive disclosure)),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-8691; SV-9237 (§4.5 Until a date and Specific hours derive each other),,
 'Specific hours…' reveals an hours stepper,Multi-Day Spread Scheduling,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. You are on the spread step for a large scope.","1. Open the how-much selector and choose 'Specific hours…'.
-2. Set a number of hours with the stepper (for example 16).","1. Choosing 'Specific hours…' reveals an hours stepper control.
+2. Set a number of hours with the stepper (for example 16).","1. Choosing 'Specific hours…' reveals an hours stepper control that steps by the technician's resolved daily hours.
 2. The preview updates to spread exactly the entered hours across working days.
+3. 'Specific hours…' and 'Until a date…' derive each other: setting the hours derives the matching finish-by date, and the value carries across if you switch between the two options.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.5), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-8691 and SV-9237 (Specific hours stepper by resolved daily hours) and the Schedule specification version 30 (§4.5), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8691 (§4.5 (progressive disclosure)),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-8691; SV-9237 (§4.5 Specific hours steps by resolved daily hours; derives Until a date),,
 Start date defaults to the earliest working day and can be changed,Multi-Day Spread Scheduling,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A large job has already been spread for technician A (note A's series end date).
 3. You are on the spread step for the SAME work order dropped on technician B.","1. Read the start-date field's default.
@@ -714,32 +844,33 @@ This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and 
 
 AUTOMATION: HOLD - not re-checked against the current build - it needs a drag that could not be completed
 ",SV-8691 (§4.5 (Start date)),,
-Spread uses the tech's working hours; skips weekends only when hours not set,Multi-Day Spread Scheduling,Functional,Critical,"1. You are signed in on a desktop browser with Schedule: Edit.
+Spread sizes shifts to the tech's hours and skips weekends only,Multi-Day Spread Scheduling,Functional,Critical,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. The technician has known daily working hours (for example 8h/day, Monday to Friday).
-3. A shop closure day is defined inside the spread window (set one up if the environment allows).
+3. A shop closure day and a public holiday fall inside the planned spread window (set them up if the environment allows).
 4. A scope of known size exists (for example 40h).","1. Spread the 40h scope for that technician with 'Full estimate' starting on a Monday.
-2. Confirm and inspect the created shifts on the grid.","1. Daily shifts are sized to the technician's own working hours (8h each in the example).
-2. Weekends are skipped ONLY when the technician has no business hours set for them; if the tech has hours on a weekend day (e.g. Saturday hours) that day is NOT skipped.
-3. Shop closures and public holidays are NOT skipped in V1 - shifts can be placed on those days.
-4. The end date is a result of the daily distribution (for 40h at 8h/day starting Monday, the series ends on the fifth working day).
+2. Confirm and inspect the created shifts on the grid.","1. Daily shifts are sized to the technician's own resolved working hours (8h each in the example).
+2. Weekends are skipped - Saturday and Sunday receive no shifts.
+3. Shop closures, public holidays, and days the technician is already booked are NOT skipped - they all receive shifts. Weekends are the only skip reason.
+4. The end date is the result of the daily distribution (for 40h at 8h/day starting Monday, the series ends on the fifth working day).
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.5, §12), read on 11 August 2026. That specification describes this point in two different ways, so the behaviour above follows its first-release wording and a product owner decision is still awaited; the open question is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md, read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-8691 and SV-9238 (spread skips weekends only; nothing else skipped) and the Schedule specification version 30 (§4.5, §12), read on 17 August 2026.
 
-AUTOMATION: HOLD - waiting on the product owner's answer, and the question has not been sent yet
-","SV-8691 (§4.5,§12 (shop closures))",,
-"Spread preview: one-line summary, expandable to a week-by-week breakdown",Multi-Day Spread Scheduling,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-8691; SV-9238 (§4.5 and §12 spread skips weekends only; closures/holidays/booked days receive shifts),,
+"Spread preview: '{N} shifts / {total}h' summary, expandable week-by-week",Multi-Day Spread Scheduling,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. You are on the spread step for a multi-week scope that will skip at least one weekend.","1. Read the preview area without expanding it.
 2. Expand the preview.
-3. Find a skipped day in the breakdown.","1. Collapsed: a one-line summary in the spirit of the spec's example '20 shifts · Jun 15 to Jul 13 · skips weekends + 2 days'.
-2. Expanded: a week-by-week breakdown of the planned shifts.
-3. Skipped days are struck through and show the reason they are skipped - in V1 the only skip reason is a weekend day with no working hours set.
+3. Find a skipped day in the breakdown.","1. Collapsed: a two-line summary reading '{N} shifts · {total}h' over '{start} to {end} · Mon-Fri, per tech hours'.
+2. Expanded: a week-by-week breakdown of the planned shifts, showing each day's hours.
+3. Weekend days are shown struck through in the breakdown (weekends are the only skip reason); shop closures and public holidays are not skipped and appear as ordinary scheduled days.
+4. Confirming creates the series, and the confirm button carries the count, for example 'Create 13 shifts'.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.5), read on 11 August 2026. That specification describes this point in two different ways, so the behaviour above follows its first-release wording and a product owner decision is still awaited; the open question is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md, read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-8691 and SV-9237 (spread preview summary and confirm label) and the Schedule specification version 30 (§4.5), read on 17 August 2026.
 
-AUTOMATION: HOLD - not re-checked against the current build - it needs a drag that could not be completed
-",SV-8691 (§4.5 (Preview)),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-8691; SV-9237 (§4.5 preview summary '{N} shifts / {total}h'; confirm 'Create {N} shifts'),,
 Confirming the spread creates a linked series of daily shifts,Multi-Day Spread Scheduling,Functional,Critical,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. You are on the spread step for a multi-day scope with the preview showing several shifts.","1. Confirm the spread.
 2. Look at the grid across the affected days/weeks.
@@ -780,6 +911,71 @@ This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and 
 
 AUTOMATION: READY
 ",SV-8691 (§4.5 + tech-plan D8 series caps),,
+"Spread selector: six options with resolved hours, and a new Today only",Multi-Day Spread Scheduling,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit permission and are on the Schedule page.
+2. You know a technician's resolved daily hours (for example an eight-hour day).
+3. You have a 12-hour scope and a 160-hour scope to spread on that technician.","1. Open the spread step for the 12-hour scope on the eight-hour-day technician and read the option list.
+2. Read the hours shown in each fixed option's label.
+3. Note which options are offered for the 12-hour scope.
+4. Repeat for the 160-hour scope and note which options are offered.","The selector offers six options: Full estimate, Today only, 1 week, 2 weeks, Until a date..., Specific hours... ('Today only' is new).
+Each fixed option shows its resolved hours in the label; 'Full estimate' is the default and resolves to the scope's remaining hours (its label text stays 'Full estimate').
+Today only, 1 week and 2 weeks are offered ONLY when that span's capacity is less than the scope's hours - a span that would schedule the whole scope anyway is hidden.
+On an eight-hour day the 12-hour scope offers 'Today only' but neither week span; the 160-hour scope offers all three.
+'Until a date...' and 'Specific hours...' are always available.
+
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and story SV-9236 and the Schedule specification version 30 (§4.5), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9236 (§4.5),,
+When the scope fits one day the spread hides the selector for an Hours field,Multi-Day Spread Scheduling,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit permission and are on the Schedule page.
+2. You have a scope whose remaining hours fit within one of the technician's resolved days.","1. Open the spread step for the single-day scope on that technician.
+2. Note whether the how-much selector is shown.
+3. Note the Hours field and its starting value, and step it up and down.
+4. Reduce the Hours field below the remaining hours and read the message; confirm and note what is created.
+5. If a selection inside the modal drops the scope to one day or less, note whether a series or a single shift is created.","When the scope fits one resolved day, the how-much selector is NOT shown at all.
+The only control is an editable Hours field, pre-filled with the remaining hours, stepping in 0.25-hour increments.
+Reducing it schedules part of the scope and shows '{N}h left to schedule'.
+Confirming creates a single shift of that length.
+If a selection made inside the modal drops the scope to one day or less, the modal creates an ordinary shift rather than a series.
+
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and story SV-9237 and the Schedule specification version 30 (§4.5), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9237 (§4.5),,
+Spread: Until a date and Specific hours derive each other; summary label,Multi-Day Spread Scheduling,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit permission and are on the Schedule page.
+2. You have a multi-day scope open in the spread step on a technician with known resolved daily hours.","1. Choose 'Until a date...', set a finish-by date, and note the hours value.
+2. Switch to 'Specific hours...' and note whether the value carried across; step the hours and watch the date.
+3. Read the header of the spread modal.
+4. Read the two-line summary block, then expand it.
+5. Read the confirm button label for a spread that makes several shifts.","'Until a date...' and 'Specific hours...' are two expressions of the same spread: setting a date derives the hours and setting the hours derives the date, carrying the value across when switching.
+'Specific hours...' steps by the technician's resolved daily hours.
+The header shows the work order and the technician's name only.
+The summary block is two lines - '{N} shifts / {total}h' over '{start} to {end} / Mon-Fri, per tech hours' - collapsed by default, expanding to a week-by-week breakdown with each day's hours.
+The confirm button reads 'Create {N} shifts'.
+
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and story SV-9237 and the Schedule specification version 30 (§4.5), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9237 (§4.5),,
+Spread skips weekends only; Undo removes the whole generated series,Multi-Day Spread Scheduling,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit permission and are on the Schedule page.
+2. You have a multi-day scope that spans weekends, a shop closure day, and a day the technician is already booked.
+3. You know the shop's closure/holiday configuration.","1. Run the spread and read the preview: note which days receive a shift and which are skipped.
+2. Confirm the spread and read the toast; hover it and then move the mouse away.
+3. Use the toast's Undo and check what is removed.
+4. Recreate the series; after the toast expires, delete the series using the normal delete flow.","The generator places day-sized blocks on consecutive days, skipping weekends unconditionally.
+Nothing else is skipped - shop closures, public holidays, and days the technician is already booked all receive shifts.
+Weekends are the only skip reason shown in the preview.
+Confirming produces a toast with an Undo that removes the ENTIRE generated series, not just the last shift.
+The toast lasts 4 to 7 seconds, persists while hovered, and dismisses on mouse-leave.
+After it expires, removing the series uses the existing series-aware delete flow.
+
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and story SV-9238 and the Schedule specification version 30 (§4.5,§7,§12), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9238 (§4.5;§7;§12),,
 "Month view: series banner wraps across weeks, labeled once, then 'continues'",Linked Series and Banners,Functional,High,"1. You are signed in on a desktop browser.
 2. A multi-week series exists for one technician (spread a 40h+ job first).
 3. You are on the Schedule page in MONTH view showing the series' month.","1. Find the series on the month grid.
@@ -923,16 +1119,18 @@ Day view auto-scrolls to the working-day start; manual scrolling stands,Day View
 3. You are on the Schedule page.","1. Switch to day view and look at where the timeline is scrolled to.
 2. Manually scroll the timeline to a late-night hour (for example 11:00 PM).
 3. Wait a few seconds and interact with the page without changing the day (hover blocks, open/close a tooltip).
-4. Navigate to the next day with the toolbar arrow and look again.","1. On load and on each day navigation, the timeline is auto-scrolled so the working-day start sits at the left edge of the visible area, with a small buffer (roughly 30 to 60 minutes) before it.
-2. The start used is the earliest technician's configured start; if no tech hours are set, business hours; otherwise 7:00 AM - so no shifts sit off-screen to the left.
-3. Your manual scroll position stays put - nothing jumps you back to the morning while you remain on the same day.
-4. The timeline is not stuck at the start - it remains a full 24-hour scrollable timeline (midnight to midnight).
-5. Only navigating to another day re-triggers the auto-scroll.
----
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.8), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
+4. Navigate to the next day with the toolbar arrow, then change the grid range, and look again.
+5. Navigate so the viewed date is today and look at where it scrolls.","1. On day-view load, on navigating to a new day, and on changing the grid range, the timeline auto-scrolls so the earliest technician's resolved start sits at the left edge of the visible area, with a small buffer (roughly 30 to 60 minutes) before it.
+2. When the viewed date is today, it scrolls to the 'now' line instead of the day start.
+3. The start used is the earliest technician's resolved start (technician hours, else business hours, else the 7:00 AM app-level default) so no shifts sit off-screen to the left.
+4. Your manual scroll position stays put - nothing jumps you back while you remain on the same day.
+5. The timeline remains a full 24-hour scrollable timeline (midnight to midnight); only load, day navigation, or a grid-range change re-triggers the auto-scroll.
 
-AUTOMATION: READY
-",SV-8694 (§4.8 (Auto-scroll to business hours)),,
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-8694 and SV-9244 (auto-scroll triggers and the now-line-when-today rule) and the Schedule specification version 30 (§4.8), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-8694; SV-9244 (§4.8 auto-scroll triggers incl. grid-range change; scrolls to the now line when today),,
 Date and time headers stick to the top during vertical scroll,Day View Timeline,Functional,Medium,"1. You are signed in on a desktop browser.
 2. Enough technician rows exist that the grid scrolls vertically.
 3. You are on the Schedule page in day view.","1. Scroll the grid down so lower technician rows come into view.
@@ -945,34 +1143,35 @@ This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and 
 
 AUTOMATION: READY
 ",SV-8694 (§4.8 (Sticky header bar)),,
-Dragging a shift sideways moves its start time in 15-minute steps,Day View Timeline,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
+Dragging a shift sideways moves its start in 15-min steps with a live time chip,Day View Timeline,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A shift exists on a technician's day-view timeline.
-3. You are on the Schedule page in day view.","1. Drag the shift block horizontally along the timeline and release at a position between clean quarter-hours.
+3. You are on the Schedule page in day view.","1. Drag the shift block horizontally along the timeline and release at a position between clean quarter-hours, watching for a time chip.
 2. Open the shift and read its new start time.
-3. Undo via the toast if needed and restore the original time.","1. The shift moves along the timeline as you drag.
+3. Undo via the toast if needed and restore the original time.","1. The shift moves along the timeline as you drag, and a live time chip follows the gesture showing the snapped time.
 2. The released start time snaps to a 15-minute interval (for example 9:15, 9:30 - never 9:22).
-3. The duration is unchanged by a horizontal move.
-4. A toast with Undo appears for the move.
+3. The time chip disappears when you release.
+4. The duration is unchanged by a horizontal move.
+5. A toast with Undo appears for the move.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.8, §7), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-8694 and SV-9244 (15-minute snap with a live time chip) and the Schedule specification version 30 (§4.8, §7), read on 17 August 2026.
 
-AUTOMATION: HOLD - not re-checked against the current build - it needs a drag that could not be completed
-","SV-8694 (§4.8 (Horizontal drag),§7 (toast))",,
-Dragging a shift's left or right edge resizes its duration,Day View Timeline,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-8694; SV-9244 (§4.8 horizontal drag snaps to 15 min with a live time chip; §7 toast),,
+Dragging a shift's edge resizes it in 15-min steps with a live time chip,Day View Timeline,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A shift exists on a technician's day-view timeline (note its start/end).
-3. You are on the Schedule page in day view.","1. Drag the shift's RIGHT edge further right and release.
+3. You are on the Schedule page in day view.","1. Drag the shift's RIGHT edge further right and release, watching for a time chip.
 2. Drag the shift's LEFT edge and release.
-3. Open the shift and read its times.","1. Dragging the right edge extends/shortens the end time (start unchanged).
-2. Dragging the left edge adjusts the start time (end unchanged).
+3. Open the shift and read its times.","1. Dragging the right edge extends or shortens the end time (start unchanged); dragging the left edge adjusts the start time (end unchanged).
+2. A live time chip follows the gesture showing the snapped time, and disappears on release.
 3. The resulting times land on 15-minute increments.
-4. The shift's duration on the grid matches the modal's start/end.
+4. The shift's duration on the grid matches the modal's start and end.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.8), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-8694 and SV-9244 (edge resize snaps to 15 min with a live time chip) and the Schedule specification version 30 (§4.8), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8694 (§4.8 (Edge resize)),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-8694; SV-9244 (§4.8 edge resize snaps to 15 min with a live time chip),,
 "A now line marks the current time on today's day view, with a label on hover",Day View Timeline,Functional,Medium,"1. You are signed in on a desktop browser.
 2. You are on the Schedule page in day view, on TODAY (click 'Today' if needed).","1. Scroll the timeline to the current time.
 2. Find the vertical current-time indicator.
@@ -985,6 +1184,35 @@ This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and 
 
 AUTOMATION: READY
 ",SV-8694 (§4.8 (Now line)),,
+Day view has a zoom control (pixels per hour); blocks and now line rescale,Day View Timeline,Functional,High,"1. You are signed in on a desktop browser and on the Schedule page in Day view.
+2. The day has several shifts, some overlapping (lane stacking), and it is today so the now line shows.","1. Find the zoom control in the grid toolbar and increase the pixels-per-hour zoom.
+2. Watch the blocks, the lane stacking and the now line as you zoom in and out.
+3. Zoom to the extremes and note the limits.
+4. Navigate to another day and back and note the zoom level.
+5. Confirm the day view is a horizontal timeline (there is no vertical column layout).","Day view supports a pixels-per-hour zoom control in the grid toolbar.
+It is clamped between the resolved working window and the full 24-hour axis.
+Blocks, lane stacking and the now line rescale with the zoom.
+The zoom level holds while navigating between days.
+Day view is a horizontal timeline only - there is no vertical column layout.
+
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and story SV-9244 and the Schedule specification version 30 (§3.2,§4.6,§4.8,§6), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9244 (§3.2;§4.6;§4.8;§6),,
+A block clipped by the visible day-view edge shows a continuation chevron,Day View Timeline,Functional,High,"1. You are signed in on a desktop browser and on the Schedule page in Day view.
+2. A shift extends past the left edge, a shift extends past the right edge, and a shift extends past both, of the currently visible time range.","1. Scroll or zoom so that a block is clipped by the left edge of the visible range and look at that edge.
+2. Do the same for a block clipped by the right edge.
+3. Do the same for a block clipped by both edges.
+4. Confirm this is not limited to week-view series banners.","Any block clipped by the edge of the visible range shows a continuation chevron on the clipped edge.
+The chevron appears on the leading edge, the trailing edge, or both, according to which edge clips the block.
+This applies to ordinary day-view blocks, not only week-view series banners.
+
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and story SV-9244 and the Schedule specification version 30 (§3.2,§4.6,§4.8,§6), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9244 (§3.2;§4.6;§4.8;§6),,
 "Clicking a shift opens its detail modal, with VIN always visible",Shift Detail Modal,Functional,High,"1. You are signed in on a desktop browser.
 2. A shift exists for a unit that has a VIN; the VIN toggle in 'Filter and Display' is OFF.
 3. You are on the Schedule page.","1. Click the shift block.
@@ -997,30 +1225,35 @@ This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and 
 
 AUTOMATION: READY
 ","SV-8695 (§4.9,§9 (VIN always in modal))",,
-Scheduled date and start/end time pickers work in 15-minute increments,Shift Detail Modal,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. A shift exists; its detail modal is open.","1. Open the start-time picker and read the available options.
-2. Change the start and end times.
-3. Change the scheduled date.
-4. Check the block on the grid.","1. The time pickers offer 15-minute increments (for example 8:00, 8:15, 8:30, 8:45).
-2. Saving/applying the change updates the shift's times.
-3. Changing the date moves the shift to the chosen day.
-4. The grid block reflects the new date/times.
----
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.9), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
+"Scheduled date, start, end and hours can be typed to the minute; 15-min dropdown is a shortcut",Shift Detail Modal,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
+2. A shift exists; its detail modal is open.","1. Open the start-time control and type a time to the minute (for example 8:07).
+2. Type an end time, then a number of hours.
+3. Use the 15-minute dropdown as a shortcut and check it stays in sync.
+4. Change the scheduled date.
+5. Check the block on the grid.","1. Start time, end time and hours can each be typed directly, to the minute (for example 8:07, not only clean quarter-hours).
+2. A 15-minute dropdown is available as a shortcut and stays in sync with typed values.
+3. Editing any two of start, end and hours resolves the third automatically.
+4. An unparseable entry reverts to the previous value.
+5. Changing the date moves the shift to the chosen day, and the grid block reflects the new date and times.
 
-AUTOMATION: READY
-",SV-8695 (§4.9),,
-The modal shows the technician and time logged vs estimate progress,Shift Detail Modal,Functional,Medium,"1. You are signed in on a desktop browser.
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-8695 and SV-9240 (typed time entry; 15-minute dropdown as a shortcut) and the Schedule specification version 30 (§4.9), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-8695; SV-9240 (§4.9 start/end/hours typed to the minute; 15-min dropdown a shortcut),,
+"The modal shows the technician and time logged vs estimate, per line and for the shift",Shift Detail Modal,Functional,Medium,"1. You are signed in on a desktop browser.
 2. A shift exists whose line has some clocked-in time logged against an estimate (seed by clocking a technician in/out if possible).
 3. The shift's detail modal is open.","1. Read the technician shown.
 2. Read the time-logged vs estimate progress.","1. The assigned technician is shown.
-2. A progress indication compares time logged against the estimate (logged hours vs estimated hours).
-3. The numbers are consistent with the line's actual logged time and estimate.
----
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.9), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
+2. Time logged against the estimate is shown BOTH per line (for each scheduled line) AND rolled up for the shift as a whole.
+3. A line with nothing clocked shows zero logged against its estimate, rather than being hidden.
+4. The numbers are consistent with the lines' actual logged time and estimates.
 
-AUTOMATION: READY
-",SV-8695 (§4.9),,
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-8695 and SV-9240 (time logged per line and for the shift) and the Schedule specification version 30 (§4.9), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-8695; SV-9240 (§4.9 time logged against estimate; per line and for the shift),,
 The modal lists the scheduled line(s) with no money fields,Shift Detail Modal,Functional,High,"1. You are signed in on a desktop browser.
 2. A multi-line (subset) shift exists covering 2 of a work order's 4 lines.
 3. The shift's detail modal is open.","1. Read the scope summary.
@@ -1086,6 +1319,33 @@ This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and 
 
 AUTOMATION: READY
 ","SV-8695 (§4.9 (Actions - Delete only; Reassign removed in Confluence v23),§7)",,
+"Shift modal shows Time Logged (actual vs estimate) per line, not only rolled up",Shift Detail Modal,Functional,High,"1. You are signed in on a desktop browser and on the Schedule page.
+2. A scheduled shift covers more than one line: at least one line has clocked time and at least one has none.","1. Open the shift's detail modal.
+2. For each scheduled line read the Time Logged pair.
+3. Note the line that has nothing clocked.","Each scheduled line shows a Time Logged pair - actual against estimate - per line, not only rolled up for the shift.
+A line with nothing clocked shows zero actual against its estimate rather than hiding the pair.
+
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and story SV-9240 and the Schedule specification version 30 (§4.9), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9240 (§4.9),,
+"Shift modal: start, end and hours typed to the minute resolve each other",Shift Detail Modal,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit permission and are on the Schedule page.
+2. A scheduled shift is open in its detail modal.","1. Type a start time to the minute (for example 9:07) into the start field and press Tab / click away.
+2. Type an end time and note the hours field.
+3. Type an hours value and note the end time.
+4. Use the 15-minute dropdown and check the typed fields stay in sync.
+5. Type an unparseable value into a field and click away.","Start time, end time and hours can each be typed directly, to the minute.
+The 15-minute dropdown remains available as a shortcut and stays in sync with typed values.
+Typed values are parsed and normalized on blur (when you leave the field).
+Editing any two of start, end and hours resolves the third.
+An unparseable entry reverts to the previous value.
+
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and story SV-9240 and the Schedule specification version 30 (§4.9), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9240 (§4.9),,
 Create an event via left-click 'Create Event' on empty grid space,Events,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. You are on the Schedule page in week view.","1. Left-click an empty spot in a technician's cell on a working day (not on an existing block).
 2. Choose 'Create Event' from the menu that opens.
@@ -1193,30 +1453,32 @@ AUTOMATION: READY
 Working-day conflict: a shift outside the tech's working days is flagged,Conflict Detection,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A technician's configured working days are known (for example Monday to Friday); Saturday/Sunday columns are visible (View Options - Saturday and Sunday on).
 3. A schedulable work order line exists.","1. Drop the line onto that technician's cell on a day OUTSIDE their working days (for example a Saturday when the technician works Monday to Friday).
-2. Look at the block and the conflict pill.","1. The shift is created but flagged as a conflict because the day is outside the technician's configured working days (the reason sentence reads in the spirit of 'Scheduled on a weekend (outside working days)' - it names the technician's own working days, not a fixed Monday-to-Friday window).
+2. Look at the block and the conflict pill.","1. The shift is created but flagged as a conflict because the day is outside the technician's configured working days (the reason names the technician's own working days, not a fixed Monday-to-Friday window).
 2. If the technician's working days DO include that day (for example Saturday hours are configured), a shift on that day is NOT flagged.
-3. The warning icon appears on the block and the conflict is listed in the toolbar dropdown.
+3. Hours conflicts are evaluated against a single source: the technician's configured hours when set, otherwise the shop's business hours - never both together. When neither is set there is no hours conflict at all (the 7:00 AM to 7:00 PM app-level default is not a rule).
+4. The warning icon appears on the block and the conflict is listed in the toolbar dropdown.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.11), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-8697 and SV-9233 (hours conflicts evaluated against a single source) and the Schedule specification version 30 (§4.11, §4.2), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8697 (§4.11 (Weekend shift)),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-8697; SV-9233 (§4.11 weekend shift; §4.2 hours conflict uses a single source),,
 Before-hours and after-hours shifts are flagged against the tech's hours,Conflict Detection,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A technician has a known working day (for example 8:00 AM to 5:00 PM).
 3. A shift exists for that technician inside those hours.","1. In day view, drag the shift so it starts BEFORE the technician's working-day start (for example 6:00 AM).
 2. Look at the block and the conflict pill.
 3. Now drag the shift's right edge so it extends PAST the working-day end (for example to 7:00 PM).
-4. Look at the block and the conflict pill again.","1. The shift is flagged as a before-hours conflict, with a reason sentence in the spirit of 'Starts before business hours', measured against that technician's own configured working-day START time (not a fixed hour).
-2. The shift is flagged as an after-hours conflict, with a reason sentence in the spirit of 'Extends past business hours', measured against that technician's own configured working-day END time (not a fixed hour).
-3. Both the start and the end follow the hierarchy technician hours, then shop business hours, then the general default working day of 7:00 AM to 7:00 PM.
-4. Warning icon on the block in each case; the conflict appears in the toolbar dropdown.
+4. Look at the block and the conflict pill again.","1. The shift is flagged as a before-hours conflict, with a reason in the spirit of 'Starts before business hours', measured against that technician's own resolved working-day START.
+2. The shift is flagged as an after-hours conflict, measured against that technician's own resolved working-day END.
+3. Both are evaluated against a SINGLE hours source: the technician's configured hours when set, otherwise the shop's business hours, never both together; when neither is set there is no hours conflict (the 7:00 AM to 7:00 PM app-level default only sizes and draws shifts).
+4. Choosing 'Adjust' on the conflict banner clamps the shift to the resolved working window that raised the conflict.
+5. Warning icon on the block in each case; the conflict appears in the toolbar dropdown.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.11, §4.2), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-8697 and SV-9233 (single hours source; Adjust clamps to the resolved window) and the Schedule specification version 30 (§4.11, §4.2), read on 17 August 2026.
 
-AUTOMATION: READY
-","SV-8697 (§4.11 (Before hours,After hours),§4.2 (working-hours hierarchy; 7:00 AM to 7:00 PM default))",,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-8697; SV-9233 (§4.11 before/after hours; §4.2 single hours source; Adjust clamps to the resolved window),,
 The toolbar conflict pill shows the count and opens a list,Conflict Detection,Functional,High,"1. You are signed in on a desktop browser.
 2. At least two conflicts of different types exist (for example one double-booked overlap and one Saturday shift - create them first).
 3. You are on the Schedule page.","1. Read the conflict pill in the grid toolbar.
@@ -1253,6 +1515,22 @@ This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and 
 
 AUTOMATION: READY
 ","SV-8697 (§4.11 (styling rule),§4.12)",,
+One hours source per shift; neither set means no hours conflict; Adjust clamps,Conflict Detection,Functional,High,"1. You are signed in on a desktop browser and on the Schedule page.
+2. You have three technicians: one with personal working hours set, one with only shop business hours, and one with neither set.
+3. Each has a shift that falls partly outside its hours.","1. For the technician with personal hours, place a shift outside those hours and count how many hours conflicts are raised.
+2. For the technician with only shop business hours, do the same.
+3. For the technician with neither set, place an out-of-hours shift and check whether any hours conflict is raised.
+4. Open a raised hours conflict and use its 'Adjust' action.","Exactly ONE hours source is checked per shift: the technician's hours when they are set, otherwise the shop's business hours - the two are never checked together.
+An out-of-hours shift therefore raises exactly one hours conflict, not two.
+When neither personal nor shop hours are set, no hours conflict is raised at all.
+'Adjust' clamps the shift to the same resolved window that raised the conflict.
+The conflict type list (Double-booked, Weekend shift, Before hours, After hours) is unchanged.
+
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and story SV-9233 and the Schedule specification version 30 (§4.2,§4.11), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9233 (§4.2;§4.11),,
 "Capacity bar fill = booked (shifts + events) vs available, clamped, equal tracks",Capacity Bars,Functional,High,"1. You are signed in on a desktop browser.
 2. Capacity Bars are ON in View Options (default).
 3. Technicians' working hours are known; shifts exist on at least two days with different total booked hours.
@@ -1288,18 +1566,36 @@ This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and 
 
 AUTOMATION: READY
 ","SV-8698 (§4.12 (OT tag),§11 (not color-only))",,
-Hovering a capacity bar shows a per-technician breakdown,Capacity Bars,Functional,Medium,"1. You are signed in on a desktop browser.
+Hovering a capacity bar shows a truncated breakdown with 'click to view all',Capacity Bars,Functional,Medium,"1. You are signed in on a desktop browser.
 2. Capacity Bars are ON; a day exists where one technician is in overtime and others are not.
 3. You are on the Schedule page in week view.","1. Hover over that day's capacity bar.
-2. Read the tooltip.","1. A tooltip shows a breakdown for each assigned technician: assigned hours vs that technician's capacity. (Version 26 of the specification, published 7 August 2026, narrowed this from 'per-technician' to 'per-assigned technician'.)
-2. The overtime technician's entry is highlighted in amber.
-3. The numbers agree with the shifts actually on the grid.
+2. Read the tooltip.","1. A tooltip shows a per-technician breakdown (assigned hours vs that technician's capacity), truncated to a short list.
+2. When there are more technicians than the short list, the tooltip ends with a '+N more · click to view all' row.
+3. Clicking the capacity bar (or that row) opens a capacity detail modal listing every technician for that day with assigned hours against their capacity.
+4. Overtime technicians are highlighted (amber in the tooltip; highlighted in the modal).
+5. Unassigned shifts are excluded from the figures - they never fill the bar and never raise overtime.
+6. The numbers agree with the shifts actually on the grid.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§4.12), read on 11 August 2026. Last checked against build v3.5-d122eef on 8/5/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-8698 and SV-9241 (truncated tooltip and the capacity detail modal) and the Schedule specification version 30 (§4.12), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8698 (§4.12 (Hover tooltip)),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-8698; SV-9241 (§4.12 truncated tooltip with '+N more click to view all'; capacity detail modal; unassigned excluded),,
+Clicking a capacity bar opens a per-technician detail modal; tooltip truncates,Capacity Bars,Functional,High,"1. You are signed in on a desktop browser and on the Schedule page.
+2. A day has several technicians scheduled, at least one over capacity (overtime).
+3. That day also has at least one unassigned shift.","1. Hover the day's capacity bar and read the tooltip, noting the overflow row.
+2. Use the tooltip's 'click to view all' row, or click the capacity bar.
+3. Read the modal: each technician's assigned hours against their capacity, and the overtime highlight.
+4. Check whether the unassigned shift affects the bar fill or the overtime tag, and what denominator each technician's capacity uses.","Clicking a day's capacity bar opens a modal listing every technician for that day with assigned hours against their capacity, overtime highlighted.
+The hover tooltip is truncated to a short list with a '+N more / click to view all' row that opens the same modal.
+Capacity denominators use each technician's resolved working hours for that day.
+Unassigned shifts are excluded from both sides of the calculation - they never fill the bar and never raise the overtime tag.
+
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and story SV-9241 and the Schedule specification version 30 (§4.12), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9241 (§4.12),,
 Shift hover tooltip shows the full shift summary incl. up to 3 line names,Hover Tooltips,Functional,High,"1. You are signed in on a desktop browser.
 2. A multi-line shift exists covering 5 lines, with some time logged, for a unit that has a VIN.
 3. You are on the Schedule page in week view.","1. Hover over the shift block and wait briefly for the tooltip.
@@ -1376,12 +1672,11 @@ Panel button sits left of Today and its tooltip names what it will do,Grid Toolb
 7. The picture on the button is exactly the same in both states - only the tooltip changes.
 8. Clicking the button at step 4 hides the left panel, and clicking it again at step 7 shows it.
 
-Run this test as written and mark it on what you actually find. When it was last checked, on 12 August 2026, the Schedule toolbar still had no panel button at all - the button furthest to the left above the grid was Today, and the only thing on the page that hides anything is the small arrow that folds away the month calendar inside the panel, which is a different control - so on that build steps 1 to 7 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, its story SV-8686, read on 11 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse and §6 Grid toolbar), read on 11 August 2026. Last checked against build v3.5-65d6500 on 8/12/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and its story SV-9243 (left-panel collapse toggle) and the Schedule specification version 30 (§5.3 Panel collapse and §6 Grid toolbar), read on 17 August 2026.
 
-AUTOMATION: HOLD - the panel button does not exist in this build
-",SV-8686 (§5.3 Panel collapse - the control: position; borderless icon; tooltip wording. §6 Grid toolbar - Panel toggle row),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9243 (§5.3 Panel collapse control - position; borderless icon; tooltip wording; §6 toolbar Panel row),,
 Panel button hides the left panel and the grid widens into the space,Grid Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser, with the window at least 960 pixels wide.
 2. Your role has the Schedule: View permission.
 3. You are on the Schedule page, the left panel is showing, and there are some shifts visible in the grid.","1. Note roughly how much of the screen the grid takes up and how much of it you can see across.
@@ -1394,12 +1689,11 @@ Panel button hides the left panel and the grid widens into the space,Grid Toolba
 3. The grid grows into the space the panel gave up and lays itself out again in the wider area, so you can see more of the grid than you could before.
 4. Clicking the button a second time brings the panel back to its normal width, and the grid goes back to the size it was at step 1.
 
-Run this test as written and mark it on what you actually find. When it was last checked, on 12 August 2026, the Schedule toolbar had no panel button at all - the button furthest to the left above the grid was Today - so on that build steps 1 to 6 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
 ---
-This is the expected behaviour as per epic SV-8685, read on 12 August 2026, its story SV-8686, read on 12 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse and §3.1 Left panel: work order sidebar), read on 12 August 2026. Last checked against build v3.5-65d6500 on 8/12/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and its story SV-9243 (left-panel collapse toggle) and the Schedule specification version 30 (§5.3 Panel collapse and §3.1 Left panel), read on 17 August 2026.
 
-AUTOMATION: HOLD - the panel button does not exist in this build
-",SV-8686 (§5.3 Panel collapse - Behavior; §3.1 - collapsed from the grid toolbar handing its width to the grid),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9243 (§5.3 Panel collapse behavior; §3.1 the grid widens into the freed space),,
 What you had set up in the left panel survives hiding and showing it,Grid Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser, with the window at least 960 pixels wide.
 2. Your role has the Schedule: View permission.
 3. You are on the Schedule page and the left panel is showing.
@@ -1416,12 +1710,11 @@ What you had set up in the left panel survives hiding and showing it,Grid Toolba
 5. The panel comes back showing that work order's lines, not the full list of work orders - it returns to whichever of the two views was open when you hid it.
 6. The work order you had opened is still the selected one.
 
-Run this test as written and mark it on what you actually find. When it was last checked, on 12 August 2026, the Schedule toolbar still had no panel button at all - the button furthest to the left above the grid was Today, and the only thing on the page that hides anything is the small arrow that folds away the month calendar inside the panel, which is a different control - so on that build steps 1 to 7 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, its story SV-8686, read on 11 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse and §3.1 Left panel: work order sidebar), read on 11 August 2026. Last checked against build v3.5-65d6500 on 8/12/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and its story SV-9243 (left-panel collapse toggle) and the Schedule specification version 30 (§5.3 Panel collapse and §3.1 Left panel), read on 17 August 2026.
 
-AUTOMATION: HOLD - the panel button does not exist in this build
-",SV-8686 (§5.3 Panel collapse - State preservation; §3.1 - without losing panel state),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9243 (§5.3 Panel collapse state preservation; §3.1 the panel's state survives),,
 Menus and pop-up windows reposition when the left panel is hidden,Grid Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser, with the window at least 960 pixels wide.
 2. Your role has the Schedule: View permission.
 3. You are on the Schedule page, the left panel is showing, and there is at least one shift in the grid.","1. With the left panel still showing, open something that pops open over the page - for example click a shift in the grid to open its details window.
@@ -1432,12 +1725,11 @@ Menus and pop-up windows reposition when the left panel is hidden,Grid Toolbar,F
 2. The whole pop-up is on screen: nothing is cut off at an edge, pushed outside the window, or left floating with a large empty gap beside it.
 3. The pop-up behaves normally otherwise - you can read it, use its buttons, and close it.
 
-Run this test as written and mark it on what you actually find. When it was last checked, on 12 August 2026, the Schedule toolbar had no panel button at all - the button furthest to the left above the grid was Today - so on that build steps 1 to 5 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
 ---
-This is the expected behaviour as per epic SV-8685, read on 12 August 2026, its story SV-8686, read on 12 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse, Popovers and modals), read on 12 August 2026. Last checked against build v3.5-65d6500 on 8/12/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and its story SV-9243 (left-panel collapse toggle) and the Schedule specification version 30 (§5.3 Panel collapse, Popovers and modals), read on 17 August 2026.
 
-AUTOMATION: HOLD - the panel button does not exist in this build
-",SV-8686 (§5.3 Panel collapse - Popovers and modals),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9243 (§5.3 Panel collapse popovers and modals reposition when the panel is hidden),,
 Hiding the panel lasts for the rest of your sign-in but is not saved,Grid Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser, with the window at least 960 pixels wide.
 2. Your role has the Schedule: View permission.
 3. You are on the Schedule page and the left panel is showing.
@@ -1452,14 +1744,11 @@ Hiding the panel lasts for the rest of your sign-in but is not saved,Grid Toolba
 2. At step 6, after signing out and back in, the left panel is showing again. The choice is not carried over into a new sign-in: it is a working-mode preference for the session you are in, not a saved view setting.
 3. At step 7, the second person's left panel is showing as normal. Your choice applied only to you and did not change what anybody else sees.
 
-Still to be confirmed, and it affects the second point above. The product owner's description of 7 August says this choice lasts only for the current sign-in. Separately, the design review of 5 August asks for the Schedule's view settings to be stored per user so they survive signing out and back in. Those are two different promises. The question has been put to the product owner and has not been answered yet, so the second point follows the written specification for now. If the answer is that it should survive signing out, the second point will change.
-
-Run this test as written and mark it on what you actually find. When it was last checked, on 12 August 2026, the Schedule toolbar still had no panel button at all - the button furthest to the left above the grid was Today, and the only thing on the page that hides anything is the small arrow that folds away the month calendar inside the panel, which is a different control - so on that build steps 1 to 7 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, its story SV-8686, read on 11 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse, Persistence), read on 11 August 2026. Last checked against build v3.5-65d6500 on 8/12/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and its story SV-9243 (left-panel collapse toggle) and the Schedule specification version 30 (§5.3 Panel collapse, Persistence), read on 17 August 2026.
 
-AUTOMATION: HOLD - the panel button does not exist in this build
-",SV-8686 (§5.3 Panel collapse - Persistence; session-scoped per user for build),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9243 (§5.3 Panel collapse persistence; session-scoped per user),,
 'Today' button jumps the grid to the current date,Grid Toolbar,Functional,High,"1. You are signed in on a desktop browser.
 2. You are on the Schedule page, navigated several weeks away from today.","1. Click the 'Today' button in the grid toolbar.
 2. Look at the grid and the date label.","1. The grid jumps to the range containing the current date (today's day, this week, or this month depending on the active view).
@@ -1615,20 +1904,20 @@ This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and 
 
 AUTOMATION: READY
 ","SV-8695 (§7 (Shift reassignment),§12)",,
-Left-click empty grid space opens a menu: Create Event and New Work Order,Reassignment and Context Menu,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
+Left-click empty grid space opens a menu with 'Assign work order' first,Reassignment and Context Menu,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. You are on the Schedule page in week view (the same menu is offered in month view).
-3. Schedulable work order lines exist.","1. Left-click an empty spot in a technician's grid cell (not on an existing shift or event block).
-2. Read the menu items.","1. A dropdown menu opens at the spot you clicked.
-2. It contains ONLY two items: 'Create Event' and 'New Work Order'.
-3. There is no 'View Day' item - it was removed from the menu.
-4. There is no 'New Shift' item - it was removed from the menu.
+3. Schedulable work order lines exist, and at least one existing work order is available to assign.","1. Left-click an empty spot in a technician's grid cell (not on an existing shift or event block).
+2. Read the menu items and their order.","1. A dropdown menu opens at the spot you clicked.
+2. It contains THREE items, in this order: 'Assign work order' (first), 'Create Event', and 'New Work Order'.
+3. 'Assign work order' is listed first, above 'Create Event' and 'New Work Order'.
+4. There is no 'View Day' item and no 'New Shift' item - both were removed.
 5. This menu is opened by a normal left-click - right-clicking the cell does not open it.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§7, §14.1), read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-8700 and SV-9242 (Assign work order menu item) and the Schedule specification version 30 (§7, §4.10, §14.1), read on 17 August 2026.
 
-AUTOMATION: READY
-","SV-8700 (§7 (left-click menu on empty grid space; View Day and New Shift removed),§14.1 (creation via the cell menu))",,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-8700; SV-9242 (§7; §4.10; §14.1 empty-cell menu),,
 'New Work Order' in the cell menu points the user to the Work Orders tab,Reassignment and Context Menu,Functional,Medium,"1. You are on the Schedule grid.
 2. The cell menu already shows 'Create Event' and 'New Work Order'.","1. Left-click an empty spot in a grid cell.
 2. Choose 'New Work Order' from the menu.","1. The menu offers a 'New Work Order' item.
@@ -1656,6 +1945,22 @@ This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and 
 
 AUTOMATION: READY
 ",SV-8867 (§7 shift reassignment + §12 series is a grouping over ordinary shifts),,
+The empty-cell menu's first item Assign work order schedules an existing order,Reassignment and Context Menu,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit permission and are on the Schedule page.
+2. You have an existing work order in the sidebar that is not yet scheduled.","1. Left-click an empty grid cell for a technician on a given day and read the menu.
+2. Choose 'Assign work order' (the first item).
+3. In the modal, note the pre-filled technician and day, then pick the work order and the lines to schedule.
+4. Confirm and note what is created; try a scope that exceeds the technician's day.","The left-click menu on empty grid space has a third item, 'Assign work order', listed FIRST above 'Create event' and 'New work order'.
+Selecting it opens a modal with the technician and day pre-filled from the clicked cell.
+You pick the work order and the lines to schedule, following the same rules as the scope picker.
+Confirming creates the same shift or series a drag would have created, sized by remaining hours.
+When the scope exceeds the technician's day the spread step opens.
+This is the same capability as the old 'Add Existing Work Order' button (SV-8916), re-specified as a menu item.
+
+---
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and story SV-9242 and the Schedule specification version 30 (§7,§4.10,§14.1), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9242 (§7;§4.10;§14.1),,
 Deleting a middle shift of a series offers all three scope options,"Deletion, Series Scopes and Undo",Functional,High,"1. You are signed in on a desktop browser with Schedule: Delete.
 2. A series of at least 3 shifts exists for one technician.
 3. You are on the Schedule page.","1. Delete a MIDDLE shift of the series (via the detail modal's Delete).
@@ -2127,19 +2432,19 @@ This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and 
 
 AUTOMATION: READY
 ",SV-8686 (§11 (Performance)),,
-Shop closures do NOT block spread in V1 - shifts can land on closure days,Edge Cases and Responsiveness,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
+Shop closures do NOT block the spread - shifts can land on closure days,Edge Cases and Responsiveness,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A shop closure (holiday/inventory day) is defined at the shop level on a working weekday inside the planned spread window (set it up; remove after).
 3. A large job (multi-day scope) is ready to spread.","1. Open the spread step across a window that contains a shop closure day.
 2. Expand the preview and find the closure day.
-3. Confirm the spread and check the grid.","1. The closure day is NOT struck through or skipped by the spread in V1.
-2. A shift CAN be placed on the shop closure day (only weekend days with no business hours are skipped).
+3. Confirm the spread and check the grid.","1. The closure day is NOT struck through or skipped by the spread.
+2. A shift CAN be placed on the shop closure day - only weekend days are skipped by the spread.
 3. The end date follows the normal daily distribution - no extra day is added for the closure.
 
 ---
-This is the expected behaviour as per epic SV-8685, read on 11 August 2026, and the Schedule specification version 27 (§12, §4.5), read on 11 August 2026. That specification describes this point in two different ways, so the behaviour above follows its first-release wording and a product owner decision is still awaited; the open question is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/schedule/branko-answers-2026-07-31/answers-ingested.md, read on 11 August 2026. Last checked against build v3.5-7ec992f on 8/6/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and stories SV-8691 and SV-9238 (shop closures are not skipped by the spread; weekends only) and the Schedule specification version 30 (§12, §4.5), read on 17 August 2026.
 
-AUTOMATION: HOLD - waiting on the product owner's answer, and the shop-closure setting does not exist in the build
-","SV-8691 (§12 (Shop closures),§4.5)",,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-8691; SV-9238 (§12 and §4.5 closures are not skipped; only weekends are skipped),,
 "Scheduled, estimated and actual clocked hours are three separate numbers",Edge Cases and Responsiveness,Functional,Low,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A line has estimate 10h; a technician has 6h scheduled against it and some different amount of time actually clocked (seed what is possible).","1. Open the shift's detail modal.
 2. Compare the scheduled hours, the estimate, and the logged/actual time.","1. All three quantities are shown/derivable and may differ from one another.
@@ -2221,12 +2526,11 @@ On a narrow window the panel button still works and your choice holds,Edge Cases
 2. The panel stays as you set it while you keep working at that width - moving around the page does not undo your choice.
 3. Your choice only stops applying when the window is resized back across the 960 pixel mark; at that point the page goes back to deciding for itself whether the panel is shown.
 
-Run this test as written and mark it on what you actually find. When it was last checked, on 12 August 2026, the Schedule toolbar had no panel button at all - the button furthest to the left above the grid was Today - so on that build steps 1 to 4 cannot be carried out and this test FAILS. Mark it failed if that is still what you see. If the button is there and behaves as described, mark it passed.
 ---
-This is the expected behaviour as per epic SV-8685, read on 12 August 2026, its story SV-8686, read on 12 August 2026, and the Schedule specification version 27 (§5.3 Panel collapse, Narrow viewports), read on 12 August 2026. Last checked against build v3.5-65d6500 on 8/12/2026.
+This is the expected behaviour as per epic SV-8685, read on 17 August 2026, and its story SV-9243 (left-panel collapse toggle) and the Schedule specification version 30 (§5.3 Panel collapse, Narrow viewports), read on 17 August 2026.
 
-AUTOMATION: HOLD - the panel button does not exist in this build
-",SV-8686 (§5.3 Panel collapse - Narrow viewports; toggle works at any width and the manual choice holds until the next resize),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9243 (§5.3 Panel collapse narrow viewports; toggle works at any width; the choice holds until the next resize),,
 Shifts and events created before the Schedule rewrite still appear after it,Cross-Module and Rewrite Regression,Functional,Critical,"1. This case runs around the Schedule rewrite release: before the release, note (or create) a handful of scheduled shifts and calendar events - including at least one future-dated one - with their technician, day, and time.
 2. The release (which replaces the Schedule behind the scenes) has been deployed.","1. After the release, open the Schedule and navigate to the dates of the noted entries.
 2. Compare each noted shift and event against what the grid now shows.
