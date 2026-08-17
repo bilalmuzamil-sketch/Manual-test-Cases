@@ -1,0 +1,646 @@
+
+
+Epic
+
+TBD
+
+Owner
+
+Chris W.
+
+Status
+
+Draft — 2026-07-19
+
+Branch
+
+TBD
+
+Inventory Value — Product Specification
+1. Business Case
+
+Shop managers and owners need to know, at any moment, how much money is sitting on their parts shelves — the total cost of the stock they are holding, and what that stock is worth at sell price. Today that figure is spread across the parts list one item at a time; there is no single screen that values the whole on-hand inventory, breaks it down by part, and lets the user see the number as of a past date.
+
+The Inventory Value report answers that in one place. It lists every in-stock part — one row each — with its on-hand quantity, unit cost and sell, the extended (total) cost and sell, and the margin, above a totals row that sums the whole shelf. A date control lets the user view the value as of an earlier date from nightly history, not just right now.
+
+2. Feature Overview
+
+Core report
+
+The report shows one row per in-stock part for the selected location(s).
+
+Each row shows the part number, description, category, vendor, quantity on hand, unit cost, unit sell, the per-part margin and margin percent, the total sell value, and the total cost value.
+
+A pinned Total Cost column (far right, bold) is the row's headline number; a totals row sums the whole filtered shelf.
+
+The report can be valued as of a chosen date: the current stock right now, or the closest recorded nightly snapshot on or before the chosen date (Story 5).
+
+The user can choose which columns show, filter by category, vendor, and location, search for a part by number or description, sort by any column, and download the current view as a PDF or CSV.
+
+For any user with access to more than one location, each row shows a Location column naming the location that part's stock is held at; the column is shown by default and can be toggled off from the column selector, and a user with access to only one location never sees it.
+
+Scale and data model. The report is one row per in-stock part per location — up to roughly 50–60k parts at the largest organizations, multiplied across locations. It is therefore server-paginated: paging, sorting, the Category / Vendor / Location filters, and the part search are all resolved on the server, which returns one page of rows at a time. The totals row is computed on the server over the full filtered set (not just the visible page), so it always reflects the true whole-shelf value for the current filters and search.
+
+* Context note: "total cost" is quantity on hand × unit cost — the money tied up in that part's stock. "Total sell" is quantity on hand × unit sell — what that stock would bring in at the shop's selling price.
+
+Relationship to nightly history
+
+Once per day the system records the then-current inventory value for every location. The report can replay any retained recorded day (subject to the snapshot retention rule, Story 11).
+
+The recorded value for a day is produced by the same valuation the live report uses, so a recorded (as-of) figure equals what the live report would have shown that day (Story 11).
+
+Out of scope
+
+Scheduling exports to run automatically is not included.
+
+Reconstructing inventory value for dates before nightly recording began — there is no historical backfill (Story 5, Story 11).
+
+Parts with zero or negative on-hand quantity, and core charges, are not valued (Story 2).
+
+Known Limitations (v1)
+
+These are deliberate v1 boundaries, documented so QA does not file them as defects:
+
+No date range and no "All Time" option. Because the report values stock as of a single day, the control is a single "as of" date: no range, no presets, no "All Time" (Story 5).
+
+Forward-capture history only. History accrues from the first nightly capture onward; a date earlier than the first capture (or any date with no snapshot on or before it) shows the empty state on the as-of view (Story 5, Story 11).
+
+One row per part per location. With several locations selected, a part stocked at two locations appears as two rows (one per location), not merged into one.
+
+3. Key Decisions
+
+The report values only real, sellable on-hand stock. A part is included only when it is not a core charge and its on-hand quantity is greater than zero (Story 2). Parts at zero/negative quantity hold no value to report; core charges are not inventory.
+
+Unit sell is resolved the same way the parts list resolves it. A part's own fixed sell price is used when one is set; otherwise the shop's pricing-matrix markup on cost for that part's category is used; a part with no category takes no markup, so its sell equals its cost (Story 3).
+
+Margin is the extended (total) margin, not a per-unit figure. The Margin column is Total Sell − Total Cost for that part's whole on-hand quantity, and Margin % is that margin as a share of Total Sell (Story 3). This is deliberate — the report is about the value of the stock on the shelf, so margin is expressed on the extended values.
+
+Total Cost is the pinned, bold headline column and the default sort (highest Total Cost first) — it is the report's main takeaway.
+
+The as-of value is the latest recorded day on or before the chosen date, with a live fallback for today. When the chosen window reaches today and today has not been recorded yet, the report values the current live stock; otherwise it replays the closest recorded day on or before the chosen end date (Story 5).
+
+The report runs server-side at scale. Because it lists one row per in-stock part per location (~50–60k parts at large orgs), paging, sorting, the Category filter, the Vendor filter, the Location filter, the part search, and the totals row are all resolved on the server; the browser renders one page at a time (Story 1, Story 4, Story 6, Story 9). Only the column selection is a purely client-side view choice.
+
+The report remembers the user's filters, columns, and sort per browser and restores them on return (Story 8).
+
+The per-row Location column is access-gated and toggleable. Because each row is one part at one location, a row's Location cell names that location. Any user with access to more than one location sees the column by default and can toggle it on or off from the column-selection control; a user with access to only one location never sees it. Every export names the scope on a "Locations:" line.
+
+4. Terminology
+
+On-hand quantity → The stock currently held for a part at a location. Can be fractional.
+
+Unit cost → What the shop paid per unit for the part.
+
+Unit sell → The per-unit selling price — the part's fixed sell price when set, otherwise the pricing-matrix markup on cost for its category (Story 3).
+
+Total Cost → On-hand quantity × unit cost — the money tied up in that part's stock. The report's pinned headline column.
+
+Total Sell → On-hand quantity × unit sell — what that stock would sell for.
+
+Margin → Total Sell − Total Cost for the part's on-hand quantity.
+
+Margin % → Margin as a percentage of Total Sell.
+
+As of (date) → The date the displayed values represent: either right now (live) or the closest recorded day on or before the chosen date.
+
+Snapshot → A once-daily recorded set of per-part inventory values for a location, used to serve the as-of view.
+
+Location → A shop/workplace the user has access to. The report can be scoped to one, several, or all of them (Story 7).
+
+Location (column) → A per-row column, shown only when the current scope spans more than one location, naming the location that row's part stock is held at. Because each Inventory Value row is one part at one location, every row maps to exactly one location name — this report never shows an aggregated "Multiple" value in the column.
+
+Filtered set → Every qualifying part row for the current Date, Location, Category, Vendor, and part-search selection, across all pages — the basis for the server-computed totals row (Story 4) and for exports (Story 10).
+
+5. Assumptions
+
+Each part carries the data needed to value it: an on-hand quantity, a unit cost, and either a fixed sell price or a category whose pricing-matrix markup can be applied.
+
+Pricing matrices are configured per shop (organization); a part with no category takes no markup (its sell equals its cost).
+
+The nightly recording runs and stores each location's inventory value to the cent; the as-of view depends on that history existing (and being retained, Story 11) for the requested date.
+
+6. Requirements
+
+Story 1: Report Access and Display
+
+The report is reachable from the reports navigation and shows in-stock part rows for the selected date and location(s).
+
+Design: See Story 12 Jira: TBD
+
+Prerequisites:
+
+The user must have the single reports permission — the one permission that grants access to all reports; there is no per-report permission.
+
+Requirements:
+
+S1-R1: The report appears in the reports navigation under the Parts group, labeled "Inventory Value".
+
+S1-R2: When the user opens the report, it shows one row for each in-stock part at the selected location(s), valued as of the resolved date (Story 5).
+
+S1-R3: On the user's first visit (no saved settings — Story 8), the report defaults to an "as of" date of today and the user's currently active location.
+
+S1-R4: The user can change the valuation day with the "as of" date control (Story 5) and the location with the location filter (Story 7).
+
+S1-R5: When the user changes the "as of" date, the location selection, the Category filter, the Vendor filter, the part search, or the sort, the report reloads its rows from the server (see S1-R7 for the loading state).
+
+S1-R6: The report shows data for the location(s) currently selected in the location filter, defaulting to the user's active location.
+
+S1-R7: Loading state. While the report is loading, the data area shows the standard reports loading indicator; existing rows are replaced only when the new data returns.
+
+S1-R8: Server pagination. The report is server-paginated: the server returns one page of rows at a time, and the user moves through pages with the reports suite's standard pagination control. Changing any server-side filter (Date, Location, Category, Vendor), the part search, or the sort returns the first page of the new result set.
+
+Negative Cases:
+
+S1-N1: If the user does not have the required permission, the report does not appear in the navigation.
+
+S1-N2: If no in-stock part exists for the selected location(s) on the resolved date, the report shows the no-data message (Story 12) instead of rows.
+
+Story 2: Row Scope
+
+The report values only real, sellable on-hand stock.
+
+Design: See Story 12 Jira: TBD
+
+Prerequisites:
+
+The report has loaded on the selected date and location(s) (Story 1).
+
+Requirements:
+
+S2-R1: A part appears in the report only if BOTH of the following hold: it is not a core charge; its on-hand quantity is greater than zero.
+
+S2-R2: One row is shown per qualifying part at a location.
+
+S2-R3: A part stocked at more than one selected location appears once per location (not merged into a single combined row).
+
+Negative Cases:
+
+S2-N1: A core-charge part is never shown, regardless of its quantity.
+
+S2-N2: A part with zero or negative on-hand quantity is never shown.
+
+* Context note: there is no "dead stock" exclusion — every part currently holding positive, non-core stock contributes to the on-hand value, however long it has sat.
+
+Story 3: Columns and Calculations
+
+Each row shows the part's identity, its on-hand quantity, its unit and extended cost and sell, and its margin, in a fixed column order.
+
+Design: See Story 12 Jira: TBD
+
+Prerequisites:
+
+The report has loaded rows (Story 1).
+
+Requirements:
+
+S3-R1: The columns appear in this left-to-right order: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost. When the report is scoped to more than one location, a Location column (S7-R6) is inserted between Vendor and Qty on Hand; it is hidden for a single-location scope.
+
+S3-R2: Part #, Description, Category, and Vendor are left-aligned; every other column is right-aligned.
+
+S3-R3: Qty on Hand shows the on-hand quantity to two decimal places, with no currency symbol.
+
+S3-R4: Unit Cost shows the per-unit cost as US-dollar currency.
+
+S3-R5: Unit Sell shows the per-unit sell price as US-dollar currency. Unit Sell is the part's fixed sell price when one is set; otherwise it is the shop's pricing-matrix markup on cost for the part's category; a part with no category takes no markup, so its Unit Sell equals its Unit Cost.
+
+S3-R6: Total Sell shows the part's on-hand quantity × Unit Sell as US-dollar currency.
+
+S3-R7: Total Cost shows the part's on-hand quantity × Unit Cost as US-dollar currency.
+
+S3-R8: Margin shows Total Sell − Total Cost as US-dollar currency.
+
+S3-R9: Margin % shows Margin as a percentage of Total Sell, to one decimal place followed by a percent sign (for example, "39.7%").
+
+S3-R10: Money values show a leading "$", two decimal places, and thousands separators; a negative value shows a leading minus before the "$" (for example, "$1,234.56" and "-$1,234.56"); a genuine zero shows "$0.00".
+
+S3-R11: The Total Cost column is pinned to the far right of the row, shown in bold, and stays fixed to the right edge while the user scrolls the row horizontally.
+
+S3-R12: On first visit, the visible columns are: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin %, and Total Cost.
+
+S3-R13: The Margin and Total Sell columns are hidden by default and can be turned on from the column-selection control (Story 8).
+
+S3-R14: Category shows the part's category name; Vendor shows the part's vendor name.
+
+Edge Cases:
+
+S3-E1: If a part has no category, its Category cell shows an em dash ("—").
+
+S3-E2: If a part has no vendor, its Vendor cell shows an em dash ("—").
+
+S3-E3: Margin % shows "—" when Total Sell is zero or negative (the percentage is undefined). A Margin % that computes to a real number, including a negative one, shows its signed value.
+
+* Context note: because Unit Sell can fall back to equal Unit Cost when a part has no category and no fixed price, such a part shows a Margin of $0.00 and a Margin % of 0.0% — the stock is valued at cost.
+
+Story 4: Totals Row
+
+A totals row sums the full filtered set, computed on the server.
+
+Design: See Story 12 Jira: TBD
+
+Prerequisites:
+
+The report has loaded rows (Story 1).
+
+Requirements:
+
+S4-R1: A totals row is shown at the bottom of the report, with the literal label "Total" in the Part # column's cell.
+
+S4-R2: The totals row sums Qty on Hand, Margin, Total Sell, and Total Cost across the full filtered result set — every qualifying row for the current Date, Location, Category, Vendor, and part-search selection, not only the rows on the visible page. The server computes these totals.
+
+S4-R3: The totals-row Margin % is recomputed from the totals — total Margin ÷ total Total Sell × 100 — and is NOT the average of the row percentages; it shows "—" when the total Total Sell is zero or negative.
+
+S4-R4: The Unit Cost and Unit Sell cells in the totals row are blank (a per-unit price has no meaningful sum).
+
+S4-R5: The Description, Category, and Vendor cells in the totals row are blank.
+
+S4-R6: The totals-row Total Cost cell is pinned far right and bold, matching the column.
+
+S4-R7: The totals row uses the same number formats as the data rows.
+
+S4-R8: The totals reflect the full filtered set, so applying the Category filter, the Vendor filter, or the part search (Story 6) recomputes the totals on the server to match the filtered result — independent of which page is currently shown.
+
+Negative Cases:
+
+S4-N1: If no parts qualify, no totals row is shown (see S1-N2).
+
+Story 5: As-Of Date and History
+
+A date control chooses the date the report is valued as of, served from the current stock or from nightly history.
+
+Design: See Story 12 Jira: TBD
+
+Prerequisites:
+
+The report has loaded (Story 1).
+
+Requirements:
+
+S5-R1: The toolbar has a single "as of" date control — one calendar day, not a range. It defaults to today and is capped at today (no future date). It offers no presets and no start/end pair.
+
+S5-R2: The report values inventory as of the end of the selected range.
+
+S5-R3: When the selected window reaches today and today has not yet been recorded, the report values the current live stock; the values represent today.
+
+S5-R4: Otherwise, the report replays the closest recorded day on or before the end of the selected range.
+
+S5-R5: When the displayed day is an earlier recorded day than the date the user asked for, the date control itself names the day actually shown — the requested date on its face, and beneath it, inside the same control, the resolved day worded "As of {date}". There is no separate "As of" indicator anywhere else on the page (Chris, 2026-08-13).
+
+S5-R6: When the displayed day matches the date asked for (the common current-view case), the control shows only the selected date, with no "As of" line beneath it. The date and the day it resolved to are never stated in two places at once (Chris, 2026-08-13; replaces the standalone left-hand "As of" indicator).
+
+S5-R6a: The report shows no standalone "As of" text beside the report title or elsewhere in the toolbar. The "as of" date control is the only place the on-screen valuation day is stated. Exports are unaffected: the PDF header and the CSV first line still carry their own "as of" line (S10-R8, S10-R8a), because a saved file has no control to read.
+
+S5-R7: A date range is not offered on this report. Stock valuation is a point-in-time position, not an amount accumulated over a period, so a range would state something the number cannot mean. The control is the shared single as-of date component also used by Work In Progress (Chris, 2026-08-13; replaces the nine-preset range plus custom start/end specced on 2026-08-04).
+
+S5-R8: Changing the "as of" date reloads the report.
+
+Negative Cases:
+
+S5-N1: If there is no recorded day on or before the end of the selected range (for example, a past range entirely before nightly recording began, or a range whose only covered dates have been pruned by retention — Story 11), the report shows the no-data message (Story 12) and no totals row.
+
+Edge Cases:
+
+S5-E1: History accrues forward only from the first nightly recording; there is no way to reconstruct inventory value for a date before recording began (Story 11).
+
+* Context note: the date control is an "as of" anchor, not a created-date filter — narrowing it does not select "parts added in that range," it selects "the shelf as it stood on that date." The current stock and a recorded day for the same date will match, because both are produced by the same valuation (Story 11).
+
+Story 6: Category, Vendor, and Part Search Filters
+
+The user can narrow the report by category, by vendor, and by a part search over part number and description. All three apply server-side.
+
+Design: See Story 12 Jira: TBD
+
+Prerequisites:
+
+The report has loaded rows (Story 1).
+
+Requirements:
+
+S6-R1: The toolbar has a Category filter, labeled "Category", where the user can select one or more categories.
+
+S6-R2: The toolbar has a Vendor filter, labeled "Vendor", where the user can select one or more vendors.
+
+S6-R3: Selecting one or more categories reloads the report to show only parts in the selected categories.
+
+S6-R4: Selecting one or more vendors reloads the report to show only parts supplied by the selected vendors.
+
+S6-R5: The Category filter, the Vendor filter, and the part search (S6-R8) all apply server-side: each change re-queries the server and returns the first page of the new result set. They do not narrow the rows only on the current page.
+
+S6-R6: When any of these filters or the part search changes, the totals row recomputes on the server over the full filtered set (S4-R8).
+
+S6-R7: With no category selected, all categories are shown; with no vendor selected, all vendors are shown; with the part search empty, no search narrowing is applied.
+
+S6-R8: Part search. The toolbar has a part search input built on the reports suite's shared toolbar search pattern — a page-local search field in the report's own toolbar, not the application's global search bar (the same page-local toolbar-search affordance used elsewhere in the reports suite; Parts Velocity is the sibling that searches part number and description). It narrows the report to parts whose part number or description contains the entered text, case-insensitively, and applies server-side (S6-R5).
+
+S6-R9: The "as of" date (Story 5), Location (Story 7), Category, Vendor, and part search combine with AND — a part must satisfy every active filter and the search to appear.
+
+* Context note: every filter on this report is server-side. The "as of" date (Story 5), Location (Story 7), Category filter, Vendor filter, and part search each reload the report from the server; only the column selection (Story 8) is a purely client-side view choice.
+
+Story 7: Location Filter
+
+A filter lets the user scope the report to one, several, or all of the locations they have access to.
+
+Design: See Story 12 Jira: TBD
+
+Prerequisites:
+
+The report has loaded (Story 1).
+
+Requirements:
+
+S7-R1: The toolbar has a location filter labeled "Location" — a multi-select, and the rightmost filter — listing the locations the signed-in user has access to, with an "All locations" / "Clear all" toggle.
+
+S7-R2: On a first visit (no saved selection — Story 8), it defaults to the user's currently active location.
+
+S7-R3: Selecting one, several, or all locations reloads the report scoped to that set.
+
+S7-R4: Scoping is always constrained to the user's accessible locations; a location the user cannot access is never included.
+
+S7-R5: If the requested location set resolves to none the user can access, the report falls back to the user's currently active location.
+
+S7-R6: The report includes a per-row Location column that is shown to any user with access to more than one location: it appears by default and can be toggled on or off from the column-selection control (Story 8); a user with access to only one location never sees it.
+
+S7-R7: When the Location column is shown, each row's Location cell names the location that row's part stock is held at. Because each row is one part at one location (S2-R2, S2-R3), every row maps to exactly one location — the report never shows an aggregated "Multiple" value in this column.
+
+Negative Cases:
+
+S7-N1: A user with access to only one location does not see the filter; it is hidden.
+
+S7-N2: If the selected location(s) hold no in-stock parts on the resolved date, the report shows the no-data message (Story 12).
+
+Story 8: Column Selection and Persistence
+
+The user can choose which columns show, and the report remembers its setup.
+
+Design: See Story 12 Jira: TBD
+
+Prerequisites:
+
+The report has loaded (Story 1).
+
+Requirements:
+
+S8-R1: A column-selection control — an icon button whose tooltip reads "Column Selection" — lets the user toggle each column on or off.
+
+S8-R2: The Total Cost column is always shown and cannot be turned off.
+
+S8-R3: Every other column is available in the control; Margin and Total Sell are off by default, the rest on by default (S3-R12).
+
+S8-R4: Whatever columns are shown, they appear in the fixed left-to-right order of S3-R1 (toggling visibility never reorders columns), with Total Cost always last.
+
+S8-R5: The report remembers, in the user's browser, the selected "as of" date, category selection, vendor selection, part search text, location selection, column selection, and sort, and restores them on the user's next visit.
+
+S8-R6: Restore is defensive: a saved value that is no longer valid falls back to that setting's default rather than breaking the view. A saved category or vendor no longer present in the data is dropped.
+
+* Context note: persistence is per-browser (not tied to the user's account); it persists across visits in the same browser but does not follow the user to another browser or device.
+
+Story 9: Sorting
+
+The user can sort the report by any column; sorting is resolved server-side.
+
+Design: See Story 12 Jira: TBD
+
+Prerequisites:
+
+The report has loaded rows (Story 1).
+
+Requirements:
+
+S9-R1: On first load (and after any data reload), the rows are sorted by Total Cost, highest first (descending). The server applies this default order.
+
+S9-R2: Every column is sortable by clicking its header. Clicking a column that is not the active sort sorts it ascending; clicking the active sort column again toggles it to descending. There is no third "cleared" state. Sorting is resolved server-side: each header click re-fetches the data ordered by the chosen column and direction, returning the first page of the re-sorted result set.
+
+S9-R3: Money and numeric columns sort by their underlying value; text columns (Part #, Description, Category, Vendor) sort as text, case-insensitively.
+
+S9-R4: Sorting reorders the data rows only; the totals row stays at the bottom.
+
+S9-R5: The user's chosen sort is remembered per browser and restored on return (Story 8).
+
+* Context note: unlike the reports whose sort resets each visit, this report remembers the user's sort along with the rest of its setup (Story 8).
+
+Story 10: Export to PDF and CSV
+
+The user can download the current view as a PDF or CSV, generated server-side, respecting the current filters, search, columns, and sort.
+
+Design: See Story 12 Jira: TBD
+
+Prerequisites:
+
+The report has loaded rows (Story 1).
+
+Requirements:
+
+S10-R1: The toolbar has a menu, opened from a three-dot button, holding the download options.
+
+S10-R2: The menu has an option labeled "Download (PDF)" and an option labeled "Download (CSV)".
+
+S10-R3: Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last.
+
+S10-R4: Both downloads honor the current date, category, vendor, location, and part-search filters.
+
+S10-R5: Both downloads apply the current sort.
+
+S10-R6: Both downloads include a totals row matching the on-screen totals (the full-filtered-set totals, S4-R2), labeled "Totals".
+
+S10-R7: Money and Margin % use two-decimal and one-decimal formats respectively; an undefined Margin % shows "—".
+
+S10-R8: The PDF header shows the report name "Inventory Value", the organization name, the selected period, and an "as of" line naming the day the values represent (or a message that no snapshot is available for the period).
+
+S10-R8a: The CSV (spreadsheet) export carries the same "as of" line as its first line, naming the day the values represent, worded the same as the PDF header.
+
+S10-R9: The PDF shows the shop logo at the top when one is set; the CSV never includes a logo.
+
+S10-R10: The downloaded files are named "inventory-value-report.pdf" and "inventory-value-report.csv".
+
+S10-R11: Server-side generation. Both exports are generated server-side against the current filters, part search, and sort — the full filtered set, not only the loaded page. The export is not built from the rows currently in the browser.
+
+S10-R12: Export size guardrail. To keep a single-shot export renderable, an export is capped at a maximum of 10,000 rows in the filtered set. When the current filtered set exceeds the cap, neither the PDF nor the CSV is produced; instead the user sees the message: "This report is too large to export. Narrow the filters, then try again." [Cap value 10,000 is a proposed default — confirm the exact suite-standard value with the owner before dev.]
+
+S10-R15: Every export (each CSV and each PDF) includes the Location column whenever it is shown on screen (S7-R6), and always includes a "Locations:" line naming the location or locations the report is scoped to, or "All locations" when every location the user has access to is selected — matching the on-screen scope. In a PDF the "Locations:" line appears in the header area; in a CSV it appears as a leading metadata line above the column-header row.
+S10-R15a: The CSV carries the same filter-summary lines as the PDF header, verbatim and in the same order: every filter the PDF header names (the "as of" date, the "Locations:" line, and any report-specific filter lines) appears as a leading metadata line in the CSV, above the column-header row. A CSV saved or forwarded later is never ambiguous about which filters produced it. (Suite-wide rule, 2026-08-12.)
+
+Error Handling:
+
+S10-R13: On a successful download the user sees a success notification: "Inventory Value report exported (PDF)" or "Inventory Value report exported (CSV)".
+
+S10-R14: If a download fails, the user sees an error notification: "Failed to export inventory value report (pdf)" or "Failed to export inventory value report (csv)".
+
+* Context note: in the CSV, money values are written as plain numbers with two decimals and no thousands separators (so they parse cleanly in a spreadsheet); the PDF uses the same on-screen currency formatting with the "$" and thousands separators.
+
+Story 11: Nightly Snapshot Capture
+
+The as-of history is built from a once-daily recorded snapshot of every location's inventory value, retained at reducing granularity as it ages.
+
+Design: See Story 12 Jira: TBD
+
+Prerequisites:
+
+None (this is a backend behavior).
+
+Requirements:
+
+S11-R1: Once per day, overnight, the system records — for every location across every organization — one row per then-in-stock, non-core part, capturing its identity (part, category, vendor), on-hand quantity, unit cost, unit sell, total cost, and total sell, stored to the cent, under that day's calendar date.
+
+S11-R2: The parts captured use the same in-stock, non-core scope as the live report (Story 2), and the same valuation (Story 3), so a recorded day equals what the live report would have shown that day.
+
+S11-R3: Re-running the capture for a date replaces that date's rows for each location (the existing rows for that location and date are removed, then re-inserted from current data). The capture is idempotent and self-healing from current data.
+
+S11-R4: A location with no in-stock parts on a date simply has no rows for that date (this is valid, not an error).
+
+S11-R5: History accrues forward only from the first capture; there is no backfill of dates before capture began, and a re-run always records current truth under the current date — it cannot reconstruct a past date.
+
+S11-R6: Snapshot retention. Captured snapshots are retained at reducing granularity as they age, measured from the current date:
+
+0–13 months old: every daily capture is kept — full daily per-part detail. This covers a full 13 months of selectable "as of" days entirely at daily resolution.
+
+older than 13 months: reduced to monthly — only the last capture of each calendar month is retained; the other daily captures in this band are pruned.
+
+Pruning runs as part of, or alongside, the nightly capture. The as-of resolution (S5-R4, "closest recorded day on or before") serves the thinned history unchanged; when the nearest retained capture predates the requested date, the "As of " indicator (S5-R5) names the day actually shown. A requested date whose covering captures have all been pruned resolves to the nearest earlier retained capture, or shows the empty state if none remains (S5-N1). [The 13-month daily band is owner-decided; beyond it, only the last capture of each calendar month is retained.]
+
+Edge Cases:
+
+S11-E1: Because retention thins older history, two adjacent retained captures beyond 13 months can be up to a month apart; the "closest recorded day on or before" rule (S5-R4) and the resolved-day line inside the date control (S5-R5) handle these gaps unchanged.
+
+* Context note: the daily capture recomputes from live truth through the same valuation the report uses, so recorded history cannot drift out of sync with the live report. It runs with no logged-in user and intentionally spans every tenant, binding each location and organization explicitly (a reviewed, documented exception to request-scoped tenant filtering); every read path keeps full tenant scoping.
+
+Story 12: Visual Conformance and Accessibility
+
+The report conforms to the application's standard all-white reporting theme and layout.
+
+Design: TBD Jira: TBD
+
+Prerequisites:
+
+The report has loaded (Story 1).
+
+Requirements — visual:
+
+S12-R1: The report uses an all-white table: white column headers and white data cells, with no alternating row shading, on the standard soft blue-grey report backdrop.
+
+S12-R2: In the toolbar, the three-dot download menu sits leftmost in the action cluster, followed by the Column Selection control.
+
+S12-R3: The toolbar filters run, left to right: the "as of" date control, the part search, the Category filter, the Vendor filter, and the Location filter (rightmost).
+
+S12-R4: The Total Cost column header is bold and pinned to the far right, matching its cells.
+
+S12-R5: The totals row stays visible at the bottom while the user scrolls the rows.
+
+S12-R6: Long text values (Description, Category, Vendor) are truncated with an ellipsis when they overflow their column, with the full value available on hover; the Part # is never truncated.
+
+S12-R7: The report supports dark mode; the page background, toolbar, cells, and the "—" glyph all use dark-mode-legible colors.
+
+S12-R10: When shown, the Location column appears in the left-hand identifier group, immediately after Vendor and before Qty on Hand (S3-R1), using the suite's standard column styling. The Location filter control in the toolbar keeps a constant width regardless of the selected location label — a long location name or "All locations" does not resize the control — matching the Location column and filter treatment used across the reports suite.
+
+Requirements — accessibility:
+
+S12-R8: Each sortable column header exposes its sort state to assistive technology, and the active sort direction is indicated visually.
+
+S12-R9: The icon-only controls (the three-dot download button and the Column Selection button) each carry an accessible name exposed to assistive technology.
+
+* Context note: requirements S12-R1 through S12-R7 define the report's visual structure; they do not spell out every icon and finer styling detail — the companion video (when filmed) and any attached screenshots are the visual reference for details the requirements do not state.
+
+7. User Feedback Summary
+
+Trigger
+
+Message
+
+Behavior
+
+No in-stock part qualifies for the current filters / resolved date, or no snapshot exists on or before the selected date
+
+"Empty bays, endless possibilities. Get Going!"
+
+The application's standard reports no-data label, shown in the data area; the totals row is hidden.
+
+An export is requested but the filtered set exceeds the export row cap (S10-R12)
+
+"This report is too large to export. Narrow the filters, then try again."
+
+Blocking notification; no file is produced.
+
+A download succeeds
+
+"Inventory Value report exported (PDF)" / "Inventory Value report exported (CSV)"
+
+Success notification.
+
+A download fails
+
+"Failed to export inventory value report (pdf)" / "Failed to export inventory value report (csv)"
+
+Error notification.
+
+Export size-cap wording (decided 2026-08-13): this report's size-cap message reads "This report is too large to export. Narrow the filters, then try again." — the suite string minus the date-range clause, because this report has no date range. The four suite reports that still offer a date range keep the original wording ("Narrow the date range or filters"). Two deliberate variants, not an inconsistency: the message never names a control the user cannot see (Chris, 2026-08-13).
+8. Change Log
+
+Date
+
+Reporter
+
+Change
+
+Notes
+
+2026-07-19
+
+@chris / @claude
+
+Initial specification — per-part on-hand inventory valuation with an as-of date served from nightly history and a live fallback for today; authored from the built code and matched to the suite canonical PRD layout.
+
+Owner decisions baked in: value only non-core, positive-quantity stock; unit sell resolved via fixed price then pricing-matrix markup on cost; Margin is the extended (Total Sell − Total Cost) figure and Margin % its share of Total Sell; Total Cost the pinned bold headline + default sort; per-browser persistence of filters/columns/sort. Known v1 limitations recorded in §2.
+
+2026-08-13
+@chris / @claude
+Export size-cap message drops the date-range clause on this report, now that it has no date range: "This report is too large to export. Narrow the filters, then try again." (S10-R12 and the messages table). The four suite reports that still offer a range keep the original wording — two deliberate variants so the message never names a control the user cannot see.
+Chris, 2026-08-13. Resolves the copy question raised the same day.
+
+2026-08-13
+@chris / @claude
+The standalone "As of" indicator is removed from the page and rolled into the "as of" date control: when the requested day has no snapshot, the control names the resolved day beneath the requested one (S5-R5 and S5-R6 rewritten, new S5-R6a; S11-E1 cross-reference followed). Exports keep their own "as of" line (S10-R8, S10-R8a) because a saved file has no control to read.
+Chris, 2026-08-13 — one home for the valuation day.
+
+2026-08-13
+@claude
+Consistency sweep after the "as of" change: Known Limitations (nine presets / custom-range calendar), the first-visit default (current calendar month), the Story 6 context note, the CSV filter-summary line, the snapshot-retention rationale ("longest date preset") and the Story 12 toolbar order all still described a date range. Export size-cap message left unchanged and flagged as a suite-wide copy question.
+Follow-up to the same-day decisions wave.
+
+2026-08-13
+@chris / @claude
+Date-range control replaced by the shared single "as of" date component (S5-R1 and S5-R7 rewritten; S5-R8, S1-R4, S1-R5, S6-R9 and S8-R5 wording followed). A range over a point-in-time stock valuation states something the number cannot mean. The existing "As of" indicator behaviour for days with no snapshot (S5-R5, S5-R6) is unchanged.
+Before/after design review (2026-08-13). Same component as Work In Progress.
+
+2026-07-21
+
+@chris / @claude
+
+Moved to server-side data model (per Milan Zivanovic's 2026-07-20 engineering review, mirroring the Parts Velocity resolution): report is server-paginated (§2, S1-R8); sorting is server-side — each header click re-fetches in the new order (S9-R2); the Category and Vendor filters apply server-side — removed the "on-screen only" Known Limitation (S6-R3/R5, §2); the totals row is computed server-side over the full filtered set (true whole-shelf value, not just the visible page) (S4-R2/R8). Added a page-level part search over part # / description, built on the reports suite's shared toolbar-search pattern, server-side (S6-R8, S12-R3). Exports are generated server-side against the current filters + sort, with a row-cap guardrail and friendly "narrow the range or filters" message (S10-R11/R12). Added snapshot retention (S11-R6): full daily per-part detail for ~13 months, then the last capture of each month beyond that; the "closest recorded day on or before" rule serves the thinned history unchanged. Valuation rules (fixed price → matrix markup → cost fallback) unchanged — approved by Milan.
+
+2026-07-29
+
+@chris / @claude
+
+Added a per-row Location column (shown only when more than one location is in scope) plus a "Locations:" line and a constant-width Location filter.
+
+Suite location-column consistency.
+
+2026-08-05
+
+@claude
+
+Applied Chris's QA-review decisions (2026-08-04): Location filter hidden for single-location users; Location column changed to an access gate and made toggleable in the column selector (any user with access to more than one location sees it by default; single-location-access users never see it); report access stated as the single reports permission; date picker aligned to nine presets plus a custom-range calendar (no Today, Yesterday, or Custom item); documented that the spreadsheet export also carries the "as of" line.
+
+QA review workbook (2026-08-04).
+
+2026-08-06
+@claude
+Section 3 tidy-ups (QA review workbook 2026-08-06): reworded the Location-column visibility to the access-gated, column-selector-toggleable rule, matching the decision note already in this spec.
+QA review workbook (2026-08-06).
+
+2026-08-12
+
+@chris / @claude
+
+Suite rule added: the CSV carries the same filter-summary lines as the PDF header, verbatim (S10-R15a). Closes the gap where a saved or forwarded CSV did not say which filters produced it (on SBC, the Product Type line existed in the PDF header only).
+
+Vladimir's export review, 2026-08-12.
+

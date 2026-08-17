@@ -1,0 +1,773 @@
+
+
+Epic
+
+TBD
+
+Owner
+
+Chris W.
+
+Status
+
+Draft — 2026-07-19
+
+Branch
+
+TBD
+
+Work In Progress — Product Specification
+1. Business Case
+
+Shop managers need to see, at any moment, every open job on the floor and how much money is tied up in it — the work that has been authorized but not yet invoiced. Today that number lives only inside individual work orders; there is no single screen that lists every open job with its earned-versus-remaining value.
+
+Just as important, an owner wants to know where that money sits: how much has already been earned on the floor and is only waiting to be billed, versus how much is still work left to do. A single grand-total figure hides that split.
+
+The Work In Progress report answers both. It lists every open work order — one row each — and splits each job's value into what has been earned (work already done) and what is still remaining (approved work not yet done). A summary strip across the top rolls the whole floor into a handful of headline figures, and four tabs separate jobs by how far along they are.
+
+2. Feature Overview
+
+Core report
+
+The report shows one row per open work order for the selected location(s): a service work order whose status is Estimate, Approved, In Progress, Review, or Complete.
+
+Each open job is placed in one of four tabs by how far along it is: Approved - partially completed, Approved - not started, Completed, and Estimates.
+
+Each row shows the work order number, status, customer, asset (unit number over vehicle identification number), advisor, how long the job has been open, an earned/remaining money breakdown, an optional labor-hours delta, and a pinned Total (earned + remaining + adjustments).
+
+A summary strip across the top shows the whole floor as headline figures — Total Earned (the hero), Total Remaining, and a per-stage breakdown — and recomputes as the user filters.
+
+Each tab is a flat table with a pinned Total column on the far right and a Totals row at the bottom summing the jobs in that tab.
+
+The user can choose which columns show, filter by advisor / customer / asset / "as of" date / location, and download the current tab as a PDF or CSV.
+A per-row Location column is shown to any user with access to more than one location, naming each work order's location; it appears by default and can be toggled on or off from the column selector, and a user with access to only one location never sees it. Every export includes the Location column when it is shown, plus a "Locations:" line naming the scope.
+
+* Context note: "earned" means the value of approved work already performed — labor hours clocked toward the estimate, plus parts already received. "Remaining" means the value of approved work not yet performed — labor still to be worked, plus parts ordered but not yet received. A job's Total is earned + remaining; it is the report's own money figure, not the work order's stored grand total.
+
+Relationship to the work order
+
+The report reads live from the same work-order data the shop already maintains; it stores nothing of its own and never changes a work order.
+
+Every money figure is derived only from the work order's approved line items (lines the shop has authorized). Lines that are not yet approved contribute nothing.
+
+Out of scope
+
+A trend / over-time view. This report shows the floor as it stands right now. It does not chart work-in-progress dollars over time, and there is no Trend tab in this version. (The nightly WIP snapshot that a future Trend view will read is captured in this version — see Story 11 — but no screen in this report displays that history yet.)
+
+Tax on these not-yet-invoiced jobs is not shown. (Work-order-level fees and discounts ARE shown, as the signed Adjustments column — see S4-R29.)
+
+Scheduling exports to run automatically is not included.
+
+Known Limitations (v1)
+
+These are deliberate v1 boundaries, documented so QA does not file them as defects:
+
+No trend view. Work-in-progress over time is not drawn in this version (see Out of scope). The nightly snapshot that would feed it is captured (Story 11); this version simply has no screen that reads it.
+
+"Days Open" is not grammatically pluralized — it renders "1 days" and "0 days" (Story 4).
+
+Export column labels differ from the screen for two columns. On screen the asset column header reads "Asset" and the location column reads "Location"; in the downloaded PDF/CSV the same two columns are headed "Unit" and "Branch" (Story 9, S9-E1).
+
+3. Key Decisions
+
+Buckets are keyed on line state, not work-order status. Every line''s value sits in exactly one bucket: an unapproved line counts in Estimates, an approved untouched line in Approved - not started, a started line in Approved - partially completed (split Earned/Remaining), and a completed not-invoiced line in Completed. The buckets are disjoint and always sum to the work order''s total quoted value; approving one line never removes another line''s value from the report. A work order carrying lines in more than one state appears in each matching tab, showing only that tab''s slice of its money; the status column still shows the work order''s true status. The Estimates tab count therefore reads "work orders carrying unapproved value," and an unapproved line ages from the line''s creation date. (Per SV-9027.)
+
+Fixed-price lines are valued at their fixed amounts, and earn on completion. A line priced with a fixed labor total, or a fixed line total split into labor and part portions, is valued at those fixed amounts - the numbers the customer is billed - not at underlying picked parts or an hourly derivation. When progress cannot be derived (no invoiced hours), earning is binary: the full fixed amount stays in Remaining until the line is completed, then moves entirely to Earned. When invoiced hours exist, the derived-rate proration applies. A completed work order never leaves value stuck in Remaining. (Per SV-9028, SV-9035, SV-9040, SV-9044.)
+
+A core charge counts in parts value at every stage. The core charge is billed to the customer, so it is included in Parts Remaining and Parts Earned consistently across all tabs, including Estimates. Marking a returned core OK or Not OK never changes WIP figures - the core assessment is a credit event handled at invoicing, outside this report. (Per SV-9057, SV-9058.)
+A job's Total is Earned + Remaining + Adjustments, not the work order's grand total. The report's money figure is deliberately the approved-work earned/remaining sum plus the work-order-level Adjustments net, so it excludes tax and any non-approved lines. A Total that differs from the work order's own grand total is expected, not a data error.
+
+The "as of" date defaults to today. A fresh visit shows the work in progress as it stands right now; the user can pick any earlier day to see the position as it stood at the end of that day. No date range, no presets, and no "All Time" are offered (Story 7).
+
+Every open job is listed, including one with nothing approved yet. An open estimate with no approved lines still appears (in the Estimates tab), with its earned and remaining both at $0.00.
+
+Jobs are separated into four tabs by progress, and there is no on-screen status filter. The tab a job lands in is derived from its status and whether any work has started (Story 3); the four tabs take the place of a status filter.
+
+The summary strip recomputes from the jobs currently visible. Filtering by advisor, customer, or asset immediately re-rolls the headline figures and every tab's Totals row from the still-visible jobs, with no reload.
+
+The advisor, customer, and asset filters work on screen only; the "as of" date and location filters reload the report. Narrowing to an advisor/customer/asset hides rows instantly; changing the date or location re-fetches from the server.
+
+The report remembers the user's "as of" date, advisor / customer / asset selections, location selection, column selection, and active tab (per browser) and restores them on return.
+
+"Est." labor hours are the measuring stick on this not-yet-invoiced report. The Labor Delta column compares the hours quoted on the approved work against the hours actually worked, so a manager can see whether a job is beating or overrunning its labor estimate before it is billed (Story 4).
+
+The nightly WIP snapshot is in scope. Once per day the report captures each open work order's earned and remaining value, keyed per work order per day, using the same money model as the on-screen report (Story 11). No screen reads it in this version; it is captured now so a future Trend view reads a consistent history.
+The per-row Location column is access-gated and toggleable. Any user with access to more than one location sees it by default and can toggle it on or off from the column selector; a user with access to only one location never sees it, so a single-location view is never cluttered with a redundant column. Because a work order belongs to exactly one location, each WIP row names its own location — a WIP row never shows "Multiple". Every export still names the scope on a "Locations:" line.
+
+Work-order-level fees and discounts surface as a shared Adjustments column. Nebojsa's repro showed WIP excluded them entirely (a $500 tow-in fee showed nowhere), understating the report against what invoicing produces. WIP shows the signed net (fees positive, discounts negative) as one whole-work-order Adjustments column — never split into Earned/Remaining and never allocated into Labor or Parts, because a flat fee has no labor/parts basis — with Total = Earned + Remaining + Adjustments, a muted Adjustments summary figure, and Adjustments captured in the nightly snapshot as new columns with no history backfill. The same column ships on Sales By Customer so its rows tie out. (Shared WIP + SBC proposal, 2026-08-12.)
+
+* Context note: dropping the date range entirely, removing "All Time", and defaulting to an "as of" date of today are Chris product decisions, not scalability fixes. Milan Zivanovic had approved keeping "All Time" on WIP — its population is bounded to currently-open work orders (not a historical scan), so "All Time" was never a scalability risk. Work in progress is a point-in-time position, so a range over it states something the number cannot mean (2026-08-13).
+
+* Context note: the report saves its settings in the user's browser only, not on their account. Settings persist across visits and reloads in the same browser but do not follow the user to another browser or device.
+
+4. Terminology
+
+Open work order → A service work order whose status is Estimate, Approved, In Progress, Review, or Complete. Invoiced, Paid, and Declined work orders are not open and never appear.
+
+Approved line / approved work → A line item the shop has authorized (line status authorized or complete). All of the report's money comes only from approved lines.
+
+Earned → The value of approved work already performed: the portion of approved labor covered by clocked time (capped at the quoted amount per line) plus approved parts already received.
+
+Remaining → The value of approved work not yet performed: approved labor not yet earned plus approved parts ordered but not yet received.
+
+Total → For a row, Earned + Remaining + Adjustments. Shown as the pinned, bold headline column. (Not the work order's stored grand total.)
+
+Adjustments → The signed net of a work order's work-order-level fees and discounts: fees positive, discounts negative. Line-level fees and discounts are not part of it — they stay folded into their line's Labor or Parts value.
+
+Labor Delta (labor-hours delta) → (Column renamed from "Inv. Hrs" per SV-9071.) Quoted labor hours minus worked (clocked) labor hours across the approved lines. Positive means the job is under its labor estimate; negative means it has overrun.
+
+Days Open → Whole days since the work order was created: elapsed time divided by 24 hours, floored (never negative).
+
+Asset → The vehicle or unit the job is for, identified by its unit number and its vehicle identification number.
+
+Snapshot → A once-daily recorded set of per-work-order earned/remaining figures for a given calendar date (Story 11), captured for a future Trend view.
+Location (column) → A per-row column naming the work order's location, shown by default to any user with access to more than one location, who can toggle it on or off from the column selector; a user with access to only one location never sees it. In every export it is headed "Branch" (S9-E1) and is accompanied by a "Locations:" line naming the scope.
+
+5. Assumptions
+
+Approved line items carry the data needed to value them: a labor time estimate and a labor rate for labor, and a quantity and sell price for parts.
+
+A work order's created date is the anchor for Days Open. The "as of" date does not filter on created date: it selects the day whose end-of-day position is shown, so a work order appears when it was open on that day (Story 7).
+
+Tax is not resolved for these non-invoiced work orders and is therefore not shown on this report. Work-order-level fees and discounts are already known before invoicing and are shown as the Adjustments column (S4-R29); line-level fees and discounts are folded into their line's Labor or Parts value.
+
+6. Requirements
+
+Story 1: Report Access and Tabs
+
+The report is reachable from the reports navigation and opens on the first section tab, with four tabs in total.
+
+Design: See Story 10 Jira: TBD
+
+Prerequisites:
+
+The user must have the single reports permission — the one permission that grants access to all reports; there is no per-report permission.
+
+* Context note: the report reuses one existing reporting permission; it does not add a new one, and the same permission covers the report and its downloads.
+
+Requirements:
+
+S1-R1: The report appears in the reports navigation under the Performance group, labeled "Work In Progress".
+
+S1-R2: Opening the report shows four tabs, labeled (in order) "Approved - partially completed", "Approved - not started", "Completed", and "Estimates".
+
+S1-R3: The "Approved - partially completed" tab is selected by default on load.
+
+S1-R4: Each tab's label shows the count of work orders currently in that tab, in parentheses (for example, "Completed (22)").
+
+S1-R5: The browser page title is "Work In Progress - Report | ShopView" (the separator is a plain hyphen with one space on each side).
+
+Negative Cases:
+
+S1-N1: If the user does not have the required permission, the report does not appear in the navigation.
+
+Story 2: Work-Order Scope, Loading, and Empty State
+
+The report lists every open work order for the selected location(s).
+
+Design: See Story 10 Jira: TBD
+
+Prerequisites:
+
+The report has loaded.
+
+Requirements:
+
+S2-R1: A work order appears only if ALL of the following hold: it is a service work order; its status is one of Estimate, Approved, In Progress, Review, or Complete; and it belongs to a selected location (Story 7).
+
+S2-R2: Work orders whose status is Invoiced, Paid, or Declined never appear, in any tab, any Totals row, the summary strip, or any download.
+
+S2-R3: Part-sale work orders never appear.
+
+S2-R4: Each qualifying work order appears exactly once, in exactly one tab (Story 3), including a work order with nothing approved yet (its earned and remaining both show "$0.00").
+
+S2-R5: While the report is loading, the data area shows the standard reports loading indicator; existing rows are replaced only when the new data returns.
+
+S2-R6: The report reloads its rows when the user changes the "as of" date or the location selection (Story 7).
+
+Negative Cases:
+
+S2-N1: If no work order was open on the selected "as of" date within the current location(s), each tab shows the standard reports no-data message (§7) in place of rows, and no Totals row.
+
+S2-N2: If a single tab has no work orders but others do, that tab shows the no-data message while the others show their rows; the tab label count is "(0)".
+
+Story 3: Tab Placement (Sectioning)
+
+Each open work order is placed in exactly one tab, derived from its status and whether work has started.
+
+Design: See Story 10 Jira: TBD
+
+Prerequisites:
+
+The report has loaded rows (Story 2).
+
+Requirements:
+
+S3-R1: A work order whose status is Estimate is placed in the Estimates tab.
+
+S3-R2: A work order whose status is Complete is placed in the Completed tab.
+
+S3-R3: A work order whose status is In Progress or Review is placed in the Approved - partially completed tab.
+
+S3-R4: A work order whose status is Approved is placed in the Approved - partially completed tab when any labor time has been clocked or any part has been received against it, and in the Approved - not started tab otherwise.
+
+* Context note: "work has started" means a technician has clocked time to the job or a part has been received for it. An approved job with neither is treated as not started.
+
+Story 4: Columns and Calculations
+
+Each row shows the work order's identity, its aging, and its earned/remaining money breakdown, in a fixed column order.
+
+Design: See Story 10 Jira: TBD
+
+Prerequisites:
+
+The report has loaded rows (Story 2).
+
+Requirements:
+
+S4-R1: The columns, in left-to-right order, are: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Adjustments, Labor Delta, Total.
+
+S4-R2: On first visit, the visible columns are: WO #, Status, Customer, Asset, Advisor, Days Open, Earned, Remaining, Adjustments, and Total.
+
+S4-R3: Every other column (VIN, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Labor Delta) is available in the column selector and off by default (Story 8). The Location column is offered in the column selector to any user with access to more than one location; for that user it is shown by default and can be toggled on or off. A user with access to only one location never sees it and it is not offered to them.
+
+S4-R4: WO #, Status, Customer, Asset, VIN, Location, and Advisor are left-aligned; every other column is right-aligned.
+
+S4-R5: WO # is shown as a link that opens the work order in the same browser tab (the user returns via the browser's back navigation) only when the user has permission to access Work Orders. A user without Work Order permission sees the WO # as plain text, not a link.
+
+S4-R6: Status is shown as a badge using the status's label ("Estimate", "Approved", "In Progress", "Review", "Complete"), color-coded per the application's standard status colors; the label text is always present, so color is never the sole signal.
+
+S4-R7: The Asset column is a two-line cell: the unit number on the first line in bold, and the vehicle identification number on the second line in a smaller, muted style.
+
+S4-R8: When a work order has no unit number, the Asset cell's first line is omitted entirely — no placeholder text — and the cell shows the vehicle identification number alone on a single line. When it has no vehicle identification number, the second line shows "Unknown", so an asset missing both is never a blank cell. "Unknown" is the placeholder the shared VIN display already uses on the customer, vehicle and work-order surfaces; this report does not define its own string (Chris, 2026-08-14).
+
+S4-R9: The Asset column sorts by unit number. Rows with no unit number sort last on an ascending sort (and first when the sort is reversed); they are never interleaved with the numbered rows (Chris, 2026-08-13).
+
+S4-R10: The VIN column (off by default) shows the vehicle identification number on its own line as a separate, sortable column.
+
+S4-R11: Customer shows the customer's company name; it is blank when no customer name exists.
+
+S4-R12: Days Open shows the whole number of days since the work order was created — elapsed time divided by 24 hours, floored, never negative — rendered as "X days". The value is not grammatically pluralized: a same-day work order shows "0 days" and a one-day-old work order shows "1 days".
+
+S4-R13: Last Activity shows how recently the work order was last touched: "Today" when the most recent activity was today, otherwise "Xd ago"; it shows "—" when the work order has no recorded activity.
+
+S4-R14: Money columns (Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Adjustments, Total) show US-dollar currency with a leading "$", two decimal places, and thousands separators; a negative value shows a leading minus before the "$" (for example "$1,234.56" and "-$1,234.56"); a genuine zero shows "$0.00".
+
+S4-R15: Labor Earned is the value of approved labor already performed: for each approved line, the share of its quoted labor value covered by the time clocked to it (never more than the full quoted value), summed across the work order's approved lines.
+
+S4-R15a: On a work order in the Completed tab, Labor Earned is the full quoted value of every approved labor line, whatever hours were clocked to it. Clocked time stops driving the number once the work order is completed (Chris, 2026-08-13; SV-9119).
+
+S4-R16: Labor Remaining is the approved labor value not yet earned: the total quoted value of the approved labor minus Labor Earned.
+
+S4-R16a: On a work order in the Completed tab, Labor Remaining is always $0.00. Completing a work order leaves no approved labor value in Remaining (Chris, 2026-08-13; SV-9119).
+
+S4-R17: Parts Earned is the sell value of approved-line parts already received.
+
+S4-R18: Parts Remaining is the sell value of approved-line parts ordered but not yet received (the outstanding quantity valued at its sell price including any core charge).
+
+S4-R18a: On a work order in the Completed tab, Parts Earned is the sell value of every approved-line part and Parts Remaining is always $0.00, on the same rule as labor: a completed work order holds no Remaining (Chris, 2026-08-13; SV-9119).
+
+S4-R19: Earned is Labor Earned plus Parts Earned.
+
+S4-R20: Remaining is Labor Remaining plus Parts Remaining.
+
+S4-R21: Total is Earned plus Remaining plus Adjustments, so a row's Total matches what invoicing will produce for that work order. It is NOT the work order's stored grand total, and it is NOT the sum of any other displayed subtotal beyond Earned + Remaining + Adjustments.
+
+S4-R22: The Total column is pinned to the far right of the row, shown in bold, and stays fixed to the right edge while the user scrolls the row sideways.
+
+S4-R23: Labor Delta shows the quoted labor hours minus the worked (clocked) labor hours across the approved lines, as a signed number with one decimal place ("+2.0", "-14.0", "0.0"). A zero value shows unsigned as "0.0" (never "+0.0" or blank).
+
+S4-R24: On screen, Labor Delta is colored: green when positive, red when negative, and the default text color at exactly 0.0.
+
+S4-R25: The initial sort is Days Open, longest-open first (descending).
+
+S4-R26: The user can re-sort by selecting any column header. The first click on a header sorts ascending; clicking the same header again toggles to descending; there is no third "cleared" state, and only one column sorts at a time.
+
+S4-R27: Money and numeric columns sort by their underlying value; Days Open by its day count; Status by its displayed label; WO #, Customer, Asset, VIN, Location, and Advisor as text.
+
+S4-R28: Sorting reorders the rows within the active tab only; the Totals row stays at the bottom.
+
+S4-R29: Adjustments is the signed net of the work order's work-order-level fees and discounts: fees count positive, discounts count negative. It is shown as one whole-work-order amount and is never split into Earned and Remaining portions.
+
+S4-R30: A line-level fee or discount stays folded into its own line's Labor or Parts value, exactly as before. A work-order-level amount is never allocated into the Labor or Parts columns — a flat fee has no labor/parts basis — so adding a work-order-level fee or discount moves only Adjustments and Total.
+
+Edge Cases:
+
+S4-E1: In the Estimates tab, an open estimate with no approved work shows "$0.00" for every money column, including Total.
+
+S4-E2: A row where the job has overrun its labor estimate shows a negative Labor Delta (for example "-14.0") in red; a job under its estimate shows a positive value in green.
+
+S4-E3: A work order whose work-order-level discounts exceed its Earned plus Remaining shows a negative Total, formatted per S4-R14 (leading minus).
+
+* Context note: the WO # link opens in the same browser tab and the user returns via the browser's back navigation — the suite convention shared with Sales By Customer and Sales By Rep. (This report previously opened the work order in a new tab.)
+
+* Context note: "Days Open" on screen is computed live and advances as time passes; in a downloaded file it is frozen at the moment the file was generated (Story 9), so a file can show a day count one higher than the screen it was generated from.
+
+Story 5: Summary Strip
+
+A strip across the top shows the whole floor as headline figures, and recomputes as the user filters.
+
+Design: See Story 10 Jira: TBD
+
+Prerequisites:
+
+The report has loaded rows (Story 2).
+
+* Context note: throughout this story, "visible jobs" means the work orders that pass the current advisor, customer, and asset filters (Story 7) — not the rows scrolled into view, and across all four tabs together.
+
+Requirements:
+
+S5-R1: The summary strip shows seven figures, in this order: Total Earned, Total Remaining, Not Started, Started — Earned, Started — Remaining, Ready to Invoice, and Estimates. There is no Adjustments figure (S5-R13).
+
+S5-R2: Total Earned is the report's hero figure, shown larger and with a colored underline. It equals Started — Earned plus Ready to Invoice.
+
+S5-R3: Total Remaining equals Not Started plus Started — Remaining.
+
+S5-R4: Not Started is the total approved value (earned + remaining) of the jobs in the "Approved - not started" tab.
+
+S5-R5: Started — Earned is the total Earned of the jobs in the "Approved - partially completed" tab.
+
+S5-R6: Started — Remaining is the total Remaining of the jobs in the "Approved - partially completed" tab.
+
+S5-R7: Ready to Invoice is the total Earned of the jobs in the "Completed" tab. Because a completed job carries its full approved value in Earned (S4-R15a, S4-R18a), this figure equals what invoicing will produce for those jobs, and it never understates a job whose hours were under-clocked (Chris, 2026-08-13; SV-9119).
+
+S5-R8: Estimates is the total quoted value of the jobs in the "Estimates" tab, including their work-order-level adjustments so the figure matches the estimate document the customer sees, and is shown in a muted style.
+
+S5-R9: The Estimates figure is excluded from Total Earned and from Total Remaining.
+
+S5-R10: Every figure shows US-dollar currency with a leading "$", two decimals, and thousands separators.
+
+S5-R11: When the user changes the advisor, customer, or asset filter, every summary figure recomputes immediately from the visible jobs, with no reload.
+
+S5-R12: Each figure shows a small information icon; hovering, focusing, or tapping it reveals its explanation, in plain language, verbatim as follows:
+
+Total Earned — "Work you have already done but have not billed yet — the money waiting to be collected."
+
+Total Remaining — "Approved work you still have to do — the money that comes in once it is finished."
+
+Not Started — "Approved jobs nobody has started yet. The full amount is still ahead."
+
+Started — Earned — "Jobs in progress: the work already done but not billed yet."
+
+Started — Remaining — "Jobs in progress: the work still left to finish."
+
+Ready to Invoice — "Finished jobs, ready to bill the customer."
+
+Estimates — "Quotes the customer has not approved yet — not counted in the totals."
+
+S5-R13: The summary strip shows no Adjustments figure. Work-order-level fees and discounts are carried by the Adjustments column and the per-tab Totals row only. A summary figure for fees and discounts is self-explanatory and does not earn strip space (Chris, 2026-08-13; reverses the muted Adjustments figure specced on 2026-08-12).
+
+* Context note: "Started — Earned" and "Started — Remaining" describe approved jobs that are underway (the "Approved - partially completed" tab). "Started" is used, rather than "In Progress", so the figures are not confused with the "In Progress" work-order status badge.
+
+Story 4a: Completed Work Orders Hold No Remaining
+
+What happens to approved work that was never fully performed when the work order is completed. Raised by SV-9119.
+
+Requirements:
+
+S4a-R1: When a work order is completed, its whole approved value moves to Earned and its Remaining becomes $0.00, for both labor and parts (S4-R15a, S4-R16a, S4-R18a).
+
+S4a-R2: A row on the Completed tab therefore shows Earned equal to its Total less Adjustments, and Remaining of $0.00.
+
+S4a-R3: The summary strip and the table always agree for the same work order. No figure may report Remaining that the row does not show, and no row may show Remaining that no figure counts.
+
+Negative Cases:
+
+S4a-N1: A completed work order whose approved labor was clocked for less than its quoted hours still shows its full quoted labor value in Earned. Example: one approved line quoted at 2.00 hours and $270.00, with 0.01 hours clocked, completed — Earned $270.00, Remaining $0.00, and Ready to Invoice counts $270.00, not $1.35.
+
+S4a-N2: A completed work order never contributes to Total Remaining, Not Started, or Started — Remaining, because those figures read the two Approved tabs only (S5-R4, S5-R6).
+
+* Context note: the shop bills the approved work, not the clock. A tech who forgets to clock does not reduce what the customer owes, so a report that dropped the unclocked value would tell a manager they could bill $1.35 on a $270.00 job. This is why completion flushes to Earned rather than dropping the unperformed value or adding a Completed — Remaining figure to the strip.
+
+Story 5a: Locked Figure Wording and Tab Vocabulary
+
+Decisions from the 2026-08-13 review of the before/after design.
+
+Requirements:
+
+S5a-R1: The Remaining Work explanation is the re-worded text carried in S5-R12, signed off by Fabian in the design review. The wording locked in the original naming meeting described started-only work, which was wrong: the figure also includes work orders nobody has started.
+
+S5a-R2: The Estimates explanation is locked verbatim as: "The total value of all estimate lines that have not yet been approved, including lines awaiting authorization on open work orders." It counts per line, not per work order, and includes lines awaiting authorization on work orders that are otherwise approved.
+
+S5a-R3: The tab labels stay as they are — "Approved - partially completed", "Approved - not started", "Completed", "Estimates" — even though the summary figures were renamed. The tabs name work-order states; the figures name money. Aligning the two vocabularies is recorded as follow-up work, not done in this wave (Chris, 2026-08-13).
+
+S5a-R4: The Adjustments treatment covers this report, Sales By Customer, and Sales By Representative for this wave. Sales By Representative already specifies an Adjustments column and its calculations; those stay exactly as specified and are not removed (Chris, 2026-08-14). Other reports that total Labor and Parts only continue to exclude work-order-level fees and discounts; that inconsistency is known and parked rather than fixed here (Chris, 2026-08-13).
+
+Story 6: Per-Tab Totals Row
+
+Each tab has a Totals row that sums the visible jobs in that tab.
+
+Design: See Story 10 Jira: TBD
+
+Prerequisites:
+
+The tab has at least one visible job (Story 2).
+
+Requirements:
+
+S6-R1: Each tab's table has a Totals row pinned to the bottom, labeled "Totals" in its leftmost cell.
+
+S6-R2: The Totals row sums each visible money column (Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Adjustments, Total) across the tab's visible jobs.
+
+S6-R3: When the Labor Delta column is shown, the Totals row shows the sum of the visible jobs' Labor Delta, in the same signed one-decimal format and the same green/red/default coloring as a row.
+
+S6-R4: The Totals row's Total cell is pinned far right and shown in bold, matching the column.
+
+S6-R5: The Totals row uses the same number formats as the data rows.
+
+S6-R6: The Totals row recomputes whenever the advisor, customer, or asset filter changes (Story 5).
+
+Negative Cases:
+
+S6-N1: If a tab has no visible jobs, it shows no Totals row.
+
+Story 7: Filters
+
+The report can be filtered by advisor, customer, asset, "as of" date, and location.
+
+Design: See Story 10 Jira: TBD
+
+Prerequisites:
+
+The report has loaded.
+
+Requirements:
+
+S7-R1: The toolbar has an Advisor filter, a multi-select listing the advisors present across all open jobs in the current scope (the report loads the complete set of open jobs in one request). Selecting one or more advisors narrows the visible jobs to those advisors, on screen only (no reload).
+
+S7-R2: The toolbar has a Customer filter, a searchable type-ahead multi-select listing the customers present across all open jobs in the current scope (the report loads the complete set of open jobs in one request). The user types to narrow the list and selects one or more customers; narrowing is on screen only (no reload).
+
+S7-R3: When no customer is selected, the Customer filter reads "All customers" and every job is shown; the filter offers a single "Clear" action that returns it to "All customers", shown only once at least one customer is selected.
+
+S7-R4: The toolbar has an Asset filter, a searchable type-ahead multi-select listing the assets present across all open jobs in the current scope. Each option shows the unit number and the vehicle identification number, and the user's typed text matches against EITHER the unit number OR the vehicle identification number. Selecting one or more assets narrows the visible jobs on screen only (no reload).
+
+S7-R5: When no asset is selected, the Asset filter reads "All assets" and every job is shown; the filter offers a single "Clear" action that returns it to "All assets", shown only once at least one asset is selected.
+
+S7-R6: The toolbar has a single "as of" date control — one calendar day, not a range. It defaults to today and is capped at today (no future date). It offers no presets, no start/end pair, and no "All Time". This is the shared as-of component also used by Inventory Value (Chris, 2026-08-13).
+
+S7-R7: The report shows the work in progress as it stood at the end of the selected day: every work order open on that day, with the Earned, Remaining, and Adjustments values it held then. Changing the date reloads the report.
+
+S7-R8: A date range is not offered on this report. Work in progress is a point-in-time position, not an amount accumulated over a period, so a range would state something the number cannot mean (Chris, 2026-08-13; replaces the nine-preset date-range control specced on 2026-08-04).
+
+S7-R8a: For today's date the report reads live open work orders. For any earlier date it reconstructs the position from the nightly snapshot (Story 11). When no snapshot exists for the selected day, the report names the nearest earlier recorded day it is showing, in an "As of" indicator worded exactly as Inventory Value words it; when no snapshot exists at or before the selected day, it states that no snapshot is available for that date and shows no rows.
+
+S7-R9: The toolbar has a Location filter (rightmost), a multi-select listing the locations the signed-in user can access, with an "All locations" / "Clear all" toggle. On a first visit it defaults to the user's currently active location.
+
+S7-R10: Selecting one, several, or all locations reloads the report scoped to that set.
+
+S7-R11: The location scope is always constrained to the locations the user can access; a location the user cannot access is never included, and if the selection resolves to none, the report falls back to the user's currently active location.
+
+S7-R12: The advisor, customer, and asset filters combine: a job must pass all three to remain visible, and each also feeds the summary strip and each tab's Totals row (Story 5, Story 6).
+S7-R13: The per-row Location column is shown to any user with access to more than one location: it appears by default and can be toggled on or off from the column selector, and a user with access to only one location never sees it.
+S7-R14: When the Location column is shown, each work-order row names that work order's location. Because a work order belongs to exactly one location, a WIP row never shows "Multiple"; there are no drill-down or aggregating rows on this report (every row is already a single work order).
+
+* Context note: the advisor, customer, and asset filters only change what is shown on screen and never reload the report; the "as of" date and location filters reload it. The "as of" date IS how the user sees the position on a past day — today reads live, an earlier day is reconstructed from the nightly snapshot (S7-R8a).
+
+* Context note: dropping the date range entirely, removing "All Time", and defaulting to an "as of" date of today are Chris product decisions, not scalability fixes. Milan Zivanovic had approved keeping "All Time" on WIP — its population is bounded to currently-open work orders (not a historical scan), so "All Time" was never a scalability risk. Work in progress is a point-in-time position, so a range over it states something the number cannot mean (2026-08-13).
+
+Negative Cases:
+
+S7-N1: If the combination of advisor, customer, and asset filters leaves no visible jobs, every tab shows the no-data message (§7) and no Totals row.
+
+Story 8: Column Selection and Persistence
+
+The user can choose which columns show, and the report remembers its setup.
+
+Design: See Story 10 Jira: TBD
+
+Prerequisites:
+
+The report has loaded.
+
+Requirements:
+
+S8-R1: A column-selection control — an icon button whose tooltip reads "Column Selection" — lets the user toggle each column on or off.
+
+S8-R2: The Total column is always shown and cannot be turned off; it is not offered in the control.
+
+S8-R3: On first visit, the visible columns are those listed in S4-R2.
+
+S8-R4: Every other column listed in S4-R3 is available in the control and off by default.
+
+S8-R5: Whatever columns are shown, they appear in the fixed left-to-right order of S4-R1 (toggling visibility never reorders columns), with Total always last.
+
+S8-R6: The column selection applies to every tab at once — the four tabs always show the same set of columns.
+
+S8-R7: The report remembers, in the user's browser, the "as of" date, advisor selection, customer selection, asset selection, location selection, column selection, and active tab, and restores them on the user's next visit.
+
+S8-R8: Restore is defensive: a saved value that is no longer valid falls back to that setting's default rather than breaking the view.
+
+* Context note: persistence is per-browser (not tied to the user's account).
+
+Story 9: Export to PDF and CSV
+
+The user can download the current tab as a PDF or CSV.
+
+Design: See Story 10 Jira: TBD
+
+Prerequisites:
+
+The report has loaded rows (Story 2).
+
+Requirements:
+
+S9-R1: The toolbar has a menu, opened from a three-dot button, holding the download options "Download (PDF)" and "Download (CSV)".
+
+S9-R2: Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last.
+
+S9-R3: Both downloads honor the current "as of" date and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.
+
+S9-R4: Both downloads include a Totals row matching the on-screen Totals row for the tab.
+
+S9-R5: Money values use the same "$1,234.56" / "-$1,234.56" format as on screen; Labor Delta uses the same signed one-decimal format.
+
+S9-R6: In the CSV, a money value containing a comma (a thousands separator) is enclosed in double-quotes per standard CSV rules; a value without a comma is written unquoted.
+
+S9-R7: In both downloads, the Labor Delta column is monochrome — the green/red coloring is applied on screen and in the PDF only, never in the CSV.
+
+S9-R8: In a download, Days Open is the whole number of days as of the moment the file is generated.
+
+S9-R9: The downloaded files are named "wip-2-report.pdf" and "wip-2-report.csv".
+
+S9-R10: The PDF shows the shop logo at the top when one is set; the CSV never includes a logo.
+S9-R10a: Both downloads include a "Locations:" line naming the location or locations the report is scoped to, or "All locations" when every location the user has access to is selected. In the PDF it appears in the header area; in the CSV it appears as a leading metadata line above the column-header row. When the Location column is shown on screen (more than one location in scope), the download includes it too, headed "Branch" (S9-E1).
+S9-R10b: The CSV carries the same filter-summary lines as the PDF header, verbatim and in the same order: every filter the PDF header names (the "as of" date, the "Locations:" line, and any report-specific filter lines — including the active tab and the Advisor / Customer / Asset selections when narrowed) appears as a leading metadata line in the CSV, above the column-header row. A CSV saved or forwarded later is never ambiguous about which filters produced it. (Suite-wide rule, 2026-08-12.)
+
+Edge Cases:
+
+S9-R11: An export is capped at a maximum of 10,000 rows in the current filtered set. When the filtered set exceeds the cap, neither the PDF nor the CSV is produced and the user is shown the message: "This report is too large to export. Narrow the filters, then try again."
+S9-E1: In a download, the asset column is headed "Unit" and the location column is headed "Branch" (they read "Asset" and "Location" on screen). This label difference is a known v1 limitation, not a defect.
+
+Error Handling:
+
+S9-R11: On a successful download the user sees a success notification with the caption "Data exported successfully."
+
+S9-R12: If a download yields no rows, the user sees a warning notification titled "Empty export" with the caption "Export didn't yield any results".
+
+S9-R13: If a download fails, the user sees an error notification: "An error occurred while exporting the report. Please try again."
+
+Story 10: Visual Conformance and Accessibility
+
+The report conforms to the application's standard all-white reporting theme and layout, and meets the accessibility requirements below.
+
+Design: TBD Jira: TBD
+
+Prerequisites:
+
+The report has loaded.
+
+Requirements — visual:
+
+S10-R1: Each tab uses an all-white table: white column headers and white data cells, with no alternating row shading.
+
+S10-R2: The summary strip is shown as a bold band delineated by a top and bottom rule, above the tabs — not as separate cards.
+
+S10-R3: The Total column header is bold and pinned to the far right, matching its cells.
+
+S10-R4: The Totals row stays visible at the bottom while the user scrolls the rows.
+
+S10-R5: The report fills the available height and only the active tab's table body scrolls; the page itself does not add a second scrollbar.
+S10-R5a: The Location filter control keeps a constant width regardless of the selected label — a single location, several, or "All locations" — so the toolbar layout does not shift as the selection changes. When the Location column is shown, it appears in its fixed position (S4-R1), left-aligned like the other identifier columns, matching the suite's placement of this column.
+
+Requirements — accessibility:
+
+S10-R6: The WO # link is keyboard-focusable with a visible focus indicator and opens the work order on activation.
+
+S10-R7: Each summary figure's information icon (S5-R12) is reachable by keyboard focus and exposes its explanation to assistive technology, not by hover alone.
+
+S10-R8: The status badge's meaning is carried by its text label, not by color alone (S4-R6).
+
+S10-R9: The report supports dark mode; the table, the summary strip, the WO # link, the Labor Delta coloring, and the two-line asset cell all use dark-mode-legible colors meeting contrast.
+
+Story 11: Nightly WIP Snapshot Capture
+
+Once per day the report captures every open work order's earned/remaining value, so a future Trend view can read a consistent history. This version captures the snapshot; no screen in this version displays it.
+
+Design: TBD Jira: TBD
+
+Prerequisites:
+
+None (this is a backend capture behavior; it runs without a signed-in user).
+
+Requirements:
+
+S11-R1: Once per day the system records one row per then-open work order — one row per work order per calendar date.
+
+S11-R2: Each snapshot row captures, at minimum: the work order, its status, its Earned value, its Remaining value, its Adjustments value, the location and organization (copied from the work order), and the snapshot's calendar date.
+
+S11-R3: The Earned and Remaining values are captured using the identical computation as the on-screen report — Earned per S4-R19, Remaining per S4-R20 — so the snapshot and the on-screen report can never diverge for a given work order on the capture date.
+
+S11-R4: The set of work orders captured uses the same service-type and open-status conditions as the report (the first two conditions of S2-R1, evaluated per location), with no user-selected-location filter — the capture spans every location.
+
+S11-R5: Captured dollar values are stored to the cent.
+
+S11-R6: A work order with nothing approved yet is captured with Earned "$0.00" and Remaining "$0.00" (it is not skipped), matching S4-E1.
+
+S11-R7: No screen in this version reads the snapshot; there is no Trend tab (§2, Out of scope).
+
+S11-R8: The Adjustments value is captured in its own new snapshot column, stored to the cent as a signed amount. Earned and Remaining stay gross — their definitions and captured values do not change.
+
+S11-R9: History is not backfilled: snapshot rows captured before the Adjustments column existed carry no Adjustments value, and a future Trend view must read a missing Adjustments value as zero rather than recomputing history.
+
+* Context note: the snapshot's money model is earned/remaining per work order per day — the same split the on-screen report shows (Story 4) — recorded so a future Trend view reads a money model consistent with this report. The capture is in scope for this version; the Trend view that would read it is not.
+
+7. User Feedback Summary
+
+Trigger
+
+Message
+
+Behavior
+
+No work order qualifies for the current filters (or the advisor/customer/asset filters leave none visible)
+
+"Empty bays, endless possibilities. Get Going!"
+
+The application's standard reports no-data label, shown in the data area of each affected tab; that tab's Totals row is hidden.
+
+A download succeeds
+
+Caption: "Data exported successfully."
+
+Success notification.
+
+A download yields no rows
+
+Title: "Empty export"; caption: "Export didn't yield any results"
+
+Warning notification.
+
+A download fails
+
+"An error occurred while exporting the report. Please try again."
+
+Error notification.
+
+Export size-cap wording (decided 2026-08-13): this report's size-cap message reads "This report is too large to export. Narrow the filters, then try again." — the suite string minus the date-range clause, because this report has no date range. The four suite reports that still offer a date range keep the original wording ("Narrow the date range or filters"). Two deliberate variants, not an inconsistency: the message never names a control the user cannot see (Chris, 2026-08-13).
+8. Change Log
+
+Date
+
+Reporter
+
+Change
+
+Notes
+
+2026-07-19
+
+@chris / @claude
+
+Initial specification — authored from the built "Work In Progress" report (the earned-vs-remaining rebuild that supersedes the original WIP report), code-verified against the front-end and back-end. Captures the four progress tabs, the seven-figure summary strip, the earned/remaining/Total money model (Total = Earned + Remaining, not the grand total), the two-line Asset cell, the type-ahead Customer/Asset filters (empty = "All"), the Inv. Hrs labor-hours delta, and the export behavior. Trend/over-time view recorded as out of scope (nightly capture runs but has no reader in this version).
+
+Supersedes the original WIP report specification on this page.
+
+2026-08-13
+@chris / @claude
+SV-9119 resolved as Option A: completing a work order moves its whole approved value to Earned and leaves Remaining at $0.00, for labor and parts (new S4-R15a, S4-R16a, S4-R18a, new Story 4a with S4a-R1..R3 and two negative cases). Ready to Invoice (S5-R7) therefore equals what invoicing will produce and no longer understates an under-clocked completed job. Also corrected the strip count left over from the same-day Adjustments-tile removal: S5-R1 said eight figures including Adjustments and S5-R9 still excluded an Adjustments figure; both now match S5-R13 (seven figures, no Adjustments).
+SV-9119 (Nebojsa Glavinic). The reported $0.00 strip figure was spec-compliant; the defect was the row holding Remaining on a completed job, against the existing key decision.
+
+2026-08-13
+@chris / @claude
+Asset column: the "(no unit #)" placeholder is dropped — an asset with no unit number shows its VIN alone on one line (S4-R8 rewritten); the "— no VIN —" placeholder is kept so a cell is never blank; rows with no unit number sort last (S4-R9). Export size-cap message drops the date-range clause on this report, now that it has no date range: "This report is too large to export. Narrow the filters, then try again." (S9-R11). The four suite reports that still offer a range keep the original wording.
+Chris, 2026-08-13. Resolves the copy question raised the same day.
+
+2026-08-13
+@claude
+Consistency sweep after the "as of" change: overview, walkthrough, filter-behaviour prose, glossary created-date entry, negative case S2-N1, the Story 7 context note and the CSV filter-summary line all still described a date range with presets. The context note previously said the date range was "not a way to see what work-in-progress was on a past date" — the opposite of the new S7-R8a — and has been corrected. Export size-cap message left unchanged and flagged as a suite-wide copy question.
+Follow-up to the same-day decisions wave.
+
+2026-08-13
+@chris / @claude
+Design-review decisions locked: summary-strip Adjustments figure removed (S5-R13 reversed, its tooltip dropped) — the column and Totals row carry fees and discounts; date-range control replaced by a single "as of" date, defaulting to today and capped at today, reading live for today and the nightly snapshot for earlier days (S7-R6/R7/R8 rewritten, new S7-R8a; Story 2, 8 and 9 wording followed); new Story 5a locks the re-worded Remaining Work explanation (signed off by Fabian) and the Estimates explanation verbatim, keeps the existing tab labels deliberately, and records that the Adjustments treatment stops at WIP and SBC this wave.
+Before/after design review (2026-08-13). Shared as-of component with Inventory Value.
+
+2026-07-19
+
+@chris / @claude
+
+Date range now defaults to "All Time" so a fresh visit shows every open work order (a bounded range still filters by created date) — S7-R6/R7/R7a, §3. Simplified all seven summary-strip tooltips to plain, non-technical language (S5-R12). Removed the export-only "Lead Tech" column (dropped S9-E2 and its Known-Limitations entry).
+
+Code-verified; front-end + back-end updated and browser-verified (All Time load shows data, 0 console errors).
+
+2026-07-21
+
+@chris / @claude
+
+Resolved Milan Zivanovic's review plus one Chris override. (1) Nightly WIP snapshot capture moved IN SCOPE with a locked schema — earned/remaining per work order per day, using the same money model as the on-screen report so a future Trend view reads consistent data (new Story 11); removed the "out of scope / runs in the background / no reader" framing from §2 (Out of scope, Known Limitations). (2) WO # drill-through now opens in the SAME browser tab with browser back-navigation, matching Sales By Customer and Sales By Rep (S4-R5). (3) Removed "All Time" from the date range and set the default to "This Week" (S7-R6/R7; dropped S7-R7a and reworded the §3 Key Decision + the Story 7 context note).
+
+The "All Time" removal is a Chris product/UX decision, not a scalability fix — Milan had approved keeping All Time (its population is bounded to currently-open work orders, not a historical scan, so it was never a scalability risk). Local spec .md/.txt were also re-synced from the current Confluence four-tab design (they had held the superseded two-tab Live/Trend draft). Not yet pushed to Confluence.
+
+2026-07-29
+@chris / @claude
+Aligned the per-row Location column to the suite auto-visibility rule (shown only when more than one location is in scope) and added a "Locations:" export line and a constant-width Location filter.
+Suite location-column consistency.
+
+2026-08-05
+
+@claude
+
+Applied Chris's QA-review decisions (2026-08-04): report access stated as the single reports permission; Location column changed to an access gate and made toggleable in the column selector (any user with access to more than one location sees it by default; single-location-access users never see it); date picker aligned to nine presets plus a custom-range calendar (no Today, Yesterday, or Custom item).
+
+QA review workbook (2026-08-04).
+
+2026-08-05
+
+@claude
+
+Applied Parth's WIP review (2026-08-05): clarified that the Advisor, Customer, and Asset filters apply across all open jobs in the current scope (the report loads the complete set in one request), not only a loaded subset; the WO # is a link only when the user has permission to access Work Orders, otherwise it is shown as plain text.
+
+Parth review (2026-08-05).
+
+2026-08-06
+@claude
+Section 3 tidy-ups (QA review workbook 2026-08-06): reworded the Location-column visibility to the access-gated, column-selector-toggleable rule; added the export size-cap requirement (10,000 rows) with the verbatim "too large to export" message.
+QA review workbook (2026-08-06).
+
+2026-08-10
+@chris / @claude
+Locked the QA-cycle decisions: line-state bucketing (a line's value always sits in exactly one bucket; unapproved lines stay in Estimates even on an approved WO; buckets sum to total quoted); fixed-price lines valued at their fixed amounts with binary earning on line completion; core charge included in parts value at every stage with core assessment never moving WIP figures.
+SV-9027, SV-9028, SV-9035, SV-9040, SV-9044, SV-9057, SV-9058.
+
+2026-08-12
+@chris / @claude
+Added the work-order-level Adjustments money model: Adjustments column (fees positive, discounts negative, one whole-work-order amount, never allocated into Labor or Parts), Total = Earned + Remaining + Adjustments, muted Adjustments summary figure excluded from the two headline totals, Estimates figure now matches the estimate document, Totals-row coverage, snapshot capture of adjustment cents in new columns with earned/remaining staying gross and no history backfill, plus Terminology and Key Decisions entries.
+Shared Adjustments proposal (WIP + SBC) from Nebojsa's F&D repro.
+
+2026-08-12
+@claude
+Consistency sweep after the Adjustments change: reworded the three prose statements that still said fees and discounts are not shown (§2 Out of scope, the §3 Total key decision, and the §5 assumption) — tax remains the only excluded billing amount.
+Follow-up to the same-day Adjustments row.
+
+2026-08-12
+
+@chris / @claude
+
+Column heading renamed from "Inv. Hrs" to "Labor Delta" everywhere it appears (screen, column selector, sorting references, CSV and PDF layouts), reversing the earlier label decision: the old heading named a quantity the column does not hold (it holds invoiced minus worked, a signed delta). Display label only — the calculation, signed one-decimal format, coloring, and field names are unchanged.
+
+Per SV-9071 (suite-wide).
+
+2026-08-12
+
+@chris / @claude
+
+Suite rule added: the CSV carries the same filter-summary lines as the PDF header, verbatim (S9-R10b). Closes the gap where a saved or forwarded CSV did not say which filters produced it (on SBC, the Product Type line existed in the PDF header only).
+
+Vladimir's export review, 2026-08-12.
+
+2026-08-14
+
+@claude
+
+S5a-R4 corrected: Adjustments also covers Sales By Representative
+
+Nebojsa asked whether to remove the Adjustments column from Sales By Representative based on the earlier wording. Chris: leave Sales By Representative as specified.
+
+2026-08-14
+
+@chris / @claude
+
+Asset column VIN placeholder changed from "— no VIN —" to "Unknown" (S4-R8). A code check found four different missing-VIN strings in the product: "Unknown" in the shared VIN display component used by the customer, vehicle and work-order surfaces; "-" on two mobile cards; "n/a" on a dashboard card; and "— no VIN —" on this report only. The shared component wins because it is the only reusable one. The cell is still never blank. This does not touch the em-dash rule for nullable metric fields, which VIN is not.
+
+SV-8961 (Nebojsa Glavinic) raised the inconsistency; Parth confirmed the old behaviour matched the spec. Closed as duplicate of SV-9285, which carries the build. The "-" and "n/a" placeholders elsewhere are separate debt, not in this wave.
+
