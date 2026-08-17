@@ -140,19 +140,19 @@
     "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
     "preconditions": [
       "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. Five ZZAUTOTEST service work orders exist at your active location, created within the current date range — one in each status: Estimate, Approved, In Progress, Review, and Complete."
+      "2. Five ZZAUTOTEST service work orders exist at your active location, open on the report's \"as of\" date (which defaults to today) — one in each status: Estimate, Approved, In Progress, Review, and Complete."
     ],
     "steps": [
-      "1. Open the Work In Progress report with the seeded work orders' creation dates inside the selected date range.",
+      "1. Open the Work In Progress report with the seeded work orders open on the selected \"as of\" date.",
       "2. Look through all four tabs for each of the five seeded work orders."
     ],
-    "expected": "1. All five seeded work orders appear in the report — each one qualifies because it is a service work order, its status is one of Estimate, Approved, In Progress, Review, or Complete, and it belongs to a selected location.\n2. Each appears in the tab its status places it in (see the WIP — Tab Placement cases).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S2-R1), read on 11 August 2026.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: READY",
+    "expected": "1. All five seeded work orders appear in the report — each one qualifies because it is a service work order, its status is one of Estimate, Approved, In Progress, Review, or Complete, and it belongs to a selected location.\n2. Each appears in the tab its status places it in (see the WIP — Tab Placement cases).\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S2-R4; S7-R7), both read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
     "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-R1)",
+    "spec_ref": "SV-8654 (WIP spec v21 2026-08-17 S2-R4; S7-R7; population is work open on the as-of date,not filtered by created date)",
     "viu_status": "VIU-Pending",
     "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8658 (WIP spec v11 2026-08-10 Story 2 S2-R1)",
+    "refs": "SV-8654 (WIP spec v21 2026-08-17 S2-R4; S7-R7; population is work open on the as-of date,not filtered by created date)",
     "testrail_id": "C30456",
     "section_id": 4351
   },
@@ -165,7 +165,7 @@
     "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
     "preconditions": [
       "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. ZZAUTOTEST work orders exist at your active location within the current date range: one Invoiced, one Paid, and one part-sale work order."
+      "2. ZZAUTOTEST work orders exist at your active location open on the selected \"as of\" date: one Invoiced, one Paid, and one part-sale work order."
     ],
     "steps": [
       "1. Open the Work In Progress report.",
@@ -173,13 +173,13 @@
       "3. Check the summary strip and each tab's Totals row for their money.",
       "4. Download the current tab as a CSV and search the file for them."
     ],
-    "expected": "1. The Invoiced and Paid work orders do not appear in any tab, any Totals row, the summary strip, or the download.\n2. The part-sale work order does not appear anywhere either.\n3. No excluded work order's money is counted in any figure.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S2-R2, S2-R3), read on 11 August 2026.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: READY",
+    "expected": "1. The Invoiced and Paid work orders do not appear in any tab, any Totals row, the summary strip, or the download.\n2. The part-sale work order does not appear anywhere either.\n3. No excluded work order's money is counted in any figure.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S2-R5), both read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
     "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-R2; S2-R3)",
+    "spec_ref": "SV-8654 (WIP spec v21 2026-08-17 S2-R5; open work on the as-of date)",
     "viu_status": "VIU-Pending",
     "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8658 (WIP spec v11 2026-08-10 Story 2 S2-R2; S2-R3)",
+    "refs": "SV-8654 (WIP spec v21 2026-08-17 S2-R5; open work on the as-of date)",
     "testrail_id": "C30457",
     "section_id": 4351
   },
@@ -221,16 +221,16 @@
       "2. The Work In Progress report is open with rows loaded."
     ],
     "steps": [
-      "1. Change the date range to a different preset and watch the data area while the report reloads.",
+      "1. Change the \"as of\" date and watch the data area while the report reloads.",
       "2. Change the location selection and watch the data area again."
     ],
-    "expected": "1. While the report is loading, the data area shows the standard reports loading indicator.\n2. The existing rows are replaced only when the new data returns (the table does not go blank and stay blank mid-load).\n3. Both a date-range change and a location change reload the report's rows.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S2-R5, S2-R6), read on 11 August 2026.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: READY",
+    "expected": "1. While the report is loading, the data area shows the standard reports loading indicator.\n2. The existing rows are replaced only when the new data returns (the table does not go blank and stay blank mid-load).\n3. Both a date-range change and a location change reload the report's rows.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S2-R6), both read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
     "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-R5; S2-R6)",
+    "spec_ref": "SV-8655 (WIP spec v21 2026-08-17 S2-R6; changing the as-of date reloads)",
     "viu_status": "VIU-Pending",
     "notes": "VIU-confirm what the \"standard reports loading indicator\" looks like in the build (spinner/skeleton) — the spec does not pin its appearance. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8658 (WIP spec v11 2026-08-10 Story 2 S2-R5; S2-R6)",
+    "refs": "SV-8655 (WIP spec v21 2026-08-17 S2-R6; changing the as-of date reloads)",
     "testrail_id": "C30459",
     "section_id": 4351
   },
@@ -247,17 +247,17 @@
       "3. Separately, a state can be produced where some tabs have work orders but at least one tab (for example, Completed) has none."
     ],
     "steps": [
-      "1. Set the date range and location so that no open work order qualifies (for example, a Custom range over dates with no work orders created).",
+      "1. Set the \"as of\" date and location so that no open work order qualifies (for example, an earlier day on which nothing was open).",
       "2. Open each of the four tabs and read the data area.",
       "3. Then, with work orders in some tabs only, open the empty tab and a populated tab."
     ],
-    "expected": "1. Each tab shows the standard reports no-data message \"Empty bays, endless possibilities. Get Going!\" in place of rows.\n2. No tab shows a Totals row.\n3. Every tab label count reads \"(0)\".\n4. When only one tab is empty, that tab shows the no-data message, no Totals row, and a \"(0)\" count while the populated tabs still show their rows normally.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S2-N1, S2-N2, S6-N1), read on 11 August 2026.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: READY",
+    "expected": "1. Each tab shows the standard reports no-data message \"Empty bays, endless possibilities. Get Going!\" in place of rows.\n2. No tab shows a Totals row.\n3. Every tab label count reads \"(0)\".\n4. When only one tab is empty, that tab shows the no-data message, no Totals row, and a \"(0)\" count while the populated tabs still show their rows normally.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S2-N1), both read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
     "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-N1; S2-N2; Story 6 S6-N1; §7 User Feedback Summary)",
+    "spec_ref": "SV-8655 (WIP spec v21 2026-08-17 S2-N1; no-data message when nothing was open on the as-of date)",
     "viu_status": "VIU-Pending",
     "notes": "No-data message text is verbatim from §7. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-WIP-EMPTY): absorbed WIP-SCOPE-06. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S6-N1 (a tab with no visible jobs shows no Totals row) added — asserted in expected 4; the anchor did not travel when WIP-TOT-04 was cut 2026-07-28. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8658 (WIP spec v11 2026-08-10 Story 2 S2-N1; S2-N2; Story 6 S6-N1; §7 User Feedback Summary)",
+    "refs": "SV-8655 (WIP spec v21 2026-08-17 S2-N1; no-data message when nothing was open on the as-of date)",
     "testrail_id": "C30460",
     "section_id": 4351
   },
@@ -297,19 +297,19 @@
     "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
     "preconditions": [
       "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. Four ZZAUTOTEST service work orders exist within the current date range and location: one in Estimate status, one in Complete status, one in In Progress status, and one in Review status."
+      "2. Four ZZAUTOTEST service work orders exist open on the selected \"as of\" date, in the current location: one in Estimate status, one in Complete status, one in In Progress status, and one in Review status."
     ],
     "steps": [
       "1. Open the Work In Progress report.",
       "2. Look for each seeded work order in each tab."
     ],
-    "expected": "1. The Estimate work order appears in the \"Estimates\" tab and nowhere else.\n2. The Complete work order appears in the \"Completed\" tab and nowhere else.\n3. The In Progress and Review work orders appear in the \"Approved - Partially Completed\" tab and nowhere else.\n\nNote for the tester: the written description now says two different things about how a work order is placed into a tab. The Story 2 and Story 3 requirements — the ones this test follows — place a whole work order in one tab according to its status. A newer Key Decisions section says placement follows each LINE's state instead, so a work order whose lines are in different states would show in more than one tab, each showing only that tab's share of its money. The product owner has been asked which is right and has not answered. Until he does: if you see a work order in more than one tab, do NOT raise a bug and do NOT fail this test for it — write down what you saw and carry on. The question is here: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/questions-2026-08-06/Questions-for-Chris-Ward_Report-Suite_2026-08-11.xlsx\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S3-R1, S3-R2, S3-R3), read on 11 August 2026. That specification also carries a newer Key Decision, added in version 11, stating that buckets are keyed on line state rather than work-order status and that a work order with lines in several states appears in each matching tab. The two cannot both be true. Chris Ward has been asked which governs, so the requirement above is asserted unchanged and the newer reading is not asserted here.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: HOLD - the specification states two different tab-placement rules (whole work order by status, or per line state) and the product owner has been asked which governs",
+    "expected": "1. The Estimate work order appears in the \"Estimates\" tab and nowhere else.\n2. The Complete work order appears in the \"Completed\" tab and nowhere else.\n3. The In Progress and Review work orders appear in the \"Approved - Partially Completed\" tab and nowhere else.\n\nNote for the tester: the written description now says two different things about how a work order is placed into a tab. The Story 2 and Story 3 requirements — the ones this test follows — place a whole work order in one tab according to its status. A newer Key Decisions section says placement follows each LINE's state instead, so a work order whose lines are in different states would show in more than one tab, each showing only that tab's share of its money. The product owner has been asked which is right and has not answered. Until he does: if you see a work order in more than one tab, do NOT raise a bug and do NOT fail this test for it — write down what you saw and carry on. The question is here: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/questions-2026-08-06/Questions-for-Chris-Ward_Report-Suite_2026-08-11.xlsx\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S3-R1), both read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
     "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8659 (WIP spec v6 2026-07-29 Story 3 S3-R1; S3-R2; S3-R3)",
+    "spec_ref": "SV-8656 (WIP spec v21 2026-08-17 S3; status-to-tab mapping on the as-of date)",
     "viu_status": "VIU-Pending",
     "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-WIP-PLACE-STATUS): absorbed WIP-PLACE-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8659 (WIP spec v11 2026-08-10 Story 3 S3-R1; S3-R2; S3-R3 — tab by work-order status; CONTRADICTED by the v11 §3 Key Decision that buckets are keyed on line state not work-order status; Chris Ward asked; S3-R1..R3 asserted unchanged)",
+    "refs": "SV-8656 (WIP spec v21 2026-08-17 S3; status-to-tab mapping on the as-of date)",
     "testrail_id": "C30462",
     "section_id": 4352
   },
@@ -347,19 +347,19 @@
     "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
     "preconditions": [
       "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. Three ZZAUTOTEST service work orders in Approved status exist within the current date range and location: one where a technician has clocked time, one where a part has been received (and no time clocked), and one with neither."
+      "2. Three ZZAUTOTEST service work orders in Approved status exist open on the selected \"as of\" date, in the current location: one where a technician has clocked time, one where a part has been received (and no time clocked), and one with neither."
     ],
     "steps": [
       "1. Open the Work In Progress report.",
       "2. Look for each of the three Approved work orders in each tab."
     ],
-    "expected": "1. The Approved work order with clocked labor time appears in the \"Approved - Partially Completed\" tab.\n2. The Approved work order with a received part (and no clocked time) also appears in the \"Approved - Partially Completed\" tab — either kind of started work counts.\n3. The Approved work order with no clocked time and no received part appears in the \"Approved - Not Started\" tab and nowhere else.\n\nNote for the tester: the written description now says two different things about how a work order is placed into a tab. The Story 2 and Story 3 requirements — the ones this test follows — place a whole work order in one tab according to its status. A newer Key Decisions section says placement follows each LINE's state instead, so a work order whose lines are in different states would show in more than one tab, each showing only that tab's share of its money. The product owner has been asked which is right and has not answered. Until he does: if you see a work order in more than one tab, do NOT raise a bug and do NOT fail this test for it — write down what you saw and carry on. The question is here: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/questions-2026-08-06/Questions-for-Chris-Ward_Report-Suite_2026-08-11.xlsx\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S3-R4), read on 11 August 2026. That specification also carries a newer Key Decision, added in version 11, stating that buckets are keyed on line state rather than work-order status and that a work order with lines in several states appears in each matching tab. The two cannot both be true. Chris Ward has been asked which governs, so the requirement above is asserted unchanged and the newer reading is not asserted here.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: HOLD - the specification states two different tab-placement rules (whole work order by status, or per line state) and the product owner has been asked which governs",
+    "expected": "1. The Approved work order with clocked labor time appears in the \"Approved - Partially Completed\" tab.\n2. The Approved work order with a received part (and no clocked time) also appears in the \"Approved - Partially Completed\" tab — either kind of started work counts.\n3. The Approved work order with no clocked time and no received part appears in the \"Approved - Not Started\" tab and nowhere else.\n\nNote for the tester: the written description now says two different things about how a work order is placed into a tab. The Story 2 and Story 3 requirements — the ones this test follows — place a whole work order in one tab according to its status. A newer Key Decisions section says placement follows each LINE's state instead, so a work order whose lines are in different states would show in more than one tab, each showing only that tab's share of its money. The product owner has been asked which is right and has not answered. Until he does: if you see a work order in more than one tab, do NOT raise a bug and do NOT fail this test for it — write down what you saw and carry on. The question is here: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/questions-2026-08-06/Questions-for-Chris-Ward_Report-Suite_2026-08-11.xlsx\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S3-R2), both read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
     "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8659 (WIP spec v6 2026-07-29 Story 3 S3-R4 (started + not-started branches + context note))",
+    "spec_ref": "SV-8656 (WIP spec v21 2026-08-17 S3; Approved started-boundary on the as-of date)",
     "viu_status": "VIU-Pending",
     "notes": "\"Work has started\" means a technician has clocked time to the job OR a part has been received for it (Story 3 context note). MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-WIP-PLACE-START): absorbed WIP-PLACE-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8659 (WIP spec v11 2026-08-10 Story 3 S3-R4 — Approved work order placed by whether work has started; CONTRADICTED by the v11 §3 Key Decision keying buckets on line state; Chris Ward asked; S3-R4 asserted unchanged)",
+    "refs": "SV-8656 (WIP spec v21 2026-08-17 S3; Approved started-boundary on the as-of date)",
     "testrail_id": "C30464",
     "section_id": 4352
   },

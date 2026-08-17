@@ -161,19 +161,19 @@
     "preconditions": [
       "1. You are signed in to the ShopView App on a desktop browser.",
       "2. The application is switched to dark mode.",
-      "3. The report shows rows including positive and negative Inv. Hrs values and a two-line asset cell."
+      "3. The report shows rows including positive and negative Labor Delta values and a two-line asset cell."
     ],
     "steps": [
       "1. Read the table headers and cells in dark mode.",
-      "2. Read the summary strip, the WO # link, the Inv. Hrs colors, and the two-line asset cell (bold unit over muted VIN)."
+      "2. Read the summary strip, the WO # link, the Labor Delta colors, and the two-line asset cell (bold unit over muted VIN)."
     ],
-    "expected": "1. The report supports dark mode.\n2. The table, the summary strip, the WO # link, the Inv. Hrs green/red coloring, and the two-line asset cell all use dark-mode-legible colors meeting contrast.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S10-R9), read on 11 August 2026.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: READY",
+    "expected": "1. The report supports dark mode.\n2. The table, the summary strip, the WO # link, the Labor Delta green/red coloring, and the two-line asset cell all use dark-mode-legible colors meeting contrast.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S10-R9), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
     "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R9)",
+    "spec_ref": "SV-8666 (WIP spec v21 2026-08-17 S10-R9; heading renamed to Labor Delta per SV-9071)",
     "viu_status": "VIU-Pending",
     "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8666 (WIP spec v11 2026-08-10 Story 10 S10-R9)",
+    "refs": "SV-8666 (WIP spec v21 2026-08-17 S10-R9; heading renamed to Labor Delta per SV-9071)",
     "testrail_id": "C30525",
     "section_id": 4361
   },
@@ -391,5 +391,31 @@
     "refs": "SV-8667 (WIP spec v11 2026-08-10 Story 11 S11-R6; Story 4 S4-E1)",
     "testrail_id": "C30533",
     "section_id": 4363
+  },
+  {
+    "id": "WIP-VIS-08",
+    "area": "WIP — Visual & Accessibility",
+    "title": "Active view tab shows the selected-tab highlight (amber glow) when clicked",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. A report with more than one view tab is open (for example the Work In Progress progress tabs)."
+    ],
+    "steps": [
+      "1. Note which tab is active on arrival.",
+      "2. Click a different tab.",
+      "3. Look at the tab you clicked and the tabs you did not."
+    ],
+    "expected": "1. When a tab is clicked it becomes the active tab and is visually distinguished from the inactive tabs by a highlight - a coloured glow around or under the active tab.\n2. Only one tab shows the active highlight at a time; clicking another tab moves the highlight to it.\n3. Confirm live against the design/build: the exact highlight colour is described in the design review as an \"amber\" glow - confirm the exact colour/shade and the exact glow style (outline, underline or shadow) live before pinning them; do not invent a hex value.\n4. Note for the tester: this is the shared reporting-shell tab treatment, so it looks the same on every report that has tabs.\n\n---\nThis is the expected behaviour as per epic SV-8582, the reporting-shell story SV-8593, and Chris Ward's design-review decisions of 17 August 2026 (the shell tab styling). The Work In Progress report specification version 21 does not name this visual treatment, so the exact styling is Loom-sourced and is marked for live confirmation above (read on 17 August 2026).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+    "design_ref": "",
+    "spec_ref": "SV-8593 (WIP spec v21 2026-08-17; shell tab styling per Chris Ward design review 2026-08-17; exact styling to confirm live)",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false,
+    "refs": "SV-8593 (WIP spec v21 2026-08-17; shell tab styling per Chris Ward design review 2026-08-17; exact styling to confirm live)",
+    "testrail_id": "C43838",
+    "section_id": 4361
   }
 ]

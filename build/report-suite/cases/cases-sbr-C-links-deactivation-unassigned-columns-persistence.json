@@ -424,7 +424,7 @@
   {
     "id": "SBR-COL-01",
     "area": "SBR — Column Selector",
-    "title": "Column selector: seven metric toggles; five always-on columns cannot be hidden",
+    "title": "Column selector: eight metric toggles; five always-on columns cannot be hidden",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "Reports/Performance access.",
@@ -438,13 +438,13 @@
       "4. Look for Date, Invoice, Customer, Status, or Subtotal in the toggle list.",
       "5. Hide all seven metric columns and read the table and the grand Totals indicator."
     ],
-    "expected": "1. The dropdown lists the seven toggleable metric columns, each with a toggle switch: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %.\n2. On first visit all seven metric columns are visible.\n3. The five always-visible columns (Date, Invoice, Customer, Status, Subtotal) do not appear in the dropdown and cannot be hidden.\n4. With all seven metric columns hidden the table still renders the five always-on columns and the grand Totals indicator — no empty or error state.\n5. Note for the tester: if you have more than one location in scope you will also see a Location column on the table that is in neither list. That is correct - it appears by itself and is not something you can switch on or off here.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S20-R1, S20-R2, S20-R3, S20-R6, S20-N1, S21-R7), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
+    "expected": "1. The dropdown lists the eight toggleable metric columns, each with a toggle switch: Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %.\n2. On first visit all eight metric columns are visible.\n3. The five always-visible columns (Date, Invoice, Customer, Status, Subtotal) do not appear in the dropdown and cannot be hidden.\n4. With all eight metric columns hidden the table still renders the five always-on columns and the grand Totals indicator — no empty or error state.\n5. Note for the tester: if you have more than one location in scope you will also see a Location column on the table that is in neither list. That is correct - it appears by itself and is not something you can switch on or off here.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S20-R2), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
     "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "SV-8637 (SBR spec v15 2026-07-29 Story 20 S20-R1; S20-R2; S20-R3; S20-R6; S20-N1 — S20-R2/S20-R3 CLOSE the seven toggles and the five always-on columns; Location is automatic and in neither list [S21-R7])",
+    "spec_ref": "SV-8630 (SBR spec v22 2026-08-17 S20-R2; renamed to Labor Delta per SV-9071)",
     "viu_status": "VIU-Pending",
     "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-COLSEL): absorbed SBR-COL-02, SBR-COL-06. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed seven-toggle / five-always-on lists to SBR S20-R2 and S20-R3 + spec version, and adds the plain tester line that Location is not a toggle. RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, precondition 1, steps 1-5, expected 1-4, refs. S20-R2 verbatim L768: \"The seven toggleable columns are: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %.\" S20-R3 L769: \"The five always-visible columns (Date, Invoice, Customer, Status, Subtotal) do not appear in the dropdown and cannot be hidden.\" S20-R1/R6/N1 match expected 1/2/4. SECOND FINDING: with more than one location in scope the table also shows Location (S21-R7), which is in neither list - plain line added so a layman does not fail a correct build. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8637 (SBR spec v18 2026-08-07 Story 20 S20-R1; S20-R2; S20-R3; S20-R6; S20-N1 — S20-R2/S20-R3 CLOSE the seven toggles and the five always-on columns; Location is automatic and in neither list [S21-R7])",
+    "refs": "SV-8630 (SBR spec v22 2026-08-17 S20-R2; renamed to Labor Delta per SV-9071)",
     "testrail_id": "C30265",
     "section_id": 4320
   },

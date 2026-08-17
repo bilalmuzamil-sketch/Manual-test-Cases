@@ -388,5 +388,30 @@
     "refs": "SV-8600 (SBC spec v17 2026-08-10 S1-R2; S1-N1 — the back-end half of the ordinary-reports-access gate; the SBC twin of the Parts Velocity back-end case C30391; Chris Ward Q1=A; SV-8780 Ready to Fix)",
     "testrail_id": "C43546",
     "section_id": 4305
+  },
+  {
+    "id": "SBC-VIS-04",
+    "area": "SBC — Visual Conformance",
+    "title": "A group/summary row presents its rolled-up totals as an inline math strip",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. A report with group/summary rows is open (for example Sales By Customer, whose customer and asset rows roll up their invoices)."
+    ],
+    "steps": [
+      "1. Find a group/summary row that rolls up several child rows (a customer row over its assets and invoices).",
+      "2. Read the rolled-up values shown on that group row, including the Labor Delta total."
+    ],
+    "expected": "1. A group/summary row shows its rolled-up column totals (the sum across its child rows), including the Labor Delta total, in the same column positions and formats as a data row.\n2. Those rolled-up totals are presented together as a compact inline \"math strip\" on the group row - the design-review treatment for grouped totals.\n3. Confirm live against the design/build: the exact visual layout of the \"math strip\" (spacing, separators, whether the operator/equals signs are shown) is described only in the design review - confirm the exact presentation live before pinning it; do not invent the layout.\n4. Note for the tester: the rolled-up numbers themselves must tie out to the sum of the child rows; only the visual \"math strip\" styling is what this case is confirming.\n\n---\nThis is the expected behaviour as per epic SV-8582, the reporting-shell story SV-8593, and Chris Ward's design-review decisions of 17 August 2026 (the grouped-totals math strip). The Sales By Customer report specification version 20 does not name this visual treatment, so the exact styling is Loom-sourced and is marked for live confirmation above (read on 17 August 2026).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+    "design_ref": "",
+    "spec_ref": "SV-8593 (SBC spec v20 2026-08-17; grouped-totals math strip per Chris Ward design review 2026-08-17; exact styling to confirm live)",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false,
+    "refs": "SV-8593 (SBC spec v20 2026-08-17; grouped-totals math strip per Chris Ward design review 2026-08-17; exact styling to confirm live)",
+    "testrail_id": "C43840",
+    "section_id": 4303
   }
 ]

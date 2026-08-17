@@ -186,7 +186,7 @@ Location column: shown to any multi-location user; toggleable; rep rows Multiple
 6. Check that the pinned Subtotal column is still the rightmost column.
 7. Narrow the selection to a single location and read the headers again.
 8. Open the column selector, switch Location off, read the headers again, then switch it back on.
-9. With more than one location still selected, download all four files from the ⋯ menu (Summary and Expanded View, PDF and CSV) and read the Location column in each one.","1. Because you have access to more than one location, a Location column is shown by default, positioned immediately after the Status column and before Inv. Hrs.
+9. With more than one location still selected, download all four files from the ⋯ menu (Summary and Expanded View, PDF and CSV) and read the Location column in each one.","1. Because you have access to more than one location, a Location column is shown by default, positioned immediately after the Status column and before Labor Delta.
 2. A rep summary row whose invoices are all at one location shows that location's name.
 3. A rep summary row whose invoices span more than one location shows ""Multiple"".
 4. An invoice detail row shows that invoice's own exact location — never ""Multiple"".
@@ -197,11 +197,12 @@ Location column: shown to any multi-location user; toggleable; rep rows Multiple
 9. Whenever the column is shown on screen, all four downloads include it in the same position. In the Summary files a rep's row carries that rep's location and reads ""Multiple"" when the rep spans more than one location; in the Expanded View files each invoice row carries that invoice's own exact location.
 Note for the tester: whether this column appears depends on how many locations your login can reach, not on how many you have currently selected. Someone who can reach only one location never sees it at all. If it stays on screen after you narrow to a single location, that is correct.
 
----
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S21-R7, S21-R8, S18-R13, S14-R20), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+Note for the tester about step 8: the column selector on this report lists the metric columns (Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %) and no Location entry, because the Location column is shown automatically rather than toggled. Step 8 therefore cannot be carried out as written: mark step 8 as blocked and record the other steps as normal.
 
-AUTOMATION: READY","SV-8638; SV-8631 (SBR spec v15 2026-07-29 S21-R7; S21-R8; S18-R13; S14-R20 — per-row Location column; ""Multiple"" on a rep row spanning locations; position after Status; constant-width filter; S14-R20 = the same column in all four exports)",,
+---
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S21-R7; S14-R20), both read on 17 August 2026. The column was renamed from ""Inv. Hrs"" to ""Labor Delta"" per SV-9071; only the name changed.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8638 (SBR spec v22 2026-08-17 S21-R7; S14-R20; renamed to Labor Delta per SV-9071),,
 Adjustments column appears between Parts Margin and Margin,SBR — Rep Rows & Tree,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. A representative has an invoice carrying an invoice-level fee or discount in the selected date range.","1. Open the Sales By Representative report.
 2. Look at the columns left to right.","1. The columns appear left-to-right: Date, Invoice, Customer, Status, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %, Subtotal (13 columns).
@@ -223,10 +224,10 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
 AUTOMATION: READY",SV-8623 (SBR spec v15 2026-07-29 Story 5 S5-R1; S5-R4; S5-N1; §3 Key Decisions),,
-"Row layout: 12 columns in order, blanks in position, bold summary rows",SBR — Rep Rows & Tree,Functional,High,1. You are on the report with at least one rep expanded.,"1. Read the column headers left to right.
+"Row layout: 13 columns in order, blanks in position, bold summary rows",SBR — Rep Rows & Tree,Functional,High,1. You are on the report with at least one rep expanded.,"1. Read the column headers left to right.
 2. Read a rep summary row cell by cell.
 3. Compare the font weight of a summary row and a detail row.
-4. Look for any cell whose content has shifted into a neighbouring column or wrapped; check the desktop Totals row's leading cells.","1. With a single location in scope the columns appear left to right: Date, Invoice, Customer, Status, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal (12 columns). When the Location column is shown — it is shown by default to anyone whose login can reach more than one location — it sits immediately after Status, making 13.
+4. Look for any cell whose content has shifted into a neighbouring column or wrapped; check the desktop Totals row's leading cells.","1. With a single location in scope the columns appear left to right: Date, Invoice, Customer, Status, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %, Subtotal (13 columns). When the Location column is shown — it is shown by default to anyone whose login can reach more than one location — it sits immediately after Status, making 14.
 2. On a rep summary row the Date cell holds the chevron control followed by the rep's display name (""First Last""); the date value is intentionally blank.
 3. The Invoice, Customer, and Status cells are blank on summary rows; the metric cells carry the rep's totals across all matching invoices.
 4. Rep summary rows are bold (700) so they read as parent rows; detail rows use the default weight (400) — row type is distinguished by font weight, not background color.
@@ -237,10 +238,9 @@ What you should see today: on a representative's summary row the name is stretch
 - If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S5-R2, S5-R3, S5-R6, S5-R8, S5-R10, S5-N2, S6-R4, S18-R4, S18-R6a, S21-R7), read on 11 August 2026.
-Last checked against build v3.5-f77875c on 8/6/2026.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S5-R2), both read on 17 August 2026. The column was renamed from ""Inv. Hrs"" to ""Labor Delta"" per SV-9071; only the name changed.
 
-AUTOMATION: READY - EXPECT FAIL (SV-9001)",SV-8623; SV-8638 (SBR spec v15 2026-07-29 Story 5 S5-R2; S5-R3; S5-R6; S5-R8; S5-R10; S5-N2; Story 6 S6-R4; Story 18 S18-R4; S18-R6a + Story 21 S21-R7 — plus the Location column after Status),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8622 (SBR spec v22 2026-08-17 S5-R2; renamed to Labor Delta per SV-9071),,
 A toggled-off or deleted contributor still appears; tagged (Inactive),SBR — Rep Rows & Tree,Functional,High,"1. Rep A has matching invoices; you then turn rep A's sales-rep toggle OFF (restore afterwards).
 2. If a rep whose staff record was DELETED but who has invoices in range exists (or can be produced), note it for step 3.","1. Refresh the report and find rep A's row.
 2. Read the name, tag, metrics, and position in the A→Z order; try expanding the row.
@@ -256,14 +256,13 @@ Last checked against build v3.5-7168d14 on 8/6/2026.
 AUTOMATION: READY",SV-8623 (SBR spec v15 2026-07-29 Story 5 S5-R9; §3 Key Decisions; §4 Snapshot),,
 Expanding a rep loads its invoices on demand with a row-level spinner,SBR — Rep Rows & Tree,Functional,Critical,1. A rep with several matching invoices is on the report.,"1. Click the chevron in the rep's Date cell and watch the row.
 2. Read a detail row left to right.","1. The rep's matching invoices appear as detail rows beneath the summary row; a brief row-level loading indicator shows while they load on the first expand.
-2. Each detail row shows, left to right: the invoice's date, the invoice number, the customer name, the payment status badge, and the per-invoice values for Inv. Hrs and the money columns.
+2. Each detail row shows, left to right: the invoice's date, the invoice number, the customer name, the payment status badge, and the per-invoice values for Labor Delta and the money columns.
 3. A rep with a single matching invoice can still be expanded — one detail row is shown.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S6-R1, S6-R2, S6-R3, S6-E1), read on 11 August 2026.
-Last checked against build v3.5-f77875c on 8/6/2026.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S6-R1, S6-R2, S6-R3, S6-E1), both read on 17 August 2026. The column was renamed from ""Inv. Hrs"" to ""Labor Delta"" per SV-9071; only the name changed.
 
-AUTOMATION: READY",SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R1; S6-R2; S6-R3; S6-E1),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026","SV-8624 (SBR spec v22 2026-08-17 S6-R1,S6-R2,S6-R3,S6-E1; heading renamed to Labor Delta per SV-9071)",,
 The header chevron expands every visible rep and its glyph tracks state,SBR — Rep Rows & Tree,Functional,Medium,"1. Several reps are on the report, all collapsed.","1. Look at the header-row chevron's glyph.
 2. Click it; watch the rep rows and the glyph.
 3. Click it again.","1. With at least one rep collapsed the header chevron shows the ""expand"" glyph.
@@ -310,19 +309,18 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8974)",SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R9; Story 11 S11-R2),,
-Status badge between Customer and Inv. Hrs; every detail row shows mapped text,SBR — Payment Status Badge,Functional,High,"1. Invoices exist covering paid, overpaid, prepaid (zero balance), prepaid (balance owed), partially paid, and unpaid.
+Status badge between Customer and Labor Delta; every detail row shows mapped text,SBR — Payment Status Badge,Functional,High,"1. Invoices exist covering paid, overpaid, prepaid (zero balance), prepaid (balance owed), partially paid, and unpaid.
 2. The owning rep is expanded.","1. Locate the Status column relative to its neighbours.
 2. Read the badge on each seeded invoice's detail row.
-3. Look at a badge's vertical position in its cell, read the Status cell on a rep summary row, and check the status is readable from the badge text alone.","1. The Status column sits immediately after the Customer column. With a single location in scope the next column to its right is Inv. Hrs; when the Location column is shown it is inserted immediately after Status, so Inv. Hrs then follows Location.
+3. Look at a badge's vertical position in its cell, read the Status cell on a rep summary row, and check the status is readable from the badge text alone.","1. The Status column sits immediately after the Customer column. With a single location in scope the next column to its right is Labor Delta; when the Location column is shown it is inserted immediately after Status, so Labor Delta then follows Location.
 2. Every detail row renders a small colored badge reading ""Paid,"" ""Partially Paid,"" or ""Unpaid"" — badge rendering is unconditional on detail rows.
 3. The mapping is: paid → Paid; overpaid → Paid; prepaid with zero balance → Paid; prepaid with a balance owed → Partially Paid; partially_paid → Partially Paid; unpaid → Unpaid.
 4. Badges are vertically centered in their cells; on rep summary rows the Status cell is blank; the badge's text is the accessible label — status is never conveyed by color alone.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S8-R1, S8-R2, S8-R4, S8-R5, S8-R6, S8-N1, S18-R6), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S8-R1, S8-R2, S8-R4, S8-R5, S8-R6, S8-N1, S18-R6), both read on 17 August 2026. The column was renamed from ""Inv. Hrs"" to ""Labor Delta"" per SV-9071; only the name changed.
 
-AUTOMATION: READY",SV-8625 (SBR spec v15 2026-07-29 Story 8 S8-R1; S8-R2; S8-R4; S8-R5; S8-R6; S8-N1; §3 payment-status mapping; Story 18 S18-R6),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026","SV-8625 (SBR spec v22 2026-08-17 S8-R1,S8-R2,S8-R4,S8-R5,S8-R6,S8-N1,S18-R6; heading renamed to Labor Delta per SV-9071)",,
 Badge colors use the canonical payment-status tokens in light and dark,SBR — Payment Status Badge,Functional,Medium,1. Detail rows with all three badge values are visible; you can switch to dark mode.,"1. Read the color treatment of each badge in light mode and compare with the badges on the application's invoice list.
 2. Switch to dark mode and compare again.","1. Paid = dark teal text on light teal; Partially Paid = dark orange on light orange; Unpaid = dark red on light red.
 2. The badges use the same canonical payment-status color tokens as the invoice list, consistent app-wide.
@@ -343,50 +341,47 @@ Adjustments is the signed net of invoice-level fees and discounts,SBR — Inv. H
 This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9281, and the Sales By Representative report specification version 22 (S5-R11), read on 17 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9281 (SBR spec v22 2026-08-12 S5-R11 — signed net of invoice-level fees/discounts; never allocated into Labor/Parts),,
-Inv. Hrs is hours invoiced minus hours worked; half-up to one decimal,SBR — Inv. Hrs & Calculations,Functional,High,"1. A ZZAUTOTEST work order exists with known billed labor-line hours and known technician clocked (timesheet) hours, invoiced under a rep.","1. Read the column heading.
-2. Expand the rep and read the invoice's Inv. Hrs value; recalculate by hand.","1. The column heading reads ""Inv. Hrs"" (verbatim, including the period after ""Inv"").
+Labor Delta is hours invoiced minus hours worked; half-up to one decimal,SBR — Inv. Hrs & Calculations,Functional,High,"1. A ZZAUTOTEST work order exists with known billed labor-line hours and known technician clocked (timesheet) hours, invoiced under a rep.","1. Read the column heading.
+2. Expand the rep and read the invoice's Labor Delta value; recalculate by hand.","1. The column heading reads ""Labor Delta"".
 2. The value equals the billed labor hours minus the technician clocked hours, rounded half-up to one decimal.
-What you should see today: item 1 passes — the heading really does read ""Inv. Hrs"" with the period. Item 2 does not: the value reads 0.0 everywhere — on every representative row, on every invoice row underneath, and on the Totals row — no matter which date range you choose, even where the same row shows real money in Labor Invoiced. The hours themselves are not missing from the system: the Work In Progress report shows real quoted and worked hours for the same work orders. This is a known problem and it is already reported — see https://shopview.atlassian.net/browse/SV-8999.
+What you should see today: the Labor Delta value reads 0.0 everywhere — on every representative row, on every invoice row underneath, and on the Totals row — no matter which date range you choose, even where the same row shows real money in Labor Invoiced. The hours themselves are not missing from the system: the Work In Progress report shows real quoted and worked hours for the same work orders. This is a known problem and it is already reported — see https://shopview.atlassian.net/browse/SV-8999.
 - If you see exactly that, mark this test FAILED and do not raise anything new.
 - If it fails in a DIFFERENT way from what is described above, that is a NEW problem — please report it.
 - If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S9-R1, S9-R2), read on 11 August 2026.
-Last checked against build v3.5-f77875c on 8/6/2026.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S9-R1; S9-R2; §3), both read on 17 August 2026. The column was renamed from ""Inv. Hrs"" to ""Labor Delta"" per SV-9071; only the name changed.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8999)",SV-8626 (SBR spec v15 2026-07-29 Story 9 S9-R1; S9-R2; §3),,
-"Inv. Hrs: +green, -red, 0.0 default on every row; rollups from unrounded deltas",SBR — Inv. Hrs & Calculations,Functional,High,"1. Invoices exist under one rep with a positive, a negative, and a break-even labor delta (seed ZZAUTOTEST data).
-2. If producible, an invoice whose delta is tiny (e.g., +0.04) and one with a small negative delta (e.g., -0.5) also exist.","1. Read the three detail rows' Inv. Hrs values and colors.
-2. Read the rep summary row's and the Totals row's Inv. Hrs.
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8626 (SBR spec v22 2026-08-17 S9-R1; S9-R2; §3; renamed to Labor Delta per SV-9071),,
+"Labor Delta: +green, -red, 0.0 default on every row; rollups from unrounded deltas",SBR — Inv. Hrs & Calculations,Functional,High,"1. Invoices exist under one rep with a positive, a negative, and a break-even labor delta (seed ZZAUTOTEST data).
+2. If producible, an invoice whose delta is tiny (e.g., +0.04) and one with a small negative delta (e.g., -0.5) also exist.","1. Read the three detail rows' Labor Delta values and colors.
+2. Read the rep summary row's and the Totals row's Labor Delta.
 3. Recalculate the rollup as the rounded sum of the unrounded per-invoice deltas.
-4. Read the tiny-delta and small-negative invoices' Inv. Hrs.","1. Positive values show a leading + in green (e.g., +1.5); negative values a leading - in red (e.g., -1.5); zero/break-even shows 0.0 in the default text color.
+4. Read the tiny-delta and small-negative invoices' Labor Delta.","1. Positive values show a leading + in green (e.g., +1.5); negative values a leading - in red (e.g., -1.5); zero/break-even shows 0.0 in the default text color.
 2. The same calculation, label, format, and coloring apply to rep summary rows, invoice detail rows, and the totals row.
 3. The rep-summary/totals value equals round(sum of unrounded per-invoice deltas).
 4. A value that rounds to 0.0 (e.g., +0.04) shows 0.0 in the default color — not +0.0 in green; negative values always use an explicit minus and one decimal (e.g., -0.5).
-What you should see today: the Inv. Hrs column reads 0.0 everywhere — on every representative row, on every invoice row underneath, and on the Totals row — no matter which date range you choose, even where the same row shows real money in Labor Invoiced. The hours themselves are not missing from the system: the Work In Progress report shows real quoted and worked hours for the same work orders. This is a known problem and it is already reported — see https://shopview.atlassian.net/browse/SV-8999.
+What you should see today: the Labor Delta column reads 0.0 everywhere — on every representative row, on every invoice row underneath, and on the Totals row — no matter which date range you choose, even where the same row shows real money in Labor Invoiced. The hours themselves are not missing from the system: the Work In Progress report shows real quoted and worked hours for the same work orders. This is a known problem and it is already reported — see https://shopview.atlassian.net/browse/SV-8999.
 - If you see exactly that, mark this test FAILED and do not raise anything new.
 - If it fails in a DIFFERENT way from what is described above, that is a NEW problem — please report it.
 - If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S9-R3, S9-R4, S9-R5, S9-R6, S9-E1, S9-E2), read on 11 August 2026.
-Last checked against build v3.5-f77875c on 8/6/2026.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S9-R3, S9-R4, S9-R5, S9-R6, S9-E1, S9-E2), both read on 17 August 2026. The column was renamed from ""Inv. Hrs"" to ""Labor Delta"" per SV-9071; only the name changed.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8999)",SV-8626 (SBR spec v15 2026-07-29 Story 9 S9-R3; S9-R4; S9-R5; S9-R6; S9-E1; S9-E2),,
-No-labor-no-time invoices show 0.0; clocked-unbilled work shows negative,SBR — Inv. Hrs & Calculations,Negative,High,"1. A parts-only invoice with no labor and no clocked time exists, AND an invoice whose work order has clocked technician hours but no billed labor line (seed ZZAUTOTEST data).","1. Read the parts-only invoice's Inv. Hrs cell.
-2. Read the clocked-but-unbilled invoice's Inv. Hrs cell.","1. The invoice with neither billed labor hours nor clocked hours shows Inv. Hrs 0.0 in the default color — never blank, ""N/A,"" or ""—"".
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026","SV-8626 (SBR spec v22 2026-08-17 S9-R3,S9-R4,S9-R5,S9-R6,S9-E1,S9-E2; heading renamed to Labor Delta per SV-9071)",,
+No-labor-no-time invoices show 0.0; clocked-unbilled work shows negative,SBR — Inv. Hrs & Calculations,Negative,High,"1. A parts-only invoice with no labor and no clocked time exists, AND an invoice whose work order has clocked technician hours but no billed labor line (seed ZZAUTOTEST data).","1. Read the parts-only invoice's Labor Delta cell.
+2. Read the clocked-but-unbilled invoice's Labor Delta cell.","1. The invoice with neither billed labor hours nor clocked hours shows Labor Delta 0.0 in the default color — never blank, ""N/A,"" or ""—"".
 2. The invoice with clocked hours but no billed labor line shows the resulting NEGATIVE delta in red (e.g., -3.0) — the worked-but-unbilled signal is not suppressed to 0.0.
-What you should see today: the Inv. Hrs column reads 0.0 everywhere — on every representative row, on every invoice row underneath, and on the Totals row — no matter which date range you choose, even where the same row shows real money in Labor Invoiced. The hours themselves are not missing from the system: the Work In Progress report shows real quoted and worked hours for the same work orders. This is a known problem and it is already reported — see https://shopview.atlassian.net/browse/SV-8999.
+What you should see today: the Labor Delta column reads 0.0 everywhere — on every representative row, on every invoice row underneath, and on the Totals row — no matter which date range you choose, even where the same row shows real money in Labor Invoiced. The hours themselves are not missing from the system: the Work In Progress report shows real quoted and worked hours for the same work orders. This is a known problem and it is already reported — see https://shopview.atlassian.net/browse/SV-8999.
 - If you see exactly that, mark this test FAILED and do not raise anything new.
 - If it fails in a DIFFERENT way from what is described above, that is a NEW problem — please report it.
 - If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S9-N1), read on 11 August 2026.
-Last checked against build v3.5-f77875c on 8/6/2026.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S9-N1), both read on 17 August 2026. The column was renamed from ""Inv. Hrs"" to ""Labor Delta"" per SV-9071; only the name changed.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8999)",SV-8626 (SBR spec v15 2026-07-29 Story 9 S9-N1),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8626 (SBR spec v22 2026-08-17 S9-N1; heading renamed to Labor Delta per SV-9071),,
 Margin % to one decimal; em dash when Subtotal <= 0; recomputed on rollups,SBR — Inv. Hrs & Calculations,Functional,High,"1. A rep has two invoices with clearly different Margin % values; if producible, a row with Subtotal ≤ 0 also exists.","1. Read Margin % on both detail rows and on the rep's summary row; recompute the summary value as (total Margin ÷ total Subtotal) × 100.
 2. Read the Subtotal ≤ 0 row's Margin % cell.
 3. If a negative-margin row exists, read its format.","1. Margin % = Margin ÷ Subtotal × 100, to one decimal with a trailing % — e.g., 45.2%; a negative renders -8.4% (leading minus, no parentheses, no + on positives).
@@ -400,52 +395,45 @@ Last checked against build v3.4.1-3d03023 on 8/4/2026.
 AUTOMATION: READY
 ",SV-8627 (SBR spec v15 2026-07-29 §3 Margin % definition; Story 10 S10-R5),,
 Money columns use the standardized labels and definitions,SBR — Inv. Hrs & Calculations,Functional,High,"1. A ZZAUTOTEST invoice exists with known billed labor, billed parts, labor cost, parts cost, and tax.","1. Read the money column headers.
-2. Read that invoice's row values and recalculate each by hand.","1. The labels read exactly: Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.
-2. Subtotal = Labor Invoiced + Parts Invoiced, BEFORE tax.
-3. Labor Margin = Labor Invoiced − labor cost; Parts Margin = Parts Invoiced − parts cost; Margin = Labor Margin + Parts Margin.
+2. Read that invoice's row values and recalculate each by hand.","1. The labels read exactly: Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %, Subtotal.
+2. Subtotal = Labor Invoiced + Parts Invoiced + Adjustments, BEFORE tax.
+3. Labor Margin = Labor Invoiced − labor cost; Parts Margin = Parts Invoiced − parts cost; Margin = Labor Margin + Parts Margin + Adjustments.
 4. The same values appear everywhere the numbers show (screen, and later the exports).
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S5-R2, S21-R7), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S5-R2; S5-R12; §3), both read on 17 August 2026. The Adjustments column (the signed net of invoice-level fees and discounts) is included in Subtotal and Margin so every row ties out (SV-9281, added 2026-08-12).
 
-AUTOMATION: READY
-",SV-8623; SV-8582 (SBR spec v15 2026-07-29 S5-R2 = the authoritative 12-column left-to-right order; §3 definitions; §4 Terminology — S5-R2 CLOSES the money-label list; Location sits after Status [S21-R7] and is not a money column),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8622 (SBR spec v22 2026-08-17 S5-R2; S5-R12; §3; Adjustments column added to labels and tie-out per SV-9281),,
 Negative dollar values render in accounting parentheses; money columns only,SBR — Inv. Hrs & Calculations,Functional,Medium,"1. A row with a negative money value exists (e.g., a net credit/return invoice, or a negative Labor Margin from cost exceeding billed labor — seed ZZAUTOTEST data).","1. Read the negative money cell.
-2. Read a negative Inv. Hrs cell and a negative Margin % cell for comparison.","1. Negative dollar values render in accounting-convention parentheses — ($1,234.56) — on screen, across every money column (Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Subtotal).
-2. Inv. Hrs (a signed time value) and Margin % (a signed percentage) are excluded — they use a leading minus, not parentheses.
+2. Read a negative Labor Delta cell and a negative Margin % cell for comparison.","1. Negative dollar values render in accounting-convention parentheses — ($1,234.56) — on screen, across every money column (Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Subtotal).
+2. Labor Delta (a signed time value) and Margin % (a signed percentage) are excluded — they use a leading minus, not parentheses.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (§3 Key Decisions accounting parentheses), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (§3 negative money columns), both read on 17 August 2026. The column was renamed from ""Inv. Hrs"" to ""Labor Delta"" per SV-9071; only the name changed.
 
-AUTOMATION: READY
-",SV-8593 (SBR spec §3 Key Decisions accounting parentheses — owned by the shared A5 report-shell formatter module: verbatim 'accounting-parens negatives'),,
-Half-up rounding at each precision; totals may differ by one last-decimal unit,SBR — Inv. Hrs & Calculations,Functional,Medium,"1. Several invoices whose money values come from calculations that produce fractions of a cent sit under one rep — seed ZZAUTOTEST invoices whose amounts come from hours × rate or percentage-based lines that do not land on a whole cent (money fields themselves only take two decimals, so the sub-cent amounts must come from the math, not be typed in).","1. Read the displayed per-invoice values, sum them by hand, and compare with the rep summary and Totals cells.","1. All displayed values round half-up (away from zero) at their stated precision — money to cents; Inv. Hrs and Margin % to one decimal.
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8626 (SBR spec v22 2026-08-17 §3 negative money columns; renamed to Labor Delta per SV-9071),,
+Half-up rounding at each precision; totals may differ by one last-decimal unit,SBR — Inv. Hrs & Calculations,Functional,Medium,"1. Several invoices whose money values come from calculations that produce fractions of a cent sit under one rep — seed ZZAUTOTEST invoices whose amounts come from hours × rate or percentage-based lines that do not land on a whole cent (money fields themselves only take two decimals, so the sub-cent amounts must come from the math, not be typed in).","1. Read the displayed per-invoice values, sum them by hand, and compare with the rep summary and Totals cells.","1. All displayed values round half-up (away from zero) at their stated precision — money to cents; Labor Delta and Margin % to one decimal.
 2. Rolled-up values are computed from UNROUNDED components and then rounded, so a totals cell may differ from the eye-summed displayed rows by one unit in the last decimal.
 3. That one-unit difference is EXPECTED behavior per the spec — it must NOT be filed as a calculation defect.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (§3 half), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (§3 half), both read on 17 August 2026. The column was renamed from ""Inv. Hrs"" to ""Labor Delta"" per SV-9071; only the name changed.
 
-AUTOMATION: READY
-",SV-8582 (SBR spec §3 half-up rounding rule + round of unrounded rollups; CROSS-CUTTING display rule with no single owning story),,
-A clock-record edit after invoicing updates Inv. Hrs; billed money stays put,SBR — Inv. Hrs & Calculations,Functional,High,"1. A ZZAUTOTEST invoiced (not reversed, not void) work order exists with billed labor and clocked technician hours, and its invoice row is visible under its rep in the report.","1. Note the invoice row's Inv. Hrs value and its money columns.
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8582 (SBR spec v22 2026-08-17 §3 half; heading renamed to Labor Delta per SV-9071),,
+A clock-record edit after invoicing updates Labor Delta; billed money stays put,SBR — Inv. Hrs & Calculations,Functional,High,"1. A ZZAUTOTEST invoiced (not reversed, not void) work order exists with billed labor and clocked technician hours, and its invoice row is visible under its rep in the report.","1. Note the invoice row's Labor Delta value and its money columns.
 2. Edit a technician clock record on that work order (change its length), or delete one.
-3. Reload the report and re-read the same invoice row.","1. The worked-hours side updates — Inv. Hrs (hours invoiced minus hours worked) reflects the edited clock time after the reload.
+3. Reload the report and re-read the same invoice row.","1. The worked-hours side updates — Labor Delta (hours invoiced minus hours worked) reflects the edited clock time after the reload.
 2. The billed SELL values (Labor, Parts, Subtotal) stay unchanged — a clock edit never rewrites what was billed.
 3. The figures tied to worked time move together consistently (Margin uses the labor cost behind the worked hours, so it may change too) — nothing is left stale.
-What you should see today: the Inv. Hrs column reads 0.0 everywhere — on every representative row, on every invoice row underneath, and on the Totals row — no matter which date range you choose, even where the same row shows real money in Labor Invoiced. The hours themselves are not missing from the system: the Work In Progress report shows real quoted and worked hours for the same work orders. This is a known problem and it is already reported — see https://shopview.atlassian.net/browse/SV-8999.
+What you should see today: the Labor Delta column reads 0.0 everywhere — on every representative row, on every invoice row underneath, and on the Totals row — no matter which date range you choose, even where the same row shows real money in Labor Invoiced. The hours themselves are not missing from the system: the Work In Progress report shows real quoted and worked hours for the same work orders. This is a known problem and it is already reported — see https://shopview.atlassian.net/browse/SV-8999.
 - If you see exactly that, mark this test FAILED and do not raise anything new.
 - If it fails in a DIFFERENT way from what is described above, that is a NEW problem — please report it.
 - If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S9-R2), read on 11 August 2026.
-Last checked against build v3.5-f77875c on 8/6/2026.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S9-R2), both read on 17 August 2026. The column was renamed from ""Inv. Hrs"" to ""Labor Delta"" per SV-9071; only the name changed.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8999)",SV-8626 (SBR spec v15 2026-07-29 §3 (hours worked = technician clocked hours recorded against that work order); Story 9 S9-R2; tech-plan-2026-07-29 Phase 4 FR-F7 clock-change rebuild),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8626 (SBR spec v22 2026-08-17 S9-R2; heading renamed to Labor Delta per SV-9071),,
 Every row ties out once Adjustments is included,SBR — Subtotal & Totals,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. A representative has an invoice carrying an invoice-level fee or discount.","1. Open the Sales By Representative report.
 2. On a rep row, add Labor Invoiced, Parts Invoiced and Adjustments and compare to Subtotal.
@@ -511,16 +499,15 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8978)","SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R5 (mobile branch) + Story 17 S17-R4 — S10-R5 CLOSES it in the spec's own words: ""Totals"" left and the grand Subtotal right ""(no other metrics)"")",,
-All eight financial columns are sortable,SBR — Sorting,Functional,High,1. Several reps with differing values are on the report.,"1. Click each financial column header in turn: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.
+All nine financial columns are sortable,SBR — Sorting,Functional,High,1. Several reps with differing values are on the report.,"1. Click each financial column header in turn: Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %, Subtotal.
 2. Click the Date, Invoice, Customer, and Status headers.","1. Each financial column responds to a header click and reorders the rep rows.
 2. The identifier columns (Date, Invoice, Customer, Status) do not respond to header clicks.
 3. The Date header carries the expand/collapse-all chevron, not a sort affordance.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S11-R1, S11-R6), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S11-R1; S11-R6), both read on 17 August 2026. The column was renamed from ""Inv. Hrs"" to ""Labor Delta"" per SV-9071; only the name changed.
 
-AUTOMATION: READY",SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R1; S11-R6),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8628 (SBR spec v22 2026-08-17 S11-R1; S11-R6; renamed to Labor Delta per SV-9071),,
 "Default order is plain A to Z by display name, case-insensitive",SBR — Sorting,Functional,High,"1. No remembered sort exists (first visit or cleared storage); contributing reps include an ""(Inactive)""-tagged rep and mixed-case names.",1. Open the report and read the rep order top to bottom.,"1. Rows render in A→Z order by display name, case-insensitive.
 2. There are NO active/inactive tiers — an ""(Inactive)"" rep sorts by name among the others, not grouped separately.
 
@@ -763,21 +750,20 @@ The eight toggleable metric columns include Adjustments,SBR — Column Selector,
 This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9281, and the Sales By Representative report specification version 22 (S20-R2), read on 17 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-9281 (SBR spec v22 2026-08-12 S20-R2 — eight toggleable columns include Adjustments),,
-Column selector: seven metric toggles; five always-on columns cannot be hidden,SBR — Column Selector,Functional,High,1. No remembered column preference exists (first visit or cleared storage).,"1. Click the column selector button in the toolbar.
+Column selector: eight metric toggles; five always-on columns cannot be hidden,SBR — Column Selector,Functional,High,1. No remembered column preference exists (first visit or cleared storage).,"1. Click the column selector button in the toolbar.
 2. Read the toggle list.
 3. Check the table's visible columns.
 4. Look for Date, Invoice, Customer, Status, or Subtotal in the toggle list.
-5. Hide all seven metric columns and read the table and the grand Totals indicator.","1. The dropdown lists the seven toggleable metric columns, each with a toggle switch: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %.
-2. On first visit all seven metric columns are visible.
+5. Hide all seven metric columns and read the table and the grand Totals indicator.","1. The dropdown lists the eight toggleable metric columns, each with a toggle switch: Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %.
+2. On first visit all eight metric columns are visible.
 3. The five always-visible columns (Date, Invoice, Customer, Status, Subtotal) do not appear in the dropdown and cannot be hidden.
-4. With all seven metric columns hidden the table still renders the five always-on columns and the grand Totals indicator — no empty or error state.
+4. With all eight metric columns hidden the table still renders the five always-on columns and the grand Totals indicator — no empty or error state.
 5. Note for the tester: if you have more than one location in scope you will also see a Location column on the table that is in neither list. That is correct - it appears by itself and is not something you can switch on or off here.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S20-R1, S20-R2, S20-R3, S20-R6, S20-N1, S21-R7), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S20-R2), both read on 17 August 2026. The column was renamed from ""Inv. Hrs"" to ""Labor Delta"" per SV-9071; only the name changed.
 
-AUTOMATION: READY",SV-8637 (SBR spec v15 2026-07-29 Story 20 S20-R1; S20-R2; S20-R3; S20-R6; S20-N1 — S20-R2/S20-R3 CLOSE the seven toggles and the five always-on columns; Location is automatic and in neither list [S21-R7]),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8630 (SBR spec v22 2026-08-17 S20-R2; renamed to Labor Delta per SV-9071),,
 Toggling a column applies at once to summary; detail and Totals rows,SBR — Column Selector,Functional,Medium,1. A rep is expanded and the Totals indicator is visible.,"1. Toggle ""Parts Margin"" off and immediately check the summary rows, detail rows, and the Totals row.
 2. Toggle it back on.","1. The toggle takes effect immediately — no confirm step.
 2. Hiding a metric column removes it from rep summary rows, invoice detail rows, and the grand Totals indicator simultaneously; showing restores it everywhere at once.
@@ -890,20 +876,19 @@ Summary PDF: one rolled-up row per rep with a recomputed grand totals row,SBR �
 2. Read the top of the first page, the column headers, one rep row, and the last row.
 3. Compare the totals row's Margin % against the child rows.","1. The PDF is A4 portrait, edge-to-edge, with a header strip on the first page showing the workplace name and address, the organization logo, the report title ""Sales By Representative,"" and the selected date range.
 2. There is one rolled-up row per rep, in the report's currently-active order; a toggled-off contributor's name carries the ""(Inactive)"" tag.
-3. With a single location in scope the columns are: Rep / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal. When the Location column is shown on screen a Location column is added immediately after the Representative name and before the money columns, and a rep who spans more than one location reads ""Multiple"".
-4. Subtotal is bolded across the header, the body rows, and the grand totals row; Inv. Hrs keeps its green/red/default coloring.
+3. With a single location in scope the columns are: Rep / Labor Delta / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Adjustments / Margin / Margin % / Subtotal. When the Location column is shown on screen a Location column is added immediately after the Representative name and before the money columns, and a rep who spans more than one location reads ""Multiple"".
+4. Subtotal is bolded across the header, the body rows, and the grand totals row; Labor Delta keeps its green/red/default coloring.
 5. The grand totals row reads ""Totals"" in the Rep cell and aggregates every summary row in the document (including the Unassigned row when Show Unassigned is on); its Margin % is RECOMPUTED as total Margin ÷ total Subtotal (shown ""—"" when that Subtotal is zero or below), never the sum or average of the rows' percentages.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. the Sales By Representative report specification version 18 (S14-R3, S14-R5, S14-R20, S2-R5) is silent on this point, so his answers are the only basis for it.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S14-R5), both read on 17 August 2026. The column was renamed from ""Inv. Hrs"" to ""Labor Delta"" per SV-9071; only the name changed. Chris Ward's decision of 5 August 2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, governs the layout where the specification is silent (read on 11 August 2026).
 
-AUTOMATION: READY",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R3; S14-R5; S14-R20; Story 2 S2-R5; §3 Margin % definition — Summary PDF; plus the automatic Location column in all four exports),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8631 (SBR spec v22 2026-08-17 S14-R5; renamed to Labor Delta per SV-9071),,
 Expanded View PDF: one page-block per rep with its own totals; no grand,SBR — Exports,Functional,Critical,"1. You are on the report with at least two reps showing, each with at least one invoice.","1. Choose ""Download Expanded View (PDF)"" from the ⋯ menu and open the file.
 2. Check how each rep's section starts and what its table contains.
 3. Read the last row of one rep's block and the end of the document.
 4. Compare the order of one rep's invoices against the on-screen expanded order.","1. There is one page-block per rep, in the report's currently-active order, with a page break before each new rep after the first.
-2. Each block shows the header strip (workplace name and address, organization logo, title ""Sales By Representative,"" the selected date range), the rep's name, and a per-invoice table with columns: Date / Invoice / Customer / Status / (Location, whenever that column is shown on screen, carrying that invoice's own location) / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal.
+2. Each block shows the header strip (workplace name and address, organization logo, title ""Sales By Representative,"" the selected date range), the rep's name, and a per-invoice table with columns: Date / Invoice / Customer / Status / (Location, whenever that column is shown on screen, carrying that invoice's own location) / Labor Delta / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Adjustments / Margin / Margin % / Subtotal.
 3. The Status column renders the same colored badge as on screen, vertically centered.
 4. Invoices are ordered newest first (the same order as the on-screen expansion: invoice date descending, numeric invoice-number tie-break).
 5. Each block ends with a per-rep totals row — ""Totals"" in the Date cell; Invoice/Customer/Status blank; each metric aggregated; Margin % recomputed.
@@ -914,10 +899,9 @@ What you should see today: the Expanded View PDF is not built as one block per r
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S14-R6, S14-R8, S14-R20, S6-R9), read on 11 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S14-R6), both read on 17 August 2026. The column was renamed from ""Inv. Hrs"" to ""Labor Delta"" per SV-9071; only the name changed.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8981)",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R6; S14-R8; S14-R20; Story 6 S6-R9 — Expanded PDF page-block per rep; plus the automatic Location column after Status),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8631 (SBR spec v22 2026-08-17 S14-R6; renamed to Labor Delta per SV-9071),,
 Expanded View PDF truncates invoice numbers longer than 18 characters,SBR — Exports,Functional,Medium,"1. At least one invoice in the current view has an invoice number LONGER than 18 characters, and one has a number of 18 characters or fewer (seed data if needed).","1. Expand the rep on screen and read both invoice numbers.
 2. Download the Expanded View PDF and read the same two invoice numbers.","1. On screen, both invoice numbers show in full — never truncated.
 2. In the PDF, the long number is cut to its first 18 characters followed by an ellipsis (the ellipsis is not counted toward the 18).
@@ -977,26 +961,25 @@ AUTOMATION: READY
 2. Open the file in a text editor and read the header row.
 3. Count the data rows against the on-screen rep rows and compare their order.
 4. For one rep, compare ""# Invoices"" with the on-screen (N) count, and ""# Customers"" with the number of DISTINCT customers across that rep's matching invoices.","1. The file is named ""sales-by-representative-summary.csv"" and starts with a UTF-8 BOM.
-2. With a single location in scope the headers, in order, are: Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. On this build only nine of them arrive - Representative, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal - because # Invoices, # Customers, Hrs Worked and Hrs Invoiced are missing by mistake. Record what you see; the four missing columns are with the developers.
+2. With a single location in scope the headers, in order, are: Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %, Subtotal. On this build the four hours-related columns - # Invoices, # Customers, Hrs Worked and Hrs Invoiced - are missing by mistake. Record what you see; the four missing columns are with the developers.
 3. There is one header row plus one row per rep in the current filtered view, in the report's currently-active order.
 4. ""# Invoices"" equals the on-screen (N); ""# Customers"" counts distinct customers across those invoices (de-duplicated across locations when several are selected).
 5. The CSV has NO totals row.
 6. Note for the tester: the heading in this file reads simply ""Representative"". The product owner has confirmed that is correct and not slang, so do not fail the test for it.
 7. When the Location column is shown on screen the file also carries it, immediately after the Representative name and before the money columns; a rep whose invoices span more than one location reads ""Multiple"".
-What you should see today: the Summary spreadsheet arrives with only nine of the thirteen column headings - # Invoices, # Customers, Hrs Worked and Hrs Invoiced are all absent - and the file still ends with a Totals row that this version is not supposed to have. The Location column, the UTF-8 marker and the one-row-per-representative shape are all correct. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8880
+What you should see today: the Summary spreadsheet is missing four column headings - # Invoices, # Customers, Hrs Worked and Hrs Invoiced are all absent - and the file still ends with a Totals row that this version is not supposed to have. The Location column, the UTF-8 marker and the one-row-per-representative shape are all correct. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8880
 · If you see exactly that, mark this test FAILED and do not raise anything new.
 · If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026; where the Sales By Representative report specification version 18 (S14-R15, S14-R18, S14-R20), read on 11 August 2026, differs, his decision is the authority.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S14-R15), both read on 17 August 2026. The column was renamed from ""Inv. Hrs"" to ""Labor Delta"" per SV-9071; only the name changed. Chris Ward's decision of 5 August 2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, governs where the specification differs (read on 11 August 2026).
 
-AUTOMATION: READY - EXPECT FAIL (SV-8880)",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R15; S14-R18; S14-R20 — Summary CSV headers; plus the automatic Location column in all four exports; S14-R15's header list was left un-updated when S14-R20 was added — spec correction pending),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8631 (SBR spec v22 2026-08-17 S14-R15; renamed to Labor Delta per SV-9071),,
 "Expanded CSV: file name, verbatim headers, one row per invoice",SBR — Exports,Functional,High,"1. You are on the report with at least two reps showing, each with at least one invoice.","1. Choose ""Download Expanded View (CSV)"" from the ⋯ menu and note the saved file's name.
 2. Open the file in a text editor and read the header row.
 3. Compare the rows against the on-screen invoices (all reps, expanded).","1. The file is named ""sales-by-representative-expanded.csv"" and starts with a UTF-8 BOM.
-2. With a single location in scope the headers, in order, are: Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.
+2. With a single location in scope the headers, in order, are: Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %, Subtotal.
 3. There is one header row plus one row per invoice, flattened across all reps in the report's currently-active order, for the current filtered view.
 4. Note for the tester: the heading in this file reads simply ""Representative"". The product owner has confirmed that is correct and not slang, so do not fail the test for it.
 5. When the Location column is shown on screen the file also carries it immediately after Status — the position it holds on screen — and every row shows that invoice's own exact location, never ""Multiple"".
@@ -1006,16 +989,15 @@ What you should see today: the Expanded spreadsheet puts Invoice # BEFORE Date i
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. Where the Sales By Representative report specification version 18 (S14-R16, S14-R20), read on 11 August 2026, says something different, his decision is the later word and is the authority.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S14-R16), both read on 17 August 2026. The column was renamed from ""Inv. Hrs"" to ""Labor Delta"" per SV-9071; only the name changed. Chris Ward's decision of 5 August 2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, governs where the specification differs (read on 11 August 2026).
 
-AUTOMATION: READY - EXPECT FAIL (SV-8972)",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R16; S14-R20 — Expanded CSV headers; plus the automatic Location column after Status; S14-R16's header list was left un-updated when S14-R20 was added — spec correction pending),,
-"CSV cells: plain numbers, signed Inv. Hrs, empty Margin %, (Inactive)",SBR — Exports,Functional,Medium,"1. You have downloaded both report CSVs from a view that includes a negative money value, a rep whose Margin % shows ""—"" on screen (Subtotal ≤ 0), and an ""(Inactive)"" contributor (seed what is missing).","1. Open each CSV in a text editor (not a spreadsheet).
-2. Read a money cell, the negative value's cell, an Inv. Hrs cell, the undefined Margin % cell, and the (Inactive) rep's ""Sales Representative"" cell.","1. Numeric columns are plain numbers — NO currency symbol, thousands separators, or parentheses; a negative uses a leading minus (for example, -1234.56).
-2. Money values carry two decimals; Hrs Worked / Hrs Invoiced / Inv. Hrs carry their full stored precision; Inv. Hrs keeps its leading + or - sign.
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8631 (SBR spec v22 2026-08-17 S14-R16; renamed to Labor Delta per SV-9071),,
+"CSV cells: plain numbers, signed Labor Delta, empty Margin %, (Inactive)",SBR — Exports,Functional,Medium,"1. You have downloaded both report CSVs from a view that includes a negative money value, a rep whose Margin % shows ""—"" on screen (Subtotal ≤ 0), and an ""(Inactive)"" contributor (seed what is missing).","1. Open each CSV in a text editor (not a spreadsheet).
+2. Read a money cell, the negative value's cell, an Labor Delta cell, the undefined Margin % cell, and the (Inactive) rep's ""Sales Representative"" cell.","1. Numeric columns are plain numbers — NO currency symbol, thousands separators, or parentheses; a negative uses a leading minus (for example, -1234.56).
+2. Money values carry two decimals; Hrs Worked / Hrs Invoiced / Labor Delta carry their full stored precision; Labor Delta keeps its leading + or - sign.
 3. Margin % is a plain number to one decimal (for example, 45.2) with no % sign, and the cell is EMPTY where Margin % is undefined (Subtotal ≤ 0).
 4. The ""Sales Representative"" name carries the ""(Inactive)"" tag when applicable; the on-screen (N) count is NOT embedded in the name.
-5. Text fields are quoted per standard CSV escaping; both CSVs are monochrome (Inv. Hrs conveys direction only by its sign).
+5. Text fields are quoted per standard CSV escaping; both CSVs are monochrome (Labor Delta conveys direction only by its sign).
 6. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
 What you should see today: the money in the spreadsheet file comes out as ""$1,979.40"" - with a dollar sign and a comma - instead of the plain number described in point 1 above. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8823
 - If you see exactly that, mark this test FAILED and do not raise anything new.
@@ -1023,10 +1005,9 @@ What you should see today: the money in the spreadsheet file comes out as ""$1,9
 - If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S14-R17), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S14-R17), both read on 17 August 2026. The column was renamed from ""Inv. Hrs"" to ""Labor Delta"" per SV-9071; only the name changed.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8823)",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R17; §3 Key Decisions (CSVs monochrome / plain signed numbers)),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8631 (SBR spec v22 2026-08-17 S14-R17; heading renamed to Labor Delta per SV-9071),,
 The Unassigned row appears in both CSV downloads only when the toggle is on,SBR — Exports,Functional,Medium,1. The current filter set includes at least one invoice with no assigned sales representative (seed one if needed).,"1. Turn Show Unassigned ON and download Summary (CSV) and Expanded View (CSV).
 2. Find the Unassigned entry in each file.
 3. Turn Show Unassigned OFF and download both CSVs again.
@@ -1070,16 +1051,27 @@ Last checked against build v3.5-16cf83f on 8/6/2026.
 AUTOMATION: READY - EXPECT FAIL (SV-8818)",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-E2; §7 — 10k-row export cap; no truncated file; toast persists 120s; the toast STRING is the ONE suite-wide message ruled by Chris Ward 2026-07-31 Q2=A [newest-wins]; his SBR spec edit is pending),,
 An empty-data export still generates with zeroed Summary PDF totals,SBR — Exports,Functional,Medium,"1. The current filter set matches ZERO invoices (for example, a date range with no activity) — the report shows its empty state.","1. Download all four files from the ⋯ menu.
 2. Open each and inspect its contents.","1. All four downloads produce a FILE, not an error.
-2. The Summary PDF renders the header strip, no data rows, and a grand-totals row showing zeros for the money and Inv. Hrs columns and ""—"" for Margin %.
+2. The Summary PDF renders the header strip, no data rows, and a grand-totals row showing zeros for the money and Labor Delta columns and ""—"" for Margin %.
 3. The Expanded View PDF renders just the header strip with no per-rep blocks (it has no grand-totals row).
 4. Both CSVs generate a header-row-only file, still starting with the UTF-8 BOM.
 5. No special ""empty"" treatment or message appears inside the files.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S14-E3), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S14-E3), both read on 17 August 2026. The column was renamed from ""Inv. Hrs"" to ""Labor Delta"" per SV-9071; only the name changed.
 
-AUTOMATION: READY",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-E3),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8631 (SBR spec v22 2026-08-17 S14-E3; heading renamed to Labor Delta per SV-9071),,
+"CSV export repeats the PDF header's Product Type, status and Locations lines",SBR — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Sales By Representative report is open with at least one filter narrowed (for example a chosen date/scope and one or more locations) so the PDF header would show more than one filter line.","1. Download the report as a PDF and read the filter-summary lines in its header area.
+2. Download the report as a CSV and open it in a plain text editor or spreadsheet.
+3. Compare the leading rows of the CSV (above the column-header row) with the PDF header lines.","1. The CSV carries the same filter-summary lines as the PDF header - the date range, the Product Type and payment-status filter lines, and the ""Locations:"" line - each as a leading metadata row above the column-header row.
+2. The lines appear verbatim (the same wording) and in the same order as in the PDF header.
+3. A CSV saved or forwarded later is never ambiguous about which filters produced it: every filter the PDF header names is present in the CSV.
+4. Note for the tester: this is the suite-wide rule that the CSV must name the same filters as the PDF. If your report shows no narrowed filters, widen or narrow one so at least one filter line appears, then compare again.
+
+---
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S14-R20a), both read on 17 August 2026. S14-R20a is the suite-wide rule (added 2026-08-12, SV-9283) that the CSV carries every filter-summary line the PDF header names.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8631 (SBR spec v22 2026-08-17 S14-R20a; suite-wide CSV filter-summary rule SV-9283),,
 Report Name dropdown lists Sales Representative Assignments at the bottom,SBR — Sales Rep Assignments Export,Functional,High,"1. You are signed in with Reports access.
 2. Note the current order of the Report Name dropdown entries before checking.","1. In the Reports left sidebar, under the Accounting header, click the ""Export Reports"" entry — a dialog titled ""Export Report"" opens.
 2. Open the Report Name dropdown and read the list top to bottom.
@@ -1261,20 +1253,18 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8980)",SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R1; S18-R2; S18-R3; S18-R4; S18-R5; S18-R7.1–R7.6; S18-N1),,
-"Dark mode: page, toolbar, table; Totals switch to dark equivalents",SBR — Visual Conformance & Accessibility,Functional,Medium,"1. You are on the report with data showing, including at least one expanded rep (badges visible) and non-zero Inv. Hrs values.","1. Switch the application to dark mode.
+"Dark mode: page, toolbar, table; Totals switch to dark equivalents",SBR — Visual Conformance & Accessibility,Functional,Medium,"1. You are on the report with data showing, including at least one expanded rep (badges visible) and non-zero Labor Delta values.","1. Switch the application to dark mode.
 2. Look at the page, toolbar, header, body cells, and the grand Totals indicator.
-3. Read the status badges and the green/red Inv. Hrs values.
+3. Read the status badges and the green/red Labor Delta values.
 4. Download a PDF while in dark mode and open it.","1. The page, toolbar, header, body cells, and the grand Totals indicator switch to their dark equivalents.
 2. Status badges keep the same canonical payment-status color tokens and stay legible in both modes.
-3. Inv. Hrs green/red use the application's positive/negative tokens, mode-appropriate.
+3. Labor Delta green/red use the application's positive/negative tokens, mode-appropriate.
 4. PDFs always render in light-mode colors, even when downloaded from dark mode.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S18-R8), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S18-R8), both read on 17 August 2026. The column was renamed from ""Inv. Hrs"" to ""Labor Delta"" per SV-9071; only the name changed.
 
-AUTOMATION: READY
-",SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R8),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8635 (SBR spec v22 2026-08-17 S18-R8; heading renamed to Labor Delta per SV-9071),,
 Every icon-only control carries its specified accessible name,SBR — Visual Conformance & Accessibility,Accessibility,Medium,"1. You are on the report with at least one rep row; a screen reader or the browser's accessibility inspector is available.
 2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an ""Accessibility"" panel that shows the same names without you having to listen to anything.","1. Inspect the accessible name of: the ⋯ exports button, the column selector button, one rep row's chevron (collapsed, then expanded), and the header chevron.
 2. Open the staff deactivation dialog (Story 13 flow) and inspect its X close icon.","1. ⋯ exports = ""Report actions"".
@@ -1305,16 +1295,26 @@ Last checked against build v3.5-7168d14 on 8/6/2026.
 
 AUTOMATION: READY",SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R10),,
 The subdued grey of the (N) count and (Inactive) tag meets WCAG AA contrast,SBR — Visual Conformance & Accessibility,Accessibility,Medium,"1. You are on the report with a rep row showing a (N) count and - if arrangeable - an ""(Inactive)"" tag.","1. Read the subdued-grey (N) count and the ""(Inactive)"" tag in light mode, then switch to dark mode and read them again.
-2. Review how Inv. Hrs, the status badges, and the links convey their meaning.","1. In BOTH light mode and dark mode the subdued-grey (N) count and the ""(Inactive)"" tag are easy to read against the surface behind them - the smaller text does not fade into the background.
-2. No information is conveyed by color alone: Inv. Hrs carries its +/- sign, status badges carry their text label, and links carry a hover/focus underline.
+2. Review how Labor Delta, the status badges, and the links convey their meaning.","1. In BOTH light mode and dark mode the subdued-grey (N) count and the ""(Inactive)"" tag are easy to read against the surface behind them - the smaller text does not fade into the background.
+2. No information is conveyed by color alone: Labor Delta carries its +/- sign, status badges carry their text label, and links carry a hover/focus underline.
 3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can read the grey text easily in both modes, and only report it if you cannot. (The design rule behind this is WCAG AA contrast of at least 4.5:1, which the design and engineering team check with a contrast tool - not by hand.)
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S18-R11, S18-R12), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S18-R11, S18-R12), both read on 17 August 2026. The column was renamed from ""Inv. Hrs"" to ""Labor Delta"" per SV-9071; only the name changed.
 
-AUTOMATION: READY
-","SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R11; S18-R12 — subdued-grey (N) count and ""(Inactive)"" tag at ≥ 4.5:1 WCAG AA in both modes; nothing conveyed by colour alone; the ratio is a design-token property so the check is by-eye)",,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026","SV-8635 (SBR spec v22 2026-08-17 S18-R11,S18-R12; heading renamed to Labor Delta per SV-9071)",,
+Long column header labels wrap to two lines instead of being truncated,SBR — Visual Conformance & Accessibility,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. A report with several columns and long header labels is open (for example Sales By Representative, which has the most columns).","1. Read the column header row.
+2. Find a column whose label is longer than its column is wide (for example a two-word metric heading).
+3. Check whether that label is cut off or shown in full.","1. A column header label that is too long for its column width wraps onto a second line and is shown in full.
+2. The label is NOT truncated with an ellipsis (""..."") and is NOT cut off - the header row grows to two lines tall as needed so every heading is fully readable.
+3. Confirm live against the design/build: confirm live which headings actually wrap on each report and that the two-line header row stays aligned with the data columns beneath it.
+4. Note for the tester: this is the shared reporting-shell header treatment, so it applies on every report.
+
+---
+This is the expected behaviour as per epic SV-8582, the reporting-shell story SV-8593, and Chris Ward's design-review decisions of 17 August 2026 (the shell header wrapping). The Sales By Representative report specification version 22 does not name this visual treatment, so the exact styling is Loom-sourced and is marked for live confirmation above (read on 17 August 2026).
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8593 (SBR spec v22 2026-08-17; shell header wrapping per Chris Ward design review 2026-08-17; exact styling to confirm live),,
 "Sales Representative selector shows on WO and Part Sale, not on imported",SBR — Work Order Sales Rep,Functional,High,"1. You have: an open standard Work Order, an open Part Sale WO, an imported Work Order, and a way to view a WO in History mode.","1. Open the standard Work Order and look at the left panel.
 2. Open the Part Sale WO and look at the left panel.
 3. Open the imported Work Order and look for the same field.

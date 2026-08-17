@@ -37,24 +37,24 @@
       "2. The Work In Progress report is open with rows in at least two tabs."
     ],
     "steps": [
-      "1. Turn several optional columns on and off in different orders (for example, turn on Inv. Hrs, then VIN, then Location).",
+      "1. Turn several optional columns on and off in different orders (for example, turn on Labor Delta, then VIN, then Location).",
       "2. Read the resulting column order after each change.",
       "3. Switch to each of the other tabs and read their columns."
     ],
-    "expected": "1. Whatever columns are shown, they always appear in the fixed left-to-right order (WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total) — the order you toggled them in never changes their position.\n2. Total is always the last column.\n3. The column selection applies to every tab at once — all four tabs show the same set of columns.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S8-R5, S8-R6, S4-R1), read on 11 August 2026.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: READY",
+    "expected": "1. Whatever columns are shown, they always appear in the fixed left-to-right order (WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Adjustments, Labor Delta, Total) — the order you toggled them in never changes their position.\n2. Total is always the last column.\n3. The column selection applies to every tab at once — all four tabs show the same set of columns.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S4-R1; S8-R7), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
     "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R5; S8-R6; Story 4 S4-R1)",
+    "spec_ref": "SV-8664 (WIP spec v21 2026-08-17 S4-R1; S8-R7; renamed to Labor Delta per SV-9071)",
     "viu_status": "VIU-Pending",
     "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8664 (WIP spec v11 2026-08-10 Story 8 S8-R5; S8-R6; Story 4 S4-R1)",
+    "refs": "SV-8664 (WIP spec v21 2026-08-17 S4-R1; S8-R7; renamed to Labor Delta per SV-9071)",
     "testrail_id": "C30507",
     "section_id": 4359
   },
   {
     "id": "WIP-PERS-03",
     "area": "WIP — Column Selection & Persistence",
-    "title": "Remembers the date range, filter selections, location, columns",
+    "title": "Remembers the \"as of\" date, filter selections, location, columns",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -63,18 +63,18 @@
       "2. The Work In Progress report is open."
     ],
     "steps": [
-      "1. Change the date range, select an advisor, a customer, and an asset, change the location selection, change the column selection, and switch to a different tab.",
+      "1. Change the \"as of\" date, select an advisor, a customer, and an asset, change the location selection, change the column selection, and switch to a different tab.",
       "2. Navigate away to another screen, then return to the report.",
       "3. Reload the browser page and check again.",
       "4. If practical, open the report in a different browser (or private window) and read its settings."
     ],
-    "expected": "1. On return and after a reload, the report restores the saved date range, advisor selection, customer selection, asset selection, location selection, column selection, and active tab.\n2. In a different browser the report shows the defaults instead — the settings are saved per browser, not on the user's account.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S8-R7), read on 11 August 2026.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: READY",
+    "expected": "1. On return and after a reload, the report restores the saved \"as of\" date, advisor selection, customer selection, asset selection, location selection, column selection, and active tab.\n2. In a different browser the report shows the defaults instead — the settings are saved per browser, not on the user's account.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S8-R7), both read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
     "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R7; §3 Key Decisions (context note: per-browser persistence))",
+    "spec_ref": "SV-8664 (WIP spec v21 2026-08-17 S8-R7; report remembers the single as-of date per Chris 2026-08-13)",
     "viu_status": "VIU-Pending",
     "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8664 (WIP spec v11 2026-08-10 Story 8 S8-R7; §3 Key Decisions (context note: per-browser persistence))",
+    "refs": "SV-8664 (WIP spec v21 2026-08-17 S8-R7; report remembers the single as-of date per Chris 2026-08-13)",
     "testrail_id": "C30508",
     "section_id": 4359
   },
@@ -109,16 +109,20 @@
     "title": "A hand-made Location column choice is remembered like any other column",
     "priority": "High",
     "type": "Functional",
-    "preconditions": "1. You are signed in to the ShopView App on a desktop browser.\n2. You are signed in as a person who has access to more than one location.\n3. The Work In Progress report is open and the Location column is showing.",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. You are signed in as a person who has access to more than one location.",
+      "3. The Work In Progress report is open and the Location column is showing."
+    ],
     "steps": [
       "1. Open the column-selection control and switch the Location column OFF by hand.",
       "2. Go to another screen, then come back to the report.",
       "3. Reload the browser page and look again.",
       "4. Switch Location back ON by hand, then reload the page once more."
     ],
-    "expected": "1. After going away and coming back, Location is still switched OFF - your choice was remembered.\n2. After reloading the browser page, Location is still switched OFF.\n3. After switching it back ON and reloading, Location is switched ON.\n4. Everything else is remembered exactly as before - the other column choices, the date range, the filters and the tab you were on. Turning Location on or off changes nothing else.\n\nWhat you should see today: you cannot start this test, because the Location column is not listed in the column-selection control at all, so there is no switch to turn off in step 1. The column appears and disappears on its own depending on how many locations are selected in the Location filter. This is the same problem written up for the QA lead against the other Location tests.\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so this note can be removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S8-R7 - the report remembers the column selection in the user's browser, and S4-R3 - Location is one of the columns offered in that control for a person with access to more than one location), read on 11 August 2026. Chris Ward confirmed this same rule in his answers of 8/10/2026, in this file: build/report-suite/chris-answers-2026-08-10/ - his answer and the specification agree, so the earlier note saying the description contradicted itself no longer applies.\nLast checked against build v3.5-4795eee on 8/10/2026.\n\nAUTOMATION: HOLD - the build does not follow the ratified Location rule; the defect is written up in DEFECTS-FOR-PERMISSION.md and needs the QA lead's permission before a ticket exists to point at",
-    "refs": "SV-8664 (WIP spec v11 2026-08-10 Story 8 S8-R7 - the report remembers the column selection in the browser; Story 4 S4-R3 - Location is a column-selector column for a multi-location-access user)",
-    "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R7 - the report remembers the column selection in the browser; Location only became a switchable column in Chris Ward's answer T1-1 option C of 2026-08-05)",
+    "expected": "1. After going away and coming back, Location is still switched OFF - your choice was remembered.\n2. After reloading the browser page, Location is still switched OFF.\n3. After switching it back ON and reloading, Location is switched ON.\n4. Everything else is remembered exactly as before - the other column choices, the \"as of\" date, the filters and the tab you were on. Turning Location on or off changes nothing else.\n\nWhat you should see today: you cannot start this test, because the Location column is not listed in the column-selection control at all, so there is no switch to turn off in step 1. The column appears and disappears on its own depending on how many locations are selected in the Location filter. This is the same problem written up for the QA lead against the other Location tests.\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so this note can be removed.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S8-R7), both read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+    "refs": "SV-8664 (WIP spec v21 2026-08-17 S8-R7; per-column persistence remembers the as-of date)",
+    "spec_ref": "SV-8664 (WIP spec v21 2026-08-17 S8-R7; per-column persistence remembers the as-of date)",
     "testrail_id": "C43551",
     "section_id": 4359
   },
@@ -157,7 +161,7 @@
     "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
     "preconditions": [
       "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The report is open with a non-default column selection (for example, Inv. Hrs on and Advisor off), a chosen date range and location, and an advisor/customer/asset filter applied that hides some rows."
+      "2. The report is open with a non-default column selection (for example, Labor Delta on and Advisor off), a chosen \"as of\" date and location, and an advisor/customer/asset filter applied that hides some rows."
     ],
     "steps": [
       "1. Download the current tab as a CSV and open it.",
@@ -166,66 +170,66 @@
       "4. Compare its Totals row to the on-screen Totals row.",
       "5. Repeat the same checks in the PDF."
     ],
-    "expected": "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last. One exception on this build: if you turn Inv. Hrs on, the download is refused - that column cannot be exported yet.\n2. Both downloads honor the current date range and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.\n3. Both downloads include a Totals row matching the on-screen Totals row for the tab.\n4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to.\n5. Note for the tester: the file carries the Location column whenever it is showing on screen. In the file it is headed \"Branch\", not \"Location\".\nWhat you should see today: the download fails outright whenever the tab has any rows, so none of the checks below can be made from a real file; a tab with no rows does download, and that file does carry the right columns, the \"Locations:\" line and a Totals row. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8907\n· If you see exactly that, mark this test FAILED and do not raise anything new.\n· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nNote for the tester: the written description is inconsistent about one point here. One part of it says the Location column is offered in the column-selection control and can be switched on and off; another part says it is never in that list and simply appears by itself whenever more than one location is involved. For this report the two statements sit in the same written description as it stands today. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see and carry on. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R2, S9-R3, S9-R4, S9-R10a, S7-R13, S9-E1), read on 11 August 2026. Version 9 of that specification contradicted itself about whether the Location column can be switched on and off in the column-selection control, and this test used to say so. Chris Ward settled it in version 10 on 2026-08-06: S7-R13 now reads that the column is shown to anyone who can reach more than one location, appears by default, and can be toggled on or off from the column selector. The contradicting sentence has been removed from the written description, so there is no longer a question open on this point.\nLast checked against build v3.5-f77875c on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8907)",
+    "expected": "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last. One exception on this build: if you turn Labor Delta on, the download is refused - that column cannot be exported yet.\n2. Both downloads honor the current \"as of\" date and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.\n3. Both downloads include a Totals row matching the on-screen Totals row for the tab.\n4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to.\n5. Note for the tester: the file carries the Location column whenever it is showing on screen. In the file it is headed \"Branch\", not \"Location\".\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S9-R3; S9-R10a), both read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
     "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; the filters and the Totals row; S9-R10a = the \"Locations:\" line; S7-R13/S9-E1 = the automatic \"Branch\" column)",
+    "spec_ref": "SV-8665 (WIP spec v21 2026-08-17 S9-R3; S9-R10a; downloads honor the as-of date; heading renamed to Labor Delta per SV-9071)",
     "viu_status": "VIU-Pending",
     "notes": "LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 109 chars; meaning unchanged; awaiting push authorization. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S9-R10a (the \"Locations:\" line in both downloads) added — asserted in expected 4. | 2026-08-03 verifier-fix [A/V-3]: The verifier asked for WIP S7-R13. Re-derived: the anchor that governs the export \"Locations:\" line is S9-R10a, which this case ALREADY cited - so the V-3 row was already half-satisfied. S7-R13 + S9-E1 are added because they govern the automatic Location column and its \"Branch\" export heading, which expected 1 needed a conditional for. Plain tester line added. RULE 41: Re-verified whole against WIP spec v6 2026-07-29: title, preconditions 1-2, steps 1-5, expected 1-4, refs, notes. S9-R2/R3/R4 and S9-R10a all resolve and match expected 1-4. SECOND FINDING (and a correction to the verifier): S7-R13 (L348) is the ON-SCREEN auto-visibility rule; the EXPORT rule is S9-R10a (L414) plus the \"Branch\" heading S9-E1 (L420). Expected 1's \"only the columns currently shown\" collided with the automatic Branch column — plain conditional line added. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8665 (WIP spec v11 2026-08-10 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; filters and Totals row; S9-R10a = the \"Locations:\" line; S7-R13 rewritten in v10; resolving the v9 contradiction)",
+    "refs": "SV-8665 (WIP spec v21 2026-08-17 S9-R3; S9-R10a; downloads honor the as-of date; heading renamed to Labor Delta per SV-9071)",
     "testrail_id": "C30511",
     "section_id": 4360
   },
   {
     "id": "WIP-EXP-03",
     "area": "WIP — Exports",
-    "title": "Downloaded money and Inv. Hrs values keep the on-screen formats",
+    "title": "Downloaded money and Labor Delta values keep the on-screen formats",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
     "preconditions": [
       "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The current tab includes money values over $1,000 and, if producible, a negative value; the Inv. Hrs column is on."
+      "2. The current tab includes money values over $1,000 and, if producible, a negative value; the Labor Delta column is on."
     ],
     "steps": [
       "1. Download the current tab as a CSV and open it in a plain-text editor.",
       "2. Read a money value over one thousand dollars and check its quoting.",
       "3. Read a money value under one thousand dollars and check it is unquoted.",
-      "4. Read the Inv. Hrs values.",
+      "4. Read the Labor Delta values.",
       "5. Repeat the format checks in the PDF."
     ],
-    "expected": "1. Money values use the same \"$1,234.56\" / \"-$1,234.56\" format as on screen; Inv. Hrs uses the same signed one-decimal format.\n2. In the CSV, a money value containing a comma (a thousands separator) is enclosed in double-quotes per standard CSV rules.\n3. A value without a comma is written unquoted.\nWhat you should see today: Nothing downloads. Both Download (PDF) and Download (CSV) fail on every tab that has any work orders in it - no file arrives and a red message appears reading \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\" All four tabs behave the same way (Approved - Partially Completed, Approved - Not Started, Completed and Estimates). The one case that DOES produce a file is a tab with no rows at all, and that file holds nothing but its two heading lines and a zero Totals row. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8907\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R5, S9-R6), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8907)",
+    "expected": "1. Money values use the same \"$1,234.56\" / \"-$1,234.56\" format as on screen; Labor Delta uses the same signed one-decimal format.\n2. In the CSV, a money value containing a comma (a thousands separator) is enclosed in double-quotes per standard CSV rules.\n3. A value without a comma is written unquoted.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S9-R5, S9-R6), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
     "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R5; S9-R6)",
+    "spec_ref": "SV-8665 (WIP spec v21 2026-08-17 S9-R5,S9-R6; heading renamed to Labor Delta per SV-9071)",
     "viu_status": "VIU-Pending",
     "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8665 (WIP spec v11 2026-08-10 Story 9 S9-R5; S9-R6)",
+    "refs": "SV-8665 (WIP spec v21 2026-08-17 S9-R5,S9-R6; heading renamed to Labor Delta per SV-9071)",
     "testrail_id": "C30512",
     "section_id": 4360
   },
   {
     "id": "WIP-EXP-04",
     "area": "WIP — Exports",
-    "title": "Inv. Hrs green/red coloring appears on screen and in the PDF; not the CSV",
+    "title": "Labor Delta green/red coloring appears on screen and in the PDF; not the CSV",
     "priority": "Medium",
     "type": "Functional",
     "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
     "preconditions": [
       "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The Inv. Hrs column is on and the current tab includes positive and negative Inv. Hrs values."
+      "2. The Labor Delta column is on and the current tab includes positive and negative Labor Delta values."
     ],
     "steps": [
-      "1. Download the current tab as a PDF and look at the Inv. Hrs values' coloring.",
-      "2. Download the current tab as a CSV and inspect the Inv. Hrs values."
+      "1. Download the current tab as a PDF and look at the Labor Delta values' coloring.",
+      "2. Download the current tab as a CSV and inspect the Labor Delta values."
     ],
-    "expected": "1. In the PDF, Inv. Hrs keeps the green (positive) / red (negative) coloring.\n2. In the CSV, the Inv. Hrs column is monochrome — plain signed numbers with no color or markup.\nWhat you should see today: Nothing downloads. Both Download (PDF) and Download (CSV) fail on every tab that has any work orders in it - no file arrives and a red message appears reading \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\" All four tabs behave the same way (Approved - Partially Completed, Approved - Not Started, Completed and Estimates). The one case that DOES produce a file is a tab with no rows at all, and that file holds nothing but its two heading lines and a zero Totals row. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8907\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R7), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8907)",
+    "expected": "1. In the PDF, Labor Delta keeps the green (positive) / red (negative) coloring.\n2. In the CSV, the Labor Delta column is monochrome — plain signed numbers with no color or markup.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S9-R7), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
     "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R7)",
+    "spec_ref": "SV-8665 (WIP spec v21 2026-08-17 S9-R7; heading renamed to Labor Delta per SV-9071)",
     "viu_status": "VIU-Pending",
     "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8665 (WIP spec v11 2026-08-10 Story 9 S9-R7)",
+    "refs": "SV-8665 (WIP spec v21 2026-08-17 S9-R7; heading renamed to Labor Delta per SV-9071)",
     "testrail_id": "C30513",
     "section_id": 4360
   },
@@ -366,21 +370,47 @@
     "type": "Negative",
     "permissions_required": "A user with access to the Work In Progress reports permission.",
     "preconditions": [
-      "1. A filter combination exists whose work-order rows on one tab exceed 10,000 (widest date range, all locations, no advisor/customer/asset narrowing). If the environment cannot reach 10,000 rows even fully widened, record the maximum reachable and mark the case Blocked-Env with that reason."
+      "1. A filter combination exists whose work-order rows on one tab exceed 10,000 (widest as-of scope, all locations, no advisor/customer/asset narrowing). If the environment cannot reach 10,000 rows even fully widened, record the maximum reachable and mark the case Blocked-Env with that reason."
     ],
     "steps": [
       "1. With the over-cap filter set, download the tab as a CSV.",
       "2. Download the same tab as a PDF.",
       "3. Narrow the filters below the cap and download once more."
     ],
-    "expected": "1. For both the CSV and the PDF: no file is generated and no download starts.\n2. An error toast is shown each time, reading exactly: \"This report is too large to export. Narrow the date range or filters, then try again.\" (dismissed by the user).\n3. Below the cap the download works normally.\n4. Note for the tester: on this environment the biggest single tab holds about 114 work orders, so you cannot make this message appear here. Record that and move on.\nWhy this test cannot be run here: the download has to be over the size limit before this message can appear, and no tab on this environment comes anywhere near it. On top of that, the Work In Progress download currently fails whenever the tab you are on has any rows in it at all - no file arrives and an error appears - which is a separate problem already reported here: https://shopview.atlassian.net/browse/SV-8907. So there is no way to reach the state this test is about. Leave the test as it is and move on.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Work In Progress report specification version 11 (S9-R11, the one under Edge Cases), read on 11 August 2026, which now states this row limit and its exact message in the specification itself. Until 2026-08-06 the specification was silent on it and the expectation rested on Chris Ward's answer of 2026-07-31 that the limit applies to all six reports; his written description now says the same, so there is no longer any difference between the two.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: HOLD - the over-size refusal cannot be produced on this environment; no tab comes near the size limit",
+    "expected": "1. For both the CSV and the PDF: no file is generated and no download starts.\n2. An error toast is shown each time, reading exactly: \"This report is too large to export. Narrow the filters, then try again.\" (dismissed by the user).\n3. Below the cap the download works normally.\n4. Note for the tester: on this environment the biggest single tab holds about 114 work orders, so you cannot make this message appear here. Record that and move on.\nWhy this test cannot be run here: the download has to be over the size limit before this message can appear, and no tab on this environment comes anywhere near it. On top of that, the Work In Progress download currently fails whenever the tab you are on has any rows in it at all - no file arrives and an error appears - which is a separate problem already reported here: https://shopview.atlassian.net/browse/SV-8907. So there is no way to reach the state this test is about. Leave the test as it is and move on.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S9-R11), both read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
     "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8665 (WIP spec Story 9 — the 10; 000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line; his spec edit is pending)",
+    "spec_ref": "SV-8665 (WIP spec v21 2026-08-17 S9-R11; export size-cap message drops the date-range clause on this report per Chris 2026-08-13)",
     "viu_status": "VIU-Pending",
     "notes": "NEW 2026-07-31. Q3 RULED 2026-07-31 (Chris Ward answer, option A, verbatim: \"this was not well thought out by me (the specs were written at different times)\"): the 10,000-row export cap applies to all six reports, including the three whose spec pages never mentioned it. Parts Velocity (PV-EXP-11 = C38885) and Technician Utilization (TU-EXP-09 = C38887) already had a cap case from the tech-plan pass; Work In Progress had none. The message is the one ruled suite-wide by his Q2 answer. The exact cap counting basis for a per-tab WIP download is not spelled out in the spec — confirm it live at VIU. Not live-verified (Rule 12). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
     "api_related": false,
-    "refs": "SV-8665 (WIP spec v11 2026-08-10 S9-R11 under Edge Cases — the 10;000-row export cap and its verbatim message are now IN the WIP spec; previously spec-silent and sourced from Chris Ward answer 2026-07-31 Q3=A; his spec edit is DONE)",
+    "refs": "SV-8665 (WIP spec v21 2026-08-17 S9-R11; export size-cap message drops the date-range clause on this report per Chris 2026-08-13)",
     "testrail_id": "C38918",
+    "section_id": 4360
+  },
+  {
+    "id": "WIP-EXP-11",
+    "area": "WIP — Exports",
+    "title": "CSV export repeats the PDF header's as-of date and Locations lines",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "the ordinary reports access (Reports section View).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Work In Progress report is open with at least one filter narrowed (for example a chosen date/scope and one or more locations) so the PDF header would show more than one filter line."
+    ],
+    "steps": [
+      "1. Download the report as a PDF and read the filter-summary lines in its header area.",
+      "2. Download the report as a CSV and open it in a plain text editor or spreadsheet.",
+      "3. Compare the leading rows of the CSV (above the column-header row) with the PDF header lines."
+    ],
+    "expected": "1. The CSV carries the same filter-summary lines as the PDF header - the \"as of\" date, the active tab and the Advisor / Customer / Asset selections when narrowed, and the \"Locations:\" line - each as a leading metadata row above the column-header row.\n2. The lines appear verbatim (the same wording) and in the same order as in the PDF header.\n3. A CSV saved or forwarded later is never ambiguous about which filters produced it: every filter the PDF header names is present in the CSV.\n4. Note for the tester: this is the suite-wide rule that the CSV must name the same filters as the PDF. If your report shows no narrowed filters, widen or narrow one so at least one filter line appears, then compare again.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S9-R10b), both read on 17 August 2026. S9-R10b is the suite-wide rule (added 2026-08-12, SV-9283) that the CSV carries every filter-summary line the PDF header names.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+    "design_ref": "",
+    "spec_ref": "SV-8665 (WIP spec v21 2026-08-17 S9-R10b; suite-wide CSV filter-summary rule SV-9283)",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false,
+    "refs": "SV-8665 (WIP spec v21 2026-08-17 S9-R10b; suite-wide CSV filter-summary rule SV-9283)",
+    "testrail_id": "C43836",
     "section_id": 4360
   }
 ]

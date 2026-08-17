@@ -18,3 +18,19 @@ INTENT 2026-08-17T20:25:30.193538Z add_case sec=4326 SUITE-VIS-HDR-01
 INTENT 2026-08-17T20:25:31.960028Z add_case sec=4303 SUITE-VIS-GRP-01
   OK C43840 SUITE-VIS-GRP-01 verified 6 fields byte-identical atm=1
 # CREATED 9: [43832, 43833, 43834, 43835, 43836, 43837, 43838, 43839, 43840]
+# VIU-word removal from 3 visual cases (import must be VIU-word-free) 2026-08-17T20:39:10.077141Z
+INTENT 2026-08-17T20:39:10.916237Z update_case C43838 fields=['custom_expected', 'custom_preconds', 'custom_steps', 'refs', 'title']
+  OK C43838 HTTP 200 verified ['custom_expected', 'custom_preconds', 'custom_steps', 'refs', 'title'] byte-identical; untouched fields == snapshot; atm=1
+INTENT 2026-08-17T20:39:12.644473Z update_case C43839 fields=['custom_expected', 'custom_preconds', 'custom_steps', 'refs', 'title']
+  OK C43839 HTTP 200 verified ['custom_expected', 'custom_preconds', 'custom_steps', 'refs', 'title'] byte-identical; untouched fields == snapshot; atm=1
+INTENT 2026-08-17T20:39:15.700195Z update_case C43840 fields=['custom_expected', 'custom_preconds', 'custom_steps', 'refs', 'title']
+  OK C43840 HTTP 200 verified ['custom_expected', 'custom_preconds', 'custom_steps', 'refs', 'title'] byte-identical; untouched fields == snapshot; atm=1
+# DONE viu-fix [43838,43839,43840]
+# refs VIU-word removal on 3 visual cases 2026-08-17T20:40:23.283067Z
+INTENT 2026-08-17T20:40:24.319373Z update_case C43838 fields=['custom_expected', 'custom_preconds', 'custom_steps', 'refs', 'title']
+  OK C43838 HTTP 200 verified ['custom_expected', 'custom_preconds', 'custom_steps', 'refs', 'title'] byte-identical; untouched fields == snapshot; atm=1
+INTENT 2026-08-17T20:40:26.836770Z update_case C43839 fields=['custom_expected', 'custom_preconds', 'custom_steps', 'refs', 'title']
+  OK C43839 HTTP 200 verified ['custom_expected', 'custom_preconds', 'custom_steps', 'refs', 'title'] byte-identical; untouched fields == snapshot; atm=1
+INTENT 2026-08-17T20:40:29.042393Z update_case C43840 fields=['custom_expected', 'custom_preconds', 'custom_steps', 'refs', 'title']
+  OK C43840 HTTP 200 verified ['custom_expected', 'custom_preconds', 'custom_steps', 'refs', 'title'] byte-identical; untouched fields == snapshot; atm=1
+# DONE refs-fix

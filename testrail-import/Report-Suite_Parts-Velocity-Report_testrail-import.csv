@@ -829,6 +829,18 @@ This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and 
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8818)",SV-8646 (PV spec v4 2026-07-29 Story 6 exports — the spec is silent on a renderer size limit; tech-plan-2026-07-29 A3/FR-F4 covers only the ten-thousand-row export cap),,
+CSV export repeats the PDF header's date range and Locations filter lines,PV — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Parts Velocity report is open with at least one filter narrowed (for example a chosen date/scope and one or more locations) so the PDF header would show more than one filter line.","1. Download the report as a PDF and read the filter-summary lines in its header area.
+2. Download the report as a CSV and open it in a plain text editor or spreadsheet.
+3. Compare the leading rows of the CSV (above the column-header row) with the PDF header lines.","1. The CSV carries the same filter-summary lines as the PDF header - the date range and the ""Locations:"" line, plus any report-specific filter lines the PDF header names - each as a leading metadata row above the column-header row.
+2. The lines appear verbatim (the same wording) and in the same order as in the PDF header.
+3. A CSV saved or forwarded later is never ambiguous about which filters produced it: every filter the PDF header names is present in the CSV.
+4. Note for the tester: this is the suite-wide rule that the CSV must name the same filters as the PDF. If your report shows no narrowed filters, widen or narrow one so at least one filter line appears, then compare again.
+
+---
+This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 10 (S6-R11a), both read on 17 August 2026. S6-R11a is the suite-wide rule (added 2026-08-12, SV-9283) that the CSV carries every filter-summary line the PDF header names.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8646 (PV spec v10 2026-08-17 S6-R11a; suite-wide CSV filter-summary rule SV-9283),,
 The report uses the standard two-tone layout,PV — Visual Conformance,Functional,Low,"1. You are on the Parts Velocity report with data loaded, in light mode.","1. Look at the page background, the toolbar, and the table surfaces.
 2. Look at the card corners and the table's horizontal extent.","1. White card surfaces (toolbar + table cells) sit on the standard soft blue-grey page background (the application's two-tone report theme).
 2. There is NO card border-radius - the table runs edge to edge.
