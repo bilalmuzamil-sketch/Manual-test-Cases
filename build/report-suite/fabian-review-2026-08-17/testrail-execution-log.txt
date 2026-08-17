@@ -37,3 +37,7 @@ INTENT 2026-08-17T19:35:28.957885Z add_case sec=4315 SBR-ADJ-03 title='Every row
 INTENT 2026-08-17T19:35:30.660107Z add_case sec=4320 SBR-ADJ-04 title='The eight toggleable metric columns include Adjustments'
   OK C43831 SBR-ADJ-04 HTTP 200 verified 6 fields byte-identical atmstatus=1
 CREATED 4 cases
+SNAPSHOT 2026-08-17T19:38:49.821519Z C30493 atmstatus=1 sec=4356
+INTENT 2026-08-17T19:38:49.821724Z update_case C30493 custom_expected(estimate-verbatim+divergence-note) refs(v21)
+  OK C30493 HTTP 200 verified: custom_expected+refs updated; preconds/steps/title/section/atmstatus byte-identical to snapshot
+  mirrored local build/report-suite/cases/cases-wip-C-summary-totals-filters.json
