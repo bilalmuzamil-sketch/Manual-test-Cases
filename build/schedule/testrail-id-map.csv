@@ -4,7 +4,7 @@ SCH-NAV-03,29927,Day / Week / Month segmented control switches the grid between 
 SCH-NAV-04,29928,Grid rows are grouped by department under group headers,Navigation and Layout,"SV-8686 (§3.2,§14.4)"
 SCH-NAV-05,29929,Collapsing a department header hides its technician rows,Navigation and Layout,SV-8686 (§3.2)
 SCH-NAV-06,29930,No Tech/Dept toggle - department grouping is the only grid grouping,Navigation and Layout,SV-8686 (§3.2)
-SCH-NAV-07,29931,"An Unassigned row sits inside the grid, not in a separate tray",Navigation and Layout,"SV-8686 (§3.2,§4.2)"
+SCH-NAV-07,29931,"An Unassigned row sits inside the grid, not in a separate tray",Navigation and Layout,SV-8686; SV-9234 (§3.2; §4.2; §4.4; §8.1 unassigned lane)
 SCH-NAV-08,43554,Schedule opens on Day view the first time you open it from the navigation,Navigation and Layout,SV-8863 (SV-8686 acceptance criterion - grid displays with day view as default)
 SCH-MCAL-01,29932,Clicking a date in the mini calendar navigates the main grid to that date,Sidebar - Mini Calendar,"SV-8687 (§3.1,§5.2)"
 SCH-MCAL-02,29933,Mini calendar month/year picker has month buttons and year arrows,Sidebar - Mini Calendar,SV-8687 (§5.2)
@@ -120,7 +120,7 @@ SCH-VIEW-06,30047,Business Hours toggle shades non-working hours in day view,Fil
 SCH-VIEW-09,30050,Tech Hours toggle displays each technician's working hours next to their name,Filter and Display and View Options,SV-8700 (§9 (Tech Hours))
 SCH-VIEW-10,30051,'Show Saturday' and 'Show Sunday' include or exclude the weekend columns,Filter and Display and View Options,"SV-8700 (§9 (Saturday,Sunday),§3.2 (Week view))"
 SCH-REAS-01,30052,"Dragging a shift to another technician row reassigns it, with a confirm modal",Reassignment and Context Menu,"SV-8695 (§7 (Shift reassignment),§12)"
-SCH-REAS-03,30054,Left-click empty grid space opens a menu: Create Event and New Work Order,Reassignment and Context Menu,"SV-8700 (§7 (left-click menu on empty grid space; View Day and New Shift removed),§14.1 (creation via the cell menu))"
+SCH-REAS-03,30054,Left-click empty grid space opens a menu: Create Event and New Work Order,Reassignment and Context Menu,SV-8700; SV-9242 (§7; §4.10; §14.1 empty-cell menu)
 SCH-REAS-06,38855,'New Work Order' in the cell menu points the user to the Work Orders tab,Reassignment and Context Menu,SV-8700 (§7 / §4.10 New Work Order cell-menu shortcut)
 SCH-REAS-07,43556,Week view: a shift that is part of a repeating series can be reassigned,Reassignment and Context Menu,SV-8867 (§7 shift reassignment + §12 series is a grouping over ordinary shifts)
 SCH-DEL-01,30057,Deleting a middle shift of a series offers all three scope options,"Deletion, Series Scopes and Undo",SV-8692 (§7 (Series-aware deletion))
@@ -175,3 +175,22 @@ SCH-API-01,38872,API - Schedule reads need View; writes need Edit; deletes need 
 SCH-API-02,38873,API - Series past 8 weeks returns 409 until acknowledged; over 120 shifts 422,API — Schedule,SV-8691 (§4.5 + tech-plan D8 error cases)
 SCH-API-03,38874,API - No pricing fields in Schedule responses; WO details need Work Orders View,API — Schedule,"SV-8685 [epic - cross-cutting,no single-story owner] (§14 + tech-plan D6/NFR-002 no pricing)"
 SCH-API-04,38875,"API - A shift from another location returns 404, not another shop's data",API — Schedule,"SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan NFR-001 location scoping)"
+SCH-START-09,43795,A day's hours resolve tech then shop then a 7am-7pm default used everywhere,Shift Start Times and Unassigned Shifts,SV-9231 (§4.2;§8.1)
+SCH-DND-10,43796,A shift is sized by remaining hours: estimate minus hours already clocked,Drag-and-Drop Scheduling,SV-9232 (§4.2;§12)
+SCH-DND-11,43797,Below 0.25h left you are told nothing remains; shifts never resize later,Drag-and-Drop Scheduling,SV-9232 (§4.2;§12)
+SCH-CONF-08,43798,One hours source per shift; neither set means no hours conflict; Adjust clamps,Conflict Detection,SV-9233 (§4.2;§4.11)
+SCH-UNAS-01,43799,Dropping a work order on a department header row parks it as one shift,Shift Start Times and Unassigned Shifts,SV-9234 (§3.2;§4.2;§4.4;§8.1)
+SCH-UNAS-02,43800,"An unassigned block is a fixed-width chip, excluded from capacity and conflicts",Shift Start Times and Unassigned Shifts,SV-9234 (§3.2;§4.2;§4.4;§8.1)
+SCH-UNAS-03,43801,"Assigning a parked shift to a technician, spreading it if it will not fit",Shift Start Times and Unassigned Shifts,SV-9235 (§4.2;§12)
+SCH-SPREAD-12,43802,"Spread selector: six options with resolved hours, and a new Today only",Multi-Day Spread Scheduling,SV-9236 (§4.5)
+SCH-SPREAD-13,43803,When the scope fits one day the spread hides the selector for an Hours field,Multi-Day Spread Scheduling,SV-9237 (§4.5)
+SCH-SPREAD-14,43804,Spread: Until a date and Specific hours derive each other; summary label,Multi-Day Spread Scheduling,SV-9237 (§4.5)
+SCH-SPREAD-15,43805,Spread skips weekends only; Undo removes the whole generated series,Multi-Day Spread Scheduling,SV-9238 (§4.5;§7;§12)
+SCH-WOL-07,43806,Work order card shows the vehicle and clocked hours; vehicle joins the search,Sidebar - Work Order List and Search,SV-9239 (§3.1;§6;§8.1)
+SCH-WOL-08,43807,Hovering a work order card opens a read-only peek panel of its lines,Sidebar - Work Order List and Search,SV-9239 (§3.1;§6;§8.1)
+SCH-MODAL-09,43808,"Shift modal shows Time Logged (actual vs estimate) per line, not only rolled up",Shift Detail Modal,SV-9240 (§4.9)
+SCH-MODAL-10,43809,"Shift modal: start, end and hours typed to the minute resolve each other",Shift Detail Modal,SV-9240 (§4.9)
+SCH-CAP-05,43810,Clicking a capacity bar opens a per-technician detail modal; tooltip truncates,Capacity Bars,SV-9241 (§4.12)
+SCH-REAS-08,43811,The empty-cell menu's first item Assign work order schedules an existing order,Reassignment and Context Menu,SV-9242 (§7;§4.10;§14.1)
+SCH-DAY-08,43812,Day view has a zoom control (pixels per hour); blocks and now line rescale,Day View Timeline,SV-9244 (§3.2;§4.6;§4.8;§6)
+SCH-DAY-09,43813,A block clipped by the visible day-view edge shows a continuation chevron,Day View Timeline,SV-9244 (§3.2;§4.6;§4.8;§6)
