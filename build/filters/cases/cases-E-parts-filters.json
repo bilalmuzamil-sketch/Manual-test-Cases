@@ -1,326 +1,326 @@
 [
-  {
-    "id": "FLT-PARTS-01",
-    "area": "Parts Page Filters",
-    "title": "Every Parts list page shows its designed filter buttons",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Any signed-in user with access to the Parts pages. The filter buttons and their choices are the same for every user - a person's role does not change them.",
-    "preconditions": "1. You are signed in to the ShopView App on a desktop browser.\n2. You are on the Parts area of the app with some sample data present.",
-    "steps": "1. Open the Parts area and go to the Inventory page, and look at the filter buttons shown above the table.\n2. Go to the Part Sales page and look at the filter buttons.\n3. Go to the Catalog page and look at the filter buttons.\n4. Go to the Returns page, make sure the Returns tab is selected, and look at the filter buttons.\n5. Select the Credits tab on the same page and look at the filter buttons.\n6. Go to the Purchase Orders page and look at the filter buttons.\n7. Go to the Vendor Invoices page and look at the filter buttons.\n8. Go to the Vendors list page and look at the filter buttons.\n9. On any one of these pages, look at the small icons on the right-hand side of the toolbar.\n10. On each page above, open one of its filter buttons, look at the list of choices inside it, and pick a value to check the list changes.",
-    "expected": "1. Inventory shows four filter buttons: Bin Location, Category, Supply and Vendor.\n2. Part Sales shows four filter buttons: Status, Customer, Created by and Date.\n3. Catalog shows two filter buttons: Manufacturer and Category.\n4. The Returns tab shows three filter buttons: Vendor, Category and Part Type.\n5. The Credits tab shows three filter buttons: Vendor, Date and Processed by.\n6. Purchase Orders shows four filter buttons: Vendor, Status, Date and Ordered by.\n7. Vendor Invoices shows four filter buttons: Vendor, Invoice date, Date received and Received by.\n8. The Vendors list page shows two filter buttons: Vendor and State/Province.\n9. On every page above, each filter button shows a small icon, the filter name and a down arrow.\n10. Every Parts list page also shows a Search (magnifier) icon and a filter icon in the toolbar; some pages (for example Inventory) also show a column/layout toggle icon.\n11. Every filter button shown above is a working filter on that page - none of them is display-only.\n12. The choices inside each filter come from your own shop's data (for example your real vendors or categories), so there is no fixed list to compare against - check that the choices you see match the data in your shop.\n13. Still to check on the live build: what the filter icon and the column/layout icon do (the written description does not cover the toolbar icons).\n\n14. Not built yet on the build tested: a filter bar exists on Inventory, Part Sales, Catalog and Returns, but Purchase Orders, Vendor Invoices and Vendors have no filter bar at all. If the filter bar is missing on the view you are testing, mark this test BLOCKED - do not mark it failed.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 11 August 2026, the designs, read on 11 August 2026, and the product owner's answers named below. The Filters specification at Confluence version 19 (published 6 August 2026) has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-08-04/answers-ingested.md), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.\n\nAUTOMATION: HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do\n",
-    "design_ref": "design-notes.md B.5 #1-#9 + B.5 shared shell (11894:21846; 11902:8517; 11902:9736; 11902:9852; 11903:10067; 11903:10188; 11903:10312; 11903:10461)",
-    "spec_ref": "SV-8785 [epic] (spec v1.6 §2 Parts Filters; §4 context-specific filter sets + multi-select); Branko answers 2026-07-31 Q2/Q3/Q5/Q7 + 2026-08-04 Q3 (Vendors design exists Figma 11903-10461) + Q8 (Part Sales chips); Figma 11884-16885",
-    "viu_status": "VIU-Pending",
-    "notes": "MERGE SURVIVOR 2026-07-31 — MG14-PARTS-CHIP-MATRIX (Rule-28 audit, user-authorized partial execution). Absorbed FLT-PARTS-02/03/04/05/06/07/08/10 (all design-level, blank C-ids, so LOCAL-ONLY — no TestRail delete was needed). One Parts walk with a per-view checklist of the designed filter buttons instead of nine near-identical presence cases. Per the audit, the per-view TABLE COLUMN lists and 'New ...' button assertions were demoted to reference notes (they are outside the Filters scope): Inventory — Description, Part number, Tags, Category, Manufacturer, Vendor, Bin Location / Quantity, Action (+ New Inventory Part); Part Sales — Number, Status, Customer, Asset, VIN/Serial #, Created By, Total Price, Created On, Parts, Returns (+ New Part Sale); Catalog — checkbox, Description, Part Number, Tags, Category (+ New Catalog Part); Returns — Work Order, Vendor Invoice, Vendor, Part Number, Description, Quantity, Cost, Total Cost, Return Reason, Status, Requested (+ Create Return); Credits — Credit Memo Number, Vendor, Work Order, Vendor Invoice, Date, Processed By, Total Cost, Notes (+ Create Credit); Purchase Orders — Work Order, Purchase Order Number, Vendor, Order Status, Created On, Ordered By, Total Price, Note (+ New Purchase Order); Vendor Invoices — Work Order, Invoice Number, Order Number, Received By, Vendor Name, Date Received, Invoice Date, Due Date, Total Cost, Note (NO New button); Vendors — Name, Telephone, Email, Address 1, Address 2, City, State/Province, Zip/Postal Code (+ New Vendor). VENDORS CONFLICT CARRIED OVER from FLT-PARTS-08 (Questions Q6 / tech-plan deltas C7): engineering found NO Figma frame for the Parts Vendors view (they read frame 11903:10461 as Vendor Invoices, not a Vendors typo) and will NOT build Vendors filters until a design is delivered — hold that line against the requested design + PRD. Part Type menu contents stay with FLT-PARTS-09; apply/multi-select behaviour stays with FLT-PARTS-11 / FLT-PARTS-12. | RESOLVED 2026-07-31 - Branko's answers (Parts/Reports sheet) + live spec v1.6 (Confluence page 572030978 version 12, 2026-07-28): the PRD update landed; Parts/Reports filters are confirmed in scope with full Work-Orders parity. Still NOT live-verified (no QA branch) - viu_status stays VIU-Pending. SENSE REPAIR 2026-07-31 (Rule-28 Stage 2b): step 10 added because expected 11 and 12 assert behaviour (every shown button really filters; the choices come from the shop's data) that steps 1-9 never drove. This is the ALL-EIGHT-VIEWS check and deliberately does NOT duplicate FLT-PARTS-11, which is the single-page apply-behaviour case. | VENDORS CONFLICT RESOLVED 2026-08-04 - Branko answered the tech-plan sheet Q3 \"Disign for vendors exists in figma. Check it\". We checked: node 11903:10461 rendered at design-2026-07-31/frames/Parts-Explorations-20.4.2026__Vendors__11903-10461.png is UNAMBIGUOUSLY the Vendors page - page title \"Vendors\", the Vendors item highlighted in the left nav BELOW a separate \"Vendor Invoices\" item, a \"New Vendor\" button, columns Name/Telephone/Email/Address/City/State-Province/Zip, and exactly two filter chips: Vendor and State/Province. So the engineering reading recorded above (that this frame is Vendor Invoices) is WRONG, and the PRD v1.6 §2 already lists Vendors among the Parts views that get a filter bar. The tester-facing hedge (\"the developers have not been given a design ... write down what you actually see instead of failing the whole test\") is REMOVED: its premise is false and under Rule 45 it was a false all-clear that would have let a genuinely missing Vendors filter bar pass. HONEST CONSEQUENCE: this case will now legitimately FAIL if the build has not shipped the Vendors filter bar - which is the correct outcome, not a defect in the case.",
-    "api_related": false,
-    "refs": "SV-8785 [epic] (spec v19 §2 Parts Filters; §4 context-specific filter sets + multi-select); Branko answers 2026-07-31 Q2/Q3/Q5/Q7 + 2026-08-04 Q3 (Vendors design exists Figma 11903-10461) + Q8 (Part Sales chips); Figma 11884-16885",
-    "section_id": 5411,
-    "testrail_id": "C38904"
-  },
-  {
-    "id": "FLT-PARTS-02",
-    "area": "Parts Page Filters",
-    "title": "Parts Part Sales page shows Status, Customer, Created by and Date filters",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. You are on the Parts area of the app with some sample data present."
-    ],
-    "steps": [
-      "1. Open the Parts area and go to the Part Sales page.",
-      "2. Look at the filter buttons shown above the part sales table."
-    ],
-    "expected": [
-      "1. The Part Sales page shows four filter buttons: Status, Customer, Created by and Date.",
-      "2. The table shows the columns: Number, Status, Customer, Asset, VIN/Serial #, Created By, Total Price, Created On, Parts and Returns.",
-      "3. A blue New Part Sale button is shown at the top right."
-    ],
-    "design_ref": "design-notes.md B.5 #2 (11902:8517)",
-    "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #2",
-    "viu_status": "Retired — merged into FLT-PARTS-01 (MG14 presence-matrix consolidation, user-authorized 2026-07-31)",
-    "notes": "RETIRED 2026-07-31 (user-authorized partial execution of the 2026-07-31 Ruthless Usefulness Audit, group MG14-PARTS-CHIP-MATRIX): this case's filter-button checks are folded into the FLT-PARTS-01 per-view checklist; table-column / New-button assertions demoted to reference notes there. NEVER PUSHED TO TESTRAIL (blank C-id), so no delete_case was required — LOCAL-ONLY retirement. Pre-edit body preserved in build/filters/consolidation-backup-2026-07-31/pre-edit-bodies/FLT-PARTS-02.json. EXCLUDED from active deliverables + tally; body kept for the record. | Design-only (chip + column presence). Option lists and apply behaviour pending Branko's PRD.",
-    "api_related": false
-  },
-  {
-    "id": "FLT-PARTS-03",
-    "area": "Parts Page Filters",
-    "title": "Parts Catalog page shows Manufacturer and Category filters",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. You are on the Parts area of the app with some sample data present."
-    ],
-    "steps": [
-      "1. Open the Parts area and go to the Catalog page.",
-      "2. Look at the filter buttons shown above the catalog table."
-    ],
-    "expected": [
-      "1. The Catalog page shows two filter buttons: Manufacturer and Category.",
-      "2. The table shows the columns: (row checkbox), Description, Part Number, Tags and Category.",
-      "3. A blue New Catalog Part button is shown at the top right."
-    ],
-    "design_ref": "design-notes.md B.5 #3 (11902:9736)",
-    "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #3",
-    "viu_status": "Retired — merged into FLT-PARTS-01 (MG14 presence-matrix consolidation, user-authorized 2026-07-31)",
-    "notes": "RETIRED 2026-07-31 (user-authorized partial execution of the 2026-07-31 Ruthless Usefulness Audit, group MG14-PARTS-CHIP-MATRIX): this case's filter-button checks are folded into the FLT-PARTS-01 per-view checklist; table-column / New-button assertions demoted to reference notes there. NEVER PUSHED TO TESTRAIL (blank C-id), so no delete_case was required — LOCAL-ONLY retirement. Pre-edit body preserved in build/filters/consolidation-backup-2026-07-31/pre-edit-bodies/FLT-PARTS-03.json. EXCLUDED from active deliverables + tally; body kept for the record. | Design-only (chip + column presence). Option lists and apply behaviour pending Branko's PRD.",
-    "api_related": false
-  },
-  {
-    "id": "FLT-PARTS-04",
-    "area": "Parts Page Filters",
-    "title": "Parts Returns tab shows Vendor, Category and Part Type filters",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. You are on the Parts area of the app with some sample data present."
-    ],
-    "steps": [
-      "1. Open the Parts area and go to the Returns page.",
-      "2. Make sure the Returns tab is selected (the page has Returns and Credits tabs).",
-      "3. Look at the filter buttons shown above the returns table."
-    ],
-    "expected": [
-      "1. The Returns tab shows three filter buttons: Vendor, Category and Part Type.",
-      "2. The table shows the columns: Work Order, Vendor Invoice, Vendor, Part Number, Description, Quantity, Cost, Total Cost, Return Reason, Status and Requested.",
-      "3. A blue Create Return button is shown at the top right."
-    ],
-    "design_ref": "design-notes.md B.5 #4 (11902:9852)",
-    "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #4",
-    "viu_status": "Retired — merged into FLT-PARTS-01 (MG14 presence-matrix consolidation, user-authorized 2026-07-31)",
-    "notes": "RETIRED 2026-07-31 (user-authorized partial execution of the 2026-07-31 Ruthless Usefulness Audit, group MG14-PARTS-CHIP-MATRIX): this case's filter-button checks are folded into the FLT-PARTS-01 per-view checklist; table-column / New-button assertions demoted to reference notes there. NEVER PUSHED TO TESTRAIL (blank C-id), so no delete_case was required — LOCAL-ONLY retirement. Pre-edit body preserved in build/filters/consolidation-backup-2026-07-31/pre-edit-bodies/FLT-PARTS-04.json. EXCLUDED from active deliverables + tally; body kept for the record. | Design-only (chip + column presence). Option lists and apply behaviour pending Branko's PRD.",
-    "api_related": false
-  },
-  {
-    "id": "FLT-PARTS-05",
-    "area": "Parts Page Filters",
-    "title": "Parts Credits tab shows Vendor, Date and Processed by filters",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. You are on the Parts area of the app with some sample data present."
-    ],
-    "steps": [
-      "1. Open the Parts area and go to the Returns page.",
-      "2. Select the Credits tab.",
-      "3. Look at the filter buttons shown above the credits table."
-    ],
-    "expected": [
-      "1. The Credits tab shows three filter buttons: Vendor, Date and Processed by.",
-      "2. The table shows the columns: Credit Memo Number, Vendor, Work Order, Vendor Invoice, Date, Processed By, Total Cost and Notes.",
-      "3. A blue Create Credit button is shown at the top right."
-    ],
-    "design_ref": "design-notes.md B.5 #5 (11903:10067)",
-    "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #5",
-    "viu_status": "Retired — merged into FLT-PARTS-01 (MG14 presence-matrix consolidation, user-authorized 2026-07-31)",
-    "notes": "RETIRED 2026-07-31 (user-authorized partial execution of the 2026-07-31 Ruthless Usefulness Audit, group MG14-PARTS-CHIP-MATRIX): this case's filter-button checks are folded into the FLT-PARTS-01 per-view checklist; table-column / New-button assertions demoted to reference notes there. NEVER PUSHED TO TESTRAIL (blank C-id), so no delete_case was required — LOCAL-ONLY retirement. Pre-edit body preserved in build/filters/consolidation-backup-2026-07-31/pre-edit-bodies/FLT-PARTS-05.json. EXCLUDED from active deliverables + tally; body kept for the record. | Design-only (chip + column presence). Option lists and apply behaviour pending Branko's PRD.",
-    "api_related": false
-  },
-  {
-    "id": "FLT-PARTS-06",
-    "area": "Parts Page Filters",
-    "title": "Parts Purchase Orders page shows Vendor, Status, Date and Ordered by filters",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. You are on the Parts area of the app with some sample data present."
-    ],
-    "steps": [
-      "1. Open the Parts area and go to the Purchase Orders page.",
-      "2. Look at the filter buttons shown above the purchase orders table."
-    ],
-    "expected": [
-      "1. The Purchase Orders page shows four filter buttons: Vendor, Status, Date and Ordered by.",
-      "2. The table shows the columns: Work Order, Purchase Order Number, Vendor, Order Status, Created On, Ordered By, Total Price and Note.",
-      "3. A blue New Purchase Order button is shown at the top right."
-    ],
-    "design_ref": "design-notes.md B.5 #6 (11903:10188)",
-    "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #6",
-    "viu_status": "Retired — merged into FLT-PARTS-01 (MG14 presence-matrix consolidation, user-authorized 2026-07-31)",
-    "notes": "RETIRED 2026-07-31 (user-authorized partial execution of the 2026-07-31 Ruthless Usefulness Audit, group MG14-PARTS-CHIP-MATRIX): this case's filter-button checks are folded into the FLT-PARTS-01 per-view checklist; table-column / New-button assertions demoted to reference notes there. NEVER PUSHED TO TESTRAIL (blank C-id), so no delete_case was required — LOCAL-ONLY retirement. Pre-edit body preserved in build/filters/consolidation-backup-2026-07-31/pre-edit-bodies/FLT-PARTS-06.json. EXCLUDED from active deliverables + tally; body kept for the record. | Design-only (chip + column presence). Option lists and apply behaviour pending Branko's PRD.",
-    "api_related": false
-  },
-  {
-    "id": "FLT-PARTS-07",
-    "area": "Parts Page Filters",
-    "title": "Vendor Invoices page shows Vendor, Invoice date, Date received, Received by",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. You are on the Parts area of the app with some sample data present."
-    ],
-    "steps": [
-      "1. Open the Parts area and go to the Vendor Invoices page.",
-      "2. Look at the filter buttons shown above the vendor invoices table."
-    ],
-    "expected": [
-      "1. The Vendor Invoices page shows four filter buttons: Vendor, Invoice date, Date received and Received by.",
-      "2. The table shows the columns: Work Order, Invoice Number, Order Number, Received By, Vendor Name, Date Received, Invoice Date, Due Date, Total Cost and Note.",
-      "3. There is no New button on this page (only the search and filter icons)."
-    ],
-    "design_ref": "design-notes.md B.5 #7 (11903:10312)",
-    "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #7",
-    "viu_status": "Retired — merged into FLT-PARTS-01 (MG14 presence-matrix consolidation, user-authorized 2026-07-31)",
-    "notes": "RETIRED 2026-07-31 (user-authorized partial execution of the 2026-07-31 Ruthless Usefulness Audit, group MG14-PARTS-CHIP-MATRIX): this case's filter-button checks are folded into the FLT-PARTS-01 per-view checklist; table-column / New-button assertions demoted to reference notes there. NEVER PUSHED TO TESTRAIL (blank C-id), so no delete_case was required — LOCAL-ONLY retirement. Pre-edit body preserved in build/filters/consolidation-backup-2026-07-31/pre-edit-bodies/FLT-PARTS-07.json. EXCLUDED from active deliverables + tally; body kept for the record. | Design-only (chip + column presence). Option lists and apply behaviour pending Branko's PRD.",
-    "api_related": false
-  },
-  {
-    "id": "FLT-PARTS-08",
-    "area": "Parts Page Filters",
-    "title": "Parts Vendors list page shows Vendor and State/Province filters",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. You are on the Parts area of the app with some sample data present."
-    ],
-    "steps": [
-      "1. Open the Parts area and go to the Vendors list page.",
-      "2. Look at the filter buttons shown above the vendors table."
-    ],
-    "expected": [
-      "1. The Vendors page shows two filter buttons: Vendor and State/Province.",
-      "2. The table shows the columns: Name, Telephone, Email, Address 1, Address 2, City, State/Province and Zip/Postal Code.",
-      "3. A blue New Vendor button is shown at the top right."
-    ],
-    "design_ref": "design-notes.md B.5 #8 (11903:10461)",
-    "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #8",
-    "viu_status": "Retired — merged into FLT-PARTS-01 (MG14 presence-matrix consolidation, user-authorized 2026-07-31)",
-    "notes": "RETIRED 2026-07-31 (user-authorized partial execution of the 2026-07-31 Ruthless Usefulness Audit, group MG14-PARTS-CHIP-MATRIX): this case's filter-button checks are folded into the FLT-PARTS-01 per-view checklist; table-column / New-button assertions demoted to reference notes there. NEVER PUSHED TO TESTRAIL (blank C-id), so no delete_case was required — LOCAL-ONLY retirement. Pre-edit body preserved in build/filters/consolidation-backup-2026-07-31/pre-edit-bodies/FLT-PARTS-08.json. EXCLUDED from active deliverables + tally; body kept for the record. | Design-only (chip + column presence). Frame is named 'Vendor Invoices' in Figma but shows the Vendors list (design typo, §C.4). Option lists pending Branko's PRD. CONFLICT - PENDING DESIGN (Questions Q6 / deltas C7): engineering found NO Figma frame for the Parts Vendors view (they read frame 11903:10461 as Vendor Invoices, not a Vendors typo) and will NOT build Vendors filters until a design is delivered. This case's chip set may change - hold against the requested design + PRD.",
-    "api_related": false
-  },
-  {
-    "id": "FLT-PARTS-09",
-    "area": "Parts Page Filters",
-    "title": "Part Type filter opens a Core / Non Core list with Clear Selection",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Any signed-in user with access to the Parts pages. The filter buttons and their choices are the same for every user - a person's role does not change them.",
-    "preconditions": "1. You are signed in to the ShopView App on a desktop browser.\n2. You are on the Parts area of the app with some sample data present.",
-    "steps": "1. On the Parts Returns tab, click the Part Type filter button.\n2. Look at the small menu that opens.\n3. Tick Core, then also tick Non Core, and watch the list below.\n4. Use Clear Selection.",
-    "expected": "1. A small menu opens with two options: Core and Non Core.\n2. A Clear Selection action is shown at the bottom of the menu.\n3. You can tick both Core and Non Core at the same time - this filter allows more than one choice.\n4. As soon as you tick a choice the list below narrows to matching parts straight away, with no Apply button to press; Clear Selection puts the list back.\n\n5. Not built yet on the build tested: a filter bar exists on Inventory, Part Sales, Catalog and Returns, but Purchase Orders, Vendor Invoices and Vendors have no filter bar at all. If the filter bar is missing on the view you are testing, mark this test BLOCKED - do not mark it failed.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 11 August 2026, the designs, read on 11 August 2026, and the product owner's answers named below. The Filters specification at Confluence version 19 (published 6 August 2026) has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-08-04/answers-ingested.md), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.\n\nAUTOMATION: HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do\n",
-    "design_ref": "design-notes.md B.5 #9 (11902:9973)",
-    "spec_ref": "SV-8785 [epic] (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> \"Context-specific filter sets on Parts and Reports\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",
-    "viu_status": "VIU-Pending",
-    "notes": "The Core / Non Core menu contents came from the design; the selection and apply behaviour is now settled by Branko's Q3 + Q5 answers and spec v1.6 §4 Key Decisions (\"Multi-select where it makes sense: all Parts and Reports filters are multi-select except the date-range filter\"), so steps 3-4 now drive what expected 3-4 assert. RESOLVED 2026-07-31 - Branko's answers (Parts/Reports sheet) + live spec v1.6 (Confluence page 572030978 version 12, 2026-07-28): the PRD update landed; Parts/Reports filters are confirmed in scope with full Work-Orders parity. Still NOT live-verified (no QA branch) - viu_status stays VIU-Pending.",
-    "api_related": false,
-    "refs": "SV-8785 [epic] (spec v19 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> \"Context-specific filter sets on Parts and Reports\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",
-    "section_id": 5411,
-    "testrail_id": "C38905"
-  },
-  {
-    "id": "FLT-PARTS-10",
-    "area": "Parts Page Filters",
-    "title": "Parts pages show the shared search and filter toolbar icons",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. You are on the Parts area of the app with some sample data present."
-    ],
-    "steps": [
-      "1. Open any Parts list page (for example Inventory).",
-      "2. Look at the small icons on the right side of the toolbar."
-    ],
-    "expected": [
-      "1. The toolbar shows a Search (magnifier) icon and a filter (funnel) icon on every Parts list page.",
-      "2. Some pages also show a column/layout toggle icon (for example Inventory).",
-      "3. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (what the funnel and column icons do)."
-    ],
-    "design_ref": "design-notes.md B.5 (shared shell)",
-    "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 shared shell",
-    "viu_status": "Retired — merged into FLT-PARTS-01 (MG14 presence-matrix consolidation, user-authorized 2026-07-31)",
-    "notes": "RETIRED 2026-07-31 (user-authorized partial execution of the 2026-07-31 Ruthless Usefulness Audit, group MG14-PARTS-CHIP-MATRIX): this case's filter-button checks are folded into the FLT-PARTS-01 per-view checklist; table-column / New-button assertions demoted to reference notes there. NEVER PUSHED TO TESTRAIL (blank C-id), so no delete_case was required — LOCAL-ONLY retirement. Pre-edit body preserved in build/filters/consolidation-backup-2026-07-31/pre-edit-bodies/FLT-PARTS-10.json. EXCLUDED from active deliverables + tally; body kept for the record. | Design-only (toolbar icon presence). Icon actions pending Branko's PRD.",
-    "api_related": false
-  },
-  {
-    "id": "FLT-PARTS-11",
-    "area": "Parts Page Filters",
-    "title": "Choosing a Parts filter narrows the list on that page",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Any signed-in user with access to the Parts pages. The filter buttons and their choices are the same for every user - a person's role does not change them.",
-    "preconditions": "1. You are signed in to the ShopView App on a desktop browser.\n2. You are on the Parts area of the app with some sample data present.",
-    "steps": "1. Open a Parts list page that has a filter button (for example Inventory).\n2. Open a filter button and choose one value.\n3. Watch the table below.",
-    "expected": "1. The table updates to show only the rows that match the chosen filter value.\n2. The chosen value is shown on the filter button so you can see what is applied.\n3. The list narrows as soon as you pick the value - there is no Apply or Search button to press. Every filter button on every Parts page works this way.\n\n4. Not built yet on the build tested: a filter bar exists on Inventory, Part Sales, Catalog and Returns, but Purchase Orders, Vendor Invoices and Vendors have no filter bar at all. If the filter bar is missing on the view you are testing, mark this test BLOCKED - do not mark it failed.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 11 August 2026, the designs, read on 11 August 2026, and the product owner's answers named below. The Filters specification at Confluence version 19 (published 6 August 2026) has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-08-04/answers-ingested.md), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.\n\nAUTOMATION: HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do\n",
-    "design_ref": "design-notes.md B.5 (behaviour not pinned)",
-    "spec_ref": "SV-8785 [epic] (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> \"Context-specific filter sets on Parts and Reports\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",
-    "viu_status": "VIU-Pending",
-    "notes": "BEHAVIOUR case - the design does not pin how Parts filters apply; the behaviour is settled by Branko's Q2=A (\"every chip shown filters that page\") + Q5=A (full Work-Orders parity) and spec v1.6 §2 Parts Filters. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): rollout rule - every Parts page gets all three together: the chip design, shareable links, and per-user remembered filters, with NO change to what is filterable; date columns use the date-range chip (see FLT-RPTS-23) and each view keeps its own state (see FLT-PERS-05). RESOLVED 2026-07-31 - Branko's answers (Parts/Reports sheet) + live spec v1.6 (Confluence page 572030978 version 12, 2026-07-28): the PRD update landed; Parts/Reports filters are confirmed in scope with full Work-Orders parity. Still NOT live-verified (no QA branch) - viu_status stays VIU-Pending.",
-    "api_related": false,
-    "refs": "SV-8785 [epic] (spec v19 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> \"Context-specific filter sets on Parts and Reports\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",
-    "section_id": 5411,
-    "testrail_id": "C38906"
-  },
-  {
-    "id": "FLT-PARTS-12",
-    "area": "Parts Page Filters",
-    "title": "Parts filters support multiple choices and can be cleared",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Any signed-in user with access to the Parts pages. The filter buttons and their choices are the same for every user - a person's role does not change them.",
-    "preconditions": "1. You are signed in to the ShopView App on a desktop browser.\n2. You are on the Parts area of the app with some sample data present.",
-    "steps": "1. Open a Parts filter button that shows a list of choices.\n2. Select more than one choice, then look at the filter button.\n3. Use the Clear Selection action, then look at the filter bar for a way to clear all filters.",
-    "expected": "1. More than one value can be chosen inside the filter, and the button shows what you picked.\n2. Clear Selection removes the choices for that one filter.\n3. A Clear Filters button appears in the filter bar while any filter is set, and using it clears them all at once - exactly as it works on the Work Orders page.\n\n4. Not built yet on the build tested: a filter bar exists on Inventory, Part Sales, Catalog and Returns, but Purchase Orders, Vendor Invoices and Vendors have no filter bar at all. If the filter bar is missing on the view you are testing, mark this test BLOCKED - do not mark it failed.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 11 August 2026, the designs, read on 11 August 2026, and the product owner's answers named below. The Filters specification at Confluence version 19 (published 6 August 2026) has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-08-04/answers-ingested.md), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.\n\nAUTOMATION: HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do\n",
-    "design_ref": "design-notes.md B.5 (behaviour not pinned)",
-    "spec_ref": "SV-8785 [epic] (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> \"Context-specific filter sets on Parts and Reports\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",
-    "viu_status": "VIU-Pending",
-    "notes": "BEHAVIOUR case - parity with the Work Orders filter behaviour is now RATIFIED by Branko's Q5=A (\"multi-select, clearing, collapse, persistence, shareable URL and mobile all match Work Orders\") + spec v1.6 §2 Parts Filters (\"Active-chip appearance, 'Clear filters', 'Clear selection', collapse/expand, per-view persistence, URL state, and mobile behavior all match the Work Orders definitions\"). ANTI-DUPLICATION: per-view scoping (filters do not carry between Parts views) is covered by FLT-PERS-05 = C38880 - do not duplicate it here (Rule 28). Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): rollout rule - every Parts page gets all three together: the chip design, shareable links, and per-user remembered filters, with NO change to what is filterable. RESOLVED 2026-07-31 - Branko's answers (Parts/Reports sheet) + live spec v1.6 (Confluence page 572030978 version 12, 2026-07-28): the PRD update landed; Parts/Reports filters are confirmed in scope with full Work-Orders parity. Still NOT live-verified (no QA branch) - viu_status stays VIU-Pending. SENSE REPAIR 2026-07-31 (Rule-28 Stage 2b): step 2 now says to look at the filter button, because expected 1 asserts the button shows what you picked.",
-    "api_related": false,
-    "refs": "SV-8785 [epic] (spec v19 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> \"Context-specific filter sets on Parts and Reports\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",
-    "section_id": 5411,
-    "testrail_id": "C38907"
-  },
-  {
-    "id": "FLT-PARTS-13",
-    "area": "Parts Page Filters",
-    "title": "Every filter a page had before is still available in the new filter bar",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Any signed-in user with access to the Parts pages. The filter buttons and their choices are the same for every user - a person's role does not change them.",
-    "preconditions": "1. You are signed in to the ShopView App on a desktop browser.\n2. You have a written list of the filters each Parts page and each report offers today, before the new filter bar (take screenshots of the old screens first, or ask the developers for the list).\n3. Sample data is present in the Parts area and in the Reports area.",
-    "steps": "1. Take your before-list for one page.\n2. Open the same page with the new filter bar.\n3. Compare the filter buttons you now see against your before-list.\n4. Open each button and compare the choices inside it against the choices the old filter offered.\n5. Repeat steps 1 to 4 for the other Parts pages and for each report.",
-    "expected": "1. Every filter the page offered before is still offered - nothing has been taken away.\n2. Every choice each of those filters offered before is still available inside the new button.\n3. If any filter or choice is missing, write down exactly which page, which filter and which choice - that is a bug worth reporting.\n\n4. Not built yet on the build tested: a filter bar exists on Inventory, Part Sales, Catalog and Returns, but Purchase Orders, Vendor Invoices and Vendors have no filter bar at all. If the filter bar is missing on the view you are testing, mark this test BLOCKED - do not mark it failed.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 11 August 2026, the designs, read on 11 August 2026, and the product owner's answers named below. The Filters specification at Confluence version 19 (published 6 August 2026) has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-08-04/answers-ingested.md), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.\n\nAUTOMATION: HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do\n",
-    "design_ref": "n/a - scope/parity ruling, no design board (the design shows the new chips, not what the old screens offered)",
-    "spec_ref": "SV-8785 [epic] (spec v1.6 §2 Parts Filters + Reports Filters); Branko answers 2026-07-31 Q3 + 2026-08-04 Q8 (\"we should have all filters we support now per each page plus we should add new ones\"); tech plan 2026-07-29 rollout rule",
-    "viu_status": "VIU-Pending",
-    "notes": "NEW 2026-07-31 (user-authorized) - authored from Branko's Q3 answer, verbatim: \"We should support all the filters we have right now in the app as well as all choices per filter. There is no specific list of choices.\" Sentence 1 is a SCOPE/PARITY ruling that NO other case in the suite asserted: every existing Parts/Reports case checks that the DESIGNED chips are present and work, none checks the inverse - that no filter a shop relies on TODAY was dropped in the redesign. That is the single most likely real-world regression of an app-wide filter-bar replacement. Corroborated by the tech plan 2026-07-29 rollout rule (\"NO change to what is filterable\"), so two sources agree (Rule 32(i)). Rule-28 discipline: deliberately ONE case covering BOTH Parts and Reports, not one per page - per-page explosion is the exact pattern the 2026-07-31 audit cut 27 cases for. Filed in the Parts Page Filters section; step 5 extends the same walk to every report. The one risk is precondition 2 (the before-list), so it is written as an explicit achievable tester action rather than an unreachable state. Not live-verified (no QA branch) - viu_status VIU-Pending. Spec baseline v1.6 (Confluence page 572030978 version 12, 2026-07-28). REFS TRIMMED 2026-07-31 to fit TestRail's 250-char References limit: the tech-plan rollout rule is quoted in full above (\"NO change to what is filterable\").",
-    "api_related": false,
-    "refs": "SV-8785 [epic] (spec v19 §2 Parts Filters + Reports Filters); Branko answers 2026-07-31 Q3 + 2026-08-04 Q8 (\"we should have all filters we support now per each page plus we should add new ones\"); tech plan 2026-07-29 rollout rule",
-    "section_id": 5411,
-    "testrail_id": "C38908"
-  },
-  {
-    "id": "FLT-PARTS-14",
-    "area": "Parts Page Filters",
-    "title": "Parts and Reports filters collapse, share and work on a phone as Work Orders do",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Any signed-in user with access to the page under test (the spec defines no role-based differences - OQ-4).",
-    "preconditions": "1. You are signed in to the ShopView App on a desktop browser.\n2. You can also open the same pages on a mobile phone (or a browser window narrowed to phone size).\n3. You are on a Parts page that has a filter bar (for example Inventory), and you can also reach a report that has a filter bar.\n4. Sample data is present in the Parts area and in the Reports area.",
-    "steps": "1. On the Parts page, set one filter so the list is narrowed.\n2. Count the filter buttons on the page. If there is more than one, find the control that collapses the filter bar and use it, then expand it again. If there is only one filter button, check instead that there is no collapse control at all and the filter bar stays on display.\n3. Leave the page and come back, and look at whether the bar is collapsed or expanded.\n4. With a filter set, copy the page's web address, then open it in a fresh browser window.\n5. Open the same Parts page on a phone and look at how the filter buttons are laid out and how a filter is applied.\n6. Repeat steps 1 to 5 on a report that has a filter bar.",
-    "expected": "1. On a Parts page or a report that has more than one filter, the filter bar can be collapsed and expanded, and the table takes the freed space when it is collapsed - exactly as on the Work Orders page. On a page that has only one filter there is no collapse control at all and the filter bar is always on display; that is correct and is not a fault.\n2. Where that collapse control is present: while the bar is collapsed the filters keep working, and the collapsed control shows that filters are active - exactly as on the Work Orders page.\n3. Where that collapse control is present, whether you left the bar collapsed or expanded is remembered when you come back to that page.\n4. The web address carries the filters you set, and opening that address in a fresh window loads the page with the same filters already applied and the list already narrowed - exactly as on the Work Orders page.\n5. On the phone the filter buttons sit in a row you can scroll sideways, there is no collapse control, and your choices are applied when you tap the apply button rather than as you tap each one - exactly as on the Work Orders page.\n6. Anything that behaves differently from the Work Orders page on any of these points is worth writing down, with the page name.\n\nNote for the tester: only some Parts views and only some reports have the new filter bar so far. If the page you open has no filter bar, mark this test BLOCKED - do not mark it failed. A page that has a filter bar with only one filter button and no collapse control is a PASS for that page, not a failure.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 11 August 2026, and Branko's answer of 31 July 2026 (Round 3, question 5, option A), recorded in this file: build/filters/branko-answers-2026-07-31/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-07-31/answers-ingested.md), read on 11 August 2026. He said that collapsing, the shareable web address and the phone layout all match the Work Orders page. The Filters specification at Confluence version 19 has no numbered requirement for this, so there is no requirement number to quote. It also follows ticket SV-9041 (https://shopview.atlassian.net/browse/SV-9041), read on 11 August 2026, which says the collapse control is only shown on a page that has more than one filter. Branko's answer of 31 July 2026 says collapsing on Parts and Reports matches the Work Orders page and does not mention any condition on the number of filters; ticket SV-9041, raised on 7 August 2026, is the newer statement, so this test follows it and expects no collapse control on a page that has only one filter. This test has not yet been checked against any build.\n\nAUTOMATION: HOLD - the new filter bar has reached only some Parts views and one report tab, so most of this cannot be run yet\n",
-    "refs": "SV-8785 [epic]; SV-9041 (Branko 2026-07-31 R3 Q5=A - collapse; URL and mobile match Work Orders; SV-9041 - collapse control only where a page has >1 filter; spec v19 §4 Key Decisions - context-specific filter sets) [spec v19 2026-08-06]",
-    "spec_ref": "Branko Round-3 Q5=A (2026-07-31)",
-    "design_ref": "",
-    "api_related": false,
-    "section_id": 5411,
-    "testrail_id": "C43562",
-    "viu_status": "VIU-Pending",
-    "notes": "Authored 2026-08-06 from Vlad's coverage-gap review; gap proven absent with both texts quoted side by side (Rule 45(e)). Not observed on any build - the QA branch API returned HTTP 401."
-  }
+ {
+  "id": "FLT-PARTS-01",
+  "area": "Parts Page Filters",
+  "title": "Every Parts list page shows its designed filter buttons",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. The filter buttons and their choices are the same for every user - a person's role does not change them.",
+  "preconditions": "1. You are signed in to the ShopView App on a desktop browser.\n2. You are on the Parts area of the app with some sample data present.",
+  "steps": "1. Open the Parts area and go to the Inventory page, and look at the filter buttons shown above the table.\n2. Go to the Part Sales page and look at the filter buttons.\n3. Go to the Catalog page and look at the filter buttons.\n4. Go to the Returns page, make sure the Returns tab is selected, and look at the filter buttons.\n5. Select the Credits tab on the same page and look at the filter buttons.\n6. Go to the Purchase Orders page and look at the filter buttons.\n7. Go to the Vendor Invoices page and look at the filter buttons.\n8. Go to the Vendors list page and look at the filter buttons.\n9. On any one of these pages, look at the small icons on the right-hand side of the toolbar.\n10. On each page above, open one of its filter buttons, look at the list of choices inside it, and pick a value to check the list changes.",
+  "expected": "1. Inventory shows four filter buttons: Bin Location, Category, Supply and Vendor.\n2. Part Sales shows four filter buttons: Status, Customer, Created by and Date.\n3. Catalog shows two filter buttons: Manufacturer and Category.\n4. The Returns tab shows three filter buttons: Vendor, Category and Part Type.\n5. The Credits tab shows three filter buttons: Vendor, Date and Processed by.\n6. Purchase Orders shows four filter buttons: Vendor, Status, Date and Ordered by.\n7. Vendor Invoices shows four filter buttons: Vendor, Invoice date, Date received and Received by.\n8. The Vendors list page shows two filter buttons: Vendor and State/Province.\n9. On every page above, each filter button shows a small icon, the filter name and a down arrow.\n10. Every Parts list page also shows a Search (magnifier) icon and a filter icon in the toolbar; some pages (for example Inventory) also show a column/layout toggle icon.\n11. Every filter button shown above is a working filter on that page - none of them is display-only.\n12. The choices inside each filter come from your own shop's data (for example your real vendors or categories), so there is no fixed list to compare against - check that the choices you see match the data in your shop.\n13. Still to check on the live build: what the filter icon and the column/layout icon do (the written description does not cover the toolbar icons).\n\n14. Not built yet on the build tested: a filter bar exists on Inventory, Part Sales, Catalog and Returns, but Purchase Orders, Vendor Invoices and Vendors have no filter bar at all. If the filter bar is missing on the view you are testing, mark this test BLOCKED - do not mark it failed.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 11 August 2026, the designs, read on 11 August 2026, and the product owner's answers named below. The Filters specification at Confluence version 19 (published 6 August 2026) has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-08-04/answers-ingested.md), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.\n\nAUTOMATION: HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do\n",
+  "design_ref": "design-notes.md B.5 #1-#9 + B.5 shared shell (11894:21846; 11902:8517; 11902:9736; 11902:9852; 11903:10067; 11903:10188; 11903:10312; 11903:10461)",
+  "spec_ref": "SV-8785 [epic] (spec v1.6 §2 Parts Filters; §4 context-specific filter sets + multi-select); Branko answers 2026-07-31 Q2/Q3/Q5/Q7 + 2026-08-04 Q3 (Vendors design exists Figma 11903-10461) + Q8 (Part Sales chips); Figma 11884-16885",
+  "viu_status": "VIU-Pending",
+  "notes": "MERGE SURVIVOR 2026-07-31 — MG14-PARTS-CHIP-MATRIX (Rule-28 audit, user-authorized partial execution). Absorbed FLT-PARTS-02/03/04/05/06/07/08/10 (all design-level, blank C-ids, so LOCAL-ONLY — no TestRail delete was needed). One Parts walk with a per-view checklist of the designed filter buttons instead of nine near-identical presence cases. Per the audit, the per-view TABLE COLUMN lists and 'New ...' button assertions were demoted to reference notes (they are outside the Filters scope): Inventory — Description, Part number, Tags, Category, Manufacturer, Vendor, Bin Location / Quantity, Action (+ New Inventory Part); Part Sales — Number, Status, Customer, Asset, VIN/Serial #, Created By, Total Price, Created On, Parts, Returns (+ New Part Sale); Catalog — checkbox, Description, Part Number, Tags, Category (+ New Catalog Part); Returns — Work Order, Vendor Invoice, Vendor, Part Number, Description, Quantity, Cost, Total Cost, Return Reason, Status, Requested (+ Create Return); Credits — Credit Memo Number, Vendor, Work Order, Vendor Invoice, Date, Processed By, Total Cost, Notes (+ Create Credit); Purchase Orders — Work Order, Purchase Order Number, Vendor, Order Status, Created On, Ordered By, Total Price, Note (+ New Purchase Order); Vendor Invoices — Work Order, Invoice Number, Order Number, Received By, Vendor Name, Date Received, Invoice Date, Due Date, Total Cost, Note (NO New button); Vendors — Name, Telephone, Email, Address 1, Address 2, City, State/Province, Zip/Postal Code (+ New Vendor). VENDORS CONFLICT CARRIED OVER from FLT-PARTS-08 (Questions Q6 / tech-plan deltas C7): engineering found NO Figma frame for the Parts Vendors view (they read frame 11903:10461 as Vendor Invoices, not a Vendors typo) and will NOT build Vendors filters until a design is delivered — hold that line against the requested design + PRD. Part Type menu contents stay with FLT-PARTS-09; apply/multi-select behaviour stays with FLT-PARTS-11 / FLT-PARTS-12. | RESOLVED 2026-07-31 - Branko's answers (Parts/Reports sheet) + live spec v1.6 (Confluence page 572030978 version 12, 2026-07-28): the PRD update landed; Parts/Reports filters are confirmed in scope with full Work-Orders parity. Still NOT live-verified (no QA branch) - viu_status stays VIU-Pending. SENSE REPAIR 2026-07-31 (Rule-28 Stage 2b): step 10 added because expected 11 and 12 assert behaviour (every shown button really filters; the choices come from the shop's data) that steps 1-9 never drove. This is the ALL-EIGHT-VIEWS check and deliberately does NOT duplicate FLT-PARTS-11, which is the single-page apply-behaviour case. | VENDORS CONFLICT RESOLVED 2026-08-04 - Branko answered the tech-plan sheet Q3 \"Disign for vendors exists in figma. Check it\". We checked: node 11903:10461 rendered at design-2026-07-31/frames/Parts-Explorations-20.4.2026__Vendors__11903-10461.png is UNAMBIGUOUSLY the Vendors page - page title \"Vendors\", the Vendors item highlighted in the left nav BELOW a separate \"Vendor Invoices\" item, a \"New Vendor\" button, columns Name/Telephone/Email/Address/City/State-Province/Zip, and exactly two filter chips: Vendor and State/Province. So the engineering reading recorded above (that this frame is Vendor Invoices) is WRONG, and the PRD v1.6 §2 already lists Vendors among the Parts views that get a filter bar. The tester-facing hedge (\"the developers have not been given a design ... write down what you actually see instead of failing the whole test\") is REMOVED: its premise is false and under Rule 45 it was a false all-clear that would have let a genuinely missing Vendors filter bar pass. HONEST CONSEQUENCE: this case will now legitimately FAIL if the build has not shipped the Vendors filter bar - which is the correct outcome, not a defect in the case.",
+  "api_related": false,
+  "refs": "SV-8785 [epic] (spec v19 §2 Parts Filters; §4 context-specific filter sets + multi-select); Branko answers 2026-07-31 Q2/Q3/Q5/Q7 + 2026-08-04 Q3 (Vendors design exists Figma 11903-10461) + Q8 (Part Sales chips); Figma 11884-16885",
+  "section_id": 5411,
+  "testrail_id": "C38904"
+ },
+ {
+  "id": "FLT-PARTS-02",
+  "area": "Parts Page Filters",
+  "title": "Parts Part Sales page shows Status, Customer, Created by and Date filters",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Parts area of the app with some sample data present."
+  ],
+  "steps": [
+   "1. Open the Parts area and go to the Part Sales page.",
+   "2. Look at the filter buttons shown above the part sales table."
+  ],
+  "expected": [
+   "1. The Part Sales page shows four filter buttons: Status, Customer, Created by and Date.",
+   "2. The table shows the columns: Number, Status, Customer, Asset, VIN/Serial #, Created By, Total Price, Created On, Parts and Returns.",
+   "3. A blue New Part Sale button is shown at the top right."
+  ],
+  "design_ref": "design-notes.md B.5 #2 (11902:8517)",
+  "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #2",
+  "viu_status": "Retired — merged into FLT-PARTS-01 (MG14 presence-matrix consolidation, user-authorized 2026-07-31)",
+  "notes": "RETIRED 2026-07-31 (user-authorized partial execution of the 2026-07-31 Ruthless Usefulness Audit, group MG14-PARTS-CHIP-MATRIX): this case's filter-button checks are folded into the FLT-PARTS-01 per-view checklist; table-column / New-button assertions demoted to reference notes there. NEVER PUSHED TO TESTRAIL (blank C-id), so no delete_case was required — LOCAL-ONLY retirement. Pre-edit body preserved in build/filters/consolidation-backup-2026-07-31/pre-edit-bodies/FLT-PARTS-02.json. EXCLUDED from active deliverables + tally; body kept for the record. | Design-only (chip + column presence). Option lists and apply behaviour pending Branko's PRD.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PARTS-03",
+  "area": "Parts Page Filters",
+  "title": "Parts Catalog page shows Manufacturer and Category filters",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Parts area of the app with some sample data present."
+  ],
+  "steps": [
+   "1. Open the Parts area and go to the Catalog page.",
+   "2. Look at the filter buttons shown above the catalog table."
+  ],
+  "expected": [
+   "1. The Catalog page shows two filter buttons: Manufacturer and Category.",
+   "2. The table shows the columns: (row checkbox), Description, Part Number, Tags and Category.",
+   "3. A blue New Catalog Part button is shown at the top right."
+  ],
+  "design_ref": "design-notes.md B.5 #3 (11902:9736)",
+  "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #3",
+  "viu_status": "Retired — merged into FLT-PARTS-01 (MG14 presence-matrix consolidation, user-authorized 2026-07-31)",
+  "notes": "RETIRED 2026-07-31 (user-authorized partial execution of the 2026-07-31 Ruthless Usefulness Audit, group MG14-PARTS-CHIP-MATRIX): this case's filter-button checks are folded into the FLT-PARTS-01 per-view checklist; table-column / New-button assertions demoted to reference notes there. NEVER PUSHED TO TESTRAIL (blank C-id), so no delete_case was required — LOCAL-ONLY retirement. Pre-edit body preserved in build/filters/consolidation-backup-2026-07-31/pre-edit-bodies/FLT-PARTS-03.json. EXCLUDED from active deliverables + tally; body kept for the record. | Design-only (chip + column presence). Option lists and apply behaviour pending Branko's PRD.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PARTS-04",
+  "area": "Parts Page Filters",
+  "title": "Parts Returns tab shows Vendor, Category and Part Type filters",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Parts area of the app with some sample data present."
+  ],
+  "steps": [
+   "1. Open the Parts area and go to the Returns page.",
+   "2. Make sure the Returns tab is selected (the page has Returns and Credits tabs).",
+   "3. Look at the filter buttons shown above the returns table."
+  ],
+  "expected": [
+   "1. The Returns tab shows three filter buttons: Vendor, Category and Part Type.",
+   "2. The table shows the columns: Work Order, Vendor Invoice, Vendor, Part Number, Description, Quantity, Cost, Total Cost, Return Reason, Status and Requested.",
+   "3. A blue Create Return button is shown at the top right."
+  ],
+  "design_ref": "design-notes.md B.5 #4 (11902:9852)",
+  "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #4",
+  "viu_status": "Retired — merged into FLT-PARTS-01 (MG14 presence-matrix consolidation, user-authorized 2026-07-31)",
+  "notes": "RETIRED 2026-07-31 (user-authorized partial execution of the 2026-07-31 Ruthless Usefulness Audit, group MG14-PARTS-CHIP-MATRIX): this case's filter-button checks are folded into the FLT-PARTS-01 per-view checklist; table-column / New-button assertions demoted to reference notes there. NEVER PUSHED TO TESTRAIL (blank C-id), so no delete_case was required — LOCAL-ONLY retirement. Pre-edit body preserved in build/filters/consolidation-backup-2026-07-31/pre-edit-bodies/FLT-PARTS-04.json. EXCLUDED from active deliverables + tally; body kept for the record. | Design-only (chip + column presence). Option lists and apply behaviour pending Branko's PRD.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PARTS-05",
+  "area": "Parts Page Filters",
+  "title": "Parts Credits tab shows Vendor, Date and Processed by filters",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Parts area of the app with some sample data present."
+  ],
+  "steps": [
+   "1. Open the Parts area and go to the Returns page.",
+   "2. Select the Credits tab.",
+   "3. Look at the filter buttons shown above the credits table."
+  ],
+  "expected": [
+   "1. The Credits tab shows three filter buttons: Vendor, Date and Processed by.",
+   "2. The table shows the columns: Credit Memo Number, Vendor, Work Order, Vendor Invoice, Date, Processed By, Total Cost and Notes.",
+   "3. A blue Create Credit button is shown at the top right."
+  ],
+  "design_ref": "design-notes.md B.5 #5 (11903:10067)",
+  "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #5",
+  "viu_status": "Retired — merged into FLT-PARTS-01 (MG14 presence-matrix consolidation, user-authorized 2026-07-31)",
+  "notes": "RETIRED 2026-07-31 (user-authorized partial execution of the 2026-07-31 Ruthless Usefulness Audit, group MG14-PARTS-CHIP-MATRIX): this case's filter-button checks are folded into the FLT-PARTS-01 per-view checklist; table-column / New-button assertions demoted to reference notes there. NEVER PUSHED TO TESTRAIL (blank C-id), so no delete_case was required — LOCAL-ONLY retirement. Pre-edit body preserved in build/filters/consolidation-backup-2026-07-31/pre-edit-bodies/FLT-PARTS-05.json. EXCLUDED from active deliverables + tally; body kept for the record. | Design-only (chip + column presence). Option lists and apply behaviour pending Branko's PRD.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PARTS-06",
+  "area": "Parts Page Filters",
+  "title": "Parts Purchase Orders page shows Vendor, Status, Date and Ordered by filters",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Parts area of the app with some sample data present."
+  ],
+  "steps": [
+   "1. Open the Parts area and go to the Purchase Orders page.",
+   "2. Look at the filter buttons shown above the purchase orders table."
+  ],
+  "expected": [
+   "1. The Purchase Orders page shows four filter buttons: Vendor, Status, Date and Ordered by.",
+   "2. The table shows the columns: Work Order, Purchase Order Number, Vendor, Order Status, Created On, Ordered By, Total Price and Note.",
+   "3. A blue New Purchase Order button is shown at the top right."
+  ],
+  "design_ref": "design-notes.md B.5 #6 (11903:10188)",
+  "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #6",
+  "viu_status": "Retired — merged into FLT-PARTS-01 (MG14 presence-matrix consolidation, user-authorized 2026-07-31)",
+  "notes": "RETIRED 2026-07-31 (user-authorized partial execution of the 2026-07-31 Ruthless Usefulness Audit, group MG14-PARTS-CHIP-MATRIX): this case's filter-button checks are folded into the FLT-PARTS-01 per-view checklist; table-column / New-button assertions demoted to reference notes there. NEVER PUSHED TO TESTRAIL (blank C-id), so no delete_case was required — LOCAL-ONLY retirement. Pre-edit body preserved in build/filters/consolidation-backup-2026-07-31/pre-edit-bodies/FLT-PARTS-06.json. EXCLUDED from active deliverables + tally; body kept for the record. | Design-only (chip + column presence). Option lists and apply behaviour pending Branko's PRD.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PARTS-07",
+  "area": "Parts Page Filters",
+  "title": "Vendor Invoices page shows Vendor, Invoice date, Date received, Received by",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Parts area of the app with some sample data present."
+  ],
+  "steps": [
+   "1. Open the Parts area and go to the Vendor Invoices page.",
+   "2. Look at the filter buttons shown above the vendor invoices table."
+  ],
+  "expected": [
+   "1. The Vendor Invoices page shows four filter buttons: Vendor, Invoice date, Date received and Received by.",
+   "2. The table shows the columns: Work Order, Invoice Number, Order Number, Received By, Vendor Name, Date Received, Invoice Date, Due Date, Total Cost and Note.",
+   "3. There is no New button on this page (only the search and filter icons)."
+  ],
+  "design_ref": "design-notes.md B.5 #7 (11903:10312)",
+  "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #7",
+  "viu_status": "Retired — merged into FLT-PARTS-01 (MG14 presence-matrix consolidation, user-authorized 2026-07-31)",
+  "notes": "RETIRED 2026-07-31 (user-authorized partial execution of the 2026-07-31 Ruthless Usefulness Audit, group MG14-PARTS-CHIP-MATRIX): this case's filter-button checks are folded into the FLT-PARTS-01 per-view checklist; table-column / New-button assertions demoted to reference notes there. NEVER PUSHED TO TESTRAIL (blank C-id), so no delete_case was required — LOCAL-ONLY retirement. Pre-edit body preserved in build/filters/consolidation-backup-2026-07-31/pre-edit-bodies/FLT-PARTS-07.json. EXCLUDED from active deliverables + tally; body kept for the record. | Design-only (chip + column presence). Option lists and apply behaviour pending Branko's PRD.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PARTS-08",
+  "area": "Parts Page Filters",
+  "title": "Parts Vendors list page shows Vendor and State/Province filters",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Parts area of the app with some sample data present."
+  ],
+  "steps": [
+   "1. Open the Parts area and go to the Vendors list page.",
+   "2. Look at the filter buttons shown above the vendors table."
+  ],
+  "expected": [
+   "1. The Vendors page shows two filter buttons: Vendor and State/Province.",
+   "2. The table shows the columns: Name, Telephone, Email, Address 1, Address 2, City, State/Province and Zip/Postal Code.",
+   "3. A blue New Vendor button is shown at the top right."
+  ],
+  "design_ref": "design-notes.md B.5 #8 (11903:10461)",
+  "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #8",
+  "viu_status": "Retired — merged into FLT-PARTS-01 (MG14 presence-matrix consolidation, user-authorized 2026-07-31)",
+  "notes": "RETIRED 2026-07-31 (user-authorized partial execution of the 2026-07-31 Ruthless Usefulness Audit, group MG14-PARTS-CHIP-MATRIX): this case's filter-button checks are folded into the FLT-PARTS-01 per-view checklist; table-column / New-button assertions demoted to reference notes there. NEVER PUSHED TO TESTRAIL (blank C-id), so no delete_case was required — LOCAL-ONLY retirement. Pre-edit body preserved in build/filters/consolidation-backup-2026-07-31/pre-edit-bodies/FLT-PARTS-08.json. EXCLUDED from active deliverables + tally; body kept for the record. | Design-only (chip + column presence). Frame is named 'Vendor Invoices' in Figma but shows the Vendors list (design typo, §C.4). Option lists pending Branko's PRD. CONFLICT - PENDING DESIGN (Questions Q6 / deltas C7): engineering found NO Figma frame for the Parts Vendors view (they read frame 11903:10461 as Vendor Invoices, not a Vendors typo) and will NOT build Vendors filters until a design is delivered. This case's chip set may change - hold against the requested design + PRD.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PARTS-09",
+  "area": "Parts Page Filters",
+  "title": "Part Type filter opens a Core / Non Core list with Clear Selection",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. The filter buttons and their choices are the same for every user - a person's role does not change them.",
+  "preconditions": "1. You are signed in to the ShopView App on a desktop browser.\n2. You are on the Parts area of the app with some sample data present.",
+  "steps": "1. On the Parts Returns tab, click the Part Type filter button.\n2. Look at the small menu that opens.\n3. Tick Core, then also tick Non Core, and watch the list below.\n4. Use Clear Selection.",
+  "expected": "1. A small menu opens with two options: Core and Non Core.\n2. A Clear Selection action is shown at the bottom of the menu.\n3. You can tick both Core and Non Core at the same time - this filter allows more than one choice.\n4. As soon as you tick a choice the list below narrows to matching parts straight away, with no Apply button to press; Clear Selection puts the list back.\n\n5. Not built yet on the build tested: a filter bar exists on Inventory, Part Sales, Catalog and Returns, but Purchase Orders, Vendor Invoices and Vendors have no filter bar at all. If the filter bar is missing on the view you are testing, mark this test BLOCKED - do not mark it failed.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 11 August 2026, the designs, read on 11 August 2026, and the product owner's answers named below. The Filters specification at Confluence version 19 (published 6 August 2026) has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-08-04/answers-ingested.md), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.\n\nAUTOMATION: HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do\n",
+  "design_ref": "design-notes.md B.5 #9 (11902:9973)",
+  "spec_ref": "SV-8785 [epic] (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> \"Context-specific filter sets on Parts and Reports\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",
+  "viu_status": "VIU-Pending",
+  "notes": "The Core / Non Core menu contents came from the design; the selection and apply behaviour is now settled by Branko's Q3 + Q5 answers and spec v1.6 §4 Key Decisions (\"Multi-select where it makes sense: all Parts and Reports filters are multi-select except the date-range filter\"), so steps 3-4 now drive what expected 3-4 assert. RESOLVED 2026-07-31 - Branko's answers (Parts/Reports sheet) + live spec v1.6 (Confluence page 572030978 version 12, 2026-07-28): the PRD update landed; Parts/Reports filters are confirmed in scope with full Work-Orders parity. Still NOT live-verified (no QA branch) - viu_status stays VIU-Pending.",
+  "api_related": false,
+  "refs": "SV-8785 [epic] (spec v19 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> \"Context-specific filter sets on Parts and Reports\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",
+  "section_id": 5411,
+  "testrail_id": "C38905"
+ },
+ {
+  "id": "FLT-PARTS-10",
+  "area": "Parts Page Filters",
+  "title": "Parts pages show the shared search and filter toolbar icons",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Parts area of the app with some sample data present."
+  ],
+  "steps": [
+   "1. Open any Parts list page (for example Inventory).",
+   "2. Look at the small icons on the right side of the toolbar."
+  ],
+  "expected": [
+   "1. The toolbar shows a Search (magnifier) icon and a filter (funnel) icon on every Parts list page.",
+   "2. Some pages also show a column/layout toggle icon (for example Inventory).",
+   "3. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (what the funnel and column icons do)."
+  ],
+  "design_ref": "design-notes.md B.5 (shared shell)",
+  "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 shared shell",
+  "viu_status": "Retired — merged into FLT-PARTS-01 (MG14 presence-matrix consolidation, user-authorized 2026-07-31)",
+  "notes": "RETIRED 2026-07-31 (user-authorized partial execution of the 2026-07-31 Ruthless Usefulness Audit, group MG14-PARTS-CHIP-MATRIX): this case's filter-button checks are folded into the FLT-PARTS-01 per-view checklist; table-column / New-button assertions demoted to reference notes there. NEVER PUSHED TO TESTRAIL (blank C-id), so no delete_case was required — LOCAL-ONLY retirement. Pre-edit body preserved in build/filters/consolidation-backup-2026-07-31/pre-edit-bodies/FLT-PARTS-10.json. EXCLUDED from active deliverables + tally; body kept for the record. | Design-only (toolbar icon presence). Icon actions pending Branko's PRD.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PARTS-11",
+  "area": "Parts Page Filters",
+  "title": "Choosing a Parts filter narrows the list on that page",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. The filter buttons and their choices are the same for every user - a person's role does not change them.",
+  "preconditions": "1. You are signed in to the ShopView App on a desktop browser.\n2. You are on the Parts area of the app with some sample data present.",
+  "steps": "1. Open a Parts list page that has a filter button (for example Inventory).\n2. Open a filter button and choose one value.\n3. Watch the table below.",
+  "expected": "1. The table updates to show only the rows that match the chosen filter value.\n2. The chosen value is shown on the filter button so you can see what is applied.\n3. The list narrows as soon as you pick the value - there is no Apply or Search button to press. Every filter button on every Parts page works this way.\n\n4. Not built yet on the build tested: a filter bar exists on Inventory, Part Sales, Catalog and Returns, but Purchase Orders, Vendor Invoices and Vendors have no filter bar at all. If the filter bar is missing on the view you are testing, mark this test BLOCKED - do not mark it failed.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 11 August 2026, the designs, read on 11 August 2026, and the product owner's answers named below. The Filters specification at Confluence version 19 (published 6 August 2026) has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-08-04/answers-ingested.md), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.\n\nAUTOMATION: HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do\n",
+  "design_ref": "design-notes.md B.5 (behaviour not pinned)",
+  "spec_ref": "SV-8785 [epic] (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> \"Context-specific filter sets on Parts and Reports\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",
+  "viu_status": "VIU-Pending",
+  "notes": "BEHAVIOUR case - the design does not pin how Parts filters apply; the behaviour is settled by Branko's Q2=A (\"every chip shown filters that page\") + Q5=A (full Work-Orders parity) and spec v1.6 §2 Parts Filters. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): rollout rule - every Parts page gets all three together: the chip design, shareable links, and per-user remembered filters, with NO change to what is filterable; date columns use the date-range chip (see FLT-RPTS-23) and each view keeps its own state (see FLT-PERS-05). RESOLVED 2026-07-31 - Branko's answers (Parts/Reports sheet) + live spec v1.6 (Confluence page 572030978 version 12, 2026-07-28): the PRD update landed; Parts/Reports filters are confirmed in scope with full Work-Orders parity. Still NOT live-verified (no QA branch) - viu_status stays VIU-Pending.",
+  "api_related": false,
+  "refs": "SV-8785 [epic] (spec v19 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> \"Context-specific filter sets on Parts and Reports\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",
+  "section_id": 5411,
+  "testrail_id": "C38906"
+ },
+ {
+  "id": "FLT-PARTS-12",
+  "area": "Parts Page Filters",
+  "title": "Parts filters allow several choices and are cleared one filter at a time",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. The filter buttons and their choices are the same for every user - a person's role does not change them.",
+  "preconditions": "1. You are signed in on a desktop browser.\n2. You are on a Parts view that has filters, with some sample data present.",
+  "steps": "1. Open a Parts filter chip that shows a list of choices.\n2. Select more than one choice, then look at the chip.\n3. Use 'Clear selection', then look across the toolbar for any single button to clear all filters.",
+  "expected": "1. More than one value can be chosen inside the filter, and the chip shows what you picked.\n2. 'Clear selection' removes the choices for that one filter only.\n3. There is NO global 'Clear filters' button - on Parts pages too, each filter is cleared on its own (from its chip's X or 'Clear selection'), exactly as on the Work Orders page.\n4. The exact filters a Parts view offers are the ones it has today (the per-view list is pending from engineering) - confirm live.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9279 (roll the filter layout out to all pages) and SV-9274 (no global clear), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R6; S8-R1; S8-R2), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026\n",
+  "design_ref": "design-notes.md B.5 (behaviour not pinned)",
+  "spec_ref": "SV-8785 [epic] (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> \"Context-specific filter sets on Parts and Reports\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",
+  "viu_status": "VIU-Pending",
+  "notes": "BEHAVIOUR case - parity with the Work Orders filter behaviour is now RATIFIED by Branko's Q5=A (\"multi-select, clearing, collapse, persistence, shareable URL and mobile all match Work Orders\") + spec v1.6 §2 Parts Filters (\"Active-chip appearance, 'Clear filters', 'Clear selection', collapse/expand, per-view persistence, URL state, and mobile behavior all match the Work Orders definitions\"). ANTI-DUPLICATION: per-view scoping (filters do not carry between Parts views) is covered by FLT-PERS-05 = C38880 - do not duplicate it here (Rule 28). Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): rollout rule - every Parts page gets all three together: the chip design, shareable links, and per-user remembered filters, with NO change to what is filterable. RESOLVED 2026-07-31 - Branko's answers (Parts/Reports sheet) + live spec v1.6 (Confluence page 572030978 version 12, 2026-07-28): the PRD update landed; Parts/Reports filters are confirmed in scope with full Work-Orders parity. Still NOT live-verified (no QA branch) - viu_status stays VIU-Pending. SENSE REPAIR 2026-07-31 (Rule-28 Stage 2b): step 2 now says to look at the filter button, because expected 1 asserts the button shows what you picked.",
+  "api_related": false,
+  "refs": "SV-9279 (S16-R6; S8-R1; S8-R2) [spec v21 2026-08-14]",
+  "section_id": 5411,
+  "testrail_id": "C38907"
+ },
+ {
+  "id": "FLT-PARTS-13",
+  "area": "Parts Page Filters",
+  "title": "Every filter a page had before is still available in the new filter bar",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. The filter buttons and their choices are the same for every user - a person's role does not change them.",
+  "preconditions": "1. You are signed in to the ShopView App on a desktop browser.\n2. You have a written list of the filters each Parts page and each report offers today, before the new filter bar (take screenshots of the old screens first, or ask the developers for the list).\n3. Sample data is present in the Parts area and in the Reports area.",
+  "steps": "1. Take your before-list for one page.\n2. Open the same page with the new filter bar.\n3. Compare the filter buttons you now see against your before-list.\n4. Open each button and compare the choices inside it against the choices the old filter offered.\n5. Repeat steps 1 to 4 for the other Parts pages and for each report.",
+  "expected": "1. Every filter the page offered before is still offered - nothing has been taken away.\n2. Every choice each of those filters offered before is still available inside the new button.\n3. If any filter or choice is missing, write down exactly which page, which filter and which choice - that is a bug worth reporting.\n\n4. Not built yet on the build tested: a filter bar exists on Inventory, Part Sales, Catalog and Returns, but Purchase Orders, Vendor Invoices and Vendors have no filter bar at all. If the filter bar is missing on the view you are testing, mark this test BLOCKED - do not mark it failed.\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 11 August 2026, the designs, read on 11 August 2026, and the product owner's answers named below. The Filters specification at Confluence version 19 (published 6 August 2026) has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-08-04/answers-ingested.md), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.\n\nAUTOMATION: HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do\n",
+  "design_ref": "n/a - scope/parity ruling, no design board (the design shows the new chips, not what the old screens offered)",
+  "spec_ref": "SV-8785 [epic] (spec v1.6 §2 Parts Filters + Reports Filters); Branko answers 2026-07-31 Q3 + 2026-08-04 Q8 (\"we should have all filters we support now per each page plus we should add new ones\"); tech plan 2026-07-29 rollout rule",
+  "viu_status": "VIU-Pending",
+  "notes": "NEW 2026-07-31 (user-authorized) - authored from Branko's Q3 answer, verbatim: \"We should support all the filters we have right now in the app as well as all choices per filter. There is no specific list of choices.\" Sentence 1 is a SCOPE/PARITY ruling that NO other case in the suite asserted: every existing Parts/Reports case checks that the DESIGNED chips are present and work, none checks the inverse - that no filter a shop relies on TODAY was dropped in the redesign. That is the single most likely real-world regression of an app-wide filter-bar replacement. Corroborated by the tech plan 2026-07-29 rollout rule (\"NO change to what is filterable\"), so two sources agree (Rule 32(i)). Rule-28 discipline: deliberately ONE case covering BOTH Parts and Reports, not one per page - per-page explosion is the exact pattern the 2026-07-31 audit cut 27 cases for. Filed in the Parts Page Filters section; step 5 extends the same walk to every report. The one risk is precondition 2 (the before-list), so it is written as an explicit achievable tester action rather than an unreachable state. Not live-verified (no QA branch) - viu_status VIU-Pending. Spec baseline v1.6 (Confluence page 572030978 version 12, 2026-07-28). REFS TRIMMED 2026-07-31 to fit TestRail's 250-char References limit: the tech-plan rollout rule is quoted in full above (\"NO change to what is filterable\").",
+  "api_related": false,
+  "refs": "SV-8785 [epic] (spec v19 §2 Parts Filters + Reports Filters); Branko answers 2026-07-31 Q3 + 2026-08-04 Q8 (\"we should have all filters we support now per each page plus we should add new ones\"); tech plan 2026-07-29 rollout rule",
+  "section_id": 5411,
+  "testrail_id": "C38908"
+ },
+ {
+  "id": "FLT-PARTS-14",
+  "area": "Parts Page Filters",
+  "title": "Parts and Reports filter chips share by link and work on a phone, no collapse",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the page under test (the spec defines no role-based differences - OQ-4).",
+  "preconditions": "1. You are signed in on a desktop browser.\n2. You can also open the same pages on a phone (or a browser window narrowed to phone size).\n3. You are on a Parts view or a report that has filters.",
+  "steps": "1. On the page, set a filter so the list is narrowed and look for any control to collapse or hide the chips.\n2. Copy the page link and open it in a new tab.\n3. Open the same page on a phone.",
+  "expected": "1. The filter chips are always visible in the toolbar row - there is NO collapse or hide control on Parts or Reports pages either (the collapse toggle was removed everywhere in the redesign).\n2. The active filters are reflected in the page link, so opening that link loads the page with the same filters applied (URL state, Story 11).\n3. On a phone the toolbar stacks into rows and the chips row is horizontally scrollable, each chip opening its own bottom sheet - the same model as Work Orders (Story 12).\n4. These behaviours match the Work Orders definitions on every page (Story 1 applies app-wide).\n\n---\nThis is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9279 (roll the filter layout out to all pages) and SV-9269 (no collapse), and the Filters specification at Confluence version 21 (published 14 August 2026) (S1-R4; S1-R7; S11-R1; S12-R17), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026\n",
+  "refs": "SV-9279 (S1-R4; S1-R7; S11-R1; S12-R17) [spec v21 2026-08-14]",
+  "spec_ref": "Branko Round-3 Q5=A (2026-07-31)",
+  "design_ref": "",
+  "api_related": false,
+  "section_id": 5411,
+  "testrail_id": "C43562",
+  "viu_status": "VIU-Pending",
+  "notes": "Authored 2026-08-06 from Vlad's coverage-gap review; gap proven absent with both texts quoted side by side (Rule 45(e)). Not observed on any build - the QA branch API returned HTTP 401."
+ }
 ]

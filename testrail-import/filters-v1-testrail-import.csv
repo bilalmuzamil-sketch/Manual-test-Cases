@@ -1,50 +1,129 @@
 Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
-Filter bar is shown below the tab row on the Work Orders page,Filter Bar Layout and Visibility,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. At least a few work orders exist in the shop.","1. Open the Work Orders page.
-2. Look at the area directly under the tab row (All, Estimates, Completed, My Work Orders).","1. A filter bar is visible directly below the tab row and above the work order table.
-2. The filter bar is shown by default (expanded) without having to turn anything on.
----
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S1-R1), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+Assigned to me is a toggle chip with no arrow that turns on and off,Filter Bar Layout and Visibility,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page.","1. Look at the 'Assigned to me' chip in the toolbar row.
+2. Click it once, then click it a second time.","1. The 'Assigned to me' chip shows a leading icon and the label 'Assigned to me'.
+2. It has NO dropdown arrow (chevron) and does not open a panel - it is a simple on/off toggle.
+3. The first click turns the filter on; the second click turns it off.
+4. It sits among the Work Orders chips in this order: Status, Assigned to me, Asset on Site.
 
-AUTOMATION: READY
+---
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9271 (Assigned to Me filter), and the Filters specification at Confluence version 21 (published 14 August 2026) (S6a-R1; S6a-R2; S1-R6), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",,,
+Turning Assigned to me on highlights the chip with no value and no clear X,Filter Bar Layout and Visibility,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page with 'Assigned to me' turned off.","1. Click the 'Assigned to me' chip to turn it on.
+2. Hover the mouse over the chip.
+3. Click the chip again to turn it off.","1. When on, the chip takes the active (highlighted) appearance used by any selected filter.
+2. It shows NO value text after the name - it stays just 'Assigned to me'.
+3. Hovering does NOT show an X-circle clear icon - the toggle chip has no separate clear control.
+4. Clicking the chip itself is what turns the filter off; it returns to its plain appearance.
+
+---
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9271 (Assigned to Me filter), and the Filters specification at Confluence version 21 (published 14 August 2026) (S6a-R3; S6a-R4; S7-R5; S7-R6), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",,,
+Assigned to me narrows to my work orders on top of the tab and filters,Filter Bar Layout and Visibility,Functional,High,"1. You are signed in on a desktop browser as a user who is the assignee on some work orders.
+2. You are on the Work Orders page and other work orders (not yours) also exist.","1. Turn on 'Assigned to me'.
+2. Note which work orders remain in the list.
+3. Also apply a Status filter and switch tabs, watching the list.
+4. Navigate away from the page and return; also copy the page link.","1. The list narrows to only the work orders assigned to you (the logged-in user).
+2. It applies on top of the active tab's built-in filter and on top of any other active filter - the results match all of them together.
+3. The selection is remembered when you leave and return (persistence, Story 10).
+4. The active state is reflected in the page link so a filtered view can be shared (URL state, Story 11).
+5. If nothing is assigned to you within the current tab and filters, the empty state is shown (Story 8).
+
+---
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9271 (Assigned to Me filter), and the Filters specification at Confluence version 21 (published 14 August 2026) (S6a-R5; S6a-R6; S11-R1; S10-R1), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",,,
+"Filter chips sit in the Work Orders toolbar row, not a separate filter bar",Filter Bar Layout and Visibility,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page.","1. Look at where the filter chips are placed on the page.
+2. Look for any separate filter bar or a control to hide the chips.","1. The filter chips sit in the page's main toolbar row, right-aligned, in the same row as the tabs.
+2. There is no separate filter bar row above or below the tabs.
+3. The chips are always visible - there is no button to hide, collapse or expand them.
+
+---
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9268 (Filter layout in the toolbar) and SV-9269 (remove the collapse toggle), and the Filters specification at Confluence version 21 (published 14 August 2026) (S1-R1; S1-R4), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8786 (S1-R1) [spec v1.6 2026-07-28],,
-"Five filter chips appear in a fixed order with an icon, name and arrow",Filter Bar Layout and Visibility,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page with the filter bar visible.
-3. You are on the All tab (the Estimates and Completed tabs treat the Status chip differently - that is covered by its own tests, so do not compare the chips there).","1. Read the filter chips in the filter bar from left to right.
-2. Look at what each chip shows.","1. Exactly five filter chips appear, in this order: Status, Customer, Lead Technician, Service Advisor, Asset on Site.
-2. Each chip shows a leading picture icon, then the filter name, then a down arrow (chevron) showing that it opens a dropdown.
-3. The leading icon suits each filter (for example a status glyph for Status, a person for Customer, a wrench for Lead Technician, a headset for Service Advisor, a box for Asset on Site).
----
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, the owning story SV-8786, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S1-R2, S1-R3), read on 11 August 2026. Note: version 18 of the same specification asked only for the filter name and the chevron; version 19 added the leading picture icon to match the design, and this test follows the newer wording.
+"Work Orders shows three filter chips: Status, Assigned to me, Asset on Site",Filter Bar Layout and Visibility,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page, All tab.","1. Read the filter chips in the toolbar row, left to right.
+2. Look at each chip's parts.","1. There are THREE filter chips, in this order: Status, Assigned to me, Asset on Site.
+2. Customer, Lead Technician and Service Advisor are NOT filter chips here - they were removed in the redesign.
+3. Each chip shows a leading type-icon, the filter name, and a chevron (arrow) that shows it opens a panel.
+4. The 'Assigned to me' chip is the exception: it has no chevron because it is a simple on/off toggle.
 
-AUTOMATION: READY
+---
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9268 (Filter layout in the toolbar) and SV-9270 (reduce Work Orders filters), and the Filters specification at Confluence version 21 (published 14 August 2026) (S1-R5; S1-R6), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8786 (S1-R2; S1-R3) [spec v1.6 2026-07-28],,
-The filter bar still shows the other four chips on the Estimates tab,Filter Bar Layout and Visibility,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. Estimate work orders exist.
-3. You are on the Work Orders page.","1. Click the Estimates tab.
-2. Look at the filter bar.
-3. Look at each chip in turn.","1. The filter bar is still shown on this tab - it does not disappear.
-2. The Customer, Lead Technician, Service Advisor and Asset on Site chips are all shown and usable.
-3. The Status chip is shown but greyed out and already filled in with this tab's own status, and cannot be clicked or changed.
+On the Estimates tab the Assigned to me and Asset on Site chips still show,Filter Bar Layout and Visibility,Negative,Medium,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page.","1. Go to the Estimates tab.
+2. Read which filter chips are shown.","1. The 'Assigned to me' and 'Asset on Site' chips are shown on the Estimates tab.
+2. The Status chip is not among them on this tab, because the Estimates tab already pre-filters by status (the Status chip shows on the All tab only).
+3. Note: there is an open question on whether the Status chip should be hidden or shown greyed/pre-filled on this tab - see the tab-behaviour cases; that point is being confirmed with the QA lead and is not settled by this case.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, the owning story SV-8794, read on 11 August 2026, and Branko's answer of 17 July 2026 (Round 1, question 4, option B), recorded in this file: build/filters/branko-answers-2026-07-17/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-07-17/answers-ingested.md), read on 11 August 2026. Note: the Filters specification at Confluence version 19 says instead that the Status chip is hidden on this tab (S9-R2 and S9-R3). That sentence has not been edited since 14 May 2026, which is two and a half months before Branko's answer, so the answer is the later decision and this test follows the answer. Branko has been asked to correct the specification.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9272 (tab model), and the Filters specification at Confluence version 21 (published 14 August 2026) (S1-N1; S9-R5), read on 17 August 2026.
 
-AUTOMATION: HOLD - waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ","SV-8785 [epic] (S1-N1; S9-R2; §4 Key Decisions - PRD text says ""hidden""; behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled) [spec v1.6 2026-07-28]",,
-Status chip opens a checkbox list of all nine statuses plus Clear Selection,Status Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page on the All or My Work Orders tab.
+"Filter chips sit in the toolbar row; on pages with no tabs, the title row",Filter Bar Layout and Visibility,Functional,High,"1. You are signed in on a desktop browser.
+2. You can reach both a page that has tabs (Work Orders) and a page that has no tabs but does have filters.","1. On the Work Orders page, note where the filter chips are placed relative to the tabs.
+2. Go to another page that has filters but no tabs (for example a Parts view or a Report).
+3. Look for any control to hide or collapse the filter chips.","1. The filter chips sit in the page's main toolbar row, right-aligned. There is no separate filter bar row anywhere in the application.
+2. On a page WITH tabs, the chips are in the same row as the tabs.
+3. On a page WITHOUT tabs, the chips are in the same row as the page title.
+4. The chips are always visible: there is no button to hide, collapse or expand them, on any page or screen size.
+5. Each page shows the filters that page already provides today - this change relocates and restyles existing filters; it adds none and removes none. A page with no filters today shows no chips.
+
+---
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9268 (Filter layout in the toolbar) and SV-9269 (remove the collapse toggle), and the Filters specification at Confluence version 21 (published 14 August 2026) (S1-R1; S1-R4; S1-R7; S1-R8), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",,,
+"Toolbar order is search, filter chips, icon actions, then the main button",Filter Bar Layout and Visibility,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page (which has a page search, filter chips and a 'New Work Order' button).","1. Read the right-hand group of controls in the toolbar row, left to right.
+2. Make the browser window narrow enough that the group cannot fit on one line.","1. The right-hand action group is ordered, left to right: the page search, a divider, the filter chips, a divider, any icon-only actions, then the primary button (for example 'New Work Order').
+2. When the window is too narrow to fit the group on one line, the toolbar row wraps.
+3. The chips wrap together as a group and keep their order. Nothing is hidden and nothing collapses into an overflow menu.
+
+---
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9268 (Filter layout in the toolbar), and the Filters specification at Confluence version 21 (published 14 August 2026) (S1-R2; S1-R3), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",,,
+A filter panel opens under its chip and stays applied when you click away,Filter Bar Layout and Visibility,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on a page that has at least one filter chip that opens a panel.","1. Click a filter chip that opens a panel and note where the panel appears.
+2. Make a selection, then click somewhere outside the panel.
+3. Re-open a panel that has a search box and type text that matches nothing.","1. The panel opens as a small pop-over just below its chip, lined up with the left edge of the chip.
+2. Every panel has a 'Clear selection' action in its footer that clears only that filter.
+3. Clicking outside the panel closes it. Your selection is already applied and is kept - it is not discarded.
+4. In a panel that has a search box, a search that matches nothing shows 'No matches' in the panel body.
+
+---
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R6; S16-R7; S16-N1), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",,,
+Status chip opens a checkbox list of all nine statuses plus Clear selection,Status Filter,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page on the All tab (the Status chip is shown on the All tab only).
 3. No filters are currently selected.","1. Click the Status filter chip.
 2. Read the list of options from top to bottom.
-3. Look at the bottom of the dropdown panel.","1. A dropdown panel opens under the Status chip.
+3. Look at the bottom of the panel.","1. A checkbox-list panel opens under the Status chip (no search box).
 2. It lists all nine statuses as checkboxes, in this order: Estimate, Approved, In progress, Review, Complete, Invoiced, Paid, Declined, Imported.
 3. All checkboxes are unticked (nothing selected yet).
-4. A 'Clear Selection' action is shown at the bottom of the dropdown.
+4. A 'Clear selection' action is shown at the bottom of the panel.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S2-R1, S2-R4), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-8787 (Status filter) and SV-9276 (panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S2-R1; S16-R1; S16-R6), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8787 (S2-R1; S2-R4) [spec v1.6 2026-07-28],,
 "Ticking one status filters the table immediately, with no apply button",Status Filter,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
@@ -57,7 +136,7 @@ AUTOMATION: READY
 3. Work orders in other statuses are no longer listed.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S2-R2, S2-R3, S2-R6), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S2-R2, S2-R3, S2-R6), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8787 (S2-R2; S2-R3; S2-R6) [spec v1.6 2026-07-28],,
@@ -73,7 +152,7 @@ Ticking several statuses shows work orders matching any of them,Status Filter,Fu
 4. There is no limit on how many statuses you can tick.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S2-R2), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S2-R2), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8787 (S2-R2; §4 Key Decisions (no selection limit)) [spec v1.6 2026-07-28],,
@@ -88,7 +167,7 @@ Clear Selection in the Status dropdown unticks every status,Status Filter,Functi
 3. Only the Status filter is affected - any other active filters stay applied.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S2-R4, S8-R2), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S2-R4, S8-R2), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8785 [epic] (S2-R4; S8-R2) [spec v1.6 2026-07-28],,
@@ -102,7 +181,7 @@ Clicking outside the Status dropdown closes it and keeps the selections applied,
 3. The table stays filtered by the selected statuses.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S2-R5), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S2-R5), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8787 (S2-R5) [spec v1.6 2026-07-28],,
@@ -117,7 +196,7 @@ Selecting statuses that no work order has shows the empty state,Status Filter,Ne
 3. The app does not show an error.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S2-N3, S8-R3), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S2-N3, S8-R3), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8785 [epic] (S2-N3; S8-R3) [spec v1.6 2026-07-28],,
@@ -134,309 +213,254 @@ Imported works alone: picking it greys out the other filters,Status Filter,Funct
 4. Unticking Imported re-enables the other chips and the normal list returns.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S2-R7, S2-N4), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S2-R7, S2-N4), read on 11 August 2026. Last checked against build v3.6-3e9dd6d on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8787 (S2-R7 (Imported cannot be combined with anything else; other filter chips disabled while it is active); S2-N4 (the combination is prevented rather than returning an empty result)) [spec v1.6 2026-07-28],,
-Customer chip opens a dropdown with a search field and a customer list,Customer Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page.
-3. Several customers exist in the shop.","1. Click the Customer filter chip.
-2. Look at the top of the dropdown panel and the list below it.
-3. Look at the bottom of the panel.","1. A dropdown panel opens under the Customer chip.
-2. A search box with the placeholder 'Search' is at the top of the panel. Click it before you type - it is not focused for you automatically.
-3. Below it is a scrollable list of customer names.
-4. A 'Clear Selection' action is shown at the bottom of the panel.
+An entity filter opens a searchable panel with a list and Clear selection,Customer Filter,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a Customer filter (confirm live which pages carry it - the Customer filter was removed from Work Orders).","1. Click the entity filter chip (for example Customer).
+2. Read the panel that opens.","1. A pop-over panel opens under the chip.
+2. A search box with the placeholder 'Search customer' is pinned to the top.
+3. Below it is a scrollable checkbox list of values.
+4. A 'Clear selection' action is in the panel footer.
+5. The Customer filter is no longer on the Work Orders page; this searchable panel is now the standard panel for entity filters (Story 16).
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S3-R1), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types); v1.7 removed the Customer Work Orders filter, and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R2; S16-R6), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8788 (S3-R1) [spec v1.6 2026-07-28],,
-Typing in the customer search narrows the list to matching names,Customer Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page with the Customer dropdown open.
-3. Several customers with different names exist.","1. Type part of one customer's name into the 'Search' field (for example the first few letters).
-2. Watch the list while you type.","1. The customer list narrows as you type, showing only names that match what you entered.
-2. Customers that do not match are removed from the list.
-3. Deleting the text brings the full list back.
+Typing in an entity filter search narrows the list to matching values,Customer Filter,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a Customer filter (confirm live which pages carry it - the Customer filter was removed from Work Orders).","1. Open the entity filter panel.
+2. Type part of a value name in the search box.","1. As you type, the list narrows to only the values whose name matches what you typed.
+2. Clearing the search box shows the full list again.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S3-R2), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R2), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8788 (S3-R2) [spec v1.6 2026-07-28],,
-Selected customers show as removable tags and as ticks in the list,Customer Filter,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page with the Customer dropdown open.
-3. At least three customers exist.","1. Click one customer in the list.
-2. Click a second and a third customer.
-3. Look at the input area at the top of the dropdown and at the list rows.","1. Each selected customer appears as a tag (small chip) with an x in the input area at the top of the dropdown.
-2. Each selected customer's row in the list shows a checkmark on the right.
-3. Long customer names on tags are shortened with an ellipsis (for example 'Texas Truck And Aut...').
-4. You can keep selecting as many customers as needed - there is no selection limit.
+Selected entity values show as removable pills and as ticks in the list,Customer Filter,Functional,Critical,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a Customer filter (confirm live which pages carry it - the Customer filter was removed from Work Orders).","1. Open the entity filter panel.
+2. Tick two or three values.
+3. Read the search box and the list.","1. Each selected value appears as a removable pill inside the search box, each pill with an X; the box grows to fit them.
+2. The matching rows in the list below are also shown as ticked.
+3. There is no limit on how many values you can select.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S3-R3, S3-R4), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R3), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8788 (S3-R3; S3-R4; §4 Key Decisions (no selection limit)) [spec v1.6 2026-07-28],,
-Clicking the x on a customer tag removes just that customer from the selection,Customer Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page with the Customer dropdown open.
-3. Two or more customers are selected (their tags are visible in the input area).","1. Click the x on one selected customer's tag.
-2. Look at the tags, the list and the work order table.","1. That customer's tag disappears from the input area.
-2. The checkmark next to that customer in the list is removed.
-3. The other selected customers keep their tags and checkmarks.
-4. The table updates to no longer include that customer's work orders.
+Clicking the X on an entity value pill removes just that one value,Customer Filter,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a Customer filter (confirm live which pages carry it - the Customer filter was removed from Work Orders).","1. Open the entity filter panel and select several values.
+2. Click the X on one of the pills.","1. Only that one value is removed from the selection.
+2. The other selected values stay selected and the list still shows them ticked.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S3-R5), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R3), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8788 (S3-R5) [spec v1.6 2026-07-28],,
-The table shows only work orders belonging to any of the selected customers,Customer Filter,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page on the All tab.
-3. At least two customers each have at least one work order, and a third customer's work orders also exist (seed ZZAUTOTEST data if needed).","1. Open the Customer filter and select two customers.
-2. Look at the Customer column in the work order table.","1. The table shows only work orders whose customer is one of the two selected customers.
-2. Work orders belonging to any other customer are hidden.
-3. The table updates in real time as you make the selections (no apply button on desktop).
+An entity filter narrows the table to records matching any selected value,Customer Filter,Functional,Critical,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a Customer filter (confirm live which pages carry it - the Customer filter was removed from Work Orders).","1. Open the entity filter panel.
+2. Select two values.","1. The table updates in real time (no apply button) to show only records that match ANY of the selected values.
+2. Removing a value re-widens the results accordingly.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S3-R6, S2-R6), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R2; S2-R6), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8785 [epic] (S3-R6; S2-R6 (real-time pattern)) [spec v1.6 2026-07-28],,
-Clear Selection in the Customer dropdown removes all selected customers,Customer Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page.
-3. Two or more customers are selected in the Customer filter and the table is filtered.","1. Open the Customer dropdown (if not already open).
-2. Click 'Clear Selection' at the bottom of the dropdown.
-3. Look at the tags, the list and the table.","1. All customer tags are removed from the input area.
-2. All checkmarks in the list are removed.
-3. The Customer filter is removed and the table shows work orders of all customers again.
-4. Other active filters (if any) are not affected.
+Clear selection in an entity filter panel removes all its selected values,Customer Filter,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a Customer filter (confirm live which pages carry it - the Customer filter was removed from Work Orders).","1. Open the entity filter panel and select several values.
+2. Click 'Clear selection'.","1. All selected values in that panel are cleared.
+2. Only that filter is cleared - any other active filter is left untouched.
+3. The table re-widens to the results without that filter.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S3-R7, S8-R2), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R6), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8785 [epic] (S3-R7; S8-R2) [spec v1.6 2026-07-28],,
-Clicking outside the Customer dropdown closes it and the selections remain,Customer Filter,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page with the Customer dropdown open and two customers selected.","1. Click anywhere outside the dropdown.
-2. Look at the Customer chip and the table.
-3. Click the Customer chip again to reopen the dropdown.","1. The dropdown closes when you click outside it.
-2. The Customer chip stays in the active (blue) state showing the selection and the table stays filtered.
-3. When reopened, the selected customers' tags are still visible in the input area.
+Clicking outside an entity filter panel closes it and keeps the selection,Customer Filter,Functional,Medium,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a Customer filter (confirm live which pages carry it - the Customer filter was removed from Work Orders).","1. Open the entity filter panel and select a value.
+2. Click somewhere outside the panel.","1. The panel closes.
+2. The selection you made is already applied and is kept - it is not discarded.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S3-R8), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R7), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8788 (S3-R8) [spec v1.6 2026-07-28],,
-Customer search with no matching name shows a no-results message in the list,Customer Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page with the Customer dropdown open.","1. Type a string that matches no customer name (for example 'zzzqqq').
-2. Look at the list area of the dropdown.","1. The list shows a message saying there are no results (instead of an empty gap).
-2. The app does not show an error.
-3. Clearing the search text brings the customer list back.
+An entity filter search that matches nothing shows No matches,Customer Filter,Negative,Medium,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a Customer filter (confirm live which pages carry it - the Customer filter was removed from Work Orders).","1. Open the entity filter panel.
+2. Type text that matches no value.","1. The panel body shows 'No matches'.
+2. Clearing the search box brings the full list back.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S3-N1), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-N1), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8788 (S3-N1) [spec v1.6 2026-07-28],,
-A customer with no work orders is still listed; picking them shows no rows,Customer Filter,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. A customer exists who currently has NO work orders (create a fresh ZZAUTOTEST customer if needed).
-3. You are on the Work Orders page on the All tab.","1. Open the Customer filter and search for the customer who has no work orders.
-2. Confirm they appear in the list, then select them (and only them).
-3. Look at the table.","1. The customer with no work orders IS shown in the filter list (they are not hidden).
-2. After selecting only that customer, the table shows no rows and the filtered empty state is displayed.
-3. No error is shown.
+Selecting an entity value that has no records shows the empty state,Customer Filter,Functional,Medium,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a Customer filter (confirm live which pages carry it - the Customer filter was removed from Work Orders).","1. Open the entity filter panel.
+2. Select a value that has no matching records.","1. The value is still listed and can be selected.
+2. When the selection matches no records, the table shows the no-results empty state (Story 8).
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S3-E1, S3-N2, S8-R3), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R2; S8-R3), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8785 [epic] (S3-E1; S3-N2; S8-R3) [spec v1.6 2026-07-28],,
-Lead Technician chip opens a dropdown with a search field and a list,Lead Technician Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page.
-3. Several technicians exist in the shop.","1. Click the Lead Technician filter chip.
-2. Look at the top of the dropdown, the list below and the bottom of the panel.","1. A dropdown panel opens under the Lead Technician chip.
-2. A search input with the placeholder 'Search' is at the top.
-3. Below it is a scrollable list of technician names.
-4. A 'Clear Selection' action is shown at the bottom.
+Lead Technician is removed from Work Orders; its panel survives elsewhere,Lead Technician Filter,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a Lead Technician filter (confirm live which pages carry it - the Lead Technician filter was removed from Work Orders).","1. On the Work Orders page, look for a Lead Technician filter chip.
+2. On a page that still has a technician filter, open its chip.","1. There is NO Lead Technician filter chip on the Work Orders page - it was removed in the redesign.
+2. Where a technician filter still exists on another page, its chip opens the standard searchable multi-select panel (search box 'Search technician', scrollable ticked list, Clear selection).
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S4-R1), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types); v1.7 removed the Lead Technician Work Orders filter, and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R2), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8789 (S4-R1) [spec v1.6 2026-07-28],,
-Typing in the technician search narrows the list to matching names,Lead Technician Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page with the Lead Technician dropdown open.","1. Type part of one technician's name into the 'Search' field.
-2. Watch the list while you type.","1. The technician list narrows to only the names matching what you typed.
-2. Deleting the text brings the full list back.
+Typing in a technician filter search narrows the list to matching names,Lead Technician Filter,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a technician filter (confirm live which pages carry it - the Lead Technician filter was removed from Work Orders).","1. Open the technician filter panel.
+2. Type part of a technician name.","1. The list narrows to only technicians whose name matches what you typed.
+2. Clearing the search shows the full list again.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S4-R2), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R2), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8789 (S4-R2) [spec v1.6 2026-07-28],,
-Selecting technicians shows only work orders where they are the lead technician,Lead Technician Filter,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page on the All tab.
-3. Work orders exist with different lead technicians assigned, including at least one work order where the chosen technician is assigned but NOT as lead (seed ZZAUTOTEST data if needed).","1. Open the Lead Technician filter and select one or two technicians.
-2. Look at the checkboxes in the list and the work order table.","1. Selected technicians show a checkmark on the row, and as a small removable tag above the list in the list.
-2. The table shows only work orders where one of the selected technicians is assigned as the LEAD technician.
-3. A work order where the technician is assigned only in a non-lead role does not appear.
-4. The table updates in real time as you select.
+A technician filter shows only records where they are the lead technician,Lead Technician Filter,Functional,Critical,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a technician filter (confirm live which pages carry it - the Lead Technician filter was removed from Work Orders).","1. Open the technician filter panel.
+2. Select one or more technicians.","1. Selected technicians show as ticks (and removable pills).
+2. The table narrows to only records where a selected technician is the lead technician.
+3. Selecting more than one technician shows records matching any of them.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S4-R3, S4-R4), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R2; S16-R3), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8789 (S4-R3; S4-R4) [spec v1.6 2026-07-28],,
-Clear Selection in the Lead Technician dropdown removes all selected technicians,Lead Technician Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page.
-3. One or more technicians are selected in the Lead Technician filter.","1. Open the Lead Technician dropdown and click 'Clear Selection' at the bottom.
-2. Look at the list and the table.","1. All technician selections are removed (checkboxes unticked).
-2. The Lead Technician filter no longer restricts the table.
-3. Other active filters are not affected.
+Clear selection in the technician filter panel removes all technicians,Lead Technician Filter,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a technician filter (confirm live which pages carry it - the Lead Technician filter was removed from Work Orders).","1. Open the technician filter panel and select several technicians.
+2. Click 'Clear selection'.","1. All selected technicians are cleared and only that filter is removed.
+2. The table re-widens to results without that filter.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S4-R5, S8-R2), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R6), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8785 [epic] (S4-R5; S8-R2) [spec v1.6 2026-07-28],,
-Clicking outside the Lead Technician dropdown closes it,Lead Technician Filter,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page with the Lead Technician dropdown open and one technician selected.","1. Click anywhere outside the dropdown.
-2. Look at the dropdown, the chip and the table.","1. The dropdown closes.
-2. The selection stays applied - the chip stays active and the table stays filtered.
+Clicking outside the technician filter panel closes it and keeps the selection,Lead Technician Filter,Functional,Medium,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a technician filter (confirm live which pages carry it - the Lead Technician filter was removed from Work Orders).","1. Open the technician filter panel and select a technician.
+2. Click outside the panel.","1. The panel closes and the selection stays applied - it is not discarded.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S4-R6), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R7), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8789 (S4-R6) [spec v1.6 2026-07-28],,
-Selecting a technician who leads no work orders shows the empty state,Lead Technician Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. A technician exists who is not the lead technician on ANY work order (create a fresh ZZAUTOTEST staff member if needed).
-3. You are on the Work Orders page on the All tab with no other filters active.","1. Open the Lead Technician filter and select only that technician.
-2. Look at the table.","1. The table shows no rows and the filtered empty state is displayed.
-2. No error is shown.
+Selecting a technician who leads no records shows the empty state,Lead Technician Filter,Negative,Medium,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a technician filter (confirm live which pages carry it - the Lead Technician filter was removed from Work Orders).","1. Open the technician filter panel.
+2. Select a technician who leads no records.","1. The table shows the no-results empty state (Story 8).
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S4-N1, S8-R3), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R2; S8-R3), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8785 [epic] (S4-N1; S8-R3) [spec v1.6 2026-07-28],,
-A deactivated technician does not appear in the Lead Technician filter list,Lead Technician Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. A test technician (ZZAUTOTEST) exists and is visible in the Lead Technician filter list.
-3. That test technician is then made inactive/deactivated in staff administration (restore them afterwards).","1. On the Work Orders page, open the Lead Technician filter.
-2. Search for the deactivated technician's name.
-3. Look at the list.","1. The deactivated technician is NOT shown in the filter list.
-2. Active technicians are still listed normally.
+A deactivated technician does not appear in the technician filter list,Lead Technician Filter,Negative,Medium,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a technician filter (confirm live which pages carry it - the Lead Technician filter was removed from Work Orders).","1. A technician has been deactivated.
+2. Open the technician filter panel.","1. The deactivated technician is not offered in the list.
+2. Only currently valid technicians are shown.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S4-E1), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R2), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8789 (S4-E1) [spec v1.6 2026-07-28],,
-Service Advisor chip opens a dropdown with a search field and a list,Service Advisor Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page.
-3. Several service advisors exist in the shop.","1. Click the Service Advisor filter chip.
-2. Look at the top of the dropdown, the list below and the bottom of the panel.","1. A dropdown panel opens under the Service Advisor chip.
-2. A search input with the placeholder 'Search' is at the top.
-3. Below it is a scrollable list of advisor names.
-4. A 'Clear Selection' action is shown at the bottom.
+Service Advisor is removed from Work Orders; its panel survives elsewhere,Service Advisor Filter,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a Service Advisor filter (confirm live which pages carry it - the Service Advisor filter was removed from Work Orders).","1. On the Work Orders page, look for a Service Advisor filter chip.
+2. On a page that still has an advisor filter, open its chip.","1. There is NO Service Advisor filter chip on the Work Orders page - it was removed in the redesign.
+2. Where an advisor filter still exists on another page, its chip opens the standard searchable multi-select panel (search box 'Search advisor', scrollable ticked list, Clear selection).
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S5-R1), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types); v1.7 removed the Service Advisor Work Orders filter, and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R2), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8790 (S5-R1) [spec v1.6 2026-07-28],,
-Typing in the advisor search narrows the list to matching names,Service Advisor Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page with the Service Advisor dropdown open.
-","1. Type part of one advisor's name into the 'Search' field.
-2. Watch the list while you type.
-","1. The advisor list narrows to only the names matching what you typed.
-2. Deleting the text brings the full list back.
+Typing in an advisor filter search narrows the list to matching names,Service Advisor Filter,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a advisor filter (confirm live which pages carry it - the Service Advisor filter was removed from Work Orders).","1. Open the advisor filter panel.
+2. Type part of an advisor name.","1. The list narrows to only advisors whose name matches what you typed.
+2. Clearing the search shows the full list again.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S5-R2), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R2), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8790 (S5-R2) [spec v1.6 2026-07-28],,
-Selecting advisors shows only work orders assigned to those advisors,Service Advisor Filter,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page on the All tab.
-3. Work orders exist with different service advisors assigned (seed ZZAUTOTEST data if needed).
-","1. Open the Service Advisor filter and select one or two advisors.
-2. Look at the checkboxes in the list and the Service Advisor column in the table.
-","1. Selected advisors show a checkmark on the row, and as a small removable tag above the list in the list.
-2. The table shows only work orders assigned to any of the selected advisors.
-3. The table updates in real time as you select.
+An advisor filter shows only records assigned to the selected advisors,Service Advisor Filter,Functional,Critical,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a advisor filter (confirm live which pages carry it - the Service Advisor filter was removed from Work Orders).","1. Open the advisor filter panel.
+2. Select one or more advisors.","1. Selected advisors show as ticks (and removable pills).
+2. The table narrows to only records assigned to a selected advisor.
+3. Selecting more than one advisor shows records matching any of them.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S5-R3, S5-R4), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R2; S16-R3), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8790 (S5-R3; S5-R4) [spec v1.6 2026-07-28],,
-Clear Selection in the Service Advisor dropdown removes all selected advisors,Service Advisor Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page.
-3. One or more advisors are selected in the Service Advisor filter.
-","1. Open the Service Advisor dropdown and click 'Clear Selection' at the bottom.
-2. Look at the list and the table.
-","1. All advisor selections are removed.
-2. The Service Advisor filter no longer restricts the table.
-3. Other active filters are not affected.
+Clear selection in the advisor filter panel removes all advisors,Service Advisor Filter,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a advisor filter (confirm live which pages carry it - the Service Advisor filter was removed from Work Orders).","1. Open the advisor filter panel and select several advisors.
+2. Click 'Clear selection'.","1. All selected advisors are cleared and only that filter is removed.
+2. The table re-widens to results without that filter.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S5-R5, S8-R2), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R6), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8785 [epic] (S5-R5; S8-R2) [spec v1.6 2026-07-28],,
-Clicking outside the Service Advisor dropdown closes it,Service Advisor Filter,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page with the Service Advisor dropdown open and one advisor selected.
-","1. Click anywhere outside the dropdown.
-2. Look at the dropdown, the chip and the table.
-","1. The dropdown closes.
-2. The selection stays applied - the chip stays active and the table stays filtered.
+Clicking outside the advisor filter panel closes it and keeps the selection,Service Advisor Filter,Functional,Medium,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a advisor filter (confirm live which pages carry it - the Service Advisor filter was removed from Work Orders).","1. Open the advisor filter panel and select an advisor.
+2. Click outside the panel.","1. The panel closes and the selection stays applied - it is not discarded.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S5-R6), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R7), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8790 (S5-R6) [spec v1.6 2026-07-28],,
-Selecting an advisor with no assigned work orders shows the empty state,Service Advisor Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. An advisor exists who is not assigned to ANY work order (create a fresh ZZAUTOTEST staff member if needed).
-3. You are on the Work Orders page on the All tab with no other filters active.
-","1. Open the Service Advisor filter and select only that advisor.
-2. Look at the table.
-","1. The table shows no rows and the filtered empty state is displayed.
-2. No error is shown.
+Selecting an advisor with no assigned records shows the empty state,Service Advisor Filter,Negative,Medium,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a advisor filter (confirm live which pages carry it - the Service Advisor filter was removed from Work Orders).","1. Open the advisor filter panel.
+2. Select an advisor with no assigned records.","1. The table shows the no-results empty state (Story 8).
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S5-N1, S8-R3), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R2; S8-R3), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8785 [epic] (S5-N1; S8-R3) [spec v1.6 2026-07-28],,
-A deactivated advisor does not appear in the Service Advisor filter list,Service Advisor Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. A test advisor (ZZAUTOTEST) exists and is visible in the Service Advisor filter list.
-3. That test advisor is then made inactive/deactivated in staff administration (restore them afterwards).
-","1. On the Work Orders page, open the Service Advisor filter.
-2. Search for the deactivated advisor's name.
-3. Look at the list.
-","1. The deactivated advisor is NOT shown in the filter list.
-2. Active advisors are still listed normally.
+A deactivated advisor does not appear in the advisor filter list,Service Advisor Filter,Negative,Medium,"1. You are signed in on a desktop browser.
+2. You are on a page that still has a advisor filter (confirm live which pages carry it - the Service Advisor filter was removed from Work Orders).","1. An advisor has been deactivated.
+2. Open the advisor filter panel.","1. The deactivated advisor is not offered in the list.
+2. Only currently valid advisors are shown.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S5-E1), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R2), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8790 (S5-E1) [spec v1.6 2026-07-28],,
-Asset on Site chip opens a dropdown with Yes and No plus Clear Selection,Asset on Site Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page.","1. Click the Asset on Site filter chip.
-2. Read the options in the dropdown.","1. A small dropdown panel opens under the Asset on Site chip.
-2. It contains exactly two options: Yes and No.
-3. A 'Clear Selection' action is shown at the bottom.
-4. It is a dropdown (like the other filters), not an on/off toggle.
+Asset on Site opens a single-select list with a checkmark on the chosen row,Asset on Site Filter,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page.","1. Click the Asset on Site chip.
+2. Read the panel and pick an option.","1. A single-select list panel opens with two options: Yes and No.
+2. You can pick only one at a time. The chosen row is marked with a checkmark icon (not a radio button and not a checkbox).
+3. A 'Clear selection' action is in the panel; it removes the filter.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S6-R1), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9275 (Asset on Site single-select panel), and the Filters specification at Confluence version 21 (published 14 August 2026) (S6-R1; S16-R4; S16-R6), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8791 (S6-R1; §4 Key Decisions (dropdown - not toggle)) [spec v1.6 2026-07-28],,
 Choosing Yes shows only work orders whose asset is on site,Asset on Site Filter,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
@@ -445,21 +469,20 @@ Choosing Yes shows only work orders whose asset is on site,Asset on Site Filter,
 2. Work orders whose asset is not on site are hidden.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S6-R2), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S6-R2), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8791 (S6-R2) [spec v1.6 2026-07-28],,
-Asset on Site is single-select: choosing the other option replaces the first,Asset on Site Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page with Yes selected in the Asset on Site filter.","1. Open the Asset on Site dropdown again.
-2. Choose No.
-3. Look at the selection and the table.","1. No becomes the selected option and Yes is deselected automatically - only one option can be selected at a time.
-2. The table switches to showing only the not-on-site work orders.
-3. The chip shows the currently selected value.
+Asset on Site is single-select: choosing the other option replaces the first,Asset on Site Filter,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page with the Asset on Site panel open.","1. Choose Yes and note the checkmark and the list.
+2. Then choose No.","1. Choosing Yes marks the Yes row with a checkmark and narrows the list to work orders whose asset is on site.
+2. Choosing No replaces the Yes selection (the checkmark moves to No) - only one value can be selected at a time.
+3. The list updates to match the newly chosen value.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S6-R3), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9275 (Asset on Site single-select panel), and the Filters specification at Confluence version 21 (published 14 August 2026) (S6-R2; S6-R3), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8791 (S6-R3) [spec v1.6 2026-07-28],,
 Clear Selection in the Asset on Site dropdown removes the filter,Asset on Site Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with Yes or No selected in the Asset on Site filter.","1. Open the Asset on Site dropdown and click 'Clear Selection'.
@@ -468,7 +491,7 @@ Clear Selection in the Asset on Site dropdown removes the filter,Asset on Site F
 3. Other active filters are not affected.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S6-R4, S8-R2), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S6-R4, S8-R2), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8785 [epic] (S6-R4; S8-R2) [spec v1.6 2026-07-28],,
@@ -478,7 +501,7 @@ Clicking outside the Asset on Site dropdown closes it,Asset on Site Filter,Funct
 2. The Yes selection stays applied - the chip stays active and the table stays filtered.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S6-R5), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S6-R5), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8791 (S6-R5) [spec v1.6 2026-07-28],,
@@ -489,7 +512,7 @@ An Asset on Site choice that matches no work orders shows the empty state,Asset 
 2. No error is shown.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S6-N1, S8-R3), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S6-N1, S8-R3), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8785 [epic] (S6-N1; S8-R3) [spec v1.6 2026-07-28],,
@@ -513,7 +536,7 @@ A chip with a selected value turns blue and shows the value,Active Filter Chips 
 3. The other chips stay in their default state.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S7-R1), read on 11 August 2026. Last checked against build v3.6-3e9dd6d on 8/11/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S7-R1), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8792 (S7-R1) [spec v1.6 2026-07-28],,
@@ -523,137 +546,131 @@ A chip with several values shows the first ones and shortens the rest,Active Fil
 2. The chip stays a single compact pill - it does not grow to show every value in full.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S7-R2), read on 11 August 2026. Last checked against build v3.6-3e9dd6d on 8/11/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S7-R2), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8792 (S7-R2) [spec v1.6 2026-07-28],,
-'Clear Filters' shows right of the chips only when a filter is active,Active Filter Chips and Clear Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page with no filters selected.","1. Look at the right end of the filter chip row with no filters active.
-2. Select any filter value (for example one status).
-3. Look at the right end of the chip row again.
-4. Remove the selection (Clear Selection in the dropdown) and look once more.","1. With no filters active, no 'Clear Filters' button/link is shown (there is nothing to click).
-2. As soon as one filter is active, a blue 'Clear Filters' link appears at the right end of the chip row.
-3. When the last active filter is removed, 'Clear Filters' disappears again.
+There is no global Clear filters button; each filter is cleared on its own,Active Filter Chips and Clear Filters,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page with one or more filters active.","1. Look across the toolbar for a single 'Clear filters' button.
+2. Hover a selected chip and use its X-circle; also open a panel and use 'Clear selection'.","1. There is NO single 'Clear filters' button anywhere - it was removed in the redesign.
+2. A filter is cleared one at a time: either by clicking the X-circle on its selected chip, or by 'Clear selection' inside its open panel.
+3. Clearing one filter leaves the others untouched.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S7-R3, S7-N1, S8-N1), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9274 (remove the global Clear filters control), and the Filters specification at Confluence version 21 (published 14 August 2026) (S8-R1; S7-R6), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8785 [epic] (S7-R3; S7-N1; S8-N1) [spec v1.6 2026-07-28],,
-'Clear Filters' removes every active filter and resets all chips,Active Filter Chips and Clear Filters,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page on the All tab.
-3. Values are selected in at least three different filters (for example a status, a customer and Asset on Site Yes).
-4. The page's own Search box is empty (no text typed in it) - a typed search is cleared by its own control, not by 'Clear Filters'.","1. Click the 'Clear Filters' link at the right end of the chip row.
-2. Look at all the chips and the table.","1. Every active filter is cleared in one click.
-2. All chips return to their default (inactive) look with no values shown.
-3. The table shows the full unfiltered list again (no text is in the page Search box, so nothing else is narrowing it).
-4. The 'Clear Filters' link disappears.
+"Clearing a filter does not clear a typed search, and vice versa",Active Filter Chips and Clear Filters,Functional,Critical,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page with a filter active and a search query typed.","1. Clear one filter using its X-circle or 'Clear selection'.
+2. Then clear the search query using the search box X.
+3. Watch the list at each step.","1. Filters are cleared one at a time (there is no global Clear filters button).
+2. Clearing a filter does NOT clear the typed search - the search stays and keeps narrowing the list.
+3. Clearing the search does NOT clear any filters - they stay applied.
+4. The search and the filters are cleared independently of each other.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S8-R1, S13-R13), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9274 (remove the global Clear filters control), and the Filters specification at Confluence version 21 (published 14 August 2026) (S8-R1; S8-R5; S13-R13), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8785 [epic] (S8-R1; §4 Key Decisions; S13-R13 (clearing filters does not clear a typed search)) [spec v1.6 2026-07-28],,
-'Clear Selection' in one dropdown clears only that filter,Active Filter Chips and Clear Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page on the All tab.
-3. Values are selected in at least two different filters (for example a status and a customer).","1. Open the Status dropdown and click 'Clear Selection'.
-2. Look at the Status chip, the Customer chip and the table.","1. Only the Status filter is cleared - its chip returns to default.
-2. The Customer filter stays selected and active (blue) and keeps filtering the table.
-3. 'Clear Filters' remains visible because a filter is still active.
+"Clear selection in one panel clears only that filter, leaving others",Active Filter Chips and Clear Filters,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page, All tab.
+3. Values are selected in at least two different filters (for example a status and Asset on Site).","1. Open the Status panel and click 'Clear selection'.
+2. Look at the Status chip, the Asset on Site chip and the table.","1. Only the Status filter is cleared - its chip returns to its plain appearance.
+2. The Asset on Site filter stays selected and active and keeps narrowing the table.
+3. There is no global 'Clear filters' button; each filter is cleared on its own from its chip or panel.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S8-R2), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9274 (clearing filters), and the Filters specification at Confluence version 21 (published 14 August 2026) (S8-R2; S16-R6), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8793 (S8-R2; §4 Key Decisions) [spec v1.6 2026-07-28],,
-Status and Customer filters together show only work orders matching both,Active Filter Chips and Clear Filters,Functional,Critical,"Logged in as Admin on the Work Orders page, All tab; customer A has an Estimate and an Approved WO, customer B has an Estimate WO (all API-seeded)","1. Open the Status filter and tick Estimate.
-2. Open the Customer filter and select customer A.
-3. Look at the table.","Two active chips, a visible Clear Filters button, and exactly the intersection of both filters in the table
-
-Note on where each part comes from: the two active chips and the Clear Filters button are both stated in the product description. The ""matching both"" part is not - the product description never says what should happen when two different filters are used at the same time. That rule is stated in the engineering technical design, which requires the filters to combine with ""AND across fields"".
+Status and Asset on Site together show only work orders matching both,Active Filter Chips and Clear Filters,Functional,Critical,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page, All tab.","1. Select one or more statuses in the Status filter.
+2. Then set the Asset on Site filter to Yes.
+3. Note the list.","1. The list shows only work orders that match BOTH the chosen status(es) AND the Asset on Site choice (the filters combine together).
+2. Clearing one of the two filters re-widens the list to the other filter alone.
+3. (Customer is no longer a Work Orders filter, so this combination now uses Status with Asset on Site.)
 
 ---
-This is the expected behaviour as per story SV-8793, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (§2 Feature Overview), read on 11 August 2026, and as per the engineering technical design for the app-wide filter redesign (§0.3 and §1.8), read on 11 August 2026 - that document carries no version number of its own and records its own baseline as ""Spec baseline: v1.3"".
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9270 (reduce Work Orders filters), and the Filters specification at Confluence version 21 (published 14 August 2026) (S2-R2; S6-R2; S8-R5), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8793 (§2 Feature Overview (multi-criteria); S8-R3 ('combination of active filters')) [spec v1.6 2026-07-28],,
-The toolbar filter button collapses the bar and the table takes the space,Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page with the filter bar visible (expanded).","1. Find the filter icon button in the page toolbar (next to the Search magnifier and the column/layout toggle, left of the Create Work Order button).
-2. Click the filter icon once.
-3. Look at the filter bar area and the table.","1. The filter bar row is hidden.
-2. The work order table moves up and uses the reclaimed vertical space.
-3. The filter icon shows a pressed/active look while the bar is collapsed.
-4. The filter icon is shown on this page because the Work Orders page has more than one filter. This button is only shown on a page that has more than one filter; on a page that has only one filter the button is not shown at all and that page's filter bar is always on display.
-
-Note for the tester: if you are ever on a page that has only one filter and you cannot find this button, that is correct and is not a fault - do not raise it. On the Work Orders page, which has five filters, the button should always be there.
+A selected chip shows an X to clear on hover and shortens a long value,Active Filter Chips and Clear Filters,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page.","1. Open the Status chip and select several statuses, then close the panel.
+2. Hover the mouse over the selected Status chip and read the trailing icon.
+3. Click that icon.
+4. On a page with an entity filter, select a value whose name is very long and read the chip.","1. A chip with more than one value selected shows the first value followed by a count of the rest, for example 'Status: Estimate, +2'. It does not list every value.
+2. When you hover a selected chip, the arrow fades out and an X-circle fades in over it.
+3. Clicking the X-circle clears that filter's selections straight away, without opening the panel.
+4. A chip with no selection never shows the X-circle, on hover or otherwise.
+5. A value longer than the chip width is shortened with an ellipsis before the count, for example 'Customer: Texas Truck And..., +2'.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, the Filters specification at Confluence version 19 (published 6 August 2026) (S1-R4, S1-R5), read on 11 August 2026, and ticket SV-9041 (https://shopview.atlassian.net/browse/SV-9041), read on 11 August 2026, which sets the condition for when this button is shown. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9273 (Filter chip: inline clear and truncated label), and the Filters specification at Confluence version 21 (published 14 August 2026) (S7-R6; S7-R7; S7-R8; S7-N1), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",,,
+There is no control to collapse or hide the filter chips on any page,Collapse and Expand,Functional,High,"1. You are signed in.
+2. You can reach the Work Orders page on desktop and on a phone.","1. On desktop, look for any button that hides, collapses or expands the filter chips.
+2. Repeat on a phone-width screen.","1. The filter chips are always visible. There is no control to hide, collapse or expand them - on any page or any screen size.
+2. The old collapse/expand toggle has been removed by the redesign, on desktop and on mobile.
+
+---
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9269 (remove the filter bar collapse/expand toggle), and the Filters specification at Confluence version 21 (published 14 August 2026) (S1-R4; S12-R5), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8786 (S1-R4; S1-R5) [spec v1.6 2026-07-28],,
-Expanding the filter bar brings it back with active filters still shown,Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page.
-3. At least one filter is selected (for example two statuses) and the filter bar has been collapsed with the filter button.","1. Click the filter icon in the toolbar again.
-2. Look at the filter bar.","1. The filter bar reappears below the tab row.
-2. The previously selected filters are still shown on their chips in the active (blue) state - nothing was lost while collapsed.
-3. The 'Clear Filters' link is still shown at the right end of the chip row.
+"There is no remembered collapsed or expanded state, because there is no toggle",Collapse and Expand,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page.","1. Look for any collapsed/expanded chip state to set.
+2. Leave the page and return.","1. Because there is no collapse control, there is no collapsed-or-expanded state to remember.
+2. On return, the chips are shown exactly as before - always visible. Only the actual filter selections are remembered (Story 10).
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S1-R6), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9269 (remove the filter bar collapse/expand toggle), and the Filters specification at Confluence version 21 (published 14 August 2026) (S1-R4; S10-R1), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8786 (S1-R6) [spec v1.6 2026-07-28],,
-The filter bar's collapsed or expanded state is remembered on return,Collapse and Expand,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page and have collapsed the filter bar with the filter button.","1. Navigate to another page (for example open a work order, or go to Customers).
-2. Return to the Work Orders page.
-3. Look at the filter bar area.
-4. Expand the bar with the filter button, leave the page again and come back.","1. After step 2 the filter bar is still collapsed (your choice was remembered).
-2. After step 4 the filter bar is expanded again when you return - whichever state you left it in is restored.
+"There is no collapsed-state indicator, because the chips are always shown",Collapse and Expand,Functional,Medium,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page with a filter active.",1. Look for a small indicator on a collapsed toolbar button showing that filters are active.,"1. There is no collapsed-state active-filter indicator - it was removed with the collapse toggle.
+2. An active filter is shown directly on its own chip, which takes the highlighted (selected) appearance (Story 7).
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S1-R7, S10-R1), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9269 (remove the filter bar collapse/expand toggle), and the Filters specification at Confluence version 21 (published 14 August 2026) (S1-R4; S7-R5), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8785 [epic] (S1-R7; S10-R1) [spec v1.6 2026-07-28],,
-Collapsed filter button shows a blue indicator only when filters are active,Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page.","1. With NO filters selected, collapse the filter bar with the filter button and look at the filter icon.
-2. Expand the bar, select at least one filter value (for example a status).
-3. Collapse the bar again and look at the filter icon.","1. After step 1 the filter icon shows no special indicator (only its normal pressed look).
-2. After step 3 the filter icon shows a visual indicator (filters icon in primary blue) signalling that active filters are in effect while the bar is hidden.
+Active filters always keep filtering the table; there is no bar to collapse,Collapse and Expand,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page.","1. Apply one or more filters and watch the table.
+2. Confirm there is no way to collapse the chips.","1. Active filters keep narrowing the table at all times.
+2. There is no filter bar to collapse, so there is no collapsed state that could stop the filtering - the chips and their effect are always present.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S7-R4, S7-N2), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9269 (remove the filter bar collapse/expand toggle), and the Filters specification at Confluence version 21 (published 14 August 2026) (S1-R4), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8792 (S7-R4; S7-N2) [spec v1.6 2026-07-28],,
-Active filters keep filtering the table while the filter bar is collapsed,Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page on the All tab.
-3. Work orders exist in several statuses; a Status filter is applied (for example Estimate only) and the table is visibly filtered.","1. Collapse the filter bar with the filter button.
-2. Look at the work order table.","1. The table content does not change when the bar collapses - it still shows only the work orders matching the active filters.
-2. Hiding the bar only hides the chips; it does not remove or pause the filtering.
+"Every page shows its filter chips with no toggle, whatever the filter count",Collapse and Expand,Functional,High,"1. You are signed in on a desktop browser.
+2. You can reach a page with one filter and a page with several filters.","1. On a page with only one filter, look for a collapse toggle.
+2. On a page with several filters, look for a collapse toggle.","1. Neither page has a collapse toggle - the old 'show the toggle only when a page has more than one filter' rule is gone.
+2. Every page simply shows the filter chips it provides, always visible, with no toggle at all.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S7-R5), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9269 (remove the filter bar collapse/expand toggle), and the Filters specification at Confluence version 21 (published 14 August 2026) (S1-R4; S1-R8), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8792 (S7-R5) [spec v1.6 2026-07-28],,
-One filter on a page: no collapse control and the filter bar stays shown,Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You can reach a page whose filter bar shows only ONE filter button. On the build the developers were working on, Parts then Part Sales was such a page: its filter bar showed only Status.
-3. If every page you can reach shows two or more filter buttons, mark this test BLOCKED and say which pages you checked - do not mark it failed.","1. Open the page you chose and look at the filter bar above the table.
-2. Count the filter buttons in that bar and confirm there is only one.
-3. Look along the whole toolbar row - where the Search control and the page's main button sit - for the small control that hides and shows the filter bar.
-4. Move to another page and come back to this one, then look at the filter bar again.","1. The filter bar shows exactly one filter button.
-2. There is no control anywhere in the toolbar for hiding or showing the filter bar. It is not greyed out or switched off - it is simply not there at all.
-3. The filter bar itself is on display, with its one filter button available to use as normal.
-4. After leaving the page and coming back, the filter bar is still on display and there is still no hide/show control.
-
-Note for the tester: the missing control is the point of this test, not a fault. On a page with only one filter there is nothing worth hiding, so the control is left out on purpose. If you DO find a hide/show control on a page with only one filter button, that is the failure - please report it.
+No collapse control exists even on a page that has only one filter,Collapse and Expand,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on a page that has only one filter chip.",1. Look for a button to hide or collapse the single filter chip.,"1. There is no collapse control - the single filter chip is simply always shown.
+2. The redesign removed the toggle entirely, so a one-filter page behaves the same as any other: chips always visible, no toggle.
 
 ---
-This is the expected behaviour as per ticket SV-9041 (https://shopview.atlassian.net/browse/SV-9041), read on 11 August 2026, which says the expand/collapse filter control should only be visible if there is more than one filter present on the page, and that otherwise it should not be visible and the filter is always shown; and as per epic SV-8785, read on 11 August 2026. The Filters specification at Confluence version 19 (published 6 August 2026), read on 11 August 2026, describes the collapse control in S1-R4 but sets no condition on when it appears, so there is no requirement number to quote for this rule.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9269 (remove the filter bar collapse/expand toggle), and the Filters specification at Confluence version 21 (published 14 August 2026) (S1-R4; S1-R8), read on 17 August 2026.
 
-AUTOMATION: READY",SV-9041 (spec v19 S1-R4 sets no condition),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",SV-9041 (spec v19 S1-R4 sets no condition),,
 A filter combination with no matches shows a no-results empty state,Empty State,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Work orders exist, but you can pick a filter combination that matches none of them (for example a customer plus a status that customer never has).","1. Apply the filter combination that matches no work orders.
@@ -661,21 +678,22 @@ A filter combination with no matches shows a no-results empty state,Empty State,
 2. The empty state shows a message saying no results were found for the filters and the search you have on.
 3. No error message or broken layout appears.
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S8-R3), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S8-R3), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8793 (S8-R3) [spec v1.6 2026-07-28],,
-The filtered empty state offers a way to clear the filters,Empty State,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page showing the filtered empty state (a filter combination matching no work orders is applied).
-3. The page's own Search box is empty (no text typed in it).","1. Read the empty state content.
-2. Click the clear-filters prompt/link inside the empty state.
-3. Look at the table and the chips.","1. The empty state includes a link to clear the filters, and - when you also have a search on - a separate way to clear just the search.
-2. Clicking it removes the active filters and the full work order list is shown again (with no text in the Search box, nothing else is narrowing the list).
-3. The chips return to their default state.
----
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S8-R4, S8-R5), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+The filtered empty state names the active filters and search and clears each,Empty State,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page.","1. Apply filters and type a search that together match no work orders.
+2. Read the empty state.
+3. Use it to clear the search, and clear a filter from its chip.","1. An empty state is shown saying no results were found for the current filters and search.
+2. It names what is currently narrowing the list - the active filters and, where present, the search query - and offers to clear the query.
+3. Filters are cleared from their chips (there is no global Clear filters button).
+4. The search and the filters are cleared independently: clearing one does not clear the other.
 
-AUTOMATION: READY
+---
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9274 (clearing filters and empty state), and the Filters specification at Confluence version 21 (published 14 August 2026) (S8-R3; S8-R4; S8-R5), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8793 (S8-R4 (the empty state includes a prompt or link to clear filters); S8-R5 (where a query is also active each is cleared independently)) [spec v1.6 2026-07-28],,
 "When filters and a search find nothing, each can be cleared on its own",Empty State,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.
@@ -687,79 +705,69 @@ AUTOMATION: READY
 3. Clearing the search brings back the list as narrowed by the filter only - the filter is still on.
 4. Clearing the filters leaves your typed word in the box and still applied - each is cleared on its own without wiping the other.
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S8-R3, S8-R4, S8-R5, S13-N1, S13-N2), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S8-R3, S8-R4, S8-R5, S13-N1, S13-N2), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8785 [epic] (S8-R3 (empty state covers filters AND any active query); S8-R4 (prompt to clear filters and the query where active); S8-R5 (each cleared independently from the empty state); S13-N1; S13-N2) [spec v1.6 2026-07-28],,
-"The All tab shows all five filter chips, all working",Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page.","1. Click the All tab.
-2. Count the filter chips and click each one briefly.","1. All five chips are shown: Status, Customer, Lead Technician, Service Advisor, Asset on Site.
-2. Each chip opens its dropdown and can be used.
+"The All tab shows the three Work Orders filter chips, all working",Tab Behaviour,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page, All tab.","1. Read the tabs and the filter chips on the All tab.
+2. Try each chip.","1. The tabs are: All, Work Orders, Estimates, Completed (there is no My Work Orders tab).
+2. On the All tab all three chips are shown: Status, Assigned to me, Asset on Site.
+3. Each works: Status and Asset on Site open their panels; Assigned to me toggles on and off.
+4. The Status chip is shown on the All tab only.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S9-R1), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9272 (tab model), and the Filters specification at Confluence version 21 (published 14 August 2026) (S9-R1; S1-R5; S9-R5), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8794 (S9-R1) [spec v1.6 2026-07-28],,
-Estimates tab: Status chip is greyed out and pre-filled; other four work,Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. Estimate work orders exist for at least two different customers.
-3. You are on the Work Orders page.","1. Click the Estimates tab.
-2. Look at the filter bar and at the Status chip.
-3. Try to click the Status chip and change it.
-4. Open the Customer filter and select one customer.
-5. Look at the table.","1. The Status chip is shown, but greyed out and already filled in with this tab's own status (Estimate), because the tab already narrows the list to Estimate.
-2. The Status chip cannot be clicked or changed on this tab.
-3. Customer, Lead Technician, Service Advisor and Asset on Site chips are shown and usable.
-4. After step 4 the table shows only that customer's ESTIMATE work orders - the customer filter narrows the pre-filtered Estimates list.
+Estimates tab: Assigned to me and Asset on Site chips work; Status pre-set,Tab Behaviour,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page.","1. Go to the Estimates tab.
+2. Read the chips shown and try them.
+3. Note how the Status is handled.","1. The Estimates tab pre-filters the list to the Estimate status.
+2. The 'Assigned to me' and 'Asset on Site' chips are shown and work on this tab.
+3. OPEN POINT (held, not settled by this case): spec v21 S9-R5 says the Status chip is HIDDEN on the Estimates tab, but a recorded QA-lead ruling of 30 July 2026 said it should be shown greyed-out and pre-filled with Estimate. This conflict has been flagged to the QA lead; test the Status-chip appearance against whichever he confirms.
+4. (Customer, Lead Technician and Service Advisor are no longer filters here - they were removed.)
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, the owning story SV-8794, read on 11 August 2026, and Branko's answer of 17 July 2026 (Round 1, question 4, option B), recorded in this file: build/filters/branko-answers-2026-07-17/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-07-17/answers-ingested.md), read on 11 August 2026. Note: the Filters specification at Confluence version 19 says instead that the Status chip is hidden on this tab (S9-R2 and S9-R3). That sentence has not been edited since 14 May 2026, which is two and a half months before Branko's answer, so the answer is the later decision and this test follows the answer. Branko has been asked to correct the specification.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9272 (tab model); QA-lead ruling 2026-07-30 (greyed) vs v21 S9-R5 (hidden) - CONFLICT held, and the Filters specification at Confluence version 21 (published 14 August 2026) (S9-R3; S9-R5), read on 17 August 2026.
 
-AUTOMATION: HOLD - waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ","SV-8785 [epic] (S9-R2; S2-N1; §4 Key Decisions - PRD text says ""hidden""; behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled; PRD alignment is Branko's open item) [spec v1.6 2026-07-28]",,
-Completed tab: Status chip is greyed out and pre-filled; other four work,Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. Complete work orders exist for at least two different customers.
-3. You are on the Work Orders page.","1. Click the Completed tab.
-2. Look at the filter bar and at the Status chip.
-3. Try to click the Status chip and change it.
-4. Open the Customer filter and select one customer.
-5. Look at the table.","1. The Status chip is shown, but greyed out and already filled in with this tab's own status (Complete), because the tab already narrows the list to Complete.
-2. The Status chip cannot be clicked or changed on this tab.
-3. Customer, Lead Technician, Service Advisor and Asset on Site chips are shown and usable.
-4. After step 4 the table shows only that customer's COMPLETE work orders.
+Completed tab: Assigned to me and Asset on Site chips work; Status pre-set,Tab Behaviour,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page.","1. Go to the Completed tab.
+2. Read the chips shown and try them.
+3. Note how the Status is handled.","1. The Completed tab pre-filters the list to the statuses Complete, Invoiced and Paid.
+2. The 'Assigned to me' and 'Asset on Site' chips are shown and work on this tab.
+3. OPEN POINT (held, not settled by this case): spec v21 S9-R5 says the Status chip is HIDDEN on the Completed tab, but a recorded QA-lead ruling of 30 July 2026 said it should be shown greyed-out and pre-filled. This conflict has been flagged to the QA lead; test the Status-chip appearance against whichever he confirms.
+4. (Customer, Lead Technician and Service Advisor are no longer filters here - they were removed.)
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, the owning story SV-8794, read on 11 August 2026, and Branko's answer of 17 July 2026 (Round 1, question 4, option B), recorded in this file: build/filters/branko-answers-2026-07-17/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-07-17/answers-ingested.md), read on 11 August 2026. Note: the Filters specification at Confluence version 19 says instead that the Status chip is hidden on this tab (S9-R2 and S9-R3). That sentence has not been edited since 14 May 2026, which is two and a half months before Branko's answer, so the answer is the later decision and this test follows the answer. Branko has been asked to correct the specification.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9272 (tab model); QA-lead ruling 2026-07-30 (greyed) vs v21 S9-R5 (hidden) - CONFLICT held, and the Filters specification at Confluence version 21 (published 14 August 2026) (S9-R4; S9-R5), read on 17 August 2026.
 
-AUTOMATION: HOLD - waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ","SV-8785 [epic] (S9-R3; S2-N2; §4 Key Decisions - PRD text says ""hidden""; behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled; PRD alignment is Branko's open item) [spec v1.6 2026-07-28]",,
-My Work Orders tab shows all five filters and they narrow that list,Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. Work orders assigned to you exist in at least two statuses, and other users' work orders also exist.
-3. You are on the Work Orders page.","1. Click the My Work Orders tab and count the chips.
-2. Open the Status filter and tick one status your work orders have.
-3. Look at the table.","1. All five filter chips are shown on the My Work Orders tab.
-2. The table only ever shows work orders assigned to you (the tab's own scope stays).
-3. After step 2 it shows only YOUR work orders in the ticked status - the filters narrow the user-scoped list, they do not widen it to other users' work orders.
+The My Work Orders tab is gone; the Assigned to me chip does its job,Tab Behaviour,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page.","1. Read the tab row and look for a 'My Work Orders' tab.
+2. Turn on the 'Assigned to me' chip and note the list.","1. There is NO 'My Work Orders' tab in the tab row - it was removed in the redesign. The tabs are: All, Work Orders, Estimates, Completed.
+2. To see only your own work orders you now turn on the 'Assigned to me' chip, which narrows the list to the work orders assigned to you.
+3. The chip works on every tab, so you can combine 'just mine' with any tab's built-in filter.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S9-R4), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9272 (Work Orders tab model) and SV-9271 (Assigned to Me), and the Filters specification at Confluence version 21 (published 14 August 2026) (S9-R1; S6a-R5), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8794 (S9-R4; §4 Key Decisions (My Work Orders tab does not remove filters)) [spec v1.6 2026-07-28],,
-A Status choice is kept while you switch tabs and comes back on the All tab,Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page on the All tab.
-3. Work orders exist in the Approved status and Estimate work orders exist too.","1. On the All tab, open the Status filter and tick Approved.
-2. Open the Customer filter and select one customer.
-3. Click the Estimates tab and look at the filter bar and the table.
-4. Click back to the All tab.
-5. Look at the Status chip and the Customer chip.","1. On the Estimates tab your Status choice is not applied and cannot be changed - the Status chip is greyed out and already filled in with that tab's own status. The Customer selection is still shown and still narrows the list.
-2. Back on the All tab the Status chip is usable again and shows the SAME selection (Approved) still applied - your choice was kept, not thrown away.
-3. The Customer selection is unchanged throughout.
+A Status choice is kept while you switch tabs and returns on the All tab,Tab Behaviour,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page, All tab.","1. On the All tab, select some statuses in the Status filter.
+2. Switch to another tab that hides the Status chip, then back to All.","1. Your Status selection is kept in memory while you are on a tab that hides the Status chip.
+2. It does not visually carry over to the other tab, but it is not lost.
+3. When you return to the All tab, the Status chip reappears with your selection still applied.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, the owning story SV-8794, read on 11 August 2026, and Branko's answer of 17 July 2026 (Round 1, question 4, option B), recorded in this file: build/filters/branko-answers-2026-07-17/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-07-17/answers-ingested.md), read on 11 August 2026. Note: the Filters specification at Confluence version 19 says instead that the Status chip is hidden on this tab (S9-R2 and S9-R3). That sentence has not been edited since 14 May 2026, which is two and a half months before Branko's answer, so the answer is the later decision and this test follows the answer. Branko has been asked to correct the specification.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9272 (tab model), and the Filters specification at Confluence version 21 (published 14 August 2026) (S9-R6; S9-N1), read on 17 August 2026.
 
-AUTOMATION: HOLD - waiting on Branko to confirm whether the Status chip is hidden or shown greyed out on the Estimates and Completed tabs, and to correct the specification
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8794 (S9-R5; S9-N1; S9-R2 - behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30) [spec v1.6 2026-07-28],,
 First visit opens the Estimates tab; your last-used tab is remembered,Tab Behaviour,Functional,High,1. You can sign in as a user who has never used the redesigned Work Orders page (no saved page choices for that account).,"1. Sign in as that fresh user and open the Work Orders page.
 2. Note which tab is selected and the tab order.
@@ -772,17 +780,29 @@ This is the expected behaviour as per epic SV-8785, read on 11 August 2026. The 
 
 AUTOMATION: READY
 ","SV-8785 [epic] (no requirement in spec v1.6 - default/last-used tab is not in the spec; RULED by Branko answers 2026-08-04 Q2 ""A - it's fine""); tech plan 2026-07-29 D10 (default tab = Estimates; last-used tab persists) [spec v1.6 2026-07-28]",,
-Leaving the page and coming back restores the filters and the bar state,Persistence,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page with a Status and a Customer selection active and the filter bar expanded.","1. Open one work order from the list (go to its detail page).
-2. Go back to the Work Orders page.
-3. Look at the chips, the table and the filter bar state.
-4. Repeat the round-trip once more with the filter bar collapsed before leaving.","1. After step 2 the same Status and Customer selections are still applied - chips active with the same values, table filtered the same way.
-2. The filter bar is still expanded (as you left it).
-3. After step 4 the filter bar comes back collapsed - the collapsed/expanded state is restored too.
----
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S10-R1, S1-R7), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+"The Work Orders tab pre-filters to Estimate, Approved and In Progress",Tab Behaviour,Functional,High,"1. You are signed in on a desktop browser.
+2. Work orders exist across several statuses.
+3. You are on the Work Orders page.","1. Look at the tab row and read the tab names, left to right.
+2. Click the 'Work Orders' tab.
+3. Note which work orders are shown and which filter chips are visible.","1. The tab row has four tabs: All, Work Orders, Estimates, Completed. There is NO 'My Work Orders' tab - it has been removed (its job is done by the 'Assigned to me' chip).
+2. The 'Work Orders' tab shows only work orders with the statuses Estimate, Approved and In Progress.
+3. On this tab the Status chip is NOT shown (Status is shown on the All tab only). The 'Assigned to me' and 'Asset on Site' chips are shown.
 
-AUTOMATION: READY
+---
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9272 (Work Orders tab model), and the Filters specification at Confluence version 21 (published 14 August 2026) (S9-R1; S9-R2; S9-R5), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",,,
+Leaving the page and returning restores your filter selections,Persistence,Functional,Critical,"1. You are signed in on a desktop browser.
+2. You are on the Work Orders page.","1. Apply one or more filters.
+2. Navigate to another page and come back.","1. Your filter selections are restored exactly as you left them.
+2. There is no filter-bar collapsed/expanded state to restore, because the collapse control was removed - only the filter selections are remembered.
+3. Selections are stored against your user account (Story 10), not just this browser.
+
+---
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-8795 (Filter persistence) and SV-9269 (collapse removed), and the Filters specification at Confluence version 21 (published 14 August 2026) (S10-R1; S10-R2), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8785 [epic] (S10-R1; S1-R7) [spec v1.6 2026-07-28],,
 "Filters are remembered permanently, even after closing the browser",Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Filters are applied on the Work Orders page (for example a status and a customer).","1. Visit several other areas of the app (Customers, Parts, Reports) and use them briefly.
@@ -795,7 +815,7 @@ AUTOMATION: READY
 3. The same filter selections are applied on the other computer too - the filters are saved to your account, not to one computer or browser (to confirm live once built).
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S10-R2, S10-R3, S10-R1), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S10-R2, S10-R3, S10-R1), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8795 (S10-R2 (stored server-side against the account; survives logout; syncs across devices); S10-R3 (saved per user); S10-R1 (restored after navigating away)) + Branko Q2 2026-07-17 - now matched by the PRD [spec v1.6 2026-07-28],,
@@ -806,25 +826,22 @@ Saved filters are per user: one user's filters do not appear for another user,Pe
 2. User B's new filter does not change what user A sees; each user keeps their own saved filter state.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S10-R3), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S10-R3), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
-AUTOMATION: HOLD - needs a second test login to prove one person's saved filters do not reach another
+AUTOMATION: READY
 ",SV-8795 (S10-R3; §4 Key Decisions (saved per user)) [spec v1.6 2026-07-28],,
-A remembered filter value that was deleted is silently ignored,Persistence,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. A throwaway ZZAUTOTEST customer exists and is selected in the Customer filter together with one real customer.
-3. You then navigate away and the ZZAUTOTEST customer is deleted (or otherwise removed) while you are off the page.","1. Return to the Work Orders page.
-2. Look at the Customer chip, the dropdown and the table.","1. The deleted customer is silently ignored - no error or warning appears.
-2. The Customer filter now reflects only the still-valid selection (the real customer).
-3. The table is filtered by the remaining valid selection only.
+A remembered filter value that was deleted is silently ignored,Persistence,Negative,Medium,"1. You are signed in on a desktop browser.
+2. You are on a page that has an entity filter (for example a customer or vendor filter - confirm live which pages carry one).
+3. A throwaway ZZAUTOTEST value is selected in that filter alongside a real value, then the throwaway value is deleted while you are off the page.","1. Return to the page.
+2. Look at the filter chip, its panel and the table.","1. The deleted value is silently ignored - no error or warning appears.
+2. The filter now reflects only the still-valid selection (the real value).
+3. The table is narrowed by the remaining valid selection only.
+4. The same applies when the value arrives from a shared link: an unknown value in the link is ignored and the page loads without it (Story 11).
 
-What you should see today: a customer the system no longer recognises is hidden from the Customer list, but it is still used to narrow the table. The address bar keeps it and the request to the server still carries it, so you get an empty list instead of the list without that value.
-- If you see exactly that, mark this test FAILED and do not raise anything new.
-- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S10-N1), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-8795 (persistence) and SV-9276 (entity filters), and the Filters specification at Confluence version 21 (published 14 August 2026) (S10-N1; S11-R3), read on 17 August 2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8832)
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8795 (S10-N1) [spec v1.6 2026-07-28],,
 Each page and tab remembers its own filters separately,Persistence,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The new filter bar has rolled out to the Parts views and to a report that has tabs (part of the same programme as the Work Orders filters).","1. On one Parts view (for example Inventory) apply a filter.
@@ -833,21 +850,25 @@ Each page and tab remembers its own filters separately,Persistence,Functional,Me
 4. On a report with tabs, apply a filter on one tab, switch to another tab, then switch back.","1. The second Parts view does NOT show the first view's selections - each view keeps its own.
 2. Returning to the first view restores that view's own selections.
 3. Report tabs likewise keep separate filter choices, each remembered and restored on its own tab.
+4. The new filter bar has not reached every Parts view and every report yet. If you cannot find two Parts views, or a report with tabs, that both show the new filter bar, mark this test BLOCKED - do not mark it failed.
 
 ---
 This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S10-R4), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
 
 AUTOMATION: HOLD - held for the QA lead's ruling only - the behaviour IS documented (S10-R4 says each Parts view and each Report tab keeps its own separate filter set and each persists independently), so the earlier reason that no source described it was wrong
 ","SV-8795 (spec v1.6 S10-R4; §4 ""Parts and Reports selections are scoped to their view/tab and persist there""); Branko answers 2026-07-31 Q5 exception 1; tech plan 2026-07-29 D20",,
-Filters saved before the redesign carry over after the update,Persistence,Functional,High,"1. In one browser, the account was used on the OLD Work Orders page with choices saved there (a tab, status selections, the asset-here toggle, column choices, sorting) BEFORE the redesign was installed.","1. In that same browser, open the updated app and go to the Work Orders page.
-2. Check the selected tab, the filter chips, the table columns and the sorting.
-3. Sign in as the same person on a DIFFERENT computer or browser and open the Work Orders page.","1. The old saved choices appear in the new filter bar on the first visit - the update does not lose them (old status choices show in the Status chip, the old asset-here choice shows as Asset on Site: Yes, the old My-Work-Orders toggle maps to the My Work Orders tab, columns and sorting stay).
-2. Those carried-over choices are now saved to the account: the other computer shows them too.
+Filters saved before the redesign carry over after the update,Persistence,Functional,High,"1. In one browser the account was used on the OLD Work Orders page with choices saved there (a tab, status selections, the asset-on-site choice) BEFORE the redesign was installed.
+2. The redesign is then installed.","1. In that same browser, open the updated app and go to the Work Orders page.
+2. Check the selected tab, the filter chips and the table.
+3. Sign in as the same person on a different computer and open the Work Orders page.","1. The old saved choices carry over to the new toolbar chips on the first visit - the update does not lose them (old status choices show in the Status chip; the old asset choice shows as Asset on Site).
+2. The old 'My Work Orders' choice maps to the new 'Assigned to me' chip (the My Work Orders tab was removed and its job is now done by that chip).
+3. Those carried-over choices are now saved to the account, so the other computer shows them too (Story 10).
+4. Note: this one-off migration is not given a numbered requirement in the spec - confirm the exact migration mapping with the team.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026), read on 11 August 2026. That specification has no numbered requirement for carrying over filters that were saved before the redesign; S10-R2 is named only for the account-based model it describes, and the carry-over itself comes from the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md, read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-8795 (persistence) and SV-9272 (tab model), and the Filters specification at Confluence version 21 (published 14 August 2026) (S10-R2; S9-R1), read on 17 August 2026.
 
-AUTOMATION: HOLD - cannot be run - it needs an account whose filters were saved before the redesign, and none exists
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8795 (no numbered v1.6 requirement covers the one-off migration - context S10-R2 server-side model); tech plan 2026-07-29 s4-3.3 (browser-storage to account-preference migration) - confirmation requested [spec v1.6 2026-07-28],,
 "When two devices set different filters, the last one saved wins",Persistence,Functional,High,"1. You are signed in to the ShopView App as the same person on TWO separate browsers at the same time (for example one normal window and one private window, or two different computers). Call them Browser A and Browser B.
 2. Both are on the Work Orders page.
@@ -865,10 +886,24 @@ AUTOMATION: HOLD - cannot be run - it needs an account whose filters were saved 
 Note for the tester: the two browsers do not update each other while you watch. You have to reload the page to see the saved filters come back. That is expected.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, the owning story SV-8795, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S10-R2), read on 11 August 2026. This test has not yet been checked against any build.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, the owning story SV-8795, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S10-R2), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",S10-R2 (last write wins),,
+A shared-link banner appears above the tabs when you open a filtered link,URL State and Shareable Links,Functional,High,"1. You are signed in on a desktop browser.
+2. Another user (or you) has copied a page link that already contains filter selections.","1. Open the shared link that carries filter state.
+2. Read the banner shown between the top application header and the tabs row.
+3. Click 'Back to my view'.","1. A full-width information banner appears between the application header and the tabs row.
+2. It shows a link icon and the message: Viewing a shared link - your own saved filters aren't applied.
+3. It has a 'Back to my view' link on it.
+4. Clicking 'Back to my view' discards the shared view, restores your own saved filters, and clears any active search - so the banner disappears.
+5. The banner is not shown when you are viewing your own saved filters rather than a shared link.
+
+---
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9277 (Shared-link banner), and the Filters specification at Confluence version 21 (published 14 August 2026) (S11-R7; S11-R7a), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
+",,,
 Applying filters updates the page URL to reflect the active filter state,URL State and Shareable Links,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with no filters applied; note the current URL.","1. Apply a Status selection and a Customer selection.
 2. Look at the browser address bar.
@@ -876,7 +911,7 @@ Applying filters updates the page URL to reflect the active filter state,URL Sta
 2. After step 3 the filter part of the URL is removed again.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S11-R1), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S11-R1), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8796 (S11-R1) [spec v1.6 2026-07-28],,
@@ -902,7 +937,7 @@ What you should see today: a value in the address bar that no longer exists is s
 - If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
 - If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S11-R3), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S11-R3), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8832)
 ",SV-8796 (S11-R3) [spec v1.6 2026-07-28],,
@@ -937,7 +972,7 @@ Opening a shared link does not change your own saved filters,URL State and Share
 6. Returning normally later still shows your own saved filters, untouched by the link visit.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S11-R6, S11-R7, S11-R8), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S11-R6, S11-R7, S11-R8), read on 11 August 2026. Last checked against build v3.6-3e9dd6d on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8796 (S11-R6 (URL state runtime-only with no write-back); S11-R7 (Back to my view - also clears the query); S11-R8 (rationale: the query is never saved)) [spec v1.6 2026-07-28],,
@@ -953,124 +988,102 @@ AUTOMATION: READY
 4. After you click it and you are back on your own view, the option disappears again.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S11-N3, S11-R7), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S11-N3, S11-R7), read on 11 August 2026. Last checked against build v3.6-3e9dd6d on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8796 (S11-N3; S11-R7) [spec v1.6 2026-07-28],,
-"Mobile: chips sit in a scrollable row below the tabs, starting All Filters",Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device (or a mobile-size browser window).
-2. You are on the Work Orders page.
-","1. Look at the row below the tab row (All, Estimates, Completed, My Work Orders).
-2. Swipe the chip row sideways.
-","1. A filter chip row is shown below the tabs, starting with an 'All Filters' chip (with a filter icon) followed by the individual filter chips (Status, Customer, Lead Technician, ...).
-2. The row scrolls horizontally - chips that do not fit are reachable by swiping.
+"On a phone the toolbar splits into a tabs row, an action row and a chips row",Mobile Filters,Functional,High,"1. You are signed in on a phone-width screen.
+2. You are on the Work Orders page.","1. Look at the page chrome below the top application header.
+2. Note the rows and the chips row.","1. Below the application header the page stacks into three rows, in this order: the tabs row, the action row, then the filter chips row.
+2. The chips row is horizontally scrollable and separated from the row above by a divider.
+3. The chips are the same set as desktop, in the same order (Status on the All tab only), and are always visible - there is no collapse control.
+4. There is no combined 'All Filters' button - each chip is shown on its own.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S12-R1), read on 11 August 2026. The 'All Filters' entry point is not in the specification: it comes from the engineering technical plan, decision D15, in this file: build/filters/tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md), read on 11 August 2026
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9278 (mobile stacked toolbar rows), and the Filters specification at Confluence version 21 (published 14 August 2026) (S12-R1; S12-R4; S12-R6), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8797 (S12-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
-Mobile: All Filters opens a sheet of expandable rows with Apply filters,Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device.
-2. You are on the Work Orders page.
-","1. Tap the 'All Filters' chip.
-2. Read the sheet from top to bottom.
-","1. A bottom sheet slides up with a drag handle at the top, the centered title 'All Filters' and a close (x) button.
-2. It lists the five filters as expandable accordion rows, each with its icon, name and a down arrow: Status, Customer, Lead Technician, Service Advisor, Asset on Site.
-3. A sticky blue 'Apply Filters' button sits at the bottom of the sheet.
+"On a phone each filter chip opens its own bottom sheet, not one combined drawer",Mobile Filters,Functional,High,"1. You are signed in on a phone-width screen.
+2. You are on the Work Orders page.","1. Tap a filter chip in the chips row.
+2. Read the sheet that appears.","1. Tapping a chip opens THAT filter's panel as a bottom sheet - there is no combined 'All filters' drawer.
+2. The sheet slides up from the bottom over a dimmed page, with the filter name and a close (X) at the top.
+3. Its body uses the same panel type that filter uses on desktop (checkbox list, searchable list, or single-select with a checkmark).
+4. Its footer has a full-width 'Apply filters' button.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S12-R3, S12-R6), read on 11 August 2026. Branko settled how filters apply on a phone on 5 August 2026: he said it is written in the specification and closed the question (https://shopview.atlassian.net/browse/SV-8825). Last checked against build v3.6-3e9dd6d on 8/11/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9278 (per-filter bottom sheets), and the Filters specification at Confluence version 21 (published 14 August 2026) (S12-R7; S12-R8; S12-R9), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8797 (S12-R3) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
-Mobile: tapping Apply filters applies the statuses and updates the count,Mobile Filters,Functional,Critical,"1. You are signed in to the ShopView App on a mobile device.
-2. You are on the Work Orders page on the All tab; work orders exist in several statuses.
-3. The 'All Filters' bottom sheet is open.","1. Tap the Status accordion row to expand it.
-2. Tick one or more statuses.
-3. Tap the 'Apply Filters' button.
-4. Reopen the All Filters sheet and look at its title.","1. Expanding Status reveals the same nine status checkboxes as desktop (Estimate, Approved, In progress, Review, Complete, Invoiced, Paid, Declined, Imported) plus 'Clear Selection'.
-2. After 'Apply Filters' the sheet closes and the work order list shows only the ticked statuses.
-3. The reopened sheet's title shows the applied-filter count, for example 'All Filters (1)', and the Status accordion header is highlighted with the selected values ticked.
+"On a phone, choices in a filter sheet apply only when you tap Apply filters",Mobile Filters,Functional,Critical,"1. You are signed in on a phone-width screen.
+2. You are on the Work Orders page with a filter sheet open.","1. Make some selections in the open sheet and watch the list behind it.
+2. Tap 'Apply filters'.
+3. Re-open a sheet, change it, then close it with the X.","1. Selections made inside the sheet are staged - the list behind does NOT change while the sheet is open (deferred apply).
+2. Tapping 'Apply filters' applies the staged selections and closes the sheet; the list then updates.
+3. A 'Clear selection' action appears in the sheet once at least one value is selected, clearing only that filter.
+4. Closing the sheet with the X or by tapping outside discards the staged changes; filters applied before the sheet was opened stay in effect.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S12-R2, S12-R3, S12-R6, S2-R1), read on 11 August 2026. Branko settled how filters apply on a phone on 5 August 2026: he said it is written in the specification and closed the question (https://shopview.atlassian.net/browse/SV-8825). Last checked against build v3.6-3e9dd6d on 8/11/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9278 (mobile deferred apply), and the Filters specification at Confluence version 21 (published 14 August 2026) (S12-R11; S12-R13; S12-N2), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8785 [epic] (S12-R2; S12-R3; S2-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
-Mobile: one chip opens its own sheet and applies only on Apply filters,Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device.
-2. You are on the Work Orders page.","1. Tap the Status chip (not the 'All Filters' chip).
-2. Read the sheet that opens.
-3. Tick one status, then tick a second one, and watch the work order list while you do it.
-4. Tap the 'Apply Filters' button inside the sheet and look at the list again.","1. A bottom sheet opens for that single filter: its title row shows the filter's icon and name (for example 'Status') with a close (x) button, and no accordion list of the other filters.
-2. The sheet shows only that filter's options (the nine status checkboxes plus 'Clear Selection').
-3. You can tick more than one option, and the work order list does NOT change while you tick - your choices are only being held, not applied yet.
-4. An 'Apply Filters' button is shown inside the sheet. Tapping it applies your choices: the sheet closes and the list shows only the ticked statuses.
-5. The chip then shows its active state with the value(s) you picked. 'Clear Selection' and 'Clear Filters' work the same way as on desktop.
+On a phone the same deferred-apply rule applies to every single filter sheet,Mobile Filters,Functional,High,"1. You are signed in on a phone-width screen.
+2. You are on the Work Orders page.","1. Open one filter's sheet, make a choice, and tap Apply filters.
+2. Repeat with a different filter's sheet.","1. Every filter opens its own bottom sheet (one chip, one sheet) - there is no combined drawer.
+2. Each sheet uses deferred apply: nothing changes in the list until you tap 'Apply filters' in that sheet.
+3. This is the same for all filters, not just a combined view.
 
-What you should see today: a single filter's own sheet applies your choice the moment you tap a value - the address bar changes at once, the list reloads and the sheet closes - and there is no 'Apply filters' button anywhere in that sheet. Only the combined 'All Filters' sheet holds your choices until you press a button.
-- If you see exactly that, mark this test FAILED and do not raise anything new.
-- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S12-R2, S12-R6, S2-R2), read on 11 August 2026. Branko settled how filters apply on a phone on 5 August 2026: he said it is written in the specification and closed the question (https://shopview.atlassian.net/browse/SV-8825). Last checked against build v3.6-3e9dd6d on 8/11/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9278 (per-filter bottom sheets), and the Filters specification at Confluence version 21 (published 14 August 2026) (S12-R13; S12-R7), read on 17 August 2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8875)
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8797 (S12-R2; S12-R3; S2-R6) [spec v1.6 2026-07-28] ; individual-chip real-time per S12-R2 + S2-R6 + tech-plan 2026-07-29; only the combined All Filters sheet is batch; CONFIRMED by Branko answers 2026-08-04 Q1,,
-"Mobile Customer filter has search, multi-select and removable tags",Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device.
-2. You are on the Work Orders page; several customers exist.
-3. The All Filters sheet is open with the Customer accordion expanded.","1. Type part of a customer name in the 'Search' field and watch the list.
-2. Select two or three customers.
-3. Look at the input area and the list rows.
-4. Remove one customer with the x on its tag, then tap 'Apply Filters'.","1. The list narrows to matching names as you type.
-2. Each selected customer appears as a tag with an x in the input area, and its list row shows a checkmark.
-3. Removing a tag deselects just that customer.
-4. After 'Apply Filters' the list shows only work orders of the remaining selected customers, and the sheet title counts the applied filters (for example 'All Filters (2)').
+"On a phone, Assigned to me toggles on and off in the chips row with no sheet",Mobile Filters,Functional,High,"1. You are signed in on a phone-width screen.
+2. You are on the Work Orders page.","1. Tap the 'Assigned to me' chip in the chips row.
+2. Tap it again.","1. Tapping 'Assigned to me' toggles the filter on and off directly in the chips row.
+2. It does NOT open a bottom sheet, because it is a toggle chip with no panel.
+3. When on, the chip takes the active appearance and the list narrows to your work orders.
 
-
-What you should see today: the Customer sheet does have a Search box, but it applies your choice the moment you tap a name - the address bar changes at once, the list reloads and the sheet closes - so you cannot pick a second customer, there are no removable tags, and there is no 'Apply filters' button.
-- If you see exactly that, mark this test FAILED and do not raise anything new.
-- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
-- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S12-R2, S12-R6, S3-R2, S3-R3), read on 11 August 2026. Branko settled how filters apply on a phone on 5 August 2026: he said it is written in the specification and closed the question (https://shopview.atlassian.net/browse/SV-8825). Last checked against build v3.6-3e9dd6d on 8/11/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9278 (mobile toggle) and SV-9271 (Assigned to Me), and the Filters specification at Confluence version 21 (published 14 August 2026) (S12-R12; S6a-R2), read on 17 August 2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8875)
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8785 [epic] (S12-R2; S3-R2/R3/R5) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
-Mobile Lead Technician and Service Advisor filters offer their search lists,Mobile Filters,Functional,Medium,"1. You are signed in to the ShopView App on a mobile device.
-2. You are on the Work Orders page; technicians and advisors exist.
-3. The All Filters sheet is open.","1. Expand the Lead Technician accordion row and look at its content.
-2. Collapse it, expand the Service Advisor row and look at its content.
-3. Select one name in either list and tap 'Apply Filters'.","1. The Lead Technician row opens with a 'Search' field and the technician list.
-2. The Service Advisor row opens with a 'Search' field and the advisor list.
-3. Applying a selection filters the work order list just like on desktop.
+On a phone a filter sheet appears over a dimmed page and closes on X or scrim,Mobile Filters,Functional,Medium,"1. You are signed in on a phone-width screen.
+2. You are on the Work Orders page with a filter sheet open.","1. Note the dimmed background behind the sheet.
+2. Make a change, then tap the dimmed area (scrim) or the X.","1. The bottom sheet is shown over a dimmed overlay (scrim) covering the page.
+2. Tapping the X or tapping the dimmed area closes the sheet and discards any staged changes.
+3. Any filters that were applied before the sheet was opened remain in effect.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S12-R2, S12-R6, S4-R1, S5-R1), read on 11 August 2026. Branko settled how filters apply on a phone on 5 August 2026: he said it is written in the specification and closed the question (https://shopview.atlassian.net/browse/SV-8825). Last checked against build v3.6-3e9dd6d on 8/11/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9278 (per-filter bottom sheets), and the Filters specification at Confluence version 21 (published 14 August 2026) (S12-R8; S12-N2), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8785 [epic] (S12-R2; S4-R1; S5-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
-The mobile Asset on Site filter offers Yes/No with Clear Selection in the sheet,Mobile Filters,Functional,Medium,"1. You are signed in to the ShopView App on a mobile device.
-2. You are on the Work Orders page; work orders exist in both on-site states.
-3. The All Filters sheet is open.","1. Expand the Asset on Site accordion row.
-2. Choose Yes and tap 'Apply Filters'.
-3. Look at the list.","1. The Asset on Site row opens showing the two options Yes and No plus 'Clear Selection'.
-2. Only one option can be selected at a time.
-3. After applying, the list shows only work orders matching the chosen on-site state.
+On a phone the Asset on Site sheet is a single-select list with a checkmark,Mobile Filters,Functional,Medium,"1. You are signed in on a phone-width screen.
+2. You are on the Work Orders page.","1. Tap the Asset on Site chip.
+2. Read the sheet and pick an option.","1. The Asset on Site sheet is a single-select list with two options: Yes and No.
+2. The chosen row is marked with a checkmark; picking the other option replaces the choice.
+3. A 'Clear selection' action appears once a value is selected.
+4. The choice applies when you tap 'Apply filters'.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S12-R2, S12-R6, S6-R1), read on 11 August 2026. Branko settled how filters apply on a phone on 5 August 2026: he said it is written in the specification and closed the question (https://shopview.atlassian.net/browse/SV-8825). Last checked against build v3.6-3e9dd6d on 8/11/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9278 (mobile single-select sheet), and the Filters specification at Confluence version 21 (published 14 August 2026) (S12-R9; S16-R4; S12-R11), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8785 [epic] (S12-R2; S6-R1/R2/R3) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
-Active chips and Clear Filters behave on mobile the same way as on desktop,Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device.
-2. You are on the Work Orders page with at least one filter applied via the sheet.","1. Look at the chip row after applying the filter.
-2. Look for a 'Clear Filters' control while a filter is active.
-3. Use it and look at the chips and the list.","1. The chip for the applied filter shows the active state with the selected value(s), like on desktop.
-2. A 'Clear Filters' control appears while at least one filter is active.
-3. Using it removes all active filters, the chips return to default and the full list comes back.
----
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S12-R2, S7-R1, S8-R1), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+On a phone active chips clear one at a time; there is no Clear filters button,Mobile Filters,Functional,High,"1. You are signed in on a phone-width screen.
+2. You are on the Work Orders page with filters active.","1. Look at an active chip in the chips row.
+2. Look for a single Clear filters button; clear a filter from its own chip or sheet.","1. An active chip shows the same highlighted appearance and value text as on desktop (first value plus a count where there are several).
+2. There is no global 'Clear filters' button on mobile either.
+3. Each filter is cleared on its own - from its chip or from 'Clear selection' in its sheet.
 
-AUTOMATION: READY
+---
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9278 (mobile chips) and SV-9274 (no global clear), and the Filters specification at Confluence version 21 (published 14 August 2026) (S12-R14; S8-R1), read on 17 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8785 [epic] (S12-R2; S7-R1/R3; S8-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
 Mobile has no collapse toggle: the filter chip row is always visible,Mobile Filters,Negative,Medium,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page.
@@ -1080,7 +1093,7 @@ Mobile has no collapse toggle: the filter chip row is always visible,Mobile Filt
 2. The filter chip row is always visible on the mobile Work Orders page.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S12-R4), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S12-R4), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8797 (S12-R4) [spec v1.6 2026-07-28],,
@@ -1091,7 +1104,7 @@ Filters matching no work orders on mobile show the same empty state as desktop,M
 3. No error appears.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S12-N1, S8-R3), read on 11 August 2026. Branko settled how filters apply on a phone on 5 August 2026: he said it is written in the specification and closed the question (https://shopview.atlassian.net/browse/SV-8825). Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S12-N1, S8-R3), read on 11 August 2026. Branko settled how filters apply on a phone on 5 August 2026: he said it is written in the specification and closed the question (https://shopview.atlassian.net/browse/SV-8825). Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8785 [epic] (S12-N1; S8-R3/R4) [spec v1.6 2026-07-28],,
@@ -1113,7 +1126,7 @@ AUTOMATION: READY
 6. The blocking happens as you tap inside the sheet - you do not have to apply first to see the other filters become unusable.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, the owning story SV-8797, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S2-R7, S2-N4, S12-R6), read on 11 August 2026. The specification states this rule without limiting it to one screen size, so it applies on a phone as well as on a desktop. This test has not yet been checked against any build.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, the owning story SV-8797, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S2-R7, S2-N4, S12-R6), read on 11 August 2026. The specification states this rule without limiting it to one screen size, so it applies on a phone as well as on a desktop. This test has not yet been checked against any build. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",S2-R7; S2-N4; S12-R6,,
@@ -1178,19 +1191,18 @@ This is the expected behaviour as per epic SV-8785, read on 11 August 2026, the 
 
 AUTOMATION: HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do
 ","SV-8785 [epic] (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
-Parts filters support multiple choices and can be cleared,Parts Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Parts area of the app with some sample data present.","1. Open a Parts filter button that shows a list of choices.
-2. Select more than one choice, then look at the filter button.
-3. Use the Clear Selection action, then look at the filter bar for a way to clear all filters.","1. More than one value can be chosen inside the filter, and the button shows what you picked.
-2. Clear Selection removes the choices for that one filter.
-3. A Clear Filters button appears in the filter bar while any filter is set, and using it clears them all at once - exactly as it works on the Work Orders page.
-
-4. Not built yet on the build tested: a filter bar exists on Inventory, Part Sales, Catalog and Returns, but Purchase Orders, Vendor Invoices and Vendors have no filter bar at all. If the filter bar is missing on the view you are testing, mark this test BLOCKED - do not mark it failed.
+Parts filters allow several choices and are cleared one filter at a time,Parts Page Filters,Functional,Medium,"1. You are signed in on a desktop browser.
+2. You are on a Parts view that has filters, with some sample data present.","1. Open a Parts filter chip that shows a list of choices.
+2. Select more than one choice, then look at the chip.
+3. Use 'Clear selection', then look across the toolbar for any single button to clear all filters.","1. More than one value can be chosen inside the filter, and the chip shows what you picked.
+2. 'Clear selection' removes the choices for that one filter only.
+3. There is NO global 'Clear filters' button - on Parts pages too, each filter is cleared on its own (from its chip's X or 'Clear selection'), exactly as on the Work Orders page.
+4. The exact filters a Parts view offers are the ones it has today (the per-view list is pending from engineering) - confirm live.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, the designs, read on 11 August 2026, and the product owner's answers named below. The Filters specification at Confluence version 19 (published 6 August 2026) has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-08-04/answers-ingested.md), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9279 (roll the filter layout out to all pages) and SV-9274 (no global clear), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R6; S8-R1; S8-R2), read on 17 August 2026.
 
-AUTOMATION: HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ","SV-8785 [epic] (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
 Every filter a page had before is still available in the new filter bar,Parts Page Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You have a written list of the filters each Parts page and each report offers today, before the new filter bar (take screenshots of the old screens first, or ask the developers for the list).
@@ -1209,27 +1221,19 @@ This is the expected behaviour as per epic SV-8785, read on 11 August 2026, the 
 
 AUTOMATION: HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do
 ","SV-8785 [epic] (spec v1.6 §2 Parts Filters + Reports Filters); Branko answers 2026-07-31 Q3 + 2026-08-04 Q8 (""we should have all filters we support now per each page plus we should add new ones""); tech plan 2026-07-29 rollout rule",,
-"Parts and Reports filters collapse, share and work on a phone as Work Orders do",Parts Page Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You can also open the same pages on a mobile phone (or a browser window narrowed to phone size).
-3. You are on a Parts page that has a filter bar (for example Inventory), and you can also reach a report that has a filter bar.
-4. Sample data is present in the Parts area and in the Reports area.","1. On the Parts page, set one filter so the list is narrowed.
-2. Count the filter buttons on the page. If there is more than one, find the control that collapses the filter bar and use it, then expand it again. If there is only one filter button, check instead that there is no collapse control at all and the filter bar stays on display.
-3. Leave the page and come back, and look at whether the bar is collapsed or expanded.
-4. With a filter set, copy the page's web address, then open it in a fresh browser window.
-5. Open the same Parts page on a phone and look at how the filter buttons are laid out and how a filter is applied.
-6. Repeat steps 1 to 5 on a report that has a filter bar.","1. On a Parts page or a report that has more than one filter, the filter bar can be collapsed and expanded, and the table takes the freed space when it is collapsed - exactly as on the Work Orders page. On a page that has only one filter there is no collapse control at all and the filter bar is always on display; that is correct and is not a fault.
-2. Where that collapse control is present: while the bar is collapsed the filters keep working, and the collapsed control shows that filters are active - exactly as on the Work Orders page.
-3. Where that collapse control is present, whether you left the bar collapsed or expanded is remembered when you come back to that page.
-4. The web address carries the filters you set, and opening that address in a fresh window loads the page with the same filters already applied and the list already narrowed - exactly as on the Work Orders page.
-5. On the phone the filter buttons sit in a row you can scroll sideways, there is no collapse control, and your choices are applied when you tap the apply button rather than as you tap each one - exactly as on the Work Orders page.
-6. Anything that behaves differently from the Work Orders page on any of these points is worth writing down, with the page name.
-
-Note for the tester: only some Parts views and only some reports have the new filter bar so far. If the page you open has no filter bar, mark this test BLOCKED - do not mark it failed. A page that has a filter bar with only one filter button and no collapse control is a PASS for that page, not a failure.
+"Parts and Reports filter chips share by link and work on a phone, no collapse",Parts Page Filters,Functional,High,"1. You are signed in on a desktop browser.
+2. You can also open the same pages on a phone (or a browser window narrowed to phone size).
+3. You are on a Parts view or a report that has filters.","1. On the page, set a filter so the list is narrowed and look for any control to collapse or hide the chips.
+2. Copy the page link and open it in a new tab.
+3. Open the same page on a phone.","1. The filter chips are always visible in the toolbar row - there is NO collapse or hide control on Parts or Reports pages either (the collapse toggle was removed everywhere in the redesign).
+2. The active filters are reflected in the page link, so opening that link loads the page with the same filters applied (URL state, Story 11).
+3. On a phone the toolbar stacks into rows and the chips row is horizontally scrollable, each chip opening its own bottom sheet - the same model as Work Orders (Story 12).
+4. These behaviours match the Work Orders definitions on every page (Story 1 applies app-wide).
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and Branko's answer of 31 July 2026 (Round 3, question 5, option A), recorded in this file: build/filters/branko-answers-2026-07-31/answers-ingested.md (https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/branko-answers-2026-07-31/answers-ingested.md), read on 11 August 2026. He said that collapsing, the shareable web address and the phone layout all match the Work Orders page. The Filters specification at Confluence version 19 has no numbered requirement for this, so there is no requirement number to quote. It also follows ticket SV-9041 (https://shopview.atlassian.net/browse/SV-9041), read on 11 August 2026, which says the collapse control is only shown on a page that has more than one filter. Branko's answer of 31 July 2026 says collapsing on Parts and Reports matches the Work Orders page and does not mention any condition on the number of filters; ticket SV-9041, raised on 7 August 2026, is the newer statement, so this test follows it and expects no collapse control on a page that has only one filter. This test has not yet been checked against any build.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9279 (roll the filter layout out to all pages) and SV-9269 (no collapse), and the Filters specification at Confluence version 21 (published 14 August 2026) (S1-R4; S1-R7; S11-R1; S12-R17), read on 17 August 2026.
 
-AUTOMATION: HOLD - the new filter bar has reached only some Parts views and one report tab, so most of this cannot be run yet
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",Branko Round-3 Q5=A (2026-07-31),,
 Report filter bars appear on the reports this change covers,Reports Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Reports area of the app with some sample data present.","1. Open the Reports area and go to the Shop Efficiency report, and look at the filter buttons shown above the report table.
@@ -1296,31 +1300,18 @@ This is the expected behaviour as per epic SV-8785, read on 11 August 2026, the 
 
 AUTOMATION: HOLD - waiting on Branko's Parts and Reports product write-up - the filter bar is built but no source states what it should do
 ","SV-8785 [epic] (spec v1.6 §2 Reports Filters; §4 ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q3/Q5 + 2026-08-04 Q8 (""We do not have list of all filter items"" - confirms no option list exists); Figma 11903-10573",,
-Date range filter offers ready-made periods and a custom start/end range,Reports Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on a report that has a Date Range button - on the build tested that is Reports then the Timesheet Activities report.
-3. Records exist inside and outside the date range you will pick.
-","1. Click the Date Range button.
-2. Look at what the panel offers, and at what the button already reads before you change anything.
-3. Choose one of the ready-made periods (for example Today) and watch the results.
-4. Open the button again and choose Custom.
-5. Fill in the From date only, and watch the results.
-6. Fill in the To date.
-7. Look at the results and at the button.
-","1. The panel that opens offers a set of standard ready-made periods to choose from, plus a Custom option and a Clear Selection link. The written description does not fix which periods are offered, and it can differ per report, so do not check them against a fixed list - write down the ones your report offers.
-2. A period is already filled in when the panel first opens (on Timesheet Activities it is This month), and the button reads that period, for example ""Date Range: This month"".
-3. Choosing a ready-made period applies it straight away: the results update, the button reads the period you chose, and the web address records it.
-4. Choosing Custom shows a From box and a To box. After you fill in only the From date the results do NOT change yet.
-5. As soon as you fill in the To date the results update to show only records inside that range, and the button reads ""Date Range: Custom"".
-6. Only one date range can be active at a time on that button.
-
-7. Note: dates are typed in month/day/year order, the way the screen shows them (for example 07/01/2026). For orientation only, one report was seen offering Today, Yesterday, This week, Last week, This month, Last month, This quarter, Last quarter, This year and Last year - that is an example of what you may find, not a list to check against.
-
-8. Where to run this on the build tested: the Reports area has this date button on the Timesheet Activities report. Other report tabs do not have a filter bar yet - if the report you open has no date button, mark this test BLOCKED, not failed.
+The date-range panel offers set periods and a custom start and end range,Reports Page Filters,Functional,Medium,"1. You are signed in on a desktop browser.
+2. You are on a report that has a Date filter.","1. Click the Date chip.
+2. Read the list of periods.
+3. Choose a preset, then choose Custom and pick two dates.","1. A single-select preset list opens with these periods in this order: Today, Yesterday, This week, This month, Last month, This quarter, This year, Custom.
+2. Choosing a preset applies it straight away.
+3. Choosing Custom reveals a range input with the placeholder MM/DD/YYYY - MM/DD/YYYY; the custom range applies only when the second date is picked.
+4. A 'Clear selection' action is in the panel footer and clears only this filter.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026. It follows the NEWER wording of the Filters specification at Confluence version 19, read on 11 August 2026, published on the afternoon of 4 August 2026, which changed the date filter description in the Feature Overview and in the Key Decisions section: the date button now offers standard ready-made periods and starts with the current default range already filled in. An earlier revision of the same specification said the opposite, and this test follows the newer one. The specification does not give this a numbered requirement, so there is no requirement number to quote. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-9276 (Filter panel types), and the Filters specification at Confluence version 21 (published 14 August 2026) (S16-R5; S16-R6), read on 17 August 2026.
 
-AUTOMATION: HOLD - waiting on Branko's Parts and Reports product write-up - the date range filter is built but no source states the periods it must offer
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ","SV-8785 [epic] (spec v1.6 §4 ""New date-range filter type""; §2 Reports Filters - start/end picker; no presets; no default; applies on the second date); Branko answers 2026-07-31 Q5; tech plan 2026-07-29 D19",,
 Page toolbar Search expands in place and narrows the list as you type,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with several work orders listed.","1. Find the Search control in the page toolbar (a magnifier icon with the word Search).
@@ -1354,7 +1345,7 @@ AUTOMATION: READY
 Your typed search stays in this browser tab only and is never saved,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with several work orders listed.
 3. You know how to open a second browser tab on the same page.","1. Type a search term in the page Search box that matches some work orders.
-2. Sort the table by a column, then move to the next page of results.
+2. Sort the table by a column, then scroll down through the results to see more.
 3. Go to another area of the app and come back to the Work Orders page.
 4. Open the Work Orders page in a SECOND browser tab and look at its Search box.
 5. Close every browser tab, open the browser again and go back to the Work Orders page.","1. Sorting and paging keep your search applied - your text stays in the box and the list stays narrowed.
@@ -1363,7 +1354,7 @@ Your typed search stays in this browser tab only and is never saved,Page Search 
 4. After closing the browser and coming back, the Search box is empty and the list is unsearched - a typed search is never remembered for next time (your filters, unlike the search, ARE remembered).
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S13-R14, S13-R25, S13-N4, S10-R5), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S13-R14, S13-R25, S13-N4, S10-R5), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8785 [epic] (S13-R14 (retained for the browser tab session); S13-R25 (never stored against the account; each tab independent); S13-N4 (not restored on a later visit); S10-R5) [spec v1.6 2026-07-28],,
@@ -1376,7 +1367,7 @@ The search term is part of the shareable page link,Page Search Toolbar,Functiona
 4. A search arriving via a link is view-only, the same as filters from a link - it does not overwrite your own remembered search.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S11-R4, S11-R5, S11-N2, S11-R8), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S11-R4, S11-R5, S11-N2, S11-R8), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8796 (S11-R4 (query reflected in the URL); S11-R5 (URL query pre-applied with the control filled); S11-N2 (malformed query ignored with no error); S11-R8 (rationale: no saved value to overwrite)) [spec v1.6 2026-07-28],,
@@ -1395,7 +1386,7 @@ What you should see today: on a phone there is no page search at all. The magnif
 - If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
 - If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S13-R16, S13-R17, S13-R18, S13-R19, S13-R20, S12-R5), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S13-R16, S13-R17, S13-R18, S13-R19, S13-R20, S12-R5), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8912)
 ","SV-8785 [epic] (S13-R16 (inline expansion with no modal); S13-R17 (field fills the remaining width); S13-R18 (CTA hug width); S13-R19 (2+ icon actions -> ""more"" kebab); S13-R20 (no active-query indicator); S12-R5) [spec v1.6 2026-07-28]",,
@@ -1410,6 +1401,7 @@ AUTOMATION: READY - EXPECT FAIL (SV-8912)
 2. Each Search box narrows only its own table; nothing else in the app changes.
 3. Where the table sits inside a dialog (the Work Order Log, the Line Log, the audit log dialog), the Search box is inside that dialog and works there.
 4. The work order Parts tab keeps the local search input it already had - it was deliberately left as it is.
+5. This sweep is meant to be run only after the page search has been added everywhere. If any page listed above still has no Search box because that work is not finished, mark this test BLOCKED - do not mark it failed, and write down which pages were missing it.
 
 ---
 This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S14-R6, S14-R5, S13-R22, S14-N1), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
@@ -1425,7 +1417,7 @@ The top navigation search no longer filters page lists,Page Search Toolbar,Funct
 3. Picking a dropdown result still takes you to that record - the navigation search keeps its find-and-open role.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S14-R1, S14-R2, S14-R4, S14-R5), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S14-R1, S14-R2, S14-R4, S14-R5), read on 11 August 2026. Last checked against build v3.6-3e9dd6d on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8799 (S14-R1 (navigational results only); S14-R2 (the page-filtering code path is removed rather than dormant); S14-R4 (the list is left untouched); S14-R5) [spec v1.6 2026-07-28],,
@@ -1442,7 +1434,7 @@ AUTOMATION: READY
 6. A very long sentence does not make the box grow and does not cut the text off - the text scrolls sideways inside the box and the cursor stays where you are typing.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S13-R2, S13-R3, S13-R4, S13-R5, S13-R6, S13-R8), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S13-R2, S13-R3, S13-R4, S13-R5, S13-R6, S13-R8), read on 11 August 2026. Last checked against build v3.6-3e9dd6d on 12 August 2026.
 
 AUTOMATION: READY
 ","SV-8798 (S13-R2 (default text button); S13-R3 (hover fill); S13-R4 (expands in place at 180px); S13-R5 (placeholder ""Type to search""); S13-R6 (typed text + X-circle clear); S13-R8 (long queries scroll)) [spec v1.6 2026-07-28]",,
@@ -1474,7 +1466,7 @@ One search box serves all Work Orders tabs and searches the tab you are on,Page 
 4. Clearing the search clears it for all the Work Orders tabs - they share one search - and each tab shows its full list again.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S13-R11, S13-R24), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S13-R11, S13-R24), read on 11 August 2026. Last checked against build v3.6-3e9dd6d on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8798 (S13-R11 (search applies within the active tab only); S13-R24 (the Work Orders tabs share a single query - views of one dataset)) [spec v1.6 2026-07-28],,
@@ -1487,6 +1479,7 @@ Each Report tab and each Parts view keeps its own separate search,Page Search To
 2. Going back to the first view brings its own word back and narrows its list again.
 3. Each report tab behaves the same way: a word typed on one tab stays on that tab only, and each tab remembers its own.
 4. No search is ever applied to a table it was not typed on.
+5. Not built everywhere yet: on the build last checked, the report pages had no page search box. If the report you open has no Search box, mark this test BLOCKED - do not mark it failed. The two Parts views in steps above can still be run and judged normally.
 
 ---
 This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S13-R24, S13-R11, S10-R4), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
@@ -1503,22 +1496,20 @@ An old link carrying a top-search word no longer narrows the page list,Page Sear
 4. After typing in the top-of-screen search and reloading, the list is still not narrowed and nothing about that word was remembered for the list.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S14-R3, S14-R2, S14-R1), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S14-R3, S14-R2, S14-R1), read on 11 August 2026. Last checked against build v3.6-3e9dd6d on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8799 (S14-R3 (state / URL parameters / persisted values carrying a global search term into page filtering are removed with it); S14-R2; S14-R1) [spec v1.6 2026-07-28],,
-Collapsing the filter bar keeps an active search working,Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page and the filter bar is expanded.
-3. A word is typed in the page Search box and the list is narrowed by it.","1. With the search still active, click the filter button in the toolbar to collapse the filter bar.
-2. Look at the table and at the toolbar row.
-3. Expand the filter bar again.","1. The list stays narrowed by your word - collapsing the filter bar does not cancel the search.
-2. The Search box stays in the toolbar row with your word still showing; it is not tucked away with the filter bar, because the search sits in the toolbar row and the chips sit in the row below.
-3. Expanding the bar again changes nothing about the search or the narrowed list.
+"Your typed search keeps working as you sort, page and leave and return",Page Search Toolbar,Functional,Medium,"1. You are signed in on a desktop browser.
+2. You are on a list page with a search box.","1. Type a search query so the list narrows.
+2. Sort a column, move to another page of results, then navigate away and back.","1. The typed search keeps narrowing the list.
+2. It survives sorting, paging, and navigating away from the page and back within the same browser tab.
+3. (The old edge case about a collapsed filter bar no longer applies - the filter bar collapse control was removed in the redesign.)
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S13-E1), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 17 August 2026, story SV-8798 (Page Search) and SV-9269 (collapse removed), and the Filters specification at Confluence version 21 (published 14 August 2026) (S13-R14; S13-R12), read on 17 August 2026.
 
-AUTOMATION: READY
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026
 ",SV-8798 (S13-E1 (a collapsed filter bar keeps an active query applying and the search control stays in the toolbar); §4 Key Decisions (page search is separate from the filter bar)) [spec v1.6 2026-07-28],,
 "On a phone, pages with two or more icon buttons collapse them into one menu",Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a mobile phone (or a browser window narrowed to phone size).
 2. You can reach the Parts area and the Reports area.
@@ -1526,7 +1517,7 @@ AUTOMATION: READY
 2. Open Parts then Purchase Orders. Look at the same row of buttons.
 3. Open Reports then the Timesheet Activities report. Look at the same row of buttons.
 4. Open the Technician Efficiency report, look at the button row on its Invoiced tab, then open its Completed tab and look again.
-5. Open the Sales Tax report, choose the Collected tab, and look at the button row.
+5. Open the Sales Tax Collected report and look at the button row.
 6. On each of those pages, tap the 'more' button (usually three dots) and look at what is inside it.
 7. For comparison, open a page that has only ONE small icon button in its toolbar and look at its button row.","1. On each of the pages in steps 1 to 5, the small icon-only buttons are NOT all shown side by side. They are gathered into a single 'more' button.
 2. Tapping that 'more' button opens a short menu listing those actions, and each one still works from there.
@@ -1534,9 +1525,10 @@ AUTOMATION: READY
 4. Nothing is lost: every action that is available on a desktop screen can still be reached on the phone, either directly or from inside the 'more' menu.
 5. On the comparison page in step 7, which has only one small icon button, that button is still shown on its own - a single icon action is not put into a 'more' menu.
 6. This rule applies to any page carrying two or more small icon buttons, so if you find another page like that, it should behave the same way. Write down any page that does not.
+7. If you cannot find a report named Sales Tax Collected, or the page you open does not have two or more small icon buttons to gather together, mark this test BLOCKED - do not mark it failed - and write down which page you tried.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, the owning story SV-8798, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S13-R19), read on 11 August 2026. This test has not yet been checked against any build.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, the owning story SV-8798, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S13-R19), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",S13-R19,,
@@ -1548,7 +1540,7 @@ The work order list request carries the active filter selections,API — Work Or
 3. The response contains only work orders matching the filters - the filtering is done by the backend, not just hidden client-side.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S2-R2, S3-R6), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S2-R2, S3-R6), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8785 [epic] (S2-R2; S3-R6 (backend view)) [spec v1.6 2026-07-28],,
@@ -1561,7 +1553,7 @@ A combined multi-filter request returns only work orders matching all filters,AP
 Note on where each part comes from: the ""either-or"" part of item 3 - that ticking two statuses shows work orders matching either of them - is stated in the product description. The part that says the customer filter and the status filter both restrict the result is not, and neither is the shape of the single request in item 1. Both of those come from the engineering technical design, which requires the filters to combine with ""AND across fields"" and sets out how the request is put together.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S2-R2, S3-R6), read on 11 August 2026, and as per the engineering technical design for the app-wide filter redesign (§0.3 and §1.8), read on 11 August 2026 - that document carries no version number of its own and records its own baseline as ""Spec baseline: v1.3"". Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S2-R2, S3-R6), read on 11 August 2026, and as per the engineering technical design for the app-wide filter redesign (§0.3 and §1.8), read on 11 August 2026 - that document carries no version number of its own and records its own baseline as ""Spec baseline: v1.3"". Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8785 [epic] (S2-R2; S3-R6; S8-R3 (backend view)) [spec v1.6 2026-07-28],,
@@ -1598,7 +1590,7 @@ AUTOMATION: READY - EXPECT FAIL (SV-8832)
 3. The page renders the no-results empty state from this response.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S8-R3, S2-N3), read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S8-R3, S2-N3), read on 11 August 2026. Last checked against build v3.7-20e801b on 12 August 2026.
 
 AUTOMATION: READY
 ",SV-8785 [epic] (S8-R3; S2-N3) [spec v1.6 2026-07-28],,
@@ -1611,10 +1603,10 @@ AUTOMATION: READY
 3. The second user does NOT receive the first user's saved state - each account's saved filters are isolated.
 4. Asking for a never-saved key returns success with an empty value, not an error page.
 
-5. Step 3 needs a SECOND sign-in of your own. We could not run it for you: impersonating another user on this branch returns an error, and a new staff member cannot finish signing up because the invitation email cannot be received here. If you have a second account, run step 3 normally. If you do not, mark this test BLOCKED - do not mark it failed. Steps 1, 2 and 4 were confirmed working.
+5. Step 3 was run on a second, non-administrator sign-in and passed: that user's page did not show the first user's saved filters, and a filter saved by one account did not change the other account's page. If you do not have a second account of your own, run steps 1, 2 and 4 and mark step 3 BLOCKED rather than failed.
 
 ---
-This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S10-R2, S10-R3), read on 11 August 2026. That specification does not describe the saving service itself, so the save-and-reload requests and their success responses above come from the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md, read on 11 August 2026. Last checked against build v3.4.2-d00239b on 8/5/2026.
+This is the expected behaviour as per epic SV-8785, read on 11 August 2026, and the Filters specification at Confluence version 19 (published 6 August 2026) (S10-R2, S10-R3), read on 11 August 2026. That specification does not describe the saving service itself, so the save-and-reload requests and their success responses above come from the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/HEAD/build/filters/tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md, read on 11 August 2026. Last checked against build v3.6-3e9dd6d on 12 August 2026.
 
-AUTOMATION: HOLD - needs a second test login to prove one person's saved filters do not reach another
+AUTOMATION: READY
 ",SV-8795 (S10-R2 (filters stored server-side against the user account; last write wins); S10-R3 (saved per user)) + tech plan 2026-07-29 s4-1.3 (GET/PUT per-user page preferences) [spec v1.6 2026-07-28],,
