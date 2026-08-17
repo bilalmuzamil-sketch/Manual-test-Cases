@@ -219,7 +219,13 @@ correct build would have failed a passing build**, and the same split existed on
   when someone later changes it.
 - **The automation marker is the LAST thing in Expected Results**, after the provenance line, **blank
   line before and a line break after**, exactly one of:
-  `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
+  `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>` ·
+  **`AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>`** (added 2026-08-17,
+  Standing Rule 69 — the case's steps/preconditions cannot yet be verified on the build because the
+  feature is not present, the build is not ready, or build verification was deferred for the pass; the
+  documented source is STILL fully cited, only the build "last checked against …" sentence is absent; a
+  later sync lifts it to `READY`. **Excluded from any "ready to automate" figure.** Do not conflate with
+  `HOLD` (a genuinely unobtainable thing) or with plain `READY` (steps confirmed runnable)).
   **A tool flag never justifies HOLD** — devtools, DOM inspection, reading a PDF or CSV, seeded data,
   theme toggles and viewport sizes are all automatable. Only a **genuinely unobtainable thing** (a
   real physical device, an external account we do not have) does.

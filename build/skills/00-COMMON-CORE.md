@@ -1262,6 +1262,27 @@ placement). Three forms only:
 
 `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`
 
+**🆕 A FOURTH FORM, added 2026-08-17 (Standing Rule 69):**
+`AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>`
+
+- **When to use it:** the case's **steps/preconditions cannot yet be verified on the build** — the
+  feature is not present, the build is not ready, or build verification was **deliberately deferred**
+  for the pass. QA lead, verbatim (2026-08-17): *"instead of putting the marker 'Automation ready' you
+  will put 'Not available on Build to test Yet - with the date when you last checked the build for that
+  test case'. However do not forget to put the source for the expected behavior with all the references
+  from specs and stories as you always do. Later we will run another sync to build verify … Then upon
+  success we will replace that statement with 'Automation Ready' marker."*
+- **The documented source is STILL fully cited** — sentence 1 of the Rule-54 provenance line is written
+  in full with each source's read-date; only **sentence 2** (the build "last checked against …" record)
+  is absent, which is exactly what this marker announces.
+- **It is TRANSITIONAL, and dated so its staleness shows.** A later sync lifts it to `READY`, or to
+  `READY - EXPECT FAIL (SV-xxxx)` on live-backed ticketed failure (§15.1). **It is EXCLUDED from any
+  "ready to automate" figure**, same as `HOLD`.
+- **Do NOT conflate it with `HOLD`.** `HOLD` is for a genuinely unobtainable thing (a physical device,
+  an external account we do not have); this marker is for something the build **will** run once it
+  ships/stabilises. **Do NOT conflate it with `READY` either** — plain `READY` asserts the steps have
+  been confirmed runnable; this marker says they have not been (Rule 12).
+
 - **Plain `READY` asserts AUTOMATABLE, not currently passing** — it is **build-independent** and
   survives a redeploy untouched.
 - **A TOOL FLAG NEVER JUSTIFIES `HOLD`.** Devtools, DOM/network inspection, reading a PDF or CSV,

@@ -6425,6 +6425,52 @@ deliver the 7-tab management report.
     recording a block), 64 (a case held for an open source question is HELD, not deleted — the same
     decomposition) and 67 (**whose "what is left" column is exactly where this failure surfaces, and
     which this rule is the precondition of**).
+69. **A CASE WHOSE STEPS/PRECONDITIONS CANNOT YET BE BUILD-VERIFIED GETS THE "NOT AVAILABLE ON BUILD"
+    MARKER, NOT "READY" — an honest deferral, dated, with the documented source still fully cited (all
+    projects).**
+    USER DIRECTIVE (2026-08-17, verbatim): *"There might be the test cases for which you can not 'build
+    verify' the Steps of reproduction and the Preconditions because the Build is not ready for those test
+    cases or those features/functions are not yet present in the build. For those test cases instead of
+    putting the marker 'Automation ready' you will put 'Not available on Build to test Yet - with the
+    date when you last checked the build for that test case'. However do not forget to put the source for
+    the expected behavior with all the references from specs and stories as you always do. Later we will
+    run another sync to build verify if those tests are runnable on the build. Then upon success we will
+    replace that statement with 'Automation Ready' marker."*
+    **THE RULE:** where a case's **Steps of reproduction and Preconditions cannot be verified against the
+    build** — because the build is not ready for that feature, or the feature/function is not present in
+    the build yet, or build verification was deliberately DEFERRED for the pass — its automation marker
+    is **NOT** `AUTOMATION: READY`. It is a **FOURTH permitted marker string**, dated:
+    **`AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>`**
+    placed **at the VERY END of Expected Results, AFTER the Rule-54 provenance line, blank line before
+    and a line break after** — the placement of every automation marker (Standing Rule 61 / core §15 /
+    the marker bullet in "Deliverable conventions"). **The `<date>` is the day the build was last checked
+    for that case** (or, on a deferred-verification pass, the day the pass ran without opening the app).
+    **THE DOCUMENTED SOURCE IS STILL FULLY CITED — this marker NEVER excuses a thin Rule-54 provenance
+    line.** The expectation still comes from the documents (Rule 57), so sentence 1 of the provenance
+    line is written in full with every source's read-date (Rule 54 as amended); **only sentence 2 (the
+    build "last checked against …" record) is absent**, which is exactly what this marker announces. A
+    case carrying it is a fully-sourced, fully-authored case whose ONLY gap is live build confirmation.
+    **THE LIFT PATH:** a **later sync re-checks whether the case is runnable on the build**; on success
+    the marker is **REPLACED** with `AUTOMATION: READY` (or, on ticketed failure with live backing,
+    `READY - EXPECT FAIL (SV-xxxx)`, per Rule 61 §15.1). This marker is **transitional by design** — a
+    placeholder a future automated/live sync clears, never a permanent verdict.
+    **DO NOT CONFLATE IT WITH `HOLD`:** `HOLD` is for a genuinely unobtainable thing (a real physical
+    device, an external account we do not have); this marker is for something the build **will** be able
+    to run once it ships/stabilises, and it carries a date so its staleness is visible. **NOT-BUILT /
+    not-available cases are EXCLUDED from any "ready to automate" figure**, same as `HOLD`.
+    **RELATION TO FINALITY (core §16):** a branch being "final" means feature-complete/handed-off, not
+    that every newly-specced feature is already in it — so a Fabian-design-review reconciliation that
+    adds cases for stories/spec/design NOT YET shipped legitimately uses this marker rather than
+    asserting `READY` (which would assert an unobserved build fact, Rule 12).
+    **RATIONALE, 2026-08-17:** on the Fabian-design-review reconciliation the specs/epic/design changed
+    across all three projects and Schedule was authored/updated source-first with build verification
+    deliberately deferred to a later sync — so `AUTOMATION: READY` would have asserted a build fact
+    nobody observed. This marker records the honest state: sourced and authored, build-confirmation
+    pending. Ties to Standing Rules 7, 9 (deferred build ⇒ unpinned labels are "VIU-confirm", never
+    invented), 10/12/13 (a marker never asserts an unobserved build fact), 49/60 (a provisional/dated,
+    re-checkable state), 54 (sentence 1 fully written; only sentence 2 absent), 57 (expectation from
+    documents regardless of build readiness) and 61 (the marker family this extends; lifts to READY on
+    success, or READY - EXPECT FAIL on live-backed ticketed failure).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
@@ -6758,9 +6804,13 @@ regression / bug-fix re-testing.
   **where it differs** from the earlier spec/design/earlier ruling and what that said, and **that we
   have taken the latest information as prevailing**. **Never added where nothing earlier
   contradicted the decision** — that manufactures a conflict and is itself a defect.
-- **AUTOMATION MARKER — the LAST thing in Expected Results, exactly one of three strings:**
-  `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <short
-  plain reason>`. Placed **at the VERY END of Expected Results, AFTER the Rule-54 provenance line,
+- **AUTOMATION MARKER — the LAST thing in Expected Results, exactly one of FOUR strings (a fourth was
+  added 2026-08-17, Standing Rule 69):** `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL
+  (SV-xxxx)` · `AUTOMATION: HOLD - <short plain reason>` · `AUTOMATION: Not available on Build to test
+  Yet - Last checked <M/D/YYYY>` (steps/preconditions cannot yet be verified on the build — feature not
+  present, build not ready, or verification deferred; the documented source is STILL fully cited; a
+  later sync lifts it to `READY`, or to `READY - EXPECT FAIL` on live-backed ticketed failure). Placed
+  **at the VERY END of Expected Results, AFTER the Rule-54 provenance line,
   with a BLANK LINE BEFORE AND AFTER IT** (QA lead's exact instruction: *"put these markers below
   the Expected behavior column at the end after a line break and there should be a line breake
   before this marker and after this marker"*). **Purpose:** the automation engineer automates with
