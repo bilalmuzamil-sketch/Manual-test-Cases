@@ -54,9 +54,14 @@ none claims `READY`, because nothing was build-verified. The later sync lifts th
 `oplog-add.jsonl`, `oplog-update.jsonl`. **0 run writes, 0 Jira writes, 0 deletes.**
 
 ## AUTOMATED CASES CHANGED — FOR VLAD (Standing Rule 65)
-**None.** All 21 touched cases are `custom_atmstatus = 1` (Not Automated) — the 19 new were created at
-`1`, and the 2 updated (C30054, C29931) are imported cases that were never flagged Automated. No
-automated case was changed.
+**None.** Standing Rule 65 keys off `custom_atmstatus = 3` (Automated). **No touched case is `3`.**
+- The 19 new cases were created at `1` (Not Automated) — confirmed live.
+- **C30054** is `1`.
+- **C29931 is `4` (Pending)** — it was `4` **before** this pass (not set by us), and the byte-verify of
+  the update showed **0 collateral change**, so its automation status was not touched. `4` = Pending,
+  not Automated, so there is **no tell-Vlad obligation** — but it is recorded here for accuracy rather
+  than glossed as `1`.
+No case flagged Automated (`3`) was changed.
 
 ## A note I owe you (Standing Rule 63 — surfacing a tension, not a conflict)
 The task said "every case created OR updated this pass gets the new marker; do not write READY."
