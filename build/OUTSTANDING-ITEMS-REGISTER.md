@@ -98,6 +98,24 @@ else owes).
 
 ---
 
+## 🆕🆕🆕 NEWEST — 2026-08-17, THE SCHEDULE FABIAN-REVIEW PASS. **THE SPEC MOVED TO v30 AND THE EPIC GREW 19→39; 14 NEW STORIES (SV-9231…SV-9244) ARE NEW SCOPE; 19 NEW CASES AUTHORED + PUSHED, 2 STALE CASES FIXED, BUILD VERIFICATION DEFERRED (NEW RULE 69 MARKER).**
+
+Full report: `build/schedule/fabian-review-2026-08-17/SCHEDULE-COMPLETION-REPORT.md`. New cases
+C43795–C43813 (Rule-50 byte-verified, `custom_atmstatus=1`); 2 updates C30054 (menu: Assign work
+order first of three) + C29931 (dept header row = unassigned lane). Every touched case carries
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026` (Standing Rule 69, recorded
+this pass). **0 build-verified / 0 steps walked** — the app was not opened.
+
+| Row | What is missing | Who owes it | What it BLOCKS | Since |
+|---|---|---|---|---|
+| **SCH-FR-1** | **Run 357 sync go-ahead** — the 19 new cases are absent from Ayesha's run 357 (`include_all` false, frozen at 176; union to 195 staged in `STAGED-RUN-357-SYNC.md`). A run write needs your explicit per-ask permission (Rules 6/34) | QA lead | The new cases appearing in the execution run | 2026-08-17 |
+| **SCH-FR-2** | **Go-ahead for ~22 deferred existing-case UPDATEs** (alignment, not a coverage gap — the new cases already cover the behaviour): SCH-SPREAD-03/04/05/08, SCH-CAP-04, SCH-CONF-02/03, SCH-DND-01/04, SCH-WOL-02/04, SCH-MODAL-02/03, SCH-DAY-01/04/05, SCH-START-03/07, SCH-PANEL-01…06 | QA lead | 5 in-direction contradictions closing fully (QUALITY-GATE.md) | 2026-08-17 |
+| **SCH-FR-3** | **The build-verification sync** — to lift the 21 Rule-69 markers to `READY` (or `READY - EXPECT FAIL` with a live ticket) | QA lead / build | Any "ready to automate" figure for the new scope | 2026-08-17 |
+| **SCH-FR-4** | **Technical design / tech plan for the Fabian scope** (Rule 30) — none supplied; the Claude/attached designs were **not present** in this session (design source PARTIAL) | engineering / QA lead | Edge-case strengthening + confirming labels marked VIU-confirm | 2026-08-17 |
+| **SCH-FR-5** | **Full v25→v30 `requirements.md` re-ingest** — local mirror is 5 spec versions behind; this pass reconciled the epic-story new scope, not the whole spec body | us (authorised pass) | Describing `requirements.md` as current | 2026-08-17 |
+
+---
+
 ## 🆕🆕 NEWEST — 2026-08-12, THE RULINGS PASS. **THREE RULINGS. ONE LOAD-BEARING QUESTION CLOSED AFTER SIX DAYS, ELEVEN CASES RELEASED, THE SECURITY DECISIONS CLOSED — AND A NEW, HIGHER BAR ON EVERY DEFECT TICKET WE WILL EVER FILE.**
 
 **DOCUMENTATION ONLY this pass. 0 TestRail calls · 0 Jira calls · 0 Confluence calls · 0 application
