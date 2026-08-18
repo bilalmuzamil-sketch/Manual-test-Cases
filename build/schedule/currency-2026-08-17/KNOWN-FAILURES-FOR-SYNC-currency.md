@@ -560,3 +560,63 @@ stripped build-observation paragraph or a non-plain prior marker (HOLD / EXPECT-
 ### SCH-PERM-08 = [C30081](https://shopview.testrail.io/index.php?/cases/view/30081)
 - **Prior marker:** `AUTOMATION: HOLD - needs a second sign-in as a user who cannot see work orders`
 
+
+### SCH-PERM-09 = [C30082](https://shopview.testrail.io/index.php?/cases/view/30082)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-PERM-10 = [C30083](https://shopview.testrail.io/index.php?/cases/view/30083)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-PERM-11 = [C30084](https://shopview.testrail.io/index.php?/cases/view/30084)
+- **Prior marker:** `AUTOMATION: HOLD - needs a second sign-in as each of the two staff members`
+
+
+### SCH-PERM-12 = [C30614](https://shopview.testrail.io/index.php?/cases/view/30614)
+- **Prior marker:** `AUTOMATION: HOLD - needs a second sign-in as a user who cannot see work orders`
+
+
+### SCH-PERM-13 = [C38926](https://shopview.testrail.io/index.php?/cases/view/38926)
+- **Prior marker:** `AUTOMATION: HOLD - needs a second sign-in as a holder of each permission level`
+
+
+### SCH-EDGE-02 = [C30086](https://shopview.testrail.io/index.php?/cases/view/30086)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-EDGE-03 = [C30087](https://shopview.testrail.io/index.php?/cases/view/30087)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-EDGE-04 = [C30088](https://shopview.testrail.io/index.php?/cases/view/30088)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-EDGE-06 = [C30090](https://shopview.testrail.io/index.php?/cases/view/30090)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-EDGE-07 = [C38865](https://shopview.testrail.io/index.php?/cases/view/38865)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-EDGE-08 = [C38866](https://shopview.testrail.io/index.php?/cases/view/38866)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-EDGE-09 = [C43588](https://shopview.testrail.io/index.php?/cases/view/43588)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-EDGE-10 = [C43589](https://shopview.testrail.io/index.php?/cases/view/43589)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-REG-01 = [C38867](https://shopview.testrail.io/index.php?/cases/view/38867)
+- **Prior marker:** `AUTOMATION: HOLD - cannot be run now - it needs shifts noted BEFORE the release, and the release is already deployed`
+
+
+### SCH-REG-02 = [C38868](https://shopview.testrail.io/index.php?/cases/view/38868)
+- **Prior marker:** `AUTOMATION: HOLD - the Dashboard section this test needs does not exist in the build`
+
