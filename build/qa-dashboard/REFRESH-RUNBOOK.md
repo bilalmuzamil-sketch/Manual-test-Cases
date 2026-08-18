@@ -26,11 +26,13 @@ Steps 2–6 are unchanged. Use `epic-scope-tools/` (committed beside this runboo
 cd <workdir>                                   # scripts read/write the folder they live in,
 cp <repo>/build/qa-dashboard/epic-scope-tools/*.py .   # so copy them into the workdir first
 cp <repo>/build/qa-dashboard/finish-dates.json .       # committed; merged, never overwritten
+cp <repo>/build/qa-dashboard/qa-accounts.json .        # QA member -> Jira accountId (for fetch_created)
 
 python3 fetch.py                     # recursive descent over the 3 epic trees -> raw_issues.json
 python3 transform.py                 # -> tickets-unique.json + story-epic-map.json
 python3 fetch_details.py <asof>      # changelog + comments (SCOPED — see below) -> details/
 python3 build_activity.py <asof>     # -> activity.json + finish-dates.json
+python3 fetch_created.py <asof>      # PROJECT-WIDE per-member created counts -> created-by-member.json
 python3 <repo>/build/qa-dashboard/gen_data.py . <asof>   # -> dash-data.json
 ```
 

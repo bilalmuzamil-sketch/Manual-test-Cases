@@ -184,8 +184,10 @@
     <p class="note">How many tickets each QA member <b>created</b> (they are the reporter), counted
     by the day the ticket was created. <b>By week</b> shows one week at a time — a column per dated
     day, Monday to Sunday, with the week's total on the right. <b>By month</b> compares this month
-    with the previous month. Counts every ticket type under the three epics; respects the member
-    &amp; epic filters. Dates are Pakistan time.</p>
+    with the previous month. <b>This table is project-wide</b> — it counts every ticket the person
+    created anywhere in ShopView, so it is <b>not limited to the three epics and ignores the epic
+    filter</b> (the rest of the page stays three-epic). The member filter still applies. Dates are
+    Pakistan time.</p>
     <div class="mtabs" id="cw-modetabs">
       <button class="mtab" data-mode="week" aria-pressed="true">By week</button>
       <button class="mtab" data-mode="month" aria-pressed="false">By month</button>
@@ -534,10 +536,16 @@ function ymShift(ym, back){                 // "2026-08", n -> earlier "YYYY-MM"
 }
 function monthLabel(ym){ return new Date(ym+"-01T12:00:00Z")
   .toLocaleDateString("en-GB",{month:"long",year:"numeric",timeZone:"UTC"}); }
-function createdBase(){                       // QA-reported tickets under the member+epic filter
-  return T.filter(t => t.rep && QA.includes(t.rep)
-    && (!state.q || t.rep===state.q)
-    && (!state.e || (t.ep||"NONE")===state.e));
+// Counts come from the PROJECT-WIDE sidecar (DATA.createdByMember) when present — this table
+// measures each person's real output across all of ShopView, so it deliberately ignores the epic
+// filter. countOn(person, isoDate) returns that person's created count for the day. If the sidecar
+// is missing (older data), fall back to the three-epic ticket set.
+const CBM = DATA.createdByMember && DATA.createdByMember.byDay;
+function countOn(person, d){
+  if (CBM) return (CBM[person] && CBM[person][d]) || 0;
+  let n=0; for (const t of T) if (t.rep===person && day(t.cr)===d
+    && (!state.e || (t.ep||"NONE")===state.e)) n++;
+  return n;
 }
 function cwRows(){ return state.q ? QA.filter(p=>p===state.q) : QA; }
 function renderCreatedWeek(){
@@ -548,16 +556,13 @@ function renderCreatedWeek(){
   return state.cwMode==="month" ? renderCreatedMonth() : renderCreatedWeekly();
 }
 function renderCreatedWeekly(){
-  const tix = createdBase();
   // Monday of the selected week: this-week Monday, shifted back by cwWeek weeks.
   const mondayOffset = (A.getUTCDay()+6)%7 + 7*state.cwWeek;
   const monday = daysAgo(mondayOffset);
   const dates = Array.from({length:7}, (_,i)=> iso(new Date(new Date(monday+"T12:00:00Z").getTime()+i*864e5)));
-  const dset = {}; dates.forEach((d,i)=>dset[d]=i);
   const rows = cwRows();
-  const cells = {}; rows.forEach(p=>cells[p]=[0,0,0,0,0,0,0]);
-  const colTot = [0,0,0,0,0,0,0];
-  tix.forEach(t=>{ const i=dset[day(t.cr)]; if(i!==undefined && cells[t.rep]){ cells[t.rep][i]++; colTot[i]++; } });
+  const cells = {}; rows.forEach(p=>cells[p]=dates.map(d=>countOn(p,d)));
+  const colTot = dates.map((_,i)=> rows.reduce((s,p)=>s+cells[p][i],0));
   const span = `${fmtShort(dates[0])} – ${fmtShort(dates[6])}`;
   let max=1; rows.forEach(p=>cells[p].forEach(v=>{ if(v>max)max=v; }));
   let h = `<tr><th style="text-align:left">QA member</th>`
@@ -576,14 +581,18 @@ function renderCreatedWeekly(){
     + `<td class="tot">${grand||"·"}</td></tr>`;
   $("createdweek").innerHTML = h;
 }
+function monthTotal(person, ym){
+  if (CBM){ const m=CBM[person]||{}; let n=0; for (const d in m) if (d.slice(0,7)===ym) n+=m[d]; return n; }
+  let n=0; for (const t of T) if (t.rep===person && day(t.cr).slice(0,7)===ym
+    && (!state.e || (t.ep||"NONE")===state.e)) n++;
+  return n;
+}
 function renderCreatedMonth(){
-  const tix = createdBase();
   const thisYm = ASOF.slice(0,7), prevYm = ymShift(thisYm,1);
   const rows = cwRows();
-  const cells = {}; rows.forEach(p=>cells[p]=[0,0]);
-  let ct=0, cp=0;
-  tix.forEach(t=>{ const ym=day(t.cr).slice(0,7); if(!cells[t.rep]) return;
-    if(ym===thisYm){ cells[t.rep][0]++; ct++; } else if(ym===prevYm){ cells[t.rep][1]++; cp++; } });
+  const cells = {}; rows.forEach(p=>cells[p]=[monthTotal(p,thisYm), monthTotal(p,prevYm)]);
+  const ct = rows.reduce((s,p)=>s+cells[p][0],0);
+  const cp = rows.reduce((s,p)=>s+cells[p][1],0);
   let max=Math.max(1,ct,cp,...rows.flatMap(p=>cells[p]));
   const cell=v=>{ const op=v?(0.12+0.55*v/max).toFixed(2):0;
     return `<td><span class="cell" style="background:rgba(var(--cellmax),${op})">${v||"·"}</span></td>`; };

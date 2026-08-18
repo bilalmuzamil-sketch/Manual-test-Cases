@@ -130,6 +130,14 @@ try:
 except Exception:
     activity = None
 
+# "Tickets created by each QA member" table — PROJECT-WIDE per-member-per-day counts (not the
+# three-epic set), because it measures each person's real output. Built by fetch_created.py.
+# Optional: if the sidecar is absent the template falls back to the three-epic ticket data.
+try:
+    created_by_member = json.load(open(f'{W}/created-by-member.json'))
+except Exception:
+    created_by_member = None
+
 # Two follow-up tables (all "not finished by QA" = 'fin' false — see FINISHED_STATUSES):
 #  needsResponse — the normal Assignee is a QA member (a query is likely waiting on QA),
 #                  PLUS any QA-raised Task still open (so we see it + who it's assigned to).
@@ -156,6 +164,7 @@ data = {'asof': ASOF, 'tz': 'PKT (UTC+5)', 'tickets': out, 'epics': epics,
         'tables': {'needsResponse': needs_response, 'openQueue': open_queue},
         'epicStart': epic_start, 'dataMinDate': data_min,
         'inprogress': inprogress, 'activity': activity,
+        'createdByMember': created_by_member,
         'hygiene': {'inprog': inprog, 'bare': bare, 'lower': lower, 'mismatch': mismatch,
                     'per_person': dict(per_person.most_common())}}
 json.dump(data, open(f'{W}/dash-data.json', 'w'), separators=(',', ':'))
