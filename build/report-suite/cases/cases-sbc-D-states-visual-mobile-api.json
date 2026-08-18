@@ -249,7 +249,7 @@
    "3. Collapse and re-expand the same customer without changing filters.",
    "4. Use the header chevron's expand-all and count the drill-down requests."
   ],
-  "expected": "1. Customer summary rows load WITHOUT the asset/invoice detail — the drill-down data is not preloaded.\n2. The first expand of a customer triggers a server fetch for that customer's asset and invoice rows.\n3. Expand-all triggers at most one drill-down fetch per not-yet-expanded customer on the current page — a bounded number never exceeding the page size; it does not fetch customers beyond the current page or the whole result set.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S8-R14, S8-R16), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "expected": "1. Customer summary rows load WITHOUT the asset/invoice detail — the drill-down data is not preloaded.\n2. The first expand of a customer triggers a server fetch for that customer's asset and invoice rows.\n3. Expand-all triggers at most one drill-down fetch per not-yet-expanded customer on the current page — a bounded number never exceeding the page size; it does not fetch customers beyond the current page or the whole result set.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S8-R14, S8-R16), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8606 (SBC spec v20 2026-08-17 Story 8 S8-R14; S8-R16)",
   "viu_status": "VIU-Pending",
@@ -275,7 +275,7 @@
    "2. Compare the returned first page with the previous page contents.",
    "3. Optional (API tooling): repeat the request with a made-up sort column name and read the response."
   ],
-  "expected": "1. Clicking a column header issues a server request that returns the customer rows ordered by that column.\n2. The full filtered set is re-ordered and re-paginated on the server — the response is the first page of results in the new order, so page membership can change.\n3. The ordering is not done by re-shuffling rows already in the browser.\n4. A sort request naming a column the report does not offer is safely refused or ignored — never an error page or a crash; sorting works only on the report's own columns.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S10-R8, S10-R8b), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "expected": "1. Clicking a column header issues a server request that returns the customer rows ordered by that column.\n2. The full filtered set is re-ordered and re-paginated on the server — the response is the first page of results in the new order, so page membership can change.\n3. The ordering is not done by re-shuffling rows already in the browser.\n4. A sort request naming a column the report does not offer is safely refused or ignored — never an error page or a crash; sorting works only on the report's own columns.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S10-R8, S10-R8b), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8608 (SBC spec v20 2026-08-17 Story 10 S10-R8; S10-R8b; tech-plan-2026-07-29 A2 (server sort whitelist))",
   "viu_status": "VIU-Pending",
@@ -301,7 +301,7 @@
    "2. Type a query and watch the network panel.",
    "3. Change the query and watch again."
   ],
-  "expected": "1. The dropdown does not load the full customer list into the browser up front.\n2. As you type, the browser fetches matching customers from the server — case-insensitive \"contains\" matching on the name, scoped to the active date range, Product Type, and location — and lists the returned customers.\n3. The all-customers state is stored as an explicit state (a flag), not an enumeration of the fetched ids.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S18-R2, S18-R4), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "expected": "1. The dropdown does not load the full customer list into the browser up front.\n2. As you type, the browser fetches matching customers from the server — case-insensitive \"contains\" matching on the name, scoped to the active date range, Product Type, and location — and lists the returned customers.\n3. The all-customers state is stored as an explicit state (a flag), not an enumeration of the fetched ids.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S18-R2, S18-R4), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8616 (SBC spec v20 2026-08-17 Story 18 S18-R2; S18-R4)",
   "viu_status": "VIU-Pending",
@@ -327,7 +327,7 @@
    "2. Change the Customer filter selection and watch the requests.",
    "3. Move between pages and watch the totals."
   ],
-  "expected": "1. Customer rows arrive page by page from the server (server-paginated), not as one full client-side list.\n2. Changing the Customer selection re-fetches the matching customers as a fresh first page.\n3. The totals are computed on the server over the full set of matching customers — they arrive with the data and do not change as you page.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S18-R6, S18-R11), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "expected": "1. Customer rows arrive page by page from the server (server-paginated), not as one full client-side list.\n2. Changing the Customer selection re-fetches the matching customers as a fresh first page.\n3. The totals are computed on the server over the full set of matching customers — they arrive with the data and do not change as you page.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S18-R6, S18-R11), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8616 (SBC spec v20 2026-08-17 Story 18 S18-R6; S18-R11)",
   "viu_status": "VIU-Pending",

@@ -45,3 +45,8 @@ Batch 1 (Not-available lifts, 15 cases): all HTTP 200, all byte-verify PASS. Wri
 | - | update_case | C43832 | 1 | LIFT_READY | 200 | PASS | PASS |
 | - | update_case | C30178 | 1 | LIFT_READY | 200 | PASS | PASS |
 | - | update_case | C43840 | 1 | LIFT_READY | 200 | PASS | PASS |
+
+### Batch 3 — Automated (4), READY re-stamps (8), raw-HTML repairs (C30166 + C30117/C30130/C30168)
+All update_case HTTP 200 + byte-verified. C30166: raw HTML demarked + EF marker off (SV-8964 OBSOLETE, A3 defect still reproduces). C30117/C30130/C30168: §3.5 raw-markup repair + re-stamp.
+
+**Post-batch invariant census over all 96 live SBC cases: RAW MARKUP 0, MULTI-MARKER 0, NO-MARKER 0, MULTI-PROVENANCE 0. Final markers: 86 READY + 10 HOLD.**
