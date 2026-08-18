@@ -6599,6 +6599,11 @@ regression / bug-fix re-testing.
     Digital Inspections **3646**; execution **run = 312**.
   - **🛑 `add_case` MUST SEND `custom_atmstatus:1` (= "Not Automated") + `custom_automation_type:0`
     — NEVER `3`. `3` MEANS "Automated" AND IS THE AUTOMATION ENGINEER'S FLAG TO SET, NOT OURS.**
+    **✅ QA-LEAD-CONFIRMED 2026-08-17, verbatim: *"1 is correct"* — new MANUAL cases created via
+    `add_case` carry `custom_atmstatus = 1`; `custom_atmstatus = 3` ("Automated") is reserved for
+    automated cases (e.g. Vladimir Tomovic's), and `custom_automation_type:0` is unchanged. All three
+    Fabian-review passes (Schedule / Report Suite / Filters) used `1` and it is confirmed correct — so
+    no future `add_case` pass may revert to `3`.**
     **⚠️ SUPERSEDED WORDING, KEPT VISIBLE AND DATED (the Rules 31/52/53 pattern) — until 2026-08-11
     this line read: *"`add_case` REQUIRES `custom_atmstatus:3` + `custom_automation_type:0`."* **THAT
     WAS WRONG ON BOTH HALVES, and because every `add_case` script in this workspace copied it, it

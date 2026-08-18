@@ -346,6 +346,9 @@ re-audit" is a valid outcome; omitting the file is not.**
 
 Send **`custom_atmstatus: 1`** ("Not Automated") **+ `custom_automation_type: 0`**.
 
+**✅ QA-lead-confirmed 2026-08-17, verbatim: *"1 is correct"* — manual cases = `custom_atmstatus 1`;
+`3` = Automated (reserved, e.g. Vladimir Tomovic's). No future `add_case` pass may revert to `3`.**
+
 **`3` is Vladimir Tomovic's OWN flag for what HE has automated**, and the whole tell-Vlad duty
 (Standing Rule 65) keys off it — so a case born `3` corrupts a signal he and we both rely on. The
 field is `is_required: true` but its `default_value` is `"1"`, so `3` was never required by anything.
