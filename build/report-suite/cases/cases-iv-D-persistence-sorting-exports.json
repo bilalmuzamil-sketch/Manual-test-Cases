@@ -15,7 +15,7 @@
    "2. Open the control and toggle a column off, then on again, watching the table.",
    "3. Look for a way to turn the Total Cost column off."
   ],
-  "expected": "1. The icon button's tooltip reads \"Column Selection\".\n2. Toggling a column off hides it from the table; toggling it on shows it again.\n3. The Total Cost column is always shown and cannot be turned off.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S8-R1, S8-R2), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The icon button's tooltip reads \"Column Selection\".\n2. Toggling a column off hides it from the table; toggling it on shows it again.\n3. The Total Cost column is always shown and cannot be turned off.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S8-R1, S8-R2), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8675 (IV spec v10 2026-08-17 Story 8 S8-R1; S8-R2)",
   "viu_status": "VIU-Pending",
@@ -40,7 +40,7 @@
    "1. Turn several columns on and off in different orders (for example, turn on Total Sell, then Margin).",
    "2. Read the resulting column order after each change."
   ],
-  "expected": "1. Whatever columns are shown, they appear in the fixed left-to-right order - with Location, when it is turned on in the column-selection control, between Vendor and Qty (Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) - toggling visibility never reorders columns.\n2. Total Cost is always the last column.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S8-R4, S3-R1, S7-R6), read on 17 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Whatever columns are shown, they appear in the fixed left-to-right order - with Location, when it is turned on in the column-selection control, between Vendor and Qty (Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) - toggling visibility never reorders columns.\n2. Total Cost is always the last column.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S8-R4, S3-R1, S7-R6), read on 17 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8675; SV-8674 (IV spec v10 2026-08-17 Story 8 S8-R4; Story 3 S3-R1 + Story 7 S7-R6 — toggling never reorders; plus the automatic Location column between Vendor and Qty on Hand)",
   "viu_status": "VIU-Pending",
@@ -117,7 +117,7 @@
    "1. Open the Inventory Value report without clicking any header.",
    "2. Read the Total Cost values from the top row down, across page 1 and page 2."
   ],
-  "expected": "1. The rows are sorted by Total Cost, highest first (descending).\n2. The order holds across pages (page 2 continues below page 1's lowest value) — the server applies the default order over the full set.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S9-R1), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The rows are sorted by Total Cost, highest first (descending).\n2. The order holds across pages (page 2 continues below page 1's lowest value) — the server applies the default order over the full set.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S9-R1), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8676 (IV spec v10 2026-08-17 Story 9 S9-R1; §3 Key Decisions (Total Cost default sort))",
   "viu_status": "VIU-Pending",
@@ -144,7 +144,7 @@
    "3. Click it a third time.",
    "4. Click a different column header and check whether the previous sort still applies."
   ],
-  "expected": "1. Clicking a column that is not the active sort sorts it ascending; clicking the active sort column again toggles it to descending; there is no third \"cleared\" state.\n2. Each header click re-fetches the data from the server ordered by the chosen column and direction, returning the FIRST page of the re-sorted result set.\n3. Only one column sorts at a time.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S9-R2), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Clicking a column that is not the active sort sorts it ascending; clicking the active sort column again toggles it to descending; there is no third \"cleared\" state.\n2. Each header click re-fetches the data from the server ordered by the chosen column and direction, returning the FIRST page of the re-sorted result set.\n3. Only one column sorts at a time.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S9-R2), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8676 (IV spec v10 2026-08-17 Story 9 S9-R2)",
   "viu_status": "VIU-Pending",
@@ -170,7 +170,7 @@
    "2. Sort by Qty and check the numeric order.",
    "3. Sort by Description (or Vendor) and check how differently-cased values order."
   ],
-  "expected": "1. Money and numeric columns sort by their underlying value (so $1,100.00 is treated as more than $900.00, not compared as text).\n2. Text columns (Part #, Description, Category, Vendor) sort as text, case-insensitively (\"apple\" and \"Apple\" sort together).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S9-R3), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Money and numeric columns sort by their underlying value (so $1,100.00 is treated as more than $900.00, not compared as text).\n2. Text columns (Part #, Description, Category, Vendor) sort as text, case-insensitively (\"apple\" and \"Apple\" sort together).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S9-R3), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8676 (IV spec v10 2026-08-17 Story 9 S9-R3)",
   "viu_status": "VIU-Pending",
@@ -251,7 +251,7 @@
    "4. Compare its totals row to the on-screen totals row.",
    "5. Repeat the checks in the PDF."
   ],
-  "expected": "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last.\n2. Both downloads honor the current date, category, vendor, location, and part-search filters, and apply the current sort.\n3. Both downloads include a totals row labeled \"Totals\" matching the on-screen totals (the full-filtered-set totals).\n4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to.\n5. Note for the tester: the files carry the Location column whenever it is showing on screen (it sits between Vendor and Qty).\nOn this build the spreadsheet file ignores the columns you picked and puts them in a different order from the screen, so point 1 above will not match - record what you see and carry on.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823\n\n---\nThis is the expected behaviour as per epic SV-8582 and story SV-8677, read on 18 August 2026, and the Inventory Value report specification version 10 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15), read on 18 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last.\n2. Both downloads honor the current date, category, vendor, location, and part-search filters, and apply the current sort.\n3. Both downloads include a totals row labeled \"Totals\" matching the on-screen totals (the full-filtered-set totals).\n4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to.\n5. Note for the tester: the files carry the Location column whenever it is showing on screen (it sits between Vendor and Qty).\nOn this build the spreadsheet file ignores the columns you picked and puts them in a different order from the screen, so point 1 above will not match - record what you see and carry on.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823\n\n---\nThis is the expected behaviour as per epic SV-8582 and story SV-8677, read on 18 August 2026, and the Inventory Value report specification version 10 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15), read on 18 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v10 2026-08-18 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the \"Locations:\" line and the Location column when shown)",
   "viu_status": "VIU-Pending",
@@ -355,7 +355,7 @@
    "2. Count the file's data rows and look for parts you know sit on the later pages.",
    "3. Compare the file's totals row to the on-screen totals."
   ],
-  "expected": "1. The export contains the FULL filtered set — every qualifying row across all pages, not only the rows loaded in the browser.\n2. Parts from the later pages are present.\n3. The export is generated server-side against the current filters, part search, and sort — it is not built from the rows currently in the browser.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S10-R11), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The export contains the FULL filtered set — every qualifying row across all pages, not only the rows loaded in the browser.\n2. Parts from the later pages are present.\n3. The export is generated server-side against the current filters, part search, and sort — it is not built from the rows currently in the browser.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S10-R11), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v10 2026-08-17 Story 10 S10-R11)",
   "viu_status": "VIU-Pending",

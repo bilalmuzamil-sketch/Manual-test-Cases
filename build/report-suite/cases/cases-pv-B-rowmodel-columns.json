@@ -14,7 +14,7 @@
    "1. Search for the part number in the toolbar search.",
    "2. Count the rows returned for it and read each row's On Hand, Min, and Max."
   ],
-  "expected": "1. The part appears as TWO inventory rows - one per selected location (an inventory part is a per-location stock record).\n2. Each row carries only that one location's On Hand, Min, and Max.\n3. On Hand / Min / Max are NEVER summed across locations.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S3-R1a), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The part appears as TWO inventory rows - one per selected location (an inventory part is a per-location stock record).\n2. Each row carries only that one location's On Hand, Min, and Max.\n3. On Hand / Min / Max are NEVER summed across locations.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S3-R1a), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8643 (PV spec v10 2026-08-17 S3-R1a; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
@@ -40,7 +40,7 @@
    "2. Count its rows and read its movement and money values.",
    "3. Compare against the per-location values with only one location selected at a time."
   ],
-  "expected": "1. The special-order part appears as a SINGLE row (one row per special-order part, merged across the selected locations).\n2. Its movement and profitability values are the SUM of the per-location values.\n3. Its inventory-only columns (On Hand, Turns / Yr, Min, Max) show — (em-dash), because special-order parts are not stocked.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S3-R1a), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The special-order part appears as a SINGLE row (one row per special-order part, merged across the selected locations).\n2. Its movement and profitability values are the SUM of the per-location values.\n3. Its inventory-only columns (On Hand, Turns / Yr, Min, Max) show — (em-dash), because special-order parts are not stocked.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S3-R1a), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8643 (PV spec v10 2026-08-17 S3-R1a; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
@@ -67,7 +67,7 @@
    "3. Find the inventory and special-order rows with equal Demand and note their relative order.",
    "4. Look at the Demand column header."
   ],
-  "expected": "1. Rows are ranked by Demand, descending - the most-active parts first.\n2. Inventory and special-order rows are ranked together in one list.\n3. Rows with equal Demand keep inventory-before-special-order order.\n4. The Demand header shows the descending sort indicator - this initial order IS the active sort (it is what the remembered view saves until you click another header).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S3-R2), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Rows are ranked by Demand, descending - the most-active parts first.\n2. Inventory and special-order rows are ranked together in one list.\n3. Rows with equal Demand keep inventory-before-special-order order.\n4. The Demand header shows the descending sort indicator - this initial order IS the active sort (it is what the remembered view saves until you click another header).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S3-R2), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8643 (PV spec v10 2026-08-17 S3-R2)",
   "viu_status": "VIU-Pending",
@@ -94,7 +94,7 @@
    "3. Watch where the — (null) rows land in each direction.",
    "4. Try clicking the headers of several other columns."
   ],
-  "expected": "1. The first click sorts that column ASCENDING; the header shows a direction indicator (an arrow).\n2. Clicking the active sort column again reverses the direction; the arrow flips.\n3. Null / — values are placed FIRST on ascending and LAST on descending.\n4. Every column is sortable; each header click re-fetches the data (server-resolved) and shows the first page of the re-sorted result; ties keep a stable order.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S3-R3), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The first click sorts that column ASCENDING; the header shows a direction indicator (an arrow).\n2. Clicking the active sort column again reverses the direction; the arrow flips.\n3. Null / — values are placed FIRST on ascending and LAST on descending.\n4. Every column is sortable; each header click re-fetches the data (server-resolved) and shows the first page of the re-sorted result; ties keep a stable order.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S3-R3), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8643 (PV spec v10 2026-08-17 S3-R3)",
   "viu_status": "VIU-Pending",
@@ -119,7 +119,7 @@
    "2. Read the Type column values.",
    "3. Look at the alignment of every header label and cell, including numeric and money columns."
   ],
-  "expected": "1. The header row is sticky - it stays visible while the body scrolls.\n2. The Type column shows each row's kind as plain text (no badge or chip styling): \"Inventory\" or \"Special Order\".\n3. ALL columns - header and cell data, including numbers and money - are left-aligned on screen. (The exports right-align numerics instead: a deliberate export-only difference.)\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S3-R4, S3-R5, S3-R8), read on 17 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026, which is the authority.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The header row is sticky - it stays visible while the body scrolls.\n2. The Type column shows each row's kind as plain text (no badge or chip styling): \"Inventory\" or \"Special Order\".\n3. ALL columns - header and cell data, including numbers and money - are left-aligned on screen. (The exports right-align numerics instead: a deliberate export-only difference.)\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S3-R4, S3-R5, S3-R8), read on 17 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026, which is the authority.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8643 (PV spec v10 2026-08-17 S3-R4; S3-R5; S3-R8 - Type value 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31])",
   "viu_status": "VIU-Pending",
@@ -198,7 +198,7 @@
    "1. On the special-order row, read On Hand, Turns / Yr, Min, and Max.",
    "2. On the no-activity inventory row, read Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Demand, Revenue, and Margin."
   ],
-  "expected": "1. On Hand, Turns / Yr, Min, and Max show — (em-dash) on special-order rows - always.\n2. The count metrics and money totals are NEVER null: Units Sold / Units Returned / Sold (WO) / Sold (Parts Sale) show 0.00, Demand shows 0, Revenue and Margin show $0.00.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S3-R9, S5-R5), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. On Hand, Turns / Yr, Min, and Max show — (em-dash) on special-order rows - always.\n2. The count metrics and money totals are NEVER null: Units Sold / Units Returned / Sold (WO) / Sold (Parts Sale) show 0.00, Demand shows 0, Revenue and Margin show $0.00.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S3-R9, S5-R5), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8643 (PV spec v10 2026-08-17 S3-R9; S5-R5)",
   "viu_status": "VIU-Pending",
@@ -223,7 +223,7 @@
    "1. Search for part A in the report.",
    "2. Search for part B in the report."
   ],
-  "expected": "1. Part A does NOT appear - it fails all three keep-criteria (no movement, under one on hand, no revenue) so it carries nothing to act on.\n2. Part B DOES appear - a part with billed Revenue > 0 is always kept even with no stock movement and no on-hand stock.\n3. (Special Order parts have no such rule: a never-requested special-order part simply produces no row.)\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S3-N1), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Part A does NOT appear - it fails all three keep-criteria (no movement, under one on hand, no revenue) so it carries nothing to act on.\n2. Part B DOES appear - a part with billed Revenue > 0 is always kept even with no stock movement and no on-hand stock.\n3. (Special Order parts have no such rule: a never-requested special-order part simply produces no row.)\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S3-N1), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8643 (PV spec v10 2026-08-17 S3-N1)",
   "viu_status": "VIU-Pending",
@@ -349,7 +349,7 @@
    "2. Leave the report (navigate elsewhere), then return to it.",
    "3. Reload the page (browser refresh) and observe again."
   ],
-  "expected": "1. On return, every saved setting is restored: Type = Inventory, Last Month, the chosen category, the column set including Turns / Yr, and the Revenue-descending sort.\n2. The saved values are applied BEFORE the first data fetch - the report does not flash the defaults and then re-query.\n3. The saved values take precedence over the first-visit defaults (This Year / Both / active location / 14 columns / Demand-descending).\n4. The same holds after a full page reload.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S4-R6, S1-R2), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. On return, every saved setting is restored: Type = Inventory, Last Month, the chosen category, the column set including Turns / Yr, and the Revenue-descending sort.\n2. The saved values are applied BEFORE the first data fetch - the report does not flash the defaults and then re-query.\n3. The saved values take precedence over the first-visit defaults (This Year / Both / active location / 14 columns / Demand-descending).\n4. The same holds after a full page reload.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S4-R6, S1-R2), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8644 (PV spec v10 2026-08-17 S4-R6; S1-R2)",
   "viu_status": "VIU-Pending",
@@ -373,7 +373,7 @@
    "1. Return to the Parts Velocity report with that stale saved view in place.",
    "2. Observe which location / date range the report loads with."
   ],
-  "expected": "1. The invalid saved value is NOT sent to the server.\n2. That one setting falls back to its default (e.g. the location falls back to the active location); the other saved settings still restore normally.\n3. The report loads without an error.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S4-R6), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The invalid saved value is NOT sent to the server.\n2. That one setting falls back to its default (e.g. the location falls back to the active location); the other saved settings still restore normally.\n3. The report loads without an error.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S4-R6), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8644 (PV spec v10 2026-08-17 S4-R6)",
   "viu_status": "VIU-Pending",
@@ -398,7 +398,7 @@
    "1. Sign out user 1 and sign in user 2 on the SAME browser.",
    "2. Open the Parts Velocity report."
   ],
-  "expected": "1. User 2 sees user 1's saved view (Type = Special Order, Last Quarter, the saved columns and sort).\n2. This is by design: storage is per browser, not tied to the account - there is no per-account separation.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S4-R6), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. User 2 sees user 1's saved view (Type = Special Order, Last Quarter, the saved columns and sort).\n2. This is by design: storage is per browser, not tied to the account - there is no per-account separation.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S4-R6), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8644 (PV spec v10 2026-08-17 S4-R6)",
   "viu_status": "VIU-Pending",
@@ -446,7 +446,7 @@
    "2. Trigger a CSV export while zero columns are enabled.",
    "3. Leave the report and return to it."
   ],
-  "expected": "1. The picker enforces no minimum - all 20 columns can be switched off, leaving a grid with no data columns for the rest of the session.\n2. The export produces a file containing only the header/metadata rows and no data columns.\n3. On the next visit the all-hidden selection is NOT restored - the report falls back to the default 14-column set (the saved column selection returns to the last NON-EMPTY selection; all-hidden is the exception).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S4-E1, S4-R6), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The picker enforces no minimum - all 20 columns can be switched off, leaving a grid with no data columns for the rest of the session.\n2. The export produces a file containing only the header/metadata rows and no data columns.\n3. On the next visit the all-hidden selection is NOT restored - the report falls back to the default 14-column set (the saved column selection returns to the last NON-EMPTY selection; all-hidden is the exception).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S4-E1, S4-R6), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8644 (PV spec v10 2026-08-17 S4-E1; S4-R6)",
   "viu_status": "VIU-Pending",

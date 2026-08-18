@@ -5,6 +5,14 @@
 Read-only investigation. Author: Bilal Muzamil (TestRail user id 3). Written 2026-08-18.
 **No TestRail or Jira write was made by this audit — only this report file was committed.**
 
+> **✅ STATUS: EXECUTED 2026-08-18 (QA-lead-authorized marker revert).** The fix set was re-derived
+> independently from git + live (Rule G) and reconciled to this report exactly. **497 cases reverted**
+> live (430 → `AUTOMATION: READY`, 22 → `READY - EXPECT FAIL`, 45 → `HOLD`; incl. 27 Automated
+> reference-only cases as authorized metadata-only corrections), every write byte-verified (marker line
+> only; body/provenance/refs byte-identical), 497/497 confirmed by a post-write live census. **2
+> Automated content-changed cases HELD** (C30462, C30518) for the build-verify pass. **5 §5 local-only
+> cases** synced in the local source only. Full record: `MARKER-REVERT-EXECUTION.md`.
+
 ## What this audit answers
 
 The Rule-69 marker `AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026` was

@@ -14,7 +14,7 @@
    "1. Read the summary strip across the top of the report, left to right.",
    "2. Read each figure's number format."
   ],
-  "expected": "1. The strip shows seven figures, in this order: Total Earned, Total Remaining, Not Started, Started — Earned, Started — Remaining, Ready to Invoice, and Estimates.\n2. Every figure shows US-dollar currency with a leading \"$\", two decimals, and thousands separators.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S5-R1, S5-R10), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The strip shows seven figures, in this order: Total Earned, Total Remaining, Not Started, Started — Earned, Started — Remaining, Ready to Invoice, and Estimates.\n2. Every figure shows US-dollar currency with a leading \"$\", two decimals, and thousands separators.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S5-R1, S5-R10), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8661 (WIP spec v21 2026-08-17 Story 5 S5-R1; S5-R10 — S5-R1 CLOSES the seven figures and their order verbatim and S5-R10 closes the currency format; so the closed lists ARE the requirement)",
   "viu_status": "VIU-Pending",
@@ -40,7 +40,7 @@
    "2. Add the Started — Earned figure to the Ready to Invoice figure.",
    "3. Compare the sum to Total Earned."
   ],
-  "expected": "1. Total Earned is shown larger than the other figures and with a colored underline — it is the strip's hero figure.\n2. Total Earned equals Started — Earned plus Ready to Invoice, to the cent.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S5-R2), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Total Earned is shown larger than the other figures and with a colored underline — it is the strip's hero figure.\n2. Total Earned equals Started — Earned plus Ready to Invoice, to the cent.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S5-R2), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8661 (WIP spec v21 2026-08-17 Story 5 S5-R2)",
   "viu_status": "VIU-Pending",
@@ -65,7 +65,7 @@
    "1. Add the Not Started figure to the Started — Remaining figure.",
    "2. Compare the sum to Total Remaining."
   ],
-  "expected": "1. Total Remaining equals Not Started plus Started — Remaining, to the cent.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S5-R3), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Total Remaining equals Not Started plus Started — Remaining, to the cent.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S5-R3), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8661 (WIP spec v21 2026-08-17 Story 5 S5-R3)",
   "viu_status": "VIU-Pending",
@@ -92,7 +92,7 @@
    "2. In the \"Approved - Partially Completed\" tab, compare the tab's total Earned to the Started — Earned figure and the tab's total Remaining to the Started — Remaining figure.",
    "3. In the \"Completed\" tab, compare the tab's total Earned to the Ready to Invoice figure."
   ],
-  "expected": "1. Not Started equals the total approved value (earned + remaining) of the jobs in the \"Approved - Not Started\" tab.\n2. Started — Earned equals the total Earned of the jobs in the \"Approved - Partially Completed\" tab, and Started — Remaining equals that tab's total Remaining.\n3. Ready to Invoice equals the total Earned of the jobs in the \"Completed\" tab.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S5-R4, S5-R5, S5-R6, S5-R7), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Not Started equals the total approved value (earned + remaining) of the jobs in the \"Approved - Not Started\" tab.\n2. Started — Earned equals the total Earned of the jobs in the \"Approved - Partially Completed\" tab, and Started — Remaining equals that tab's total Remaining.\n3. Ready to Invoice equals the total Earned of the jobs in the \"Completed\" tab.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S5-R4, S5-R5, S5-R6, S5-R7), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8661 (WIP spec v21 2026-08-17 Story 5 S5-R4; S5-R5; S5-R6; S5-R7)",
   "viu_status": "VIU-Pending",
@@ -195,7 +195,7 @@
    "2. Read the Totals row's leftmost cell and its Total cell.",
    "3. Compare the Totals row's number formats to the data rows."
   ],
-  "expected": "1. Each tab's table has a Totals row pinned to the bottom, labeled \"Totals\" in its leftmost cell.\n2. The Totals row's Total cell is pinned far right and shown in bold, matching the column.\n3. The Totals row uses the same number formats as the data rows.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S6-R1, S6-R4, S6-R5), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Each tab's table has a Totals row pinned to the bottom, labeled \"Totals\" in its leftmost cell.\n2. The Totals row's Total cell is pinned far right and shown in bold, matching the column.\n3. The Totals row uses the same number formats as the data rows.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S6-R1, S6-R4, S6-R5), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8662 (WIP spec v21 2026-08-17 Story 6 S6-R1; S6-R4; S6-R5)",
   "viu_status": "VIU-Pending",
@@ -433,7 +433,7 @@
    "4. Use \"All locations\", then \"Clear all\".",
    "5. Then sign in as a user with access to only ONE location, open the report and look for the Location filter again."
   ],
-  "expected": "1. The Location filter is the rightmost toolbar filter, a multi-select listing the locations the signed-in user can access, with an \"All locations\" / \"Clear all\" toggle.\n2. On a first visit it defaults to the user's currently active location.\n3. Selecting one, several, or all locations reloads the report scoped to that set (rows from the added location appear).\n4. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's work orders.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S7-R9, S7-R10), read on 17 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The Location filter is the rightmost toolbar filter, a multi-select listing the locations the signed-in user can access, with an \"All locations\" / \"Clear all\" toggle.\n2. On a first visit it defaults to the user's currently active location.\n3. Selecting one, several, or all locations reloads the report scoped to that set (rows from the added location appear).\n4. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's work orders.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S7-R9, S7-R10), read on 17 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8663 (WIP spec v21 2026-08-17 Story 7 S7-R9; S7-R10 + on-screen location-scope indicator; spec v21 2026-08-17; single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A)",
   "viu_status": "VIU-Pending",
@@ -459,7 +459,7 @@
    "2. Use \"Clear all\" so the selection resolves to no location, and watch what the report loads.",
    "3. If possible, revisit the report after your saved location selection has been made invalid (for example, access to a saved location was removed)."
   ],
-  "expected": "1. Only the locations the user can access are offered — a location the user cannot access is never included in the scope.\n2. If the selection resolves to none, the report falls back to the user's currently active location rather than showing everything or erroring.\n3. A saved selection that no longer resolves also falls back to the active location.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S7-R11, S8-R8), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Only the locations the user can access are offered — a location the user cannot access is never included in the scope.\n2. If the selection resolves to none, the report falls back to the user's currently active location rather than showing everything or erroring.\n3. A saved selection that no longer resolves also falls back to the active location.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S7-R11, S8-R8), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8663 (WIP spec v21 2026-08-17 Story 7 S7-R11; Story 8 S8-R8)",
   "viu_status": "VIU-Pending",

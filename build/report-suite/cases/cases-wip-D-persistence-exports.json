@@ -15,7 +15,7 @@
    "2. Open the control and toggle a column off, then on again, watching the table.",
    "3. Look for the Total column in the control's list."
   ],
-  "expected": "1. The icon button's tooltip reads \"Column Selection\".\n2. Toggling a column off hides it from the table; toggling it on shows it again.\n3. The Total column is always shown and cannot be turned off — it is not offered in the control at all.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S8-R1, S8-R2), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The icon button's tooltip reads \"Column Selection\".\n2. Toggling a column off hides it from the table; toggling it on shows it again.\n3. The Total column is always shown and cannot be turned off — it is not offered in the control at all.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S8-R1, S8-R2), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8664 (WIP spec v21 2026-08-17 Story 8 S8-R1; S8-R2)",
   "viu_status": "VIU-Pending",
@@ -93,7 +93,7 @@
    "1. Make a saved value invalid (for example, remove your access to the saved location, or reload after the saved customer no longer appears in the loaded jobs).",
    "2. Open the Work In Progress report."
   ],
-  "expected": "1. The report loads normally — the invalid saved value falls back to that setting's default rather than breaking the view.\n2. All other saved settings are still restored.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S8-R8), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The report loads normally — the invalid saved value falls back to that setting's default rather than breaking the view.\n2. All other saved settings are still restored.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S8-R8), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8664 (WIP spec v21 2026-08-17 Story 8 S8-R8)",
   "viu_status": "VIU-Pending",
@@ -120,7 +120,7 @@
    "3. Reload the browser page and look again.",
    "4. Switch Location back ON by hand, then reload the page once more."
   ],
-  "expected": "1. After going away and coming back, Location is still switched OFF - your choice was remembered.\n2. After reloading the browser page, Location is still switched OFF.\n3. After switching it back ON and reloading, Location is switched ON.\n4. Everything else is remembered exactly as before - the other column choices, the \"as of\" date, the filters and the tab you were on. Turning Location on or off changes nothing else.\n\nWhat you should see today: you cannot start this test, because the Location column is not listed in the column-selection control at all, so there is no switch to turn off in step 1. The column appears and disappears on its own depending on how many locations are selected in the Location filter. This is the same problem written up for the QA lead against the other Location tests.\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so this note can be removed.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S8-R7), both read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. After going away and coming back, Location is still switched OFF - your choice was remembered.\n2. After reloading the browser page, Location is still switched OFF.\n3. After switching it back ON and reloading, Location is switched ON.\n4. Everything else is remembered exactly as before - the other column choices, the \"as of\" date, the filters and the tab you were on. Turning Location on or off changes nothing else.\n\nWhat you should see today: you cannot start this test, because the Location column is not listed in the column-selection control at all, so there is no switch to turn off in step 1. The column appears and disappears on its own depending on how many locations are selected in the Location filter. This is the same problem written up for the QA lead against the other Location tests.\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so this note can be removed.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S8-R7), both read on 17 August 2026.\n\nAUTOMATION: HOLD - the build does not follow the ratified Location rule; the defect is written up in DEFECTS-FOR-PERMISSION.md and needs the QA lead's permission before a ticket exists to point at",
   "refs": "SV-8664 (WIP spec v21 2026-08-17 S8-R7; per-column persistence remembers the as-of date)",
   "spec_ref": "SV-8664 (WIP spec v21 2026-08-17 S8-R7; per-column persistence remembers the as-of date)",
   "testrail_id": "C43551",
@@ -142,7 +142,7 @@
    "2. Read the menu options.",
    "3. Choose \"Download (PDF)\", then repeat with \"Download (CSV)\"."
   ],
-  "expected": "1. The menu holds the download options \"Download (PDF)\" and \"Download (CSV)\".\n2. Each option downloads a file of the current tab in the chosen format.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S9-R1), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The menu holds the download options \"Download (PDF)\" and \"Download (CSV)\".\n2. Each option downloads a file of the current tab in the chosen format.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S9-R1), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v21 2026-08-17 Story 9 S9-R1)",
   "viu_status": "VIU-Pending",
@@ -170,7 +170,7 @@
    "4. Compare its Totals row to the on-screen Totals row.",
    "5. Repeat the same checks in the PDF."
   ],
-  "expected": "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last. One exception on this build: if you turn Labor Delta on, the download is refused - that column cannot be exported yet.\n2. Both downloads honor the current \"as of\" date and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.\n3. Both downloads include a Totals row matching the on-screen Totals row for the tab.\n4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to.\n5. Note for the tester: the file carries the Location column whenever it is showing on screen. In the file it is headed \"Branch\", not \"Location\".\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S9-R3; S9-R10a), both read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last. One exception on this build: if you turn Labor Delta on, the download is refused - that column cannot be exported yet.\n2. Both downloads honor the current \"as of\" date and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.\n3. Both downloads include a Totals row matching the on-screen Totals row for the tab.\n4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to.\n5. Note for the tester: the file carries the Location column whenever it is showing on screen. In the file it is headed \"Branch\", not \"Location\".\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S9-R3; S9-R10a), both read on 17 August 2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8907)",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v21 2026-08-17 S9-R3; S9-R10a; downloads honor the as-of date; heading renamed to Labor Delta per SV-9071)",
   "viu_status": "VIU-Pending",
@@ -198,7 +198,7 @@
    "4. Read the Labor Delta values.",
    "5. Repeat the format checks in the PDF."
   ],
-  "expected": "1. Money values use the same \"$1,234.56\" / \"-$1,234.56\" format as on screen; Labor Delta uses the same signed one-decimal format.\n2. In the CSV, a money value containing a comma (a thousands separator) is enclosed in double-quotes per standard CSV rules.\n3. A value without a comma is written unquoted.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S9-R5, S9-R6), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Money values use the same \"$1,234.56\" / \"-$1,234.56\" format as on screen; Labor Delta uses the same signed one-decimal format.\n2. In the CSV, a money value containing a comma (a thousands separator) is enclosed in double-quotes per standard CSV rules.\n3. A value without a comma is written unquoted.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S9-R5, S9-R6), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8907)",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v21 2026-08-17 S9-R5,S9-R6; heading renamed to Labor Delta per SV-9071)",
   "viu_status": "VIU-Pending",
@@ -223,7 +223,7 @@
    "1. Download the current tab as a PDF and look at the Labor Delta values' coloring.",
    "2. Download the current tab as a CSV and inspect the Labor Delta values."
   ],
-  "expected": "1. In the PDF, Labor Delta keeps the green (positive) / red (negative) coloring.\n2. In the CSV, the Labor Delta column is monochrome — plain signed numbers with no color or markup.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S9-R7), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. In the PDF, Labor Delta keeps the green (positive) / red (negative) coloring.\n2. In the CSV, the Labor Delta column is monochrome — plain signed numbers with no color or markup.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S9-R7), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8907)",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v21 2026-08-17 S9-R7; heading renamed to Labor Delta per SV-9071)",
   "viu_status": "VIU-Pending",
@@ -249,7 +249,7 @@
    "2. Download the current tab as a CSV and read the same row's Days Open.",
    "3. Compare the two values."
   ],
-  "expected": "1. In the download, Days Open is the whole number of days as of the moment the file is generated.\n2. Because the screen computes Days Open live while the file freezes it at generation time, the file can legitimately show a day count one higher than the screen it was generated from — that difference is EXPECTED, not a defect.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S9-R8), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. In the download, Days Open is the whole number of days as of the moment the file is generated.\n2. Because the screen computes Days Open live while the file freezes it at generation time, the file can legitimately show a day count one higher than the screen it was generated from — that difference is EXPECTED, not a defect.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S9-R8), read on 17 August 2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8907)",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v21 2026-08-17 Story 9 S9-R8; Story 4 context note (Days Open live vs frozen))",
   "viu_status": "VIU-Pending",
@@ -274,7 +274,7 @@
    "1. Download the current tab as a PDF and read the saved file's name.",
    "2. Download the current tab as a CSV and read the saved file's name."
   ],
-  "expected": "1. The PDF is named \"wip-2-report.pdf\".\n2. The CSV is named \"wip-2-report.csv\".\n3. These exact names (including the \"-2-\") are the specified current behavior.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S9-R9), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The PDF is named \"wip-2-report.pdf\".\n2. The CSV is named \"wip-2-report.csv\".\n3. These exact names (including the \"-2-\") are the specified current behavior.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S9-R9), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v21 2026-08-17 Story 9 S9-R9 — S9-R9 CLOSES both file names verbatim including the \"-2-\" segment; so the exact strings ARE the requirement)",
   "viu_status": "VIU-Pending",
@@ -300,7 +300,7 @@
    "2. Download the current tab as a CSV and read the same two columns' headers.",
    "3. Download the PDF and read them there too."
   ],
-  "expected": "1. On screen the headers read \"Asset\" and \"Location\".\n2. In BOTH the PDF and the CSV, the same two columns are headed \"Unit\" and \"Branch\".\n3. This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior.\n4. The on-screen Asset cell leads with the Unit #, which is what the export header \"Unit\" already reflects - so no header change is expected here.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S9-E1), read on 17 August 2026. Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. On screen the headers read \"Asset\" and \"Location\".\n2. In BOTH the PDF and the CSV, the same two columns are headed \"Unit\" and \"Branch\".\n3. This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior.\n4. The on-screen Asset cell leads with the Unit #, which is what the export header \"Unit\" already reflects - so no header change is expected here.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S9-E1), read on 17 August 2026. Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v21 2026-08-17 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling; export header text unpinned)",
   "viu_status": "VIU-Pending",
@@ -325,7 +325,7 @@
    "1. Download the current tab as a PDF and look at the top of the document.",
    "2. Download the current tab as a CSV and inspect the file."
   ],
-  "expected": "1. The PDF shows the shop logo at the top.\n2. The CSV never includes a logo (plain data only).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S9-R10), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The PDF shows the shop logo at the top.\n2. The CSV never includes a logo (plain data only).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S9-R10), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v21 2026-08-17 Story 9 S9-R10)",
   "viu_status": "VIU-Pending",
@@ -377,7 +377,7 @@
    "2. Download the same tab as a PDF.",
    "3. Narrow the filters below the cap and download once more."
   ],
-  "expected": "1. For both the CSV and the PDF: no file is generated and no download starts.\n2. An error toast is shown each time, reading exactly: \"This report is too large to export. Narrow the filters, then try again.\" (dismissed by the user).\n3. Below the cap the download works normally.\n4. Note for the tester: on this environment the biggest single tab holds about 114 work orders, so you cannot make this message appear here. Record that and move on.\nWhy this test cannot be run here: the download has to be over the size limit before this message can appear, and no tab on this environment comes anywhere near it. On top of that, the Work In Progress download currently fails whenever the tab you are on has any rows in it at all - no file arrives and an error appears - which is a separate problem already reported here: https://shopview.atlassian.net/browse/SV-8907. So there is no way to reach the state this test is about. Leave the test as it is and move on.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S9-R11), both read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. For both the CSV and the PDF: no file is generated and no download starts.\n2. An error toast is shown each time, reading exactly: \"This report is too large to export. Narrow the filters, then try again.\" (dismissed by the user).\n3. Below the cap the download works normally.\n4. Note for the tester: on this environment the biggest single tab holds about 114 work orders, so you cannot make this message appear here. Record that and move on.\nWhy this test cannot be run here: the download has to be over the size limit before this message can appear, and no tab on this environment comes anywhere near it. On top of that, the Work In Progress download currently fails whenever the tab you are on has any rows in it at all - no file arrives and an error appears - which is a separate problem already reported here: https://shopview.atlassian.net/browse/SV-8907. So there is no way to reach the state this test is about. Leave the test as it is and move on.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S9-R11), both read on 17 August 2026.\n\nAUTOMATION: HOLD - the over-size refusal cannot be produced on this environment; no tab comes near the size limit",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v21 2026-08-17 S9-R11; export size-cap message drops the date-range clause on this report per Chris 2026-08-13)",
   "viu_status": "VIU-Pending",

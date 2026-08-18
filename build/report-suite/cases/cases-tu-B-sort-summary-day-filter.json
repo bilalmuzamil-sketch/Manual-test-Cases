@@ -15,7 +15,7 @@
    "2. Look at the Technician header's sort indicator.",
    "3. Inspect the headers in the accessibility tree."
   ],
-  "expected": "1. The technician rows are sorted by Technician name, A to Z.\n2. The Technician header shows the ascending sort indicator.\n3. The active sort header exposes its state to assistive technology (aria-sort = ascending on the Technician header; none on the others).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R12, S8-R8, S8-R10), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The technician rows are sorted by Technician name, A to Z.\n2. The Technician header shows the ascending sort indicator.\n3. The active sort header exposes its state to assistive technology (aria-sort = ascending on the Technician header; none on the others).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R12, S8-R8, S8-R10), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8649 (TU spec v9 2026-08-17 S2-R12; S8-R8; S8-R10)",
   "viu_status": "VIU-Pending",
@@ -42,7 +42,7 @@
    "4. Watch the network activity / loading indicator while sorting.",
    "5. Find two technicians tied in the sorted column and note their order."
   ],
-  "expected": "1. Because Technician-ascending is the active sort on load, the FIRST click on the Technician header sorts it DESCENDING (Z to A).\n2. Clicking a column that is not the active sort sorts it ascending; clicking the active column again toggles to descending; further clicks only ever toggle ascending↔descending - there is NO third 'cleared' state.\n3. All six columns are sortable.\n4. Sorting is applied on screen to the loaded rows - NO reload/server request happens.\n5. Technicians tied in the sorted column are ordered by Technician name A to Z; two technicians sharing the same display name keep a stable order between renders.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R13, S2-R14), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Because Technician-ascending is the active sort on load, the FIRST click on the Technician header sorts it DESCENDING (Z to A).\n2. Clicking a column that is not the active sort sorts it ascending; clicking the active column again toggles to descending; further clicks only ever toggle ascending↔descending - there is NO third 'cleared' state.\n3. All six columns are sortable.\n4. Sorting is applied on screen to the loaded rows - NO reload/server request happens.\n5. Technicians tied in the sorted column are ordered by Technician name A to Z; two technicians sharing the same display name keep a stable order between renders.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R13, S2-R14), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8649 (TU spec v9 2026-08-17 S2-R13; S2-R14)",
   "viu_status": "VIU-Pending",
@@ -67,7 +67,7 @@
    "2. Change the date range (a reload) and read the row order.",
    "3. Sort by Total Hours, leave the report, and come back."
   ],
-  "expected": "1. After the reload, the rows are back to Technician name A to Z (the sort reset).\n2. On the return visit, the sort is again Technician A to Z - sort is NOT persisted (unlike the date range, technician selection, and location selection, which are).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R15), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. After the reload, the rows are back to Technician name A to Z (the sort reset).\n2. On the return visit, the sort is again Technician A to Z - sort is NOT persisted (unlike the date range, technician selection, and location selection, which are).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R15), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8649 (TU spec v9 2026-08-17 S2-R15; §3)",
   "viu_status": "VIU-Pending",
@@ -92,7 +92,7 @@
    "2. Look at the Summary row's position.",
    "3. Look at the expanded technician's day rows."
   ],
-  "expected": "1. Only the technician rows reorder.\n2. The Summary row stays pinned at the bottom.\n3. Each technician's expanded day rows stay under that technician, still in date order (earliest to latest) - they do not re-sort by the clicked column.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R16), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Only the technician rows reorder.\n2. The Summary row stays pinned at the bottom.\n3. Each technician's expanded day rows stay under that technician, still in date order (earliest to latest) - they do not re-sort by the clicked column.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R16), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8649 (TU spec v9 2026-08-17 S2-R16)",
   "viu_status": "VIU-Pending",
@@ -142,7 +142,7 @@
    "2. Scroll the technician rows and watch the Summary row.",
    "3. Read the Summary row's label and its values' formats."
   ],
-  "expected": "1. A Summary row is pinned to the bottom of the report, labeled \"Summary\".\n2. It stays visible at the bottom while the rows scroll.\n3. It uses the same number formats as the technician rows.\n4. Its values carry NO label prefix such as \"TOTAL:\" or \"AVG:\".\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S3-R1, S3-R2, S3-R6, S3-R7, S8-R5), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. A Summary row is pinned to the bottom of the report, labeled \"Summary\".\n2. It stays visible at the bottom while the rows scroll.\n3. It uses the same number formats as the technician rows.\n4. Its values carry NO label prefix such as \"TOTAL:\" or \"AVG:\".\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S3-R1, S3-R2, S3-R6, S3-R7, S8-R5), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8650 (TU spec v9 2026-08-17 S3-R1; S3-R2; S3-R6; S3-R7; S8-R5)",
   "viu_status": "VIU-Pending",
@@ -167,7 +167,7 @@
    "2. Hand-sum the DISPLAYED per-row values and compare with the Summary.",
    "3. Compare the Summary against the known shop totals for the full range at the selected location(s)."
   ],
-  "expected": "1. Each Summary hours value is the total of that column across the VISIBLE technicians, computed from unrounded hours and rounded once for display (round-half-up).\n2. Eye-summing the displayed rows MAY differ from the displayed Summary by 0.01 — one unit in the last decimal (these values are HOURS, not money) — expected in a compute-from-unrounded report, not a defect.\n3. With every technician selected, the Summary row equals the shop totals for the full date range at the selected location(s).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S3-R3, S5-E1), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Each Summary hours value is the total of that column across the VISIBLE technicians, computed from unrounded hours and rounded once for display (round-half-up).\n2. Eye-summing the displayed rows MAY differ from the displayed Summary by 0.01 — one unit in the last decimal (these values are HOURS, not money) — expected in a compute-from-unrounded report, not a defect.\n3. With every technician selected, the Summary row equals the shop totals for the full date range at the selected location(s).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S3-R3, S5-E1), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8650 (TU spec v9 2026-08-17 S3-R3; §3 context note; S5-E1)",
   "viu_status": "VIU-Pending",
@@ -192,7 +192,7 @@
    "2. Compute the naive average of the two row percentages (50% in the example).",
    "3. Read the Summary Utilization %."
   ],
-  "expected": "1. The Summary Utilization % shows the WEIGHTED rate - the visible technicians' total work-order hours as a percentage of their total clocked hours, from unrounded hours (10.0% in the example).\n2. It is NOT the average of the per-technician percentages (not 50.0%).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S3-R4), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The Summary Utilization % shows the WEIGHTED rate - the visible technicians' total work-order hours as a percentage of their total clocked hours, from unrounded hours (10.0% in the example).\n2. It is NOT the average of the per-technician percentages (not 50.0%).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S3-R4), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8650 (TU spec v9 2026-08-17 S3-R4)",
   "viu_status": "VIU-Pending",
@@ -216,7 +216,7 @@
    "1. Read the Summary Est. Lost Labor and compare against the sum of the visible rows' valued (rated-location) contributions.",
    "2. Use the technician filter to leave ONLY \"—\" technicians visible and read the Summary Est. Lost Labor."
   ],
-  "expected": "1. The Summary Est. Lost Labor is computed like a row but over all visible technicians' internal hours: rate × internal hours per contributing rated location, summed at full precision and rounded once.\n2. A visible technician whose value is \"—\" contributes NOTHING to the sum - so the Summary understates true lost labor whenever any visible technician is \"—\" or partially valued (documented, expected).\n3. The Summary shows \"—\" only when EVERY visible technician's Est. Lost Labor is \"—\".\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S3-R5), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The Summary Est. Lost Labor is computed like a row but over all visible technicians' internal hours: rate × internal hours per contributing rated location, summed at full precision and rounded once.\n2. A visible technician whose value is \"—\" contributes NOTHING to the sum - so the Summary understates true lost labor whenever any visible technician is \"—\" or partially valued (documented, expected).\n3. The Summary shows \"—\" only when EVERY visible technician's Est. Lost Labor is \"—\".\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S3-R5), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8650 (TU spec v9 2026-08-17 S3-R5)",
   "viu_status": "VIU-Pending",
@@ -269,7 +269,7 @@
    "4. Look for rows on days the technician did not clock time.",
    "5. On the double-location day, count the rows for that date."
   ],
-  "expected": "1. One row appears for each day the technician clocked time in the range, in date order from earliest to latest.\n2. The day rows are not there until you expand the row - they arrive at the moment you expand it (you may briefly see the standard loading indicator in that area), and the rest of the report does not reload.\n3. A day with no clocked time has NO row.\n4. With several locations selected, a day's row POOLS that day's hours across the selected locations - one day row per date, not one per location.\n5. Note for the tester: you do not need developer tools for this test - just watch the screen.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S4-R2, S4-N1, S9-R4), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. One row appears for each day the technician clocked time in the range, in date order from earliest to latest.\n2. The day rows are not there until you expand the row - they arrive at the moment you expand it (you may briefly see the standard loading indicator in that area), and the rest of the report does not reload.\n3. A day with no clocked time has NO row.\n4. With several locations selected, a day's row POOLS that day's hours across the selected locations - one day row per date, not one per location.\n5. Note for the tester: you do not need developer tools for this test - just watch the screen.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S4-R2, S4-N1, S9-R4), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8651 (TU spec v9 2026-08-17 S4-R2; S4-N1; S9-R4 — one row per clocked day in date order; load-on-expand; no row for an unclocked day; per-day pooling across selected locations; the back-end half is covered by C30449 in \"TU - API\")",
   "viu_status": "VIU-Pending",
@@ -294,7 +294,7 @@
    "2. Compare each against that single day's clock records.",
    "3. Check the number formats against the technician-row formats."
   ],
-  "expected": "1. Each day row shows the same columns, in the same formats, as the technician row - with that day's values.\n2. The day's Est. Lost Labor is valued per location exactly like a technician row (that location's default labor rate × that day's internal hours there).\n3. Hours 2dp / Utilization one decimal + % / dollars with commas - all identical to the row formats, computed from unrounded values and rounded once.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S4-R3, S2-R8), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Each day row shows the same columns, in the same formats, as the technician row - with that day's values.\n2. The day's Est. Lost Labor is valued per location exactly like a technician row (that location's default labor rate × that day's internal hours there).\n3. Hours 2dp / Utilization one decimal + % / dollars with commas - all identical to the row formats, computed from unrounded values and rounded once.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S4-R3, S2-R8), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8651 (TU spec v9 2026-08-17 S4-R3; S2-R8; §3)",
   "viu_status": "VIU-Pending",
@@ -346,7 +346,7 @@
    "2. Expand two rows again, leave the report, and come back.",
    "3. Expand one technician's row, then deselect and re-select a DIFFERENT technician in the technician filter."
   ],
-  "expected": "1. After the reload (date-range or location change), all rows are collapsed - expansion state resets.\n2. On a fresh visit, all rows start collapsed - expansion is never persisted.\n3. Deselecting and re-selecting a technician (an on-screen operation) does NOT change the expansion state of the other rows - the expanded row stays expanded.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S4-R5), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. After the reload (date-range or location change), all rows are collapsed - expansion state resets.\n2. On a fresh visit, all rows start collapsed - expansion is never persisted.\n3. Deselecting and re-selecting a technician (an on-screen operation) does NOT change the expansion state of the other rows - the expanded row stays expanded.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S4-R5), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8651 (TU spec v9 2026-08-17 S4-R5)",
   "viu_status": "VIU-Pending",
@@ -371,7 +371,7 @@
    "2. Check the selection state of every listed technician.",
    "3. Try selecting more than one change at once (multi-select)."
   ],
-  "expected": "1. The toolbar has a filter labeled \"Filter by Technician\" that allows selecting more than one technician (when several are chosen its label reads, for example, \"2 technicians\").\n2. On the first visit, EVERY technician is selected.\n3. All technicians' rows are shown.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S5-R1, S5-R2), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The toolbar has a filter labeled \"Filter by Technician\" that allows selecting more than one technician (when several are chosen its label reads, for example, \"2 technicians\").\n2. On the first visit, EVERY technician is selected.\n3. All technicians' rows are shown.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S5-R1, S5-R2), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8652 (TU spec v9 2026-08-17 S5-R1; S5-R2)",
   "viu_status": "VIU-Pending",
@@ -448,7 +448,7 @@
    "2. Leave the report (navigate elsewhere), then return; also try a full page reload.",
    "3. Check the two technicians' selection state and the other technicians'."
   ],
-  "expected": "1. The two deselected technicians are STILL deselected on return - the deselected set is what persists (saved in this browser, not on the account).\n2. All other technicians - including any who appear for the first time - are selected.\n3. The saved date range and location selection are restored alongside.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S5-R10, S1-R8), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The two deselected technicians are STILL deselected on return - the deselected set is what persists (saved in this browser, not on the account).\n2. All other technicians - including any who appear for the first time - are selected.\n3. The saved date range and location selection are restored alongside.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S5-R10, S1-R8), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8652 (TU spec v9 2026-08-17 S5-R10; S1-R8; §3)",
   "viu_status": "VIU-Pending",

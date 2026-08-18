@@ -15,7 +15,7 @@
    "2. Look inside the Parts group of reports.",
    "3. Click the \"Inventory Value\" entry."
   ],
-  "expected": "1. The reports navigation lists a report labeled \"Inventory Value\" under the Parts group.\n2. Clicking it opens the Inventory Value report.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S1-R1), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The reports navigation lists a report labeled \"Inventory Value\" under the Parts group.\n2. Clicking it opens the Inventory Value report.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S1-R1), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8668 (IV spec v10 2026-08-17 Story 1 S1-R1 — access = the one ordinary reports permission per Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\")",
   "viu_status": "VIU-Pending",
@@ -120,7 +120,7 @@
    "3. After scrolling well down the list, change a server-side filter (for example select a Category), then look at where the list starts.",
    "4. Repeat with a part search and with a sort change."
   ],
-  "expected": "1. The server returns one page of rows at a time rather than the whole list at once; further rows keep arriving as you scroll to the bottom.\n2. Changing any server-side filter (Date, Location, Category, Vendor), the part search, or the sort returns the FIRST page of the new result set - the list jumps back to the top.\n3. Note for the tester: on the build tested there were no numbered page controls on the screen - the rows loaded as you scrolled. That is a difference from the specification, which asks for the reports suite's standard page controls. Record what you see and carry on.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S1-R8), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The server returns one page of rows at a time rather than the whole list at once; further rows keep arriving as you scroll to the bottom.\n2. Changing any server-side filter (Date, Location, Category, Vendor), the part search, or the sort returns the FIRST page of the new result set - the list jumps back to the top.\n3. Note for the tester: on the build tested there were no numbered page controls on the screen - the rows loaded as you scrolled. That is a difference from the specification, which asks for the reports suite's standard page controls. Record what you see and carry on.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S1-R8), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8668 (IV spec v10 2026-08-17 Story 1 S1-R8; §2 Scale and data model)",
   "viu_status": "VIU-Pending",
@@ -172,7 +172,7 @@
    "2. Look for the normal in-stock part.",
    "3. Search for the core-charge part, the zero-quantity part, and the negative-quantity part by part number; check the totals row."
   ],
-  "expected": "1. The normal, positive-quantity, non-core part appears as one row.\n2. The core-charge part is never listed — even with a positive quantity — and its value is not counted in the totals row.\n3. The zero-quantity and negative-quantity parts are not listed — only quantities greater than zero are valued.\n4. Only parts meeting BOTH conditions — not a core charge, and on-hand quantity greater than zero — are listed.\n5. A part that has sat without movement for a long time still appears and is still counted — there is no dead-stock exclusion; how long stock has sat makes no difference.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S2-R1, S2-R2, S2-N1, S2-N2), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The normal, positive-quantity, non-core part appears as one row.\n2. The core-charge part is never listed — even with a positive quantity — and its value is not counted in the totals row.\n3. The zero-quantity and negative-quantity parts are not listed — only quantities greater than zero are valued.\n4. Only parts meeting BOTH conditions — not a core charge, and on-hand quantity greater than zero — are listed.\n5. A part that has sat without movement for a long time still appears and is still counted — there is no dead-stock exclusion; how long stock has sat makes no difference.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S2-R1, S2-R2, S2-N1, S2-N2), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8669 (IV spec v10 2026-08-17 Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions; Story 2 context note (no dead-stock exclusion))",
   "viu_status": "VIU-Pending",
@@ -197,7 +197,7 @@
    "1. Open the Inventory Value report and select both locations in the Location filter.",
    "2. Search for the part and count its rows."
   ],
-  "expected": "1. The part appears twice — one row per location, each with that location's own quantity and values.\n2. The rows are NOT merged into one combined row; this is the documented v1 behavior.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S2-R3), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The part appears twice — one row per location, each with that location's own quantity and values.\n2. The rows are NOT merged into one combined row; this is the documented v1 behavior.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S2-R3), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8669 (IV spec v10 2026-08-17 Story 2 S2-R3; §2 Known Limitations (v1))",
   "viu_status": "VIU-Pending",

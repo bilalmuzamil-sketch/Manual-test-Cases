@@ -196,7 +196,7 @@
    "1. Select a range ending before the first nightly recording.",
    "2. Read what the report shows."
   ],
-  "expected": "1. The report shows the empty state — there is no way to reconstruct inventory value for a date before recording began, because there is no historical backfill.\n2. This forward-capture-only behavior is the documented v1 boundary, not a defect.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S5-E1), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The report shows the empty state — there is no way to reconstruct inventory value for a date before recording began, because there is no historical backfill.\n2. This forward-capture-only behavior is the documented v1 boundary, not a defect.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S5-E1), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8672 (IV spec v10 2026-08-17 Story 5 S5-E1; §2 Known Limitations (v1); §2 Out of scope)",
   "viu_status": "VIU-Pending",
@@ -222,7 +222,7 @@
    "2. Add a second category to the selection.",
    "3. Clear the Category filter, open the filter labeled \"Vendor\", and select one vendor; then add a second."
   ],
-  "expected": "1. The toolbar has a Category filter labeled \"Category\" and a Vendor filter labeled \"Vendor\", each allowing one or more selections.\n2. Selecting one or more categories reloads the report to show only parts in the selected categories.\n3. Selecting one or more vendors reloads the report to show only parts supplied by the selected vendors.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S6-R1, S6-R2, S6-R3, S6-R4), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The toolbar has a Category filter labeled \"Category\" and a Vendor filter labeled \"Vendor\", each allowing one or more selections.\n2. Selecting one or more categories reloads the report to show only parts in the selected categories.\n3. Selecting one or more vendors reloads the report to show only parts supplied by the selected vendors.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S6-R1, S6-R2, S6-R3, S6-R4), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8673 (IV spec v10 2026-08-17 Story 6 S6-R1; S6-R2; S6-R3; S6-R4)",
   "viu_status": "VIU-Pending",
@@ -275,7 +275,7 @@
    "2. Clear the Vendor selection and check the rows.",
    "3. Empty the part search and check the rows."
   ],
-  "expected": "1. With no category selected, parts of all categories are shown.\n2. With no vendor selected, parts of all vendors are shown.\n3. With the part search empty, no search narrowing is applied.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S6-R7), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. With no category selected, parts of all categories are shown.\n2. With no vendor selected, parts of all vendors are shown.\n3. With the part search empty, no search narrowing is applied.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S6-R7), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8673 (IV spec v10 2026-08-17 Story 6 S6-R7)",
   "viu_status": "VIU-Pending",
@@ -302,7 +302,7 @@
    "3. Clear it and type part of a description, in a DIFFERENT letter case than the stored text.",
    "4. Type text matching nothing."
   ],
-  "expected": "1. The search field is page-local, in the report's own toolbar — it is not the application's global search bar (the same toolbar-search pattern used elsewhere in the reports suite).\n2. The report narrows to parts whose part number OR description contains the entered text.\n3. Matching is case-insensitive.\n4. The search applies server-side (whole data set, first page returned); a no-match search shows the no-data message.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S6-R8, S6-R5), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The search field is page-local, in the report's own toolbar — it is not the application's global search bar (the same toolbar-search pattern used elsewhere in the reports suite).\n2. The report narrows to parts whose part number OR description contains the entered text.\n3. Matching is case-insensitive.\n4. The search applies server-side (whole data set, first page returned); a no-match search shows the no-data message.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S6-R8, S6-R5), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8673 (IV spec v10 2026-08-17 Story 6 S6-R8; S6-R5)",
   "viu_status": "VIU-Pending",
@@ -381,7 +381,7 @@
    "2. Add the second location and watch the data area.",
    "3. Use \"All locations\", then narrow back to one."
   ],
-  "expected": "1. Each selection change reloads the report scoped to the selected set.\n2. With both locations selected, parts from both appear (one row per part per location) and the totals cover both.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S7-R3), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Each selection change reloads the report scoped to the selected set.\n2. With both locations selected, parts from both appear (one row per part per location) and the totals cover both.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S7-R3), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8674 (IV spec v10 2026-08-17 Story 7 S7-R3 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
   "viu_status": "VIU-Pending",
@@ -406,7 +406,7 @@
    "1. Open the Location filter and read the locations offered.",
    "2. Use \"Clear all\" so the selection resolves to no location, and watch what the report loads."
   ],
-  "expected": "1. Only the locations the user has access to are offered — a location the user cannot access is never included in the scope.\n2. If the requested location set resolves to none the user can access, the report falls back to the user's currently active location.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S7-R4, S7-R5), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Only the locations the user has access to are offered — a location the user cannot access is never included in the scope.\n2. If the requested location set resolves to none the user can access, the report falls back to the user's currently active location.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S7-R4, S7-R5), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8674 (IV spec v10 2026-08-17 Story 7 S7-R4; S7-R5)",
   "viu_status": "VIU-Pending",
@@ -513,7 +513,7 @@
    "6. Change the selection between one location, several, and \"All locations\", watching the filter control's width.",
    "7. With the column shown, download the CSV and the PDF and read their columns."
   ],
-  "expected": "1. Because you have access to more than one location, a Location column is shown by default, inserted between Vendor and Qty on Hand.\n2. Each row names the location that row's stock is held at.\n3. NO row ever shows \"Multiple\" — each row is one part at one location.\n4. Location is listed in the column-selection control and can be switched off and back on; when it is off the surrounding columns close up with no gap.\n5. Narrowing the selection to a single location does NOT hide the column; it stays on screen.\n6. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection.\n7. Whenever the column is shown on screen, both downloads include it in the same position (between Vendor and Qty on Hand), naming each row's own location.\nNote for the tester: whether this column appears depends on how many locations your login can reach, not on how many you have currently selected. Someone who can reach only one location never sees it and never finds it in the column list. If it stays on screen after you narrow to a single location, that is correct.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S7-R6, S7-R7, S3-R1, S12-R10, S10-R15), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Because you have access to more than one location, a Location column is shown by default, inserted between Vendor and Qty on Hand.\n2. Each row names the location that row's stock is held at.\n3. NO row ever shows \"Multiple\" — each row is one part at one location.\n4. Location is listed in the column-selection control and can be switched off and back on; when it is off the surrounding columns close up with no gap.\n5. Narrowing the selection to a single location does NOT hide the column; it stays on screen.\n6. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection.\n7. Whenever the column is shown on screen, both downloads include it in the same position (between Vendor and Qty on Hand), naming each row's own location.\nNote for the tester: whether this column appears depends on how many locations your login can reach, not on how many you have currently selected. Someone who can reach only one location never sees it and never finds it in the column list. If it stays on screen after you narrow to a single location, that is correct.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S7-R6, S7-R7, S3-R1, S12-R10, S10-R15), read on 17 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8674; SV-8677 (IV spec v10 2026-08-17 S7-R6; S7-R7; S3-R1; S12-R10; S10-R15 — Location column access-gated and toggleable in the column-selection control; between Vendor and Qty on Hand; never \"Multiple\"; S10-R15 = same column in every export)",
   "viu_status": "VIU-Pending",
