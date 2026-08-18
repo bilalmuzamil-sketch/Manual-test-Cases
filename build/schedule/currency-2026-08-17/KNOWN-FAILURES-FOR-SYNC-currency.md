@@ -620,3 +620,31 @@ stripped build-observation paragraph or a non-plain prior marker (HOLD / EXPECT-
 ### SCH-REG-02 = [C38868](https://shopview.testrail.io/index.php?/cases/view/38868)
 - **Prior marker:** `AUTOMATION: HOLD - the Dashboard section this test needs does not exist in the build`
 
+
+### SCH-REG-03 = [C38869](https://shopview.testrail.io/index.php?/cases/view/38869)
+- **Prior marker:** `AUTOMATION: HOLD - work order creation offers no appointment in the build`
+
+
+### SCH-REG-04 = [C38870](https://shopview.testrail.io/index.php?/cases/view/38870)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-REG-05 = [C38871](https://shopview.testrail.io/index.php?/cases/view/38871)
+- **Prior marker:** `AUTOMATION: HOLD - the Priority field this test needs does not exist in the build`
+
+
+### SCH-API-01 = [C38872](https://shopview.testrail.io/index.php?/cases/view/38872)
+- **Prior marker:** `AUTOMATION: HOLD - points 1 and 3 need a user with no Schedule permission and a user with Schedule Edit but not Delete; point 2 is observed and passes`
+
+
+### SCH-API-02 = [C38873](https://shopview.testrail.io/index.php?/cases/view/38873)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-API-03 = [C38874](https://shopview.testrail.io/index.php?/cases/view/38874)
+- **Prior marker:** `AUTOMATION: HOLD - point 2 needs a user without Work Orders View; point 1 is observed and passes`
+
+
+### SCH-API-04 = [C38875](https://shopview.testrail.io/index.php?/cases/view/38875)
+- **Prior marker:** `AUTOMATION: READY`
+
