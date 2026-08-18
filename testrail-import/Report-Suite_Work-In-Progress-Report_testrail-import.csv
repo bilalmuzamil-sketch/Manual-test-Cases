@@ -35,10 +35,11 @@ AUTOMATION: READY",SV-8667 (WIP spec v21 2026-08-17 §2 Out of scope; §2 Known 
 Every open service WO at a selected location appears in the report,WIP — Scope & Loading,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. Five ZZAUTOTEST service work orders exist at your active location, open on the report's ""as of"" date (which defaults to today) — one in each status: Estimate, Approved, In Progress, Review, and Complete.","1. Open the Work In Progress report with the seeded work orders open on the selected ""as of"" date.
 2. Look through all four tabs for each of the five seeded work orders.","1. All five seeded work orders appear in the report — each one qualifies because it is a service work order, its status is one of Estimate, Approved, In Progress, Review, or Complete, and it belongs to a selected location.
-2. Each appears in the tab its status places it in (see the WIP — Tab Placement cases).
+2. Each work order appears in every tab that matches one of its line states, showing only that tab's slice of its money — a work order whose lines are in more than one state can appear in more than one tab (see the WIP — Tab Placement cases). The status column still shows the work order's true status.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S2-R4; S7-R7), both read on 17 August 2026.
+This is the expected behaviour as per Chris Ward's answer of 18 August 2026 (option B: the report treats a work order as a sum of lines, not work orders), recorded in his answers in this file: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-answers-2026-08-18/chris-answers-fetched-2026-08-18.txt, and epic SV-8582 and story SV-8658 (WIP Story 2), both read on 18 August 2026, and the Work In Progress report specification version 21 (§3 Key Decisions, per SV-9027), read on 18 August 2026.
+This differs from the older wording in the same specification (Story 2, S2-R4), which says a work order appears in the single tab its overall status places it in. Chris Ward confirmed on 18 August 2026 that the line-state reading is correct, so that newest answer is followed here and the older status-based wording is not.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026","SV-8654 (WIP spec v21 2026-08-17 S2-R4; S7-R7; population is work open on the as-of date,not filtered by created date)",,
 Invoiced; Paid and part-sale work orders never appear,WIP — Scope & Loading,Negative,Critical,"1. You are signed in to the ShopView App on a desktop browser.
@@ -53,18 +54,17 @@ Invoiced; Paid and part-sale work orders never appear,WIP — Scope & Loading,Ne
 This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S2-R5), both read on 17 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8654 (WIP spec v21 2026-08-17 S2-R5; open work on the as-of date),,
-Each qualifying work order appears exactly once in exactly one tab,WIP — Scope & Loading,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+Each work order appears in every tab matching one of its line states,WIP — Scope & Loading,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Several open ZZAUTOTEST service work orders exist within the current date range, including one open estimate with no approved line items at all.","1. Open the Work In Progress report.
 2. For each seeded work order, count how many times its work order number appears across all four tabs.
-3. Find the estimate with nothing approved and read its money columns.","1. Each qualifying work order appears exactly once, in exactly one tab.
+3. Find the estimate with nothing approved and read its money columns.","1. A qualifying work order appears in each tab that matches one of its line states, showing only that tab's slice of its money — a work order carrying lines in more than one state appears in more than one tab. The status column still shows the work order's true status.
 2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both showing ""$0.00"".
 
-Note for the tester: the written description now says two different things about how a work order is placed into a tab. The Story 2 and Story 3 requirements — the ones this test follows — place a whole work order in one tab according to its status. A newer Key Decisions section says placement follows each LINE's state instead, so a work order whose lines are in different states would show in more than one tab, each showing only that tab's share of its money. The product owner has been asked which is right and has not answered. Until he does: if you see a work order in more than one tab, do NOT raise a bug and do NOT fail this test for it — write down what you saw and carry on. The question is here: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/questions-2026-08-06/Questions-for-Chris-Ward_Report-Suite_2026-08-11.xlsx
-
 ---
-This is the expected behaviour as per epic SV-8582 and story SV-8658, read on 18 August 2026, and the Work In Progress report specification version 21 (S2-R4), read on 18 August 2026. That specification also carries a newer Key Decision, added in version 11, stating that buckets are keyed on line state rather than work-order status and that a work order with lines in several states appears in each matching tab. The two cannot both be true. Chris Ward has been asked which governs, so the requirement above is asserted unchanged and the newer reading is not asserted here.
+This is the expected behaviour as per Chris Ward's answer of 18 August 2026 (option B: the report treats a work order as a sum of lines, not work orders), recorded in his answers in this file: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-answers-2026-08-18/chris-answers-fetched-2026-08-18.txt, and epic SV-8582 and story SV-8658 (WIP Story 2), both read on 18 August 2026, and the Work In Progress report specification version 21 (§3 Key Decisions, per SV-9027), read on 18 August 2026.
+This differs from the older wording in the same specification (Story 2, S2-R4, and Story 3), which says a work order appears exactly once, in exactly one tab, chosen by its overall status. Chris Ward confirmed on 18 August 2026 that the line-state reading is correct, so that newest answer is followed here and the older status-based wording is not.
 
-AUTOMATION: HOLD - the specification states two different tab-placement rules (whole work order by status, or per line state) and the product owner has been asked which governs",SV-8658 (WIP spec v21 2026-08-18 Story 2 S2-R4 — one work order in exactly one tab; CONTRADICTED by the v11 §3 Key Decision that buckets are keyed on line state so a work order can appear in several tabs; Chris Ward asked; S2-R4 asserted unchanged),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8658 (WIP spec v21 2026-08-18 Story 2 S2-R4 — one work order in exactly one tab; CONTRADICTED by the v11 §3 Key Decision that buckets are keyed on line state so a work order can appear in several tabs; Chris Ward asked; S2-R4 asserted unchanged),,
 While loading the standard indicator shows and old rows stay until data,WIP — Scope & Loading,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Change the ""as of"" date and watch the data area while the report reloads.
 2. Change the location selection and watch the data area again.","1. While the report is loading, the data area shows the standard reports loading indicator.
@@ -102,16 +102,29 @@ This is the expected behaviour as per epic SV-8582 and the Work In Progress repo
 AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8656 (WIP spec v21 2026-08-17 S3; status-to-tab mapping on the as-of date),,
 Approved started-boundary: time or part received vs neither decides the tab,WIP — Tab Placement,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. Three ZZAUTOTEST service work orders in Approved status exist open on the selected ""as of"" date, in the current location: one where a technician has clocked time, one where a part has been received (and no time clocked), and one with neither.","1. Open the Work In Progress report.
-2. Look for each of the three Approved work orders in each tab.","1. The Approved work order with clocked labor time appears in the ""Approved - Partially Completed"" tab.
-2. The Approved work order with a received part (and no clocked time) also appears in the ""Approved - Partially Completed"" tab — either kind of started work counts.
-3. The Approved work order with no clocked time and no received part appears in the ""Approved - Not Started"" tab and nowhere else.
-
-Note for the tester: the written description now says two different things about how a work order is placed into a tab. The Story 2 and Story 3 requirements — the ones this test follows — place a whole work order in one tab according to its status. A newer Key Decisions section says placement follows each LINE's state instead, so a work order whose lines are in different states would show in more than one tab, each showing only that tab's share of its money. The product owner has been asked which is right and has not answered. Until he does: if you see a work order in more than one tab, do NOT raise a bug and do NOT fail this test for it — write down what you saw and carry on. The question is here: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/questions-2026-08-06/Questions-for-Chris-Ward_Report-Suite_2026-08-11.xlsx
+2. Look for each of the three Approved work orders in each tab.","1. The Approved work order whose lines include clocked labor time appears in the ""Approved - Partially Completed"" tab.
+2. The Approved work order whose lines include a received part (and no clocked time) also appears in the ""Approved - Partially Completed"" tab — either kind of started work counts as a started line.
+3. The Approved work order whose lines have no clocked time and no received part appears in the ""Approved - Not Started"" tab. If a single Approved work order had some lines started and other lines untouched, it would appear in BOTH the ""Approved - Partially Completed"" and ""Approved - Not Started"" tabs, each showing only that tab's slice of its money.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S3-R2), both read on 17 August 2026.
+This is the expected behaviour as per Chris Ward's answer of 18 August 2026 (option B: the report treats a work order as a sum of lines, not work orders), recorded in his answers in this file: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-answers-2026-08-18/chris-answers-fetched-2026-08-18.txt, and epic SV-8582 and story SV-8659 (WIP Story 3), both read on 18 August 2026, and the Work In Progress report specification version 21 (S3-R4; §3 Key Decisions, per SV-9027), read on 18 August 2026.
+This differs from the older wording in the same specification (Story 3), which places a whole work order in a single Approved tab by whether any work has started. Chris Ward confirmed on 18 August 2026 that placement follows each line's state, so that newest answer is followed here.
 
-AUTOMATION: HOLD - the specification states two different tab-placement rules (whole work order by status, or per line state) and the product owner has been asked which governs",SV-8656 (WIP spec v21 2026-08-17 S3; Approved started-boundary on the as-of date),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8656 (WIP spec v21 2026-08-17 S3; Approved started-boundary on the as-of date),,
+A work order with lines in several states appears in each matching tab,WIP — Tab Placement,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. One ZZAUTOTEST service work order in Approved status exists open on the selected ""as of"" date, in the current location, carrying lines in more than one state: at least one unapproved line, at least one approved line with no work started, and at least one approved line with work started (labor clocked or a part received).","1. Open the Work In Progress report.
+2. Look for the seeded work order in every tab.
+3. In each tab where it appears, read the work order's Earned, Remaining and Total for that tab.
+4. Add up the work order's Total across every tab it appears in and compare the sum to the work order's total quoted value.","1. The work order appears in more than one tab — in each tab that matches one of its line states: the unapproved line places it in the ""Estimates"" tab, the approved not-started line places it in the ""Approved - not started"" tab, and the started line places it in the ""Approved - partially completed"" tab.
+2. In each tab, the work order shows only that tab's slice of its money — the value of the lines whose state matches that tab — not its whole value.
+3. The status column still shows the work order's one true status in every tab where it appears.
+4. The work order's money slices across the tabs are disjoint and add up to the work order's total quoted value — approving or moving one line never removes another line's value from the report.
+
+---
+This is the expected behaviour as per Chris Ward's answer of 18 August 2026 (option B: the report treats a work order as a sum of lines, not work orders), recorded in his answers in this file: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-answers-2026-08-18/chris-answers-fetched-2026-08-18.txt, and epic SV-8582 and story SV-8659 (WIP Story 3), both read on 18 August 2026, and the Work In Progress report specification version 21 (§3 Key Decisions, per SV-9027), read on 18 August 2026.
+This line-state placement differs from the older wording in the same specification (Story 2, S2-R4, and Story 3), which says a work order appears in exactly one tab chosen by its overall status. Chris Ward confirmed on 18 August 2026 that the line-state reading is correct, so the newest answer is followed here.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",specs/wip-work-in-progress.md §3 Key Decisions (per SV-9027); Chris Ward answer 2026-08-18 (option B),,
 Adjustments column appears in the fixed column order and in the first-visit set,WIP — Columns & Rows,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. At least one open work order carries a work-order-level fee or discount.","1. Open the Work In Progress report.
 2. Look at the columns shown on first visit.
@@ -584,10 +597,8 @@ Each summary figure's information icon reveals its plain explanation,WIP — Sum
 7. Estimates — ""The total value of all estimate lines that have not yet been approved, including lines awaiting authorization on open work orders.""
 8. Each explanation appears on hover, on keyboard focus, and on tap.
 
-Note for the tester: the report's written specification currently states this Estimates explanation two ways - a shorter older wording and the design-review locked wording shown above. This test follows the design-review locked wording (Fabian's design review, 17 August 2026), which is the most recent decision. The shorter wording is a leftover in the specification and has been raised with the product owner.
-
 ---
-This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-8661, and the Work In Progress report specification version 21 (S5-R12; S5a-R2), read on 17 August 2026.
+This is the expected behaviour as per epic SV-8582 and story SV-8661 (WIP Story 5), both read on 18 August 2026, and the Work In Progress report specification version 21 (S5a-R2 — the Estimates explanation locked verbatim in the design review), read on 18 August 2026. Chris Ward confirmed on 18 August 2026, in his answers in this file: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-answers-2026-08-18/chris-answers-fetched-2026-08-18.txt, that this longer design-review wording is the one to keep, and that the shorter wording elsewhere in the specification (S5-R12, Estimates) is a leftover to drop.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8661 (WIP spec v21 2026-08-14 S5-R12; S5a-R2 - Estimates explanation locked verbatim per Fabian design review 2026-08-17; S5-R12 short wording is a spec leftover),,
 The Totals row sums the Adjustments column across the tab's visible jobs,WIP — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
