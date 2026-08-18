@@ -633,6 +633,21 @@ which verifies live, sets the marker (`READY`, or `READY - EXPECT FAIL (SV-xxxx)
 known bug), then hands the case number to Vlad. **Ask-first still gates it** even coupled with build
 verification.
 
+**⇒ CORRECTING OUR OWN ERRONEOUS METADATA-ONLY CHANGE IS A PERMITTED CORRECTION — DISTINCT FROM A
+CONTENT EDIT (Standing Rule 71, dated addition 2026-08-18, QA-lead confirmed).** Reverting or correcting
+**our own** erroneous **metadata-only** change on an Automated case (`custom_atmstatus = 3`) — e.g.
+restoring a marker we wrongly applied, where the **testable content** (title, preconditions, steps,
+expected BODY) is **UNTOUCHED** — is a **PERMITTED CORRECTION, done WITH the QA lead's authorisation**.
+It restores the case (and Vlad's expected state) and does **not** touch what Vlad's automation runs
+against. **This is DISTINCT from "editing an Automated case"**, which (per the build-verify-coupling
+refinement above) means changing its **testable content** and requires build-verify coupling — **the
+coupling requirement applies to CONTENT edits, NOT to undoing our own metadata error.** **Ask-first
+still applies** (the go-ahead was given 2026-08-18 for the marker revert). *The scar: 27 Automated cases
+had the deferred marker wrongly applied on a metadata-only re-stamp; the QA lead authorised reverting
+their markers because content was untouched — a correction that restores Vlad's expected state, not a
+content edit.* Ties to Rules 38, 69 (content-vs-metadata refinement), 71 (build-verify coupling) and
+§5.4's Vlad hand-off.
+
 **CONTEXT:** the 2026-08-17/18 currency passes edited content on **44 of our own Automated-flagged
 cases without asking**; the QA lead ruled **KEEP them** and set this ask-first rule going forward.
 
@@ -1449,6 +1464,19 @@ placement). Three forms only:
   trigger them. *The scar: the 2026-08-18 currency passes wrongly stamped `Not available on Build to test
   Yet` onto ~570 reference-only cases (Schedule ~142, Report Suite ~387, Filters ~41) whose testable
   content did not change, treating a below-the-line provenance refresh as a case change.*
+- **🛑 THE DEFERRED MARKER NEVER OVERWRITES EXPECT-FAIL/HOLD, AND A MID-EFFORT POLICY MUST BE SWEPT
+  RETROACTIVELY (Standing Rule 69, dated addition 2026-08-18, QA-lead confirmed).** Restated because it
+  is the error we actually made: the `Not available on Build to test Yet` marker (like the plain-`READY`
+  substitution rule above) **NEVER overwrites an existing `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` or
+  `AUTOMATION: HOLD - <reason>` marker** — those carry ticket/blocker references and are PRESERVED; it
+  substitutes for a **plain `AUTOMATION: READY`** marker **ONLY**. **AND when a rule or policy is
+  established MID-EFFORT, RETROACTIVELY SWEEP the earlier passes of that SAME effort for compliance** —
+  never assume the earlier batches followed a rule that did not exist when they ran; if they violated the
+  newly-set policy, fix them. *The scar: the marker-substitution policy was set DURING the Report Suite
+  currency pass, but the EARLIER Fabian authoring passes had already overwritten **47 EXPECT-FAIL/HOLD
+  markers** with the deferred marker before the policy existed, and nobody swept back — it was only found
+  later by a live audit (§2.11 / Rule 50/G).* Ties to Rules 61 (marker family), 69 (this note) and
+  51/52 (the ticket refs those markers carry).
 
 - **Plain `READY` asserts AUTOMATABLE, not currently passing** — it is **build-independent** and
   survives a redeploy untouched.

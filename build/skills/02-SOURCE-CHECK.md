@@ -386,6 +386,17 @@ Sources read at pass start: <UTC>   ·   re-read at write start: <UTC>   ·   ve
   is skill `01`, not this one. *The scar: the 2026-08-18 currency passes wrongly stamped the deferred
   marker onto ~570 reference-only cases (Schedule ~142, Report Suite ~387, Filters ~41) whose content did
   not change, treating a below-the-line provenance refresh as a case change.*
+- **G9 — 🛑 THE DEFERRED MARKER NEVER OVERWRITES EXPECT-FAIL/HOLD, AND A MID-EFFORT POLICY MUST BE SWEPT
+  RETROACTIVELY** (Standing Rule 69, dated addition 2026-08-18). If this pass ever does set the deferred
+  marker, `AUTOMATION: Not available on Build to test Yet` substitutes for a **plain `AUTOMATION: READY`**
+  marker **ONLY** — **never overwrite an existing `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` or
+  `AUTOMATION: HOLD - <reason>` marker**, which carry ticket/blocker references and are preserved. **AND
+  when a marker policy is established MID-EFFORT, retroactively SWEEP the earlier passes of that SAME
+  effort for compliance** — never assume the earlier batches followed a rule that did not exist when they
+  ran; if they violated it, fix them. *The scar: the substitution policy was set DURING the Report Suite
+  currency pass, but the EARLIER Fabian authoring passes had already overwritten **47 EXPECT-FAIL/HOLD
+  markers** with the deferred marker before the policy existed, and nobody swept back — found later only
+  by a live audit (Rule 50/G).*
 ---
 
 ## HONESTY NOTES

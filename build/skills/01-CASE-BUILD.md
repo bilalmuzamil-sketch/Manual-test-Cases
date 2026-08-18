@@ -234,6 +234,12 @@ correct build would have failed a passing build**, and the same split existed on
   overwrite an existing `READY - EXPECT FAIL (SV-xxxx)` or `HOLD - <reason>` marker with it**, which
   carry ticket/blocker references. Touched plain-READY case → the Rule-69 marker; touched EXPECT-FAIL or
   HOLD case → keep its marker.
+  **🛑 AND WHEN A MARKER POLICY IS SET MID-EFFORT, SWEEP THE EARLIER PASSES OF THAT SAME EFFORT
+  RETROACTIVELY** (Standing Rule 69, dated addition 2026-08-18). Never assume the earlier batches
+  followed a rule that did not exist when they ran; if they violated it, fix them. *The scar: the
+  substitution policy was set DURING the Report Suite currency pass, but the EARLIER Fabian authoring
+  passes had already overwritten **47 EXPECT-FAIL/HOLD markers** with the deferred marker before the
+  policy existed, and nobody swept back — found later only by a live audit (core §2.11 / Rule 50/G).*
   **A tool flag never justifies HOLD** — devtools, DOM inspection, reading a PDF or CSV, seeded data,
   theme toggles and viewport sizes are all automatable. Only a **genuinely unobtainable thing** (a
   real physical device, an external account we do not have) does.

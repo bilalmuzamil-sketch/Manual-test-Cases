@@ -513,6 +513,18 @@ test Yet` marker is set only where the build genuinely could not verify the case
 `READY` (or `READY - EXPECT FAIL (SV-xxxx)` on a live-backed failure) only from live verification here —
 never from a metadata refresh elsewhere.
 
+**⇒ METADATA-ONLY CORRECTION vs CONTENT EDIT — UNDOING OUR OWN METADATA ERROR IS A PERMITTED CORRECTION,
+NOT A CONTENT EDIT (Standing Rule 71, dated addition 2026-08-18, QA-lead confirmed).** The
+edit-and-build-verify coupling above governs a **CONTENT edit** — changing an Automated case's testable
+content (title, preconditions, steps, expected BODY). It does **NOT** govern **correcting our OWN
+erroneous metadata-only change**: e.g. reverting a marker we wrongly applied on an Automated case whose
+**testable content is UNTOUCHED**. That correction **RESTORES the case (and Vlad's expected state)**,
+does **not** touch what Vlad's automation runs against, and is therefore **PERMITTED without build-verify
+coupling** — but **ask-first still applies** (get the QA lead's go-ahead first). *The scar: 27 Automated
+cases had the deferred marker wrongly applied on a metadata-only re-stamp; the QA lead authorised
+reverting their markers because content was untouched — a correction, not a content edit.* Ties to Rules
+38, 69 (content-vs-metadata), 71 (build-verify coupling for CONTENT) and §6.4's Vlad hand-off.
+
 ---
 
 # THE STEPS

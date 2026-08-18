@@ -6568,6 +6568,22 @@ deliver the 7-tab management report.
     steps/preconditions cannot yet be build-verified: a **plain-READY** case → the Rule-69 marker; an
     **EXPECT-FAIL** or **HOLD** case → **keep its existing marker.** Ties to Standing Rules 60/61 (the
     marker family) and 12 (a marker never asserts an unobserved build fact).
+    **⇒ DATED ADDITION, 2026-08-18 (QA lead, PROPOSED-AND-CONFIRMED per Rule 72) — THE DEFERRED MARKER
+    NEVER OVERWRITES EXPECT-FAIL/HOLD, AND A MID-EFFORT POLICY MUST BE SWEPT RETROACTIVELY.**
+    - **THE `Not available on Build to test Yet` MARKER NEVER OVERWRITES AN EXISTING
+      `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` OR `AUTOMATION: HOLD - <reason>` MARKER** — exactly as
+      the Rule-69/C marker-substitution note immediately above requires (and exactly as the plain-`READY`
+      substitution rule requires): those markers carry ticket / blocker references and are PRESERVED. The
+      deferred marker substitutes for a **plain `AUTOMATION: READY`** marker **ONLY**.
+    - **WHEN A RULE OR POLICY IS ESTABLISHED MID-EFFORT: RETROACTIVELY SWEEP THE EARLIER PASSES OF THAT
+      SAME EFFORT FOR COMPLIANCE.** Do NOT assume the earlier batches followed a rule that did not exist
+      when they ran. If the earlier passes violated the newly-set policy, FIX them.
+    - **RATIONALE, 2026-08-18:** the marker-substitution policy (Rule 69/C) was established DURING the
+      Report Suite currency pass, but the EARLIER Fabian authoring passes had already overwritten **47
+      EXPECT-FAIL/HOLD markers** with the deferred marker before that policy existed — and no one swept
+      back to catch it, so it was only found later by a live audit (Rule 50/G, audit-from-live). Ties to
+      Standing Rules 61 (the marker family), 69/C (the substitution note this extends) and 51/52 (the
+      ticket references those EXPECT-FAIL/HOLD markers carry).
     **⇒ DATED REFINEMENT, 2026-08-18 (QA lead, PROPOSED-AND-CONFIRMED per Rule 72) — THE AUTOMATION
     MARKER KEYS ON TESTABLE CONTENT, NOT ON A METADATA REFRESH.**
     - **A case's automation marker is ADDED or CHANGED ONLY when either (a) the case is NEWLY AUTHORED,
@@ -6691,6 +6707,27 @@ deliver the 7-tab management report.
       deferred-build pass.** Cross-refs: Rules 69 (the marker-lift path), 61 (the marker family), B (the
       POST-BUILD-VERIFY Vlad hand-off sub-note above) and the build-verify skill
       `build/skills/03-RUN-CHECK.md` §6.4 (where the edit+verify coupling operationally lives).
+    **⇒ DATED ADDITION, 2026-08-18 (QA lead, PROPOSED-AND-CONFIRMED per Rule 72) — CORRECTING OUR OWN
+    ERRONEOUS METADATA-ONLY CHANGE ON AN AUTOMATED CASE IS A PERMITTED CORRECTION (WITH QA-LEAD
+    AUTHORISATION), DISTINCT FROM A CONTENT EDIT.**
+    - **Reverting or correcting OUR OWN erroneous METADATA-ONLY change on an Automated case
+      (`custom_atmstatus = 3`) is a PERMITTED CORRECTION, done WITH the QA lead's authorisation.**
+      Example: restoring a marker we wrongly applied, where the case's TESTABLE CONTENT — title,
+      preconditions, steps of reproduction, expected-behaviour BODY — is UNTOUCHED. It restores the case
+      (and Vlad's expected state) and does NOT touch what Vlad's automation runs against.
+    - **THIS IS DISTINCT FROM "editing an Automated case."** Per the 2026-08-18 build-verify-coupling
+      refinement above, "editing an Automated case" means changing its **testable content**, which
+      requires build-verify coupling (edit + verify together, then hand to Vlad). **The
+      build-verify-coupling requirement applies to CONTENT edits — NOT to undoing our own metadata
+      error.**
+    - **ASK-FIRST STILL APPLIES:** the correction is done only with the QA lead's go-ahead (as given
+      2026-08-18 for the marker revert).
+    - **RATIONALE, 2026-08-18:** 27 Automated cases had the deferred marker (Rule 69) wrongly applied on a
+      metadata-only re-stamp; the QA lead authorised reverting their markers because the testable content
+      was untouched — a correction that RESTORES Vlad's expected state, not a content edit. Ties to
+      Standing Rules 38 (foreign/Automated cases hands-off — this is the narrow permitted-correction
+      carve-out), 69 (the content-vs-metadata refinement that classifies what changed), 71 (the
+      build-verify coupling for content edits) and B (the POST-BUILD-VERIFY Vlad hand-off).
 72. **PROPOSE SKILL / RULE CHANGES BEFORE RECORDING THEM — never add to the Skills or CLAUDE.md
     autonomously (all projects).**
     USER DIRECTIVE (2026-08-17/18, verbatim, explicitly approved with *"Add"*): *"make/update the rules
