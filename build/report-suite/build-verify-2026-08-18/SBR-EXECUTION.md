@@ -91,3 +91,26 @@ build-check added; marker → plain `READY`. Ticket backing removed because it i
 **Raw-HTML repairs (3): C30277, C30278, C30279** — converted TestRail-rendered `<ol>/<li>/<hr>/<p>/<a>/<br>`
 back to house plain text (formatting only, text word-for-word; demark.py, 0 leftover tags, re-GET confirms
 0 raw markup). C30278 is a deferred-lift; C30277/C30279 are expect-fail strips.
+
+### Batch 3 — plain-`READY` build-check re-stamps (12 cases driven live this pass)
+Body byte-identical; marker stays `AUTOMATION: READY`; Rule-54 sentence-2 build-check added
+(`Last checked against build v3.8-bd246fd on 8/18/2026.`). Only cases whose specific assertion was
+directly observed live this pass. All HTTP 200 + byte_ok ✅, atm=1.
+
+C30195 (nav placement) · C30197 (nav label fits) · C30206 (Parts & Service default) ·
+C30208 (invoice-status all default) · C30213 (location all default) · C30227 (payment badge Paid/Unpaid) ·
+C30233 (calc) · C30267 (column selector = 8 toggleable) · C30276 (exports respect filters) ·
+C30288 (export Locations line) · C30316 (API report endpoint 200) · C30319 (API pagination).
+
+## Summary
+- **51 cases written**, every one HTTP 200 + re-GET byte-verified (all three text fields sent);
+  0 mismatches, 0 collateral changes. Breakdown: 17 deferred→READY · 21 expect-fail→READY
+  (19 plain + 2 raw-HTML) · 3 raw-HTML repaired (C30277/C30278/C30279; 0 leftover markup) ·
+  12 plain-READY build-check re-stamps.
+- **Post-batch census (all 51 touched):** exactly 1 automation marker, 1 provenance line, 0 raw markup,
+  sentence-2 = v3.8-bd246fd present, custom_atmstatus = 1 — 0 anomalies.
+- **4 Automated cases HELD** (C30217/30221/30262/30314) — byte-unchanged, updated_on identical to
+  pre-pass; recorded in SBR-HELD-AUTOMATED.md.
+- **2 EXPECT-FAIL left unchanged** (C30290/C30320, SV-8818 open + over-cap state not reachable).
+- **Run 359 untouched** (0 run/result writes; include_all still False). **0 Jira writes** (GET only).
+- **Build marker byte-stable** v3.8-bd246fd across pass start (20:10Z) and end (20:36Z).
