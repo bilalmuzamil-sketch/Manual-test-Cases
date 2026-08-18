@@ -1173,6 +1173,32 @@ cleared item **moves to "Recently cleared" with the date and how it was satisfie
 dropped, so nothing gets re-asked. *(We have already had that embarrassment: re-asking a question a
 source had answered.)*
 
+### 13.1 🔑 COMMUNICATE CLEARLY: ACTION-FIRST, PLAIN, TABLE-FORM (Standing Rule 70, added 2026-08-17)
+
+**QA lead, verbatim, two messages:** *"communicate with me in clear things for me to do like what I
+exactly need to do and help me understand what I really need to do and what are you talking about and
+ideally share things with me in the form of a table."* / *"Yes make it a rule to always communicate
+with me in similar mannaers."*
+
+Every status update, report, question set and outstanding-items list is written as **CLEAR,
+ACTIONABLE communication**, not a description of state he then has to decode:
+1. **Say EXACTLY what he needs to DO** for each item — a concrete action (*"reply 'sync run 357'"*,
+   *"say yes to file these 5 defects"*), **never just "pending" / "awaiting your decision"** (same bar
+   as Rule 48).
+2. **Explain in plain words what each item IS** before asking anything — never assume he knows the
+   term/case/ticket/jargon (Rule 7). The C-id + link still travel with it (Rule 8), but the plain
+   explanation comes first.
+3. **Present as a TABLE** whenever there is more than one item — columns like **# · What it is (plain)
+   · What YOU do · Why it matters / what it affects · Priority**. A wall of prose listing several asks
+   is non-compliant.
+4. **Separate "needs your decision/action" from "informational / tidy"** so he sees at a glance what
+   actually requires him.
+
+This **strengthens** Rule 7 and the simple-format conventions: Rule 7 governs the WORDS; Rule 70
+governs the STRUCTURE. **The OUTSTANDING list above is the prime place this table form applies.**
+**Rationale, 2026-08-17:** he received a report that said *"13 items waiting on you"* without spelling
+out what each was or what to do — a list of blockers he cannot act on is homework, not help.
+
 ---
 
 # 14 · THE PROVENANCE LINE — AND THE READ-DATE EVERY SOURCE NOW CARRIES

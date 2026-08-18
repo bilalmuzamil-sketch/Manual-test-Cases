@@ -6471,6 +6471,45 @@ deliver the 7-tab management report.
     re-checkable state), 54 (sentence 1 fully written; only sentence 2 absent), 57 (expectation from
     documents regardless of build readiness) and 61 (the marker family this extends; lifts to READY on
     success, or READY - EXPECT FAIL on live-backed ticketed failure).
+70. **COMMUNICATE WITH THE QA LEAD CLEARLY: ACTION-FIRST, PLAIN-LANGUAGE, TABLE-FORM — tell him
+    EXACTLY what to DO and help him UNDERSTAND what each item is (all projects, every communication).**
+    USER DIRECTIVE (2026-08-17, verbatim, two messages): *"Please whenever you communicate with me
+    please communicate with me in clear things for me to do like what I exactly need to do and help me
+    understand what I really need to do and what are you talking about and ideally share things with me
+    in the form of a table."* and *"Yes make it a rule to always communicate with me in similar
+    mannaers."*
+    **THE RULE:** every **status update, report, question set and outstanding-items list** to the QA
+    lead is written as **CLEAR, ACTIONABLE communication** — not a description of state he then has to
+    decode. Four requirements, every time:
+    **(1) STATE EXACTLY WHAT HE NEEDS TO DO for each item — a concrete action he can take**, phrased as
+    the action itself (e.g. *"reply 'sync run 357'"*, *"say yes to file these 5 defects"*, *"send
+    Branko's PRD"*), **NOT merely that something is pending or waiting.** A row that says *"awaiting your
+    decision"* without naming the decision is non-compliant (this is the same bar Rule 48 sets for
+    QA-lead-blocked items).
+    **(2) HELP HIM UNDERSTAND what each item means, in plain layman words** — never assume he knows the
+    internal term, the case ID, the ticket, or the jargon. Explain **"what I'm talking about"** in one
+    plain sentence before asking anything of him (Rule 7). The C-id and link still travel with it (Rule
+    8), but the plain explanation comes first.
+    **(3) PRESENT AS A TABLE wherever there is more than one item, or more than one attribute per
+    item.** Ideal columns: **# · What it is (plain) · What YOU do · Why it matters / what it affects ·
+    Priority.** A wall of prose listing several asks is non-compliant — the table is his default, his
+    explicit ask.
+    **(4) SEPARATE "needs your decision/action" from "informational / tidy"** so he can see **at a
+    glance** what actually requires him versus what is just being reported. Never bury a real ask inside
+    a status narrative.
+    **THIS STRENGTHENS — does not replace — the existing plain-language conventions:** Standing Rule 7
+    (plain layman wording for everything reader-facing), the **"Simple-format status updates"** bullet
+    and the **"Deliverable conventions the user likes"** section (short plain statements under clear
+    headings). Rule 7 governs the WORDS; this rule governs the STRUCTURE — action-first, understood, in
+    a table, decisions separated from noise.
+    **RATIONALE, 2026-08-17:** the QA lead received a report that said in effect *"13 items waiting on
+    you"* without spelling out what each item was or what he was supposed to do about it, and directed
+    that all communication going forward be clear, action-first and table-form so he can act without
+    having to reverse-engineer our meaning. A list of blockers he cannot act on is not help; it is
+    homework. Ties to Standing Rules 7 (plain layman wording), 8 (always give the C-id + link), 36 (the
+    OUTSTANDING-ITEMS list is the prime place this table form applies), 46 (a decision recorded so it
+    can never look like a miss) and 48 (a QA-lead-blocked item names the ruling, the action and who
+    unblocks it — this rule makes that presentation a table).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
@@ -6882,6 +6921,15 @@ regression / bug-fix re-testing.
   to be done / Other actions"), no jargon, nothing important omitted. This is the
   default format for every progress update and summary going forward. (User
   instruction 2026-07-24: "Always give updates in this format.")
+- **Clear, action-first, table-form communication with the QA lead (Standing Rule 70, added
+  2026-08-17 — QA lead, verbatim: *"communicate with me in clear things for me to do like what I
+  exactly need to do and help me understand … and ideally share things with me in the form of a
+  table"*).** Every status update, report, question set and outstanding-items list tells him **exactly
+  what to DO** for each item (a concrete action, not just "pending"), **explains in plain words what
+  each item is** (never assume he knows the term/case/ticket), is **presented as a TABLE** whenever
+  there is more than one item (columns like # · What it is (plain) · What YOU do · Why it matters ·
+  Priority), and **separates "needs your decision/action" from "informational/tidy"**. Strengthens
+  Rule 7 and the "Simple-format status updates" bullet below.
 - **Every DEVIATION cell must carry a plain "What needs to be done" (all
   deliverables):** In ANY deliverable (workbooks, reports, trackers, CSVs) that marks
   a cell/row as DEVIATION — or Failed / Blocked / any not-passed status — that cell
