@@ -60,3 +60,37 @@ result metadata only; graded result fields; secret-scanned — no cookies/tokens
 - **0 graded field changed** — every prior result byte-identical on graded fields.
 - case_id sets equal BOTH ways (after == union, 507/507).
 - **VERDICT: PASS — 0 dropped, 0 results lost.**
+
+---
+
+## Run 352 — Filters ("Filters - Ahtasham", Ahtasham Amjad)  ✅ PASS
+
+| | Before | After |
+|---|---|---|
+| include_all | false | **false** (unchanged) |
+| Tests (case_ids) | **120** | **129** |
+| Result records | **648** | **648** |
+
+- **New cases added: 9** — C43841–C43849. All verified live, all `created_by`=3 ours, none already
+  present. Union = 120 ∪ 9 = **129**.
+- **0 prior tests dropped** — union proven superset of current (current − union = ∅).
+- **added set == exactly the 9 new ids** (union − current == the 9).
+- **0 prior results lost** — all 648 result records present BY ID after the write (both directions).
+- **0 graded field changed** — every prior result byte-identical on graded fields.
+- case_id sets equal BOTH ways (after == union, 129/129).
+- **VERDICT: PASS — 0 dropped, 0 results lost.**
+
+---
+
+## SUMMARY — all three runs PASS
+
+| Run | Project | Tester | Before | After | New added | Dropped | Results before→after | Results lost | include_all | Verdict |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 357 | Schedule | Ayesha Khan | 176 | 195 | 19 (C43795–C43813) | 0 | 549 → 549 | 0 | false (unchanged) | ✅ PASS |
+| 359 | Report Suite | Nebojsa / Viktoria | 480 | 507 | 27 (C43814–C43840) | 0 | 535 → 535 | 0 | false (unchanged) | ✅ PASS |
+| 352 | Filters | Ahtasham Amjad | 120 | 129 | 9 (C43841–C43849) | 0 | 648 → 648 | 0 | false (unchanged) | ✅ PASS |
+
+**Total new cases synced into runs: 55.** No results written (0 `add_result`). No case modified. No
+foreign case touched. `include_all` remained false on all three. Every prior result verified present
+BY ID both directions; 0 graded fields changed on any run. Snapshots secret-scanned before commit —
+no cookies/tokens/authorization headers/token-bearing bodies written to disk.
