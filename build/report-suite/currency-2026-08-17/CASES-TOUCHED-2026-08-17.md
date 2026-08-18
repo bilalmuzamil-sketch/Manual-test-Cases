@@ -427,3 +427,17 @@ Total touched: 423 of 507 our cases (378 version-pin + 36 content-rewrite + 9 co
 | WIP-VIS-04 | C30522 | version-pin | WIP | The Totals row stays visible while only the active tab's bod | https://shopview.testrail.io/index.php?/cases/view/30522 |
 | WIP-VIS-05 | C30523 | version-pin | WIP | The WO # link is keyboard-focusable and opens the work order | https://shopview.testrail.io/index.php?/cases/view/30523 |
 | WIP-VIS-06 | C30524 | version-pin | WIP | Each summary figure's info icon is keyboard-reachable and sc | https://shopview.testrail.io/index.php?/cases/view/30524 |
+
+---
+
+## Continuation 2026-08-18 — the 3 raw-markup cases (demark + currency)
+
+The 3 cases skipped by the 2026-08-17 pass for raw HTML markup are now done — Report Suite = **507/507 current**. Demarked to plain numbered text (word-for-word preserved), whole-case re-verified against the live current spec (WIP v21 / IV v10, read 18 Aug 2026) + owning story + epic SV-8582; provenance re-stamped, sentence 2 (build) omitted (deferred). All 3 `update_case` HTTP 200 + byte-verified; 0 foreign touched; 0 raw markup remaining across all 507.
+
+| Internal ID | C-id | Kind | Report | Marker after | Link |
+|---|---|---|---|---|---|
+| WIP-SCOPE-03 | C30458 | demark + currency (WIP v11→v21) | WIP | HOLD (open PO question, kept) | https://shopview.testrail.io/index.php?/cases/view/30458 |
+| IV-EXP-02 | C30588 | demark + currency (IV v5→v10) | IV | Rule-69 (was plain READY) | https://shopview.testrail.io/index.php?/cases/view/30588 |
+| IV-API-02 | C30606 | demark + currency (IV v5→v10) | IV | HOLD (nightly-capture rows unreachable, kept) | https://shopview.testrail.io/index.php?/cases/view/30606 |
+
+Post-write assertion re-audit (§2.10): the expected-result BODIES were preserved word-for-word (formatting-only), so **0 material assertion changes** — nothing to re-audit beyond the demark. Evidence: `demark-3-2026-08-18/{oplog.txt,exec_results.json,census.json}`.

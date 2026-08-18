@@ -266,30 +266,24 @@
   "type": "Functional",
   "permissions_required": "Backend/database (or dev-support) access to inspect the stored snapshot rows, plus the inventory-reports permission for the on-screen comparison.",
   "preconditions": [
-   "<ol>",
-   "<li>ZZAUTOTEST parts with known quantities, costs, and sell resolutions (fixed price, matrix markup, and no-category fallback) are in stock and left UNCHANGED across the capture.</li>",
-   "<li>A core-charge part and a zero-quantity part also exist.</li>",
-   "<li>You can read the live report on the capture date and the stored rows afterward.</li>",
-   "<li>To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.</li>",
-   "</ol>",
-   ""
+   "1. ZZAUTOTEST parts with known quantities, costs, and sell resolutions (fixed price, matrix markup, and no-category fallback) are in stock and left UNCHANGED across the capture.",
+   "2. A core-charge part and a zero-quantity part also exist.",
+   "3. You can read the live report on the capture date and the stored rows afterward.",
+   "4. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
   ],
   "steps": [
-   "<ol>",
-   "<li>On the capture date, note the live report's rows and values for the seeded parts.</li>",
-   "<li>After the overnight capture, read the same parts' captured rows.</li>",
-   "<li>Look for the core-charge and zero-quantity parts among the captured rows.</li>",
-   "<li>The next day, view the report as of the captured date and compare to the noted live values.</li>",
-   "</ol>",
-   ""
+   "1. On the capture date, note the live report's rows and values for the seeded parts.",
+   "2. After the overnight capture, read the same parts' captured rows.",
+   "3. Look for the core-charge and zero-quantity parts among the captured rows.",
+   "4. The next day, view the report as of the captured date and compare to the noted live values."
   ],
-  "expected": "<ol>\n<li>The captured parts use the same in-stock, non-core scope as the live report (Story 2) — the core-charge and zero-quantity parts are NOT captured.</li>\n<li>The captured values use the same valuation as the live report (Story 3), including the sell-price fallback chain.</li>\n<li>A recorded day equals what the live report would have shown that day — the as-of view of the captured date matches the noted live values.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S11-R2), read on 11 August 2026.<br />Last checked against build v3.5-16cf83f on 8/6/2026.</p>\n\n<p>AUTOMATION: HOLD - needs the stored nightly capture rows, which are not reachable from the application</p>\n",
+  "expected": "1. The captured parts use the same in-stock, non-core scope as the live report (Story 2) — the core-charge and zero-quantity parts are NOT captured.\n2. The captured values use the same valuation as the live report (Story 3), including the sell-price fallback chain.\n3. A recorded day equals what the live report would have shown that day — the as-of view of the captured date matches the noted live values.\n\n---\nThis is the expected behaviour as per epic SV-8582 and story SV-8678, read on 18 August 2026, and the Inventory Value report specification version 10 (S11-R2), read on 18 August 2026.\n\nAUTOMATION: HOLD - needs the stored nightly capture rows, which are not reachable from the application",
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8678 (IV spec v5 2026-08-07 Story 11 S11-R2; §2 Relationship to nightly history)",
+  "spec_ref": "SV-8678 (IV spec v10 2026-08-18 Story 11 S11-R2; §2 Relationship to nightly history)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true,
-  "refs": "SV-8678 (IV spec v5 2026-08-07 Story 11 S11-R2; §2 Relationship to nightly history)",
+  "refs": "SV-8678 (IV spec v10 2026-08-18 Story 11 S11-R2; §2 Relationship to nightly history)",
   "testrail_id": "C30606",
   "section_id": 4376
  },

@@ -573,31 +573,23 @@ This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and 
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
 AUTOMATION: READY - EXPECT FAIL (SV-8818)",SV-8677 (IV spec v10 2026-08-17 Story 10 S10-R1; S10-R2),,
-"Downloads keep shown columns and order, honor filters, and include Totals",IV — Exports,Functional,Critical,"<ol>
-<li>You are signed in to the ShopView App on a desktop browser.</li>
-<li>The report is open with a non-default column selection, a Category or Vendor filter, a part search, and a non-default sort applied.</li>
-</ol>
-","<ol>
-<li>Download the current view as a CSV and open it.</li>
-<li>Compare its columns and their order to the screen.</li>
-<li>Compare its rows to the current filters, search, and sort.</li>
-<li>Compare its totals row to the on-screen totals row.</li>
-<li>Repeat the checks in the PDF.</li>
-</ol>
-","<ol>
-<li>Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last.</li>
-<li>Both downloads honor the current date, category, vendor, location, and part-search filters, and apply the current sort.</li>
-<li>Both downloads include a totals row labeled ""Totals"" matching the on-screen totals (the full-filtered-set totals).</li>
-<li>Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to.</li>
-<li><p>Note for the tester: the files carry the Location column whenever it is showing on screen (it sits between Vendor and Qty).<br />On this build the spreadsheet file ignores the columns you picked and puts them in a different order from the screen, so point 1 above will not match - record what you see and carry on.<br />Known issue: the product does not currently do this. It has been filed for a fix here: <a href=""https://shopview.atlassian.net/browse/SV-8823"">https://shopview.atlassian.net/browse/SV-8823</a></p></li>
-</ol>
+"Downloads keep shown columns and order, honor filters, and include Totals",IV — Exports,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. The report is open with a non-default column selection, a Category or Vendor filter, a part search, and a non-default sort applied.","1. Download the current view as a CSV and open it.
+2. Compare its columns and their order to the screen.
+3. Compare its rows to the current filters, search, and sort.
+4. Compare its totals row to the on-screen totals row.
+5. Repeat the checks in the PDF.","1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last.
+2. Both downloads honor the current date, category, vendor, location, and part-search filters, and apply the current sort.
+3. Both downloads include a totals row labeled ""Totals"" matching the on-screen totals (the full-filtered-set totals).
+4. Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to.
+5. Note for the tester: the files carry the Location column whenever it is showing on screen (it sits between Vendor and Qty).
+On this build the spreadsheet file ignores the columns you picked and puts them in a different order from the screen, so point 1 above will not match - record what you see and carry on.
+Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823
 
-<hr />
+---
+This is the expected behaviour as per epic SV-8582 and story SV-8677, read on 18 August 2026, and the Inventory Value report specification version 10 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15), read on 18 August 2026.
 
-<p>This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15), read on 11 August 2026.<br />Last checked against build v3.5-16cf83f on 8/6/2026.</p>
-
-<p>AUTOMATION: READY</p>
-","SV-8677 (IV spec v5 2026-08-07 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the ""Locations:"" line and the Location column when shown)",,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026","SV-8677 (IV spec v10 2026-08-18 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the ""Locations:"" line and the Location column when shown)",,
 Export number formats: money to 2 decimals; Margin % to 1 with em-dash,IV — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current view includes money values over $1,000 and, if producible, a part whose Margin % is undefined (""—"").","1. Download the CSV and open it in a plain-text editor; read the money and Margin % values.
 2. Download the PDF and read the same values.","1. Money uses two decimals and Margin % one decimal in both files; an undefined Margin % shows ""—"".
@@ -830,30 +822,20 @@ This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and 
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
 AUTOMATION: HOLD - the nightly capture is a server-side job and its stored rows are not reachable from the application",SV-8678 (IV spec v10 2026-08-17 Story 11 S11-R1; S11-R4),,
-A recorded snapshot day equals what the live report showed that day,IV — API,Functional,Critical,"<ol>
-<li>ZZAUTOTEST parts with known quantities, costs, and sell resolutions (fixed price, matrix markup, and no-category fallback) are in stock and left UNCHANGED across the capture.</li>
-<li>A core-charge part and a zero-quantity part also exist.</li>
-<li>You can read the live report on the capture date and the stored rows afterward.</li>
-<li>To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.</li>
-</ol>
-","<ol>
-<li>On the capture date, note the live report's rows and values for the seeded parts.</li>
-<li>After the overnight capture, read the same parts' captured rows.</li>
-<li>Look for the core-charge and zero-quantity parts among the captured rows.</li>
-<li>The next day, view the report as of the captured date and compare to the noted live values.</li>
-</ol>
-","<ol>
-<li>The captured parts use the same in-stock, non-core scope as the live report (Story 2) — the core-charge and zero-quantity parts are NOT captured.</li>
-<li>The captured values use the same valuation as the live report (Story 3), including the sell-price fallback chain.</li>
-<li>A recorded day equals what the live report would have shown that day — the as-of view of the captured date matches the noted live values.</li>
-</ol>
+A recorded snapshot day equals what the live report showed that day,IV — API,Functional,Critical,"1. ZZAUTOTEST parts with known quantities, costs, and sell resolutions (fixed price, matrix markup, and no-category fallback) are in stock and left UNCHANGED across the capture.
+2. A core-charge part and a zero-quantity part also exist.
+3. You can read the live report on the capture date and the stored rows afterward.
+4. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.","1. On the capture date, note the live report's rows and values for the seeded parts.
+2. After the overnight capture, read the same parts' captured rows.
+3. Look for the core-charge and zero-quantity parts among the captured rows.
+4. The next day, view the report as of the captured date and compare to the noted live values.","1. The captured parts use the same in-stock, non-core scope as the live report (Story 2) — the core-charge and zero-quantity parts are NOT captured.
+2. The captured values use the same valuation as the live report (Story 3), including the sell-price fallback chain.
+3. A recorded day equals what the live report would have shown that day — the as-of view of the captured date matches the noted live values.
 
-<hr />
+---
+This is the expected behaviour as per epic SV-8582 and story SV-8678, read on 18 August 2026, and the Inventory Value report specification version 10 (S11-R2), read on 18 August 2026.
 
-<p>This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S11-R2), read on 11 August 2026.<br />Last checked against build v3.5-16cf83f on 8/6/2026.</p>
-
-<p>AUTOMATION: HOLD - needs the stored nightly capture rows, which are not reachable from the application</p>
-",SV-8678 (IV spec v5 2026-08-07 Story 11 S11-R2; §2 Relationship to nightly history),,
+AUTOMATION: HOLD - needs the stored nightly capture rows, which are not reachable from the application",SV-8678 (IV spec v10 2026-08-18 Story 11 S11-R2; §2 Relationship to nightly history),,
 Nightly snapshot: re-running the capture for a date replaces that date's rows,IV — API,Functional,High,"1. A capture has already run for the current date.
 2. The capture can be re-run for that date (arrange with the developers).
 3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.","1. Count the stored rows per location for the date.
