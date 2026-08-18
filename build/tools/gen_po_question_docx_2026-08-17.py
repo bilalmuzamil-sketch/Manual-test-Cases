@@ -87,16 +87,116 @@ CHRIS = {
     ],
 }
 
+# ---------------------------------------------------------------------------
+# The five NEW follow-up questions (Aug-5 design review; Schedule spec v30 silent).
+# Shared between the full Branko sheet (as questions 4-8) and the follow-up-only doc.
+# ---------------------------------------------------------------------------
+FOLLOWUP_5 = [
+    {
+        "heading": "SCHEDULE — the scheduling pop-up — a personal 'always schedule the whole work "
+                   "order' preference",
+        "now": [
+            "When you drag a work order onto the schedule, it asks whether to schedule the WHOLE "
+            "work order or to pick individual lines. Right now it asks this every time.",
+            "The 5 August design review suggested letting each person set a preference — 'always "
+            "schedule the whole work order' — so the system remembers their choice and stops "
+            "asking every time.",
+            "Your newer written description does not mention this preference at all, and the review "
+            "itself listed it as an open question to decide before launch. So we are asking you "
+            "rather than guessing.",
+        ],
+        "question": "Should a person be able to set a preference to always schedule the whole work "
+                    "order (so the system remembers it and stops asking each time), in the first "
+                    "version?",
+        "options": [
+            "A) YES — add the 'always schedule the whole work order' preference in the first "
+            "version.",
+            "B) NO — leave it out for now and keep asking each time; maybe a later version.",
+            "C) Something else — please describe it.",
+        ],
+    },
+    {
+        "heading": "SCHEDULE — the schedule grid — the one-click carryover button",
+        "now": [
+            "The old scheduler had a one-click 'carryover' button on a scheduled job. Pressing it "
+            "copied that job to the next day at the same time.",
+            "The new scheduler does not have this button. The 5 August design review asked to bring "
+            "it back for the first version.",
+            "Your newer written description does not mention carryover at all, so we are asking you "
+            "rather than guessing.",
+        ],
+        "question": "Should the one-click carryover button — copy a job to the next day at the same "
+                    "time — be brought back in the first version?",
+        "options": [
+            "A) YES — bring the carryover button back in the first version.",
+            "B) NO — leave it out for now.",
+            "C) Something else — please describe it.",
+        ],
+    },
+    {
+        "heading": "SCHEDULE — the schedule grid — what the carryover button is called",
+        "now": [
+            "This one is only about what the button is CALLED, if it comes back (see the previous "
+            "question).",
+            "The old name was 'Carryover'. The design review suggested a clearer name — 'Add a Day' "
+            "or 'Extend a Day' — but the final wording is not decided.",
+        ],
+        "question": "If the button comes back, what should it be called?",
+        "options": [
+            "A) 'Add a Day'",
+            "B) 'Extend a Day'",
+            "C) Keep 'Carryover', or something else — please write the exact words you want.",
+        ],
+    },
+    {
+        "heading": "SCHEDULE — the schedule grid — carryover on a job that runs several days",
+        "now": [
+            "Some jobs are scheduled across several days in a row.",
+            "When you press carryover on one of these, there are two ways it could behave: it could "
+            "add just ONE more day at the end, or it could copy the whole run of days again.",
+            "The design review said it should add just one more day. Your newer written description "
+            "does not cover this, so we are checking with you.",
+        ],
+        "question": "When you press carryover on a job that already runs across several days, should "
+                    "it add just one more day, or copy the whole run of days again?",
+        "options": [
+            "A) Add just ONE more day at the end.",
+            "B) Copy the whole run of days again.",
+            "C) Something else — please describe it.",
+        ],
+    },
+    {
+        "heading": "SCHEDULE — the schedule grid — week view — dragging a job to the next day",
+        "now": [
+            "In week view you can see several days at once.",
+            "The design review suggested that — as well as, or instead of, a carryover button — a "
+            "person should be able to drag a scheduled job straight onto the next day.",
+            "Your newer written description does not mention this, so it is your call.",
+        ],
+        "question": "In week view, should a person be able to drag a scheduled job straight onto the "
+                    "next day, as another way to carry it over?",
+        "options": [
+            "A) YES — allow dragging a job onto the next day in week view.",
+            "B) NO — keep a carryover button as the only way.",
+            "C) Something else — please describe it.",
+        ],
+    },
+]
+
 BRANKO = {
     "path": "build/filters/questions-2026-08-17/Filters-and-Schedule_Questions-for-Branko_2026-08-17.docx",
     "title": "Questions for Branko Cicovic",
     "subtitle": "Filters and Schedule — Product Owner: Branko Cicovic",
     "intro": (
         "Hello Branko — this is everything we have open across your projects FILTERS and "
-        "SCHEDULE after the big filter redesign, gathered into one place so you can answer it "
-        "in one sitting instead of a trickle of separate messages. Just THREE questions — about "
-        "ten minutes. SHORT ANSWERS ARE PERFECT — a letter, or one line. Nothing here needs an "
-        "essay.\n"
+        "SCHEDULE, gathered into one place so you can answer it in one sitting instead of a "
+        "trickle of separate messages. SHORT ANSWERS ARE PERFECT — a letter, or one line. "
+        "Nothing here needs an essay.\n"
+        "There are EIGHT questions in total. The first THREE (1 to 3) are the ones we already "
+        "sent you — they are repeated here only so everything is in one place. Questions 4 to 8 "
+        "are NEW FOLLOW-UPS, all about the Schedule's 'carryover' feature and one scheduling "
+        "preference from the design review — so if you have already answered 1 to 3, you only "
+        "need to look at 4 to 8.\n"
         "Every question says which project and screen it is about, because you look after "
         "Filters, Schedule and Global Search. Each one is a point where two of your own "
         "documents disagree, or where your written description does not yet say the thing we "
@@ -184,11 +284,31 @@ BRANKO = {
                 "C) Something else — please describe it.",
             ],
         },
-    ],
+    ] + FOLLOWUP_5,
+}
+
+
+BRANKO_FOLLOWUP = {
+    "path": "build/filters/questions-2026-08-17/Filters-and-Schedule_Questions-for-Branko_FOLLOW-UP-5_2026-08-17.docx",
+    "title": "Follow-up questions for Branko Cicovic",
+    "subtitle": "Schedule — Product Owner: Branko Cicovic",
+    "start": 4,
+    "intro": (
+        "Hello Branko — these are five short FOLLOW-UP questions (numbers 4 to 8) that go with the "
+        "three we sent you on 17 August. They are all about the Schedule, and all about one thing: "
+        "the 'carryover' feature from the design review (copying a scheduled job to the next day), "
+        "plus one scheduling preference. About five minutes. SHORT ANSWERS ARE PERFECT — a letter, "
+        "or one line.\n"
+        "The design review listed each of these for the first version, but your newer written "
+        "description does not mention them — so we are asking you rather than guessing. To be clear: "
+        "we have not edited any of your tickets or descriptions."
+    ),
+    "questions": FOLLOWUP_5,
 }
 
 
 def build(doc_spec):
+    start = doc_spec.get("start", 1)
     doc = Document()
     normal = doc.styles["Normal"]
     normal.font.name = "Calibri"
@@ -210,7 +330,7 @@ def build(doc_spec):
 
     doc.add_paragraph("")  # spacer
 
-    for i, q in enumerate(doc_spec["questions"], start=1):
+    for i, q in enumerate(doc_spec["questions"], start=start):
         # Numbered question heading
         h = doc.add_heading(level=1)
         hr = h.add_run(f"Question {i} — {q['heading']}")
@@ -247,6 +367,6 @@ def build(doc_spec):
     return doc_spec["path"]
 
 
-for spec in (CHRIS, BRANKO):
+for spec in (CHRIS, BRANKO, BRANKO_FOLLOWUP):
     p = build(spec)
     print("wrote", p, "questions:", len(spec["questions"]))

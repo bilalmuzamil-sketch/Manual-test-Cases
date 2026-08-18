@@ -2,18 +2,23 @@
 
 **Projects: Filters (epic SV-8785) and Schedule (epic SV-8685) · Product Owner: Branko Cicovic**
 
-*Three genuine product decisions left open after the 2026-08-17 filter-redesign reconciliation
-(Filters spec v21, Schedule spec v30). One sheet, per Standing Rule 55. The spreadsheet twin is
+*Eight genuine product decisions left open after the 2026-08-17 filter-redesign reconciliation
+(Filters spec v21, Schedule spec v30) and the 2026-08-18 Aug-5-design-review reconciliation. One
+sheet, per Standing Rule 55. The spreadsheet twin is
 `Filters-and-Schedule_Questions-for-Branko_2026-08-17.xlsx`; it carries a QA-only tab that must not
 be forwarded.*
 
-**DRAFT — WRITTEN AND HELD, NOT SENT (Standing Rule 66: the question sheet is the LAST thing sent,
-on the QA lead's word, once everything we can do ourselves is finished). Nothing has been written
-to TestRail or Jira.**
+**QUESTIONS 1 to 3 were SENT to Branko on 2026-08-17 (per the QA lead). QUESTIONS 4 to 8 are NEW
+FOLLOW-UPS added 2026-08-18, HELD pending the QA lead sending them (Standing Rule 66: the question
+sheet is the LAST thing sent). A follow-up-only copy of the five new questions, for easy sending, is
+`Filters-and-Schedule_Questions-for-Branko_FOLLOW-UP-5_2026-08-17.docx`. Nothing has been written to
+TestRail or Jira.**
 
 ---
 
-Hello Branko - this is everything we have open across your projects FILTERS and SCHEDULE after the big filter redesign, gathered into one place so you can answer it in one sitting instead of a trickle of separate messages. Just THREE questions - about ten minutes. SHORT ANSWERS ARE PERFECT - a letter, or one line. Nothing here needs an essay.
+Hello Branko - this is everything we have open across your projects FILTERS and SCHEDULE, gathered into one place so you can answer it in one sitting instead of a trickle of separate messages. SHORT ANSWERS ARE PERFECT - a letter, or one line. Nothing here needs an essay.
+
+There are EIGHT questions in total. The first THREE (1 to 3) are the ones we already sent you - they are repeated here only so everything is in one place. Questions 4 to 8 are NEW FOLLOW-UPS, all about the Schedule's 'carryover' feature and one scheduling preference from the design review - so if you have already answered 1 to 3, you only need to look at 4 to 8.
 
 Every question says which project and screen it is about, because you look after Filters, Schedule and Global Search. Each one is a point where two of your own documents disagree, or where your written description does not yet say the thing we need - so we are asking you which to keep, rather than guessing. To be clear: we have not edited any of your tickets or descriptions.
 
@@ -21,7 +26,7 @@ The first question has two tests parked on it right now, so it is the one that u
 
 ---
 
-## The three questions
+## The questions
 
 ### 1. FILTERS - the Work Orders list - the Status button on the Estimates and Completed tabs
 
@@ -94,6 +99,124 @@ The first question has two tests parked on it right now, so it is the one that u
 > A) DELETE ONLY - reassigning is done by dragging the job to another technician. The window is correct as it is.
 >
 > B) ADD A REASSIGN ACTION to the window as well.
+>
+> C) Something else - please describe it.
+
+**Your answer:** _______________________________________________
+
+### 4. SCHEDULE - the scheduling pop-up - a personal 'always schedule the whole work order' preference
+
+**What happens now**
+
+> When you drag a work order onto the schedule, it asks whether to schedule the WHOLE work order or to pick individual lines. Right now it asks this every time.
+>
+> The 5 August design review suggested letting each person set a preference - 'always schedule the whole work order' - so the system remembers their choice and stops asking every time.
+>
+> Your newer written description does not mention this preference at all, and the review itself listed it as an open question to decide before launch. So we are asking you rather than guessing.
+
+**The question**
+
+> Should a person be able to set a preference to always schedule the whole work order (so the system remembers it and stops asking each time), in the first version?
+
+**Options**
+
+> A) YES - add the 'always schedule the whole work order' preference in the first version.
+>
+> B) NO - leave it out for now and keep asking each time; maybe a later version.
+>
+> C) Something else - please describe it.
+
+**Your answer:** _______________________________________________
+
+### 5. SCHEDULE - the schedule grid - the one-click carryover button
+
+**What happens now**
+
+> The old scheduler had a one-click 'carryover' button on a scheduled job. Pressing it copied that job to the next day at the same time.
+>
+> The new scheduler does not have this button. The 5 August design review asked to bring it back for the first version.
+>
+> Your newer written description does not mention carryover at all, so we are asking you rather than guessing.
+
+**The question**
+
+> Should the one-click carryover button - copy a job to the next day at the same time - be brought back in the first version?
+
+**Options**
+
+> A) YES - bring the carryover button back in the first version.
+>
+> B) NO - leave it out for now.
+>
+> C) Something else - please describe it.
+
+**Your answer:** _______________________________________________
+
+### 6. SCHEDULE - the schedule grid - what the carryover button is called
+
+**What happens now**
+
+> This one is only about what the button is CALLED, if it comes back (see the previous question).
+>
+> The old name was 'Carryover'. The design review suggested a clearer name - 'Add a Day' or 'Extend a Day' - but the final wording is not decided.
+
+**The question**
+
+> If the button comes back, what should it be called?
+
+**Options**
+
+> A) 'Add a Day'
+>
+> B) 'Extend a Day'
+>
+> C) Keep 'Carryover', or something else - please write the exact words you want.
+
+**Your answer:** _______________________________________________
+
+### 7. SCHEDULE - the schedule grid - carryover on a job that runs several days
+
+**What happens now**
+
+> Some jobs are scheduled across several days in a row.
+>
+> When you press carryover on one of these, there are two ways it could behave: it could add just ONE more day at the end, or it could copy the whole run of days again.
+>
+> The design review said it should add just one more day. Your newer written description does not cover this, so we are checking with you.
+
+**The question**
+
+> When you press carryover on a job that already runs across several days, should it add just one more day, or copy the whole run of days again?
+
+**Options**
+
+> A) Add just ONE more day at the end.
+>
+> B) Copy the whole run of days again.
+>
+> C) Something else - please describe it.
+
+**Your answer:** _______________________________________________
+
+### 8. SCHEDULE - the schedule grid - week view - dragging a job to the next day
+
+**What happens now**
+
+> In week view you can see several days at once.
+>
+> The design review suggested that - as well as, or instead of, a carryover button - a person should be able to drag a scheduled job straight onto the next day.
+>
+> Your newer written description does not mention this, so it is your call.
+
+**The question**
+
+> In week view, should a person be able to drag a scheduled job straight onto the next day, as another way to carry it over?
+
+**Options**
+
+> A) YES - allow dragging a job onto the next day in week view.
+>
+> B) NO - keep a carryover button as the only way.
 >
 > C) Something else - please describe it.
 

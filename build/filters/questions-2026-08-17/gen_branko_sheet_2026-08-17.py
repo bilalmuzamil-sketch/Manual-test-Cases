@@ -8,10 +8,17 @@ does not yet contain. Per Standing Rule 55 they go onto ONE plain sheet so he an
 sitting; per Standing Rule 7 the reader-facing tabs carry no case IDs, anchors, HTTP terms, or
 jargon, and the question->case mapping lives only on a QA-only tab that must not be forwarded.
 
-FEWEST QUESTIONS POSSIBLE (task instruction) — THREE items, all still open:
+EIGHT items. Questions 1-3 were SENT 2026-08-17; questions 4-8 are NEW FOLLOW-UPS added 2026-08-18
+(Aug-5 design review, Schedule spec v30 silent) and are HELD pending the QA lead sending them:
   1. FILTERS  — Status button hidden vs greyed on Estimates/Completed  (FAB-2; held, C29609/C29610)
   2. FILTERS  — the per-view filter list: which filters on which page   (FAB-1; owed by engineering)
   3. SCHEDULE — the shift pop-up: should it offer a "Reassign" action    (C30015; genuine PO decision)
+  4. SCHEDULE — a user-level "always schedule the whole work order" preference   (E6; v30 silent)
+  5. SCHEDULE — restore the one-click carryover button                            (E15; v30 silent)
+  6. SCHEDULE — rename "Carryover" to "Add a Day" / "Extend a Day"                (E7; v30 silent)
+  7. SCHEDULE — multi-day carryover extends ONE day, not the whole span           (E8; v30 silent)
+  8. SCHEDULE — drag a shift onto the next day in week view                       (E9; v30 silent)
+Source for 4-8: build/schedule/aug5-review-2026-08-17/RECONCILIATION.md (OUTSTANDING items 1-2).
 
 DELIBERATELY NOT ON THIS SHEET (already answered — task: "leave out anything already answered by
 spec v21/v30"):
@@ -46,10 +53,13 @@ TAB1 = "Questions for Branko"
 TABQA = "QA internal - not for Branko"
 
 HELLO = (
-    "Hello Branko - this is everything we have open across your projects FILTERS and SCHEDULE after "
-    "the big filter redesign, gathered into one place so you can answer it in one sitting instead "
-    "of a trickle of separate messages. Just THREE questions - about ten minutes. SHORT ANSWERS "
-    "ARE PERFECT - a letter, or one line. Nothing here needs an essay.\n\n"
+    "Hello Branko - this is everything we have open across your projects FILTERS and SCHEDULE, "
+    "gathered into one place so you can answer it in one sitting instead of a trickle of separate "
+    "messages. SHORT ANSWERS ARE PERFECT - a letter, or one line. Nothing here needs an essay.\n\n"
+    "There are EIGHT questions in total. The first THREE (1 to 3) are the ones we already sent "
+    "you - they are repeated here only so everything is in one place. Questions 4 to 8 are NEW "
+    "FOLLOW-UPS, all about the Schedule's 'carryover' feature and one scheduling preference from "
+    "the design review - so if you have already answered 1 to 3, you only need to look at 4 to 8.\n\n"
     "Every question says which project and screen it is about, because you look after Filters, "
     "Schedule and Global Search. Each one is a point where two of your own documents disagree, or "
     "where your written description does not yet say the thing we need - so we are asking you which "
@@ -128,6 +138,89 @@ QUESTIONS = [
         "B) ADD A REASSIGN ACTION to the window as well.\n\n"
         "C) Something else - please describe it.",
     ),
+    # ---- Q4-Q8: NEW FOLLOW-UPS (Aug-5 design review, Schedule spec v30 silent) ----
+    (
+        "SCHEDULE - the scheduling pop-up - a personal 'always schedule the whole work order' "
+        "preference",
+
+        "When you drag a work order onto the schedule, it asks whether to schedule the WHOLE work "
+        "order or to pick individual lines. Right now it asks this every time.\n\n"
+        "The 5 August design review suggested letting each person set a preference - 'always "
+        "schedule the whole work order' - so the system remembers their choice and stops asking "
+        "every time.\n\n"
+        "Your newer written description does not mention this preference at all, and the review "
+        "itself listed it as an open question to decide before launch. So we are asking you rather "
+        "than guessing.",
+
+        "Should a person be able to set a preference to always schedule the whole work order (so "
+        "the system remembers it and stops asking each time), in the first version?",
+
+        "A) YES - add the 'always schedule the whole work order' preference in the first version.\n\n"
+        "B) NO - leave it out for now and keep asking each time; maybe a later version.\n\n"
+        "C) Something else - please describe it.",
+    ),
+    (
+        "SCHEDULE - the schedule grid - the one-click carryover button",
+
+        "The old scheduler had a one-click 'carryover' button on a scheduled job. Pressing it "
+        "copied that job to the next day at the same time.\n\n"
+        "The new scheduler does not have this button. The 5 August design review asked to bring it "
+        "back for the first version.\n\n"
+        "Your newer written description does not mention carryover at all, so we are asking you "
+        "rather than guessing.",
+
+        "Should the one-click carryover button - copy a job to the next day at the same time - be "
+        "brought back in the first version?",
+
+        "A) YES - bring the carryover button back in the first version.\n\n"
+        "B) NO - leave it out for now.\n\n"
+        "C) Something else - please describe it.",
+    ),
+    (
+        "SCHEDULE - the schedule grid - what the carryover button is called",
+
+        "This one is only about what the button is CALLED, if it comes back (see the previous "
+        "question).\n\n"
+        "The old name was 'Carryover'. The design review suggested a clearer name - 'Add a Day' or "
+        "'Extend a Day' - but the final wording is not decided.",
+
+        "If the button comes back, what should it be called?",
+
+        "A) 'Add a Day'\n\n"
+        "B) 'Extend a Day'\n\n"
+        "C) Keep 'Carryover', or something else - please write the exact words you want.",
+    ),
+    (
+        "SCHEDULE - the schedule grid - carryover on a job that runs several days",
+
+        "Some jobs are scheduled across several days in a row.\n\n"
+        "When you press carryover on one of these, there are two ways it could behave: it could add "
+        "just ONE more day at the end, or it could copy the whole run of days again.\n\n"
+        "The design review said it should add just one more day. Your newer written description "
+        "does not cover this, so we are checking with you.",
+
+        "When you press carryover on a job that already runs across several days, should it add just "
+        "one more day, or copy the whole run of days again?",
+
+        "A) Add just ONE more day at the end.\n\n"
+        "B) Copy the whole run of days again.\n\n"
+        "C) Something else - please describe it.",
+    ),
+    (
+        "SCHEDULE - the schedule grid - week view - dragging a job to the next day",
+
+        "In week view you can see several days at once.\n\n"
+        "The design review suggested that - as well as, or instead of, a carryover button - a "
+        "person should be able to drag a scheduled job straight onto the next day.\n\n"
+        "Your newer written description does not mention this, so it is your call.",
+
+        "In week view, should a person be able to drag a scheduled job straight onto the next day, "
+        "as another way to carry it over?",
+
+        "A) YES - allow dragging a job onto the next day in week view.\n\n"
+        "B) NO - keep a carryover button as the only way.\n\n"
+        "C) Something else - please describe it.",
+    ),
 ]
 
 # ================================================================ QA-ONLY MAPPING
@@ -184,25 +277,96 @@ QA_ROWS = [
         "B -> a Reassign action is added; the case is updated and a build/spec change follows. "
         "C -> re-scope on his answer.",
     ),
+    (
+        "Questions", "4 (NEW)",
+        "Schedule: a user-level 'always schedule the whole work order' preference so the scope "
+        "picker remembers the choice and stops asking each time.",
+        "aug5-review-2026-08-17/RECONCILIATION.md E6 (DIVERGENCE / PO-Q; OUTSTANDING item 2). The "
+        "Aug-5 review lists it as an open question to decide before V1; Schedule spec v30 is SILENT "
+        "(0 hits).",
+        "None - no V1 case authored (spec v30 silent; Rule 58 - not authored from silence).",
+        "—",
+        "Aug-5 design review E6 ('Yes - open question') vs Schedule spec Confluence v30 (13 Aug "
+        "2026) - silent on a whole-WO preference. Newer v30 wins (Rule 32); the review item is "
+        "unratified.",
+        "A -> author one case for the preference per his answer. B -> confirm dropped for V1 (no "
+        "case; close the review item). C -> re-scope on his answer.",
+    ),
+    (
+        "Questions", "5 (NEW)",
+        "Schedule: restore the one-click carryover button (duplicates a scheduled block to the next "
+        "day at the same time).",
+        "RECONCILIATION.md E15 (was bug B3; DIVERGENCE / PO-Q; OUTSTANDING item 1). Spec v30 SILENT "
+        "on carryover entirely (0 hits).",
+        "None - no V1 case authored (spec v30 silent; Rule 58).",
+        "—",
+        "Aug-5 review E15 ('Yes') vs Schedule spec v30 - no mention of carryover / add-a-day / "
+        "extend. Rule 32 - v30 wins; Rule 58 - not authored from silence.",
+        "A -> author carryover-button case(s). B -> confirm dropped; close the item. C -> re-scope.",
+    ),
+    (
+        "Questions", "6 (NEW)",
+        "Schedule: rename 'Carryover' to 'Add a Day' / 'Extend a Day' (final wording TBC).",
+        "RECONCILIATION.md E7 (DIVERGENCE / PO-Q; OUTSTANDING item 1). Spec v30 SILENT.",
+        "None - depends on E15 (Q5); no case authored (Rule 58).",
+        "—",
+        "Aug-5 review E7 ('Yes - TBC') vs spec v30 silent. Label decision only; contingent on the "
+        "carryover button (Q5) existing.",
+        "A / B -> the chosen label is used when authoring the carryover case. C -> use his exact "
+        "words.",
+    ),
+    (
+        "Questions", "7 (NEW)",
+        "Schedule: for a multi-day shift, carryover should add ONE more day, not duplicate the "
+        "whole span.",
+        "RECONCILIATION.md E8 (DIVERGENCE / PO-Q; OUTSTANDING item 1). Spec v30 SILENT.",
+        "None - depends on E15 (Q5); no case authored (Rule 58).",
+        "—",
+        "Aug-5 review E8 ('Yes' - extend one day) vs spec v30 silent on carryover behaviour.",
+        "A -> author the carryover case to add exactly one day. B -> whole-span duplicate. C -> "
+        "re-scope.",
+    ),
+    (
+        "Questions", "8 (NEW)",
+        "Schedule: allow dragging a shift onto the next day directly in week view, as an "
+        "alternative to the carryover button.",
+        "RECONCILIATION.md E9 (DIVERGENCE / PO-Q; OUTSTANDING item 1). Spec v30 SILENT on week-view "
+        "cross-day drag as carryover (reassignment across tech rows IS covered separately).",
+        "None - no V1 case for week-view carryover-by-drag. Reassignment across tech rows is "
+        "covered by SCH-REAS-01 = C30052 (adjacent, not the same behaviour). Rule 58.",
+        f"{LINK}30052 (adjacent - drag reassign across tech rows, not cross-day carryover)",
+        "Aug-5 review E9 ('Yes') vs spec v30 - week-view cross-day drag is not a v30 requirement.",
+        "A -> author a week-view drag-to-next-day case. B -> carryover button only. C -> re-scope.",
+    ),
 ]
 
 QA_NOTES = [
-    "HELD, NOT SENT (Standing Rule 66): the question sheet is the LAST thing sent, on the QA "
-    "lead's word, once everything we can do ourselves on Filters and Schedule is finished. Nothing "
-    "on this sheet has been written to TestRail or Jira.",
-    "FEWEST QUESTIONS (task instruction): only genuine PRODUCT DECISIONS for the PO are on this "
-    "sheet - never bugs (Rule 7). Bugs/defects go to dev tickets, not to Branko.",
-    "SOURCE CURRENCY (Rule 31): the three items were reconciled against Filters spec Confluence "
-    "v21 (14 Aug 2026) and Schedule spec Confluence v30 during the 2026-08-17 Fabian-review passes. "
-    "THIS GENERATOR MADE NO LIVE CONFLUENCE READ - it consolidates already-established open items "
-    "and the sheet is HELD. OWED BEFORE SENDING (Rule 59): re-read both live spec versions and each "
-    "question's anchor immediately before the send, and re-verify none has been answered by a spec "
-    "edit in the meantime.",
+    "SEND STATUS: questions 1 to 3 were SENT to Branko on 2026-08-17 (per the QA lead). Questions "
+    "4 to 8 are NEW FOLLOW-UPS added 2026-08-18 and are HELD pending the QA lead sending them "
+    "(Standing Rule 66 - the question sheet is the last thing sent). A follow-up-only copy of the "
+    "five new questions is 'Filters-and-Schedule_Questions-for-Branko_FOLLOW-UP-5_2026-08-17.docx'. "
+    "Nothing on this sheet has been written to TestRail or Jira.",
+    "ONLY PRODUCT DECISIONS (Rule 7): only genuine PRODUCT DECISIONS for the PO are on this sheet "
+    "- never bugs. Bugs/defects go to dev tickets, not to Branko.",
+    "FOLLOW-UPS ADDED 2026-08-18 (questions 4-8): the five Schedule carryover / whole-WO-preference "
+    "items (E6, E15, E7, E8, E9) that the 5 August design review marked V1 but Schedule spec v30 "
+    "(13 Aug 2026) is SILENT on. Source: build/schedule/aug5-review-2026-08-17/RECONCILIATION.md "
+    "(OUTSTANDING items 1-2) + build/OUTSTANDING-ITEMS-REGISTER.md (Schedule / Branko, rows "
+    "SCH-A5-1..5). Not authored from silence (Rule 58); Branko's decision is what unblocks "
+    "authoring. Also tracked: whichever way he answers, only the QA lead sends the sheet.",
+    "SOURCE CURRENCY (Rule 31): the eight items were reconciled against Filters spec Confluence "
+    "v21 (14 Aug 2026) and Schedule spec Confluence v30 (13 Aug 2026) during the 2026-08-17 "
+    "Fabian-review and 2026-08-18 Aug-5-review passes. THIS GENERATOR MADE NO LIVE CONFLUENCE READ "
+    "- it consolidates already-established open items and the follow-ups are HELD. OWED BEFORE "
+    "SENDING (Rule 59): re-read both live spec versions and each question's anchor immediately "
+    "before the send, and re-verify none has been answered by a spec edit in the meantime.",
     "DELIBERATELY NOT ON THIS SHEET: (a) the Schedule shop-closures / multi-day-spread contradiction "
     "- ANSWERED by spec v30 (skip weekends only, closures receive shifts); cases already follow v30, "
     "so it is not a Branko question. (b) The greyed-vs-hidden question is the ONLY Filters "
     "tab-behaviour item still open - everything else the redesign changed is settled by spec v21. "
-    "(c) No open Global Search product decision was found in the current passes.",
+    "(c) Aug-5 review items already covered by spec v30 (E1-E5, E10-E12) or confirmed out-of-scope "
+    "(E13, E14, E16) are not questions - only the 5 divergences v30 is silent on are asked. "
+    "(d) No open Global Search product decision was found in the current passes.",
 ]
 
 
@@ -216,8 +380,9 @@ def _sheet_questions(wb):
     ws["A2"].alignment = WRAP
     ws.row_dimensions[2].height = 150
     r = 4
-    ws.cell(row=r, column=1, value="Three questions - please answer A / B / C or one line.").font = \
-        Font(bold=True)
+    ws.cell(row=r, column=1,
+            value="Eight questions - 1 to 3 already sent; 4 to 8 are new follow-ups. Please answer "
+                  "A / B / C or one line.").font = Font(bold=True)
     r += 1
     cols = ["#", "Which project and screen", "What happens now", "The question", "Options",
             "Your answer"]
@@ -291,14 +456,17 @@ def write_md():
 
 **Projects: Filters (epic SV-8785) and Schedule (epic SV-8685) · Product Owner: Branko Cicovic**
 
-*Three genuine product decisions left open after the 2026-08-17 filter-redesign reconciliation
-(Filters spec v21, Schedule spec v30). One sheet, per Standing Rule 55. The spreadsheet twin is
+*Eight genuine product decisions left open after the 2026-08-17 filter-redesign reconciliation
+(Filters spec v21, Schedule spec v30) and the 2026-08-18 Aug-5-design-review reconciliation. One
+sheet, per Standing Rule 55. The spreadsheet twin is
 `Filters-and-Schedule_Questions-for-Branko_2026-08-17.xlsx`; it carries a QA-only tab that must not
 be forwarded.*
 
-**DRAFT — WRITTEN AND HELD, NOT SENT (Standing Rule 66: the question sheet is the LAST thing sent,
-on the QA lead's word, once everything we can do ourselves is finished). Nothing has been written
-to TestRail or Jira.**
+**QUESTIONS 1 to 3 were SENT to Branko on 2026-08-17 (per the QA lead). QUESTIONS 4 to 8 are NEW
+FOLLOW-UPS added 2026-08-18, HELD pending the QA lead sending them (Standing Rule 66: the question
+sheet is the LAST thing sent). A follow-up-only copy of the five new questions, for easy sending, is
+`Filters-and-Schedule_Questions-for-Branko_FOLLOW-UP-5_2026-08-17.docx`. Nothing has been written to
+TestRail or Jira.**
 
 ---
 
@@ -306,7 +474,7 @@ to TestRail or Jira.**
 
 ---
 
-## The three questions
+## The questions
 
 {block(QUESTIONS)}
 

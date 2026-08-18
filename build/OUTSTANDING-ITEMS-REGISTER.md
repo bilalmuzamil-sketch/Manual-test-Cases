@@ -1,5 +1,44 @@
 # OUTSTANDING ITEMS REGISTER — everything we are waiting on, across every project
 
+## 🆕🆕🆕🆕 NEWEST — 2026-08-18, THE SCHEDULE AUG-5 DESIGN-REVIEW RECONCILIATION. **5 CARRYOVER / WHOLE-WO ITEMS THE REVIEW MARKED V1 BUT SPEC v30 IS SILENT ON — NOW ON BRANKO'S FOLLOW-UP SHEET (Qs 4-8), NOT AUTHORED FROM SILENCE.**
+
+Source: `build/schedule/aug5-review-2026-08-17/RECONCILIATION.md`. The 5 August design review
+(Fabian / Sasha; 3 bugs + 16 enhancements) was reconciled against the live Schedule suite (195
+cases) and Schedule spec Confluence **v30** (13 Aug 2026, read live). **Result: 0 gaps, 0 new cases,
+0 case edits** — the suite already reflects v30, which subsumes the review's V1 scope (every V1 item
+covered; every out-of-scope item confirmed absent). **The ONLY review "Yes"/TBC items not in the
+suite are 5 carryover / whole-WO items that spec v30 is entirely SILENT on** — so under Rule 32
+(newest authoritative source wins) they are not currently V1, and under Rule 58 we do not author from
+a silent source. They go to Branko as **follow-up questions 4-8** on the existing sheet
+(`build/filters/questions-2026-08-17/Filters-and-Schedule_Questions-for-Branko_2026-08-17.{xlsx,md,docx}`;
+follow-up-only copy `…_FOLLOW-UP-5_2026-08-17.docx`).
+
+**Status confirmations (Standing Rule 36):**
+- **PO question sheets SENT:** the **Chris Ward** sheet (2 Report Suite questions) and the **Branko**
+  Filters/Schedule sheet (**questions 1-3**) were **SENT on 2026-08-17** (per the QA lead). Branko
+  follow-up **questions 4-8** (the rows below) are **HELD pending the QA lead sending them**
+  (Standing Rule 66 — the question sheet is the last thing sent). Nothing written to TestRail or Jira.
+- **Jira ticket-creation hold ACTIVE:** row **H1** stands — *"Do not create anything until my next
+  order."* No Jira ticket was created this pass; the 5 items are **product decisions for the PO**, not
+  defects.
+- **Build-verify pending:** all **195** Schedule cases carry `Not available on Build to test Yet`
+  (Standing Rule 69). A fresh `.qa.shopview.com` sign-in is still owed (the estate-wide
+  `sv_sso_session` ask at the top of this file; Schedule row **SCH-FR-3**).
+
+| Row | What is missing | Who owes it | What it BLOCKS | Since |
+|---|---|---|---|---|
+| **SCH-A5-1** | **Branko decision (Q4)** — a user-level "always schedule the whole work order" preference (remember the choice so the scope picker stops asking whole-WO vs by-line each time). Aug-5 review E6 marks it V1 **and** an open question; spec v30 SILENT (0 hits). | Branko (PO) | Whether one preference case is authored — unauthored until answered (Rule 32 v30 wins / Rule 58 no inventing from silence). | 2026-08-05 (review) / raised 2026-08-18 |
+| **SCH-A5-2** | **Branko decision (Q5)** — restore the one-click "carryover" button (duplicates a scheduled block to the next day at the same time; present in the old scheduler, absent now). Aug-5 review E15; spec v30 SILENT on carryover entirely. | Branko (PO) | Whether carryover-button case(s) are authored. | 2026-08-05 / raised 2026-08-18 |
+| **SCH-A5-3** | **Branko decision (Q6)** — rename "Carryover" to "Add a Day" / "Extend a Day" (final wording TBC). Aug-5 review E7; spec v30 SILENT. Depends on SCH-A5-2. | Branko (PO) | The label used when the carryover case is authored. | 2026-08-05 / raised 2026-08-18 |
+| **SCH-A5-4** | **Branko decision (Q7)** — for a multi-day shift, carryover should add ONE more day, not duplicate the whole span. Aug-5 review E8; spec v30 SILENT. Depends on SCH-A5-2. | Branko (PO) | The behaviour asserted by the carryover case. | 2026-08-05 / raised 2026-08-18 |
+| **SCH-A5-5** | **Branko decision (Q8)** — allow dragging a shift onto the next day directly in week view (alternative to the carryover button). Aug-5 review E9; spec v30 SILENT (reassignment across tech rows is covered separately by SCH-REAS-01 / [C30052](https://shopview.testrail.io/index.php?/cases/view/30052)). | Branko (PO) | Whether a week-view drag-to-next-day case is authored. | 2026-08-05 / raised 2026-08-18 |
+
+*(The 3 review bugs are not outstanding: B1/SV-8915 closed OBSOLETE, B4/SV-8916 superseded-and-covered
+by SV-9242, B5/SV-8917 live and covered — recorded for the build-verify sync in
+`build/schedule/aug5-review-2026-08-17/KNOWN-FAILURES-FOR-SYNC-aug5review.md`.)*
+
+---
+
 ## 2026-08-17 — REPORT SUITE: Fabian design-review reconciliation (Adjustments + Estimates tooltip DONE; 7 Loom items STAGED)
 Source: `build/report-suite/fabian-review-2026-08-17/`. Specs re-read live (SBC v20 / SBR v22 / PV v10 / TU v9 / WIP v21 / IV v10). Authored **18 new Adjustments cases** (C43814–C43831, WIP+SBC+SBR, byte-verified) + updated **WIP-SUM-07 (C30493)** to the locked Estimates tooltip. Live group 4281 = ours **498** / foreign **12** (0 touched).
 - **RS-FB1 — Run-359 sync (GO-AHEAD needed):** the 18 new cases are not in run 359 (`include_all` false). Union-only sync needs explicit per-ask authorisation (Rule 34). *Blocks:* run under-reports coverage. Owner: QA lead. Since 2026-08-17.
