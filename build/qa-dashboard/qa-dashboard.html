@@ -179,6 +179,30 @@
     <div class="mwrap"><table class="matrix" id="lead"></table></div>
   </div>
 
+  <div class="eyebrow">🎫 Tickets created by each QA member</div>
+  <div class="card">
+    <p class="note">How many tickets each QA member <b>created</b> (they are the reporter), counted
+    by the day the ticket was created. <b>By week</b> shows one week at a time — a column per dated
+    day, Monday to Sunday, with the week's total on the right. <b>By month</b> compares this month
+    with the previous month. Counts every ticket type under the three epics; respects the member
+    &amp; epic filters. Dates are Pakistan time.</p>
+    <div class="mtabs" id="cw-modetabs">
+      <button class="mtab" data-mode="week" aria-pressed="true">By week</button>
+      <button class="mtab" data-mode="month" aria-pressed="false">By month</button>
+    </div>
+    <div class="f" id="cw-weekwrap" style="margin-bottom:12px;max-width:220px">
+      <label for="cw-week">Which week</label>
+      <select id="cw-week">
+        <option value="0" selected>This week</option>
+        <option value="1">Last week</option>
+        <option value="2">2 weeks ago</option>
+        <option value="3">3 weeks ago</option>
+        <option value="4">4 weeks ago</option>
+      </select>
+    </div>
+    <div class="mwrap"><table class="matrix" id="createdweek"></table></div>
+  </div>
+
   <div class="eyebrow">Snapshot for this selection</div>
   <div class="cards kpis" id="kpis"></div>
 
@@ -398,7 +422,8 @@ const inEpic = k => !state.e || KEP[k] === state.e;
 
 const $ = id => document.getElementById(id);
 const state = { q:"", e:"", from:PRESETS.week[0], to:PRESETS.week[1], y:"", s:"",
-                shown:60, qshown:60, metric:"done", sort:["up",-1] };
+                shown:60, qshown:60, metric:"done", sort:["up",-1],
+                cwMode:"week", cwWeek:0 };  // "Tickets created" table: mode + which-week offset
 function syncDates(){ $("fd1").value = state.from; $("fd2").value = state.to; }
 ["fd1","fd2"].forEach(id => { const el=$(id); el.min=DATA_MIN; el.max=ASOF; });
 
@@ -495,7 +520,85 @@ function render(){
   rejected.forEach(t=>{ (t.people.length?t.people:["(unattributed)"]).forEach(p=>pushQ("⚠ rejected: "+p,t)); });
   bars($("cqueue"), queueMix, "b");
 
-  renderProgress(); renderStoryProgress(); renderInprog(); renderNeeds(); renderQueue(); renderActivity(); renderPrimary(); renderMatrix(); renderTable();
+  renderProgress(); renderStoryProgress(); renderInprog(); renderNeeds(); renderQueue(); renderActivity(); renderCreatedWeek(); renderPrimary(); renderMatrix(); renderTable();
+}
+
+// "Tickets created by each QA member" — created-count per QA reporter, honoring the member+epic
+// filters. Two modes: BY WEEK (one week at a time, a column per dated day Mon..Sun + weekly total)
+// and BY MONTH (this month vs previous month totals). Dates use day() = the ticket's date-part,
+// the same convention every other section on the page uses, so the numbers reconcile.
+const DOW = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+function ymShift(ym, back){                 // "2026-08", n -> earlier "YYYY-MM"
+  let [y,m] = ym.split("-").map(Number); m -= back;
+  while (m<=0){ m+=12; y-=1; } return `${y}-${String(m).padStart(2,"0")}`;
+}
+function monthLabel(ym){ return new Date(ym+"-01T12:00:00Z")
+  .toLocaleDateString("en-GB",{month:"long",year:"numeric",timeZone:"UTC"}); }
+function createdBase(){                       // QA-reported tickets under the member+epic filter
+  return T.filter(t => t.rep && QA.includes(t.rep)
+    && (!state.q || t.rep===state.q)
+    && (!state.e || (t.ep||"NONE")===state.e));
+}
+function cwRows(){ return state.q ? QA.filter(p=>p===state.q) : QA; }
+function renderCreatedWeek(){
+  const wrap = $("cw-weekwrap");
+  if (wrap) wrap.style.display = state.cwMode==="month" ? "none" : "";
+  $("cw-modetabs").querySelectorAll(".mtab").forEach(b =>
+    b.setAttribute("aria-pressed", String(b.dataset.mode===state.cwMode)));
+  return state.cwMode==="month" ? renderCreatedMonth() : renderCreatedWeekly();
+}
+function renderCreatedWeekly(){
+  const tix = createdBase();
+  // Monday of the selected week: this-week Monday, shifted back by cwWeek weeks.
+  const mondayOffset = (A.getUTCDay()+6)%7 + 7*state.cwWeek;
+  const monday = daysAgo(mondayOffset);
+  const dates = Array.from({length:7}, (_,i)=> iso(new Date(new Date(monday+"T12:00:00Z").getTime()+i*864e5)));
+  const dset = {}; dates.forEach((d,i)=>dset[d]=i);
+  const rows = cwRows();
+  const cells = {}; rows.forEach(p=>cells[p]=[0,0,0,0,0,0,0]);
+  const colTot = [0,0,0,0,0,0,0];
+  tix.forEach(t=>{ const i=dset[day(t.cr)]; if(i!==undefined && cells[t.rep]){ cells[t.rep][i]++; colTot[i]++; } });
+  const span = `${fmtShort(dates[0])} – ${fmtShort(dates[6])}`;
+  let max=1; rows.forEach(p=>cells[p].forEach(v=>{ if(v>max)max=v; }));
+  let h = `<tr><th style="text-align:left">QA member</th>`
+    + dates.map((d,i)=>`<th>${DOW[i]}<br><span style="font-weight:400;color:var(--muted)">${fmtShort(d)}</span></th>`).join("")
+    + `<th class="tot">Total<br><span style="font-weight:400;color:var(--muted)">${esc(span)}</span></th></tr>`;
+  const ordered = rows.map(p=>[p,cells[p],cells[p].reduce((a,b)=>a+b,0)]).sort((a,b)=>b[2]-a[2]);
+  ordered.forEach(([p,arr,tot])=>{
+    h += `<tr><td class="ep">${esc(p)}</td>`
+      + arr.map(v=>{ const op=v?(0.12+0.55*v/max).toFixed(2):0;
+          return `<td><span class="cell" style="background:rgba(var(--cellmax),${op})">${v||"·"}</span></td>`; }).join("")
+      + `<td class="tot">${tot||"·"}</td></tr>`;
+  });
+  const grand = colTot.reduce((a,b)=>a+b,0);
+  h += `<tr><td class="ep" style="font-weight:650">All QA</td>`
+    + colTot.map(v=>`<td style="font-weight:650">${v||"·"}</td>`).join("")
+    + `<td class="tot">${grand||"·"}</td></tr>`;
+  $("createdweek").innerHTML = h;
+}
+function renderCreatedMonth(){
+  const tix = createdBase();
+  const thisYm = ASOF.slice(0,7), prevYm = ymShift(thisYm,1);
+  const rows = cwRows();
+  const cells = {}; rows.forEach(p=>cells[p]=[0,0]);
+  let ct=0, cp=0;
+  tix.forEach(t=>{ const ym=day(t.cr).slice(0,7); if(!cells[t.rep]) return;
+    if(ym===thisYm){ cells[t.rep][0]++; ct++; } else if(ym===prevYm){ cells[t.rep][1]++; cp++; } });
+  let max=Math.max(1,ct,cp,...rows.flatMap(p=>cells[p]));
+  const cell=v=>{ const op=v?(0.12+0.55*v/max).toFixed(2):0;
+    return `<td><span class="cell" style="background:rgba(var(--cellmax),${op})">${v||"·"}</span></td>`; };
+  let h = `<tr><th style="text-align:left">QA member</th>`
+    + `<th>${esc(monthLabel(thisYm))}<br><span style="font-weight:400;color:var(--muted)">this month</span></th>`
+    + `<th>${esc(monthLabel(prevYm))}<br><span style="font-weight:400;color:var(--muted)">previous month</span></th>`
+    + `<th class="tot">Total</th></tr>`;
+  const ordered = rows.map(p=>[p,cells[p]]).sort((a,b)=>(b[1][0]+b[1][1])-(a[1][0]+a[1][1]));
+  ordered.forEach(([p,arr])=>{
+    h += `<tr><td class="ep">${esc(p)}</td>${cell(arr[0])}${cell(arr[1])}<td class="tot">${(arr[0]+arr[1])||"·"}</td></tr>`;
+  });
+  h += `<tr><td class="ep" style="font-weight:650">All QA</td>`
+    + `<td style="font-weight:650">${ct||"·"}</td><td style="font-weight:650">${cp||"·"}</td>`
+    + `<td class="tot">${(ct+cp)||"·"}</td></tr>`;
+  $("createdweek").innerHTML = h;
 }
 
 // Two follow-up tables (both prebuilt in DATA.tables, both "less than Done"):
@@ -824,6 +927,10 @@ $("ft").onchange=e=>{
   if (f>t) [f,t]=[t,f];
   state.from=f; state.to=t; $("ft").value="custom"; state.shown=60; render(); });
 $("fs").oninput=e=>{ state.s=e.target.value.trim(); renderTable(); };
+// "Tickets created" table controls — local to that card, they re-render only it.
+$("cw-modetabs").querySelectorAll(".mtab").forEach(b=>b.onclick=()=>{
+  state.cwMode=b.dataset.mode; renderCreatedWeek(); });
+$("cw-week").onchange=e=>{ state.cwWeek=+e.target.value; renderCreatedWeek(); };
 $("freset").onclick=()=>{ state.q=state.y=state.s=""; state.shown=60; applyDefaultEpic();
   ["fq","fy"].forEach(i=>$(i).value=""); $("fs").value=""; render(); };
 

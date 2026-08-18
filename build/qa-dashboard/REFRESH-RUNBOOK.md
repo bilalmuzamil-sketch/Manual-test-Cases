@@ -179,6 +179,12 @@ QA_TEAM set lives at the top of gen_data.py — keep it in sync with the roster.
   empty-state hints the user to switch the Epic filter.
 
 ## Template-only features (no data step — automatic once `dash-data.json` is built)
+- **"Tickets created by each QA member" table** (`renderCreatedWeek`): counts tickets by their QA
+  reporter, from `t.rep`/`t.cr` already in the data — no extra pull. Two modes: **By week** (one
+  week at a time, a dated column per day Mon–Sun + weekly total, with a which-week picker for this
+  week back to 4 weeks ago) and **By month** (this month vs previous month totals). Respects the
+  member + epic filters; uses `day(t.cr)` like every other section so it reconciles with the
+  leaderboard.
 - **Issue-type breakdown tooltips**: hovering any count (KPI cards, per-member bars, coverage
   bar, Epic×member matrix cells + totals, leaderboard) shows its composition by issue type,
   e.g. "71 total · 45 Bug, 15 Story Defect, 9 Task…". Built from `t.ty`; nothing to compute.
