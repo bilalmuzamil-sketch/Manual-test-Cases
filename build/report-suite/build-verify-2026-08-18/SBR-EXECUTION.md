@@ -52,3 +52,42 @@ not re-read this pass). Body byte-identical.
 | C43839 | Visual Conformance | 200 | ✅ | 1 |
 
 _(further batches appended below as executed)_
+
+### Batch 2 — EXPECT-FAIL → `AUTOMATION: READY` (21 cases, 19 plain-text + 2 raw-HTML C30277/C30279)
+Symptom + three-outcome block stripped; body's numbered expectations kept verbatim; Rule-54 sentence-2
+build-check added; marker → plain `READY`. Ticket backing removed because it is no longer live-backed
+(Rule 61 §15.1). Adjudication of each ticket vs the live build is in SBR-FINDINGS.md.
+
+| C-id | ticket | ticket status | live verdict | HTTP | byte_ok |
+|---|---|---|---|---|---|
+| C30218 | SV-9001 | OBSOLETE/Done | fixed/closed | 200 | ✅ |
+| C30225 | SV-8974 | OBSOLETE/Done | closed (not deep-driven) | 200 | ✅ |
+| C30229 | SV-8999 | OBSOLETE/Done | **FIXED live** (Labor Delta shows real signed values, not 0.0) | 200 | ✅ |
+| C30230 | SV-8999 | OBSOLETE/Done | FIXED live | 200 | ✅ |
+| C30231 | SV-8999 | OBSOLETE/Done | FIXED live | 200 | ✅ |
+| C38894 | SV-8999 | OBSOLETE/Done | FIXED live | 200 | ✅ |
+| C30237 | SV-8977 | OBSOLETE/Done | FIXED (Totals row present, Subtotal rightmost) | 200 | ✅ |
+| C30238 | SV-8977 | OBSOLETE/Done | FIXED | 200 | ✅ |
+| C30239 | SV-8978 | OBSOLETE/Done | closed (mobile, not deep-driven) | 200 | ✅ |
+| C30273 | SV-8976 | OBSOLETE/Done | closed (persistence edge, not driven) | 200 | ✅ |
+| C30281 | SV-8982 | OBSOLETE/Done | filename now includes range word (current behaviour) | 200 | ✅ |
+| C30285 | SV-8880 | OBSOLETE/Done | FIXED (Summary CSV has all 10 columns) | 200 | ✅ |
+| C30286 | SV-8972 | OBSOLETE/Done | FIXED (Expanded CSV column order correct) | 200 | ✅ |
+| C30293 | SV-8983 | OBSOLETE/Done | closed (assignments export endpoint not located) | 200 | ✅ |
+| C30298 | SV-8973 | OBSOLETE/Done | **STILL REPRODUCES** (empty-state wording) — FLAGGED | 200 | ✅ |
+| C30304 | SV-8979 | OBSOLETE/Done | closed (touch-target px, not measured) | 200 | ✅ |
+| C30305 | SV-8980 | OBSOLETE/Done | closed (table colour, not measured) | 200 | ✅ |
+| C30307 | SV-8975 | OBSOLETE/Done | **STILL REPRODUCES** (aria-labels) — FLAGGED | 200 | ✅ |
+| C30287 | SV-8823 | TESTING QA (open) | **FIXED live** (CSV money plain numbers) — FLAGGED for close | 200 | ✅ |
+| C30277 | SV-8925 | OBSOLETE/Done | FIXED (CSV plain numbers) + raw-HTML repaired | 200 | ✅ |
+| C30279 | SV-8981 | OBSOLETE/Done | A3-paper aspect still reproduces (see FINDINGS) + raw-HTML repaired | 200 | ✅ |
+
+### LEFT UNCHANGED — EXPECT-FAIL kept (2 cases, SV-8818 still OPEN + state not reachable)
+| C-id | ticket | why unchanged |
+|---|---|---|
+| C30290 | SV-8818 (TESTING QA) | over-cap Expanded PDF refusal needs > row-cap rows; only 88 invoices exist — state not reachable this pass; base PDF exports return HTTP 200. Marker left as EXPECT-FAIL(SV-8818). |
+| C30320 | SV-8818 (TESTING QA) | API row-cap enforcement needs > cap rows; not reachable at 88 invoices. Marker unchanged. |
+
+**Raw-HTML repairs (3): C30277, C30278, C30279** — converted TestRail-rendered `<ol>/<li>/<hr>/<p>/<a>/<br>`
+back to house plain text (formatting only, text word-for-word; demark.py, 0 leftover tags, re-GET confirms
+0 raw markup). C30278 is a deferred-lift; C30277/C30279 are expect-fail strips.
