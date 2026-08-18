@@ -53,3 +53,28 @@ case; all 8 byte-unchanged (updated_on identical to pre-pass).
 
 The 26 PV cases this pass DID write are all `custom_atmstatus = 1` (Not Automated) — nothing an automated
 suite runs against changed.
+
+---
+
+# Technician Utilization (TU) — build-verify 2026-08-18, build v3.8-bd246fd
+
+**AUTOMATED TU cases changed by this pass: NONE.**
+
+All 8 TU cases flagged Automated (`custom_atmstatus = 3`) were **HELD, verified live, and NOT written**
+(per this pass's instruction + Standing Rule 71 ask-first): C30398, C30399, C30401, C30404, C30410,
+C30424, C30429, C30449. They are recorded with their live verdict and intended change in
+`TU-HELD-AUTOMATED.md` for the QA lead's ask-first ratification. `custom_atmstatus = 3` confirmed live per
+case; all 8 byte-unchanged (never passed to the writer).
+
+**Intended changes awaiting ratification (would affect what an automated run concludes):**
+- **C30424** (TU-TECH-02) → strip stale `EXPECT FAIL (SV-8946)` → `AUTOMATION: READY` (SV-8946 OBSOLETE;
+  deselect hides row + recalcs Summary — verified correct live).
+- **C30429** (TU-LINK-02) → **needs review, do NOT auto-keep READY** — the Total Hours link feature is
+  ABSENT from the build (TU-FINDINGS §F7), so this case asserts a feature that is not there; it likely
+  should be `Not available on Build to test Yet`.
+
+The other six (C30398 HOLD-valid, C30399, C30401, C30404, C30410, C30449) are correctly marked; only a
+metadata build-check stamp was withheld.
+
+The 42 TU cases this pass DID write are all `custom_atmstatus = 1` (Not Automated) — nothing an automated
+suite runs against changed.

@@ -57,3 +57,36 @@ go to a separate deferred build-verification run.
 (HTTP 500/502)** on a medium view (SV-8818, OPEN). That is a defect in a built feature, not an absent
 feature, so its cases (C38885/C43547 kept EXPECT-FAIL; PDF-content cases C30379/C30381/C43834) are NOT
 deferred here — see PV-FINDINGS §F5.
+
+---
+
+# Technician Utilization (TU) — 2026-08-18, build v3.8-bd246fd
+
+## 4 TU cases deferred — the Total Hours LINK feature is NOT in the build.
+
+The Technician Utilization report and nearly all of its features ARE present on v3.8-bd246fd (see
+TU-EXECUTION.md). **ONE feature is not found in the build: the Total Hours link** (a real link on the
+Total Hours cell that opens Timesheet Activities). The Total Hours cell carries no link/button/`role=link`
+in any location scope tested — All locations and the single active shop (TU-FINDINGS §F7). The four cases
+that test that link therefore could not be build-verified and stay deferred (`Not available on Build to
+test Yet - Last checked 8/18/2026`, under-development line added). They are re-checked once the Total
+Hours link ships (the trigger is the feature shipping, not a redeploy — Rule 49/61).
+
+| internal | C-id | link | feature it waits on | last checked | build |
+|---|---|---|---|---|---|
+| TU-LINK-01 | C30428 | https://shopview.testrail.io/index.php?/cases/view/30428 | Total Hours as a real link (active-shop default view) | 8/18/2026 | v3.8-bd246fd |
+| TU-LINK-03 | C30430 | https://shopview.testrail.io/index.php?/cases/view/30430 | Total Hours link ↔ Timesheet reconciliation | 8/18/2026 | v3.8-bd246fd |
+| TU-LINK-05 | C30432 | https://shopview.testrail.io/index.php?/cases/view/30432 | reconciliation exception (b) — link passes no location | 8/18/2026 | v3.8-bd246fd |
+| TU-LINK-06 | C30433 | https://shopview.testrail.io/index.php?/cases/view/30433 | day-row Total Hours link → single-day timesheet | 8/18/2026 | v3.8-bd246fd |
+
+**Note — C30430 (TU-LINK-03)** previously carried `EXPECT FAIL (SV-8944)`. SV-8944 is OBSOLETE/Done (no
+live backing), so the stale expect-fail was stripped; because the case's feature (the link) is absent, it
+was set to the deferred marker rather than plain READY.
+
+**NOT deferred, but LINK-related:** TU-LINK-02 (C30429) is **Automated** — HELD (TU-HELD-AUTOMATED.md),
+its READY marker flagged for review since the link is absent; TU-LINK-04 (C30431) stays HOLD (needs an
+open clock, and the link is absent anyway).
+
+**Feature that is PRESENT but has open defects, NOT deferred:** the exports (Summary row omitted from
+PDF/CSV, Expanded CSV holds per-day rows, wrong toast wording, Location column 2nd not leftmost) are
+built-but-deviating — see TU-FINDINGS §F3/§F4/§F8/§F9; their cases were stripped to READY, not deferred.

@@ -93,3 +93,57 @@ The redeploy happened AFTER all SBC observations and update_case writes were com
 | 26 | C30391 | restamp | 200 | ✅ | 1 |
 
 **All 26 ops verified live post-write in the full-72 census (0 anomalies).** Run 359 untouched — only `update_case` called, no run/result writes, include_all still False, 508 tests unchanged. 0 Jira writes (GET only).
+
+
+---
+
+## Technician Utilization (TU) — testrail-execution-log, 2026-08-18, build v3.8-bd246fd
+
+42 `update_case` ops, all three text fields sent, re-GET byte-compared field-by-field (Rule 50). All HTTP 200 + byte-verified MATCH + custom_atmstatus=1. 0 mismatches, 0 collateral changes. Executor /tmp/tu/writer.py.
+
+| # | C-id | mode | HTTP | byte_ok | atm |
+|---|---|---|---|---|---|
+| 1 | C30394 | strip | 200 | ✅ | 1 |
+| 2 | C30450 | strip | 200 | ✅ | 1 |
+| 3 | C30435 | strip | 200 | ✅ | 1 |
+| 4 | C30436 | strip | 200 | ✅ | 1 |
+| 5 | C30437 | strip | 200 | ✅ | 1 |
+| 6 | C30438 | strip | 200 | ✅ | 1 |
+| 7 | C30440 | strip | 200 | ✅ | 1 |
+| 8 | C30441 | strip | 200 | ✅ | 1 |
+| 9 | C43552 | strip | 200 | ✅ | 1 |
+| 10 | C38915 | strip | 200 | ✅ | 1 |
+| 11 | C30425 | strip | 200 | ✅ | 1 |
+| 12 | C30418 | strip | 200 | ✅ | 1 |
+| 13 | C30421 | strip | 200 | ✅ | 1 |
+| 14 | C43835 | defer2ready | 200 | ✅ | 1 |
+| 15 | C38887 | ef2hold | 200 | ✅ | 1 |
+| 16 | C30430 | ef2defer | 200 | ✅ | 1 |
+| 17 | C30428 | defer_update | 200 | ✅ | 1 |
+| 18 | C30432 | defer_update | 200 | ✅ | 1 |
+| 19 | C30433 | defer_update | 200 | ✅ | 1 |
+| 20 | C30392 | restamp | 200 | ✅ | 1 |
+| 21 | C30393 | restamp | 200 | ✅ | 1 |
+| 22 | C30395 | restamp | 200 | ✅ | 1 |
+| 23 | C30396 | restamp | 200 | ✅ | 1 |
+| 24 | C30397 | restamp | 200 | ✅ | 1 |
+| 25 | C38859 | restamp | 200 | ✅ | 1 |
+| 26 | C30419 | restamp | 200 | ✅ | 1 |
+| 27 | C30420 | restamp | 200 | ✅ | 1 |
+| 28 | C30422 | restamp | 200 | ✅ | 1 |
+| 29 | C30406 | restamp | 200 | ✅ | 1 |
+| 30 | C30434 | restamp | 200 | ✅ | 1 |
+| 31 | C30402 | restamp | 200 | ✅ | 1 |
+| 32 | C30403 | restamp | 200 | ✅ | 1 |
+| 33 | C30442 | restamp | 200 | ✅ | 1 |
+| 34 | C30409 | restamp | 200 | ✅ | 1 |
+| 35 | C30412 | restamp | 200 | ✅ | 1 |
+| 36 | C30414 | restamp | 200 | ✅ | 1 |
+| 37 | C30415 | restamp | 200 | ✅ | 1 |
+| 38 | C30416 | restamp | 200 | ✅ | 1 |
+| 39 | C30417 | restamp | 200 | ✅ | 1 |
+| 40 | C30423 | restamp | 200 | ✅ | 1 |
+| 41 | C30447 | restamp | 200 | ✅ | 1 |
+| 42 | C30448 | restamp | 200 | ✅ | 1 |
+
+**All 42 ops verified live post-write in the full-61 census (0 anomalies: 1 marker, 1 provenance, 0 raw markup each).** Marker split after the pass: READY 49 · HOLD 7 · EXPECT-FAIL 1 (held Automated C30424) · Not-available 4. Gate: 49 + 1 = 50 = 61 − 7 − 4. Run 359 untouched — only `update_case` called, no run/result writes, include_all still False, 508 tests / 6 passed / 502 untested unchanged. 0 Jira writes (GET only). Build marker byte-stable v3.8-bd246fd (last-mod 19:57:31 GMT, etag c4dd352f91ecfee192844c6a04a643fc) across pass start 21:22:16Z and end 21:51:10Z.
