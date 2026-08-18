@@ -1,0 +1,22 @@
+Chris Ward — Report Suite / Work In Progress — nightly-snapshot granularity follow-up
+Answered 2026-08-18 (authoritative newest source, Standing Rule 32)
+
+QUESTION (follow-up from the Q2 = B ruling): does "WIP is a sum of lines, not work orders"
+change the nightly-snapshot granularity — should the snapshot record per-line-state / per-bucket
+rows rather than per-work-order rows?
+
+CHRIS WARD'S ANSWER (verbatim):
+
+"Per job-per-state — one row per work order per tab per day. That's the grain that reconciles with
+the report: a job's lines can sit in more than one state, and the job shows its slice in each
+matching tab, so a single per-job row (one Earned/Remaining) can't represent that split."
+
+CONSEQUENCE (recorded, not invented):
+- The nightly snapshot grain is one row per work order PER TAB per calendar date. A work order whose
+  approved lines fall in more than one tab is captured as one row for each matching tab, each row
+  holding only that tab's share of the money.
+- This supersedes the older grain "one row per work order per calendar date" (WIP spec S11-R1 at
+  version 21), which our case WIP-API-01 (C30528) asserted.
+- Chris applied this ruling to the specification himself: WIP Confluence page 703660034 was published
+  as version 22 on 2026-08-18T17:01:44Z with the change message "Story 11 snapshot grain -> per work
+  order per tab (Bilal Q)"; S11-R1 and S11-R2 at v22 now encode the per-work-order-per-tab grain.
