@@ -6609,6 +6609,62 @@ deliver the 7-tab management report.
       case, but re-verifying is not the same as CHANGING content), 54 (the provenance line is the
       metadata layer this refers to), 60 (plain `READY` is build-independent and survives a re-stamp), 61
       (the marker family) and this rule (69).
+    **⇒ DATED ADDITION, 2026-08-18 (QA lead, EXPLICIT DIRECTIVE TO RECORD — Rule 72's "propose before
+    recording" is satisfied because he asked for it in his own words) — THE TREATMENT FOR A PROJECT
+    DEPLOYED TO STAGING WHOSE FEATURES ARE NOT YET ALL COMPLETE. This is the state the upcoming
+    SCHEDULE build-verification will use, and it applies to ANY FUTURE PROJECT in the same state.**
+    USER DIRECTIVE (2026-08-18, verbatim, his typing preserved exactly because Rule 25 applies to his
+    instructions as it does to a spec): *"save it in your skills and rules about how to treat the test
+    cases for a project whose features are not yet complete."* He gave this while authorising Schedule
+    build-verification next — Schedule is now on staging, some of its features may not be complete, and
+    those cases are treated exactly the way the Report Suite SBC/SBR build-verify passes already
+    treated similar cases.
+    **BUILD-VERIFY IS A PROJECT-LEVEL STATE, NOT ONLY A PER-CASE ONE.** When a project's build is on
+    staging but some features are still under development, you STILL build-verify EVERY case by LIVE
+    OBSERVATION. **JUDGE BY LIVE OBSERVATION, NEVER BY JIRA STORY STATUS** — devs frequently leave a
+    story "Open" while the feature is in fact built, and conversely a feature you cannot find in the
+    build is treated as not-yet-developed. **Live observation is the arbiter; the story field is not**
+    (this is Rule 60's layer-1/2 logic — a verdict rests on the build, never on the ticket).
+    **THE PER-CASE OUTCOMES — THREE:**
+    **(1) FEATURE PRESENT + case runs / passes** → `AUTOMATION: READY`. Correct any cosmetic label or
+    route drift so the case is build-accurate (Rule 9 cosmetic-vs-substantive), and add or refresh the
+    Rule-54 provenance **sentence 2** *"Last checked against build <marker> on <date>."* (sentence 1
+    stays documents-only).
+    **(2) FEATURE PRESENT + a genuine deviation** → record it with live evidence. If a **LIVE OPEN
+    ticket** backs it → `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` with the Rule-61 symptom +
+    three-outcome block. If **NO live-backed ticket** (closed / obsolete / none) → **flag the defect in
+    the findings with evidence + a recommendation, FILE NO Jira ticket** (creation is on the QA lead's
+    hold, Rule 62), and set the case to **plain `AUTOMATION: READY`** — a stale EXPECT-FAIL marker has
+    no live backing (Rule 61's 2026-08-11 amendment, skill §15.1).
+    **(3) FEATURE NOT FOUND IN THE BUILD** → treated as **NOT-YET-DEVELOPED — neither a fail nor a
+    pass; it is EVIDENCE OF ABSENCE, recorded** (never inferred, Rule 12; a "not found" is a
+    measurement only if a probe that could fire found nothing — the probes-that-cannot-fail
+    discipline). **KEEP the case's `AUTOMATION: Not available on Build to test Yet` marker, update its
+    date to the day checked, and add — BELOW the sources, after a line break — this exact tester-facing
+    line (generalise the date; keep the wording):** *"This test case could not be build-verified on
+    <M/D/YYYY> because the feature it tests was not found in the build yet — the related story is still
+    under development. It will be re-checked in the separate build-verification run once the feature
+    ships."* **Then LOG the case to a SEPARATE deferred build-verification run list — a local
+    `DEFERRED-RUN.md` per project, NOT a new TestRail run object** — to be re-checked when staging
+    redeploys or the devs confirm the feature shipped.
+    **THE STANDING RE-CHECK TRIGGER FOR THIS POPULATION IS THE FEATURE SHIPPING, NOT A REDEPLOY ALONE
+    (Rule 49 / Rule 60(b)).** The deferred cases are re-checked on a later build-verification run once
+    the feature ships — and only then is the marker lifted to `READY` (or `READY - EXPECT FAIL` on a
+    live-backed failure).
+    **AUTOMATED CASES (`custom_atmstatus = 3`) ARE HELD, NOT WRITTEN, DURING ANY SUCH PASS (Rule 71).**
+    Verify them live, record the intended change, and put it to the QA lead for ask-first ratification —
+    the edit is batched into the coupled build-verify pass, never made on a documents-only run.
+    **MARKER DISCIPLINE IS UNCHANGED (Rule 69 above):** the deferred marker substitutes for a plain
+    `AUTOMATION: READY` marker **ONLY** — it never overwrites an existing `READY - EXPECT FAIL
+    (SV-xxxx)` or `HOLD` marker; and a **metadata-only re-stamp keeps the existing marker** (the
+    testable-content refinement above).
+    Ties to Standing Rules 49 (the deferred / re-check queue — its trigger is the thing it waits on,
+    not a deploy), 54 (sentence 2 records the build actually checked; sentence 1 stays documents-only),
+    57 (the expectation still comes from the documents whatever the build's readiness), 60 (build-verified
+    vs not; live observation over story status; layers 1–2), 61 (the marker family; a stale expect-fail
+    has no backing), 62 (nothing is filed while the creation hold stands), 69 (the deferred marker and
+    its substitution / metadata rules) and 71 (Automated cases held). Operator form:
+    `build/skills/03-RUN-CHECK.md` § "Project whose features are not yet complete".
 70. **COMMUNICATE WITH THE QA LEAD CLEARLY: ACTION-FIRST, PLAIN-LANGUAGE, TABLE-FORM — tell him
     EXACTLY what to DO and help him UNDERSTAND what each item is (all projects, every communication).**
     USER DIRECTIVE (2026-08-17, verbatim, two messages): *"Please whenever you communicate with me

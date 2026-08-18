@@ -527,6 +527,73 @@ reverting their markers because content was untouched — a correction, not a co
 
 ---
 
+# 7 · PROJECT WHOSE FEATURES ARE NOT YET COMPLETE (Standing Rule 69, dated addition 2026-08-18)
+
+**QA lead, verbatim (2026-08-18): *"save it in your skills and rules about how to treat the test cases
+for a project whose features are not yet complete."*** This is the state the **upcoming SCHEDULE
+build-verification** will use — Schedule is now on staging and some of its features may not be built —
+and it applies to **any future project in the same state.** It is exactly how the Report Suite SBC/SBR
+build-verify passes already treated similar cases.
+
+### 7.1 🔑 BUILD-VERIFY IS A PROJECT-LEVEL STATE, AND LIVE OBSERVATION — NOT JIRA STORY STATUS — IS THE ARBITER
+
+**When a project's build is on staging but some features are still under development, you STILL
+build-verify EVERY case by LIVE OBSERVATION.** **Do NOT gate on Jira story status.** Devs frequently
+leave a story `Open` while the feature is in fact **built**; and a feature you **cannot find** in the
+build is treated as **not-yet-developed** — even if its story is closed. **The build is the arbiter of
+what exists; the ticket never is** (core §11.2, §6.2 layers 1–2). This is the same discipline as §2
+above: **prove the detector can fire before you conclude a feature is absent** — a false absence here
+becomes a wrong *"not developed"* verdict.
+
+### 7.2 THE PER-CASE DECISION TABLE
+
+| What live observation shows | Marker & action |
+|---|---|
+| **Feature PRESENT + case runs / passes** | **`AUTOMATION: READY`.** Correct cosmetic label/route drift so the case is build-accurate (§ cosmetic-vs-substantive). Add / refresh Rule-54 **sentence 2** *"Last checked against build `<marker>` on `<date>`."* (sentence 1 stays documents-only). |
+| **Feature PRESENT + genuine deviation, backed by a LIVE OPEN ticket** | **`AUTOMATION: READY - EXPECT FAIL (SV-xxxx)`** with the §6.3 symptom + three-outcome block. |
+| **Feature PRESENT + genuine deviation, NO live-backed ticket** (closed / obsolete / none) | **Flag the defect in `FINDINGS.md` with live evidence + a recommendation. FILE NO Jira ticket** (creation is on the QA lead's hold — skill `06` / core §11.1). Set the case to **plain `AUTOMATION: READY`** — a stale EXPECT-FAIL marker has no live backing (§ above / core §15.1). |
+| **Feature NOT FOUND in the build** | **NOT-YET-DEVELOPED — neither fail nor pass; EVIDENCE OF ABSENCE, recorded** (never inferred; a "not found" counts only if a probe that *could* fire found nothing — §2). **KEEP** the `AUTOMATION: Not available on Build to test Yet` marker, **update its date to the day checked**, add the under-development line below (7.3), and **log the case to `DEFERRED-RUN.md`** (7.4). |
+
+**Automated cases (`custom_atmstatus = 3`) are HELD, not written, during any such pass (§5.4, §6.4,
+Rule 71).** Verify them live, record the intended change, and put it to the QA lead for ask-first
+ratification — the edit is **batched into the coupled build-verify pass** (§6.4), never made on a
+documents-only run.
+
+**Marker discipline is unchanged (§6.4 corollary):** the deferred marker substitutes for a **plain
+`AUTOMATION: READY`** marker **ONLY** — it never overwrites an existing `READY - EXPECT FAIL (SV-xxxx)`
+or `HOLD` marker; and a **metadata-only re-stamp keeps the existing marker.**
+
+### 7.3 THE EXACT UNDER-DEVELOPMENT LINE (feature not found in the build)
+
+For a case whose feature is not in the build, add — **BELOW the sources, after a line break** — this
+tester-facing line, generalising the date and keeping the wording:
+
+> *"This test case could not be build-verified on `<M/D/YYYY>` because the feature it tests was not
+> found in the build yet — the related story is still under development. It will be re-checked in the
+> separate build-verification run once the feature ships."*
+
+The `AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>` marker still goes **LAST**
+(after the Rule-54 provenance line, blank line before and after).
+
+### 7.4 THE SEPARATE DEFERRED BUILD-VERIFICATION RUN LIST — `DEFERRED-RUN.md`, NOT A TESTRAIL RUN
+
+Log every "feature not found" case to a **local `DEFERRED-RUN.md` in this pass's folder** — one row per
+case (internal ID + C-id + link, the feature/story it waits on, the date last checked, the build
+marker). **It is a local list, NOT a new TestRail run object.** These cases are **re-checked when
+staging redeploys or the devs confirm the feature shipped** — **the standing re-check trigger for this
+population is THE FEATURE SHIPPING, not a redeploy alone** (§6.1, core §16 Rule 49). On that later run
+the marker is lifted to `READY` (or `READY - EXPECT FAIL (SV-xxxx)` on a live-backed failure) via the
+§6.4 hand-off, and Automated cases are ratified with Vlad.
+
+**Ties:** core §11.1 (the ticket-creation hold — nothing filed), core §16 / Rule 49 (the re-check
+queue), Rule 54 (sentence 2 records the build actually checked), Rule 57 (the expectation still comes
+from the documents whatever the build's readiness), Rule 60 (build-verified vs not; live observation
+over story status), Rule 61 (the marker family; a stale expect-fail has no backing), Rule 69 (the
+deferred marker + substitution/metadata rules), Rule 71 (Automated cases held). Recorded at the tail of
+Standing Rule 69 in `CLAUDE.md`.
+
+---
+
 # THE STEPS
 
 1. **Core §0 pass-start checklist**, then **record the BUILD MARKER**: `<meta name="app-version">`,
