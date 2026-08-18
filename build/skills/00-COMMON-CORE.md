@@ -338,6 +338,20 @@ step 7, which separates *unsourceable* from *a traceability gap* from *open with
 construction, how many were read, and the verdict on each. **Saying "0 material changes, nothing to
 re-audit" is a valid outcome; omitting the file is not.**
 
+### 2.11 🛑 AUDIT FROM LIVE, NEVER FROM A SELF-REPORT (Standing Rule 50, added 2026-08-17/18)
+
+**When auditing whether cases were changed — or in ANY after-the-fact verification — establish the
+truth from LIVE TestRail plus the git history of the case source, NEVER from a worker's own summary or
+oplog self-report.** A pass's own account of what it did is a **hypothesis**, not evidence — the same
+principle skill `08` runs on, one step earlier. **This is §2.5's "verify by content, not by
+`updated_on`" extended to a pass's own claims.**
+
+**THE SCAR:** the 2026-08-17 Automated-marker audit found a prior pass's **"FOR VLAD: None"**
+self-report was **WRONG** — it had in fact edited **two `custom_atmstatus == 3` (Automated) cases**;
+**live verification caught it.** A self-report trusted there would have starved the Rule-65 tell-Vlad
+report and left the automation engineer debugging our edit. **Read the live cases and the git log;
+the summary is where to look, not what is true.**
+
 ---
 
 # 3 · TESTRAIL HAZARDS — the mechanics that cost real time
@@ -363,6 +377,11 @@ field is `is_required: true` but its `default_value` is `"1"`, so `3` was never 
   `build/testing-tools/check_add_case_payloads.py`.
 - **Do NOT copy a payload out of an executed push script** — the 19 executed scripts still contain `3`
   **deliberately**, because they are the audit record of what was actually run.
+
+**🛑 AND `custom_atmstatus == 3` IS ASK-FIRST FOR ANY EDIT OR DELETE — even our OWN cases (Standing
+Rule 71, added 2026-08-17/18).** A case TestRail flags **"Automated"** (`custom_atmstatus = 3`) may not
+be changed or deleted without the QA lead's permission first, **including a case `created_by = 3` (ours)
+that someone — e.g. Vladimir Tomovic, id 1 — has flagged Automated.** Full treatment at §5.4.
 
 ### 3.2 `refs` — 248 chars per entry, comma-delimited, and it is a PATTERN error
 
@@ -576,6 +595,31 @@ section.**
   those would pad the list and cost it credibility on first reading.
 - **This is a REPORT, not a write.** It never authorises editing a flag or opening a ticket, and it is
   **never a reason to skip a correction**.
+
+### 5.4 🛑 OUR OWN "AUTOMATED" CASES ARE ASK-FIRST TOO (Standing Rule 71, added 2026-08-17/18)
+
+**§5 keeps foreign cases hands-off; this protects OUR Automated cases for the same reason — an
+automation suite may depend on them.** **Never change, edit or delete a case whose `custom_atmstatus =
+3` ("Automated") without asking the QA lead first and getting permission — even a case `created_by = 3`
+(ours) if someone (e.g. Vladimir Tomovic, id 1) has flagged it Automated.**
+
+**⇒ THE PRECONDITION OF ANY PASS THAT WRITES TO CASES:** before authoring / VIU / a currency pass,
+**identify the in-scope `custom_atmstatus == 3` cases first**; if the pass would touch one, **STOP and
+ASK (per case or per batch)** and proceed only with permission. **Read the flag LIVE** — it moves
+(C29600 went `1→3→1→3`) — and **do not infer authorship from a gap in a set** (§5.3): our own tooling
+once hardcoded `3` on 31 Schedule cases nobody had automated.
+
+**HOW THE THREE RULES COMPOSE:** **ask before (this rule) → do only with permission → tell Vlad after
+(§5.3 / Rule 65)**; deletion additionally carries Rule 64's automation precondition.
+
+**⇒ POST-BUILD-VERIFY VLAD HAND-OFF.** After build verification proves an Automated case's
+steps/preconditions **run on the build**, correct its plain-text marker to **`AUTOMATION: READY`** AND
+**share its case number with Vladimir Tomovic (id 1)** so he adjusts his automations. **The standing
+hand-off list is `build/fabian-review-2026-08-17-CONSOLIDATED/AUTOMATED-CASES-REGISTER.md`.** (This
+pairs §5.3's tell-Vlad duty with §15's Rule-69 marker-lift path.)
+
+**CONTEXT:** the 2026-08-17/18 currency passes edited content on **44 of our own Automated-flagged
+cases without asking**; the QA lead ruled **KEEP them** and set this ask-first rule going forward.
 
 ---
 
@@ -1127,6 +1171,39 @@ from whom.
 
 **A blocked item with no cited ruling is indistinguishable from us having forgotten to do the work.**
 
+### 11.8 "Make the cases CURRENT" means the WHOLE case, not a reference bump (Standing Rules 31/41, added 2026-08-17)
+
+**QA lead, verbatim: *"Not just the references should be correct the test cases should be current
+too."*** When he asks for cases to be made **current** to updated sources, that means the **ENTIRE
+case** — expected behaviour, on-screen labels, steps, preconditions **AND** the references — must
+reflect the latest sources (§11.2/§11.3), **not merely bumping the `refs` or the version pin.** **A
+reference-only update is NOT "making the case current" and must never be reported as such.** This is
+the flip side of Rule 41 (touch a case → re-verify the whole case): re-pinning `refs` obliges the same
+whole-case re-verification as any other edit, and the Rule-54 provenance line is re-stamped in the same
+pass (§14). *Context: on 2026-08-17 the QA lead corrected a pass that had treated a currency update as
+a reference/version-pin update.*
+
+### 11.9 🛑 PROPOSE A SKILL / RULE CHANGE BEFORE RECORDING IT (Standing Rule 72, added 2026-08-17/18)
+
+**QA lead, verbatim:** *"make/update the rules and keep on updating the Skills ... updating the skills
+on what we decide as the correct way forward as an ongoing process ... Make sure that you do not make
+your skills bad or do not learn the wrong process, rather ask me before blindly adding anything to the
+skills."*
+
+**THE RULE:** improving the skills and rules is an **ongoing process** — **but every new or changed
+rule/skill is PROPOSED to the QA lead for approval BEFORE it is written into `build/skills/*` or
+`CLAUDE.md`.** Nothing is added **autonomously or blindly.** **A bad rule, once recorded, propagates to
+every future cold session that trusts it**, so the cost of a wrong learning is far higher than the cost
+of asking.
+
+- **You MAY draft the proposed wording, and you MAY record a change he has already approved** (this
+  section itself records seven he approved item by item with *"Add"*). Where he has ruled, record it
+  faithfully and keep any superseded wording visible and dated (§16-style). **Where he has not ruled,
+  draft and ASK — do not write.**
+- **Distinguish this from §11.6 (Rule 63):** §11.6 handles his instruction **conflicting** with an
+  existing rule; **this handles the routine act of changing the rulebook itself** — even a
+  non-conflicting improvement is proposed before it lands.
+
 ---
 
 # 12 · READER-FACING STANDARDS
@@ -1326,6 +1403,12 @@ placement). Three forms only:
   `READY` (or `READY - EXPECT FAIL (SV-xxxx)` on live-backed ticketed failure). **AND completing that
   sync does NOT permit filing the ticket** — the Jira creation hold persists beyond build verification
   (§11.1).
+- **🛑 IT SUBSTITUTES FOR A PLAIN `AUTOMATION: READY` MARKER ONLY (Standing Rule 69, dated addition
+  2026-08-17/18).** The fourth form may replace a plain `AUTOMATION: READY` marker **and nothing else.**
+  **NEVER overwrite an existing `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` or `AUTOMATION: HOLD -
+  <reason>` marker with it** — those carry ticket / blocker references that must be preserved. So, on a
+  touched case whose steps/preconditions cannot yet be build-verified: **plain-READY → the Rule-69
+  marker; EXPECT-FAIL or HOLD → keep its existing marker.**
 
 - **Plain `READY` asserts AUTOMATABLE, not currently passing** — it is **build-independent** and
   survives a redeploy untouched.

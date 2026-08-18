@@ -64,6 +64,8 @@ Every line here is the QA lead's, quoted verbatim with its date, because his typ
 | **2026-07-28** | *"we have to be very careful to make sure that he does not prove us wrong and him as right when he says that AI is making more than 70% useless test cases"* … *"Please keep this approach always for all the test cases you create and it should be the part of the process"* | The **Ruthless Usefulness Audit is the mandatory closing gate** (step 9). |
 | **2026-07-31** | *"I want the test cases to be current with specs and epics and you must have the current version of epics and specs and every other doc you are using"* | Source currency **before** authoring (step 2 — delegate to skill `02`). |
 | **2026-07-31** | *"when we update or add test cases for any projects and we have a test run for them, make sure that those test cases also appear in the test run"* | **Run sync after every add** (step 10). |
+| **2026-08-17** | *"Not just the references should be correct the test cases should be current too."* | **"Make the cases current" means the WHOLE case** — expected behaviour, labels, steps, preconditions AND references reflect the latest sources; a `refs`/version-pin bump alone is NOT making it current (Rule 41; core §11.8). |
+| **2026-08-17/18** | *"before deleting the case check if that case has 'Automated' marker"* + *"ask me before blindly adding anything to the skills"* | **`custom_atmstatus == 3` is ask-first for ANY edit, even our own** (Rule 71, G10 below); **propose skill/rule changes before recording** (Rule 72, G12 below). |
 
 ### The corrections that changed how this is done
 
@@ -227,6 +229,11 @@ correct build would have failed a passing build**, and the same split existed on
   documented source is STILL fully cited, only the build "last checked against …" sentence is absent; a
   later sync lifts it to `READY`. **Excluded from any "ready to automate" figure.** Do not conflate with
   `HOLD` (a genuinely unobtainable thing) or with plain `READY` (steps confirmed runnable)).
+  **🛑 THE RULE-69 MARKER SUBSTITUTES FOR A PLAIN `AUTOMATION: READY` MARKER ONLY** (dated addition
+  2026-08-17/18; core §15). It may replace a plain `READY` marker **and nothing else** — **never
+  overwrite an existing `READY - EXPECT FAIL (SV-xxxx)` or `HOLD - <reason>` marker with it**, which
+  carry ticket/blocker references. Touched plain-READY case → the Rule-69 marker; touched EXPECT-FAIL or
+  HOLD case → keep its marker.
   **A tool flag never justifies HOLD** — devtools, DOM inspection, reading a PDF or CSV, seeded data,
   theme toggles and viewport sizes are all automatable. Only a **genuinely unobtainable thing** (a
   real physical device, an external account we do not have) does.
@@ -448,6 +455,18 @@ do not make sense"*. **No suite we deliver may ever substantiate that claim** �
   six categories. **Say "nothing outstanding" if that is true — never omit the section**, so he can tell
   *"clear"* from *"we forgot to look"*. **Update `build/OUTSTANDING-ITEMS-REGISTER.md` in the same
   turn**, and items blocked on him carry Rule 48's five fields (core §11.7).
+- **G10 — 🛑 ASK BEFORE TOUCHING AN "AUTOMATED" CASE, EVEN OUR OWN** (Standing Rule 71, core §5.4). A
+  case whose `custom_atmstatus = 3` is **ask-first for ANY edit or delete** — including a case
+  `created_by = 3` (ours) someone (e.g. Vladimir Tomovic, id 1) has flagged Automated. **Identify the
+  in-scope `atmstatus == 3` cases FIRST; if the pass would touch one, STOP and ASK** (per case or per
+  batch). Read the flag LIVE (it moves), and after build-verify lifts such a case to `READY`, **share
+  its case number with Vlad** via `build/fabian-review-2026-08-17-CONSOLIDATED/AUTOMATED-CASES-REGISTER.md`.
+- **G11 — "Make the cases CURRENT" means the WHOLE case, not a `refs` bump** (Standing Rules 31/41,
+  core §11.8). A reference-only / version-pin update is NOT making a case current; re-verify expected
+  behaviour, labels, steps, preconditions AND references, and re-stamp the provenance line.
+- **G12 — 🛑 PROPOSE ANY SKILL / RULE CHANGE BEFORE RECORDING IT** (Standing Rule 72, core §11.9). You
+  may draft it, and you may record a change he has already approved; **a new or changed rule/skill he
+  has NOT approved is proposed and asked, never written blindly** into `build/skills/*` or `CLAUDE.md`.
 
 ---
 

@@ -180,6 +180,14 @@ overwrite of a never-landed write misreads as LANDED). On a shared suite also ch
 authors' activity on those cases (`updated_by` as context, content as evidence). State in the
 recovery report **which interval the live read is attributable to.**
 
+**🛑 AND THE DEAD PASS'S SUMMARY IS NOT EVIDENCE ABOUT ITSELF (Standing Rule 50, added 2026-08-17/18).**
+A pass's own *"FOR VLAD: None"*, *"0 material changes"*, *"nothing touched"* line is part of the
+**hypothesis**, not the verification — establish the truth from **live TestRail + the git history of
+the case source**, never from the self-report. **The scar:** the 2026-08-17 Automated-marker audit
+found a prior pass's *"FOR VLAD: None"* claim was **wrong** — it had edited **two `custom_atmstatus == 3`
+(Automated) cases**, caught only by reading live. **A self-report trusted here starves the Rule-65
+tell-Vlad hand-off** (core §2.11 / §5.4).
+
 ### 5 · PROVE THE RUNS UNTOUCHED, AND THE FOREIGN CASES
 
 A killed pass is exactly when a partial run write could have gone out. **Verify on the GRADED fields
@@ -249,6 +257,12 @@ never the whole truth; **the second half is what makes the first half believable
   workspace has actually suffered.
 - **G8 — Path-scoped `add` AND `commit`** (core §9.2) — a recovery often runs while a sibling is live,
   and a bare commit has swept a sibling's staged work three times.
+- **G9 — 🛑 Audit from LIVE, never from the dead pass's self-report** (Standing Rule 50, core §2.11).
+  A *"FOR VLAD: None"* / *"nothing changed"* line is a hypothesis; read the live cases and the git log.
+  *A 2026-08-17 audit caught a "FOR VLAD: None" that had edited two Automated cases.*
+- **G10 — 🛑 A recovery does NOT rewrite the rulebook.** If the killed pass had a rule/skill change in
+  flight, that change is **proposed to the QA lead, never recorded blindly** (Standing Rule 72, core
+  §11.9). Recover the WORK; the rule update is his to approve.
 
 ---
 

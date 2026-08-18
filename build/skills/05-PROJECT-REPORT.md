@@ -235,7 +235,12 @@ redeploy, so (g)'s bug-fix-versus-functional distinction still governs.
 8. **Write the table, then column 7 as an itemised list, then OUTSTANDING** (core §13).
 9. **Update `build/OUTSTANDING-ITEMS-REGISTER.md` in the same turn.**
 10. **Include the "AUTOMATED CASES CHANGED — FOR VLAD" section** if the pass wrote to any case
-    (core §5.3). **Say "none" where none.**
+    (core §5.3). **Say "none" where none.** **🛑 DERIVE IT FROM LIVE + GIT, NEVER FROM A PASS'S
+    SELF-REPORT** (Standing Rule 50, core §2.11): a *"FOR VLAD: None"* line is a hypothesis, and a
+    2026-08-17 audit caught one that had in fact edited two `custom_atmstatus == 3` (Automated) cases.
+    **When such a case has been build-verified and lifted to `AUTOMATION: READY`, its case number also
+    goes to Vlad via `build/fabian-review-2026-08-17-CONSOLIDATED/AUTOMATED-CASES-REGISTER.md`**
+    (Standing Rule 71).
 
 ---
 
@@ -282,6 +287,12 @@ cheap to fix an hour earlier.
   is available** — not silently following the new instruction, not silently keeping the old rule. **A
   tightening or a layering is NOT a conflict**; escalating those trains him to wave escalations
   through. *He endorsed the practice by name: **"Good catch, be like this always."***
+- **G9 — 🛑 Every figure and every "what changed" line is derived from LIVE + git, never from a pass's
+  self-report** (Standing Rule 50, core §2.11 / §c). A summary is a hypothesis; the live suite is the
+  evidence.
+- **G10 — 🛑 A report does NOT record a new rule or skill change.** If the reporting surfaces a
+  process improvement, **propose it to the QA lead — never write it into `build/skills/*` or `CLAUDE.md`
+  blindly** (Standing Rule 72, core §11.9).
 ---
 
 ## HONESTY NOTES

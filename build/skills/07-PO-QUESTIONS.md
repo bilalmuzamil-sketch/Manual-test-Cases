@@ -247,6 +247,15 @@ it reaches him it is a fact.**
 
 **Both `.xlsx` and `.md`**, matching the established pair.
 
+**🔑 AND ALSO A GOOGLE-DOC `.docx` OF THE READER-FACING QUESTIONS (added 2026-08-17/18, QA-lead-approved
+with "Add").** Alongside the `.xlsx`/`.md`, produce a reader-facing **`.docx` (Google-Docs-openable)**
+containing **ONLY the reader-facing questions of §3** — **no QA-only mapping tab, no case IDs, no spec
+anchors, no jargon, and never the word "VIU"** — so the QA lead can share it directly with the PO. The
+QA-only question→case mapping (internal ID + C-id + link) stays in the `.xlsx`/`.md` ONLY. Human-readable
+filename naming the PO and the date (Rule 19), e.g. `Filters_Questions-for-Branko-Cicovic_2026-08-13.docx`.
+Canonical examples: the 2026-08-17 Google-Docs-ready `.docx` sheets for Chris Ward (2 questions) and
+Branko (3 questions). *(Use the `docx` skill to build it.)*
+
 **And it goes out ATTACHED TO THE COMPLETION REPORT** (skill `05`) that says, with a table behind it,
 exactly what is done and exactly what is not — **so that when he forwards it he can stand behind it,
 and the PO sees one considered ask rather than a project still in motion.**

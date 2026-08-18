@@ -3211,6 +3211,16 @@ deliver the 7-tab management report.
     (observed, never inferred/fabricated), 17 (complete data in/out), 23 (check the Confluence
     spec), 30 (tech plan is a standard input), 32 (latest information wins), 33 (authority
     precedence), 35 (design-fetch queues).
+    **⇒ DATED ADDITION, 2026-08-17 (QA lead, approved with "Add") — "CURRENT" IS A PROPERTY OF THE
+    WHOLE CASE, NOT JUST ITS REFERENCES.** Verbatim clarification: *"Not just the references should be
+    correct the test cases should be current too."* Establishing source currency (this rule) is only
+    the first half. **Once a source has moved, making the affected cases current means re-verifying the
+    ENTIRE case against it** — expected behaviour, on-screen labels, steps, preconditions **AND** the
+    references — **not merely re-pinning `refs` or bumping the version.** A reference-only update is
+    **NOT** "making the case current" and must never be reported as such. Full text at Standing Rule
+    41's dated addition of the same date. Ties to Standing Rules 11 (ask which process on updated
+    sources), 41 (touch a case → re-verify the WHOLE case), 43 (per-requirement re-derivation), 54
+    (re-stamp the provenance line in the same pass) and 57 (expectation from the current documents).
 32. **Latest information wins across ALL sources (all projects).** USER DIRECTIVE (2026-07-31,
     verbatim): "Rule of trusting something if it is duplicated or if figma says one thing and
     claud design says the other thing. Trust the latest information." When two sources disagree —
@@ -3634,6 +3644,19 @@ deliver the 7-tab management report.
     itself was already stale** against `S14-R20`. One end-to-end re-read of either case would have
     caught the day's worst defect hours earlier and for free. Ties to Standing Rules 20, 28, 31, 40
     and 43, **and 9 (the five-check runnability test the re-read now also runs)**.
+    **⇒ DATED ADDITION, 2026-08-17 (QA lead, approved with "Add") — "MAKE THE CASES CURRENT" MEANS THE
+    WHOLE CASE, NOT A REFERENCE BUMP.** Verbatim clarification: *"Not just the references should be
+    correct the test cases should be current too."* When the QA lead asks for cases to be made
+    **current** to updated sources, that means the **ENTIRE case** — expected behaviour, on-screen
+    labels, steps, preconditions **AND** the references — **must reflect the latest sources** (Rules
+    31/32/57), **not merely bumping the `refs` or the version pin.** A reference-only update is **NOT**
+    "making the case current" and must never be reported as such. This is the flip side of this rule:
+    touching a case to re-pin its `refs` obliges the same whole-case re-verification as any other edit,
+    and re-stamping the Rule-54 provenance line is part of the same pass. **Context:** on 2026-08-17 the
+    QA lead corrected a pass that had treated a currency update as a reference/version-pin update.
+    Ties to Standing Rules 11 (ask which process on updated sources), 31 (source currency — its dated
+    addition of the same date carries the cross-pointer), 43 (per-requirement re-derivation), 54
+    (re-stamp the provenance line) and 57 (expectation from the current documents).
 42. **NO ABSOLUTE ENUMERATIONS without a version-pinned anchor — prefer scope-conditional wording
     (all projects).** A closed list in an expected result is a **time bomb**: it is correct until the
     spec adds one item, and then it makes a tester **fail a correct build**. Any expected result that
@@ -4218,6 +4241,18 @@ deliver the 7-tab management report.
     untouched fields proven byte-identical), 45 (both directions, and one row per assertion), 48 (a
     claim carries its evidence) and 49 (a provisional finding is still verified exhaustively and
     exactly — its *durability* is what is limited, not its rigour).
+    **⇒ DATED ADDITION, 2026-08-17/18 (QA lead, approved with "Add") — AUDIT FROM LIVE, NOT FROM
+    SELF-REPORTS.** When auditing whether cases were changed — or in ANY after-the-fact verification —
+    establish the truth from **LIVE TestRail + the git history of the case source**, NEVER from a
+    worker's own summary / oplog self-report. A pass's own account of what it did is a **hypothesis**,
+    not evidence (the same principle as the killed-pass recovery discipline, Rule 29). This is the
+    mechanical twin of the "verify by content, never by `updated_on`" half above, extended to a pass's
+    own claims. **Context:** the 2026-08-17 Automated-marker audit found a prior pass's *"FOR VLAD:
+    None"* self-report was **WRONG** — it had in fact edited two `custom_atmstatus == 3` (Automated)
+    cases; **live verification caught it**, and the miss would have starved the Rule-65 tell-Vlad
+    report. Ties to Standing Rules 12 (observed, never inferred), 29 (killed-pass recovery from live
+    content), 38 and 65 (the tell-Vlad report must be derived from live, or it under-reports), and 71
+    (protect Automated cases — the audit that surfaced this).
 51. **NEVER file an API-related ticket without ASKING — every time, even inside an approved batch (all
     projects).**
     **⚠️ SUBSUMED BY STANDING RULE 62 (2026-08-10) — ASKING IS NOW UNIVERSAL, NOT SPECIAL TO API
@@ -4855,6 +4890,16 @@ deliver the 7-tab management report.
     reading it), 31 (source currency — a PO answer is a source), 32 (the newest answer wins, so it
     had better be unambiguous), 36 (every unanswered ask is an OUTSTANDING item) and 43 (an
     unanswered question leaves a requirement row un-verdicted, and that must be visible).
+    **⇒ DATED ADDITION, 2026-08-17/18 (QA lead, approved with "Add") — ALSO PRODUCE A GOOGLE-DOC
+    (.docx) OF THE READER-FACING QUESTIONS.** In addition to the established `.xlsx`/`.md` question
+    sheet, produce a reader-facing **`.docx` (Google-Docs-openable)** containing **ONLY the
+    reader-facing questions** — **no QA-only mapping tab, no case IDs, no spec anchors, no jargon, and
+    never the word "VIU"** — so the QA lead can share it directly with the PO. Human-readable filename
+    alongside the originals (Rule 19), naming the PO and the date. The QA-only question→case mapping
+    (internal ID + C-id + link) stays in the `.xlsx`/`.md` ONLY, never in the `.docx`. Canonical
+    examples: the 2026-08-17 Google-Docs-ready `.docx` sheets for Chris Ward (2 questions) and Branko
+    (3 questions). Ties to Standing Rules 7 (plain layman wording), 16 (mirror the established format),
+    19 (human-readable filenames) and 20 (the mapping stays off the reader-facing view).
 56. **WHERE A CASE FOLLOWS A LATER DECISION THAT DIFFERS FROM AN EARLIER SOURCE, THE CASE MUST SAY
     SO — in plain words, in the Expected Results (all projects).**
     USER DIRECTIVE (2026-08-05, verbatim): *"COnsider the latest piece of information as the
@@ -6514,6 +6559,15 @@ deliver the 7-tab management report.
     expect-fail/defect tickets: the Jira creation hold persists through and beyond build verification
     (verbatim: *"Even then we will keep a hold on creating tickets until I allow you to create the
     tickets."*).**
+    **⇒ DATED ADDITION, 2026-08-17/18 (QA lead, approved with "Add") — THIS MARKER SUBSTITUTES FOR A
+    PLAIN `AUTOMATION: READY` MARKER ONLY.** The Rule-69 marker
+    `AUTOMATION: Not available on Build to test Yet - Last checked <date>` may replace a plain
+    `AUTOMATION: READY` marker **and nothing else.** **NEVER overwrite an existing
+    `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` or `AUTOMATION: HOLD - <reason>` marker with it** —
+    those carry ticket / blocker references that must be preserved. So, on a touched case whose
+    steps/preconditions cannot yet be build-verified: a **plain-READY** case → the Rule-69 marker; an
+    **EXPECT-FAIL** or **HOLD** case → **keep its existing marker.** Ties to Standing Rules 60/61 (the
+    marker family) and 12 (a marker never asserts an unobserved build fact).
 70. **COMMUNICATE WITH THE QA LEAD CLEARLY: ACTION-FIRST, PLAIN-LANGUAGE, TABLE-FORM — tell him
     EXACTLY what to DO and help him UNDERSTAND what each item is (all projects, every communication).**
     USER DIRECTIVE (2026-08-17, verbatim, two messages): *"Please whenever you communicate with me
@@ -6553,6 +6607,61 @@ deliver the 7-tab management report.
     OUTSTANDING-ITEMS list is the prime place this table form applies), 46 (a decision recorded so it
     can never look like a miss) and 48 (a QA-lead-blocked item names the ruling, the action and who
     unblocks it — this rule makes that presentation a table).
+71. **PROTECT "AUTOMATED" CASES — never change or delete a case TestRail flags as Automated without
+    asking the QA lead first (all projects, INCLUDING our OWN cases).**
+    USER RULING (2026-08-17/18, explicitly approved with *"Add"*).
+    **THE RULE:** never change, edit, or delete a test case whose TestRail Automation-status field is
+    **"Automated" (`custom_atmstatus = 3`)** without **asking the QA lead first and getting
+    permission** — and **this applies EVEN to our OWN cases (`created_by = 3`)** if someone (e.g.
+    Vladimir Tomovic, id 1) has flagged them Automated.
+    **THE PRECONDITION OF ANY PASS THAT WRITES TO CASES:** before any authoring / VIU / currency pass,
+    **IDENTIFY the in-scope `custom_atmstatus == 3` cases first**; if the pass would touch one, **STOP
+    and ASK the QA lead (per case or per batch) and proceed only with permission.**
+    **HOW THIS DIFFERS FROM RULES 64 AND 65, so all three are read together:** Rule 64 checks the
+    Automated flag as a **precondition of DELETION**; Rule 65 requires **TELLING VLAD AFTER** a change
+    lands. **This rule adds the ASK-FIRST GATE, BEFORE any change of any kind** — an update as much as a
+    delete. The three are complementary: **ask before (71) → do only with permission → tell Vlad after
+    (65)**; and deletion additionally carries Rule 64's automation precondition.
+    **CONTEXT:** the 2026-08-17/18 currency passes edited content on **44 of our own Automated-flagged
+    cases** (11 real content changes, 33 marker-only) **without asking**; the QA lead ruled **KEEP
+    them** but set this ask-first rule going forward.
+    **⇒ POST-BUILD-VERIFY VLAD HAND-OFF (process, 2026-08-17/18, QA lead approved with *"Add"*).**
+    After build verification proves an Automated case's steps/preconditions **run on the build**, its
+    plain-text marker is corrected to **`AUTOMATION: READY`** (Automation Ready) **AND its case number
+    is shared with Vladimir Tomovic (id 1)** so he adjusts his automations. **The durable hand-off list
+    is `build/fabian-review-2026-08-17-CONSOLIDATED/AUTOMATED-CASES-REGISTER.md` — the standing
+    hand-off artifact.** (This is the operational pairing of Rule 65's tell-Vlad duty with Rule 69's
+    marker-lift path: build-verify proves runnable → marker lifts to READY → Vlad is handed the case
+    number via the register.)
+    Ties to Standing Rules 6 (nothing written to TestRail without permission), 12 (observed, never
+    inferred — including never inferring permission), 38 (foreign cases are hands-off; this protects OUR
+    Automated cases the same way for the same reason — an automation suite may depend on them), 64 (the
+    automation precondition of deletion), 65 (tell Vlad after a change) and 69 (the marker-lift path).
+72. **PROPOSE SKILL / RULE CHANGES BEFORE RECORDING THEM — never add to the Skills or CLAUDE.md
+    autonomously (all projects).**
+    USER DIRECTIVE (2026-08-17/18, verbatim, explicitly approved with *"Add"*): *"make/update the rules
+    and keep on updating the Skills ... updating the skills on what we decide as the correct way forward
+    as an ongoing process ... Make sure that you do not make your skills bad or do not learn the wrong
+    process, rather ask me before blindly adding anything to the skills."*
+    **THE RULE:** skill and rule updates are an **ONGOING process** — we keep improving them — **but
+    every one is PROPOSED to the QA lead for approval BEFORE it is written into the Skills
+    (`build/skills/*`) or `CLAUDE.md`.** Nothing is added **autonomously or blindly.** **The goal is to
+    keep improving the skills WITHOUT teaching a wrong process** — a bad rule, recorded, propagates to
+    every future cold session that trusts it, so the cost of a wrong learning is far higher than the
+    cost of asking.
+    **WHAT THIS DOES AND DOES NOT REQUIRE:** it requires the QA lead's go-ahead **before recording** a
+    new or changed rule/skill; it does **not** stop us **drafting** the proposed wording, nor recording
+    a rule/skill change he has **already approved** (this very pass records seven he approved item by
+    item with *"Add"*). Where he has ruled, record it faithfully (Rule 25) and keep any superseded
+    wording visible and dated (the Rules 31/52/53 pattern); where he has not, **draft and ask, do not
+    write.**
+    **DISTINGUISH THIS FROM RULE 63:** Rule 63 governs the case where his instruction **conflicts with
+    an existing rule** (surface the conflict before acting); **this rule governs the routine act of
+    changing the rulebook itself** — even a non-conflicting improvement is proposed before it lands.
+    Ties to Standing Rules 18 (reconstruct the full originating instruction history when encoding a
+    process), 21 (the Process-Authoring Standard), 25 (record his wording verbatim), 32/33 (latest
+    authoritative ruling wins; he is the authority on the rules) and 63 (surface a conflict before
+    acting).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
@@ -6921,6 +7030,23 @@ regression / bug-fix re-testing.
   detector** of a fix that shipped while its ticket sat Open; **outcome (2) is what stops a NEW defect
   hiding behind an old one.** Where the ticket was **closed without a fix**, that qualifier sits
   alongside the symptom. **Ticket status is never read as evidence about the build.**
+- **THE RULE-69 MARKER SUBSTITUTES FOR A PLAIN `AUTOMATION: READY` MARKER ONLY (Standing Rule 69,
+  dated addition 2026-08-17/18).** `AUTOMATION: Not available on Build to test Yet - Last checked
+  <date>` may replace a plain `AUTOMATION: READY` marker and **nothing else** — **never overwrite an
+  existing `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` or `AUTOMATION: HOLD - <reason>` marker** (those
+  carry ticket/blocker references). Touched plain-READY case → Rule-69 marker; touched EXPECT-FAIL or
+  HOLD case → keep its marker.
+- **NEVER CHANGE OR DELETE AN "AUTOMATED" CASE WITHOUT ASKING FIRST (Standing Rule 71, 2026-08-17/18).**
+  A case whose TestRail Automation-status field = "Automated" (`custom_atmstatus = 3`) is ask-first for
+  ANY edit or deletion — **even our OWN cases** if someone flagged them Automated. **After** build
+  verification proves such a case runnable, correct its marker to `AUTOMATION: READY` **and share the
+  case number with Vladimir Tomovic (id 1)** so he adjusts his automations; the standing hand-off list
+  is `build/fabian-review-2026-08-17-CONSOLIDATED/AUTOMATED-CASES-REGISTER.md`.
+- **A PO QUESTION SHEET ALSO SHIPS AS A GOOGLE-DOC `.docx` (Standing Rule 55, dated addition
+  2026-08-17/18).** In addition to the `.xlsx`/`.md` pair, produce a reader-facing **`.docx`
+  (Google-Docs-openable)** with **ONLY the reader-facing questions** — no QA-only mapping tab, no case
+  IDs/anchors/jargon, never the word "VIU" — so the QA lead can share it directly with the PO.
+  Human-readable filename naming the PO and the date (Rule 19).
 - Excel workbooks: a **separate tab per result status** + a **Summary** tab.
 - Provide **GitHub raw download links** for deliverables.
 - **Per-case audit logs** for any TestRail edits.

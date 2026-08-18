@@ -464,6 +464,24 @@ automated run reports a shipped fix or a **changed** failure at no cost:
 **Outcome 3 makes the automated run itself the detector. Outcome 2 is what stops a NEW defect hiding
 behind an old one** — *"it failed, as expected"* reads identically either way without it.
 
+### 6.4 🔑 THE AUTOMATED-CASE HAND-OFF — ask before, correct the marker on success, tell Vlad (Standing Rules 71 / 65, added 2026-08-17/18)
+
+**This skill is the one that BUILD-VERIFIES, so it is where a Rule-69 `Not available on Build to test
+Yet` case earns its lift — and where the Automated-case duties bite.**
+
+- **ASK FIRST (core §5.4, Rule 71).** A case whose `custom_atmstatus = 3` ("Automated") is **ask-first
+  for ANY change, even our own.** Before correcting a label or lifting a marker on such a case, **STOP
+  and get the QA lead's permission** (per case or per batch). **Read the flag LIVE** — it moves.
+- **ON SUCCESS, LIFT THE MARKER TO `AUTOMATION: READY`.** When build verification proves the case's
+  **steps and preconditions actually run on the build**, its plain-text marker is corrected from
+  `AUTOMATION: Not available on Build to test Yet - Last checked <date>` (or from a now-runnable HOLD)
+  to **`AUTOMATION: READY`** — or to `READY - EXPECT FAIL (SV-xxxx)` on a live-backed ticketed failure
+  (§ above).
+- **THEN SHARE THE CASE NUMBER WITH VLADIMIR TOMOVIC (id 1)** so he adjusts his automations. **The
+  standing hand-off list is `build/fabian-review-2026-08-17-CONSOLIDATED/AUTOMATED-CASES-REGISTER.md`**
+  — the durable artifact, in addition to this pass's "AUTOMATED CASES CHANGED — FOR VLAD" section
+  (core §5.3, step 11).
+
 ---
 
 # THE STEPS
