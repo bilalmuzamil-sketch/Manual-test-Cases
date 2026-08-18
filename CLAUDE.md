@@ -6637,6 +6637,35 @@ deliver the 7-tab management report.
     inferred — including never inferring permission), 38 (foreign cases are hands-off; this protects OUR
     Automated cases the same way for the same reason — an automation suite may depend on them), 64 (the
     automation precondition of deletion), 65 (tell Vlad after a change) and 69 (the marker-lift path).
+    **⇒ DATED REFINEMENT, 2026-08-18 (QA lead, PROPOSED-AND-CONFIRMED per Rule 72) — AUTOMATED CASES ARE
+    EDITED ONLY COUPLED WITH BUILD VERIFICATION, THEN HANDED TO VLAD.**
+    - **Rule 71 does NOT mean "never touch Automated cases."** An Automated case (`custom_atmstatus = 3`)
+      MAY genuinely need updating — its **steps of reproduction, preconditions, and expected behaviour** —
+      to match the current sources.
+    - **BUT an Automated case is EDITED ONLY WHEN WE CAN ALSO BUILD-VERIFY IT IN THE SAME PASS**, so the
+      steps/preconditions produced are **CONFIRMED RUNNABLE ON THE BUILD before they reach anyone**.
+      **Editing + build-verifying an Automated case happen TOGETHER, never separately.**
+    - **THE LOGIC (this is why the rule exists):** an Automated case is the **contract Vlad's (Vladimir
+      Tomovic, id 1) automation runs against.** Editing it WITHOUT build-verifying hands Vlad a **MOVING,
+      UNVERIFIED target** — steps that may not actually run on the build (exactly the risk while build
+      verification is deferred and a feature may not even be built yet). Vlad would then rebuild his
+      automation to match unverified steps, and if they turn out not to be runnable **his work breaks and
+      must be redone.** COUPLING the edit with build verification means Vlad only ever receives
+      steps/preconditions that are **REAL, RUNNABLE and CONFIRMED on the build**, so he adjusts his
+      automation **ONCE, correctly.**
+    - **CONSEQUENCE — WHILE BUILD VERIFICATION IS DEFERRED (features not yet on the build): do NOT edit
+      Automated cases. HOLD them.** Do the edit-and-verify TOGETHER during the build-verify pass (when the
+      features are on staging): make the steps/preconditions build-accurate and runnable, **VERIFY LIVE**,
+      set the correct marker (`AUTOMATION: READY` per Rule 69/61 on success, or `READY - EXPECT FAIL
+      (SV-xxxx)` if a known bug with live backing), and THEN hand the case number to Vlad (the Rule 71 /
+      Rule-B hand-off via `build/fabian-review-2026-08-17-CONSOLIDATED/AUTOMATED-CASES-REGISTER.md`).
+    - **ASK-FIRST STILL APPLIES:** Rule 71's permission gate stands — even coupled with build
+      verification, **get the QA lead's go-ahead before editing an Automated case.**
+    - **STRATEGY IN ONE LINE:** Automated-case edits are **BATCHED INTO THE BUILD-VERIFY PASS**
+      (edit-and-verify together, then hand off to Vlad) — **NEVER edited on a documents-only /
+      deferred-build pass.** Cross-refs: Rules 69 (the marker-lift path), 61 (the marker family), B (the
+      POST-BUILD-VERIFY Vlad hand-off sub-note above) and the build-verify skill
+      `build/skills/03-RUN-CHECK.md` §6.4 (where the edit+verify coupling operationally lives).
 72. **PROPOSE SKILL / RULE CHANGES BEFORE RECORDING THEM — never add to the Skills or CLAUDE.md
     autonomously (all projects).**
     USER DIRECTIVE (2026-08-17/18, verbatim, explicitly approved with *"Add"*): *"make/update the rules

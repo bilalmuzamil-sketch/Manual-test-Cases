@@ -461,6 +461,13 @@ do not make sense"*. **No suite we deliver may ever substantiate that claim** �
   in-scope `atmstatus == 3` cases FIRST; if the pass would touch one, STOP and ASK** (per case or per
   batch). Read the flag LIVE (it moves), and after build-verify lifts such a case to `READY`, **share
   its case number with Vlad** via `build/fabian-review-2026-08-17-CONSOLIDATED/AUTOMATED-CASES-REGISTER.md`.
+  **🛑 AND ON A DOCUMENTS-ONLY / DEFERRED-BUILD PASS — HOLD AUTOMATED CASES, DO NOT EDIT THEM** (Rule 71
+  refinement, 2026-08-18). An Automated case is **edited ONLY coupled with build verification in the
+  SAME pass** (skill `03` §6.4), so its updated steps/preconditions are confirmed runnable before they
+  reach Vlad — editing one on a deferred-build authoring or currency pass hands his automation a
+  **moving, unverified target** and his work must be redone. So: **LIST the in-scope Automated cases for
+  permission, HOLD them, and BATCH their edit into the build-verify pass** — never edit them
+  documents-only.
 - **G11 — "Make the cases CURRENT" means the WHOLE case, not a `refs` bump** (Standing Rules 31/41,
   core §11.8). A reference-only / version-pin update is NOT making a case current; re-verify expected
   behaviour, labels, steps, preconditions AND references, and re-stamp the provenance line.

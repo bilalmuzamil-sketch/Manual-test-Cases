@@ -618,6 +618,21 @@ steps/preconditions **run on the build**, correct its plain-text marker to **`AU
 hand-off list is `build/fabian-review-2026-08-17-CONSOLIDATED/AUTOMATED-CASES-REGISTER.md`.** (This
 pairs §5.3's tell-Vlad duty with §15's Rule-69 marker-lift path.)
 
+**⇒ EDIT AND BUILD-VERIFY TOGETHER — THE 2026-08-18 REFINEMENT (Rule 71, QA-lead confirmed).** Rule 71
+is **not** "never touch Automated cases": one **MAY genuinely need its steps of reproduction,
+preconditions and expected behaviour updated** to match the current sources. **But it is edited ONLY
+when we can also build-verify it in the SAME pass**, so the steps/preconditions produced are
+**confirmed runnable on the build before they reach anyone** — **editing and build-verifying happen
+TOGETHER, never separately.** **WHY:** an Automated case is the **contract Vlad's automation runs
+against**; editing it without build-verifying hands him a **moving, unverified target**, so he rebuilds
+to match steps that may not run and **his work must be redone** — coupling means he gets **real,
+runnable, confirmed** steps and adjusts **once, correctly.** **CONSEQUENCE:** while build verification
+is deferred (feature not yet on the build), **do NOT edit Automated cases — HOLD them and list them for
+permission** (skill `01` G10); the edit is **BATCHED INTO THE BUILD-VERIFY PASS** (skill `03` §6.4),
+which verifies live, sets the marker (`READY`, or `READY - EXPECT FAIL (SV-xxxx)` on a live-backed
+known bug), then hands the case number to Vlad. **Ask-first still gates it** even coupled with build
+verification.
+
 **CONTEXT:** the 2026-08-17/18 currency passes edited content on **44 of our own Automated-flagged
 cases without asking**; the QA lead ruled **KEEP them** and set this ask-first rule going forward.
 

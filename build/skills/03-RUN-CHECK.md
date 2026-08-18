@@ -482,6 +482,27 @@ Yet` case earns its lift — and where the Automated-case duties bite.**
   — the durable artifact, in addition to this pass's "AUTOMATED CASES CHANGED — FOR VLAD" section
   (core §5.3, step 11).
 
+**⇒ EDIT AND BUILD-VERIFY TOGETHER — THIS SKILL IS WHERE AN AUTOMATED CASE IS ALLOWED TO CHANGE AT ALL
+(Standing Rule 71 refinement, 2026-08-18, QA-lead confirmed).** An Automated case (`custom_atmstatus =
+3`) **MAY genuinely need its steps of reproduction, preconditions and expected behaviour updated** to
+match the current sources — Rule 71 is **not** "never touch it". But it is **edited ONLY when we can
+also build-verify it in the same pass**, so the steps/preconditions produced are **confirmed runnable
+on the build before they reach anyone.** **Editing and build-verifying an Automated case happen
+TOGETHER, never separately — and this skill is the coupling.**
+- **WHY (the whole point):** an Automated case is the **contract Vlad's automation runs against.**
+  Editing it WITHOUT build-verifying hands Vlad a **moving, unverified target** — steps that may not
+  actually run — so he rebuilds his automation to match them, and **if they are not runnable his work
+  breaks and must be redone.** Coupling the edit with build verification means Vlad only ever receives
+  **real, runnable, confirmed** steps and adjusts **once, correctly.**
+- **CONSEQUENCE for the OTHER skills:** while build verification is deferred (feature not yet on the
+  build), an authoring / currency pass **does NOT edit Automated cases — it HOLDS them and lists them
+  for permission** (skill `01`, G10). The actual edit is **BATCHED INTO THIS BUILD-VERIFY PASS**: make
+  the steps/preconditions build-accurate and runnable, **verify LIVE**, set the correct marker
+  (`READY` on success, or `READY - EXPECT FAIL (SV-xxxx)` on a live-backed known bug), then hand the
+  case number to Vlad via the register.
+- **ASK-FIRST STILL GATES IT:** even coupled with build verification, **get the QA lead's go-ahead
+  before editing an Automated case** (per case or per batch, above).
+
 ---
 
 # THE STEPS
