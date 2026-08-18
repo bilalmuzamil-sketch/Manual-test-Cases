@@ -247,3 +247,63 @@ stripped build-observation paragraph or a non-plain prior marker (HOLD / EXPECT-
 ### SCH-SER-02 = [C29988](https://shopview.testrail.io/index.php?/cases/view/29988)
 - **Prior marker:** `AUTOMATION: READY`
 
+
+### SCH-SER-03 = [C29989](https://shopview.testrail.io/index.php?/cases/view/29989)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-SER-04 = [C29990](https://shopview.testrail.io/index.php?/cases/view/29990)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-BLOCK-01 = [C29991](https://shopview.testrail.io/index.php?/cases/view/29991)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-BLOCK-02 = [C29992](https://shopview.testrail.io/index.php?/cases/view/29992)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-BLOCK-05 = [C29995](https://shopview.testrail.io/index.php?/cases/view/29995)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-LANE-01 = [C29996](https://shopview.testrail.io/index.php?/cases/view/29996)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-LANE-02 = [C29997](https://shopview.testrail.io/index.php?/cases/view/29997)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-LANE-03 = [C29998](https://shopview.testrail.io/index.php?/cases/view/29998)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-LANE-04 = [C29999](https://shopview.testrail.io/index.php?/cases/view/29999)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-DAY-03 = [C30003](https://shopview.testrail.io/index.php?/cases/view/30003)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-DAY-06 = [C30006](https://shopview.testrail.io/index.php?/cases/view/30006)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-MODAL-01 = [C30008](https://shopview.testrail.io/index.php?/cases/view/30008)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-MODAL-04 = [C30011](https://shopview.testrail.io/index.php?/cases/view/30011)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-MODAL-05 = [C30012](https://shopview.testrail.io/index.php?/cases/view/30012)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-MODAL-07 = [C30014](https://shopview.testrail.io/index.php?/cases/view/30014)
+- **Prior marker:** `AUTOMATION: READY`
+
