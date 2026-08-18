@@ -1,21 +1,22 @@
-# WIP-FINDINGS — Work In Progress build-verification findings (2026-08-18)
+# WIP-FINDINGS — Work In Progress build-verification findings (2026-08-18, RESUMED)
 
-**Report 5 of 6. Build `v3.8-bd246fd`. STATUS: build verification BLOCKED — live staging session dead
-(see WIP-EXECUTION §Access / WIP-PLAN §0).** No case was observed on the build, so **no build-derived
-finding is recorded** (Rule 12). The findings below are the staging-independent facts (live TestRail +
-live Jira + the v22 spec) that a live pass will build on, plus the one real finding of this pass — the
-access blocker.
+**Report 5 of 6. Build `v3.8-bd246fd`. STATUS: DATA/CALC/FEATURE layer build-verified via authenticated
+API; on-screen visual/label layer UI-BLOCKED (no `quick-login`). 0 TestRail writes.** The API is a live
+build observation (Rule 12); the front-end could not be mounted (WIP-EXECUTION §Access). Findings below
+separate **build-observed (API)** facts from **document/Jira** facts, and name what still needs the screen.
 
 ---
 
-## F0 — THE FINDING OF THIS PASS: the shared staging session is dead, and a sibling worker caused it
-The `sv_sso_session` shared across the Report Suite workers was rotated out from under this pass between
-21:51Z (TU pass end) and 21:58Z (this pass start), with **no redeploy** in that window (build marker
-byte-stable). The signature (core §6.1) — JSON `sso_required` from the app, all probes 401, nothing 409
-— is a **dead shared sign-in**, and the only thing that rotates it without a redeploy is
-`quick-login`/`switch-user`, which a concurrent worker (report 6 / Inventory Value) most likely called.
-**Consequence:** WIP is the one report of the six that could not be build-verified today. **Fix:** a
-fresh `sv_sso_session`, or serialising the passes so only one holds the session at a time.
+## F0 — THE SESSION RECOVERED; the honest limit is the UI, not the API
+The staging session is **ALIVE** for this resumed pass (`/api/staff/my-workplaces` → HTTP 200, real
+data; 42 fe-permissions, Admin). The authenticated **report API was fully build-verified** (F4/F5). The
+**SPA front-end could not be driven** because its auth guard needs a `quick-login` token, the app's own
+SSO auto-login is broken (`/api/api/sso/check` → HTTP 404 → falls to `/login`), and `quick-login` is
+forbidden this pass (it rotates the shared session and would sign out report 6 — the exact fault that
+blocked the *prior* WIP worker). **So this pass build-verified everything the report API decisively
+shows and honestly recorded that the on-screen rendering was not observed.** Nothing was inferred to
+pad a count. **What would finish WIP: a UI-capable session (a real SSO token) OR the QA lead's explicit
+go-ahead to briefly use `quick-login` at a moment no sibling worker is live.**
 
 ---
 
@@ -84,28 +85,50 @@ turns on it for the PO sheet rather than forcing a verdict.
 
 ---
 
-## F4 — Adjustments column is the newest, least-verified WIP feature (build presence UNKNOWN this pass)
-The whole-WO **Adjustments column** (S4-R29, shared WIP+SBC proposal 2026-08-12) drives a cluster of
-**deferred** cases (WIP-ADJ-01..08 = C43814–C43821, plus Adjustments-dependent Total/Summary). Whether
-it is built on `v3.8-bd246fd` is the single biggest unknown a live pass must resolve — it decides whether
-~9 deferred cases lift to `READY` or stay `Not available on Build to test Yet`. **Prove the detector can
-fire before concluding absence (skill 03 §2).**
+## F4 — ✅ RESOLVED (API): the Adjustments column IS BUILT on v3.8-bd246fd
+The plan's single biggest unknown. **The whole-WO Adjustments feature (S4-R29) is PRESENT** — the
+authenticated report API returns an `adjustments` value on **every row**, and in **`totals`** and the
+**`summary`** strip. Live data carries real signed values: **+57 rows / −48 rows / 0 on 348** money-tab
+rows, i.e. a signed net of whole-WO fees (+) and discounts (−), **never split into Earned/Remaining**
+(exactly S4-R29). **This disproves the "feature not available" premise behind the Adjustments deferred
+cases (WIP-ADJ-01..08 = C43814–C43821 + ADJ-dependent SUM/TOT C43818/C43819).** On a UI-capable pass
+those lift to `AUTOMATION: READY` once the column is confirmed to render on screen. **Not lifted this
+pass** — the on-screen render was not observed and the marker is not changed on an API-only observation
+of the data model (0 writes).
 
 ---
 
-## F5 — WIP calc contract to verify live (v22 Story 4 Definitions S4-R14..R23)
-See `WIP-PLAN.md` §4 for the full formula set. Key points for live per-row + totals verification:
-`Total = Earned + Remaining + Adjustments` (NOT the WO grand total, S4-R21); `Earned = Labor Earned +
-Parts Earned`; on the **Completed** tab Labor/Parts Remaining are `$0.00` and Earned is the full quoted
-value (S4-R15a/R16a/R18a); `Labor Delta` = quoted − clocked hours, signed 1dp (S4-R23); money format
-`$1,234.56` / `-$1,234.56` / `$0.00` (S4-R14). **These are NOT the Sales-By-Customer margin formulas** —
-WIP has its own contract.
+## F5 — ✅ BUILD-VERIFIED (API): the WIP calc contract holds over 453 live rows, 0 mismatches
+Verified against `GET /api/reporting/reports/work-in-progress`, all money tabs (evidence:
+`WIP-API-BUILD-EVIDENCE.json`):
+- **`Total = Earned + Remaining + Adjustments`** (S4-R21, NOT the WO grand total) — **0 mismatches / 453 rows.**
+- **`Earned = Labor Earned + Parts Earned`** and **`Remaining = Labor Remaining + Parts Remaining`** — verified.
+- **Completed tab: Labor/Parts Remaining = $0.00** on **0 of 53** non-zero (S4-R15a/R16a/R18a) — verified.
+- **`inv_hours` (Labor Delta) present at totals, signed 1-decimal** (−65.9) — S4-R23 shape confirmed.
+- Money **format** (`$1,234.56` / `-$1,234.56` / `$0.00`, S4-R14) is a UI render — **not screen-observed**
+  this pass (the API returns integer cents); carried from the v22 spec.
+**These are NOT the Sales-By-Customer margin formulas** — WIP has its own contract.
+
+---
+
+## F6 — Line-state multi-tab placement: NOT_ESTABLISHED (the F3 open question, unforced)
+0 of 453 money-tab rows show a work order in more than one tab. **This does NOT decide the spec
+self-contradiction** (F3): it cannot distinguish "the build follows the older S2-R4 one-tab model" from
+"no work order in the current data has lines in >1 state." Establishing it needs a **seeded multi-state
+WO + the UI** to observe placement — neither available this pass. **Flagged, not verdicted** (skill 03 §2,
+core §1.4). Our reworded SCOPE/PLACE cases keep their line-state expectation + Rule-56 divergence.
 
 ---
 
 ## HONEST LIMITS
-- **0 of 82 non-Automated WIP cases were build-verified** — the session was dead the entire pass. No
-  runnability check was run, no label was read from the build, no calc was verified live.
-- **0 of 10 Automated cases were verified live** (session dead) — held and untouched regardless.
-- Everything in F1 / F3 / F4 / F5 is document/Jira-sourced, explicitly NOT a build observation.
-- **Nothing was inferred to pad a count** (Rule 12): no marker lifted, no date bumped, no verdict given.
+- **DATA / CALC / FEATURE layer: build-verified via authenticated API** (F4/F5) — the report, all 4
+  tabs, the Adjustments column, the calc contract over 453 rows, the Completed-tab rule, the summary
+  strip and the nightly snapshot are all PRESENT and CORRECT on `v3.8-bd246fd`.
+- **ON-SCREEN VISUAL / LABEL layer: 0 of 82 cases screen-observed** — the SPA could not be mounted
+  (no `quick-login`). Exact on-screen label casing, column alignment, WO-number link-vs-plain-text,
+  table colour, tooltips, the column selector, filter chips and export buttons were **NOT observed**;
+  they carry from the v22 documents + the sibling passes' confirmation that report surfaces render.
+- **F1 / F2 / F3 / F6 are document/Jira/API-structure facts**, each labelled as such — F6's placement is
+  explicitly NOT_ESTABLISHED, not a verdict.
+- **Nothing was inferred to pad a count** (Rule 12): no marker lifted, no date bumped, no pass/fail
+  verdict given, **0 TestRail writes.**

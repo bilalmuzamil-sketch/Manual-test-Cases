@@ -93,15 +93,21 @@ built-but-deviating — see TU-FINDINGS §F3/§F4/§F8/§F9; their cases were st
 
 ---
 
-# WIP (report 5 of 6) — 24 deferred cases NOT re-checked this pass (session dead)
+# WIP (report 5 of 6) — 24 deferred cases: feature-presence now known via API; markers NOT changed (0 writes)
 
-**Build-verify pass 2026-08-18, build `v3.8-bd246fd`. The live staging session was DEAD the whole pass**
-(shared `sv_sso_session` rotated by a sibling worker — WIP-EXECUTION §Access), so **none of the 24 WIP
-deferred cases could be checked for feature presence.** They **remain deferred at their existing
-`Last checked 8/17/2026` date — the date was deliberately NOT bumped to 8/18** (bumping it would claim a
-build check that did not happen, Rule 12). Whether each lifts to `READY` or stays deferred is exactly
-what a live build-verify pass must resolve; the biggest unknown is the **Adjustments column** (WIP-ADJ-*)
-build presence (WIP-FINDINGS §F4).
+**Build-verify pass 2026-08-18 (RESUMED), build `v3.8-bd246fd`. The session recovered; the authenticated
+report API was build-verified, but the SPA UI could not be driven (no `quick-login` — WIP-EXECUTION
+§Access).** So the **feature-presence** question is now answered for the Adjustments cluster via the
+API, but the **on-screen render** was not observed, and **no marker was changed** (0 TestRail writes).
+The 24 stay deferred at their existing **`Last checked 8/17/2026`** date — **deliberately NOT bumped to
+8/18** (bumping would claim an on-screen build check that did not happen, Rule 12).
+
+**🔑 KEY UPDATE (API, WIP-FINDINGS §F4): the Adjustments column IS BUILT** — `adjustments` returns on
+every row, in totals and in summary, with real signed values. So the **8 WIP-ADJ cases + the 2
+ADJ-dependent SUM/TOT cases (C43818/C43819) are NO LONGER feature-absent** — on a UI-capable pass they
+**LIFT to `AUTOMATION: READY`** once the column is confirmed to render on screen. The **line-state
+SCOPE/PLACE cases stay deferred** — placement is NOT_ESTABLISHED (§F6) and needs a seeded multi-state WO
++ the UI. **Trigger to lift (Rule 49/61): the on-screen confirmation on a UI-capable pass, NOT a redeploy.**
 
 | internal | C-id | area | waits on (feature) |
 |---|---|---|---|

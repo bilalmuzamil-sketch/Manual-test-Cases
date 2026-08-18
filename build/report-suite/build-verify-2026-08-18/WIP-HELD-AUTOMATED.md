@@ -1,12 +1,15 @@
 # WIP-HELD-AUTOMATED — the 10 Automated WIP cases HELD this build-verify pass (Rule 71)
 
-**Report 5 of 6 (Work In Progress) · build-verify pass 2026-08-18.**
+**Report 5 of 6 (Work In Progress) · build-verify pass 2026-08-18 (RESUMED, session ALIVE).**
 Build under test: **`v3.8-bd246fd`** (last-modified 2026-08-18 19:57:31 GMT, etag
-`c4dd352f91ecfee192844c6a04a643fc`). **⚠️ The live staging session was DEAD for the whole of this pass
-(shared `sv_sso_session` rotated by a sibling worker — see `WIP-PLAN.md` §0), so these 10 could NOT be
-verified live either.** They remain **HELD and UNTOUCHED** regardless — under Standing Rule 71 an
-Automated case (`custom_atmstatus = 3`) is the contract Vladimir Tomovic's automation runs against, so
-it is edited **only coupled to a live build-verify pass, ask-first**. **0 of the 10 written.**
+`c4dd352f91ecfee192844c6a04a643fc`). **The session recovered for this resumed pass, and the report
+DATA/CALC/FEATURE layer was build-verified via the authenticated API (the Adjustments column, the calc
+contract, the 4 tabs and the snapshot are all PRESENT — WIP-FINDINGS §F4/F5). The SPA UI could NOT be
+driven (no `quick-login`), so the on-screen layer of these 10 was not screen-observed either.** They
+remain **HELD and UNTOUCHED** regardless — under Standing Rule 71 an Automated case
+(`custom_atmstatus = 3`) is the contract Vladimir Tomovic's automation runs against, so it is edited
+**only coupled to a live build-verify pass, ask-first** (core §5.4, skill 03 §6.4). **0 of the 10
+written.** `custom_atmstatus = 3` re-confirmed LIVE for all 10 this pass.
 
 ## Identification (live TestRail, 2026-08-18 ~22:00Z)
 
