@@ -20,6 +20,12 @@ outstanding register, waiting for his order.
 been lifted.** When it lifts, **Standing Rule 62 resumes as the governing rule**: permission is still
 required, **per ask**, and an earlier batch approval never covers a later ticket.
 
+**🔴 AND WHEN IT LIFTS, RESUME ONE TICKET AT A TIME (Standing Rule 73, 2026-08-17).** The QA lead asked
+that this be recorded **because previously-created tickets *"did bite us."*** The moment he explicitly
+asks to resume: **create ONE ticket → he verifies it → ONLY THEN create the next.** **Never a batch,
+never the second before the first is confirmed.** One-at-a-time makes each ticket separately answerable
+— which is the whole reason a weak ticket in a batch discredited the good ones beside it.
+
 ---
 
 ## PURPOSE, IN PLAIN ENGLISH
@@ -64,6 +70,7 @@ Screenshots: [available | need capturing | cannot be captured because <reason>]
 
 | Date | Verbatim | Effect |
 |---|---|---|
+| **2026-08-17** | Instructed that a **defect-ticket quality standard + a one-at-a-time resume process** be RECORDED as a rule, **because previously-created tickets *"did bite us."*** Hold restated: *"Lets hold them until we are done with Build verification ... Even then we will keep a hold on creating tickets until I allow you to create the tickets."* | **The mandatory quality checklist (below) + ONE ticket at a time on resume** (Standing Rule 73) |
 | **2026-08-12** | *"The Engineering manager had raised a concern over creating tickets which does not make sense, so we have to make sure that the defects or tickets which we create do NOT bite us like it did, and must have solid references for the expected behavior, and should have the annotated screenshots in them … you have to amend your rule to make sure that the defects you create can not be challenged and should not bite me, they did badly bite me and my job is on threat due to that. However for now the Jira ticket creation is still on hold."* | **The eight-item bar**, and the hold restated in the same breath |
 | **2026-08-10** | *"Just One NEW rule, DO NOT create the Tickets in Jira but ask for my permission first."* | Permission required, **per ask** |
 | **2026-08-04** | *"do not create the tickets which are related to API , if there are any ASK me (ask again if I have previously given a go ahead for the API tickets with the Non API tickets)"* | **A batch approval does not cover the API item inside it** |
@@ -74,10 +81,45 @@ Screenshots: [available | need capturing | cannot be captured because <reason>]
 
 ---
 
+# 🛑 THE MANDATORY GATE — THE 2026-08-17 DEFECT-TICKET QUALITY CHECKLIST (Standing Rule 73)
+
+**THIS CHECKLIST IS THE GATE OF THIS SKILL. A TICKET THAT FAILS ANY ITEM IS NOT READY to be proposed
+for creation — and saying so is the correct outcome, not a failure of the pass.** The QA lead asked
+for it in these words: **previously-created tickets *"did bite us."*** It is the **eight-item evidence
+bar below, re-expressed as his 2026-08-17 gate**, hardening three points — one-at-a-time resume,
+verbatim-in-quotation-marks source, and easiest-possible-for-a-non-technical-PO reproduction. **Satisfy
+this checklist AND the eight-item bar; where they overlap they are the same requirement.**
+
+| # | Gate item | Pass condition |
+|---|---|---|
+| **1** | **Story Defect of the RELATED STORY** | `issuetype` = `Story Defect`, `parent` = the OWNING STORY; also `relates to` the story; no Product Area; priority `Medium` (`High` barred). *(Full shape: Rules 52/53.)* |
+| **2** | **NOT a duplicate** | Duplicate search run **first**; the JQL recorded; **what was ruled out stated.** |
+| **3** | **Runnable, the EASIEST possible to reproduce** | Steps a **non-technical PO can actually run** — exact on-screen labels, the steps that CREATE any needed data, the **exact test data named**, what was ruled out. **No API calls in the steps.** |
+| **4** | **Relevant annotated screenshots** | Marked up (arrow/box/caption), **embedded so they render** — not a file list. |
+| **5** | **Expected behaviour, then — after a line break — its source** | The source is named immediately below the expected behaviour. |
+| **6** | **Expected behaviour WORD-BY-WORD from the source, IN QUOTATION MARKS** | **No invented expectation, no interpretation.** Quoted literally, in quotation marks, from a named document with its version/date. **No quotable document → NO TICKET.** |
+| **7** | **Concise — not too lengthy** | No unnecessary information; to the point. |
+
+**RATIONALE (recorded — it is why each item exists):** previous tickets bit us (the QA lead said his
+job was on threat because of it) because they were **too lengthy with unnecessary information, had
+missing screenshots, had steps of reproduction that non-technical POs could not run, and cited sources
+by reference while quoting NOTHING verbatim from them.** Item 7 closes the length, item 4 the
+screenshots, item 3 the runnability, and items 5/6 the verbatim-quoted source.
+
+**ON RESUME: ONE TICKET AT A TIME.** When the hold lifts and he asks to resume — **create ONE ticket →
+he verifies it → ONLY THEN the next. Never a batch.** *(Standing Rules 62/73; the hold itself is still
+active — see the top of this skill.)*
+
+**Cross-references: Rule 51 (API tickets asked separately, every time) · Rule 52 (the shape + the
+eight-item bar) · Rule 53 (priority Medium) · Rule 62 (the creation hold; per-ask permission).**
+
+---
+
 # 🔴 THE EVIDENCE BAR — EIGHT ITEMS, ALL CHECKABLE
 
 **A rule nobody can fail is a rule nobody follows.** **A ticket that cannot show all eight is NOT
 READY TO BE PUT TO HIM — and saying so is the correct outcome**, not a failure of the pass.
+**These eight items are the detailed backing for the mandatory gate above** — satisfy both.
 
 ### (1) THE EXPECTED BEHAVIOUR IS QUOTED VERBATIM FROM A NAMED SOURCE, WITH ITS VERSION AND DATE
 
@@ -331,7 +373,11 @@ outstanding — never quietly dropped, never re-decided by us.
 10. **Apply the four nonsense checks** — item 8.
 11. **Classify API vs user-facing** by reachability, and split the pack.
 12. **Write the seven-section body** and the pack.
-13. **Report it with the recommendation, and stop.** Log it in the register.
+13. **Score it against the mandatory gate** (the 2026-08-17 checklist) — **a fail on any item = NOT
+    READY; say which item failed.**
+14. **Report it with the recommendation, and stop.** Log it in the register.
+15. **ON RESUME ONLY (hold lifted + his go-ahead): ONE TICKET AT A TIME** — create one, he verifies it,
+    only then the next. **Never a batch** (Standing Rules 62/73).
 
 ---
 
@@ -358,6 +404,9 @@ outstanding — never quietly dropped, never re-decided by us.
   is available** — not silently following the new instruction, not silently keeping the old rule. **A
   tightening or a layering is NOT a conflict**; escalating those trains him to wave escalations
   through. *He endorsed the practice by name: **"Good catch, be like this always."***
+- **G10 — On resume, ONE TICKET AT A TIME — never a batch** (Standing Rule 73). Create one → he
+  verifies it → only then the next. A weak ticket filed in a batch discredits the good ones beside it;
+  one-at-a-time makes each separately answerable and keeps Rule 62's per-ask permission true in fact.
 ---
 
 ## HONESTY NOTES

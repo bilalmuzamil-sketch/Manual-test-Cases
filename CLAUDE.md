@@ -6662,6 +6662,66 @@ deliver the 7-tab management report.
     process), 21 (the Process-Authoring Standard), 25 (record his wording verbatim), 32/33 (latest
     authoritative ruling wins; he is the authority on the rules) and 63 (surface a conflict before
     acting).
+73. **WHEN THE JIRA CREATION HOLD LIFTS, RESUME ONE TICKET AT A TIME — AND EVERY TICKET MUST CLEAR THE
+    DEFECT-TICKET QUALITY CHECKLIST BEFORE IT IS PROPOSED FOR CREATION (all projects; reinforces Rules
+    51/52/53/62).**
+    USER DIRECTIVE (2026-08-17): the QA lead instructed that a **defect-ticket quality standard** and a
+    **one-at-a-time resume process** be RECORDED as a rule, **because previously-created tickets "did
+    bite us."** He restated the standing hold in the same period, verbatim: ***"Lets hold them until we
+    are done with Build verification ... Even then we will keep a hold on creating tickets until I allow
+    you to create the tickets."***
+    **THE HOLD STANDS FIRST (Rule 62 + skill §11.1) — NOTHING IN THIS RULE LIFTS IT.** Jira ticket
+    creation stays **ON HOLD until the QA lead EXPLICITLY asks to resume**; finishing build verification
+    does **not** lift it. This rule governs **what happens the moment he does**, and what every prepared
+    ticket must already satisfy so that the first one out of the door cannot be thrown back.
+    **THE RESUME PROCESS — ONE TICKET AT A TIME, NEVER A BATCH.** When he asks to resume: **(1)** Claude
+    creates **ONE** ticket; **(2)** the QA lead **verifies that one ticket**; **(3)** ONLY THEN does
+    Claude create the next. **Never batch; never file the second before the first is confirmed.** This is
+    the operational lesson of the tickets that bit him — a weak ticket filed in a batch discredits the
+    good ones beside it, and one-at-a-time makes each ticket separately answerable. It also keeps Rule
+    62's PER-ASK permission true in practice: each ticket is its own confirmed step, and an earlier
+    confirmation never covers the next ticket.
+    **THE DEFECT-TICKET QUALITY CHECKLIST — a ticket that FAILS ANY ITEM is NOT READY to be proposed for
+    creation** (and saying so is the correct outcome, not a failure of the pass):
+    · **[1] STORY DEFECT OF THE RELATED STORY** — `issuetype` = `Story Defect`, `parent` = the OWNING
+    STORY (the full Rule-52 shape: also `relates to` the story, no Product Area, priority `Medium` per
+    Rule 53, `High` barred; never `Story Defect - Archive`).
+    · **[2] NOT A DUPLICATE of an already-reported issue** — run a duplicate search FIRST and STATE WHAT
+    WAS RULED OUT (record the JQL). Several tickets we filed already existed, and a duplicate is the
+    cheapest way to look careless in front of the queue it lands in.
+    · **[3] RUNNABLE, AND THE EASIEST POSSIBLE TO REPRODUCE** — easy-to-follow steps of replication a
+    **NON-TECHNICAL PO can actually run**, using the exact on-screen labels; include the steps that
+    CREATE any needed data; NAME the exact test data used and what was ruled out (Rule 52 item 3); **NO
+    API calls in the steps.**
+    · **[4] RELEVANT ANNOTATED SCREENSHOTS** — embedded so they RENDER (not a file list), marked up
+    (arrow / box / caption) so the fault is visible without reproducing it.
+    · **[5] EXPECTED BEHAVIOUR, THEN — AFTER A LINE BREAK — ITS SOURCE** — the source is named
+    immediately below the expected behaviour.
+    · **[6] THE EXPECTED BEHAVIOUR IS WORD-BY-WORD FROM THE SOURCE, IN QUOTATION MARKS** — **NO invented
+    expected behaviour and NO wrong interpretation required.** The expected behaviour is quoted
+    **literally, in quotation marks, from a named document with its version and date**, so there is
+    **0% chance it bites us**. **If it cannot be quoted verbatim from a document, THERE IS NO TICKET**
+    (Rule 57; this strengthens Rule 52 item 1 — the quote is literal and in quotation marks, not merely
+    "quoting the requirement").
+    · **[7] CONCISE — NOT TOO LENGTHY** — no unnecessary information; to the point. An over-long ticket
+    buries the fault and invites dismissal.
+    **RATIONALE — RECORDED, because it is exactly why each item exists:** previous tickets bit us (and
+    the QA lead said his job was on threat because of it) because they were **too lengthy with
+    unnecessary information, had missing screenshots, had steps of reproduction that non-technical POs
+    could not run, and cited sources by reference while quoting NOTHING verbatim from them.** The
+    checklist closes each of those four failure modes directly — [7] the length, [4] the screenshots,
+    [3] the runnability, and [5]/[6] the verbatim-quoted source.
+    **RELATION TO RULE 52's EIGHT-ITEM EVIDENCE BAR:** this checklist is the **same standard, re-stated
+    as the QA lead's 2026-08-17 gate**, hardening three points — the **one-at-a-time resume**, the
+    **verbatim-in-quotation-marks** expected behaviour, and the **easiest-possible-for-a-non-technical-PO**
+    reproduction. Where they overlap, satisfy BOTH; Rule 52 carries the full field/type detail and the
+    screenshot-loss hazard, and Rule 51 still governs API-related tickets (asked separately, every time).
+    Ties to Standing Rules 6 (nothing to a system of record without permission), 7 (plain layman wording
+    — the PO must be able to run it), 8 (name the affected cases in OUR records, not the ticket), 25
+    (quote the source verbatim), 46 (a deliberate non-filing is recorded so it can never look like a
+    miss), 48 (a held item quotes the ruling holding it), 51 (API tickets asked separately), 52 (the
+    shape + the eight-item bar), 53 (priority `Medium`), 57 (expected behaviour comes from the document,
+    never the build) and 62 (the creation hold; per-ask permission).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
@@ -7087,6 +7147,20 @@ regression / bug-fix re-testing.
   that"* or *"I cannot reproduce it from my own steps"*, **do not file it**) · **(8)** a check that it is
   **not a Rule-24 PASS** (UI hidden + API allows = PASS, never a defect). **The bar decides FITNESS, never
   authorisation — passing all eight is still not permission (Rule 62).**
+  **🔴 AND WHEN THE HOLD LIFTS, RESUME ONE TICKET AT A TIME AGAINST A QUALITY CHECKLIST (Standing Rule
+  73, 2026-08-17 — recorded because previously-created tickets *"did bite us"*).** When the QA lead
+  explicitly asks to resume: Claude creates **ONE** ticket, he **verifies it**, and only then does
+  Claude create the **next** — **never a batch.** Each ticket must clear a checklist before it is
+  proposed (a ticket that fails any item is NOT ready): **[1]** a `Story Defect` of the **related
+  story** (full Rule-52 shape) · **[2]** proven **NOT a duplicate** (dup search first, JQL recorded,
+  what was ruled out stated) · **[3]** **runnable, the EASIEST possible to reproduce** — steps a
+  **non-technical PO can actually run**, exact on-screen labels, named test data, **no API calls in the
+  steps** · **[4]** **relevant annotated screenshots**, embedded so they render · **[5]** the expected
+  behaviour, then **after a line break** its source · **[6]** the expected behaviour **word-by-word from
+  the source, IN QUOTATION MARKS** — **no invented expectation, no interpretation; no quotable
+  document → no ticket** · **[7]** **concise, not too lengthy** — no unnecessary information. Rationale
+  recorded: tickets bit us because they were too lengthy, missing screenshots, un-runnable by a
+  non-technical PO, and cited sources without quoting them verbatim.
 - Test cases with FE-block/BE-allow behavior carry a plain tester-facing "Note for the
   tester: …expected, mark PASSED, don't raise a bug" line (per Standing Rule 24).
 - **Simple-format status updates (all chat updates + reports):** Give updates/status

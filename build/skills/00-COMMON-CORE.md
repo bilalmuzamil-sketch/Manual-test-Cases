@@ -983,6 +983,18 @@ order, a separate event from build verification. A Rule-69 `Not available on Bui
 therefore needs BOTH (a) build verification proving it runnable AND (b) his ticket-creation go-ahead
 before it can reach `READY - EXPECT FAIL`.
 
+**⏳ WHEN THE HOLD LIFTS — RESUME ONE TICKET AT A TIME (Standing Rule 73, 2026-08-17).** He asked that
+this be recorded **because previously-created tickets *"did bite us."*** The moment he explicitly asks
+to resume: **(1)** create **ONE** ticket; **(2)** he **verifies that one ticket**; **(3)** ONLY THEN
+create the next — **never a batch, never the second before the first is confirmed.** This keeps Rule
+62's per-ask permission true in practice, and makes each ticket separately answerable — the whole
+reason a weak ticket in a batch discredited the good ones beside it. **Every ticket must also clear the
+DEFECT-TICKET QUALITY CHECKLIST before it is proposed** (skill `06`, the mandatory gate; Standing Rules
+52/73): Story Defect of the related story · proven not a duplicate · runnable and the easiest possible
+for a **non-technical PO** to reproduce · relevant annotated screenshots · expected behaviour then, on
+a new line, its source · the expected behaviour **word-by-word from the source in quotation marks** (no
+quotable document → no ticket) · concise. **A ticket that fails any item is NOT ready.**
+
 ### 11.2 Expected behaviour comes from the DOCUMENTS, never the build (Standing Rules 57/58)
 
 **The sources are (a)–(g) and the list is OPEN-ENDED by his instruction:**
