@@ -14,7 +14,7 @@
    "1. Open the Sales By Customer report.",
    "2. Look at the financial columns left to right."
   ],
-  "expected": "1. The financial columns appear in this order: Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %.\n2. \"Adjustments\" sits between \"Shop Supplies\" and \"Margin\".\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S7-R6), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The financial columns appear in this order: Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %.\n2. \"Adjustments\" sits between \"Shop Supplies\" and \"Margin\".\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S7-R6), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not fetchable this pass (Fabian Claude artifact undated/unreachable); spec + Loom-review sourced",
   "spec_ref": "SV-9280 (SBC spec v20 2026-08-12 S7-R6 — Adjustments in the financial column order between Shop Supplies and Margin)",
   "viu_status": "VIU-Pending",
@@ -39,7 +39,7 @@
    "1. Open the Sales By Customer report.",
    "2. Read the Adjustments value on a customer row, an asset row and an invoice row."
   ],
-  "expected": "1. Adjustments shows the signed net of invoice-level fees and discounts: fees count positive, discounts count negative.\n2. A line-level fee or discount stays folded into that line's Labor or Parts value and is not part of Adjustments.\n3. Adjustments is never allocated into the Labor or Parts columns.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S7-R17), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Adjustments shows the signed net of invoice-level fees and discounts: fees count positive, discounts count negative.\n2. A line-level fee or discount stays folded into that line's Labor or Parts value and is not part of Adjustments.\n3. Adjustments is never allocated into the Labor or Parts columns.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S7-R17), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not fetchable this pass (Fabian Claude artifact undated/unreachable); spec + Loom-review sourced",
   "spec_ref": "SV-9280 (SBC spec v20 2026-08-12 S7-R17 — signed net of invoice-level fees/discounts; never allocated into Labor/Parts)",
   "viu_status": "VIU-Pending",
@@ -67,7 +67,7 @@
    "4. Add Labor Margin, Parts Margin and Adjustments and compare to Margin.",
    "5. Repeat the checks on an asset row, an invoice row and the totals row."
   ],
-  "expected": "1. Labor Invoiced + Parts Invoiced + Shop Supplies + Adjustments equals Subtotal.\n2. Labor Margin + Parts Margin + Adjustments equals Margin.\n3. The ties hold on customer rows, asset rows, invoice rows and the totals row alike.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S7-R18), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. Labor Invoiced + Parts Invoiced + Shop Supplies + Adjustments equals Subtotal.\n2. Labor Margin + Parts Margin + Adjustments equals Margin.\n3. The ties hold on customer rows, asset rows, invoice rows and the totals row alike.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S7-R18), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not fetchable this pass (Fabian Claude artifact undated/unreachable); spec + Loom-review sourced",
   "spec_ref": "SV-9280 (SBC spec v20 2026-08-12 S7-R18 — row ties out: Labor+Parts+Supplies+Adjustments=Subtotal; LaborMargin+PartsMargin+Adjustments=Margin)",
   "viu_status": "VIU-Pending",
@@ -91,7 +91,7 @@
    "1. Open the Sales By Customer report.",
    "2. Open the column selector."
   ],
-  "expected": "1. The column selector lists ten toggleable columns, in order: Date, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %.\n2. \"Adjustments\" is one of the toggleable columns, between Shop Supplies and Margin.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S13-R4), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The column selector lists ten toggleable columns, in order: Date, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %.\n2. \"Adjustments\" is one of the toggleable columns, between Shop Supplies and Margin.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S13-R4), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not fetchable this pass (Fabian Claude artifact undated/unreachable); spec + Loom-review sourced",
   "spec_ref": "SV-9280 (SBC spec v20 2026-08-12 S13-R4 — ten toggleable columns including Adjustments)",
   "viu_status": "VIU-Pending",
@@ -143,7 +143,7 @@
    "2. Expand a customer to its assets, and an asset to its invoices.",
    "3. Read the invoice detail row."
   ],
-  "expected": "1. The invoice detail row shows the invoice number (as a link), the invoice date, and per-invoice Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin % and Subtotal.\n2. The per-invoice Adjustments value is the signed net of that invoice's invoice-level fees and discounts.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S8-R12), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. The invoice detail row shows the invoice number (as a link), the invoice date, and per-invoice Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin % and Subtotal.\n2. The per-invoice Adjustments value is the signed net of that invoice's invoice-level fees and discounts.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S8-R12), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not fetchable this pass (Fabian Claude artifact undated/unreachable); spec + Loom-review sourced",
   "spec_ref": "SV-9280 (SBC spec v20 2026-08-12 S8-R12 — invoice detail row shows per-invoice Adjustments)",
   "viu_status": "VIU-Pending",
