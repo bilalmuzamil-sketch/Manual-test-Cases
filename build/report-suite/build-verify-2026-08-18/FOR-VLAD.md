@@ -31,3 +31,25 @@ lead's ask-first ratification. `custom_atmstatus = 3` confirmed live per case; a
 
 The 51 SBR cases this pass DID write are all `custom_atmstatus = 1` (Not Automated) — nothing an
 automated suite runs against changed.
+
+---
+
+# Parts Velocity (PV) — build-verify 2026-08-18, build v3.8-bd246fd
+
+**AUTOMATED PV cases changed by this pass: NONE.**
+
+All 8 PV cases flagged Automated (`custom_atmstatus = 3`) were **HELD, verified live, and NOT written**
+(per this pass's instruction + Standing Rule 71 ask-first): C30326, C30328, C30333, C30338, C30346,
+C30352, C30353, C30390. They are recorded with their live verdict and intended change in
+`PV-HELD-AUTOMATED.md` for the QA lead's ask-first ratification. `custom_atmstatus = 3` confirmed live per
+case; all 8 byte-unchanged (updated_on identical to pre-pass).
+
+**Intended changes awaiting ratification (would affect what an automated run concludes):**
+- C30346, C30353 → lift `Not available on Build to test Yet` → `AUTOMATION: READY` (features now built).
+- C30352 → strip stale `EXPECT FAIL (SV-8938)` → `AUTOMATION: READY` (ticket OBSOLETE; but Location
+  position is an open PO question — confirm first).
+- C30328 → **needs review, do NOT auto-lift** — possible "All types" vs "Both" label + single- vs
+  multi-select deviation (a `READY - EXPECT FAIL` candidate).
+
+The 26 PV cases this pass DID write are all `custom_atmstatus = 1` (Not Automated) — nothing an automated
+suite runs against changed.
