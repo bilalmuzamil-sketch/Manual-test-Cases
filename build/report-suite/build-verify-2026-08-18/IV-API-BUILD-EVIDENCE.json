@@ -1,0 +1,36 @@
+{
+ "build": "v3.8-bd246fd",
+ "as_of_date": "2026-08-18",
+ "rowsNumber": 5703,
+ "totals": {
+  "qty": 68139.68,
+  "total_cost": 97516471,
+  "total_sell": 155776322,
+  "margin": 58259851,
+  "margin_pct": 37.4
+ },
+ "sample_row": {
+  "key": "91b9bf78-0fda-41df-9332-8d0dd7d1d03e",
+  "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "location": "Staging Heavy Duty - 9919",
+  "part_number": "334-1485",
+  "description": "Tie Plate - 4\"",
+  "category": "HD-Steering & Suspension",
+  "vendor": "4Refuel",
+  "qty": 500,
+  "unit_cost": 50000,
+  "unit_sell": 73530,
+  "total_cost": 25000000,
+  "total_sell": 36765000,
+  "margin": 11765000,
+  "margin_pct": 32
+ },
+ "calc_check": "0 mismatches over 100 rows: total_cost=qty*unit_cost, total_sell=qty*unit_sell, margin=total_sell-total_cost, margin_pct=margin/total_sell*100",
+ "pdf_full_view": "HTTP 000 timeout >45s 0 bytes",
+ "pdf_small_view(search=R134A,4rows)": "HTTP 200 valid PDF 25235 bytes 3.2s",
+ "csv_money": "plain 2-decimals no $/comma (0 $-cells)",
+ "csv_col_order": "...Margin,Margin %,Total Sell,Total Cost (Total Cost last)",
+ "three_dot_menu": "Download (PDF) / Download (CSV)",
+ "totals_row_label": "Totals (spec asks Total, SV-8926)",
+ "empty_state": "No inventory value to show for this selection. (spec asks Empty bays..., SV-8930)"
+}

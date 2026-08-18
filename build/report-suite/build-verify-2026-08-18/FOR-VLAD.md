@@ -113,3 +113,27 @@ All 10 remain untouched (atm still 3), held for ask-first ratification per Rule 
 build-verify pass makes these edits (on approval), the 5 conclusion-changing ones MUST be told to Vlad**
 and added to `build/fabian-review-2026-08-17-CONSOLIDATED/AUTOMATED-CASES-REGISTER.md`. The C30498
 (SV-8968 obsolete → strip EXPECT-FAIL) flag above stands.
+
+---
+
+# INVENTORY VALUE (report 6 of 6) — 2026-08-18, build `v3.8-bd246fd`
+
+**ZERO Automated (`custom_atmstatus = 3`) Inventory Value cases were written this pass.** All 5 remain
+untouched (atm still 3), held for ask-first ratification per Rule 71. Their live markers and **intended
+changes** are in `IV-HELD-AUTOMATED.md`:
+
+- **2 that would change what an automated run concludes** — **C30535 (IV-NAV-02)** and **C30563
+  (IV-DATE-03)** — both currently `Not available on Build to test Yet` and both features verified PRESENT
+  live, so they would LIFT to `AUTOMATION: READY`.
+- **3 metadata-only sentence-2 refreshes** — C30557 (IV-TOT-02), C30569 (IV-FLT-01), C30583 (IV-SORT-01)
+  — no change to what an automated run concludes.
+
+**When a coupled build-verify pass makes these edits (on approval), the 2 conclusion-changing lifts
+(C30535, C30563) MUST be told to Vlad** and added to
+`build/fabian-review-2026-08-17-CONSOLIDATED/AUTOMATED-CASES-REGISTER.md`.
+
+**Foreign Automated cases (NOT ours, Rule 38, untouched):** C43573 (IV column-persistence), C38921 (IV
+CSV metadata) — both Vladimir Tomovic id 1, atm=3.
+
+**AUTOMATED CASES CHANGED — FOR VLAD (this pass): none.** No `custom_atmstatus = 3` case was written; all
+54 IV writes were on `custom_atmstatus = 1` (non-Automated) cases.

@@ -162,3 +162,26 @@ the specific multi-tab appearance of a WO with lines in >1 state was **not direc
 in current data). The feature is present and runnable by a tester who seeds it. **So there is effectively
 NO WIP deferred-run backlog remaining among non-Automated cases** — only the 4 held Automated lifts and
 the two multi-tab confirmations.
+
+---
+
+# INVENTORY VALUE (report 6 of 6) — 2026-08-18, build `v3.8-bd246fd`
+
+**NO Inventory Value case remains on a `Not available on Build to test Yet` (deferred) marker among
+non-Automated cases.** The IV report was driven live (boot2 direct-cookie recipe, no `quick-login`) and
+**every one of the 4 non-Automated deferred cases was found PRESENT and runnable, so all 4 were LIFTED to
+`AUTOMATION: READY`** (byte-verified writes, see `iv-write-oplog.jsonl`):
+
+| C-id | internal | feature (all present live) |
+|---|---|---|
+| C30561 | IV-DATE-01 | single "as of" date control, defaults today, capped at today |
+| C30570 | IV-FLT-02 | Category/Vendor/part-search are server-side; each change returns page 1 |
+| C30573 | IV-FLT-05 | "as of" date + Location + Category + Vendor + search combine with AND |
+| C43837 | IV-EXP-11 | CSV carries the PDF header's "As of:" / "Locations:" metadata lines |
+
+**What still carries a deferred marker (NOT written — Automated, Rule 71):** the 2 Automated IV cases
+**C30535 (IV-NAV-02)** and **C30563 (IV-DATE-03)** — their intended LIFT is in `IV-HELD-AUTOMATED.md`
+for ask-first ratification.
+
+**There is NO IV "feature not found" deferred-run backlog** — the Inventory Value report is fully built
+on `v3.8-bd246fd`. The only re-check owed is the 2 Automated lifts (on approval, coupled with Vlad).
