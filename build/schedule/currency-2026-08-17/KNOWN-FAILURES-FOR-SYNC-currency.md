@@ -373,3 +373,70 @@ stripped build-observation paragraph or a non-plain prior marker (HOLD / EXPECT-
 ### SCH-CAP-03 = [C30032](https://shopview.testrail.io/index.php?/cases/view/30032)
 - **Prior marker:** `AUTOMATION: READY`
 
+
+### SCH-TIP-01 = [C30034](https://shopview.testrail.io/index.php?/cases/view/30034)
+- **Prior marker:** `AUTOMATION: HOLD - an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker`
+- **Removed build-observation paragraph (re-verify at the sync):**
+
+  > reported to the QA lead but has no developer ticket yet. Mark this test FAILED for that point only and note it in your run comment; do not raise a new ticket without asking the QA lead. The rest of point 2 now matches the expected behaviour: on a six-line shift the tooltip listed exactly three line names and a '+3 more lines' row. An earlier note on this case said all five line names were listed with no overflow row - that is no longer what the build does.
+
+
+### SCH-TIP-02 = [C30035](https://shopview.testrail.io/index.php?/cases/view/30035)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-TIP-03 = [C30036](https://shopview.testrail.io/index.php?/cases/view/30036)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-TIP-04 = [C30037](https://shopview.testrail.io/index.php?/cases/view/30037)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-TIP-05 = [C30038](https://shopview.testrail.io/index.php?/cases/view/30038)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-TOOL-01 = [C30039](https://shopview.testrail.io/index.php?/cases/view/30039)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-TOOL-02 = [C30040](https://shopview.testrail.io/index.php?/cases/view/30040)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-TOOL-03 = [C30041](https://shopview.testrail.io/index.php?/cases/view/30041)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-VIEW-01 = [C30042](https://shopview.testrail.io/index.php?/cases/view/30042)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-VIEW-02 = [C30043](https://shopview.testrail.io/index.php?/cases/view/30043)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-VIEW-03 = [C30044](https://shopview.testrail.io/index.php?/cases/view/30044)
+- **Prior marker:** `AUTOMATION: HOLD - point 4 needs a user with no staff record of their own; points 1 to 3 are observed and pass`
+
+
+### SCH-VIEW-04 = [C30045](https://shopview.testrail.io/index.php?/cases/view/30045)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-VIEW-05 = [C30046](https://shopview.testrail.io/index.php?/cases/view/30046)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-VIEW-06 = [C30047](https://shopview.testrail.io/index.php?/cases/view/30047)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-VIEW-09 = [C30050](https://shopview.testrail.io/index.php?/cases/view/30050)
+- **Prior marker:** `AUTOMATION: HOLD - the toggle displays nothing in this build; a ticket cannot be raised yet`
+- **Removed build-observation paragraph (re-verify at the sync):**
+
+  > What you will find on the build as it stands: turning Tech Hours on changes nothing you can see - no working hours appear beside any technician's name. This is not because the technicians have no hours set: their hours ARE set (7:00 AM to 7:00 PM, Monday to Friday), which was checked on the staff records first.
+  > Please mark this test BLOCKED, not failed, and do not raise a new problem for it - it is already written up and is waiting to be reported.
+
