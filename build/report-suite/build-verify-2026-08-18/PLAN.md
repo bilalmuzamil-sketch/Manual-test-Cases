@@ -9,19 +9,20 @@ This document plans the work. **No case was verified, and nothing was written to
 
 ---
 
-## 1. ACCESS VERDICT — **BLOCKED** (need fresh STAGING cookies)
+## 1. ACCESS VERDICT — **OK** (live, observable session on staging)
 
-Staging is live and was redeployed today, but **we have no live session**. All cookies in `/tmp` are
-for the retired per-branch QA host `.qa.shopview.com`, are 8–14 days old, and are dead against staging
-(401 `sso_required` JSON = dead shared `sv_sso_session`); the old QA host no longer connects (HTTP
-000). Full evidence: `ACCESS-PROOF.md`.
+Fresh `.staging.shopview.com` cookies were supplied and are live (`/tmp/staging-cookie.txt`, chmod
+600, never committed). Confirmed by real authenticated calls at 2026-08-18 ~19:12Z:
 
-**To start live verification we need, for the `.staging.shopview.com` domain:**
-`sv_sso_session` · `PHPSESSID` · `cf_clearance`. Probe target once supplied:
-`https://api.staging.shopview.com/api/auth/me/fe-permissions` (HTTP 200 + permissions array = live).
+- `GET /api/auth/me/fe-permissions` → **HTTP 200** (42 permissions, `view_mode: full`).
+- `GET /api/reporting/reports/sales-by-customer?range=this_month` → **HTTP 200** with real report data.
 
-**Jira access works now** (independent of staging), so the story-status and source-currency work below
-can proceed immediately; only the live walk waits on staging cookies.
+**The Report Suite is observable live.** Build under test: **`v3.8-2bf8d14`**, last-modified
+2026-08-18 17:45:12 GMT, etag `0f69246068bb597a9f1a1f02bd708754` (byte-stable across two reads).
+Full evidence + the false-absence endpoint-shape note: `ACCESS-PROOF.md`.
+
+**⇒ The live build-verification pass can start now.** Jira access also works (independent of staging).
+Real endpoint shape: `/api/reporting/reports/<report-slug>` (NOT `/api/reports/…`).
 
 ---
 
@@ -145,10 +146,22 @@ staging (handed off + merged); the deferred set should be small and live-confirm
 
 ---
 
-## 5. THE UNDER-DEVELOPMENT TREATMENT (exact wording + placement)
+## 5. THE UNDER-DEVELOPMENT TREATMENT — **QA-lead CONFIRMED**
 
-For a case whose feature is confirmed **not build-verifiable because its story is still under
-development**, the Expected Results end like this:
+For a case whose owning story is confirmed **still under development** (feature not observable on the
+build, live-confirmed with a control that proves the detector can fire):
+
+- **KEEP the existing `AUTOMATION: Not available on Build to test Yet - Last checked <date>` marker
+  UNCHANGED** — do NOT lift it, do NOT re-stamp it. (Where such a case does not yet carry that marker
+  and currently has plain `AUTOMATION: READY`, apply the Rule-69 marker, which substitutes for plain
+  `READY` only; NEVER overwrite an existing `EXPECT FAIL (SV-xxxx)` or `HOLD - <reason>` marker.)
+- **ADD a tester-facing line BELOW the Rule-54 sources line, after a line break**, verbatim:
+
+  > **This test case cannot be build verified because this story is still under development.**
+
+- **These cases go into a SEPARATE build-verification run** (§6), to be build-verified later.
+
+The Expected Results end like this:
 
 ```
 … [numbered expected results] …
@@ -157,21 +170,14 @@ development**, the Expected Results end like this:
 This is the expected behaviour as per epic SV-8582 and the <Report> report specification version <N>,
 section <anchor>, read on 18 August 2026 [+ any PO answer file/date].
 
-Note for the tester: this test cannot be build-verified yet because this story is still under
-development. It will be checked on the build once the feature is released.
+This test case cannot be build verified because this story is still under development.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/18/2026
 ```
 
-**Placement rules (QA lead's new instruction + Rules 54/69):**
-1. The Rule-54 **sources line (sentence 1 only — documents, with read-dates)** stays; **sentence 2 (the
-   build "last checked against …" record) is OMITTED** — the case was not build-verified.
-2. The **dev-status line goes BELOW the sources line, after a line break** — plain, tester-facing
-   (Rule 7). Proposed exact wording above; confirm the phrasing with the QA lead.
-3. **Blank line, then the marker** `AUTOMATION: Not available on Build to test Yet - Last checked
-   8/18/2026` (Rule 69). This marker **substitutes for a plain `READY` only** — it must **never**
-   overwrite an existing `EXPECT FAIL (SV-xxxx)` or `HOLD - <reason>` marker (§15, dated 2026-08-18).
-4. These cases are **excluded from any "ready to automate" figure**.
+**Notes:** the Rule-54 **sources line stays** (sentence 1 only — documents, with read-dates);
+**sentence 2 (the build "last checked against …" record) is OMITTED** — the case was not
+build-verified. These cases are **excluded from any "ready to automate" figure**.
 
 ---
 
@@ -189,7 +195,31 @@ The under-development cases go into a **separate TestRail run** to be build-veri
 
 ---
 
-## 7. EXECUTION SEQUENCE once staging cookies arrive
+## 6a. THE PER-CASE VERIFICATION STANDARD — the Viktoria bar (QA-lead directive)
+
+**Viktoria Videnovic is the Report Suite manual QA and will look for any excuse to blame the test
+cases.** Every case we build-verify must therefore be made **bulletproof for a non-technical tester** —
+this is the standard EACH case must clear before it is left as verified:
+
+1. **Build-accurate on-screen labels (Rule 9)** — every button, tab, column, screen and field named
+   EXACTLY as it appears on `v3.8-2bf8d14`, taken from the build, never invented or paraphrased. Read
+   BOTH the DOM string and the computed `text-transform` before changing a label (skill 03 §4.1).
+2. **Steps she can actually follow and run** — the five runnability checks pass: precondition
+   reachable, navigation path exists, every named control where the step says it is, steps work in the
+   written order. No step "from Mars".
+3. **Settable/creatable preconditions (Rule 14)** — seed the data state (work orders, invoices,
+   customers, parts, date ranges, roles) rather than leaving a case blocked; a precondition that cannot
+   be reached is flagged, not passed.
+4. **Plain layman wording, zero ambiguity (Rule 7)** — no jargon, no case IDs/anchors/HTTP/enum terms
+   in tester-facing text; one unambiguous reading.
+5. **Nothing invented; fully traceable (Rules 12/20)** — every expected result sourced to a document
+   (Rule 57), `refs` carry ticket + spec anchor, provenance line with read-dates (Rule 54).
+
+**Any case that CANNOT be made bulletproof to this bar is FLAGGED (in `DIVERGENCES.md` /
+`FINDINGS.md`), NOT passed.** A substantive divergence is recorded and raised to the QA lead, never
+silently rewritten into a runnable-looking step (skill 03 "the dangerous edge").
+
+## 7. EXECUTION SEQUENCE (staging access is OK — can start now)
 
 1. Pass-start: `git fetch` + `merge --ff-only`; record the live build marker again; re-confirm epic +
    the six spec versions live (skill `02`, source currency — Rule 31/59).
@@ -201,10 +231,11 @@ The under-development cases go into a **separate TestRail run** to be build-veri
    states what makes the state one where the thing should appear + runs a control that proves the
    detector can fire.
 5. Bucket VERIFIABLE-NOW vs UNDER-DEVELOPMENT from what was observed.
-6. Apply corrections (authorised `update_case` only): lift the 87 deferred markers where verified;
-   re-check the 101 EXPECT-FAIL against live tickets; re-judge the 39 HOLD on the steps; apply the
-   dev-status line + Rule-69 marker to the confirmed under-dev cases; re-stamp provenance sentence 2
-   with `v3.8-2bf8d14` + date, per case, honestly. All writes: all three text fields, dry-run and read
+6. Apply corrections (authorised `update_case` only): for VERIFIABLE-NOW cases, make each clear the
+   Viktoria bar (§6a), lift the deferred markers where verified, re-check the 101 EXPECT-FAIL against
+   live tickets, re-judge the 39 HOLD on the steps, and re-stamp provenance sentence 2 with
+   `v3.8-2bf8d14` + date. For UNDER-DEVELOPMENT cases, **keep the existing "Not available…" marker
+   UNCHANGED** and add the dev-status line (§5). All writes: all three text fields, dry-run and read
    payloads, byte-check, stop on mismatch, post-write assertion re-audit (core §2).
 7. The 10 Automated WIP cases: confirm `custom_atmstatus=3` live, ask-first, edit+build-verify
    together, tell Vlad.
@@ -218,11 +249,12 @@ The under-development cases go into a **separate TestRail run** to be build-veri
 
 | # | What it is (plain) | What YOU do | Why it matters | Priority |
 |---|---|---|---|---|
-| 1 | **Fresh staging cookies** — we have none for `.staging.shopview.com`; the old QA ones are dead. | Supply `sv_sso_session`, `PHPSESSID`, `cf_clearance` for `.staging.shopview.com` (to `/tmp`, not the repo). | **Nothing can be build-verified until these arrive.** Jira/source work can proceed meanwhile. | HIGH — blocks the whole live pass |
-| 2 | **Bucketing basis** — Jira status is stale (461 "Open" cases despite handoff+merge). | Confirm: bucket by LIVE observation on staging (§4), not by Jira status alone. | Status alone would wrongly defer ~470 cases. | HIGH |
-| 3 | **Dev-status line wording** for under-dev cases. | Confirm the exact sentence (§5) or give your preferred phrasing. | It is tester-facing on every deferred case. | MED |
-| 4 | **Separate deferred run** — a TestRail write, and the 2026-08-10 "create nothing" hold may still stand. | Say whether to create the run now, or track the deferred set locally until the hold lifts. | Governs where deferred cases live. | MED |
-| 5 | **Automated WIP cases** (the 10, + any other `atmstatus=3`) — Rule 71 ask-first. | Approve editing/build-verifying Automated cases in this pass (per batch). | We cannot touch them otherwise. | MED |
-| 6 | **TestRail write authorization** for the correction step (§7.6). | Approve `update_case` for build-verify corrections when the live pass runs. | No TestRail write without per-ask permission (Rule 6). | MED (when live) |
+| 1 | **Bucketing basis** — Jira status is stale (461 "Open" cases despite handoff+merge). | Confirm: bucket by LIVE observation on staging (§4), not by Jira status alone. | Status alone would wrongly defer ~470 cases. | HIGH |
+| 2 | **Separate deferred run** — a TestRail write, and the 2026-08-10 "create nothing" hold may still stand. | Say whether to create the run now, or track the deferred set locally until the hold lifts. | Governs where deferred cases live. | MED |
+| 3 | **Automated WIP cases** (the 10, + any other `atmstatus=3`) — Rule 71 ask-first. | Approve editing/build-verifying Automated cases in this pass (per batch). | We cannot touch them otherwise. | MED |
+| 4 | **TestRail write authorization** for the correction step (§7.6). | Approve `update_case` for build-verify corrections when the live pass runs. | No TestRail write without per-ask permission (Rule 6). | MED (when live) |
+
+**Cleared this pass:** staging cookies supplied → access **OK** (was HIGH blocker); under-dev handling
++ dev-status line wording **confirmed** by the QA lead (§5); Viktoria per-case bar **confirmed** (§6a).
 
 **Nothing else is outstanding for the recon itself.**

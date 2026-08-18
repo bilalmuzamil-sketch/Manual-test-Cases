@@ -18,39 +18,37 @@ Stefan's word that the QA branch is merged to staging is confirmed. The app answ
 
 The build was rebuilt ~1h20m before we read it — consistent with a fresh merge to staging.
 
-## 2. We have NO live session — access is BLOCKED
+## 2. ACCESS — now **OK** (fresh staging cookies supplied 2026-08-18 ~19:12Z)
 
-Two old cookie sets exist in `/tmp`, both for the **retired** per-branch QA host `.qa.shopview.com`,
-both stale (8–14 days old, past the ~24h lifetime, and a redeploy kills them anyway):
+The QA lead supplied fresh `.staging.shopview.com` cookies (`sv_sso_session` · `PHPSESSID` ·
+`cf_clearance`), written to `/tmp/staging-cookie.txt` (chmod 600, **never committed** — repo is
+public, core §10). A real authenticated probe confirms a live, observable session on the
+**Report Suite**:
 
-- `/tmp/rs-cookie.txt` — host `sv8582.qa.shopview.com` — mtime 2026-08-04
-- `/tmp/qa-cookies/reports-cookie-header.txt` — mtime 2026-08-10
+| Probe (host `api.staging.shopview.com`) | Result |
+|---|---|
+| `GET /api/auth/me/fe-permissions` | **HTTP 200** — 42 permissions, `view_mode: full`, `system_role` present |
+| `GET /api/reporting/reports/sales-by-customer?range=this_month` | **HTTP 200** — real report data (`data.collection` of customer rows: `customer_name`, `location`, `inv_hrs`, …) |
+| read at (UTC) | **2026-08-18T19:12:52Z** |
 
-Probes (`GET /api/auth/me/fe-permissions`), per core §6 (probe the `…api.` host, build header with
-`'; '.join`):
+**The Report Suite is observable live.** Build marker re-read at 19:12Z: `v3.8-2bf8d14`,
+`last-modified` Tue 18 Aug 2026 17:45:12 GMT, `etag` `0f69246068bb597a9f1a1f02bd708754` —
+byte-stable across the 19:05 and 19:12 reads, so nothing redeployed under the probe.
 
-| Cookies used | Host | Result | Meaning (core §6.1) |
-|---|---|---|---|
-| none | `api.staging.shopview.com` | **HTTP 401** | auth required (expected) |
-| old QA (reports) | `api.staging.shopview.com` | **HTTP 401 `{"error":"sso_required"}`** (JSON from app) | shared `sv_sso_session` is DEAD; request reached the app, so Cloudflare is fine |
-| old QA (rs-cookie) | `api.staging.shopview.com` | **HTTP 401 `sso_required`** | same |
-| old QA (either) | `sv8582api.qa.shopview.com` | **HTTP 000** (no connection) | the old per-branch QA host is TORN DOWN |
+**Endpoint-shape note (skill 03 false-absence trap, recorded so nobody re-derives it):** the real
+report endpoint is **`/api/reporting/reports/<report-slug>`**, NOT `/api/reports/…`. First guesses at
+`/api/reports/sales-by-customer` returned **404 "resource not found"** (wrong path, not absence), and a
+`range=custom` call returned **400 "not a valid datetime"** (param-format, not a broken endpoint) —
+both classic false-absence signatures. `range=this_month` returned 200 with data. The prior-work
+capture that carries the correct shape: `build/report-suite/finish-2026-08-12/evidence/verify3.json`.
 
-**Signature of a genuinely dead shared sign-in (core §6.1):** JSON `sso_required` from the app, and
-**nothing returned 409**. `quick-login` is not a recovery route in this state (it is itself
-SSO-gated).
+### The old cookies (for the record) — dead, and the old host is gone
 
-## 3. What is needed to unblock
-
-**Fresh STAGING cookies for the `.staging.shopview.com` domain** (we have never held staging cookies —
-every set in `/tmp` is for the retired `.qa.shopview.com`):
-
-- `sv_sso_session` — the shared sign-in (dead)
-- `PHPSESSID` — staging's session (per-branch/per-host; we have none for staging)
-- `cf_clearance` — Cloudflare clearance for the staging domain
-
-API host to probe once supplied: **`https://api.staging.shopview.com/api/auth/me/fe-permissions`**
-(a 200 with a permissions array confirms live).
+Two old cookie sets in `/tmp` targeted the **retired** per-branch QA host `.qa.shopview.com`
+(`/tmp/rs-cookie.txt` 2026-08-04, `/tmp/qa-cookies/reports-cookie-header.txt` 2026-08-10). Against
+staging they returned **401 `sso_required`** (dead shared sign-in), and the old host
+`sv8582api.qa.shopview.com` returned **HTTP 000** (torn down by the merge to staging). These are not
+used.
 
 ## 4. Jira access WORKS (independent of staging)
 
