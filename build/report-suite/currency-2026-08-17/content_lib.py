@@ -6,7 +6,7 @@ def norm_refs(s): return ','.join(p.strip() for p in (s or '').split(','))
 MARKER=engine.MARKER
 
 def restamp(cid, live, new_title=None, new_preconds=None, new_steps=None, body_transform=None,
-            keep_hold=False, oplog=None, divergence=None):
+            marker_mode='auto', oplog=None, divergence=None):
     """Rewrite a content-stale case. body_transform(old_body)->new_body operates on the expected BODY
     (text before ---). prov re-stamped to current version+read-date, sentence2 dropped.
     Marker: Rule-69 unless keep_hold (then preserve existing HOLD marker)."""
@@ -17,10 +17,18 @@ def restamp(cid, live, new_title=None, new_preconds=None, new_steps=None, body_t
     if divergence:
         nb=nb.rstrip()+"\n"+divergence.strip()
     newprov=engine.strip_sentence2(engine.bump_prov(prov,rp))
-    if keep_hold and marker.startswith('AUTOMATION: HOLD'):
-        newmarker=marker
-    else:
+    # marker policy for a content-edited case:
+    #  READY (plain) -> Rule-69 ; EXPECT-FAIL / HOLD -> preserve the existing marker.
+    # sentence 2 is always dropped for content edits (build not re-verified).
+    if marker_mode=='rule69':
         newmarker=MARKER
+    elif marker_mode=='preserve':
+        newmarker=marker
+    else:  # auto
+        if ('EXPECT FAIL' in marker) or marker.startswith('AUTOMATION: HOLD'):
+            newmarker=marker
+        else:
+            newmarker=MARKER
     newexp=nb.rstrip()+"\n\n---\n"+newprov.strip()+"\n\n"+newmarker
     pay={'custom_expected':newexp,'refs':engine.bump_refs(live.get('refs','') or '',rp),
          'custom_preconds': new_preconds if new_preconds is not None else (live.get('custom_preconds') or ''),
