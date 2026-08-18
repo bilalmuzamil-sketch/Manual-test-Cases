@@ -440,3 +440,63 @@ stripped build-observation paragraph or a non-plain prior marker (HOLD / EXPECT-
   > What you will find on the build as it stands: turning Tech Hours on changes nothing you can see - no working hours appear beside any technician's name. This is not because the technicians have no hours set: their hours ARE set (7:00 AM to 7:00 PM, Monday to Friday), which was checked on the staff records first.
   > Please mark this test BLOCKED, not failed, and do not raise a new problem for it - it is already written up and is waiting to be reported.
 
+
+### SCH-VIEW-10 = [C30051](https://shopview.testrail.io/index.php?/cases/view/30051)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-REAS-01 = [C30052](https://shopview.testrail.io/index.php?/cases/view/30052)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-REAS-06 = [C38855](https://shopview.testrail.io/index.php?/cases/view/38855)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-REAS-07 = [C43556](https://shopview.testrail.io/index.php?/cases/view/43556)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-DEL-03 = [C30059](https://shopview.testrail.io/index.php?/cases/view/30059)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-DEL-04 = [C30060](https://shopview.testrail.io/index.php?/cases/view/30060)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-DEL-05 = [C30061](https://shopview.testrail.io/index.php?/cases/view/30061)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-DEL-06 = [C30062](https://shopview.testrail.io/index.php?/cases/view/30062)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-DEL-08 = [C30064](https://shopview.testrail.io/index.php?/cases/view/30064)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-DEL-09 = [C30065](https://shopview.testrail.io/index.php?/cases/view/30065)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-DEL-10 = [C38864](https://shopview.testrail.io/index.php?/cases/view/38864)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-KEY-01 = [C30066](https://shopview.testrail.io/index.php?/cases/view/30066)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-KEY-03 = [C30068](https://shopview.testrail.io/index.php?/cases/view/30068)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-KEY-05 = [C30070](https://shopview.testrail.io/index.php?/cases/view/30070)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-COLOR-01 = [C30071](https://shopview.testrail.io/index.php?/cases/view/30071)
+- **Prior marker:** `AUTOMATION: READY`
+
