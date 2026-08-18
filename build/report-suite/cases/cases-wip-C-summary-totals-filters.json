@@ -14,13 +14,13 @@
    "1. Read the summary strip across the top of the report, left to right.",
    "2. Read each figure's number format."
   ],
-  "expected": "1. The strip shows seven figures, in this order: Total Earned, Total Remaining, Not Started, Started — Earned, Started — Remaining, Ready to Invoice, and Estimates.\n2. Every figure shows US-dollar currency with a leading \"$\", two decimals, and thousands separators.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S5-R1, S5-R10), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "expected": "1. The strip shows seven figures, in this order: Total Earned, Total Remaining, Not Started, Started — Earned, Started — Remaining, Ready to Invoice, and Estimates.\n2. Every figure shows US-dollar currency with a leading \"$\", two decimals, and thousands separators.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (S5-R1, S5-R10), read on 18 August 2026.\n\nAUTOMATION: READY",
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8661 (WIP spec v21 2026-08-17 Story 5 S5-R1; S5-R10 — S5-R1 CLOSES the seven figures and their order verbatim and S5-R10 closes the currency format; so the closed lists ARE the requirement)",
+  "spec_ref": "SV-8661 (WIP spec v22 2026-08-18 Story 5 S5-R1; S5-R10 — S5-R1 CLOSES the seven figures and their order verbatim and S5-R10 closes the currency format; so the closed lists ARE the requirement)",
   "viu_status": "VIU-Pending",
   "notes": "Figure names are verbatim from the spec (note the em dash in \"Started — Earned\" / \"Started — Remaining\") — VIU-confirm the exact on-screen rendering of the dash. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed seven-figure list and its order to WIP S5-R1 + spec version (Rule 42(b)). RULE 41: Re-verified whole against WIP spec v6 2026-07-29: title, preconditions 1-2, steps 1-2, expected 1-2, refs. S5-R1 verbatim L269: \"The summary strip shows seven figures, in this order: **Total Earned**, **Total Remaining**, **Not Started**, **Started — Earned**, **Started — Remaining**, **Ready to Invoice**, and **Estimates**.\" S5-R10 L278 closes the currency format. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false,
-  "refs": "SV-8661 (WIP spec v21 2026-08-17 Story 5 S5-R1; S5-R10 — S5-R1 CLOSES the seven figures and their order verbatim and S5-R10 closes the currency format; so the closed lists ARE the requirement)",
+  "refs": "SV-8661 (WIP spec v22 2026-08-18 Story 5 S5-R1; S5-R10 — S5-R1 CLOSES the seven figures and their order verbatim and S5-R10 closes the currency format; so the closed lists ARE the requirement)",
   "testrail_id": "C30487",
   "section_id": 4356
  },

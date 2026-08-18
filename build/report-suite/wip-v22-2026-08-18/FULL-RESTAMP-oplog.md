@@ -11,3 +11,16 @@
 - **C30472** WROTE | HTTP 200 | update_case C30472: 30 fields compared, 4 intended, 0 mismatch
 - **C30473** WROTE | HTTP 200 | update_case C30473: 30 fields compared, 4 intended, 0 mismatch
 - **C30474** WROTE | HTTP 200 | update_case C30474: 30 fields compared, 4 intended, 0 mismatch
+- **C30475** WROTE | HTTP 200 | update_case C30475: 30 fields compared, 4 intended, 0 mismatch
+- **C30476** WROTE | HTTP 200 | update_case C30476: 30 fields compared, 4 intended, 0 mismatch
+- **C30477** WROTE | HTTP 200 | update_case C30477: 30 fields compared, 4 intended, 0 mismatch
+- **C30478** WROTE | HTTP 200 | update_case C30478: 30 fields compared, 4 intended, 0 mismatch
+- **C30479** WROTE | HTTP 200 | update_case C30479: 30 fields compared, 4 intended, 0 mismatch | C30479 body version-citation v21->v22 (S4-R21 byte-identical)
+- **C30480** WROTE | HTTP 200 | update_case C30480: 30 fields compared, 4 intended, 0 mismatch
+- **C30481** WROTE | HTTP 200 | update_case C30481: 30 fields compared, 4 intended, 0 mismatch
+- **C30482** WROTE | HTTP 200 | update_case C30482: 30 fields compared, 4 intended, 0 mismatch
+- **C30483** WROTE | HTTP 200 | update_case C30483: 30 fields compared, 4 intended, 0 mismatch
+- **C30484** WROTE | HTTP 200 | update_case C30484: 30 fields compared, 4 intended, 0 mismatch
+- **C30485** WROTE | HTTP 200 | update_case C30485: 30 fields compared, 4 intended, 0 mismatch
+- **C30486** WROTE | HTTP 200 | update_case C30486: 30 fields compared, 4 intended, 0 mismatch
+- **C30487** WROTE | HTTP 200 | update_case C30487: 30 fields compared, 4 intended, 0 mismatch
