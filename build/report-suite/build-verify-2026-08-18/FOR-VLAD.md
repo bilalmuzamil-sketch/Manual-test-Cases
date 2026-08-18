@@ -16,3 +16,18 @@ Coupled edit+build-verify was authorised for this pass. `custom_atmstatus = 3` c
 because the invoice-number link-vs-plain-text behaviour is an **open PO question** (the build shows a
 `text_sbc_invoice_<id>` element, suggesting plain text; the spec states both link and plain-text). See
 FINDINGS.md. C30138 keeps its existing `AUTOMATION: READY` marker; not re-stamped.
+
+---
+
+# Sales By Representative (SBR) — build-verify 2026-08-18, build v3.8-bd246fd
+
+**AUTOMATED SBR cases changed by this pass: NONE.**
+
+All 4 SBR cases flagged Automated (`custom_atmstatus = 3`) were **HELD, verified live, and NOT
+written** (per this pass's instruction + Standing Rule 71 ask-first): C30217, C30221, C30262, C30314.
+They are recorded with their live verdict and intended change in `SBR-HELD-AUTOMATED.md` for the QA
+lead's ask-first ratification. `custom_atmstatus = 3` confirmed live per case; all 4 byte-unchanged
+(updated_on identical to pre-pass).
+
+The 51 SBR cases this pass DID write are all `custom_atmstatus = 1` (Not Automated) — nothing an
+automated suite runs against changed.

@@ -14,3 +14,22 @@ separate deferred build-verification run.
 The 10 HOLD cases (listed in SBC-EXECUTION.md / FINDINGS.md 7) are NOT deferred for a missing feature -
 they are blocked on data-state (seedable later), a destructive action, an un-forceable server error, or
 an open PO question. They stay in the main run with their HOLD markers.
+
+---
+
+# Sales By Representative (SBR) — 2026-08-18, build v3.8-bd246fd
+
+## 0 SBR cases deferred for an absent feature.
+
+The Sales By Representative report and ALL of its features are PRESENT on v3.8-bd246fd (nav entry,
+date/product-type/invoice-status/location filters, Show Unassigned toggle, rep/invoice tree with
+expand-on-demand, all financial columns, payment-status badges, sorting, the 8-column selector, all
+four exports, and the API). Every one of the 17 non-Automated cases that carried "AUTOMATION: Not
+available on Build to test Yet" was live-verified this pass and lifted to READY. **No SBR case tests a
+feature absent from the build.**
+
+**One case keeps the deferred marker — but NOT for feature-absence:** C30221 (SBR-TREE-05,
+expand-on-demand) is **Automated (custom_atmstatus = 3)**, so under Rule 71 it is HELD ask-first and
+was not written. Its feature IS present (verified live); the intended lift to READY is recorded in
+`SBR-HELD-AUTOMATED.md` for the QA lead's ratification. It does NOT go to a separate deferred
+build-verification run.
