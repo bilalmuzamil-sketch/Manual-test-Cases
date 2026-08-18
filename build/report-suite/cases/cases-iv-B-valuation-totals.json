@@ -1,425 +1,425 @@
 [
-  {
-    "id": "IV-COL-01",
-    "area": "IV — Valuation & Columns",
-    "title": "With every column on they appear in the fixed order with the set alignment",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The Inventory Value report is open with rows loaded.",
-      "3. Every column (including Margin and Total Sell) is turned on in the column-selection control."
-    ],
-    "steps": [
-      "1. Read the column headers from left to right.",
-      "2. Look at how the values in each column are aligned."
-    ],
-    "expected": "1. With a single location in scope the columns appear in this order: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost.\n2. Part #, Description, Category, and Vendor are left-aligned.\n3. Every other column is right-aligned. When it is on, the Location column appears between Vendor and Qty, and it is right-aligned like the other non-identity columns.The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R1, S3-R2, S7-R6), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R1; S3-R2 + Story 7 S7-R6 — fixed column order and alignment; plus the automatic Location column between Vendor and Qty on Hand)",
-    "viu_status": "VIU-Pending",
-    "notes": "STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8670; SV-8674 (IV spec v5 2026-08-07 Story 3 S3-R1; S3-R2 + Story 7 S7-R6 — fixed column order and alignment; plus the Location column between Vendor and Qty on Hand when it is shown)",
-    "testrail_id": "C30551",
-    "section_id": 4366
-  },
-  {
-    "id": "IV-COL-02",
-    "area": "IV — Valuation & Columns",
-    "title": "Value formats: Qty to two decimals; money as US-dollar currency",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The report shows a part with a fractional quantity (for example 2.50), one with values over $1,000, and (if producible) one with a negative money value."
-    ],
-    "steps": [
-      "1. Read the Qty cell of the fractional-quantity part.",
-      "2. Read a money value over one thousand dollars (Unit Cost, Unit Sell, Total Sell, or Total Cost).",
-      "3. Read a genuine zero money value and a negative one if present."
-    ],
-    "expected": "1. Qty shows the on-hand quantity to two decimal places, with no currency symbol; fractional quantities display correctly.\n2. Unit Cost and Unit Sell show per-unit prices as US-dollar currency.\n3. Money values show a leading \"$\", two decimal places, and thousands separators (for example \"$1,234.56\"); a negative value shows a leading minus before the \"$\" (\"-$1,234.56\"); a genuine zero shows \"$0.00\".\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R3, S3-R4, S3-R5, S3-R10), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R3; S3-R4; S3-R5 (display); S3-R10; §4 Terminology (On-hand quantity))",
-    "viu_status": "VIU-Pending",
-    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md | FIX-WORDING 2026-08-04, notes-only by the audit's own verdict (\"reword nothing tester-facing; the deviation is the spec's, not the case's - state that in the notes\"): the live column header is \"Qty\" and the case says \"Qty\", which is build-accurate; the IV spec still calls it \"Qty on Hand\". The difference is the spec's to fix, not the case's. No tester-facing text was changed.",
-    "api_related": false,
-    "refs": "SV-8670 (IV spec v5 2026-08-07 Story 3 S3-R3; S3-R4; S3-R5 (display); S3-R10; §4 Terminology (On-hand quantity))",
-    "testrail_id": "C30552",
-    "section_id": 4366
-  },
-  {
-    "id": "IV-CALC-01",
-    "area": "IV — Valuation & Columns",
-    "title": "Unit Sell uses the part's fixed sell price when one is set",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. A ZZAUTOTEST in-stock part exists with a known unit cost, a known FIXED sell price, and a category whose pricing-matrix markup would give a DIFFERENT figure."
-    ],
-    "steps": [
-      "1. Open the Inventory Value report and find the part's row.",
-      "2. Read its Unit Sell value.",
-      "3. Compare it to the part's fixed sell price and to the figure the category markup would have produced."
-    ],
-    "expected": "1. Unit Sell equals the part's fixed sell price.\n2. The pricing-matrix markup is NOT applied when a fixed sell price is set — the fixed price wins.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R5), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R5 (fixed-price branch); §3 Key Decisions (unit sell resolved like the parts list))",
-    "viu_status": "VIU-Pending",
-    "notes": "First step of the sell-price fallback chain: fixed price → matrix markup → cost. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8670 (IV spec v5 2026-08-07 Story 3 S3-R5 (fixed-price branch); §3 Key Decisions (unit sell resolved like the parts list))",
-    "testrail_id": "C30545",
-    "section_id": 4366
-  },
-  {
-    "id": "IV-CALC-02",
-    "area": "IV — Valuation & Columns",
-    "title": "With no fixed sell price Unit Sell is the category's pricing-matrix markup",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. A ZZAUTOTEST in-stock part exists with a known unit cost, NO fixed sell price, and a category covered by the shop's pricing matrix with a known markup."
-    ],
-    "steps": [
-      "1. Open the Inventory Value report and find the part's row.",
-      "2. Read its Unit Sell value.",
-      "3. Compare it to the pricing-matrix markup applied to the part's cost for its category."
-    ],
-    "expected": "1. Unit Sell equals the shop's pricing-matrix markup on cost for that part's category (the same way the parts list resolves it).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R5), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R5 (matrix branch); §5 Assumptions)",
-    "viu_status": "VIU-Pending",
-    "notes": "Second step of the sell-price fallback chain. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8670 (IV spec v5 2026-08-07 Story 3 S3-R5 (matrix branch); §5 Assumptions)",
-    "testrail_id": "C30546",
-    "section_id": 4366
-  },
-  {
-    "id": "IV-CALC-03",
-    "area": "IV — Valuation & Columns",
-    "title": "With no fixed sell price and no category, Unit Sell equals Unit Cost",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. A ZZAUTOTEST in-stock part exists with a known unit cost, NO fixed sell price, and NO category.",
-      "3. The Margin and Total Sell columns are turned on.",
-      "4. Note for the tester: on this build a part cannot be saved without a category, so you may not be able to create the part described in step 2. If you cannot, mark this test Blocked and say so — do not guess the result."
-    ],
-    "steps": [
-      "1. Open the Inventory Value report and find the part's row.",
-      "2. Read its Unit Sell and compare to its Unit Cost.",
-      "3. Read its Margin and Margin % cells."
-    ],
-    "expected": "1. A part with no category takes no markup, so its Unit Sell equals its Unit Cost.\n2. Such a part shows a Margin of $0.00 and a Margin % of 0.0% — the stock is valued at cost.\n3. Note for the tester: if no part without a category can be created or found, mark this test Blocked rather than Passed or Failed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R5), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: HOLD - a part cannot be saved without a category on this build, so the no-category path cannot be produced",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R5 (no-category fallback) + context note; §5 Assumptions)",
-    "viu_status": "VIU-Pending",
-    "notes": "Final step of the sell-price fallback chain — do NOT file the zero margin as a defect; it is the specified cost-valuation fallback. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8670 (IV spec v5 2026-08-07 Story 3 S3-R5 (no-category fallback) + context note; §5 Assumptions)",
-    "testrail_id": "C30547",
-    "section_id": 4366
-  },
-  {
-    "id": "IV-CALC-04",
-    "area": "IV — Valuation & Columns",
-    "title": "Total Sell is quantity × Unit Sell and Total Cost is quantity × Unit Cost",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. A ZZAUTOTEST in-stock part exists with a known on-hand quantity (include a fractional quantity if possible), unit cost, and unit sell.",
-      "3. The Total Sell column is turned on."
-    ],
-    "steps": [
-      "1. Open the Inventory Value report and find the part's row.",
-      "2. Multiply the on-hand quantity by Unit Sell and compare to Total Sell.",
-      "3. Multiply the on-hand quantity by Unit Cost and compare to Total Cost."
-    ],
-    "expected": "1. Total Sell equals the part's on-hand quantity × Unit Sell, shown as US-dollar currency.\n2. Total Cost equals the part's on-hand quantity × Unit Cost, shown as US-dollar currency.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R6, S3-R7), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R6; S3-R7; §4 Terminology)",
-    "viu_status": "VIU-Pending",
-    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8670 (IV spec v5 2026-08-07 Story 3 S3-R6; S3-R7; §4 Terminology)",
-    "testrail_id": "C30548",
-    "section_id": 4366
-  },
-  {
-    "id": "IV-CALC-05",
-    "area": "IV — Valuation & Columns",
-    "title": "Margin is Total Sell minus Total Cost for the whole on-hand quantity",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. A ZZAUTOTEST in-stock part exists with a quantity greater than 1 and different unit cost and unit sell values.",
-      "3. The Margin and Total Sell columns are turned on."
-    ],
-    "steps": [
-      "1. Open the Inventory Value report and find the part's row.",
-      "2. Subtract Total Cost from Total Sell and compare to the Margin cell.",
-      "3. Also compute the per-unit difference (Unit Sell − Unit Cost) and confirm Margin is NOT that per-unit figure."
-    ],
-    "expected": "1. Margin equals Total Sell − Total Cost for the part's whole on-hand quantity, shown as US-dollar currency.\n2. Margin is the extended (total) margin, not the per-unit difference.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R8), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R8; §3 Key Decisions (extended margin); §4 Terminology)",
-    "viu_status": "VIU-Pending",
-    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8670 (IV spec v5 2026-08-07 Story 3 S3-R8; §3 Key Decisions (extended margin); §4 Terminology)",
-    "testrail_id": "C30549",
-    "section_id": 4366
-  },
-  {
-    "id": "IV-CALC-06",
-    "area": "IV — Valuation & Columns",
-    "title": "Margin % is Margin over Total Sell to one decimal; em-dash when Sell <= 0",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The report shows: a part with a normal positive margin, a part whose Margin % computes negative (unit sell below unit cost), and — if producible — a part whose Total Sell is zero."
-    ],
-    "steps": [
-      "1. Read the normal part's Margin % and check it against Margin ÷ Total Sell × 100.",
-      "2. Read the negative-margin part's Margin %.",
-      "3. Read the zero-Total-Sell part's Margin % if one exists."
-    ],
-    "expected": "1. Margin % shows Margin as a percentage of Total Sell, to one decimal place followed by a percent sign — for example \"39.7%\".\n2. A Margin % that computes to a real number, including a negative one, shows its signed value.\n3. Margin % shows \"—\" when Total Sell is zero or negative (the percentage is undefined).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R9, S3-E3), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R9; S3-E3)",
-    "viu_status": "VIU-Pending",
-    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8670 (IV spec v5 2026-08-07 Story 3 S3-R9; S3-E3)",
-    "testrail_id": "C30550",
-    "section_id": 4366
-  },
-  {
-    "id": "IV-COL-03",
-    "area": "IV — Valuation & Columns",
-    "title": "Total Cost is bold and pinned far right; it stays put on sideways scroll",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. Enough columns are turned on that the table scrolls horizontally."
-    ],
-    "steps": [
-      "1. Look at the Total Cost column header and its cells.",
-      "2. Scroll the rows sideways and watch the Total Cost column."
-    ],
-    "expected": "1. The Total Cost column is pinned to the far right of the row and shown in bold — it is the report's headline column.\n2. The Total Cost column header is bold and pinned, matching its cells.\n3. It stays fixed to the right edge while the other columns scroll underneath.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R11, S12-R4), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R11; Story 12 S12-R4; §3 Key Decisions)",
-    "viu_status": "VIU-Pending",
-    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8670 (IV spec v5 2026-08-07 Story 3 S3-R11; Story 12 S12-R4; §3 Key Decisions)",
-    "testrail_id": "C30553",
-    "section_id": 4366
-  },
-  {
-    "id": "IV-COL-04",
-    "area": "IV — Valuation & Columns",
-    "title": "On a first visit the default columns show and the rest stay available",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh visit)."
-    ],
-    "steps": [
-      "1. Open the Inventory Value report and read the visible column headers.",
-      "2. Open the column-selection control and read which columns are on and off.",
-      "3. Turn Margin and Total Sell on and check they appear."
-    ],
-    "expected": "1. On first visit with a single location in scope the visible columns are: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin %, and Total Cost.\n2. The Margin and Total Sell columns are hidden by default.\n3. Both can be turned on from the column-selection control and then appear in their fixed positions. When it is on, the Location column shows between Vendor and Qty.The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8927\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R12, S3-R13, S8-R3, S7-R6), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R12; S3-R13; Story 8 S8-R3 + Story 7 S7-R6 — first-visit default columns; plus the automatic Location column when more than one location is in scope)",
-    "viu_status": "VIU-Pending",
-    "notes": "STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8670; SV-8674 (IV spec v5 2026-08-07 Story 3 S3-R12; S3-R13; Story 8 S8-R3 + Story 7 S7-R6 — first-visit default columns; plus the Location column shown by default to a user with access to more than one location)",
-    "testrail_id": "C30554",
-    "section_id": 4366
-  },
-  {
-    "id": "IV-COL-05",
-    "area": "IV — Valuation & Columns",
-    "title": "Category and Vendor show their names; an em dash (\"—\") when the part has none",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The report shows a part with a category and a vendor, a part with no category, and a part with no vendor."
-    ],
-    "steps": [
-      "1. Read the Category and Vendor cells of the fully-populated part.",
-      "2. Read the Category cell of the part with no category.",
-      "3. Read the Vendor cell of the part with no vendor."
-    ],
-    "expected": "1. Category shows the part's category name; Vendor shows the part's vendor name.\n2. A part with no category shows an em dash (\"—\") in its Category cell.\n3. A part with no vendor shows an em dash (\"—\") in its Vendor cell.\n4. Note for the tester: on this build a part cannot be saved without a category, so you will not find a part whose Category cell shows \"—\". Check the Vendor half only.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S3-R14, S3-E1, S3-E2), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R14; S3-E1; S3-E2)",
-    "viu_status": "VIU-Pending",
-    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8670 (IV spec v5 2026-08-07 Story 3 S3-R14; S3-E1; S3-E2)",
-    "testrail_id": "C30555",
-    "section_id": 4366
-  },
-  {
-    "id": "IV-TOT-01",
-    "area": "IV — Totals Row",
-    "title": "Totals row: Total label, blank identity/per-unit cells, pinned bold Total Cost",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The Inventory Value report is open with rows loaded and all columns turned on.",
-      "3. The page shows more rows than fit on the screen."
-    ],
-    "steps": [
-      "1. Look at the row at the bottom of the report.",
-      "2. Read its Part # cell, its Description/Category/Vendor cells, and its Unit Cost/Unit Sell cells.",
-      "3. Look at its Total Cost cell and compare the number formats to the data rows.",
-      "4. Scroll the rows up and down and watch the totals row."
-    ],
-    "expected": "1. A totals row is shown at the bottom, with the label \"Total\" in the Part # column's cell. In the downloaded files the same row is labelled \"Totals\" — that difference is intended.\n2. The Description, Category, and Vendor cells are blank; the Unit Cost and Unit Sell cells are blank (a per-unit price has no meaningful sum).\n3. The totals-row Total Cost cell is pinned far right and bold, matching the column, and the row uses the same number formats as the data rows.\n4. The totals row stays visible at the bottom while the rows scroll.\n5. Note for the tester: if the label on screen reads \"Totals\" instead of \"Total\", mark this test Failed and report it — do not change the test.\n6. Sorting by any column reorders the data rows only — the totals row stays at the bottom.\nWhat you should see today: the row at the bottom of the report is labelled \"Totals\" in its Part # cell, where it should read \"Total\". Everything else about the row is correct. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8926\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S4-R1, S4-R4, S4-R5, S4-R6, S4-R7, S12-R5, S9-R4), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8926)",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5; Story 9 S9-R4)",
-    "viu_status": "VIU-Pending",
-    "notes": "On screen the label is \"Total\" (S4-R1) while the DOWNLOADED totals row is labeled \"Totals\" (S10-R6) — the spec states both explicitly; VIU-confirm and flag to the owner if the build differs. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-TOTSTICKY): absorbed IV-VIS-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8671 (IV spec v5 2026-08-07 Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5; Story 9 S9-R4)",
-    "testrail_id": "C30556",
-    "section_id": 4367
-  },
-  {
-    "id": "IV-TOT-02",
-    "area": "IV — Totals Row",
-    "title": "Totals row sums the FULL filtered set on the server, not just the visible page",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The current filtered set spans more than one page (more rows than one page shows).",
-      "3. The Margin and Total Sell columns are turned on.",
-      "4. The report shows parts across at least two categories and two vendors."
-    ],
-    "steps": [
-      "1. Note the totals row's Qty, Margin, Total Sell, and Total Cost on page 1.",
-      "2. Move to page 2 and read the totals row again.",
-      "3. Cross-check the Total Cost total against a known seeded subset (filter down to a handful of ZZAUTOTEST parts whose values you can sum by hand).",
-      "4. Select one Category and read the totals row; clear it, select one Vendor; clear it, type a part search matching a subset — reading the totals row each time (from a later page too if the set spans pages)."
-    ],
-    "expected": "1. The totals row sums Qty, Margin, Total Sell, and Total Cost across the FULL filtered result set — every qualifying row for the current Date, Location, Category, Vendor, and part-search selection, not only the rows on the visible page.\n2. The totals are identical on every page (they do not change as you page).\n3. The hand-summed subset matches the server-computed totals to the cent.\n4. After each filter change the totals row recomputes on the server over the full filtered set, independent of which page is shown.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S4-R2, S4-R8, S6-R6), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R2; S4-R8; Story 6 S6-R6; §2 Scale and data model; §4 Terminology (Filtered set))",
-    "viu_status": "VIU-Pending",
-    "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-TOTFILTER): absorbed IV-TOT-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8671 (IV spec v5 2026-08-07 Story 4 S4-R2; S4-R8; Story 6 S6-R6; §2 Scale and data model; §4 Terminology (Filtered set))",
-    "testrail_id": "C30557",
-    "section_id": 4367
-  },
-  {
-    "id": "IV-TOT-03",
-    "area": "IV — Totals Row",
-    "title": "Totals-row Margin % is recomputed from the totals; not an average of rows",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The filtered set contains parts with clearly different Margin % values (so a recomputed figure differs from a simple average).",
-      "3. The Margin and Total Sell columns are turned on."
-    ],
-    "steps": [
-      "1. Read the totals row's Margin, Total Sell, and Margin %.",
-      "2. Compute total Margin ÷ total Total Sell × 100 and compare to the shown Margin %.",
-      "3. Also compute the plain average of the row Margin % values and confirm the shown figure is NOT that."
-    ],
-    "expected": "1. The totals-row Margin % equals total Margin ÷ total Total Sell × 100 (to one decimal place with a percent sign).\n2. It is NOT the average of the row percentages.\n3. It shows \"—\" when the total Total Sell is zero or negative.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S4-R3), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R3)",
-    "viu_status": "VIU-Pending",
-    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8671 (IV spec v5 2026-08-07 Story 4 S4-R3)",
-    "testrail_id": "C30558",
-    "section_id": 4367
-  },
-  {
-    "id": "IV-TOT-04",
-    "area": "IV — Totals Row",
-    "title": "Applying the Category filter, the Vendor filter, or the part search recomputes the totals on the server to match the filtered set",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The report shows parts across at least two categories and two vendors."
-    ],
-    "steps": [
-      "1. Note the totals row, then select one Category and read the totals row again.",
-      "2. Clear it, select one Vendor, and read the totals row.",
-      "3. Clear it, type a part search that matches a subset, and read the totals row.",
-      "4. If the filtered set spans pages, check the totals from a later page too."
-    ],
-    "expected": [
-      "1. After each change, the totals row recomputes on the server over the full filtered set to match the filtered result.",
-      "2. The recomputed totals are independent of which page is currently shown."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 4 S4-R8; Story 6 S6-R6",
-    "viu_status": "Retired 2026-07-28 (merged into IV-TOT-02 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "IV-TOT-05",
-    "area": "IV — Totals Row",
-    "title": "When no parts qualify, no totals row is shown",
-    "priority": "Medium",
-    "type": "Negative",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The filters can be set so that no part qualifies (for example, a part search matching nothing)."
-    ],
-    "steps": [
-      "1. Apply a filter or search that leaves no qualifying part.",
-      "2. Look at the bottom of the data area."
-    ],
-    "expected": [
-      "1. The no-data message shows instead of rows and NO totals row is shown."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 4 S4-N1; Story 1 S1-N2",
-    "viu_status": "Retired 2026-07-28 (CUT per usefulness audit (duplicate of the merged IV no-data case); delete_case authorized 2026-07-28)",
-    "notes": "",
-    "api_related": false
-  }
+ {
+  "id": "IV-COL-01",
+  "area": "IV — Valuation & Columns",
+  "title": "With every column on they appear in the fixed order with the set alignment",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The Inventory Value report is open with rows loaded.",
+   "3. Every column (including Margin and Total Sell) is turned on in the column-selection control."
+  ],
+  "steps": [
+   "1. Read the column headers from left to right.",
+   "2. Look at how the values in each column are aligned."
+  ],
+  "expected": "1. With a single location in scope the columns appear in this order: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost.\n2. Part #, Description, Category, and Vendor are left-aligned.\n3. Every other column is right-aligned. When it is on, the Location column appears between Vendor and Qty, and it is right-aligned like the other non-identity columns.The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R1, S3-R2, S7-R6), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8670; SV-8674 (IV spec v10 2026-08-17 Story 3 S3-R1; S3-R2 + Story 7 S7-R6 — fixed column order and alignment; plus the Location column between Vendor and Qty on Hand when it is shown)",
+  "viu_status": "VIU-Pending",
+  "notes": "STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8670; SV-8674 (IV spec v10 2026-08-17 Story 3 S3-R1; S3-R2 + Story 7 S7-R6 — fixed column order and alignment; plus the Location column between Vendor and Qty on Hand when it is shown)",
+  "testrail_id": "C30551",
+  "section_id": 4366
+ },
+ {
+  "id": "IV-COL-02",
+  "area": "IV — Valuation & Columns",
+  "title": "Value formats: Qty to two decimals; money as US-dollar currency",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The report shows a part with a fractional quantity (for example 2.50), one with values over $1,000, and (if producible) one with a negative money value."
+  ],
+  "steps": [
+   "1. Read the Qty cell of the fractional-quantity part.",
+   "2. Read a money value over one thousand dollars (Unit Cost, Unit Sell, Total Sell, or Total Cost).",
+   "3. Read a genuine zero money value and a negative one if present."
+  ],
+  "expected": "1. Qty shows the on-hand quantity to two decimal places, with no currency symbol; fractional quantities display correctly.\n2. Unit Cost and Unit Sell show per-unit prices as US-dollar currency.\n3. Money values show a leading \"$\", two decimal places, and thousands separators (for example \"$1,234.56\"); a negative value shows a leading minus before the \"$\" (\"-$1,234.56\"); a genuine zero shows \"$0.00\".\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R3, S3-R4, S3-R5, S3-R10), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R3; S3-R4; S3-R5 (display); S3-R10; §4 Terminology (On-hand quantity))",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md | FIX-WORDING 2026-08-04, notes-only by the audit's own verdict (\"reword nothing tester-facing; the deviation is the spec's, not the case's - state that in the notes\"): the live column header is \"Qty\" and the case says \"Qty\", which is build-accurate; the IV spec still calls it \"Qty on Hand\". The difference is the spec's to fix, not the case's. No tester-facing text was changed.",
+  "api_related": false,
+  "refs": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R3; S3-R4; S3-R5 (display); S3-R10; §4 Terminology (On-hand quantity))",
+  "testrail_id": "C30552",
+  "section_id": 4366
+ },
+ {
+  "id": "IV-CALC-01",
+  "area": "IV — Valuation & Columns",
+  "title": "Unit Sell uses the part's fixed sell price when one is set",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A ZZAUTOTEST in-stock part exists with a known unit cost, a known FIXED sell price, and a category whose pricing-matrix markup would give a DIFFERENT figure."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report and find the part's row.",
+   "2. Read its Unit Sell value.",
+   "3. Compare it to the part's fixed sell price and to the figure the category markup would have produced."
+  ],
+  "expected": "1. Unit Sell equals the part's fixed sell price.\n2. The pricing-matrix markup is NOT applied when a fixed sell price is set — the fixed price wins.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R5), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R5 (fixed-price branch); §3 Key Decisions (unit sell resolved like the parts list))",
+  "viu_status": "VIU-Pending",
+  "notes": "First step of the sell-price fallback chain: fixed price → matrix markup → cost. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R5 (fixed-price branch); §3 Key Decisions (unit sell resolved like the parts list))",
+  "testrail_id": "C30545",
+  "section_id": 4366
+ },
+ {
+  "id": "IV-CALC-02",
+  "area": "IV — Valuation & Columns",
+  "title": "With no fixed sell price Unit Sell is the category's pricing-matrix markup",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A ZZAUTOTEST in-stock part exists with a known unit cost, NO fixed sell price, and a category covered by the shop's pricing matrix with a known markup."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report and find the part's row.",
+   "2. Read its Unit Sell value.",
+   "3. Compare it to the pricing-matrix markup applied to the part's cost for its category."
+  ],
+  "expected": "1. Unit Sell equals the shop's pricing-matrix markup on cost for that part's category (the same way the parts list resolves it).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R5), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R5 (matrix branch); §5 Assumptions)",
+  "viu_status": "VIU-Pending",
+  "notes": "Second step of the sell-price fallback chain. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R5 (matrix branch); §5 Assumptions)",
+  "testrail_id": "C30546",
+  "section_id": 4366
+ },
+ {
+  "id": "IV-CALC-03",
+  "area": "IV — Valuation & Columns",
+  "title": "With no fixed sell price and no category, Unit Sell equals Unit Cost",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A ZZAUTOTEST in-stock part exists with a known unit cost, NO fixed sell price, and NO category.",
+   "3. The Margin and Total Sell columns are turned on.",
+   "4. Note for the tester: on this build a part cannot be saved without a category, so you may not be able to create the part described in step 2. If you cannot, mark this test Blocked and say so — do not guess the result."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report and find the part's row.",
+   "2. Read its Unit Sell and compare to its Unit Cost.",
+   "3. Read its Margin and Margin % cells."
+  ],
+  "expected": "1. A part with no category takes no markup, so its Unit Sell equals its Unit Cost.\n2. Such a part shows a Margin of $0.00 and a Margin % of 0.0% — the stock is valued at cost.\n3. Note for the tester: if no part without a category can be created or found, mark this test Blocked rather than Passed or Failed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R5), read on 17 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: HOLD - a part cannot be saved without a category on this build, so the no-category path cannot be produced",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R5 (no-category fallback) + context note; §5 Assumptions)",
+  "viu_status": "VIU-Pending",
+  "notes": "Final step of the sell-price fallback chain — do NOT file the zero margin as a defect; it is the specified cost-valuation fallback. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R5 (no-category fallback) + context note; §5 Assumptions)",
+  "testrail_id": "C30547",
+  "section_id": 4366
+ },
+ {
+  "id": "IV-CALC-04",
+  "area": "IV — Valuation & Columns",
+  "title": "Total Sell is quantity × Unit Sell and Total Cost is quantity × Unit Cost",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A ZZAUTOTEST in-stock part exists with a known on-hand quantity (include a fractional quantity if possible), unit cost, and unit sell.",
+   "3. The Total Sell column is turned on."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report and find the part's row.",
+   "2. Multiply the on-hand quantity by Unit Sell and compare to Total Sell.",
+   "3. Multiply the on-hand quantity by Unit Cost and compare to Total Cost."
+  ],
+  "expected": "1. Total Sell equals the part's on-hand quantity × Unit Sell, shown as US-dollar currency.\n2. Total Cost equals the part's on-hand quantity × Unit Cost, shown as US-dollar currency.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R6, S3-R7), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R6; S3-R7; §4 Terminology)",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R6; S3-R7; §4 Terminology)",
+  "testrail_id": "C30548",
+  "section_id": 4366
+ },
+ {
+  "id": "IV-CALC-05",
+  "area": "IV — Valuation & Columns",
+  "title": "Margin is Total Sell minus Total Cost for the whole on-hand quantity",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A ZZAUTOTEST in-stock part exists with a quantity greater than 1 and different unit cost and unit sell values.",
+   "3. The Margin and Total Sell columns are turned on."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report and find the part's row.",
+   "2. Subtract Total Cost from Total Sell and compare to the Margin cell.",
+   "3. Also compute the per-unit difference (Unit Sell − Unit Cost) and confirm Margin is NOT that per-unit figure."
+  ],
+  "expected": "1. Margin equals Total Sell − Total Cost for the part's whole on-hand quantity, shown as US-dollar currency.\n2. Margin is the extended (total) margin, not the per-unit difference.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R8), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R8; §3 Key Decisions (extended margin); §4 Terminology)",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R8; §3 Key Decisions (extended margin); §4 Terminology)",
+  "testrail_id": "C30549",
+  "section_id": 4366
+ },
+ {
+  "id": "IV-CALC-06",
+  "area": "IV — Valuation & Columns",
+  "title": "Margin % is Margin over Total Sell to one decimal; em-dash when Sell <= 0",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The report shows: a part with a normal positive margin, a part whose Margin % computes negative (unit sell below unit cost), and — if producible — a part whose Total Sell is zero."
+  ],
+  "steps": [
+   "1. Read the normal part's Margin % and check it against Margin ÷ Total Sell × 100.",
+   "2. Read the negative-margin part's Margin %.",
+   "3. Read the zero-Total-Sell part's Margin % if one exists."
+  ],
+  "expected": "1. Margin % shows Margin as a percentage of Total Sell, to one decimal place followed by a percent sign — for example \"39.7%\".\n2. A Margin % that computes to a real number, including a negative one, shows its signed value.\n3. Margin % shows \"—\" when Total Sell is zero or negative (the percentage is undefined).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R9, S3-E3), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R9; S3-E3)",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R9; S3-E3)",
+  "testrail_id": "C30550",
+  "section_id": 4366
+ },
+ {
+  "id": "IV-COL-03",
+  "area": "IV — Valuation & Columns",
+  "title": "Total Cost is bold and pinned far right; it stays put on sideways scroll",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. Enough columns are turned on that the table scrolls horizontally."
+  ],
+  "steps": [
+   "1. Look at the Total Cost column header and its cells.",
+   "2. Scroll the rows sideways and watch the Total Cost column."
+  ],
+  "expected": "1. The Total Cost column is pinned to the far right of the row and shown in bold — it is the report's headline column.\n2. The Total Cost column header is bold and pinned, matching its cells.\n3. It stays fixed to the right edge while the other columns scroll underneath.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R11, S12-R4), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R11; Story 12 S12-R4; §3 Key Decisions)",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R11; Story 12 S12-R4; §3 Key Decisions)",
+  "testrail_id": "C30553",
+  "section_id": 4366
+ },
+ {
+  "id": "IV-COL-04",
+  "area": "IV — Valuation & Columns",
+  "title": "On a first visit the default columns show and the rest stay available",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh visit)."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report and read the visible column headers.",
+   "2. Open the column-selection control and read which columns are on and off.",
+   "3. Turn Margin and Total Sell on and check they appear."
+  ],
+  "expected": "1. On first visit with a single location in scope the visible columns are: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin %, and Total Cost.\n2. The Margin and Total Sell columns are hidden by default.\n3. Both can be turned on from the column-selection control and then appear in their fixed positions. When it is on, the Location column shows between Vendor and Qty.The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8927\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R12, S3-R13, S8-R3, S7-R6), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8670; SV-8674 (IV spec v10 2026-08-17 Story 3 S3-R12; S3-R13; Story 8 S8-R3 + Story 7 S7-R6 — first-visit default columns; plus the Location column shown by default to a user with access to more than one location)",
+  "viu_status": "VIU-Pending",
+  "notes": "STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8670; SV-8674 (IV spec v10 2026-08-17 Story 3 S3-R12; S3-R13; Story 8 S8-R3 + Story 7 S7-R6 — first-visit default columns; plus the Location column shown by default to a user with access to more than one location)",
+  "testrail_id": "C30554",
+  "section_id": 4366
+ },
+ {
+  "id": "IV-COL-05",
+  "area": "IV — Valuation & Columns",
+  "title": "Category and Vendor show their names; an em dash (\"—\") when the part has none",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The report shows a part with a category and a vendor, a part with no category, and a part with no vendor."
+  ],
+  "steps": [
+   "1. Read the Category and Vendor cells of the fully-populated part.",
+   "2. Read the Category cell of the part with no category.",
+   "3. Read the Vendor cell of the part with no vendor."
+  ],
+  "expected": "1. Category shows the part's category name; Vendor shows the part's vendor name.\n2. A part with no category shows an em dash (\"—\") in its Category cell.\n3. A part with no vendor shows an em dash (\"—\") in its Vendor cell.\n4. Note for the tester: on this build a part cannot be saved without a category, so you will not find a part whose Category cell shows \"—\". Check the Vendor half only.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R14, S3-E1, S3-E2), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R14; S3-E1; S3-E2)",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R14; S3-E1; S3-E2)",
+  "testrail_id": "C30555",
+  "section_id": 4366
+ },
+ {
+  "id": "IV-TOT-01",
+  "area": "IV — Totals Row",
+  "title": "Totals row: Total label, blank identity/per-unit cells, pinned bold Total Cost",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The Inventory Value report is open with rows loaded and all columns turned on.",
+   "3. The page shows more rows than fit on the screen."
+  ],
+  "steps": [
+   "1. Look at the row at the bottom of the report.",
+   "2. Read its Part # cell, its Description/Category/Vendor cells, and its Unit Cost/Unit Sell cells.",
+   "3. Look at its Total Cost cell and compare the number formats to the data rows.",
+   "4. Scroll the rows up and down and watch the totals row."
+  ],
+  "expected": "1. A totals row is shown at the bottom, with the label \"Total\" in the Part # column's cell. In the downloaded files the same row is labelled \"Totals\" — that difference is intended.\n2. The Description, Category, and Vendor cells are blank; the Unit Cost and Unit Sell cells are blank (a per-unit price has no meaningful sum).\n3. The totals-row Total Cost cell is pinned far right and bold, matching the column, and the row uses the same number formats as the data rows.\n4. The totals row stays visible at the bottom while the rows scroll.\n5. Note for the tester: if the label on screen reads \"Totals\" instead of \"Total\", mark this test Failed and report it — do not change the test.\n6. Sorting by any column reorders the data rows only — the totals row stays at the bottom.\nWhat you should see today: the row at the bottom of the report is labelled \"Totals\" in its Part # cell, where it should read \"Total\". Everything else about the row is correct. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8926\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S4-R1, S4-R4, S4-R5, S4-R6, S4-R7, S12-R5, S9-R4), read on 17 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8926)",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8671 (IV spec v10 2026-08-17 Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5; Story 9 S9-R4)",
+  "viu_status": "VIU-Pending",
+  "notes": "On screen the label is \"Total\" (S4-R1) while the DOWNLOADED totals row is labeled \"Totals\" (S10-R6) — the spec states both explicitly; VIU-confirm and flag to the owner if the build differs. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-TOTSTICKY): absorbed IV-VIS-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8671 (IV spec v10 2026-08-17 Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5; Story 9 S9-R4)",
+  "testrail_id": "C30556",
+  "section_id": 4367
+ },
+ {
+  "id": "IV-TOT-02",
+  "area": "IV — Totals Row",
+  "title": "Totals row sums the FULL filtered set on the server, not just the visible page",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The current filtered set spans more than one page (more rows than one page shows).",
+   "3. The Margin and Total Sell columns are turned on.",
+   "4. The report shows parts across at least two categories and two vendors."
+  ],
+  "steps": [
+   "1. Note the totals row's Qty, Margin, Total Sell, and Total Cost on page 1.",
+   "2. Move to page 2 and read the totals row again.",
+   "3. Cross-check the Total Cost total against a known seeded subset (filter down to a handful of ZZAUTOTEST parts whose values you can sum by hand).",
+   "4. Select one Category and read the totals row; clear it, select one Vendor; clear it, type a part search matching a subset — reading the totals row each time (from a later page too if the set spans pages)."
+  ],
+  "expected": "1. The totals row sums Qty, Margin, Total Sell, and Total Cost across the FULL filtered result set — every qualifying row for the current Date, Location, Category, Vendor, and part-search selection, not only the rows on the visible page.\n2. The totals are identical on every page (they do not change as you page).\n3. The hand-summed subset matches the server-computed totals to the cent.\n4. After each filter change the totals row recomputes on the server over the full filtered set, independent of which page is shown.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S4-R2, S4-R8, S6-R6), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8671 (IV spec v10 2026-08-17 Story 4 S4-R2; S4-R8; Story 6 S6-R6; §2 Scale and data model; §4 Terminology (Filtered set))",
+  "viu_status": "VIU-Pending",
+  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-TOTFILTER): absorbed IV-TOT-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8671 (IV spec v10 2026-08-17 Story 4 S4-R2; S4-R8; Story 6 S6-R6; §2 Scale and data model; §4 Terminology (Filtered set))",
+  "testrail_id": "C30557",
+  "section_id": 4367
+ },
+ {
+  "id": "IV-TOT-03",
+  "area": "IV — Totals Row",
+  "title": "Totals-row Margin % is recomputed from the totals; not an average of rows",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The filtered set contains parts with clearly different Margin % values (so a recomputed figure differs from a simple average).",
+   "3. The Margin and Total Sell columns are turned on."
+  ],
+  "steps": [
+   "1. Read the totals row's Margin, Total Sell, and Margin %.",
+   "2. Compute total Margin ÷ total Total Sell × 100 and compare to the shown Margin %.",
+   "3. Also compute the plain average of the row Margin % values and confirm the shown figure is NOT that."
+  ],
+  "expected": "1. The totals-row Margin % equals total Margin ÷ total Total Sell × 100 (to one decimal place with a percent sign).\n2. It is NOT the average of the row percentages.\n3. It shows \"—\" when the total Total Sell is zero or negative.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S4-R3), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8671 (IV spec v10 2026-08-17 Story 4 S4-R3)",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8671 (IV spec v10 2026-08-17 Story 4 S4-R3)",
+  "testrail_id": "C30558",
+  "section_id": 4367
+ },
+ {
+  "id": "IV-TOT-04",
+  "area": "IV — Totals Row",
+  "title": "Applying the Category filter, the Vendor filter, or the part search recomputes the totals on the server to match the filtered set",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The report shows parts across at least two categories and two vendors."
+  ],
+  "steps": [
+   "1. Note the totals row, then select one Category and read the totals row again.",
+   "2. Clear it, select one Vendor, and read the totals row.",
+   "3. Clear it, type a part search that matches a subset, and read the totals row.",
+   "4. If the filtered set spans pages, check the totals from a later page too."
+  ],
+  "expected": [
+   "1. After each change, the totals row recomputes on the server over the full filtered set to match the filtered result.",
+   "2. The recomputed totals are independent of which page is currently shown."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 4 S4-R8; Story 6 S6-R6",
+  "viu_status": "Retired 2026-07-28 (merged into IV-TOT-02 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "IV-TOT-05",
+  "area": "IV — Totals Row",
+  "title": "When no parts qualify, no totals row is shown",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The filters can be set so that no part qualifies (for example, a part search matching nothing)."
+  ],
+  "steps": [
+   "1. Apply a filter or search that leaves no qualifying part.",
+   "2. Look at the bottom of the data area."
+  ],
+  "expected": [
+   "1. The no-data message shows instead of rows and NO totals row is shown."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 4 S4-N1; Story 1 S1-N2",
+  "viu_status": "Retired 2026-07-28 (CUT per usefulness audit (duplicate of the merged IV no-data case); delete_case authorized 2026-07-28)",
+  "notes": "",
+  "api_related": false
+ }
 ]

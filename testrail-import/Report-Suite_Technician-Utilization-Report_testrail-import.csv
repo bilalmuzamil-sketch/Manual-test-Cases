@@ -7,20 +7,18 @@ Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
 3. The entry sits BELOW the pre-existing report links — Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency — the new reports are added below those items without moving or disturbing them.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S1-R1), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S1-R1), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8648 (TU spec S1-R1 — below the named anchor items [Sales; Technician Efficiency; Advisor Analysis; Shop Efficiency] per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8648 (TU spec v9 2026-08-17 S1-R1 — below the named anchor items [Sales; Technician Efficiency; Advisor Analysis; Shop Efficiency] per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03),,
 One row per technician who clocked time in the range at those locations,TU — Access & Display,Functional,Critical,"1. Technician A clocked time (work-order and/or internal) in the selected date range at the selected location.
 2. Technician B clocked NO time in that range.","1. Open the Technician Utilization report for that range and location.
 2. Look for rows for technicians A and B.","1. Technician A has exactly ONE row.
 2. Technician B has NO row - only technicians with clocked time in the selected range at the selected location(s) appear.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S1-R2), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S1-R2), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8648 (TU spec v5 2026-07-29 S1-R2),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8648 (TU spec v9 2026-08-17 S1-R2),,
 First visit defaults to the This Month preset and the user's active location,TU — Access & Display,Functional,High,1. You are using a browser with NO saved settings for this report (fresh profile or cleared site storage).,"1. Open the Technician Utilization report.
 2. Read the date-range picker value and the location filter value.","1. The date range defaults to the current calendar month (the date picker's ""This Month"" preset).
 2. Because a range never extends past now, the current-month default effectively shows the month to date.
@@ -31,10 +29,10 @@ What you should see today: the Location filter reads ""All locations"" and the t
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S1-R3, S1-R6, S9-R2), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S1-R3, S1-R6, S9-R2), read on 17 August 2026.
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8943)",SV-8648 (TU spec v5 2026-07-29 S1-R3; S1-R6; S9-R2),,
+AUTOMATION: READY - EXPECT FAIL (SV-8943)",SV-8648 (TU spec v9 2026-08-17 S1-R3; S1-R6; S9-R2),,
 Changing the date range reloads the rows; a Custom range is capped at 366 days,TU — Access & Display,Functional,High,1. You are on the Technician Utilization report with rows loaded.,"1. Change the date range with the report's date-range picker (e.g. to Last Month).
 2. Choose a Custom range within 366 days (start to end).
 3. Try a Custom range wider than 366 days.","1. Each range change reloads the report's rows for the new range.
@@ -42,10 +40,9 @@ Changing the date range reloads the rows; a Custom range is capped at 366 days,T
 3. A Custom span wider than 366 days (matching the largest preset) is rejected - it cannot be applied.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S1-R4, S1-R5), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S1-R4, S1-R5), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8648 (TU spec v5 2026-07-29 S1-R4; S1-R5),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8648 (TU spec v9 2026-08-17 S1-R4; S1-R5),,
 The loading indicator shows on load and reload; rows swap only on data,TU — Access & Display,Functional,Medium,1. You are on the Technician Utilization report with rows loaded.,"1. Watch the data area during the initial load.
 2. Change the date range and watch the data area during the reload.
 3. While it loads, try interacting with a toolbar control.","1. On the initial load and on every reload (date-range or location change), the data area shows the standard reports loading indicator.
@@ -53,10 +50,9 @@ The loading indicator shows on load and reload; rows swap only on data,TU — Ac
 3. The toolbar remains interactive during the load.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S1-R10), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S1-R10), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8648 (TU spec v5 2026-07-29 S1-R10),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8648 (TU spec v9 2026-08-17 S1-R10),,
 All clock records are day-grouped and windowed in one report-level time zone,TU — Access & Display,Functional,Medium,"1. A technician has a clock record that starts before the selected range and ends inside it.
 2. A technician has a clock record that crosses midnight.
 3. For the multi-zone check: locations in two different time zones are selected, with clock records at each.","1. Open the report and expand the technician with the cross-midnight record; read the two day rows.
@@ -67,18 +63,17 @@ All clock records are day-grouped and windowed in one report-level time zone,TU 
 4. This matches the Timesheet Activities report's single-time-zone grouping.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S1-R7), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S1-R7), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8648 (TU spec v5 2026-07-29 S1-R7; S1 context notes),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8648 (TU spec v9 2026-08-17 S1-R7; S1 context notes),,
 Without reports access Technician Utilization is hidden,TU — Access & Display,Negative,High,1. You are signed in as a user whose role does NOT have reports access.,"1. Open the reports navigation.
 2. Look for Technician Utilization under Performance.","1. The Technician Utilization report does NOT appear in the navigation.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S1-N1), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S1-N1), read on 17 August 2026.
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: HOLD - needs a second sign-in as a user without reports access, and there is one shared sign-in on this environment","SV-8648 (TU spec S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW""; the TU prerequisite still names the timesheet-reports permission — his spec edit owed)",,
+AUTOMATION: HOLD - needs a second sign-in as a user without reports access, and there is one shared sign-in on this environment","SV-8648 (TU spec v9 2026-08-17 S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW""; Story 1 Prerequisites now states the single reports permission outright so his spec edit is DONE)",,
 Standard no-data message when no time in scope or all technicians cleared,TU — Access & Display,Negative,Medium,"1. A date range exists in which no technician clocked any time at the selected location(s), or a selectable location has no clocked time for the range.
 2. For the cleared-filter check: the report can also be loaded with rows showing.","1. Select that empty date range (or the empty location) and let the report load.
 2. Read the message in the data area and look for the Summary row.
@@ -87,10 +82,9 @@ Standard no-data message when no time in scope or all technicians cleared,TU —
 3. Clearing every technician shows the SAME message and hides the Summary row — this version does not use distinct copy for genuinely-no-data vs a cleared filter.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S1-N2, S3-N1, S5-N1, S9-N2), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S1-N2, S3-N1, S5-N1, S9-N2), read on 17 August 2026.
 
-AUTOMATION: READY","SV-8648 (TU spec v5 2026-07-29 S1-N2; S3-N1; S5-N1; S9-N2; §7 — §7 CLOSES the no-data string verbatim (""Empty bays"" ... ""Get Going!"") as the standard reports no-data label; so the exact string IS the requirement)",,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026","SV-8648 (TU spec v9 2026-08-17 S1-N2; S3-N1; S5-N1; S9-N2; §7 — §7 CLOSES the no-data string verbatim (""Empty bays"" ... ""Get Going!"") as the standard reports no-data label; so the exact string IS the requirement)",,
 "Headers in fixed order; Total, WO and Internal Hours show clocked hours (2 dp)",TU — Hours & Utilization,Functional,Critical,"1. A technician with known clocked time in the range: some clocked to work orders and some to an internal, non-billable activity (e.g. shop cleanup or a staff meeting).
 2. Part of the internal time was clocked at a location with NO default labor rate configured (for the completeness check).","1. Read the column headers left to right.
 2. Read the technician's Total Hours, WO Hours, and Internal Hours.
@@ -107,19 +101,17 @@ Note for the tester: if the Location column does not behave this way on the buil
 Location is one of the columns you can switch on and off in the column-selection control, but only if your own account can reach more than one location: for you it is already switched on when you arrive, and you can switch it off. Someone whose account can reach only one location never sees the column and it is not offered to them in that list.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S2-R1, S2-R2, S2-R3, S2-R4, S2-R5, S9-R9), read on 11 August 2026. Version 6 of that specification, published on 5 August 2026, is what settles the one point about the Location column: it now states in both of its own requirements that the column belongs to anyone whose account can reach more than one location and can be switched on and off in the column-selection control. Chris Ward asked for that change in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R1, S2-R2, S2-R3, S2-R4, S2-R5, S9-R9), read on 17 August 2026. Version 6 of that specification, published on 5 August 2026, is what settles the one point about the Location column: it now states in both of its own requirements that the column belongs to anyone whose account can reach more than one location and can be switched on and off in the column-selection control. Chris Ward asked for that change in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026
 
-AUTOMATION: READY",SV-8649; SV-8656 (TU spec v5 2026-07-29 S2-R1; S2-R2; S2-R3; S2-R4; S2-R5; §3 + Story 9 S9-R9 — header order and the hours columns; plus the automatic Location column leftmost when shown),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8649; SV-8656 (TU spec v9 2026-08-17 S2-R1; S2-R2; S2-R3; S2-R4; S2-R5; §3 + Story 9 S9-R9 — header order and the hours columns; plus the automatic Location column leftmost when shown),,
 Utilization % is WO hours over total hours from unrounded values,TU — Hours & Utilization,Functional,Critical,1. A technician whose unrounded WO and total hours produce a checkable percentage - ideally one landing on a rounding tie (e.g. computing to 66.65%).,"1. Compute the expected value by hand: work-order hours ÷ total clocked hours × 100, from the UNROUNDED hours.
 2. Read the technician's Utilization % and compare.","1. Utilization % = work-order hours as a percentage of total clocked hours, computed from the unrounded hours (not from the already-rounded displays).
 2. It shows one decimal place followed by a percent sign, rounded round-half-up (66.65% → 66.7%).
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S2-R6, S2-R7), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R6, S2-R7), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8649 (TU spec v5 2026-07-29 S2-R6; S2-R7; §3),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8649 (TU spec v9 2026-08-17 S2-R6; S2-R7; §3),,
 A technician with only internal hours shows 0.0% utilization,TU — Hours & Utilization,Functional,Medium,"1. A technician with internal hours but ZERO work-order hours in the range.
 2. Other technicians with mixed hours for the upper-bound check.","1. Read the internal-only technician's Utilization %.
 2. Scan every row's Utilization %.","1. The internal-only technician shows ""0.0%"".
@@ -127,10 +119,9 @@ A technician with only internal hours shows 0.0% utilization,TU — Hours & Util
 3. The ""—"" (undefined, total = 0) state is unreachable on a rendered technician or day row, because only technicians with clocked time get rows.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S2-E1, S2-R7), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-E1, S2-R7), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8649 (TU spec v5 2026-07-29 S2-E1; S2-R7; S2 context note),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8649 (TU spec v9 2026-08-17 S2-E1; S2-R7; S2 context note),,
 Est. Lost Labor values internal hours at each location's default rate,TU — Est. Lost Labor,Functional,Critical,"1. Location A has default labor rate $R1 and location B has a different default labor rate $R2.
 2. A technician clocked known internal hours at A and known internal hours at B in the range.
 3. Both locations are selected in the location filter.","1. Compute by hand: (R1 × internal hours at A) + (R2 × internal hours at B), keeping full precision, rounding only the final total (round-half-up).
@@ -140,10 +131,9 @@ Est. Lost Labor values internal hours at each location's default rate,TU — Est
 3. The value shows as dollars with two decimals and commas between thousands (e.g. ""$1,234.50"").
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S2-R8, S2-R9), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R8, S2-R9), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8649 (TU spec v5 2026-07-29 S2-R8; S2-R9; §3),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8649 (TU spec v9 2026-08-17 S2-R8; S2-R9; §3),,
 "Est. Lost Labor, when shown, is pinned right and bold with the info icon",TU — Est. Lost Labor,Functional,High,"1. You are on the Technician Utilization report with rows loaded.
 2. Est. Lost Labor is turned ON in the Column Selection control (it is on by default).","1. Look at the position and weight of the Est. Lost Labor column (header and cells).
 2. Hover the information icon on the Est. Lost Labor header and read the text; also reach it by keyboard focus and by tap on a touch device.
@@ -154,10 +144,9 @@ AUTOMATION: READY",SV-8649 (TU spec v5 2026-07-29 S2-R8; S2-R9; §3),,
 4. Est. Lost Labor can be turned OFF in the Column Selection control; when it is off the column, its bold styling and its information icon are all absent, and the report still works normally.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S2-R10, S2-R11, S8-R4, S8-R6, S8-R7, S8-N1, S10-R3), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R10, S2-R11, S8-R4, S8-R6, S8-R7, S8-N1, S10-R3), read on 17 August 2026.
 
-AUTOMATION: READY","SV-8649 (TU spec v5 2026-07-29 S2-R10; S2-R11; S8-R4; S8-R6; S8-R7; S8-N1 — each re-worded ""When shown"" now that Est. Lost Labor is a hideable column; new Story 10 S10-R3)",,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026","SV-8649 (TU spec v9 2026-08-17 S2-R10; S2-R11; S8-R4; S8-R6; S8-R7; S8-N1 — each re-worded ""When shown"" now that Est. Lost Labor is a hideable column; new Story 10 S10-R3)",,
 "Zero internal hours - or a configured $0.00 rate - shows $0.00, never an em-dash",TU — Est. Lost Labor,Functional,High,"1. Technician A has zero internal hours in the range (all time on work orders).
 2. Technician B has internal hours at a location whose default labor rate is configured as exactly $0.00.","1. Read technician A's Est. Lost Labor.
 2. Read technician B's Est. Lost Labor.","1. Technician A shows ""$0.00"" - there is nothing to value, regardless of whether the location has a rate configured.
@@ -165,10 +154,9 @@ AUTOMATION: READY","SV-8649 (TU spec v5 2026-07-29 S2-R10; S2-R11; S8-R4; S8-R6;
 3. ""$0.00"" means 'the rate is known and there is nothing (or $0) to value' - a different state from ""—"" ('the rate is unknown').
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S2-E2), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-E2), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8649 (TU spec v5 2026-07-29 S2-E2; §5 Assumptions; S2 context note),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8649 (TU spec v9 2026-08-17 S2-E2; §5 Assumptions; S2 context note),,
 Internal hours with no default labor rate anywhere show an em-dash,TU — Est. Lost Labor,Functional,High,"1. A technician's in-range internal hours were all clocked at location(s) with NO default labor rate configured (rate absent, not $0.00).
 2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an ""Accessibility"" panel that shows the same names without you having to listen to anything.","1. Read that technician's Est. Lost Labor.
 2. Inspect the cell with a screen reader or the accessibility tree.","1. Est. Lost Labor shows ""—"" (an em-dash), NOT ""$0.00"" - the rate is unknown, so the value cannot be computed.
@@ -176,10 +164,10 @@ Internal hours with no default labor rate anywhere show an em-dash,TU — Est. L
 3. The technician's Internal Hours column still shows all the internal hours (they are counted even though they cannot be valued).
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S2-E3, S8-R11, S2-R4), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-E3, S8-R11, S2-R4), read on 17 August 2026.
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: HOLD - no location on this environment is set up without a default labor rate, so the em-dash state cannot be produced",SV-8649 (TU spec v5 2026-07-29 S2-E3; S8-R11; S2-R4),,
+AUTOMATION: HOLD - no location on this environment is set up without a default labor rate, so the em-dash state cannot be produced",SV-8649 (TU spec v9 2026-08-17 S2-E3; S8-R11; S2-R4),,
 Internal hours split across rated and unrated locations show a part value,TU — Est. Lost Labor,Functional,Medium,"1. A technician clocked internal hours at BOTH a location with a configured default labor rate and a location with NO rate, in the range.
 2. Both locations are selected.","1. Read the technician's Internal Hours and Est. Lost Labor.
 2. Compare the dollar value against rate × (internal hours at the RATED location only).","1. Est. Lost Labor is the sum of the valued (rated-location) portions only - the unrated-location hours are excluded from the dollar amount.
@@ -187,10 +175,10 @@ Internal hours split across rated and unrated locations show a part value,TU —
 3. This is a documented known limitation (a partial-value indicator is a possible follow-up) - expected behavior, not a defect.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S2-E4), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-E4), read on 17 August 2026.
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: HOLD - no location on this environment is set up without a default labor rate, so a part-valued row cannot be produced",SV-8649 (TU spec v5 2026-07-29 S2-E4),,
+AUTOMATION: HOLD - no location on this environment is set up without a default labor rate, so a part-valued row cannot be produced",SV-8649 (TU spec v9 2026-08-17 S2-E4),,
 On load rows sort by Technician A to Z with the ascending indicator,TU — Sorting,Functional,High,"1. You are on the Technician Utilization report with several technician rows loaded.
 2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an ""Accessibility"" panel that shows the same names without you having to listen to anything.","1. Let the report load without clicking any header and read the Technician column top to bottom.
 2. Look at the Technician header's sort indicator.
@@ -199,10 +187,9 @@ On load rows sort by Technician A to Z with the ascending indicator,TU — Sorti
 3. The active sort header exposes its state to assistive technology (aria-sort = ascending on the Technician header; none on the others).
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S2-R12, S8-R8, S8-R10), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R12, S8-R8, S8-R10), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8649 (TU spec v5 2026-07-29 S2-R12; S8-R8; S8-R10),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8649 (TU spec v9 2026-08-17 S2-R12; S8-R8; S8-R10),,
 "All six columns sort on screen: ascending first, toggling with no third state",TU — Sorting,Functional,High,"1. You are on the Technician Utilization report with several rows loaded, including two technicians with the same value in one column.","1. Click the Technician header (the active sort on load).
 2. Click the Total Hours header, then click it again, then keep clicking.
 3. Repeat one click on each remaining header (WO Hours, Internal Hours, Utilization %, Est. Lost Labor).
@@ -214,20 +201,18 @@ AUTOMATION: READY",SV-8649 (TU spec v5 2026-07-29 S2-R12; S8-R8; S8-R10),,
 5. Technicians tied in the sorted column are ordered by Technician name A to Z; two technicians sharing the same display name keep a stable order between renders.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S2-R13, S2-R14), read on 11 August 2026.
-Last checked against build v3.5-4795eee on 8/10/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R13, S2-R14), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8649 (TU spec v5 2026-07-29 S2-R13; S2-R14),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8649 (TU spec v9 2026-08-17 S2-R13; S2-R14),,
 A data reload resets the sort to Technician A to Z,TU — Sorting,Functional,Medium,1. You are on the Technician Utilization report with rows loaded.,"1. Sort by Est. Lost Labor descending.
 2. Change the date range (a reload) and read the row order.
 3. Sort by Total Hours, leave the report, and come back.","1. After the reload, the rows are back to Technician name A to Z (the sort reset).
 2. On the return visit, the sort is again Technician A to Z - sort is NOT persisted (unlike the date range, technician selection, and location selection, which are).
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S2-R15), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R15), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8649 (TU spec v5 2026-07-29 S2-R15; §3),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8649 (TU spec v9 2026-08-17 S2-R15; §3),,
 Sorting reorders only the technician rows,TU — Sorting,Functional,Medium,1. You are on the Technician Utilization report with several rows loaded and at least one technician row expanded to its day rows.,"1. Sort by WO Hours descending.
 2. Look at the Summary row's position.
 3. Look at the expanded technician's day rows.","1. Only the technician rows reorder.
@@ -235,10 +220,9 @@ Sorting reorders only the technician rows,TU — Sorting,Functional,Medium,1. Yo
 3. Each technician's expanded day rows stay under that technician, still in date order (earliest to latest) - they do not re-sort by the clicked column.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S2-R16), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R16), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8649 (TU spec v5 2026-07-29 S2-R16),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8649 (TU spec v9 2026-08-17 S2-R16),,
 Sorting Est. Lost Labor keeps em-dash rows last both ways; $0.00 sorts as 0,TU — Sorting,Functional,Medium,"1. Rows exist with: a normal Est. Lost Labor value, a ""$0.00"" value, and at least two ""—"" values (no rate configured).","1. Sort by Est. Lost Labor ascending and read the bottom rows.
 2. Sort by Est. Lost Labor descending and read the bottom rows.
 3. Note where the ""$0.00"" row lands in each direction, and the order of the ""—"" rows among themselves.","1. Rows whose Est. Lost Labor is ""—"" sort to the BOTTOM in BOTH ascending and descending order - they are never floated to the top by reversing direction.
@@ -246,10 +230,10 @@ Sorting Est. Lost Labor keeps em-dash rows last both ways; $0.00 sorts as 0,TU �
 3. A ""$0.00"" value is a number, not ""—"" - it sorts as zero (lowest ascending, above only the — group).
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S2-R17), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R17), read on 17 August 2026.
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: HOLD - no technician on this environment has an em-dash in Est. Lost Labor, because both locations have a default labor rate",SV-8649 (TU spec v5 2026-07-29 S2-R17),,
+AUTOMATION: HOLD - no technician on this environment has an em-dash in Est. Lost Labor, because both locations have a default labor rate",SV-8649 (TU spec v9 2026-08-17 S2-R17),,
 "A pinned Summary row labeled Summary sits at the bottom, stays visible on scroll",TU — Summary,Functional,High,1. You are on the Technician Utilization report with enough rows to scroll.,"1. Look at the bottom of the report.
 2. Scroll the technician rows and watch the Summary row.
 3. Read the Summary row's label and its values' formats.","1. A Summary row is pinned to the bottom of the report, labeled ""Summary"".
@@ -258,10 +242,9 @@ AUTOMATION: HOLD - no technician on this environment has an em-dash in Est. Lost
 4. Its values carry NO label prefix such as ""TOTAL:"" or ""AVG:"".
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S3-R1, S3-R2, S3-R6, S3-R7, S8-R5), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S3-R1, S3-R2, S3-R6, S3-R7, S8-R5), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8650 (TU spec v5 2026-07-29 S3-R1; S3-R2; S3-R6; S3-R7; S8-R5),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8650 (TU spec v9 2026-08-17 S3-R1; S3-R2; S3-R6; S3-R7; S8-R5),,
 Summary totals visible technicians from unrounded hours; 0.01 drift expected,TU — Summary,Functional,High,1. Several technicians with known clocked hours are visible (all selected in the technician filter).,"1. Read the Summary Total Hours, WO Hours, and Internal Hours.
 2. Hand-sum the DISPLAYED per-row values and compare with the Summary.
 3. Compare the Summary against the known shop totals for the full range at the selected location(s).","1. Each Summary hours value is the total of that column across the VISIBLE technicians, computed from unrounded hours and rounded once for display (round-half-up).
@@ -269,30 +252,27 @@ Summary totals visible technicians from unrounded hours; 0.01 drift expected,TU 
 3. With every technician selected, the Summary row equals the shop totals for the full date range at the selected location(s).
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S3-R3, S5-E1), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S3-R3, S5-E1), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8650 (TU spec v5 2026-07-29 S3-R3; §3 context note; S5-E1),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8650 (TU spec v9 2026-08-17 S3-R3; §3 context note; S5-E1),,
 Summary Utilization % is the weighted rate; not an average of the rows,TU — Summary,Functional,High,1. Two visible technicians with deliberately skewed hours - e.g. tech A: 1.00 total / 1.00 WO (100%); tech B: 9.00 total / 0.00 WO (0.0%) - so the weighted and averaged results differ clearly.,"1. Compute the weighted rate: summed WO hours ÷ summed clocked hours × 100 (10% in the example).
 2. Compute the naive average of the two row percentages (50% in the example).
 3. Read the Summary Utilization %.","1. The Summary Utilization % shows the WEIGHTED rate - the visible technicians' total work-order hours as a percentage of their total clocked hours, from unrounded hours (10.0% in the example).
 2. It is NOT the average of the per-technician percentages (not 50.0%).
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S3-R4), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S3-R4), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8650 (TU spec v5 2026-07-29 S3-R4),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8650 (TU spec v9 2026-08-17 S3-R4),,
 Summary Est. Lost Labor sums rated contributions; em-dash only if all are,TU — Summary,Functional,Medium,"1. Visible technicians include: one with a normal Est. Lost Labor, one showing ""—"" (no rate anywhere), and (if possible) one partially valued.","1. Read the Summary Est. Lost Labor and compare against the sum of the visible rows' valued (rated-location) contributions.
 2. Use the technician filter to leave ONLY ""—"" technicians visible and read the Summary Est. Lost Labor.","1. The Summary Est. Lost Labor is computed like a row but over all visible technicians' internal hours: rate × internal hours per contributing rated location, summed at full precision and rounded once.
 2. A visible technician whose value is ""—"" contributes NOTHING to the sum - so the Summary understates true lost labor whenever any visible technician is ""—"" or partially valued (documented, expected).
 3. The Summary shows ""—"" only when EVERY visible technician's Est. Lost Labor is ""—"".
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S3-R5), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S3-R5), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8650 (TU spec v5 2026-07-29 S3-R5),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8650 (TU spec v9 2026-08-17 S3-R5),,
 Each technician row has an accessible expand/collapse control,TU — Per-Day Breakdown,Functional,Medium,"1. You are on the Technician Utilization report with rows loaded.
 2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an ""Accessibility"" panel that shows the same names without you having to listen to anything.","1. Find the expand control on a technician row and read its accessible name (accessibility tree or screen reader).
 2. Activate it with the keyboard (Enter, then again with Space) and re-read the name and exposed state.
@@ -305,10 +285,10 @@ What you should see today: items 1 and 2 pass - the control is there and its nam
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S4-R1, S8-R12), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S4-R1, S8-R12), read on 17 August 2026.
 Last checked against build v3.5-4795eee on 8/10/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8953)",SV-8651 (TU spec v5 2026-07-29 S4-R1; S8-R12),,
+AUTOMATION: READY - EXPECT FAIL (SV-8953)",SV-8651 (TU spec v9 2026-08-17 S4-R1; S8-R12),,
 "Expanding shows one row per clocked day in date order, loaded on demand",TU — Per-Day Breakdown,Functional,High,"1. A technician clocked time on several (but not all) days of the range - including, for the pooling check, time at two selected locations on the same day.","1. Before expanding anything, look at the technician's row - there are no day rows under it yet.
 2. Expand the technician's row and watch the data area as the day rows appear.
 3. Read the day rows top to bottom.
@@ -320,10 +300,9 @@ AUTOMATION: READY - EXPECT FAIL (SV-8953)",SV-8651 (TU spec v5 2026-07-29 S4-R1;
 5. Note for the tester: you do not need developer tools for this test - just watch the screen.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S4-R2, S4-N1, S9-R4), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S4-R2, S4-N1, S9-R4), read on 17 August 2026.
 
-AUTOMATION: READY","SV-8651 (TU spec v5 2026-07-29 S4-R2; S4-N1; S9-R4 — one row per clocked day in date order; load-on-expand; no row for an unclocked day; per-day pooling across selected locations; the back-end half is covered by C30449 in ""TU - API"")",,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026","SV-8651 (TU spec v9 2026-08-17 S4-R2; S4-N1; S9-R4 — one row per clocked day in date order; load-on-expand; no row for an unclocked day; per-day pooling across selected locations; the back-end half is covered by C30449 in ""TU - API"")",,
 Day rows use the same columns and formats as the technician rows,TU — Per-Day Breakdown,Functional,Medium,1. A technician with known per-day clock records (work-order + internal) is expanded.,"1. Read one day row's Total Hours, WO Hours, Internal Hours, Utilization %, and Est. Lost Labor.
 2. Compare each against that single day's clock records.
 3. Check the number formats against the technician-row formats.","1. Each day row shows the same columns, in the same formats, as the technician row - with that day's values.
@@ -331,10 +310,9 @@ Day rows use the same columns and formats as the technician rows,TU — Per-Day 
 3. Hours 2dp / Utilization one decimal + % / dollars with commas - all identical to the row formats, computed from unrounded values and rounded once.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S4-R3, S2-R8), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S4-R3, S2-R8), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8651 (TU spec v5 2026-07-29 S4-R3; S2-R8; §3),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8651 (TU spec v9 2026-08-17 S4-R3; S2-R8; §3),,
 One control in the table header expands or collapses all technician rows,TU — Per-Day Breakdown,Functional,Medium,"1. You are on the Technician Utilization report with several technician rows loaded.
 2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an ""Accessibility"" panel that shows the same names without you having to listen to anything.","1. Find the expand/collapse-all control in the table's header row (in the Technician column) and read its accessible name.
 2. With all rows collapsed, activate it.
@@ -349,10 +327,10 @@ What you should see today: items 1, 2 and 3 pass, but item 4 does not: the contr
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S4-R4, S8-R12, S8-R3), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S4-R4, S8-R12, S8-R3), read on 17 August 2026.
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8953)",SV-8651 (TU spec v5 2026-07-29 S4-R4; S8-R12; S8-R3),,
+AUTOMATION: READY - EXPECT FAIL (SV-8953)",SV-8651 (TU spec v9 2026-08-17 S4-R4; S8-R12; S8-R3),,
 Expansion state is view-only: it resets on any reload and fresh visit,TU — Per-Day Breakdown,Functional,Low,1. You are on the Technician Utilization report with several rows loaded.,"1. Expand two technician rows, then change the date range.
 2. Expand two rows again, leave the report, and come back.
 3. Expand one technician's row, then deselect and re-select a DIFFERENT technician in the technician filter.","1. After the reload (date-range or location change), all rows are collapsed - expansion state resets.
@@ -360,10 +338,9 @@ Expansion state is view-only: it resets on any reload and fresh visit,TU — Per
 3. Deselecting and re-selecting a technician (an on-screen operation) does NOT change the expansion state of the other rows - the expanded row stays expanded.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S4-R5), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S4-R5), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8651 (TU spec v5 2026-07-29 S4-R5),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8651 (TU spec v9 2026-08-17 S4-R5),,
 Filter by Technician starts with every technician selected on a first visit,TU — Technician Filter,Functional,High,"1. You are on the Technician Utilization report on a first visit (no saved settings), with several technicians in the range.","1. Find the toolbar filter labeled ""Technician"" and open it.
 2. Check the selection state of every listed technician.
 3. Try selecting more than one change at once (multi-select).","1. The toolbar has a filter labeled ""Filter by Technician"" that allows selecting more than one technician (when several are chosen its label reads, for example, ""2 technicians"").
@@ -371,10 +348,9 @@ Filter by Technician starts with every technician selected on a first visit,TU �
 3. All technicians' rows are shown.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S5-R1, S5-R2), read on 11 August 2026.
-Last checked against build v3.5-4795eee on 8/10/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S5-R1, S5-R2), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8652 (TU spec v5 2026-07-29 S5-R1; S5-R2),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8652 (TU spec v9 2026-08-17 S5-R1; S5-R2),,
 Deselecting a technician hides the row and recalculates the Summary,TU — Technician Filter,Functional,High,"1. Several technician rows are visible and the Summary row shows their totals.
 2. Note the current date range so you can confirm it does not change.","1. Note the Summary values, then deselect one technician in the Filter by Technician filter.
 2. Watch the data area and the Summary row.
@@ -389,10 +365,10 @@ What you should see today: items 1, 2 and 4 pass - the row hides, the Summary re
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S5-R3, S5-R4, S5-R5), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S5-R3, S5-R4, S5-R5), read on 17 August 2026.
 Last checked against build v3.5-4795eee on 8/10/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8946)","SV-8652 (TU spec v5 2026-07-29 S5-R3; S5-R4; S5-R5 + §3 Key Decisions (""the technician filter works on screen only and does not reload the report""); S5 context note — the server half is covered by C30450 in ""TU - API"")",,
+AUTOMATION: READY - EXPECT FAIL (SV-8946)","SV-8652 (TU spec v9 2026-08-17 S5-R3; S5-R4; S5-R5 + §3 Key Decisions (""the technician filter works on screen only and does not reload the report""); S5 context note — the server half is covered by C30450 in ""TU - API"")",,
 All technicians and Clear all controls set every technician on or off,TU — Technician Filter,Functional,Medium,1. Several technicians are in the current range; a different range exists in which an ADDITIONAL technician (not listed in the current range) has clocked time.,"1. In the Technician filter, use the control labeled ""Clear all"".
 2. Use the control labeled ""All technicians"".
 3. Deselect one technician, then change the date range to the one containing the additional technician.
@@ -406,10 +382,10 @@ What you should see today: the control that selects everybody is labelled ""All 
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S5-R6, S5-R7, S5-R8, S5-R9), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S5-R6, S5-R7, S5-R8, S5-R9), read on 17 August 2026.
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8947)",SV-8652 (TU spec v5 2026-07-29 S5-R6; S5-R7; S5-R8; S5-R9),,
+AUTOMATION: READY - EXPECT FAIL (SV-8947)",SV-8652 (TU spec v9 2026-08-17 S5-R6; S5-R7; S5-R8; S5-R9),,
 Previously deselected technicians stay deselected on the next visit,TU — Technician Filter,Functional,Medium,1. You are on the Technician Utilization report with several technicians listed.,"1. Deselect two technicians.
 2. Leave the report (navigate elsewhere), then return; also try a full page reload.
 3. Check the two technicians' selection state and the other technicians'.","1. The two deselected technicians are STILL deselected on return - the deselected set is what persists (saved in this browser, not on the account).
@@ -417,21 +393,20 @@ Previously deselected technicians stay deselected on the next visit,TU — Techn
 3. The saved date range and location selection are restored alongside.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S5-R10, S1-R8), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S5-R10, S1-R8), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8652 (TU spec v5 2026-07-29 S5-R10; S1-R8; §3),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8652 (TU spec v9 2026-08-17 S5-R10; S1-R8; §3),,
 Total Hours is a real link with a non-color affordance and keyboard access,TU — Deep Links,Functional,High,1. You are on the Technician Utilization report with technician rows and the Summary row visible.,"1. Look at a technician row's Total Hours value.
 2. Tab to it with the keyboard and check the focus indicator; press Enter.
-3. Go back and look at the Summary row's Total Hours value.","1. Every technician row's Total Hours is rendered as a link (every rendered row has clocked time > 0, so the link always applies).
+3. Go back and look at the Summary row's Total Hours value.","1. A technician row's Total Hours is rendered as a link ONLY when the report's location scope is exactly your active shop (the default view). Under any other scope — a different single location, or multiple locations — the value renders as plain text, styled like the other hour columns (no link).
 2. The link is distinguished by more than color - it carries an underline (or equivalent non-color affordance), is keyboard-focusable with a visible focus indicator, and activates on Enter.
 3. The Summary row's Total Hours value is NOT a link.
+Note for the tester: an earlier version of this report showed Total Hours as a link in every scope. The current Technician Utilization report specification (version 9, S6-R1/S6-R6, per SV-9064) makes it a link ONLY in the default view where the location scope is your active shop; in any other scope it is plain text. Follow the current specification.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S6-R1, S6-N1, S8-R14), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S6-R1, S6-N1, S8-R14), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8653 (TU spec v5 2026-07-29 S6-R1; S6-N1; S8-R14),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8653 (TU spec v9 2026-08-17 S6-R1; S6-N1; S8-R14),,
 The Total Hours link opens Timesheet Activities in the same tab,TU — Deep Links,Functional,Critical,1. You are on the Technician Utilization report with a non-default date range selected (so the carried range is provable).,"1. Click a technician's Total Hours link.
 2. Check which browser tab the Timesheet Activities report opened in.
 3. Read the technician filter and the date range on the opened report.","1. The Timesheet Activities report opens in the SAME browser tab.
@@ -439,10 +414,9 @@ The Total Hours link opens Timesheet Activities in the same tab,TU — Deep Link
 3. It uses the same date range that was active on the Technician Utilization report.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S6-R2, S6-R3, S6-R4), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S6-R2, S6-R3, S6-R4), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8653 (TU spec v5 2026-07-29 S6-R2; S6-R3; S6-R4),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8653 (TU spec v9 2026-08-17 S6-R2; S6-R3; S6-R4),,
 "Same range, single location, closed records: Total Hours matches Timesheet",TU — Deep Links,Functional,Critical,"1. A technician has only CLOSED (clocked-out) records in the range - no open clock.
 2. The report's location filter holds exactly ONE location, and it is the user's currently active shop.","1. Read the technician's Total Hours on the Technician Utilization report (two decimals).
 2. Click the Total Hours link and read the same technician's total on the opened Timesheet Activities report.
@@ -455,10 +429,10 @@ What you should see today: the two totals do not match. Andrew Wade reads 1080.4
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S1-R9), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S1-R9), read on 17 August 2026.
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8944)",SV-8648 (TU spec v5 2026-07-29 S1-R9; §2; §5 Assumptions),,
+AUTOMATION: READY - EXPECT FAIL (SV-8944)",SV-8648 (TU spec v9 2026-08-17 S1-R9; §2; §5 Assumptions),,
 Reconcile exception (a): an open clock is snapshotted at each load instant,TU — Deep Links,Functional,Medium,"1. A technician is still clocked in (an open, not-yet-clocked-out record) inside the range.","1. Load the Technician Utilization report and read the technician's Total Hours; watch whether the value ticks on screen.
 2. Wait a minute or two, then open Timesheet Activities via the Total Hours link and read its total.
 3. Compare the two values.","1. The open time is counted UP TO THE MOMENT THE REPORT LOADS - a fixed snapshot taken at load, not a value that keeps ticking on screen (matching how Timesheet Activities treats an open record).
@@ -466,41 +440,41 @@ Reconcile exception (a): an open clock is snapshotted at each load instant,TU �
 3. Reloading the Technician Utilization report takes a fresh snapshot (the value grows by the elapsed time).
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S1-R9, S1-E1), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S1-R9, S1-E1), read on 17 August 2026.
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: HOLD - needs a technician clocked in at the moment of the test, and no technician on this environment is currently clocked in",SV-8648 (TU spec v5 2026-07-29 S1-R9(a); S1-E1),,
+AUTOMATION: HOLD - needs a technician clocked in at the moment of the test, and no technician on this environment is currently clocked in",SV-8648 (TU spec v9 2026-08-17 S1-R9(a); S1-E1),,
 Reconciliation exception (b): the link passes no location,TU — Deep Links,Functional,Medium,"1. A technician has clocked time at TWO locations in the range.
 2. Both locations are selected in the report's location filter; only one of them is the user's currently active shop.","1. Read the technician's pooled Total Hours (both locations).
 2. Click the Total Hours link and read the total on the opened Timesheet Activities report.
-3. Compare the two values.","1. The link passes the technician and the date range ONLY - it does NOT pass the location selection.
-2. Timesheet Activities opens for the user's currently active shop, so it shows one location's portion - it will differ from (or be disjoint with) the multi-location row value.
-3. This is a KNOWN drill-through limitation, EXPECTED and NOT a data defect (the same applies when the single selected location is not the active shop).
+3. Compare the two values.","1. Total Hours is a link ONLY in the default view where the location scope is your active shop; under that scope the drill-through reconciles to the cent.
+2. In any other scope — a single location that is not your active shop, or multiple locations — Total Hours is plain text, not a link, so there is no drill-through and no reconciliation mismatch to worry about.
+3. This resolves the earlier ""reconciliation exception (b)"": because the link no longer appears outside the active-shop scope, the mismatch it described can no longer occur (per SV-9064).
+Note for the tester: an earlier version of this report showed Total Hours as a link in every scope. The current Technician Utilization report specification (version 9, S6-R1/S6-R6, per SV-9064) makes it a link ONLY in the default view where the location scope is your active shop; in any other scope it is plain text. Follow the current specification.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S6-R6, S1-R9), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S6-R6, S1-R9), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8653 (TU spec v5 2026-07-29 S6-R6; S1-R9(b)),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8653 (TU spec v9 2026-08-17 S6-R6; S1-R9(b)),,
 A day row's Total Hours links to that technician's single-day timesheet,TU — Deep Links,Functional,Medium,1. A technician row is expanded and shows day rows.,"1. Click the Total Hours value on one day row.
 2. Read the technician filter and the date range on the opened Timesheet Activities report.","1. Timesheet Activities opens filtered to that technician.
 2. The date range covers ONLY that single day.
+3. This day-row link appears only under the default active-shop scope (the same scope gate as the technician row, per SV-9064); under any other scope the day row's Total Hours is plain text, not a link.
+Note for the tester: an earlier version of this report showed Total Hours as a link in every scope. The current Technician Utilization report specification (version 9, S6-R1/S6-R6, per SV-9064) makes it a link ONLY in the default view where the location scope is your active shop; in any other scope it is plain text. Follow the current specification.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S6-R5), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S6-R5), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8653 (TU spec v5 2026-07-29 S6-R5),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8653 (TU spec v9 2026-08-17 S6-R5),,
 "Three-dot menu is leftmost, then Column Selection; four download options",TU — Exports,Functional,High,1. You are on the Technician Utilization report with rows loaded.,"1. Find the three-dot button in the toolbar and note its position in the action cluster.
 2. Open it and read the options.","1. The three-dot download menu sits LEFTMOST in the toolbar's action cluster, with the Column Selection control immediately after it.
 2. The menu holds four download options, labeled exactly: ""Download Summary (PDF)"", ""Download Expanded View (PDF)"", ""Download Summary (CSV)"" and ""Download Expanded View (CSV)"".
 3. The order these four options appear in is NOT part of this check. The specification requires each option to be present with that exact label; it does not fix the order they are listed in. Do not fail this test on the order alone.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and its story SV-8654, read on 11 August 2026, and the Technician Utilization report specification version 7 (S7-R1, S7-R2, S7-R3, S7-R4, S7-R4a, S8-R2), read on 11 August 2026. Chris Ward asked for this menu wording in his answers of 5 August 2026 in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026; the specification now carries the same wording, so the two agree.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and its story SV-8654, read on 17 August 2026, and the Technician Utilization report specification version 9 (S7-R1, S7-R2, S7-R3, S7-R4, S7-R4a, S8-R2), read on 17 August 2026. Chris Ward asked for this menu wording in his answers of 5 August 2026 in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026; the specification now carries the same wording, so the two agree.
 
-AUTOMATION: READY","SV-8654 (TU spec v5 2026-07-29 S7-R1; S7-R2; S7-R3; S7-R4; S8-R2 — S8-R2 now adds ""followed by the Column Selection control"")",,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8654 (TU spec v9 2026-08-17 S7-R1; S7-R2; S7-R3; S7-R4; S7-R4a; S8-R2 — the spec requires each of the four options by exact label and pins no menu order; S8-R2 gives the three-dot menu leftmost followed by Column Selection),,
 The Summary PDF holds the technician rows plus the Summary,TU — Exports,Functional,High,1. You are on the Technician Utilization report with several technicians who have multi-day clock records.,"1. Choose ""Download Summary (PDF)"" and open the file; check its filename.
 2. Choose ""Download Expanded View (PDF)"" and open the file; check its filename.","1. The Summary PDF shows the technician rows and the Summary row (no day rows); it downloads as ""Technician-Utilization-Summary.pdf"".
 2. The Expanded PDF shows the technician rows, EACH technician's per-day breakdown, and the Summary row; it downloads as ""Technician-Utilization-Expanded.pdf"".
@@ -511,10 +485,10 @@ What you should see today: both PDFs stop at the last technician - neither conta
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S7-R5, S7-R6, S7-R12), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S7-R5, S7-R6, S7-R12), read on 17 August 2026.
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8950)",SV-8654 (TU spec v5 2026-07-29 S7-R5; S7-R6; S7-R12),,
+AUTOMATION: READY - EXPECT FAIL (SV-8950)",SV-8654 (TU spec v9 2026-08-17 S7-R5; S7-R6; S7-R12),,
 "The CSV is always summary-level, quotes comma-containing values",TU — Exports,Functional,High,"1. At least one technician's Est. Lost Labor exceeds $1,000 (so a value contains a comma).","1. Choose ""Download Summary (CSV)"" and check the filename.
 2. Open the file in a plain-text editor and find the over-$1,000 value.
 3. Check for any day rows in the file.","1. The file downloads as ""technician-utilization.csv"" (lower-case as shipped, unlike the Title-Case PDFs).
@@ -526,10 +500,10 @@ What you should see today: there are two spreadsheet files, not one: technician-
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S7-R7, S7-R10, S7-R12), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S7-R7, S7-R10, S7-R12), read on 17 August 2026.
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8951)",SV-8654 (TU spec v5 2026-07-29 S7-R7; S7-R10; S7-R12),,
+AUTOMATION: READY - EXPECT FAIL (SV-8951)",SV-8654 (TU spec v9 2026-08-17 S7-R7; S7-R10; S7-R12),,
 "Downloads cover only selected technicians, locations, and date range",TU — Exports,Functional,High,1. Several technicians are listed and the user has access to more than one location.,"1. Deselect one technician, select a specific location set, and set a distinctive date range.
 2. Download the Summary PDF, the Expanded PDF, and the CSV.
 3. Check each file's technicians, the data scope, and the covered range.
@@ -550,10 +524,10 @@ Note for the tester: if the Location column does not behave this way on the buil
 Location is one of the columns you can switch on and off in the column-selection control, but only if your own account can reach more than one location: for you it is already switched on when you arrive, and you can switch it off. Someone whose account can reach only one location never sees the column and it is not offered to them in that list.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S7-R8, S7-R9, S7-R10, S7-R13, S7-E1, S9-R8), read on 11 August 2026. Version 6 of that specification, published on 5 August 2026, is what settles the one point about the Location column: it now states in both of its own requirements that the column belongs to anyone whose account can reach more than one location and can be switched on and off in the column-selection control. Chris Ward asked for that change in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S7-R8, S7-R9, S7-R10, S7-R13, S7-E1, S9-R8), read on 17 August 2026. Version 6 of that specification, published on 5 August 2026, is what settles the one point about the Location column: it now states in both of its own requirements that the column belongs to anyone whose account can reach more than one location and can be switched on and off in the column-selection control. Chris Ward asked for that change in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8948)","SV-8654 (TU spec v5 2026-07-29 S7-R8; S7-R9; S7-R10; S7-R13; S7-E1; S9-R8 — downloads mirror the shown columns and the technician/location/date scope; S7-R13 = the ""Locations:"" line and the automatic Location column)",,
+AUTOMATION: READY - EXPECT FAIL (SV-8948)","SV-8654 (TU spec v9 2026-08-17 S7-R8; S7-R9; S7-R10; S7-R13; S7-E1; S9-R8 — downloads mirror the shown columns and the technician/location/date scope; S7-R13 = the ""Locations:"" line and the automatic Location column)",,
 Downloads always order rows Technician A to Z; the on-screen sort is ignored,TU — Exports,Functional,Medium,"1. Rows exist including a ""—"" Est. Lost Labor value.
 2. The on-screen rows are sorted by something OTHER than Technician A to Z (e.g. Est. Lost Labor descending).","1. With the non-default sort applied, download the CSV and a PDF.
 2. Read each file's column order, number formats, and the ""—"" cell.
@@ -565,10 +539,10 @@ What you should see today: item 2 does not pass: the rows in both the spreadshee
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S7-R10, S7-R10a), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S7-R10, S7-R10a), read on 17 August 2026.
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8949)",SV-8654 (TU spec v5 2026-07-29 S7-R10; S7-R10a),,
+AUTOMATION: READY - EXPECT FAIL (SV-8949)",SV-8654 (TU spec v9 2026-08-17 S7-R10; S7-R10a),,
 PDF logo follows the uploaded logo; the spreadsheet never carries one,TU — Exports,Functional,Low,1. You can toggle the shop's logo in the shop settings (restore the original state afterwards - shared env).,"1. With a shop logo set, download the Summary PDF and the Expanded PDF and look at the top of each.
 2. Download the CSV and inspect it.
 3. Remove the shop logo and download both PDFs again.","1. With an uploaded logo, BOTH PDF views show that logo at the top of the report.
@@ -577,10 +551,9 @@ PDF logo follows the uploaded logo; the spreadsheet never carries one,TU — Exp
 Note for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026; where the Technician Utilization report specification version 7 (S7-R11, S7-N2, S7-N3), read on 11 August 2026, differs, his decision is the authority.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026; where the Technician Utilization report specification version 9 (S7-R11, S7-N2, S7-N3), read on 17 August 2026, differs, his decision is the authority.
 
-AUTOMATION: READY",SV-8654 (TU spec v5 2026-07-29 S7-R11; S7-N2; S7-N3 — logo now resolved by the shared resolver: the organization's uploaded logo; else the bundled ShopView default),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8654 (TU spec v9 2026-08-17 S7-R11; S7-N2; S7-N3 — logo now resolved by the shared resolver: the organization's uploaded logo; else the bundled ShopView default),,
 Choosing a download with no technician selected is a silent no-op,TU — Exports,Negative,Medium,1. You are on the Technician Utilization report with rows loaded.,"1. Use ""Clear all"" in the Filter by Technician filter so no technician is selected.
 2. Choose each download option in turn (Summary PDF, Expanded PDF, CSV).
 3. Watch for any file download and any notification.","1. Nothing happens: NO file downloads and NO message appears (not even an error).
@@ -591,10 +564,10 @@ What you should see today: the download is not silent: a file still arrives, hol
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S7-N1), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S7-N1), read on 17 August 2026.
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8948)",SV-8654 (TU spec v5 2026-07-29 S7-N1; §7 context note),,
+AUTOMATION: READY - EXPECT FAIL (SV-8948)",SV-8654 (TU spec v9 2026-08-17 S7-N1; §7 context note),,
 A starting download notifies; a failed one shows the failure message,TU — Exports,Functional,Medium,"1. You are on the Technician Utilization report with rows loaded.
 2. You can force a download failure (e.g. drop the network connection just before triggering the download).","1. Trigger a normal download and read the notification.
 2. Trigger a download under the failure condition and read the notification.","1. When a download starts, a success notification reads exactly: ""Download started"".
@@ -605,10 +578,10 @@ What you should see today: a download that starts shows ""Success / Data exporte
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (§7 notifications table, Story 7 has no S, §7 is the closing reference), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (§7 notifications table, Story 7 has no S, §7 is the closing reference), read on 17 August 2026.
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8952)","SV-8654 (TU spec v5 2026-07-29 Story 7 Error Handling + §7 notifications table — these CLOSE both strings verbatim (""Download started"" / ""Failed to download report""); Story 7 has no S-anchor for them so §7 is the closing reference)",,
+AUTOMATION: READY - EXPECT FAIL (SV-8952)","SV-8654 (TU spec v9 2026-08-17 Story 7 Error Handling + §7 notifications table — these CLOSE both strings verbatim (""Download started"" / ""Failed to download report""); Story 7 has no S-anchor for them so §7 is the closing reference)",,
 An over-cap Technician Utilization export is refused with the too-large message,TU — Exports,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A range/location combination exists whose filtered set EXCEEDS the export row cap (widest date range + all locations; seed ZZAUTOTEST clock records in bulk if needed, or use the largest available data set).","1. Set the date range and locations so the filtered set exceeds the export row cap.
 2. Request the CSV download and read what happens.
@@ -622,10 +595,10 @@ What you should see today: the spreadsheet download works and produces a file, b
 - If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S7-R14), read on 11 August 2026, which was added to that specification on 2026-08-06 and states this row limit and its exact message. Before that the specification said nothing about a limit and this expectation came from the engineering plan of 2026-07-29; the written description now says the same thing, so the two agree.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S7-R14), read on 17 August 2026, which was added to that specification on 2026-08-06 and states this row limit and its exact message. Before that the specification said nothing about a limit and this expectation came from the engineering plan of 2026-07-29; the written description now says the same thing, so the two agree.
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8818)",SV-8654 (TU spec v5 2026-07-29 Story 7 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10; 000-row export cap; locked by Chris 2026-07-21),,
+AUTOMATION: READY - EXPECT FAIL (SV-8818)",SV-8654 (TU spec v9 2026-08-17 S7-R14 — the 10;000-row export cap and its verbatim message are now IN the TU spec; previously spec-silent and sourced from tech-plan-2026-07-29 A3/FR-F4; locked by Chris 2026-07-21),,
 Both spreadsheet downloads hold the summary rows and no per-day rows,TU — Exports,Functional,High,"1. You are on the Technician Utilization report with rows loaded, and several technicians who have clock records across more than one day.
 2. The three-dot download menu offers a spreadsheet option for the Summary view and a separate one for the Expanded view.","1. Open the three-dot download menu (it sits leftmost in the toolbar's group of buttons) and read the options.
 2. Choose the Summary spreadsheet option, open the file that downloads, and write down its exact file name.
@@ -641,10 +614,10 @@ What you should see today: the two spreadsheets are not the same: the Expanded o
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S7-R7), read on 11 August 2026, which says the spreadsheet always holds the technician rows and the Summary row and does not change with the Summary or Expanded choice. The test exists at all because of Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026, - he asked this report's download menu to match Sales By Customer and Sales By Representative, which each offer a spreadsheet for both views, whereas that written description covers only one spreadsheet download. That his answer leaves the menu with four options is our reading of his words and he has not confirmed it.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S7-R7), read on 17 August 2026, which says the spreadsheet always holds the technician rows and the Summary row and does not change with the Summary or Expanded choice. The test exists at all because of Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026, - he asked this report's download menu to match Sales By Customer and Sales By Representative, which each offer a spreadsheet for both views, whereas that written description covers only one spreadsheet download. That his answer leaves the menu with four options is our reading of his words and he has not confirmed it.
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8951)",SV-8654 (TU spec v5 2026-07-29 S7-R7 - the spreadsheet is always summary-level; a SECOND spreadsheet option exists only because of Chris Ward's answer T2-6 option B of 2026-08-05),,
+AUTOMATION: READY - EXPECT FAIL (SV-8951)",SV-8654 (TU spec v9 2026-08-17 S7-R7 - the spreadsheet is always summary-level; a SECOND spreadsheet option exists only because of Chris Ward's answer T2-6 option B of 2026-08-05),,
 CSV export repeats the PDF header's technician and Locations filter lines,TU — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Technician Utilization report is open with at least one filter narrowed (for example a chosen date/scope and one or more locations) so the PDF header would show more than one filter line.","1. Download the report as a PDF and read the filter-summary lines in its header area.
 2. Download the report as a CSV and open it in a plain text editor or spreadsheet.
@@ -667,11 +640,9 @@ The Location filter is the rightmost multi-select; All Locations = select-all,TU
 4. With more than one location selected, a Location column appears in the table and each row names its location - or reads ""Multiple"" for a technician whose hours span more than one of them. (Where that column sits on screen is checked by its own test.)
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S9-R1), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/5/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S9-R1), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8656 (TU spec v5 2026-07-29 S9-R1 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins)),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8656 (TU spec v9 2026-08-17 S9-R1 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins)),,
 Location changes reload with hours pooled into one row per technician,TU — Location Filter,Functional,Critical,"1. A technician has clocked time at TWO accessible locations in the range.
 2. You are on the Technician Utilization report.","1. Select only location A and read the technician's hours.
 2. Add location B to the selection and watch the report.
@@ -682,10 +653,9 @@ Location changes reload with hours pooled into one row per technician,TU — Loc
 4. Scoping never goes beyond the user's accessible locations - a location the user cannot access is never included.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S9-R3, S9-R4, S9-R5), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S9-R3, S9-R4, S9-R5), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8656 (TU spec v5 2026-07-29 S9-R3; S9-R4; S9-R5 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8656 (TU spec v9 2026-08-17 S9-R3; S9-R4; S9-R5 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)),,
 The saved location selection restores defensively; bad ones are dropped,TU — Location Filter,Negative,Medium,1. The user saved a location selection that includes a location their access to was later removed.,"1. Return to the Technician Utilization report and read the restored location selection.
 2. Repeat with a saved selection consisting ONLY of now-inaccessible locations.","1. Any saved location the user can no longer access is DROPPED from the restored selection; the remaining accessible locations restore normally.
 2. If the remaining set is empty, the report falls back to the user's currently active location (the first-visit default).
@@ -693,20 +663,19 @@ The saved location selection restores defensively; bad ones are dropped,TU — L
 4. The same fallback happens when you deselect every location by hand in the Location filter — the report loads the currently active location's rows rather than showing nothing.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S9-R6, S1-R8, S9-R2, S9-R7), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S9-R6, S1-R8, S9-R2, S9-R7), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8656 (TU spec v5 2026-07-29 S9-R6; S1-R8; S9-R2; S9-R7),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8656 (TU spec v9 2026-08-17 S9-R6; S1-R8; S9-R2; S9-R7),,
 Technician Utilization: Location filter hidden for a one-location user,TU — Location Filter,Functional,Low,"1. You are signed in as a user with access to exactly one location.
 2. You are on the Technician Utilization report.","1. Look for the Location filter in the toolbar.
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.
 2. For the user with access to two or more locations the Location filter IS shown.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S9-N1), read on 11 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S9-N1), read on 17 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: HOLD - needs a second sign-in as a user who can reach only one location, and there is one shared sign-in on this environment","SV-8656 (TU spec S9-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S9-N1 ""still sees the filter"" note is stale; spec edit pending)",,
+AUTOMATION: HOLD - needs a second sign-in as a user who can reach only one location, and there is one shared sign-in on this environment","SV-8656 (TU spec v9 2026-08-17 S9-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A; S9-N1 now reads ""A user with access to only one location does not see the filter; it is hidden""; so his spec edit is DONE and the note is no longer stale)",,
 Location column: leftmost for a multi-location user; Summary row blank,TU — Location Filter,Functional,High,"1. You are on the Technician Utilization report as a user with access to two or more locations.
 2. One technician clocked time at a single location in the range and another clocked time at two different locations.
 3. One of those days has hours at two locations (for the per-day check).","1. Select two or more locations and read the column headers from the left.
@@ -734,10 +703,10 @@ What you should see today: the Location column is decided by how many locations 
 Also today: the column is drawn SECOND, after Technician, not leftmost as item 1 requires - count that as part of the same failure. Item 3 CAN now be checked on this environment: a technician with hours at more than one location does show ""Multiple"" (seen on 8/10/2026). Item 6 still needs a second sign-in as a one-location user.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S9-R9, S9-R10, S8-R15, S10-R4, S7-R13, S2-R1), read on 11 August 2026. Chris Ward confirmed this same access-gated, switchable rule in his answers of 8/10/2026, in this file: build/report-suite/chris-answers-2026-08-10/ - his answer and the specification agree.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S9-R9, S9-R10, S8-R15, S10-R4, S7-R13, S2-R1), read on 17 August 2026. Chris Ward confirmed this same access-gated, switchable rule in his answers of 8/10/2026, in this file: build/report-suite/chris-answers-2026-08-10/ - his answer and the specification agree.
 Last checked against build v3.5-4795eee on 8/10/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8954)","SV-8656; SV-8654 (TU spec v5 2026-07-29 S9-R9; S9-R10; S8-R15; S10-R4; S7-R13 — per-row Location column; leftmost before Technician; ""Multiple"" on a spanning row; Summary row blank; not in the selector; S7-R13 = same column in every download)",,
+AUTOMATION: READY - EXPECT FAIL (SV-8954)","SV-8620; SV-8637 (TU spec v9 2026-08-17 S9-R9; S9-R10; S8-R15; S10-R4; S7-R13; S2-R1 - access-gated toggleable Location column; leftmost before Technician; ""Multiple"" on a multi-location row; blank on Summary; present in every export)",,
 "Column Selection: Technician always on, the other five toggleable, remembered",TU — Visual & Accessibility,Functional,Medium,"1. You are on the Technician Utilization report with rows loaded.
 2. This browser has never saved settings for this report (fresh visit), so every column is at its default.
 3. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an ""Accessibility"" panel that shows the same names without you having to listen to anything.","1. Find the column-selection button in the toolbar and hover it to read its tooltip.
@@ -756,11 +725,9 @@ AUTOMATION: READY - EXPECT FAIL (SV-8954)","SV-8656; SV-8654 (TU spec v5 2026-07
 8. Your column choice is remembered in this browser and is still applied when you come back.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S10-R1, S10-R2, S10-R3, S10-R4, S10-R5, S10-R6, S9-R9, S8-R16), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/5/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S10-R1, S10-R2, S10-R3, S10-R4, S10-R5, S10-R6, S9-R9, S8-R16), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8655; SV-8582 (TU spec v5 2026-07-29 Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R5; S10-R6 column selector + Story 8 S8-R16 accessible name — Story 10 has NO owning Jira story so epic SV-8582 is used and FLAGGED; S8-R16 is owned by SV-8655),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8655; SV-8582 (TU spec v9 2026-08-17 S10-R1; S10-R2; S10-R3; S10-R4; S10-R5; S10-R6 column selector incl. the toggleable Location column per S9-R9 + S8-R16 accessible name — Story 10 has NO owning Jira story so epic SV-8582 is used and FLAGGED),,
 All-white table with no row shading; toolbar controls in the fixed order,TU — Visual & Accessibility,Functional,Medium,"1. You are on the Technician Utilization report with rows loaded, in light mode.","1. Look at the column headers and the data rows' backgrounds.
 2. Read the toolbar controls left to right.
 3. Look for the expand/collapse-all control's position.","1. The report uses an all-white table: white column headers and white data cells, with NO alternating row shading.
@@ -768,10 +735,9 @@ All-white table with no row shading; toolbar controls in the fixed order,TU — 
 3. The expand/collapse-all control is NOT a toolbar control - it lives in the table header (in the Technician column).
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S8-R1, S8-R2, S8-R3), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S8-R1, S8-R2, S8-R3), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8655 (TU spec v5 2026-07-29 S8-R1; S8-R2; S8-R3 — toolbar order rewritten: Column Selection inserted after the three-dot menu; and the date-range picker now precedes the technician filter),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8655 (TU spec v9 2026-08-17 S8-R1; S8-R2; S8-R3 — toolbar order rewritten: Column Selection inserted after the three-dot menu; and the date-range picker now precedes the technician filter),,
 Dark mode keeps every report element legible,TU — Visual & Accessibility,Functional,Low,"1. You are on the Technician Utilization report with rows loaded, including a ""—"" Est. Lost Labor cell.
 2. Dark mode is available in the application.","1. Switch the application to dark mode.
 2. Check each element: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and a ""—"" glyph.
@@ -782,10 +748,9 @@ Dark mode keeps every report element legible,TU — Visual & Accessibility,Funct
 4. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can see the icon easily in both modes, and only report it if you cannot. (The design rule behind this is a minimum 3:1 contrast ratio, which the design and engineering team check with a contrast tool - not by hand.)
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S8-R9, S8-R13, S8-R14), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S8-R9, S8-R13, S8-R14), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8655 (TU spec v5 2026-07-29 S8-R9; S8-R13; S8-R14 — dark-mode legibility of every named element; the info icon at ≥ 3:1 in both modes; the Total Hours link affordance/focus in both modes; the ratio is design-token-owned),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8655 (TU spec v9 2026-08-17 S8-R9; S8-R13; S8-R14 — dark-mode legibility of every named element; the info icon at ≥ 3:1 in both modes; the Total Hours link affordance/focus in both modes; the ratio is design-token-owned),,
 The per-day breakdown is fetched only when a technician row is expanded,TU — API,Functional,Medium,"1. You are on the Technician Utilization report with rows loaded and browser devtools (network tab) open.
 2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Load the report and inspect the initial data response for per-day content.
 2. Expand a technician row and watch the network traffic.
@@ -794,10 +759,9 @@ The per-day breakdown is fetched only when a technician row is expanded,TU — A
 3. Because expansion state resets (all collapsed) on any data reload, nothing is lost by the lazy loading - re-expanding fetches fresh day data.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S4-R2, S4-R5), read on 11 August 2026.
-Last checked against build v3.5-16cf83f on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S4-R2, S4-R5), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8651 (TU spec v5 2026-07-29 S4-R2; S4-R5),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8651 (TU spec v9 2026-08-17 S4-R2; S4-R5),,
 Date-range and location changes trigger a fresh server load,TU — API,Functional,Medium,"1. You are on the Technician Utilization report with rows loaded and browser devtools (network tab) open.
 2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Change the date range and watch the network traffic.
 2. Change the location selection and watch the traffic.
@@ -812,7 +776,7 @@ What you should see today: items 1 and 2 pass, but items 3 and 4 do not: ticking
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S1-R5, S9-R3, S2-R13), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S1-R5, S9-R3, S2-R13), read on 17 August 2026.
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8945)",SV-8648 (TU spec v5 2026-07-29 S1-R5; S9-R3; S5 context note; S2-R13; §3),,
+AUTOMATION: READY - EXPECT FAIL (SV-8945)",SV-8648 (TU spec v9 2026-08-17 S1-R5; S9-R3; S5 context note; S2-R13; §3),,

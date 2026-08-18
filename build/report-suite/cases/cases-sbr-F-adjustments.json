@@ -1,7 +1,7 @@
 [
  {
   "id": "SBR-ADJ-01",
-  "area": "SBR \u2014 Rep Rows & Tree",
+  "area": "SBR — Rep Rows & Tree",
   "title": "Adjustments column appears between Parts Margin and Margin",
   "priority": "Critical",
   "type": "Functional",
@@ -15,18 +15,18 @@
    "2. Look at the columns left to right."
   ],
   "expected": "1. The columns appear left-to-right: Date, Invoice, Customer, Status, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %, Subtotal (13 columns).\n2. \"Adjustments\" sits between \"Parts Margin\" and \"Margin\".\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9281, and the Sales By Representative report specification version 22 (S5-R2), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
-  "design_ref": "none \u2014 design not fetchable this pass; spec + Loom-review sourced",
-  "spec_ref": "SV-9281 (SBR spec v22 2026-08-12 S5-R2 \u2014 13-column order includes Adjustments between Parts Margin and Margin)",
+  "design_ref": "none — design not fetchable this pass; spec + Loom-review sourced",
+  "spec_ref": "SV-9281 (SBR spec v22 2026-08-12 S5-R2 — 13-column order includes Adjustments between Parts Margin and Margin)",
   "viu_status": "VIU-Pending",
   "notes": "NEW (Fabian design review 2026-08-17): SBR Adjustments column coverage was missing (SBR-ROW-02/C30218 still lists 12 columns). Story SV-9281 TESTING QA. Labels verbatim from SBR spec v22 S5-R2. VIU-confirm live.",
   "api_related": false,
-  "refs": "SV-9281 (SBR spec v22 2026-08-12 S5-R2 \u2014 13-column order includes Adjustments between Parts Margin and Margin)",
+  "refs": "SV-9281 (SBR spec v22 2026-08-12 S5-R2 — 13-column order includes Adjustments between Parts Margin and Margin)",
   "section_id": 4312,
   "testrail_id": "C43828"
  },
  {
   "id": "SBR-ADJ-02",
-  "area": "SBR \u2014 Inv. Hrs & Calculations",
+  "area": "SBR — Inv. Hrs & Calculations",
   "title": "Adjustments is the signed net of invoice-level fees and discounts",
   "priority": "Critical",
   "type": "Functional",
@@ -40,18 +40,18 @@
    "2. Read the Adjustments value on a rep row and an invoice detail row."
   ],
   "expected": "1. Adjustments shows the signed net of invoice-level fees and discounts: fees count positive, discounts count negative.\n2. A line-level fee or discount stays folded into that line's Labor or Parts value.\n3. An invoice-level amount is never allocated into the Labor or Parts columns.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9281, and the Sales By Representative report specification version 22 (S5-R11), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
-  "design_ref": "none \u2014 design not fetchable this pass; spec + Loom-review sourced",
-  "spec_ref": "SV-9281 (SBR spec v22 2026-08-12 S5-R11 \u2014 signed net of invoice-level fees/discounts; never allocated into Labor/Parts)",
+  "design_ref": "none — design not fetchable this pass; spec + Loom-review sourced",
+  "spec_ref": "SV-9281 (SBR spec v22 2026-08-12 S5-R11 — signed net of invoice-level fees/discounts; never allocated into Labor/Parts)",
   "viu_status": "VIU-Pending",
   "notes": "NEW (Fabian design review 2026-08-17). Sourced from SBR spec v22 S5-R11. VIU-confirm live.",
   "api_related": false,
-  "refs": "SV-9281 (SBR spec v22 2026-08-12 S5-R11 \u2014 signed net of invoice-level fees/discounts; never allocated into Labor/Parts)",
+  "refs": "SV-9281 (SBR spec v22 2026-08-12 S5-R11 — signed net of invoice-level fees/discounts; never allocated into Labor/Parts)",
   "section_id": 4314,
   "testrail_id": "C43829"
  },
  {
   "id": "SBR-ADJ-03",
-  "area": "SBR \u2014 Subtotal & Totals",
+  "area": "SBR — Subtotal & Totals",
   "title": "Every row ties out once Adjustments is included",
   "priority": "Critical",
   "type": "Functional",
@@ -67,18 +67,18 @@
    "4. Repeat on an invoice detail row and the Totals row."
   ],
   "expected": "1. Labor Invoiced + Parts Invoiced + Adjustments equals Subtotal.\n2. Labor Margin + Parts Margin + Adjustments equals Margin.\n3. The ties hold on rep summary rows, invoice detail rows and the grand Totals indicator alike.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9281, and the Sales By Representative report specification version 22 (S5-R12), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
-  "design_ref": "none \u2014 design not fetchable this pass; spec + Loom-review sourced",
-  "spec_ref": "SV-9281 (SBR spec v22 2026-08-12 S5-R12 \u2014 row ties out: Labor+Parts+Adjustments=Subtotal; LaborMargin+PartsMargin+Adjustments=Margin)",
+  "design_ref": "none — design not fetchable this pass; spec + Loom-review sourced",
+  "spec_ref": "SV-9281 (SBR spec v22 2026-08-12 S5-R12 — row ties out: Labor+Parts+Adjustments=Subtotal; LaborMargin+PartsMargin+Adjustments=Margin)",
   "viu_status": "VIU-Pending",
   "notes": "NEW (Fabian design review 2026-08-17). Sourced from SBR spec v22 S5-R12. VIU-confirm live.",
   "api_related": false,
-  "refs": "SV-9281 (SBR spec v22 2026-08-12 S5-R12 \u2014 row ties out: Labor+Parts+Adjustments=Subtotal; LaborMargin+PartsMargin+Adjustments=Margin)",
+  "refs": "SV-9281 (SBR spec v22 2026-08-12 S5-R12 — row ties out: Labor+Parts+Adjustments=Subtotal; LaborMargin+PartsMargin+Adjustments=Margin)",
   "section_id": 4315,
   "testrail_id": "C43830"
  },
  {
   "id": "SBR-ADJ-04",
-  "area": "SBR \u2014 Column Selector",
+  "area": "SBR — Column Selector",
   "title": "The eight toggleable metric columns include Adjustments",
   "priority": "High",
   "type": "Functional",
@@ -91,12 +91,12 @@
    "2. Open the column selector."
   ],
   "expected": "1. The eight toggleable columns are: Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %.\n2. \"Adjustments\" is one of the toggleable columns, between Parts Margin and Margin.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9281, and the Sales By Representative report specification version 22 (S20-R2), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
-  "design_ref": "none \u2014 design not fetchable this pass; spec + Loom-review sourced",
-  "spec_ref": "SV-9281 (SBR spec v22 2026-08-12 S20-R2 \u2014 eight toggleable columns include Adjustments)",
+  "design_ref": "none — design not fetchable this pass; spec + Loom-review sourced",
+  "spec_ref": "SV-9281 (SBR spec v22 2026-08-12 S20-R2 — eight toggleable columns include Adjustments)",
   "viu_status": "VIU-Pending",
   "notes": "NEW (Fabian design review 2026-08-17). Sourced from SBR spec v22 S20-R2. Closed enumeration IS the requirement; anchor+version pinned per Rule 42. VIU-confirm live.",
   "api_related": false,
-  "refs": "SV-9281 (SBR spec v22 2026-08-12 S20-R2 \u2014 eight toggleable columns include Adjustments)",
+  "refs": "SV-9281 (SBR spec v22 2026-08-12 S20-R2 — eight toggleable columns include Adjustments)",
   "section_id": 4320,
   "testrail_id": "C43831"
  }

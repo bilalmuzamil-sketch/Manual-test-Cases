@@ -1,417 +1,420 @@
 [
-  {
-    "id": "SBC-EMPTY-01",
-    "area": "SBC — Empty & Edge States",
-    "title": "Empty state shows in the table body; toolbar interactive; kept selection returns",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "the ordinary reports access (Reports section View).",
-    "preconditions": [
-      "1. You are on the report with data on screen.",
-      "2. To slow the load enough to watch this, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Slow 3G\". There is nothing to install. Set it back to \"No throttling\" when you finish."
-    ],
-    "steps": [
-      "1. Set a date range that contains no invoices (for example a Custom range over a quiet week far back).",
-      "2. Read the table body and try each toolbar control.",
-      "3. Also provoke the empty state via Product Type and via a location with no data, and re-check.",
-      "4. Look at the table header row's chevron.",
-      "5. Narrow the Customer filter to specific customers, change the date range so none of them have data, read the table and the filter, then change the range back."
-    ],
-    "expected": "1. The table body shows the message \"No sales data found for the selected filters.\" where customer rows would appear — not in the toolbar, the totals row, or a modal.\n2. The toolbar stays visible and interactive (all filters including the Customer filter, and the action controls), so you can adjust filters without leaving the page.\n3. The same empty state appears whichever filter caused it (date range, Product Type, or location).\n4. The header-row chevron is hidden when the table has no visible rows.\n5. With a narrowed customer selection and no data, the empty state shows but the selection is KEPT (not cleared) — when the filters change back, the selected customers reappear.\n6. While the table is still loading, the empty-state message is NOT shown (the loading state is shown instead); it appears only once loading has finished and there are zero customers.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S17-R1, S17-R2, S17-R3, S17-E1, S2-N1, S3-N1, S4-N2, S8-N1, S17-N1), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "SV-8615 (SBC spec v13 2026-07-31 Story 17 S17-R1; S17-R2; S17-R3; S17-E1; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1; Story 17 S17-N1)",
-    "viu_status": "VIU-Pending",
-    "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-EMPTYSEL): absorbed SBC-EMPTY-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8615 (SBC spec v17 2026-08-10 Story 17 S17-R1; S17-R2; S17-R3; S17-E1; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1; Story 17 S17-N1)",
-    "testrail_id": "C30181",
-    "section_id": 4302
-  },
-  {
-    "id": "SBC-EMPTY-02",
-    "area": "SBC — Empty & Edge States",
-    "title": "The empty-state message never appears while the table is still loading",
-    "priority": "Medium",
-    "type": "Negative",
-    "permissions_required": "the ordinary reports access (Reports section View).",
-    "preconditions": [
-      "1. You are on the report; a slow network helps (throttle via browser dev tools if needed).",
-      "2. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
-    ],
-    "steps": [
-      "1. Change a filter and watch the table area during the load.",
-      "2. Watch what appears once loading finishes with zero customers."
-    ],
-    "expected": [
-      "1. While the table is loading, the empty-state message is NOT shown (the loading state is shown instead).",
-      "2. The message appears only after the table finishes its initial loading and shows zero customers.",
-      "---",
-      "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S17-N1)."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "SV-8615 (SBC spec v13 2026-07-31 Story 17 S17-N1)",
-    "viu_status": "Retired - 2026-08-04 (merged into SBC-EMPTY-01 (C30181) under MG-SBC-EMPTY-LOADING; its unique assertions were folded into the survivor BEFORE deletion; C30182 deleted from TestRail; prev status VIU-Pending)",
-    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md | RETIRED 2026-08-04 (QA-lead-authorised merge/cut): merged into SBC-EMPTY-01 (C30181) under MG-SBC-EMPTY-LOADING; its unique assertions were folded into the survivor BEFORE deletion; C30182 deleted from TestRail. delete_case C30182 returned HTTP 200 and the re-GET returned HTTP 400 = gone. Body kept locally for the record; row removed from testrail-id-map.csv (the mapping is preserved here and in the Step-1 count reconciliation). Prior viu_status was: VIU-Pending",
-    "api_related": false
-  },
-  {
-    "id": "SBC-EMPTY-03",
-    "area": "SBC — Empty & Edge States",
-    "title": "A narrowed customer selection with no data shows the empty state but the selection is kept and the customers reappear",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "the ordinary reports access (Reports section View).",
-    "preconditions": [
-      "1. The Customer filter is narrowed to specific customers who have data in the current range but none in an adjacent range."
-    ],
-    "steps": [
-      "1. Change the date range so that none of the selected customers have data.",
-      "2. Read the table and the Customer filter.",
-      "3. Change the range back."
-    ],
-    "expected": [
-      "1. The empty-state message is shown.",
-      "2. The Customer filter selection is kept (not cleared).",
-      "3. When the filters change back to a range where the selected customers have data, they reappear."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbc-sales-by-customer.md Story 17 S17-E1",
-    "viu_status": "Retired 2026-07-28 (merged into SBC-EMPTY-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SBC-EMPTY-04",
-    "area": "SBC — Empty & Edge States",
-    "title": "A failed data fetch shows the error toast which fades after 5 seconds",
-    "priority": "Medium",
-    "type": "Negative",
-    "permissions_required": "the ordinary reports access (Reports section View).",
-    "preconditions": [
-      "1. You can interrupt the network (browser dev tools offline mode).",
-      "2. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
-    ],
-    "steps": [
-      "1. Go offline, then open the report (or change a filter to force a re-fetch).",
-      "2. Read the toast and time how long it stays."
-    ],
-    "expected": "1. An error toast is shown: \"An error occurred while fetching the report data.\"\n2. The toast auto-fades after 5 seconds.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (§7 User Feedback Summary), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: HOLD - a failing data fetch cannot be forced from the application",
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "SV-8582 (SBC spec §7 User Feedback Summary — the data-fetch error toast; CROSS-CUTTING: the SBC spec carries no error-state story of its own so the epic key is used deliberately)",
-    "viu_status": "VIU-Pending",
-    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8582 (SBC spec v17 2026-08-10 §7 User Feedback Summary — the data-fetch error toast; CROSS-CUTTING: the SBC spec carries no error-state story of its own so the epic key is used deliberately)",
-    "testrail_id": "C30184",
-    "section_id": 4302
-  },
-  {
-    "id": "SBC-VIS-01",
-    "area": "SBC — Visual Conformance",
-    "title": "Page and toolbar match the suite theme in padding; surface and alignment",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "the ordinary reports access (Reports section View).",
-    "preconditions": [
-      "1. You are on the report in light mode on a desktop browser, with some data showing."
-    ],
-    "steps": [
-      "1. Look at the page background behind the data area and at the toolbar strip above the table, including the space between its controls and the edges of the strip.",
-      "2. Check whether the toolbar sits flush against the top of the page with no gap, and whether the table reaches the left and right edges next to the side navigation.",
-      "3. Compare the left edge of the title and the right edge of the action cluster with the leftmost and rightmost columns of data.",
-      "4. Look at the line between the toolbar and the column headers, the size of the date-range picker's dropdown arrow next to the other filter arrows, the table's corners, and the space at the far left and far right of the rows.",
-      "5. Open another report in the suite (for example Inventory Value) side by side and compare."
-    ],
-    "expected": "1. The page background behind the data area is the standard soft blue-grey used across the suite, and the page itself has no border of empty space around it.\n2. The toolbar strip is white, its controls sit clear of the edges rather than pressed up against them, it sits flush against the top of the page with no gap, and the table reaches the left and right edges next to the side navigation.\n3. The left edge of the title lines up with the leftmost column of data, and the right edge of the action cluster lines up with the rightmost column.\n4. A thin dividing line separates the toolbar from the column headers.\n5. The date-range picker's dropdown arrow is the same size as the other filter dropdown arrows next to it.\n6. The table has square corners, and the first and last columns sit clear of the left and right edges of the table — the text is not touching the edge.\n7. When there are too few rows to fill the screen, the blue-grey page background shows through below the table — there is no white strip left over.\n8. It all looks the same as the other reports in the suite: put another report side by side and nothing should look out of place.\n9. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether the spacing, the alignment and the dividing line look right and consistent with the other reports, and only report it if something looks obviously off. (The exact figures behind this — 32px/24px toolbar padding, a 1px header border, 2rem edge padding, a 24px arrow — are design-token values the design and engineering team check with their own tooling, not by hand.)\nWhat you should see today: the outer cells of the table have about 14 pixels of side padding instead of 2rem (32 pixels). This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8965\n· If you see exactly that, mark this test FAILED and do not raise anything new.\n· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S20-R1, S20-R2, S20-R3, S20-R4, S20-R5, S20-R6, S20-R7, S20-R12, S20-R13, S20-R15, S20-R17), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8965)",
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "SV-8617 (SBC spec v13 2026-07-31 Story 20 S20-R1; S20-R2; S20-R3; S20-R4; S20-R5; S20-R6; S20-R7; S20-R12; S20-R13; S20-R15; S20-R17)",
-    "viu_status": "VIU-Pending",
-    "notes": "Technician Efficiency is the suite's visual reference (Story 20 context note) — compare side-by-side at VIU if in doubt. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8617 (SBC spec v17 2026-08-10 Story 20 S20-R1; S20-R2; S20-R3; S20-R4; S20-R5; S20-R6; S20-R7; S20-R12; S20-R13; S20-R15; S20-R17)",
-    "testrail_id": "C30185",
-    "section_id": 4303
-  },
-  {
-    "id": "SBC-VIS-02",
-    "area": "SBC — Visual Conformance",
-    "title": "Row surfaces alternate by tree level; header and totals rows stay white",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "the ordinary reports access (Reports section View).",
-    "preconditions": [
-      "1. You are on the report in light mode with a customer expanded down to invoice rows.",
-      "2. This test names exact colours or sizes. Use the browser's own developer tools: press F12, pick the element with the inspector, and read its colour or size from the \"Styles\" panel. There is nothing to install. If you cannot get a clear reading, mark this test Blocked rather than guessing."
-    ],
-    "steps": [
-      "1. Inspect the background of the header cells, a customer row, an asset row, an invoice row, and the totals row.",
-      "2. Check the pinned Subtotal cell's background on each row type.",
-      "3. Check the tree indentation levels."
-    ],
-    "expected": "1. Column-header cells and customer summary rows use the white surface (#ffffff).\n2. Asset rows and invoice rows use the blue-grey background (#f9fafb).\n3. The totals row uses the white surface with a top border and bold text (white on purpose, matching Technician Efficiency).\n4. The pinned Subtotal cell on any row uses that row's own background — never a contrasting strip.\n5. The three tree levels show by indentation: customer at the base, asset rows one level in (chevron and vehicle icon sit in from the customer), invoice rows one level deeper.\nWhat you should see today: the column headings, the customer rows and the totals row are all the pale blue-grey instead of white; the asset and invoice rows are a third, darker grey; and invoice rows are not indented any deeper than customer rows. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8965\n· If you see exactly that, mark this test FAILED and do not raise anything new.\n· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S20-R8, S20-R9, S20-R10, S20-R11, S20-R14), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8965)",
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "SV-8617 (SBC spec v13 2026-07-31 Story 20 S20-R8; S20-R9; S20-R10; S20-R11; S20-R14)",
-    "viu_status": "VIU-Pending",
-    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8617 (SBC spec v17 2026-08-10 Story 20 S20-R8; S20-R9; S20-R10; S20-R11; S20-R14)",
-    "testrail_id": "C30186",
-    "section_id": 4303
-  },
-  {
-    "id": "SBC-VIS-03",
-    "area": "SBC — Visual Conformance",
-    "title": "Dark mode darkens every surface while the PDF always renders light",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "the ordinary reports access (Reports section View).",
-    "preconditions": [
-      "1. You can switch the application to dark mode."
-    ],
-    "steps": [
-      "1. Switch to dark mode and review the page background, toolbar, header cells, customer rows, asset/invoice rows, and totals row.",
-      "2. While still in dark mode, download the PDF and open it."
-    ],
-    "expected": "1. In dark mode every visual rule applies with the dark equivalent of each color (dark background, dark surfaces).\n2. The PDF export always renders in light-mode colors regardless of the user's app mode.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S20-R18), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "SV-8617 (SBC spec v13 2026-07-31 Story 20 S20-R18)",
-    "viu_status": "VIU-Pending",
-    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8617 (SBC spec v17 2026-08-10 Story 20 S20-R18)",
-    "testrail_id": "C30187",
-    "section_id": 4303
-  },
-  {
-    "id": "SBC-MOB-01",
-    "area": "SBC — Mobile",
-    "title": "On a phone every toolbar control works on touch; the toolbar splits in two",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "the ordinary reports access (Reports section View).",
-    "preconditions": [
-      "1. You open the report on a phone-sized viewport (real device or browser device emulation)."
-    ],
-    "steps": [
-      "1. Try each toolbar control by touch: date range, Product Type, the Customer filter, location, the overflow menu, and the column selector.",
-      "2. At a width below 1024px, look at the toolbar rows.",
-      "3. Widen the window to 1024px or more and look again."
-    ],
-    "expected": "1. Every toolbar control is visible and works on touch.\n2. Below 1024px the toolbar uses two rows: the action controls (overflow menu and column selector) on the first row, and the filter dropdowns on the second row, stacked at full width.\n3. At 1024px and above the toolbar uses the desktop single-row layout.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S21-R1, S21-R2, S21-R3), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "SV-8618 (SBC spec v13 2026-07-31 Story 21 S21-R1; S21-R2; S21-R3)",
-    "viu_status": "VIU-Pending",
-    "notes": "A mobile-optimized layout is out of scope (§2) — the dense table itself is not redesigned; only control usability is asserted. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8618 (SBC spec v17 2026-08-10 Story 21 S21-R1; S21-R2; S21-R3)",
-    "testrail_id": "C30188",
-    "section_id": 4304
-  },
-  {
-    "id": "SBC-MOB-02",
-    "area": "SBC — Mobile",
-    "title": "On touch the table scrolls sideways with Subtotal pinned and chevrons work",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "the ordinary reports access (Reports section View).",
-    "preconditions": [
-      "1. You are on the report on a phone-sized viewport with data."
-    ],
-    "steps": [
-      "1. Swipe the table sideways to reach the far columns.",
-      "2. Tap a customer chevron and an asset chevron.",
-      "3. Tap an invoice number link."
-    ],
-    "expected": "1. The data table scrolls sideways to show all columns, and the pinned Subtotal column stays visible during that scroll.\n2. The chevron expand and collapse control on each row works on touch.\n3. The invoice number link opens the invoice in the same tab, the same as on desktop.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S21-R4, S21-R5, S21-R6), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "SV-8618 (SBC spec v13 2026-07-31 Story 21 S21-R4; S21-R5; S21-R6)",
-    "viu_status": "VIU-Pending",
-    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8618 (SBC spec v17 2026-08-10 Story 21 S21-R4; S21-R5; S21-R6)",
-    "testrail_id": "C30189",
-    "section_id": 4304
-  },
-  {
-    "id": "SBC-API-01",
-    "area": "SBC — API",
-    "title": "Asset and invoice rows are fetched on first expand; one call per customer",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "the ordinary reports access (Reports section View).",
-    "preconditions": [
-      "1. You are on the report with several customers, with the browser's network activity panel open.",
-      "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
-    ],
-    "steps": [
-      "1. Load the report and note the requests made for the summary rows.",
-      "2. Expand one customer for the first time and watch the network panel.",
-      "3. Collapse and re-expand the same customer without changing filters.",
-      "4. Use the header chevron's expand-all and count the drill-down requests."
-    ],
-    "expected": "1. Customer summary rows load WITHOUT the asset/invoice detail — the drill-down data is not preloaded.\n2. The first expand of a customer triggers a server fetch for that customer's asset and invoice rows.\n3. Expand-all triggers at most one drill-down fetch per not-yet-expanded customer on the current page — a bounded number never exceeding the page size; it does not fetch customers beyond the current page or the whole result set.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S8-R14, S8-R16), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R14; S8-R16)",
-    "viu_status": "VIU-Pending",
-    "notes": "The spec defines no REST contract — observe the browser's real requests; do NOT assume endpoint shapes. BUILD-DELTA: lazy drill-down is the 2026-07-16 committed server-side target (spec ahead of code by design) — the current build may still preload client-side at VIU. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": true,
-    "refs": "SV-8606 (SBC spec v17 2026-08-10 Story 8 S8-R14; S8-R16)",
-    "testrail_id": "C30190",
-    "section_id": 4305
-  },
-  {
-    "id": "SBC-API-02",
-    "area": "SBC — API",
-    "title": "Sorting is applied on the server and re-fetches the first page",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "the ordinary reports access (Reports section View).",
-    "preconditions": [
-      "1. Enough customers exist to span more than one page; the browser's network panel is open.",
-      "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
-    ],
-    "steps": [
-      "1. Click a column header and watch the network panel.",
-      "2. Compare the returned first page with the previous page contents.",
-      "3. Optional (API tooling): repeat the request with a made-up sort column name and read the response."
-    ],
-    "expected": "1. Clicking a column header issues a server request that returns the customer rows ordered by that column.\n2. The full filtered set is re-ordered and re-paginated on the server — the response is the first page of results in the new order, so page membership can change.\n3. The ordering is not done by re-shuffling rows already in the browser.\n4. A sort request naming a column the report does not offer is safely refused or ignored — never an error page or a crash; sorting works only on the report's own columns.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S10-R8, S10-R8b), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/5/2026.\n\nAUTOMATION: READY\n",
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "SV-8608 (SBC spec v13 2026-07-31 Story 10 S10-R8; S10-R8b; tech-plan-2026-07-29 A2 (server sort whitelist))",
-    "viu_status": "VIU-Pending",
-    "notes": "Generic wording on purpose — no endpoint invented. BUILD-DELTA: server-side sort is the 2026-07-16 committed target. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": true,
-    "refs": "SV-8608 (SBC spec v17 2026-08-10 Story 10 S10-R8; S10-R8b; tech-plan-2026-07-29 A2 (server sort whitelist))",
-    "testrail_id": "C30191",
-    "section_id": 4305
-  },
-  {
-    "id": "SBC-API-03",
-    "area": "SBC — API",
-    "title": "The Customer type-ahead queries the server instead of loading every name",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "the ordinary reports access (Reports section View).",
-    "preconditions": [
-      "1. You are on the report with the browser's network panel open.",
-      "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
-    ],
-    "steps": [
-      "1. Open the Customer filter WITHOUT typing and check whether a full customer list was downloaded.",
-      "2. Type a query and watch the network panel.",
-      "3. Change the query and watch again."
-    ],
-    "expected": "1. The dropdown does not load the full customer list into the browser up front.\n2. As you type, the browser fetches matching customers from the server — case-insensitive \"contains\" matching on the name, scoped to the active date range, Product Type, and location — and lists the returned customers.\n3. The all-customers state is stored as an explicit state (a flag), not an enumeration of the fetched ids.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R2, S18-R4), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R2; S18-R4)",
-    "viu_status": "VIU-Pending",
-    "notes": "Verify the flag-vs-enumeration point by observing what a filter change/restore sends, not by reading source. BUILD-DELTA: server-backed type-ahead is the 2026-07-21 committed target. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": true,
-    "refs": "SV-8616 (SBC spec v17 2026-08-10 Story 18 S18-R2; S18-R4)",
-    "testrail_id": "C30192",
-    "section_id": 4305
-  },
-  {
-    "id": "SBC-API-04",
-    "area": "SBC — API",
-    "title": "Customer rows are server-paginated; the totals row is server-computed",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "the ordinary reports access (Reports section View).",
-    "preconditions": [
-      "1. Enough customers exist to span more than one page; the browser's network panel is open.",
-      "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
-    ],
-    "steps": [
-      "1. Load the report and inspect the summary-row response and the totals values.",
-      "2. Change the Customer filter selection and watch the requests.",
-      "3. Move between pages and watch the totals."
-    ],
-    "expected": "1. Customer rows arrive page by page from the server (server-paginated), not as one full client-side list.\n2. Changing the Customer selection re-fetches the matching customers as a fresh first page.\n3. The totals are computed on the server over the full set of matching customers — they arrive with the data and do not change as you page.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S18-R6, S18-R11), read on 11 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R6; S18-R11)",
-    "viu_status": "VIU-Pending",
-    "notes": "BUILD-DELTA: server pagination/totals are the 2026-07-16 committed target (spec ahead of code by design). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": true,
-    "refs": "SV-8616 (SBC spec v17 2026-08-10 Story 18 S18-R6; S18-R11)",
-    "testrail_id": "C30193",
-    "section_id": 4305
-  },
-  {
-    "id": "SBC-API-05",
-    "area": "SBC — API",
-    "title": "Exports are server-generated and the 10,000-row cap is counted first",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "the ordinary reports access (Reports section View).",
-    "preconditions": [
-      "1. The browser's network panel is open; an over-cap filter combination is available if the environment allows.",
-      "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
-    ],
-    "steps": "1. Trigger a CSV download (\"Download Summary (CSV)\" or \"Download Expanded View (CSV)\") and a PDF download (\"Download Summary (PDF)\" or \"Download Expanded View (PDF)\"), and observe where the file content comes from.\n2. If an over-cap set is available, trigger an export and observe the server's refusal.",
-    "expected": "1. The CSV and PDF are generated on the server from the active date range, Product Type, location, Customer filter, and sort — not assembled from the rows already loaded in the browser.\n2. Over the cap, the server does not generate the file (the request comes back as a refusal, not a file) and the browser starts no download — the count the cap checks is the count the file would contain, against the same filters and sort as the screen.\nWhat you should see today: the spreadsheet download works and produces a file, but the PDF download of the same view fails with a server error and no file arrives. It depends on how much is in the view, not on which report - filtered down to one or two rows the PDF downloads normally, and on a full unfiltered view of several thousand rows it fails every time. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8818\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S14-R3, S14-R14, S15-R3, S15-R22), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8818)",
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "SV-8612 (SBC spec v13 2026-07-31 Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22)",
-    "viu_status": "VIU-Pending",
-    "notes": "No endpoint or status code is pinned by the spec — record what is actually observed. BUILD-DELTA: server-side exports (2026-07-16) and the cap (2026-07-21) are committed targets ahead of code. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": true,
-    "refs": "SV-8612 (SBC spec v17 2026-08-10 Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22)",
-    "testrail_id": "C30194",
-    "section_id": 4305
-  },
-  {
-    "id": "SBC-API-06",
-    "area": "SBC — API",
-    "title": "The back end serves SBC report data and export on ordinary reports access",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "A role with the ordinary reports access.",
-    "preconditions": [
-      "1. Two sign-ins are available: one user whose role has the ordinary reports access, and one whose role does not have it (for example a Foreman).",
-      "2. You can see the requests the browser makes (the browser's network panel) so you can read the response code.",
-      "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
-    ],
-    "steps": [
-      "1. Sign in as the user WHO HAS ordinary reports access and open Sales By Customer.",
-      "2. In the network panel, find the request the page makes for the report's data and read its response code.",
-      "3. From the three-dot menu choose \"Download Summary (CSV)\" and read the response code of the export request.",
-      "4. Sign out and sign in as the user WITHOUT reports access.",
-      "5. Try to open Sales By Customer by typing its address directly, and read the response code of the data request.",
-      "6. Ask for the same export by its address and read that response code too."
-    ],
-    "expected": "1. For the user WITH ordinary reports access, the report's data request succeeds (HTTP 200) and the report fills with rows.\n2. For that same user, the export request also succeeds (HTTP 200) and a file is produced.\n3. For the user WITHOUT reports access, the data request is refused with HTTP 403 and a message reading \"Access denied.\" — no report data comes back.\n4. For that same user, the export request is refused with HTTP 403 as well — no file is produced.\n5. Note for the tester: one single permission controls all four of these. If you find the report data refused but the export allowed (or the other way round), that is a failure — record both response codes.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Customer report specification version 17 (S1-R2, S1-N1), read on 11 August 2026.\nLast checked against build v3.4.1-3d03023 on 8/4/2026.\n\nAUTOMATION: READY\n",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8600 (SBC spec v13 2026-07-31 S1-R2; S1-N1 — the back-end half of the ordinary-reports-access gate; the SBC twin of the Parts Velocity back-end case C30391; Chris Ward Q1=A; SV-8780 Ready to Fix)",
-    "viu_status": "VIU-Pending",
-    "notes": "NEW 2026-08-04. Covers the permission surface at the back end — the SBC twin of PV-API-04 (C30391). Live evidence taken 2026-08-03 on QA branch sv8582 build v3.4.1-0ed4433: with an 8-atom role holding only reportsPageAccess BOTH endpoints returned 200; with Foreman (no such atom) BOTH returned 403 \"Access denied.\" Build declared NOT FINAL, so this is PROVISIONAL (Rule 49) and is queued in build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": true,
-    "refs": "SV-8600 (SBC spec v17 2026-08-10 S1-R2; S1-N1 — the back-end half of the ordinary-reports-access gate; the SBC twin of the Parts Velocity back-end case C30391; Chris Ward Q1=A; SV-8780 Ready to Fix)",
-    "testrail_id": "C43546",
-    "section_id": 4305
-  },
-  {
-    "id": "SBC-VIS-04",
-    "area": "SBC — Visual Conformance",
-    "title": "A group/summary row presents its rolled-up totals as an inline math strip",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "the ordinary reports access (Reports section View).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. A report with group/summary rows is open (for example Sales By Customer, whose customer and asset rows roll up their invoices)."
-    ],
-    "steps": [
-      "1. Find a group/summary row that rolls up several child rows (a customer row over its assets and invoices).",
-      "2. Read the rolled-up values shown on that group row, including the Labor Delta total."
-    ],
-    "expected": "1. A group/summary row shows its rolled-up column totals (the sum across its child rows), including the Labor Delta total, in the same column positions and formats as a data row.\n2. Those rolled-up totals are presented together as a compact inline \"math strip\" on the group row - the design-review treatment for grouped totals.\n3. Confirm live against the design/build: the exact visual layout of the \"math strip\" (spacing, separators, whether the operator/equals signs are shown) is described only in the design review - confirm the exact presentation live before pinning it; do not invent the layout.\n4. Note for the tester: the rolled-up numbers themselves must tie out to the sum of the child rows; only the visual \"math strip\" styling is what this case is confirming.\n\n---\nThis is the expected behaviour as per epic SV-8582, the reporting-shell story SV-8593, and Chris Ward's design-review decisions of 17 August 2026 (the grouped-totals math strip). The Sales By Customer report specification version 20 does not name this visual treatment, so the exact styling is Loom-sourced and is marked for live confirmation above (read on 17 August 2026).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
-    "design_ref": "",
-    "spec_ref": "SV-8593 (SBC spec v20 2026-08-17; grouped-totals math strip per Chris Ward design review 2026-08-17; exact styling to confirm live)",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false,
-    "refs": "SV-8593 (SBC spec v20 2026-08-17; grouped-totals math strip per Chris Ward design review 2026-08-17; exact styling to confirm live)",
-    "testrail_id": "C43840",
-    "section_id": 4303
-  }
+ {
+  "id": "SBC-EMPTY-01",
+  "area": "SBC — Empty & Edge States",
+  "title": "Empty state shows in the table body; toolbar interactive; kept selection returns",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "the ordinary reports access (Reports section View).",
+  "preconditions": [
+   "1. You are on the report with data on screen.",
+   "2. To slow the load enough to watch this, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Slow 3G\". There is nothing to install. Set it back to \"No throttling\" when you finish."
+  ],
+  "steps": [
+   "1. Set a date range that contains no invoices (for example a Custom range over a quiet week far back).",
+   "2. Read the table body and try each toolbar control.",
+   "3. Also provoke the empty state via Product Type and via a location with no data, and re-check.",
+   "4. Look at the table header row's chevron.",
+   "5. Narrow the Customer filter to specific customers, change the date range so none of them have data, read the table and the filter, then change the range back."
+  ],
+  "expected": "1. The table body shows the message \"No sales data found for the selected filters.\" where customer rows would appear — not in the toolbar, the totals row, or a modal.\n2. The toolbar stays visible and interactive (all filters including the Customer filter, and the action controls), so you can adjust filters without leaving the page.\n3. The same empty state appears whichever filter caused it (date range, Product Type, or location).\n4. The header-row chevron is hidden when the table has no visible rows.\n5. With a narrowed customer selection and no data, the empty state shows but the selection is KEPT (not cleared) — when the filters change back, the selected customers reappear.\n6. While the table is still loading, the empty-state message is NOT shown (the loading state is shown instead); it appears only once loading has finished and there are zero customers.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S17-R1, S17-R2, S17-R3, S17-E1, S2-N1, S3-N1, S4-N2, S8-N1, S17-N1), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "SV-8615 (SBC spec v20 2026-08-17 Story 17 S17-R1; S17-R2; S17-R3; S17-E1; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1; Story 17 S17-N1)",
+  "viu_status": "VIU-Pending",
+  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-EMPTYSEL): absorbed SBC-EMPTY-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8615 (SBC spec v20 2026-08-17 Story 17 S17-R1; S17-R2; S17-R3; S17-E1; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1; Story 17 S17-N1)",
+  "testrail_id": "C30181",
+  "section_id": 4302
+ },
+ {
+  "id": "SBC-EMPTY-02",
+  "area": "SBC — Empty & Edge States",
+  "title": "The empty-state message never appears while the table is still loading",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "the ordinary reports access (Reports section View).",
+  "preconditions": [
+   "1. You are on the report; a slow network helps (throttle via browser dev tools if needed).",
+   "2. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
+  ],
+  "steps": [
+   "1. Change a filter and watch the table area during the load.",
+   "2. Watch what appears once loading finishes with zero customers."
+  ],
+  "expected": [
+   "1. While the table is loading, the empty-state message is NOT shown (the loading state is shown instead).",
+   "2. The message appears only after the table finishes its initial loading and shows zero customers.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S17-N1)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "SV-8615 (SBC spec v13 2026-07-31 Story 17 S17-N1)",
+  "viu_status": "Retired - 2026-08-04 (merged into SBC-EMPTY-01 (C30181) under MG-SBC-EMPTY-LOADING; its unique assertions were folded into the survivor BEFORE deletion; C30182 deleted from TestRail; prev status VIU-Pending)",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md | RETIRED 2026-08-04 (QA-lead-authorised merge/cut): merged into SBC-EMPTY-01 (C30181) under MG-SBC-EMPTY-LOADING; its unique assertions were folded into the survivor BEFORE deletion; C30182 deleted from TestRail. delete_case C30182 returned HTTP 200 and the re-GET returned HTTP 400 = gone. Body kept locally for the record; row removed from testrail-id-map.csv (the mapping is preserved here and in the Step-1 count reconciliation). Prior viu_status was: VIU-Pending",
+  "api_related": false
+ },
+ {
+  "id": "SBC-EMPTY-03",
+  "area": "SBC — Empty & Edge States",
+  "title": "A narrowed customer selection with no data shows the empty state but the selection is kept and the customers reappear",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "the ordinary reports access (Reports section View).",
+  "preconditions": [
+   "1. The Customer filter is narrowed to specific customers who have data in the current range but none in an adjacent range."
+  ],
+  "steps": [
+   "1. Change the date range so that none of the selected customers have data.",
+   "2. Read the table and the Customer filter.",
+   "3. Change the range back."
+  ],
+  "expected": [
+   "1. The empty-state message is shown.",
+   "2. The Customer filter selection is kept (not cleared).",
+   "3. When the filters change back to a range where the selected customers have data, they reappear."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 17 S17-E1",
+  "viu_status": "Retired 2026-07-28 (merged into SBC-EMPTY-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-EMPTY-04",
+  "area": "SBC — Empty & Edge States",
+  "title": "A failed data fetch shows the error toast which fades after 5 seconds",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "the ordinary reports access (Reports section View).",
+  "preconditions": [
+   "1. You can interrupt the network (browser dev tools offline mode).",
+   "2. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
+  ],
+  "steps": [
+   "1. Go offline, then open the report (or change a filter to force a re-fetch).",
+   "2. Read the toast and time how long it stays."
+  ],
+  "expected": "1. An error toast is shown: \"An error occurred while fetching the report data.\"\n2. The toast auto-fades after 5 seconds.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (§7 User Feedback Summary), read on 17 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: HOLD - a failing data fetch cannot be forced from the application",
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "SV-8582 (SBC spec v20 2026-08-17 §7 User Feedback Summary — the data-fetch error toast; CROSS-CUTTING: the SBC spec carries no error-state story of its own so the epic key is used deliberately)",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8582 (SBC spec v20 2026-08-17 §7 User Feedback Summary — the data-fetch error toast; CROSS-CUTTING: the SBC spec carries no error-state story of its own so the epic key is used deliberately)",
+  "testrail_id": "C30184",
+  "section_id": 4302
+ },
+ {
+  "id": "SBC-VIS-01",
+  "area": "SBC — Visual Conformance",
+  "title": "Page and toolbar match the suite theme in padding; surface and alignment",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "the ordinary reports access (Reports section View).",
+  "preconditions": [
+   "1. You are on the report in light mode on a desktop browser, with some data showing."
+  ],
+  "steps": [
+   "1. Look at the page background behind the data area and at the toolbar strip above the table, including the space between its controls and the edges of the strip.",
+   "2. Check whether the toolbar sits flush against the top of the page with no gap, and whether the table reaches the left and right edges next to the side navigation.",
+   "3. Compare the left edge of the title and the right edge of the action cluster with the leftmost and rightmost columns of data.",
+   "4. Look at the line between the toolbar and the column headers, the size of the date-range picker's dropdown arrow next to the other filter arrows, the table's corners, and the space at the far left and far right of the rows.",
+   "5. Open another report in the suite (for example Inventory Value) side by side and compare."
+  ],
+  "expected": "1. The page background behind the data area is the standard soft blue-grey used across the suite, and the page itself has no border of empty space around it.\n2. The toolbar strip is white, its controls sit clear of the edges rather than pressed up against them, it sits flush against the top of the page with no gap, and the table reaches the left and right edges next to the side navigation.\n3. The left edge of the title lines up with the leftmost column of data, and the right edge of the action cluster lines up with the rightmost column.\n4. A thin dividing line separates the toolbar from the column headers.\n5. The date-range picker's dropdown arrow is the same size as the other filter dropdown arrows next to it.\n6. The table has square corners, and the first and last columns sit clear of the left and right edges of the table — the text is not touching the edge.\n7. When there are too few rows to fill the screen, the blue-grey page background shows through below the table — there is no white strip left over.\n8. It all looks the same as the other reports in the suite: put another report side by side and nothing should look out of place.\n9. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether the spacing, the alignment and the dividing line look right and consistent with the other reports, and only report it if something looks obviously off. (The exact figures behind this — 32px/24px toolbar padding, a 1px header border, 2rem edge padding, a 24px arrow — are design-token values the design and engineering team check with their own tooling, not by hand.)\nWhat you should see today: the outer cells of the table have about 14 pixels of side padding instead of 2rem (32 pixels). This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8965\n· If you see exactly that, mark this test FAILED and do not raise anything new.\n· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S20-R1, S20-R2, S20-R3, S20-R4, S20-R5, S20-R6, S20-R7, S20-R12, S20-R13, S20-R15, S20-R17), read on 17 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8965)",
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "SV-8617 (SBC spec v20 2026-08-17 Story 20 S20-R1; S20-R2; S20-R3; S20-R4; S20-R5; S20-R6; S20-R7; S20-R12; S20-R13; S20-R15; S20-R17)",
+  "viu_status": "VIU-Pending",
+  "notes": "Technician Efficiency is the suite's visual reference (Story 20 context note) — compare side-by-side at VIU if in doubt. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8617 (SBC spec v20 2026-08-17 Story 20 S20-R1; S20-R2; S20-R3; S20-R4; S20-R5; S20-R6; S20-R7; S20-R12; S20-R13; S20-R15; S20-R17)",
+  "testrail_id": "C30185",
+  "section_id": 4303
+ },
+ {
+  "id": "SBC-VIS-02",
+  "area": "SBC — Visual Conformance",
+  "title": "Row surfaces alternate by tree level; header and totals rows stay white",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "the ordinary reports access (Reports section View).",
+  "preconditions": [
+   "1. You are on the report in light mode with a customer expanded down to invoice rows.",
+   "2. This test names exact colours or sizes. Use the browser's own developer tools: press F12, pick the element with the inspector, and read its colour or size from the \"Styles\" panel. There is nothing to install. If you cannot get a clear reading, mark this test Blocked rather than guessing."
+  ],
+  "steps": [
+   "1. Inspect the background of the header cells, a customer row, an asset row, an invoice row, and the totals row.",
+   "2. Check the pinned Subtotal cell's background on each row type.",
+   "3. Check the tree indentation levels."
+  ],
+  "expected": "1. Column-header cells and customer summary rows use the white surface (#ffffff).\n2. Asset rows and invoice rows use the blue-grey background (#f9fafb).\n3. The totals row uses the white surface with a top border and bold text (white on purpose, matching Technician Efficiency).\n4. The pinned Subtotal cell on any row uses that row's own background — never a contrasting strip.\n5. The three tree levels show by indentation: customer at the base, asset rows one level in (chevron and vehicle icon sit in from the customer), invoice rows one level deeper.\nWhat you should see today: the column headings, the customer rows and the totals row are all the pale blue-grey instead of white; the asset and invoice rows are a third, darker grey; and invoice rows are not indented any deeper than customer rows. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8965\n· If you see exactly that, mark this test FAILED and do not raise anything new.\n· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S20-R8, S20-R9, S20-R10, S20-R11, S20-R14), read on 17 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8965)",
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "SV-8617 (SBC spec v20 2026-08-17 Story 20 S20-R8; S20-R9; S20-R10; S20-R11; S20-R14)",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8617 (SBC spec v20 2026-08-17 Story 20 S20-R8; S20-R9; S20-R10; S20-R11; S20-R14)",
+  "testrail_id": "C30186",
+  "section_id": 4303
+ },
+ {
+  "id": "SBC-VIS-03",
+  "area": "SBC — Visual Conformance",
+  "title": "Dark mode darkens every surface while the PDF always renders light",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "the ordinary reports access (Reports section View).",
+  "preconditions": [
+   "1. You can switch the application to dark mode."
+  ],
+  "steps": [
+   "1. Switch to dark mode and review the page background, toolbar, header cells, customer rows, asset/invoice rows, and totals row.",
+   "2. While still in dark mode, download the PDF and open it."
+  ],
+  "expected": "1. In dark mode every visual rule applies with the dark equivalent of each color (dark background, dark surfaces).\n2. The PDF export always renders in light-mode colors regardless of the user's app mode.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S20-R18), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "SV-8617 (SBC spec v20 2026-08-17 Story 20 S20-R18)",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8617 (SBC spec v20 2026-08-17 Story 20 S20-R18)",
+  "testrail_id": "C30187",
+  "section_id": 4303
+ },
+ {
+  "id": "SBC-MOB-01",
+  "area": "SBC — Mobile",
+  "title": "On a phone every toolbar control works on touch; the toolbar splits in two",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "the ordinary reports access (Reports section View).",
+  "preconditions": [
+   "1. You open the report on a phone-sized viewport (real device or browser device emulation)."
+  ],
+  "steps": [
+   "1. Try each toolbar control by touch: date range, Product Type, the Customer filter, location, the overflow menu, and the column selector.",
+   "2. At a width below 1024px, look at the toolbar rows.",
+   "3. Widen the window to 1024px or more and look again."
+  ],
+  "expected": "1. Every toolbar control is visible and works on touch.\n2. Below 1024px the toolbar uses two rows: the action controls (overflow menu and column selector) on the first row, and the filter dropdowns on the second row, stacked at full width.\n3. At 1024px and above the toolbar uses the desktop single-row layout.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S21-R1, S21-R2, S21-R3), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "SV-8618 (SBC spec v20 2026-08-17 Story 21 S21-R1; S21-R2; S21-R3)",
+  "viu_status": "VIU-Pending",
+  "notes": "A mobile-optimized layout is out of scope (§2) — the dense table itself is not redesigned; only control usability is asserted. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8618 (SBC spec v20 2026-08-17 Story 21 S21-R1; S21-R2; S21-R3)",
+  "testrail_id": "C30188",
+  "section_id": 4304
+ },
+ {
+  "id": "SBC-MOB-02",
+  "area": "SBC — Mobile",
+  "title": "On touch the table scrolls sideways with Subtotal pinned and chevrons work",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "the ordinary reports access (Reports section View).",
+  "preconditions": [
+   "1. You are on the report on a phone-sized viewport with data."
+  ],
+  "steps": [
+   "1. Swipe the table sideways to reach the far columns.",
+   "2. Tap a customer chevron and an asset chevron.",
+   "3. Tap an invoice number link."
+  ],
+  "expected": "1. The data table scrolls sideways to show all columns, and the pinned Subtotal column stays visible during that scroll.\n2. The chevron expand and collapse control on each row works on touch.\n3. The invoice number link opens the invoice in the same tab, the same as on desktop.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S21-R4, S21-R5, S21-R6), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "SV-8618 (SBC spec v20 2026-08-17 Story 21 S21-R4; S21-R5; S21-R6)",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8618 (SBC spec v20 2026-08-17 Story 21 S21-R4; S21-R5; S21-R6)",
+  "testrail_id": "C30189",
+  "section_id": 4304
+ },
+ {
+  "id": "SBC-API-01",
+  "area": "SBC — API",
+  "title": "Asset and invoice rows are fetched on first expand; one call per customer",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "the ordinary reports access (Reports section View).",
+  "preconditions": [
+   "1. You are on the report with several customers, with the browser's network activity panel open.",
+   "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
+  ],
+  "steps": [
+   "1. Load the report and note the requests made for the summary rows.",
+   "2. Expand one customer for the first time and watch the network panel.",
+   "3. Collapse and re-expand the same customer without changing filters.",
+   "4. Use the header chevron's expand-all and count the drill-down requests."
+  ],
+  "expected": "1. Customer summary rows load WITHOUT the asset/invoice detail — the drill-down data is not preloaded.\n2. The first expand of a customer triggers a server fetch for that customer's asset and invoice rows.\n3. Expand-all triggers at most one drill-down fetch per not-yet-expanded customer on the current page — a bounded number never exceeding the page size; it does not fetch customers beyond the current page or the whole result set.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S8-R14, S8-R16), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "SV-8606 (SBC spec v20 2026-08-17 Story 8 S8-R14; S8-R16)",
+  "viu_status": "VIU-Pending",
+  "notes": "The spec defines no REST contract — observe the browser's real requests; do NOT assume endpoint shapes. BUILD-DELTA: lazy drill-down is the 2026-07-16 committed server-side target (spec ahead of code by design) — the current build may still preload client-side at VIU. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": true,
+  "refs": "SV-8606 (SBC spec v20 2026-08-17 Story 8 S8-R14; S8-R16)",
+  "testrail_id": "C30190",
+  "section_id": 4305
+ },
+ {
+  "id": "SBC-API-02",
+  "area": "SBC — API",
+  "title": "Sorting is applied on the server and re-fetches the first page",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "the ordinary reports access (Reports section View).",
+  "preconditions": [
+   "1. Enough customers exist to span more than one page; the browser's network panel is open.",
+   "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
+  ],
+  "steps": [
+   "1. Click a column header and watch the network panel.",
+   "2. Compare the returned first page with the previous page contents.",
+   "3. Optional (API tooling): repeat the request with a made-up sort column name and read the response."
+  ],
+  "expected": "1. Clicking a column header issues a server request that returns the customer rows ordered by that column.\n2. The full filtered set is re-ordered and re-paginated on the server — the response is the first page of results in the new order, so page membership can change.\n3. The ordering is not done by re-shuffling rows already in the browser.\n4. A sort request naming a column the report does not offer is safely refused or ignored — never an error page or a crash; sorting works only on the report's own columns.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S10-R8, S10-R8b), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "SV-8608 (SBC spec v20 2026-08-17 Story 10 S10-R8; S10-R8b; tech-plan-2026-07-29 A2 (server sort whitelist))",
+  "viu_status": "VIU-Pending",
+  "notes": "Generic wording on purpose — no endpoint invented. BUILD-DELTA: server-side sort is the 2026-07-16 committed target. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": true,
+  "refs": "SV-8608 (SBC spec v20 2026-08-17 Story 10 S10-R8; S10-R8b; tech-plan-2026-07-29 A2 (server sort whitelist))",
+  "testrail_id": "C30191",
+  "section_id": 4305
+ },
+ {
+  "id": "SBC-API-03",
+  "area": "SBC — API",
+  "title": "The Customer type-ahead queries the server instead of loading every name",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "the ordinary reports access (Reports section View).",
+  "preconditions": [
+   "1. You are on the report with the browser's network panel open.",
+   "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
+  ],
+  "steps": [
+   "1. Open the Customer filter WITHOUT typing and check whether a full customer list was downloaded.",
+   "2. Type a query and watch the network panel.",
+   "3. Change the query and watch again."
+  ],
+  "expected": "1. The dropdown does not load the full customer list into the browser up front.\n2. As you type, the browser fetches matching customers from the server — case-insensitive \"contains\" matching on the name, scoped to the active date range, Product Type, and location — and lists the returned customers.\n3. The all-customers state is stored as an explicit state (a flag), not an enumeration of the fetched ids.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S18-R2, S18-R4), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "SV-8616 (SBC spec v20 2026-08-17 Story 18 S18-R2; S18-R4)",
+  "viu_status": "VIU-Pending",
+  "notes": "Verify the flag-vs-enumeration point by observing what a filter change/restore sends, not by reading source. BUILD-DELTA: server-backed type-ahead is the 2026-07-21 committed target. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": true,
+  "refs": "SV-8616 (SBC spec v20 2026-08-17 Story 18 S18-R2; S18-R4)",
+  "testrail_id": "C30192",
+  "section_id": 4305
+ },
+ {
+  "id": "SBC-API-04",
+  "area": "SBC — API",
+  "title": "Customer rows are server-paginated; the totals row is server-computed",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "the ordinary reports access (Reports section View).",
+  "preconditions": [
+   "1. Enough customers exist to span more than one page; the browser's network panel is open.",
+   "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
+  ],
+  "steps": [
+   "1. Load the report and inspect the summary-row response and the totals values.",
+   "2. Change the Customer filter selection and watch the requests.",
+   "3. Move between pages and watch the totals."
+  ],
+  "expected": "1. Customer rows arrive page by page from the server (server-paginated), not as one full client-side list.\n2. Changing the Customer selection re-fetches the matching customers as a fresh first page.\n3. The totals are computed on the server over the full set of matching customers — they arrive with the data and do not change as you page.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S18-R6, S18-R11), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "SV-8616 (SBC spec v20 2026-08-17 Story 18 S18-R6; S18-R11)",
+  "viu_status": "VIU-Pending",
+  "notes": "BUILD-DELTA: server pagination/totals are the 2026-07-16 committed target (spec ahead of code by design). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": true,
+  "refs": "SV-8616 (SBC spec v20 2026-08-17 Story 18 S18-R6; S18-R11)",
+  "testrail_id": "C30193",
+  "section_id": 4305
+ },
+ {
+  "id": "SBC-API-05",
+  "area": "SBC — API",
+  "title": "Exports are server-generated and the 10,000-row cap is counted first",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "the ordinary reports access (Reports section View).",
+  "preconditions": [
+   "1. The browser's network panel is open; an over-cap filter combination is available if the environment allows.",
+   "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
+  ],
+  "steps": [
+   "1. Trigger a CSV download (\"Download Summary (CSV)\" or \"Download Expanded View (CSV)\") and a PDF download (\"Download Summary (PDF)\" or \"Download Expanded View (PDF)\"), and observe where the file content comes from.",
+   "2. If an over-cap set is available, trigger an export and observe the server's refusal."
+  ],
+  "expected": "1. The CSV and PDF are generated on the server from the active date range, Product Type, location, Customer filter, and sort — not assembled from the rows already loaded in the browser.\n2. Over the cap, the server does not generate the file (the request comes back as a refusal, not a file) and the browser starts no download — the count the cap checks is the count the file would contain, against the same filters and sort as the screen.\nWhat you should see today: the spreadsheet download works and produces a file, but the PDF download of the same view fails with a server error and no file arrives. It depends on how much is in the view, not on which report - filtered down to one or two rows the PDF downloads normally, and on a full unfiltered view of several thousand rows it fails every time. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8818\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S14-R3, S14-R14, S15-R3, S15-R22), read on 17 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8818)",
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "SV-8612 (SBC spec v20 2026-08-17 Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22)",
+  "viu_status": "VIU-Pending",
+  "notes": "No endpoint or status code is pinned by the spec — record what is actually observed. BUILD-DELTA: server-side exports (2026-07-16) and the cap (2026-07-21) are committed targets ahead of code. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": true,
+  "refs": "SV-8612 (SBC spec v20 2026-08-17 Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22)",
+  "testrail_id": "C30194",
+  "section_id": 4305
+ },
+ {
+  "id": "SBC-API-06",
+  "area": "SBC — API",
+  "title": "The back end serves SBC report data and export on ordinary reports access",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the ordinary reports access.",
+  "preconditions": [
+   "1. Two sign-ins are available: one user whose role has the ordinary reports access, and one whose role does not have it (for example a Foreman).",
+   "2. You can see the requests the browser makes (the browser's network panel) so you can read the response code.",
+   "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
+  ],
+  "steps": [
+   "1. Sign in as the user WHO HAS ordinary reports access and open Sales By Customer.",
+   "2. In the network panel, find the request the page makes for the report's data and read its response code.",
+   "3. From the three-dot menu choose \"Download Summary (CSV)\" and read the response code of the export request.",
+   "4. Sign out and sign in as the user WITHOUT reports access.",
+   "5. Try to open Sales By Customer by typing its address directly, and read the response code of the data request.",
+   "6. Ask for the same export by its address and read that response code too."
+  ],
+  "expected": "1. For the user WITH ordinary reports access, the report's data request succeeds (HTTP 200) and the report fills with rows.\n2. For that same user, the export request also succeeds (HTTP 200) and a file is produced.\n3. For the user WITHOUT reports access, the data request is refused with HTTP 403 and a message reading \"Access denied.\" — no report data comes back.\n4. For that same user, the export request is refused with HTTP 403 as well — no file is produced.\n5. Note for the tester: one single permission controls all four of these. If you find the report data refused but the export allowed (or the other way round), that is a failure — record both response codes.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S1-R2, S1-N1), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8600 (SBC spec v20 2026-08-17 S1-R2; S1-N1 — the back-end half of the ordinary-reports-access gate; the SBC twin of the Parts Velocity back-end case C30391; Chris Ward Q1=A; SV-8780 Ready to Fix)",
+  "viu_status": "VIU-Pending",
+  "notes": "NEW 2026-08-04. Covers the permission surface at the back end — the SBC twin of PV-API-04 (C30391). Live evidence taken 2026-08-03 on QA branch sv8582 build v3.4.1-0ed4433: with an 8-atom role holding only reportsPageAccess BOTH endpoints returned 200; with Foreman (no such atom) BOTH returned 403 \"Access denied.\" Build declared NOT FINAL, so this is PROVISIONAL (Rule 49) and is queued in build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": true,
+  "refs": "SV-8600 (SBC spec v20 2026-08-17 S1-R2; S1-N1 — the back-end half of the ordinary-reports-access gate; the SBC twin of the Parts Velocity back-end case C30391; Chris Ward Q1=A; SV-8780 Ready to Fix)",
+  "testrail_id": "C43546",
+  "section_id": 4305
+ },
+ {
+  "id": "SBC-VIS-04",
+  "area": "SBC — Visual Conformance",
+  "title": "A group/summary row presents its rolled-up totals as an inline math strip",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "the ordinary reports access (Reports section View).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A report with group/summary rows is open (for example Sales By Customer, whose customer and asset rows roll up their invoices)."
+  ],
+  "steps": [
+   "1. Find a group/summary row that rolls up several child rows (a customer row over its assets and invoices).",
+   "2. Read the rolled-up values shown on that group row, including the Labor Delta total."
+  ],
+  "expected": "1. A group/summary row shows its rolled-up column totals (the sum across its child rows), including the Labor Delta total, in the same column positions and formats as a data row.\n2. Those rolled-up totals are presented together as a compact inline \"math strip\" on the group row - the design-review treatment for grouped totals.\n3. Confirm live against the design/build: the exact visual layout of the \"math strip\" (spacing, separators, whether the operator/equals signs are shown) is described only in the design review - confirm the exact presentation live before pinning it; do not invent the layout.\n4. Note for the tester: the rolled-up numbers themselves must tie out to the sum of the child rows; only the visual \"math strip\" styling is what this case is confirming.\n\n---\nThis is the expected behaviour as per epic SV-8582, the reporting-shell story SV-8593, and Chris Ward's design-review decisions of 17 August 2026 (the grouped-totals math strip). The Sales By Customer report specification version 20 does not name this visual treatment, so the exact styling is Loom-sourced and is marked for live confirmation above (read on 17 August 2026).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "",
+  "spec_ref": "SV-8593 (SBC spec v20 2026-08-17; grouped-totals math strip per Chris Ward design review 2026-08-17; exact styling to confirm live)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false,
+  "refs": "SV-8593 (SBC spec v20 2026-08-17; grouped-totals math strip per Chris Ward design review 2026-08-17; exact styling to confirm live)",
+  "testrail_id": "C43840",
+  "section_id": 4303
+ }
 ]

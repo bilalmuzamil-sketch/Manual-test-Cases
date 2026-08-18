@@ -9,28 +9,24 @@ Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
 5. The browser tab title reads ""Sales By Representative - Report | ShopView"".
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S1-R1, S1-R2, S1-R3, S1-R4, S1-R5, S1-R6), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S1-R1, S1-R2, S1-R3, S1-R4, S1-R5, S1-R6), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8619 (SBR spec Story 1 S1-R1; S1-R2; S1-R3; S1-R4; S1-R5; S1-R6 — 'at the bottom' = below the four named anchor reports per PRD video 2026-07-30 01:18-02:05; order among the four new reports not important),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8619 (SBR spec v22 2026-08-17 Story 1 S1-R1; S1-R2; S1-R3; S1-R4; S1-R5; S1-R6 — 'at the bottom' = below the four named anchor reports per PRD video 2026-07-30 01:18-02:05; order among the four new reports not important),,
 The nav entry fits the full Sales By Representative label; no truncation,SBR — Access & Navigation,Functional,Medium,1. You are on the Reports navigation with the entry visible.,"1. Look closely at the ""Sales By Representative"" entry's label against the entry's left and right edges.
 2. Compare its padding with the neighbouring entries.","1. The full ""Sales By Representative"" label renders without crowding against the entry's edges and without truncation.
 2. The label is not shortened to fit — the fix is the entry's horizontal padding, not the name.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S1-R7), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S1-R7), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8619 (SBR spec v15 2026-07-29 Story 1 S1-R7; §1 naming note),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8619 (SBR spec v22 2026-08-17 Story 1 S1-R7; §1 naming note),,
 Sales By Representative is visible to anyone who sees another Performance report,SBR — Permissions,Functional,High,"1. A test user exists whose role can see another Performance-group report (create/assign a ZZAUTOTEST role if needed; restore afterwards).
 2. You are signed in as that user.",1. Open the Reports navigation and read the Performance group.,"1. ""Sales By Representative"" appears in the Performance group for this user — the entry is visible to every user who can see any other report in the same group.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S1-R1), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S1-R1), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8619 (SBR spec v15 2026-07-29 Story 1 S1-R1),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8619 (SBR spec v22 2026-08-17 Story 1 S1-R1),,
 "Without Reports access: no navigation, no export menu, no Export dialog",SBR — Permissions,Negative,High,"1. A test user exists whose role has no Reports access (use/create a ZZAUTOTEST role; restore afterwards).
 2. You are signed in as that user.","1. Look for the Reports navigation.
 2. Try to open the report by direct link (address copied from a permitted session).
@@ -39,38 +35,33 @@ AUTOMATION: READY
 3. The Export Reports dialog and the Sales Representative Assignments download are not reachable.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S1-N1, S14-N3, S15-N1), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S1-N1, S14-N3, S15-N1), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8619 (SBR spec v15 2026-07-29 Story 1 S1-N1; Story 14 S14-N3; Story 15 S15-N1),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8619 (SBR spec v22 2026-08-17 Story 1 S1-N1; Story 14 S14-N3; Story 15 S15-N1),,
 Without staff-administration access the deactivation flow is unreachable,SBR — Permissions,Negative,Medium,1. You are signed in as a user without staff-administration access.,1. Try to reach staff administration and open a staff member for editing.,"1. The staff-editing surface is not reachable, so the deactivation flow (and its warning dialog) cannot be reached.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S13-N1), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S13-N1), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-N1),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8630 (SBR spec v22 2026-08-17 Story 13 S13-N1),,
 Date range picker is in the toolbar and offers the standard presets plus Custom,SBR — Date Range Filter,Functional,High,1. You are on the Sales By Representative report.,"1. Find the date range picker in the report toolbar.
 2. Open it and read the options.","1. A date range picker is visible in the report toolbar.
 2. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no ""Today"", no ""Yesterday"" and no item called ""Custom"" - you build your own range on the calendar instead. There is no ""All Time"" option.
 3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026. Where the Sales By Representative report specification version 18 (S2-R1, S2-R2), read on 11 August 2026, says something different, his decision is the later word and is the authority.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026. Where the Sales By Representative report specification version 22 (S2-R1, S2-R2), read on 17 August 2026, says something different, his decision is the later word and is the authority.
 
-AUTOMATION: READY",SV-8620 (SBR spec v15 2026-07-29 Story 2 S2-R1; S2-R2),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8620 (SBR spec v22 2026-08-17 Story 2 S2-R1; S2-R2),,
 A Custom range uses the date-picker and holds a 366-day maximum span,SBR — Date Range Filter,Functional,Medium,1. You are on the Sales By Representative report.,"1. Open the date range picker and select a start and end date within 366 days on the calendar shown inside it; apply.
 2. Open it again and try to select a start-to-end span of more than 366 days (start and end dates inclusive).","1. A custom range within the cap applies normally via the date-picker dialog.
 2. A custom selection whose span exceeds 366 days is not accepted — the picker holds you to a range of 366 days or fewer.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S2-R3, S2-R6), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S2-R3, S2-R6), read on 17 August 2026.
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: HOLD - needs the calendar driven past a 366-day span, which this harness could not do",SV-8620 (SBR spec v15 2026-07-29 Story 2 S2-R3; S2-R6),,
+AUTOMATION: HOLD - needs the calendar driven past a 366-day span, which this harness could not do",SV-8620 (SBR spec v22 2026-08-17 Story 2 S2-R3; S2-R6),,
 An invoice sits in the range by its own invoice date; endpoints included,SBR — Date Range Filter,Functional,Medium,"1. ZZAUTOTEST invoices exist dated exactly ON the start date and exactly ON the end date of a custom range, plus one dated just outside it.","1. Set a custom range whose start and end dates equal those two invoice dates.
 2. Check which invoices appear (expand the owning rep).
 3. Download both PDFs (Summary and Expanded View) and read their header strips.","1. The invoices dated on the start and end dates are INCLUDED (inclusive endpoints); the invoice outside the range is excluded.
@@ -78,10 +69,9 @@ An invoice sits in the range by its own invoice date; endpoints included,SBR —
 3. The chosen date range is reflected in both PDF exports' header strips.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S2-R5, S2-R8), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S2-R5, S2-R8), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8620 (SBR spec v15 2026-07-29 Story 2 S2-R5; S2-R8; §3),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8620 (SBR spec v22 2026-08-17 Story 2 S2-R5; S2-R8; §3),,
 "Product Type: three options, Parts & Service default, each option filters right",SBR — Product Type Filter,Functional,High,"1. A rep has both a P (parts) and an S (service) invoice in the range (seed ZZAUTOTEST data via the WO Sales Representative field).
 2. No remembered settings for this report (first visit or cleared storage), so the default can be read.","1. Find the ""Product Type"" dropdown in the toolbar; read its default value, then open it and read the options.
 2. Select ""Parts only,"" expand the rep, and read the invoice numbers.
@@ -93,10 +83,9 @@ AUTOMATION: READY",SV-8620 (SBR spec v15 2026-07-29 Story 2 S2-R5; S2-R8; §3),,
 5. Each change re-fetches and re-renders the report.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6, S3-R7), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6, S3-R7), read on 17 August 2026.
 
-AUTOMATION: READY","SV-8621 (SBR spec v15 2026-07-29 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6; S3-R7 — S3-R2 CLOSES the list itself (""exactly three options""); so the closed list IS the requirement)",,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026","SV-8621 (SBR spec v22 2026-08-17 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6; S3-R7 — S3-R2 CLOSES the list itself (""exactly three options""); so the closed list IS the requirement)",,
 Invoice Status offers exactly four options; All Statuses is the default,SBR — Invoice Status Filter,Functional,High,1. You are on the report with no remembered settings.,"1. Find the ""Invoice Status"" dropdown in the toolbar and read its default value.
 2. Open it and read the options.
 3. Change the selection and watch the table.","1. An ""Invoice Status"" dropdown is visible in the toolbar.
@@ -105,10 +94,9 @@ Invoice Status offers exactly four options; All Statuses is the default,SBR — 
 4. Changing the selection re-fetches and re-renders the report.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S4-R1, S4-R2, S4-R3, S4-R5), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S4-R1, S4-R2, S4-R3, S4-R5), read on 17 August 2026.
 
-AUTOMATION: READY","SV-8622 (SBR spec v15 2026-07-29 Story 4 S4-R1; S4-R2; S4-R3; S4-R5 — S4-R2 CLOSES the list itself (""exactly four options""); so the closed list IS the requirement)",,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026","SV-8622 (SBR spec v22 2026-08-17 Story 4 S4-R1; S4-R2; S4-R3; S4-R5 — S4-R2 CLOSES the list itself (""exactly four options""); so the closed list IS the requirement)",,
 Status filtering matches on the mapped display value,SBR — Invoice Status Filter,Functional,Critical,"1. ZZAUTOTEST invoices exist under one rep covering the payment situations: fully paid; overpaid; prepaid with zero balance owed; prepaid with a balance still owed; partially paid; unpaid.
 2. Seed the prepaid-with-zero-balance situation the realistic way: the customer pays a DEPOSIT up front that fully covers the work, so the invoice is created with nothing left to pay.","1. Filter to ""Paid"" and read which invoices appear.
 2. Filter to ""Partially Paid"" and read again.
@@ -118,10 +106,9 @@ Status filtering matches on the mapped display value,SBR — Invoice Status Filt
 4. The filter matches on the mapped display value, the same mapping the status badge uses — prepaid is the only state whose display value depends on the balance owed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S4-R4), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S4-R4), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8622 (SBR spec v15 2026-07-29 Story 4 S4-R4; §3 payment-status mapping),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8622 (SBR spec v22 2026-08-17 Story 4 S4-R4; §3 payment-status mapping),,
 Filters compose: a rep appears only with an invoice matching ALL active filters,SBR — Invoice Status Filter,Functional,High,"1. ZZAUTOTEST invoices exist that each fail exactly one of: date range, product type, invoice status, location — plus one invoice matching all four.
 2. For the per-filter legs: rep A has only service invoices and rep B both types; rep C has only Paid invoices and rep D a mix (seed ZZAUTOTEST data).","1. Set all four filters (a range, ""Parts only,"" ""Paid,"" one location) and read the rep rows, counts, detail rows, and the grand Totals indicator.
 2. Product Type leg: select ""Parts only""; look for rep A and read rep B's (N) count, summary totals, detail rows, and the grand Totals indicator.
@@ -131,27 +118,24 @@ Filters compose: a rep appears only with an invoice matching ALL active filters,
 4. Unpaid leg: rep C disappears; rep D's figures reflect only the Unpaid invoices.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S4-R7, S4-R6, S4-N1, S3-R8, S3-N1), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S4-R7, S4-R6, S4-N1, S3-R8, S3-N1), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8622 (SBR spec v15 2026-07-29 Story 4 S4-R7; S4-R6; S4-N1; Story 3 S3-R8; S3-N1),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8622 (SBR spec v22 2026-08-17 Story 4 S4-R7; S4-R6; S4-N1; Story 3 S3-R8; S3-N1),,
 "Money columns always show invoiced amounts, never the outstanding balance",SBR — Invoice Status Filter,Functional,Medium,1. A partially-paid ZZAUTOTEST invoice exists with a known full Subtotal and a known partial payment.,"1. Filter to ""Partially Paid,"" expand the owning rep, and read that invoice's money columns.","1. The invoice shows its FULL invoiced amounts (its full Subtotal) — payments are not netted out.
 2. Filtering to ""Unpaid"" or ""Partially Paid"" changes which invoices are included, never the amounts shown.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S4-R8), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S4-R8), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8622 (SBR spec v15 2026-07-29 Story 4 S4-R8),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8622 (SBR spec v22 2026-08-17 Story 4 S4-R8),,
 Location filter is the rightmost control with an All Locations option,SBR — Location Filter,Functional,High,1. You are on the report as a user with access to two or more locations.,"1. Look at the toolbar controls left to right.
 2. Open the location filter and read its options.","1. The location filter is the rightmost control in the toolbar.
 2. It is a multi-select listing the locations the user has access to, plus an ""All Locations"" option.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S21-R1, S18-R7), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S21-R1, S18-R7), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8638 (SBR spec v15 2026-07-29 Story 21 S21-R1; Story 18 S18-R7.2),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8638 (SBR spec v22 2026-08-17 Story 21 S21-R1; Story 18 S18-R7.2),,
 Location selection cascades; an inaccessible location's data is never included,SBR — Location Filter,Functional,High,"1. Rep A has invoices only at location X; rep B at locations X and Y (seed ZZAUTOTEST data).
 2. The signed-in user has access to X and Y but not to a third location Z which also has data.","1. Select only location Y.
 2. Look for rep A; read rep B's count, totals, and detail rows.
@@ -162,20 +146,17 @@ Location selection cascades; an inaccessible location's data is never included,S
 4. With ""All Locations"" active you can tell which location each row's data belongs to — a location label or marking is shown.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S21-R3, S21-R4, S21-R5), read on 11 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026, which is the authority.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S21-R3, S21-R4, S21-R5), read on 17 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026, which is the authority.
 
-AUTOMATION: READY",SV-8638 (SBR spec Story 21 S21-R3; S21-R4; S21-R5; §3 — per-row location identifier in All-Locations view ADDED per kickoff video P10 [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward 2026-07-29,,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8638 (SBR spec v22 2026-08-17 S21-R3; S21-R4; S21-R5; §3 — per-row location identifier in All-Locations view ADDED per kickoff video P10 [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward 2026-07-29,,
 Sales By Representative: Location filter hidden for a one-location user,SBR — Location Filter,Negative,Low,1. You are signed in as a user assigned to exactly one location.,"1. Open the report and look for the Location filter in the toolbar.
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.
 2. For the user with access to two or more locations the Location filter IS shown.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S21-N1), read on 11 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S21-N1), read on 17 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026
 
-AUTOMATION: READY
-","SV-8638 (SBR spec S21-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S21-N1 ""still sees the filter"" note is stale; spec edit pending)",,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026","SV-8638 (SBR spec v22 2026-08-17 S21-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; confirmed by his spec edit: S21-N1 now reads ""A single-location user does not see the filter; it is hidden"" (SBR v16 2026-08-05))",,
 Location column: shown to any multi-location user; toggleable; rep rows Multiple,SBR — Location Filter,Functional,High,"1. You are on the Sales By Representative report as a user with access to two or more locations.
 2. One rep has invoices at a single location and another rep has invoices at two different locations.
 3. Show Unassigned is turned on and at least one unassigned invoice exists.","1. Select two or more locations and read the column headers.
@@ -220,10 +201,9 @@ A rep row appears only when the rep has a matching non-reversed invoice,SBR — 
 4. A staff member with no matching invoice does not appear regardless of toggle state or historical activity.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S5-R1, S5-R4, S5-N1), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S5-R1, S5-R4, S5-N1), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8623 (SBR spec v15 2026-07-29 Story 5 S5-R1; S5-R4; S5-N1; §3 Key Decisions),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8623 (SBR spec v22 2026-08-17 Story 5 S5-R1; S5-R4; S5-N1; §3 Key Decisions),,
 "Row layout: 13 columns in order, blanks in position, bold summary rows",SBR — Rep Rows & Tree,Functional,High,1. You are on the report with at least one rep expanded.,"1. Read the column headers left to right.
 2. Read a rep summary row cell by cell.
 3. Compare the font weight of a summary row and a detail row.
@@ -250,10 +230,9 @@ A toggled-off or deleted contributor still appears; tagged (Inactive),SBR — Re
 4. The grand Totals stay reconciled to the period's invoices — no revenue silently disappears.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S5-R9), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S5-R9), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8623 (SBR spec v15 2026-07-29 Story 5 S5-R9; §3 Key Decisions; §4 Snapshot),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8623 (SBR spec v22 2026-08-17 Story 5 S5-R9; §3 Key Decisions; §4 Snapshot),,
 Expanding a rep loads its invoices on demand with a row-level spinner,SBR — Rep Rows & Tree,Functional,Critical,1. A rep with several matching invoices is on the report.,"1. Click the chevron in the rep's Date cell and watch the row.
 2. Read a detail row left to right.","1. The rep's matching invoices appear as detail rows beneath the summary row; a brief row-level loading indicator shows while they load on the first expand.
 2. Each detail row shows, left to right: the invoice's date, the invoice number, the customer name, the payment status badge, and the per-invoice values for Labor Delta and the money columns.
@@ -270,19 +249,17 @@ The header chevron expands every visible rep and its glyph tracks state,SBR — 
 3. A second activation collapses them all.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S6-R5, S6-R6), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S6-R5, S6-R6), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R5; S6-R6),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8624 (SBR spec v22 2026-08-17 Story 6 S6-R5; S6-R6),,
 Each invoice appears under exactly one rep or the Unassigned row,SBR — Rep Rows & Tree,Functional,Critical,1. A known ZZAUTOTEST invoice set exists across two reps plus at least one unassigned invoice; Show Unassigned is on.,"1. Expand every rep and the Unassigned row.
 2. Search the expanded rows for each seeded invoice number.","1. Every invoice appears under exactly one rep (the rep credited at invoicing time) or under the Unassigned row — never under two rows.
 2. The sum of all (N) counts equals the number of matching invoices.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S6-R7), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S6-R7), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R7; §3 Key Decisions),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8624 (SBR spec v22 2026-08-17 Story 6 S6-R7; §3 Key Decisions),,
 "Expansion survives filter and sort changes within the session, resets on reload",SBR — Rep Rows & Tree,Functional,Medium,1. Two reps are on the report; one of them stops matching under a stricter filter you can apply and re-remove.,"1. Expand both reps, then change the sort and a filter that keeps both matching; check the expansion.
 2. Apply the stricter filter that removes rep B, then remove it again; check rep B.
 3. Reload the page and check all rows.","1. Expanded state is preserved across filter and sort changes within the same session.
@@ -290,10 +267,9 @@ AUTOMATION: READY",SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R7; §3 Key Decis
 3. A full page reload resets all expansion.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S6-R8, S6-N1, S23-R2), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S6-R8, S6-N1, S23-R2), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R8; S6-N1; Story 23 S23-R2),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8624 (SBR spec v22 2026-08-17 Story 6 S6-R8; S6-N1; Story 23 S23-R2),,
 Detail rows run newest first with a numeric invoice-number tie-break,SBR — Rep Rows & Tree,Functional,Medium,1. One rep has invoices allowing the tie-breaks: two invoices on different dates; two on the same date with numeric parts like 999 and 1000; and if producible a P and an S invoice with the same numeric part on the same day (seed ZZAUTOTEST data).,"1. Expand the rep and read the detail rows top to bottom.
 2. Change the rep-row column sort and re-read the detail order.","1. Detail rows order by invoice date descending (newest first).
 2. Date ties break by invoice number ascending by the numeric portion after the P/S prefix — numeric, not alphabetical, so S999 precedes S1000.
@@ -305,10 +281,10 @@ What you should see today: the newest-first part is right, but invoices that sha
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S6-R9, S11-R2), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S6-R9, S11-R2), read on 17 August 2026.
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8974)",SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R9; Story 11 S11-R2),,
+AUTOMATION: READY - EXPECT FAIL (SV-8974)",SV-8624 (SBR spec v22 2026-08-17 Story 6 S6-R9; Story 11 S11-R2),,
 Status badge between Customer and Labor Delta; every detail row shows mapped text,SBR — Payment Status Badge,Functional,High,"1. Invoices exist covering paid, overpaid, prepaid (zero balance), prepaid (balance owed), partially paid, and unpaid.
 2. The owning rep is expanded.","1. Locate the Status column relative to its neighbours.
 2. Read the badge on each seeded invoice's detail row.
@@ -327,10 +303,9 @@ Badge colors use the canonical payment-status tokens in light and dark,SBR — P
 3. The treatment stays legible and consistent in both light and dark mode.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S8-R3, S18-R8), read on 11 August 2026.
-Last checked against build v3.5-f77875c on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S8-R3, S18-R8), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8625 (SBR spec v15 2026-07-29 Story 8 S8-R3; Story 18 S18-R8),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8625 (SBR spec v22 2026-08-17 Story 8 S8-R3; Story 18 S18-R8),,
 Adjustments is the signed net of invoice-level fees and discounts,SBR — Inv. Hrs & Calculations,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. A representative has invoices with invoice-level fees and discounts in the selected date range.","1. Open the Sales By Representative report.
 2. Read the Adjustments value on a rep row and an invoice detail row.","1. Adjustments shows the signed net of invoice-level fees and discounts: fees count positive, discounts count negative.
@@ -389,11 +364,9 @@ Margin % to one decimal; em dash when Subtotal <= 0; recomputed on rollups,SBR �
 3. On every rolled-up row (rep summary rows and every totals row) Margin % is RECOMPUTED from that row-set's total Margin and total Subtotal — never the sum or average of the child percentages.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S10-R5), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S10-R5), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8627 (SBR spec v15 2026-07-29 §3 Margin % definition; Story 10 S10-R5),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8627 (SBR spec v22 2026-08-17 §3 Margin % definition; Story 10 S10-R5),,
 Money columns use the standardized labels and definitions,SBR — Inv. Hrs & Calculations,Functional,High,"1. A ZZAUTOTEST invoice exists with known billed labor, billed parts, labor cost, parts cost, and tax.","1. Read the money column headers.
 2. Read that invoice's row values and recalculate each by hand.","1. The labels read exactly: Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %, Subtotal.
 2. Subtotal = Labor Invoiced + Parts Invoiced + Adjustments, BEFORE tax.
@@ -461,10 +434,10 @@ What you should see today: Subtotal itself is correct - it is the last column, i
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S10-R1, S10-R2, S10-R3, S10-R4, S10-R6, S10-N1, S18-R7), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S10-R1, S10-R2, S10-R3, S10-R4, S10-R6, S10-N1, S18-R7), read on 17 August 2026.
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8977)",SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R6; S10-N1; Story 18 S18-R7.5),,
+AUTOMATION: READY - EXPECT FAIL (SV-8977)",SV-8627 (SBR spec v22 2026-08-17 Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R6; S10-N1; Story 18 S18-R7.5),,
 Desktop Totals row merges the identifier columns and sticks to the bottom,SBR — Subtotal & Totals,Functional,High,1. Desktop viewport (1024px or wider); several reps with known amounts are on the report; at least one rep is left collapsed.,"1. Scroll the table and find the Totals row.
 2. Read its first cell and the per-metric cells.
 3. Compare its values against the sum over ALL matching invoices (including collapsed/unloaded reps).
@@ -479,10 +452,10 @@ What you should see today: the Totals row does not stay stuck to the bottom of t
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S10-R5, S10-N1, S16-R4), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S10-R5, S10-N1, S16-R4), read on 17 August 2026.
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8977)",SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R5; S10-N1; Story 16 S16-R4),,
+AUTOMATION: READY - EXPECT FAIL (SV-8977)",SV-8627 (SBR spec v22 2026-08-17 Story 10 S10-R5; S10-N1; Story 16 S16-R4),,
 Mobile shows a simplified totals bar below the table; Subtotal at right,SBR — Subtotal & Totals,Functional,Medium,1. You are on the report with data in a viewport below 1024px.,"1. Find the totals bar and read it.
 2. Swipe the table horizontally and watch the bar.
 3. Scroll the page vertically and watch the bar.","1. A simplified external totals bar sits directly below the table, outside its horizontal scroll container, showing ""Totals"" on the left and the grand Subtotal on the right (no other metrics).
@@ -495,10 +468,10 @@ What you should see today: on a phone there is no separate totals bar underneath
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S10-R5, S17-R4), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S10-R5, S17-R4), read on 17 August 2026.
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8978)","SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R5 (mobile branch) + Story 17 S17-R4 — S10-R5 CLOSES it in the spec's own words: ""Totals"" left and the grand Subtotal right ""(no other metrics)"")",,
+AUTOMATION: READY - EXPECT FAIL (SV-8978)","SV-8627 (SBR spec v22 2026-08-17 Story 10 S10-R5 (mobile branch) + Story 17 S17-R4 — S10-R5 CLOSES it in the spec's own words: ""Totals"" left and the grand Subtotal right ""(no other metrics)"")",,
 All nine financial columns are sortable,SBR — Sorting,Functional,High,1. Several reps with differing values are on the report.,"1. Click each financial column header in turn: Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %, Subtotal.
 2. Click the Date, Invoice, Customer, and Status headers.","1. Each financial column responds to a header click and reorders the rep rows.
 2. The identifier columns (Date, Invoice, Customer, Status) do not respond to header clicks.
@@ -512,10 +485,9 @@ AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8628
 2. There are NO active/inactive tiers — an ""(Inactive)"" rep sorts by name among the others, not grouped separately.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S11-R4), read on 11 August 2026.
-Last checked against build v3.5-f77875c on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S11-R4), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R4; §3 Key Decisions),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8628 (SBR spec v22 2026-08-17 Story 11 S11-R4; §3 Key Decisions),,
 First header click sorts ascending; second descending; no third state,SBR — Sorting,Functional,High,1. Several reps are on the report in the A→Z default.,"1. Click the Subtotal header once and read the order and the direction indicator.
 2. Click it again.
 3. Click it a third time.
@@ -525,29 +497,26 @@ First header click sorts ascending; second descending; no third state,SBR — So
 4. Via the column headers there is no way back to A→Z; the A→Z default shows only when a session carries no valid saved financial sort.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S11-R5, S23-R5), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S11-R5, S23-R5), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R5; Story 23 S23-R5),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8628 (SBR spec v22 2026-08-17 Story 11 S11-R5; Story 23 S23-R5),,
 Sorting reorders rep rows only; Unassigned stays pinned on top,SBR — Sorting,Functional,Medium,1. Show Unassigned is on with a populated Unassigned row; at least one rep is expanded.,"1. Sort by a financial column.
 2. Read the Unassigned row's position, the expanded rep's detail rows, and their order.","1. Only the rep summary rows reorder.
 2. Invoice detail rows stay grouped under their parent rep, keeping their own newest-first order.
 3. The Unassigned row stays pinned to the top regardless of sort.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S11-R2, S22-R4), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S11-R2, S22-R4), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R2; Story 22 S22-R4),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8628 (SBR spec v22 2026-08-17 Story 11 S11-R2; Story 22 S22-R4),,
 Ties keep the A to Z order and an em-dash Margin % sorts as zero,SBR — Sorting,Functional,Medium,"1. Two reps have equal values in a sortable column; if producible, one rep shows ""—"" in Margin % (seed ZZAUTOTEST data).","1. Sort by the column where the two reps tie and read their relative order.
 2. Sort by Margin % ascending and locate the ""—"" rep.","1. Reps with equal values in the sorted column retain the default A→Z order between them.
 2. A Margin % cell rendered ""—"" (undefined) sorts as zero.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S11-R7), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S11-R7), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R7),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8628 (SBR spec v22 2026-08-17 Story 11 S11-R7),,
 Detail-row invoice number and customer name links navigate in the current tab,SBR — Links & Navigation,Functional,High,1. A rep row is expanded with at least one S and one P invoice visible.,"1. Click a service invoice's number link and note the destination and tab.
 2. Go back, then click a parts invoice's number link.
 3. Click the customer name on a detail row.","1. Each invoice number is a clickable link.
@@ -555,10 +524,9 @@ Detail-row invoice number and customer name links navigate in the current tab,SB
 3. The customer name is likewise a clickable link that navigates the current tab to the customer's record.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S12-R1, S12-R2, S12-R3), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S12-R1, S12-R2, S12-R3), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8629 (SBR spec v15 2026-07-29 Story 12 S12-R1; S12-R2; S12-R3),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8629 (SBR spec v22 2026-08-17 Story 12 S12-R1; S12-R2; S12-R3),,
 Browser back from a drilldown restores expansion and scroll; no reload,SBR — Links & Navigation,Functional,High,"1. Non-default filters are set (date range, product type, invoice status, location, Show Unassigned on), two reps are expanded, and the table is scrolled partway down.","1. Click an invoice link, then press the browser back button; check every piece of state.
 2. Repeat via a customer-name link.
 3. Watch whether the report performs a full reload on back.","1. Back returns to the report with ALL state intact — date range, product type, invoice status, location, Show Unassigned, every rep's expansion state, and scroll position — exactly as they were.
@@ -566,10 +534,9 @@ Browser back from a drilldown restores expansion and scroll; no reload,SBR — L
 3. This is deliberately different from a page reload, which restores persisted filters/columns/sort but resets expansion and scroll.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S12-R3a, S23-R2), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S12-R3a, S23-R2), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8629 (SBR spec v15 2026-07-29 Story 12 S12-R3a; Story 23 S23-R2),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8629 (SBR spec v22 2026-08-17 Story 12 S12-R3a; Story 23 S23-R2),,
 Invoice links use theme-primary; customer links use the body color,SBR — Links & Navigation,Functional,Medium,1. Detail rows are visible; at least one invoice and one customer link have been clicked earlier; you can switch to dark mode.,"1. Inspect an invoice-number link at rest, on hover, on keyboard focus, and after a click.
 2. Inspect a customer-name link the same way.
 3. Switch to dark mode and repeat.","1. Invoice-number link: theme-primary color, no underline at rest; an underline appears on hover and on keyboard focus (visible focus indicator); it never recolors to browser-purple after a click.
@@ -578,19 +545,17 @@ Invoice links use theme-primary; customer links use the body color,SBR — Links
 4. Underlined-at-rest links, browser-blue customer names, purple post-click links, and new-tab destinations are all defects.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S12-R4, S12-R5, S12-R6, S12-N3), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S12-R4, S12-R5, S12-R6, S12-N3), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8629 (SBR spec v15 2026-07-29 Story 12 S12-R4; S12-R5; S12-R6; S12-N3),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8629 (SBR spec v22 2026-08-17 Story 12 S12-R4; S12-R5; S12-R6; S12-N3),,
 An unavailable link destination shows the standard not-found state,SBR — Links & Navigation,Negative,Medium,"1. The report is open with detail rows visible; in another session the target invoice is reversed/deleted (and, for the customer leg, a customer record is made unavailable if the app allows).","1. Without refreshing, click the now-unavailable invoice's link; read the destination, then press back.
 2. If producible, repeat for an unavailable customer record.","1. The tab navigates to the application's standard not-found/access-denied state.
 2. Pressing back still returns to the report.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S12-N1, S12-N2), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S12-N1, S12-N2), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8629 (SBR spec v15 2026-07-29 Story 12 S12-N1; S12-N2),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8629 (SBR spec v22 2026-08-17 Story 12 S12-N1; S12-N2),,
 Invoice # and customer name when you cannot open what they point at,SBR — Links & Navigation,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You need TWO sign-ins: one person who can open work orders, part sales and customers, and one person who can see reports but CANNOT open them. Ask whoever manages permissions to set the second one up, or set it up yourself in administration and put it back as you found it afterwards.
 3. On the Sales By Representative report you have expanded a representative so you can see the invoice rows underneath, each showing an Invoice # and a customer name.","1. Signed in as the person who CAN open them, click an Invoice # and note where it goes; come back and click a customer name and note where that goes.
@@ -604,10 +569,10 @@ Invoice # and customer name when you cannot open what they point at,SBR — Link
 5. Note for the tester: what these two values should LOOK like for the second person is not fully settled, so do not fail the test on appearance. The report's description says they are shown as plain text when the person cannot open the target, but the numbered requirements underneath it still say the Invoice # and the customer name are always links. The product owner has been asked. Write down what you saw and carry on; only report a failure if that person actually reaches the work order, the part sale or the customer record.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18, read on 11 August 2026, whose §2 describes each expanded row's invoice number as a clickable link to the underlying work order or parts sale rendered as a link only when the user has permission to open that target and otherwise plain text, and the customer name as non-interactive plain text when the user cannot open the customer. That report's numbered requirements S12-R1 and S12-R3 were not updated to match and still describe both as clickable links, so this case asserts only what both readings require — that the person cannot reach the target — and the product owner has been asked to settle the rest.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22, read on 17 August 2026, whose §2 describes each expanded row's invoice number as a clickable link to the underlying work order or parts sale rendered as a link only when the user has permission to open that target and otherwise plain text, and the customer name as non-interactive plain text when the user cannot open the customer. That report's numbered requirements S12-R1 and S12-R3 were not updated to match and still describe both as clickable links, so this case asserts only what both readings require — that the person cannot reach the target — and the product owner has been asked to settle the rest.
 This has not yet been checked against a build.
 
-AUTOMATION: HOLD - waiting on one answer from the product owner about what these two values should look like, and it needs a second sign-in that cannot open work orders, part sales or customers",SV-8629 (SBR spec v17 2026-08-05 §2 expanded rows — a link is rendered only with permission to open the target; note S12-R1 and S12-R3 still read as though the links are always there),,
+AUTOMATION: HOLD - waiting on one answer from the product owner about what these two values should look like, and it needs a second sign-in that cannot open work orders, part sales or customers",SV-8629 (SBR spec v22 2026-08-17 §2 expanded rows — a link is rendered only with permission to open the target; note S12-R1 and S12-R3 still read as though the links are always there),,
 "Deactivate dialog: counted pluralized headline, reassurance, focus trap",SBR — Staff Deactivation,Functional,High,"1. ZZAUTOTEST rep ""A"" is active, toggle on, and assigned as sales representative to exactly 1 customer; ZZAUTOTEST rep ""B"" likewise to 3 customers.","1. Toggle rep B's active status off and read the dialog before confirming anything.
 2. Press Tab repeatedly and watch where focus goes; dismiss and watch where focus returns.
 3. Repeat step 1 for rep A (1 customer) and read the headline's noun.","1. A warning dialog titled ""Deactivate {Staff Name}?"" opens BEFORE any change is applied; the deactivation does not commit until confirmed.
@@ -615,11 +580,9 @@ AUTOMATION: HOLD - waiting on one answer from the product owner about what these
 3. Focus is trapped within the dialog while open and returns to the invoking control on dismiss.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S13-R1, S13-R3, S13-R4, S13-R12), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S13-R1, S13-R3, S13-R4, S13-R12), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-R1; S13-R3; S13-R4; S13-R12),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8630 (SBR spec v22 2026-08-17 Story 13 S13-R1; S13-R3; S13-R4; S13-R12),,
 Type-YES gate: auto-focus; case-insensitive match; Enter submits,SBR — Staff Deactivation,Functional,High,1. The Deactivate dialog is open for a rep with assignments.,"1. Read the instruction text and check which element holds focus.
 2. Hover the disabled ""Deactivate"" button and read the tooltip.
 3. Type ""no"" — check the button; clear and type ""  yes  "" (with spaces), then ""Yes"", then ""YES"" — check the button each time.
@@ -629,11 +592,9 @@ Type-YES gate: auto-focus; case-insensitive match; Enter submits,SBR — Staff D
 4. Pressing Enter while valid submits.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S13-R6, S13-R7), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S13-R6, S13-R7), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-R6; S13-R7),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8630 (SBR spec v22 2026-08-17 Story 13 S13-R6; S13-R7),,
 Cancel and X dismiss the Deactivate dialog; Escape and clicking outside do not,SBR — Staff Deactivation,Functional,Medium,1. The Deactivate dialog is open for a rep with assignments.,"1. Click the ""Cancel"" button and watch the dialog; then re-open it.
 2. Click the ""X"" close icon and watch the dialog; then re-open it.
 3. Press the ""Esc"" key on the keyboard and watch the dialog.
@@ -645,11 +606,9 @@ Cancel and X dismiss the Deactivate dialog; Escape and clicking outside do not,S
 5. When the dialog closes via Cancel or X, the staff member's active status is unchanged - no deactivation happens.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S13-R8), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S13-R8), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-R8),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8630 (SBR spec v22 2026-08-17 Story 13 S13-R8),,
 "Valid submit locks the dialog, then deactivates keeping assignments",SBR — Staff Deactivation,Functional,High,1. The Deactivate dialog is open for a ZZAUTOTEST rep with known customer assignments.,"1. Type YES and submit; during the request try Cancel, X, and Escape.
 2. After success, check the staff member's status and each previously assigned customer's Sales Representative.","1. The ""Deactivate"" button enters the standard in-flight loading state (non-interactive, in-progress indicator); the dialog stays open and the Cancel and X controls are non-interactive during the request (pressing the ""Esc"" key never closes the dialog at any time).
 2. On success the dialog closes and the change applies.
@@ -657,11 +616,9 @@ AUTOMATION: READY
 4. Deactivation never forces reassignment, blocks on assignments, or auto-reassigns.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S13-R9, S13-R10, S13-E1), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S13-R9, S13-R10, S13-E1), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-R9; S13-R10; S13-E1),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8630 (SBR spec v22 2026-08-17 Story 13 S13-R9; S13-R10; S13-E1),,
 "After deactivation: toggle unchanged, CSV shows No, report credit intact",SBR — Staff Deactivation,Functional,Medium,1. A ZZAUTOTEST rep with assignments AND matching invoices was just deactivated via the dialog flow.,"1. Re-open the staff member and read the sales-representative toggle.
 2. Download the Sales Representative Assignments CSV and read the rep's rows.
 3. Open the report and find the rep's row.","1. The sales-representative toggle state is unchanged by the deactivation flow.
@@ -669,11 +626,9 @@ AUTOMATION: READY
 3. In the report the rep still appears with credit intact; the ""(Inactive)"" marker appears only if the sales-representative TOGGLE is off (a separate flag from staff-active status).
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S13-R11, S15-R6, S5-R9), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S13-R11, S15-R6, S5-R9), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-R11; Story 15 S15-R6; Story 5 S5-R9),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8630 (SBR spec v22 2026-08-17 Story 13 S13-R11; Story 15 S15-R6; Story 5 S5-R9),,
 "No dialog: toggle off, no assignments, already inactive, or reactivation",SBR — Staff Deactivation,Negative,Medium,1. ZZAUTOTEST staff member X is active WITHOUT the sales-representative toggle; ZZAUTOTEST rep Y (with assignments) is currently inactive; ZZAUTOTEST rep Z is active with the sales-representative toggle ON and NO customers assigned.,"1. Deactivate X and watch for a dialog.
 2. Reactivate rep Y via the standard toggle and watch for a dialog; check Y's customer assignments afterwards.
 3. Deactivate rep Z (sales-representative toggle on, no assignments) and watch for a dialog.","1. For a staff member without the sales-representative toggle, the precondition check is skipped and no warning is shown.
@@ -682,11 +637,9 @@ AUTOMATION: READY
 4. Deactivating a sales representative with NO customer assignments applies silently — no warning dialog.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S13-R2, S13-N2, S13-N3, S13-E3), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S13-R2, S13-N2, S13-N3, S13-E3), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-R2; S13-N2; S13-N3; S13-E3),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8630 (SBR spec v22 2026-08-17 Story 13 S13-R2; S13-N2; S13-N3; S13-E3),,
 A deactivation failure shows the error toast and leaves the status alone,SBR — Staff Deactivation,Negative,Medium,1. The Deactivate dialog is open for a rep with assignments; you can force the request to fail (go offline just before submitting).,"1. Type YES, force the failure condition, and submit.
 2. Read the toast; check the staff member's active status.
 3. Dismiss, re-open the dialog, and look at the confirmation input.","1. An error toast is shown: ""Ooooops! An error occurred"" with the caption ""For more information, please contact support. Include your request ID: [{request-id}] when reaching out for faster assistance."" — it persists 120 seconds or until dismissed.
@@ -694,31 +647,26 @@ A deactivation failure shows the error toast and leaves the status alone,SBR —
 3. Each fresh dialog open requires a fresh confirmation entry — the input clears on open.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S13-N5), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S13-N5), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-N5; §7),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8630 (SBR spec v22 2026-08-17 Story 13 S13-N5; §7),,
 "If the assignment pre-check fails, the warning dialog still opens",SBR — Staff Deactivation,Negative,Medium,"1. A staff member is active with the sales-rep toggle on.
 2. You can force the pre-deactivation assignment check to fail (for example, cut the network exactly when toggling active off) — if not forceable, mark Blocked with the reason.","1. Toggle the staff member's active status off while forcing the check to fail.
 2. Read the dialog that opens.","1. The system NEVER silently deactivates — the warning dialog still opens (fallback), so the type-to-confirm gate still applies.
 2. Because the customer count is unavailable, the dialog OMITS the count headline and shows only the reassurance line ""Their customer assignments will stay where they are."" above the ""Type YES to confirm"" gate.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S13-N4), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S13-N4), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-N4),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8630 (SBR spec v22 2026-08-17 Story 13 S13-N4),,
 "Show Unassigned sits between the column selector and the date picker, off",SBR — Show Unassigned,Functional,High,1. No remembered settings; at least one matching invoice with NO assigned rep exists (seed via a WO with no Sales Representative whose customer also has no rep).,"1. Find the ""Show Unassigned"" toggle in the toolbar and note its position and default state.
 2. With it off, look for an Unassigned row and check the grand Totals against the rep rows only.","1. A ""Show Unassigned"" toggle sits between the column selector and the date range picker; it is OFF by default.
 2. While off, invoices with no assigned rep contribute to nothing — no row, and not counted in any total.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S22-R1, S22-R2, S18-R7), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S22-R1, S22-R2, S18-R7), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8639 (SBR spec v15 2026-07-29 Story 22 S22-R1; S22-R2; Story 18 S18-R7.2),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8639 (SBR spec v22 2026-08-17 Story 22 S22-R1; S22-R2; Story 18 S18-R7.2),,
 Show Unassigned adds one top-pinned Unassigned row that acts like a rep row,SBR — Show Unassigned,Functional,High,1. Matching unassigned invoices exist; the grand Totals with the toggle off are noted.,"1. Turn ""Show Unassigned"" on and read the new row and its position.
 2. Read the grand Totals indicator.
 3. Read the Unassigned row's columns and (N) count, click its chevron, and look for any ""(Inactive)"" tag.
@@ -728,20 +676,18 @@ Show Unassigned adds one top-pinned Unassigned row that acts like a rep row,SBR 
 4. The Unassigned row shows the same metric columns and (N) count as any rep summary row, is expandable to its contributing invoices, is included in the grand Totals, and never carries an ""(Inactive)"" tag.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S22-R3, S22-R4, S22-R5, S22-R6, S6-R1), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S22-R3, S22-R4, S22-R5, S22-R6, S6-R1), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8639 (SBR spec v15 2026-07-29 Story 22 S22-R3; S22-R4; S22-R5; S22-R6; Story 6 S6-R1),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8639 (SBR spec v22 2026-08-17 Story 22 S22-R3; S22-R4; S22-R5; S22-R6; Story 6 S6-R1),,
 No empty Unassigned row is ever rendered,SBR — Show Unassigned,Negative,Medium,"1. Scenario A: a filter set with NO matching unassigned invoices (but some rep rows).
 2. Scenario B: the Unassigned row is populated and expanded.","1. Scenario A: turn Show Unassigned on and look for the row; then narrow so no reps match either and read the table.
 2. Scenario B: with the Unassigned row expanded, turn the toggle off, then back on.","1. With the toggle on but no matching unassigned invoices, no Unassigned row is shown — an empty Unassigned row is never rendered; with no rep rows either, the empty state applies.
 2. Turning the toggle off removes the expanded row; turning it back on renders it collapsed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S22-N1, S6-N2), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S22-N1, S6-N2), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8639 (SBR spec v15 2026-07-29 Story 22 S22-N1; Story 6 S6-N2),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8639 (SBR spec v22 2026-08-17 Story 22 S22-N1; Story 6 S6-N2),,
 The eight toggleable metric columns include Adjustments,SBR — Column Selector,Functional,High,1. You are signed in to the ShopView App on a desktop browser.,"1. Open the Sales By Representative report.
 2. Open the column selector.","1. The eight toggleable columns are: Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %.
 2. ""Adjustments"" is one of the toggleable columns, between Parts Margin and Margin.
@@ -769,46 +715,41 @@ Toggling a column applies at once to summary; detail and Totals rows,SBR — Col
 2. Hiding a metric column removes it from rep summary rows, invoice detail rows, and the grand Totals indicator simultaneously; showing restores it everywhere at once.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S20-R4, S20-R7), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S20-R4, S20-R7), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8637 (SBR spec v15 2026-07-29 Story 20 S20-R4; S20-R7),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8637 (SBR spec v22 2026-08-17 Story 20 S20-R4; S20-R7),,
 Column visibility never affects the exports,SBR — Column Selector,Functional,Medium,1. Several metric columns are hidden via the column selector.,"1. Download all four exports (Summary PDF, Expanded View PDF, Summary CSV, Expanded View CSV).
 2. Check each file's columns.","1. All four downloads include ALL metric columns regardless of the on-screen column selector state.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S20-R8), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S20-R8), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8637 (SBR spec v15 2026-07-29 Story 20 S20-R8),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8637 (SBR spec v22 2026-08-17 Story 20 S20-R8),,
 Hiding the active sort column keeps the sort,SBR — Column Selector,Functional,Medium,"1. The report is sorted by a metric column (e.g., Margin descending).","1. Hide that column via the column selector and read the row order.
 2. Show the column again and look at its header.","1. Hiding the active sort column does not clear the sort — rows stay ordered by the now-hidden metric until another sort is chosen or the A→Z default is restored.
 2. Showing the column again reveals the sort indicator on it.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S20-R9), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S20-R9), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8637 (SBR spec v15 2026-07-29 Story 20 S20-R9),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8637 (SBR spec v22 2026-08-17 Story 20 S20-R9),,
 All filter and view settings are restored before the first data fetch,SBR — Persistence,Functional,Critical,1. You are on the report in a browser you can revisit.,"1. Set a custom date range, ""Parts only,"" ""Paid,"" a specific location set, Show Unassigned on, hide two metric columns, and sort by Margin descending.
 2. Leave the report and return; also try a full page reload.
 3. Watch what data loads first.","1. Every setting is restored: date range (including the custom start/end), product type, invoice status, location, Show Unassigned, column visibility, and the active column sort (column + direction).
 2. The settings are restored BEFORE the first data fetch — the report does not fetch defaults first and then re-fetch.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S23-R1, S20-R5), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S23-R1, S20-R5), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8640 (SBR spec v15 2026-07-29 Story 23 S23-R1; Story 20 S20-R5),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8640 (SBR spec v22 2026-08-17 Story 23 S23-R1; Story 20 S20-R5),,
 Expansion state and scroll position are not remembered and reset on reload,SBR — Persistence,Functional,Medium,1. Two reps are expanded and the table is scrolled partway.,"1. Reload the page.
 2. Check the rows and the scroll position.","1. All rows render collapsed and the scroll position resets.
 2. This is the specified behavior (only back-navigation from a drilldown restores expansion/scroll), not a defect.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S23-R2), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S23-R2), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8640 (SBR spec v15 2026-07-29 Story 23 S23-R2; §2 Out of Scope),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8640 (SBR spec v22 2026-08-17 Story 23 S23-R2; §2 Out of Scope),,
 A stale saved value falls back to its default and never errors,SBR — Persistence,Functional,Medium,1. Your saved settings include a location you are then un-assigned from (restore access afterwards).,"1. Return to the report after the access change.
 2. Read the location filter, the data, and watch for any error.","1. The no-longer-valid location falls back to the default (your active location) rather than being sent to the server.
 2. No error occurs — a stale saved setting can never cause an error or an invalid request.
@@ -819,38 +760,35 @@ What you should see today: a saved date range that is no longer valid does NOT f
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S23-R3), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S23-R3), read on 17 August 2026.
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8976)",SV-8640 (SBR spec v15 2026-07-29 Story 23 S23-R3),,
+AUTOMATION: READY - EXPECT FAIL (SV-8976)",SV-8640 (SBR spec v22 2026-08-17 Story 23 S23-R3),,
 First visit or cleared storage yields all defaults; no server-side profile,SBR — Persistence,Functional,Medium,"1. You have distinctive saved settings, then clear the browser's site data (or use a fresh profile).
-2. You are working in a known active location (the application's location switcher).",1. Open the report and read every setting.,"1. Date range = This Month; Product Type = ""Parts & Service""; Invoice Status = ""All Statuses""; Location = your currently active location only (the one location you are working in); Show Unassigned = off; all seven metric columns visible; sort = the A→Z default.
+2. You are working in a known active location (the application's location switcher).",1. Open the report and read every setting.,"1. Date range = This Month; Product Type = ""Parts & Service""; Invoice Status = ""All Statuses""; Location = your currently active location only (the one location you are working in); Show Unassigned = off; all eight metric columns visible; sort = the A→Z default.
 2. Clearing browser storage fully returns the report to first-visit defaults — no server-side profile brings the old settings back.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S23-R4, S23-N1, S2-R4, S2-R7, S21-R2), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S23-R4, S23-N1, S2-R4, S2-R7, S21-R2), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8640 (SBR spec v15 2026-07-29 Story 23 S23-R4; S23-N1; Story 2 S2-R4; S2-R7; Story 21 S21-R2),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8640 (SBR spec v22 2026-08-17 Story 23 S23-R4; S23-N1; Story 2 S2-R4; S2-R7; Story 21 S21-R2),,
 The A to Z default is its own saved value,SBR — Persistence,Functional,Medium,1. You have never clicked a financial column header in this browser session/profile (the report is in the A→Z default).,"1. Change a few filters (no sort click), leave the report, and return.
 2. Read the row order and the headers.","1. The report restores to the A→Z default order by rep display name.
 2. No financial column shows a sort indicator — the saved ""no financial sort"" state restores as A→Z, not as an arbitrary column.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S23-R5, S11-R4), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S23-R5, S11-R4), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8640 (SBR spec v15 2026-07-29 Story 23 S23-R5; Story 11 S11-R4),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8640 (SBR spec v22 2026-08-17 Story 23 S23-R5; Story 11 S11-R4),,
 The ⋯ overflow menu lists exactly four download actions,SBR — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Sales By Representative report.","1. Find the ⋯ (three-dot) button in the report toolbar — it is the first control in the toolbar's action cluster.
 2. Click it and read the menu entries top to bottom.","1. The menu lists exactly four actions: ""Download Summary (PDF)"", ""Download Expanded View (PDF)"", ""Download Summary (CSV)"", and ""Download Expanded View (CSV)"".
 2. No other entries appear in the menu.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S14-R1, S17-R3), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S14-R1, S17-R3), read on 17 August 2026.
 
-AUTOMATION: READY","SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R1 + Story 17 S17-R3 (position) — S14-R1 CLOSES it in the spec's own words (""lists exactly four actions""); so the closed list IS the requirement)",,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026","SV-8631 (SBR spec v22 2026-08-17 Story 14 S14-R1 + Story 17 S17-R3 (position) — S14-R1 CLOSES it in the spec's own words (""lists exactly four actions""); so the closed list IS the requirement)",,
 "All four downloads respect filters, full result set, and active order",SBR — Exports,Functional,Critical,"1. You are on the report with several reps showing.
 2. Set a specific date range, Product Type, Invoice Status, and a location selection; turn Show Unassigned on.
 3. Sort by a financial column (for example, click the Subtotal header).
@@ -867,10 +805,10 @@ What you should see today: the spreadsheets write money with a dollar sign and t
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S14-R2, S14-R2a, S14-R20, S21-R6, S22-R4), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S14-R2, S14-R2a, S14-R20, S21-R6, S22-R4), read on 17 August 2026.
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8925)","SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R2; S14-R2a; S14-R20 + Story 21 S21-R6 + Story 22 S22-R4 — all four downloads honour the filters; the full result set and the active order; S14-R20 = the ""Locations:"" line in every export)",,
+AUTOMATION: READY - EXPECT FAIL (SV-8925)","SV-8631 (SBR spec v22 2026-08-17 Story 14 S14-R2; S14-R2a; S14-R20 + Story 21 S21-R6 + Story 22 S22-R4 — all four downloads honour the filters; the full result set and the active order; S14-R20 = the ""Locations:"" line in every export)",,
 Summary PDF: one rolled-up row per rep with a recomputed grand totals row,SBR — Exports,Functional,Critical,"1. You are on the report with at least two reps showing, one of them a toggled-off (""(Inactive)"") contributor if one can be arranged.
 2. A date range is selected.","1. Choose ""Download Summary (PDF)"" from the ⋯ menu and open the file.
 2. Read the top of the first page, the column headers, one rep row, and the last row.
@@ -908,11 +846,9 @@ Expanded View PDF truncates invoice numbers longer than 18 characters,SBR — Ex
 3. In the PDF, the 18-character-or-shorter number shows in full with no ellipsis.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S14-R7), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S14-R7), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R7),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8631 (SBR spec v22 2026-08-17 Story 14 S14-R7),,
 "PDF footer on every page, default-logo fallback, and deterministic PDF filenames",SBR — Exports,Functional,Medium,"1. You are on the report with data showing.
 2. For the fallback check: the organization has NO configured logo (clear it in settings if permitted, and restore afterward).","1. Download both PDFs and note each saved file's name.
 2. Scroll through every page of both PDFs and read the footer.
@@ -928,10 +864,10 @@ What you should see today: the footer and the logo are correct on both files, bu
 Note for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026; where the Sales By Representative report specification version 18 (S14-R3a, S14-R4, S14-R11), read on 11 August 2026, differs, his decision is the authority.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026; where the Sales By Representative report specification version 22 (S14-R3a, S14-R4, S14-R11), read on 17 August 2026, differs, his decision is the authority.
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8982)","SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R3a; S14-R4; S14-R11 — S14-R11 CLOSES both PDF filenames verbatim (""deterministic"") and S14-R4 closes the footer string; so the exact strings ARE the requirement)",,
+AUTOMATION: READY - EXPECT FAIL (SV-8982)","SV-8631 (SBR spec v22 2026-08-17 Story 14 S14-R3a; S14-R4; S14-R11 — S14-R11 CLOSES both PDF filenames verbatim (""deterministic"") and S14-R4 closes the footer string; so the exact strings ARE the requirement)",,
 "PDFs render negative dollars in accounting parentheses, keep the (Inactive) tag",SBR — Exports,Functional,Medium,"1. The current view includes at least one negative money value (for example, a net-credit/return invoice — seed one if needed) and, if arrangeable, one toggled-off ""(Inactive)"" contributor.","1. Download both PDFs.
 2. Find the negative money value in each and read how it is written.
 3. Read the rep names in both PDFs.","1. Negative dollar values render in accounting parentheses — for example ($1,234.56) — in both PDFs, with no extra color treatment.
@@ -939,11 +875,9 @@ AUTOMATION: READY - EXPECT FAIL (SV-8982)","SV-8631 (SBR spec v15 2026-07-29 Sto
 3. The ""(Inactive)"" tag DOES render on toggled-off contributors' names in both PDFs; other rep names render plainly.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S14-R9, S14-R10), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S14-R9, S14-R10), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R9; S14-R10),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8631 (SBR spec v22 2026-08-17 Story 14 S14-R9; S14-R10),,
 PDF body font steps down as the longest dollar value grows; no overflow,SBR — Exports,Functional,Medium,"1. You can produce (or seed) filtered views whose LONGEST formatted positive dollar value — checked across every value in the document, including the totals row — falls in different length brackets (for example, $1,234.56 = 9 characters vs $1,000,000.00 = 13 characters).
 2. This test reads what is inside a downloaded PDF. Open the file in any PDF viewer and use the viewer's own text search (Ctrl+F) to find the text named below — that is enough. There is nothing to install.","1. Download the Summary PDF for a view whose longest positive dollar value is 9 characters or fewer; note the body text size (a relative comparison across files is enough).
 2. Repeat for views whose longest positive value is 10, 11, and 12-or-more characters (as far as seedable).
@@ -952,11 +886,9 @@ PDF body font steps down as the longest dollar value grows; no overflow,SBR — 
 3. Both PDF formats adapt the same way.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S14-R12, S14-R13), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S14-R12, S14-R13), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R12; S14-R13),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8631 (SBR spec v22 2026-08-17 Story 14 S14-R12; S14-R13),,
 "Summary CSV: file name, UTF-8 BOM, verbatim headers, one row per rep",SBR — Exports,Functional,High,1. You are on the report with at least two reps showing; one rep has invoices for the same customer more than once (to check de-duplication).,"1. Choose ""Download Summary (CSV)"" from the ⋯ menu and note the saved file's name.
 2. Open the file in a text editor and read the header row.
 3. Count the data rows against the on-screen rep rows and compare their order.
@@ -1019,9 +951,9 @@ The Unassigned row appears in both CSV downloads only when the toggle is on,SBR 
 ---
 Scope note: this case covers the CSV only. The same rule applies to both PDF downloads (the Summary PDF grand-totals row aggregates Unassigned; the Expanded PDF gets its own top page-block), but PDF body structure is not observable by the automation suite — see the Deferred PDF-visual cases.
 
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S22-R2, S22-R4, S14-R19), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S22-R2, S22-R4, S14-R19), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R19; Story 22 S22-R2; S22-R4),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8599 (SBR spec v22 2026-08-17 S22-R2; S22-R4; S14-R19 — Unassigned row in both CSV exports; gated by the Show Unassigned toggle; rescoped from all-four-downloads 2026-08-10 because the suite has no PDF parser),,
 A failed download shows the canonical error toast,SBR — Exports,Negative,Medium,"1. You are on the report with data showing.
 2. You can force a download failure (for example, cut the network just after triggering the download) — if not forceable, mark this Blocked with the reason.
 3. To force the failure this test needs, use the browser's own developer tools: press F12, open the ""Network"" tab, and switch the throttling dropdown (it normally reads ""No throttling"") to ""Offline"" to cut the connection, or to ""Slow 3G"" to slow it down. There is nothing to install. Set it back to ""No throttling"" when you finish.","1. Trigger a PDF download and watch the menu action while the file is being generated.
@@ -1030,11 +962,9 @@ A failed download shows the canonical error toast,SBR — Exports,Negative,Mediu
 3. A genuine failure downloads nothing — never a malformed file.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S14-N1, S14-N2, S14-E1), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S14-N1, S14-N2, S14-E1), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-N1; S14-N2; S14-E1; §7),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8631 (SBR spec v22 2026-08-17 Story 14 S14-N1; S14-N2; S14-E1; §7),,
 Over-cap Expanded View PDF is refused with the too-large message,SBR — Exports,Negative,Medium,"1. A filter set exists (or can be seeded) whose invoice detail rows exceed 10,000 — if this volume cannot be produced in the environment, mark Blocked-Env with the reason.","1. Apply the over-cap filter set.
 2. Choose ""Download Expanded View (PDF)"" and read the toast.","1. No file is produced — the server declines rather than generating a truncated file.
 2. An error toast reads exactly: ""This report is too large to export. Narrow the date range or filters, then try again."" (persists 120 seconds or until dismissed).
@@ -1045,10 +975,10 @@ What you should see today: the spreadsheet download works and produces a file, b
 - If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S14-E2), read on 11 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026, which is the authority.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S14-E2), read on 17 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026, which is the authority.
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8818)",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-E2; §7 — 10k-row export cap; no truncated file; toast persists 120s; the toast STRING is the ONE suite-wide message ruled by Chris Ward 2026-07-31 Q2=A [newest-wins]; his SBR spec edit is pending),,
+AUTOMATION: READY - EXPECT FAIL (SV-8818)",SV-8631 (SBR spec v22 2026-08-17 Story 14 S14-E2; §7 — 10k-row export cap; no truncated file; toast persists 120s; the toast STRING is the ONE suite-wide message ruled by Chris Ward 2026-07-31 Q2=A [newest-wins]; his SBR spec edit is pending),,
 An empty-data export still generates with zeroed Summary PDF totals,SBR — Exports,Functional,Medium,"1. The current filter set matches ZERO invoices (for example, a date range with no activity) — the report shows its empty state.","1. Download all four files from the ⋯ menu.
 2. Open each and inspect its contents.","1. All four downloads produce a FILE, not an error.
 2. The Summary PDF renders the header strip, no data rows, and a grand-totals row showing zeros for the money and Labor Delta columns and ""—"" for Margin %.
@@ -1081,11 +1011,9 @@ Report Name dropdown lists Sales Representative Assignments at the bottom,SBR �
 4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S15-R1, S15-R2), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S15-R1, S15-R2), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R1; S15-R2),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8632 (SBR spec v22 2026-08-17 Story 15 S15-R1; S15-R2),,
 "Sales Representative Assignments CSV: file name, headers, success toast",SBR — Sales Rep Assignments Export,Functional,High,"1. At least one customer in the organization has an assigned sales representative.
 2. The Export Report dialog is open with ""Sales Representative Assignments"" selected.","1. Click the Export action.
 2. Note the saved file's name and read the toast.
@@ -1100,10 +1028,10 @@ What you should see today: the file name, the three headings and the success mes
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S15-R3, S15-R4, S14-R20), read on 11 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026, which is the authority.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S15-R3, S15-R4, S14-R20), read on 17 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026, which is the authority.
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8983)","SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R3; S15-R4; §7 — S15-R4 CLOSES the three headers; ""Sales Rep""→""Sales Representative"" per Chris Ward 2026-07-31 Q5 [newest-wins]; NOT one of the four report exports so S14-R20 adds no Location)",,
+AUTOMATION: READY - EXPECT FAIL (SV-8983)","SV-8632 (SBR spec v22 2026-08-17 Story 15 S15-R3; S15-R4; §7 — S15-R4 CLOSES the three headers; ""Sales Rep""→""Sales Representative"" per Chris Ward 2026-07-31 Q5 [newest-wins]; NOT one of the four report exports so S14-R20 adds no Location)",,
 "Assignments CSV: one row per assigned customer, sorted customer then rep",SBR — Sales Rep Assignments Export,Functional,High,1. The organization has several customers with assigned reps and at least one customer with NO assigned rep (seed as needed).,"1. Download the Sales Representative Assignments CSV.
 2. Count the rows against the customers with assigned reps.
 3. Search for the no-rep customer.
@@ -1112,22 +1040,18 @@ AUTOMATION: READY - EXPECT FAIL (SV-8983)","SV-8632 (SBR spec v15 2026-07-29 Sto
 3. Rows are sorted by customer name A→Z (primary), then rep name A→Z (secondary).
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S15-R5, S15-R7, S15-R10), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S15-R5, S15-R7, S15-R10), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R5; S15-R7; S15-R10),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8632 (SBR spec v22 2026-08-17 Story 15 S15-R5; S15-R7; S15-R10),,
 """Rep is active?"" tracks the staff-active status, not the toggle",SBR — Sales Rep Assignments Export,Functional,Medium,"1. Arrange (and afterward restore): one assigned rep whose staff record is ACTIVE but whose sales-representative toggle is OFF, and one assigned rep whose staff record is INACTIVE but whose toggle is ON.","1. Download the Sales Representative Assignments CSV.
 2. Read the ""Rep is active?"" value on both reps' customer rows.","1. The staff-ACTIVE / toggle-off rep shows ""Rep is active?"" = ""Yes"" — the toggle does not drive this column.
 2. The staff-INACTIVE / toggle-on rep shows ""Rep is active?"" = ""No"".
 3. The value is always ""Yes"" or ""No"" (never ""Deactivated"" or another word).
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S15-R6, S13-R11), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S15-R6, S13-R11), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R6; Story 13 S13-R11),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8632 (SBR spec v22 2026-08-17 Story 15 S15-R6; Story 13 S13-R11),,
 "A deleted rep record still exports one row from the stored name, marked No",SBR — Sales Rep Assignments Export,Functional,Medium,1. A customer exists whose assigned rep's staff record has been cleared or deleted while the customer still references it (seed and delete a throwaway ZZAUTOTEST rep if needed).,"1. Download the Sales Representative Assignments CSV.
 2. Find that customer's row and read its ""Sales Representative"" and ""Rep is active?"" cells.
 3. If two customers carry different stored name spellings for the same underlying rep, compare their rows.","1. The customer still produces a row — the export never silently drops it.
@@ -1136,11 +1060,9 @@ AUTOMATION: READY
 4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S15-R8, S15-R9), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S15-R8, S15-R9), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R8; S15-R9),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8632 (SBR spec v22 2026-08-17 Story 15 S15-R8; S15-R9),,
 Assignments export failure and nothing-to-export use the dialog's messages,SBR — Sales Rep Assignments Export,Negative,Medium,"1. For the empty path: no customer in the organization has an assigned rep (or use a state where the export yields zero rows).
 2. For the failure path: you can force a generation failure (for example, cut the network on Export) — if not forceable, mark that step Blocked with the reason.","1. With zero assigned customers, select ""Sales Representative Assignments"" in the Export Report dialog and click Export.
 2. Read the dialog warning and inspect any downloaded file.
@@ -1148,11 +1070,9 @@ Assignments export failure and nothing-to-export use the dialog's messages,SBR �
 2. On a generation failure, an error toast reads ""An error occurred while exporting the report. Please try again."" and auto-fades after 5 seconds.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S15-R11, S15-N2), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S15-R11, S15-N2), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R11; S15-N2; §7),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8632 (SBR spec v22 2026-08-17 Story 15 S15-R11; S15-N2; §7),,
 "Empty state: verbatim message, no grand Totals, toolbar stays interactive","SBR — Loading, Empty & Error States",Functional,High,1. You are on the report.,"1. Apply a filter set that matches no invoices for any rep (for example, a date range with no activity), with Show Unassigned OFF or with no matching unassigned invoices either.
 2. Read the data area and look for the grand Totals indicator.
 3. If checkable: view an organization/location state where NO staff member has ever been credited with an invoice, and compare the message.
@@ -1167,10 +1087,10 @@ What you should see today: the message reads ""No sales data found for the selec
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S16-R1, S16-R2, S16-R3, S16-N1, S2-N1, S21-N2), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S16-R1, S16-R2, S16-R3, S16-N1, S2-N1, S21-N2), read on 17 August 2026.
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8973)",SV-8633 (SBR spec v15 2026-07-29 Story 16 S16-R1; S16-R2; S16-R3; S16-N1; Story 2 S2-N1; Story 21 S21-N2; §7),,
+AUTOMATION: READY - EXPECT FAIL (SV-8973)",SV-8633 (SBR spec v22 2026-08-17 Story 16 S16-R1; S16-R2; S16-R3; S16-N1; Story 2 S2-N1; Story 21 S21-N2; §7),,
 Loading shows a centered spinner over the data area and hides the Totals,"SBR — Loading, Empty & Error States",Functional,Medium,"1. You are on the report with data showing (use a slow/throttled connection if available to make the loading state observable).
 2. To force the failure this test needs, use the browser's own developer tools: press F12, open the ""Network"" tab, and switch the throttling dropdown (it normally reads ""No throttling"") to ""Offline"" to cut the connection, or to ""Slow 3G"" to slow it down. There is nothing to install. Set it back to ""No throttling"" when you finish.","1. Reload the report and watch the data area during the initial load.
 2. Change a filter and watch the data area during the re-fetch.
@@ -1180,10 +1100,9 @@ Loading shows a centered spinner over the data area and hides the Totals,"SBR �
 4. A re-fetch replaces the previous data only when the new data returns — no flash of a blank table beyond the spinner overlay.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S16-R4), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S16-R4), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8633 (SBR spec v15 2026-07-29 Story 16 S16-R4),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8633 (SBR spec v22 2026-08-17 Story 16 S16-R4),,
 A load failure shows the inline could-not-load message with a Retry,"SBR — Loading, Empty & Error States",Negative,High,"1. You can force a load failure (for example, cut the network and change a filter) — if not forceable, mark Blocked with the reason.
 2. To force the failure this test needs, use the browser's own developer tools: press F12, open the ""Network"" tab, and switch the throttling dropdown (it normally reads ""No throttling"") to ""Offline"" to cut the connection, or to ""Slow 3G"" to slow it down. There is nothing to install. Set it back to ""No throttling"" when you finish.","1. Set several non-default filters.
 2. Force a load/re-fetch failure and read the data area.
@@ -1192,11 +1111,9 @@ A load failure shows the inline could-not-load message with a Retry,"SBR — Loa
 3. ""Retry"" re-runs the CURRENT request — the report loads with the same filters still applied.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S16-R5), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S16-R5), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8633 (SBR spec v15 2026-07-29 Story 16 S16-R5; §7),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8633 (SBR spec v22 2026-08-17 Story 16 S16-R5; §7),,
 On a phone every toolbar control works on touch,SBR — Mobile,Functional,Medium,"1. Open the report on a phone-sized viewport (real device or browser device emulation, width under 1024px).","1. Find and operate each toolbar control by touch: the ⋯ exports, the column selector, the Show Unassigned toggle, the date range picker, Product Type, Invoice Status, and Location.
 2. Look at how the controls are laid out.
 3. Widen the viewport to 1024px or more and compare.","1. Every toolbar control is visible and operable on touch.
@@ -1204,10 +1121,9 @@ On a phone every toolbar control works on touch,SBR — Mobile,Functional,Medium
 3. At 1024px and above the desktop layout applies.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S17-R1, S17-R2, S17-R3), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S17-R1, S17-R2, S17-R3), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8634 (SBR spec v15 2026-07-29 Story 17 S17-R1; S17-R2; S17-R3),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8634 (SBR spec v22 2026-08-17 Story 17 S17-R1; S17-R2; S17-R3),,
 On a phone the table scrolls sideways with Subtotal pinned outside it,SBR — Mobile,Functional,Medium,1. The report is open on a phone-sized viewport (under 1024px) with at least one rep row.,"1. Swipe the data table sideways and watch the Subtotal column.
 2. Look below the table for the totals bar and swipe the table again.
 3. Tap a rep row's chevron.","1. The table scrolls horizontally to expose all columns; the pinned Subtotal column stays visible at the right edge throughout.
@@ -1215,10 +1131,9 @@ On a phone the table scrolls sideways with Subtotal pinned outside it,SBR — Mo
 3. The chevron expands/collapses the rep on touch.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S17-R4, S17-R5, S10-R5), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S17-R4, S17-R5, S10-R5), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8634 (SBR spec v15 2026-07-29 Story 17 S17-R4; S17-R5; Story 10 S10-R5 (mobile)),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8634 (SBR spec v22 2026-08-17 Story 17 S17-R4; S17-R5; Story 10 S10-R5 (mobile)),,
 Touch targets are at least 44×44 px and touch users get no hover-only tooltips,SBR — Mobile,Accessibility,Medium,"1. The report is open on a touch device or touch emulation (under 1024px).
 2. This test names exact colours or sizes. Use the browser's own developer tools: press F12, pick the element with the inspector, and read its colour or size from the ""Styles"" panel. There is nothing to install. If you cannot get a clear reading, mark this test Blocked rather than guessing.","1. Measure (device emulation ruler/inspector) the touch targets of a row chevron, the Show Unassigned toggle, the ⋯ button, and — via the staff deactivation dialog if opened — the dialog's X.
 2. Tap-and-hold the icon controls and watch for tooltips.","1. Each of these interactive controls presents a touch target of at least 44×44 px.
@@ -1229,10 +1144,10 @@ What you should see today: the expand/collapse chevrons measure 22 by 22 pixels,
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S17-R6, S17-N1, S18-R9), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S17-R6, S17-N1, S18-R9), read on 17 August 2026.
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8979)",SV-8634 (SBR spec v15 2026-07-29 Story 17 S17-R6; S17-N1; Story 18 S18-R9),,
+AUTOMATION: READY - EXPECT FAIL (SV-8979)",SV-8634 (SBR spec v22 2026-08-17 Story 17 S17-R6; S17-N1; Story 18 S18-R9),,
 Layout: white toolbar; blue-grey page; separator; edge-to-edge white table,SBR — Visual Conformance & Accessibility,Functional,Medium,1. You are on the report on a desktop browser (light mode) with data showing.,"1. Look at the toolbar strip, at the space between its controls and the edges of the strip, and at how the title and the rightmost control line up with the table columns.
 2. Look at the page background around the data area, the line between the toolbar and the column headers, and the table's side edges.
 3. Look at the header cells, the body cells, the pinned Subtotal cells, and the grand Totals indicator's surface.
@@ -1249,10 +1164,10 @@ What you should see today: the table is not white. Every heading cell and every 
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S18-R1, S18-R2, S18-R3, S18-R4, S18-R5, S18-R7, S18-N1), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S18-R1, S18-R2, S18-R3, S18-R4, S18-R5, S18-R7, S18-N1), read on 17 August 2026.
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8980)",SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R1; S18-R2; S18-R3; S18-R4; S18-R5; S18-R7.1–R7.6; S18-N1),,
+AUTOMATION: READY - EXPECT FAIL (SV-8980)",SV-8635 (SBR spec v22 2026-08-17 Story 18 S18-R1; S18-R2; S18-R3; S18-R4; S18-R5; S18-R7.1–R7.6; S18-N1),,
 "Dark mode: page, toolbar, table; Totals switch to dark equivalents",SBR — Visual Conformance & Accessibility,Functional,Medium,"1. You are on the report with data showing, including at least one expanded rep (badges visible) and non-zero Labor Delta values.","1. Switch the application to dark mode.
 2. Look at the page, toolbar, header, body cells, and the grand Totals indicator.
 3. Read the status badges and the green/red Labor Delta values.
@@ -1278,10 +1193,10 @@ What you should see today: three of the five names are wrong. The three-dot down
 · If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S18-R9), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S18-R9), read on 17 August 2026.
 Last checked against build v3.5-7168d14 on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8975)",SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R9),,
+AUTOMATION: READY - EXPECT FAIL (SV-8975)",SV-8635 (SBR spec v22 2026-08-17 Story 18 S18-R9),,
 Chevrons and sortable headers are keyboard-operable and expose their state,SBR — Visual Conformance & Accessibility,Accessibility,Medium,"1. You are on the report with at least two rep rows; a screen reader or accessibility inspector is available.
 2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an ""Accessibility"" panel that shows the same names without you having to listen to anything.","1. Tab to a rep row's chevron; press Enter, then Space.
 2. Tab to a financial column header; press Enter, then Space.
@@ -1290,10 +1205,9 @@ Chevrons and sortable headers are keyboard-operable and expose their state,SBR �
 3. A sortable header exposes its current sort state (unsorted / ascending / descending) to assistive technology.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S18-R10), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S18-R10), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R10),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8635 (SBR spec v22 2026-08-17 Story 18 S18-R10),,
 The subdued grey of the (N) count and (Inactive) tag meets WCAG AA contrast,SBR — Visual Conformance & Accessibility,Accessibility,Medium,"1. You are on the report with a rep row showing a (N) count and - if arrangeable - an ""(Inactive)"" tag.","1. Read the subdued-grey (N) count and the ""(Inactive)"" tag in light mode, then switch to dark mode and read them again.
 2. Review how Labor Delta, the status badges, and the links convey their meaning.","1. In BOTH light mode and dark mode the subdued-grey (N) count and the ""(Inactive)"" tag are easy to read against the surface behind them - the smaller text does not fade into the background.
 2. No information is conveyed by color alone: Labor Delta carries its +/- sign, status badges carry their text label, and links carry a hover/focus underline.
@@ -1325,11 +1239,10 @@ AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8593
 5. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S19-R1, S19-N1), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S19-R1, S19-N1), read on 17 August 2026.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
-AUTOMATION: HOLD - waiting on an answer from the product owner
-",SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R1; S19-N1),,
+AUTOMATION: HOLD - waiting on an answer from the product owner",SV-8636 (SBR spec v22 2026-08-17 Story 19 S19-R1; S19-N1),,
 Selector offers only reps whose sales-representative toggle is on,SBR — Work Order Sales Rep,Functional,High,"1. At least one staff member has the sales-representative toggle ON and at least one has it OFF. To arrange this: open Settings, go to Staff, edit the staff member, and use the sales-representative toggle there (restore both afterward).","1. Open a Work Order and open the ""Sales Representative"" selector.
 2. Search the option list for both staff members.
 3. Inspect the selector's accessible name.","1. The toggle-ON staff member is offered as a selectable rep.
@@ -1338,11 +1251,10 @@ Selector offers only reps whose sales-representative toggle is on,SBR — Work O
 4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S19-R2, S19-R8), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S19-R2, S19-R8), read on 17 August 2026.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
-AUTOMATION: HOLD - this part of the report is not built yet
-",SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R2; S19-R8 — toggle entry path Settings -> Staff -> edit the staff member per the PRD companion video 2026-07-30 09:17-09:41; exact toggle label to confirm live in the build),,
+AUTOMATION: HOLD - this part of the report is not built yet",SV-8636 (SBR spec v22 2026-08-17 Story 19 S19-R2; S19-R8 — toggle entry path Settings -> Staff -> edit the staff member per the PRD companion video 2026-07-30 09:17-09:41; exact toggle label to confirm live in the build),,
 A new WO opens with Sales Representative unassigned; a change saves at once,SBR — Work Order Sales Rep,Functional,High,1. At least one staff member is offered as a sales representative.,"1. Create a new Work Order (mark it ZZAUTOTEST) and read the Sales Representative field before touching it.
 2. Select a rep in the field, then navigate away WITHOUT any explicit save and reopen the WO.
 3. Repeat the unassigned-open check on a new Part Sale WO.","1. The new Work Order opens with the Sales Representative field UNASSIGNED — it is not pre-filled at creation.
@@ -1350,11 +1262,9 @@ A new WO opens with Sales Representative unassigned; a change saves at once,SBR 
 3. A new Part Sale WO also opens with the field unassigned.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S19-R3, S19-R4), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S19-R3, S19-R4), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R3; S19-R4),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8636 (SBR spec v22 2026-08-17 Story 19 S19-R3; S19-R4),,
 The Sales Representative selector is read-only when Invoiced or Paid,SBR — Work Order Sales Rep,Functional,Medium,"1. One Work Order is in ""Invoiced"" status and one is in ""Paid"" status (drive throwaway ZZAUTOTEST WOs into these states if needed).","1. Open the Invoiced WO and try to change the Sales Representative field.
 2. Open the Paid WO and try the same.","1. On the Invoiced WO the Sales Representative selector is read-only (non-interactive) — the assignment cannot be changed.
 2. On the Paid WO the selector is also read-only.
@@ -1362,11 +1272,9 @@ The Sales Representative selector is read-only when Invoiced or Paid,SBR — Wor
 4. Note for the tester: this field is only made read-only on the screen. If you find the sales rep can still be changed another way (through the back-end/API), that is expected — mark this test PASSED and do not raise it as a bug.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S19-R5), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S19-R5), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R5),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8636 (SBR spec v22 2026-08-17 Story 19 S19-R5),,
 "Invoice credit snapshot: WO rep, else customer rep, else unassigned",SBR — Work Order Sales Rep,Functional,Critical,1. Three throwaway ZZAUTOTEST setups: (a) a WO WITH a Sales Representative assigned; (b) a WO with NO rep whose customer HAS an assigned rep; (c) a WO with NO rep whose customer has NO assigned rep.,"1. Invoice all three WOs.
 2. On the report (Show Unassigned on, filters covering the invoices), find each invoice and note which row it sits under.
 3. Go back to WO (a), change its Sales Representative to a different rep, and re-check the already-created invoice on the report.","1. Invoice (a) is credited to the WO's Sales Representative.
@@ -1375,11 +1283,9 @@ AUTOMATION: READY
 4. Changing WO (a)'s Sales Representative afterward does NOT retroactively alter the invoice already created from it — the invoice stays credited to the rep snapshotted at invoice creation.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S19-R6, S19-N2, S22-R3), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S19-R6, S19-N2, S22-R3), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R6; S19-N2; §3 Key Decisions (single-rep snapshot); Story 22 S22-R3),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8636 (SBR spec v22 2026-08-17 Story 19 S19-R6; S19-N2; §3 Key Decisions (single-rep snapshot); Story 22 S22-R3),,
 "Customer record shows a ""Sales Representative"" row; ""Unassigned"" when none",SBR — Work Order Sales Rep,Functional,Medium,"1. One customer HAS an assigned sales representative and one customer has NONE.
 2. A Work Order exists whose bound Sales Representative can have their toggle turned off (arrange and restore afterward).","1. Open the assigned customer's record and read the left-panel sidebar.
 2. Open the unassigned customer's record and read the same row.
@@ -1389,11 +1295,10 @@ AUTOMATION: READY
 4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S19-R7, S19-E1), read on 11 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 11 August 2026, which is the authority.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S19-R7, S19-E1), read on 17 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026, which is the authority.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
-AUTOMATION: HOLD - waiting on an answer from the product owner
-","SV-8636 (SBR spec Story 19 S19-R7; S19-E1 — customer-card label RE-RULED to the full ""Sales Representative"" per the PRD companion video 2026-07-30 + Chris Ward answer 2026-07-31 Q5=A; the spec text still says ""Sales Rep"")",,
+AUTOMATION: HOLD - waiting on an answer from the product owner","SV-8636 (SBR spec v22 2026-08-17 Story 19 S19-R7; S19-E1 — customer-card label RE-RULED to the full ""Sales Representative"" per the PRD companion video 2026-07-30 + Chris Ward answer 2026-07-31 Q5=A; the spec text still says ""Sales Rep"")",,
 A rep's invoice detail rows are fetched from the server only on the first expand,SBR — API,Functional,Medium,"1. You are on the report with at least two rep rows, one with a large invoice count if seedable.
 2. The browser's network panel is open.
 3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Load the report and note which requests deliver the summary rows.
@@ -1403,10 +1308,9 @@ A rep's invoice detail rows are fetched from the server only on the first expand
 3. When a rep's matching-invoice count is large, its detail rows are paginated per rep.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S6-R2), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S6-R2), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R2),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8624 (SBR spec v22 2026-08-17 Story 6 S6-R2),,
 Sorting is performed server-side and returns the first page,SBR — API,Functional,Medium,"1. You are on the report with several rep rows; the network panel is open.
 2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Click a financial column header and watch the network panel.
 2. Click the same header again (descending) and watch again.","1. Each sort change triggers a server re-fetch of the rep summary rows in the requested order (a loading indicator shows during the fetch).
@@ -1414,10 +1318,9 @@ Sorting is performed server-side and returns the first page,SBR — API,Function
 3. Invoice detail rows continue to load lazily per rep on expand, unaffected by the sort mechanism.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S11-R5), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S11-R5), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R5),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8628 (SBR spec v22 2026-08-17 Story 11 S11-R5),,
 Grand totals are server-computed over the full filtered set,SBR — API,Functional,Medium,"1. You are on the report with several reps, at least one large enough that not all of its detail rows are loaded; the network panel is open.
 2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Load the report with everything collapsed and inspect the summary response and the grand Totals indicator.
 2. Compare the grand totals against the full filtered result (for example, via the Summary CSV), not just the loaded rows.","1. The grand totals arrive WITH the summary payload — the client does not derive them by summing loaded rows.
@@ -1425,10 +1328,9 @@ Grand totals are server-computed over the full filtered set,SBR — API,Function
 3. The on-screen grand Totals match the export's aggregate for the same filter set.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S10-R5), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S10-R5), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R5),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8627 (SBR spec v22 2026-08-17 Story 10 S10-R5),,
 All four exports are generated server-side against the active filters and sort,SBR — API,Functional,Medium,"1. You are on the report with filters and a column sort applied; at least one rep is left unexpanded; the network panel is open.
 2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Trigger each of the four downloads and observe the export requests and responses.
 2. Compare the delivered files against the active filters and sort.
@@ -1437,10 +1339,9 @@ All four exports are generated server-side against the active filters and sort,S
 3. An empty-but-loaded result still produces a valid file (header-row-only CSV / no-rows PDF).
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S14-R2a, S14-N2, S14-E3), read on 11 August 2026.
-Last checked against build v3.5-7168d14 on 8/6/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S14-R2a, S14-N2, S14-E3), read on 17 August 2026.
 
-AUTOMATION: READY",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R2a; S14-N2; S14-E3),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8631 (SBR spec v22 2026-08-17 Story 14 S14-R2a; S14-N2; S14-E3),,
 "The Expanded View PDF's 10,000-row cap is enforced server-side BEFORE generation",SBR — API,Functional,Medium,"1. A filter set producing more than 10,000 invoice detail rows exists or can be seeded — otherwise mark Blocked-Env with the reason.
 2. The network panel is open.
 3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Trigger ""Download Expanded View (PDF)"" against the over-cap filter set and observe the export request/response.
@@ -1453,10 +1354,10 @@ What you should see today: the spreadsheet download works and produces a file, b
 - If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S14-E2), read on 11 August 2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S14-E2), read on 17 August 2026.
 Last checked against build v3.5-16cf83f on 8/6/2026.
 
-AUTOMATION: READY - EXPECT FAIL (SV-8818)",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-E2),,
+AUTOMATION: READY - EXPECT FAIL (SV-8818)",SV-8631 (SBR spec v22 2026-08-17 Story 14 S14-E2),,
 Deactivating a rep first runs a server pre-check returning the count,SBR — API,Functional,Medium,"1. A staff member is active with the sales-representative toggle on and at least one customer assigned (seed a throwaway ZZAUTOTEST assignment if needed).
 2. The network panel is open.
 3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. In staff administration, toggle that staff member's active status off and watch the network panel BEFORE the dialog appears.
@@ -1466,8 +1367,6 @@ Deactivating a rep first runs a server pre-check returning the count,SBR — API
 3. No deactivation is committed by the pre-check itself — cancelling leaves the staff member's active status unchanged.
 
 ---
-This is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Sales By Representative report specification version 18 (S13-R1, S13-R4), read on 11 August 2026.
-Last checked against build v3.4.1-3d03023 on 8/4/2026.
+This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S13-R1, S13-R4), read on 17 August 2026.
 
-AUTOMATION: READY
-",SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-R1; S13-R4),,
+AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",SV-8630 (SBR spec v22 2026-08-17 Story 13 S13-R1; S13-R4),,

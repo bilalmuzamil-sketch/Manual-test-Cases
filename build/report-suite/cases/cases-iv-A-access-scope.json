@@ -1,288 +1,288 @@
 [
-  {
-    "id": "IV-NAV-01",
-    "area": "IV — Access & Display",
-    "title": "Inventory Value appears in the reports navigation under the Parts group",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (the report reuses it and adds no new permission — Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. Your role has the ordinary reports access."
-    ],
-    "steps": [
-      "1. Open the reports navigation.",
-      "2. Look inside the Parts group of reports.",
-      "3. Click the \"Inventory Value\" entry."
-    ],
-    "expected": "1. The reports navigation lists a report labeled \"Inventory Value\" under the Parts group.\n2. Clicking it opens the Inventory Value report.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S1-R1), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8668 (IV spec Story 1 S1-R1 — access = the one ordinary reports permission per Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\")",
-    "viu_status": "VIU-Pending",
-    "notes": "VIU-confirm the exact reports-navigation structure and the Parts group's on-screen label live. COMPANION-VIDEO 2026-07-30 (C2a/C3, 00:35-01:18): IV under the new Parts section confirmed ('Parts Velocity and Inventory Value will live under here'); order inside the section PO-flexible — do not fail on PV-vs-IV order. | 2026-08-03: reworded to the SINGLE ordinary reports permission. Driver = Chris Ward Q2=A (\"Collapse all report access into a single Reports permission\") + the QA lead's ruling 2026-08-03 verbatim \"Yes all the reports will be gated by ONE permission FOR NOW\". \"FOR NOW\" is deliberate — the model is modular and may expand, so a later expansion is a planned change, NOT a regression. re-verified whole against IV spec v3 (Confluence 720142338; lastModified 2026-07-29; re-checked live 2026-08-03). The exact on-screen name of the reports permission is VIU-confirm (no QA branch). The report's own written description still names a per-area permission — Chris owes that edit. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8668 (IV spec v5 2026-08-07 Story 1 S1-R1 — access = the one ordinary reports permission per Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\")",
-    "testrail_id": "C30534",
-    "section_id": 4364
-  },
-  {
-    "id": "IV-NAV-02",
-    "area": "IV — Access & Display",
-    "title": "One row per in-stock part at the selected locations valued at the resolved date",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. Several ZZAUTOTEST parts with positive on-hand quantity exist at your active location."
-    ],
-    "steps": [
-      "1. Open the Inventory Value report.",
-      "2. Compare the rows shown to the in-stock parts at the selected location(s).",
-      "3. Note the date range in the toolbar and which date the values represent."
-    ],
-    "expected": "1. The report shows one row for each in-stock part at the selected location(s).\n2. The values are valued as of the resolved date (the current stock for a range reaching today, or the closest recorded nightly snapshot for an earlier date — see the IV — As-of Date & Snapshots cases).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S1-R2, S1-R6), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8668 (IV spec v3 2026-07-29 Story 1 S1-R2; S1-R6)",
-    "viu_status": "VIU-Pending",
-    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8668 (IV spec v5 2026-08-07 Story 1 S1-R2; S1-R6)",
-    "testrail_id": "C30535",
-    "section_id": 4364
-  },
-  {
-    "id": "IV-NAV-03",
-    "area": "IV — Access & Display",
-    "title": "First visit defaults to the current calendar month and the active location",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh browser profile or cleared site data)."
-    ],
-    "steps": [
-      "1. Open the Inventory Value report.",
-      "2. Read the date-range control's value.",
-      "3. Read the Location filter's selection."
-    ],
-    "expected": "1. The date range defaults to the current calendar month.\n2. The location defaults to the user's currently active location.\nWhat you should see today: on a brand-new browser the Location filter reads \"All locations\" and the report covers every location you can reach, instead of opening on the one location you are currently working at. The date range does open correctly on This Month. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8931\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S1-R3, S7-R2), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8931)",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8668 (IV spec v3 2026-07-29 Story 1 S1-R3; Story 7 S7-R2)",
-    "viu_status": "VIU-Pending",
-    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8668 (IV spec v5 2026-08-07 Story 1 S1-R3; Story 7 S7-R2)",
-    "testrail_id": "C30536",
-    "section_id": 4364
-  },
-  {
-    "id": "IV-NAV-04",
-    "area": "IV — Access & Display",
-    "title": "Changing the date, location, Category, Vendor, part search, or sort reloads the rows from the server with the standard loading indicator",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The Inventory Value report is open with rows loaded."
-    ],
-    "steps": [
-      "1. Change the date range and watch the data area.",
-      "2. Change the location selection, then the Category filter, then the Vendor filter.",
-      "3. Type in the part search, then click a column header to change the sort — watching the data area each time."
-    ],
-    "expected": [
-      "1. Each change — date range, location, Category, Vendor, part search, sort — reloads the report's rows from the server.",
-      "2. While loading, the data area shows the standard reports loading indicator.",
-      "3. Existing rows are replaced only when the new data returns."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 1 S1-R4; S1-R5; S1-R7",
-    "viu_status": "Retired 2026-07-28 (merged into IV-FLT-02 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-    "notes": "Every filter on this report is server-side (Story 6 context note) — only the column selection is client-side. VIU-confirm the loading indicator's appearance.",
-    "api_related": false
-  },
-  {
-    "id": "IV-NAV-05",
-    "area": "IV — Access & Display",
-    "title": "The report is server-paginated: one page of rows at a time",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The selected location(s) hold more in-stock parts than fit on one page (seed ZZAUTOTEST parts if needed)."
-    ],
-    "steps": [
-      "1. Open the Inventory Value report and scroll to the bottom of the rows, then keep scrolling so further rows load.",
-      "2. Watch that new rows keep arriving as you scroll rather than all of them being present at once.",
-      "3. After scrolling well down the list, change a server-side filter (for example select a Category), then look at where the list starts.",
-      "4. Repeat with a part search and with a sort change."
-    ],
-    "expected": "1. The server returns one page of rows at a time rather than the whole list at once; further rows keep arriving as you scroll to the bottom.\n2. Changing any server-side filter (Date, Location, Category, Vendor), the part search, or the sort returns the FIRST page of the new result set - the list jumps back to the top.\n3. Note for the tester: on the build tested there were no numbered page controls on the screen - the rows loaded as you scrolled. That is a difference from the specification, which asks for the reports suite's standard page controls. Record what you see and carry on.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S1-R8), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8668 (IV spec v3 2026-07-29 Story 1 S1-R8; §2 Scale and data model)",
-    "viu_status": "VIU-Pending",
-    "notes": "The report is built for ~50–60k parts per org across locations, fully server-side (§2). VIU-confirm the page size and the pagination control's exact appearance (suite standard). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8668 (IV spec v5 2026-08-07 Story 1 S1-R8; §2 Scale and data model)",
-    "testrail_id": "C30538",
-    "section_id": 4364
-  },
-  {
-    "id": "IV-NAV-06",
-    "area": "IV — Access & Display",
-    "title": "No qualifying parts, day or location: the no-data message shows and no totals",
-    "priority": "High",
-    "type": "Negative",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. Three causes can be produced: (a) a location you can access holds no in-stock parts, (b) a past range ends entirely before nightly recording began (or its covered dates were pruned by retention), (c) the filters can be set so nothing qualifies."
-    ],
-    "steps": [
-      "1. Scope the report to the empty location and read the data area.",
-      "2. Select a Custom range ending before nightly recording began and read the data area and the bottom of the report.",
-      "3. Set the filters so nothing qualifies and re-read."
-    ],
-    "expected": "1. In every case the report shows the standard reports no-data message \"Empty bays, endless possibilities. Get Going!\" instead of rows.\n2. No totals row is shown in any of the cases.\nWhat you should see today: when nothing matches you get the column headings and nothing underneath - no rows and no message at all, where the words \"Empty bays, endless possibilities. Get Going!\" should appear. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8930\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S1-N2, S4-N1, S5-N1, S7-N2), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8930)",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8668 (IV spec v3 2026-07-29 Story 1 S1-N2; Story 4 S4-N1; Story 5 S5-N1; Story 7 S7-N2; Story 12; §7 User Feedback Summary)",
-    "viu_status": "VIU-Pending",
-    "notes": "No-data message text is verbatim from §7. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-EMPTY): absorbed IV-DATE-07, IV-LOC-05. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S4-N1 (no qualifying parts means no totals row) added — asserted in expected 2; the anchor did not travel when IV-TOT-05 was cut 2026-07-28. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8668 (IV spec v5 2026-08-07 Story 1 S1-N2; Story 4 S4-N1; Story 5 S5-N1; Story 7 S7-N2; Story 12; §7 User Feedback Summary)",
-    "testrail_id": "C30539",
-    "section_id": 4364
-  },
-  {
-    "id": "IV-SCOPE-01",
-    "area": "IV — Row Scope",
-    "title": "A part appears only if not a core charge and on-hand quantity is above zero",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. ZZAUTOTEST parts exist at your active location: a normal part with positive on-hand quantity, a core-charge part with a positive quantity, a part with exactly zero on-hand quantity, and (if producible) one with a negative on-hand quantity."
-    ],
-    "steps": [
-      "1. Open the Inventory Value report scoped to the location.",
-      "2. Look for the normal in-stock part.",
-      "3. Search for the core-charge part, the zero-quantity part, and the negative-quantity part by part number; check the totals row."
-    ],
-    "expected": "1. The normal, positive-quantity, non-core part appears as one row.\n2. The core-charge part is never listed — even with a positive quantity — and its value is not counted in the totals row.\n3. The zero-quantity and negative-quantity parts are not listed — only quantities greater than zero are valued.\n4. Only parts meeting BOTH conditions — not a core charge, and on-hand quantity greater than zero — are listed.\n5. A part that has sat without movement for a long time still appears and is still counted — there is no dead-stock exclusion; how long stock has sat makes no difference.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S2-R1, S2-R2, S2-N1, S2-N2), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8669 (IV spec v3 2026-07-29 Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions; Story 2 context note (no dead-stock exclusion))",
-    "viu_status": "VIU-Pending",
-    "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-SCOPE): absorbed IV-SCOPE-03, IV-SCOPE-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8669 (IV spec v5 2026-08-07 Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions; Story 2 context note (no dead-stock exclusion))",
-    "testrail_id": "C30540",
-    "section_id": 4365
-  },
-  {
-    "id": "IV-SCOPE-02",
-    "area": "IV — Row Scope",
-    "title": "A part stocked at two selected locations shows as two rows; never merged",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "A user with access to at least two locations and the inventory-reports permission.",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.",
-      "2. The same ZZAUTOTEST part is in stock (positive quantity) at two of those locations."
-    ],
-    "steps": [
-      "1. Open the Inventory Value report and select both locations in the Location filter.",
-      "2. Search for the part and count its rows."
-    ],
-    "expected": "1. The part appears twice — one row per location, each with that location's own quantity and values.\n2. The rows are NOT merged into one combined row; this is the documented v1 behavior.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Inventory Value report specification version 5 (S2-R3), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8669 (IV spec v3 2026-07-29 Story 2 S2-R3; §2 Known Limitations (v1))",
-    "viu_status": "VIU-Pending",
-    "notes": "DOCUMENTED LIMITATION — DO NOT FILE. One row per part per location is a deliberate v1 boundary. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8669 (IV spec v5 2026-08-07 Story 2 S2-R3; §2 Known Limitations (v1))",
-    "testrail_id": "C30541",
-    "section_id": 4365
-  },
-  {
-    "id": "IV-SCOPE-03",
-    "area": "IV — Row Scope",
-    "title": "A core-charge part is never shown, regardless of its quantity",
-    "priority": "High",
-    "type": "Negative",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. A core-charge part with a positive on-hand quantity exists at the selected location."
-    ],
-    "steps": [
-      "1. Open the Inventory Value report scoped to that location.",
-      "2. Search for the core-charge part by its part number.",
-      "3. Check the totals row for its value."
-    ],
-    "expected": [
-      "1. The core-charge part is not listed, even though its quantity is positive.",
-      "2. Its value is not counted in the totals row."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 2 S2-N1",
-    "viu_status": "Retired 2026-07-28 (merged into IV-SCOPE-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "IV-SCOPE-04",
-    "area": "IV — Row Scope",
-    "title": "A part with zero or negative on-hand quantity is never shown",
-    "priority": "High",
-    "type": "Negative",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. A part with exactly zero on-hand quantity exists at the selected location, and (if producible) one with a negative on-hand quantity."
-    ],
-    "steps": [
-      "1. Open the Inventory Value report scoped to that location.",
-      "2. Search for the zero-quantity part by its part number.",
-      "3. Search for the negative-quantity part if one exists."
-    ],
-    "expected": [
-      "1. The zero-quantity part is not listed.",
-      "2. The negative-quantity part is not listed either — only quantities greater than zero are valued."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 2 S2-N2",
-    "viu_status": "Retired 2026-07-28 (merged into IV-SCOPE-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "IV-SCOPE-05",
-    "area": "IV — Row Scope",
-    "title": "There is no dead-stock exclusion - a slow-moving part still appears",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. A part with positive, non-core stock exists that has had no movement for a long time (or the oldest-stocked part at the location is known)."
-    ],
-    "steps": [
-      "1. Open the Inventory Value report scoped to the location.",
-      "2. Search for the long-sitting part."
-    ],
-    "expected": [
-      "1. The long-sitting part appears and its value is counted — every part currently holding positive, non-core stock contributes to the on-hand value, however long it has sat.",
-      "---",
-      "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8669 (IV spec v3 2026-07-29 Story 2 context note (no dead-stock exclusion))",
-    "viu_status": "Retired - 2026-08-04 (CUT per the usefulness audit; its one assertion was folded into IV-SCOPE-01 (C30540) first; C30544 deleted from TestRail; prev status VIU-Pending)",
-    "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md | RETIRED 2026-08-04 (QA-lead-authorised merge/cut): CUT per the usefulness audit; its one assertion was folded into IV-SCOPE-01 (C30540) first; C30544 deleted from TestRail. delete_case C30544 returned HTTP 200 and the re-GET returned HTTP 400 = gone. Body kept locally for the record; row removed from testrail-id-map.csv (the mapping is preserved here and in the Step-1 count reconciliation). Prior viu_status was: VIU-Pending",
-    "api_related": false
-  }
+ {
+  "id": "IV-NAV-01",
+  "area": "IV — Access & Display",
+  "title": "Inventory Value appears in the reports navigation under the Parts group",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (the report reuses it and adds no new permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. Your role has the ordinary reports access."
+  ],
+  "steps": [
+   "1. Open the reports navigation.",
+   "2. Look inside the Parts group of reports.",
+   "3. Click the \"Inventory Value\" entry."
+  ],
+  "expected": "1. The reports navigation lists a report labeled \"Inventory Value\" under the Parts group.\n2. Clicking it opens the Inventory Value report.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S1-R1), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8668 (IV spec v10 2026-08-17 Story 1 S1-R1 — access = the one ordinary reports permission per Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\")",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU-confirm the exact reports-navigation structure and the Parts group's on-screen label live. COMPANION-VIDEO 2026-07-30 (C2a/C3, 00:35-01:18): IV under the new Parts section confirmed ('Parts Velocity and Inventory Value will live under here'); order inside the section PO-flexible — do not fail on PV-vs-IV order. | 2026-08-03: reworded to the SINGLE ordinary reports permission. Driver = Chris Ward Q2=A (\"Collapse all report access into a single Reports permission\") + the QA lead's ruling 2026-08-03 verbatim \"Yes all the reports will be gated by ONE permission FOR NOW\". \"FOR NOW\" is deliberate — the model is modular and may expand, so a later expansion is a planned change, NOT a regression. re-verified whole against IV spec v3 (Confluence 720142338; lastModified 2026-07-29; re-checked live 2026-08-03). The exact on-screen name of the reports permission is VIU-confirm (no QA branch). The report's own written description still names a per-area permission — Chris owes that edit. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8668 (IV spec v10 2026-08-17 Story 1 S1-R1 — access = the one ordinary reports permission per Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\")",
+  "testrail_id": "C30534",
+  "section_id": 4364
+ },
+ {
+  "id": "IV-NAV-02",
+  "area": "IV — Access & Display",
+  "title": "One row per in-stock part at the selected locations valued at the resolved date",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. Several ZZAUTOTEST parts with positive on-hand quantity exist at your active location."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report.",
+   "2. Compare the rows shown to the in-stock parts at the selected location(s).",
+   "3. Note the \"as of\" date in the toolbar and which date the values represent."
+  ],
+  "expected": "1. The report shows one row for each in-stock part at the selected location(s).\n2. The values are valued as of the resolved date (the current stock when the \"as of\" date is today, or the closest recorded nightly snapshot for an earlier \"as of\" date — see the IV — As-of Date & Snapshots cases).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S1-R2, S1-R6), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8668 (IV spec v10 2026-08-17 Story 1 S1-R2; S1-R6)",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8668 (IV spec v10 2026-08-17 Story 1 S1-R2; S1-R6)",
+  "testrail_id": "C30535",
+  "section_id": 4364
+ },
+ {
+  "id": "IV-NAV-03",
+  "area": "IV — Access & Display",
+  "title": "First visit defaults to today and the active location",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh browser profile or cleared site data)."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report.",
+   "2. Read the \"as of\" date control's value.",
+   "3. Read the Location filter's selection."
+  ],
+  "expected": "1. The \"as of\" date defaults to today.\n2. The location defaults to the user's currently active location.\nWhat you should see today: on a brand-new browser the Location filter reads \"All locations\" and the report covers every location you can reach, instead of opening on the one location you are currently working at. The \"as of\" date does open correctly on today. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8931\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\nNote for the tester: an earlier version of this report offered a date range with ready-made periods. The current Inventory Value report specification (version 10, S5-R1/S5-R7) replaces that with a single \"as of\" date control - one calendar day, defaulting to today and capped at today - because a stock valuation is a point-in-time position, not an amount over a period. Follow the current specification.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S1-R3, S7-R2), read on 17 August 2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8931)",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8668 (IV spec v10 2026-08-17 Story 1 S1-R3; Story 7 S7-R2)",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8668 (IV spec v10 2026-08-17 Story 1 S1-R3; Story 7 S7-R2)",
+  "testrail_id": "C30536",
+  "section_id": 4364
+ },
+ {
+  "id": "IV-NAV-04",
+  "area": "IV — Access & Display",
+  "title": "Changing the date, location, Category, Vendor, part search, or sort reloads the rows from the server with the standard loading indicator",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The Inventory Value report is open with rows loaded."
+  ],
+  "steps": [
+   "1. Change the date range and watch the data area.",
+   "2. Change the location selection, then the Category filter, then the Vendor filter.",
+   "3. Type in the part search, then click a column header to change the sort — watching the data area each time."
+  ],
+  "expected": [
+   "1. Each change — date range, location, Category, Vendor, part search, sort — reloads the report's rows from the server.",
+   "2. While loading, the data area shows the standard reports loading indicator.",
+   "3. Existing rows are replaced only when the new data returns."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 1 S1-R4; S1-R5; S1-R7",
+  "viu_status": "Retired 2026-07-28 (merged into IV-FLT-02 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+  "notes": "Every filter on this report is server-side (Story 6 context note) — only the column selection is client-side. VIU-confirm the loading indicator's appearance.",
+  "api_related": false
+ },
+ {
+  "id": "IV-NAV-05",
+  "area": "IV — Access & Display",
+  "title": "The report is server-paginated: one page of rows at a time",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The selected location(s) hold more in-stock parts than fit on one page (seed ZZAUTOTEST parts if needed)."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report and scroll to the bottom of the rows, then keep scrolling so further rows load.",
+   "2. Watch that new rows keep arriving as you scroll rather than all of them being present at once.",
+   "3. After scrolling well down the list, change a server-side filter (for example select a Category), then look at where the list starts.",
+   "4. Repeat with a part search and with a sort change."
+  ],
+  "expected": "1. The server returns one page of rows at a time rather than the whole list at once; further rows keep arriving as you scroll to the bottom.\n2. Changing any server-side filter (Date, Location, Category, Vendor), the part search, or the sort returns the FIRST page of the new result set - the list jumps back to the top.\n3. Note for the tester: on the build tested there were no numbered page controls on the screen - the rows loaded as you scrolled. That is a difference from the specification, which asks for the reports suite's standard page controls. Record what you see and carry on.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S1-R8), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8668 (IV spec v10 2026-08-17 Story 1 S1-R8; §2 Scale and data model)",
+  "viu_status": "VIU-Pending",
+  "notes": "The report is built for ~50–60k parts per org across locations, fully server-side (§2). VIU-confirm the page size and the pagination control's exact appearance (suite standard). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8668 (IV spec v10 2026-08-17 Story 1 S1-R8; §2 Scale and data model)",
+  "testrail_id": "C30538",
+  "section_id": 4364
+ },
+ {
+  "id": "IV-NAV-06",
+  "area": "IV — Access & Display",
+  "title": "No qualifying parts, day or location: the no-data message shows and no totals",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. Three causes can be produced: (a) a location you can access holds no in-stock parts, (b) a past range ends entirely before nightly recording began (or its covered dates were pruned by retention), (c) the filters can be set so nothing qualifies."
+  ],
+  "steps": [
+   "1. Scope the report to the empty location and read the data area.",
+   "2. Set the \"as of\" date to a day before nightly recording began and read the data area and the bottom of the report.",
+   "3. Set the filters so nothing qualifies and re-read."
+  ],
+  "expected": "1. In every case the report shows the standard reports no-data message \"Empty bays, endless possibilities. Get Going!\" instead of rows.\n2. No totals row is shown in any of the cases.\nWhat you should see today: when nothing matches you get the column headings and nothing underneath - no rows and no message at all, where the words \"Empty bays, endless possibilities. Get Going!\" should appear. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8930\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S1-N2, S4-N1, S5-N1, S7-N2), read on 17 August 2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8930)",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8668 (IV spec v10 2026-08-17 Story 1 S1-N2; Story 4 S4-N1; Story 5 S5-N1; Story 7 S7-N2; Story 12; §7 User Feedback Summary)",
+  "viu_status": "VIU-Pending",
+  "notes": "No-data message text is verbatim from §7. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-EMPTY): absorbed IV-DATE-07, IV-LOC-05. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S4-N1 (no qualifying parts means no totals row) added — asserted in expected 2; the anchor did not travel when IV-TOT-05 was cut 2026-07-28. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8668 (IV spec v10 2026-08-17 Story 1 S1-N2; Story 4 S4-N1; Story 5 S5-N1; Story 7 S7-N2; Story 12; §7 User Feedback Summary)",
+  "testrail_id": "C30539",
+  "section_id": 4364
+ },
+ {
+  "id": "IV-SCOPE-01",
+  "area": "IV — Row Scope",
+  "title": "A part appears only if not a core charge and on-hand quantity is above zero",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. ZZAUTOTEST parts exist at your active location: a normal part with positive on-hand quantity, a core-charge part with a positive quantity, a part with exactly zero on-hand quantity, and (if producible) one with a negative on-hand quantity."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report scoped to the location.",
+   "2. Look for the normal in-stock part.",
+   "3. Search for the core-charge part, the zero-quantity part, and the negative-quantity part by part number; check the totals row."
+  ],
+  "expected": "1. The normal, positive-quantity, non-core part appears as one row.\n2. The core-charge part is never listed — even with a positive quantity — and its value is not counted in the totals row.\n3. The zero-quantity and negative-quantity parts are not listed — only quantities greater than zero are valued.\n4. Only parts meeting BOTH conditions — not a core charge, and on-hand quantity greater than zero — are listed.\n5. A part that has sat without movement for a long time still appears and is still counted — there is no dead-stock exclusion; how long stock has sat makes no difference.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S2-R1, S2-R2, S2-N1, S2-N2), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8669 (IV spec v10 2026-08-17 Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions; Story 2 context note (no dead-stock exclusion))",
+  "viu_status": "VIU-Pending",
+  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-SCOPE): absorbed IV-SCOPE-03, IV-SCOPE-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8669 (IV spec v10 2026-08-17 Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions; Story 2 context note (no dead-stock exclusion))",
+  "testrail_id": "C30540",
+  "section_id": 4365
+ },
+ {
+  "id": "IV-SCOPE-02",
+  "area": "IV — Row Scope",
+  "title": "A part stocked at two selected locations shows as two rows; never merged",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with access to at least two locations and the inventory-reports permission.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.",
+   "2. The same ZZAUTOTEST part is in stock (positive quantity) at two of those locations."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report and select both locations in the Location filter.",
+   "2. Search for the part and count its rows."
+  ],
+  "expected": "1. The part appears twice — one row per location, each with that location's own quantity and values.\n2. The rows are NOT merged into one combined row; this is the documented v1 behavior.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S2-R3), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8669 (IV spec v10 2026-08-17 Story 2 S2-R3; §2 Known Limitations (v1))",
+  "viu_status": "VIU-Pending",
+  "notes": "DOCUMENTED LIMITATION — DO NOT FILE. One row per part per location is a deliberate v1 boundary. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8669 (IV spec v10 2026-08-17 Story 2 S2-R3; §2 Known Limitations (v1))",
+  "testrail_id": "C30541",
+  "section_id": 4365
+ },
+ {
+  "id": "IV-SCOPE-03",
+  "area": "IV — Row Scope",
+  "title": "A core-charge part is never shown, regardless of its quantity",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A core-charge part with a positive on-hand quantity exists at the selected location."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report scoped to that location.",
+   "2. Search for the core-charge part by its part number.",
+   "3. Check the totals row for its value."
+  ],
+  "expected": [
+   "1. The core-charge part is not listed, even though its quantity is positive.",
+   "2. Its value is not counted in the totals row."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 2 S2-N1",
+  "viu_status": "Retired 2026-07-28 (merged into IV-SCOPE-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "IV-SCOPE-04",
+  "area": "IV — Row Scope",
+  "title": "A part with zero or negative on-hand quantity is never shown",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A part with exactly zero on-hand quantity exists at the selected location, and (if producible) one with a negative on-hand quantity."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report scoped to that location.",
+   "2. Search for the zero-quantity part by its part number.",
+   "3. Search for the negative-quantity part if one exists."
+  ],
+  "expected": [
+   "1. The zero-quantity part is not listed.",
+   "2. The negative-quantity part is not listed either — only quantities greater than zero are valued."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 2 S2-N2",
+  "viu_status": "Retired 2026-07-28 (merged into IV-SCOPE-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "IV-SCOPE-05",
+  "area": "IV — Row Scope",
+  "title": "There is no dead-stock exclusion - a slow-moving part still appears",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A part with positive, non-core stock exists that has had no movement for a long time (or the oldest-stocked part at the location is known)."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report scoped to the location.",
+   "2. Search for the long-sitting part."
+  ],
+  "expected": [
+   "1. The long-sitting part appears and its value is counted — every part currently holding positive, non-core stock contributes to the on-hand value, however long it has sat.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8669 (IV spec v3 2026-07-29 Story 2 context note (no dead-stock exclusion))",
+  "viu_status": "Retired - 2026-08-04 (CUT per the usefulness audit; its one assertion was folded into IV-SCOPE-01 (C30540) first; C30544 deleted from TestRail; prev status VIU-Pending)",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md | RETIRED 2026-08-04 (QA-lead-authorised merge/cut): CUT per the usefulness audit; its one assertion was folded into IV-SCOPE-01 (C30540) first; C30544 deleted from TestRail. delete_case C30544 returned HTTP 200 and the re-GET returned HTTP 400 = gone. Body kept locally for the record; row removed from testrail-id-map.csv (the mapping is preserved here and in the Step-1 count reconciliation). Prior viu_status was: VIU-Pending",
+  "api_related": false
+ }
 ]

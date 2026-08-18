@@ -1,130 +1,138 @@
 [
-  {
-    "id": "TU-VIS-01",
-    "area": "TU — Visual & Accessibility",
-    "title": "All-white table with no row shading; toolbar controls in the fixed order",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. You are on the Technician Utilization report with rows loaded, in light mode."
-    ],
-    "steps": [
-      "1. Look at the column headers and the data rows' backgrounds.",
-      "2. Read the toolbar controls left to right.",
-      "3. Look for the expand/collapse-all control's position."
-    ],
-    "expected": "1. The report uses an all-white table: white column headers and white data cells, with NO alternating row shading.\n2. The toolbar controls run, left to right: the three-dot download menu, the Column Selection control, the date-range picker, the technician filter, and the Location filter (rightmost).\n3. The expand/collapse-all control is NOT a toolbar control - it lives in the table header (in the Technician column).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S8-R1, S8-R2, S8-R3), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "SV-8655 (TU spec v5 2026-07-29 S8-R1; S8-R2; S8-R3 — toolbar order rewritten: Column Selection inserted after the three-dot menu; and the date-range picker now precedes the technician filter)",
-    "viu_status": "VIU-Pending",
-    "notes": "S8 context note: the requirements do not spell out every icon/styling detail - the spec's companion video was removed by the 2026-07-16 header cleanup while S8's context note still cites it (spec self-inconsistency, flagged for Chris - do not block on it); anything the requirements do not state is VIU-confirm. COMPANION-VIDEO 2026-07-30 (C12, 08:06-08:51) VISUAL-VIU-CONFIRM: 'All reports are modeled after technician efficiency ... the most recently updated visual representation ... that won't hold forever ... ideally all six reports will look as close together as possible.' Use Technician Efficiency as the side-by-side styling reference at VIU (grain of salt — the reference may move); ignore the PO's local coloring drift (fake/local artifact). CHANGED by the TU spec v5 2026-07-29 S8-R3 (was: \"the three-dot download menu, the technician filter, the date-range picker, and the location filter\"; now: \"the three-dot download menu, the Column Selection control, the date-range picker, the technician filter, and the location filter (rightmost)\"). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8655 (TU spec v7 2026-08-07 S8-R1; S8-R2; S8-R3 — toolbar order rewritten: Column Selection inserted after the three-dot menu; and the date-range picker now precedes the technician filter)",
-    "testrail_id": "C30447",
-    "section_id": 4348
-  },
-  {
-    "id": "TU-VIS-02",
-    "area": "TU — Visual & Accessibility",
-    "title": "Dark mode keeps every report element legible",
-    "priority": "Low",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. You are on the Technician Utilization report with rows loaded, including a \"—\" Est. Lost Labor cell.",
-      "2. Dark mode is available in the application."
-    ],
-    "steps": [
-      "1. Switch the application to dark mode.",
-      "2. Check each element: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and a \"—\" glyph.",
-      "3. Look at the information icon in dark mode, then switch back to light mode and look at it again.",
-      "4. Check the Total Hours link's underline/affordance and focus indicator in both modes."
-    ],
-    "expected": "1. The report supports dark mode: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and the \"—\" glyph are all clearly legible in dark mode.\n2. In BOTH light mode and dark mode the information icon is clearly visible against the background behind it - you can see it at a glance and it does not disappear into the background.\n3. The Total Hours link's non-color affordance and focus indicator apply in both modes.\n4. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can see the icon easily in both modes, and only report it if you cannot. (The design rule behind this is a minimum 3:1 contrast ratio, which the design and engineering team check with a contrast tool - not by hand.)\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S8-R9, S8-R13, S8-R14), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "SV-8655 (TU spec v5 2026-07-29 S8-R9; S8-R13; S8-R14 — dark-mode legibility of every named element; the info icon at ≥ 3:1 in both modes; the Total Hours link affordance/focus in both modes; the ratio is design-token-owned)",
-    "viu_status": "VIU-Pending",
-    "notes": "Measure contrast with a devtools/contrast tool at VIU. | 2026-08-03 verifier-fix [D/V-7]: Removes the \"Measure the information icon's contrast\" step and restates it as a by-eye legibility check; the 3:1 figure is kept as the design/engineering-owned measurement. Refs pinned to TU S8-R9/S8-R13/S8-R14 + spec version. RULE 41: Re-verified whole against TU spec v5 2026-07-29: title, preconditions 1-2, steps 1-4, expected 1-3, refs. S8-R9 verbatim L530 lists exactly the elements the case checks (page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, the \"—\" glyph); S8-R13 L545 is the ≥ 3:1 icon rule; S8-R14 L547 the link affordance/focus rule in both modes. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8655 (TU spec v7 2026-08-07 S8-R9; S8-R13; S8-R14 — dark-mode legibility of every named element; the info icon at ≥ 3:1 in both modes; the Total Hours link affordance/focus in both modes; the ratio is design-token-owned)",
-    "testrail_id": "C30448",
-    "section_id": 4348
-  },
-  {
-    "id": "TU-COL-01",
-    "area": "TU — Visual & Accessibility",
-    "title": "Column Selection: Technician always on, the other five toggleable, remembered",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. You are on the Technician Utilization report with rows loaded.",
-      "2. This browser has never saved settings for this report (fresh visit), so every column is at its default.",
-      "3. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
-    ],
-    "steps": "1. Find the column-selection button in the toolbar and hover it to read its tooltip.\n2. With the button focused, read the name assistive technology gives it — use the browser's accessibility inspector or a screen reader.\n3. Note its position relative to the three-dot download menu.\n4. Open it and read every toggle in the list, and which ones are on — including whether Location is among them.\n5. Turn Est. Lost Labor off, then turn Internal Hours off, watching the table each time.\n6. Turn both back on and check where each column lands.\n7. Reload the page, then close the browser, reopen it and return to the report.",
-    "expected": "1. The control is an icon button whose tooltip reads \"Column Selection\", sitting immediately after the three-dot download menu in the toolbar.\n2. Because the button shows an icon and no text, it still carries a name that assistive technology reads out — it is not left unnamed.\n3. The list offers a toggle for each data column — Total Hours, WO Hours, Internal Hours, Utilization % and Est. Lost Labor — and all five are on by default. If your login can reach more than one location, Location is listed as well and is also on by default.\n4. Technician is always shown and cannot be turned off (it is not offered as a toggle).\n5. Location is listed here for anyone whose login can reach more than one location; it is on by default and can be switched off like any other column. Someone whose login reaches only one location never sees the column and is never offered it in this list.\n6. Turning a toggle off hides that column (header and cells) immediately, with no reload; turning it back on returns it to its usual place in the fixed left-to-right order — the remaining columns never reorder.\n7. Est. Lost Labor can now be hidden like any other column (it used to be always on).\n8. Your column choice is remembered in this browser and is still applied when you come back.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S10-R1, S10-R2, S10-R3, S10-R4, S10-R5, S10-R6, S9-R9, S8-R16), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/5/2026.\n\nAUTOMATION: READY\n",
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "SV-8655; SV-8582 (TU spec v5 2026-07-29 Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R5; S10-R6 column selector + Story 8 S8-R16 accessible name — Story 10 has NO owning Jira story so epic SV-8582 is used and FLAGGED; S8-R16 is owned by SV-8655)",
-    "viu_status": "VIU-Pending",
-    "notes": "NEW 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) - reverses the earlier no-column-selector state (kickoff video P18 had vetoed one for TU; the message adds it 'for visual/natural conformance' = Story 8, SV-8655). Modeled on the suite's existing column-selector cases (SBC-COL-01 C30156 / SBR-COL-01 C30265) but kept to ONE case - the per-column list, defaults, and persistence behaviour are unpinned until the spec changelog lands; do not invent (Rule 9). No C-ID yet (needs authorized add_case; section = TU — Visual & Accessibility, sits with Story 8). RATIFIED by the TU spec v5 changelog 2026-07-29 (\"Added the suite-standard column selector; made Est. Lost Labor a toggleable (hideable) column\") — the group-message placeholder is superseded. Persistence is per browser, not per account. TRACEABILITY NOTE: the TU spec's NEW Story 10 (Column Selection and Persistence, added 2026-07-29) has NO Jira story ticket in epic SV-8582 — the TU story tickets stop at SV-8656 (Story 9, Location Filter). This case is cited to the nearest owning story; ASK for the new Story-10 ticket key and re-cite when it exists. COVERAGE RE-DERIVATION 2026-07-31: extended to close S8-R16 — \"The icon-only Column Selection control carries an accessible name exposed to assistive technology.\" Expected 1 checks the TOOLTIP which is not the accessible name; the suite does test accessible names elsewhere (TU-DAY-01 C30418 / TU-DAY-04 C30421) so this is observable and was genuinely untested. Owning story = SV-8655 (TU Story 8 Visual Conformance and Accessibility) — added; the epic key stays for the Story-10 half. Extended rather than duplicated (Rule 28) — same control. The spec does not state the name's wording so it is left VIU-confirm; do not invent it. Not live-verified. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": false,
-    "refs": "SV-8655; SV-8582 (TU spec v7 2026-08-07 S10-R1; S10-R2; S10-R3; S10-R4; S10-R5; S10-R6 column selector incl. the toggleable Location column per S9-R9 + S8-R16 accessible name — Story 10 has NO owning Jira story so epic SV-8582 is used and FLAGGED)",
-    "testrail_id": "C38859",
-    "section_id": 4348
-  },
-  {
-    "id": "TU-API-01",
-    "area": "TU — API",
-    "title": "The per-day breakdown is fetched only when a technician row is expanded",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. You are on the Technician Utilization report with rows loaded and browser devtools (network tab) open.",
-      "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
-    ],
-    "steps": [
-      "1. Load the report and inspect the initial data response for per-day content.",
-      "2. Expand a technician row and watch the network traffic.",
-      "3. Collapse and re-expand after a data reload."
-    ],
-    "expected": "1. The initial report payload does NOT ship the day rows.\n2. Expanding a technician row issues an on-demand backend request that returns that technician's per-day breakdown.\n3. Because expansion state resets (all collapsed) on any data reload, nothing is lost by the lazy loading - re-expanding fetches fresh day data.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S4-R2, S4-R5), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY",
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "SV-8651 (TU spec v5 2026-07-29 S4-R2; S4-R5)",
-    "viu_status": "VIU-Pending",
-    "notes": "Generic backend-behavior case (Standing Rule 4) - the spec pins no REST contract; do NOT assert endpoint paths; record the observed requests at VIU. KNOWN-DELTA WATCH: lazy per-day loading came in the 2026-07-16 round - the build may lag. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": true,
-    "refs": "SV-8651 (TU spec v7 2026-08-07 S4-R2; S4-R5)",
-    "testrail_id": "C30449",
-    "section_id": 4349
-  },
-  {
-    "id": "TU-API-02",
-    "area": "TU — API",
-    "title": "Date-range and location changes trigger a fresh server load",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. You are on the Technician Utilization report with rows loaded and browser devtools (network tab) open.",
-      "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
-    ],
-    "steps": [
-      "1. Change the date range and watch the network traffic.",
-      "2. Change the location selection and watch the traffic.",
-      "3. Deselect/re-select a technician in the Filter by Technician filter and watch the traffic.",
-      "4. Click several column headers to sort and watch the traffic."
-    ],
-    "expected": "1. A date-range change triggers a fresh server load of the rows.\n2. A location change triggers a fresh server load scoped to the selected set.\n3. The technician filter causes NO server request - it works on screen only (hide/show + Summary recalculation).\n4. Column sorting causes NO server request - it is applied on screen to the loaded rows.\nWhat you should see today: items 1 and 2 pass, but items 3 and 4 do not: ticking a technician in the technician filter sends a request to the server, and so does every click on a column heading. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8945\n· If you see exactly that, mark this test FAILED and do not raise anything new.\n· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 11 August 2026, and the Technician Utilization report specification version 7 (S1-R5, S9-R3, S2-R13), read on 11 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8945)",
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "SV-8648 (TU spec v5 2026-07-29 S1-R5; S9-R3; S5 context note; S2-R13; §3)",
-    "viu_status": "VIU-Pending",
-    "notes": "Generic backend-behavior case (Standing Rule 4) - no endpoint paths asserted (none exist in the spec); record the observed requests at VIU. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
-    "api_related": true,
-    "refs": "SV-8648 (TU spec v7 2026-08-07 S1-R5; S9-R3; S5 context note; S2-R13; §3)",
-    "testrail_id": "C30450",
-    "section_id": 4349
-  }
+ {
+  "id": "TU-VIS-01",
+  "area": "TU — Visual & Accessibility",
+  "title": "All-white table with no row shading; toolbar controls in the fixed order",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. You are on the Technician Utilization report with rows loaded, in light mode."
+  ],
+  "steps": [
+   "1. Look at the column headers and the data rows' backgrounds.",
+   "2. Read the toolbar controls left to right.",
+   "3. Look for the expand/collapse-all control's position."
+  ],
+  "expected": "1. The report uses an all-white table: white column headers and white data cells, with NO alternating row shading.\n2. The toolbar controls run, left to right: the three-dot download menu, the Column Selection control, the date-range picker, the technician filter, and the Location filter (rightmost).\n3. The expand/collapse-all control is NOT a toolbar control - it lives in the table header (in the Technician column).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S8-R1, S8-R2, S8-R3), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "SV-8655 (TU spec v9 2026-08-17 S8-R1; S8-R2; S8-R3 — toolbar order rewritten: Column Selection inserted after the three-dot menu; and the date-range picker now precedes the technician filter)",
+  "viu_status": "VIU-Pending",
+  "notes": "S8 context note: the requirements do not spell out every icon/styling detail - the spec's companion video was removed by the 2026-07-16 header cleanup while S8's context note still cites it (spec self-inconsistency, flagged for Chris - do not block on it); anything the requirements do not state is VIU-confirm. COMPANION-VIDEO 2026-07-30 (C12, 08:06-08:51) VISUAL-VIU-CONFIRM: 'All reports are modeled after technician efficiency ... the most recently updated visual representation ... that won't hold forever ... ideally all six reports will look as close together as possible.' Use Technician Efficiency as the side-by-side styling reference at VIU (grain of salt — the reference may move); ignore the PO's local coloring drift (fake/local artifact). CHANGED by the TU spec v5 2026-07-29 S8-R3 (was: \"the three-dot download menu, the technician filter, the date-range picker, and the location filter\"; now: \"the three-dot download menu, the Column Selection control, the date-range picker, the technician filter, and the location filter (rightmost)\"). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8655 (TU spec v9 2026-08-17 S8-R1; S8-R2; S8-R3 — toolbar order rewritten: Column Selection inserted after the three-dot menu; and the date-range picker now precedes the technician filter)",
+  "testrail_id": "C30447",
+  "section_id": 4348
+ },
+ {
+  "id": "TU-VIS-02",
+  "area": "TU — Visual & Accessibility",
+  "title": "Dark mode keeps every report element legible",
+  "priority": "Low",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. You are on the Technician Utilization report with rows loaded, including a \"—\" Est. Lost Labor cell.",
+   "2. Dark mode is available in the application."
+  ],
+  "steps": [
+   "1. Switch the application to dark mode.",
+   "2. Check each element: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and a \"—\" glyph.",
+   "3. Look at the information icon in dark mode, then switch back to light mode and look at it again.",
+   "4. Check the Total Hours link's underline/affordance and focus indicator in both modes."
+  ],
+  "expected": "1. The report supports dark mode: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and the \"—\" glyph are all clearly legible in dark mode.\n2. In BOTH light mode and dark mode the information icon is clearly visible against the background behind it - you can see it at a glance and it does not disappear into the background.\n3. The Total Hours link's non-color affordance and focus indicator apply in both modes.\n4. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can see the icon easily in both modes, and only report it if you cannot. (The design rule behind this is a minimum 3:1 contrast ratio, which the design and engineering team check with a contrast tool - not by hand.)\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S8-R9, S8-R13, S8-R14), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "SV-8655 (TU spec v9 2026-08-17 S8-R9; S8-R13; S8-R14 — dark-mode legibility of every named element; the info icon at ≥ 3:1 in both modes; the Total Hours link affordance/focus in both modes; the ratio is design-token-owned)",
+  "viu_status": "VIU-Pending",
+  "notes": "Measure contrast with a devtools/contrast tool at VIU. | 2026-08-03 verifier-fix [D/V-7]: Removes the \"Measure the information icon's contrast\" step and restates it as a by-eye legibility check; the 3:1 figure is kept as the design/engineering-owned measurement. Refs pinned to TU S8-R9/S8-R13/S8-R14 + spec version. RULE 41: Re-verified whole against TU spec v5 2026-07-29: title, preconditions 1-2, steps 1-4, expected 1-3, refs. S8-R9 verbatim L530 lists exactly the elements the case checks (page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, the \"—\" glyph); S8-R13 L545 is the ≥ 3:1 icon rule; S8-R14 L547 the link affordance/focus rule in both modes. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8655 (TU spec v9 2026-08-17 S8-R9; S8-R13; S8-R14 — dark-mode legibility of every named element; the info icon at ≥ 3:1 in both modes; the Total Hours link affordance/focus in both modes; the ratio is design-token-owned)",
+  "testrail_id": "C30448",
+  "section_id": 4348
+ },
+ {
+  "id": "TU-COL-01",
+  "area": "TU — Visual & Accessibility",
+  "title": "Column Selection: Technician always on, the other five toggleable, remembered",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. You are on the Technician Utilization report with rows loaded.",
+   "2. This browser has never saved settings for this report (fresh visit), so every column is at its default.",
+   "3. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+  ],
+  "steps": [
+   "1. Find the column-selection button in the toolbar and hover it to read its tooltip.",
+   "2. With the button focused, read the name assistive technology gives it — use the browser's accessibility inspector or a screen reader.",
+   "3. Note its position relative to the three-dot download menu.",
+   "4. Open it and read every toggle in the list, and which ones are on — including whether Location is among them.",
+   "5. Turn Est. Lost Labor off, then turn Internal Hours off, watching the table each time.",
+   "6. Turn both back on and check where each column lands.",
+   "7. Reload the page, then close the browser, reopen it and return to the report."
+  ],
+  "expected": "1. The control is an icon button whose tooltip reads \"Column Selection\", sitting immediately after the three-dot download menu in the toolbar.\n2. Because the button shows an icon and no text, it still carries a name that assistive technology reads out — it is not left unnamed.\n3. The list offers a toggle for each data column — Total Hours, WO Hours, Internal Hours, Utilization % and Est. Lost Labor — and all five are on by default. If your login can reach more than one location, Location is listed as well and is also on by default.\n4. Technician is always shown and cannot be turned off (it is not offered as a toggle).\n5. Location is listed here for anyone whose login can reach more than one location; it is on by default and can be switched off like any other column. Someone whose login reaches only one location never sees the column and is never offered it in this list.\n6. Turning a toggle off hides that column (header and cells) immediately, with no reload; turning it back on returns it to its usual place in the fixed left-to-right order — the remaining columns never reorder.\n7. Est. Lost Labor can now be hidden like any other column (it used to be always on).\n8. Your column choice is remembered in this browser and is still applied when you come back.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S10-R1, S10-R2, S10-R3, S10-R4, S10-R5, S10-R6, S9-R9, S8-R16), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "SV-8655; SV-8582 (TU spec v9 2026-08-17 S10-R1; S10-R2; S10-R3; S10-R4; S10-R5; S10-R6 column selector incl. the toggleable Location column per S9-R9 + S8-R16 accessible name — Story 10 has NO owning Jira story so epic SV-8582 is used and FLAGGED)",
+  "viu_status": "VIU-Pending",
+  "notes": "NEW 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) - reverses the earlier no-column-selector state (kickoff video P18 had vetoed one for TU; the message adds it 'for visual/natural conformance' = Story 8, SV-8655). Modeled on the suite's existing column-selector cases (SBC-COL-01 C30156 / SBR-COL-01 C30265) but kept to ONE case - the per-column list, defaults, and persistence behaviour are unpinned until the spec changelog lands; do not invent (Rule 9). No C-ID yet (needs authorized add_case; section = TU — Visual & Accessibility, sits with Story 8). RATIFIED by the TU spec v5 changelog 2026-07-29 (\"Added the suite-standard column selector; made Est. Lost Labor a toggleable (hideable) column\") — the group-message placeholder is superseded. Persistence is per browser, not per account. TRACEABILITY NOTE: the TU spec's NEW Story 10 (Column Selection and Persistence, added 2026-07-29) has NO Jira story ticket in epic SV-8582 — the TU story tickets stop at SV-8656 (Story 9, Location Filter). This case is cited to the nearest owning story; ASK for the new Story-10 ticket key and re-cite when it exists. COVERAGE RE-DERIVATION 2026-07-31: extended to close S8-R16 — \"The icon-only Column Selection control carries an accessible name exposed to assistive technology.\" Expected 1 checks the TOOLTIP which is not the accessible name; the suite does test accessible names elsewhere (TU-DAY-01 C30418 / TU-DAY-04 C30421) so this is observable and was genuinely untested. Owning story = SV-8655 (TU Story 8 Visual Conformance and Accessibility) — added; the epic key stays for the Story-10 half. Extended rather than duplicated (Rule 28) — same control. The spec does not state the name's wording so it is left VIU-confirm; do not invent it. Not live-verified. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": false,
+  "refs": "SV-8655; SV-8582 (TU spec v9 2026-08-17 S10-R1; S10-R2; S10-R3; S10-R4; S10-R5; S10-R6 column selector incl. the toggleable Location column per S9-R9 + S8-R16 accessible name — Story 10 has NO owning Jira story so epic SV-8582 is used and FLAGGED)",
+  "testrail_id": "C38859",
+  "section_id": 4348
+ },
+ {
+  "id": "TU-API-01",
+  "area": "TU — API",
+  "title": "The per-day breakdown is fetched only when a technician row is expanded",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. You are on the Technician Utilization report with rows loaded and browser devtools (network tab) open.",
+   "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
+  ],
+  "steps": [
+   "1. Load the report and inspect the initial data response for per-day content.",
+   "2. Expand a technician row and watch the network traffic.",
+   "3. Collapse and re-expand after a data reload."
+  ],
+  "expected": "1. The initial report payload does NOT ship the day rows.\n2. Expanding a technician row issues an on-demand backend request that returns that technician's per-day breakdown.\n3. Because expansion state resets (all collapsed) on any data reload, nothing is lost by the lazy loading - re-expanding fetches fresh day data.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S4-R2, S4-R5), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "SV-8651 (TU spec v9 2026-08-17 S4-R2; S4-R5)",
+  "viu_status": "VIU-Pending",
+  "notes": "Generic backend-behavior case (Standing Rule 4) - the spec pins no REST contract; do NOT assert endpoint paths; record the observed requests at VIU. KNOWN-DELTA WATCH: lazy per-day loading came in the 2026-07-16 round - the build may lag. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": true,
+  "refs": "SV-8651 (TU spec v9 2026-08-17 S4-R2; S4-R5)",
+  "testrail_id": "C30449",
+  "section_id": 4349
+ },
+ {
+  "id": "TU-API-02",
+  "area": "TU — API",
+  "title": "Date-range and location changes trigger a fresh server load",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. You are on the Technician Utilization report with rows loaded and browser devtools (network tab) open.",
+   "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
+  ],
+  "steps": [
+   "1. Change the date range and watch the network traffic.",
+   "2. Change the location selection and watch the traffic.",
+   "3. Deselect/re-select a technician in the Filter by Technician filter and watch the traffic.",
+   "4. Click several column headers to sort and watch the traffic."
+  ],
+  "expected": "1. A date-range change triggers a fresh server load of the rows.\n2. A location change triggers a fresh server load scoped to the selected set.\n3. The technician filter causes NO server request - it works on screen only (hide/show + Summary recalculation).\n4. Column sorting causes NO server request - it is applied on screen to the loaded rows.\nWhat you should see today: items 1 and 2 pass, but items 3 and 4 do not: ticking a technician in the technician filter sends a request to the server, and so does every click on a column heading. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8945\n· If you see exactly that, mark this test FAILED and do not raise anything new.\n· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S1-R5, S9-R3, S2-R13), read on 17 August 2026.\nLast checked against build v3.5-16cf83f on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8945)",
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "SV-8648 (TU spec v9 2026-08-17 S1-R5; S9-R3; S5 context note; S2-R13; §3)",
+  "viu_status": "VIU-Pending",
+  "notes": "Generic backend-behavior case (Standing Rule 4) - no endpoint paths asserted (none exist in the spec); record the observed requests at VIU. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "api_related": true,
+  "refs": "SV-8648 (TU spec v9 2026-08-17 S1-R5; S9-R3; S5 context note; S2-R13; §3)",
+  "testrail_id": "C30450",
+  "section_id": 4349
+ }
 ]
