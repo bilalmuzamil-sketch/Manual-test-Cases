@@ -40,3 +40,23 @@ result metadata only; graded result fields; secret-scanned — no cookies/tokens
   created_on/test_id/case_id/id` byte-identical for every prior result.
 - case_id sets equal BOTH ways (after == union, 195/195).
 - **VERDICT: PASS — 0 dropped, 0 results lost.**
+
+---
+
+## Run 359 — Report Suite ("Reports Suite - Nebojsa & Viktoria (Partially VIU'd)", Nebojsa Glavinic / Viktoria Videnovic)  ✅ PASS
+
+| | Before | After |
+|---|---|---|
+| include_all | false | **false** (unchanged) |
+| Tests (case_ids) | **480** | **507** |
+| Result records | **535** | **535** |
+
+- **New cases added: 27** — C43814–C43840 (Adjustments money column batch of 18: C43814–C43831,
+  plus the CSV-export/visual batch of 9: C43832–C43840). All verified live, all `created_by`=3 ours,
+  none already present. Union = 480 ∪ 27 = **507**.
+- **0 prior tests dropped** — union proven superset of current (current − union = ∅).
+- **added set == exactly the 27 new ids** (union − current == the 27).
+- **0 prior results lost** — all 535 result records present BY ID after the write (both directions).
+- **0 graded field changed** — every prior result byte-identical on graded fields.
+- case_id sets equal BOTH ways (after == union, 507/507).
+- **VERDICT: PASS — 0 dropped, 0 results lost.**
