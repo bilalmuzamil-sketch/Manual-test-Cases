@@ -6568,6 +6568,31 @@ deliver the 7-tab management report.
     steps/preconditions cannot yet be build-verified: a **plain-READY** case → the Rule-69 marker; an
     **EXPECT-FAIL** or **HOLD** case → **keep its existing marker.** Ties to Standing Rules 60/61 (the
     marker family) and 12 (a marker never asserts an unobserved build fact).
+    **⇒ DATED REFINEMENT, 2026-08-18 (QA lead, PROPOSED-AND-CONFIRMED per Rule 72) — THE AUTOMATION
+    MARKER KEYS ON TESTABLE CONTENT, NOT ON A METADATA REFRESH.**
+    - **A case's automation marker is ADDED or CHANGED ONLY when either (a) the case is NEWLY AUTHORED,
+      or (b) its TESTABLE CONTENT — title, preconditions, steps of reproduction, or the
+      expected-behaviour BODY — changed because of a spec/source change.**
+    - **A METADATA-ONLY UPDATE MUST NOT CHANGE THE MARKER.** "Metadata" here = the provenance line (spec
+      version, read-dates, epic/story/source references sitting below the line break — Rule 54), the
+      `refs` field, and the marker line itself. **When a pass only refreshes provenance / refs / version
+      / date and the testable content is BYTE-IDENTICAL, the case KEEPS ITS EXISTING MARKER** — a
+      previously-`AUTOMATION: READY` case STAYS `AUTOMATION: READY` (plain READY is build-independent,
+      Rule 60), and it is **NOT** flipped to `AUTOMATION: Not available on Build to test Yet`.
+    - **THE BROADER PRINCIPLE THIS ENFORCES:** in ANY pass, DISTINGUISH a content change from a metadata
+      refresh. **Content-level decisions** — the automation marker, EXPECT-FAIL, deviation status,
+      re-verification obligations — **key on TESTABLE-CONTENT changes**; **provenance / refs / version /
+      date refreshes are BOOKKEEPING and must NEVER trigger them.**
+    - **RATIONALE, 2026-08-18:** the 2026-08-18 currency passes wrongly stamped the `Not available on
+      Build to test Yet` marker onto **~570 REFERENCE-ONLY cases** (Schedule ~142, Report Suite ~387,
+      Filters ~41) whose testable content did **not** change — because the pass treated *"we refreshed
+      the provenance / version / date below the line break"* as *"we changed the case."* A
+      provenance/date refresh is bookkeeping; it must not drive a content-level decision like the marker.
+      **The QA lead's intent was that the deferred marker go ONLY on newly-added or
+      content-changed-due-to-spec cases.** Ties to Standing Rules 41 (touch a case → re-verify the WHOLE
+      case, but re-verifying is not the same as CHANGING content), 54 (the provenance line is the
+      metadata layer this refers to), 60 (plain `READY` is build-independent and survives a re-stamp), 61
+      (the marker family) and this rule (69).
 70. **COMMUNICATE WITH THE QA LEAD CLEARLY: ACTION-FIRST, PLAIN-LANGUAGE, TABLE-FORM — tell him
     EXACTLY what to DO and help him UNDERSTAND what each item is (all projects, every communication).**
     USER DIRECTIVE (2026-08-17, verbatim, two messages): *"Please whenever you communicate with me
@@ -7125,6 +7150,13 @@ regression / bug-fix re-testing.
   existing `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` or `AUTOMATION: HOLD - <reason>` marker** (those
   carry ticket/blocker references). Touched plain-READY case → Rule-69 marker; touched EXPECT-FAIL or
   HOLD case → keep its marker.
+- **THE MARKER KEYS ON TESTABLE-CONTENT CHANGES, NOT ON A PROVENANCE / REFS REFRESH (Standing Rule 69,
+  dated refinement 2026-08-18).** A case's automation marker is added or changed only for a **newly
+  authored** case or one whose **testable content** (title, preconditions, steps, or the
+  expected-behaviour body) changed because of a spec/source change. **A metadata-only re-stamp** —
+  refreshing the provenance line's spec version / read-dates / references or the `refs` field while the
+  testable content is byte-identical — **keeps the existing marker** (a plain `AUTOMATION: READY` case
+  stays READY; never flipped to `Not available on Build to test Yet`).
 - **NEVER CHANGE OR DELETE AN "AUTOMATED" CASE WITHOUT ASKING FIRST (Standing Rule 71, 2026-08-17/18).**
   A case whose TestRail Automation-status field = "Automated" (`custom_atmstatus = 3`) is ask-first for
   ANY edit or deletion — **even our OWN cases** if someone flagged them Automated. **After** build

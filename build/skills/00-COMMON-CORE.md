@@ -1436,6 +1436,19 @@ placement). Three forms only:
   <reason>` marker with it** — those carry ticket / blocker references that must be preserved. So, on a
   touched case whose steps/preconditions cannot yet be build-verified: **plain-READY → the Rule-69
   marker; EXPECT-FAIL or HOLD → keep its existing marker.**
+- **🔑 THE MARKER KEYS ON TESTABLE CONTENT, NOT ON A METADATA REFRESH (Standing Rule 69, dated
+  refinement 2026-08-18, QA-lead confirmed).** Add or change a marker ONLY for a **newly authored** case
+  or one whose **testable content** — title, preconditions, steps of reproduction, or the
+  expected-behaviour BODY — changed from a spec/source change. **A metadata-only update MUST NOT change
+  the marker**: refreshing the provenance line (spec version, read-dates, references), the `refs` field,
+  or the marker line while the testable content is BYTE-IDENTICAL **keeps the existing marker** — a
+  plain-`READY` case stays `READY` (build-independent, §16 / Rule 60), never flipped to `Not available on
+  Build to test Yet`. **The broader principle:** distinguish a CONTENT change from a metadata refresh —
+  content-level decisions (the marker, EXPECT-FAIL, deviation status, re-verification) key on
+  testable-content changes; provenance / refs / version / date refreshes are **bookkeeping** and never
+  trigger them. *The scar: the 2026-08-18 currency passes wrongly stamped `Not available on Build to test
+  Yet` onto ~570 reference-only cases (Schedule ~142, Report Suite ~387, Filters ~41) whose testable
+  content did not change, treating a below-the-line provenance refresh as a case change.*
 
 - **Plain `READY` asserts AUTOMATABLE, not currently passing** — it is **build-independent** and
   survives a redeploy untouched.

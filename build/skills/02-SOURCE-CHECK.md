@@ -377,6 +377,15 @@ Sources read at pass start: <UTC>   ·   re-read at write start: <UTC>   ·   ve
   is available** — not silently following the new instruction, not silently keeping the old rule. **A
   tightening or a layering is NOT a conflict**; escalating those trains him to wave escalations
   through. *He endorsed the practice by name: **"Good catch, be like this always."***
+- **G8 — 🔑 A METADATA-ONLY REFRESH DOES NOT CHANGE A CASE'S MARKER** (Standing Rule 69, dated refinement
+  2026-08-18). This skill refreshes provenance / refs / version / date; when it does that on a case whose
+  **testable content is byte-identical**, it **leaves the automation marker exactly as it is** — a plain
+  `AUTOMATION: READY` case stays READY, never flipped to `AUTOMATION: Not available on Build to test Yet`.
+  **Only a newly authored case, or one whose testable content (title, preconditions, steps,
+  expected-behaviour body) changed from the source change, gets a marker change** — and content authoring
+  is skill `01`, not this one. *The scar: the 2026-08-18 currency passes wrongly stamped the deferred
+  marker onto ~570 reference-only cases (Schedule ~142, Report Suite ~387, Filters ~41) whose content did
+  not change, treating a below-the-line provenance refresh as a case change.*
 ---
 
 ## HONESTY NOTES

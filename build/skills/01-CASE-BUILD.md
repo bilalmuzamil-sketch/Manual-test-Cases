@@ -474,6 +474,16 @@ do not make sense"*. **No suite we deliver may ever substantiate that claim** �
 - **G12 — 🛑 PROPOSE ANY SKILL / RULE CHANGE BEFORE RECORDING IT** (Standing Rule 72, core §11.9). You
   may draft it, and you may record a change he has already approved; **a new or changed rule/skill he
   has NOT approved is proposed and asked, never written blindly** into `build/skills/*` or `CLAUDE.md`.
+- **G13 — 🔑 A METADATA-ONLY RE-STAMP LEAVES THE MARKER UNCHANGED** (Standing Rule 69, dated refinement
+  2026-08-18). A currency / source-check or authoring pass that only refreshes the provenance line (spec
+  version / read-dates / references) or `refs` on an **otherwise-unchanged** case **MUST leave its
+  automation marker as it is** — a plain `AUTOMATION: READY` case stays READY, never flipped to `Not
+  available on Build to test Yet`. **Only a NEWLY authored case, or one whose TESTABLE CONTENT (title,
+  preconditions, steps, expected-behaviour body) changed from a spec/source change, gets a marker
+  change.** This is the counterpart to G11: G11 says a `refs` bump alone does not make a case *current*;
+  G13 says a `refs` / provenance refresh alone does not change its *marker*. *The scar: the 2026-08-18
+  currency passes stamped `Not available on Build to test Yet` onto ~570 reference-only cases whose
+  content did not change.*
 
 ---
 

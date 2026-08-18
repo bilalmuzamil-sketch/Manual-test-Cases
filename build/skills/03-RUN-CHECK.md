@@ -503,6 +503,16 @@ TOGETHER, never separately — and this skill is the coupling.**
 - **ASK-FIRST STILL GATES IT:** even coupled with build verification, **get the QA lead's go-ahead
   before editing an Automated case** (per case or per batch, above).
 
+**⇒ COROLLARY — THIS SKILL SETS OR LIFTS A MARKER FROM LIVE VERIFICATION OF CONTENT, NEVER FROM A
+METADATA REFRESH (Standing Rule 69, dated refinement 2026-08-18).** A marker moves here because the
+build was **observed** to run (or fail) the case's steps and preconditions — never because a provenance
+line, spec version or `refs` was re-stamped. The mirror image also holds: a documents-only currency or
+authoring pass that only refreshes provenance / refs / version / date on an otherwise-unchanged case
+**leaves its marker alone** (skill `01` G13, skill `02` G8). So the deferred `Not available on Build to
+test Yet` marker is set only where the build genuinely could not verify the case, and it is lifted to
+`READY` (or `READY - EXPECT FAIL (SV-xxxx)` on a live-backed failure) only from live verification here —
+never from a metadata refresh elsewhere.
+
 ---
 
 # THE STEPS
