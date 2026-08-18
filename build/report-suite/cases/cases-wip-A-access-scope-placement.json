@@ -146,13 +146,13 @@
    "1. Open the Work In Progress report with the seeded work orders open on the selected \"as of\" date.",
    "2. Look through all four tabs for each of the five seeded work orders."
   ],
-  "expected": "1. All five seeded work orders appear in the report — each one qualifies because it is a service work order, its status is one of Estimate, Approved, In Progress, Review, or Complete, and it belongs to a selected location.\n2. Each appears in the tab its status places it in (see the WIP — Tab Placement cases).\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S2-R4; S7-R7), both read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "expected": "1. All five seeded work orders appear in the report — each one qualifies because it is a service work order, its status is one of Estimate, Approved, In Progress, Review, or Complete, and it belongs to a selected location.\n2. Each work order appears in every tab that matches one of its line states, showing only that tab's slice of its money — a work order whose lines are in more than one state can appear in more than one tab (see the WIP — Tab Placement cases). The status column still shows the work order's true status.\n\n---\nThis is the expected behaviour as per Chris Ward's answer of 18 August 2026 (option B: the report treats a work order as a sum of lines, not work orders), recorded in his answers in this file: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-answers-2026-08-18/chris-answers-fetched-2026-08-18.txt, and epic SV-8582 and story SV-8658 (WIP Story 2), both read on 18 August 2026, and the Work In Progress report specification version 21 (§3 Key Decisions, per SV-9027), read on 18 August 2026.\nThis differs from the older wording in the same specification (Story 2, S2-R4), which says a work order appears in the single tab its overall status places it in. Chris Ward confirmed on 18 August 2026 that the line-state reading is correct, so that newest answer is followed here and the older status-based wording is not.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8654 (WIP spec v21 2026-08-17 S2-R4; S7-R7; population is work open on the as-of date,not filtered by created date)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false,
-  "refs": "SV-8654 (WIP spec v21 2026-08-17 S2-R4; S7-R7; population is work open on the as-of date,not filtered by created date)",
+  "refs": "SV-8658 (WIP Story 2; WIP spec v21 2026-08-18 §3 Key Decisions per SV-9027 — line-state placement; a work order appears in each tab matching one of its line states; Chris Ward 2026-08-18 answer B; differs from older S2-R4 status model)",
   "testrail_id": "C30456",
   "section_id": 4351
  },
@@ -186,7 +186,7 @@
  {
   "id": "WIP-SCOPE-03",
   "area": "WIP — Scope & Loading",
-  "title": "Each qualifying work order appears exactly once in exactly one tab",
+  "title": "Each work order appears in every tab matching one of its line states",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -199,13 +199,13 @@
    "2. For each seeded work order, count how many times its work order number appears across all four tabs.",
    "3. Find the estimate with nothing approved and read its money columns."
   ],
-  "expected": "1. Each qualifying work order appears exactly once, in exactly one tab.\n2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both showing \"$0.00\".\n\nNote for the tester: the written description now says two different things about how a work order is placed into a tab. The Story 2 and Story 3 requirements — the ones this test follows — place a whole work order in one tab according to its status. A newer Key Decisions section says placement follows each LINE's state instead, so a work order whose lines are in different states would show in more than one tab, each showing only that tab's share of its money. The product owner has been asked which is right and has not answered. Until he does: if you see a work order in more than one tab, do NOT raise a bug and do NOT fail this test for it — write down what you saw and carry on. The question is here: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/questions-2026-08-06/Questions-for-Chris-Ward_Report-Suite_2026-08-11.xlsx\n\n---\nThis is the expected behaviour as per epic SV-8582 and story SV-8658, read on 18 August 2026, and the Work In Progress report specification version 21 (S2-R4), read on 18 August 2026. That specification also carries a newer Key Decision, added in version 11, stating that buckets are keyed on line state rather than work-order status and that a work order with lines in several states appears in each matching tab. The two cannot both be true. Chris Ward has been asked which governs, so the requirement above is asserted unchanged and the newer reading is not asserted here.\n\nAUTOMATION: HOLD - the specification states two different tab-placement rules (whole work order by status, or per line state) and the product owner has been asked which governs",
+  "expected": "1. A qualifying work order appears in each tab that matches one of its line states, showing only that tab's slice of its money — a work order carrying lines in more than one state appears in more than one tab. The status column still shows the work order's true status.\n2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both showing \"$0.00\".\n\n---\nThis is the expected behaviour as per Chris Ward's answer of 18 August 2026 (option B: the report treats a work order as a sum of lines, not work orders), recorded in his answers in this file: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-answers-2026-08-18/chris-answers-fetched-2026-08-18.txt, and epic SV-8582 and story SV-8658 (WIP Story 2), both read on 18 August 2026, and the Work In Progress report specification version 21 (§3 Key Decisions, per SV-9027), read on 18 August 2026.\nThis differs from the older wording in the same specification (Story 2, S2-R4, and Story 3), which says a work order appears exactly once, in exactly one tab, chosen by its overall status. Chris Ward confirmed on 18 August 2026 that the line-state reading is correct, so that newest answer is followed here and the older status-based wording is not.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8658 (WIP spec v21 2026-08-18 Story 2 S2-R4 — one work order in exactly one tab; CONTRADICTED by the v11 §3 Key Decision that buckets are keyed on line state so a work order can appear in several tabs; Chris Ward asked; S2-R4 asserted unchanged)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false,
-  "refs": "SV-8658 (WIP spec v21 2026-08-18 Story 2 S2-R4 — one work order in exactly one tab; CONTRADICTED by the v11 §3 Key Decision that buckets are keyed on line state so a work order can appear in several tabs; Chris Ward asked; S2-R4 asserted unchanged)",
+  "refs": "SV-8658 (WIP Story 2; WIP spec v21 2026-08-18 §3 Key Decisions per SV-9027 line-state placement — a mixed-state work order appears in each matching tab; Chris Ward 2026-08-18 answer B supersedes older S2-R4 exactly-once wording)",
   "testrail_id": "C30458",
   "section_id": 4351
  },
@@ -353,13 +353,13 @@
    "1. Open the Work In Progress report.",
    "2. Look for each of the three Approved work orders in each tab."
   ],
-  "expected": "1. The Approved work order with clocked labor time appears in the \"Approved - Partially Completed\" tab.\n2. The Approved work order with a received part (and no clocked time) also appears in the \"Approved - Partially Completed\" tab — either kind of started work counts.\n3. The Approved work order with no clocked time and no received part appears in the \"Approved - Not Started\" tab and nowhere else.\n\nNote for the tester: the written description now says two different things about how a work order is placed into a tab. The Story 2 and Story 3 requirements — the ones this test follows — place a whole work order in one tab according to its status. A newer Key Decisions section says placement follows each LINE's state instead, so a work order whose lines are in different states would show in more than one tab, each showing only that tab's share of its money. The product owner has been asked which is right and has not answered. Until he does: if you see a work order in more than one tab, do NOT raise a bug and do NOT fail this test for it — write down what you saw and carry on. The question is here: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/questions-2026-08-06/Questions-for-Chris-Ward_Report-Suite_2026-08-11.xlsx\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S3-R2), both read on 17 August 2026.\n\nAUTOMATION: HOLD - the specification states two different tab-placement rules (whole work order by status, or per line state) and the product owner has been asked which governs",
+  "expected": "1. The Approved work order whose lines include clocked labor time appears in the \"Approved - Partially Completed\" tab.\n2. The Approved work order whose lines include a received part (and no clocked time) also appears in the \"Approved - Partially Completed\" tab — either kind of started work counts as a started line.\n3. The Approved work order whose lines have no clocked time and no received part appears in the \"Approved - Not Started\" tab. If a single Approved work order had some lines started and other lines untouched, it would appear in BOTH the \"Approved - Partially Completed\" and \"Approved - Not Started\" tabs, each showing only that tab's slice of its money.\n\n---\nThis is the expected behaviour as per Chris Ward's answer of 18 August 2026 (option B: the report treats a work order as a sum of lines, not work orders), recorded in his answers in this file: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-answers-2026-08-18/chris-answers-fetched-2026-08-18.txt, and epic SV-8582 and story SV-8659 (WIP Story 3), both read on 18 August 2026, and the Work In Progress report specification version 21 (S3-R4; §3 Key Decisions, per SV-9027), read on 18 August 2026.\nThis differs from the older wording in the same specification (Story 3), which places a whole work order in a single Approved tab by whether any work has started. Chris Ward confirmed on 18 August 2026 that placement follows each line's state, so that newest answer is followed here.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8656 (WIP spec v21 2026-08-17 S3; Approved started-boundary on the as-of date)",
   "viu_status": "VIU-Pending",
   "notes": "\"Work has started\" means a technician has clocked time to the job OR a part has been received for it (Story 3 context note). MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-WIP-PLACE-START): absorbed WIP-PLACE-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false,
-  "refs": "SV-8656 (WIP spec v21 2026-08-17 S3; Approved started-boundary on the as-of date)",
+  "refs": "SV-8659 (WIP Story 3; WIP spec v21 2026-08-18 S3-R4 started boundary; §3 Key Decisions per SV-9027 — line-state placement so a mixed-state Approved work order appears in both Approved tabs; Chris Ward 2026-08-18 answer B)",
   "testrail_id": "C30464",
   "section_id": 4352
  },
@@ -386,5 +386,32 @@
   "viu_status": "Retired 2026-07-28 (merged into WIP-PLACE-03 per user-authorized consolidation; delete_case authorized 2026-07-28)",
   "notes": "",
   "api_related": false
+ },
+ {
+  "id": "WIP-PLACE-05",
+  "area": "WIP — Tab Placement",
+  "title": "A work order with lines in several states appears in each matching tab",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. One ZZAUTOTEST service work order in Approved status exists open on the selected \"as of\" date, in the current location, carrying lines in more than one state: at least one unapproved line, at least one approved line with no work started, and at least one approved line with work started (labor clocked or a part received)."
+  ],
+  "steps": [
+   "1. Open the Work In Progress report.",
+   "2. Look for the seeded work order in every tab.",
+   "3. In each tab where it appears, read the work order's Earned, Remaining and Total for that tab.",
+   "4. Add up the work order's Total across every tab it appears in and compare the sum to the work order's total quoted value."
+  ],
+  "expected": "1. The work order appears in more than one tab — in each tab that matches one of its line states: the unapproved line places it in the \"Estimates\" tab, the approved not-started line places it in the \"Approved - not started\" tab, and the started line places it in the \"Approved - partially completed\" tab.\n2. In each tab, the work order shows only that tab's slice of its money — the value of the lines whose state matches that tab — not its whole value.\n3. The status column still shows the work order's one true status in every tab where it appears.\n4. The work order's money slices across the tabs are disjoint and add up to the work order's total quoted value — approving or moving one line never removes another line's value from the report.\n\n---\nThis is the expected behaviour as per Chris Ward's answer of 18 August 2026 (option B: the report treats a work order as a sum of lines, not work orders), recorded in his answers in this file: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-answers-2026-08-18/chris-answers-fetched-2026-08-18.txt, and epic SV-8582 and story SV-8659 (WIP Story 3), both read on 18 August 2026, and the Work In Progress report specification version 21 (§3 Key Decisions, per SV-9027), read on 18 August 2026.\nThis line-state placement differs from the older wording in the same specification (Story 2, S2-R4, and Story 3), which says a work order appears in exactly one tab chosen by its overall status. Chris Ward confirmed on 18 August 2026 that the line-state reading is correct, so the newest answer is followed here.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md §3 Key Decisions (per SV-9027); Chris Ward answer 2026-08-18 (option B)",
+  "viu_status": "VIU-Pending",
+  "notes": "Authored 2026-08-18 under Chris Ward's approved answer B (WIP is a sum of lines, not work orders). New coverage opened by the line-state placement model (§3 Key Decisions, SV-9027): the multi-tab appearance of a mixed-line-state work order and its per-tab money slice summing to the work order total had no case. Build verification DEFERRED — not observed on any build this pass.",
+  "api_related": false,
+  "refs": "SV-8659 (WIP Story 3; WIP spec v21 2026-08-18 §3 Key Decisions per SV-9027 — a work order with lines in several states appears in each matching tab showing its slice; slices sum to WO total; Chris Ward answer B 2026-08-18)",
+  "testrail_id": null,
+  "section_id": 4352
  }
 ]
