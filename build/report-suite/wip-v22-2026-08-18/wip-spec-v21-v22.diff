@@ -1,0 +1,30 @@
+52c52
+< The nightly WIP snapshot is in scope. Once per day the report captures each open work order's earned and remaining value, keyed per work order per day, using the same money model as the on-screen report (Story 11). No screen reads it in this version; it is captured now so a future Trend view reads a consistent history.
+---
+> The nightly WIP snapshot is in scope. Once per day the report captures each open work order's earned and remaining value, keyed per work order per tab per day, using the same money model as the on-screen report (Story 11). No screen reads it in this version; it is captured now so a future Trend view reads a consistent history.
+67c67
+< Snapshot → A once-daily recorded set of per-work-order earned/remaining figures for a given calendar date (Story 11), captured for a future Trend view.
+---
+> Snapshot → A once-daily recorded set of per-work-order-per-tab earned/remaining figures for a given calendar date (Story 11), captured for a future Trend view.
+306,308c306,308
+< S11-R1: Once per day the system records one row per then-open work order — one row per work order per calendar date.
+< S11-R2: Each snapshot row captures, at minimum: the work order, its status, its Earned value, its Remaining value, its Adjustments value, the location and organization (copied from the work order), and the snapshot's calendar date.
+< S11-R3: The Earned and Remaining values are captured using the identical computation as the on-screen report — Earned per S4-R19, Remaining per S4-R20 — so the snapshot and the on-screen report can never diverge for a given work order on the capture date.
+---
+> S11-R1: Once per day the system records one row per then-open work order per tab — a work order whose approved lines fall in more than one tab is captured as one row for each matching tab, so the saved history reconciles with the on-screen tabs. Rows are keyed by work order, tab, and calendar date.
+> S11-R2: Each snapshot row captures, at minimum: the work order; the tab (line-state bucket) the row represents; the work order's status; that tab's Earned and Remaining values, with the underlying Labor and Parts earned/remaining amounts; its Adjustments value; the location and organization (copied from the work order); and the snapshot's calendar date.
+> S11-R3: The Earned and Remaining values are captured using the identical computation as the on-screen report — Earned per S4-R19, Remaining per S4-R20 — so the snapshot and the on-screen report can never diverge for a given work order and tab on the capture date.
+315c315
+< * Context note: the snapshot's money model is earned/remaining per work order per day — the same split the on-screen report shows (Story 4) — recorded so a future Trend view reads a money model consistent with this report. The capture is in scope for this version; the Trend view that would read it is not.
+---
+> * Context note: the snapshot's money model is earned/remaining per work order per tab per day — the same line-state split the on-screen report shows (Story 4) — recorded so a future Trend view reads a money model consistent with this report. The capture is in scope for this version; the Trend view that would read it is not.
+386c386,390
+< |
+\ No newline at end of file
+---
+> |
+> 2026-08-18 |
+> @chris / @claude |
+> Story 11 snapshot grain — one row per work order per tab. |
+> The nightly snapshot now records one row per work order per tab per calendar date (was one row per work order), so the saved daily history reconciles with the line-state tabs a job spans. Matches the shipped WorkOrderWipSnapshot, where the tab is part of the row identity. (Bilal question, 2026-08-18.) |
+\ No newline at end of file
