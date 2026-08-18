@@ -97,3 +97,67 @@ stripped build-observation paragraph or a non-plain prior marker (HOLD / EXPECT-
 ### SCH-FILT-02 = [C29943](https://shopview.testrail.io/index.php?/cases/view/29943)
 - **Prior marker:** `AUTOMATION: READY`
 
+
+### SCH-FILT-03 = [C29944](https://shopview.testrail.io/index.php?/cases/view/29944)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-FILT-04 = [C29945](https://shopview.testrail.io/index.php?/cases/view/29945)
+- **Prior marker:** `AUTOMATION: HOLD - the Priority filter this test needs does not exist in this build; a ticket cannot be raised yet`
+- **Removed build-observation paragraph (re-verify at the sync):**
+
+  > What you will find on the build as it stands: the Filters panel has no Priority section at all, so there is no High, Medium or Low to choose at step 2. The whole panel reads: Unassigned, Assigned, Approved, Declined, In Progress, Ready for Review.
+  > Please mark this test BLOCKED, not failed, and do not raise a new problem for it - it is already written up and is waiting to be reported.
+
+
+### SCH-FILT-05 = [C29946](https://shopview.testrail.io/index.php?/cases/view/29946)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-FILT-06 = [C29947](https://shopview.testrail.io/index.php?/cases/view/29947)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-LINE-01 = [C29948](https://shopview.testrail.io/index.php?/cases/view/29948)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-LINE-03 = [C29950](https://shopview.testrail.io/index.php?/cases/view/29950)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-LINE-04 = [C29951](https://shopview.testrail.io/index.php?/cases/view/29951)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-LINE-05 = [C29952](https://shopview.testrail.io/index.php?/cases/view/29952)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-LINE-06 = [C29953](https://shopview.testrail.io/index.php?/cases/view/29953)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-LINE-07 = [C29954](https://shopview.testrail.io/index.php?/cases/view/29954)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-DND-02 = [C29956](https://shopview.testrail.io/index.php?/cases/view/29956)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-DND-03 = [C29957](https://shopview.testrail.io/index.php?/cases/view/29957)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-DND-05 = [C29959](https://shopview.testrail.io/index.php?/cases/view/29959)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-DND-06 = [C29960](https://shopview.testrail.io/index.php?/cases/view/29960)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-DND-07 = [C29961](https://shopview.testrail.io/index.php?/cases/view/29961)
+- **Prior marker:** `AUTOMATION: READY`
+
