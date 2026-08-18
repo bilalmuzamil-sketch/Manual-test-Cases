@@ -3100,6 +3100,16 @@ deliver the 7-tab management report.
     ruling in full at its follow-up (ii))**, **64 (a case sourced by the technical design ALONE is
     sourced, and is not a deletion candidate)**, and the
     new-project onboarding convention (tech plan is part of the required input set).
+    **✅ DATED NOTE, 2026-08-17 (QA lead point 13) — REMINDER ANSWERED, STOP RE-ASKING: there is NO
+    engineering tech plan for the NEW (Fabian app-wide-filter-redesign) scope on any project.** The QA
+    lead confirmed we use the **existing tech plans we already hold** — for Filters that is
+    `build/filters/tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md` (2026-07-30 sync), plus the
+    eng handover cited in refs; Schedule and Report Suite likewise use their `tech-plan-2026-07-29/`
+    docs. So the Rule-30 "remind the user if the tech plan is missing" duty is **SATISFIED for the
+    Fabian scope** — do not re-raise it as an outstanding item for these projects. Where the existing
+    tech plan and the newer v21 spec/design differ, the newer authoritative product source still wins
+    (this rule's subordination clause; Rule 32), and the per-view filter list stays PENDING from
+    engineering (spec S1-R8 / S13-R23).
 31. **Establish the CURRENCY OF EVERY SOURCE before doing ANYTHING on a project (all projects).**
     *(Originally "always pull the latest spec"; **STRENGTHENED 2026-07-31** to cover EVERY source;
     **SCOPE BROADENED 2026-07-31** from test-case work to ANY project task — the rule number is kept
@@ -3241,6 +3251,15 @@ deliver the 7-tab management report.
     its recency cannot be established at all and it goes straight to the escalation limb — the live case
     being Sasha Grosman's Schedule design link on SV-8915/SV-8916/SV-8917. Full text: **Rule 57's
     FOLLOW-UP RULING (i), 2026-08-06.**
+    **⏳ DATED NOTE, 2026-08-17 (QA lead point 12) — RESTATED, verbatim: *"Consider the newest as the
+    authority."*** This is this rule unchanged (newest authoritative source wins); recorded here so a
+    future session sees it was reaffirmed on the Fabian-review reconciliation. **⚠️ He added: *"The date
+    is 26-8-05 I have attached the screenshot as well."* — but the 2026-08-05 screenshot was NOT in the
+    uploads** (checked 2026-08-17: `/root/.claude/uploads/dd1d42ba-…/` held only the design ZIP + the
+    Branko tech-plan xlsx; no 08-05 image, and none inside the ZIP — its newest dated shots are 08-11 /
+    08-13 / 08-14). **So we do NOT yet know which source/case that "newest authority" governs.** It is an
+    **OUTSTANDING** item (Rule 36): ask the QA lead to re-attach the 2026-08-05 screenshot; until it
+    lands, do not guess what it overrides. Evidence: `build/filters/design-2026-08-17/SCREENSHOT-FINDINGS.md`.
 33. **Review findings are INPUTS, not overrides — apply the authority precedence order (all
     projects).** USER DIRECTIVE (2026-07-31, verbatim): "Hold Ahtesham as the Junior most QA
     person, I do not want his findings to over rule me and your findings here. But we need to know
@@ -5815,6 +5834,19 @@ deliver the 7-tab management report.
     one edit once a ticket exists. Recorded in the **OUTSTANDING-ITEMS REGISTER** as row **H1** (Rule
     36), with the five Rule-48 fields. Contemporaneous write-up:
     `build/report-suite/full-viu-2026-08-06/RULINGS-2026-08-10-CREATION-HOLD-AND-FINALITY.md`.
+    **⏳ DATED NOTE, 2026-08-17 — THE HOLD PERSISTS THROUGH AND BEYOND BUILD VERIFICATION (Fabian-review
+    reconciliation; QA lead point 7).** Asked for permission to create the deferred expect-fail tickets,
+    the QA lead ruled, **verbatim: *"Lets hold them until we are done with Build verification ... Even
+    then we will keep a hold on creating tickets until I allow you to create the tickets."*** **So
+    completing a build-verify sync does NOT lift the ticket-creation hold** — a future session must not
+    read "build verification is done" as licence to file the held expect-fail / defect tickets. The hold
+    still lifts ONLY on his explicit "you may create the tickets" order (the LIFT CONDITION above),
+    which is a SEPARATE event from finishing build verification. **Concretely:** cases carrying
+    `AUTOMATION: Not available on Build to test Yet` (Rule 69) that would become
+    `READY - EXPECT FAIL (SV-xxxx)` once a ticket exists **stay unable to reach that marker until BOTH
+    (a) build verification proves them runnable AND (b) he allows ticket creation** — register row
+    **H1** still governs. Ties to Rules 61 (the expect-fail marker), 69 (the transitional marker that
+    waits on build verification) and 62's own per-ask permission requirement.
 63. **WHEN HIS INSTRUCTION CONFLICTS WITH A RECORDED RULE, STOP AND SURFACE THE CONFLICT BEFORE
     ACTING — state both sides and ask which to follow (all projects).**
     USER DIRECTIVE (2026-08-11, verbatim, his typing preserved exactly as he wrote it because Rule 25
@@ -6471,6 +6503,17 @@ deliver the 7-tab management report.
     re-checkable state), 54 (sentence 1 fully written; only sentence 2 absent), 57 (expectation from
     documents regardless of build readiness) and 61 (the marker family this extends; lifts to READY on
     success, or READY - EXPECT FAIL on live-backed ticketed failure).
+    **⏳ DATED NOTE, 2026-08-17 (QA lead point 7) — THE MARKER STAYS UNTIL A LATER BUILD-VERIFY SYNC
+    PROVES THE STEPS + PRECONDITIONS ACTUALLY RUN ON THE BUILD.** The `Not available on Build to test
+    Yet` marker is **not** cleared by re-authoring, by a spec/design update, or by the branch being
+    called "final" — it comes off ONLY when a **later build-verify sync opens the app and confirms the
+    case's Steps of reproduction and Preconditions are runnable on the build**, at which point it is
+    replaced with `READY` (or `READY - EXPECT FAIL (SV-xxxx)` on live-backed ticketed failure). Until
+    that sync runs the marker is the honest state and must be left in place. **AND — see the Rule-62
+    hold note of the same date — completing that build-verify sync does NOT permit creating the
+    expect-fail/defect tickets: the Jira creation hold persists through and beyond build verification
+    (verbatim: *"Even then we will keep a hold on creating tickets until I allow you to create the
+    tickets."*).**
 70. **COMMUNICATE WITH THE QA LEAD CLEARLY: ACTION-FIRST, PLAIN-LANGUAGE, TABLE-FORM — tell him
     EXACTLY what to DO and help him UNDERSTAND what each item is (all projects, every communication).**
     USER DIRECTIVE (2026-08-17, verbatim, two messages): *"Please whenever you communicate with me

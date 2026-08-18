@@ -930,6 +930,15 @@ prepared Report Suite defects** stay prepared and unfiled, and any case sitting 
 **only because an expect-fail marker needs a ticket number that does not yet exist** stays on `HOLD`
 — each becomes `READY - EXPECT FAIL` with one edit once a ticket exists. Register row **H1**.
 
+**⏳ THE HOLD PERSISTS THROUGH AND BEYOND BUILD VERIFICATION (QA lead, 2026-08-17, verbatim):** *"Lets
+hold them until we are done with Build verification ... Even then we will keep a hold on creating
+tickets until I allow you to create the tickets."* **So finishing a build-verify sync does NOT lift the
+ticket-creation hold** — a resuming session must not read "build verification is done" as licence to
+file the held expect-fail/defect tickets. It lifts ONLY on his explicit "you may create the tickets"
+order, a separate event from build verification. A Rule-69 `Not available on Build to test Yet` case
+therefore needs BOTH (a) build verification proving it runnable AND (b) his ticket-creation go-ahead
+before it can reach `READY - EXPECT FAIL`.
+
 ### 11.2 Expected behaviour comes from the DOCUMENTS, never the build (Standing Rules 57/58)
 
 **The sources are (a)–(g) and the list is OPEN-ENDED by his instruction:**
@@ -1311,6 +1320,12 @@ placement). Three forms only:
   an external account we do not have); this marker is for something the build **will** run once it
   ships/stabilises. **Do NOT conflate it with `READY` either** — plain `READY` asserts the steps have
   been confirmed runnable; this marker says they have not been (Rule 12).
+- **⏳ IT STAYS UNTIL A LATER BUILD-VERIFY SYNC PROVES THE STEPS + PRECONDITIONS RUN (QA lead,
+  2026-08-17, point 7).** It is not cleared by re-authoring, by a spec/design update, or by "final" —
+  only by a sync that opens the app and confirms the case is runnable, at which point it becomes
+  `READY` (or `READY - EXPECT FAIL (SV-xxxx)` on live-backed ticketed failure). **AND completing that
+  sync does NOT permit filing the ticket** — the Jira creation hold persists beyond build verification
+  (§11.1).
 
 - **Plain `READY` asserts AUTOMATABLE, not currently passing** — it is **build-independent** and
   survives a redeploy untouched.
