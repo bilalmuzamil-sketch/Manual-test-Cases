@@ -500,3 +500,63 @@ stripped build-observation paragraph or a non-plain prior marker (HOLD / EXPECT-
 ### SCH-COLOR-01 = [C30071](https://shopview.testrail.io/index.php?/cases/view/30071)
 - **Prior marker:** `AUTOMATION: READY`
 
+
+### SCH-COLOR-02 = [C30072](https://shopview.testrail.io/index.php?/cases/view/30072)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-COLOR-03 = [C30073](https://shopview.testrail.io/index.php?/cases/view/30073)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-HRS-02 = [C38847](https://shopview.testrail.io/index.php?/cases/view/38847)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-HRS-03 = [C38848](https://shopview.testrail.io/index.php?/cases/view/38848)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-HRS-04 = [C38849](https://shopview.testrail.io/index.php?/cases/view/38849)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-HRS-05 = [C38850](https://shopview.testrail.io/index.php?/cases/view/38850)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-HRS-06 = [C38851](https://shopview.testrail.io/index.php?/cases/view/38851)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-PERM-01 = [C30074](https://shopview.testrail.io/index.php?/cases/view/30074)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-PERM-02 = [C30075](https://shopview.testrail.io/index.php?/cases/view/30075)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-PERM-03 = [C30076](https://shopview.testrail.io/index.php?/cases/view/30076)
+- **Prior marker:** `AUTOMATION: HOLD - needs a second sign-in as a user without the Schedule permission`
+
+
+### SCH-PERM-04 = [C30077](https://shopview.testrail.io/index.php?/cases/view/30077)
+- **Prior marker:** `AUTOMATION: HOLD - needs a second sign-in as an edit-without-delete user`
+
+
+### SCH-PERM-05 = [C30078](https://shopview.testrail.io/index.php?/cases/view/30078)
+- **Prior marker:** `AUTOMATION: HOLD - needs a second sign-in as an edit-without-delete user`
+
+
+### SCH-PERM-06 = [C30079](https://shopview.testrail.io/index.php?/cases/view/30079)
+- **Prior marker:** `AUTOMATION: HOLD - needs a second sign-in as a delete-capable user`
+
+
+### SCH-PERM-07 = [C30080](https://shopview.testrail.io/index.php?/cases/view/30080)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-PERM-08 = [C30081](https://shopview.testrail.io/index.php?/cases/view/30081)
+- **Prior marker:** `AUTOMATION: HOLD - needs a second sign-in as a user who cannot see work orders`
+
