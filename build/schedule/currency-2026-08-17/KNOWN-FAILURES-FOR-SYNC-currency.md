@@ -11,8 +11,13 @@ It is preserved below so the later build-verify sync re-checks each against the 
 the right marker (Rule 61) — READY, READY - EXPECT FAIL (SV-xxxx), or a genuine HOLD.
 
 **No ticket created or closed this pass (Jira creation hold active). Nothing below is a current build
-fact — each is a *previously observed* item to re-verify.** Cases below list only those that carried a
-stripped build-observation paragraph or a non-plain prior marker (HOLD / EXPECT-FAIL).
+fact — each is a *previously observed* item to re-verify.** This is a **complete prior-marker ledger**:
+one entry per touched case recording the marker it carried BEFORE the uniform Rule-69 marker, so the
+sync can restore the right one (READY / READY - EXPECT FAIL (SV-xxxx) / genuine HOLD). Entries that also
+carried a **build-observation paragraph** quote it verbatim (9 via the generic path; a 10th–12th —
+SCH-MODAL-06, SCH-START-05, SCH-START-06 — had theirs superseded by the v30 content rewrite and are
+documented in `COVERAGE-CURRENCY.md`: MODAL-06's per-shift build behaviour now MATCHES v28, and
+START-05/06's "no Unassigned row" is now the v30 dept-header-lane model).
 
 ### SCH-DEL-01 = [C30057](https://shopview.testrail.io/index.php?/cases/view/30057)
 - **Prior marker:** `AUTOMATION: READY`
