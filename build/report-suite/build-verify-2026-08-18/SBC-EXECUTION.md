@@ -1,6 +1,6 @@
 # SBC-EXECUTION — Sales By Customer live build-verification (2026-08-18)
 
-**Build under test:** `v3.8-2bf8d14` (app.staging.shopview.com / api.staging.shopview.com), last-modified 2026-08-18 17:45:12 GMT, etag `0f69246068bb597a9f1a1f02bd708754` — **read at pass start and end, byte-stable (no redeploy under the pass).**
+**Build under test:** `v3.8-2bf8d14` (app.staging.shopview.com / api.staging.shopview.com), last-modified 2026-08-18 17:45:12 GMT, etag `0f69246068bb597a9f1a1f02bd708754` — **read byte-stable **throughout the observation window**. **A redeploy occurred right at the END of the pass** (v3.8-2bf8d14 -> v3.8-bd246fd, last-modified 19:57:31 GMT) AFTER all observations and writes were complete. Every verdict and provenance stamp records v3.8-2bf8d14, which is exactly the build observed. Per Rule 60/skill-03 6.1 a same-minor rebuild does not make these verdicts stale; the affected labels/routes may be re-confirmed on v3.8-bd246fd if a functional change is suspected.**
 
 **Scope:** 96 Sales By Customer cases in group 4281 (all `created_by = 3`, ours). Report + all features live-verified PRESENT on v3.8. **Result: 86 PASS (READY) / 0 DEVIATION-marker / 10 HOLD / 0 NOT-BUILT.**
 

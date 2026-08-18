@@ -50,3 +50,8 @@ Batch 1 (Not-available lifts, 15 cases): all HTTP 200, all byte-verify PASS. Wri
 All update_case HTTP 200 + byte-verified. C30166: raw HTML demarked + EF marker off (SV-8964 OBSOLETE, A3 defect still reproduces). C30117/C30130/C30168: §3.5 raw-markup repair + re-stamp.
 
 **Post-batch invariant census over all 96 live SBC cases: RAW MARKUP 0, MULTI-MARKER 0, NO-MARKER 0, MULTI-PROVENANCE 0. Final markers: 86 READY + 10 HOLD.**
+
+### END-OF-PASS BUILD REDEPLOY (honest record)
+Start marker (all observations + writes): **v3.8-2bf8d14**, last-mod 2026-08-18 17:45:12 GMT, etag 0f69246068bb597a9f1a1f02bd708754.
+End-of-pass re-read: **v3.8-bd246fd**, last-mod 2026-08-18 19:57:31 GMT, etag c4dd352f91ecfee192844c6a04a643fc.
+The redeploy happened AFTER all SBC observations and update_case writes were complete. All 50 writes stamp v3.8-2bf8d14 (the build observed). Same-minor rebuild -> per Rule 60/skill-03 6.1 the verdicts are not made stale; re-confirm labels/routes on v3.8-bd246fd only if a functional change is suspected. NO run writes (0 update_run, 0 results). Run 359 untouched.
