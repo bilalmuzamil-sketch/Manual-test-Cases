@@ -161,3 +161,89 @@ stripped build-observation paragraph or a non-plain prior marker (HOLD / EXPECT-
 ### SCH-DND-07 = [C29961](https://shopview.testrail.io/index.php?/cases/view/29961)
 - **Prior marker:** `AUTOMATION: READY`
 
+
+### SCH-DND-08 = [C29962](https://shopview.testrail.io/index.php?/cases/view/29962)
+- **Prior marker:** `AUTOMATION: READY - EXPECT FAIL (SV-8957)`
+- **Removed build-observation paragraph (re-verify at the sync):**
+
+  > What you should see today: there is no click alternative anywhere. The work order card in the left-hand panel carries no button that arms it for placing - not when the page loads, not when you rest the mouse on the card, and not inside the card's line list. The only way to place a job on the grid is to drag it. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8957. That ticket has been closed without the problem being fixed, so do not wait for a fix.
+  > - If you see exactly that, mark this test FAILED and do not raise anything new.
+  > - If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+  > - If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
+
+
+### SCH-SCOPE-01 = [C29963](https://shopview.testrail.io/index.php?/cases/view/29963)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-SCOPE-02 = [C29964](https://shopview.testrail.io/index.php?/cases/view/29964)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-SCOPE-03 = [C29965](https://shopview.testrail.io/index.php?/cases/view/29965)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-SCOPE-05 = [C29967](https://shopview.testrail.io/index.php?/cases/view/29967)
+- **Prior marker:** `AUTOMATION: READY - EXPECT FAIL (SV-8886)`
+- **Removed build-observation paragraph (re-verify at the sync):**
+
+  > What you should see today: Ticking lines does switch the rows into tick boxes and the bar at the bottom does count what you have ticked, but it reads '2 selected - 4h' rather than the wording above, there is no 'Select all' button anywhere, and there is no 'Cancel'. The only 'All' control is the 'All <number of lines>' chip higher up, which filters the list and ticks nothing. To leave tick-box mode you have to press 'Select multiple' a second time, and nothing on screen tells you that. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8886.
+  > - If you see exactly that, mark this test FAILED and do not raise anything new.
+  > - If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+  > - If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
+
+
+### SCH-START-01 = [C29969](https://shopview.testrail.io/index.php?/cases/view/29969)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-START-02 = [C29970](https://shopview.testrail.io/index.php?/cases/view/29970)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-START-04 = [C29972](https://shopview.testrail.io/index.php?/cases/view/29972)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-SPREAD-02 = [C29978](https://shopview.testrail.io/index.php?/cases/view/29978)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-SPREAD-06 = [C29982](https://shopview.testrail.io/index.php?/cases/view/29982)
+- **Prior marker:** `AUTOMATION: READY - EXPECT FAIL (SV-9090)`
+- **Removed build-observation paragraph (re-verify at the sync):**
+
+  > What you should see today: There is no start date anywhere in the window, so step 2 cannot be carried out at all. The run of days always begins on the day you dropped the work order on. Check all five choices in the 'Schedule' dropdown before you mark it: 'Until a date...' adds a 'Finish by' date and 'Specific hours...' adds an hours stepper, but both of those set where the run ENDS, not where it begins. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-9090. That ticket has been closed without a fix, so do not wait for one.
+  > - If you see exactly that, mark this test FAILED and do not raise anything new.
+  > - If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+  > - If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.
+  > 
+  > The same problem was also reported earlier as SV-8855, which is closed too.
+
+
+### SCH-SPREAD-09 = [C29985](https://shopview.testrail.io/index.php?/cases/view/29985)
+- **Prior marker:** `AUTOMATION: HOLD - an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker`
+- **Removed build-observation paragraph (re-verify at the sync):**
+
+  > What you should see today: Points 1 and 3 are fine - confirming created one shift per working day, all joined into one series, each keeping its own day and hours, and weekends were skipped. Point 2 looked right on the grid but was not examined closely, so check the connected banner yourself. Point 4 is not: no message with an Undo button appeared after confirming. This has been checked on the build and reported to the QA lead, but it does not have a ticket number yet.
+  > - If you see exactly that, mark this test FAILED and say it is the known problem with no ticket yet.
+  > - If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+  > - If it PASSES, tell the QA lead: it means this was fixed after 12 August 2026.
+
+
+### SCH-SPREAD-10 = [C29986](https://shopview.testrail.io/index.php?/cases/view/29986)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-SPREAD-11 = [C38863](https://shopview.testrail.io/index.php?/cases/view/38863)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-SER-01 = [C29987](https://shopview.testrail.io/index.php?/cases/view/29987)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-SER-02 = [C29988](https://shopview.testrail.io/index.php?/cases/view/29988)
+- **Prior marker:** `AUTOMATION: READY`
+
