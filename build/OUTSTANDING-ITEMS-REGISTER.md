@@ -93,9 +93,15 @@ Source: `build/report-suite/fabian-review-2026-08-17/`. Specs re-read live (SBC 
 > are frozen out (`include_all:False`); union staged in
 > `build/filters/fabian-review-2026-08-17/STAGED-RUN-352-SYNC.md`. **(FAB-4)** a **QA-branch sign-in**
 > for `sv8785.qa.shopview.com` to build-verify the redesign and lift the 69 Rule-69
-> (`Not available on Build to test Yet`) markers to READY. **(FAB-5)** a **v18/v19→v21 provenance
-> re-stamp** of the 55 unchanged Filters cases is owed (behaviourally correct; currency tidy).
-> Full report: `build/filters/fabian-review-2026-08-17/FILTERS-COMPLETION-REPORT.md`.
+> (`Not available on Build to test Yet`) markers to READY. **(FAB-5) ✅ CLEARED 2026-08-17** — the **v19→v21 provenance re-stamp of the 55 unchanged Filters
+> cases is DONE**: 55 `update_case`, byte-verified (refs `[spec v21 2026-08-14]` + provenance
+> Confluence v21, spec+epic read-dates → 17 Aug, stale build sentence dropped, plain READY → Rule-69
+> marker, HOLD/EXPECT-FAIL kept). **All 124 our Filters cases now cite Confluence v21 (0 cite v19).**
+> Spec v21 + epic (33 children) re-confirmed CURRENT live. 0 content-stale, 0 label-finalize (all 26
+> "confirm live" are the per-view rollout owed by engineering, not design-pinnable labels), 0 live
+> contradictions; four counts live/local/id-map/import = 124 set-equal. Pass:
+> `build/filters/currency-2026-08-17/FILTERS-CURRENCY-REPORT.md`.
+> Full fabian report: `build/filters/fabian-review-2026-08-17/FILTERS-COMPLETION-REPORT.md`.
 **Predecessor snapshot (kept for the record):** `build/PROJECTS-NEEDS-2026-07-27.md`
 **Companion defensibility register (read before answering any QA challenge in a public channel):** `build/qa-preemptive-answers-2026-07-31/ANTICIPATED-QUESTIONS-AND-ANSWERS.md` / `.xlsx` — 65 rows of *what someone could say* → *the paste-ready answer* → *the evidence*, across the three active projects, with a TOP 10 and an open list of what we would genuinely have to concede.
 **Companion retrospective:** `build/LESSONS-2026-07-31.md` — what went wrong on 2026-07-31, what it
