@@ -48,8 +48,8 @@ SCH-START-01,29969,A shift's start time uses the technician's own working hours 
 SCH-START-02,29970,"With no technician hours set, start time falls back to business hours",Shift Start Times and Unassigned Shifts,SV-8688 (§4.2)
 SCH-START-03,29971,"With neither technician hours nor business hours set, a 7:00 AM default applies",Shift Start Times and Unassigned Shifts,SV-8688; SV-9231 (§4.2 resolved working hours; app-level default 7:00 AM to 7:00 PM is not a rule)
 SCH-START-04,29972,In day view the start time comes from the drop position,Shift Start Times and Unassigned Shifts,SV-8688 (§4.2 (day view drop position))
-SCH-START-05,29973,Dropping onto the Unassigned row creates a shift with no technician,Shift Start Times and Unassigned Shifts,"SV-8688 (§4.2 (Unassigned shifts),§3.2)"
-SCH-START-06,29974,Unassigned shift start time uses business hours or the default,Shift Start Times and Unassigned Shifts,SV-8688 (§4.2)
+SCH-START-05,29973,Dropping onto a department's unassigned lane creates a shift with no technician,Shift Start Times and Unassigned Shifts,SV-9234 (§3.2 §4.2 unassigned lane on the department header row)
+SCH-START-06,29974,Unassigned shift start time uses business hours or the app-level default,Shift Start Times and Unassigned Shifts,SV-9234 (§4.2 unassigned shift start time)
 SCH-START-07,29975,Dragging an unassigned shift onto a technician assigns and re-sizes it,Shift Start Times and Unassigned Shifts,SV-9234; SV-9235 (§3.2 unassigned lane; §4.2 assigning a parked shift re-evaluates remaining hours)
 SCH-START-09,43795,A day's hours resolve tech then shop then a 7am-7pm default used everywhere,Shift Start Times and Unassigned Shifts,SV-9231 (§4.2;§8.1)
 SCH-UNAS-01,43799,Dropping a work order on a department header row parks it as one shift,Shift Start Times and Unassigned Shifts,SV-9234 (§3.2;§4.2;§4.4;§8.1)
@@ -92,7 +92,7 @@ SCH-MODAL-02,30009,"Scheduled date, start, end and hours can be typed to the min
 SCH-MODAL-03,30010,"The modal shows the technician and time logged vs estimate, per line and for the shift",Shift Detail Modal,SV-8695; SV-9240 (§4.9 time logged against estimate; per line and for the shift)
 SCH-MODAL-04,30011,The modal lists the scheduled line(s) with no money fields,Shift Detail Modal,"SV-8695 (§4.9,§4.4)"
 SCH-MODAL-05,30012,Estimated hours can be edited inline in the modal,Shift Detail Modal,SV-8695 (§4.9 (Estimated hours with inline edit))
-SCH-MODAL-06,30013,"Notes can be added, edited, and deleted per work order from the modal",Shift Detail Modal,"SV-8695 (§4.9 (Notes: add,edit,and delete per work order))"
+SCH-MODAL-06,30013,"Notes can be added, edited, and deleted per shift from the modal",Shift Detail Modal,SV-8695 (§4.9 (Notes: add/edit/delete per shift))
 SCH-MODAL-07,30014,A conflicted shift's modal shows a conflict banner with an 'Adjust' action,Shift Detail Modal,SV-8695 (§4.9 (conflict banner + Adjust))
 SCH-MODAL-08,30015,Shift modal offers Delete only - there is no Reassign action,Shift Detail Modal,"SV-8695 (§4.9 (Actions - Delete only; Reassign removed in Confluence v23),§7)"
 SCH-MODAL-09,43808,"Shift modal shows Time Logged (actual vs estimate) per line, not only rolled up",Shift Detail Modal,SV-9240 (§4.9)
@@ -148,7 +148,7 @@ SCH-DEL-03,30059,'This and everything after' removes from the clicked shift onwa
 SCH-DEL-04,30060,'The whole series' removes all of the series' shifts for that technician,"Deletion, Series Scopes and Undo",SV-8692 (§7 (The whole series - 'for that technician'))
 SCH-DEL-05,30061,Scope options adapt: the first and last shift each show only two,"Deletion, Series Scopes and Undo",SV-8692 (§7 (options adapt to position))
 SCH-DEL-06,30062,Deleting a standalone (non-series) shift does not ask for a series scope,"Deletion, Series Scopes and Undo",SV-8692 (§7 (derived - scope prompt is for series shifts))
-SCH-DEL-08,30064,"Toast lasts ~7s with Undo (about 4s without); stays on hover, goes on leave","Deletion, Series Scopes and Undo","SV-8688 (§7 (Toast notifications),§11 (Undo))"
+SCH-DEL-08,30064,"Toast stays 4 to 7 seconds, stays while hovered, goes when the cursor leaves","Deletion, Series Scopes and Undo","SV-8688 (§7 (Toast notifications),§11 (Undo))"
 SCH-DEL-09,30065,"Every create/delete/move/reassign toasts with Undo, and Undo restores","Deletion, Series Scopes and Undo","SV-8688 (§7 (Toast notifications),§11 (Undo))"
 SCH-DEL-10,38864,"Schedule actions save immediately - Undo reverses them, closing does not cancel","Deletion, Series Scopes and Undo",SV-8688 (§7 toast/undo + tech-plan D10)
 SCH-KEY-01,30066,"Escape closes the topmost open modal or popover, following the stacking order",Keyboard Interactions,"SV-8700 (§7 (Keyboard support - Escape,including within the shift modal))"
