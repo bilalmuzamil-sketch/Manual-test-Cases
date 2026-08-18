@@ -2,6 +2,17 @@
 
 **2026-08-18 · verifier: independent pass · NO TestRail/Jira writes · report-file commit only**
 
+> **✅ UPDATE 2026-08-18 — C38872 CORRECTED (the one exception below is now resolved).** The single
+> deviation identified in this report — **C38872 (SCH-API-01, Schedule)**, whose three text fields had
+> been inadvertently re-encoded plain→HTML during the marker revert — was restored to **plain text**
+> via one authorized `update_case` (three text fields only; `refs`/`custom_atmstatus`/title untouched).
+> Byte-verified live: **0 raw HTML** in `custom_preconds`/`custom_steps`/`custom_expected`, exactly one
+> provenance line, and the **correct restored marker kept** (`AUTOMATION: HOLD - needs three separate
+> sign-ins, one per permission level` — the deferred marker was NOT re-introduced). The body/provenance
+> are byte-semantically identical to the pre-revert git baseline (`0d101722`); `custom_atmstatus`
+> confirmed `1` (Not Automated) before the write. All 497 reverted cases are now marker-line-only /
+> semantically-identical to baseline, with **0 raw-HTML residue**.
+
 Verifies the claim of commit `bcb928d6` (+ its 33 oplog-batch predecessors) that the marker-revert
 restored the prior `AUTOMATION:` marker on **497 cases** across Schedule (4254), Report Suite (4281)
 and Filters (4110), changing **ONLY the marker line** and leaving everything else byte-identical.
