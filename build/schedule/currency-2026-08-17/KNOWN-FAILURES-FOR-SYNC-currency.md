@@ -307,3 +307,69 @@ stripped build-observation paragraph or a non-plain prior marker (HOLD / EXPECT-
 ### SCH-MODAL-07 = [C30014](https://shopview.testrail.io/index.php?/cases/view/30014)
 - **Prior marker:** `AUTOMATION: READY`
 
+
+### SCH-MODAL-08 = [C30015](https://shopview.testrail.io/index.php?/cases/view/30015)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-EVT-01 = [C30016](https://shopview.testrail.io/index.php?/cases/view/30016)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-EVT-02 = [C30017](https://shopview.testrail.io/index.php?/cases/view/30017)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-EVT-03 = [C30018](https://shopview.testrail.io/index.php?/cases/view/30018)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-EVT-05 = [C30020](https://shopview.testrail.io/index.php?/cases/view/30020)
+- **Prior marker:** `AUTOMATION: HOLD - an observed fault on this case has no ticket number yet, so it cannot carry an expect-fail marker`
+- **Removed build-observation paragraph (re-verify at the sync):**
+
+  > What you should see today: Point 2 is fine - dragging the event to a different day does move it to that day. Point 3 is not: no message with an Undo button appeared after the move. Point 1, dropping the event on a different technician's row, was NOT checked on this build - our tooling could not land the drop in another technician's lane, so please try it by hand and report what you see. This has been checked on the build and reported to the QA lead, but it does not have a ticket number yet.
+  > - If you see exactly that, mark this test FAILED and say it is the known problem with no ticket yet.
+  > - If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.
+  > - If it PASSES, tell the QA lead: it means this was fixed after 12 August 2026.
+
+
+### SCH-EVT-06 = [C30021](https://shopview.testrail.io/index.php?/cases/view/30021)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-EVT-07 = [C30022](https://shopview.testrail.io/index.php?/cases/view/30022)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-EVT-08 = [C30615](https://shopview.testrail.io/index.php?/cases/view/30615)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-CONF-01 = [C30023](https://shopview.testrail.io/index.php?/cases/view/30023)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-CONF-05 = [C30027](https://shopview.testrail.io/index.php?/cases/view/30027)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-CONF-06 = [C30028](https://shopview.testrail.io/index.php?/cases/view/30028)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-CONF-07 = [C30029](https://shopview.testrail.io/index.php?/cases/view/30029)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-CAP-01 = [C30030](https://shopview.testrail.io/index.php?/cases/view/30030)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-CAP-02 = [C30031](https://shopview.testrail.io/index.php?/cases/view/30031)
+- **Prior marker:** `AUTOMATION: READY`
+
+
+### SCH-CAP-03 = [C30032](https://shopview.testrail.io/index.php?/cases/view/30032)
+- **Prior marker:** `AUTOMATION: READY`
+
