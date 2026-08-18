@@ -7,7 +7,11 @@ produces are confirmed runnable before they reach him. **Build verification is D
 both are HELD.** Confirmed live `custom_atmstatus = 3` for both (2026-08-18).
 
 Both need the SAME line-state reword the four manual cases received (Chris Ward's answer Q2=B, 2026-08-18,
-"we're treating WIP as a sum of lines, not work orders"; spec v21 §3 Key Decisions per SV-9027). The exact
+"we're treating WIP as a sum of lines, not work orders"; spec **v22** §3 Key Decisions per SV-9027). The exact
+intended reword below was re-pointed **v21 → v22** on 2026-08-18 after Chris republished the WIP spec at
+Confluence version 22 (Story 11 snapshot grain only; §3 Key Decisions placement wording is byte-identical
+to v21, and S11 is NOT relevant to these two placement cases). The "Live now" refs lines below are the
+current live state (still v21) and are left as the factual record. The exact
 intended reword is recorded below so the build-verify pass can **edit + build-verify together** in one
 step, then set the marker (`READY`, or `READY - EXPECT FAIL (SV-xxxx)` on a live-backed ticketed failure)
 and hand the case number to Vlad (§5.4 / Rule 65).
@@ -29,12 +33,12 @@ and hand the case number to Vlad (§5.4 / Rule 65).
 4. Each of these work orders has all its lines in one state, so each appears in a single tab. A work order carrying lines in more than one state would appear in more than one tab, each showing only that tab's slice of its money; the status column still shows the work order's true status.
 
 ---
-This is the expected behaviour as per Chris Ward's answer of 18 August 2026 (option B: the report treats a work order as a sum of lines, not work orders), recorded in his answers in this file: <LINK>, and epic SV-8582 and story SV-8659 (WIP Story 3), both read on <build-verify date>, and the Work In Progress report specification version 21 (§3 Key Decisions, per SV-9027), read on <build-verify date>. Last checked against build <marker> on <date>.
+This is the expected behaviour as per Chris Ward's answer of 18 August 2026 (option B: the report treats a work order as a sum of lines, not work orders), recorded in his answers in this file: <LINK>, and epic SV-8582 and story SV-8659 (WIP Story 3), both read on <build-verify date>, and the Work In Progress report specification version 22 (§3 Key Decisions, per SV-9027), read on <build-verify date>. Last checked against build <marker> on <date>.
 This differs from the older wording in the same specification (Story 3, S3-R1..R4), which places a whole work order in one tab by its overall status. Chris Ward confirmed on 18 August 2026 that placement follows each line's state, so that newest answer is followed here.
 
 AUTOMATION: <READY or READY - EXPECT FAIL (SV-xxxx), set by the build-verify pass>
 ```
-- **Intended refs:** `SV-8659 (WIP Story 3; WIP spec v21 §3 Key Decisions per SV-9027 - line-state placement; single-state work orders each appear in one tab, a mixed-state work order in several; Chris Ward 2026-08-18 answer B)`
+- **Intended refs:** `SV-8659 (WIP Story 3; WIP spec v22 §3 Key Decisions per SV-9027 - line-state placement; single-state work orders each appear in one tab, a mixed-state work order in several; Chris Ward 2026-08-18 answer B)`
 - **Remove** the existing ambiguity "Note for the tester" paragraph (resolved by Chris's answer).
 - **Marker:** currently the deferred marker; the build-verify pass lifts it to `READY` once runnable (no live-backed ticket exists → not EXPECT-FAIL, §15.1).
 
@@ -47,7 +51,7 @@ Replace item 3's parenthetical with a line-state phrasing:
 ```
 3. There is NO on-screen status filter — the four tabs take the place of a status filter (a job's lines are placed into tabs by each line's state, so a job with lines in more than one state appears in more than one tab).
 ```
-- Add the Rule-56 divergence sentence (older Story-3 "derived from its status" wording superseded by Chris's 2026-08-18 answer B) and re-stamp the provenance line.
+- Add the Rule-56 divergence sentence (older Story-3 "derived from its status" wording superseded by Chris's 2026-08-18 answer B) and re-stamp the provenance line **to cite Work In Progress report specification version 22** (the current live version; Story 1 S1-R2/R3/R4 and the §3 Key Decisions "no on-screen status filter" line are byte-identical v21→v22, so only the version pin moves).
 - **Marker:** currently `AUTOMATION: READY`. Under Rule 69 a content change with build deferred substitutes the deferred marker for a plain `READY`; but since this is coupled to build verification, the build-verify pass sets it live (`READY` once the four-tab layout + line-state note are confirmed runnable — no live-backed ticket → not EXPECT-FAIL).
 
 ---
