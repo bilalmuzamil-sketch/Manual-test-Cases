@@ -63,3 +63,14 @@
 - **C43557** WROTE | HTTP 200 | update_case C43557: 30 fields compared, 4 intended, 0 mismatch
 - **C43592** WROTE | HTTP 200 | update_case C43592: 30 fields compared, 4 intended, 0 mismatch
 - **C43593** WROTE | HTTP 200 | update_case C43593: 30 fields compared, 4 intended, 0 mismatch
+- **C43594** WROTE | HTTP 200 | update_case C43594: 30 fields compared, 4 intended, 0 mismatch
+- **C43814** WROTE | HTTP 200 | update_case C43814: 30 fields compared, 4 intended, 0 mismatch
+- **C43815** WROTE | HTTP 200 | update_case C43815: 30 fields compared, 4 intended, 0 mismatch
+- **C43816** WROTE | HTTP 200 | update_case C43816: 30 fields compared, 4 intended, 0 mismatch
+- **C43817** WROTE | HTTP 200 | update_case C43817: 30 fields compared, 4 intended, 0 mismatch
+- **C43818** WROTE | HTTP 200 | update_case C43818: 30 fields compared, 4 intended, 0 mismatch
+- **C43819** WROTE | HTTP 200 | update_case C43819: 30 fields compared, 4 intended, 0 mismatch
+- **C43820** WROTE | HTTP 200 | update_case C43820: 30 fields compared, 4 intended, 0 mismatch
+- **C43821** WROTE | HTTP 200 | update_case C43821: 30 fields compared, 4 intended, 0 mismatch
+- **C43836** WROTE | HTTP 200 | update_case C43836: 30 fields compared, 4 intended, 0 mismatch
+- **C43838** WROTE | HTTP 200 | update_case C43838: 30 fields compared, 4 intended, 0 mismatch | C43838 shell 'does not name' phrasing + parenthetical read-on
