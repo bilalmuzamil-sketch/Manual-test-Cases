@@ -78,3 +78,21 @@ metadata build-check stamp was withheld.
 
 The 42 TU cases this pass DID write are all `custom_atmstatus = 1` (Not Automated) — nothing an automated
 suite runs against changed.
+
+---
+
+# WIP (report 5 of 6) — AUTOMATED cases changed: NONE
+
+**Build-verify pass 2026-08-18. NO WIP Automated case was written** (session dead; nothing could be
+build-verify-coupled). All 10 WIP cases flagged Automated (`custom_atmstatus = 3`, confirmed live) were
+**HELD and untouched** (Standing Rule 71): C30452, C30460, C30462, C30488, C30498, C30508, C30510,
+C30515, C30518, C30527 — recorded with their live marker + intended change in `WIP-HELD-AUTOMATED.md`
+for ask-first ratification.
+
+**One item to flag when a coupled build-verify pass runs:** **C30498 (WIP-FLT-01)** carries
+`EXPECT FAIL (SV-8968)`, and **SV-8968 is OBSOLETE/Done** (Jira, live 2026-08-18) — no live backing, so a
+coupled pass should re-adjudicate its marker (Rule 61). This would change what an automated run concludes
+and MUST be told to Vlad when made.
+
+The 82 non-Automated WIP cases were **not written this pass** (build unreachable), so nothing an
+automated suite runs against changed.

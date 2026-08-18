@@ -90,3 +90,45 @@ open clock, and the link is absent anyway).
 **Feature that is PRESENT but has open defects, NOT deferred:** the exports (Summary row omitted from
 PDF/CSV, Expanded CSV holds per-day rows, wrong toast wording, Location column 2nd not leftmost) are
 built-but-deviating — see TU-FINDINGS §F3/§F4/§F8/§F9; their cases were stripped to READY, not deferred.
+
+---
+
+# WIP (report 5 of 6) — 24 deferred cases NOT re-checked this pass (session dead)
+
+**Build-verify pass 2026-08-18, build `v3.8-bd246fd`. The live staging session was DEAD the whole pass**
+(shared `sv_sso_session` rotated by a sibling worker — WIP-EXECUTION §Access), so **none of the 24 WIP
+deferred cases could be checked for feature presence.** They **remain deferred at their existing
+`Last checked 8/17/2026` date — the date was deliberately NOT bumped to 8/18** (bumping it would claim a
+build check that did not happen, Rule 12). Whether each lifts to `READY` or stays deferred is exactly
+what a live build-verify pass must resolve; the biggest unknown is the **Adjustments column** (WIP-ADJ-*)
+build presence (WIP-FINDINGS §F4).
+
+| internal | C-id | area | waits on (feature) |
+|---|---|---|---|
+| WIP-SCOPE-01 | C30456 | Scope | line-state scope loading |
+| WIP-SCOPE-02 | C30457 | Scope | open-only scope |
+| WIP-SCOPE-03 | C30458 | Scope | line-state every-matching-tab |
+| WIP-SCOPE-04 | C30459 | Scope | scope |
+| WIP-PLACE-03 | C30464 | Placement | Approved started-boundary (line-state) |
+| WIP-PLACE-05 | C43979 | Placement | per-tab money slice (line-state) |
+| WIP-COL-05 | C30470 | Columns | column |
+| WIP-ADJ-01 | C43814 | Columns | **Adjustments column** |
+| WIP-CALC-06 | C30479 | Earned&Rem | calc |
+| WIP-ADJ-02 | C43815 | Earned&Rem | **Adjustments** |
+| WIP-ADJ-03 | C43816 | Earned&Rem | **Adjustments** |
+| WIP-ADJ-04 | C43817 | Earned&Rem | **Adjustments** |
+| WIP-ADJ-08 | C43821 | Earned&Rem | **Adjustments** |
+| WIP-SUM-07 | C30493 | Summary | Estimates tooltip (Q1=A confirmation) |
+| WIP-ADJ-05 | C43818 | Summary | **Adjustments** summary figure |
+| WIP-TOT-02 | C30495 | Totals | totals row |
+| WIP-ADJ-06 | C43819 | Totals | **Adjustments** totals |
+| WIP-FLT-04 | C30501 | Filters | filter |
+| WIP-FLT-05 | C30502 | Filters | filter |
+| WIP-PERS-02 | C30507 | Persistence | column persistence |
+| WIP-EXP-11 | C43836 | Exports | export header lines |
+| WIP-VIS-07 | C30525 | Visual | visual |
+| WIP-VIS-08 | C43838 | Visual | visual treatment |
+| WIP-ADJ-07 | C43820 | API | **Adjustments** (API) |
+
+**Trigger to re-check (Rule 49/61):** the feature shipping / becoming observable — NOT a redeploy alone.
+Re-check on the next live WIP build-verify run once staging access is restored.
